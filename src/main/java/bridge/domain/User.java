@@ -1,8 +1,8 @@
 package bridge.domain;
 
-import bridge.utils.MoveCommand;
+import bridge.utils.command.MoveCommand;
 
-import static bridge.utils.ErrorMessage.INVALID_MOVING_COMMAND;
+import static bridge.utils.message.ErrorMessage.INVALID_MOVING_COMMAND;
 
 public class User {
     private int step = 0;

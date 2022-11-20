@@ -1,7 +1,7 @@
 package bridge.support;
 
-import static bridge.utils.MoveCommand.COMMAND_DOWN;
-import static bridge.utils.MoveCommand.COMMAND_UP;
+import static bridge.utils.command.MoveCommand.COMMAND_DOWN;
+import static bridge.utils.command.MoveCommand.COMMAND_UP;
 
 public class BridgeLogger {
     private final StringBuilder UpLog = new StringBuilder();

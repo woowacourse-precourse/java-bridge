@@ -1,8 +1,8 @@
 package bridge.domain;
 
-import bridge.utils.MoveCommand;
+import bridge.utils.command.MoveCommand;
 
-import static bridge.utils.ErrorMessage.INVALID_INPUT_VALUE;
+import static bridge.utils.message.ErrorMessage.INVALID_INPUT_VALUE;
 
 public class Floor {
 

@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.status;
 
 public enum GameStatus {
     WIN("성공"),

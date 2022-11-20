@@ -3,11 +3,11 @@ package bridge.service;
 import bridge.domain.Bridge;
 import bridge.domain.User;
 import bridge.support.BridgeLogger;
-import bridge.utils.GameStatus;
+import bridge.utils.status.GameStatus;
 
 import java.util.List;
 
-import static bridge.utils.GameStatus.*;
+import static bridge.utils.status.GameStatus.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.message;
 
 public enum ErrorMessage {
     INVALID_INPUT_VALUE("올바르지 않은 값입니다."),

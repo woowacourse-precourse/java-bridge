@@ -1,15 +1,15 @@
 package bridge.view;
 
-import bridge.utils.BridgeStatus;
-import bridge.utils.GameCommand;
-import bridge.utils.MoveCommand;
+import bridge.utils.command.GameCommand;
+import bridge.utils.command.MoveCommand;
+import bridge.utils.status.BridgeStatus;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static bridge.utils.ErrorMessage.*;
-import static bridge.utils.GameMessage.*;
+import static bridge.utils.message.ErrorMessage.*;
+import static bridge.utils.message.GameMessage.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

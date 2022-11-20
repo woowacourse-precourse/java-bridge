@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.command;
 
 import java.util.Arrays;
 

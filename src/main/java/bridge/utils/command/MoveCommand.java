@@ -1,8 +1,8 @@
-package bridge.utils;
+package bridge.utils.command;
 
 import java.util.Arrays;
 
-import static bridge.utils.ErrorMessage.INVALID_INPUT_VALUE;
+import static bridge.utils.message.ErrorMessage.INVALID_INPUT_VALUE;
 
 public enum MoveCommand {
     COMMAND_UP("U", 1),

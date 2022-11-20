@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.service.BridgeGame;
 
-import static bridge.utils.GameMessage.*;
+import static bridge.utils.message.GameMessage.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

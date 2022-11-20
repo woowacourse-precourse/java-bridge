@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.message;
 
 public enum GameMessage {
     INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),

@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.status;
 
 public enum BridgeStatus {
     MIN_BRIDGE_SIZE(3),

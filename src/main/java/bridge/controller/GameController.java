@@ -8,9 +8,9 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.utils.GameCommand.COMMAND_RESTART;
-import static bridge.utils.GameStatus.LOSE;
-import static bridge.utils.GameStatus.PLAYING;
+import static bridge.utils.command.GameCommand.COMMAND_RESTART;
+import static bridge.utils.status.GameStatus.LOSE;
+import static bridge.utils.status.GameStatus.PLAYING;
 
 public class GameController {
 
