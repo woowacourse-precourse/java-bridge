@@ -1,10 +1,10 @@
 package bridge;
 
 public class BridgeGameRunner {
-    private InputView input;
-    private OutputView output;
-    private BridgeMaker maker;
-    BridgeGame game;
+    private final InputView input;
+    private final OutputView output;
+    private final BridgeMaker maker;
+    private final BridgeGame game;
 
     /**
      * 생성자
