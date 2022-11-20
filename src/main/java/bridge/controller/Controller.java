@@ -25,7 +25,6 @@ public class Controller {
         System.out.println(GAME_START);
 
         Bridge answerBridge = makeAnswerBridge(bridgeMaker);
-        System.out.println(answerBridge.getBridge());
         Bridge playerBridge = new Bridge(new ArrayList<>());
         playerBridge = playingGame(playerBridge, answerBridge);
     }
@@ -64,12 +63,14 @@ public class Controller {
             // 매칭 하는 부분 따로 빼서 리펙토링
             String moveMessage = getMoveMessage();
             playerInput.add(moveMessage);
-
             position = bridgeGame.move(answerBridge.getBridge(), cnt, moveMessage);
 
             outputView.printMap(answerBridge.getBridge(), playerInput);
 
             // 재시도 추가
+            if(!checkRetry(cnt, position, answerBridge)) {
+                break;
+            }
 
             cnt = position;
         }
@@ -90,5 +91,41 @@ public class Controller {
 
     private String readMoveMessage() {
         return inputView.readMoving();
+    }
+
+    private boolean checkRetry(int cnt, int position, Bridge answerBridge) {
+        if (cnt == position) {
+            if (retry().equals(RETRY)) {
+                clearPlayerBridge();
+                readPlayerBridge(clearPlayerBridge(), answerBridge);
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private String retry() {
+        String retryMessage;
+        try {
+            retryMessage = askRetry();
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            retryMessage = retry();
+        }
+        return retryMessage;
+    }
+    private String askRetry() {
+        String retryMessage;
+        try {
+            retryMessage = inputView.readGameCommand();
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            retryMessage = askRetry();
+        }
+        return retryMessage;
+    }
+
+    private Bridge clearPlayerBridge() {
+        return new Bridge(bridgeGame.retry());
     }
 }
