@@ -51,6 +51,7 @@ public class OutputView {
 
         System.out.println(resultUp);
         System.out.println(resultDown);
+        System.out.println();
     }
 
     /**

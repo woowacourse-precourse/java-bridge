@@ -3,8 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.view.InputView.readBridgeSize;
-import static bridge.view.InputView.readMoving;
+import static bridge.view.InputView.*;
 import static bridge.view.OutputView.printMap;
 
 public class Application {
@@ -23,8 +22,14 @@ public class Application {
                 Boolean moveResult = game.move(bridge, input);
                 gameStatus.add(moveResult);
                 printMap(bridge, gameStatus);
-                if(!moveResult)
-                    break;
+                if(!moveResult) {
+                    if(readGameCommand().equals("Q")) {
+                        break;
+                    }
+                    setGame();
+                    game.retry();
+                }
+
             }
 
         } catch (IllegalArgumentException e) {

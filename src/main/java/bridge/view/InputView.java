@@ -11,6 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
+        printGameStartMessage();
         printReadBridgeSizeMessage();
         try {
             int bridgeSize = Integer.parseInt(Console.readLine());
@@ -22,8 +23,11 @@ public class InputView {
         }
     }
 
-    private static void printReadBridgeSizeMessage() {
+    private static void printGameStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
+
+    private static void printReadBridgeSizeMessage() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
@@ -45,7 +49,16 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        printGameCommandMessage();
+        String input = Console.readLine();
+        if(input.equals("R") || input.equals("Q"))
+            return input;
+        throw new IllegalArgumentException("[ERROR] 재시도(R) 또는 종료(Q)만 입력 선택 가능합니다.");
+    }
+
+    private static void printGameCommandMessage() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
     }
 }

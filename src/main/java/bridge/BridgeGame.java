@@ -6,7 +6,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    static int allCount = 0;
+    static int allCount = 1;
     static int step = 0;
 
     /**
@@ -16,7 +16,6 @@ public class BridgeGame {
      */
     public Boolean move(List<String> bridge, String input) {
         // [refactor 예정] else문 제거
-        allCount++;
         if(bridge.get(step++).equals(input)) {
             return true;
         }
@@ -31,5 +30,10 @@ public class BridgeGame {
      */
     public void retry() {
         step = 0;
+        allCount++;
+    }
+
+    public static int getAllCount() {
+        return allCount;
     }
 }
