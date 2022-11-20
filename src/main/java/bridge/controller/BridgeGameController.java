@@ -92,7 +92,6 @@ public class BridgeGameController {
     private void finishGame() {
         OutputView.printResultHeader();
         OutputView.printMap(mapConverter.getUpperMap(), mapConverter.getLowerMap());
-        OutputView.printBlankLine();
         OutputView.printResult(bridgeGame.isGameSuccess(), bridgeGame.getTrialCount());
     }
 }
