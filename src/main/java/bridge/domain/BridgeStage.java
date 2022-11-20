@@ -1,21 +1,21 @@
 package bridge.domain;
 
 public class BridgeStage {
-    private int stage = 0;
+    private static int stage = 0;
 
-    public void nextStage() {
+    public static void nextStage() {
         stage++;
     }
 
-    public int currentStage() {
+    public static int currentStage() {
         return stage;
     }
 
-    public void resetStage() {
-        this.stage = 0;
+    public static void resetStage() {
+        stage = 0;
     }
 
-    public boolean isFinalStage(int bridgeSize, int stage) {
+    public static boolean isFinalStage(int bridgeSize) {
         if ((bridgeSize - 1) == stage) {
             return true;
         }

@@ -4,6 +4,7 @@ package bridge.controller;
 import bridge.domain.BridgeGame;
 import bridge.domain.StageResult;
 import bridge.generator.BridgeMaker;
+import bridge.validator.Unit;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -67,7 +68,16 @@ public class BridgeController {
     }
 
     public void fail() {
-        
+        String userInput = inputView.readGameCommand();
+
+        if(userInput == Unit.RETRY.getCommand()) {
+            bridgeGame.retry();
+        }
+
+        if(userInput == Unit.QUITE.getCommand()) {
+            throw new IllegalArgumentException();
+        }
     }
+
     public void success() {}
 }

@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private BridgeStage stage = new BridgeStage();
     private final List<String> history = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
@@ -30,9 +29,11 @@ public class BridgeGame {
         history.add(userInput);
     }
 
-    public StageResult compareInputWithBridge(String userInput, int currentStage) {
+    public StageResult compareInputWithBridge(String userInput) {
+        int currentStage = BridgeStage.currentStage();
+
         if(bridge.get(currentStage).equals(userInput)) {
-            if(stage.isFinalStage(bridge.size(), currentStage)) {
+            if(BridgeStage.isFinalStage(bridge.size())) {
                 return StageResult.SUCCESS;
             }
             return StageResult.PASS;
@@ -43,13 +44,13 @@ public class BridgeGame {
     public StageResult processStage(String userInput) {
         move(userInput);
 
-        StageResult stageResult = compareInputWithBridge(userInput, stage.currentStage());
+        StageResult stageResult = compareInputWithBridge(userInput);
 
         return stageResult;
     }
 
     public void pass() {
-        stage.nextStage();
+        BridgeStage.nextStage();
     }
 
     /**
@@ -58,7 +59,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        stage.resetStage();
+        BridgeStage.resetStage();
         history.clear();
     }
 
