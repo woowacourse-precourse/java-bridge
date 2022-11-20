@@ -5,13 +5,13 @@ import java.util.Map;
 
 public enum MoveStatus {
 
-    DOWN_SUCCESS(1, true, "D", "O"),
-    DOWN_FAIL(1, false, "D", "X"),
-    UP_SUCCESS(0, true, "U", "O"),
-    UP_FAIL(0, false, "U", "X");
+    DOWN_SUCCESS(Direction.DOWNSIDE, true, "O"),
+    DOWN_FAIL(Direction.DOWNSIDE, false, "X"),
+    UP_SUCCESS(Direction.UPSIDE, true, "O"),
+    UP_FAIL(Direction.UPSIDE, false, "X");
 
     private static final String WHITE_SPACE = " ";
-    private static final Map<Boolean, Map<String, MoveStatus>> storage = new HashMap<>() {
+    private static final Map<Boolean, Map<Direction, MoveStatus>> storage = new HashMap<>() {
         {
             put(true, new HashMap<>());
             put(false, new HashMap<>());
@@ -24,19 +24,17 @@ public enum MoveStatus {
         }
     }
 
-    public static MoveStatus of(boolean didCross, String direction) {
+    public static MoveStatus of(boolean didCross, Direction direction) {
         return storage.get(didCross).get(direction);
     }
 
-    private final int index;
+    private final Direction direction;
     private final boolean didCross;
-    private final String direction;
     private final String mark;
 
-    MoveStatus(int index, boolean didCross, String direction, String mark) {
-        this.index = index;
-        this.didCross = didCross;
+    MoveStatus(Direction direction, boolean didCross, String mark) {
         this.direction = direction;
+        this.didCross = didCross;
         this.mark = mark;
     }
 
@@ -44,8 +42,8 @@ public enum MoveStatus {
         return this.didCross;
     }
 
-    public String generateMark(String direction) {
-        if (this.direction.equals(direction)) {
+    public String generateMark(Direction bridgeDirection) {
+        if (this.direction.equals(bridgeDirection)) {
             return this.mark;
         }
         return WHITE_SPACE;
