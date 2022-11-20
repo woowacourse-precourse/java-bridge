@@ -11,8 +11,9 @@ public class Application {
     public static void main(String[] args) {
         bridgeGame = new BridgeGame(GameSetter());
         while (!bridgeGame.gameFinishedCheck()) {
-            Boolean success = move();
-            if (!success) {
+            Boolean correct = move();
+            outputView.printMap(bridgeGame, correct);
+            if (!correct) {
                 // TODO: 게임 실패, 재시작 여부 물어봄
             }
         }

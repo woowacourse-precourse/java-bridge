@@ -8,11 +8,11 @@ import java.util.List;
 public class BridgeGame {
 
     private List<String> bridge;
-    private int currentIndex;
+    private int nextIndex;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        currentIndex = 0;
+        nextIndex = 0;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -20,8 +20,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean move(String direction) {
-        Boolean result = direction.equals(bridge.get(currentIndex));
-        currentIndex += 1;
+        Boolean result = direction.equals(bridge.get(nextIndex));
+        nextIndex += 1;
         return result;
     }
 
@@ -31,11 +31,19 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        currentIndex = 0;
+        nextIndex = 0;
+    }
+
+    public List<String> getBridge(){
+        return this.bridge;
+    }
+
+    public int getNextIndex() {
+        return this.nextIndex;
     }
 
     public Boolean gameFinishedCheck() {
-        if (currentIndex >= bridge.size()) {
+        if (nextIndex >= bridge.size()) {
             return true;
         }
         return false;
