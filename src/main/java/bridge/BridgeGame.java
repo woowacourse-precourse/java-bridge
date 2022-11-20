@@ -26,7 +26,7 @@ public class BridgeGame {
 
             if (!bridgeValue.equals(userValue)) {
                 status = Status.FAIL;
-                break;
+                return;
             }
         }
 
