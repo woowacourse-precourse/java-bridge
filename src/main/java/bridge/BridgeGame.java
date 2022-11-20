@@ -9,21 +9,25 @@ import java.util.List;
 public class BridgeGame {
     private static final boolean CORRECT_BRIDGE = true;
     private static final boolean WRONG_BRIDGE = false;
+    private static final boolean GAME_END = true;
+    private static final boolean GAME_ING = false;
 
     private List<Boolean> movingResult = new LinkedList<>();
 
     private int tryCount = 1;
+    private boolean gameStatus = GAME_ING;
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(List<String> bridge, String moving) {
-        if(moving.equals(bridge.get(movingResult.size()))) {
+        if (moving.equals(bridge.get(movingResult.size()))) {
             movingResult.add(CORRECT_BRIDGE);
             return CORRECT_BRIDGE;
         }
-        
+
         movingResult.add(WRONG_BRIDGE);
         return WRONG_BRIDGE;
     }
@@ -44,5 +48,16 @@ public class BridgeGame {
     public void retry() {
         tryCount++;
         movingResult = new LinkedList<>();
+    }
+
+    public void end() {
+        gameStatus = true;
+    }
+
+    public boolean isEnd(List<String> bridge) {
+        if (bridge.size() == movingResult.size() && getMovingResult().get(getMovingResult().size() - 1)) {
+            return GAME_END;
+        }
+        return gameStatus;
     }
 }
