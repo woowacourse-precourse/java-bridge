@@ -17,7 +17,7 @@ public enum Step {
         this.initial = initial;
     }
 
-    public static String setMovableStepInitial(int movableStepNumber) {
+    public static String getMovableStepInitial(int movableStepNumber) {
         return Arrays.stream(Step.values())
                 .filter(step -> step.number == movableStepNumber)
                 .map(step -> step.initial)

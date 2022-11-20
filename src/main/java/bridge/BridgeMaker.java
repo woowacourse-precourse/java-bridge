@@ -23,7 +23,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> completedBridgeShape = new ArrayList<>();
         for (int bridgeGenerateIndex = 0; bridgeGenerateIndex < size; bridgeGenerateIndex++) {
-            String movableStepInitial = Step.setMovableStepInitial(bridgeNumberGenerator.generate());
+            String movableStepInitial = Step.getMovableStepInitial(bridgeNumberGenerator.generate());
             completedBridgeShape.add(movableStepInitial);
         }
         return completedBridgeShape;
