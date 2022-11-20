@@ -68,23 +68,18 @@ public class GameController {
 
     private boolean doRepeatBridgeMove() {
         for (int idx = 0; idx < bridge.getBridgeSpaces().size(); idx++) {
-            String userMove = inputUserMove();
-            bridge.getBridgeSpaces().get(idx).setMyMoved(
-                    bridgeGame.move(userMove,bridge.getBridgeSpaces().get(idx)));
+            String userDirection = inputUserMove();
+            Moved userMoved = bridgeGame.move(userDirection,bridge.getBridgeSpaces().get(idx));
+            bridge.getBridgeSpaces().get(idx).setMyMoved(userMoved);
             printNowBridge();
-            if(bridge.getBridgeSpaces().get(idx).getMyMoved() == Moved.CANT) break;
+            if(userMoved == Moved.CANT) break;
         }
-        return checkAllDone();
+        return bridgeGame.checkAllDone(bridge);
     }
 
     private boolean askRetry() {
         String retryFlag = inputView.readGameCommand();
         return Objects.equals(retryFlag, "R");
-    }
-
-    private boolean checkAllDone() {
-        return bridge.getBridgeSpaces().get(bridge.getBridgeSpaces().size() - 1).getMyMoved()
-                == Moved.CAN;
     }
 
     private void printNowBridge() {

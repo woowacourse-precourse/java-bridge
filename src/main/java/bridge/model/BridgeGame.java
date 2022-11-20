@@ -25,4 +25,11 @@ public class BridgeGame {
         bridge.getBridgeSpaces().forEach(BridgeSpace::init);
         return bridge;
     }
+
+
+    public boolean checkAllDone(Bridge bridge) {
+        return bridge.getBridgeSpaces().get(bridge.getBridgeSpaces().size() -1).getMyMoved() == Moved.CAN;
+    }
+
+
 }
