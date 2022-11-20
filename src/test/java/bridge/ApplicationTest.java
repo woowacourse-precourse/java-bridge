@@ -79,8 +79,8 @@ class ApplicationTest extends NsTest {
     void 다리길이입력_기능테스트_최대경계값(){
         String input = "30";
         in = new ByteArrayInputStream(input.getBytes());
-        int bridgeSize = inputView.readBridgeSize();
         System.setIn(in);
+        int bridgeSize = inputView.readBridgeSize();
         assertThat(bridgeSize).isEqualTo(30);
     }
     //endregion
