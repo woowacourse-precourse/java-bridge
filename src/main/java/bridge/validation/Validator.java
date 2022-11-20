@@ -27,7 +27,7 @@ public class Validator {
         }
     }
 
-    public void checkMoving(String input) {
+    public void checkDirection(String input) {
         if (input.equals(Direction.UP.getLetter()) || input.equals(Direction.DOWN.getLetter())) {
             return;
         }

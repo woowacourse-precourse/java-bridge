@@ -73,7 +73,7 @@ public class BridgeController {
         while (true) {
             String input = inputView.readMoving();
             try {
-                validator.checkMoving(input);
+                validator.checkDirection(input);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
                 continue;
