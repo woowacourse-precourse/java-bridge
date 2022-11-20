@@ -14,6 +14,7 @@ public class BridgeGame {
     private List<String> bridge;
     private int currentPosition = -1;
     private int totalTryCount = 1;
+    private boolean success = true;
 
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -34,7 +35,7 @@ public class BridgeGame {
         currentPosition++;
         String moveCommand = convertCommand(bridgePlay.requestReadMoving());
         if(!bridge.get(currentPosition).equals(moveCommand)) {
-            currentPosition = -1;
+            success = false;
             return false;
         }
         return true;
@@ -51,9 +52,27 @@ public class BridgeGame {
      */
     public boolean retry() {
         if(bridgePlay.requestReadMoving().equals("R")) {
+            currentPosition = -1;
+            success = true;
             totalTryCount++;
             return true;
         }
         return false;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public int getTotalTryCount() {
+        return totalTryCount;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 }
