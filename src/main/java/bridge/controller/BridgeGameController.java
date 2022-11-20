@@ -40,7 +40,31 @@ public class BridgeGameController {
         }
     }
 
+    public String readMove() {
+        outputView.printReadMoving();
+        try {
+            moveString = inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException();
+        }
+        return moveString;
+    }
+
+    public boolean move() {
+        try {
+            moveString = readMove();
+        } catch (IllegalArgumentException e) {
+            outputView.printError("[ERROR] 이동할 칸 입력은 U 혹은 D만 가능합니다.");
+            return false;
+        }
+        return true;
+    }
+
+
     public void playGame() {
         bridgeGame = new BridgeGame(makeBridge(), player);
+        while (!move()){
+
+        };
     }
 }
