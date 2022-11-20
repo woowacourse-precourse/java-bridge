@@ -4,8 +4,11 @@ public enum Lang {
     HELLO_WORLD("안녕 세계 %s"),
     WRONG_COMMAND("잘못된 명령어를 입력했어요. 사용 가능한 명령어는 다음과 같아요.\n%s"),
     INPUT_NUMBER("숫자를 입력해 주세요."),
-    INPUT_NUMBER_IN_RANGE("%d ~ %d 사이의 숫자를 입력해 주세요."),
-    SLAB_TYPE_IS_UNKNOWN("SlabType 이 알 수 없음 이에요.");
+    INPUT_NUMBER_IN_RANGE("%d ~ %d 사이의 숫자를 입력해주세요."),
+    SLAB_TYPE_IS_UNKNOWN("SlabType 이 Unknown 이에요."),
+    INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
+    SELECT_SLAB("이동할 칸을 선택해주세요. (위: %s, 아래: %s"),
+    SELECT_RETRY_OR_QUIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s");
 
     private final String message;
 
