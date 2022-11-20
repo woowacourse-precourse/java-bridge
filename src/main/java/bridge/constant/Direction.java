@@ -1,7 +1,6 @@
 package bridge.constant;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum Direction {
     UPPER("U", 1),
@@ -15,16 +14,18 @@ public enum Direction {
         this.bridgeNumber = bridgeNumber;
     }
 
-    public static Optional<Direction> from(String capitalLetter) {
+    public static Direction from(String capitalLetter) {
         return Arrays.stream(values())
                 .filter(direction -> direction.hasCapitalLetter(capitalLetter))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("문자열로 방향을 찾을 수 없습니다"));
     }
 
-    public static Optional<Direction> from(int bridgeNumber) {
+    public static Direction from(int bridgeNumber) {
         return Arrays.stream(values())
                 .filter(direction -> direction.hasBridgeNumber(bridgeNumber))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("숫자로 방향을 찾을 수 없습니다"));
     }
 
     private boolean hasCapitalLetter(String capitalLetter) {

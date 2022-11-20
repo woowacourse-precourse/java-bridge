@@ -10,12 +10,12 @@ public class DirectionTest {
     @ParameterizedTest
     @CsvSource(value = {"U=UPPER", "D=LOWER"}, delimiter = '=')
     void 문자열로_방향을_찾을_수_있다(String direction, Direction expected) {
-        assertThat(Direction.from(direction)).hasValue(expected);
+        assertThat(Direction.from(direction)).isEqualTo(expected);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1=UPPER", "0=LOWER"}, delimiter = '=')
     void 숫자로_방향을_찾을_수_있다(int bridgeNumber, Direction expected) {
-        assertThat(Direction.from(bridgeNumber)).hasValue(expected);
+        assertThat(Direction.from(bridgeNumber)).isEqualTo(expected);
     }
 }
