@@ -15,7 +15,7 @@ public class Controller {
     private int numberOfAttempts;
     private List<Integer> movingSuccess;
     private boolean presentResult;
-    public boolean restart = true;
+    private boolean restart = true;
 
     public void run() {
         initialize();
@@ -53,13 +53,17 @@ public class Controller {
     public void movingStart(List<String> bridge) {
         this.movingSuccess = new ArrayList<>();
         for (int indexOfBridge = 0; indexOfBridge < bridge.size(); indexOfBridge++) {
-            this.movingSuccess.add(BridgeGame.move(bridge, indexOfBridge, getMoving()));
-            this.presentResult = OutputView.printMap(this.movingSuccess);
+            moveOneSpace(bridge, indexOfBridge);
             if (BridgeGame.retry(presentResult)) {
                 this.restart = checkRestart(getGameCommand());
                 break;
             }
         }
+    }
+
+    private void moveOneSpace(List<String> bridge, int indexOfBridge) {
+        this.movingSuccess.add(BridgeGame.move(bridge, indexOfBridge, getMoving()));
+        this.presentResult = OutputView.printMap(this.movingSuccess);
     }
 
     private String getMoving() {
