@@ -30,4 +30,8 @@ public class Bridge {
     public int size() {
         return bridge.size();
     }
+
+    public boolean isEndOfBridge(int position) {
+        return position == size();
+    }
 }
