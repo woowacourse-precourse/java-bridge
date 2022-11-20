@@ -5,22 +5,26 @@ import bridge.domain.Player;
 import java.util.List;
 
 import static bridge.view.OutputConstants.*;
+
 public class OutputView {
 
-    public static void printStartMessage() {
+    public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);
         System.out.println();
     }
 
-    public static void printMap(BridgeGame bridgeGame) {
+    public void printMap(BridgeGame bridgeGame) {
         printDependOn(UP_STAIR, bridgeGame);
         printDependOn(DOWN_STAIR, bridgeGame);
         System.out.println();
     }
 
-    private static void printDependOn(String stair, BridgeGame bridgeGame) {
+    private void printDependOn(String stair, BridgeGame bridgeGame) {
         StringBuilder sb = new StringBuilder(START_PREFIX);
-        sb.append(getPrevious(bridgeGame, stair));
+        List<String> bridge = bridgeGame.getBridge();
+        int maxStage = bridgeGame.getStageNumber();
+
+        sb.append(getPrevious(bridge, maxStage, stair));
         sb.append(getNext(bridgeGame, stair));
         sb.append(END_REGEX);
         System.out.println(sb);
@@ -37,24 +41,24 @@ public class OutputView {
         return BLANK;
     }
 
-    private static String getPrevious(BridgeGame bridgeGame, String stage) {
+    private static String getPrevious(List<String> bridge, int maxStage, String upOrDown) {
         StringBuilder previous = new StringBuilder();
-
-        int stageNumber = bridgeGame.getStageNumber();
-        List<String> bridge = bridgeGame.getBridge();
-
-        for (int i = 0; i < stageNumber; i++) {
-            if (!stage.equals(bridge.get(i))) {
-                previous.append(BLANK);
-            } else {
-                previous.append(CORRECT);
-            }
+        for (int i = 0; i < maxStage; i++) {
+            String previousStage = bridge.get(i);
+            previous.append(getCorrectOrBlank(upOrDown, previousStage));
             previous.append(DELIMITER);
         }
         return previous.toString();
     }
 
-    public static void printResult(BridgeGame bridgeGame) {
+    private static String getCorrectOrBlank(String upOrDown, String previousStage) {
+        if (previousStage.equals(upOrDown)) {
+            return CORRECT;
+        }
+        return BLANK;
+    }
+
+    public void printResult(BridgeGame bridgeGame) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(bridgeGame);
         System.out.println(String.format(SUCCESS_OR_FAILURE, isSuccess(bridgeGame)));
