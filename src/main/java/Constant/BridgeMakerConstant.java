@@ -14,7 +14,7 @@ public enum BridgeMakerConstant {
         this.route = input;
         moveIndex = new HashMap<>();
         for(int i=0; i<input.size(); i++){
-            moveIndex.put(input.get(i),1-i);
+            moveIndex.put(input.get(i),route.size()-1-i);
         }
     }
     public String getValue(int idx){
