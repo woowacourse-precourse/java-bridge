@@ -1,2 +1,5 @@
-package model;public class BridgeTest {
+package model;
+
+public class BridgeTest {
+
 }
