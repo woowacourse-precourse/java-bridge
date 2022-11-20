@@ -6,7 +6,11 @@ public enum OutputMessage {
     FINAL_SUCCESS_STATUS("게임 성공 여부: "),
     NUMBER_OF_GAME_TRY("총 시도한 횟수: "),
     GAME_SUCCESS("성공"),
-    GAME_FAIL("실패");
+    GAME_FAIL("실패"),
+    OPEN_BRACKET("\\["),
+    CLOSE_BRACKET("]"),
+    COMMA(","),
+    SEPARATOR("|");
 
     private final String message;
 
