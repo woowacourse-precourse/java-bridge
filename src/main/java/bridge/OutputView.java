@@ -56,7 +56,7 @@ public class OutputView {
 
     private void printGameResult(BridgeGame bridgeGame) {
         System.out.print(GuidanceMessage.INFORM_IS_SUCCESS);
-        System.out.println(bridgeGame.getGameResult());
+        System.out.println(bridgeGame.getGameResult().getMessage());
     }
 
     public void printError(IllegalArgumentException error) {
