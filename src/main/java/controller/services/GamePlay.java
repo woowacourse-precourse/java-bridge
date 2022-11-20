@@ -39,7 +39,7 @@ public class GamePlay {
         user = new User();
         BridgeGame bridgeGame = new BridgeGame(bridge, user);
 
-        for (; user.getUserMovingDistance() < bridge.getBridgeSize(); ) {
+        for (; bridge.isUnderBridgeSize(user.getUserMovingDistance()); ) {
             if (isInaccessibleNextPosition(bridgeGame)) {
                 return bridgeGame.retry(InputView.readGameCommand());
             }
