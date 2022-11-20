@@ -89,4 +89,24 @@ public class BridgeGameTest {
             .isEqualTo(new ArrayList<>(List.of(expectedUpperTrack, expectedDownTrack)));
     }
 
+    @Test
+    void 게임_실패인_위치_테스트() {
+        // given
+        List<String> expectedUpperTrack = new ArrayList<>(List.of("O", " ", "X"));
+        List<String> expectedDownTrack = new ArrayList<>(List.of(" ", "O", " "));
+        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
+        Bridge bridge = new Bridge(bridgeTest);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        // when
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+
+        // then
+        BridgeCrossingDTO bridgeCrossingDTO = bridgeGame.toResponseDto();
+        assertThat(bridgeCrossingDTO.getFootPrint())
+            .isEqualTo(new ArrayList<>(List.of(expectedUpperTrack, expectedDownTrack)));
+    }
+
 }
