@@ -23,10 +23,13 @@ public class Application {
             bridge = maker.makeBridge(bridgeSize); // 다리 만들기
 //            System.out.println(bridge.toString());
 
-            System.out.println(bridgeSize);
+            int spaceNum = 0;
 
             output.printMoveSpaceInputRequestMessage();
-            input.readMoving();
+            String moveSpace = input.readMoving();
+            Boolean result = game.move(moveSpace, spaceNum, bridge);
+            spaceNum++;
+
         } catch (IllegalArgumentException e) {
             System.out.printf("[ERROR] %s", e.getMessage());
         }
