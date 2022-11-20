@@ -17,6 +17,6 @@ public class MoveInformation {
     }
 
     public int getRow(){
-        return moveChoice.getPositionNumber();
+        return moveChoice.getRow();
     }
 }

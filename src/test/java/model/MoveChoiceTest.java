@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 
 public class MoveChoiceTest {
 
-    private static final int UP_NUMBER = MoveChoice.UP.positionNumber;
-    private static final int DOWN_NUMBER = MoveChoice.DOWN.positionNumber;
+    private static final int UP_NUMBER = MoveChoice.UP.row;
+    private static final int DOWN_NUMBER = MoveChoice.DOWN.row;
     private static final String UP_MOVING = MoveChoice.UP.moving;
     private static final String DOWN_MOVING = MoveChoice.DOWN.moving;
     private static final int ERROR_NUMBER = 10;

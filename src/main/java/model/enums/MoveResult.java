@@ -3,18 +3,12 @@ package model.enums;
 import java.util.Arrays;
 
 public enum MoveResult {
-    SUCCESS("O", true), FAIL("X", false), NULL(" ", null);
+    SUCCESS( true), FAIL( false);
 
-    private final String stringValue;
     private final Boolean succeed;
 
-    MoveResult(String stringValue, Boolean succeed) {
-        this.stringValue = stringValue;
+    MoveResult(Boolean succeed) {
         this.succeed = succeed;
-    }
-
-    public String getStringValue() {
-        return stringValue;
     }
 
     public boolean succeed() {
@@ -23,7 +17,6 @@ public enum MoveResult {
 
     public static MoveResult getMatchResult(Boolean succeed) {
         return Arrays.stream(MoveResult.values()).filter((moveResult) -> moveResult.succeed == succeed)
-                .findFirst()
-                .get();
+                .findFirst().get();
     }
 }

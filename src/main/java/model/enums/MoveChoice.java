@@ -1,32 +1,30 @@
 package model.enums;
 
-import static model.BridgeGameExceptions.NOT_A_MOVE_CHOICE;
-
 import java.util.Arrays;
 
 public enum MoveChoice {
     UP("U", 1), DOWN("D", 0);
 
     public final String moving;
-    public final int positionNumber;
+    public final int row;
 
-    MoveChoice(String moving, int positionNumber) {
+    MoveChoice(String moving, int row) {
         this.moving = moving;
-        this.positionNumber = positionNumber;
+        this.row = row;
     }
 
     public String getMoving() {
         return moving;
     }
 
-    public int getPositionNumber() {
-        return positionNumber;
+    public int getRow() {
+        return row;
     }
 
     public static MoveChoice getMatchChoice(String moving){
         return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.moving.equals(moving)).findAny().get();
     }
     public static MoveChoice getMatchChoice(int positionNumber){
-        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.positionNumber == positionNumber).findAny().get();
+        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.row == positionNumber).findAny().get();
     }
 }
