@@ -7,8 +7,8 @@ public class BridgeGameConstant {
     public static final String DOWN_SIGN = "D";
     public static final String RESTART_SIGN = "R";
     public static final String QUIT_SIGN = "Q";
-    public static final String ACCESSIBLE_SIGN = " O ";
-    public static final String INACCESSIBLE_SIGN = " X ";
+    public static final String ACCESSIBLE_SIGN = "O";
+    public static final String INACCESSIBLE_SIGN = "X";
     public static final String GAME_STATUS_MESSAGE = "게임 성공 여부";
     public static final String TRY_COUNT_MESSAGE = "총 시도한 횟수";
     public static final String PATH_RESULT_MESSAGE = "최종 게임 결과";

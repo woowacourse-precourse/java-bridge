@@ -22,7 +22,7 @@ public class PathResultAdapter {
 
     //check
     private static String fitToFormat(String pathResult) {
-        return "[" + pathResult + "]";
+        return "[ " + pathResult + " ]";
     }
 
     //check
@@ -43,8 +43,8 @@ public class PathResultAdapter {
 
     private static String getPathResultsWhenFail(String selected, List<String> course, RoundStatus roundStatus) {
         String result = IntStream.range(0, course.size() - 1).mapToObj(i -> getPathResult(course.get(i), selected))
-                .collect(Collectors.joining("|"));
-        result += ("|" + getPathResultWhenFail(course.get(course.size() - 1), selected));
+                .collect(Collectors.joining(" | "));
+        result += (" | " + getPathResultWhenFail(course.get(course.size() - 1), selected));
         return result;
     }
 
@@ -52,13 +52,13 @@ public class PathResultAdapter {
         if (courseDirection.equals(selectedDirection)) {
             return INACCESSIBLE_SIGN;
         }
-        return "   ";
+        return " ";
     }
 
     private static String getPathResult(String courseDirection, String selectedDirection) {
         if (courseDirection.equals(selectedDirection)) {
             return ACCESSIBLE_SIGN;
         }
-        return "   ";
+        return " ";
     }
 }
