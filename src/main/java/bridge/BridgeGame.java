@@ -6,6 +6,9 @@ import java.util.List;
 public class BridgeGame {
     private final int MINBRIDGELEN = 3;
     private final int MAXBRIDGELEN = 20;
+    private final String UP = "U";
+    private final String DOWN = "D";
+
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     List<String> visited = new ArrayList<>();
@@ -26,7 +29,7 @@ public class BridgeGame {
      */
     public boolean move() {
         String direction = inputView.readMoving();
-        validate.validateIsUpOrDown(direction);
+        validate.validateContainWord(direction,UP,DOWN);
         visited.add(direction);
         printUpBridge();
         printDownBridge();
