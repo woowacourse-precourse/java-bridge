@@ -46,6 +46,20 @@ class BridgeTest {
         int location = bridge.getLocation();
 
         //then
+        assertThat(location).isEqualTo(0);
+    }
+
+    @DisplayName("위치가 잘 초기화되는지 테스트")
+    @Test
+    public void initLocationTest() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        bridge.increaseLocation();
+
+        //when
+        bridge.initLocation();
+
+        //then
         assertThat(bridge.getLocation()).isEqualTo(0);
     }
 }
