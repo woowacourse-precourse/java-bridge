@@ -20,8 +20,8 @@ public class OutputView {
     public void printMap(List<Bridge> bridges) {
         List<String> upBridge = getUpBridgeList(bridges);
         List<String> downBridge = getDownBridgeList(bridges);
-        System.out.println("[ " + String.join(" | ", upBridge) + " ]");
-        System.out.println("[ " + String.join(" | ", downBridge) + " ]");
+        System.out.println(getListToString(upBridge));
+        System.out.println(getListToString(downBridge));
     }
 
     private List<String> getUpBridgeList(List<Bridge> bridges) {
@@ -38,6 +38,10 @@ public class OutputView {
             result.add(bridge.getDownShape());
         }
         return result;
+    }
+
+    private String getListToString(List<String> bridge){
+        return "[ " + String.join(" | ", bridge) + " ]";
     }
 
     /**
