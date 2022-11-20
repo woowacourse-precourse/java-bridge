@@ -18,4 +18,8 @@ public class Bridge {
         return compareResult;
     }
 
+    public Boolean atTheEndOfBridge(List<String> userMovement) {
+        return userMovement.size() == bridge.size();
+    }
+
 }
