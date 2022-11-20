@@ -6,20 +6,18 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        OutputView outputView = new OutputView();
         int tryCount = 0;
         String flag = "retry";
-        while (flag.equals("retry")) {
-            flag = game();
-            tryCount++;
+        try {
+            while (flag.equals("retry")) {
+                flag = game();
+                tryCount++;
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-        if (flag.equals("success")) {
-            System.out.println("성공");
-            System.out.println(tryCount);
-        }
-        if (flag.equals("fail")) {
-            System.out.println("실패");
-            System.out.println(tryCount);
-        }
+        outputView.printResult(flag, tryCount);
     }
 
     static String game() {
@@ -52,6 +50,6 @@ public class Application {
                 return retry;
             }
         }
-        return "success";
+        return "성공";
     }
 }
