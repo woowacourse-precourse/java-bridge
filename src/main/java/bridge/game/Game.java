@@ -4,7 +4,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.game.bridgeGame.BridgeGame;
 import bridge.game.bridgeGame.BridgeGameStatus;
 import bridge.structure.Bridge;
-import bridge.structure.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

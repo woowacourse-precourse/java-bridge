@@ -1,6 +1,7 @@
-package bridge.structure;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
+import bridge.structure.BridgeMoveValue;
 
 import java.util.ArrayList;
 import java.util.List;
