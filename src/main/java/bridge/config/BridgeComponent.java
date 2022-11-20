@@ -3,28 +3,26 @@ package bridge.config;
 import java.util.Arrays;
 
 public enum BridgeComponent {
-    D(0, "D"),
-    U(1, "U");
+    DOWN(0, "D"),
+    UP(1, "U");
 
-    private final int generateNumber;
-    private final String component;
+    private final int number;
+    private final String symbol;
 
-    BridgeComponent(int generateNumber, String component) {
-        this.generateNumber = generateNumber;
-        this.component = component;
+    BridgeComponent(int number, String symbol) {
+        this.number = number;
+        this.symbol = symbol;
     }
 
-    public static BridgeComponent findByNumber(int requestNumber) {
+    public static String findByNumber(int requestNumber) {
         return Arrays.stream(BridgeComponent.values())
-                .filter(bridgeComponent -> bridgeComponent.hasNumber(requestNumber)).findAny().orElseThrow();
+                .filter(bridgeComponent -> bridgeComponent.hasNumber(requestNumber))
+                .findAny()
+                .orElseThrow()
+                .symbol;
     }
 
     private boolean hasNumber(int generateNumber) {
-        return this.generateNumber == generateNumber;
+        return this.number == generateNumber;
     }
-
-    public String getComponent() {
-        return component;
-    }
-
 }
