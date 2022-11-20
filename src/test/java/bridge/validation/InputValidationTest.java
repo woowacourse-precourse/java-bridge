@@ -40,4 +40,21 @@ class InputValidationTest {
 			assertThat(e.getMessage()).isEqualTo("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 		}
 	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"a","1217","","u","d","ABC","한글입니당"})
+	@DisplayName("유저의_다리길이_입력값_유효성검사")
+	void user_input_bridge_move_validation(String source){
+		try{
+			assertThatThrownBy(()-> {
+				//given
+				String bridge_move = iv.userInputBridgeMoveValidation(source);
+				//when
+				if(bridge_move.equals(error_message)) throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+			});
+		}catch (IllegalArgumentException e){
+			//then
+			assertThat(e.getMessage()).isEqualTo("[ERROR] 이동할 칸은 U 또는 D로 입력해야 합니다.");
+		}
+	}
 }
