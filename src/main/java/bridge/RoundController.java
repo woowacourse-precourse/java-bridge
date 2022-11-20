@@ -28,6 +28,25 @@ public class RoundController {
         BridgeGame game = new BridgeGame(bridgeShape);
         String moving = input.readMoving();
         String status = game.move(position, moving);
+        statusToBridge(status);
+    }
+
+    public void statusToBridge(String status) {
+        if (status == MoveStatus.UP_CORRECT.get()) {
+            upCorrect();
+        }
+
+        if (status == MoveStatus.UP_INCORRECT.get()) {
+            upIncorrect();
+        }
+
+        if (status == MoveStatus.DOWN_CORRECT.get()) {
+            downCorrect();
+        }
+
+        if (status == MoveStatus.DOWN_INCORRECT.get()) {
+            downIncorrect();
+        }
     }
 
     public void upCorrect() {
