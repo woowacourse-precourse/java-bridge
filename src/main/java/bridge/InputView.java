@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.Block;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -28,10 +27,18 @@ public class InputView {
     public static String readMoving() {
         System.out.printf(
                 INPUT_MOVING_POSITION_MESSAGE,
-                Block.UP_BRIDGE.getString(),
-                Block.DOWN_BRIDGE.getString()
+                BridgeMaker.getUpBridgeLetter(),
+                BridgeMaker.getDownBridgeLetter()
         );
-        return getInput();
+        String input = getInput();
+        validateMoving(input);
+        return input;
+    }
+
+    private static void validateMoving(String input) {
+        if (!input.equals(BridgeMaker.getUpBridgeLetter()) && !input.equals(BridgeMaker.getDownBridgeLetter())) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
+        }
     }
 
     /**

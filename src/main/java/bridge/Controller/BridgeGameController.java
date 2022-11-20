@@ -3,7 +3,6 @@ package bridge.Controller;
 import bridge.BridgeGame;
 import bridge.InputView;
 import bridge.OutputView;
-import bridge.domain.Block;
 import bridge.repository.BridgeResultData;
 
 public class BridgeGameController {
@@ -56,7 +55,7 @@ public class BridgeGameController {
 
     private void readMoving() {
         try {
-            moving = Block.from(InputView.readMoving());
+            moving = InputView.readMoving();
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             readMoving();

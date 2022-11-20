@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.Block;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +8,23 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final String UP_BRIDGE_LETTER = "U";
+    private static final String DOWN_BRIDGE_LETTER = "D";
+    private static final int UP_BRIDGE_NUMBER = 1;
+    private static final int DOWN_BRIDGE_NUMBER = 0;
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+    }
+
+    public static String getUpBridgeLetter() {
+        return UP_BRIDGE_LETTER;
+    }
+
+    public static String getDownBridgeLetter() {
+        return DOWN_BRIDGE_LETTER;
     }
 
     /**
@@ -20,16 +32,16 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<Integer> bridgeNumbers = getBridgeNumbers(size);
-        List<String> bridgeCharacters = new ArrayList<>();
+        List<Integer> bridgeNumbers = makeBridgeNumbers(size);
+        List<String> bridgeLetters = new ArrayList<>();
         for (Integer bridgeNumber : bridgeNumbers) {
-            String bridgeCharacter = convertNumberToString(bridgeNumber);
-            bridgeCharacters.add(bridgeCharacter);
+            String bridgeCharacter = convertNumberToLetter(bridgeNumber);
+            bridgeLetters.add(bridgeCharacter);
         }
-        return bridgeCharacters;
+        return bridgeLetters;
     }
 
-    private List<Integer> getBridgeNumbers(int size) {
+    private List<Integer> makeBridgeNumbers(int size) {
         List<Integer> bridgeNumbers = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
@@ -38,11 +50,11 @@ public class BridgeMaker {
         return bridgeNumbers;
     }
 
-    private String convertNumberToString(int bridgeNumber) {
-        if (bridgeNumber == Block.UP_BRIDGE.getNumber()) {
-            return Block.UP_BRIDGE.getString();
+    private String convertNumberToLetter(int bridgeNumber) {
+        if (bridgeNumber == UP_BRIDGE_NUMBER) {
+            return UP_BRIDGE_LETTER;
         }
-        return Block.DOWN_BRIDGE.getString();
+        return DOWN_BRIDGE_LETTER;
     }
 
 }

@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.Block;
 import bridge.domain.Bridge;
 
 public enum ErrorMessage {
@@ -14,8 +13,8 @@ public enum ErrorMessage {
     ),
     NOT_VALID_MOVING_INPUT_ERROR(
             String.format("이동할 칸은 %s 또는 %s만 입력 가능합니다.",
-                    Block.UP_BRIDGE.getString(),
-                    Block.DOWN_BRIDGE.getString())
+                    BridgeMaker.getUpBridgeLetter(),
+                    BridgeMaker.getDownBridgeLetter())
     ),
     NOT_VALID_RETRY_OR_QUIT_INPUT_ERROR(
             String.format("게임을 다시 시도하려면 %s, 종료하려면 %s를 입력해주세요.",

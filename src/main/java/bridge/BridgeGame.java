@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.Block;
 import bridge.domain.Bridge;
 import bridge.repository.BridgeResultData;
 import bridge.repository.MovingData;
@@ -43,16 +42,16 @@ public class BridgeGame {
     public void move(String moving) {
         MovingData.add(moving);
         BridgeResultData.add(
-                getBridgeResult(moving, "UP_BRIDGE"),
-                getBridgeResult(moving, "DOWN_BRIDGE")
+                getBridgeResult(moving, BridgeMaker.getUpBridgeLetter()),
+                getBridgeResult(moving, BridgeMaker.getDownBridgeLetter())
         );
     }
 
     public String getBridgeResult(String moving, String bridgeSide) {
-        if (!movingIsWrong(moving) && moving.equals(Block.valueOf(bridgeSide).getString())) {
+        if (!movingIsWrong(moving) && moving.equals(bridgeSide)) {
             return RIGHT_ANSWER;
         }
-        if (movingIsWrong(moving) && moving.equals(Block.valueOf(bridgeSide).getString())) {
+        if (movingIsWrong(moving) && moving.equals(bridgeSide)) {
             return WRONG_ANSWER;
         }
         return NOT_CHOSEN;
