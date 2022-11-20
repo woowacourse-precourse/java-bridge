@@ -30,8 +30,10 @@ public class InputView {
     public String readMoving() {
         String movingPlace;
 
-        System.out.println(MOVING_PLACE_INPUT_MESSAGE);
-        movingPlace = Console.readLine();
+        do {
+            System.out.println(MOVING_PLACE_INPUT_MESSAGE);
+            movingPlace = Console.readLine();
+        } while (!Validator.isValidMovingPlace(movingPlace));
 
         return movingPlace;
     }
