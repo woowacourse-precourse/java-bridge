@@ -16,7 +16,7 @@ public class BridgeGameController {
             makeBridge(InputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            startGame();
+            makeBridge(InputView.readBridgeSize());
         }
     }
 
