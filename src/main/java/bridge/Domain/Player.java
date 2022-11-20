@@ -22,7 +22,7 @@ public class Player {
         return bridge.isBridgeEnd(distance);
     }
 
-    public void initPosition() {
+    public void initDistance() {
         this.distance = startPoint;
     }
 }

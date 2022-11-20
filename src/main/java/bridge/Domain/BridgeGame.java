@@ -42,7 +42,7 @@ public class BridgeGame {
     public void retry() {
         this.gameStartCount++;
         gameResultGenerator.initGameResult();
-        player.initPosition();
+        player.initDistance();
     }
 
     public int getGameStartCount() {
