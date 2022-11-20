@@ -5,9 +5,6 @@ import java.util.List;
 
 import static bridge.domain.BridgeMaker.*;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     public static final String CROSSABLE = "O";
     public static final String UNCROSSABLE = "X";
@@ -25,12 +22,13 @@ public class BridgeGame {
         this.playCount = 0;
     }
 
-    public void move(int idx, String input) {
+    public boolean move(int idx, String input) {
         if (bridge.isMatch(idx, input)) {
             pass(input);
-            return;
+            return true;
         }
         fail(input);
+        return false;
     }
 
     public void retry() {
