@@ -10,7 +10,7 @@ public class Referee {
     private List<String> downSideBridgeResult = new ArrayList<>();
     public static boolean succeed = true;
 
-    private int progressCount = 1;
+    private int progressCount = 0;
 
     public void addPlayerChoiceResult(List<String> bridge, String choice, int index){
         isBridgeAnswerMatch(bridge, choice, index);
@@ -53,7 +53,7 @@ public class Referee {
     }
 
     public boolean isClear(){
-        return BridgeGame.BRIDGE_LENGTH == progressCount && succeed;
+        return BridgeGame.BRIDGE_LENGTH == progressCount;
     }
 
     public List<String> getUpSideBridgeResult() {
