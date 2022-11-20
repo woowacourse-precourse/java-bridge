@@ -5,6 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.CheckCrossBridge;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import bridge.view.Print;
 
 import java.util.ArrayList;
@@ -16,10 +17,12 @@ import java.util.List;
 public class BridgeGame {
 
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     static int bridgeSize;
     static String userInput;
     static List<String> bridge;
     static int round;
+    static String mark;
 
     public void setting() { //입력값받기
         Print.gameStartMessage();
@@ -73,11 +76,15 @@ public class BridgeGame {
         CheckCrossBridge checkCrossBridge = new CheckCrossBridge();
         boolean crossPossible = checkCrossBridge.check(userInput, bridge, round);
         if (crossPossible == false){
-            System.out.println("못건너");
+            mark = "X";
         }
         if(crossPossible == true){
-            System.out.println("건널 수 있어");
+            mark = "O";
         }
+        //String roundResult = String.valueOf(crossPossible)+round;
+        //System.out.println(roundResult);
+        outputView.printMap(userInput, mark, round);
+
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
