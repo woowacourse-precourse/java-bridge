@@ -8,9 +8,12 @@ import java.util.List;
 public class Controller {
 
     public void run(int bridgeLength) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
         System.out.println(bridge);
+        BridgeGame bridgeGame = new BridgeGame();
+        for (int stage = 0; stage < bridgeLength; stage++) {
+            bridgeGame.play(bridge, stage);
+        }
     }
 }

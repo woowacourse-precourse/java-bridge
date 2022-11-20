@@ -1,5 +1,6 @@
 package utils;
 
+import bridge.Direction;
 import exception.UserInputException;
 
 public class Invalidator {
@@ -12,6 +13,14 @@ public class Invalidator {
             throw new UserInputException("[ERROR]");
         }
         return Integer.parseInt(inputValue);
+    }
+
+    public static String isValidMoveValue(String inputValue) throws UserInputException {
+        if (!inputValue.equals(Direction.UP.getFloor()) && !inputValue.equals(Direction.DOWN.getFloor())) {
+            throw new UserInputException("[ERROR]");
+        }
+
+        return inputValue;
     }
 
     private static boolean isNumeric(String inputValue) {

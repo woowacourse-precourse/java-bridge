@@ -5,12 +5,6 @@ package view;
  */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-
     public static void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
@@ -21,8 +15,13 @@ public class OutputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
-    public void printMap() {
+    /**
+     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
 
+    public void printMap() {
     }
 
     /**
