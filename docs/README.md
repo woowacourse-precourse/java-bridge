@@ -12,7 +12,7 @@
 - [x] R 또는 Q 입력 유효성 검사 InputValidator#validateRetry(String retryQuit)
 
 ## 출력 OutputView
-- [ ] 게임 시작 메시지 InputView#startGame()
+- [x] 게임 시작 메시지 InputView#printStart()
 - [ ] 다리 그리기 OutputView#printMap(List<String> bridge, int index, boolean isSuccess)
 - [ ] 종료 메시지 출력 OutputView#printEndMessage()
 - [ ] 결과 출력 OutputView#printResult()
