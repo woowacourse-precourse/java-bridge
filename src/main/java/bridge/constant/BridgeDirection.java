@@ -28,4 +28,8 @@ public enum BridgeDirection {
             throw new IllegalArgumentException(ErrorMessage.INPUT_FORMAT_IS_INCORRECT.getMessage());
         }
     }
+
+    public String getFirstLetter() {
+        return firstLetter;
+    }
 }
