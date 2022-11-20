@@ -32,10 +32,20 @@ class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1","21","4j"})
     @DisplayName("올바르지 않은 입력값")
-    void 사용자_입력_오류(String inputSize) {
+    void 사용자_다리생성_입력_오류(String inputSize) {
         ByteArrayInputStream in = new ByteArrayInputStream(inputSize.getBytes());
         System.setIn(in);
         assertThatThrownBy(() -> inputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("잘못된 입력을 받으면 예외 반환")
+    @ValueSource(strings = {"x", "d", "d3"})
+    @ParameterizedTest
+    void 사용자_다리이동입력_오류(String inputShape) {
+        ByteArrayInputStream in = new ByteArrayInputStream(inputShape.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(() -> inputView.readMoving())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

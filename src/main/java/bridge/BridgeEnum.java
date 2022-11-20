@@ -24,7 +24,7 @@ public enum BridgeEnum {
         return Arrays.stream(values())
                 .filter(locationValue -> locationValue.bridgeStringType.equals(location))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력은 대문자 'U', 'D'만 입력가능합니다"));
     }
 
     public String getStringType() {
