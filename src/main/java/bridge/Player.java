@@ -21,7 +21,7 @@ public class Player {
         record.add(bridgeMark);
     }
 
-    public void clear() {
+    public void clearRecord() {
         record.clear();
     }
 

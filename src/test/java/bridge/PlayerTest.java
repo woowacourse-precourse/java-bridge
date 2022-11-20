@@ -32,7 +32,7 @@ public class PlayerTest {
     @DisplayName("플레이어가 움직인 기록을 초기화")
     @Test
     void clearRecord() {
-        player.clear();
+        player.clearRecord();
         GameRecord gameRecord = player.toResponseDto();
         List<BridgeMark> record = gameRecord.getRecord();
 
