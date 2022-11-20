@@ -37,7 +37,7 @@ public class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("해당 라운드의 사용자의 입력이 틀리면 FAIL 반환")
+    @DisplayName("ㅆㄷ해당 라운드의 사용자의 입력이 틀리면 FAIL 반환")
     void successTest() {
         List<String> bridge = List.of("U","D","D","U");
         int round = 3;
