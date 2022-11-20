@@ -40,8 +40,10 @@ public class OutputView {
     }
 
     private static void printProgress() {
-        System.out.println(Message.LEFT_BAR.getMessage() + printCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
-        System.out.println(Message.LEFT_BAR.getMessage() + printCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
+        System.out.println(
+                Message.LEFT_BAR.getMessage() + printCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
+        System.out.println(
+                Message.LEFT_BAR.getMessage() + printCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
     }
 
     private static String printCenterBar(List<String> toAddBridge) {
