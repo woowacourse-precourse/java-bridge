@@ -49,10 +49,10 @@ public class BridgeGame {
      * @return 플레이어가 생존했다면 true 죽었다면 false
      */
     public boolean isPlayerAlive() {
-        if (player.getPosition() > 0 && !bridge.get(player.getPosition() - 1).equals(player.getCommand())) {
-            return false;
+        if (player.getPosition() == 0 || bridge.get(player.getPosition() - 1).equals(player.getCommand())) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
