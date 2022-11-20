@@ -26,8 +26,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String sizeInput = Console.readLine();
-        return sizeInput;
+        String moveInput = Console.readLine();
+        upDownValidate(moveInput);
+        return moveInput;
     }
 
     /**
@@ -48,6 +49,12 @@ public class InputView {
     private void bridgeValueValidate(int num) throws IllegalArgumentException {
         if (num < MIN_BRIDGE || num > MAX_BRIDGE) {
             throw new IllegalArgumentException(ErrorEnum.PREFIX.getMessage() + ErrorEnum.BRIDGE_VALUE.getMessage());
+        }
+    }
+
+    private void upDownValidate(String str) throws IllegalArgumentException {
+        if (!str.equals("U") && !str.equals("D")) {
+            throw new IllegalArgumentException(ErrorEnum.PREFIX.getMessage() + ErrorEnum.UP_DOWN.getMessage());
         }
     }
 }
