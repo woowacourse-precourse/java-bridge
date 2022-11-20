@@ -18,4 +18,15 @@ public class LocationTable {
         return locationList.get(index);
     }
 
+    public static String getAlternativeKey(String key) {
+        if (key.equals("D")) {
+            return "U";
+        }
+
+        if (key.equals("U")) {
+            return "D";
+        }
+
+        throw new IllegalArgumentException("대응되는 키가 존재하지 않습니다.");
+    }
 }

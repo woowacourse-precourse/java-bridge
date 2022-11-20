@@ -19,7 +19,7 @@ public class BridgeManager {
         bridge = this.bridgeMaker.makeBridge(size);
     }
 
-    public void isMovable(String location) {
-
+    public boolean isMovable(String userCommand, int stage) {
+        return bridge.get(stage).equals(userCommand);
     }
 }
