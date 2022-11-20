@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.model.UpOrDown.DOWN_SIGN;
+import static bridge.model.UpOrDown.UP_SIGN;
+
 import bridge.error.Error;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +15,6 @@ public class BridgeMaker {
 
     private static final int UP_SIGNAL = 1;
     private static final int DOWN_SIGNAL = 0;
-    private static final String UP_SIGN = "U";
-    private static final String DOWN_SIGN = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
