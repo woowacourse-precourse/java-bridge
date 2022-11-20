@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeSize;
+import bridge.domain.Command;
 import bridge.domain.UserBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -60,7 +61,12 @@ public class BridgeController {
         return user.equals(answer);
     }
 
-    private void askRestart() {
-        String command = inputView.readGameCommand();
+    private Command askRestart() {
+        try {
+            return new Command(inputView.readGameCommand());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return askRestart();
+        }
     }
 }
