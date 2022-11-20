@@ -48,7 +48,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 실수가_입력됐을_때() {
+    void 다리_길이가_실수로_입력됐을_때() {
         assertSimpleTest(() -> {
             runException("4.5");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -56,7 +56,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 범위보다_작은_수가_입력됐을_때() {
+    void 다리_길이가_범위보다_작은_수로_입력됐을_때() {
         assertSimpleTest(() -> {
             runException("2");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -64,11 +64,27 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 범위보다_큰_수가_입력됐을_때() {
+    void 다리_길이가_범위보다_큰_수로_입력됐을_때() {
         assertSimpleTest(() -> {
             runException("21");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 이동할_칸이_실수로_입력됐을_때() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "3.5", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 이동할_칸으로_다른_문자열이_입력됐을_때() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "Q", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
     }
 
     @Override
