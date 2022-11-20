@@ -18,7 +18,7 @@
   - [x] 진행중인 위 다리 가져오는 기능 -BridgeGame#getUp()
   - [x] 진행중인 아래 다리 가져오는 기능 -BridgeGame#getUp()
 - [x] 현재 진행중인 다리 인덱스 가져오는 기능 -bridgeGame#getCurrentCount()
-- [ ] 게임 재시도 기능 -BridgeGame#retry()
+- [x] 게임 재시도 기능 -BridgeGame#retry()
   - [ ] 게임 재시도 입력 기능 -InputView#readGameCommand()
 - [ ] 최종 결과 출력 기능 -OutputView#printResult()
   - [ ] 재시도 횟수 출력 기능
