@@ -14,13 +14,14 @@ class MovingProcessingTest extends CustomNsTest {
 
     @Test
     @DisplayName("")
-    void matchInputTest() {
+    void compareBridgeToInputTest() {
         List<String> bridge = new ArrayList<>();
         bridge.add("U");
         bridge.add("D");
         bridge.add("D");
         bridge.add("D");
 
+        //틀리면 종료
         {
             movingProcessing = new MovingProcessing();
 
@@ -36,6 +37,7 @@ class MovingProcessingTest extends CustomNsTest {
                     "[   | O |   ]");
         }
 
+        //다 맞추면 끝
         {
             movingProcessing = new MovingProcessing();
 
@@ -47,6 +49,26 @@ class MovingProcessingTest extends CustomNsTest {
                     "[   ]",
                     "[ O |   ]",
                     "[   | O ]",
+                    "[ O |   |   ]",
+                    "[   | O | O ]",
+                    "[ O |   |   |   ]",
+                    "[   | O | O | O ]"
+            );
+        }
+
+        //중간에 잘못된 값이 들어가면 오류 출력하고 다시 실행
+        {
+            movingProcessing = new MovingProcessing();
+
+            command("U", "D", "W", "D", "D");
+            movingProcessing.compareBridgeToInput(bridge);
+            assertThat(output()).contains(
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                    "[ O ]",
+                    "[   ]",
+                    "[ O |   ]",
+                    "[   | O ]",
+                    "[ERROR]",
                     "[ O |   |   ]",
                     "[   | O | O ]",
                     "[ O |   |   |   ]",
