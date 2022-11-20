@@ -1,6 +1,8 @@
 package bridge;
 
 public class Constants {
+    static final String ERROR = "[ERROR] ";
+
     public enum MapMark {
         CORRECT("O"),
         WRONG("X"),
@@ -30,5 +32,17 @@ public class Constants {
 
         CommandMark(String letter) { this.letter = letter; }
         public String mark() { return letter; }
+    }
+
+    public enum ErrorMessage {
+        IS_NOT_NUMBER(ERROR + "다리 길이는 숫자(정수)여야 합니다."),
+        IS_NOT_IN_RANGE(ERROR + "다리 길이는 3 이상, 20 이하의 숫자여야 합니다."),
+        IS_NOT_PROPER_MOVING(ERROR + "이동할 칸은 대문자 U 또는 D 중 하나여야 합니다."),
+        IS_NOT_PROPER_COMMAND(ERROR + "게임 재시작 여부는 대문자 R 또는 Q 중 하나여야 합니다.");
+
+        private final String errorCause;
+
+        ErrorMessage(String errorCause) { this.errorCause = errorCause; }
+        public String message() { return errorCause; }
     }
 }

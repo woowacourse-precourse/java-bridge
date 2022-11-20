@@ -2,15 +2,11 @@ package bridge.view;
 
 import static bridge.Constants.MoveMark.*;
 import static bridge.Constants.CommandMark.*;
+import static bridge.Constants.ErrorMessage.*;
 
 public class Validator {
     static final int MIN_BRIDGE_SIZE = 3;
     static final int MAX_BRIDGE_SIZE = 20;
-    static final String ERROR = "[ERROR] ";
-    static final String IS_NOT_NUMBER = ERROR + "다리 길이는 숫자(정수)여야 합니다.";
-    static final String IS_NOT_IN_RANGE = ERROR + "다리 길이는 3 이상, 20 이하의 숫자여야 합니다.";
-    static final String IS_NOT_PROPER_MOVING = ERROR + "이동할 칸은 대문자 U 또는 D 중 하나여야 합니다.";
-    static final String IS_NOT_PROPER_COMMAND = ERROR + "게임 재시작 여부는 대문자 R 또는 Q 중 하나여야 합니다.";
 
     public void validateBridgeSize(String input) {
         int bridgeSize = strToInt(input);
@@ -19,13 +15,13 @@ public class Validator {
 
     public void validateMoving(String input) {
         if (!input.equals(DOWN.mark()) && !input.equals(UP.mark())) {
-            throw new IllegalArgumentException(IS_NOT_PROPER_MOVING);
+            throw new IllegalArgumentException(IS_NOT_PROPER_MOVING.message());
         }
     }
 
     public void validateGameCommand(String input) {
         if (!input.equals(RETRY.mark()) && !input.equals(QUIT.mark())) {
-            throw new IllegalArgumentException(IS_NOT_PROPER_COMMAND);
+            throw new IllegalArgumentException(IS_NOT_PROPER_COMMAND.message());
         }
     }
 
@@ -33,13 +29,13 @@ public class Validator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(IS_NOT_NUMBER);
+            throw new IllegalArgumentException(IS_NOT_NUMBER.message());
         }
     }
 
     private void isBetweenRange(int input) {
         if (input < MIN_BRIDGE_SIZE || input > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(IS_NOT_IN_RANGE);
+            throw new IllegalArgumentException(IS_NOT_IN_RANGE.message());
         }
     }
 }
