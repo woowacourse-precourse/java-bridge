@@ -95,7 +95,7 @@ public class BridgeMaker {
 **User**
 >- [x] 이동할 칸을 입력 받는 기능 ( addNext )
 >- [x] 이동한 기록을 살펴보는 기능 ( getMoveLog )
->- [ ] 이동한 기록을 초기화하는 기능 ( clearLog )
+>- [x] 이동한 기록을 초기화하는 기능 ( clearLog )
 
 **GameStatus**
 >- [ ] Bridge와 User의 일치 여부를 저장하는 기능 ( setMatchCorrect )
