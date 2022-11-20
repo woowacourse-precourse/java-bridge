@@ -46,7 +46,7 @@ public class Program {
 
 
 
-    private static void setGame() {
+    private static void setupGame() {
         bridgeGame = new BridgeGame();
         BridgeGame.setCountAttempt();
     }
@@ -59,11 +59,7 @@ public class Program {
     private static boolean askToQuitGame() {
         outputView.printInputRetryCommand();
         String command = getRetryCommand();
-        boolean isRetry = bridgeGame.retry(command);
-        if (!isRetry) {
-            return true;
-        }
-        return false;
+        return !bridgeGame.retry(command);
     }
 
     private static boolean generateMovement() {
@@ -90,7 +86,7 @@ public class Program {
 
     private static void playGame() {
         while (true) {
-            setGame();
+            setupGame();
             boolean isCompleted = proceedGame();
             if (isCompleted) {
                 break;
