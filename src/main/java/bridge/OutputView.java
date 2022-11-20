@@ -7,13 +7,24 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String UP_MOVING_CHARACTER = "U";
+    private static final String DOWN_MOVING_CHARACTER = "D";
+    private static final String BLANK = " ";
+    private static final String LEFT_SQUARE_BRACKET = "[ ";
+    private static final String RIGHT_SQUARE_BRACKET = " ]";
+    private static final String DELIMITER = " | ";
+    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
+    private static final String GAME_SUCCESS_MESSAGE = "게임 성공 여부: 성공";
+    private static final String GAME_FAILURE_MESSAGE = "게임 성공 여부: 실패";
+    private static final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
+
     public void makeMap(String moving, String str, List<String> upperBridge, List<String> downBridge) {
-        if (moving.equals("U")) {
+        if (moving.equals(UP_MOVING_CHARACTER)) {
             upperBridge.add(str);
-            downBridge.add(" ");
-        } else if (moving.equals("D")) {
+            downBridge.add(BLANK);
+        } else if (moving.equals(DOWN_MOVING_CHARACTER)) {
             downBridge.add(str);
-            upperBridge.add(" ");
+            upperBridge.add(BLANK);
         }
     }
 
@@ -23,14 +34,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> upperBridge, List<String> downBridge) {
-        System.out.print("[ ");
-        System.out.print(String.join(" | ", upperBridge));
-        System.out.print(" ]");
+        System.out.print(LEFT_SQUARE_BRACKET);
+        System.out.print(String.join(DELIMITER, upperBridge));
+        System.out.print(RIGHT_SQUARE_BRACKET);
         System.out.println();
 
-        System.out.print("[ ");
-        System.out.print(String.join(" | ", downBridge));
-        System.out.print(" ]");
+        System.out.print(LEFT_SQUARE_BRACKET);
+        System.out.print(String.join(DELIMITER, downBridge));
+        System.out.print(RIGHT_SQUARE_BRACKET);
         System.out.println();
     }
 
@@ -41,7 +52,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> upperBridge, List<String> downBridge, boolean success, int gameCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT_MESSAGE);
         printMap(upperBridge, downBridge);
         printSuccess(success);
         printGameCount(gameCount);
@@ -49,13 +60,13 @@ public class OutputView {
 
     public void printSuccess(boolean success) {
         if (success) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(GAME_SUCCESS_MESSAGE);
         } else if (!success) {
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(GAME_FAILURE_MESSAGE);
         }
     }
 
     public void printGameCount(int gameCount) {
-        System.out.println("총 시도한 횟수: " + gameCount);
+        System.out.println(GAME_COUNT_MESSAGE + gameCount);
     }
 }

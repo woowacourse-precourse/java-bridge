@@ -8,6 +8,12 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    private static final String MAP_O_CHARACTER = "O";
+    private static final String MAP_X_CHARACTER = "X";
+    private static final String RETRY_COMMAND_CHARACTER = "R";
+    private static final String QUIT_COMMAND_CHARACTER = "Q";
+
     private InputView inputView;
     private OutputView outputView;
     private BridgeNumberGenerator bridgeNumberGenerator;
@@ -22,7 +28,7 @@ public class BridgeGame {
 
     public void startGame() {
         try {
-            System.out.println("다리 건너기 게임을 시작합니다.\n");
+            System.out.println(GAME_START_MESSAGE);
             int bridgeSize = inputView.readBridgeSize();
             List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
             int gameCount = 0;
@@ -35,11 +41,11 @@ public class BridgeGame {
                 for (int i = 0; i < bridge.size(); i++) {
                     String moving = inputView.readMoving();
                     if (move(moving, bridge.get(i))) {
-                        outputView.makeMap(moving, "O", upperBridge, downBridge);
+                        outputView.makeMap(moving, MAP_O_CHARACTER, upperBridge, downBridge);
                         outputView.printMap(upperBridge, downBridge);
                     } else if (!move(moving, bridge.get(i))) {
                         success = false;
-                        outputView.makeMap(moving, "X", upperBridge, downBridge);
+                        outputView.makeMap(moving, MAP_X_CHARACTER, upperBridge, downBridge);
                         outputView.printMap(upperBridge, downBridge);
                         String gameCommand = inputView.readGameCommand();
                         if (retry(gameCommand)) {
@@ -74,9 +80,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(RETRY_COMMAND_CHARACTER)) {
             return true;
-        } else if (gameCommand.equals("Q")) {
+        } else if (gameCommand.equals(QUIT_COMMAND_CHARACTER)) {
             return false;
         }
         return false;
