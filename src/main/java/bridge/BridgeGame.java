@@ -66,5 +66,6 @@ public class BridgeGame {
      */
     public void retry() {
         trialCount++;
+        currentPosition = STARTING_POINT;
     }
 }
