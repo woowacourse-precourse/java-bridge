@@ -68,4 +68,25 @@ public class InputControllerTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @Nested
+    class GameCommandTest {
+        @DisplayName("유효한 형식의 명령어를 입력하면 오류 없이 반환한다.")
+        @ValueSource(strings = {"R", "Q"})
+        @ParameterizedTest
+        void successGetMovingDirection(String command) {
+            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
+            assertThat(inputController.getGameCommand(command))
+                    .isInstanceOf(String.class);
+        }
+
+        @DisplayName("유효하지 않은 명령어를 입력하면 오류가 발생한다.")
+        @ValueSource(strings = {"r", "q", "KKK", "%%"})
+        @ParameterizedTest
+        void failGetMovingDirection(String command) {
+            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
+            assertThatThrownBy(() -> inputController.getGameCommand(command))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }
