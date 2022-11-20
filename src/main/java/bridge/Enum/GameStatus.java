@@ -10,4 +10,8 @@ public enum GameStatus {
     private GameStatus(String status){
         this.status = status;
     }
+
+    public String getStatus(){
+        return status;
+    }
 }

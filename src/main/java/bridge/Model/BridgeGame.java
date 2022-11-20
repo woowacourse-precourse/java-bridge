@@ -76,4 +76,8 @@ public class BridgeGame {
     public CrossResults getCrossResults(){
         return crossResults;
     }
+
+    public int getTryCount(){
+        return tryCount;
+    }
 }
