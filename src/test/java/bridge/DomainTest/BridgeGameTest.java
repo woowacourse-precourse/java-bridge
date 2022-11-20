@@ -54,7 +54,7 @@ public class BridgeGameTest {
         @DisplayName("건널수 없는 칸으로 갈 때 이동한 칸을 저장하고 실패를 선언한다.")
         @Test
         void moveToImpossibleZone() {
-            bridgeData.setBridge(Arrays.asList("U", "D", "D"));
+            bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
 
             String nextStep = "D";
             InputStream in = new ByteArrayInputStream(nextStep.getBytes());
@@ -68,7 +68,7 @@ public class BridgeGameTest {
         @DisplayName("다 건넜을 경우 성공을 선언한다.")
         @Test
         void finishCrossingBridgeTest() {
-            bridgeData.setBridge(Arrays.asList("U", "D", "D"));
+            bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
             List<String> nextSteps = new ArrayList<>(Arrays.asList("U", "D", "D"));
 
             for (String nextStep : nextSteps) {
@@ -76,9 +76,6 @@ public class BridgeGameTest {
                 System.setIn(in);
                 bridgeGame.move();
             }
-
-            System.out.println(bridgeData.getBridge());
-            System.out.println(bridgeData.getBridgeDesignByUser());
 
             assertThat(bridgeGame.getIsGameSucceed()).isTrue();
         }
