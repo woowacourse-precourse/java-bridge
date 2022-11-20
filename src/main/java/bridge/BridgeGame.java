@@ -24,6 +24,14 @@ public class BridgeGame {
         userBridge.add(moving);
     }
 
+    public boolean checkSameMove(){
+        int bridgeLength=userBridge.size();
+        if(userBridge.get(bridgeLength)==answerBridge.get(bridgeLength)){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
