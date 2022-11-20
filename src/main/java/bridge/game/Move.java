@@ -1,8 +1,8 @@
 package bridge.game;
 
 public class Move {
-    String destination;
-    boolean success;
+    private final String destination;
+    private final boolean success;
 
     public Move(String destination, boolean isSuccess) {
         this.destination = destination;
