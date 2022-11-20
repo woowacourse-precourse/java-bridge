@@ -7,4 +7,8 @@ public class Bridge {
     public void setBridgeSize(int size){
         this.size = size;
     }
+
+    public int getBridgeSize(){
+        return size;
+    }
 }
