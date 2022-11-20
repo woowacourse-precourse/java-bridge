@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.game;
 
 import static bridge.domain.BridgeLocation.initBridgeLocation;
 import static bridge.value.BridgeCharacter.DOWN;

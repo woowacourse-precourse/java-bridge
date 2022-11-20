@@ -8,8 +8,8 @@ import bridge.BridgeGame;
 import bridge.domain.game.GameRunStatus;
 import bridge.value.BridgeCharacter;
 import bridge.value.GameCommand;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.io.InputView;
+import bridge.view.io.OutputView;
 
 public class BridgeGameController {
     private final InputView inputView;

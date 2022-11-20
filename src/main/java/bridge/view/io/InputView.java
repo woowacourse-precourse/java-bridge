@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.io;
 
 import static bridge.domain.BridgeSize.makeBridgeSize;
 import static bridge.value.BridgeCharacter.makeBridgeCharacter;
