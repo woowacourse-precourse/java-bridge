@@ -4,7 +4,6 @@ import static bridge.BridgeMaker.convertStringToInt;
 import static bridge.BridgeMaker.validateBridgeSizeRange;
 import static bridge.BridgeMaker.validateBridgeSizeType;
 import static bridge.model.GameCommand.validateGameCommandInput;
-import static bridge.model.Position.validateMovingInput;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -32,7 +31,6 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        validateMovingInput(input);
         return input;
     }
 

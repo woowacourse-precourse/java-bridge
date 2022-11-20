@@ -19,36 +19,25 @@ public enum Position {
     }
 
     public static String findAbbreviationByNumber(int generatedNumber) {
-        return findPositionByNumber(generatedNumber).abbreviation;
+        return Position.from(generatedNumber).abbreviation;
     }
 
-    private static Position findPositionByNumber(int generatedNumber) {
+    private static Position from(int generatedNumber) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.generatedNumber == generatedNumber)
-                .findFirst().orElseThrow(() -> new IllegalArgumentException());
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("0, 1 중의 숫자로만 다리를 생성할 수 있습니다."));
     }
 
-    public static Position findPositionByAbbreviation(String abbreviation) {
+    public static Position from(String abbreviation) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.abbreviation.equals(abbreviation))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException());
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("U/D 중 이동할 칸을 입력해 주세요."));
     }
 
     public static boolean isSame(String string, Position position) {
         return string.equals(position.abbreviation);
     }
 
-    public static void validateMovingInput(String input) {
-        if (!getMovingInputOptions().contains(input)) {
-            throw new IllegalArgumentException("U/D 중 이동할 칸을 입력해 주세요.");
-        }
-    }
-
-    private static List<String> getMovingInputOptions() {
-        return Arrays.stream(Position.values())
-                .map(position -> position.abbreviation)
-                .collect(Collectors.toList());
-    }
 
 
 }
