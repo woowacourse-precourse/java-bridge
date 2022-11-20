@@ -4,9 +4,11 @@ import java.util.List;
 
 public class Bridge {
     private final List<String> spaces;
+    private final int size;
 
-    public Bridge(List<String> spaces) {
+    public Bridge(List<String> spaces, int size) {
         this.spaces = spaces;
+        this.size = size;
     }
 
     @Override public String toString() {
@@ -20,5 +22,9 @@ public class Bridge {
 
     public String getSpaceByLocation(int location) {
         return spaces.get(location);
+    }
+
+    public int getSize() {
+        return size;
     }
 }
