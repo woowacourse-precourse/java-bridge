@@ -56,17 +56,20 @@
 
 ### InputView
 
-- [ ] 자동으로 생성할 다리 길이를 입력 받는다. - readBridgeSize
+- [x] 자동으로 생성할 다리 길이를 입력 받는다. - readBridgeSize
+  - [x] 안내메세지를 출력한다.
     - 3 이상 20 이하의 숫자를 입력할 수 있으며
     - 올바른 값이 아니면 예외 처리한다.
-        - [ ] 입력값이 숫자인지 확인 - validateBridgeSizeType
-        - [ ] 입력값이 범위내인지 확인 - validateBridgeSizeRange
+        - [x] 입력값이 숫자인지 확인 - validateBridgeSizeType
+        - [x] 입력값이 범위내인지 확인 - validateBridgeSizeRange
     - [ ] 입력된 문자열을 숫자로 변환한다. - convertToInteger
 - [ ] 라운드마다 플레이어가 이동할 칸을 입력 받는다. - readMoving
+    - [x] 안내메세지를 출력한다.
     - U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며
     - 올바른 값이 아니면 예외 처리한다.
         - Move 클래스 생성시 연계
 - [ ] 게임 재시작/종료 여부를 입력 받는다. - readGameCommand
+    - [x] 안내메세지를 출력한다.
     - R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며
     - 올바른 값이 아니면 예외 처리한다.
         - GameCommand 클래스 생성시 연계
@@ -134,5 +137,6 @@
 - [x] 다리의 정보를 저장한다.
 - [x] 다리에 들어오는 정보를 검증한다.
   - U, D 값으로만 이루어져있다.
+  - [x] 다리의 길이는 3~20 사이여야 한다. - validateLength
 - [x] 다리 정보를 추가한다. - addBlock
   - [x] 추가시 다리 사이즈도 갱신한다. addLength
