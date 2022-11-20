@@ -13,16 +13,15 @@ public class OutputView {
         System.out.println(BridgeConstant.END_GAME_RESULT.getValue());
         printMap(userBridge, restart);
         if (!restart) {
-            System.out.println(BridgeConstant.GAME_NOT_SUCCESS.getValue());
-            System.out.println(BridgeConstant.TOTAL_GAME_PLAYS.getValue() + countGame);
+            printFailedResult(countGame);
             return;
         }
-        System.out.println(BridgeConstant.GAME_SUCCESS.getValue());
-        System.out.println(BridgeConstant.TOTAL_GAME_PLAYS.getValue() + countGame);
+        printSuccessResult(countGame);
     }
 
     public void printStart() {
         System.out.println(BridgeConstant.GAME_START.getValue());
+        System.out.println();
     }
 
     public void printLengthInput() {
@@ -75,6 +74,7 @@ public class OutputView {
             printEdge(index, userBridge);
         }
         System.out.println("]");
+        System.out.println();
     }
 
     public void printXDown(int index, List<String> userBridge, boolean restart) {
@@ -91,4 +91,13 @@ public class OutputView {
         System.out.println(BridgeConstant.RESTART.getValue());
     }
 
+    public void printFailedResult(int countGame) {
+        System.out.println(BridgeConstant.GAME_NOT_SUCCESS.getValue());
+        System.out.println(BridgeConstant.TOTAL_GAME_PLAYS.getValue() + countGame);
+    }
+
+    public void printSuccessResult(int countGame) {
+        System.out.println(BridgeConstant.GAME_SUCCESS.getValue());
+        System.out.println(BridgeConstant.TOTAL_GAME_PLAYS.getValue() + countGame);
+    }
 }
