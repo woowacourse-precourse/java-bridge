@@ -18,4 +18,13 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ONLY_NUMBER_POSSIBLE.getMessage());
     }
+
+    @DisplayName("다리 길이 입력값이 허용 범위를 넘을 경우 예외 발생")
+    @ValueSource(strings = {"1", "30", "-1"})
+    @ParameterizedTest
+    void outOfRange(String input) {
+        assertThatThrownBy(() -> Validator.validateSize(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.OUT_OF_RANGE.getMessage());
+    }
 }
