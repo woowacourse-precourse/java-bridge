@@ -5,32 +5,29 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        OutputView outputView = new OutputView();
-        InputView inputView = new InputView();
-
-        startGame(outputView, inputView);
+        startGame();
     }
 
-    private static void startGame(OutputView outputView, InputView inputView) {
+    private static void startGame() {
         BridgeGame bridgeGame = new BridgeGame();
 
-        makeBridge(outputView, inputView, bridgeGame);
+        makeBridge(bridgeGame);
 
-        while (inGame(outputView, inputView, bridgeGame)) {
+        while (inGame(bridgeGame)) {
             if (bridgeGame.gameSucces())
                 break;
         }
 
-        outputView.printResult(bridgeGame.createResultMap(), bridgeGame.getTryNum(), bridgeGame.getCurrentState());
+        OutputView.printResult(bridgeGame.createResultMap(), bridgeGame.getTryNum(), bridgeGame.getCurrentState());
     }
 
-    private static boolean inGame(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
+    private static boolean inGame(BridgeGame bridgeGame) {
         String gameCommand = "";
-        if (!move(outputView, inputView, bridgeGame)) {
-            printMap(outputView, bridgeGame);
-            gameCommand = gameEnd(outputView, inputView);
+        if (!move(bridgeGame)) {
+            printMap(bridgeGame);
+            gameCommand = gameEnd();
         }
-        printMap(outputView, bridgeGame);
+        printMap(bridgeGame);
 
         return checkContinueGame(gameCommand, bridgeGame);
     }
@@ -43,29 +40,29 @@ public class Application {
         return true;
     }
 
-    private static String gameEnd(OutputView outputView, InputView inputView) {
-        outputView.printGameOver();
-        return inputView.readGameCommand();
+    private static String gameEnd() {
+        OutputView.printGameOver();
+        return InputView.readGameCommand();
     }
 
-    private static void printMap(OutputView outputView, BridgeGame bridgeGame) {
+    private static void printMap(BridgeGame bridgeGame) {
         String currentMap = bridgeGame.createResultMap();
-        outputView.printMap(currentMap);
+        OutputView.printMap(currentMap);
     }
 
-    private static boolean move(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
-        outputView.printSelectMove();
-        String playerMove = inputView.readMoving();
+    private static boolean move(BridgeGame bridgeGame) {
+        OutputView.printSelectMove();
+        String playerMove = InputView.readMoving();
 
         return bridgeGame.move(playerMove);
     }
 
-    private static void makeBridge(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
+    private static void makeBridge(BridgeGame bridgeGame) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-        outputView.printStart();
-        int bridgeSize = inputView.readBridgeSize();
+        OutputView.printStart();
+        int bridgeSize = InputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.setBridge(bridge);
     }

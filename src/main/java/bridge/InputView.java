@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String bridgeSizeString = Console.readLine();
         int bridgeSize = 0;
         try {
@@ -22,14 +22,14 @@ public class InputView {
         return bridgeSize;
     }
 
-    private int checkBridgeSizeString(String bridgeSizeString) {
+    private static int checkBridgeSizeString(String bridgeSizeString) {
         int bridgeSize = stringToInt(bridgeSizeString);
         if (!(bridgeSize >= 3 || bridgeSize <= 20))
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해주세요.");
         return bridgeSize;
     }
 
-    private int stringToInt(String bridgeSizeString) {
+    private static int stringToInt(String bridgeSizeString) {
         try {
             int result = Integer.parseInt(bridgeSizeString);
             return result;
@@ -41,7 +41,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String moveInput = Console.readLine();
         try {
             checkMoveInput(moveInput);
@@ -53,7 +53,7 @@ public class InputView {
         return moveInput;
     }
 
-    private void checkMoveInput(String moveInput) {
+    private static void checkMoveInput(String moveInput) {
         if (!(moveInput.equals("U") || moveInput.equals("D")))
             throw new IllegalArgumentException("[ERROR] 위 : U 또는 아래 : D 를 입력해주세요.");
     }
@@ -61,7 +61,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         String gameInput = Console.readLine();
         try {
             checkGameInput(gameInput);
@@ -72,7 +72,7 @@ public class InputView {
         return gameInput;
     }
 
-    private void checkGameInput(String gameInput) {
+    private static void checkGameInput(String gameInput) {
         if (!(gameInput.equals("R") || gameInput.equals("Q")))
             throw new IllegalArgumentException("[ERROR] 재시작 : R 또는 종료 : Q 를 입력해주세요.");
     }
