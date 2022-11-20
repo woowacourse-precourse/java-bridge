@@ -31,35 +31,39 @@
 - [ o ] R, Q 둘 중 하나 인가
 
 # GameControll (게임을 전반적으로 컨트롤 하는 요소들이 모여있는 클래스)
-- [  ] cnt -> 게임을 몇번 시도했는지
-- [  ] idx -> 몇번째 다리를 건너는지 -> idx ==  size 일때 게임 성공
-- [  ] gamePower -> 게임 전원 버튼 -> 게임성공, 실패 시 게임의 반복문 끄는 역할
-- [  ] gameSucessWheter -> 게임에 성공했는지
-- [  ] 위 요소들 초기화
-- [  ] cnt, idx 1씩증가하는 메서드
+- [ o ] cnt -> 게임을 몇번 시도했는지
+- [ o ] idx -> 몇번째 다리를 건너는지 -> idx ==  size 일때 게임 성공
+- [ o ] gamePower -> 게임 전원 버튼 -> 게임성공, 실패 시 게임의 반복문 끄는 역할
+- [ o ] gameSucessWheter -> 게임에 성공했는지
+- [ o ] 위 요소들 초기화
+- [ o ] cnt, idx 1씩증가하는 메서드
+
+# GameRest (게임에 필요한 요소들 리셋 시켜주는 클래스 (리셋버튼))
+- [  ] idx, canMove, gamePower 리셋 기능
 
 
 
-# 동작 플로우 차트  
+# 패키지
+# domain - 비즈니스에 관련된거 - BridgeMaker, ...
+- 클래스
+- BridgeGame - 다리를 건널 수 있는지 , 다시 게임 시작할건지 판별해주는 클래스
+- BridgeMaker - 다리를 만들어주는 클래스
+- BridgeNumberGenerator
+- ResetGame - 게임을 리셋 시켜주는 클래스
 
-1. 시작 문구 출력
-2. 다리의 길이를 입력 받는다
-3. 입력 받은 길이 만큼 랜덤 값 생성 ex) [0,1,1] 
+# model 
+- 클래스
+- Bridge
+- BridgeShape
+- GameControll
 
--5번으로 넘어가기전에 준비할 변수 
-1) 자릿수칸운터 -> idx 인데 idx = 0; 이고 idx가 idx =  다리길이  가 될때 까지 반복
-2) 총 몇번 시도 했는지 카운터 -> cnt = 0;
+# view
+- 클래스
+- InputView
+- OutputView
+- 
+# controller - view와 model를 이어주는 패키지
 
-5. 이동할 다리 입력 받기
-6. 입력 받은 다리의 idx자리가 확인 
-- 다리의 idx 자리가 1 이면 idx는 1증가, cnt 1증가 하고 5번으로 
-- 다리의 idx 자리가 0 이면 idx는 0증가, cnt 1증가하고 7번으로
-
-7. 다시 할건지 끝낼건지 입력 받기(R,Q)
-- R 이면 5번으로
-- Q 이면 게임 끝.
-
-8. idx가 idx = 다리길이 이 될때 
-- 게임성공 , 게임 끝.
-
-domain - 비즈니스에 관련된거 - BridgeMaker, ...
+# service
+- valification
+- constants(Command, Error, Move)
