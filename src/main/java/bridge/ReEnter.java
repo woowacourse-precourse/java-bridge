@@ -1,10 +1,12 @@
 package bridge;
 
+import bridge.views.InputView;
+
 public class ReEnter {
 
     private static final InputView inputView = new InputView();
 
-    public static int reGetBridgeLength() {
+    public int reGetBridgeLength() {
         try {
             return inputView.getBridgeLength();
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -13,7 +15,7 @@ public class ReEnter {
         }
     }
 
-    public static String reGetMoveString() {
+    public String reGetMoveString() {
         try {
             return inputView.getMoveString();
         } catch (IllegalArgumentException illegalArgumentException) {

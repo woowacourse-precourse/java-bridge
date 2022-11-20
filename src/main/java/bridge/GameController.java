@@ -4,7 +4,8 @@ import bridge.views.OutputView;
 
 import java.util.List;
 
-import static bridge.enums.Sentence.*;
+import static bridge.enums.Sentence.RESULT;
+import static bridge.enums.Sentence.returnSuccessOrFailure;
 
 public class GameController {
 
@@ -25,7 +26,7 @@ public class GameController {
         for (String s : bridge) {
             String userMoveInput = reEnter.reGetMoveString();
             moving.moving(s, userMoveInput);
-            moving.printMoving();
+            Moving.printMoving();
             if (moving.checkWrong()) {
                 return;
             }

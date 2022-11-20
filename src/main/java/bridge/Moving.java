@@ -1,15 +1,17 @@
 package bridge;
 
+import bridge.views.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.enums.DorU.*;
 import static bridge.BridgeGame.move;
+import static bridge.enums.DorU.UP;
 
-public class Move {
+public class Moving {
 
-    private List<String> upLine = new ArrayList<>();
-    private List<String> downLine = new ArrayList<>();
+    private static final List<String> upLine = new ArrayList<>();
+    private static final List<String> downLine = new ArrayList<>();
     private final String RIGHT = " O ";
     private final String WRONG = " X ";
     private final String BLANK = "   ";
@@ -19,7 +21,7 @@ public class Move {
         downLine.add(addRightOrWrong(computer, userInput).get(1));
     }
 
-    public void clearMoving() {
+    public static void clearMoving() {
         upLine.clear();
         downLine.clear();
     }
@@ -28,7 +30,7 @@ public class Move {
         return upLine.contains(WRONG) || downLine.contains(WRONG);
     }
 
-    public void printMoving() {
+    public static void printMoving() {
         OutputView.printMap(upLine, downLine);
     }
 

@@ -1,11 +1,13 @@
-package bridge;
+package bridge.views;
 
+import bridge.ValidityCheck;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.OutputView.printStartGame;
-import static bridge.enums.DorU.*;
+import static bridge.enums.DorU.DOWN;
+import static bridge.enums.DorU.UP;
 import static bridge.enums.ErrorMessage.*;
 import static bridge.enums.Sentence.*;
+import static bridge.views.OutputView.printStartGame;
 
 public class InputView {
 
@@ -13,7 +15,7 @@ public class InputView {
     private final static String EXIT = "Q";
     private final static String RESTART = "R";
 
-    public static int getBridgeLength() {
+    public int getBridgeLength() {
         printStartGame();
         System.out.println(INPUT_BRIDGE_LENGTH.getValue());
         String inputBridgeLength = Console.readLine();
@@ -23,7 +25,7 @@ public class InputView {
         return Integer.parseInt(inputBridgeLength);
     }
 
-    public static String getMoveString() {
+    public String getMoveString() {
         System.out.println(MOVE.getValue());
         String inputDorU = Console.readLine();
         if (!(inputDorU.equals(UP.getName()) || inputDorU.equals(DOWN.getName()))) {
@@ -35,7 +37,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String getExitOrRestart() {
+    public String getExitOrRestart() {
         System.out.println(RESTART_OF_END.getValue());
         String exitOrRestart = Console.readLine();
         if (!(exitOrRestart.equals(EXIT) || exitOrRestart.equals(RESTART))) {

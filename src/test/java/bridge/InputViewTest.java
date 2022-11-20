@@ -44,6 +44,7 @@ class InputViewTest {
             assertEquals(ER_BRIDGE_LENGTH_INPUT.getMessage(), illegalArgumentException.getMessage());
         }
     }
+
     @DisplayName("이동할 값 입력시 U,D가 아닐경우 예외가 발생한다.")
     @Nested
     class 다리_이동_입력_예외 {
@@ -58,6 +59,7 @@ class InputViewTest {
                     inputView.getMoveString());
             assertEquals(ER_NOT_D_OR_U.getMessage(), illegalArgumentException.getMessage());
         }
+
         @Test
         void case_2() {
             String input = "u";
@@ -70,6 +72,7 @@ class InputViewTest {
             assertEquals(ER_NOT_D_OR_U.getMessage(), illegalArgumentException.getMessage());
         }
     }
+
     @DisplayName("종료(Q) , 재시작(R)이 아닌 값을 입력 받으면 예외가 발생한다.")
     @Nested
     class 종료_재시작_입력_예외 {
@@ -84,6 +87,7 @@ class InputViewTest {
                     inputView.getExitOrRestart());
             assertEquals(ER_NOT_Q_OR_R.getMessage(), illegalArgumentException.getMessage());
         }
+
         @Test
         void case_2() {
             String input = "1";

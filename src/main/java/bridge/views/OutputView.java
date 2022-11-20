@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println(downLine.toString().replace(", ", "|"));
     }
 
-    public void printResult(String result, int tryCount) {
+    public static void printResult(String result, int tryCount) {
         System.out.println();
         System.out.printf(SUCCESS_OR_FAILURE.getValue(), result);
         System.out.println();
