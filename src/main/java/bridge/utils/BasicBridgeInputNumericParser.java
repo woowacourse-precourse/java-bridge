@@ -17,14 +17,13 @@ public class BasicBridgeInputNumericParser {
 
     private static <T> T parseNumericCheckingEmpty(final String input, final IntFunction<T> creationFunction) {
         EmptyChecker.check(input);
-
-        return parserWithCheckingOnlyNumeric(input , creationFunction);
+        return parserWithCheckingOnlyNumeric(input, creationFunction);
     }
 
     private static <T> T parserWithCheckingOnlyNumeric(final String input, final IntFunction<T> creationFunction) {
         String tmpCheck = input.trim();
         for (int i = 0; i < tmpCheck.length(); i++) {
-            if (!"0123456789".contains(tmpCheck.substring(i, i + 1))){
+            if (!"0123456789".contains(tmpCheck.substring(i, i + 1))) {
                 throw new IllegalArgumentException("Input is not numeric");
             }
         }
