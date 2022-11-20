@@ -10,7 +10,7 @@ public enum IllegalArgument {
     NOT_MOVING_INPUT(String.format("이동할 방향은 %s, %s 중에서 하나를 입력해야 합니다."
             , DirectionTable.UP.getInitial(), DirectionTable.DOWN.getInitial())),
     NOT_COMMAND_INPUT(String.format("진행 여부를 결정하려면 %s, %s 중에서 하나를 입력해야 합니다."
-            ,CommandTable.RETRY.getInitial(), CommandTable.QUIT.getInitial()));
+            , CommandTable.RETRY.getInitial(), CommandTable.QUIT.getInitial()));
 
     private final String message;
 

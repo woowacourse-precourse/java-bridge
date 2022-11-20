@@ -1,12 +1,16 @@
 package controller.services;
 
-import constants.*;
+import constants.BridgeConstant;
+import constants.CommandTable;
+import constants.ResultTable;
 import controller.MapConverter;
-import model.*;
-import view.*;
+import model.Bridge;
+import model.GameResult;
+import model.User;
+import view.InputView;
+import view.OutputView;
 
 import java.util.List;
-
 
 public class GamePlay {
     private Bridge bridge;

@@ -2,7 +2,7 @@ package constants;
 
 public enum CommandTable {
     RETRY("R", 0),
-    QUIT("Q",-1);
+    QUIT("Q", -1);
 
     private final String initial;
     private final int commandNumber;

@@ -6,11 +6,11 @@ import java.util.List;
 public class User {
     private List<String> userMap;
 
-    public User(){
+    public User() {
         userMap = new ArrayList<>();
     }
 
-    public void markPosition(String position){
+    public void markPosition(String position) {
         userMap.add(position);
     }
 
@@ -18,7 +18,7 @@ public class User {
         return userMap;
     }
 
-    public int getUserMovingDistance(){
+    public int getUserMovingDistance() {
         return userMap.size();
     }
 }
