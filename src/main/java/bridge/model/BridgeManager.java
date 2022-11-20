@@ -9,6 +9,7 @@ import java.util.List;
 public class BridgeManager {
     private final BridgeMaker bridgeMaker;
     private List<String> bridge;
+
     public BridgeManager(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }

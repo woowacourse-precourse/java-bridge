@@ -14,7 +14,6 @@ public class LocationTable {
         return locationMap.get(key);
     }
 
-
     public static String getKeyWithIndex(int index) {
         return locationList.get(index);
     }

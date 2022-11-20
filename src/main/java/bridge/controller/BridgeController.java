@@ -10,7 +10,6 @@ public class BridgeController {
     private final OutputView outputView;
     private BridgeManager bridgeManager;
 
-
     public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;

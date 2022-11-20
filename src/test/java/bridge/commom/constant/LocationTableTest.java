@@ -14,7 +14,6 @@ class LocationTableTest {
     void putKeyThenReturningAppropriateIndex(String key, int expected) {
         int actual = LocationTable.getIndexWithKey(key);
         assertThat(actual).isEqualTo(expected);
-
     }
 
     @DisplayName("인덱스를 통해서 U(upper) 또는 D(down) 값을 반환한다.")
