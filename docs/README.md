@@ -93,7 +93,7 @@ public class BridgeMaker {
 >- [x] 다리의 값을 조회하는 기능 ( getBridgeLoad )
 
 **User**
->- [ ] 이동할 칸을 입력 받는 기능 ( addNext )
+>- [x] 이동할 칸을 입력 받는 기능 ( addNext )
 >- [ ] 이동한 기록을 살펴보는 기능 ( getMoveLog )
 >- [ ] 이동한 기록을 초기화하는 기능 ( clearLog )
 
