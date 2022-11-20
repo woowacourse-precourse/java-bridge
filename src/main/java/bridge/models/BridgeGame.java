@@ -48,6 +48,7 @@ public class BridgeGame {
      */
     public void retry() {
         trialCount++;
+        gameContinue = true;
         currentIndex = -1;
     }
 
