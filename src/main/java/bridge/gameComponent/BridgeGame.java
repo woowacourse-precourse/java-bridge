@@ -75,15 +75,22 @@ public class BridgeGame {
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);
         if (moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) {
-            this.moveRecord[userMoveAsInt][currentStep] = 'O';
-            this.moveRecord[userNotMoveAsInt][currentStep] = ' ';
+            recordMove(userMoveAsInt, userNotMoveAsInt, true);
             return this.moveRecord;
         }
-        this.moveRecord[userMoveAsInt][currentStep + 1] = 'X';
-        this.moveRecord[userNotMoveAsInt][currentStep + 1] = ' ';
+        recordMove(userMoveAsInt, userNotMoveAsInt, false);
         return this.moveRecord;
     }
 
+    private void recordMove(int userMove, int userNotMove, boolean isCorrect) {
+        if(isCorrect) {
+            this.moveRecord[userMove][currentStep] = 'O';
+            this.moveRecord[userNotMove][currentStep] = ' ';
+            return;
+        }
+        this.moveRecord[userMove][currentStep + 1] = 'X';
+        this.moveRecord[userNotMove][currentStep + 1] = ' ';
+    }
     public MoveResult isCorrectMove(String move) {
         boolean isPossibleMove = this.bridge.isPossibleMove(this.currentStep + 1, move);
         if(isPossibleMove && this.currentStep + 1 == this.lastStep) return MoveResult.CORRECT_AND_LAST;
