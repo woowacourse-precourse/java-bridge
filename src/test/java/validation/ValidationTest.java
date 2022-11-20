@@ -26,4 +26,13 @@ public class ValidationTest {
                 .hasMessageContaining(ERROR_MESSAGE)
                 .hasMessageContaining("다리의 길이는 3 이상 20 이하의 숫자이어야 합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "u", "d", "UU", "DD", "10U", "U  "})
+    void 이동할_칸_입력_값이_U_또는_D가_아닐_경우_예외_처리(String input) {
+        assertThatThrownBy(() -> Validation.ofMoving(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE)
+                .hasMessageContaining("이동할 칸은 위는 U, 아래는 D로 입력해야 합니다.");
+    }
 }

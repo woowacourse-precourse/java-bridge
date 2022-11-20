@@ -20,4 +20,8 @@ public class Validation {
             throw new IllegalArgumentException(ERROR_MESSAGE + "다리의 길이는 3 이상 20 이하의 숫자이어야 합니다.");
     }
 
+    public static void ofMoving(String input) {
+        if (!input.equals("U") && !input.equals("D"))
+            throw new IllegalArgumentException(ERROR_MESSAGE + "이동할 칸은 위는 U, 아래는 D로 입력해야 합니다.");
+    }
 }
