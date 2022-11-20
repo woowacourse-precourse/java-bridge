@@ -74,4 +74,14 @@ class BridgeGameTest {
 
         Assertions.assertThat(isSuccessCrossing).isTrue();
     }
+
+    @ParameterizedTest
+    @CsvSource({"U, true", "D, false"})
+    void isRightSpace(String selectMoving, boolean isRight) {
+        bridgeGame.move(selectMoving);
+
+        boolean isRightSpace = bridgeGame.isRightSpace();
+
+        Assertions.assertThat(isRightSpace).isEqualTo(isRight);
+    }
 }
