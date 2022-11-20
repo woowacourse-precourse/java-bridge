@@ -23,6 +23,9 @@
  - [x] 단계를 초기화 한다
 
 ### History(BridgeGame의 history를 따로 객체로 분리하자)
+ - [ ] 현재 사용자의 입력이 저장된 history 반환
+ - [ ] 사용자의 입력을 history에 저장
+ - [ ] 현재 사용자의 입력이 저장된 history 초기화
 
 ### BridgeController
  - [x] 다리 크기를 입력받아 다리를 생성한다 - initBridge()

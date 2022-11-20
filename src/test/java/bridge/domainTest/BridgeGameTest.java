@@ -1,6 +1,7 @@
 package bridge.domainTest;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeStage;
 import bridge.domain.StageResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -83,5 +84,19 @@ public class BridgeGameTest {
         List<String> history = bridgeGame.getHistory();
 
         Assertions.assertThat(history).containsExactly("U","D");
+    }
+
+    @Test
+    @DisplayName("결과가 PASS이면 stage를 1 증가한다")
+    void afterPassTest() {
+        List<String> bridge = List.of("U","D","D","U");
+
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.pass();
+
+        int stage = BridgeStage.currentStage();
+
+        Assertions.assertThat(stage).isEqualTo(1);
     }
 }
