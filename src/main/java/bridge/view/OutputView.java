@@ -30,8 +30,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(final Bridge bridge, final List<String> userAnswerSheet) {
+        System.out.print(ROW_START_BRACKET);
         printRow(bridge, userAnswerSheet, UP_ROW);
+        System.out.println(ROW_END_BRACKET);
+
+        System.out.print(ROW_START_BRACKET);
         printRow(bridge, userAnswerSheet, DOWN_ROW);
+        System.out.println(ROW_END_BRACKET);
     }
 
     /**
@@ -53,27 +58,17 @@ public class OutputView {
     }
 
     private void printRow(final Bridge bridge, final List<String> userAnswerSheet, final String thisRow) {
-        System.out.print(ROW_START_BRACKET);
         for (int i = INDEX_ZERO; i < userAnswerSheet.size(); ++i) {
-            if (isIgnoreResult(userAnswerSheet.get(i), thisRow, i)) {
+            printDelimiter(i);
+            if (!userAnswerSheet.get(i).equals(thisRow)) {
+                System.out.print(ANSWER_WHITE_SPACE);
                 continue;
             }
             System.out.print(printElementResult(bridge, userAnswerSheet.get(i), i));
         }
-        System.out.println(ROW_END_BRACKET);
-    }
-
-    private boolean isIgnoreResult(final String userAnswer, final String thisRow, final int index) {
-        if (!userAnswer.equals(thisRow)) {
-            printDelimiter(index);
-            System.out.print(ANSWER_WHITE_SPACE);
-            return true;
-        }
-        return false;
     }
 
     private String printElementResult(final Bridge bridge, final String userAnswer, final int index) {
-        printDelimiter(index);
         if (bridge.getResult(userAnswer, index)) {
             return ANSWER_CORRECT;
         }
