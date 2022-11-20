@@ -25,6 +25,7 @@ public class BridgeGame {
         String direction = bridge.get(currentPosition);
 
         if (direction.equals(moving)) {
+            currentPosition++;
             return MovingResult.of(moving, Result.SUCCESS);
         }
         return MovingResult.of(moving, Result.FAIL);

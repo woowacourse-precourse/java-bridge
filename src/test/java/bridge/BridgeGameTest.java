@@ -27,11 +27,16 @@ class BridgeGameTest {
     void createMovingTest() {
         String moving = "U";
 
-        MovingResult movingResult = bridgeGame.move(bridge, moving);
+        MovingResult firstResult = bridgeGame.move(bridge, moving);
+        MovingResult secondResult = bridgeGame.move(bridge, moving);
 
-        assertThat(movingResult)
+        assertThat(firstResult)
                 .usingRecursiveComparison()
                 .isEqualTo(MovingResult.of("U", Result.SUCCESS));
+
+        assertThat(secondResult)
+                .usingRecursiveComparison()
+                .isEqualTo(MovingResult.of("U", Result.FAIL));
     }
 
     @DisplayName("플레이어 이동 예외 처리 테스트")
