@@ -8,8 +8,7 @@ public enum GameCommand {
 
     PROGRESS,
     FINISH,
-    RETRY
-    ;
+    RETRY;
 
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
