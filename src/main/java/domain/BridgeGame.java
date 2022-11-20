@@ -31,6 +31,15 @@ public class BridgeGame {
 	}
 
 	public void move(List<String> bridge) {
+		gameCount++;
+
+		for (String rightCondition : bridge) {
+			if (!failCheck(rightCondition)) {
+				break;
+			}
+		}
+		
+		ending(true);
 	}
 
 	public boolean failCheck(String rightCondition) {
