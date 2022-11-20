@@ -4,18 +4,31 @@ import bridge.messages.ErrorMessage;
 import bridge.messages.Message;
 
 public class Validator {
-    private static final InputView inputView = new InputView();
 
     /**
-     * 다리 길이의 유효성 검사
+     * private의 입력 값 별 유효성 검사 메서드들을 예외 발생 순서대로 한번에 실행시키는 메서드.
      */
-
     public static void validateInputSizeException(String inputSize) {
         validateInputSizeNull(inputSize);
         validateInputSizeType(inputSize);
         validateInputSize(Integer.parseInt(inputSize));
     }
 
+    public static void validateInputDirectionException(String inputDirection) {
+        validateInputDirectionNull(inputDirection);
+        validateInputDirectionLowerCase(inputDirection);
+        validateInputDirection(inputDirection);
+    }
+
+    public static void validateInputGameRestartException(String inputRestart) {
+        validateInputGameRestartNull(inputRestart);
+        validateInputGameRestartLowerCase(inputRestart);
+        validateInputGameRestart(inputRestart);
+    }
+
+    /**
+     * 다리 길이의 유효성 검사
+     */
     private static void validateInputSize(int bridgeSize) {
         try {
             if (bridgeSize < 3 || bridgeSize > 20) {
@@ -47,13 +60,6 @@ public class Validator {
     /**
      * 플레이어가 이동할 칸 유효성 검사
      */
-
-    public static void validateInputDirectionException(String inputDirection) {
-        validateInputDirectionNull(inputDirection);
-        validateInputDirectionLowerCase(inputDirection);
-        validateInputDirection(inputDirection);
-    }
-
     private static void validateInputDirection(String inputDirection) {
         try {
             if (!inputDirection.equals(Message.UP.getMessage()) && !inputDirection.equals(Message.Down.getMessage())) {
@@ -88,37 +94,34 @@ public class Validator {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부 유효성 검사
      */
-    public static void validateInputGameRestart(String inputRestart) {
+    private static void validateInputGameRestart(String inputRestart) {
         try {
             if (!inputRestart.equals(Message.RESTART.getMessage()) && !inputRestart.equals(Message.QUIT.getMessage())) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(ErrorMessage.BRIDGE_RESTART_INPUT.getErrorMessage());
-            inputView.inputGameRestart();
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_RESTART_INPUT.getErrorMessage());
         }
     }
 
-    public static void validateInputGameRestartLowerCase(String inputRestart) {
+    private static void validateInputGameRestartLowerCase(String inputRestart) {
         char check = inputRestart.charAt(0);
         try {
             if (!Character.isUpperCase(check)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
-            inputView.inputGameRestart();
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
         }
     }
 
-    public static void validateInputGameRestartNull(String inputRestart) {
+    private static void validateInputGameRestartNull(String inputRestart) {
         try {
             if (inputRestart.length() == 0) {
                 throw new NullPointerException();
             }
         } catch (NullPointerException e) {
-            System.out.println(ErrorMessage.INPUT_NULL.getErrorMessage());
-            inputView.inputGameRestart();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.getErrorMessage());
         }
     }
 }
