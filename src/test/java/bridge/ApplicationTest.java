@@ -3,15 +3,87 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.Model.BridgeSizeValidator;
+import bridge.Model.Validator;
+import bridge.View.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_NON_NUMERIC_VALUE = "[ERROR] 숫자 이외의 값을 입력할 수 없습니다.";
+    private static final String ERROR_OUT_OF_RANGE = "[ERROR] 입력 가능한 범위를 초과하였습니다.(3 <= N <= 20)";
+    private static InputStream in;
+    private static InputView inputView = new InputView();
+    private static Validator validator;
+
+    //region 다리길이입력 단위 테스트 케이스
+    @Test
+    void 다리길이입력_예외테스트_문자입력(){
+        assertThatThrownBy(() -> {
+            validator = new BridgeSizeValidator();
+            validator.validate("a");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_NUMERIC_VALUE);
+    }
+
+    @Test
+    void 다리길이입력_예외테스트_제어문자입력(){
+        assertThatThrownBy(() -> {
+            validator = new BridgeSizeValidator();
+            validator.validate("\n");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_NUMERIC_VALUE);
+    }
+
+    @Test
+    void 다리길이입력_예외테스트_범위초과_최소경계값초과(){
+        assertThatThrownBy(() -> {
+            validator = new BridgeSizeValidator();
+            validator.validate("2");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_OUT_OF_RANGE);
+    }
+
+    @Test
+    void 다리길이입력_예외테스트_범위초과_최대경계값초과(){
+        assertThatThrownBy(() -> {
+            validator = new BridgeSizeValidator();
+            validator.validate("31");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_OUT_OF_RANGE);
+    }
+
+    @Test
+    void 다리길이입력_기능테스트_최소경계값(){
+        String input = "3";
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        int bridgeSize = inputView.readBridgeSize();
+        assertThat(bridgeSize).isEqualTo(3);
+    }
+
+    @Test
+    void 다리길이입력_기능테스트_최대경계값(){
+        String input = "30";
+        in = new ByteArrayInputStream(input.getBytes());
+        int bridgeSize = inputView.readBridgeSize();
+        System.setIn(in);
+        assertThat(bridgeSize).isEqualTo(30);
+    }
+    //endregion
 
     @Test
     void 다리_생성_테스트() {
