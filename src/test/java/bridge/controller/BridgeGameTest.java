@@ -7,6 +7,7 @@ import bridge.constants.MovingPossibility;
 import bridge.domain.controller.BridgeGame;
 import bridge.domain.model.Bridge;
 import bridge.domain.model.CrossRecord;
+import bridge.domain.model.GameResultInformation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,5 +77,37 @@ public class BridgeGameTest {
         bridgeRecord.put(Direction.UP, upBridge);
         bridgeRecord.put(Direction.DOWN, downBridge);
         return bridgeRecord;
+    }
+
+    @DisplayName("재시도 기능 - 재시도할 경우, 총 시도 횟수가 증가한다.")
+    @Test
+    void retryIncreaseCountOfTryTest() {
+        int firstCountOfTry = GameResultInformation.getCountOfTry();
+
+        bridgeGame.retry();
+
+        assertThat(GameResultInformation.getCountOfTry()).isEqualTo(firstCountOfTry + 1);
+    }
+
+    @DisplayName("재시도 기능 - 재시도할 경우, 이동한 기록이 리셋된다.")
+    @Test
+    void retryResetCrossedRecordTest() {
+        bridgeGame.move(MOVE_SPACE, Direction.UP);
+        Map<Direction, String> emptyBridgeRecord = setEmptyBridge();
+
+        assertThat(CrossRecord.getCrossedBridge()).isNotEqualTo(emptyBridgeRecord);
+
+        bridgeGame.retry();
+
+        assertThat(CrossRecord.getCrossedBridge()).isEqualTo(emptyBridgeRecord);
+    }
+
+    Map<Direction, String> setEmptyBridge() {
+        final String emptyBridge = "[  ]";
+        Map<Direction, String> emptyBridgeRecord = new HashMap<>();
+        emptyBridgeRecord.put(Direction.UP, emptyBridge);
+        emptyBridgeRecord.put(Direction.DOWN, emptyBridge);
+
+        return emptyBridgeRecord;
     }
 }
