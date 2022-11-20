@@ -53,6 +53,12 @@ public class BridgeGame {
         outputView.printResult(upperBridge, lowerBridge);
         System.out.print(Message.GAME_SUCCESS_OR_FAILURE);
         showWhetherGameSuccess();
+        showTryCount();
+    }
+
+    private void showTryCount() {
+        System.out.print(Message.TRY_COUNT);
+        System.out.println(tryCount);
     }
 
     private void showWhetherGameSuccess() {
