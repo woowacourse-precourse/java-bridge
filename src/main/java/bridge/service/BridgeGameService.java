@@ -12,15 +12,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static bridge.domain.Command.RETRY;
+import static bridge.support.MapConst.BLANK;
+import static bridge.support.MapConst.BRIDGE_UNIT_DELIMITER;
+import static bridge.support.MapConst.SYMBOL_FAIL;
+import static bridge.support.MapConst.MAP_FORMAT;
+import static bridge.support.MapConst.SYMBOL_SUCCESS;
+import static bridge.support.MapConst.SYMBOL_FORMAT;
 
 public class BridgeGameService {
-
-    private static final String MAP_FORMAT = "[%s]\n[%s]";
-    private static final String BRIDGE_UNIT_DELIMITER = "|";
-    private static final String SYMBOL = " %s ";
-    private static final String BLANK = "   ";
-    private static final String SUCCESS = "O";
-    private static final String FAIL = "X";
 
     private final BridgeGame bridgeGame;
 
@@ -65,15 +64,15 @@ public class BridgeGameService {
 
     private String getMapSideUnit(GameProgress progress, BridgeUnit bridgeUnit) {
         if (bridgeUnit.equals(progress.getBridgeUnit())) {
-            return String.format(SYMBOL, getSymbol(progress.isSuccess()));
+            return String.format(SYMBOL_FORMAT, getSymbol(progress.isSuccess()));
         }
         return BLANK;
     }
 
     private String getSymbol(boolean success) {
         if (success) {
-            return SUCCESS;
+            return SYMBOL_SUCCESS;
         }
-        return FAIL;
+        return SYMBOL_FAIL;
     }
 }
