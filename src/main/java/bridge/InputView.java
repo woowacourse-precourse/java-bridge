@@ -1,13 +1,15 @@
 package bridge;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-
+import bridge.Exception;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
     static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: u, 아래: D)";
+
+    Exception exception = new Exception();
 
     // 다리 길이 입력 받고 Integer 캐스팅 후 변환
     public int readBridgeSize() {
@@ -23,6 +25,7 @@ public class InputView {
 
         System.out.println(READ_MOVING_MESSAGE);
         direction = readLine();
+        exception.isMovingDirectionCorrect(direction);
 
         return direction;
     }
