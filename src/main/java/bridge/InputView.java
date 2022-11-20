@@ -14,8 +14,8 @@ public class InputView {
     public static int readBridgeSize() {
         String answer = Console.readLine();
 
-        Error.isNumber(answer);
-        Error.isRightNumberRange(3, 20, Integer.parseInt(answer));
+        Error.validateNumber(answer);
+        Error.validateNumberRange(3, 20, Integer.parseInt(answer));
 
         return Integer.parseInt(answer);
     }
@@ -23,8 +23,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+            String answer = Console.readLine();
+            Error.validateBridgeAnswer(answer);
+        return answer;
     }
 
     /**

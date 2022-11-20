@@ -27,6 +27,7 @@ public class BridgeMaker {
             if(x==1) {bridge.add("U");}
             if(x==0) {bridge.add("D");}
         }
+
         return bridge;
     }
 

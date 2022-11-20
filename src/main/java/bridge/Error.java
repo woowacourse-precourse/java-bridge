@@ -1,18 +1,25 @@
 package bridge;
 
 public class Error {
-    public static void isNumber(String object) {
+    public static void validateNumber(String answer) {
         try {
-            Integer.parseInt(object);
+            Integer.parseInt(answer);
         } catch(IllegalArgumentException e) {
-            System.out.println(ErrorMessage.RIGHT_BRIDGE_RANGE);
+            System.out.println(ErrorMessage.RIGHT_BRIDGE_SIZE.getError_letter());
+            throw new IllegalArgumentException();
         }
     }
 
-    public static void isRightNumberRange(int startNotInclude, int endNotInclude, int object) {
+    public static void validateNumberRange(int startNotInclude, int endNotInclude, int object) {
         if(object<startNotInclude || object>endNotInclude) {
-            System.out.println(ErrorMessage.RIGHT_BRIDGE_RANGE);
+            System.out.println(ErrorMessage.RIGHT_BRIDGE_SIZE.getError_letter());
             throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateBridgeAnswer(String answer) {
+        if(!(answer.equals("U")||answer.equals("D"))) {
+            System.out.println(ErrorMessage.RIGHT_BRIDGE_CHOICE.getError_letter());
         }
     }
 
