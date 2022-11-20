@@ -29,7 +29,11 @@ public enum GameCommand {
         return this == MISS;
     }
 
-    public String getFirstLetter() {
-        return firstLetter;
+    public boolean isRestart() {
+        return this == RESTART;
+    }
+
+    public boolean isQuit() {
+        return this == QUIT;
     }
 }

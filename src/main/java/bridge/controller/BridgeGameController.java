@@ -71,13 +71,13 @@ public class BridgeGameController {
     }
 
     private void doRestartOrQuit() {
-        String gameCommand = inputView.readGameCommand();
+        GameCommand gameCommand = inputView.readGameCommand();
 
-        if (gameCommand.equals(GameCommand.RESTART.getFirstLetter())) {
+        if (gameCommand.isRestart()) {
             bridgeGame.retry();
         }
 
-        if (gameCommand.equals(GameCommand.QUIT.getFirstLetter())) {
+        if (gameCommand.isQuit()) {
             bridgeGame.quit();
         }
     }
