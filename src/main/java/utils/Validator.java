@@ -19,9 +19,7 @@ public class Validator {
 
     private static boolean isNumber(String bridgeSize) {
         try {
-            if (!bridgeSize.matches(MATCHER)) {
-                throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
-            }
+            checkNumberOrThrowException(bridgeSize);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return false;
@@ -29,16 +27,28 @@ public class Validator {
         return true;
     }
 
+    private static void checkNumberOrThrowException(String bridgeSize) {
+        if (!bridgeSize.matches(MATCHER)) {
+            throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
     private static boolean isValidSizeRange(String bridgeSize) {
         try {
-            if (Integer.parseInt(bridgeSize) < MINIMUM_BRIDGE_SIZE || Integer.parseInt(bridgeSize) > MAXIMUM_BRIDGE_SIZE) {
-                throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
-            }
+            checkBridgeSizeOrThrowException(bridgeSize);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return false;
         }
         return true;
+    }
+
+    private static void checkBridgeSizeOrThrowException(String size) {
+        int bridgeSize = Integer.parseInt(size);
+
+        if (bridgeSize < MINIMUM_BRIDGE_SIZE || bridgeSize > MAXIMUM_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
+        }
     }
 
     public static boolean isValidMovingPlace(String movingPlace) {
