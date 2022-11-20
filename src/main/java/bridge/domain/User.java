@@ -1,12 +1,14 @@
 package bridge.domain;
 
 public class User {
+    private static final int DEFAULT_VALUE = 1;
+    private static final int ADD_RETRY_COUNT = 1;
     private int tryCount;
     private boolean isSuccessComplete;
     private boolean gameOver;
 
     public User(){
-        this.tryCount = 1;
+        this.tryCount = DEFAULT_VALUE;
     }
 
     public int getTryCount() {
@@ -18,7 +20,7 @@ public class User {
     }
 
     public void increaseTryCount() {
-        setTryCount(this.tryCount + 1);
+        setTryCount(this.tryCount + ADD_RETRY_COUNT);
     }
 
     public void winGame() {
