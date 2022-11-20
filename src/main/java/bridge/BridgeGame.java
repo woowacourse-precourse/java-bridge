@@ -18,6 +18,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        bridgeGameController.resetGame();
     }
 
     public void stop(){
