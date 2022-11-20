@@ -11,10 +11,6 @@ import java.util.List;
 public class BridgeGameController {
     private final BridgeGame game;
 
-    private InputView inputView;
-    private BridgeSizeValidation bridgeSizeValidation;
-    private MovingValidation movingValidation;
-
     public BridgeGameController(BridgeGame game) {
         this.game = game;
     }
@@ -29,15 +25,17 @@ public class BridgeGameController {
     public int getBridgeSize() {
         PrintGuideMessage.printStartGuide();
         PrintGuideMessage.printBridgeSizeGuide();
-        String input = inputView.readBridgeSize();
-        bridgeSizeValidation.isValidate(input);
+        String input = new InputView().readBridgeSize();
+        BridgeSizeValidation validation = new BridgeSizeValidation();
+        validation.isValidate(input);
         return Integer.parseInt(input);
     }
 
     public String getMoving() {
         PrintGuideMessage.printMovingGuide();
-        String input = inputView.readMoving();
-        movingValidation.isValidate(input);
+        String input = new InputView().readMoving();
+        MovingValidation validation = new MovingValidation();
+        validation.isValidate(input);
         return input;
     }
 

@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.repository.BridgeMakerRepository;
 import bridge.repository.CompareBridgeRepository;
@@ -17,6 +18,7 @@ public class BridgeGame {
     }
 
     public List<String> createBridge(int bridgeSize) {
+        bridgeMakerRepository = new BridgeMakerRepository(new BridgeRandomNumberGenerator());
         return bridgeMakerRepository.makeBridge(bridgeSize);
     }
 
@@ -32,6 +34,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(Player player, List<String> bridge) {
+        compareBridgeRepository = new CompareBridgeRepository(player, bridge);
         return compareBridgeRepository.stepping(player, bridge);
     }
 
