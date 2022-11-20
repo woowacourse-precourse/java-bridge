@@ -12,8 +12,8 @@ public class BridgeAnswer {
 
     private final List<BridgeMoveType> bridgeAnswer;
 
-    public BridgeAnswer(List<BridgeMoveType> bridgeAnswer) {
-        this.bridgeAnswer = bridgeAnswer;
+    public BridgeAnswer() {
+        this.bridgeAnswer = new ArrayList<>();
     }
 
     public void setUpAnswerSizeBy(int bridgeSize) {

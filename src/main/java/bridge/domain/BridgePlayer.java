@@ -7,17 +7,13 @@ public class BridgePlayer {
 
     private final List<BridgeMoveType> playerBridge;
 
-    public BridgePlayer(List<BridgeMoveType> playerBridge) {
-        this.playerBridge = playerBridge;
+    public BridgePlayer() {
+        this.playerBridge = new ArrayList<>();
     }
 
-    public boolean isNotSameLocation(List<BridgeMoveType> bridgeMoveTypes) {
+    public boolean isLastMoveTypeNotSameAs(List<BridgeMoveType> bridgeMoveTypes) {
         int currentLocation = playerBridge.size() - 1;
         return playerBridge.get(currentLocation) != bridgeMoveTypes.get(currentLocation);
-    }
-
-    public boolean isPlayerReached(List<BridgeMoveType> bridgeMoveTypes) {
-        return playerBridge.size() == bridgeMoveTypes.size();
     }
 
     public void moveTo(BridgeMoveType moveType) {
