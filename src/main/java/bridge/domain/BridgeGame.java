@@ -43,12 +43,9 @@ public class BridgeGame {
         processor.getGameResult(isComplete, attempts, playerBoard);
     }
 
-    public void initBoard() {
-        attempts++;
-        playerBoard = new PlayerBoard(bridge.size());
-    }
 
-    public boolean startRound() {
+
+    private boolean startRound() {
         String inputMoving = processor.askMoving();
         int recentRound = playerBoard.getGameRound();
 
@@ -68,7 +65,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String inputMoving, String resultValue) {
+    private void move(String inputMoving, String resultValue) {
         playerBoard.addResultOfBridge(inputMoving, resultValue);
     }
 
@@ -77,12 +74,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
+    private boolean retry() {
         String choice = processor.askContinue();
         if (choice.equals("R")) {
             initBoard();
             return true;
         }
         return false;
+    }
+
+    private void initBoard() {
+        attempts++;
+        playerBoard = new PlayerBoard(bridge.size());
     }
 }

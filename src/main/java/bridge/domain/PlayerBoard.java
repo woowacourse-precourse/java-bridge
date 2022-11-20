@@ -17,21 +17,21 @@ public class PlayerBoard {
     private List<String> upBridge;
     private List<String> downBridge;
 
-    public PlayerBoard(final int BRIDGE_SIZE) {
+    PlayerBoard(final int BRIDGE_SIZE) {
         gameRound = 0;
         endRound = BRIDGE_SIZE;
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
     }
 
-    public boolean isOver(){
+    boolean isOver(){
         return gameRound == endRound;
     }
-    public int getGameRound() {
+    int getGameRound() {
         return gameRound;
     }
 
-    public void addResultOfBridge(String targetSide, String roundResult) {
+    void addResultOfBridge(String targetSide, String roundResult) {
         if (targetSide.equals(UP)) {
             upBridge.add(gameRound, roundResult);
             downBridge.add(gameRound, BLANK);
@@ -43,7 +43,7 @@ public class PlayerBoard {
         gameRound++;
     }
 
-    public String getBridgeStatus(String side){
+    String getBridgeStatus(String side){
         StringJoiner joiner = new StringJoiner(DELIMITER,PREFIX,SUFFIX);
         for(int i = 0; i< gameRound; i++) {
             if (side.equals(UP)){

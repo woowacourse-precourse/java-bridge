@@ -4,10 +4,13 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
+import bridge.util.Commands;
 import java.util.List;
 
 public class Processor {
 
+    private static final String UP = "U" ;
+    private static final String DOWN = "D" ;
     private final OutputView output;
     private final InputView input;
 
@@ -16,7 +19,7 @@ public class Processor {
         this.input = new InputView(output);
     }
 
-    public List<String> startGame() {
+    List<String> startGame() {
         output.printStartMessage();
         return getBridge();
     }
@@ -31,7 +34,7 @@ public class Processor {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public String askMoving(){
+    String askMoving(){
         String moving;
         do{
             moving = input.readMoving();
@@ -39,7 +42,7 @@ public class Processor {
         return moving ;
     }
 
-    public String askContinue(){
+    String askContinue(){
         String choice;
         do{
             choice = input.readContinue();
@@ -47,11 +50,15 @@ public class Processor {
         return choice ;
     }
 
-    public void getRoundResult(String upsideBridge, String downsideBridge){
+    void getRoundResult(String upsideBridge, String downsideBridge){
         output.printMap(upsideBridge, downsideBridge);
     }
 
-    public void getGameResult(boolean isComplete, int attempts, PlayerBoard playerBoard) {
-        output.printResult(isComplete, attempts, playerBoard);
+    void getGameResult(boolean isComplete, int attempts, PlayerBoard playerBoard) {
+        output.printMessage(Commands.FINAL_RESULT_MESSAGE.message());
+        String upsideBridge = playerBoard.getBridgeStatus(UP);
+        String downsideBridge = playerBoard.getBridgeStatus(DOWN);
+        output.printMap(upsideBridge, downsideBridge);
+        output.printResult(isComplete, attempts);
     }
 }
