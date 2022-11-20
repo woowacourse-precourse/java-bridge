@@ -11,19 +11,21 @@ public class Controller {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private BridgeGame bridgeGame;
+    private int userTry;
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.userTry = 1;
     }
 
     public void run(){
         printGameStartMsg();
         int bridgeSize = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        int userTry = 1;
-        move(bridge, bridgeSize, userTry);
+        Bridge bridge = makeBridge(bridgeSize);
+        bridgeGame = new BridgeGame(bridge);
+        move();
     }
 
     private void printGameStartMsg(){
@@ -31,40 +33,62 @@ public class Controller {
         inputView.getInputBridgeLengthMsg();
     }
 
-    private void move(Bridge bridge, int bridgeSize, int userTry){
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+    private Bridge makeBridge(int bridgeSize){
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    private void move(){
+        int flag = 0;
         int step = 0;
-        boolean quitFlag = false;
-        boolean retryFlag = false;
-        while(step != bridgeSize){
+        while(step != bridgeGame.getBridgeSize()){
             inputView.getInputMoveUpOrDownMsg();
-            String moving = inputView.readMoving();
-            boolean isEqual = bridgeGame.move(moving, step);
+            bridgeGame.setUserMoving(inputView.readMoving());
+            boolean isEqual = bridgeGame.move(step);
             outputView.printMap(bridgeGame);
             if (!isEqual){
-                inputView.getInputRestartOrQuitMsg();
-                String gameCommand = inputView.readGameCommand();
-                if (gameCommand.equals("Q")) {
-                    quitFlag = true;
-                    break;
-                }
-                if (gameCommand.equals("R")){
-                    retryFlag = true;
-                    break;
-                }
+                flag = compareBridgeAndUserThink();
+                break;
             }
             step++;
         }
-        if (quitFlag || step == bridgeSize){
-            printResult(bridgeGame, quitFlag, userTry);
+
+        quit(flag, step);
+        retry(flag);
+    }
+
+    private int compareBridgeAndUserThink(){
+        int flag = 0; // -1: quit, 0: nothing, 1: retry
+        inputView.getInputRestartOrQuitMsg();
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("Q")) {
+            flag = -1;
         }
-        if (retryFlag){
-            bridgeGame.retry();
-            move(bridge, bridgeSize, userTry+1);
+        if (gameCommand.equals("R")){
+            flag = 1;
+        }
+        return flag;
+    }
+
+    private void quit(int flag, int step){
+        if (flag == -1 || step == bridgeGame.getBridgeSize()){
+            printResult(flag);
         }
     }
 
-    private void printResult(BridgeGame bridgeGame, boolean quitFlag, int userTry){
-        outputView.printResult(bridgeGame, quitFlag, userTry);
+    private void retry(int flag){
+        if (flag == 1){
+            bridgeGame.retry();
+            userTry++;
+            move();
+        }
+    }
+
+    private void printResult(int quitFlag){
+        if (quitFlag == -1){
+            outputView.printResult(bridgeGame, true, userTry);
+            return;
+        }
+        outputView.printResult(bridgeGame, false, userTry);
     }
 }
