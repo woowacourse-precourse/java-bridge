@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.Constants.ERROR_WRONG_BRIDGE_VALUE;
+import static bridge.Constants.ERROR_WRONG_SIZE;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -20,7 +22,7 @@ public class InputView {
 			try {
 				bridgeSize = new BridgeSize(readLine());
 			} catch (IllegalArgumentException illegalArgumentException) {
-				System.out.println(ErrorMessage.ERROR_WRONG_SIZE.getErrorMessage());
+				System.out.println(ERROR_WRONG_SIZE);
 				continue;
 			}
 			return bridgeSize.getSize();
@@ -31,7 +33,22 @@ public class InputView {
 	 * 사용자가 이동할 칸을 입력받는다.
 	 */
 	public String readMoving() {
-		return null;
+		String input = readLine();
+		while (true) {
+			try {
+				checkInput(input);
+			} catch (IllegalArgumentException illegalArgumentException) {
+				System.out.println(ERROR_WRONG_BRIDGE_VALUE);
+				continue;
+			}
+			return input;
+		}
+	}
+
+	private void checkInput(String input) {
+		if (!input.equals("U") && !input.equals("D")){
+			throw new IllegalArgumentException();
+		}
 	}
 
 	/**

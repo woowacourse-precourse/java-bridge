@@ -13,6 +13,7 @@ public class Application {
 		Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size));
 
 		// todo 사용자 U, D 입력
+		String want = inputView.readMoving();
 
 		// todo move
 
