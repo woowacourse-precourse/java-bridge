@@ -38,7 +38,7 @@ public class OutputView {
         if(bridge.get(0).equals("U") && bridgeGame.isSuccess()) {
             return "[ O ]";
         }
-        if(bridge.get(0).equals("U") && !bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("D") && !bridgeGame.isSuccess()) {
             return "[ X ]";
         }
         return "[   ]";
@@ -62,7 +62,7 @@ public class OutputView {
         if(bridge.get(bridgeGame.getCurrentPosition()).equals("U") && bridgeGame.isSuccess()) {
             return " O ]";
         }
-        if(bridge.get(bridgeGame.getCurrentPosition()).equals("U") && !bridgeGame.isSuccess()) {
+        if(bridge.get(bridgeGame.getCurrentPosition()).equals("D") && !bridgeGame.isSuccess()) {
             return " X ]";
         }
         return "   ]";
@@ -79,7 +79,7 @@ public class OutputView {
         if(bridge.get(0).equals("D") && bridgeGame.isSuccess()) {
             return "[ O ]";
         }
-        if(bridge.get(0).equals("D") && !bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("U") && !bridgeGame.isSuccess()) {
             return "[ X ]";
         }
         return "[   ]";
@@ -103,7 +103,7 @@ public class OutputView {
         if(bridge.get(bridgeGame.getCurrentPosition()).equals("D") && bridgeGame.isSuccess()) {
             return " O ]";
         }
-        if(bridge.get(bridgeGame.getCurrentPosition()).equals("D") && !bridgeGame.isSuccess()) {
+        if(bridge.get(bridgeGame.getCurrentPosition()).equals("U") && !bridgeGame.isSuccess()) {
             return " X ]";
         }
         return "   ]";

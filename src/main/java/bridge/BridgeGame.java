@@ -11,7 +11,7 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final BridgePlay bridgePlay;
-    private List<String> bridge; // U D R D..
+    private List<String> bridge;
     private int currentPosition = -1;
     private int totalTryCount = 1;
     private boolean success = true;

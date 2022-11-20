@@ -5,8 +5,12 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
-        outputView.printGameStart();
+        outputView.printGameStart(); //
         bridgeGame.requestBridge();
+        play(bridgeGame, outputView);
+        outputView.printResult(bridgeGame);
+    }
+    public static void play(BridgeGame bridgeGame, OutputView outputView) {
         boolean retry = true;
         while(retry) {
             while (bridgeGame.isSuccess() && !bridgeGame.isComplete()) {
@@ -20,6 +24,5 @@ public class Application {
             outputView.printRequestToInputRetryCommand();
             retry = bridgeGame.retry();
         }
-        outputView.printResult(bridgeGame);
     }
 }
