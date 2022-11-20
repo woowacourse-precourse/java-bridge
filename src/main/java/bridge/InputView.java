@@ -1,5 +1,10 @@
 package bridge;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +14,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        InputStreamReader ir = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(ir);
+        int bridgeSize;
+        try {
+            bridgeSize = Integer.parseInt(br.readLine());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return bridgeSize;
     }
 
     /**
