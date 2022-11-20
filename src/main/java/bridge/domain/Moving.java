@@ -2,8 +2,8 @@ package bridge.domain;
 
 public enum Moving {
 
-    UP("U", 0),
-    DOWN("D", 1);
+    UP("U", 1),
+    DOWN("D", 0);
 
     private final String value;
     private final int number;
