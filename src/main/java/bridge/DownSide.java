@@ -6,6 +6,10 @@ import java.util.List;
 public class DownSide {
     private String downSide;
 
+    public DownSide(List<String> bridge) {
+        this.downSide = makeDownSide(bridge);
+    }
+
     public String makeDownSide(List<String> bridge) {
         String downSideString = String.join(" | ", convertDownSide(bridge));
         downSide += "[ ";
@@ -24,5 +28,9 @@ public class DownSide {
                 downSideArr.add("O");
         }
         return downSideArr;
+    }
+
+    public String getDownSide() {
+        return this.downSide;
     }
 }
