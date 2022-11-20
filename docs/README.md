@@ -129,5 +129,4 @@ D
 - [x] 같으면 true, 틀리면 false를 리턴
 
 ### retry
-- [ ] readGameCommand함수를 실행
 - [ ] 위의 함수의 리턴값이 R이면 true, Q이면 false를 리턴
