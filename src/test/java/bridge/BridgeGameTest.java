@@ -57,4 +57,16 @@ public class BridgeGameTest {
         assertThat(bridgeGame.tryMoveTo("D"))
                 .isEqualTo(GameStatus.SUCCESS);
     }
+
+    @DisplayName("삭제")
+    @Test
+    void 삭제() {
+        Controller controller = new Controller(new OutputView(), new InputView());
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.generateBridge(4);
+        controller.play(bridgeGame, GameStatus.CONTINUE);
+        controller.play(bridgeGame, GameStatus.CONTINUE);
+        controller.play(bridgeGame, GameStatus.CONTINUE);
+        controller.play(bridgeGame, GameStatus.CONTINUE);
+    }
 }
