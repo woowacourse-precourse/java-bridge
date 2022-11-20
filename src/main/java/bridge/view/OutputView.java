@@ -19,7 +19,7 @@ public class OutputView {
      *
      * @param footPrint
      */
-    public void printMap(FootPrint footPrint) {
+    public static void printMap(FootPrint footPrint) {
         System.out.println(footPrint);
     }
 
@@ -30,7 +30,7 @@ public class OutputView {
      *
      * @param result
      */
-    public void printResult(Result result) {
+    public static void printResult(Result result) {
         System.out.println("\n최종 게임 결과");
         printMap(result.getFootPrint());
         System.out.println();
@@ -42,7 +42,7 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + result.getTryCnt());
     }
 
-    public void showErrorMessage(IllegalArgumentException e) {
+    public static void showErrorMessage(IllegalArgumentException e) {
         System.out.println("[ERROR]" + e.getMessage());
     }
 }

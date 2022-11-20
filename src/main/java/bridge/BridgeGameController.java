@@ -12,14 +12,10 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     private BridgeGame game;
     private final BridgeMaker bridgeMaker;
-    private final InputView inputView;
-    private final OutputView outputView;
 
     private BridgeGameController() {
         this.game = new BridgeGame();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
     }
 
     public static BridgeGameController init() {
@@ -27,12 +23,12 @@ public class BridgeGameController {
     }
 
     public void run() {
-        inputView.showStartGameMessage();
+        InputView.showStartGameMessage();
         Bridge bridge = this.makeBridge();
         game.saveBridge(bridge);
 
         play();
-        this.outputView.printResult(game.getResult());
+        OutputView.printResult(game.getResult());
     }
 
     private void play() {
@@ -49,12 +45,12 @@ public class BridgeGameController {
 
     private void determineWhatToDo() {
         try {
-            ActionAfterGameStatus code = ActionAfterGameStatus.findByUserInput(this.inputView.readGameCommand());
+            ActionAfterGameStatus code = ActionAfterGameStatus.findByUserInput(InputView.readGameCommand());
             if (code == ActionAfterGameStatus.RESTART) {
                 replay();
             }
         } catch (IllegalArgumentException e) {
-            outputView.showErrorMessage(e);
+            OutputView.showErrorMessage(e);
             determineWhatToDo();
         }
     }
@@ -67,26 +63,26 @@ public class BridgeGameController {
             }
             return gameResult;
         } catch (IllegalArgumentException e) {
-            outputView.showErrorMessage(e);
+            OutputView.showErrorMessage(e);
             return moveUserUntilEnd();
         }
     }
 
     private GameResultCode moveUser() {
-        String command = inputView.readMoving();
+        String command = InputView.readMoving();
         FootrestLocation footrestLocation = FootrestLocation.findByUserInput(command);
         GameResultCode gameResult = game.move(footrestLocation);
 
-        outputView.printMap(game.getFootPrint());
+        OutputView.printMap(game.getFootPrint());
         return gameResult;
     }
 
     private Bridge makeBridge() {
         try {
-            Integer bridgeSize = inputView.readBridgeSize();
+            Integer bridgeSize = InputView.readBridgeSize();
             return new Bridge(bridgeMaker.makeBridge(bridgeSize));
         } catch (IllegalArgumentException e) {
-            outputView.showErrorMessage(e);
+            OutputView.showErrorMessage(e);
             return makeBridge();
         }
     }
