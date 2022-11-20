@@ -138,4 +138,10 @@ public class BridgeStatus {
 		upperCellBuilder.deleteCharAt(upperCellBuilder.length() - 1);
 		lowerCellBuilder.deleteCharAt(lowerCellBuilder.length() - 1);
 	}
+
+	public boolean isSuccess() {
+		boolean isFailUpperCell = getUpperCell().contains("X");
+		boolean isFailLowerCell = getLowerCell().contains("X");
+		return !isFailUpperCell && !isFailLowerCell;
+	}
 }

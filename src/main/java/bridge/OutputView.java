@@ -37,6 +37,9 @@ public class OutputView {
 	}
 
 	public String printSuccessOrNot() {
-		return "성공";
+		if (bridgeStatus.isSuccess()) {
+			return "성공";
+		}
+		return "실패";
 	}
 }
