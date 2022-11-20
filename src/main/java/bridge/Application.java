@@ -20,6 +20,7 @@ public class Application {
             outputView.printMap(bridgeGame.upBridge);
             outputView.printMap(bridgeGame.downBridge);
             if(!gameChecked){
+                String userGameCommand = inputView.readGameCommand();
             }
         }while (!bridgeGame.compareMoveCount(brideSize));
     }
