@@ -1,14 +1,15 @@
 package bridge.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private static final int BRIDGE_MAXIMUM_SIZE = 20;
     private static final int BRIDGE_MINIMUM_SIZE = 3;
-    private static final String BRIDGE_UPPER_DIRECTION = "U";
-    private static final String BRIDGE_DOWN_DIRECTION = "D";
-    private static final String GAME_RESTART_KEY = "R";
-    private static final String GAME_QUIT_KEY = "Q";
+    private static final List<String> BRIDGE_DIRECTION = new ArrayList<>(List.of("U","D"));
+    private static final List<String> GAME_RESTART_KEY = new ArrayList<>(List.of("R","Q"));
 
 
     public static int inputBridgeSize() {
@@ -38,21 +39,19 @@ public class InputView {
     }
 
     private static void validateMoveCell(String bridgeDirection) {
-        if (!bridgeDirection.equals(BRIDGE_UPPER_DIRECTION)
-            && !bridgeDirection.equals(BRIDGE_DOWN_DIRECTION)) {
+        if (!BRIDGE_DIRECTION.contains(bridgeDirection)) {
             throw new IllegalArgumentException(OutputMessage.ERROR_MOVING.getErrorMessage());
         }
     }
 
     public static String inputGameReStart() {
-        String bridgeDirection = Console.readLine().trim();
-        validateGameRestart(bridgeDirection);
-        return bridgeDirection;
+        String gameRestart = Console.readLine().trim();
+        validateGameRestart(gameRestart);
+        return gameRestart;
     }
 
-    private static void validateGameRestart(String bridgeDirection) {
-        if (!bridgeDirection.equals(GAME_RESTART_KEY)
-            && !bridgeDirection.equals(GAME_QUIT_KEY)) {
+    private static void validateGameRestart(String gameRestart) {
+        if (!GAME_RESTART_KEY.contains(gameRestart)) {
             throw new IllegalArgumentException(OutputMessage.ERROR_RESTART.getErrorMessage());
         }
     }
