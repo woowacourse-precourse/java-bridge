@@ -1,8 +1,7 @@
 package bridge.repository;
 
 import bridge.domain.UserBridgeStatus;
-import bridge.util.InputViewConst;
-import bridge.util.OutputViewConst;
+import bridge.util.GameConst;
 
 public class UserBridgeRepository {
 
@@ -14,12 +13,12 @@ public class UserBridgeRepository {
 
 	public void saveUserSpace(String location, String userCurrentTrace) {
 		userCurrentLocation++;
-		if (location.equals(InputViewConst.MOVING_UP)) {
+		if (location.equals(GameConst.MOVING_UP)) {
 			UserBridgeStatus.UPPER_BRIDGE.updateStatus(userCurrentTrace);
-			UserBridgeStatus.LOWER_BRIDGE.updateStatus(OutputViewConst.BLANK_SPACE);
+			UserBridgeStatus.LOWER_BRIDGE.updateStatus(GameConst.BLANK_SPACE);
 			return;
 		}
-		UserBridgeStatus.UPPER_BRIDGE.updateStatus(OutputViewConst.BLANK_SPACE);
+		UserBridgeStatus.UPPER_BRIDGE.updateStatus(GameConst.BLANK_SPACE);
 		UserBridgeStatus.LOWER_BRIDGE.updateStatus(userCurrentTrace);
 	}
 

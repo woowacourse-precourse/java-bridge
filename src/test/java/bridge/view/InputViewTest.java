@@ -9,8 +9,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bridge.util.InputViewConst;
-
 class InputViewTest {
 
 	private InputView inputView = new InputView();
@@ -29,7 +27,7 @@ class InputViewTest {
 	@Test
 	void readBridgeSize() {
 		//given
-		String bridgeSizePhrase = InputViewConst.BRIDGE_SIZE_PHRASE;
+		String bridgeSizePhrase = InputView.BRIDGE_SIZE_PHRASE;
 
 		//when
 		inputView.readBridgeSize();
@@ -41,7 +39,7 @@ class InputViewTest {
 	@Test
 	void readMoving() {
 		//given
-		String chooseMoveSpacePhrase = InputViewConst.CHOOSE_MOVE_SPACE_PHRASE;
+		String chooseMoveSpacePhrase = InputView.CHOOSE_MOVE_SPACE_PHRASE;
 
 		//when
 		inputView.readMoving();
@@ -53,7 +51,7 @@ class InputViewTest {
 	@Test
 	void readGameCommand() {
 		//given
-		String restartOrQuitPhrase = InputViewConst.RESTART_OR_QUIT_PHRASE;
+		String restartOrQuitPhrase = InputView.RESTART_OR_QUIT_PHRASE;
 
 		//when
 		inputView.readGameCommand();

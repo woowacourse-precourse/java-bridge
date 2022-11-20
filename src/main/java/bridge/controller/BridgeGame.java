@@ -1,8 +1,7 @@
 package bridge.controller;
 
 import bridge.service.GameService;
-import bridge.util.InputViewConst;
-import bridge.util.OutputViewConst;
+import bridge.util.GameConst;
 import bridge.view.OutputView;
 
 /**
@@ -30,7 +29,7 @@ public class BridgeGame {
 		do {
 			userResult = move(bridgeSize);
 			attemptCount++;
-			if (userResult.equals(OutputViewConst.SUCCESS)) {
+			if (userResult.equals(GameConst.SUCCESS)) {
 				break;
 			}
 		} while (retry());
@@ -54,12 +53,12 @@ public class BridgeGame {
 			String userLocation = inputController.getUserMoving();
 			if (!gameService.checkValidSpace(userLocation, currentLocation)) {
 				printWrongUserMap(userLocation);
-				return OutputViewConst.FAIL;
+				return GameConst.FAIL;
 			}
 			printCorrectMap(userLocation);
 			currentLocation++;
 		} while (!currentLocation.equals(bridgeSize));
-		return OutputViewConst.SUCCESS;
+		return GameConst.SUCCESS;
 	}
 
 	private void printCorrectMap(String userLocation) {
@@ -77,7 +76,7 @@ public class BridgeGame {
 	 */
 	public boolean retry() {
 		String userRestartCommand = inputController.getUserRestartCommand();
-		if (userRestartCommand.equals(InputViewConst.QUIT)) {
+		if (userRestartCommand.equals(GameConst.QUIT)) {
 			return false;
 		}
 		gameService.clearUserBridge();

@@ -7,8 +7,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bridge.util.OutputViewConst;
-
 class OutputViewTest {
 
 	private OutputView outputView = new OutputView();
@@ -22,7 +20,7 @@ class OutputViewTest {
 	@Test
 	void printGameStart() {
 		//when
-		String result = OutputViewConst.START_GAME_PHRASE;
+		String result = OutputView.START_GAME_PHRASE;
 
 		//when
 		outputView.printGameStart();
@@ -34,7 +32,7 @@ class OutputViewTest {
 	@Test
 	void printFinalResultPhrase() {
 		//when
-		String result = OutputViewConst.USER_FINAL_RESULT_PHRASE;
+		String result = OutputView.USER_FINAL_RESULT_PHRASE;
 
 		//given
 		outputView.printFinalResultPhrase();
@@ -59,8 +57,8 @@ class OutputViewTest {
 	@Test
 	void printResult() {
 		//when
-		String userFinalResult = OutputViewConst.USER_FINAL_RESULT;
-		String userTryCountPhrase = OutputViewConst.USER_TRY_COUNT_PHRASE;
+		String userFinalResult = OutputView.USER_FINAL_RESULT;
+		String userTryCountPhrase = OutputView.USER_TRY_COUNT_PHRASE;
 		String result = "성공";
 		Integer count = 1000;
 
