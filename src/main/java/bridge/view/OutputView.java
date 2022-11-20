@@ -14,6 +14,11 @@ public class OutputView {
         System.out.println(GameMessage.ASK_BRIDGE_SIZE.getMessage());
     }
 
+    public static void askMove() {
+        System.out.println();
+        System.out.println(GameMessage.ASK_MOVE.getMessage());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

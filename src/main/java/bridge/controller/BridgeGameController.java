@@ -20,5 +20,10 @@ public class BridgeGameController {
         OutputView.askLength();
         int size = player.inputBridgeSize();
         bridgeGame.create(size);
+        play();
+    }
+
+    private void play() {
+        OutputView.askMove();
     }
 }
