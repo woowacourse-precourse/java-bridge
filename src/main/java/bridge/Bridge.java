@@ -4,18 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private List<String> bridge = new ArrayList<>();
+    private List<String> bridgeShape;
     private List<String> moveTrace = new ArrayList<>();
+    private Integer attemptNumber = 0;
 
-    void setBridge(List<String> bridge){
-        this.bridge = bridge;
+    public Bridge(List<String> bridgeShape){
+        this.bridgeShape = bridgeShape;
     }
 
-    public List<String> getBridge() {
-        return this.bridge;
+    void setBridgeShape(List<String> bridgeShape){
+        this.bridgeShape = bridgeShape;
+    }
+
+    public Integer getAttemptNumber() {
+        return attemptNumber;
+    }
+
+    public List<String> getBridgeShape() {
+        return this.bridgeShape;
     }
 
     public List<String> getMoveTrace() {
         return this.moveTrace;
+    }
+
+    public void retry(){
+        moveTrace.clear();
+        ++attemptNumber;
     }
 }
