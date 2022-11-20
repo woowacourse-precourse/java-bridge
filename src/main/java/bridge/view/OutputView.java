@@ -1,6 +1,10 @@
 package bridge.view;
 
+import bridge.BridgeGame;
 import bridge.model.BridgeGameResult;
+import bridge.model.Player;
+
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -14,6 +18,10 @@ public class OutputView {
     public final static String READ_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     public final static String PLAYER_CLEARED_MESSAGE = "게임 성공 여부: ";
     public final static String PLAYER_TRIED_MESSAGE = "총 시도한 횟수: ";
+    public final static String UPPER_BRIDGE_STRING = "U";
+    public final static String LOWER_BRIDGE_STRING = "D";
+    public final static String SPACE_STRING = "   ";
+    public final static String DELIMITER_STRING = "|";
 
     private void printlnMessage(String message) {
 
@@ -50,7 +58,39 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(BridgeGame bridgeGame) {
+        Player player = bridgeGame.getPlayer();
+        List<String> upperBridge = bridgeGame.getBridge().getUpperBridge();
+        List<String> lowerBridge = bridgeGame.getBridge().getLowerBridge();
+        printUpperMap(upperBridge, player.getPlayerMoveList());
+        printlnMessage("");
+        printLowerMap(lowerBridge, player.getPlayerMoveList());
+        printlnMessage("");
+    }
+
+    public void printUpperMap(List<String> upperBridge, List<String> playerMoveList) {
+        printMessage("[");
+        printMapLine(upperBridge, playerMoveList, UPPER_BRIDGE_STRING);
+        printMessage("]");
+    }
+
+    public void printLowerMap(List<String> lowerBridge, List<String> playerMoveList) {
+        printMessage("[");
+        printMapLine(lowerBridge, playerMoveList, LOWER_BRIDGE_STRING);
+        printMessage("]");
+
+    }
+
+    public void printMapLine(List<String> line, List<String> playerCmd, String lineString) {
+        for (int i = 0; i < playerCmd.size(); i++) {
+            if (playerCmd.get(i).equals(lineString)) {
+                printMessage(" " + line.get(i) + " ");
+            } else if (!playerCmd.get(i).equals(lineString)) {
+                printMessage(SPACE_STRING);
+            }
+            if (i != playerCmd.size() - 1)
+                printMessage(DELIMITER_STRING);
+        }
     }
 
 
