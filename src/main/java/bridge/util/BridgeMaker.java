@@ -3,7 +3,7 @@ package bridge.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.BridgeBlock.*;
+import static bridge.domain.bridge.BridgeBlock.*;
 
 public class BridgeMaker {
 

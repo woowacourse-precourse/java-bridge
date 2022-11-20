@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.BridgeResult;
-import bridge.domain.GameState;
+import bridge.domain.result.BridgeResult;
+import bridge.domain.result.GameState;
 
 public class OutputView {
 

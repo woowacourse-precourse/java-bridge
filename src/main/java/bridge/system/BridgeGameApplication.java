@@ -1,9 +1,9 @@
 package bridge.system;
 
 import bridge.controller.BridgeController;
-import bridge.domain.BridgeResult;
-import bridge.domain.GameState;
-import bridge.domain.Phase;
+import bridge.domain.result.BridgeResult;
+import bridge.domain.result.GameState;
+import bridge.domain.bridge.Phase;
 
 public class BridgeGameApplication {
 
