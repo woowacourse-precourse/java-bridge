@@ -23,6 +23,18 @@ public class BridgeGameTest {
         BridgeGame.setBridge(bridge);
     }
 
+    @DisplayName("입력한 방향과 해당 지점이 같으면 true를 다르면 false를 리턴한다")
+    @Test
+    void isCorrectDirectionTest_1() {
+        assertThat(bridgeGame.isCorrectDirection("U")).isEqualTo(true);
+    }
+
+    @DisplayName("입력한 방향과 해당 지점이 같으면 true를 다르면 false를 리턴한다")
+    @Test
+    void isCorrectDirectionTest_2() {
+        assertThat(bridgeGame.isCorrectDirection("D")).isEqualTo(false);
+    }
+
 
     @DisplayName("Q를 입력하면 false, R을 입력하면 true를 리턴한다.")
     @Test
