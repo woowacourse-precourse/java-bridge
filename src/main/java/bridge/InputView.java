@@ -26,6 +26,14 @@ public class InputView {
         }
     }
 
+    private static int strToInt(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(ErrorMessageGenerator.generate("변환할 수 없는 문자열입니다."));
+        }
+    }
+
     private static void validateBridgeSize(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(ErrorMessageGenerator.generate("브릿지 크기가 범위 밖입니다."));
@@ -76,13 +84,5 @@ public class InputView {
             return;
         }
         throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 게임 명령어 입니다."));
-    }
-
-    private static int strToInt(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(ErrorMessageGenerator.generate("변환할 수 없는 문자열입니다."));
-        }
     }
 }
