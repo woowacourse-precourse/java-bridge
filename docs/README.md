@@ -29,13 +29,13 @@
 - [ ] 게임 진행 BridgeGame#move
     - [O] 사용자에게 위로 건널지 아래로 건널지 입력 받는다. InputView#readMoving
     - [ ] 사용자의 입력 값으로 해당 칸을 건널 수 있는지 없는지 판단한다.
-        - [ ] 해당 칸에 O,X 를 표시해 결과를 출력한다. OutputView#printMap
+        - [O] 해당 칸에 O,X 를 표시해 결과를 출력한다. OutputView#printMap
             - [ ] 성공할 경우 게임을 계속 진행한다.
                 - [ ] 다리를 끝까지 건너면 게임이 종료된다.
             - [O] 실패 할 경우 게임을 재시작 하거나 종료할지 입력 받는다. InputView#readGameCommand
                 - [ ] 재시작할 경우 전에 만든 다리를 활용해, 게임을 진행한다. BridgeGame#retry
 - [ ] 게임 종료
-- [ ] 게임이 종료 될 경우 성공 여부 및 시도 횟수를 출력한다.
+- [O] 게임이 종료 될 경우 성공 여부 및 시도 횟수를 출력한다. OutputView#printResult
 
 ## 🚀 기능 요구 사항
 
