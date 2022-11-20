@@ -21,22 +21,22 @@ public class BridgeMap {
     public List<String> getBridgeDownMap(){
         return bridgeDownMap;
     }
-    public void makeBridgeMap(int location,String moving,String result){
+    public void makeBridgeMap(int location,String moving,String expression){
         if(moving.equals("U")){
-            makeBridgeUpMap(location,result);
+            makeBridgeUpMap(location,expression);
         }
         if(moving.equals("D")){
-            makeBridgeDownMap(location,result);
+            makeBridgeDownMap(location,expression);
         }
     }
 
-    public void makeBridgeUpMap(int location,String result){
-        bridgeUpMap.set(location, result);
+    public void makeBridgeUpMap(int location,String expression){
+        bridgeUpMap.set(location, expression);
     }
 
 
-    public void makeBridgeDownMap(int location,String result){
-        bridgeDownMap.set(location, result);
+    public void makeBridgeDownMap(int location,String expression){
+        bridgeDownMap.set(location, expression);
     }
 
 
