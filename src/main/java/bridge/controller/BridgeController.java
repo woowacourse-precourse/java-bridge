@@ -38,7 +38,8 @@ public class BridgeController {
     private void startRound(List<String> bridge) {
         for (String answer : bridge) {
             String userSpace = inputBridgeSpace().getUserInput();
-            List<List<String>> result = bridgeGame.move(userSpace, answer);
+            List<String> map = bridgeGame.move(userSpace, answer);
+            // 출력
             if (!isSameWithAnswer(userSpace, answer)) {
                 //askRestart();
                 break;
