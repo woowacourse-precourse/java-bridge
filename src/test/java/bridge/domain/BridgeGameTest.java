@@ -58,4 +58,13 @@ public class BridgeGameTest {
         bridgeGame.move("D");
         assertThat(bridgeGame.isFinished()).isTrue();
     }
+
+    @DisplayName("이미 떨어졌는데 이동하려 하면 예외 처리한다")
+    @Test
+    void moveByDead() {
+        bridgeGame.move("D");
+        assertThatThrownBy(() -> bridgeGame.move("D"))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
 }
