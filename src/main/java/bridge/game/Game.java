@@ -66,5 +66,8 @@ public class Game {
             this.gameStatus.again();
         }
     }
+    public boolean isQuit() {
+        return gameStatus.isEnd();
+    }
 
 }
