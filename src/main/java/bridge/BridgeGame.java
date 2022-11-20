@@ -15,13 +15,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static int move(List<String> bridge, int stage, String move) {
-        if(Objects.equals(bridge.get(stage), move)){
+    public static int move(List<String> bridge, int indexOfBridge, String move) {
+        if(Objects.equals(bridge.get(indexOfBridge), move)){
             return correctMoving(move);
         }
         return incorrectMoving(move);
     }
 
+    /** 0 -> down 성공, 1 -> down 실패, 2 -> up 성공, 3 -> up 실패 **/
     private static int correctMoving(String move) {
         Map<String, Object> movingChecker = new HashMap<>();
         movingChecker.put("U", 2);
@@ -41,6 +42,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public static boolean retry(boolean presentResult) {
+        return !presentResult;
     }
 }
