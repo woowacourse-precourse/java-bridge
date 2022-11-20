@@ -16,14 +16,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> up_bridge, List<String> down_bridge) {
-        System.out.print("[ ");
-        for (int i = 0;i<BridgeMaker.bridge_index;i++){
-            System.out.print(up_bridge.get(i));
-            if (i!=BridgeMaker.bridge_index-1){
-                System.out.print(" | ");
-            }
-        }
-        System.out.println(" ]");
+        printPresentBridge(up_bridge);
+        printPresentBridge(down_bridge);
+    }
+
+    private static void printPresentBridge(List<String> down_bridge) {
         System.out.print("[ ");
         for (int i = 0;i<BridgeMaker.bridge_index;i++){
             System.out.print(down_bridge.get(i));
@@ -42,14 +39,12 @@ public class OutputView {
     public void printResult(List<String> up_bridge, List<String> down_bridge, int result) {
         System.out.println("최종 게임 결과");
         printMap(up_bridge,down_bridge);
-
         if (result == 1){
             System.out.println("\n게임 성공 여부: 성공");
         }
         if (result == 0){
             System.out.println("\n게임 성공 여부: 실패");
         }
-        System.out.println("총 시도한 횟수: "+BridgeGame.try_count);
-
+        System.out.println("총 시도한 횟수: " + BridgeGame.try_count);
     }
 }
