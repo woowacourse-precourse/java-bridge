@@ -23,6 +23,6 @@ public enum MoveResult {
 
     @Override
     public String toString() {
-        return result;
+        return " " + result + " ";
     }
 }
