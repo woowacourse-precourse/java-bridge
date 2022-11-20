@@ -25,7 +25,7 @@ public class BridgeGame {
         bridge.initUserKeyList();
     }
 
-    // 유저가 입력한 키 리스트 추가 기능
+    // 다리를 건너는 기능
     public Bridge move(String key) {
         bridge.move(key);
         return bridge;
