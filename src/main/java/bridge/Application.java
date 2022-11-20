@@ -1,5 +1,6 @@
 package bridge;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +9,14 @@ public class Application {
     public static void main(String[] args) {
         int birdgeSize = getBridgeSize();
         List<String> bridge = getBridge(birdgeSize);
-        System.out.println("bridge : " + bridge);
-        String move = getMoving();
-        System.out.println("move:" + move);
+        System.out.println("bridge : " + bridge); /////////
 
+        List<String> choice = getMoving();
+        OutputView.printMap();
+        if(BridgeGame.isRightChoice(bridge, choice)) {
+            BridgeGame.move();
+        }
+        BridgeGame.retry();
 
     }
 
@@ -30,12 +35,15 @@ public class Application {
         return bridge;
     }
 
-    public static String getMoving() {
+    public static List<String> getMoving() {
+        List<String> choice = new ArrayList<>();
         String answer = "";
         while (!(answer.equals("U")||answer.equals("D"))) {
             OutputView.getMove();
             answer = InputView.readMoving();
         }
-        return answer;
+        System.out.println("answer : " + answer);
+        choice.add(answer);
+        return choice;
     }
 }
