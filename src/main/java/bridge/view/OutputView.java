@@ -4,6 +4,7 @@ import static java.text.MessageFormat.format;
 
 import bridge.domain.MoveResult;
 import bridge.dto.GameMoveDto;
+import bridge.dto.GameResultDto;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,9 @@ public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "\n[ERROR] {0}";
     private static final String MAP_MESSAGE_FORMAT = "[ {0} ]";
     private static final String MAP_MESSAGE_DELIMITER = " | ";
+    private static final String RESULT_MESSAGE = "\n최종 게임 결과";
+    private static final String VICTORY_MESSAGE_FORMAT = "\n게임 성공 여부: {0}";
+    private static final String COUNT_MESSAGE_FORMAT = "총 시도한 횟수: {0}";
 
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
@@ -26,8 +30,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(GameMoveDto result) {
-        for (List<MoveResult> moveResults : result.getResult()) {
+    public void printMap(GameMoveDto gameMoveDto) {
+        for (List<MoveResult> moveResults : gameMoveDto.getResult()) {
             System.out.println(getResultMessage(moveResults));
         }
     }
@@ -44,7 +48,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameResultDto gameResultDto) {
+        System.out.println(RESULT_MESSAGE);
+        printMap(gameResultDto.getResult());
+        System.out.println(format(VICTORY_MESSAGE_FORMAT, gameResultDto.getVictory().getMessage()));
+        System.out.println(format(COUNT_MESSAGE_FORMAT, gameResultDto.getCount()));
     }
 
     public void printError(String message) {
