@@ -23,6 +23,7 @@ public class OutputView {
         System.out.println("[ " + map + " ]");
         map = String.join(" | ", lowerBridge);
         System.out.println("[ " + map + " ]");
+        System.out.println();
     }
 
     /**

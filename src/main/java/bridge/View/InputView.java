@@ -13,6 +13,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(Message.INPUT_BRIDGE_LENGTH);
         String length = Console.readLine();
+        System.out.println();
         return Integer.parseInt(length);
     }
 

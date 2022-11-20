@@ -35,7 +35,7 @@ public class BridgeGame {
         lowerBridge = new ArrayList<>();
         bridgeIndex = 0;
         isSuccess = true;
-        tryCount = 0;
+        tryCount = 1;
     }
 
     public void setAnswerBridge(List<String> answerBridge) {
