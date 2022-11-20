@@ -54,7 +54,7 @@ public class BridgeGameTest {
         @DisplayName("건널수 있는 칸으로 갈 때 이동한 칸을 저장하고 진행한다.")
         @Test
         void moveToPossibleZone() {
-            bridgeData.setBridge(Arrays.asList("U", "D", "D"));
+            bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
 
             String nextStep = "U";
             InputStream in = new ByteArrayInputStream(nextStep.getBytes());
