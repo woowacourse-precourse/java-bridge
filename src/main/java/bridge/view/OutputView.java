@@ -14,6 +14,7 @@ public class OutputView {
     private static final String BRIDGE_MOVE_DEMAND_MSG = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String RETRY_DEMAND_MSG = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_SUFFIX = " 다시 입력해주세요.";
     private static final String MAP_PREFIX = "[ ";
     private static final String MAP_SUFFIX = " ]";
     private static final String STRING_DELIMITER = "";
@@ -75,7 +76,7 @@ public class OutputView {
     }
 
     public void printError(String errorMsg) {
-        System.out.println(ERROR_PREFIX + errorMsg);
+        System.out.println(ERROR_PREFIX + errorMsg + ERROR_SUFFIX);
     }
 
     public void printOrder() {
