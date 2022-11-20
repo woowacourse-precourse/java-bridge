@@ -5,6 +5,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -16,13 +17,16 @@ import org.junit.jupiter.api.Test;
 class PlayerTest {
 
     @Test
-    void move_메서드는_방향을_입력받아_다리_건너기_게임을_진행한다() {
-        Player player = new Player();
+    void move_메서드는_방향을_입력받아_다리_건너기_게임을_진행하고_결과를_저장한다() {
+        BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
+        Player player = new Player(GamePlayCount.firstGame(), Round.firstRound(), bridgeGameResult);
         BridgeGame bridgeGame = mock(BridgeGame.class);
+        when(bridgeGame.move(any(), any())).thenReturn(MoveResult.SUCCESS);
 
         player.move(bridgeGame, Direction.UP);
 
         verify(bridgeGame, only()).move(any(Round.class), eq(Direction.UP));
+        verify(bridgeGameResult, only()).addResult(any(Round.class), any(MoveResult.class), any(Direction.class));
     }
 
     @Test

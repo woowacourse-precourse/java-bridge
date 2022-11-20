@@ -20,7 +20,7 @@ public class Player {
 
     public void move(BridgeGame bridgeGame, Direction direction) {
         MoveResult result = bridgeGame.move(round, direction);
-        bridgeGameResult.addResult(round, result);
+        bridgeGameResult.addResult(round, result, direction);
         this.round = round.nextRound();
     }
 
@@ -30,7 +30,7 @@ public class Player {
         gamePlayCount.nextGame();
     }
 
-    public List<MoveResult> getBridgeGameResult() {
+    public List<List<MoveResult>> getBridgeGameResult() {
         return bridgeGameResult.getResult();
     }
 }
