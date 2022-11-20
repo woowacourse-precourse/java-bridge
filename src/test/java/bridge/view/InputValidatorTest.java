@@ -37,22 +37,22 @@ class InputValidatorTest {
 
         @ParameterizedTest(name = "숫자가 아닌 문자면 예외 처리한다.")
         @ValueSource(strings = {" ", "abc", ",./", "가나다", "@#%^&"})
-        void inputNumberNotDigit(String text) {
-            assertThatThrownBy(() -> inputValidator.inputNumber(text))
+        void validateNumberNotDigit(String text) {
+            assertThatThrownBy(() -> inputValidator.validateNumber(text))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ParameterizedTest(name = "숫자가 공백 또는 Null 이면 예외 처리한다.")
         @NullAndEmptySource
-        void inputNumberNull(String text) {
-            assertThatThrownBy(() -> inputValidator.inputNumber(text))
+        void validateNumberNull(String text) {
+            assertThatThrownBy(() -> inputValidator.validateNumber(text))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @ParameterizedTest(name = "숫자를 입력한다.")
         @ValueSource(strings = {"3", "4", "19", "20"})
-        void inputNumber(String text) {
-            assertThat(inputValidator.inputNumber(text)).isEqualTo(Integer.parseInt(text));
+        void validateNumber(String text) {
+            assertThat(inputValidator.validateNumber(text)).isEqualTo(Integer.parseInt(text));
         }
     }
 }

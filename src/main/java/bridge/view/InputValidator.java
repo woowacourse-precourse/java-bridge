@@ -14,7 +14,7 @@ public class InputValidator {
         }
     }
 
-    public int inputNumber(String text) {
+    public int validateNumber(String text) {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException exception) {
