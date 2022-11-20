@@ -1,7 +1,6 @@
-package bridge.service;
+package bridge.model;
 
 import bridge.BridgeNumberGenerator;
-import bridge.model.BridgeDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,5 +29,4 @@ public class BridgeMaker {
         }//for
         return bridge;
     }// numberBridge
-
 }//end class
