@@ -7,32 +7,39 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.HashMap;
+import bridge.view.SystemConsole;
 import java.util.List;
 
 public class BridgeGameMachine {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final SystemConsole systemConsole;
 
-    public BridgeGameMachine(InputView inputView, OutputView outputView) {
+    public BridgeGameMachine(InputView inputView, OutputView outputView,
+            SystemConsole systemConsole) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.systemConsole = systemConsole;
     }
 
     public void run() {
+        systemConsole.gameStartMessage();
+
+        systemConsole.bridgeLength();
         int bridgeLength = inputView.readBridgeSize(); // 총길이
+        systemConsole.nextLine();
 
         BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(randomGenerator);
         List<String> designBridge = bridgeMaker.makeBridge(bridgeLength);// 무작위 [U, D, U]
 
-        BridgeState bridgeState = new BridgeState(); // player
+        BridgeState bridgeState = new BridgeState(systemConsole); // player
         BridgeGame bridgeGame = new BridgeGame(bridgeState);
 
         String playerRetry = ""; // R Q
         boolean gameSuccess = true;
-        int gameCount = 0;
+        int gameCount = 1;
 
         Loop1:
         while (!(playerRetry.equals(Command.END.getCommand()))) {  // 게임이 성공했을 때?
@@ -40,25 +47,31 @@ public class BridgeGameMachine {
             bridgeState.initBridgeState();
 
             for (int bridgeIndex = 0; bridgeIndex < bridgeLength; bridgeIndex++) {
-                gameCount++;
+
+                systemConsole.movementInput();
                 String playerMoving = inputView.readMoving();
 
-                String bridgeJudgment = bridgeGame.judgment(playerMoving, designBridge.get(bridgeIndex));
+
+                String bridgeJudgment = bridgeGame.judgment(playerMoving,
+                        designBridge.get(bridgeIndex));
 
                 BridgeState bridgePlace = bridgeGame.move(playerMoving, bridgeJudgment); // 다리 만들기
 
-                bridgePlace = bridgeGame.bridgeConnection(bridgeLength, bridgeJudgment, bridgeIndex);
+                bridgePlace = bridgeGame.bridgeConnection(bridgeLength, bridgeJudgment,
+                        bridgeIndex);
 
                 outputView.printMap(bridgePlace);
+                systemConsole.nextLine();
 
                 if (bridgeJudgment.equals("X")) {
 
-                    System.out.println("게임을 다시 시도할지 여부를 입력해주세요.");
+                    systemConsole.gameRestartEnd();
                     String gameCommand = inputView.readGameCommand();
 
                     playerRetry = bridgeGame.retry(gameCommand);
 
                     if (playerRetry.equals(Command.RE_START.getCommand())) {
+                        gameCount++;
                         break;
                     }
 
