@@ -10,6 +10,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(REQUEST_BRIDGE_SIZE);
         String input = Console.readLine();
+        BridgeSizeValidator.validateBridgeSize(input);
         return Integer.parseInt(input);
     }
 
