@@ -71,5 +71,10 @@ public class OutputView {
                 + BLANK.getMark() + successOrFailure;
         System.out.println(message);
     }
+
+    public void printResult(boolean isWon, int tryCount) {
+        printSuccessOrNot(isWon);
+        printTryCount(tryCount);
+    }
 }
 
