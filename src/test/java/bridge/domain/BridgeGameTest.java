@@ -2,12 +2,13 @@ package bridge.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static bridge.domain.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,25 +32,13 @@ class BridgeGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("첫 라운드 다리 건너고 나서 위 다리 상태 값 확인")
-    @ParameterizedTest
-    @CsvSource(value = {
-            "U, O",
-            "D, ' '"
-    })
-    void confirmFirstRoundUpBridgeState(String arrow, String up) {
-        bridgeGame.move(arrow);
-        assertThat(bridgeState.getUpBridgeState()).isEqualTo(up);
+    @DisplayName("게임 재시작 시 게임 총 도전 횟수 카운트 값 확인")
+    @Test
+    void confirmInitRoundWhenRetry() {
+        bridgeGame.retry();
+        assertThat(bridgeGame.getTotalGameAttempts()).isEqualTo(BRIDGE_GAME_ATTEMPTS_INIT + 1);
     }
 
-    @DisplayName("첫 라운드 다리 건너고 나서 아래 다리 상태 값 확인")
-    @ParameterizedTest
-    @CsvSource(value = {
-            "U, ' '",
-            "D, 'X'"
-    })
-    void confirmFirstRoundDownBridgeState(String arrow, String down) {
-        bridgeGame.move(arrow);
-        assertThat(bridgeState.getDownBridgeState()).isEqualTo(down);
-    }
+
+
 }
