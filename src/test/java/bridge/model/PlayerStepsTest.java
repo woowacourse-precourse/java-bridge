@@ -1,6 +1,7 @@
 package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,6 +39,16 @@ class PlayerStepsTest {
             steps.add(Node.DOWN);
             steps.add(Node.DOWN);
             assertFalse(steps.isLastStepSameWithBridge(mockBridge));
+        }
+
+        @Test
+        @DisplayName("스텝이 비어있을 경우 예외를 던진다.")
+        public void throwExceptionWhenStepIsEmpty() {
+            Bridge mockBridge = Bridge.of(List.of("D", "U"));
+            PlayerSteps steps = new PlayerSteps(2);
+            assertThatIllegalStateException()
+                    .isThrownBy(() -> steps.isLastStepSameWithBridge(mockBridge))
+                    .withMessageStartingWith("steps가 비어있습니다.");
         }
     }
 

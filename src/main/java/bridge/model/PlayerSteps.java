@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class PlayerSteps {
+    private static final String EMPTY_STEPS = "steps가 비어있습니다.";
     private List<Node> steps;
 
     public PlayerSteps(int bridgeSize) {
@@ -22,6 +23,10 @@ public class PlayerSteps {
     }
 
     public boolean isLastStepSameWithBridge(Bridge bridge) {
+        if(steps.isEmpty()) {
+            throw new IllegalStateException(EMPTY_STEPS);
+        }
+
         int currentStepCount = steps.size() - 1;
         Node currentStepNode = steps.get(currentStepCount);
         return bridge.compareNodeOf(currentStepCount, currentStepNode);
