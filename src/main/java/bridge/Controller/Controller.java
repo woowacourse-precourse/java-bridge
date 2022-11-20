@@ -4,6 +4,7 @@ import bridge.Domain.BridgeMaker;
 import bridge.Domain.BridgeNumberGenerator;
 import bridge.Domain.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
+import bridge.View.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +13,12 @@ public class Controller {
     public InputView inputView;
     public BridgeNumberGenerator bridgeNumberGenerator;
     public BridgeMaker bridgeMaker;
+    public OutputView outputView;
     public void run(){
         inputView = new InputView();
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        outputView = new OutputView();
 
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
@@ -37,7 +40,7 @@ public class Controller {
 
             if(mySelectBridge.get(position).equals(bridge.get(position))){
                 //성공
-                //printMap
+                outputView.printMap(bridge, gameSuccess, position);
                 if(position == bridgeLen - 1){
                     gameSuccess = true;
                     break;
@@ -45,8 +48,7 @@ public class Controller {
             }
             else{
                 //실패
-                //printMap
-
+                outputView.printMap(bridge, gameSuccess, position);
                 String gameCommand = inputView.readGameCommand();
 
                 if(gameCommand.equals("R")){
@@ -59,9 +61,8 @@ public class Controller {
             }
         }
 
-
-
         //결과 출력
+        outputView.printResult(gameSuccess, gameTryCount);
     }
 
 }
