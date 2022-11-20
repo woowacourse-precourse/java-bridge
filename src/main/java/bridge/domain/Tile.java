@@ -7,7 +7,7 @@ public enum Tile {
     DOWN(0, "D");
 
     private static final String TILE_CODE_ERROR_MESSAGE = "[ERROR] %d는 등록된 다리의 타일 코드가 아닙니다.";
-    private static final String TILE_POSITION_ERROR_MESSAGE = "[ERROR] %s는 등록된 다리의 문자가 아닙니다.";
+    private static final String TILE_DIRECTION_ERROR_MESSAGE = "[ERROR] %s는 등록된 다리의 문자가 아닙니다.";
 
     private static final String TILE_FORMAT = " %s ";
     private static final String SUCCESS_SIGN = "O";
@@ -34,7 +34,7 @@ public enum Tile {
                 .filter(tile -> tile.directionSign.equals(directionSign))
                 .findAny()
                 .orElseThrow(() ->
-                        new IllegalArgumentException(String.format(TILE_POSITION_ERROR_MESSAGE, directionSign)));
+                        new IllegalArgumentException(String.format(TILE_DIRECTION_ERROR_MESSAGE, directionSign)));
     }
 
     public String getDirectionSign() {
