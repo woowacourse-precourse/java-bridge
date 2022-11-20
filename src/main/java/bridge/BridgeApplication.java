@@ -55,11 +55,15 @@ public class BridgeApplication {
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
-        while (PLAYING.equals(status)) {
-            BridgeUnit nextUnit = readNextBridgeUnit();
+        try {
+            while (PLAYING.equals(status)) {
+                BridgeUnit nextUnit = readNextBridgeUnit();
 
-            status = bridgeGame.move(nextUnit);
-            outputView.printMap(bridgeGame);
+                status = bridgeGame.move(nextUnit);
+                outputView.printMap(bridgeGame);
+            }
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
         }
     }
 
