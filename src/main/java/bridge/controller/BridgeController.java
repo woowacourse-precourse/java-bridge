@@ -23,7 +23,7 @@ public class BridgeController {
         do {
             playTurn();
         } while (!this.bridgeGame.isEnd());
-//        announceFinalResult();
+        announceFinalResult();
     }
 
     private void createBridgeGame() {
@@ -41,5 +41,12 @@ public class BridgeController {
             String gameCommand = this.inputView.readGameCommand();
             this.bridgeGame.retry(gameCommand);
         }
+    }
+
+    private void announceFinalResult() {
+        boolean isSuccess = this.bridgeGame.isSuccess();
+        String bridgePicture = this.bridgeGame.getPicture();
+        int tryCount = this.bridgeGame.getTryCount();
+        this.outputView.announceEndGame(isSuccess, bridgePicture, tryCount);
     }
 }
