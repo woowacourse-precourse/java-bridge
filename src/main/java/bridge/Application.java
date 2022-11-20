@@ -16,7 +16,7 @@ public class Application {
         List<String> answerBridge = bridgeMaker.makeBridge(brideSize);
         do {
             String userRemoveCommand = inputView.readMoving();
-            boolean gameCheck = bridgeGame.move(answerBridge,userRemoveCommand);
+            boolean gameChecked = bridgeGame.move(answerBridge,userRemoveCommand);
             outputView.printMap(bridgeGame.upBridge);
             outputView.printMap(bridgeGame.downBridge);
         }while (!bridgeGame.compareMoveCount(brideSize));
