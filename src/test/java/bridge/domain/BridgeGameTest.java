@@ -79,4 +79,40 @@ class BridgeGameTest {
                 Arguments.of("D", " X ")
         );
     }
+
+    @DisplayName("두번째 라운드 다리 건너고 나서 위 다리 상태 값 확인")
+    @ParameterizedTest
+    @MethodSource("secondRoundUpBridgeState")
+    void confirmSecondRoundUpBridgeState(String arrow1, String arrow2, String upBridgeState) {
+        bridgeGame.move(arrow1);
+        bridgeGame.move(arrow2);
+        assertThat(bridgeState.getUpBridgeState()).isEqualTo(upBridgeState);
+    }
+
+    private static Stream<Arguments> secondRoundUpBridgeState() {
+        return Stream.of(
+                Arguments.of("U", "U", " O | X "),
+                Arguments.of("U", "D", " O |   "),
+                Arguments.of("D", "U", "   | X "),
+                Arguments.of("D", "D", "   |   ")
+        );
+    }
+
+    @DisplayName("두번째 라운드 다리 건너고 나서 아래 다리 상태 값 확인")
+    @ParameterizedTest
+    @MethodSource("secondRoundDownBridgeState")
+    void confirmSecondRoundDownBridgeState(String arrow1, String arrow2, String downBridgeState) {
+        bridgeGame.move(arrow1);
+        bridgeGame.move(arrow2);
+        assertThat(bridgeState.getDownBridgeState()).isEqualTo(downBridgeState);
+    }
+
+    private static Stream<Arguments> secondRoundDownBridgeState() {
+        return Stream.of(
+                Arguments.of("U", "U", "   |   "),
+                Arguments.of("U", "D", "   | O "),
+                Arguments.of("D", "U", " X |   "),
+                Arguments.of("D", "D", " X | O ")
+        );
+    }
 }
