@@ -3,11 +3,18 @@ package model;
 import java.util.EnumMap;
 import java.util.Map;
 
+import static model.BridgeType.UP;
+
 public class BridgeMaps {
     private final Map<BridgeType, BridgeMap> maps;
 
     public BridgeMaps() {
         maps = new EnumMap<>(BridgeType.class);
+    }
+
+    public int getStage() {
+        BridgeMap map = maps.getOrDefault(UP, new BridgeMap());
+        return map.getStage();
     }
 
     public void updateMaps(BridgeType playerType, Boolean result) {

@@ -13,6 +13,10 @@ public class BridgeMap {
         map = new ArrayList<>();
     }
 
+    public int getStage() {
+        return map.size();
+    }
+
     public void updateMap(Boolean result) {
         map.add(ResultType.getMarkByBoolean(result));
     }
