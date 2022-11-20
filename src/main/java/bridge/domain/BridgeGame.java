@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,16 +10,18 @@ public class BridgeGame {
 
     private Bridge bridge;
     private User user;
+    private List<String> matchingStatus;
     private int totalAttempts;
-    private boolean isGameOver;
+    private boolean gameFailed;
 
     public BridgeGame(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(size));
         user = new User();
+        matchingStatus = new ArrayList<>();
         totalAttempts = 1;
-        isGameOver = false;
+        gameFailed = false;
     }
 
     /**
@@ -30,7 +33,7 @@ public class BridgeGame {
         user.move(moving);
         List<String> userMoved = user.getUserMoved();
         if (!bridge.canMove(userMoved, userMoved.size() - 1)) {
-            isGameOver = true;
+            gameFailed = true;
         }
     }
 
