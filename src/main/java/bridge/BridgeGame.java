@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,10 +9,12 @@ import java.util.List;
 public class BridgeGame {
     private final static List<String> POSSIBLE_DIRECTION = List.of("U", "D");
     private List<String> bridge;
+    private List<String> userPath;
     private GameStatus gameStatus;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.userPath = new ArrayList<>();
         this.gameStatus = GameStatus.ONGOING;
     }
 
@@ -22,6 +25,7 @@ public class BridgeGame {
      */
     public void move(String direction) {
         validateMove(direction);
+        userPath.add(direction);
     }
 
     private void validateMove(String direction) {
