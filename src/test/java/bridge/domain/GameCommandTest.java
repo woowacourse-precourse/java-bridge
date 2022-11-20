@@ -18,7 +18,7 @@ class GameCommandTest {
     class GameCommandOf {
         @ParameterizedTest(name = "올바른 값이 아닌 경우 예외 처리한다.")
         @NullAndEmptySource
-        @ValueSource(strings = {" ", "r", "q", "RQ", "QR", "RESTART", "QUIT", "ABC"})
+        @ValueSource(strings = {" ", "r", "q", "RQ", "QR", "RETRY", "QUIT", "ABC"})
         void gameCommandOfNoSuchValue(String command) {
             assertThatThrownBy(() -> GameCommand.of(command)).isInstanceOf(IllegalArgumentException.class);
         }
@@ -27,20 +27,20 @@ class GameCommandTest {
         @Test
         void gameCommandOf() {
             assertAll(
-                    () -> assertThat(GameCommand.of("R")).isEqualTo(GameCommand.RESTART),
+                    () -> assertThat(GameCommand.of("R")).isEqualTo(GameCommand.RETRY),
                     () -> assertThat(GameCommand.of("Q")).isEqualTo(GameCommand.QUIT)
             );
         }
     }
 
-    @DisplayName("GameCommand 가 Restart 인지 boolean 값을 반환한다.")
+    @DisplayName("GameCommand 가 Retry 인지 boolean 값을 반환한다.")
     @Test
-    void isRestart() {
+    void isRetry() {
         assertAll(
-                () -> assertThat(GameCommand.of("R").isRestart()).isTrue(),
-                () -> assertThat(GameCommand.RESTART.isRestart()).isTrue(),
-                () -> assertThat(GameCommand.of("Q").isRestart()).isFalse(),
-                () -> assertThat(GameCommand.QUIT.isRestart()).isFalse()
+                () -> assertThat(GameCommand.of("R").isRetry()).isTrue(),
+                () -> assertThat(GameCommand.RETRY.isRetry()).isTrue(),
+                () -> assertThat(GameCommand.of("Q").isRetry()).isFalse(),
+                () -> assertThat(GameCommand.QUIT.isRetry()).isFalse()
         );
     }
 }

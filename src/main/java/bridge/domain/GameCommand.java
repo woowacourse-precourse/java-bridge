@@ -4,7 +4,7 @@ import bridge.exception.domain.NoSuchGameCommandException;
 import java.util.Arrays;
 
 public enum GameCommand {
-    RESTART("R"), QUIT("Q");
+    RETRY("R"), QUIT("Q");
 
     private final String command;
 
@@ -19,7 +19,7 @@ public enum GameCommand {
                 .orElseThrow(() -> new NoSuchGameCommandException(text));
     }
 
-    public boolean isRestart() {
-        return this == GameCommand.RESTART;
+    public boolean isRetry() {
+        return this == GameCommand.RETRY;
     }
 }
