@@ -20,6 +20,10 @@ public class BridgeGame {
         return retryCount;
     }
 
+    public int getLocation(){
+        return location;
+    }
+
     public List<String> getUpBridge(){
         return bridgeMap.getBridgeUpMap();
     }
