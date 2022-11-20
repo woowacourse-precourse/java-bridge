@@ -2,30 +2,27 @@ package bridge.views;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- * InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
- *
- * - `InputView`의 패키지는 변경할 수 있다.
- * - `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
- * - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
- */
+// TODO Singleton 패턴으로 구현 고민해보기
 public class InputView {
-    public static final String LINE_SPLIT = "%n";
+    private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String REQUEST_MOVING_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String REQUEST_RESTART_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
-        System.out.printf(LINE_SPLIT + "다리의 길이를 입력해주세요." + LINE_SPLIT);
+    public static int readBridgeSize() throws IllegalArgumentException {
+        System.out.println(REQUEST_BRIDGE_SIZE);
         String input = Console.readLine();
-        return Validator.validateBridgeSize(input);
+        Validator.validateBridgeSize(input);
+        System.out.println();
+        return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
-        System.out.printf(LINE_SPLIT + "이동할 칸을 선택해주세요. (위: U, 아래: D)" + LINE_SPLIT);
+    public static String readMoving() throws IllegalArgumentException {
+        System.out.println(REQUEST_MOVING_DIRECTION);
         String input = Console.readLine();
         Validator.isUOrD(input);
         return input;
@@ -34,8 +31,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
-        System.out.printf(LINE_SPLIT + "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)" + LINE_SPLIT);
+    public static String readGameCommand() throws IllegalArgumentException {
+        System.out.println(REQUEST_RESTART_OR_QUIT);
         String input = Console.readLine();
         Validator.isROrQ(input);
         return input;
