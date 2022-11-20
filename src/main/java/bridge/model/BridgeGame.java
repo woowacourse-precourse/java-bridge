@@ -44,7 +44,7 @@ public class BridgeGame {
     }
 
     public boolean lastStepMismatch() {
-        return steps.isLastStepSameWithBridge(bridge);
+        return !steps.isLastStepSameWithBridge(bridge);
     }
 
     public void quit() {
