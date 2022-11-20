@@ -1,4 +1,4 @@
-package bridge.model.validate;
+package bridge.model.validation;
 
 import bridge.model.constant.Error;
 import bridge.model.constant.Size;

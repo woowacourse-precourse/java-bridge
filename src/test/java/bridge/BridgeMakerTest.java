@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import bridge.model.constant.Size;
-import bridge.model.validate.Stairs;
+import bridge.model.validation.Stairs;
 
 class BridgeMakerTest {
 

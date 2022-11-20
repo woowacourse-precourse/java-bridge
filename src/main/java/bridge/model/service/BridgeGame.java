@@ -4,11 +4,11 @@ import java.util.List;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.validate.ExitOption;
 import bridge.model.domain.FootPrint;
 import bridge.model.domain.GameResult;
 import bridge.model.domain.Map;
-import bridge.model.validate.Stairs;
+import bridge.model.validation.ExitOption;
+import bridge.model.validation.Stairs;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

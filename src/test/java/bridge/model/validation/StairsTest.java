@@ -1,4 +1,4 @@
-package bridge.model.validate;
+package bridge.model.validation;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -2,7 +2,7 @@ package bridge.model.domain;
 
 import java.util.List;
 
-import bridge.model.validate.Stairs;
+import bridge.model.validation.Stairs;
 
 public class Map {
 

@@ -2,8 +2,8 @@ package bridge.controller;
 
 import java.util.List;
 
-import bridge.model.validate.Stairs;
 import bridge.model.service.BridgeGame;
+import bridge.model.validation.Stairs;
 import bridge.view.OutputView;
 
 public class GameController {
@@ -34,14 +34,15 @@ public class GameController {
 
 	private void playRound(List<String> bridges) {
 		for (String square : bridges) {
-			if (!isRightStep(square, inputController.getStairs())) {
+			boolean isRightStep = checkMapChange(square, inputController.getStairs());
+			if (!isRightStep) {
 				bridgeGame.changeResultToFail();
 				break;
 			}
 		}
 	}
 
-	private boolean isRightStep(String square, Stairs stairs) {
+	private boolean checkMapChange(String square, Stairs stairs) {
 		boolean isEquals = stairs.isEquals(square);
 		bridgeGame.move(stairs, isEquals);
 		outputView.printMap(bridgeGame.getMap());

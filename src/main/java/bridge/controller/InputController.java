@@ -1,8 +1,8 @@
 package bridge.controller;
 
-import bridge.model.validate.BridgeSize;
-import bridge.model.validate.ExitOption;
-import bridge.model.validate.Stairs;
+import bridge.model.validation.BridgeSize;
+import bridge.model.validation.ExitOption;
+import bridge.model.validation.Stairs;
 import bridge.view.InputView;
 
 public class InputController {
