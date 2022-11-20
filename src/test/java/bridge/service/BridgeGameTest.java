@@ -25,4 +25,18 @@ class BridgeGameTest {
         //then
         assertThat(bridge.getLocation()).isEqualTo(1);
     }
+
+    @DisplayName("유저가 다리 끝지점에 도착했는지 테스트")
+    @Test
+    public void moveCompleteTest() {
+        //given
+        Bridge bridge = new Bridge(List.of("U"));
+        User user = new User();
+
+        //when
+        bridgeGame.move(bridge, user);
+
+        //then
+        assertThat(user.isSuccessComplete()).isEqualTo(true);
+    }
 }
