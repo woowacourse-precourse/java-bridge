@@ -55,5 +55,7 @@ public class InputView {
 
     public void readScopeOfBridgeSizeOfNumberException(String bridgeSize){
         int size = Integer.parseInt(bridgeSize);
+        if(size<3 || size>20){
+        }
     }
 }
