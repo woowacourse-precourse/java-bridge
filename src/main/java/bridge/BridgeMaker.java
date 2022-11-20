@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
@@ -11,6 +12,11 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int generatedValue = bridgeNumberGenerator.generate();
+            bridge.add(String.valueOf(generatedValue));
+        }
+        return bridge;
     }
 }
