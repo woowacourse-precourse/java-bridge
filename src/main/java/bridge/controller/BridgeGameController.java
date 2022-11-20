@@ -71,6 +71,7 @@ public class BridgeGameController {
     private void finish(boolean canMove) {
         if (canMove) {
             succeed();
+            return;
         }
         fail();
     }
