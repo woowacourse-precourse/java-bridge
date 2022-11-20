@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Scanner;
 
 
@@ -37,7 +36,6 @@ class InputTest extends IOTest{
     }
 
     void test1() {
-        Scanner scanner = new Scanner(System.in);
         Assertions.assertThat(inputView.readMoving()).isEqualTo("U");
     }
 
@@ -49,7 +47,6 @@ class InputTest extends IOTest{
     }
 
     void test2() {
-        Scanner scanner = new Scanner(System.in);
         Assertions.assertThat(inputView.readMoving()).isEqualTo("D");
     }
 
@@ -62,7 +59,6 @@ class InputTest extends IOTest{
     }
 
     void test3() {
-        Scanner scanner = new Scanner(System.in);
         Assertions.assertThat(inputView.readGameCommand()).isEqualTo("R");
     }
 
@@ -75,7 +71,6 @@ class InputTest extends IOTest{
     }
 
     void test4() {
-        Scanner scanner = new Scanner(System.in);
         Assertions.assertThat(inputView.readGameCommand()).isEqualTo("Q");
     }
 }
