@@ -14,8 +14,6 @@ public class RoundController {
     private List<String> bridgeShape;
     private List<String> bridgeFirstLayer = new ArrayList<>();
     private List<String> bridgeSecondLayer = new ArrayList<>();
-    private List<String> failureFirstLayer = new ArrayList<>();
-    private List<String> failureSecondLayer = new ArrayList<>();
     private int position = 0;
     private int success = 0;
     private int trial = 1;
@@ -47,7 +45,9 @@ public class RoundController {
 
     public boolean statusResult() {
         if (!moveToStatus()) {
-            outputView.printMap(failureFirstLayer, failureSecondLayer);
+            outputView.printMap(bridgeFirstLayer, bridgeSecondLayer);
+            bridgeFirstLayer.remove(bridgeFirstLayer.size()-1);
+            bridgeSecondLayer.remove(bridgeSecondLayer.size()-1);
             return false;
         }
 
@@ -80,18 +80,6 @@ public class RoundController {
         outputView.printResult(layers, success, trial);
     }
 
-    public void bridgeGame() {
-        while (position < bridgeShape.size()) {
-            if (!retryProgress()) {
-                success = 0;
-                break;
-            }
-        }
-        success = 1;
-        List<List<String>> layers = Arrays.asList(bridgeFirstLayer, bridgeSecondLayer);
-        outputView.printResult(layers, success, trial);
-    }
-
     public void correctToBridge(String status) {
         if (status.equals(MoveStatus.UP_CORRECT.get())) {
             upCorrect();
@@ -115,29 +103,21 @@ public class RoundController {
     public void upCorrect() {
         bridgeFirstLayer.add(BridgeStatus.MOVING_CORRECT.get());
         bridgeSecondLayer.add(BridgeStatus.NO_MOVING.get());
-        failureFirstLayer = bridgeFirstLayer;
-        failureSecondLayer = bridgeSecondLayer;
         position += 1;
     }
 
     public void upIncorrect() {
-        failureFirstLayer = bridgeFirstLayer;
-        failureSecondLayer = bridgeSecondLayer;
-        failureFirstLayer.add(BridgeStatus.MOVING_INCORRECT.get());
-        failureSecondLayer.add(BridgeStatus.NO_MOVING.get());
+        bridgeFirstLayer.add(BridgeStatus.MOVING_INCORRECT.get());
+        bridgeSecondLayer.add(BridgeStatus.NO_MOVING.get());
     }
 
     public void downCorrect() {
         bridgeFirstLayer.add(BridgeStatus.NO_MOVING.get());
         bridgeSecondLayer.add(BridgeStatus.MOVING_CORRECT.get());
-        failureFirstLayer = bridgeFirstLayer;
-        failureSecondLayer = bridgeSecondLayer;
         position += 1;
     }
 
     public void downIncorrect() {
-        failureFirstLayer = bridgeFirstLayer;
-        failureSecondLayer = bridgeSecondLayer;
         bridgeFirstLayer.add(BridgeStatus.NO_MOVING.get());
         bridgeSecondLayer.add(BridgeStatus.MOVING_INCORRECT.get());
     }
