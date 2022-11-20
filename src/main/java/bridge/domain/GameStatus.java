@@ -20,4 +20,8 @@ public enum GameStatus {
     public String getDetails() {
         return details;
     }
+
+    public boolean isFail() {
+        return this.equals(FAIL);
+    }
 }
