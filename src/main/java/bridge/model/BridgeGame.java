@@ -1,8 +1,13 @@
 package bridge.model;
 
+import static bridge.model.RoundStatus.CLEAR;
+import static bridge.model.RoundStatus.FAIL;
+
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,10 +15,12 @@ import java.util.List;
 public class BridgeGame {
     private final Bridge bridge;
     private Round round;
+    private int tryCount;
 
     public BridgeGame(int bridgeSize) {
         this.bridge = makeBridge(bridgeSize);
         this.round = new Round();
+        tryCount = 1;
     }
 
     private Bridge makeBridge(int bridgeSize) {
@@ -46,5 +53,18 @@ public class BridgeGame {
      */
     public void retry() {
         round = new Round();
+        tryCount++;
+    }
+
+    public Map<String, String> getResultToString() {
+        Map<String, String> result = new HashMap<>(
+                Map.of("총 시도한 횟수", Integer.toString(tryCount))
+        );
+        if (round.isClear()) {
+            result.put("게임 성공 여부", CLEAR.getText());
+            return result;
+        }
+        result.put("게임 성공 여부", FAIL.getText());
+        return result;
     }
 }

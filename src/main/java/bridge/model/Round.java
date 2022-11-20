@@ -48,4 +48,8 @@ public class Round {
         checkRoundStatus(destinationIndex);
         return roundStatus == PLAYING;
     }
+
+    public boolean isClear() {
+        return roundStatus == CLEAR;
+    }
 }

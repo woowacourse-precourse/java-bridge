@@ -24,6 +24,7 @@ public class BridgeGameController {
         setForGame();
         run();
         restartGame();
+        finishGame();
     }
 
     private void setForGame() {
@@ -45,5 +46,9 @@ public class BridgeGameController {
             bridgeGame.retry();
             run();
         }
+    }
+
+    private void finishGame() {
+        outputView.printResult(bridgeGame.getResultToString());
     }
 }

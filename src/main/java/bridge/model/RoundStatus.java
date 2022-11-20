@@ -14,4 +14,8 @@ public enum RoundStatus {
     ) {
         this.text = text;
     }
+
+    public String getText() {
+        return text;
+    }
 }
