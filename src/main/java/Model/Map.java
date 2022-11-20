@@ -10,6 +10,11 @@ public class Map {
     private List<String> crossable;
     private final int limitSize;
 
+    public Map(List<String> crossable) {
+        this.crossable = crossable;
+        this.limitSize = crossable.size();
+    }
+
     public List<String> getMapUpper() {
         return mapUpper;
     }
@@ -19,11 +24,6 @@ public class Map {
     }
 
     public List<String> getCrossable() {return crossable;}
-
-    public Map(List<String> crossable) {
-        this.crossable = crossable;
-        this.limitSize = crossable.size();
-    }
 
     public void startMap() {
         mapUpper.clear();
