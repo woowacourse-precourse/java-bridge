@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RouteMap {
+
+    private static final String MOVE_FAILURE = "X";
     protected final List<String> upSide;
     protected final List<String> downSide;
     private final MapFormat mapFormat = MapFormat.FORMAT;
@@ -25,6 +27,10 @@ public class RouteMap {
         newDownSide.addAll(other.downSide);
 
         return new RouteMap(newUpSide, newDownSide);
+    }
+
+    public boolean fail() {
+        return upSide.contains(MOVE_FAILURE) || downSide.contains(MOVE_FAILURE);
     }
 
     @Override

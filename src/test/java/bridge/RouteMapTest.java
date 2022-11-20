@@ -23,6 +23,21 @@ public class RouteMapTest {
                 ));
     }
 
+    @DisplayName("X를 포함한 경로는 다리 건너기 실패를 반환한다")
+    @Test
+    void failTest() {
+        RouteMap routeMap = new RouteMap(upSide, downSide);
+        assertThat(routeMap.fail()).isTrue();
+    }
+
+    @DisplayName("X를 포함하지 않은 경로는 다리 건너기 실패를 반환하지 않는다")
+    @Test
+    void notFailTest() {
+        RouteMap routeMap = new RouteMap(downSide, downSide);
+        assertThat(routeMap.fail()).isFalse();
+    }
+
+
     @DisplayName("같은 경로를 가진 두 객체는 동일하다")
     @Test
     void equalsTest() {
