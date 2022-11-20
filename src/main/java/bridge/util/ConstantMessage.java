@@ -1,6 +1,8 @@
 package bridge.util;
 
 public class ConstantMessage {
+    public static final String GAME_START = "다리 건너기 게임을 시작합니다.";
+    public static final String BRIDGE_LENGTH_INPUT_PHRASE = "다리의 길이를 입력해주세요.";
     public static final String BRIDGE_LENGTH_ERROR_MESSAGE = "[ERROR] 3이상 20이하의 숫자만 입력하세요.";
     public static final String MOVING_BLOCK_ERROR_MESSAGE = "[ERROR] 'U' 또는 'D'만 입력하세요.";
 }
