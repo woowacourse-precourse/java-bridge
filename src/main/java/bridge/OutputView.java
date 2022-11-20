@@ -16,9 +16,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int userPosition, String moving, List<String> bridge) {
-        printUpperBridge(userPosition, moving, bridge);
-        printLowerBridge(userPosition, moving, bridge);
+    public void printMap(int userPosition, String userDecision, boolean checkDirection, List<String> bridge) {
+        printUpperBridge(userPosition, userDecision, checkDirection, bridge);
+        printLowerBridge(userPosition, userDecision, checkDirection, bridge);
     }
 
     /**
@@ -29,45 +29,24 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printUpperBridge(int userPosition, String moving, List<String> bridge){
-        printMapStart();
-        for(int i = 0; i < userPosition; i++){
-            printOnePartOfUpperBridge(userPosition, bridge);
-            printSeparation();
-        }
+    public void printUpperBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
 
-        printWhetherUserDecisionIsCorrect(userPosition, moving, bridge);
-        printMapEnd();
     }
 
-    public void printLowerBridge(int userPosition, String moving, List<String> bridge){
-        printMapStart();
-        for(int i = 0; i < userPosition; i++){
-            printOnePartOfLowerBridge(userPosition, bridge);
-            printSeparation();
-        }
+    public void printLowerBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
 
-        printWhetherUserDecisionIsCorrect(userPosition, moving, bridge);
-        printMapEnd();
     }
 
-    public void printWhetherUserDecisionIsCorrect(int userPosition, String moving, List<String> bridge){
-        if(checkUserDirectionWithBridgeValue(userPosition, moving, bridge)){
+    public void printWhetherCheckDirectionIsCorrect(boolean checkDirection){
+        if(checkDirection == true){
             System.out.print(" O ");
             return;
         }
         System.out.print(" X ");
     }
 
-    public boolean checkUserDirectionWithBridgeValue(int userPosition, String moving, List<String> bridge){
-        if(bridge.get(userPosition) == moving){
-            return true;
-        }
-        return false;
-    }
-
     public void printOnePartOfUpperBridge(int index, List<String> bridge){
-        if(bridge.get(index) == "U"){
+        if(bridge.get(index).equals("U")){
             System.out.print(" O ");
             return;
         }
@@ -76,7 +55,7 @@ public class OutputView {
     }
 
     public void printOnePartOfLowerBridge(int index, List<String> bridge){
-        if(bridge.get(index) == "D"){
+        if(bridge.get(index).equals("D")){
             System.out.print(" O ");
             return;
         }

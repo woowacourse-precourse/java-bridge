@@ -26,7 +26,7 @@ public class BridgeGame {
     }
 
     public boolean checkBridgeValueInUserPosition(User user, String moving, List<String> bridge){
-        if(bridge.get(user.getUserPosition()) == moving){
+        if(bridge.get(user.getUserPosition()).equals(moving)){
             return true;
         }
         return false;
