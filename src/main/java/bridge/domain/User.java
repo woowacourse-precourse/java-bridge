@@ -28,6 +28,7 @@ public class User {
     public void setGameOver() {
         gameOver = true;
     }
+
     public boolean isGameOver() {
         return gameOver;
     }
