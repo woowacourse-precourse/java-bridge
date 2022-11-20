@@ -15,3 +15,8 @@
 * readBridgeSize : 다리의 길이를 입력받는다.
 * readMoving : 사용자가 이동할 칸을 입력받는다.
 * readGameCommand : 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+
+**OutputView.java**
+* printStart : 게임 시작을 알리는 내용과 다리의 길이를 입력하도록 지시하는 내용을 출력한다.
+* printMoving : 이동할 칸을 선택하도록 지시하는 내용을 출력한다.
+* printGameCommand : 게임을 재시도할지 종료할지를 선택하도록 지시하는 내용을 출력한다.
