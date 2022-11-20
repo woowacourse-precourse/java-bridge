@@ -25,6 +25,7 @@ public class BridgeViewConstructor {
     }
 
     private void appendWrongAnswer(StringBuilder bridge){
+        bridge.append(WRONG_BRIDGE).append(BRIDGE_CONNECTOR);
     }
 
     private boolean isU(){
