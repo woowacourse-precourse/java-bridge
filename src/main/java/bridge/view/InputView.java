@@ -8,6 +8,7 @@ import static bridge.util.Constants.MINIMUM_BRIDGE_SIZE;
 
 import bridge.SafeBridge;
 import bridge.util.CapitalLetter;
+import bridge.util.CommandKeys;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -19,8 +20,16 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String ENTER_DIRECTION = String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", "U", "D");
-    private static final String ENTER_RETRY_OR_QUIT = String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", "R", "Q");
+    private static final String ENTER_DIRECTION = String.format(
+            "이동할 칸을 선택해주세요. (위: %s, 아래: %s)",
+            CommandKeys.UP.getLetter(),
+            CommandKeys.DOWN.getLetter()
+    );
+    private static final String ENTER_RETRY_OR_QUIT = String.format(
+            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)",
+            CommandKeys.RETRY.getLetter(),
+            CommandKeys.QUIT.getLetter()
+    );
     /**
      * 다리의 길이를 입력받는다.
      */

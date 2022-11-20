@@ -2,7 +2,6 @@ package bridge.view;
 
 import static bridge.util.Constants.*;
 
-import bridge.SafeBridge;
 import bridge.util.CapitalLetter;
 import java.util.Arrays;
 
@@ -62,7 +61,6 @@ public class InputValidator {
     }
 
     private static boolean isRetry(CapitalLetter letter) {
-        // 템플릿 메소드(hasSameMeaning)로 분리 & 각 상수는 enum으로 관리해서 이름 명시
         return letter.isRetry();
     }
 

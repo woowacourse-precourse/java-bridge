@@ -17,19 +17,23 @@ public class CapitalLetter {
     }
 
     public boolean isUp() {
-        return Command.isSame(Command.UP, alphabet);
+        return isSame(CommandKeys.UP, alphabet);
     }
 
     public boolean isDown() {
-        return Command.isSame(Command.DOWN, alphabet);
+        return isSame(CommandKeys.DOWN, alphabet);
     }
 
     public boolean isRetry() {
-        return Command.isSame(Command.RETRY, alphabet);
+        return isSame(CommandKeys.RETRY, alphabet);
     }
 
     public boolean isQuit() {
-        return Command.isSame(Command.QUIT, alphabet);
+        return isSame(CommandKeys.QUIT, alphabet);
+    }
+
+    private static boolean isSame(CommandKeys commandKey, String input) {
+        return commandKey.getLetter().equals(input);
     }
 
     private static void validateAlphabeticType(String input) {
@@ -61,22 +65,5 @@ public class CapitalLetter {
     @Override
     public int hashCode() {
         return alphabet.hashCode();
-    }
-
-    private enum Command {
-        UP("U"),
-        DOWN("D"),
-        RETRY("R"),
-        QUIT("Q");
-
-        private final String letter;
-
-        Command(String letter) {
-            this.letter = letter;
-        }
-
-        private static boolean isSame(Command command, String input) {
-            return input.equals(command.letter);
-        }
     }
 }
