@@ -35,4 +35,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public List<String> getUserSelect() {
+        return this.userSelect;
+    }
 }
