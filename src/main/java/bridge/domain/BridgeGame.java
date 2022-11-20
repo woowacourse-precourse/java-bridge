@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import static bridge.view.InputView.readMoving;
-
 import bridge.type.GameStatusType;
 import bridge.type.MovingType;
 import java.util.ArrayList;
@@ -9,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BridgeGame {
+
     private final List<String> movingRecord;
     private final List<String> bridgeInfo;
     private int stageCount;
@@ -21,11 +20,10 @@ public class BridgeGame {
         this.gameStatus = GameStatusType.PLAYING;
     }
 
-    public void move() {
-        String moving = readMoving();
+    public void move(String moving) {
         movingRecord.add(moving);
         stageCount++;
-        isEnd();
+        isClear();
     }
 
     public void retry() {
@@ -34,9 +32,13 @@ public class BridgeGame {
         this.gameStatus = GameStatusType.PLAYING;
     }
 
-    public void isEnd() {
+    public void end() {
+        this.gameStatus = GameStatusType.END;
+    }
+
+    public void isClear() {
         if (stageCount == bridgeInfo.size()) {
-            gameStatus = GameStatusType.END;
+            end();
         }
     }
 
@@ -47,7 +49,7 @@ public class BridgeGame {
 
         for (int index = 0; index < movingRecord.size(); index++) {
             playingMap.get(checkUpAndDown(movingRecord.get(index)).getValue())
-                    .add(checkYesOrNo(index, movingRecord.get(index)));
+                    .add(checkPassOrFail(index, movingRecord.get(index)));
             playingMap.get(1 - checkUpAndDown(movingRecord.get(index)).getValue())
                     .add(" ");
         }
@@ -58,7 +60,7 @@ public class BridgeGame {
         return gameStatus;
     }
 
-    private String checkYesOrNo(int index, String moving) {
+    private String checkPassOrFail(int index, String moving) {
         if (bridgeInfo.get(index).equals(moving)) {
             return "O";
         }

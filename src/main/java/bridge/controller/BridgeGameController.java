@@ -6,48 +6,74 @@ import bridge.service.BridgeMakerService;
 import bridge.type.GameStatusType;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameController {
-    private final Bridge bridge;
-    private final List<String> bridgeInfo;
+
     private final BridgeGame bridgeGame;
     private int gameCount;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public BridgeGameController() {
-        this.bridge = createBridge();
-        this.bridgeInfo = bridge.getBridge();
-        this.bridgeGame = new BridgeGame(bridgeInfo);
-        this.gameCount = 0;
+        this.bridgeGame = new BridgeGame(createBridge().getBridge());
+        this.gameCount = 1;
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start() {
-        gameCount++;
         while (bridgeGame.getGameStatus().isPlaying()) {
-            bridgeGame.move();
-            OutputView.printMap(bridgeGame.printPlayingMap());
+            move();
+            if (checkFail()) {
+                restartOrEnd();
+            }
         }
-        if (bridgeGame.getGameStatus() == GameStatusType.FAIL && askRestart()) {
-            bridgeGame.retry();
-            start();
+        printGameResult();
+    }
+
+    private void move() {
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.printPlayingMap());
+    }
+
+    private boolean checkFail() {
+        return bridgeGame.getGameStatus() == GameStatusType.FAIL;
+    }
+
+    private boolean checkEnd() {
+        return bridgeGame.getGameStatus() == GameStatusType.END;
+    }
+
+    private void restartOrEnd() {
+        String status = inputView.readGameCommand();
+        if (status.equals("R")) {
+            restart();
         }
-        if (bridgeGame.getGameStatus() == GameStatusType.FAIL && !askRestart()) {
-            OutputView.printResult(bridgeGame.printPlayingMap(), GameStatusType.FAIL, gameCount);
-        }
-        if (bridgeGame.getGameStatus() == GameStatusType.END) {
-            OutputView.printResult(bridgeGame.printPlayingMap(), GameStatusType.END, gameCount);
+        if (status.equals("Q")) {
+            end();
         }
     }
 
-    private boolean askRestart() {
-        String status = InputView.readGameCommand();
-        return status.equals("R");
+    private void restart() {
+        gameCount++;
+        bridgeGame.retry();
+    }
+
+    private void end() {
+        bridgeGame.end();
+    }
+
+    private void printGameResult() {
+        if (checkEnd()) {
+            outputView.printResult(bridgeGame.printPlayingMap(), bridgeGame.getGameStatus(), gameCount);
+        }
     }
 
     private Bridge createBridge() {
         while (true) {
             try {
-                int size = InputView.readBridgeSize();
+                InputView inputView = new InputView();
+                int size = inputView.readBridgeSize();
                 return BridgeMakerService.createBridge(size);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
