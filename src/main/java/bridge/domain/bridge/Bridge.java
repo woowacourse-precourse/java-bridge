@@ -10,8 +10,10 @@ import static java.util.stream.Collectors.toList;
 public class Bridge {
 
     private static final String OUT_OF_RANGE_MESSAGE = "다리 길이는 3에서 20 사이의 숫자여야 합니다.";
+
     private static final int MAX_LENGTH = 20;
     private static final int MIN_LENGTH = 3;
+
     private final List<Direction> directions;
 
     public Bridge(final List<Direction> directions) {

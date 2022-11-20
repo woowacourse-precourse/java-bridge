@@ -13,10 +13,10 @@ public class OutputView {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.\n";
     private static final String FINAL_GAME_RESULT = "최종 게임 결과";
     private static final String GAME_STATUS_FORMAT = "게임 성공 여부: %s\n";
-    private static final String GAME_TRY_COUNT_FORMAT = "총 시도한 횟수: %d";
-    private static final String EMPTY = "";
     private static final String GAME_SUCCESS = "성공";
     private static final String GAME_FAIL = "실패";
+    private static final String GAME_TRY_COUNT_FORMAT = "총 시도한 횟수: %d";
+    private static final String EMPTY = "";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.

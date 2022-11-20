@@ -14,13 +14,13 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private final List<Direction> currentPath;
     private final MapMaker maker;
+    private final List<Direction> currentPath;
 
     public BridgeGame(final Bridge bridge) {
         this.bridge = bridge;
-        this.currentPath = new ArrayList<>();
         this.maker = new MapMaker();
+        this.currentPath = new ArrayList<>();
     }
 
     /**
