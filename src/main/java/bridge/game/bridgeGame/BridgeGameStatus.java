@@ -33,6 +33,9 @@ public enum BridgeGameStatus {
     FALL,
     ;
 
+    public boolean isContinue() {
+        return this.equals(BridgeGameStatus.FALL) || this.equals(BridgeGameStatus.CORRECT);
+    }
 }
 
 
