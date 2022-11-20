@@ -25,6 +25,10 @@ public enum Direction {
         return shortcutKeyStorage.get(shortcut);
     }
 
+    public static boolean contains(String userInput) {
+        return UPSIDE.shortcut.equals(userInput) || DOWNSIDE.shortcut.equals(userInput);
+    }
+
     private final int value;
     private final String shortcut;
 
