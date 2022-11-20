@@ -1,5 +1,6 @@
 package bridge;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,13 +10,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeMakerTest {
 
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeTestNumberGenerator());
+
+    BridgeMaker bridgeMaker;
+    private final int size = 10;
+
+    @BeforeEach
+    void init(){
+        bridgeMaker = new BridgeMaker(new BridgeTestNumberGenerator());
+    }
 
     @Test
     void checkBridgeSize(){
-        int size = 10;
         List<String> bridge = bridgeMaker.makeBridge(size);
         assertThat(bridge.size()).isEqualTo(size);
+    }
+
+    @Test
+    void checkBridgeHasOnlyD(){
+        int size = 10;
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        assertThat(bridge.contains("U")).isEqualTo(false);
     }
 
 }
