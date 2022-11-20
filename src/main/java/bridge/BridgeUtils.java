@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class BridgeUtils {
 
     public String canPass(final int bridgeNumber) {
@@ -10,5 +12,10 @@ public class BridgeUtils {
             return "U";
         }
         return null;
+    }
+
+    public List<String> addMoving(List<String> movings, String moving) {
+        movings.add(moving);
+        return movings;
     }
 }
