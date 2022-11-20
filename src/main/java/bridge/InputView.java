@@ -15,9 +15,6 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public static String readMoving() {
         System.out.println(INPUT_MOVING);
 
@@ -26,9 +23,6 @@ public class InputView {
         return moving;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public static String readGameCommand() {
         System.out.println(INPUT_RETRY_OR_END);
 
