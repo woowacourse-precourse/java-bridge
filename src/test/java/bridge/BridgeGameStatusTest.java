@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 
 class BridgeGameStatusTest {
 
@@ -15,14 +18,22 @@ class BridgeGameStatusTest {
         BridgeGameStatus status = new BridgeGameStatus(command);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
                       status.changeStatus(command);
                   })
                   .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("command 값이 R과 동일해서 계속 실행이 가능한 상태라면 참을 반환하는지 테스트")
     @Test
     void isRunning() {
+        //given
+        BridgeGameStatus status = new BridgeGameStatus("R");
+        //when
+        boolean isRunning = status.isRunning();
+        //then
+        assertThat(isRunning)
+                .isTrue();
     }
 
     @Test
