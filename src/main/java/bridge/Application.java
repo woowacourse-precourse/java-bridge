@@ -6,7 +6,8 @@ public class Application {
         // TODO: 프로그램 구현
         bridgeGame = new BridgeGame(new InputView().readBridgeSize());
         while(!bridgeGame.isEnd()){
-            bridgeGame.move();
+            if(!bridgeGame.move()) break;
         }
+        bridgeGame.finalResult();
     }
 }

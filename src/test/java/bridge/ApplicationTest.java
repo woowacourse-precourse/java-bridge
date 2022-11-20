@@ -6,7 +6,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -45,6 +51,14 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("printMap 출력확인")
+    void mytest(){
+        List<String> list1 = Arrays.asList("U" , "D" , "D");
+        List<String> list2 = Arrays.asList("U" , "U");
+        new OutputView().printMap(list2, list1);
     }
 
     @Override

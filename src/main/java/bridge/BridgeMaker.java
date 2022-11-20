@@ -22,8 +22,8 @@ public class BridgeMaker {
         List<String> result = new ArrayList<>();
         for(int i=0;i<size;i++){
             int currentState = bridgeNumberGenerator.generate();
-            if(currentState == BridgeState.UP.getStateCode()) result.add(BridgeState.UP.getStateInfo());
-            if(currentState == BridgeState.DOWN.getStateCode()) result.add(BridgeState.DOWN.getStateInfo());
+            if(currentState == UserResponse.UP.getStateCode()) result.add(UserResponse.UP.getStateInfo());
+            if(currentState == UserResponse.DOWN.getStateCode()) result.add(UserResponse.DOWN.getStateInfo());
         }
         return result;
     }
