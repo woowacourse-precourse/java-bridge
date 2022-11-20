@@ -1,23 +1,20 @@
 package bridge.domain;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.dto.BridgeCrossingDTO;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class BridgeGameTest {
+    // given
+    List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
+    Bridge bridge = new Bridge(bridgeTest);
+    BridgeGame bridgeGame = new BridgeGame(bridge);
 
     @Test
     void 이동한_상태_테스트() {
-        // given
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-
         // when
         bridgeGame.move("U");
         bridgeGame.move("D");
@@ -32,11 +29,6 @@ public class BridgeGameTest {
 
     @Test
     void 재시작_후_상태_테스트() {
-        // given
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-
         // when
         bridgeGame.retry();
         bridgeGame.retry();
@@ -55,9 +47,6 @@ public class BridgeGameTest {
         // given
         List<String> expectedUpperTrack = new ArrayList<>(List.of("O", " "));
         List<String> expectedDownTrack = new ArrayList<>(List.of(" ", "O"));
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         // when
         bridgeGame.move("U");
@@ -74,9 +63,6 @@ public class BridgeGameTest {
         // given
         List<String> expectedUpperTrack = new ArrayList<>(List.of("O", " ", " "));
         List<String> expectedDownTrack = new ArrayList<>(List.of(" ", "O", "O"));
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         // when
         bridgeGame.move("U");
@@ -94,9 +80,6 @@ public class BridgeGameTest {
         // given
         List<String> expectedUpperTrack = new ArrayList<>(List.of("O", " ", "X"));
         List<String> expectedDownTrack = new ArrayList<>(List.of(" ", "O", " "));
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         // when
         bridgeGame.move("U");
@@ -114,9 +97,6 @@ public class BridgeGameTest {
         // given
         List<String> expectedUpperTrack = new ArrayList<>(List.of("O", " "));
         List<String> expectedDownTrack = new ArrayList<>(List.of(" ", "O"));
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         // when
         bridgeGame.move("D");
@@ -134,9 +114,6 @@ public class BridgeGameTest {
         // given
         List<String> expectedUpperTrack = new ArrayList<>(List.of("O", " ", " "));
         List<String> expectedDownTrack = new ArrayList<>(List.of(" ", "O", "O"));
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         // when
         bridgeGame.move("D");
@@ -156,9 +133,6 @@ public class BridgeGameTest {
         // given
         List<String> expectedUpperTrack = new ArrayList<>(List.of("O", " ", "X"));
         List<String> expectedDownTrack = new ArrayList<>(List.of(" ", "O", " "));
-        List<String> bridgeTest = new ArrayList<>(List.of("U", "D", "D"));
-        Bridge bridge = new Bridge(bridgeTest);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         // when
         bridgeGame.move("D");
