@@ -15,7 +15,7 @@ public class BridgeGame {
 	}
 
 	public void move(String input, ProgressMap gameProgress) {
-		int index = gameProgress.whatMapSize();
+		int index = gameProgress.getMapSize();
 		gameProgress.updateProgressMap(input, isCorrectMove(input, index));
 	}
 
@@ -24,7 +24,7 @@ public class BridgeGame {
 	}
 
 	public boolean isNotFinish(ProgressMap progressMap) {
-		return bridge.size() != progressMap.whatMapSize() || progressMap.isMoveFailed();
+		return bridge.size() != progressMap.getMapSize() || progressMap.isMoveFailed();
 	}
 
 	public int getBridgeSize() {
