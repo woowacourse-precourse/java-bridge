@@ -36,4 +36,10 @@ public class ExceptionHandler {
             throw new IllegalArgumentException(Error.INVALID_MOVE.getMessage());
         }
     }
+
+    public static void checkInvalidRetryCommand(String retryCommand) throws IllegalArgumentException {
+        if (!retryCommand.equals(RETRY.getCommand()) && !retryCommand.equals(QUIT.getCommand())) {
+            throw new IllegalArgumentException(Error.INVALID_RETRY_COMMAND.getMessage());
+        }
+    }
 }
