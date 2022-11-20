@@ -11,7 +11,7 @@ class BridgeGameInputExceptionTest {
 
     @DisplayName("다리의 길이가 3~20사이가 아니라면 예외가 발생한다.")
     @Test
-    public void validateWrongBridgeSizeRange() {
+    public void validateWrongBridgeSizeRangeTest() {
         //given
         String size = "1";
 
@@ -22,7 +22,7 @@ class BridgeGameInputExceptionTest {
 
     @DisplayName("다리의 길이가 숫자가 아니라면 예외가 발생한다.")
     @Test
-    public void validateWrongBridgeSizeType() {
+    public void validateWrongBridgeSizeTypeTest() {
         //given
         String size = "a";
 
@@ -33,7 +33,7 @@ class BridgeGameInputExceptionTest {
 
     @DisplayName("이동하는 입력값이 잘못되었으면다예외가 발생한.")
     @Test
-    public void validateWrongMoveInput() {
+    public void validateWrongMoveInputTest() {
         //given
         String move = "a";
 
@@ -44,7 +44,7 @@ class BridgeGameInputExceptionTest {
 
     @DisplayName("게임 재시작 입력값이 잘못되었으면다예외가 발생한.")
     @Test
-    public void validateWrongGameCommandInput() {
+    public void validateWrongGameCommandInputTest() {
         //given
         String gameCommand = "b";
 
