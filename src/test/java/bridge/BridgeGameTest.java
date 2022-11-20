@@ -1,8 +1,12 @@
 package bridge;
 
+import static bridge.controller.BridgeGameController.getCount;
+import static bridge.controller.BridgeGameController.getStatus;
+
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.domain.BridgeGame;
@@ -22,12 +26,23 @@ public class BridgeGameTest {
     @DisplayName("move 테스트")
     @Test
         // bridge 현재 값은 [U, D, D]
-    void test() {
+    void moveTest() {
         String firstMove = bridgeGame.move(bridge.get(0), "U");
         String secondMove = bridgeGame.move(bridge.get(1), "D");
         String thirdMove = bridgeGame.move(bridge.get(2), "U");
         assertEquals("O", firstMove);
         assertEquals("O", secondMove);
         assertNotEquals("O", thirdMove);
+    }
+
+    @DisplayName("retry 테스트")
+    @Test
+    void retryTest() {
+        bridgeGame.retry();
+
+        int count = getCount();
+        boolean status = getStatus();
+        assertEquals(1, count);
+        assertTrue(status);
     }
 }
