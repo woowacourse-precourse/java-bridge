@@ -11,16 +11,11 @@ public class Application {
         Game game = new Game();
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
-        System.out.println("다리의 길이를 입력해주세요.");
-        try {
-            int bridgeSize = inputView.readBridgeSize(inputView.readline());
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-            System.out.println(bridge);
-            game.Start(bridge, bridgeSize);
+        int bridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(bridge);
+        game.Start(bridge, bridgeSize);
         }
-        catch (Exception e){
-            OutputView outputView = new OutputView();
-            outputView.printErrorMessage(e.getMessage());
-        }
+
     }
-}
+

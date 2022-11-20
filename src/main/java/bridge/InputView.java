@@ -7,38 +7,44 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public String readline(){
-        String input = Console.readLine();
-        return (input);
-    }
+    Validate validate = new Validate();
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String input) {
-        int bridgeSize = Integer.parseInt(input);
-        if (bridgeSize < 3 || bridgeSize > 20){
-            throw new IllegalArgumentException("3 이상 20 이하의 숫자여야 합니다.");
+    public int readBridgeSize() {
+        while (true){
+        System.out.println("다리의 길이를 입력해주세요.");
+        String input = Console.readLine();
+        if (validate.isValidBridgeSize(input)){
+            return (Integer.parseInt(input));
         }
-        return (bridgeSize);
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String input) {
-        if (!input.equals("U") && !input.equals("D")){
-            throw new IllegalArgumentException("입력값은 U 혹은 D 여야 합니다.");
+    public String readMoving() {
+        while (true) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String input = Console.readLine();
+            if (validate.isValidReadMove(input)) {
+                return (input);
+            }
         }
-        return (input);
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(String input) {
-        if (!input.equals("R") && !input.equals("Q")){
-            throw new IllegalArgumentException("입력값은 R 또는 Q 여야 합니다.");
+    public String readGameCommand() {
+        while (true){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+        if (validate.isValidRetryCommand(input)){
+            return (input);
         }
-        return (input);
     }
-}
+}}
