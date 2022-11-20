@@ -8,9 +8,15 @@ import java.util.*;
 public class GameAgent{
 
     private List<String> bridge;
-    
-    public GameAgent(List<String> bridge){
+
+    public GameAgent(){
+        this.bridge=new ArrayList<>();
+    }
+
+    public void initialize(List<String> bridge){
         this.bridge=bridge;
     }
+    
+
 
 }
