@@ -35,4 +35,8 @@ public enum MoveType {
     public String toString() {
         return String.format("MoveType{symbol = %s, num = %d}", symbol, num);
     }
+
+    public String symbol() {
+        return symbol;
+    }
 }

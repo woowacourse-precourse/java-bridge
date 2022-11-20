@@ -2,11 +2,13 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Square;
 import bridge.domain.move.MoveResult;
+import bridge.domain.move.MoveType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,33 +19,33 @@ class BridgeResultTest {
     @BeforeEach
     void init() {
         bridgeResult = new BridgeResult();
-        bridgeResult.updateResult(new Square("U"), true);
-        bridgeResult.updateResult(new Square("U"), true);
-        bridgeResult.updateResult(new Square("D"), false);
+        bridgeResult.updateResult(new Square(MoveType.UP), true);
+        bridgeResult.updateResult(new Square(MoveType.UP), true);
+        bridgeResult.updateResult(new Square(MoveType.DOWN), false);
 
     }
 
     @DisplayName("위쪽 다리의 결과만 가져온다.")
     @Test
     void getUpBridge() {
-        List<String> upBridgeResult = bridgeResult
-                .toDto()
-                .getUpResult();
+        Map<Square, List<String>> result = bridgeResult.getResult();
 
-        assertThat(upBridgeResult.get(0)).isEqualTo(MoveResult.SUCCESS.symbol());
-        assertThat(upBridgeResult.get(1)).isEqualTo(MoveResult.SUCCESS.symbol());
-        assertThat(upBridgeResult.get(2)).isEqualTo(MoveResult.NOTHING.symbol());
+        List<String> up = result.get(new Square(MoveType.UP));
+
+        assertThat(up.get(0)).isEqualTo(MoveResult.SUCCESS.symbol());
+        assertThat(up.get(1)).isEqualTo(MoveResult.SUCCESS.symbol());
+        assertThat(up.get(2)).isEqualTo(MoveResult.NOTHING.symbol());
     }
 
     @DisplayName("아래쪽 다리의 결과만 가져온다.")
     @Test
     void getDownBridge() {
-        List<String> downBridgeResult = bridgeResult
-                .toDto()
-                .getDownResult();
+        Map<Square, List<String>> result = bridgeResult.getResult();
 
-        assertThat(downBridgeResult.get(0)).isEqualTo(MoveResult.NOTHING.symbol());
-        assertThat(downBridgeResult.get(1)).isEqualTo(MoveResult.NOTHING.symbol());
-        assertThat(downBridgeResult.get(2)).isEqualTo(MoveResult.FAIL.symbol());
+        List<String> down = result.get(new Square(MoveType.DOWN));
+
+        assertThat(down.get(0)).isEqualTo(MoveResult.NOTHING.symbol());
+        assertThat(down.get(1)).isEqualTo(MoveResult.NOTHING.symbol());
+        assertThat(down.get(2)).isEqualTo(MoveResult.FAIL.symbol());
     }
 }

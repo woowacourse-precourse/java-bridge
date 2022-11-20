@@ -4,39 +4,31 @@ import bridge.domain.bridge.Square;
 import bridge.domain.move.MoveResult;
 import bridge.dto.BridgeResultDto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BridgeResult {
-    private final List<MoveResult> upBridgeResult;
-    private final List<MoveResult> downBridgeResult;
 
-    private MoveResult moveResult;
+    private final List<GameResult> bridgeResult;
 
     public BridgeResult() {
-        upBridgeResult = new ArrayList<>();
-        downBridgeResult = new ArrayList<>();
+        bridgeResult = new ArrayList<>();
     }
 
     public void updateResult(Square square, boolean result) {
-        moveResult = MoveResult.of(result);
-
-        if (square.isUp()) {
-            upBridgeResult.add(moveResult);
-            downBridgeResult.add(MoveResult.NOTHING);
-        }
-
-        if (square.isDown()) {
-            downBridgeResult.add(moveResult);
-            upBridgeResult.add(MoveResult.NOTHING);
-        }
+        GameResult gameResult = new GameResult(square, MoveResult.of(result));
+        bridgeResult.add(gameResult);
+        bridgeResult.add(gameResult.getReversed());
     }
 
     public BridgeResultDto toDto() {
-        return BridgeResultDto.of(upBridgeResult, downBridgeResult);
+        return BridgeResultDto.of(getResult());
     }
 
-    public String getResult() {
-        return moveResult.value();
+    public Map<Square, List<String>> getResult() {
+        return bridgeResult.stream()
+                .collect(Collectors.groupingBy(
+                        GameResult::getSquare,
+                        Collectors.mapping(GameResult::getMoveResult, Collectors.toList())));
     }
 }

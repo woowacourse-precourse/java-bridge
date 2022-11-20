@@ -33,8 +33,11 @@ public class Square {
         }
     }
 
-    public boolean isUp() {
-        return Objects.equals(moveType, MoveType.UP);
+    public Square getReverse() {
+        if (Objects.equals(moveType, MoveType.UP)) {
+            return new Square(MoveType.DOWN);
+        }
+        return new Square(MoveType.UP);
     }
 
     @Override

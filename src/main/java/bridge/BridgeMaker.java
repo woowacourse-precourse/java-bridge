@@ -23,7 +23,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return IntStream.range(0, size)
-                .mapToObj(x -> MoveType.of(bridgeNumberGenerator.generate()).name())
+                .mapToObj(x -> MoveType.of(bridgeNumberGenerator.generate()).symbol())
                 .collect(Collectors.toList());
     }
 }

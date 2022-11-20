@@ -1,9 +1,10 @@
 package bridge.dto;
 
-import bridge.domain.move.MoveResult;
+import bridge.domain.bridge.Square;
+import bridge.domain.move.MoveType;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class BridgeResultDto {
 
@@ -15,14 +16,10 @@ public class BridgeResultDto {
         this.downResult = downResult;
     }
 
-    public static BridgeResultDto of(List<MoveResult> upResult, List<MoveResult> downResult) {
-        return new BridgeResultDto(toStringList(upResult), toStringList(downResult));
-    }
-
-    private static List<String> toStringList(List<MoveResult> result) {
-        return result.stream()
-                .map(MoveResult::symbol)
-                .collect(Collectors.toList());
+    public static BridgeResultDto of(Map<Square, List<String>> result) {
+        return new BridgeResultDto(
+                result.get(new Square(MoveType.UP)),
+                result.get(new Square(MoveType.DOWN)));
     }
 
     public List<String> getUpResult() {
