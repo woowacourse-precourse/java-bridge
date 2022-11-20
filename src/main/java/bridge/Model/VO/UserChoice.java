@@ -21,6 +21,6 @@ public class UserChoice {
     @Override
     public boolean equals(Object object){
         String other = (String)object;
-        return choice.equals(other);
+        return choice.getString().equals(other);
     }
 }
