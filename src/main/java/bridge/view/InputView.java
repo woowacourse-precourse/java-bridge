@@ -47,7 +47,13 @@ public class InputView {
      */
     public static String readGameCommand() {
         String command = Console.readLine();
-        GameCommand.validateInput(command);
+        try {
+            GameCommand.validateInput(command);
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e);
+            OutputView.printRestart();
+            return readGameCommand();
+        }
         return command;
     }
 }
