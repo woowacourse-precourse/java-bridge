@@ -29,6 +29,16 @@ class BridgeMakerTest {
                 .hasMessageContaining(ERROR_OUT_OF_RANGE);
     }
 
+    @DisplayName("다리 생성 랜덤값이 1 또는 0이 아닌 경우 예외가 발생한다.")
+    @Test
+    void makeBridgeByInValidRandomNumbers() {
+        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(newArrayList(0, 1, 2));
+        BridgeMaker bridgeMaker = new BridgeMaker(testNumberGenerator);
+        assertThatThrownBy(() -> bridgeMaker.makeBridge(3))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_INVALID_BRIDGE_NUMBER);
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
