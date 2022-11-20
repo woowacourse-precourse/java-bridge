@@ -9,6 +9,7 @@ public class Bridge {
 
     public Bridge(int length) {
         this.length=length;
+        setSpaces(length);
     }
 
     public void setSpaces(int length){
