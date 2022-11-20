@@ -11,8 +11,7 @@ public class Application {
         while(index < BridgeSize && retry == Boolean.TRUE){
             BridgeGame.Information Game_inf = game.move(index, bridge);
             info.index = index; info.retry = Game_inf.retry; info.instruction = Game_inf.instruction;
-            index += 1; retry = Game_inf.retry;
-            if (retry == Boolean.FALSE){game.retry();}}
+            index += 1; retry = Game_inf.retry;}
         return info;
     }
 
@@ -26,7 +25,6 @@ public class Application {
             this.instruction = instruction;
         }
     }
-
 
 
     public static void main(String[] args) {
@@ -43,17 +41,21 @@ public class Application {
 
         // 게임 시작
         // while 문에는 틀리면 다시 시작할 것인지 물어봄
-        Boolean retry = Boolean.TRUE;
         BridgeGame game = new BridgeGame();
         Information info = new Information(0,Boolean.TRUE,"-");
-        while (retry){
+        int trial = 1;
+        while (Boolean.TRUE){
             info = instruction_on_bridge(game, BridgeSize, new_bridge, info);
-            if (retry == Boolean.FALSE){
-                // 다시 할 것인지 정해야 함
+            if (info.index == BridgeSize-1){
+                break;
             }
+            String retry = game.retry();
+            if (retry.equals("quit")){
+                break;
+            }
+            trial += 1;
         }
-
-
+        // 여기서부터 끝맺음
 
         // TODO: 프로그램 구현
     }

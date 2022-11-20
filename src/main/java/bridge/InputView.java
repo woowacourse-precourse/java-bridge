@@ -36,7 +36,7 @@ public class InputView {
     public String readMoving() {
         String readmoving = Console.readLine();
         try{
-            if (readmoving == "U" || readmoving == "D"){
+            if (readmoving.equals("U") || readmoving.equals("D")){
                 throw new IllegalArgumentException();}}
         catch(IllegalArgumentException e){
             System.out.println("[ERROR] U나 D만 입력이 가능합니다.");
@@ -48,6 +48,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String readgamecommand = Console.readLine();
+        try{
+            if (readgamecommand.equals("R") || readgamecommand.equals("Q")){
+                throw new IllegalArgumentException();}}
+        catch(IllegalArgumentException e){
+            System.out.println("[ERROR] R나 Q만 입력이 가능합니다.");
+            return "back";}
+        return readgamecommand;
+
     }
 }
