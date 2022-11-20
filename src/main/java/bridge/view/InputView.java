@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.validator.BridgeSizeValidator;
+import bridge.validator.GameCommandValidator;
 import bridge.validator.MovingValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -8,6 +9,7 @@ public class InputView {
 
     private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String REQUEST_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String REQUEST_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public static int readBridgeSize() {
         System.out.println(REQUEST_BRIDGE_SIZE);
@@ -24,6 +26,9 @@ public class InputView {
     }
 
     public static String readGameCommand() {
-        return null;
+        System.out.println(REQUEST_GAME_COMMAND);
+        String input = Console.readLine();
+        GameCommandValidator.validateGameCommand(input);
+        return input;
     }
 }
