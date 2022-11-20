@@ -55,6 +55,16 @@ public class RoundController {
         return true;
     }
 
+    public boolean progressGame() {
+        if (!bridgeRound()) {
+            if (inputView.readGameCommand().equals(Retry.QUIT.get())) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
     public void correctToBridge(String status) {
         if (status.equals(MoveStatus.UP_CORRECT.get())) {
             upCorrect();
@@ -76,8 +86,8 @@ public class RoundController {
     }
 
     public void upCorrect() {
-        bridgeFirstLayer.add(bridgeStatus.MOVING_CORRECT.get());
-        bridgeSecondLayer.add(bridgeStatus.NO_MOVING.get());
+        bridgeFirstLayer.add(BridgeStatus.MOVING_CORRECT.get());
+        bridgeSecondLayer.add(BridgeStatus.NO_MOVING.get());
         position += 1;
     }
 
@@ -85,13 +95,13 @@ public class RoundController {
         failureFirstLayer = bridgeFirstLayer;
         failureSecondLayer = bridgeSecondLayer;
 
-        failureFirstLayer.add(bridgeStatus.MOVING_INCORRECT.get());
-        failureSecondLayer.add(bridgeStatus.NO_MOVING.get());
+        failureFirstLayer.add(BridgeStatus.MOVING_INCORRECT.get());
+        failureSecondLayer.add(BridgeStatus.NO_MOVING.get());
     }
 
     public void downCorrect() {
-        bridgeFirstLayer.add(bridgeStatus.NO_MOVING.get());
-        bridgeSecondLayer.add(bridgeStatus.MOVING_CORRECT.get());
+        bridgeFirstLayer.add(BridgeStatus.NO_MOVING.get());
+        bridgeSecondLayer.add(BridgeStatus.MOVING_CORRECT.get());
         position += 1;
     }
 
@@ -99,12 +109,12 @@ public class RoundController {
         failureFirstLayer = bridgeFirstLayer;
         failureSecondLayer = bridgeSecondLayer;
 
-        bridgeFirstLayer.add(bridgeStatus.NO_MOVING.get());
-        bridgeSecondLayer.add(bridgeStatus.MOVING_INCORRECT.get());
+        bridgeFirstLayer.add(BridgeStatus.NO_MOVING.get());
+        bridgeSecondLayer.add(BridgeStatus.MOVING_INCORRECT.get());
     }
 }
 
-enum bridgeStatus {
+enum BridgeStatus {
 
     MOVING_CORRECT(" O "),
     MOVING_INCORRECT(" X "),
@@ -112,7 +122,7 @@ enum bridgeStatus {
 
     private final String message;
 
-    bridgeStatus(String message) {
+    BridgeStatus(String message) {
         this.message = message;
     }
 
