@@ -22,7 +22,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
         playerMap = bridgeGame.move(new Moving(playerValue));
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
-        assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
+        assertThat(playerMap.getDetail()).isEqualTo(estimatedResult);
     }
 
     @Test
@@ -41,7 +41,7 @@ class BridgeGameTest {
         playerMap = bridgeGame.move(new Moving("D"));
         playerMap = bridgeGame.retry(new GameCommand("Q"));
         List<List> estimatedResult = List.of(List.of("O", " "), List.of(" ", "X"));
-        assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
+        assertThat(playerMap.getDetail()).isEqualTo(estimatedResult);
     }
 
     @ParameterizedTest(name = "[{index}] input {0} {1} \"{2}\"")

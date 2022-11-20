@@ -5,6 +5,7 @@ import bridge.domain.vo.BridgeMap;
 import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
 import bridge.domain.vo.PlayerMap;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -58,6 +59,10 @@ public class BridgeGame {
             return BridgeConstants.BRIDGE_GAME_SUCCESS;
         }
         return BridgeConstants.BRIDGE_GAME_FAIL;
+    }
+
+    public List<List> getPlayerMap() {
+        return playerMap.getDetail();
     }
 
     public boolean isMove() {

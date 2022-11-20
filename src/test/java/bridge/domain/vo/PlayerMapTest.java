@@ -14,6 +14,6 @@ class PlayerMapTest {
         PlayerMap playerMap = new PlayerMap();
         playerMap.addResult(new Moving(place), value);
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
-        Assertions.assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
+        Assertions.assertThat(playerMap.getDetail()).isEqualTo(estimatedResult);
     }
 }

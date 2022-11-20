@@ -14,7 +14,7 @@ public class PlayerMap {
         this.secondLine = new ArrayList<>();
     }
 
-    public List<List> getPlayerMap() {
+    public List<List> getDetail() {
         return (List.of(firstLine, secondLine));
     }
 
@@ -24,13 +24,16 @@ public class PlayerMap {
 
     public void addResult(Moving moving, boolean value) {
         if (moving.equals(BridgeConstants.BRIDGE_GAME_MOVING_UP)) {
-            firstLine.add(getStatus(value));
-            secondLine.add(BridgeConstants.BRIDGE_GAME_MOVING_BLANC);
+            addMap(getStatus(value), BridgeConstants.BRIDGE_GAME_MOVING_BLANC);
         }
         if (moving.equals(BridgeConstants.BRIDGE_GAME_MOVING_DOWN)) {
-            firstLine.add(BridgeConstants.BRIDGE_GAME_MOVING_BLANC);
-            secondLine.add(getStatus(value));
+            addMap(BridgeConstants.BRIDGE_GAME_MOVING_BLANC, getStatus(value));
         }
+    }
+
+    private void addMap(String value, String bridgeGameMovingBlanc) {
+        firstLine.add(value);
+        secondLine.add(bridgeGameMovingBlanc);
     }
 
     private String getStatus(boolean value) {

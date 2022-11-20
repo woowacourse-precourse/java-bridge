@@ -24,28 +24,28 @@ public class BridgeGameController {
 
     public void run() {
         outputView.printStartBridgeGame();
-        BridgeSize bridgeSize = inputBridgeSize();
-        BridgeMap bridgeMap = makeBridgeMap(bridgeSize);
+
+        BridgeMap bridgeMap = makeBridgeMap(inputBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
-        PlayerMap playerMap = playBridgeGame(bridgeGame);
-        outputView.printResult(playerMap, bridgeGame);
+        playBridgeGame(bridgeGame);
+
+        outputView.printResult(bridgeGame);
     }
 
-    private PlayerMap playBridgeGame(BridgeGame bridgeGame) {
-        PlayerMap playerMap = movePlayer(bridgeGame);
+    private void playBridgeGame(BridgeGame bridgeGame) {
+        movePlayer(bridgeGame);
         if (!bridgeGame.isMove()) {
-            playerMap = bridgeGame.retry(inputGameCommand());
+            bridgeGame.retry(inputGameCommand());
         }
         if (bridgeGame.isEnd()) {
-            return playerMap;
+            return;
         }
-        return playBridgeGame(bridgeGame);
+        playBridgeGame(bridgeGame);
     }
 
-    private PlayerMap movePlayer(BridgeGame bridgeGame) {
-        PlayerMap playerMap = bridgeGame.move(inputMoving());
-        outputView.printMap(playerMap);
-        return playerMap;
+    private void movePlayer(BridgeGame bridgeGame) {
+        bridgeGame.move(inputMoving());
+        outputView.printMap(bridgeGame);
     }
 
     private BridgeSize inputBridgeSize() {
