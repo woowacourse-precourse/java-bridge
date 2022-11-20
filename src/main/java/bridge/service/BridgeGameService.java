@@ -10,7 +10,7 @@ public class BridgeGameService {
     private BridgeMakerService bridgeMakerService;
     private BridgeGameManager bridgeGameManager;
     private BridgeGame bridgeGame;
-    private final UserBridge userBridge;
+    private UserBridge userBridge;
 
     public BridgeGameService(BridgeMakerService bridgeMakerService, BridgeGameManager bridgeGameManager,
                              BridgeGame bridgeGame, UserBridge userBridge) {
@@ -21,7 +21,8 @@ public class BridgeGameService {
     }
 
     private static Direction findDirection(List<String> bridge, BridgeGameManager bridgeGameManager) {
-        return Direction.from(bridge.get(bridgeGameManager.getStep()));
+        String now = bridge.get(bridgeGameManager.getStep());
+        return Direction.from(now);
     }
 
     public UserBridge move(String moving) {
