@@ -27,9 +27,9 @@ public class BridgeGameControllerTest {
         bridgeGameService = new BridgeGameService(bridgeGame);
     }
 
-    @ValueSource(ints = {3,10,18})
+    @ValueSource(ints = {3, 10, 18})
     @ParameterizedTest
-    void 다리_길이_테스트(int size){
+    void 다리_길이_테스트(int size) {
         //when
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
         //then
@@ -37,7 +37,7 @@ public class BridgeGameControllerTest {
     }
 
     @Test
-    void 다리가_U_D_로만_이루어져_있는지_테스트(){
+    void 다리가_U_D_로만_이루어져_있는지_테스트() {
         //given
         List<String> bridge = bridgeGameService.getBridge();
         //when
@@ -47,9 +47,9 @@ public class BridgeGameControllerTest {
         assertThat(collect).isEqualTo(bridge);
     }
 
-    @ValueSource(ints = {0,6,8})
+    @ValueSource(ints = {0, 6, 8})
     @ParameterizedTest
-    void 플레이어가_이동한_칸이_건널_수_있는지_확인하는_기능_테스트(int index){
+    void 플레이어가_이동한_칸이_건널_수_있는지_확인하는_기능_테스트(int index) {
         //given
         List<String> bridge = bridgeGameService.getBridge();
         //when
