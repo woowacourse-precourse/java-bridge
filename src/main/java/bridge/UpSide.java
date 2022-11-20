@@ -15,7 +15,6 @@ public class UpSide {
         upSide = "[ ";
         upSide += upSideString;
         upSide += " ]";
-        System.out.println(upSide);
         return upSide;
     }
 

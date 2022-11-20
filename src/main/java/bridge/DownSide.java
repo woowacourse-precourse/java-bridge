@@ -12,10 +12,9 @@ public class DownSide {
 
     public String makeDownSide(List<String> bridge) {
         String downSideString = String.join(" | ", convertDownSide(bridge));
-        downSide += "[ ";
+        downSide = "[ ";
         downSide += downSideString;
         downSide += " ]";
-        System.out.println(downSide);
         return downSide;
     }
 
