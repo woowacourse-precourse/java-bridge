@@ -3,37 +3,44 @@
 
 ## domain 기능 목록
 
-### BridgeMaker
- -[x] 다리를 생성한다
- - 0과 1중 무작위 값을 생성한다
- - 0을 "D"로 1을 "U"로 변경한다
- - 입력받은 크기만큼 위의 작업을 수행하며 bridge를 만든다
+### BridgeMaker(나중에 메서드 이름 알기 쉽게 변경하기)
+ - [x] 다리를 생성한다
+ - [x] 0과 1중 무작위 값을 생성한다
+ - [x] 0을 "D"로 1을 "U"로 변경한다
+ - [x]입력받은 크기만큼 위의 작업을 수행하며 bridge를 만든다
 
 ### BridgeGame
- - [x] 위, 아래중 입력을 받아 다리를 건넌다.
- - [x] 다리를 건넌 후 정답인지 오답인지 체크한다
- - [ ] 정답이면 게임을 진행
- - [ ] 오답이면 게임을 종료
+ - [x] 위, 아래중 입력을 받아 해당 입력을 history에 저장 - move()
+ - [x] 사용자의 입력과 해당 입력이 다리의 정답과 맞는지 비교하여 PASS, FAIL, SUCCESS 반환 - compareInputWithBridge()
+ - [x] move()와 compareInputWithBridge()를 조합하여 한 단계를 진행 한 후 결과 반환- processStage()
+ 
 
 ### BridgeStage
- - [ ] 현재 단계를 알려준다
- - [ ] 정답을 맞추면 단계를 증가한다
- - [ ] 정답을 맞추지 못한 후 게임을 다시 시작하면 단계를 초기화 한다
+ - [x] 현재 단계를 알려준다
+ - [x] 단계를 증가한다
+ - [x] 단계를 초기화 한다
+
+### BridgeController
+ - [x] 다리 크기를 입력받아 다리를 생성한다 - initBridge()
+ - [ ] BridgeGame의 processStage() 결과를 받아 PASS, FAIL, SUCCESS에 대응하는 기능 실행
+ - [ ] 구현된 기능을 통해 전체적 게임을 진행한다 - processGame()
+ 
 
 ---
 
 ## UI 기능 목록
 ### InputView
--[ ] 다리의 길이를 숫자로 입력받는다.
--[ ] 다리가 생성되면 플레이어가 이동할 칸을 선택한다.
+ - [x] 다리의 길이를 숫자로 입력받는다.
+ - [x] 다리가 생성되면 플레이어가 이동할 칸을 선택한다.
 
 ### OutputView
-- [ ] 게임 진행 메시지를 출력한다
-- [ ] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
+ - [x] 게임 진행 메시지를 출력한다
+ - [ ] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
 ---
 ## 예외검사
 ### Validator
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시킨다 
-- [ ] "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-- [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+ - [x] 사용자의 입력이 숫자 형식이 아닌 다른 형식을 입력하면 예외를 반환한다 - validateInputIsNumber()
+ - [x] 사용자가 입력한 다리의 크기가 3 ~ 20이 아니라면 예외를 반환한다 - validateBridgeSize()
+ - [x] 사용자가 이동 입력이 "u", "D"가 아니라면 예외를 반환한다 - validateMove()
+ - [x] 중간에 게임을 실패한 후 다시 시작에 대한 사용자의 입력이 "Q", "R"가 아니라면 예외를 반환한다() - validateGameCommand()

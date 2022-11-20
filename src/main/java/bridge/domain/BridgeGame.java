@@ -45,10 +45,6 @@ public class BridgeGame {
 
         StageResult stageResult = compareInputWithBridge(userInput, stage.currentStage());
 
-        if(stageResult == StageResult.PASS) {
-            stage.nextStage();
-        }
-
         return stageResult;
     }
 

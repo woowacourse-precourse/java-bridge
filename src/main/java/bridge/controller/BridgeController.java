@@ -30,6 +30,18 @@ public class BridgeController {
         bridgeGame = new BridgeGame(bridge);
     }
 
+    public void play() {
+        initBridge();
+
+        try {
+            while(true) {
+                processGame();
+            }
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
+    }
+
     public void processGame() {
         String userInput = inputView.readMoving();
 
@@ -40,5 +52,22 @@ public class BridgeController {
         if(stageResult == StageResult.SUCCESS) {
             processSuccess();
         }
+    }
+
+
+    public void processFail() {
+        String userInput = inputView.readGameCommand();
+
+        if(userInput == Unit.QUITE.getCommand()) {
+            throw new IllegalArgumentException();
+        }
+
+        if(userInput == Unit.RESTART.getCommand()) {
+            bridgeGame.retry();
+        }
+    }
+
+    public void processSuccess() {
+
     }
 }
