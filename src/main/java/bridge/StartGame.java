@@ -9,32 +9,15 @@ public class StartGame {
         movingInput = InputView.readMoving();
         BridgeGame.move();
         OutputView.printMap();
-        if (BridgeGame.isWrong()) {
+        if (isWrong()) {
             if (wantRetry()) {
                 BridgeGame.retry();
                 return true;
             }
-            //게임 종료
             return false;
         }
+        Application.movingTurn++;
         return true;
-    }
-
-    public static void init() {
-        OutputView.printStart();
-        selectBridgeSize();
-        createBridge();
-    }
-
-    public static void selectBridgeSize() {
-        OutputView.printRequestSize();
-        Application.size = InputView.readBridgeSize();
-    }
-
-    public static void createBridge() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        Application.bridge = bridgeMaker.makeBridge(Application.size);
     }
 
     public static boolean wantRetry() {
@@ -43,5 +26,16 @@ public class StartGame {
         if (retryOrNot.equals("R"))
             return true;
         return false;
+    }
+
+    public static boolean isRightWay() {
+        String rightWay = Application.bridge.get(Application.movingTurn);
+        boolean isRightAnswer = rightWay.equals(Application.movingInput);
+        return isRightAnswer;
+    }
+
+    public static boolean isWrong() {
+        boolean isWrongWay = !isRightWay();
+        return isWrongWay;
     }
 }
