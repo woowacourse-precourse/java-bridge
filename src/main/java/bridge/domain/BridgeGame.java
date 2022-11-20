@@ -19,6 +19,12 @@ public class BridgeGame {
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
+    private void isCorrectRange(int size) {
+        if (size < BridgeConstants.MINIMUM_LENGTH || BridgeConstants.MAXIMUM_LENGTH < size) {
+            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
+        }
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -29,6 +35,12 @@ public class BridgeGame {
         path.add(moving);
     }
 
+    private void isCorrectMoving(String moving) {
+        if (!List.of(BridgeConstants.DOWN, BridgeConstants.UP).contains(moving)) {
+            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_MOVING.getMessage());
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -36,17 +48,5 @@ public class BridgeGame {
      */
     public void retry() {
         path.clear();
-    }
-
-    private void isCorrectRange(int size) {
-        if (size < BridgeConstants.MINIMUM_LENGTH || BridgeConstants.MAXIMUM_LENGTH < size) {
-            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
-        }
-    }
-
-    private void isCorrectMoving(String moving) {
-        if (!List.of(BridgeConstants.DOWN, BridgeConstants.UP).contains(moving)) {
-            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_MOVING.getMessage());
-        }
     }
 }
