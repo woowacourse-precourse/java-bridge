@@ -18,10 +18,10 @@ public class Application {
         game.trialCount+=1;
 
         for(int loop=0;loop<bridgeLength;loop++){
-            game.move(input.readMoving());
+            if(!game.move(input.readMoving())){
+                game.retry();
+            };
         }
-
-
 
     }
 
