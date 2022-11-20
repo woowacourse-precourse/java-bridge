@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.data.Error;
 
+import static bridge.data.GameCommand.*;
+
 public class ExceptionHandler {
 
     private static final int START_NUMBER = 3;
