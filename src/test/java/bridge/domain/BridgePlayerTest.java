@@ -45,8 +45,8 @@ class BridgePlayerTest {
     }
 
     @ParameterizedTest(name = "[{index}] moveTypes = {0}")
-    @MethodSource("whenMovePlayerThenSuccessDummy")
-    @DisplayName("플레이어를 다리 이동 타입을 이용하여 이동에 성공한다.")
+    @MethodSource("moveTypesDummy")
+    @DisplayName("플레이어의 다리 이동 기록 초기화에 성공한다.")
     void whenMovePlayerThenSuccessTest(List<BridgeMoveType> moveTypes) {
         // given
         BridgePlayer bridgePlayer = new BridgePlayer();
@@ -57,6 +57,22 @@ class BridgePlayerTest {
 
         // then
         assertThat(playerMoveHistory).hasSize(moveTypes.size());
+    }
+
+    @ParameterizedTest(name = "[{index}] moveTypes = {0}")
+    @MethodSource("moveTypesDummy")
+    @DisplayName("플레이어를 다리 이동 타입을 이용하여 이동에 성공한다.")
+    void whenClearPlayerMoveTypesThenSuccessTest(List<BridgeMoveType> moveTypes) {
+        // given
+        BridgePlayer bridgePlayer = new BridgePlayer();
+        moveTypes.forEach(bridgePlayer::moveTo);
+
+        // when
+        bridgePlayer.clearPlayerBridge();
+        List<BridgeMoveType> playerMoveHistory = bridgePlayer.getMoveHistory();
+
+        // then
+        assertThat(playerMoveHistory).isEmpty();
     }
 
     static Stream<Arguments> whenCheckLastMoveTypeNotSameThenSuccessDummy() {
@@ -83,7 +99,7 @@ class BridgePlayerTest {
         );
     }
 
-    static Stream<Arguments> whenMovePlayerThenSuccessDummy() {
+    static Stream<Arguments> moveTypesDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(UP, UP, UP, DOWN, DOWN)),
                 Arguments.arguments(List.of(DOWN, DOWN, UP, UP, DOWN)),
