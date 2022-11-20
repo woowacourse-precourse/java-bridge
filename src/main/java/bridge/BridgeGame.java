@@ -8,6 +8,7 @@ import constants.BridgeConstants;
 public class BridgeGame {
 
     private final BridgeState bridgeState = new BridgeState();
+    private int gameTryCount = 1;
 
     public boolean move(Bridge bridge, String moving, int round) {
         String resultOfMoving = bridge.isCorrectMoving(moving, round);
@@ -20,6 +21,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        gameTryCount++;
         bridgeState.clearAllBridgeState();
     }
 
@@ -30,5 +32,9 @@ public class BridgeGame {
 
     public BridgeState getStateOfBridge() {
         return bridgeState;
+    }
+
+    public int getGameTryCount() {
+        return gameTryCount;
     }
 }

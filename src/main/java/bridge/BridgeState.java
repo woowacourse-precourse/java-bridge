@@ -34,7 +34,7 @@ public class BridgeState {
         makeMidOfBridgeFigure();
         makeEndOfBridgeFigure();
 
-        return upBridgeFigure.append('\n').append(downBridgeFigure).toString();
+        return upBridgeFigure.append('\n').append(downBridgeFigure).append('\n').toString();
     }
 
     private void clearBridgeFigure() {

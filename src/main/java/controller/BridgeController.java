@@ -43,7 +43,7 @@ public class BridgeController {
                 return;
             }
         }
-        outputView.printResult();
+        outputView.printResult(bridgeGame.getStateOfBridge(), bridgeGame.getGameTryCount(), isSuccessiveMove);
     }
 
     private boolean isSuccessiveMove(Bridge bridge, int bridgeSize, boolean isSuccessiveMove) {

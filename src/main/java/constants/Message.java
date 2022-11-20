@@ -6,6 +6,11 @@ public abstract class Message {
     public static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     public static final String BRIDGE_MOVING_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String ASK_TO_RESTART_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String FINAL_GAME_RESULT_GUIDE_MESSAGE = "최종 게임 결과";
+    public static final String FINAL_GAME_SUCCESS_OR_NOT_MESSAGE = "게임 성공 여부: %s";
+    public static final String FINAL_GAME_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
 
     public static final String INPUT_PATTERN_ERROR_MESSAGE = "[ERROR] 입력은 0이상의 숫자로만 이루어져야 합니다.";
     public static final String BRIDGE_SIZE_ERROR_MESSAGE = "[ERROR] 다리의 길이는 3이상 20이하여야 합니다.";
