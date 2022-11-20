@@ -1,0 +1,16 @@
+package bridge.ui;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+class InputViewValidationTest {
+
+    @Test
+    void validateIsInteger() {
+        assertThatThrownBy(() -> InputViewValidation.validateIsInteger("123가"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+}
