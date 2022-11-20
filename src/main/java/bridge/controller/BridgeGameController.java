@@ -12,16 +12,27 @@ public class BridgeGameController {
     private int numberOfAttempts = 0;
 
     public void start() {
+        OutputView.printStart();
         set();
         progress();
         end();
     }
 
     private void set() {
-        OutputView.printStart();
-        int size = InputException.validateBridgeSize(InputView.readBridgeSize());
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
+        try {
+            int size = getSize();
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            set();
+        }
+    }
+
+    private int getSize() {
+        int size = InputException.convertToNumber(InputView.readBridgeSize());
+        InputException.validateBridgeSize(size);
+        return size;
     }
 
     private void progress() {
