@@ -3,13 +3,18 @@
 ### BridgeGame
 
 *[x] game을 플레이 한다 #play()
-*[x] 움직인다. #move()
-* [x] 재시도한다. #retry()
+    *[x] 움직인다. #move()
+    *[x] 재시도한다. #retry()
 
 ### BridgeMaker
 
 * [x] 0이면 "U", 1이면 "D"로 반환 #makeBridge(int size)
     * [x] 0,1이 아닌 경우, 예외발생 NotFoundBridgeException
+
+### BridgeRouter
+
+* [x] List<Bridge>에서 value가 같은 브릿지반환 #getMatchBridge(int value)
+* [x] List<Bridge>에서 방향이 같은 브릿지반환 #getMatchBridge(String direction)
 
 ### InputView
 
