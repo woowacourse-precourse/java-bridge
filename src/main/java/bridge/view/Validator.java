@@ -47,37 +47,41 @@ public class Validator {
     /**
      * 플레이어가 이동할 칸 유효성 검사
      */
-    public static void validateInputDirection(String inputDirection) {
+
+    public static void validateInputDirectionException(String inputDirection) {
+        validateInputDirectionNull(inputDirection);
+        validateInputDirectionLowerCase(inputDirection);
+        validateInputDirection(inputDirection);
+    }
+
+    private static void validateInputDirection(String inputDirection) {
         try {
             if (!inputDirection.equals(Message.UP.getMessage()) && !inputDirection.equals(Message.Down.getMessage())) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT.getErrorMessage());
-            inputView.inputMovingDirection();
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_MOVE_INPUT.getErrorMessage());
         }
     }
 
-    public static void validateInputDirectionLowerCase(String inputDirection) {
+    private static void validateInputDirectionLowerCase(String inputDirection) {
         char check = inputDirection.charAt(0);
         try {
             if (!Character.isUpperCase(check)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
-            inputView.inputMovingDirection();
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
         }
     }
 
-    public static void validateInputDirectionNull(String inputDirection) {
+    private static void validateInputDirectionNull(String inputDirection) {
         try {
             if (inputDirection.length() == 0) {
                 throw new NullPointerException();
             }
         } catch (NullPointerException e) {
-            System.out.println(ErrorMessage.INPUT_NULL.getErrorMessage());
-            inputView.inputMovingDirection();
+            throw new NullPointerException(ErrorMessage.INPUT_NULL.getErrorMessage());
         }
     }
 
