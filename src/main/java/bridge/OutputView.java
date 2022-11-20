@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -11,6 +13,22 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
+    }
+
+    /**
+     * 현재 다리 한 칸의 상태를 형식에 맞는 문자열로 반환한다.
+     */
+    private List<String> getbridgeStatus(List<String> bridgeStatus, int index) {
+        if (bridgeStatus.get(index).charAt(0) == 'U'){
+            if (bridgeStatus.get(index).charAt(1) == 'O'){
+                return List.of("O ", "  ");
+            }
+            return List.of("X ", "  ");
+        }
+        if (bridgeStatus.get(index).charAt(1) == 'O'){
+            return List.of("  ", "O ");
+        }
+        return List.of("  ", "X ");
     }
 
     /**
