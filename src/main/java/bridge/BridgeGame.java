@@ -7,10 +7,17 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridge;
+    private final List<String> bridge;
     private int currentUserPosition;
     private boolean gameWinStatus;
     private int totalTryCount;
+
+    BridgeGame(BridgeMaker bridgeMaker, int bridgeSize) {
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        this.currentUserPosition = -1;
+        this.gameWinStatus = false;
+        this.totalTryCount = 0;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

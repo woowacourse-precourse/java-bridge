@@ -83,7 +83,7 @@ BUILD SUCCESSFUL in 0s
     - [x] private boolean gameWinStatus
     - [x] private int totalTryCount
   - **Class Methods**
-    - [ ] public BridgeGame(BridgeMaker bridgeMaker, int bridgeSize)
+    - [x] public BridgeGame(BridgeMaker bridgeMaker, int bridgeSize)
     - [ ] public boolean move(BridgeBlock block)
     - [ ] public boolean retry(RetrySelector retrySelector)
     - [ ] public List<String> getBridge()
