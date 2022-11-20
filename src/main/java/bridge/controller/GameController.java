@@ -2,7 +2,6 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.GameControl;
-import bridge.domain.GameFlag;
 import bridge.domain.GameStatus;
 import bridge.view.OutputView;
 
@@ -22,19 +21,19 @@ public class GameController {
         GameStatus finalGameResult;
         do {
             finalGameResult = getOneGameResult();
-        } while (finalGameResult.getFlag() != GameFlag.CLEAR && !needExit());
+        } while (!finalGameResult.isClear() && !needExit());
 
         return finalGameResult;
     }
 
     private GameStatus getOneGameResult() {
-        GameStatus gameResult;
+        GameStatus gameStatus;
         do {
             String moving = inputController.readMovingUntilSucceed();
-            gameResult = bridgeGame.getMovingResult(moving);
-            outputView.printMap(gameResult);
-        } while(gameResult.getFlag() == GameFlag.PLAYING);
-        return gameResult;
+            gameStatus = bridgeGame.getMovingResult(moving);
+            outputView.printMap(gameStatus);
+        } while(gameStatus.isPlaying());
+        return gameStatus;
     }
 
     private boolean needExit() {

@@ -16,8 +16,16 @@ public class GameStatus {
         flag = GameFlag.CLEAR;
     }
 
-    public GameFlag getFlag() {
-        return flag;
+    public boolean isPlaying() {
+        return flag.isPlaying();
+    }
+
+    public boolean isClear() {
+        return flag.isClear();
+    }
+
+    public boolean isFail() {
+        return flag.isFail();
     }
 
     public String getMessage() {

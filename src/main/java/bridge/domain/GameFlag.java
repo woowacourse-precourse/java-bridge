@@ -14,4 +14,16 @@ public enum GameFlag {
     public String getMessage() {
         return this.message;
     }
+
+    public boolean isClear() {
+        return this.equals(CLEAR);
+    }
+
+    public boolean isFail() {
+        return this.equals(FAIL);
+    }
+
+    public boolean isPlaying() {
+        return this.equals(PLAYING);
+    }
 }

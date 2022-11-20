@@ -50,7 +50,7 @@ public class OutputView {
     }
 
     private void convertIfGameOver(GameStatus gameStatus, List<String> upperLine, List<String> lowerLine) {
-        if (gameStatus.getFlag() == GameFlag.FAIL) {
+        if (gameStatus.isFail()) {
             convertIfNeeded(upperLine);
             convertIfNeeded(lowerLine);
         }
