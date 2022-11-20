@@ -37,4 +37,12 @@ class InputTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @DisplayName("이동으로 받은 입력이 U나 D가 아닌 경우 예외 발생")
+    @ParameterizedTest
+    @CsvSource(value = {"a", "1"})
+    void testMovingInput(String input) {
+        assertThatThrownBy(() -> inputValidator.Moving(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
