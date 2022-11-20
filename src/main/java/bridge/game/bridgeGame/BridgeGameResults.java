@@ -2,6 +2,7 @@ package bridge.game.bridgeGame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BridgeGameResults {
 
@@ -9,6 +10,10 @@ public class BridgeGameResults {
 
     public BridgeGameResults() {
         this.bridgeResults = new ArrayList<>();
+    }
+
+    public void add(BridgeGameResult bridgeGameResult) {
+        bridgeResults.add(bridgeGameResult);
     }
 
 }
