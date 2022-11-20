@@ -19,6 +19,7 @@ public class PlayerTest {
     }
 
     @DisplayName("새로 입력을 넣었을 때 리스트에 추가된다. ")
+    @Test
     void addNewBridgeInputTest(){
         player.addNewBridgeInput("U");
         assertThat(player.getBridges()).isEqualTo(List.of("U"));
