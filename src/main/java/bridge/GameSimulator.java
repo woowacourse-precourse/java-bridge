@@ -39,7 +39,7 @@ public class GameSimulator {
         List<String> userRoute = new ArrayList<>();
 
         String moving;
-        while (!bridgeGame.checkCrossingBridge(userRoute, bridge) &&
+        while (!bridgeGame.checkCrossingBridge(bridge) &&
                 (moving = bridgeGame.move(bridge)) != null) {
             userRoute.add(moving);
         }

@@ -35,12 +35,11 @@ public class BridgeGame {
 
     /**
      * 유저가 다리를 건넜는지 체크한다.
-     * @param userRoute
      * @param bridge
      * @return
      */
-    public boolean checkCrossingBridge(List<String> userRoute, List<String> bridge) {
-        return true;
+    public boolean checkCrossingBridge(List<String> bridge) {
+        return current_position == bridge.size();
     }
 
     /**
