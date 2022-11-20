@@ -355,7 +355,7 @@ int number=bridgeNumberGenerator.generate();
         1. 이동할 수 있는 칸을 선택한 경우 `O`
         2. 이동할 수 없는 칸을 선택한 경우 `X`
         3. 선택하지 않은 칸은 공백 한 칸
-      
+
     * 출력 예시
       ```
       [ O | X ]
@@ -432,7 +432,7 @@ int number=bridgeNumberGenerator.generate();
                 * playBridgeGame - 게임 진행
                     1. 사용자가 게임을 진행하는지 확인 (User.isPlayingGame() 호출)
                     2. moveUser - 사용자 이동
-                    3. printBridge_userPredict - 현재까지 건넌 다리 출력
+                    3. printBridge_userPredict - 현재까지 건넌 다리 출력 (OutputView.printMap() 호출)
                     4. isGameSucceed - 성공, 실패 여부 확인
                     5. askRestartGame - 재시작 여부 확인
                     6. printGameResult - 게임 종료 문구 출력
@@ -443,9 +443,10 @@ int number=bridgeNumberGenerator.generate();
                 * bridge_userMove - 사용자가 다리 상에서 이동한 위치를 저장 (List)
                 * enum BridgeShape - 다리 모양의 숫자 값(0, 1), 문자 값("U", "D") 저장
             * methods
-                * setBridgeAnswer - 정답 다리 값 저장
+                * getBridge_answer - 정답 다리 List 반환
                 * getBridge_userMove - 사용자의 다리 상 이동 위치 List 반환
-                * move - 칸 이동
+                * setBridgeAnswer - 정답 다리 값 저장
+                * move - 사용자의 다리 칸 이동
                 * retry - 게임을 다시 시도
     *
 
@@ -467,12 +468,18 @@ int number=bridgeNumberGenerator.generate();
         * class: **InputView** - 사용자로부터 입력을 받는 역할, 입력 예외처리
             * methods
                 * readBridgeSize - 다리의 길이 입력받기
+                    * checkBridgeSize_regex - 정규식 확인 (숫자 입력)
+                    * checkBridgeSize_value - 입력값 범위 확인
                 * readMoving - 사용자가 이동할 칸 입력받기
-                * readMoving - 게임을 다시 시도할지 종료할지 여부 입력받기
+                    * checkUserMoveDirection_regex - 정규식 확인 (D 또는 U 입력)
+                * readGameCommand - 게임을 다시 시도할지 종료할지 여부 입력받기
         *
         * class: **OutputView** - 사용자에게 게임 진행 상황과 결과를 출력하는 역할
             * methods
                 * printMap - 현재까지 이동한 다리의 상태 출력
+                    * getUserFootprint - 사용자의 이동 발자취 반환
+                        * footprint_userMovedToAble - 사용자가 이동할 수 있는 칸을 선택한 경우의 발자취 반환
+                        * footprint_userMovedToDisable - 사용자가 이동할 수 있는 칸을 선택한 경우의 발자취 반환
                 * printResult - 게임의 최종 결과 출력
 
 ---
