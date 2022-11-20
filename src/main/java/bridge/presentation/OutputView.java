@@ -64,5 +64,12 @@ public class OutputView {
         String message = GameMessage.TRY_COUNT.getMessage() + COLON.getMark() + BLANK.getMark() + tryCount;
         System.out.println(message);
     }
+
+    private void printSuccessOrNot(boolean isWon) {
+        String successOrFailure = createSuccessOrFailureMessage(isWon);
+        String message = GameMessage.GAME_SUCCESS_OR_NOT.getMessage() + COLON.getMark()
+                + BLANK.getMark() + successOrFailure;
+        System.out.println(message);
+    }
 }
 
