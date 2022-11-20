@@ -43,4 +43,8 @@ public enum BridgeType {
     public String getPosition() {
         return position;
     }
+
+    public boolean isEqualCommand(String compareCommand) {
+        return command.equals(compareCommand);
+    }
 }

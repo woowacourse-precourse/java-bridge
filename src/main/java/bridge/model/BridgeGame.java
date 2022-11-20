@@ -50,7 +50,9 @@ public class BridgeGame {
     }
 
     private GameStatus getGameStatus(BridgeType bridgeType) {
-        if (bridge.get(movePosition++).equals(bridgeType.getCommand())) {
+        String command = bridge.get(movePosition++);
+
+        if (bridgeType.isEqualCommand(command)) {
             return GameStatus.CROSSING;
         }
 
