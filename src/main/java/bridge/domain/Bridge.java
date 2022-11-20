@@ -3,7 +3,7 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.ErrorMessage;
+import bridge.systemMessage.ErrorMessage;
 import java.util.List;
 
 /**

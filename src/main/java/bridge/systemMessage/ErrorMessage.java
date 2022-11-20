@@ -1,5 +1,7 @@
-package bridge;
+package bridge.systemMessage;
 
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
 import bridge.domain.Bridge;
 
 public enum ErrorMessage {

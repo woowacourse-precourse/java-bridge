@@ -3,6 +3,7 @@ package bridge;
 import bridge.domain.Bridge;
 import bridge.repository.BridgeResultData;
 import bridge.repository.MovingData;
+import bridge.systemMessage.ErrorMessage;
 import java.util.List;
 
 /**
