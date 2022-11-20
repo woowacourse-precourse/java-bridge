@@ -23,23 +23,25 @@ public class InputView {
             = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + RETRY + ", 종료: " + QUIT + ")";
     private static final String GAME_COMMAND_REGEX = String.join("|", RETRY, QUIT);
     private static final String INPUT_NUMBER_EXCEPTION_MESSAGE = "숫자가 아닙니다.";
-
-
+    
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println(READ_BRIDGE_SIZE_GUIDE);
         try {
-            String text = Console.readLine();
-            int bridgeSize = validateNumber(text);
-            validateBridgeSizeRange(bridgeSize);
-            System.out.println();
-            return bridgeSize;
+            return inputBridgeSize();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
         return readBridgeSize();
+    }
+
+    private int inputBridgeSize() {
+        int bridgeSize = validateNumber(Console.readLine());
+        validateBridgeSizeRange(bridgeSize);
+        System.out.println();
+        return bridgeSize;
     }
 
     public void validateBridgeSizeRange(int size) {
