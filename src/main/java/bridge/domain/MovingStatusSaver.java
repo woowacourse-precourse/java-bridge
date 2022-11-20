@@ -5,13 +5,15 @@ import java.util.Objects;
 
 public class MovingStatusSaver {
     private final List<String> movingStatus;
+    private final List<String> randomBridge;
 
-    public MovingStatusSaver(List<String> movingStatus) {
+    public MovingStatusSaver(List<String> movingStatus, List<String> randomBridge) {
         this.movingStatus = movingStatus;
+        this.randomBridge = randomBridge;
     }
 
-    public void saveMovingStatus(final List<String> randomBridge, final String moving) {
-        final boolean correctBridge = isCorrectBridge(randomBridge, moving);
+    public void saveMovingStatus(final String moving) {
+        final boolean correctBridge = isCorrectBridge(moving);
         if (correctBridge) {
             this.movingStatus.add(moving);
         }
@@ -20,7 +22,7 @@ public class MovingStatusSaver {
         }
     }
 
-    private boolean isCorrectBridge(final List<String> randomBridge, final String moving) {
+    private boolean isCorrectBridge(final String moving) {
         int firstIndex = 0;
         int lastIndex = movingStatus.size();
         if (!movingStatus.isEmpty()) {
@@ -35,6 +37,17 @@ public class MovingStatusSaver {
 
     public List<String> getMovingStatus() {
         return this.movingStatus;
+    }
+
+    public boolean isStopCondition() {
+        if (movingStatus.contains(MovingStatus.UP.sideFail())
+                || movingStatus.contains(MovingStatus.DOWN.sideFail())) {
+            return true;
+        }
+        if (movingStatus.size() == randomBridge.size()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
