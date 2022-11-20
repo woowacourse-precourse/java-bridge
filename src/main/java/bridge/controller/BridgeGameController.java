@@ -15,7 +15,7 @@ public class BridgeGameController {
     private int gameCount;
 
     public BridgeGameController() {
-        this.bridge = BridgeMakerService.createBridge();
+        this.bridge = BridgeMakerService.createBridge(InputView.readBridgeSize());
         this.bridgeInfo = bridge.getBridge();
         this.bridgeGame = new BridgeGame(bridgeInfo);
         this.gameCount = 0;

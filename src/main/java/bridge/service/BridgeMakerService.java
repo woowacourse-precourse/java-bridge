@@ -3,13 +3,12 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.view.InputView;
 
 public class BridgeMakerService {
 
-    public static Bridge createBridge() {
+    public static Bridge createBridge(int size) {
         BridgeMaker bridgeMaker = createBridgeMaker();
-        return new Bridge(bridgeMaker.makeBridge(InputView.readBridgeSize()));
+        return new Bridge(bridgeMaker.makeBridge(size));
     }
 
     private static BridgeMaker createBridgeMaker() {
