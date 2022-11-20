@@ -45,6 +45,17 @@ public class GameController {
     public void askRestartOrEnd() {
         String retryOrQuit  = inputView.readGameCommand();
     }
+
+    private void setRetryOrQuit(String retryOrQuit) {
+        try {
+            validator.validateRetryOfQuit(retryOrQuit);
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            retryOrQuit = inputView.readMoving();
+            setDirection(retryOrQuit);
+        }
+    }
+
     public void addResultBridge(boolean isUp, String result, User user) {
         if(isUp) {
             user.addUpperBridge(result);
