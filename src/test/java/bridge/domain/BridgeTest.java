@@ -47,4 +47,32 @@ class BridgeTest {
                 Arguments.of(Arrays.asList("1", "2", "3"))
         );
     }
+
+    @DisplayName("해당 위치에서 다리를 지날 수 있는 경우 true를 반환한다")
+    @Test
+    void createSuccessMovingWithBridge() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        String firstMoving = "U";
+
+        // when
+        boolean firstMovingFlag = bridge.canMove(0, firstMoving);
+
+        // then
+        assertThat(firstMovingFlag).isEqualTo(true);
+    }
+
+    @DisplayName("해당 위치에서 다리를 지날 수 없는 경우 false를 반환한다")
+    @Test
+    void createFailMovingWithBridge() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        String firstMoving = "D";
+
+        // when
+        boolean firstMovingFlag = bridge.canMove(0, firstMoving);
+
+        // then
+        assertThat(firstMovingFlag).isEqualTo(false);
+    }
 }
