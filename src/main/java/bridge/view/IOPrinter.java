@@ -20,7 +20,7 @@ public class IOPrinter {
     }
 
     protected void printlnBeforeNextLine(final Object messsage) {
-        this.printlnBeforeNextLine(messsage);
+        this.printBeforeNextLine(messsage);
         this.println();
     }
 }
