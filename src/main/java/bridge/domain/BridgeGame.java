@@ -1,10 +1,5 @@
-package bridge.controller;
+package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.User;
 import java.util.List;
 
 /**
