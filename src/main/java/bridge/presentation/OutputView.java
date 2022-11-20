@@ -44,5 +44,13 @@ public class OutputView {
         }
         System.out.println(BLANK.getMark() + BRAKETS_RIGHT.getMark());
     }
+
+    public void printMap(PlayerMap playerMap, int position) {
+        for (int i = 0; i < 2; i++) {
+            System.out.print(BRAKETS_LEFT.getMark());
+            printColumnMap(i, playerMap, position);
+        }
+        System.out.println();
+    }
 }
 
