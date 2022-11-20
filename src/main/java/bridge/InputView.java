@@ -8,27 +8,36 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine()); // 입력에 대한 예외처리를 하여야 한다. 사용자를 믿지 말 것!!
+        String input=Console.readLine();
+        isDigit(input);
+        return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
+    private static void isDigit(String input) {
+        for(char c: input.toCharArray()){
+            if (!(48<=c && c<=57)) {
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    public String readMoving() throws IllegalArgumentException{
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine(); // 입력에 대한 예외처리를 하여야 한다. 사용자를 믿지 말 것!!
+        String input=Console.readLine();
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D 이여야 합니다.");
+        }
+        return input;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return Console.readLine(); // 입력에 대한 예외처리를 하여야 한다. 사용자를 믿지 말 것!!
+        String input=Console.readLine();
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 재시도 여부 입력은 R 또는 Q 이여야 합니다.");
+        }
+        return input;
     }
 }
