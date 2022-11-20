@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.Step;
+
 import java.util.ArrayList;
 import java.util.List;
 

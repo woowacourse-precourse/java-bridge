@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.Step;
-
 import java.util.ArrayList;
 import java.util.List;
 
