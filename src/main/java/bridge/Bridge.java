@@ -26,7 +26,7 @@ public class Bridge {
 	}
 
 	public boolean gameWon() {
-		if (nextStep > bridge.size()) {
+		if (nextStep >= bridge.size()) {
 			return true;
 		}
 		return false;
