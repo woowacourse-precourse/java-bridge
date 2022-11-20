@@ -14,8 +14,8 @@ import java.util.List;
 public class BridgeGame {
 
     private int tryCount;
-    private List<BridgeDirection> bridge;
-    private List<BridgeDirection> userBridge;
+    private List<String> bridge;
+    private List<String> userDirection;
 
     private BridgeState state;
     private BridgeStartState startState;
@@ -24,12 +24,12 @@ public class BridgeGame {
 
     private BridgeGame(
             int tryCount,
-            List<BridgeDirection> bridge,
-            List<BridgeDirection> userBridge)
+            List<String> bridge,
+            List<String> userDirection)
     {
         this.tryCount = tryCount;
         this.bridge = bridge;
-        this.userBridge = userBridge;
+        this.userDirection = userDirection;
         this.state = new BridgeStartState(this);
         this.startState = new BridgeStartState(this);
         this.moveState = new BridgeMoveState(this);
@@ -76,12 +76,12 @@ public class BridgeGame {
         return tryCount;
     }
 
-    public List<BridgeDirection> getBridge() {
+    public List<String> getBridge() {
         return bridge;
     }
 
-    public List<BridgeDirection> getUserBridge() {
-        return userBridge;
+    public List<String> getUserDirection() {
+        return userDirection;
     }
 
     public BridgeState getState() {
@@ -104,12 +104,12 @@ public class BridgeGame {
         this.tryCount = tryCount;
     }
 
-    public void setBridge(List<BridgeDirection> bridge) {
+    public void setBridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public void setUserBridge(List<BridgeDirection> userBridge) {
-        this.userBridge = userBridge;
+    public void setUserDirection(List<String> userDirection) {
+        this.userDirection = userDirection;
     }
 
     public void setState(BridgeState state) {

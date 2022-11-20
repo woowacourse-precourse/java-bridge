@@ -1,9 +1,10 @@
 package bridge.engine.state;
 
-import bridge.engine.BridgeDirection;
 import bridge.engine.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.List;
 
 public class BridgeMoveState implements BridgeState {
 
@@ -24,17 +25,17 @@ public class BridgeMoveState implements BridgeState {
 
     @Override
     public boolean move() {
-        boolean isCanBeCross = false;
-
+        boolean isSuccess = true;
         outputView.printInputBridge();
-        BridgeDirection.valueOf(inputView.readMoving());
+        bridgeGame.getUserDirection().add(inputView.readMoving());
 
-        //TODO:: 건널 수 있는지 확인 절차
-        if (!isCanBeCross) {
-            bridgeGame.setState(bridgeGame.getRetryState());
-        }
+//        if (isCanCross(bridgeGame.getBridge(), bridgeGame.getUserDirection())) {
+//            bridgeGame.setState(bridgeGame.getRetryState());
+//            isSuccess = false;
+//        }
+
         outputView.printMap();
-        return false;
+        return isSuccess;
     }
 
     @Override

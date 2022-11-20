@@ -25,4 +25,14 @@ public enum BridgeDirection {
 
         return false;
     }
+
+    public static BridgeDirection match(int value) {
+        for (BridgeDirection direction : BridgeDirection.values()) {
+            if (direction.getValue() == value) {
+                return direction;
+            }
+        }
+
+        return U;
+    }
 }
