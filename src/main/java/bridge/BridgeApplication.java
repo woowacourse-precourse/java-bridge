@@ -21,17 +21,16 @@ public class BridgeApplication {
     public BridgeApplication() {
         this.outputView = new OutputView();
         this.inputView = new InputView();
-        this.service = new BridgeGameService();
         this.status = PLAYING;
     }
 
     public void run() {
         outputView.printStartMessage();
-        BridgeGame bridgeGame = initBridgeGame();
+        service = new BridgeGameService(initBridgeGame());
 
         try {
-            playBridgeGame(bridgeGame);
-            outputView.printResult(bridgeGame, status);
+            playBridgeGame();
+            outputView.printResult(service.getResultDto(status));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         } catch (Exception | Error e) {
@@ -58,39 +57,39 @@ public class BridgeApplication {
         }
     }
 
-    private void playBridgeGame(BridgeGame bridgeGame) {
+    private void playBridgeGame() {
         while (PLAYING.equals(status)) {
-            crossBridge(bridgeGame);
-            status = readGameCommandIfFailed(bridgeGame);
+            crossBridge();
+            status = readGameCommandIfFailed();
         }
     }
 
-    private void crossBridge(BridgeGame bridgeGame) {
+    private void crossBridge() {
         while (PLAYING.equals(status)) {
-            crossBridgeUnit(bridgeGame);
-            outputView.printMap(bridgeGame);
+            crossBridgeUnit();
+            outputView.printMap(service.getMapDto());
         }
     }
 
-    private void crossBridgeUnit(BridgeGame bridgeGame) {
+    private void crossBridgeUnit() {
         try {
             String moving = inputView.readMoving();
-            status = service.crossBridgeUnit(bridgeGame, moving);
+            status = service.crossBridgeUnit(moving);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
     }
 
-    private GameStatus readGameCommandIfFailed(BridgeGame bridgeGame) {
+    private GameStatus readGameCommandIfFailed() {
         try {
             if (FAILED.equals(status)) {
                 String command = inputView.readGameCommand();
-                return service.readGameCommand(bridgeGame, status, command);
+                return service.readGameCommand(status, command);
             }
             return status;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return readGameCommandIfFailed(bridgeGame);
+            return readGameCommandIfFailed();
         }
     }
 }
