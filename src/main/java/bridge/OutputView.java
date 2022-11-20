@@ -39,7 +39,7 @@ public class OutputView {
     private void printFloor(String direction, List<String> userRoute, List<String> bridge) {
         System.out.print("[");
         for (int i = 0; i < userRoute.size(); i++) {
-            System.out.println(getCell(direction, userRoute.get(i), bridge.get(i)));
+            System.out.print(getCell(direction, userRoute.get(i), bridge.get(i)));
             if (i == userRoute.size() - 1) {
                 break;
             }
@@ -69,7 +69,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(userRoute, bridge);
         System.out.println("게임 성공 여부: " +
-                convertSuccessToString(bridgeGame.checkCrossingBridge(bridge)));
+                convertSuccessToString(bridgeGame.checkCrossingBridge(userRoute, bridge)));
         System.out.println("총 시도한 횟수: " + trial);
     }
 

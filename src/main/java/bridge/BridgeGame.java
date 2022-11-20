@@ -14,6 +14,7 @@ public class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
+     *
      * @return 다리 다음 구역으로 이동가능 여부
      */
     public boolean move(String moving, List<String> bridge) {
@@ -25,8 +26,17 @@ public class BridgeGame {
     /**
      * 유저가 다리를 건넜는지 체크한다.
      */
-    public boolean checkCrossingBridge(List<String> bridge) {
-        return current_position == bridge.size();
+    public boolean checkCrossingBridge(List<String> userRoute, List<String> bridge) {
+        if (userRoute.size() != bridge.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < userRoute.size(); i++) {
+            if (!userRoute.get(i).equals(bridge.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

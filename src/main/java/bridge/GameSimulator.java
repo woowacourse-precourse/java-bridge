@@ -36,7 +36,7 @@ public class GameSimulator {
     }
 
     private List<String> startGameRound(List<String> userRoute, List<String> bridge) {
-        while (!bridgeGame.checkCrossingBridge(bridge)) {
+        while (!bridgeGame.checkCrossingBridge(userRoute, bridge)) {
             String moving = inputView.readMoving();
             userRoute.add(moving);
             outputView.printMap(userRoute, bridge);
@@ -53,7 +53,7 @@ public class GameSimulator {
      * @return 재시작 여부
      */
     private boolean gameover(List<String> userRoute, List<String> bridge) {
-        if(bridgeGame.checkCrossingBridge(bridge)) {
+        if(bridgeGame.checkCrossingBridge(userRoute, bridge)) {
             return false;
         }
 
