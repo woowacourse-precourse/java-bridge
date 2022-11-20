@@ -17,6 +17,10 @@ public class Bridge {
         bridge.add(component);
     }
 
+    public int getBridgeSize(){
+        return bridge.size();
+    }
+
     public void clearAll(){
         bridge.clear();
     }
