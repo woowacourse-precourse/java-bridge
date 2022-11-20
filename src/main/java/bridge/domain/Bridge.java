@@ -15,6 +15,10 @@ public class Bridge {
         return bridge.get(index);
     }
 
+    public int size() {
+        return bridge.size();
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
