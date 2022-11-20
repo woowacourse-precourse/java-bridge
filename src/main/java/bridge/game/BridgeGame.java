@@ -45,15 +45,15 @@ public class BridgeGame {
         return new Progress(destination, result);
     }
 
-    public int moveResult() {
+    public Result moveResult() {
         int progressCount = moves.size();
         if (!moves.get(progressCount - 1).isSuccess()) {
-            return Result.FAIL.getStatus();
+            return Result.FAIL;
         }
         if (progressCount == bridge.size()) {
-            return Result.SUCCESS.getStatus();
+            return Result.SUCCESS;
         }
-        return Result.CONTINUE.getStatus();
+        return Result.CONTINUE;
     }
 
     public void addTotalTry() {

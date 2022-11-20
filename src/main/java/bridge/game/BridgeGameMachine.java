@@ -20,11 +20,11 @@ public class BridgeGameMachine {
 
     public void playGame() {
         bridgeGame.addTotalTry();
-        int result = Result.CONTINUE.getStatus();
-        while (result == Result.CONTINUE.getStatus()) {
+        Result result = Result.CONTINUE;
+        while (result == Result.CONTINUE) {
             result = moveOnce();
         }
-        if (result == Result.SUCCESS.getStatus()) {
+        if (result == Result.SUCCESS) {
             bridgeGame.success();
         }
     }
@@ -38,7 +38,7 @@ public class BridgeGameMachine {
         playGame();
     }
 
-    public int moveOnce() {
+    public Result moveOnce() {
         totalView.out().enterMove();
         bridgeGame.move(totalView.in().reReadMovingWhenError());
         totalView.out().printMap(bridgeGame.showCurrentResult());
