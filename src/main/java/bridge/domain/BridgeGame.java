@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.BridgeGameConstant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,11 @@ public class BridgeGame {
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.movings = new ArrayList<>(bridge.size());
-        this.numberOfAttempts = 1;
+        this.numberOfAttempts = BridgeGameConstant.INITIAL_VALUE_OF_ATTEMPTS_NUMBER;
+    }
+
+    public int getNumberOfAttempts() {
+        return numberOfAttempts;
     }
 
     /**
@@ -27,13 +32,24 @@ public class BridgeGame {
         movings.add(direction);
     }
 
-    public boolean isOver() {
+    public String successOrNot() {
+        if (success()) {
+            return BridgeGameConstant.GAME_SUCCESS;
+        }
+        return BridgeGameConstant.GAME_FAILURE;
+    }
+
+    public boolean over() {
         int movingCount = movings.size() - 1;
         return !movings.get(movingCount).equals(bridge.get(movingCount));
     }
 
-    public boolean isSucess() {
-        return bridge.size() == movings.size() && !isOver();
+    public boolean inProgress() {
+        return !(over() || success());
+    }
+
+    private boolean success() {
+        return bridge.size() == movings.size() && !over();
     }
 
     /**
