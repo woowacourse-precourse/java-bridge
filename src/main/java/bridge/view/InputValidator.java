@@ -1,9 +1,13 @@
 package bridge.view;
 
+import java.util.Arrays;
+
 public class InputValidator {
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
-    private static final String NON_DIGIT_CHARACTER = "[^0-9]+";
+
+    private static final String NO_SPACE = "";
+    private static final String NON_DIGIT_CHARACTER = "[^0-9]";
 
     public static void bridgeSize(String input) {
         validateNumericType(input);
@@ -28,6 +32,11 @@ public class InputValidator {
     }
 
     private static boolean isNotNumeric(String input) {
-        return input.matches(NON_DIGIT_CHARACTER);
+        final String[] splitted = input.split(NO_SPACE);
+
+        return Arrays.stream(splitted)
+                .anyMatch(element ->
+                        element.matches(NON_DIGIT_CHARACTER)
+                );
     }
 }
