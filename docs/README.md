@@ -20,8 +20,7 @@
 
 ### 다리 생성(****BridgeMaker****)
 
-- 다리를 길이에 맞게 랜덤하게 숫자를 생성하여 List<Integer>로 반환
-- 랜덤의 List<Integer>를 U,D로 변환하여 List<String>으로 반환
+- 다리를 길이에 맞게 랜덤하게 숫자를 생성하여 0이면 D 1이면 U를 List에 추가하며 List를 반환하는 가능
 
 ### 다리 관리 (Bridge)
 
