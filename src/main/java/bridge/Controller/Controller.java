@@ -5,6 +5,7 @@ import bridge.Domain.BridgeNumberGenerator;
 import bridge.Domain.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -26,12 +27,24 @@ public class Controller {
         List<String> bridge = bridgeMaker.makeBridge(bridgeLen);
 
         //게임 시작
-        String moving = inputView.readMoving();
+        int gameTryCount = 1;
+        boolean gameSuccess = false;
+        List<String> mySelectBridge = new ArrayList<>();
+        while(true){
+            int position = mySelectBridge.size();
+            String moving = inputView.readMoving();
+            mySelectBridge.add(moving);
 
-        ////성공
+            if(mySelectBridge.get(position).equals(bridge.get(position))){
+                //성공
+            }
+            else{
+                //실패
+                String gameCommand = inputView.readGameCommand();
+            }
+        }
 
-        ////실패
-        String gameCommand = inputView.readGameCommand();
+
 
         //결과 출력
     }
