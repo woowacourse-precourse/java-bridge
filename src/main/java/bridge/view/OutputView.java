@@ -3,7 +3,6 @@ package bridge.view;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Constants;
-import bridge.model.Player;
 
 import java.util.List;
 

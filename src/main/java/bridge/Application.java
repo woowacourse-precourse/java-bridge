@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 import bridge.model.BridgeGame;
-import bridge.model.Player;
 
 public class Application {
 
