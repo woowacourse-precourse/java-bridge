@@ -26,6 +26,13 @@ public class BridgeGame {
     }
 
     /**
+     * count의 Getter 메서드
+     */
+    public int getCount(){
+        return count;
+    }
+
+    /**
      * 사용자가 게임을 시작할 때 사용하는 메서드
      */
     public void makeBridgeGame(int size){
