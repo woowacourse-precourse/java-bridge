@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.constant.Constant;
 import bridge.constant.ErrorMessage;
 import bridge.constant.Message;
+import bridge.enums.Bridge;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -49,7 +50,18 @@ public class InputView {
         System.out.println(Message.REQUEST_MOVE_TO_PLACE);
         String moveToBridge = Console.readLine();
 
+        boolean isThrowError = tryCatch(this::validateMoveToBridge, moveToBridge);
+        if (isThrowError) {
+            return readMoving();
+        }
         return moveToBridge;
+    }
+
+    private void validateMoveToBridge(String moveToBridge) {
+        Bridge sign = Bridge.findBySign(moveToBridge);
+        if (sign == Bridge.NOTHING) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_MOVE_TO_PLACE_FORM);
+        }
     }
 
     /**
