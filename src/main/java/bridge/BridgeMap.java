@@ -23,4 +23,13 @@ public class BridgeMap extends RouteMap {
         return new RouteMap(upSideStatus, downSideStatus);
     }
 
+    public RouteMap join(RouteMap other) {
+        List<String> newUpSide = new ArrayList<>(upSide);
+        List<String> newDownSide = new ArrayList<>(downSide);
+
+        newUpSide.addAll(other.upSide);
+        newDownSide.addAll(other.downSide);
+
+        return new RouteMap(newUpSide, newDownSide);
+    }
 }

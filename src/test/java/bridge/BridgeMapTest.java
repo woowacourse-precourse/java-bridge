@@ -34,4 +34,15 @@ public class BridgeMapTest {
         assertThat(successMap.getStatusAt(1))
                 .isEqualTo(expected);
     }
+
+    @Test
+    void joinTest() {
+        RouteMap expected = new RouteMap(
+                List.of("O", " ", " ", " ", "X", "X"),
+                List.of(" ", "O", "O", "X", " ", " ")
+        );
+
+        assertThat(successMap.join(failureMap))
+                .isEqualTo(expected);
+    }
 }
