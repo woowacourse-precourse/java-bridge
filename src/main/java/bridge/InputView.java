@@ -42,7 +42,7 @@ public class InputView {
     public String validateMoving(String moving) {
         moving = moving.toUpperCase();
 
-        if (!moving.equals(Command.UP.get()) || moving.equals(Command.DOWN.get())) {
+        if (!moving.equals(Command.UP.get()) || !moving.equals(Command.DOWN.get())) {
             throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_MOVING_COMMAND.get());
         }
 
@@ -61,7 +61,7 @@ public class InputView {
     public String validateRetry(String retry) {
         retry = retry.toUpperCase();
 
-        if (!retry.equals(Command.RETRY.get()) || retry.equals(Command.QUIT.get())) {
+        if (!retry.equals(Command.RETRY.get()) || !retry.equals(Command.QUIT.get())) {
             throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_RETRY_COMMAND.get());
         }
 
