@@ -1,5 +1,6 @@
 package bridge.verifier;
 
+import bridge.domain.GameControl;
 import bridge.system.ExceptionMessage;
 
 import java.util.regex.Pattern;
@@ -19,7 +20,7 @@ public class GameCommandVerifier {
     }
 
     private void isNotUnderstandable(String target) {
-        if (!target.equals("R") && !target.equals("Q")) {
+        if (!GameControl.isRetry(target) && !GameControl.isQuit(target)) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_UNDERSTANDABLE_COMMAND);
         }
     }

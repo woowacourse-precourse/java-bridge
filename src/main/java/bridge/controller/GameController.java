@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.GameControl;
 import bridge.domain.GameFlag;
 import bridge.domain.GameStatus;
 import bridge.view.OutputView;
@@ -38,7 +39,7 @@ public class GameController {
 
     private boolean needExit() {
         String gameCommand = inputController.readGameCommandUntilSucceed();
-        if (gameCommand.equals("Q")) {
+        if (GameControl.isQuit(gameCommand)) {
             return true;
         }
         bridgeGame.retry();
