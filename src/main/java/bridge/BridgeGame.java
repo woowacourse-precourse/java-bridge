@@ -12,9 +12,6 @@ public class BridgeGame {
 
     private final List<String> bridge, path;
 
-    /**
-     * 생성자, 게임을 초기화 함
-     */
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.path = new ArrayList<>();

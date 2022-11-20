@@ -69,15 +69,15 @@ public class OutputView {
     private void guide(Guide guide) { System.out.println(guide.message); }
 
     private String getSign(String pathAtIndex, String bridgeAtIndex, Level level) {
-        if(!pathAtIndex.equals(level.id)) return " ";
-        if(pathAtIndex.equals(bridgeAtIndex)) return "O";
+        if (!pathAtIndex.equals(level.id)) return " ";
+        if (pathAtIndex.equals(bridgeAtIndex)) return "O";
         return "X";
     }
 
     private void printMapByLevel(List<String> path, List<String> bridge, Level level) {
         StringBuilder stringBuilder = new StringBuilder("[");
         for (int index = 0; index < path.size(); index++) {
-            if(index != 0) stringBuilder.append("|");
+            if (index != 0) stringBuilder.append("|");
             String sign = getSign(path.get(index), bridge.get(index), level);
             stringBuilder.append(" ").append(sign).append(" ");
         }
