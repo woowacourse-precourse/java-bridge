@@ -37,7 +37,6 @@
 
 - [x] 잘못된 입력에 대해 에러 메시지 출력 후 재입력 받는 코드 중복 제거
 - [x] 입력 검사 테스트 수정
-- [ ] InputValidatorTest 중복 제거
 
 - [x] 이동한 다리 상태를 나타내는 클래스 추가
   - [x] 형식에 맞는 문자열 반환
@@ -50,15 +49,11 @@
   - [x] 특정 지점까지의 지도 반환
   - [x] 특정 지점의 이동 가능 상태 반환
 
-- [ ] BridgeMapTest 리팩토링
-
 - [x] 이동 경로 형식 클래스 추가
 
 - [x] 다리 지도 생성 클래스 추가
-- [ ] BridgeMapMaker 클래스에서 UP_SIDE, DOWN_SIDE 상수 분리
 
 - [x] RouteMap 클래스에 다리 건너기 실패 여부를 반환하는 메서드 추가
-- [ ] RouteMapTest, BridgeMapTest 리팩토링
 
 - [x] 최종 게임 결과 클래스 추가
 - [x] BridgeGame 클래스의 move 메서드 반환 타입 변경
@@ -67,4 +62,10 @@
 
 - [x] BridgeGame 클래스에 다리 길이 반환 메서드 추가
 - [x] 게임 컨트롤러 클래스 추가
-- [ ] Application 구현
+- [x] Application 구현
+
+
+- [ ] 클래스별 중복 필드 제거
+- [ ] BridgeGameController 클래스 분리
+- [ ] 테스트 코드 리팩토링
+- [ ] 문자열, 숫자 상수 선언
