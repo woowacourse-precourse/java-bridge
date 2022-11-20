@@ -7,6 +7,7 @@ import bridge.domain.vo.BridgeMap;
 import bridge.domain.vo.BridgeSize;
 import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.GameMoving;
+import bridge.domain.vo.PlayerMap;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -22,17 +23,28 @@ public class BridgeGameController {
     }
 
     public void run() {
-        inputView.printStartBridgeGame();
+        outputView.printStartBridgeGame();
         BridgeSize bridgeSize = inputBridgeSize();
         BridgeMap bridgeMap = makeBridgeMap(bridgeSize);
-        GameCommand gameCommand = inputGameCommand();
+        BridgeGame bridgeGame = new BridgeGame(bridgeMap);
+        PlayerMap playerMap = playBridgeGame(bridgeGame);
+    }
+
+    private PlayerMap playBridgeGame(BridgeGame bridgeGame) {
+        PlayerMap playerMap = bridgeGame.move(inputMoving().toString());
+        outputView.printMap(playerMap);
+        if (playerMap.checkContainsX()) {
+            playerMap = bridgeGame.retry(inputGameCommand().toString());
+        }
+        if (bridgeGame.isEnd()) {
+            return playerMap;
+        }
+        return playBridgeGame(bridgeGame);
     }
 
     private BridgeSize inputBridgeSize() {
-
         try {
-            BridgeSize bridgeSize = new BridgeSize(inputView.readBridgeSize());
-            return bridgeSize;
+            return new BridgeSize(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -40,7 +52,6 @@ public class BridgeGameController {
     }
 
     private BridgeMap makeBridgeMap(BridgeSize bridgeSize) {
-        System.out.println(bridgeSize.getValue());
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> test = bridgeMaker.makeBridge(bridgeSize.getValue());
@@ -50,8 +61,7 @@ public class BridgeGameController {
 
     private GameMoving inputMoving() {
         try {
-            GameMoving gameMoving = new GameMoving(inputView.readMoving());
-            return gameMoving;
+            return new GameMoving(inputView.readMoving());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }
@@ -61,8 +71,7 @@ public class BridgeGameController {
 
     private GameCommand inputGameCommand() {
         try {
-            GameCommand gameCommand = new GameCommand(inputView.readGameCommand());
-            return gameCommand;
+            return new GameCommand(inputView.readGameCommand());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }
