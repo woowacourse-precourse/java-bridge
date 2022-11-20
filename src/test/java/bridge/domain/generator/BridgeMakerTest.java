@@ -58,7 +58,7 @@ class BridgeMakerTest {
         void else_value_is_exception() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 2);
             assertThatThrownBy(() -> bridgeMaker.makeBridge(10))
-                    .isInstanceOf(IllegalStateException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
         }
 
         private boolean isCreateSpecificValue(BridgeMaker bridgeMaker,

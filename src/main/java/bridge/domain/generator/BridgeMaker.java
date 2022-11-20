@@ -30,6 +30,6 @@ public class BridgeMaker {
             return MOVE_TO_LOWER_BLOCK;
         }
 
-        throw new IllegalStateException("NumberGenerator가 잘못된 값을 반환합니다. 생성값 : " + generateValue);
+        throw new IllegalArgumentException("NumberGenerator가 잘못된 값을 전달합니다. 입력값 : " + generateValue);
     }
 }
