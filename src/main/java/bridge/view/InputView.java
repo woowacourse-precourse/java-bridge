@@ -9,8 +9,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
 
+    public static final String LINE_SEPARATOR = System.lineSeparator();
     public static final String START_GAME_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    public static final String INPUT_BRIDGE_LENGTH = "\n다리의 길이를 입력해주세요.";
+    public static final String INPUT_BRIDGE_LENGTH = LINE_SEPARATOR + "다리의 길이를 입력해주세요.";
 
     public int printStartMessage() {
         System.out.println(START_GAME_MESSAGE);
@@ -26,12 +27,11 @@ public class InputView {
     }
 
     private int inputBridgeSize() {
-        while (true) {
-            try {
-                return getBridgeSize();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            return getBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBridgeSize();
         }
     }
 
@@ -51,12 +51,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        while (true) {
-            try {
-                return getMoveCommand();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            return getMoveCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
         }
     }
 
