@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.util.Converter;
 import bridge.util.Validator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
@@ -24,29 +25,42 @@ public class BridgeGameController {
         getBridgeSizeInputAndStartGame();
     }
 
-    public void startGame(int bridgeSize) {
+    private void startGame(int bridgeSize) {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        getMovingInputAndMove(bridgeGame);
     }
 
-    public void getBridgeSizeInputAndStartGame() {
-        while (true) {
-            checkBridgeSizeAndThrowException();
-        }
-    }
-
-    public void checkBridgeSizeAndThrowException() {
+    private void getBridgeSizeInputAndStartGame() {
         try {
             int bridgeSize = inputView.readBridgeSize();
             validateBridgeSize(bridgeSize);
             startGame(bridgeSize);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INVALID_BRIDGE_SIZE);
+            getBridgeSizeInputAndStartGame();
         }
     }
 
-    public void validateBridgeSize(int size) {
+    private void getMovingInputAndMove(BridgeGame bridgeGame) {
+        try {
+            String moving = inputView.readMoving();
+            validateMoving(moving);
+            bridgeGame.move();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(INVALID_MOVING);
+            getMovingInputAndMove(bridgeGame);
+        }
+    }
+
+    private void validateBridgeSize(int size) {
         if (!validator.isValidRange(size)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateMoving(String moving) {
+        if (!validator.isValidMoving(moving)) {
             throw new IllegalArgumentException();
         }
     }
