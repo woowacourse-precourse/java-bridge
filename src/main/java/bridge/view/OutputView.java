@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.command.MarkCommand;
 import bridge.command.MovingCommand;
+import bridge.controller.BridgeGame;
 import bridge.view.phrases.OutputPhrases;
 import java.util.List;
 
@@ -54,16 +55,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> bridge, List<String> result, int numberOfAttempts) {
+    public static void printResult(BridgeGame bridgeGame, int numberOfAttempts) {
         System.out.println(OutputPhrases.finalGameResult.getPhrase());
-        printMap(bridge, result);
+        printMap(bridgeGame.getBridge(), bridgeGame.getResult());
         System.out.println();
-        System.out.println(OutputPhrases.gameStatus.getPhrase().concat(gameStatus(result)));
+        System.out.println(OutputPhrases.gameStatus.getPhrase().concat(gameStatus(bridgeGame)));
         System.out.println(OutputPhrases.numberOfAttempts.getPhrase().concat(Integer.toString(numberOfAttempts)));
     }
 
-    private static String gameStatus(List<String> result) {
-        if(result.contains(MarkCommand.Impossible.get())) return "실패";
+    private static String gameStatus(BridgeGame bridgeGame) {
+        if(bridgeGame.isComplete()) return "실패";
         return "성공";
     }
 

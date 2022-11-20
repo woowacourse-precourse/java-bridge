@@ -41,7 +41,7 @@ public class BridgeGame {
     }
 
     public boolean success() {
-        if(result.get(result.size()-1).equals(MarkCommand.Possible.get())) return true;
+        if(!result.contains(MarkCommand.Impossible)) return true;
         return false;
     }
 
@@ -55,5 +55,10 @@ public class BridgeGame {
 
     public List<String> getBridge() {
         return Collections.unmodifiableList(bridge);
+    }
+
+    public boolean isComplete() {
+        if((getBridgeSize() == result.size()) && success()) return true;
+        return false;
     }
 }
