@@ -45,10 +45,10 @@
             - [ ] 해당 값이 아닐 경우 IllegalArgumentException 처리
 
 
-- [ ] 현재 상태 종류 반환 status()
+- [x] 현재 상태 종류 반환 status()
 
 
-- [ ] 현재 다리 진행도 반환 progress()
+- [x] 현재 다리 진행도 반환 progress()
 
 
 - [ ] 현재 총 시도 횟수 반환 tryTimes()
