@@ -93,4 +93,8 @@ public class BridgeGame {
     public int getPosition() {
         return position;
     }
+
+    public int getAttempt() {
+        return attempt;
+    }
 }
