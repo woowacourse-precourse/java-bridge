@@ -8,6 +8,7 @@ import bridge.Exception;
 public class InputView {
     static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: u, 아래: D)";
+    static final String READ_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     Exception exception = new Exception();
 
@@ -34,6 +35,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String cmd;
+
+        System.out.println(READ_GAME_COMMAND_MESSAGE);
+        cmd = readLine();
+
+        return cmd;
     }
 }
