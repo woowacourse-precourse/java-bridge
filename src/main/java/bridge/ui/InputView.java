@@ -21,7 +21,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = Console.readLine();
+        validateWordLength(gameCommand);
+        validateGameCommandWord(gameCommand);
+        return gameCommand;
     }
 
     /**
@@ -85,5 +88,15 @@ public class InputView {
             return;
         }
         throw new IllegalArgumentException("[ERROR] 'U' 또는 'D' 중 하나의 문자를 입력하셔야 합니다.");
+    }
+
+    /**
+     * 검증 로직 : 게임 다시 시도 여부 문자가 'R' 또는 'Q' 중에 하나를 선택했는지 검증한다.
+     */
+    private void validateGameCommandWord(String gameCommand) {
+        if (gameCommand.equals("R") || gameCommand.equals("Q")) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] 'R' 또는 'Q' 중 하나의 문자를 입력하셔야 합니다.");
     }
 }
