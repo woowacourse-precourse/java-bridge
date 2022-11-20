@@ -43,8 +43,9 @@ public class BridgeGame {
     }
 
     private void checkValidMove(String input) {
-        if (!input.equals(BridgeStatus.UP.getName()) && !input.equals(BridgeStatus.DOWN.getName()))
+        if (!input.equals(BridgeStatus.UP.getName()) && !input.equals(BridgeStatus.DOWN.getName())) {
             throw new IllegalArgumentException("[ERROR] 올바른 입력 형식이 아닙니다.");
+        }
     }
 
     public boolean isGameEnd() {
@@ -72,8 +73,9 @@ public class BridgeGame {
     }
 
     private void checkValidCommand(String restartCommand) {
-        if (!restartCommand.equals(RESTART_COMMAND) && !restartCommand.equals(QUIT_COMMAND))
+        if (!restartCommand.equals(RESTART_COMMAND) && !restartCommand.equals(QUIT_COMMAND)) {
             throw new IllegalArgumentException("[ERROR] 올바른 입력 형식이 아닙니다.");
+        }
     }
 
     @Override

@@ -35,8 +35,9 @@ public class BridgeMaker {
     }
 
     private void checkValid(int size) {
-        if (size < MIN_RANGE || size > MAX_RANGE)
+        if (size < MIN_RANGE || size > MAX_RANGE) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 
     private void addBridge(List<String> bridge, int randNumber) {
