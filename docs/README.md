@@ -137,6 +137,7 @@ D
 - [x] gameCount를 0으로 초기화
 
 ### move
+- [ ] moveCount에 1을 더함
 - [x] 결과 다리와 비교
 - [x] 같으면 true, 틀리면 false를 리턴
 
