@@ -1,6 +1,9 @@
 package bridge;
 
+import bridge.constant.ErrorMessage;
 import bridge.constant.Message;
+import bridge.util.Validator;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -12,6 +15,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(Message.INPUT_BRIDGE_SIZE_MESSAGE);
+        String input = getNumberInput();
+
         return 0;
     }
 
@@ -27,5 +32,28 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String getNumberInput(){
+        String input = Console.readLine().trim();
+        validateNumberInput(input);
+        return input;
+    }
+
+    private void validateNumberInput(String input){
+        validateEmptyInput(input);
+        validateHasCharacterInput(input);
+    }
+
+    private void validateEmptyInput(String input){
+        if (Validator.isEmpty(input)){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY_ERROR.getMessage());
+        }
+    }
+
+    private void validateHasCharacterInput(String input){
+        if (!Validator.hasNotCharacter(input)){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_CHARACTER_ERROR.getMessage());
+        }
     }
 }
