@@ -62,7 +62,7 @@ public class GameController {
 
     private void playOneTurn(Player player) {
         Tile movingTargetTile = ValidateReader.readUntilValidate(() ->
-                Tile.findByPositionSign(inputView.readMoving()));
+                Tile.findByDirectionSign(inputView.readMoving()));
 
         bridgeGame.move(player, movingTargetTile);
     }

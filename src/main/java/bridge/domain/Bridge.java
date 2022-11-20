@@ -16,12 +16,12 @@ public class Bridge {
         this.bridgeTiles = List.copyOf(bridgeTiles);
     }
 
-    public static Bridge from(List<String> tilePositionSigns) {
-        validateBridgePositions(tilePositionSigns);
+    public static Bridge from(List<String> tileDirectionSigns) {
+        validateBridgePositions(tileDirectionSigns);
 
         List<Tile> tiles = new ArrayList<>();
-        for (String positionSign : tilePositionSigns) {
-            tiles.add(Tile.findByPositionSign(positionSign));
+        for (String directionSign : tileDirectionSigns) {
+            tiles.add(Tile.findByDirectionSign(directionSign));
         }
 
         return new Bridge(tiles);

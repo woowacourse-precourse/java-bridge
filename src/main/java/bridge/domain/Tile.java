@@ -15,11 +15,11 @@ public enum Tile {
     private static final String EMPTY_SIGN = " ";
 
     private final int code;
-    private final String positionSign;
+    private final String directionSign;
 
-    Tile(int code, String positionSign) {
+    Tile(int code, String directionSign) {
         this.code = code;
-        this.positionSign = positionSign;
+        this.directionSign = directionSign;
     }
 
     public static Tile findByCode(int code) {
@@ -29,16 +29,16 @@ public enum Tile {
                 .orElseThrow(() -> new IllegalArgumentException(String.format(TILE_CODE_ERROR_MESSAGE, code)));
     }
 
-    public static Tile findByPositionSign(String positionSign) {
+    public static Tile findByDirectionSign(String directionSign) {
         return Arrays.stream(Tile.values())
-                .filter(tile -> tile.positionSign.equals(positionSign))
+                .filter(tile -> tile.directionSign.equals(directionSign))
                 .findAny()
                 .orElseThrow(() ->
-                        new IllegalArgumentException(String.format(TILE_POSITION_ERROR_MESSAGE, positionSign)));
+                        new IllegalArgumentException(String.format(TILE_POSITION_ERROR_MESSAGE, directionSign)));
     }
 
-    public String getPositionSign() {
-        return this.positionSign;
+    public String getDirectionSign() {
+        return this.directionSign;
     }
 
     public String toFormatString(Tile playerTile, boolean isSurvive) {

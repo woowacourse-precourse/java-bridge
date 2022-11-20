@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String INPUT_BRIDGE_SIZE_INFO_MESSAGE = "다리의 길이를 입력해 주세요.";
-    private static final String INPUT_MOVING_POSITION_INFO_MESSAGE_FORMAT = "이동할 칸을 선택해 주세요. (위: %s, 아래: %s)";
+    private static final String INPUT_MOVING_DIRECTION_INFO_MESSAGE_FORMAT = "이동할 칸을 선택해 주세요. (위: %s, 아래: %s)";
     private static final String INPUT_GAME_RETRY_MESSAGE_FORMAT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료 : %s)";
 
     private static final String POSITIVE_NUMBER_INPUT_ERROR_MESSAGE = "[ERROR] 양의 숫자를 입력하여야 합니다.";
@@ -43,14 +43,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        printInputMovingPositionInfoMessage();
+        printInputMovingDirectionInfoMessage();
         String input = Console.readLine();
         return input;
     }
 
-    private void printInputMovingPositionInfoMessage() {
-        System.out.println(String.format(INPUT_MOVING_POSITION_INFO_MESSAGE_FORMAT,
-                Tile.UP.getPositionSign(), Tile.DOWN.getPositionSign()));
+    private void printInputMovingDirectionInfoMessage() {
+        System.out.println(String.format(INPUT_MOVING_DIRECTION_INFO_MESSAGE_FORMAT,
+                Tile.UP.getDirectionSign(), Tile.DOWN.getDirectionSign()));
     }
 
     /**

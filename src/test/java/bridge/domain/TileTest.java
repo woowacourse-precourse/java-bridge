@@ -26,17 +26,17 @@ class TileTest {
                 .hasMessageContaining(EXCEPTION_MESSAGE);
     }
 
-    @ParameterizedTest(name = "findByTilePosition 테스트 [{index}] : {1}")
+    @ParameterizedTest(name = "findByDirectionSign 테스트 [{index}] : {1}")
     @CsvSource(value = {"D,DOWN", "U,UP"})
-    void findByPositionSignTest(String position, Tile expectedTil) {
-        Tile actualTile = Tile.findByPositionSign(position);
+    void findByDirectionSignTest(String direction, Tile expectedTil) {
+        Tile actualTile = Tile.findByDirectionSign(direction);
         assertThat(actualTile).isEqualTo(expectedTil);
     }
 
-    @ParameterizedTest(name = "findByTilePosition 에 조건 외 입력 시 예외 발생 테스트 [{index}] : {0} 입력")
+    @ParameterizedTest(name = "findByDirectionSign 에 조건 외 입력 시 예외 발생 테스트 [{index}] : {0} 입력")
     @ValueSource(strings = {"asd", "a", "B", "0", "1"})
-    void findByPositionSignExceptionTest(String positionInput) {
-        assertThatThrownBy(() -> Tile.findByPositionSign(positionInput))
+    void findByDirectionSignExceptionTest(String directionInput) {
+        assertThatThrownBy(() -> Tile.findByDirectionSign(directionInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(EXCEPTION_MESSAGE);
     }

@@ -26,7 +26,7 @@ class BridgeGameTest {
     void moveTest(String movingPath, boolean expectedResult) {
 
         for (String movingDirection : movingPath.split("")) {
-            Tile targetTile = Tile.findByPositionSign(movingDirection);
+            Tile targetTile = Tile.findByDirectionSign(movingDirection);
             bridgeGame.move(player, targetTile);
         }
 
@@ -38,7 +38,7 @@ class BridgeGameTest {
     void isWinTest(String movingPath, boolean expectedResult) {
 
         for (String movingDirection : movingPath.split("")) {
-            Tile targetTile = Tile.findByPositionSign(movingDirection);
+            Tile targetTile = Tile.findByDirectionSign(movingDirection);
             bridgeGame.move(player, targetTile);
         }
 
@@ -51,7 +51,7 @@ class BridgeGameTest {
         String movingPath = "UDDUDDUU";
 
         for (String movingDirection : movingPath.split("")) {
-            Tile targetTile = Tile.findByPositionSign(movingDirection);
+            Tile targetTile = Tile.findByDirectionSign(movingDirection);
             bridgeGame.move(player, targetTile);
         }
         bridgeGame.retry(player);

@@ -21,14 +21,14 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 반환
      */
     public List<String> makeBridge(int size) {
-        List<String> bridgeTilePositionSigns = new ArrayList<>();
+        List<String> bridgeTileDirectionSigns = new ArrayList<>();
 
-        while (bridgeTilePositionSigns.size() < size) {
+        while (bridgeTileDirectionSigns.size() < size) {
             int bridgeTileCode = bridgeNumberGenerator.generate();
             Tile tile = Tile.findByCode(bridgeTileCode);
-            bridgeTilePositionSigns.add(tile.getPositionSign());
+            bridgeTileDirectionSigns.add(tile.getDirectionSign());
         }
 
-        return bridgeTilePositionSigns;
+        return bridgeTileDirectionSigns;
     }
 }
