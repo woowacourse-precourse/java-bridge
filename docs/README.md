@@ -148,7 +148,7 @@ D
 - [x] gameCount에 1를 더함
 
 ### compareMoveCount
-- [ ] 매개변수와 moveCount 비교
+- [x] 매개변수와 moveCount 비교
 - [ ] true이면 true 반환
 - [ ] false리면 false 반환
 
