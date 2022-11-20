@@ -15,12 +15,13 @@ public class OutputView {
             printCrossRight(crossResult,index);
             printOnlyBridge();
         }
-        printStartBridge();
-        printCrossState(crossResult);
-        printDivider(index);
-        printEndBridge();
-    }
 
+        if(!printUpDown){
+            printOnlyBridge();
+            printCrossRight(crossResult,index);
+        }
+
+    }
     public void printCrossRight(String crossResult,int index){
         printStartBridge();
         printCrossState(crossResult);
@@ -28,6 +29,10 @@ public class OutputView {
         printEndBridge();
     }
 
+    public void printOnlyBridge(){
+        printStartBridge();
+        printEndBridge();
+    }
 
 
     public void printStartBridge(){
