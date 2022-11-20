@@ -3,6 +3,7 @@ package bridge;
 import java.util.List;
 
 import bridgeConstant.Cell;
+import dto.MapDto;
 
 public class MapRenderer {
 	private static final String ENTRANCE = "[";
@@ -16,13 +17,21 @@ public class MapRenderer {
 	StringBuilder upperRow;
 	StringBuilder lowerRow;
 
-	public String render(List<String> partOfBridge, boolean isCorrectMoving) {
+	String map;
+
+	public MapRenderer(List<String> partOfBridge, boolean isCorrectMoving) {
 		init();
 		addEntrance();
 		if (partOfBridge.size() == 1) {
-			return renderWhenSizeIsOne(partOfBridge, isCorrectMoving);
+			map = renderWhenSizeIsOne(partOfBridge, isCorrectMoving);
 		}
-		return renderWhenSizeBiggerThanOne(partOfBridge, isCorrectMoving);
+		if (partOfBridge.size() != 1) {
+			map = renderWhenSizeBiggerThanOne(partOfBridge, isCorrectMoving);
+		}
+	}
+
+	public MapDto toMapDto() {
+		return new MapDto(map);
 	}
 
 	private String renderWhenSizeIsOne(List<String> partOfBridge, boolean isCorrectMoving) {
