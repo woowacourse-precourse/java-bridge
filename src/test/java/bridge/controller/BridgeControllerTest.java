@@ -36,4 +36,20 @@ public class BridgeControllerTest {
         assertThat(thirdResult).isEqualTo(true);
         assertThat(notMatchedResult).isEqualTo(false);
     }
+
+    @DisplayName("isResetCase 테스트")
+    @Test
+    public void isResetCaseTest() {
+        // given
+        String gameStatus = "R";
+        String errorStatus = "C";
+
+        // when
+        boolean result = bridgeController.isResetCase(gameStatus);
+        boolean error = bridgeController.isResetCase(errorStatus);
+
+        // then
+        assertThat(result).isEqualTo(true);
+        assertThat(error).isEqualTo(false);
+    }
 }
