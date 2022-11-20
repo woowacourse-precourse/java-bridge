@@ -10,5 +10,7 @@ public class Application {
         outputView.printGameStartMessage();
         outputView.printBridgeLengthInputMessage();
         int bridgeSize = inputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
     }
 }
