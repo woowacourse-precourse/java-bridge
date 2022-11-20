@@ -38,6 +38,9 @@ public class BridgeGame {
     public void createBridgeMap() {
         this.bridgeMap = BridgeMap.of();
     }
+    public void createPlayer() {
+        this.player = Player.of();
+    }
     public void move(String readMove) {
         //문자가 U, D를 입력 받고 일치하는지 확인
         Move move = Move.of(readMove);
@@ -59,7 +62,7 @@ public class BridgeGame {
     }
 
     public void addMatchMap(String move){
-        if(move.equals("U")){ //TODO: Refactoring else 없애고 간결하게 적성할것
+        if(move.equals("U")){ // TODO: Refactoring else 없애고 간결하게 적성할것
             bridgeMap.add(BridgeIngredient.MATCH.getIngredient(), BridgeIngredient.BLANK.getIngredient());
         }else{
             bridgeMap.add(BridgeIngredient.BLANK.getIngredient(), BridgeIngredient.MATCH.getIngredient());
@@ -87,6 +90,16 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String retry) { // TODO: Refactring 해줄 것
+        checkRetry(retry);
+    }
+
+    public void checkRetry(String retry) {
+        if("Q".equals(retry)){
+            player.setAnswer(retry);
+            return;
+        }
+        player.setAnswer(retry);
+        this.bridgeMap = BridgeMap.of(); // TODO: Refactoring 예정
     }
 }
