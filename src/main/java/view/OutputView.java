@@ -21,4 +21,14 @@ public class OutputView {
         lower += OutputMessage.CORRECT.getOutputMsg();
         upper += OutputMessage.JUMP_BAR.getOutputMsg();
     }
+
+    public void addXString(String str) {
+        if(str.equals("U")) {
+            upper += OutputMessage.JUMP_BAR.getOutputMsg();
+            lower += OutputMessage.WRONG.getOutputMsg();
+            return;
+        }
+        lower += OutputMessage.JUMP_BAR.getOutputMsg();
+        upper += OutputMessage.WRONG.getOutputMsg();
+    }
 }
