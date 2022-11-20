@@ -53,22 +53,22 @@ public class OutputView {
 
     private String makeMessageForPrintMap(List<String> bridge, int countOfMove, boolean isMove, String target) {
         String message = "";
-        String mark = " ";
         for (int i = 0; i < countOfMove; i++) {
-            mark = " ";
-            if (bridge.get(i) == target) {
-                mark = "O";
-            }
+            String mark = makeMark(bridge, i, true, target);
             message += " " + mark + " |";
         }
-        mark = " ";
-        if (bridge.get(countOfMove) == target && isMove){
-            mark = "O";
-        }
-        if (bridge.get(countOfMove) == target && !isMove) {
-            mark = "X";
-        }
+        String mark = makeMark(bridge, countOfMove, isMove, target);
         message += " " + mark + " ";
         return message;
+    }
+
+    private String makeMark(List<String> bridge, int index, boolean isMove, String target) {
+        if (bridge.get(index) == target && isMove) {
+            return "O";
+        }
+        if (bridge.get(index) == target && !isMove) {
+            return "X";
+        }
+        return " ";
     }
 }
