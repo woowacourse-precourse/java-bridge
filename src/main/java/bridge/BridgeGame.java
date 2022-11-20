@@ -29,4 +29,9 @@ public class BridgeGame {
         if (command.equals("R")) return true;
         return false;
     }
+
+    public boolean quit(String command) {
+        if (command.equals("Q")) return true;
+        return false;
+    }
 }

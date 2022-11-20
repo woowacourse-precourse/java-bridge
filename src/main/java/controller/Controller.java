@@ -29,14 +29,14 @@ public class Controller {
         while (bridgeLengthIndex < bridge.size()) {
             outputView.printMap(bridgeLengthIndex, inputView.readMoving(), bridge);
             if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X")) {
-                String ROrQ = inputView.readGameCommand();
-                if (ROrQ.equals("Q")) {
+                String rOrQ = inputView.readGameCommand();
+                if (bridgeGame.quit(rOrQ)) {
                     success = false;
                     outputView.printResult(false, gameAttempts);
                     break;
                 }
 
-                if (bridgeGame.retry("R")) {
+                if (bridgeGame.retry(rOrQ)) {
                     gameAttempts += 1;
                     bridgeLengthIndex = 0;
                     outputView.upOutputBoard.clear();
