@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -42,17 +44,19 @@ public class ValidatorTest {
     }
 
     @DisplayName("입력값이 U나 D가 아니면 예외가 발생한다.")
-    @Test
-    void checkDirectionTest() {
-        assertThatThrownBy(() -> validator.checkDirection("UP"))
+    @ParameterizedTest
+    @ValueSource(strings = {"UP","DOWN","UPP"," "})
+    void checkDirectionTest(String input) {
+        assertThatThrownBy(() -> validator.checkDirection(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("입력값이 Q나 R이 아니면 예외가 발생한다.")
-    @Test
-    void checkCommandTest() {
-        assertThatThrownBy(() -> validator.checkCommand("QUIT"))
+    @ParameterizedTest
+    @ValueSource(strings = {"Retry","Quit","q","r"})
+    void checkCommandTest(String input) {
+        assertThatThrownBy(() -> validator.checkCommand(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
