@@ -32,23 +32,21 @@ public class BridgeGameController {
 
     private void play() {
         boolean isMoving = true;
-        boolean verified;
         do {
-            try {
-                verified = true;
-                isMoving = askMove();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                verified = false;
-            }
-        } while (isMoving && bridgeGame.isOnGoing() || !verified);
+            isMoving = askMove();
+        } while (isMoving && bridgeGame.isOnGoing());
         determinePlay(bridgeGame.isOnGoing());
     }
 
     private boolean askMove() {
-        OutputView.askMove();
-        boolean isMoving = bridgeGame.move();
-        OutputView.printMap(bridgeGame.getPlayer().getWay(), bridgeGame.getBridge().getBridge());
+        boolean isMoving = true;
+        try {
+            OutputView.askMove();
+            isMoving = bridgeGame.move();
+            OutputView.printMap(bridgeGame.getPlayer().getWay(), bridgeGame.getBridge().getBridge());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return isMoving;
     }
 
