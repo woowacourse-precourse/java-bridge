@@ -2,9 +2,8 @@ package bridge.type;
 
 public enum LangType {
     HELLO_WORLD("안녕 세계 %s"),
-    THROW_UNKNOWN_BRIDGE_TYPE("알 수 없는 브리지 타입이 입력되었어요."),
-    THROW_WRONG_COMMAND("잘못된 명령어를 입력했어요. 사용 가능한 명령어는 다음과 같아요.\n%s"),
-    NOT_FOUND_DATA("데이터를 찾을 수 없어요.");
+    WRONG_COMMAND("잘못된 명령어를 입력했어요. 사용 가능한 명령어는 다음과 같아요.\n%s"),
+    SLAB_TYPE_IS_UNKNOWN("SlabType 이 알 수 없음 이에요.");
 
     private final String message;
 

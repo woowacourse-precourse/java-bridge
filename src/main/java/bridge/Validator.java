@@ -5,9 +5,9 @@ import bridge.type.LangType;
 import java.util.List;
 
 public class Validator {
-    public static void checkCommand(List<String> allowCommands, String command) {
+    public static void checkConsoleCommandIsCorrect(List<String> allowCommands, String command) {
         if (!allowCommands.contains(command)) {
-            String message = LangType.format(LangType.THROW_WRONG_COMMAND, joinCommands(allowCommands));
+            String message = LangType.format(LangType.WRONG_COMMAND, joinCommands(allowCommands));
             throw new IllegalArgumentException(message);
         }
     }
