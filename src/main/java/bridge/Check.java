@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.exception.BridgeLengthOutOfRange;
+import bridge.exception.MoveValid;
 import bridge.exception.NotNumeric;
 
 import static bridge.Utility.*;
@@ -27,5 +28,12 @@ public class Check {
         return true;
     }
 
-
+    public static boolean checkMoveValid(String input){
+        if(!(input.equals(Move.UP.getMoveType()) || input.equals(Move.DOWN.getMoveType()))){
+            IllegalArgumentException exception = new MoveValid(ERROR_MESSAGE);
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
 }
