@@ -2,30 +2,47 @@ package bridge.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.model.Direction;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 class InputViewTest {
-    InputView inputView = new InputView();
+    InputView inputView;
+    OutputStream out;
 
-    @ParameterizedTest
-    @ValueSource(strings = {"a\n" + "21\n" + "3"})
-    @DisplayName("다리 크기 입력값이 잘못되면 오류메시지 출력 후 재입력 받는다..")
-    void readBridgeSize_InputByInvalidValue_ReInputUntilValidValue(String input) {
-        // TODO: exception을 컨트롤해줘서 그걸 검증하면 안됨 Exception이 안던져짐
-        OutputStream out = new ByteArrayOutputStream();
+    @BeforeEach
+    void test_Init() {
+        inputView = new InputView();
+        out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+    }
+
+    @Test
+    @DisplayName("다리 크기 입력값이 잘못되면 오류메시지 출력 후 재입력 받는다.")
+    void readBridgeSize_InputByInvalidValue_ReInputUntilValidValue() {
+        System.setIn(new ByteArrayInputStream(
+                ("a" + System.lineSeparator() + "21" + System.lineSeparator() + "3").getBytes()));
 
         assertThat(inputView.readBridgeSize()).isEqualTo(3);
         assertThat(out.toString()).contains(
                 "[ERROR] 숫자를 입력하세요.",
                 "[ERROR] 3 이상 20 이하의 자연수를 입력하세요.");
     }
+
+    @Test
+    @DisplayName("움직일 방향 입력값이 잘못되면 오류메시지 출력 후 재입력 받는다.")
+    void readMoving_InputByInvalidValue_ReInputUntilValidValue() {
+        System.setIn(new ByteArrayInputStream(
+                ("u" + System.lineSeparator() + "0" + System.lineSeparator() + "U").getBytes()));
+
+        assertThat(inputView.readMoving()).isEqualTo(Direction.U);
+        assertThat(out.toString()).contains("[ERROR] U 또는 D를 입력하세요.");
+    }
+
 
 }
