@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.bridge;
 
 import static bridge.domain.BridgeLocation.initBridgeLocation;
 import static bridge.value.BridgeLineCharacter.BRIDGE_SEPARATOR;
