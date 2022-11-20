@@ -1,11 +1,11 @@
-package bridge;
+package bridge.domain.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.domain.game.Bridge;
-import bridge.domain.game.BridgeGame;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.player.Player;
 import bridge.dto.controller.ExitDto;
 import bridge.dto.controller.MoveDto;
