@@ -24,6 +24,9 @@ public class BridgeGameResult {
     }
 
     public List<List<MoveResult>> getResult() {
+        if (result.isEmpty()) {
+            return List.of();
+        }
         return List.of(getMoveResults(Direction.UP), getMoveResults(Direction.DOWN));
     }
 
