@@ -25,4 +25,11 @@ public class Bridge {
     private boolean isPossibleToMove(String movingPlace) {
         return bridge.get(currentPosition).equals(movingPlace);
     }
+
+    public void print() {
+        for (String one : bridge) {
+            System.out.print(one + " ");
+        }
+        System.out.println();
+    }
 }

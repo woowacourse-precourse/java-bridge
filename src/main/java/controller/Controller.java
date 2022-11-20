@@ -10,6 +10,7 @@ public class Controller {
 
     public void run() {
         Bridge bridge = createBridge();
+        bridge.print();
         move(bridge);
     }
 
@@ -26,13 +27,24 @@ public class Controller {
 
     private void move(Bridge bridge) {
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        String gameCommand = "";
+        boolean isCorrect;
 
-        String movingPlace = inputView.readMoving();
-        String gameCommand;
+        do {
+            String movingPlace = inputView.readMoving();
+            isCorrect = bridgeGame.move(movingPlace);
+            if (!isCorrect) {
+                gameCommand = inputView.readGameCommand();
+            }
+        } while (isRetry(gameCommand, isCorrect));
+    }
 
-        if (!bridgeGame.move(movingPlace)) {
-            gameCommand = inputView.readGameCommand();
+    private boolean isRetry(String gameCommand, boolean isCorrect) {
+        if (gameCommand.equals("Q")) {
+            return false;
         }
+
+        return gameCommand.equals("R") && !isCorrect;
     }
 
 }
