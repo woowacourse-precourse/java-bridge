@@ -53,7 +53,7 @@ public class BridgeGame {
     public ResultDto getResultDto() {
         int tryCount = player.getTryCount();
         boolean isComplete = isPlayerCompleteToMove();
-        BridgeRouteDto currentPosition = getBridgeRouteDto();
-        return new ResultDto(tryCount, isComplete, currentPosition);
+        BridgeRouteDto BridgeRouteDto = getBridgeRouteDto();
+        return new ResultDto(tryCount, isComplete, BridgeRouteDto);
     }
 }
