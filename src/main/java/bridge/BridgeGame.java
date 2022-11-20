@@ -1,16 +1,51 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+    private static List<List<String>> bridges;
+    private static List<String> bridgeUp;
+    private static List<String> bridgeDown;
+
+    public BridgeGame() {
+        this.bridges = List.of(new ArrayList<>(), new ArrayList<>());
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<List<String>> move(String square, String choice) {
+
+        String result = moveOne(square, choice);
+        bridgeUp = bridges.get(0);
+        bridgeDown = bridges.get(1);
+        resultAdd(choice,result);
+        System.out.println(bridges);
+        return bridges;
+    }
+
+    private String moveOne(String square, String choice) {
+        if(square.equals(choice)) {
+            return "O";
+        }
+        return "X";
+    }
+
+    private void resultAdd(String choice,String result){
+        if(choice.equals("U")){
+            bridgeUp.add(result);
+            bridgeDown.add(" ");
+        }
+        if(choice.equals("D")){
+            bridgeDown.add(result);
+            bridgeUp.add(" ");
+        }
     }
 
     /**
