@@ -1,4 +1,4 @@
-package bridge;
+package enumCollections;
 
 public enum Position {
     UP("U", 1),
@@ -21,5 +21,25 @@ public enum Position {
             return UP.status;
         }
         return DOWN.status;
+    }
+
+    public static int getIndex(Position position) {
+        return position.number;
+    }
+
+    public static Position getPosition(String status) {
+        for (Position position : Position.values()) {
+            if (position.status == status) {
+                return position;
+            }
+        }
+        return null;
+    }
+
+    public static Position getOppositePosition(Position position) {
+        if (position == Position.UP) {
+            return Position.DOWN;
+        }
+        return Position.UP;
     }
 }
