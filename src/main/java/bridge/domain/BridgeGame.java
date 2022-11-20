@@ -31,7 +31,7 @@ public class BridgeGame {
      */
     public PlayerMap move(Moving moving) {
         isMove = bridgeMap.isMove(playerMap, moving);
-        playerMap.addResult(moving, isMove);
+        playerMap.move(moving, isMove);
         return playerMap;
     }
 

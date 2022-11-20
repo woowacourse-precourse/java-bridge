@@ -22,7 +22,7 @@ public class PlayerMap {
         return firstLine.size();
     }
 
-    public void addResult(Moving moving, boolean value) {
+    public void move(Moving moving, boolean value) {
         if (moving.equals(BridgeConstants.BRIDGE_GAME_MOVING_UP)) {
             addMap(getStatus(value), BridgeConstants.BRIDGE_GAME_MOVING_BLANC);
         }
