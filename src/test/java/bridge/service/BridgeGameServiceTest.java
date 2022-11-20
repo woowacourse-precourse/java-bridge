@@ -8,7 +8,9 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveResult;
 import bridge.domain.Player;
+import bridge.domain.Victory;
 import bridge.dto.GameMoveDto;
+import bridge.dto.GameResultDto;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -82,6 +84,21 @@ class BridgeGameServiceTest {
         bridgeGameService.retry(new Player(), "R");
 
         assertThat(bridgeGameService.isPlayable()).isFalse();
+    }
+
+    @Test
+    void gameOver_메서드는_사용자를_입력받아_GameResultDto를_반환한다() {
+        bridgeGameService.initializeBridgeGame(3);
+        Player player = new Player();
+        bridgeGameService.play(player, "D");
+        bridgeGameService.play(player, "D");
+        bridgeGameService.play(player, "U");
+
+        GameResultDto gameResultDto = bridgeGameService.gameOver(player);
+
+        assertThat(gameResultDto.getCount()).isEqualTo(1);
+        assertThat(gameResultDto.getVictory()).isEqualTo(Victory.VICTORY);
+        assertThat(gameResultDto.getResult()).isInstanceOf(GameMoveDto.class);
     }
 
     static class TestBridgeNumberGenerator implements BridgeNumberGenerator {

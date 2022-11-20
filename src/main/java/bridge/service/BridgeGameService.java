@@ -7,6 +7,7 @@ import bridge.domain.BridgeGameStatus;
 import bridge.domain.Direction;
 import bridge.domain.Player;
 import bridge.dto.GameMoveDto;
+import bridge.dto.GameResultDto;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,19 +36,19 @@ public class BridgeGameService {
         return new GameMoveDto(player.getBridgeGameResult());
     }
 
+    public boolean isPlayable() {
+        if (isNotInitialized()) {
+            return false;
+        }
+        return bridgeGame.isPlayable();
+    }
+
     public void retry(Player player, String command) {
         if (isNotInitialized() || isNotContinuous(command)) {
             return;
         }
         bridgeGame.retry();
         player.reset();
-    }
-
-    public boolean isPlayable() {
-        if (isNotInitialized()) {
-            return false;
-        }
-        return bridgeGame.isPlayable();
     }
 
     private boolean isNotInitialized() {
@@ -57,5 +58,10 @@ public class BridgeGameService {
     private boolean isNotContinuous(String command) {
         BridgeGameStatus bridgeGameStatus = BridgeGameStatus.getEnum(command);
         return bridgeGameStatus.isNotPlayable();
+    }
+
+    public GameResultDto gameOver(Player player) {
+        GameMoveDto gameMoveDto = new GameMoveDto(player.getBridgeGameResult());
+        return new GameResultDto(player.checkGamePassed(), gameMoveDto, player.getGamePlayCount());
     }
 }
