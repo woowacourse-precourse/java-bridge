@@ -1,4 +1,4 @@
-package bridge;
+package bridge.constant;
 
 public enum Command {
     MOVE_UP("U"),

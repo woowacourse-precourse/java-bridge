@@ -1,4 +1,4 @@
-package bridge;
+package bridge.constant;
 
 public enum BridgeRule {
     MIN_LENGTH(3),
