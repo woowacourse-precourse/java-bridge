@@ -3,8 +3,6 @@ package bridge.view;
 import bridge.model.*;
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.List;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -30,7 +28,7 @@ public class InputView {
     public void readBridgeSize() {
         String bridgeLength;
         do {
-            System.out.println(MessageView.PLAY_BRIDGE_GAME.getMessage());
+            System.out.println(MessageView.PLAY_BRIDGE_GAME.getMessage() + "\n");
             System.out.println(MessageView.INPUT_BRIDGE_LENGTH.getMessage());
             bridgeLength = Console.readLine();
         } while(bridgeException.invalidLengthInputValue(bridgeLength));
@@ -49,25 +47,35 @@ public class InputView {
                 moveDirection = Console.readLine();
             } while(bridgeException.invalidMovingInputValue(moveDirection));
             gameStatistics.getCheckRoad().add(bridgeGame.move(moveDirection, gameStatistics.getAnswerRoad(), bridgeGame.getPlayer()));
-            //
-            System.out.println(gameStatistics.getCheckRoad());
-            //
             boolean roundResult = bridge.buildBridge();
             outputView.printMap();
-            if (!roundResult) {
-                String retryGame = readGameCommand();
-                if (retryGame.equals("Q")) {
-                    break;
-                } else if (retryGame.equals("R")) {
-                    bridgeGame.retry();
-                }
-            } else if (Player.currentLocation == bridge.getSize()) {
-                gameStatistics.setGameResult("성공");
-                System.out.println();
-                outputView.printResult();
-                break;
-            }
+            if (isGameFinished(roundResult)) break;
         }
+    }
+
+    private boolean isGameFinished(boolean roundResult) {
+        if (!roundResult) {
+            String retryGame = readGameCommand();
+            if (checkRetryCommand(retryGame)) return true;
+        } else if (Player.currentLocation == bridge.getSize()) {
+            showGameResult();
+            return true;
+        }
+        return false;
+    }
+
+    private void showGameResult() {
+        gameStatistics.setGameResult("성공");
+        System.out.println();
+        outputView.printResult();
+    }
+
+    private boolean checkRetryCommand(String retryGame) {
+        if (retryGame.equals("Q")) {
+            return true;
+        }
+        bridgeGame.retry();
+        return false;
     }
 
     /**
