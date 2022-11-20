@@ -13,14 +13,14 @@ public class BridgeGame {
 
     private List<String> bridge;
     private int tryCount;
-    private Player player;
+    private int position;
     private String lastCommand;
 
     /**
      * 생성자
      */
     public BridgeGame() {
-        player = new Player();
+        position = 0;
         bridge = null;
         tryCount = 1;
         lastCommand = null;
@@ -32,7 +32,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String command) {
-        player.move(command);
+        position += 1;
         lastCommand = command;
     }
 
@@ -42,7 +42,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        player = new Player();
+        position = 0;
         tryCount++;
     }
 
@@ -52,7 +52,7 @@ public class BridgeGame {
      * @return 플레이어가 생존했다면 true 죽었다면 false
      */
     public boolean isPlayerAlive() {
-        if (player.getPosition() == 0 || bridge.get(player.getPosition() - 1).equals(lastCommand)) {
+        if (getPlayerPosition() == 0 || bridge.get(getPlayerPosition() - 1).equals(lastCommand)) {
             return true;
         }
         return false;
@@ -64,7 +64,7 @@ public class BridgeGame {
      * @return 플레이어가 승리했다면 true 아니라면 false
      */
     public boolean isSuccess() {
-        if (bridge.size() == player.getPosition()) {
+        if (bridge.size() == getPlayerPosition()) {
             return true;
         }
         return false;
@@ -85,7 +85,7 @@ public class BridgeGame {
 
     /**
      * 브릿지 맵을 설정하고 초기화 하는 메서드
-     * @param bridge 브릿지 맵
+     * @param bridgeMap 브릿지 맵
      */
     public void initBridge(List<String> bridgeMap) {
         bridge = bridgeMap;
@@ -100,11 +100,11 @@ public class BridgeGame {
     }
 
     public int getPlayerPosition() {
-        return player.getPosition();
+        return position;
     }
 
     public int getPlayerIndex() {
-        return player.getIndex();
+        return position - 1;
     }
 
     public String getLastCommand() {
