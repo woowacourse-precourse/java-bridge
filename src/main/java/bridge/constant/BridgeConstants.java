@@ -9,4 +9,8 @@ public class BridgeConstants {
 
     public static final String RESTART = "R";
     public static final String QUIT = "Q";
+
+    public static final String SUCCESS = "O";
+    public static final String FAILURE = "X";
+    public static final String SPACE = " ";
 }
