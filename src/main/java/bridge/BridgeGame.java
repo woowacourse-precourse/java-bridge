@@ -24,6 +24,18 @@ public class BridgeGame {
         updateMap(playerChoice, isRightAnswer);
     }
 
+    public String checkAnswer(List<String> bridge, String playerChoice) {
+        String answer = "X";
+
+        if (bridge.get(playerLocationIndex).equals(playerChoice)) {
+            askRetryMarker = false;
+            answer = "O";
+        } else if (!bridge.get(playerLocationIndex).equals(playerChoice)) {
+            askRetryMarker = true;
+        }
+        return answer;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
