@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println(OUTPUT_START_MESSAGE);
     }
 
-    public void initMap(){
+    public void initBridgeState(){
         this.currentStateOfBridge = NONE + "\n" + NONE;
         this.isFirst = true;
         this.attempt += 1;
