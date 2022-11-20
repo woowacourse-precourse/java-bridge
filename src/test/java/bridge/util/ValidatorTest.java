@@ -16,7 +16,18 @@ class ValidatorTest {
     void isNotDigit(){
         assertThatThrownBy(()->Validator.isDigit("j1"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 다리의 길이는 정수이어야 합니다.");
+                .hasMessage("[ERROR] 다리의 길이는 정수여야 합니다.");
     }
-
+    @Test
+    @DisplayName("입력한 다리 길이가 3~20사이 일때 true 반환하는지 확인")
+    void trueCheckBridgeRange(){
+        assertThat(Validator.checkRange("13")).isTrue();
+    }
+    @Test
+    @DisplayName("입력한 다리 길이가 3~20사이 일때 true 반환하는지 확인")
+    void falseCheckBridgeRange(){
+        assertThatThrownBy(()->Validator.checkRange("21"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리의 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
 }
