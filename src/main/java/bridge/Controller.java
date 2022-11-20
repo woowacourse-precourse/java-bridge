@@ -4,6 +4,7 @@ import bridge.models.BridgeGame;
 import bridge.models.BridgeMaker;
 import bridge.utils.BridgeNumberGenerator;
 import bridge.utils.BridgeRandomNumberGenerator;
+import bridge.utils.ErrorMessage;
 import bridge.utils.Setting;
 import bridge.views.InputView;
 import bridge.views.OutputView;
@@ -21,7 +22,7 @@ public class Controller {
         try {
             return InputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            ErrorMessage.print(e.getMessage());
             return getBridgeSize();
         }
     }
@@ -30,7 +31,7 @@ public class Controller {
         do {
             String directions = getMovingDirection();
             bridgeGame.move(directions);
-            outputView.printMap(directions, bridgeGame.checkStatus(directions), bridgeGame.getBridgeIndex());
+            outputView.printMap(bridgeGame, directions);
             if (bridgeGame.gameSuccess()) {
                 break;
             }
@@ -42,12 +43,12 @@ public class Controller {
             try {
                 return InputView.readMoving();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                ErrorMessage.print(e.getMessage());
             }
         }
     }
 
-    public static void restartGame(BridgeGame bridgeGame) {
+    public static void restartRound(BridgeGame bridgeGame) {
         String gameCommand = getGameCommand();
         if (gameCommand.equals(Setting.GAME_RESTART)) {
             bridgeGame.retry();
@@ -58,7 +59,7 @@ public class Controller {
         try {
             return InputView.readGameCommand();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            ErrorMessage.print(e.getMessage());
             return getGameCommand();
         }
     }
