@@ -12,16 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BridgeGameTest {
 
     Bridge bridge;
+    Result result;
     @BeforeEach
     void setUp() {
         bridge = new Bridge(List.of("U", "D", "U"));
+        result = new Result();
     }
 
     @DisplayName("사용자의 index번째에 입력한 이동할 칸 값과 index번째 다리의 정답이 일치할때 결과에 참이 반영 되는지 테스트")
     @Test
     void moveTrue() {
         //given
-        Result result = new Result(1);
         MoveDirection direction = new MoveDirection("U");
         int index = 0;
 
@@ -37,7 +38,6 @@ class BridgeGameTest {
     @Test
     void moveFalse() {
         //given
-        Result result = new Result(1);
         MoveDirection direction = new MoveDirection("D");
         int index = 0;
 
