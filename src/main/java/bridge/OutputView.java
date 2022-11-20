@@ -12,6 +12,9 @@ public class OutputView {
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String FINAL_GAME_RESULT = "최종 게임 결과";
+    private static final String FINAL_GAME_STATUS = "게임 성공 여부: ";
+    private static final String ALL_ATTEMPTS = "총 시도한 횟수: ";
 
     public void printStart() {
         System.out.println(GAME_START);
@@ -38,7 +41,7 @@ public class OutputView {
         String secondRow = makeSecondRow(bridge, user);
 
         System.out.println("[ " + firstRow + " ]");
-        System.out.println("[ " + secondRow + " ]");
+        System.out.println("[ " + secondRow + " ]\n");
     }
 
     private static String makeFirstRow(List<String> bridge, List<String> user) {
@@ -91,11 +94,24 @@ public class OutputView {
         return String.join(" | ", status);
     }
 
+    public void printFinalGameResult() {
+        System.out.println(FINAL_GAME_RESULT);
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> bridge, List<String> user) {
+        printMap(bridge, user);
+    }
+
+    public void printGameStatus(Status status) {
+        System.out.println(FINAL_GAME_STATUS + status.getMessage());
+    }
+
+    public void printAllAttempts(int attempt) {
+        System.out.println(ALL_ATTEMPTS + attempt);
     }
 }
