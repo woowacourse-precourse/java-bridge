@@ -38,4 +38,10 @@ public class BridgeGame {
             throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
         }
     }
+
+    private void isCorrectMoving(String moving) {
+        if (!List.of(BridgeConstants.DOWN, BridgeConstants.UP).contains(moving)) {
+            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_MOVING.getMessage());
+        }
+    }
 }
