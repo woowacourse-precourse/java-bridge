@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.domain.GameFlag;
 import bridge.domain.GameMoving;
 import bridge.domain.GameStatus;
 
@@ -10,12 +9,15 @@ import java.util.stream.Collectors;
 
 
 public class OutputView {
+    private final String GAME_RESULT_MESSAGE = "최종 게임 결과";
+    private final String WHETHER_GAME_SUCCESS_MESSAGE = "게임 성공 여부: ";
+    private final String TOTAL_TRY = "총 시도한 횟수: ";
 
     public void printResult(GameStatus gameStatus, int count) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT_MESSAGE);
         printMap(gameStatus);
-        System.out.println("게임 성공 여부: " + gameStatus.getMessage());
-        System.out.println("총 시도한 횟수: " + count);
+        System.out.println(WHETHER_GAME_SUCCESS_MESSAGE + gameStatus.getMessage());
+        System.out.println(TOTAL_TRY + count);
     }
 
     public void printMap(GameStatus gameStatus) {
