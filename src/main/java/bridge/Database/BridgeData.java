@@ -23,6 +23,9 @@ public class BridgeData {
     public List<String> getBridgeDesignByUser() {
         return this.bridgeDesignByUser;
     }
+    public int getTotalAttempt() {
+        return this.totalAttempt;
+    }
 
     public void increaseAttempts() {
         this.totalAttempt += 1;
