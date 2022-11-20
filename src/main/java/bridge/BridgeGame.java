@@ -46,8 +46,10 @@ public class BridgeGame {
     }
 
     private boolean isSuccess() {
+        boolean success = idx == randomMap.size();
         count++;
-        if(idx == randomMap.size()) {
+        outputView.printResult(success, List.of(UpMap, DownMap), count);
+        if(success) {
             return true;
         }
         return false;
