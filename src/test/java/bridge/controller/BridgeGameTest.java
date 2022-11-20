@@ -6,10 +6,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
 
 class BridgeGameTest {
 
@@ -52,14 +52,15 @@ class BridgeGameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"A", "1234"})
+    @ValueSource(strings = {"A,U", "1234,U"})
     void 다리를_이동할때_정해진값이_아니면_에러를발생한다(String input) {
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        final byte[] buf = String.join("\n", input.split(",")).getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(newConsole));
 
-        InputView inputView = new InputView();
-        Assertions.assertThatThrownBy(() -> inputView.readMoving())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.BRIDGE_INPUT_ONLY_UP_AND_DOWN);
+        new InputView().readMoving();
+
+        Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.BRIDGE_INPUT_ONLY_UP_AND_DOWN);
     }
 }
