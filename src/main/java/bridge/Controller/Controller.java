@@ -5,6 +5,8 @@ import bridge.Domain.BridgeNumberGenerator;
 import bridge.Domain.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 
+import java.util.List;
+
 public class Controller {
     public InputView inputView;
     public BridgeNumberGenerator bridgeNumberGenerator;
@@ -21,6 +23,7 @@ public class Controller {
         int bridgeLen = inputView.readBridgeSize();
 
         //다리 생성하기
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLen);
 
         //게임 시작
         String moving = inputView.readMoving();
