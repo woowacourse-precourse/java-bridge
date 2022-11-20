@@ -26,6 +26,7 @@
     - [X] 생성된 다리에 각 다리 지점 별로 이동할 수 있는 방향 값 배치 - BridgeMaker#addBridgeArrow()
 ***
 - [ ] 다리 건너기 - BridgeGame#move()
+    - [X] 다리 방향 입력 값 검증 및 예외처리 - BridgeGame#validateBridgeArrow()
     - [ ] 몇 라운드인지 계산
     - [ ] 다리를 건널 수 있는지 여부 확인 - BridgeGame#isCrossable()
     - [ ] 다리에 표시할 상태 값 생성 - BridgeGame#makeBridgeStatus()
