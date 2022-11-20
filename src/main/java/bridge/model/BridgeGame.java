@@ -11,12 +11,10 @@ import java.util.List;
 public class BridgeGame {
     List<String> answerMove;
     List<String> playerMove;
-    boolean gameStatus;
 
     public BridgeGame(Bridge gameBridge) {
         this.answerMove = gameBridge.getBridge();
         this.playerMove = new ArrayList<>();
-        this.gameStatus = false;
     }
 
     /**
@@ -59,5 +57,9 @@ public class BridgeGame {
             }
         }
         return new ArrayList<>(Arrays.asList(upMap, downMap));
+    }
+
+    public boolean isSuccess() {
+        return answerMove.equals(playerMove);
     }
 }
