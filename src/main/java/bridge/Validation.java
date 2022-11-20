@@ -12,8 +12,8 @@ public class Validation {
         return true;
     }
 
-    public void validateInputPosition(String position) {
-        if (!position.equals("U") && !position.equals("D")) {
+    public void validateInputPosition(String moving) {
+        if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException("[ERROR]위로 가려면 U, 아래로 가려면 D를 입력해주세요.");
         }
     }
