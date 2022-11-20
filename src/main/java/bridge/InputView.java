@@ -18,6 +18,19 @@ public class InputView {
         return size;
     }
 
+    public void checkDigit(String bridgeSize) {
+        final String REGEX="[0-9]+";
+        if(!bridgeSize.matches(REGEX)){
+            throw new IllegalArgumentException("[ERROR] 다리 길이에 숫자만 입력하세요.");
+        }
+    }
+
+    public void checkRange(int size){
+        if(!(3<=size&&size<=20)){
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
