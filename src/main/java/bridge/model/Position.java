@@ -38,6 +38,4 @@ public enum Position {
         return string.equals(position.abbreviation);
     }
 
-
-
 }

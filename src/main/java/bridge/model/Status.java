@@ -21,4 +21,11 @@ public enum Status {
                 .orElse(null);
     }
 
+    public static String getDisplay(Status status) {
+        return status.display;
+    }
+    public static boolean die(Status status){
+        return status == Status.DIE;
+    }
+
 }

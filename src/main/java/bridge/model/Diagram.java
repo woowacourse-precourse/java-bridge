@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.model.Status.getDisplay;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,27 +12,14 @@ public class Diagram {
 
     public void updateDiagrams(Position position, Status status) {
         if (position == Position.UP) {
-            if (status == Status.SURVIVE) {
-                upDiagram.add("O");
-                downDiagram.add(" ");
-                printDiagrams();
-                return;
-            }
-            upDiagram.add("X");
+            upDiagram.add(getDisplay(status));
             downDiagram.add(" ");
             printDiagrams();
-            return;
         }
         if (position == Position.DOWN) {
-            if (status == Status.SURVIVE) {
                 upDiagram.add(" ");
-                downDiagram.add("O");
+                downDiagram.add(getDisplay(status));
                 printDiagrams();
-                return;
-            }
-            upDiagram.add(" ");
-            downDiagram.add("X");
-            printDiagrams();
         }
     }
 

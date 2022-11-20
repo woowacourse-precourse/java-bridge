@@ -1,6 +1,7 @@
 package bridge.model;
 
 import static bridge.controller.InputController.getUserSelection;
+import static bridge.model.Status.die;
 import static bridge.model.Status.findStatus;
 
 import bridge.controller.GameController;
@@ -29,7 +30,7 @@ public class BridgeGame {
             Position position = getUserSelection();
             Status status = findStatus(bridge.isSamePosition(index, position));
             diagram.updateDiagrams(position, status);
-            if (status == Status.DIE) {
+            if (die(status)) {
                 break;
             }
         }
