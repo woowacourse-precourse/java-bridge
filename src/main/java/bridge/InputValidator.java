@@ -4,6 +4,7 @@ public class InputValidator {
 
     public void validateInputBridgeSize(String bridgeSize) {
         validateNumber(bridgeSize);
+        validateSize(Integer.parseInt(bridgeSize));
     }
 
     public void validateInputMove(String command) {
@@ -16,18 +17,28 @@ public class InputValidator {
         validateIsRetryCommand(command.charAt(0));
     }
 
+    private void validateSize(int size) {
+        if (isOutOfSize(size)) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_OUT_OF_SIZE.toString());
+        }
+    }
+
+    private boolean isOutOfSize(int size) {
+        return size < GameSetting.MIN_BRIDGE_SIZE.getValue() || size > GameSetting.MAX_BRIDGE_SIZE.getValue();
+    }
+
     private void validateIsRetryCommand(char command) {
-        if(isNotRetryCommand(command)) {
+        if (isNotRetryCommand(command)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT.toString());
         }
     }
 
     private boolean isNotRetryCommand(char command) {
-        return command!= InputType.RETRY.getValue() && command != InputType.QUIT.getValue();
+        return command != InputType.RETRY.getValue() && command != InputType.QUIT.getValue();
     }
 
     private void validateIsMoveCommand(char command) {
-        if(isNotMoveCommand(command)) {
+        if (isNotMoveCommand(command)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT.toString());
         }
     }
@@ -37,13 +48,13 @@ public class InputValidator {
     }
 
     private void validateNumber(String number) {
-        if(!number.matches(String.valueOf(Regex.NUMBER))) {
+        if (!number.matches(String.valueOf(Regex.NUMBER))) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_OUT_OF_SIZE.toString());
         }
     }
 
     private void validateIsOneChar(String command) {
-        if(!command.matches(Regex.ONE_CHAR.toString())) {
+        if (!command.matches(Regex.ONE_CHAR.toString())) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT.toString());
         }
     }
