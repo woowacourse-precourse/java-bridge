@@ -1,9 +1,39 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    Status status;
+
+    public BridgeGame() {
+        status = Status.PROCEEDING;
+    }
+
+    /**
+    * 생성된 다리와 사용자의 입력을 비교해 게임의 상태를 변경한다.
+    * */
+    public void changeResult(List<String> bridge, List<String> userMoving) {
+        for (int index = 0; index < userMoving.size(); index++) {
+            String bridgeValue = bridge.get(index);
+            String userValue = userMoving.get(index);
+
+            if (!bridgeValue.equals(userValue)) {
+                status = Status.FAIL;
+                break;
+            }
+        }
+
+        if (bridge.size() == userMoving.size()) {
+            status = Status.SUCCESS;
+        }
+    }
+
+    public boolean isProceeding() {
+        return status.isProceeding();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
