@@ -54,10 +54,14 @@ public class GameManager {
         MoveResult moveResult = bridgeGame.isCorrectMove(move);
         if(moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) bridgeGame.move();
         char[][] bridgeToCurrentPosition = bridgeGame.getBridgeToCurrentPosition(moveResult);
-        int indexToPrint = bridgeGame.getCurrentStep();
-        if(moveResult.equals(MoveResult.WRONG)) indexToPrint++;
+        int indexToPrint = getIndexToPrint();
         outputView.printMap(bridgeToCurrentPosition, indexToPrint);
         return moveResult;
+    }
+    private int getIndexToPrint() {
+        int indexToPrint = bridgeGame.getCurrentStep();
+        if(moveResult.equals(MoveResult.WRONG)) indexToPrint++;
+        return indexToPrint;
     }
     // 게임 종료
     private void endGame() {
