@@ -31,7 +31,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGameResult result) {
-        System.out.println(printMapFormat(result));
+        StringBuilder printMap = new StringBuilder();
+        printMap.append(printMapFormat(result)).append(NEW_LINE);
+        System.out.println(printMap);
     }
 
     /**
@@ -42,7 +44,7 @@ public class OutputView {
     public void printResult(BridgeGameResult bridgeGameResult, TryCount tryCount) {
         StringBuilder result = new StringBuilder();
         result.append(PRINT_RESULT_GUIDE).append(NEW_LINE);
-        result.append(printMapFormat(bridgeGameResult)).append(NEW_LINE);
+        result.append(printMapFormat(bridgeGameResult)).append(NEW_LINE).append(NEW_LINE);
         result.append(printGameSuccessFormat(bridgeGameResult)).append(NEW_LINE);
         result.append(printTryCountFormat(tryCount));
         System.out.println(result);

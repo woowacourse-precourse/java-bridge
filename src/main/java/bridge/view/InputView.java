@@ -33,6 +33,7 @@ public class InputView {
             String text = Console.readLine();
             int bridgeSize = validateNumber(text);
             validateBridgeSizeRange(bridgeSize);
+            System.out.println();
             return bridgeSize;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
