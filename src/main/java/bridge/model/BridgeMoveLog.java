@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class BridgeMoveLog {
 
     private final Map<BridgeType, List<String>> moveLog;
 
-    private static final String EMPTY = " ";
+    private static final String DEFAULT_STATUS = " ";
 
     public BridgeMoveLog(int size) {
         this.moveLog = initLog(size);
@@ -23,15 +24,20 @@ public class BridgeMoveLog {
         }};
     }
 
-    public void writeLog(BridgeType selectBridgeType, String status) {
-        for (BridgeType bridgeType : moveLog.keySet()) {
-            if (selectBridgeType == bridgeType) {
-                moveLog.get(bridgeType).add(status);
-                continue;
-            }
+    public void writeLog(BridgeType selectBridgeType, String safeStatus) {
 
-            moveLog.get(bridgeType).add(EMPTY);
+        moveLog.forEach((bridgeType, log) -> {
+            String status = judgeStatus(bridgeType, selectBridgeType, safeStatus);
+            log.add(status);
+        });
+    }
+
+    private String judgeStatus(BridgeType bridgeType, BridgeType selectBridgeType, String safeStatus) {
+        if (bridgeType == selectBridgeType) {
+            return safeStatus;
         }
+
+        return DEFAULT_STATUS;
     }
 
     public void resetLog() {
