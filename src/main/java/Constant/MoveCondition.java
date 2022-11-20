@@ -2,7 +2,11 @@ package Constant;
 
 public enum MoveCondition {
     SUCCESS(true),
-    FAIL(false);
+    ARRIVE(true),
+    FAIL(false),
+    Q(false),
+    R(true);
+
     private boolean cond;
     MoveCondition(boolean cond){
         this.cond=cond;

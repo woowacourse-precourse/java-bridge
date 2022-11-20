@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public enum BridgeMakerConstant {
-    BRIDGE_ROUTE(List.of("U","D"));
+    BRIDGE_ROUTE(List.of("D","U"));
 
 
     private final List<String> route;
@@ -14,7 +14,7 @@ public enum BridgeMakerConstant {
         this.route = input;
         moveIndex = new HashMap<>();
         for(int i=0; i<input.size(); i++){
-            moveIndex.put(input.get(i),i);
+            moveIndex.put(input.get(i),1-i);
         }
     }
     public String getValue(int idx){
