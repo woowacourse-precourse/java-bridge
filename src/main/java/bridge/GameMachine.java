@@ -14,18 +14,25 @@ public class GameMachine {
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void run() {
+        int counter = 0;
+        view.printStart();
         RetryCommand retry = RetryCommand.RETRY;
         while (retry == RetryCommand.RETRY) {
             play();
+            view.printRestartRequest();
             retry = RetryCommand.of(ui.readGameCommand());
+            counter++;
         }
+        view.printGameCount(counter);
     }
 
     private void play() {
+        view.printBridgeSizeRequest();
         List<BridgeType> bridge = makeBridge();
         bridge.stream().forEach(a -> System.out.println(a));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         for (int location = 0; location < bridge.size(); location++) {
+            view.printMoveTypeRequest();
             BridgeType userInput = BridgeType.of(ui.readMoving());
             if (MoveResult.FAIL == bridgeGame.move(userInput)) {
                 System.out.println("FAIL");
