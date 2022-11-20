@@ -32,4 +32,11 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public Boolean gameFinishedCheck() {
+        if (currentIndex >= bridge.size()) {
+            return true;
+        }
+        return false;
+    }
 }
