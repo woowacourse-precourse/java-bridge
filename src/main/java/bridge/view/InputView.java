@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.message.ErrorMessage;
 import bridge.domain.utils.BridgeCommand;
+import bridge.domain.utils.GameState;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -46,8 +47,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(INPUT_FOR_RETRY_OR_END);
-        String input = Console.readLine();
+        String input = "";
+        try {
+            System.out.println(INPUT_FOR_RETRY_OR_END);
+            input = Console.readLine();
+            validateUserRetryInput(input);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            readGameCommand();
+        }
         return input;
     }
 
@@ -67,5 +75,10 @@ public class InputView {
     private void validateUserInputIsUpAndDown(String input) {
         if (!input.equals(BridgeCommand.DOWN.getCommand()) && !input.equals(BridgeCommand.UP.getCommand()))
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_INPUT_ONLY_UP_AND_DOWN);
+    }
+
+    private void validateUserRetryInput(String input) {
+        if (!input.equals(GameState.RETRY.getState()) && !input.equals(GameState.END.getState()))
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_RETRY_OR_END);
     }
 }
