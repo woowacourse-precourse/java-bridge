@@ -12,22 +12,26 @@ public class Player {
     {
         this.bridge = bridge;
         this.position = 0;
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     public Player(List<String> bridge)
     {
         this.bridge = new Bridge(bridge);
         this.position = 0;
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     public boolean move(String nextMove)
     {
          boolean flag = bridge.isMovable(position,nextMove);
-         tryCount++;
          if(flag) position += 1;
          return flag;
+    }
+
+    public void restart()
+    {
+        tryCount++;
     }
 
     public boolean isFinish()

@@ -24,6 +24,7 @@ public class BridgeGame {
 
     public void retry() {
         bridgeMap.restart();
+        player.restart();
     }
 
     public boolean isFinish()
