@@ -24,4 +24,10 @@ public class ExceptionHandler {
             throw new IllegalArgumentException(Error.OUT_OF_RANGE.getMessage());
         }
     }
+
+    public static void checkIsCharacter(String input) throws IllegalArgumentException {
+        if (input.length() != 1) {
+            throw new IllegalArgumentException(Error.NOT_CHARACTER.getMessage());
+        }
+    }
 }
