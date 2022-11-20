@@ -28,4 +28,18 @@ class UserTest {
         user.addUserCommand();
         Assertions.assertThat(user.getUserCommand().get(0)).isEqualTo(input);
     }
+
+    @ParameterizedTest
+    @DisplayName("사용자 입력 초기화")
+    @ValueSource(strings = {"U"})
+    void cleanCommandTest(String input) {
+        InputStream in = getPlayerInput(input);
+        System.setIn(in);
+
+        User user = new User();
+        user.addUserCommand();
+        user.cleanUserCommand();
+        Assertions.assertThat(user.getUserCommand().isEmpty()).isEqualTo(true);
+    }
+
 }

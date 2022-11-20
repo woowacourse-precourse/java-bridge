@@ -15,6 +15,10 @@ public class User {
         userCommand.add(inputView.readMoving());
     }
 
+    public void cleanUserCommand() {
+        userCommand.clear();
+    }
+
     public List<String> getUserCommand() {
         return userCommand;
     }
