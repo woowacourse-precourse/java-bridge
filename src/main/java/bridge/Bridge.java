@@ -13,6 +13,11 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
+    public Bridge(BridgeNumberGenerator bridgeNumberGenerator, int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridge = bridgeMaker.makeBridge(size);
+    }
+
     public boolean matchBridge(String uOrD) {
         correct();
         return bridge.get(pos).equals(uOrD);
