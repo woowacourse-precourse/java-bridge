@@ -67,7 +67,8 @@ public class BridgeGame {
         return false;
     }
 
-    public char[][] recordMap(String userMove, boolean isPossibleMove) {
+    public char[][] recordMap(boolean isPossibleMove) {
+        String userMove = inferUserMove(isPossibleMove);
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);
         if (isPossibleMove) {
@@ -90,5 +91,18 @@ public class BridgeGame {
     private int notMoveToInt(String move) {
         if (move.equals("U")) return 1;
         return 0;
+    }
+        /* U true => [0][index] = 'O'
+         * U false => [1][index + 1] = 'X'
+         * D true => [1][index] = 'O'
+         * D false => [0][index + 1] = 'X'
+         */
+    private String inferUserMove(boolean isPossibleMove) {
+        if(isPossibleMove) {
+            return this.bridge.getBridge().get(this.index);
+        }
+        String supposedToBeRightAnswer = this.bridge.getBridge().get(this.index + 1);
+        if(supposedToBeRightAnswer.equals("U")) return "D";
+        return "U";
     }
 }
