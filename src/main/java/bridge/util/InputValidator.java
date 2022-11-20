@@ -3,7 +3,7 @@ package bridge.util;
 import static bridge.constant.BridgeConstants.MAX_BRIDGE_SIZE;
 import static bridge.constant.BridgeConstants.MIN_BRIDGE_SIZE;
 
-import bridge.constant.Command;
+import bridge.constant.RetryCommand;
 import bridge.domain.Direction;
 
 public class InputValidator {
@@ -57,7 +57,7 @@ public class InputValidator {
     }
 
     private static void validateCommandOrder(String userInput) {
-        if (!userInput.equals(Command.RETRY.shortCut()) && !userInput.equals(Command.QUIT.shortCut())) {
+        if (RetryCommand.contains(userInput)) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND_INPUT_MSG);
         }
     }
