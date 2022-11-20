@@ -9,7 +9,10 @@ public class OutputView {
 
     private final String startMap = "[ ";
     private final String endMap = " ]";
-    private final String Separator = " | ";
+    private final String separator = " | ";
+    private final String resultOfGame = "최종 게임 결과";
+    private final String resultOfGameSuccess = "게임 성공 여부: ";
+    private final String resultOfGameTrial = "총 시도한 횟수: ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -20,9 +23,11 @@ public class OutputView {
         List<StringBuilder> maps = List.of(new StringBuilder(startMap), new StringBuilder(startMap));
         if (isEnd) {
             printMapIfIsEnd(route, maps, isSuccess);
+            System.out.println();
             return;
         }
         printMapIfIsNotEnd(route, maps);
+        System.out.println();
     }
 
     private void printMapIfIsEnd(List<String> route, List<StringBuilder> maps, boolean isSuccess) {
@@ -82,7 +87,7 @@ public class OutputView {
     private void makeUpString(List<String> route, StringBuilder upBridge, int size) {
         for (int i = 0; i < size; i++) {
             if (route.get(i).equals("D")) {
-                upBridge.append(" " + Separator);
+                upBridge.append(" " + separator);
                 continue;
             }
             upBridge.append("O");
@@ -92,7 +97,7 @@ public class OutputView {
     private void makeDownString(List<String> route, StringBuilder downBridge, int size) {
         for (int i = 0; i < size; i++) {
             if (route.get(i).equals("U")) {
-                downBridge.append(" " + Separator);
+                downBridge.append(" " + separator);
                 continue;
             }
             downBridge.append("O");
@@ -104,6 +109,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> route, boolean isSuccess, int trialNum) {
+        List<StringBuilder> maps = List.of(new StringBuilder(startMap), new StringBuilder(startMap));
+        System.out.println(resultOfGame);
+        printMapIfIsEnd(route, maps, isSuccess);
+        System.out.println();
+        printResultSuccess(isSuccess);
+        printResultTrial(trialNum);
+    }
+
+    private void printResultSuccess(boolean isSuccess) {
+        if (isSuccess) {
+            System.out.println(resultOfGameSuccess + "성공");
+            return;
+        }
+        System.out.println(resultOfGameSuccess + "실패");
+    }
+
+    private void printResultTrial(int trialNum) {
+        System.out.println(resultOfGameTrial+ trialNum);
     }
 }
