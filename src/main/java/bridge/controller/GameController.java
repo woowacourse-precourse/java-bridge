@@ -33,12 +33,12 @@ public class GameController {
 
     private Bridge makeBridge() {
         outputView.printBrideSizeOpening();
-        int bridgeSize = 0;
+        int bridgeSize;
         try {
             bridgeSize = inputView.readBridgeSize(inputView.userInput());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            makeBridge();
+            return makeBridge();
         }
         outputView.printEmptyLine();
         return new Bridge(bridgeSize);
