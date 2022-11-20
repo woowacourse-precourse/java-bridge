@@ -6,14 +6,14 @@ import bridge.utils.GameStatus;
 
 import java.util.List;
 
-import static bridge.utils.GameStatus.PLAYING;
+import static bridge.utils.GameStatus.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final GameStatus status = PLAYING;
-    private final int tryCount = 1;
+    private GameStatus status = PLAYING;
+    private int tryCount = 1;
 
     private final User user;
     private final Bridge bridge;
@@ -29,6 +29,17 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String input) {
+        user.move(bridge, input);
+        if (!user.isLive()) {
+            this.status = LOSE;
+        }
+        if (isWin()) {
+            this.status = WIN;
+        }
+    }
+
+    private boolean isWin() {
+        return user.getStep() == bridge.size();
     }
 
     /**
@@ -37,6 +48,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        user.init();
+        this.tryCount++;
     }
 
     public GameStatus getStatus() {
