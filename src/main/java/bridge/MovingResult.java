@@ -17,4 +17,16 @@ public class MovingResult {
     public boolean isFail() {
         return result.isFail();
     }
+
+    public boolean isSuccess() {
+        return result.isSuccess();
+    }
+
+    public boolean isUpSide() {
+        return moving.equals("U");
+    }
+
+    public boolean isDownSide() {
+        return moving.equals("D");
+    }
 }
