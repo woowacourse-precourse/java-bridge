@@ -1,18 +1,19 @@
-package bridge.domain.request;
+package bridge.domain.command;
 
 import java.util.Objects;
 
-public class Request {
+public class Command {
 
-    private final String request;
+    private final static String GAME_END = "Q";
+    private final String command;
 
-    public Request(String input) {
+    public Command(String input) {
         validateForm(input);
-        this.request = input;
+        this.command = input;
     }
 
-    private void validateForm(String request) {
-        if(!request.matches("[RQ]")) {
+    private void validateForm(String command) {
+        if(!command.matches("[RQ]")) {
             throw new IllegalArgumentException("[ERROR] R 혹은 Q만 입력할 수 있습니다.");
         }
     }
@@ -25,19 +26,19 @@ public class Request {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Request request1 = (Request) o;
-        return request.equals(request1.request);
+        Command command1 = (Command) o;
+        return command.equals(command1.command);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(request);
+        return Objects.hash(command);
     }
 
     @Override
     public String toString() {
-        return "Request{" +
-                "request='" + request + '\'' +
+        return "Command{" +
+                "command='" + command + '\'' +
                 '}';
     }
 }
