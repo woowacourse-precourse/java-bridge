@@ -22,7 +22,14 @@ public class BridgeViewConstructor {
         return playerIndexed.equals(bridgeIndexed);
     }
 
-    private void appendRightAnswer(){
+    private void appendRightAnswer(String playerIndexed){
+        if(isU(playerIndexed)){
+            appendWithO(upperBridge);
+            appendWithBlank(lowerBridge);
+            return;
+        }
+        appendWithBlank(upperBridge);
+        appendWithO(lowerBridge);
     }
 
     private void appendWrongAnswer(){
