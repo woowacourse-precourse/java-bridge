@@ -23,7 +23,7 @@ public class GameController {
 
     public void start() {
         // 게임 시작
-
+        outputView.printStartGame();
         // 다리 길이 입력받음, 다리 생성
         generateBridge();
         // 게임 종료할 때 까지의 사이클
@@ -35,6 +35,7 @@ public class GameController {
         } while (isRetry());
 
         // 결과 출력 및 종료
+
     }
 
     private void generateBridge() {
@@ -49,9 +50,12 @@ public class GameController {
     }
 
     private void play() {
-        outputView.printMoveCommand();
-
-        move();
+        try {
+            move();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            play();
+        }
     }
 
     private void move() {
@@ -79,6 +83,7 @@ public class GameController {
 
     private boolean isWin() {
         if(bridgeGame.isSuccess()){
+            outputView.printResult(bridgeGame.getGameRound(), gameRecord);
             return true;
         }
         return false;

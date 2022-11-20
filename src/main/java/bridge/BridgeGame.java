@@ -41,7 +41,7 @@ public class BridgeGame {
 
         gameRound.recordResult(movingCommand, bridge.get(nowBridgeIndex));
 
-        if(correctResult.equals("0")) {
+        if(correctResult.equals("O")) {
             gameRound.setBridgeIndex(gameRound.getBridgeIndex() + 1);
         }
         checkGameWin();
@@ -57,7 +57,7 @@ public class BridgeGame {
 
     private String checkBridge(String command, String bridgeLocation) {
         if(command.equals(bridgeLocation)) {
-            return "0";
+            return "O";
         }
         return "X";
     }
