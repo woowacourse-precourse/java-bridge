@@ -1,7 +1,7 @@
 package bridge.domain.vo;
 
+import bridge.domain.constants.BridgeConstants;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PlayerMap {
@@ -23,20 +23,20 @@ public class PlayerMap {
     }
 
     public void addResult(Moving moving, boolean value) {
-        if (moving.equals("U")) {
+        if (moving.equals(BridgeConstants.BRIDGE_GAME_MOVING_UP)) {
             firstLine.add(getStatus(value));
-            secondLine.add(" ");
+            secondLine.add(BridgeConstants.BRIDGE_GAME_MOVING_BLANC);
         }
-        if (moving.equals("D")) {
-            firstLine.add(" ");
+        if (moving.equals(BridgeConstants.BRIDGE_GAME_MOVING_DOWN)) {
+            firstLine.add(BridgeConstants.BRIDGE_GAME_MOVING_BLANC);
             secondLine.add(getStatus(value));
         }
     }
 
     private String getStatus(boolean value) {
         if (value) {
-            return "O";
+            return BridgeConstants.BRIDGE_GAME_MOVING_SUCCESS;
         }
-        return "X";
+        return BridgeConstants.BRIDGE_GAME_MOVING_FAIL;
     }
 }

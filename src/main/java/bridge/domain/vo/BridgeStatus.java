@@ -1,8 +1,10 @@
 package bridge.domain.vo;
 
+import bridge.domain.constants.BridgeConstants;
+
 public enum BridgeStatus {
-    U("U", 1),
-    D("D", 0);
+    U(BridgeConstants.BRIDGE_GAME_MOVING_UP, 1),
+    D(BridgeConstants.BRIDGE_GAME_MOVING_DOWN, 0);
 
     private final String movingValue;
     private final int makerValue;

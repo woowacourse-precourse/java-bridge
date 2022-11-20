@@ -13,8 +13,8 @@ public class GameCommand {
     }
 
     private void validateInput(String input) {
-        if (!(input.equals(BridgeConstants.BRIDGE_GAME_COMMAND_R))
-                ^ (input.equals(BridgeConstants.BRIDGE_GAME_COMMAND_Q))) {
+        if (!(input.equals(BridgeConstants.BRIDGE_GAME_COMMAND_RETRY))
+                ^ (input.equals(BridgeConstants.BRIDGE_GAME_COMMAND_QUIT))) {
             throw ErrorCode.GAME_COMMAND_NOT_R_Q.getException();
         }
     }

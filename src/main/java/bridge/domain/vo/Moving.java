@@ -13,8 +13,8 @@ public class Moving {
     }
 
     private void validateInput(String input) {
-        if (!(input.equals(BridgeConstants.BRIDGE_GAME_MOVING_U))
-                ^ (input.equals(BridgeConstants.BRIDGE_GAME_MOVING_D))) {
+        if (!(input.equals(BridgeConstants.BRIDGE_GAME_MOVING_UP))
+                ^ (input.equals(BridgeConstants.BRIDGE_GAME_MOVING_DOWN))) {
             throw ErrorCode.MOVING_NOT_U_D.getException();
         }
     }
