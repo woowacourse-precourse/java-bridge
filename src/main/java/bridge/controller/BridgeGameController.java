@@ -1,6 +1,12 @@
-package bridge;
+package bridge.controller;
 
 import java.util.List;
+
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.number.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
 	
@@ -10,6 +16,7 @@ public class BridgeGameController {
 	private final BridgeGame bridgeGame = new BridgeGame();
 	private static List<String> bridge;
 	private static int retryCount = 1;
+	
 	public void startGame() {
 		outputView.gameStartMessage();
 		bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
@@ -17,7 +24,7 @@ public class BridgeGameController {
 		
 	}
 	
-	public void playGame(List<String> bridge) {
+	private void playGame(List<String> bridge) {
 		int bridgeLevel = 0;
 		while(true) {
 			if(isGameEnd(bridge,bridgeLevel)) {
@@ -26,6 +33,7 @@ public class BridgeGameController {
 			++bridgeLevel;
 		}
 	}
+	
 	private boolean isGameEnd(List<String> bridge,int bridgeLevel) {
 		if(bridge.size() == bridgeLevel) {
 			outputView.printResult(retryCount,true);
@@ -36,6 +44,7 @@ public class BridgeGameController {
 		}
 		return false;
 	}
+	
     private boolean isRetryOrNot(String command) {
     	if(command.equals("R")) {
     		retryCount++;
@@ -52,7 +61,6 @@ public class BridgeGameController {
 		if(!isRightMoving) {
 			return isRetryOrNot(inputView.readGameCommand());
     	}
-		
 		return true;
     }
 
