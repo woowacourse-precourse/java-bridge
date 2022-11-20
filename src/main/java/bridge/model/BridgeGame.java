@@ -4,11 +4,14 @@ package bridge.model;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private Bridge bridge;
-    private BridgeGameResult result;
+    private final Bridge bridge;
+    private final BridgeGameResult result;
+    private int currentSpot;
 
     public BridgeGame(Bridge bridge) {
-        // TODO 구현 필요
+        this.bridge = new Bridge(bridge);
+        result = new BridgeGameResult();
+        currentSpot = 0;
     }
 
     /**
@@ -17,8 +20,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(SpotInfo spotInfo) {
-        // TODO 구현 필요
-        return true;
+        boolean isOnSafeSpot = bridge.isSafeSpot(++currentSpot, spotInfo);
+        result.addMovementOnLastMovementRecord(spotInfo);
+
+        if(isOnSafeSpot && currentSpot == bridge.getBridgeLength()) {
+            result.makeResultSuccess();
+        }
+        return isOnSafeSpot;
     }
 
     /**
@@ -27,11 +35,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        // TODO 구현 필요
+        currentSpot = 0;
+        result.addTryCount();
+        result.clearLastMovementRecord();
     }
 
     public BridgeGameResult getResult() {
-        // TODO 구현 필요
-        return new BridgeGameResult();
+        return new BridgeGameResult(result);
     }
 }

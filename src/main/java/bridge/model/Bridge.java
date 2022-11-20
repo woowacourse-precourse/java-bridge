@@ -13,6 +13,10 @@ public class Bridge {
         }
     }
 
+    public Bridge(Bridge oth) {
+        bridgeMap = new ArrayList<>(oth.bridgeMap);
+    }
+
     public int getBridgeLength() {
         return bridgeMap.size();
     }

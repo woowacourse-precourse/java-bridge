@@ -10,6 +10,10 @@ public class MovementRecord {
         movementMap = new ArrayList<>();
     }
 
+    public MovementRecord(MovementRecord oth) {
+        movementMap = new ArrayList<>(oth.movementMap);
+    }
+
     public SpotInfo getMovementRecord(int index) {
         return movementMap.get(index - 1);
     }

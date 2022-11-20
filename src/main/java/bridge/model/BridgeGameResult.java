@@ -6,13 +6,19 @@ public class BridgeGameResult {
     private final MovementRecord lastMovementRecord;
 
     public BridgeGameResult() {
-        tryCount = 0;
+        tryCount = 1;
         isSuccess = false;
         lastMovementRecord = new MovementRecord();
     }
 
+    public BridgeGameResult(BridgeGameResult oth) {
+        tryCount = oth.tryCount;
+        isSuccess = oth.isSuccess;
+        lastMovementRecord = new MovementRecord(oth.lastMovementRecord);
+    }
+
     public void reset() {
-        tryCount = 0;
+        tryCount = 1;
         isSuccess = false;
         lastMovementRecord.clearMovementRecord();
     }
