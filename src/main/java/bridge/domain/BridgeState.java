@@ -35,5 +35,7 @@ public class BridgeState {
     }
 
     public void initBridgeState() {
+        upBridge = new StringBuilder();
+        downBridge = new StringBuilder();
     }
 }
