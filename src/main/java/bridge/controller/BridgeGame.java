@@ -41,7 +41,7 @@ public class BridgeGame {
     }
 
     public boolean success() {
-        if(!result.contains(MarkCommand.Impossible)) return true;
+        if(!result.contains(MarkCommand.Impossible.get())) return true;
         return false;
     }
 
