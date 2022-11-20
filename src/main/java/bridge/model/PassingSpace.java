@@ -7,21 +7,20 @@ import java.util.Map;
 
 public class PassingSpace {
     private static final String FORM = "[ %s ]\n";
+
     private final Map<Space, List<String>> passingSpace;
 
     public PassingSpace() {
         passingSpace = new EnumMap<>(Space.class);
-        initialization();
-    }
-
-    private void initialization() {
-        passingSpace.clear();
         passingSpace.put(Space.U, new ArrayList<>());
         passingSpace.put(Space.D, new ArrayList<>());
     }
 
     public void reset() {
-        initialization();
+        for (Space space : Space.values()) {
+            List<String> row = passingSpace.get(space);
+            row.clear();
+        }
     }
 
     public void add(Space space, Movable movable) {
@@ -29,6 +28,7 @@ public class PassingSpace {
         spaceRow.add(movable.getMark());
 
         Space crossSpace = space.cross();
+
         List<String> crossSpaceRow = passingSpace.get(crossSpace);
         crossSpaceRow.add(Movable.BLANK.getMark());
     }
