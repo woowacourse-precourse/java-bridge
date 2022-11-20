@@ -177,4 +177,4 @@ D
     - [x] userGameCommand가 R인지 비교
       - [x] retry함수를 실행
     - [x] break문 사용
-- [ ] printResult함수 실행
+- [x] printResult함수 실행
