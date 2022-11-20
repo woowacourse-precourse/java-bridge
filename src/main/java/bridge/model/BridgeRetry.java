@@ -12,6 +12,8 @@ public class BridgeRetry {
     public String getRetry(){
         return retry;
     }
+
+
     public void validateRetry(String retry){
         if(isRetryFormatCorrect(retry)){
             return;
