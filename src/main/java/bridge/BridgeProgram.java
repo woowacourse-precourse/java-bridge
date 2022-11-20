@@ -66,4 +66,8 @@ public class BridgeProgram {
         GameCommandException.validate(gameCommand);
         return gameCommand;
     }
+
+    private void quit() {
+        outputView.printResult(bridgeGame.getResult());
+    }
 }
