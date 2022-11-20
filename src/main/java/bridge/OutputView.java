@@ -60,7 +60,6 @@ public class OutputView {
     public void printMap(List<List<String>> moveResult) {
         printUpMap(moveResult.get(0));
         printDownMap(moveResult.get(1));
-        System.out.println();
     }
 
     /**

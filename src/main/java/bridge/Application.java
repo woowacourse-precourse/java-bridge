@@ -56,13 +56,17 @@ public class Application {
     /**
      * 다리를 이동하는 메서드
      */
-    static void moveBridge(List<String> bridge) {
+    static List<List<String>> moveBridge(List<String> bridge) {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
 
-        String checkMove = Application.inputMove();
-        List<List<String>> moveResult = bridgeGame.move(bridge, checkMove);
-        outputView.printMap(moveResult);
+        while (true) {
+            String checkMove = Application.inputMove();
+            List<List<String>> moveResult = bridgeGame.move(bridge, checkMove);
+            outputView.printMap(moveResult);
+
+            if (bridgeGame.checkBreak(bridge.size())) { return moveResult; }
+        }
     }
 
     public static void main(String[] args) {
@@ -70,7 +74,7 @@ public class Application {
             Application.gameStart();
             int bridgeSize = Application.knowBridgeLength();
             List<String> bridge = Application.makeBridge(bridgeSize);
-            Application.moveBridge(bridge);
+            List<List<String>> moveResult = Application.moveBridge(bridge);
         } catch (IllegalArgumentException e) {}
     }
 }
