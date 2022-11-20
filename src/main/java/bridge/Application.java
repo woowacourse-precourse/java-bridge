@@ -20,27 +20,36 @@ public class Application {
     private static void game() {
         bridgeGame = new BridgeGame(inputView.readBridgeSize());
         System.out.println(bridgeGame.getRealBridge());
-
         while (true) {
-
-            //게임 과정 처리해주는놈 -> true면 계속 가고, false면 break 하도록?
-
-            if (bridgeGame.hasSucceeded()) {
-                outputView.printResult(bridgeGame);
+            if (!runStage()) {
                 break;
             }
-            boolean isCorrect = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame);
-            if (isCorrect) {
-                continue;
-            }
-            if (inputView.readGameCommand().equals("R")) {
-                bridgeGame.retry();
-                continue;
-            }
-            outputView.printResult(bridgeGame);
-            break;
         }
     }
 
+    private static boolean runStage() {
+        boolean isCorrect = bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame);
+        if (!isCorrect) {
+            return manageIncorrectStep();
+        }
+        return manageCorrectStep();
+    }
+
+    private static boolean manageIncorrectStep() {
+        if (inputView.readGameCommand().equals("R")) {
+            bridgeGame.retry();
+            return true;
+        }
+        outputView.printResult(bridgeGame);
+        return false;
+    }
+
+    private static boolean manageCorrectStep() {
+        if (bridgeGame.hasSucceeded()) {
+            outputView.printResult(bridgeGame);
+            return false;
+        }
+        return true;
+    }
 }
