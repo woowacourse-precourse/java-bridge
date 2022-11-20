@@ -1,7 +1,7 @@
 package bridge;
 
 public enum Result {
-    SUCCESS, FAIL, IN_PROGRESS;
+    SUCCESS, FAIL;
 
     public boolean isFail() {
         return this == FAIL;

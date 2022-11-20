@@ -42,10 +42,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(MovingHistory movingHistory, BridgeGame bridgeGame, MovingResult movingResult) {
+    public void printResult(MovingHistory movingHistory, BridgeGame bridgeGame) {
         System.out.println(GuidanceMessage.GAME_OUTRO);
         printMap(movingHistory);
-        printGameResult(bridgeGame, movingResult);
+        printGameResult(bridgeGame);
         printTrialCount(bridgeGame);
     }
 
@@ -54,9 +54,9 @@ public class OutputView {
         System.out.println(bridgeGame.getTrialCount());
     }
 
-    private void printGameResult(BridgeGame bridgeGame, MovingResult movingResult) {
+    private void printGameResult(BridgeGame bridgeGame) {
         System.out.print(GuidanceMessage.INFORM_IS_SUCCESS);
-        System.out.println(bridgeGame.getGameResult(movingResult));
+        System.out.println(bridgeGame.getGameResult());
     }
 
     public void printError(IllegalArgumentException error) {

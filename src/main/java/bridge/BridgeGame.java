@@ -49,14 +49,11 @@ public class BridgeGame {
         return !moving.equals("U") && !moving.equals("D");
     }
 
-    public Result getGameResult(MovingResult movingResult) {
-        if (movingResult.isFail()) {
-            return Result.FAIL;
-        }
+    public Result getGameResult() {
         if (bridgeSize == currentPosition) {
             return Result.SUCCESS;
         }
-        return Result.IN_PROGRESS;
+        return Result.FAIL;
     }
 
     public int getTrialCount() {

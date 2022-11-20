@@ -47,14 +47,6 @@ class BridgeGameTest {
                 .isThrownBy(() -> bridgeGame.move(bridge, moving));
     }
 
-    @DisplayName("게임 결과 확인 테스트 - 진행 중")
-    @Test
-    void createInProgressTest() {
-        MovingResult movingResult = bridgeGame.move(bridge, "U");
-
-        assertThat(bridgeGame.getGameResult(movingResult)).isEqualTo(Result.IN_PROGRESS);
-    }
-
     @DisplayName("게임 결과 확인 테스트 - 실패")
     @Test
     void createFailTest() {
@@ -62,7 +54,7 @@ class BridgeGameTest {
 
         MovingResult movingResult = bridgeGame.move(bridge, "U");
 
-        assertThat(bridgeGame.getGameResult(movingResult)).isEqualTo(Result.FAIL);
+        assertThat(bridgeGame.getGameResult()).isEqualTo(Result.FAIL);
     }
 
     @DisplayName("게임 결과 확인 테스트 - 성공")
@@ -73,6 +65,6 @@ class BridgeGameTest {
 
         MovingResult movingResult = bridgeGame.move(bridge, "D");
 
-        assertThat(bridgeGame.getGameResult(movingResult)).isEqualTo(Result.SUCCESS);
+        assertThat(bridgeGame.getGameResult()).isEqualTo(Result.SUCCESS);
     }
 }
