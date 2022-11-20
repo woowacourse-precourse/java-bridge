@@ -8,7 +8,7 @@ public class Player {
         currentPosition = START_POSITION;
     }
 
-    public void moveForward() {
+    public void move() {
         currentPosition++;
     }
 
