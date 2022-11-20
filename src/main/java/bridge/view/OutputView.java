@@ -38,22 +38,20 @@ public class OutputView {
     public void printMap(GameRound gameRound) {
         List<List<String>> playedBridge = gameRound.getPlayedBridge();
         for (int i = 0; i < playedBridge.size(); i++) {
-            StringBuilder stringBuilder = new StringBuilder();
             List<String> bridge = playedBridge.get(i);
+            StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.append(OPEN_PARENTHESIS);
-            makeBridgeResult(bridge, stringBuilder);
+            String body = makeBridgeResult(bridge);
+            stringBuilder.append(body);
             stringBuilder.append(CLOSE_PARENTHESIS);
-
             System.out.println(stringBuilder);
         }
     }
 
-    private void makeBridgeResult(List<String> bridge, StringBuilder stringBuilder) {
-        for (int i = 0; i < bridge.size(); i++) {
-            stringBuilder.append(bridge.get(i)).append(MIDDLE_PARENTHESIS);
-        }
-        stringBuilder.delete(stringBuilder.length()-2, stringBuilder.length()+1);
+    private String makeBridgeResult(List<String> bridge) {
+        String body = String.join(MIDDLE_PARENTHESIS, bridge);
+        return body;
     }
 
     /**
