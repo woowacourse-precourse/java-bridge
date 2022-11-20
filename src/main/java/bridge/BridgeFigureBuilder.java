@@ -23,11 +23,11 @@ public class BridgeFigureBuilder {
     public String toString() {
         clearBridgeFigure();
 
-        List<String> stateOfBridge = bridgeState.getStateOfBridge();
-        List<String> directions = bridgeState.getDirections();
+        List<String> markingsOfUserMoving = bridgeState.getMarkingsOfUserMoving();
+        List<String> rightDirectionsOfBridge = bridgeState.getRightDirectionsOfBridge();
 
         makeStartOfBridgeFigure();
-        makeMidOfBridgeFigure(stateOfBridge, directions);
+        makeMidOfBridgeFigure(markingsOfUserMoving, rightDirectionsOfBridge);
         makeEndOfBridgeFigure();
 
         return upBridgeFigure.append('\n').append(downBridgeFigure).append('\n').toString();
@@ -43,25 +43,25 @@ public class BridgeFigureBuilder {
         downBridgeFigure.append(START_OF_BRIDGE);
     }
 
-    private void makeMidOfBridgeFigure(List<String> stateOfBridge, List<String> directions) {
-        for (int round = 0; round < stateOfBridge.size(); round++) {
-            String currentDirection = directions.get(round);
-            markAnswerOnBridge(stateOfBridge, round, currentDirection);
+    private void makeMidOfBridgeFigure(List<String> markingsOfUserMoving, List<String> rightDirectionsOfBridge) {
+        for (int round = 0; round < markingsOfUserMoving.size(); round++) {
+            String currentDirection = rightDirectionsOfBridge.get(round);
+            markAnswerOnBridge(markingsOfUserMoving, round, currentDirection);
 
-            if (round != stateOfBridge.size() - 1) {
+            if (round != markingsOfUserMoving.size() - 1) {
                 makeSeparateOfBridgeFigure();
             }
         }
     }
 
-    private void markAnswerOnBridge(List<String> stateOfBridge, int round, String currentDirection) {
+    private void markAnswerOnBridge(List<String> markingsOfUserMoving, int round, String currentDirection) {
         if (currentDirection.equals(BridgeConstants.UP_DIRECTION)) {
-            upBridgeFigure.append(stateOfBridge.get(round));
+            upBridgeFigure.append(markingsOfUserMoving.get(round));
             downBridgeFigure.append(EMPTY);
         }
         if (currentDirection.equals(BridgeConstants.DOWN_DIRECTION)) {
             upBridgeFigure.append(EMPTY);
-            downBridgeFigure.append(stateOfBridge.get(round));
+            downBridgeFigure.append(markingsOfUserMoving.get(round));
         }
     }
 

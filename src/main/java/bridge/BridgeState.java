@@ -5,24 +5,24 @@ import java.util.List;
 
 public class BridgeState {
 
-    private final List<String> directions = new ArrayList<>();
-    private final List<String> stateOfBridge = new ArrayList<>();
+    private final List<String> rightDirectionsOfBridge = new ArrayList<>();
+    private final List<String> markingsOfUserMoving = new ArrayList<>();
 
-    public List<String> getDirections() {
-        return directions;
+    public List<String> getRightDirectionsOfBridge() {
+        return rightDirectionsOfBridge;
     }
 
-    public List<String> getStateOfBridge() {
-        return stateOfBridge;
+    public List<String> getMarkingsOfUserMoving() {
+        return markingsOfUserMoving;
     }
 
     public void updateStateOfBridge(String direction, String resultOfMoving) {
-        directions.add(direction);
-        stateOfBridge.add(resultOfMoving);
+        rightDirectionsOfBridge.add(direction);
+        markingsOfUserMoving.add(resultOfMoving);
     }
 
     public void clearAllBridgeState() {
-        directions.clear();
-        stateOfBridge.clear();
+        rightDirectionsOfBridge.clear();
+        markingsOfUserMoving.clear();
     }
 }
