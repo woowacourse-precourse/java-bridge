@@ -80,7 +80,7 @@ public class BridgeGameTest extends NsTest {
         @Test
         @DisplayName("getGameResult는 모든 정보를 담아 반환환다.")
         void containsAllData() {
-            GameResult gameResult = bridgeGame.getGameResult();
+            GameResult gameResult = bridgeGame.getFinalGameResult();
             assertThat(gameResult.getTryCount()).isEqualTo(1);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
             List<List<MoveResult>> dummy = List.of(new ArrayList<>(),new ArrayList<>());
@@ -97,7 +97,7 @@ public class BridgeGameTest extends NsTest {
         void increaseTryCountAndResetMoveHistory() {
             bridgeGame.move(UP);
             bridgeGame.retry();
-            GameResult gameResult = bridgeGame.getGameResult();
+            GameResult gameResult = bridgeGame.getFinalGameResult();
             assertThat(gameResult.getTryCount()).isEqualTo(2);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
 
