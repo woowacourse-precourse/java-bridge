@@ -20,6 +20,7 @@ public class OutputView {
 
         printCrossedUp(crossedBridge, isMovable);
         printCrossedDown(crossedBridge, isMovable);
+        System.out.println(" ");
     }
 
     /**
