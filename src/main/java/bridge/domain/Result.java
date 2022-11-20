@@ -7,7 +7,6 @@ public class Result {
     private List<String> upBlocks;
     private List<String> downBlocks;
     private GameStatus gameOver;
-    private int totalTryNumber;
 
     public Result() {
         upBlocks = new ArrayList<>();
@@ -42,16 +41,8 @@ public class Result {
         return gameOver == GameStatus.FAIL;
     }
 
-    public void addTryGame() {
-        this.totalTryNumber += 1;
-    }
-
     public GameStatus getGameOver() {
         return gameOver;
-    }
-
-    public int getTotalTryNumber() {
-        return totalTryNumber;
     }
 
     public List<String> getUpBlocks() {

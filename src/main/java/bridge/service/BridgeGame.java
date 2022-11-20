@@ -75,7 +75,7 @@ public class BridgeGame {
     }
 
     public void tryGame() {
-        result.addTryGame();
+        player.tryGame();
     }
 
     /**
@@ -93,6 +93,6 @@ public class BridgeGame {
     }
 
     public GameResultResponseDto result() {
-        return new GameResultResponseDto(result);
+        return new GameResultResponseDto(result, player);
     }
 }

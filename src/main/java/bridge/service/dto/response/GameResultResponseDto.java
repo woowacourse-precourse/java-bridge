@@ -1,5 +1,6 @@
 package bridge.service.dto.response;
 
+import bridge.domain.Player;
 import bridge.domain.Result;
 
 import java.util.List;
@@ -10,11 +11,11 @@ public class GameResultResponseDto {
     private final String gameSuccessOrFail;
     private final int totalTryNumber;
 
-    public GameResultResponseDto(Result result) {
+    public GameResultResponseDto(Result result, Player player) {
         this.upBlocks = result.getUpBlocks();
         this.downBlocks = result.getDownBlocks();
         this.gameSuccessOrFail = result.getGameOver().getName();
-        this.totalTryNumber = result.getTotalTryNumber();
+        this.totalTryNumber = player.getTotalTryNumber();
     }
 
     public List<String> getUpBlocks() {
