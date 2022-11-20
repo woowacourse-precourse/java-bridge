@@ -8,16 +8,22 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
+        printStartInst();
         String bridgeLength = camp.nextstep.edu.missionutils.Console.readLine();
+        // should check error here
         return Integer.parseInt(bridgeLength);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        printMoveInst();
+        String upDown = camp.nextstep.edu.missionutils.Console.readLine();
+        System.out.println();
+        // should check error here
+        return upDown;
     }
 
     /**
@@ -25,5 +31,14 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    // UI logic for overall process
+    public static void printStartInst(){
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    public static void printMoveInst(){
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 }
