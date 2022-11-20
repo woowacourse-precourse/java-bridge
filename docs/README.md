@@ -27,8 +27,8 @@
 ***
 - [ ] 다리 건너기 - BridgeGame#move()
     - [X] 다리 방향 입력 값 검증 및 예외처리 - BridgeGame#validateBridgeArrow()
-    - [ ] 몇 라운드인지 계산
-    - [ ] 다리를 건널 수 있는지 여부 확인 - BridgeGame#isCrossable()
+    - [X] 몇 라운드인지 계산
+    - [X] 사용자가 입력한 다리 방향에 대해 다리를 건널 수 있는지 여부 확인 - BridgeGame#isCrossable()
     - [ ] 다리에 표시할 상태 값 생성 - BridgeGame#makeBridgeStatus()
     - [ ] 다리를 건널 수 있는지 여부에 따른 표시 작업 요청 - BridgeGame#BridgeState#mark()
 - [ ] 게임 재시도 - BridgeGame#retry()

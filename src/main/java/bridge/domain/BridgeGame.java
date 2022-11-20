@@ -11,6 +11,7 @@ public class BridgeGame {
 
     private List<String> bridge;
     private BridgeState bridgeState;
+    private int round;
 
     public BridgeGame(List<String> bridge, BridgeState bridgeState) {
         this.bridge = bridge;
@@ -24,12 +25,17 @@ public class BridgeGame {
      */
     public void move(String arrow) {
         validateBridgeArrow(arrow);
+        round++;
     }
 
     private void validateBridgeArrow(String arrow) {
         if (!arrow.equals(UP) && !arrow.equals(DOWN)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isCrossable(String arrow) {
+        return arrow.equals(bridge.get(round));
     }
 
     /**
