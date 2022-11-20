@@ -1,6 +1,23 @@
 package bridge.constant;
 
-public class GameResult {
-    public static final String SUCCESS = "성공";
-    public static final String FAILURE = "실패";
+public enum GameResult {
+
+    SUCCESS("| O ]", "성공"),
+    FAILURE("| X ]", "실패");
+
+    private final String nowCondition;
+    private final String gameResult;
+
+    GameResult(String nowCondition, String gameResult) {
+        this.nowCondition = nowCondition;
+        this.gameResult = gameResult;
+    }
+
+    public String getNowCondition() {
+        return nowCondition;
+    }
+
+    public String getGameResult() {
+        return gameResult;
+    }
 }
