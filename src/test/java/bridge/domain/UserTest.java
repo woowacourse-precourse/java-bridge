@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.controller.BridgeGame;
 import bridge.domain.utils.BridgeState;
+import bridge.domain.utils.GameState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import org.assertj.core.api.Assertions;
@@ -39,5 +40,18 @@ class UserTest {
         bridgeGame.move(user, bridge);
 
         Assertions.assertThat(user.getBridgeGames().get(0)).isEqualTo(BridgeState.convertToBridgeState(input, isAlive));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"U:U:true", "D:D:true"}, delimiter = ':')
+    void 유저가_끝까지_건넜는지_확인(String bridgePosition, String input, Boolean isAlive) {
+        List<String> bridgeData = new ArrayList<>(Arrays.stream(bridgePosition.split(",")).collect(Collectors.toList()));
+        Bridge bridge = new Bridge(bridgeData);
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+        User user = new User();
+        bridgeGame.move(user, bridge);
+
+        Assertions.assertThat(bridgeGame.isGameEnd(user,bridge,isAlive)).isEqualTo(GameState.END);
     }
 }
