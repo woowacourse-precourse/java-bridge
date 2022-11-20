@@ -85,4 +85,7 @@ public class BridgeGame {
         }
         return outputView.getSuccess();
     }
+    public void  exceptionMessage(IllegalArgumentException e){
+        outputView.exceptionPrint(e);
+    }
 }
