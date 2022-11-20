@@ -34,4 +34,8 @@ public class BridgePasser {
         return !bridge.isRange(location + 1);
     }
 
+    public void clear() {
+        this.location = 0;
+    }
+
 }
