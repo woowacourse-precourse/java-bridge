@@ -1,6 +1,5 @@
 package bridge.domain.bridge;
 
-import bridge.domain.bridge.Square;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -17,7 +16,7 @@ class SquareTest {
         @ParameterizedTest
         @ValueSource(strings = {"1", "1$", "U D", "C", " ", "u", "d"})
         void validateChar(String move) {
-            Assertions.assertThatThrownBy( () -> new Square(move))
+            Assertions.assertThatThrownBy(() -> Square.of(move))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 이동할 칸은 U와 D 문자만 입력 가능합니다.");
         }
@@ -26,7 +25,7 @@ class SquareTest {
         @ParameterizedTest
         @ValueSource(strings = {"UU", "DD", "UD"})
         void validateSize(String move) {
-            Assertions.assertThatThrownBy( () -> new Square(move))
+            Assertions.assertThatThrownBy(() -> Square.of(move))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 이동할 칸은 U와 D 중에 하나만 입력 가능합니다.");
         }

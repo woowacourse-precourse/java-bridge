@@ -39,7 +39,7 @@ public class BridgeGameController {
 
         while (bridgeGame.inProgress()) {
             String move = inputView.readMoving();
-            Square userMove = new Square(move);
+            Square userMove = Square.of(move);
 
             int position = bridgeGame.getPosition();
             boolean result = bridge.canMoveForward(userMove, position);

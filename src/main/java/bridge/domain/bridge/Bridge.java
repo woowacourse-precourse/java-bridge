@@ -13,7 +13,7 @@ public class Bridge {
 
     public static Bridge valueOf(List<String> bridge) {
         List<Square> collect = bridge.stream()
-                .map(square -> new Square(square))
+                .map(Square::of)
                 .collect(Collectors.toList());
 
         return new Bridge(collect);
