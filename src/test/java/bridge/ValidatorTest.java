@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.view.Validator.validateInputDirectionException;
+import static bridge.view.Validator.validateInputGameRestartException;
 import static bridge.view.Validator.validateInputSizeException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -60,9 +61,11 @@ public class ValidatorTest {
     }
 
     @DisplayName("재시작, 종료 시 R,Q 외의 문자 입력시 예외 발생")
-    @Test
-    void InputGameRestartTest() {
-
+    @ValueSource(strings = {"U", "D", "Z"})
+    @ParameterizedTest
+    void InputGameRestartTest(String input) {
+        assertThatThrownBy(() -> validateInputGameRestartException(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("재시작, 종료 값을 소문자로 입력 시 예외 발생")
