@@ -27,7 +27,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public BridgeMoveValue readMoving() {
-        return null;
+        try {
+            String input = Console.readLine();
+            BridgeMoveValue.validateInput(input);
+            return BridgeMoveValue.generate(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
