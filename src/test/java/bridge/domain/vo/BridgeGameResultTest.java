@@ -18,25 +18,27 @@ class BridgeGameResultTest {
     @DisplayName("BridgeGameResult를 생성한다.")
     @Test
     void createBridgeGameResultTest() {
-        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving)).
-                isInstanceOf(BridgeGameResult.class);
+        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving))
+                .isInstanceOf(BridgeGameResult.class);
 
-        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving).getIsMatched()).
-                isTrue();
+        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving).getIsMatched())
+                .isTrue();
 
-        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving).getUserMoving()).
-                isEqualTo(upMoving);
+        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving).getUserMoving())
+                .isEqualTo(upMoving);
     }
 
     @DisplayName("MovingType 중 'U'인지 확인한다.")
     @Test
     void checkUpTest() {
-        assertThat(BridgeGameResult.checkUp(upMoving)).isTrue();
+        assertThat(BridgeGameResult.checkUp(upMoving))
+                .isTrue();
     }
 
     @DisplayName("MovingType 중 'D'인지 확인한다.")
     @Test
     void checkDown() {
-        assertThat(BridgeGameResult.checkDown(downMoving)).isTrue();
+        assertThat(BridgeGameResult.checkDown(downMoving))
+                .isTrue();
     }
 }
