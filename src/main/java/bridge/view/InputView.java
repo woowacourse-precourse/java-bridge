@@ -11,22 +11,22 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = 0;
+        int bridgeSize;
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
-        try{
+        try {
             validateNumberFormat(input);
             bridgeSize = Integer.parseInt(input);
             validateBridgeSizeRange(bridgeSize);
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bridgeSize = readBridgeSize();
         }
         return bridgeSize;
     }
 
-    private void validateBridgeSizeRange(int bridgeSize){
-        if(bridgeSize < 3 || bridgeSize > 21){
+    private void validateBridgeSizeRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 21) {
             throw new IllegalArgumentException("[ERROR]  다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
@@ -43,7 +43,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String inputMoving = Console.readLine();
+        try {
+            validateInputMoving(inputMoving);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputMoving = readMoving();
+        }
+        return inputMoving;
+    }
+
+    public void validateInputMoving(String inputMoving) {
+        if (!inputMoving.equals("U") && !inputMoving.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D만 입력할 수 있습니다.");
+        }
     }
 
     /**
