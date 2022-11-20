@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.dto.input.ReadBridgeSizeDto;
 import bridge.dto.input.ReadGameCommandDto;
 import bridge.dto.input.ReadMovingDto;
+import bridge.utils.common.BridgeConst;
 import bridge.utils.common.CommandConst;
 import bridge.utils.message.ExceptionMessageUtils;
 import camp.nextstep.edu.missionutils.Console;
@@ -17,11 +18,22 @@ public class InputView {
 
         try {
             int playerInput = Integer.parseInt(Console.readLine());
+            validateBridgeSize(playerInput);
             printNewLine();
             return new ReadBridgeSizeDto(playerInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessageUtils.WRONG_BRIDGE_SIZE.getMessage());
         }
+    }
+
+    private void validateBridgeSize(int size) {
+        if (!isValidRangeSize(size)) {
+            throw new IllegalArgumentException(ExceptionMessageUtils.WRONG_BRIDGE_SIZE.getMessage());
+        }
+    }
+
+    private boolean isValidRangeSize(int size) {
+        return BridgeConst.MIN_BRIDGE_SIZE <= size && size <= BridgeConst.MAX_BRIDGE_SIZE;
     }
 
     public ReadMovingDto readMoving() {
