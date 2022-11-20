@@ -11,4 +11,10 @@ public class InputValidator {
             throw new IllegalArgumentException(exceptionMessage);
         }
     }
+
+    public static void isMoveCommand(String input) throws IllegalArgumentException {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException("U(위로 이동) 혹은 D(아래로 이동) 중 하나를 입력해야합니다.");
+        }
+    }
 }

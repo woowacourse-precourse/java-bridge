@@ -15,4 +15,13 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("양의 정수만 입력할 수 있습니다.");
     }
+
+    @DisplayName("사용자가 어디로 이동할지 알기위해서, 사용자의 입력을 받을 때 U 혹은 D가 아니라면 예외를 발생한다.")
+    @ParameterizedTest(name = "이동 명령어 유효성 검사 테스트[{index}] => {0}은 U 혹은 D가 아니다.  ")
+    @ValueSource(strings = {"A", "0", "-1", "B", "65.123", "-0.1", "abc", "u", "d"})
+    void ifInputValueInMoveCommandIsNotUOrDThenThrowException(String actual) {
+        assertThatThrownBy(() -> InputValidator.isMoveCommand(actual))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("U(위로 이동) 혹은 D(아래로 이동) 중 하나를 입력해야합니다.");
+    }
 }
