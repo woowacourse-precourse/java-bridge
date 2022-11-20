@@ -10,7 +10,7 @@ public class GameRecord {
     public GameRecord() {
         upperCrossedRecord = new ArrayList<>();
         lowerCrossedRecord = new ArrayList<>();
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     public void recordRetry() {
