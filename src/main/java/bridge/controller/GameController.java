@@ -55,10 +55,14 @@ public class GameController {
     }
 
     private void move() {
-        outputView.printMoveCommand();
+        String correctResult;
+        do{
+            outputView.printMoveCommand();
 
-        String correctResult = bridgeGame.move(inputView.readMoving());
-        // 현재 까지의 결과 출력
+            correctResult = bridgeGame.move(inputView.readMoving());
+            // 현재 까지의 결과 출력
+
+        }while (bridgeGame.isBeAbleProceed(correctResult));
 
     }
 }
