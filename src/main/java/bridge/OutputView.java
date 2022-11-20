@@ -7,11 +7,11 @@ import java.util.List;
  */
 public class OutputView {
 
-    public static void printStart(){
+    public static void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public static void printInputBridgeSize(){
+    public static void printInputBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
@@ -24,38 +24,33 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame game, String last) {
+    public static void printMap(BridgeGame game, String last) {
+        printMapOneLine(game, last, "U", "D");
+        printMapOneLine(game, last, "D", "U");
+    }
+
+    public static void printMapOneLine(BridgeGame game, String last, String line, String otherLine) {
         List<String> bridge = game.getBridge();
         System.out.print("[");
-        for(int i=0; i<game.getPlayerPosition(); i++){
-            if(bridge.get(i).equals("U")){
+        for (int i = 0; i < game.getPlayerPosition(); i++) {
+            if (bridge.get(i).equals(line)) {
                 System.out.print(" O |");
             }
         }
-        if(last.equals("U")){
-            if(bridge.get(game.getPlayerPosition()).equals("U"))
-                System.out.println(" O ");
-            if(bridge.get(game.getPlayerPosition()).equals("D"))
-                System.out.println(" X ");
-        }
-        System.out.println("]");
-        
-        System.out.print("[");
-        for(int i=0; i<=game.getPlayerPosition(); i++){
-            if(bridge.get(i).equals("D")){
-                System.out.print(" O ");
-            }
-        }
-        if(last.equals("D")){
-            if(bridge.get(game.getPlayerPosition()).equals("D"))
-                System.out.println(" O ");
-            if(bridge.get(game.getPlayerPosition()).equals("U"))
-                System.out.println(" X ");
-        }
+        printLastOne(game, last, line, otherLine);
         System.out.println("]");
     }
 
-    
+    public static void printLastOne(BridgeGame game, String last, String line, String otherLine) {
+        List<String> bridge = game.getBridge();
+        if (last.equals(line)) {
+            if (bridge.get(game.getPlayerPosition()).equals(line))
+                System.out.println(" O ");
+            if (bridge.get(game.getPlayerPosition()).equals(otherLine))
+                System.out.println(" X ");
+        }
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
