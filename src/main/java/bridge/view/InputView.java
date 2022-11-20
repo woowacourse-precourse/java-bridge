@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.utils.BridgeStatus;
 import bridge.utils.GameCommand;
