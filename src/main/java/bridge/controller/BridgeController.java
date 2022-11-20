@@ -41,7 +41,7 @@ public class BridgeController {
             List<String> map = bridgeGame.move(userSpace, answer);
             outputView.printMap(map);
             if (!isSameWithAnswer(userSpace, answer)) {
-                //askRestart();
+                askRestart();
                 break;
             }
         }
@@ -58,5 +58,9 @@ public class BridgeController {
 
     private boolean isSameWithAnswer(String user, String answer) {
         return user.equals(answer);
+    }
+
+    private void askRestart() {
+        String command = inputView.readGameCommand();
     }
 }
