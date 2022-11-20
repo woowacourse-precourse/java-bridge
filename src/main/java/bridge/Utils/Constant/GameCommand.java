@@ -10,7 +10,6 @@ public enum GameCommand {
         this.command = command;
     }
 
-
     @Override
     public String toString() {
         return command;
