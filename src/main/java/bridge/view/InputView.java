@@ -7,18 +7,15 @@ import java.util.regex.Pattern;
 import static bridge.view.InputViewString.*;
 
 public class InputView {
-    public void startMessage(){
-        System.out.println(START_MESSAGE);
-    }
 
-    public int inputBridgeSize() {
+    public static int inputBridgeSize() {
         System.out.println(BRIDGE_SIZE_MESSAGE);
         String input = Console.readLine();
         checkEmpty(input);
         return checkAndConvertToInt(input);
     }
 
-    public String inputMoving() {
+    public static String inputMoving() {
         System.out.println(BLANK_TO_MOVE_MESSAGE.toString());
         String input = Console.readLine();
         checkEmpty(input);
@@ -26,7 +23,7 @@ public class InputView {
         return input;
     }
 
-    public String inputGameCommand() {
+    public static String inputGameCommand() {
         System.out.println(RETRY_OR_END_MESSAGE.toString());
         String input = Console.readLine();
         checkEmpty(input);
