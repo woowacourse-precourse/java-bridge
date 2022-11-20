@@ -4,30 +4,32 @@ import bridge.io.InputView;
 import bridge.io.Message;
 import bridge.io.OutputView;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class BridgeProgram {
-    private final List<String> route;
     private final InputView input;
     private final OutputView output;
     private final BridgeMaker bridgeMaker;
+    private final BridgeGame bridgeGame;
 
-    public BridgeProgram(InputView input, OutputView output, BridgeMaker bridgeMaker) {
-        this.route = new LinkedList<>();
+    public BridgeProgram(InputView input, OutputView output, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
         this.input = input;
         this.output = output;
         this.bridgeMaker = bridgeMaker;
+        this.bridgeGame = bridgeGame;
     }
 
     public void run() {
-        List<String> bridge = bridgeMaker.makeBridge(getBridgeSize());
+        List<String> bridgeRoute = bridgeMaker.makeBridge(getBridgeSize());
+        Bridge bridge = new Bridge(bridgeRoute);
+        int movingCount = 0;
 
         boolean isRunning = true;
         while (isRunning) {
             String inputDirection = getInputDirection();
 
-            //route 출력
+            Mark mark = bridge.matchRoute(inputDirection, movingCount++);
+            List<List<String>> route =  bridgeGame.move(mark);
 
             //if(direction 틀림) 게임 종료여부 물어보기
             //종료선택 시 결과출력 + isRunning = false;
