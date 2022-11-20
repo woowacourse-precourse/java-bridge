@@ -1,12 +1,11 @@
 package service;
 
 import generator.BridgeNumberGenerator;
-import constant.GameConstant;
+import constant.NumberConstant;
 import constant.StringConstant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -23,7 +22,8 @@ public class BridgeMaker {
     }
 
     private void buildBridgePath(int size, List<String> bridge) {
-        for (int i = 0; i < size; i++) {
+        int firstIndex = NumberConstant.FIRST_INDEX.getConstant();
+        for (int i = firstIndex; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator();
             buildUpPath(bridge, bridgeNumber);
             buildDownPath(bridge, bridgeNumber);
@@ -47,11 +47,11 @@ public class BridgeMaker {
     }
 
     public boolean isBridgeNumberUpSide(int bridgeNumber) {
-        return bridgeNumber == GameConstant.UP_SIDE.getConstant();
+        return bridgeNumber == NumberConstant.UP_SIDE.getConstant();
     }
 
     public boolean isBridgeNumberDownSide(int bridgeNumber) {
-        return bridgeNumber == GameConstant.DOWN_SIDE.getConstant();
+        return bridgeNumber == NumberConstant.DOWN_SIDE.getConstant();
     }
 
     public void addBridgeUpPath(List<String> bridge) {

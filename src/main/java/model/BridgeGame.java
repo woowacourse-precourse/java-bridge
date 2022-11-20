@@ -1,66 +1,42 @@
 package model;
 
-import constant.Number;
+import constant.NumberConstant;
 import controller.BridgeController;
 import constant.StringConstant;
 import domain.BridgeSize;
 import java.util.ArrayList;
 import java.util.List;
+import util.BridgeGameValidator;
 
 public class BridgeGame {
-    public static int tryNumber = Number.FIRST_TRY.getNumber();
+    public static int tryNumber = NumberConstant.FIRST_TRY.getConstant();
     private static List<String> userBridge;
 
     public static void move(List<String> bridge, List<List<String>> bothSide) {
+        int firstIndex = NumberConstant.FIRST_INDEX.getConstant();
         userBridge = new ArrayList<>();
-        addMoveInUserBridge(userBridge);
-        for (int i = 0; i < userBridge.size(); i++) {
-            isUserPathEqualsPath(bothSide, bridge, i);
-            if (BridgeSize.isUserInputDone(bridge, bothSide) || isContainWrongPath(bothSide)) {
+        addMoveInUserBridge();
+        for (int index = firstIndex; index < userBridge.size(); index++) {
+            isUserPathEqualsPath(bothSide, bridge, index);
+            if (BridgeSize.isUserInputDone(bridge, bothSide) || BridgeGameValidator.isContainWrongPath(bothSide)) {
                 break;
             }
-            addMoveInUserBridge(userBridge);
+            addMoveInUserBridge();
         }
     }
 
     public static void retry(List<String> bridge, List<List<String>> bothSide) {
         String retryOrQuit = BridgeController.getGameCommand();
         BridgeController.printRetryOrQuit(retryOrQuit);
-        if (isUserInputRetry(retryOrQuit)) {
+        if (BridgeGameValidator.isUserInputRetry(retryOrQuit)) {
             countTryNumber();
             clearbothSide(bothSide);
             move(bridge, bothSide);
         }
     }
 
-    public static void addMoveInUserBridge(List<String> userBridge) {
+    public static void addMoveInUserBridge() {
         userBridge.add(BridgeController.getMoving());
-    }
-
-    public static void checkRetry(List<String> bridge, List<List<String>> bothSide) {
-        if (isContainWrongPath(bothSide)) {
-            retry(bridge, bothSide);
-        }
-    }
-
-    public static boolean isContainWrongPath(List<List<String>> bothSide) {
-        return bothSide.get(Number.UP_SIDE.getNumber()).contains(StringConstant.WRONG_PATH.getConstant())
-                || bothSide.get(Number.DOWN_SIDE.getNumber()).contains(StringConstant.WRONG_PATH.getConstant());
-    }
-
-    public static void clearTryNumber() {
-        tryNumber = Number.FIRST_TRY.getNumber();
-    }
-
-    private static void clearbothSide(List<List<String>> bothSide) {
-        bothSide.get(Number.UP_SIDE.getNumber()).clear();
-        bothSide.get(Number.DOWN_SIDE.getNumber()).clear();
-    }
-
-
-    private static void printMoving(List<List<String>> bothSide, String userPath) {
-        BridgeController.printMoving(userPath);
-        BridgeController.printMap(bothSide);
     }
 
     private static void isUserPathEqualsPath(List<List<String>> bothSide, List<String> bridge, int i) {
@@ -73,60 +49,68 @@ public class BridgeGame {
         }
     }
 
+    private static void addCorrectPath(List<List<String>> bothSide, List<String> bridge, int i) {
+        if (BridgeGameValidator.isBridgeEqualsU(bridge.get(i))) {
+            addCorrectPathUpSide(bothSide);
+        }
+        if (BridgeGameValidator.isBridgeEqualsD(bridge.get(i))) {
+            addCorrectPathDownSide(bothSide);
+        }
+        printMoving(bothSide, userBridge.get(i));
+    }
+
     private static void addWrongPath(List<List<String>> bothSide, List<String> bridge, int i) {
-        if (isBridgeEqualsU(bridge.get(i))) {
+        if (BridgeGameValidator.isBridgeEqualsU(bridge.get(i))) {
             addWrongPathDownSide(bothSide);
         }
-        if (isBridgeEqualsD(bridge.get(i))) {
+        if (BridgeGameValidator.isBridgeEqualsD(bridge.get(i))) {
             addWrongPathUpSide(bothSide);
         }
         printMoving(bothSide, userBridge.get(i));
         checkRetry(bridge, bothSide);
     }
 
-    private static void addCorrectPath(List<List<String>> bothSide, List<String> bridge, int i) {
-        if (isBridgeEqualsU(bridge.get(i))) {
-            addCorrectPathUpSide(bothSide);
-        }
-        if (isBridgeEqualsD(bridge.get(i))) {
-            addCorrectPathDownSide(bothSide);
-        }
-        printMoving(bothSide, userBridge.get(i));
-    }
-
-    private static boolean isBridgeEqualsD(String bridgeIndex) {
-        return bridgeIndex.equals(StringConstant.DOWN_SIDE.getConstant());
-    }
-
-    private static boolean isBridgeEqualsU(String bridgeIndex) {
-        return bridgeIndex.equals(StringConstant.UP_SIDE.getConstant());
-    }
-
     private static void addWrongPathDownSide(List<List<String>> bothSide) {
-        bothSide.get(Number.UP_SIDE.getNumber()).add(StringConstant.BLANK.getConstant());
-        bothSide.get(Number.DOWN_SIDE.getNumber()).add(StringConstant.WRONG_PATH.getConstant());
+        bothSide.get(NumberConstant.UP_SIDE.getConstant()).add(StringConstant.BLANK.getConstant());
+        bothSide.get(NumberConstant.DOWN_SIDE.getConstant()).add(StringConstant.WRONG_PATH.getConstant());
     }
 
     private static void addWrongPathUpSide(List<List<String>> bothSide) {
-        bothSide.get(Number.UP_SIDE.getNumber()).add(StringConstant.WRONG_PATH.getConstant());
-        bothSide.get(Number.DOWN_SIDE.getNumber()).add(StringConstant.BLANK.getConstant());
+        bothSide.get(NumberConstant.UP_SIDE.getConstant()).add(StringConstant.WRONG_PATH.getConstant());
+        bothSide.get(NumberConstant.DOWN_SIDE.getConstant()).add(StringConstant.BLANK.getConstant());
     }
 
     private static void addCorrectPathDownSide(List<List<String>> bothSide) {
-        bothSide.get(Number.UP_SIDE.getNumber()).add(StringConstant.BLANK.getConstant());
-        bothSide.get(Number.DOWN_SIDE.getNumber()).add(StringConstant.CORRECT_PATH.getConstant());
+        bothSide.get(NumberConstant.UP_SIDE.getConstant()).add(StringConstant.BLANK.getConstant());
+        bothSide.get(NumberConstant.DOWN_SIDE.getConstant()).add(StringConstant.CORRECT_PATH.getConstant());
     }
 
     private static void addCorrectPathUpSide(List<List<String>> bothSide) {
-        bothSide.get(Number.UP_SIDE.getNumber()).add(StringConstant.CORRECT_PATH.getConstant());
-        bothSide.get(Number.DOWN_SIDE.getNumber()).add(StringConstant.BLANK.getConstant());
+        bothSide.get(NumberConstant.UP_SIDE.getConstant()).add(StringConstant.CORRECT_PATH.getConstant());
+        bothSide.get(NumberConstant.DOWN_SIDE.getConstant()).add(StringConstant.BLANK.getConstant());
     }
 
-    private static boolean isUserInputRetry(String retryOrQuit) {
-        return retryOrQuit.equals(StringConstant.RETRY.getConstant());
+    public static void checkRetry(List<String> bridge, List<List<String>> bothSide) {
+        if (BridgeGameValidator.isContainWrongPath(bothSide)) {
+            retry(bridge, bothSide);
+        }
+    }
+
+    private static void printMoving(List<List<String>> bothSide, String userPath) {
+        BridgeController.printMoving(userPath);
+        BridgeController.printMap(bothSide);
+    }
+
+    private static void clearbothSide(List<List<String>> bothSide) {
+        bothSide.get(NumberConstant.UP_SIDE.getConstant()).clear();
+        bothSide.get(NumberConstant.DOWN_SIDE.getConstant()).clear();
     }
 
     private static void countTryNumber() {
         tryNumber++;
+    }
+
+    public static void clearTryNumber() {
+        tryNumber = NumberConstant.FIRST_TRY.getConstant();
     }
 }

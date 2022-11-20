@@ -9,7 +9,8 @@ public enum NumberConstant {
     BRIDGE_SIZE_END_INCLUSIVE(20),
     FIRST_TRY(1),
     ONE_LETTER(1),
-    TWO_LETTERS(2);
+    TWO_LETTERS(2),
+    FIRST_INDEX(0);
 
     public final int numberConstant;
 
