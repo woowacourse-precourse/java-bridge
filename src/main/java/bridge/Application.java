@@ -10,5 +10,6 @@ public class Application {
 
     private static void runBridge(BridgeController controller) {
         controller.start();
+        BridgeBluePrint bluePrint = controller.drawBluePrint();
     }
 }
