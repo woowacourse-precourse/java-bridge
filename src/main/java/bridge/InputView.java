@@ -2,17 +2,31 @@ package bridge;
 
 import bridge.domain.game.BridgeGameCommand;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.function.Supplier;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
+    
+    private <T> T retryInput(Supplier<T> input) {
+        try {
+            return input.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return retryInput(input);
+        }
+    }
+    
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int numberInput = getNumber();
+        return retryInput(this::inputBridgeSize);
+    }
+    
+    private int inputBridgeSize() {
+        int numberInput = retryInput(this::getNumber);
         validateBridgeSize(numberInput);
         return numberInput;
     }
@@ -22,15 +36,20 @@ public class InputView {
             throw new IllegalArgumentException("다리 길이는 1 이상이여야 합니다.");
         }
     }
-
+    
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public BridgeMove readMoving() {
+        return retryInput(this::inputMoving);
+    }
+    
+    public BridgeMove inputMoving() {
         String input = Console.readLine();
         validateReadMovingInput(input);
         return BridgeMove.findByDirection(input).orElseThrow();
     }
+    
     
     private void validateReadMovingInput(String input) {
         if (!BridgeMove.isContain(input)) {
@@ -42,6 +61,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public BridgeGameCommand readGameCommand() {
+        return retryInput(this::inputGameCommand);
+    }
+    
+    public BridgeGameCommand inputGameCommand() {
         String input = Console.readLine();
         validateReadGameCommandInput(input);
         return BridgeGameCommand.findByCommand(input).orElseThrow();
