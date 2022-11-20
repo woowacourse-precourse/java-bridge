@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +52,10 @@ public class BridgeGame {
 
     public List<String> getPlayer() {
         return player;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
     }
 }
 
