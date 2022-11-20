@@ -28,6 +28,7 @@ public class BridgeGame {
     public void move(String arrow) {
         validateBridgeArrow(arrow);
         bridgeState.mark(makeBridgeStatus(arrow));
+        updateGameResult(arrow);
         round++;
     }
 
@@ -35,6 +36,14 @@ public class BridgeGame {
         if (!arrow.equals(UP) && !arrow.equals(DOWN)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void updateGameResult(String arrow) {
+        if (!isCrossable(arrow)) {
+            gameResult = false;
+            return;
+        }
+        gameResult = true;
     }
 
     private boolean isCrossable(String arrow) {
@@ -57,6 +66,10 @@ public class BridgeGame {
         round = 0;
         totalGameAttempts++;
         bridgeState.initBridgeState();
+    }
+
+    public int getBridgeLength() {
+        return bridge.size();
     }
 
     public int getTotalGameAttempts() {
