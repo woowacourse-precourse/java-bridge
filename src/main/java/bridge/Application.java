@@ -9,8 +9,9 @@ public class Application {
         BridgeNumberGenerator BridgeNumberGenerator = null;
         BridgeMaker BridgeMaker = new BridgeMaker(BridgeNumberGenerator);
         List<String> Bridge = BridgeMaker.makeBridge(inputView.readBridgeSize());
-        for (int i = 0; i <Bridge.size() ; i++) {
+        /*for (int i = 0; i <Bridge.size() ; i++) {
             System.out.print(Bridge.get(i));
-        }
+        }*/
+       System.out.println( inputView.readMoving());
     }
 }
