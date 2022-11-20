@@ -1,25 +1,23 @@
-package bridge.domain.mapmaker;
+package bridge.domain.map;
 
 import bridge.domain.bridge.CrossStatus;
 import bridge.domain.direction.Direction;
+import bridge.domain.mapmaker.MapSymbol;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static bridge.domain.bridge.CrossStatus.FAIL;
 import static bridge.domain.direction.Direction.UP;
 import static bridge.domain.mapmaker.MapSymbol.*;
 
-public class MapMaker {
-
-    private static final String NEW_LINT = "\n";
-    private static final String SEPARATOR_REGEX = "\\|";
-    private static final String EMPTY_STRING = "";
+public class BridgeMap {
 
     private final List<MapSymbol> topLine;
     private final List<MapSymbol> bottomLine;
 
-    public MapMaker() {
+    public BridgeMap() {
         topLine = new ArrayList<>();
         bottomLine = new ArrayList<>();
 
@@ -32,6 +30,14 @@ public class MapMaker {
 
         topLine.add(START);
         bottomLine.add(START);
+    }
+
+    public List<MapSymbol> getTopLine() {
+        return Collections.unmodifiableList(topLine);
+    }
+
+    public List<MapSymbol> getBottomLine() {
+        return Collections.unmodifiableList(bottomLine);
     }
 
     public void addPath(final Direction direction,
@@ -77,23 +83,5 @@ public class MapMaker {
 
         bottomLine.add(symbol);
         topLine.add(EMPTY);
-    }
-
-    public String getCurrentMap() {
-        String topMap = mapToString(topLine);
-        String bottomMap = mapToString(bottomLine);
-
-        return topMap + NEW_LINT + bottomMap;
-    }
-
-    private String mapToString(final List<MapSymbol> topLine) {
-        StringBuilder sb = new StringBuilder();
-        for (MapSymbol mapSymbol : topLine) {
-            sb.append(mapSymbol.symbol());
-        }
-
-        sb.append(END.symbol());
-
-        return sb.toString().replaceFirst(SEPARATOR_REGEX, EMPTY_STRING);
     }
 }

@@ -3,7 +3,7 @@ package bridge.domain.game;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.CrossStatus;
 import bridge.domain.direction.Direction;
-import bridge.domain.mapmaker.MapMaker;
+import bridge.domain.map.BridgeMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,12 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private final MapMaker maker;
+    private final BridgeMap brideMap;
     private final List<Direction> currentPath;
 
     public BridgeGame(final Bridge bridge) {
         this.bridge = bridge;
-        this.maker = new MapMaker();
+        this.brideMap = new BridgeMap();
         this.currentPath = new ArrayList<>();
     }
 
@@ -40,14 +40,14 @@ public class BridgeGame {
 
     private void makeMap(final Direction direction,
                          final CrossStatus result) {
-        maker.addPath(direction, result);
+        brideMap.addPath(direction, result);
     }
 
     /**
      * 현재까지 사용자가 입력한 값을 통해 그려진 지도 반환
      */
-    public String currentMap() {
-        return maker.getCurrentMap();
+    public BridgeMap currentMap() {
+        return brideMap;
     }
 
     /**
@@ -57,7 +57,7 @@ public class BridgeGame {
      */
     public void retry() {
         this.currentPath.clear();
-        this.maker.init();
+        this.brideMap.init();
     }
 
     public CrossStatus status() {
