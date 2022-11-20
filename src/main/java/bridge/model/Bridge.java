@@ -29,47 +29,47 @@ public class Bridge {
         }};
     }
 
-    private void isFirstBridgeUpToDown(String mark) {
-        upBridge.add(1, makeSpace(mark));
+    private void isFirstBridgeUpToDown(String markWithOX) {
+        upBridge.add(1, makeSpace(markWithOX));
         downBridge.add(1, "   ");
     }
 
-    private void isFirstBridgeDownToUp(String mark) {
-        downBridge.add(1, makeSpace(mark));
+    private void isFirstBridgeDownToUp(String markWithOX) {
+        downBridge.add(1, makeSpace(markWithOX));
         upBridge.add(1, "   ");
     }
 
-    public void setUpBridge(String mark) {
+    public void setUpBridge(String markWithOX) {
         if (Player.currentLocation == 0) {
-            isFirstBridgeUpToDown(mark);
+            isFirstBridgeUpToDown(markWithOX);
             return;
         }
-        if (isContains(mark)) {
-            checkBridgeSequence(mark, upBridge, downBridge);
+        if (isContains(markWithOX)) {
+            checkBridgeSequence(markWithOX, upBridge, downBridge);
             return;
         }
-        checkBridgeSequence(mark, upBridge, downBridge);
+        checkBridgeSequence(markWithOX, upBridge, downBridge);
     }
 
-    private void checkBridgeSequence(String mark, ArrayList<String> upBridge, ArrayList<String> downBridge) {
-        moreThanFirstBridge(mark, upBridge);
+    private void checkBridgeSequence(String markWithOX, ArrayList<String> upBridge, ArrayList<String> downBridge) {
+        moreThanFirstBridge(markWithOX, upBridge);
         moreThanFirstBridgeSpace(downBridge);
     }
 
-    public void setDownBridge(String mark) {
+    public void setDownBridge(String markWithOX) {
         if (Player.currentLocation == 0) {
-            isFirstBridgeDownToUp(mark);
+            isFirstBridgeDownToUp(markWithOX);
             return;
         }
-        if (isContains(mark)) {
-            checkBridgeSequence(mark, downBridge, upBridge);
+        if (isContains(markWithOX)) {
+            checkBridgeSequence(markWithOX, downBridge, upBridge);
             return;
         }
-        checkBridgeSequence(mark, downBridge, upBridge);
+        checkBridgeSequence(markWithOX, downBridge, upBridge);
     }
 
-    private boolean isContains(String mark) {
-        return mark.contains(" O ");
+    private boolean isContains(String markWithOX) {
+        return markWithOX.contains(" O ");
     }
 
     private void moreThanFirstBridgeSpace(ArrayList<String> bridge) {
@@ -77,9 +77,9 @@ public class Bridge {
         bridge.add(Player.currentLocation * 2 + 1, "   ");
     }
 
-    private void moreThanFirstBridge(String mark, ArrayList<String> bridge) {
+    private void moreThanFirstBridge(String markWithOX, ArrayList<String> bridge) {
         bridge.add(Player.currentLocation * 2, "|");
-        bridge.add(Player.currentLocation * 2 + 1, makeSpace(mark));
+        bridge.add(Player.currentLocation * 2 + 1, makeSpace(markWithOX));
     }
 
     public void resetBridge() {
@@ -132,8 +132,8 @@ public class Bridge {
         return size;
     }
 
-    private String makeSpace(String mark) {
-        return " " + mark + " ";
+    private String makeSpace(String markWithOX) {
+        return " " + markWithOX + " ";
     }
 }
 
