@@ -1,9 +1,8 @@
-package bridge;
+package bridge.domain.dto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import bridge.domain.dto.BridgeSize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,7 +47,7 @@ class BridgeSizeTest {
 		class Context_parameter_is_not_restricted_range_number {
 
 			@DisplayName("예외를 발생시킨다.")
-			@ValueSource(strings = {"1", "2", "21", "100"})
+			@ValueSource(strings = {"1", "2", "21", "100", "-3"})
 			@ParameterizedTest
 			void it_returns_illegal_argument_exception(String input) {
 				assertThatThrownBy(() -> new BridgeSize(input))

@@ -1,4 +1,4 @@
-package bridge.utils.validator;
+package bridge.utils;
 
 public abstract class MovingValidator {
 	private final String INVALID_INPUT_MOVING = "[ERROR] D와 U 중에서만 입력할 수 있습니다.";
