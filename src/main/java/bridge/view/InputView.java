@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeSize;
+import bridge.domain.BridgeState;
 import bridge.domain.InputException;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -52,13 +53,22 @@ public class InputView {
     public String readMoving() {
         String userMove = Console.readLine();
         validateBlankMove(userMove);
-        return null;
+        validateInvalidMove(userMove);
+        return userMove;
     }
 
     public void validateBlankMove(String uncheckedInput) {
         if(uncheckedInput.isBlank()) {
             throw new IllegalArgumentException(InputException.BLANK_PLAYER_MOVE.getExceptionMessage());
         }
+    }
+
+    public void validateInvalidMove(String uncheckedInput) {
+        if(uncheckedInput.equals(BridgeState.UP.getState()) ||
+                uncheckedInput.equals(BridgeState.DOWN.getState())){
+            return;
+        }
+        throw new IllegalArgumentException(InputException.INVALID_PLAYER_MOVE.getExceptionMessage());
     }
 
     /**
