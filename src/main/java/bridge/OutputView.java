@@ -74,6 +74,10 @@ public class OutputView {
     }
 
     private String convertSuccessToString(boolean success) {
-        return null;
+        if(success) {
+            return "성공";
+        }
+
+        return "실패";
     }
 }
