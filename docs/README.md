@@ -104,3 +104,4 @@
     - [x]  validateBridgeSize -> 다리 길이 검증
     - [x]  validateMoving -> 이동 방향 검증
 - [x]  GameMoveDto 움직임 결과
+- [x]  GameResultDto 최종 결과
