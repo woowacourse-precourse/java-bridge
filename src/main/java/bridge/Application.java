@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
+import bridge.model.Record;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class Application {
             List<String> board = new ArrayList<>();
             Map<String, Integer> resultBoard = new HashMap<>();
             BridgeGameController bridgeGameController = new BridgeGameController();
-            bridgeGameController.start(board, resultBoard);
+            bridgeGameController.start(new Record(board, resultBoard));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

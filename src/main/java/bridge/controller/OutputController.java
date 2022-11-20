@@ -1,11 +1,11 @@
 package bridge.controller;
 
-import bridge.view.OutputView;
+import bridge.model.Record;
 import bridge.util.Constant;
 import bridge.util.GuideMessage;
+import bridge.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class OutputController {
     private final OutputView outputView;
@@ -14,18 +14,18 @@ public class OutputController {
         this.outputView = outputView;
     }
 
-    public void getChoiceResult(List<String> board, List<String> bridge) {
-        outputView.printMap(board, bridge);
+    public void getChoiceResult(Record record, List<String> bridge) {
+        outputView.printMap(record, bridge);
     }
 
-    public void getFinalResult(List<String> board, List<String> bridge, Map<String, Integer> resultBoard) {
+    public void getFinalResult(Record record, List<String> bridge) {
         String result = GuideMessage.FAIL;
-        if (resultBoard.get(Constant.SUCCESS_OR_FAIL) == 1) {
+        if (record.equalsToResultBoard(Constant.SUCCESS_OR_FAIL, 1)) {
             result = GuideMessage.SUCCESS;
         }
 
         outputView.endOfGame();
-        getChoiceResult(board, bridge);
-        outputView.printResult(result, resultBoard.get(Constant.NUMBER_OF_ATTEMPTS));
+        getChoiceResult(record, bridge);
+        outputView.printResult(result, record.getValueByKey(Constant.NUMBER_OF_ATTEMPTS));
     }
 }

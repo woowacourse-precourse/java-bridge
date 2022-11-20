@@ -3,12 +3,12 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.model.Record;
 import bridge.util.Constant;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class BridgeGameController {
     private final InputController inputController;
@@ -25,40 +25,37 @@ public class BridgeGameController {
         this.bridgeGame = new BridgeGame();
     }
 
-    public void start(List<String> board, Map<String, Integer> resultBoard) throws IllegalArgumentException {
+    public void start(Record record) throws IllegalArgumentException {
         int size = inputController.getBridgeSize(inputController.getBridgeSizeInput());
         List<String> bridge = inputController.getBridge(size);
 
-        bridgeGame.initialize(board, resultBoard);
-        play(board, bridge, resultBoard);
+        bridgeGame.initialize(record);
+        play(record, bridge);
     }
 
-    private void play(List<String> board,
-                      List<String> bridge,
-                      Map<String, Integer> resultBoard) throws IllegalArgumentException {
+    private void play(Record record,
+                      List<String> bridge) throws IllegalArgumentException {
         int result;
-        while (isContinue(board, bridge, resultBoard)) {
-            bridgeGame.move(board,
+        while (isContinue(record, bridge)) {
+            bridgeGame.move(record,
                     inputController.getMovingDirection(inputController.getMovingDirectionInput()));
-            outputController.getChoiceResult(board, bridge);
+            outputController.getChoiceResult(record, bridge);
         }
-        result = bridgeGame.isSuccess(board, bridge);
-        resultBoard.put(Constant.SUCCESS_OR_FAIL, result);
-        outputController.getFinalResult(board, bridge, resultBoard);
+        result = bridgeGame.isSuccess(record, bridge);
+        record.putInResultBoard(Constant.SUCCESS_OR_FAIL, result);
+        outputController.getFinalResult(record, bridge);
     }
 
-    private boolean isContinue(List<String> board,
-                               List<String> bridge,
-                               Map<String, Integer> resultBoard) throws IllegalArgumentException {
-        int index = board.size() - 1;
+    private boolean isContinue(Record record,
+                               List<String> bridge) throws IllegalArgumentException {
+        int index = record.getBoardSize() - 1;
         if (index < 0) {
             return true;
         }
-        if (!board.get(index)
-                .equals(bridge.get(index))) {
+        if (!record.equalsToBoard(index, bridge.get(index))) {
             String command = inputController.getGameCommand(inputController.getGameCommandInput());
-            return bridgeGame.retry(board, resultBoard, command);
+            return bridgeGame.retry(record, command);
         }
-        return board.size() != bridge.size();
+        return record.getBoardSize() != bridge.size();
     }
 }

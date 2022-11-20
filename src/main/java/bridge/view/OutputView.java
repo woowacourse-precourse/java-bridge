@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.Record;
 import bridge.util.Constant;
 import bridge.util.GuideMessage;
 
@@ -37,50 +38,61 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> board, List<String> bridge) {
-        printUpperLine(board, bridge);
-        printLowerLine(board, bridge);
+    public void printMap(Record record, List<String> bridge) {
+        printUpperLine(record, bridge);
+        printLowerLine(record, bridge);
         breakLine();
     }
 
-    private void printUpperLine(List<String> board, List<String> bridge) {
+    private void printUpperLine(Record record, List<String> bridge) {
         printFirstOfBridge();
-        for (int index = 0; index < board.size(); index++) {
-            printUpperBlock(board, index, bridge);
+        for (int index = 0; index < record.getBoardSize(); index++) {
+            printUpperBlock(record, index, bridge);
         }
         printLastOfBridge();
     }
 
-    private void printUpperBlock(List<String> board, int index, List<String> bridge) {
-        String contentToPrint = compare(board.get(index), bridge.get(index), Constant.UP);
+    private void printUpperBlock(Record record, int index, List<String> bridge) {
+        String contentToPrint = getContent(compareToBridge(bridge,index, Constant.UP),
+                compareToBoard(record, index, Constant.UP));
         printChoiceResult(contentToPrint);
-        if (index < board.size() - 1) {
+        if (index < record.getBoardSize() - 1) {
             printMiddleOfBridge();
         }
     }
 
-    private String compare(String userResult, String bridgeBlock, String direction) {
-        if (bridgeBlock.equals(direction) && userResult.equals(direction)) {
+    private String getContent(boolean bridgeResult, boolean boardResult) {
+        if (bridgeResult && boardResult) {
             return GuideMessage.CORRECT_CHOICE;
         }
-        if (!bridgeBlock.equals(direction) && userResult.equals(direction)) {
+        if (!bridgeResult && boardResult) {
             return GuideMessage.INCORRECT_CHOICE;
         }
         return Constant.EMPTY;
     }
 
-    private void printLowerLine(List<String> board, List<String> bridge) {
+    private boolean compareToBridge(List<String> bridge, int index, String direction) {
+        return bridge.get(index)
+                .equals(direction);
+    }
+
+    private boolean compareToBoard(Record record, int index, String direction) {
+        return record.equalsToBoard(index, direction);
+    }
+
+    private void printLowerLine(Record record, List<String> bridge) {
         printFirstOfBridge();
-        for (int index = 0; index < board.size(); index++) {
-            printLowerBlock(board, index, bridge);
+        for (int index = 0; index < record.getBoardSize(); index++) {
+            printLowerBlock(record, index, bridge);
         }
         printLastOfBridge();
     }
 
-    private void printLowerBlock(List<String> board, int index, List<String> bridge) {
-        String contentToPrint = compare(board.get(index), bridge.get(index), Constant.DOWN);
+    private void printLowerBlock(Record record, int index, List<String> bridge) {
+        String contentToPrint = getContent(compareToBridge(bridge,index, Constant.DOWN),
+                compareToBoard(record, index, Constant.DOWN));
         printChoiceResult(contentToPrint);
-        if (index < board.size() - 1) {
+        if (index < record.getBoardSize() - 1) {
             printMiddleOfBridge();
         }
     }
