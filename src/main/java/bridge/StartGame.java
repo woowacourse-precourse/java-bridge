@@ -1,23 +1,29 @@
 package bridge;
 
-import static bridge.Application.movingInput;
-
 public class StartGame {
 
     public static boolean startGame() {
-        OutputView.printSelect();
-        movingInput = InputView.readMoving();
+        requestMove();
         BridgeGame.move();
         OutputView.printMap();
         if (isWrongWay()) {
-            if (wantRetry()) {
-                BridgeGame.retry();
-                return true;
-            }
-            return false;
+            return whenWrong();
         }
         Application.movingTurn++;
         return true;
+    }
+
+    public static void requestMove() {
+        OutputView.printSelect();
+        Application.movingInput = InputView.readMoving();
+    }
+
+    public static boolean whenWrong() {
+        if (wantRetry()) {
+            BridgeGame.retry();
+            return true;
+        }
+        return false;
     }
 
     public static boolean wantRetry() {
@@ -38,6 +44,5 @@ public class StartGame {
     public static boolean isWrongWay() {
         boolean isWrongAnswer = !isRightWay();
         return isWrongAnswer;
-
     }
 }
