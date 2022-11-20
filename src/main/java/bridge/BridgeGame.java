@@ -9,17 +9,19 @@ import java.util.Objects;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final List<String> bridge;
     private List<String> upResult;
     private List<String> downResult;
+
     private static final String SPACE = "   ";
     private static final String X = " X ";
     private static final String O = " O ";
 
-    public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
+    public BridgeGame(int bridgeSize) {
         this.upResult = new ArrayList<>();
         this.downResult = new ArrayList<>();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**
