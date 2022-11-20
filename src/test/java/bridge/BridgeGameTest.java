@@ -12,7 +12,7 @@ public class BridgeGameTest {
     @DisplayName("다음 칸이 이동 가능한 칸인지 확인하는 테스트")
     @Test
     void 아래칸_이동_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("D", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame();
         assertThat(bridgeGame.tryMoveTo("D"))
                 .isEqualTo(GameStatus.CONTINUE);
     }
@@ -20,7 +20,7 @@ public class BridgeGameTest {
     @DisplayName("다음 칸이 이동 가능한 칸인지 확인하는 테스트")
     @Test
     void 위칸_이동_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
+        BridgeGame bridgeGame = new BridgeGame();
         assertThat(bridgeGame.tryMoveTo("U"))
                 .isEqualTo(GameStatus.CONTINUE);
     }
@@ -28,7 +28,7 @@ public class BridgeGameTest {
     @DisplayName("다음칸 이동 불가능으로 게임 실패 케이스 테스트")
     @Test
     void 위칸_이동_실패_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("D"));
+        BridgeGame bridgeGame = new BridgeGame();
         assertThat(bridgeGame.tryMoveTo("U"))
                 .isEqualTo(GameStatus.FAILURE);
     }
@@ -36,16 +36,25 @@ public class BridgeGameTest {
     @DisplayName("다음칸 이동 불가능으로 게임 실패 케이스 테스트")
     @Test
     void 아래칸_이동_실패_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U"));
+        BridgeGame bridgeGame = new BridgeGame();
         assertThat(bridgeGame.tryMoveTo("D"))
                 .isEqualTo(GameStatus.FAILURE);
     }
 
-    @DisplayName("다음 칸이 이동 가능한 칸인지 확인하는 테스트")
+    @DisplayName("다리 길이가 1일 때 게임 성공 테스트")
     @Test
-    void 게임_성공_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U"));
+    void 다리_길이_1_게임_성공_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
         assertThat(bridgeGame.tryMoveTo("U"))
+                .isEqualTo(GameStatus.SUCCESS);
+    }
+
+    @DisplayName("다리 길이가 1일 때 게임 성공 테스트")
+    @Test
+    void 다리_길이_2_게임_성공_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.tryMoveTo("U");
+        assertThat(bridgeGame.tryMoveTo("D"))
                 .isEqualTo(GameStatus.SUCCESS);
     }
 }
