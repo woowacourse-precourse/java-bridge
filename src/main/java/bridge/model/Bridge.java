@@ -9,7 +9,10 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isConnected(String location, int index) {
-
+    public boolean ableToMove(String location, int index) {
+        if (location.equals(bridge.get(index))) {
+            return true;
+        }
+        return false;
     }
 }

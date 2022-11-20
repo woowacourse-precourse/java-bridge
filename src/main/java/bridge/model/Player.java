@@ -18,7 +18,7 @@ public class Player {
         return InputView.readBridgeSize();
     }
 
-    public void tryGame() {
+    public void oneMoreTry() {
         this.tries++;
     }
 

@@ -21,12 +21,11 @@ public class BridgeGameController {
     }
 
     private void play() {
-        player.tryGame();
+        bridgeGame.tryGame();
         boolean isMoving;
         do {
             OutputView.askMove();
-            String nextLocation = player.inputMove();
-            isMoving = bridgeGame.move(nextLocation, player.getCurrentIndex() + 1);
+            isMoving = bridgeGame.move();
         } while (isMoving);
     }
 }

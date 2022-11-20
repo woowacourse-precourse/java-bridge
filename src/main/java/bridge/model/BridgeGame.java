@@ -23,7 +23,16 @@ public class BridgeGame {
         bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
-    public boolean move(String nextLocation, int nextIndex) {
+    public void tryGame() {
+        player.oneMoreTry();
+    }
+
+    public boolean move() {
+        String nextLocation = player.inputMove();
+        if (bridge.ableToMove(nextLocation, player.getCurrentIndex() + 1)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -33,6 +42,7 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
 
 
 }
