@@ -25,15 +25,15 @@ public class BridgeGameService {
         return this.mergeBride;
     }
 
-    public void setMatch(){
+    public void setMatch() {
         List<String> bridgeLoad = bridge.getBridgeLoad();
         List<String> userMove = user.getMove();
         int userCheckSize = userMove.size() - 1;
         boolean check = userMove.get(userCheckSize).equals(bridgeLoad.get(userCheckSize));
-        if (check){
+        if (check) {
             gameStatus.setMatchCorrect(true);
         }
-        if (!check){
+        if (!check) {
             gameStatus.setMatchCorrect(false);
         }
     }
@@ -42,9 +42,11 @@ public class BridgeGameService {
     private String makeMergeBridge(List<String> bridgeLoad, List<String> userMove) {
         ArrayList<String> checkList = new ArrayList<>();
         for (int i = 0; i < userMove.size(); i++) {
-            if (bridgeLoad.get(i).equals(userMove.get(i))) {
+            boolean check = bridgeLoad.get(i).equals(userMove.get(i));
+            if (check) {
                 checkList.add("O");
-            } else if (!bridgeLoad.get(i).equals(userMove.get(i))) {
+            }
+            if (!check) {
                 checkList.add("X");
             }
         }
