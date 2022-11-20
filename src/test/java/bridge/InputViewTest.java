@@ -25,4 +25,10 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"", "12", "@", "Z", "RR", "RQ"})
+    void validateGameCommandExceptionTest(String gameCommand) {
+        assertThatThrownBy(() -> inputView.validateGameCommand(gameCommand))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

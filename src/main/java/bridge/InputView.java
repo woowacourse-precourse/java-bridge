@@ -35,7 +35,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = Console.readLine();
+
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     public void validateBridgeSize(final String bridgeSize) {
@@ -81,24 +84,37 @@ public class InputView {
         validateEmptyString(moving);
         validateCharacter(moving);
         validateDuplicatedCharacter(moving);
-        validateCommand(moving);
+        validateMovingCommand(moving);
     }
 
-    public void validateCharacter(String text) {
+    public void validateCharacter(final String text) {
         if (!text.matches(CHARACTER_REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "영문자를 입력해야 합니다.");
         }
     }
 
-    public void validateDuplicatedCharacter(String text) {
+    public void validateDuplicatedCharacter(final String text) {
         if (text.length() > 1) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "너무 많이 입력했습니다.");
         }
     }
 
-    public void validateCommand(String moving) {
+    public void validateMovingCommand(final String moving) {
         if (!(moving.contains("U") | moving.contains("D"))) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "U 또는 D가 아닌 문자를 입력했습니다.");
+        }
+    }
+
+    public void validateGameCommand(final String gameCommand) {
+        validateEmptyString(gameCommand);
+        validateCharacter(gameCommand);
+        validateDuplicatedCharacter(gameCommand);
+        validateCommand(gameCommand);
+    }
+
+    public void validateCommand(final String gameCommand) {
+        if (!(gameCommand.contains("R") | gameCommand.contains("Q"))) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "R 또는 Q가 아닌 문자를 입력했습니다.");
         }
     }
 }
