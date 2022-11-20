@@ -42,7 +42,7 @@ public class InputView {
     public String readGameCommand() {
         String command = Console.readLine();
         validateCommandValueLength(command);
-        return null;
+        return command;
     }
 
     private void validateCommandValueLength(String command) {
