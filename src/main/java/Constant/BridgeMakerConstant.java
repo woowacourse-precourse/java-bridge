@@ -14,4 +14,7 @@ public enum BridgeMakerConstant {
     public String getValue(int idx){
         return route.get(idx);
     }
+    public int getBranchNum(){
+        return route.size();
+    }
 }
