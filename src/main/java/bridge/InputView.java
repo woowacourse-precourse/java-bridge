@@ -14,12 +14,12 @@ public class InputView {
     public int readBridgeSize() {
         String input = readLine();
         if (!input.matches("[0-9]+")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
 
         int size = Integer.parseInt(input);
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
         return size;
     }
@@ -30,7 +30,7 @@ public class InputView {
     public String readMoving() {
         String input = readLine();
         if ( !(input.equals("U") || input.equals("D")) ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
         return input;
     }
@@ -41,7 +41,7 @@ public class InputView {
     public String readGameCommand() {
         String input = readLine();
         if ( !(input.equals("R") || input.equals("Q")) ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
         return input;
     }
