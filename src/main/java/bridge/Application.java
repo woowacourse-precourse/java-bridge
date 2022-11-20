@@ -1,13 +1,13 @@
 package bridge;
 
-import bridge.service.BridgeService;
+import bridge.controller.BridgeController;
 
 public class Application {
 
 	public static void main(String[] args) {
 		// TODO: 프로그램 구현
-		BridgeService bridgeService = new BridgeService();
+		BridgeController controller = new BridgeController();
 
-		bridgeService.gameStart();
+		controller.gameStart();
 	}
 }
