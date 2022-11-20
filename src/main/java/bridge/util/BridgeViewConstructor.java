@@ -4,6 +4,11 @@ import java.util.List;
 
 public class BridgeViewConstructor {
 
+    private static final String RIGHT_BRIDGE = " O";
+    private static final String BLANK_BRIDGE = "  ";
+    private static final String WRONG_BRIDGE = " X";
+    private static final String BRIDGE_CONNECTOR = " |";
+
     private StringBuilder upperBridge = new StringBuilder();
     private StringBuilder lowerBridge = new StringBuilder();
 
@@ -15,12 +20,11 @@ public class BridgeViewConstructor {
         return playerIndexed.equals(bridgeIndexed);
     }
 
-    private void appendRightAnswer(){
-
+    private void appendRightAnswer(StringBuilder bridge){
+        bridge.append(RIGHT_BRIDGE).append(BRIDGE_CONNECTOR);
     }
 
-    private void appendWrongAnswer(){
-
+    private void appendWrongAnswer(StringBuilder bridge){
     }
 
     private boolean isU(){
