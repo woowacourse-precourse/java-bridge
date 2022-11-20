@@ -58,5 +58,5 @@
 - [ ] 첫 라운드 다리 건너고 나서 아래 다리 상태 값 확인 - BridgeGameTest#confirmFirstRoundDownBridgeState()
 - [ ] 두번째 라운드까지 다리 건너고 나서 위 다래 상태 값 확인 - BridgeGameTest#confirmSecondRoundUpBridgeState()
 - [ ] 두번째 라운드까지 다리 건너고 나서 아래 다리 상태 값 확인 - BridgeGameTest#confirmSecondRoundDownBridgeState()
-- [X] 게임 재시작 시 총 게임 도전 횟수 카운트 값 확인 - BridgeGameTest#confimTotalGameAttempts()
-- [ ] 게임 재시작 시 위, 아래 다리 상태 초기화 확인 - BridgeGameTest#confirmInitBridgeState()
+- [X] 게임 재시작 시 총 게임 도전 횟수 카운트 값 확인 - BridgeGameTest#confimTotalGameAttemptsWhenRetry()
+- [X] 게임 재시작 시 위, 아래 다리 상태 초기화 상태 확인 - BridgeGameTest#confirmInitBridgeStateWhenRetry()

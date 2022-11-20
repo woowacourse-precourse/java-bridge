@@ -34,11 +34,16 @@ class BridgeGameTest {
 
     @DisplayName("게임 재시작 시 게임 총 도전 횟수 카운트 값 확인")
     @Test
-    void confirmInitRoundWhenRetry() {
+    void confimTotalGameAttemptsWhenRetry() {
         bridgeGame.retry();
         assertThat(bridgeGame.getTotalGameAttempts()).isEqualTo(BRIDGE_GAME_ATTEMPTS_INIT + 1);
     }
 
-
-
+    @DisplayName("게임 재시작 시 위, 아래 다리 상태 초기화 확인")
+    @Test
+    void confirmInitBridgeStateWhenRetry() {
+        bridgeGame.retry();
+        assertThat(bridgeState.getUpBridgeState().length()).isEqualTo(0);
+        assertThat(bridgeState.getDownBridgeState().length()).isEqualTo(0);
+    }
 }
