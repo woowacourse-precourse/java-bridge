@@ -51,12 +51,12 @@
 - 이동 가능 칸 표시 @ printMovable
 
 #### BRIDGEGAME
-- 시도 (다리 생성) 횟수 / 총 시도 횟수
+- 시도 (다리 생성) 횟수 / 총 시도 횟수 @trialAmount
 - 게임 재시작
-- 게임 종료
-- 최종 게임 결과
-- 게임 성공 여부
-- 게임 실패 여부 
+- 게임 종료 @ gameOver
+- 최종 게임 결과 @ finalResult
+- 게임 성공 여부 @ gamePass
+- 게임 실패 여부 @ gameEnd
 
 #### BRIDGEMAKER
 - 다리 생성
