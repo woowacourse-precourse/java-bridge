@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.verifier.BridgeSizeVerifier;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,10 @@ public class Bridge {
     List<String> bridge;
 
     public Bridge(List<String> bridge) {
+        BridgeSizeVerifier bridgeSizeVerifier = new BridgeSizeVerifier();
+        int bridgeSize = bridge.size();
+        bridgeSizeVerifier.check(String.valueOf(bridgeSize));
+
         this.bridge = bridge;
     }
 
