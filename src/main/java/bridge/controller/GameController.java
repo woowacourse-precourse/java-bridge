@@ -27,7 +27,7 @@ public class GameController {
         // 다리 길이 입력받음, 다리 생성
         generateBridge();
         // 게임 종료할 때 까지의 사이클
-        do{
+        do {
             // U, D 입력 받으며 다리 위 이동
             gameRecord.setPlayTimes(gameRecord.getPlayTimes() + 1);
             bridgeGame.generateNewRound();
@@ -56,13 +56,13 @@ public class GameController {
 
     private void move() {
         String correctResult;
-        do{
+        do {
             outputView.printMoveCommand();
 
             correctResult = bridgeGame.move(inputView.readMoving());
             // 현재 까지의 결과 출력
-
-        }while (bridgeGame.isBeAbleProceed(correctResult));
+            outputView.printMap(bridgeGame.getGameRound());
+        } while (bridgeGame.isBeAbleProceed(correctResult));
 
     }
 }
