@@ -28,7 +28,6 @@ public class BridgeGame {
      */
     public void move(String road) {
         route.add(road);
-        return;
     }
 
     public BridgeGameDto getBridgeGameDto() {
