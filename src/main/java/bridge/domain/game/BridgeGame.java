@@ -30,16 +30,16 @@ public class BridgeGame {
 		OutputView.withContentOf(REQUEST_BRIDGE_SIZE, false, false).ConsoleMessage();
 		Bridge bridge = new Bridge((BridgeSizeCommand) InputCommandReader.read(CommandReader.BRIDGE_SIZE).command(), bridgeMaker);
 
-		crossingTrial(bridge);
+		do {
+			crossingTrial(bridge);
+		} while (isTrialContinue(retryOrQuit()));
 	}
 
 	private void crossingTrial(Bridge bridge) {
-		do {
-			trialCount++;
-			List<String> bridgeNowCrossing = bridge.getBridgeToCross();
-			CrossingBridge crossingBridge = CrossingBridge.over(bridgeNowCrossing);
-			crossFailOrSuccess = crossingBridge.isCrossComplete();
-		} while (isTrialContinue(retryOrQuit()));
+		trialCount++;
+		List<String> bridgeNowCrossing = bridge.getBridgeToCross();
+		CrossingBridge crossingBridge = CrossingBridge.over(bridgeNowCrossing);
+		crossFailOrSuccess = crossingBridge.isCrossComplete();
 	}
 
 	private boolean isTrialContinue(String commandChoice) {
@@ -58,7 +58,7 @@ public class BridgeGame {
 		return commandChoice;
 	}
 
-	public GameProceedCommand requestRetry() {
+	private GameProceedCommand requestRetry() {
 		OutputView.withContentOf(REQUEST_RETRY, true, false).ConsoleMessage();
 		return (GameProceedCommand) InputCommandReader.read(CommandReader.GAME_PROCEED).command();
 	}

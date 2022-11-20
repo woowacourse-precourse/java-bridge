@@ -14,7 +14,7 @@ public class CrossingBridge {
 
 	private final boolean crossComplete;
 
-	public CrossingBridge(List<String> bridgeNowCrossing) {
+	private CrossingBridge(List<String> bridgeNowCrossing) {
 		cross(bridgeNowCrossing);
 		this.crossComplete = isCrossComplete(bridgeNowCrossing);
 	}
@@ -24,16 +24,17 @@ public class CrossingBridge {
 	}
 
 	private void cross(List<String> bridgeNowCrossing) {
-		do {
-			OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
-			MovementCommand movementCommand = (MovementCommand) InputCommandReader.read(CommandReader.GAME_MOVEMENT).command();
-			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
-			stepAhead(crossingDecision, bridgeNowCrossing);
-			ResultRendering resultRendering = ResultRendering.generatedBy(BridgeMap.depictedBy(crossingDecision, movementCommand));
-			OutputView.withContentOf(
-							resultRendering.getBridgeDescription(), false, false).ConsoleMessage();
-		} while (isCrossContinue(bridgeNowCrossing));
+		OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
+		MovementCommand movementCommand = (MovementCommand) InputCommandReader.read(CommandReader.GAME_MOVEMENT).command();
+		CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
+
+		stepAhead(crossingDecision, bridgeNowCrossing);
+		OutputView.withContentOf(ResultRendering.generatedBy(
+				BridgeMap.depictedBy(crossingDecision, movementCommand)).getBridgeDescription(), false, false).ConsoleMessage();
+
+		keepCrossing(crossingDecision, bridgeNowCrossing);
 	}
+
 
 	private void stepAhead(CrossingDecision crossingDecision, List<String> bridgeNowCrossing) {
 		if (crossingDecision.isCrossable()) {
@@ -41,8 +42,11 @@ public class CrossingBridge {
 		}
 	}
 
-	private boolean isCrossContinue(List<String> bridgeNowCrossing) {
-		return !(ResultRendering.getBridgeDescription().contains("X") || isCrossComplete(bridgeNowCrossing));
+	private void keepCrossing(CrossingDecision crossingDecision, List<String> bridgeNowCrossing) {
+		if (!crossingDecision.isCrossable() || isCrossComplete(bridgeNowCrossing)) {
+			return;
+		}
+		cross(bridgeNowCrossing);
 	}
 
 	private boolean isCrossComplete(List<String> bridgeNowCrossing) {
