@@ -9,7 +9,7 @@ public class Pause {
 		}
 	}
 
-	public static void setUnpause() {
+	public static void unsetPause() {
 		if (whenPaused()) {
 			paused = false;
 		}

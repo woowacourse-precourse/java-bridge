@@ -57,14 +57,12 @@ public class BridgeGameTest {
 		if (Pause.paused) {
 			bridgeGame.retry();
 		}
-		userSelectedCell = "U";
-		bridgeGame.move(userSelectedCell);
+		String nextUserSelectedCell = "U";
 
 		// then
-		String nextUserSelectedCell = userSelectedCell;
 		assertAll(
-			() -> assertThat(Pause.paused).isFalse(),
-			() -> assertThat(bridgeGame.isMovable(bridgeLetters, nextUserSelectedCell)).isTrue()
-			);
+			() -> assertThat(bridgeGame.isMovable(bridgeLetters, nextUserSelectedCell)).isTrue(),
+			() -> assertThat(Pause.paused).isFalse()
+		);
 	}
 }
