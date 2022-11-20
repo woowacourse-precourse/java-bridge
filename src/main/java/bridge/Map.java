@@ -49,4 +49,8 @@ public class Map {
 		}
 		return false;
 	}
+
+	public List<List<String>> getMap() {
+		return map;
+	}
 }
