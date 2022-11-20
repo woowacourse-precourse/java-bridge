@@ -23,15 +23,15 @@ public class Bridge {
         }
     }
 
-    public boolean isRange(int index) {
-        return bridge.size() <= index;
+    public boolean isRange(int location) {
+        return bridge.size() <= location;
     }
 
-    public boolean canMove(int index, BridgeCharacter bridgeCharacter) {
-        if(isRange(index)) {
+    public boolean canMove(int location, BridgeCharacter bridgeCharacter) {
+        if(isRange(location)) {
             return false;
         }
-        return bridge.get(index).equals(bridgeCharacter);
+        return bridge.get(location).equals(bridgeCharacter);
     }
 
     public List<BridgeCharacter> bridge() {
