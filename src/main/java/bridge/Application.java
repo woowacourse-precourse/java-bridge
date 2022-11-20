@@ -7,10 +7,10 @@ public class Application {
     static int bridgeSize;
     static List<String> bridge;
     static List<String> playerMove;
-    static InputView inputview = new InputView();
-    static OutputView outputView = new OutputView();
-    static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    static BridgeGame bridgeGame = new BridgeGame();
+    static InputView inputview;
+    static OutputView outputView;
+    static BridgeMaker bridgeMaker;
+    static BridgeGame bridgeGame;
     static boolean stepSuccess;
     static int tryCount;
 
@@ -30,6 +30,11 @@ public class Application {
         playerMove = new ArrayList<>();
         stepSuccess = true;
         tryCount = 0;
+
+        inputview = new InputView();
+        outputView = new OutputView();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeGame = new BridgeGame();
     }
 
     private static void getBridge() {
@@ -43,18 +48,21 @@ public class Application {
 
     public static void gameStart() {
         tryCount++;
+        
         while(stepSuccess){
             if(checkSuccess())
                 return;
             bridgeGame.move();
             stepSuccess = CheckStep();
         }
+
         CheckRetry();
     }
 
     private static boolean checkSuccess() {
         if(bridgeSize == playerMove.size() && stepSuccess)
             return true;
+
         return false;
     }
 
