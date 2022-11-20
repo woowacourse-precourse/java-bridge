@@ -2,6 +2,8 @@ package bridge.util;
 
 import java.util.List;
 
+import static bridge.model.BridgeType.UPPER;
+
 public class BridgeViewConstructor {
 
     private static final String RIGHT_BRIDGE = " O";
@@ -26,8 +28,8 @@ public class BridgeViewConstructor {
     private void appendWrongAnswer(){
     }
 
-    private boolean isU(){
-        return true;
+    private boolean isU(String playerIndexed){
+        return playerIndexed.equals(UPPER.getCommand());
     }
 
     private void appendWithO(StringBuilder bridge){
