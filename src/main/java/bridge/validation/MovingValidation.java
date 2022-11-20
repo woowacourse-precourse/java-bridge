@@ -11,6 +11,12 @@ public class MovingValidation {
     public MovingValidation() {
     }
 
+    public void isValidate(String moving) {
+        isNull(moving);
+        isBlank(moving);
+        isUpperCaseUD(moving);
+    }
+
     public void throwError(String message) {
         throw new IllegalArgumentException(message);
     }

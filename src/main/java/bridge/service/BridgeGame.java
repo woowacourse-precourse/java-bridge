@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.repository.BridgeMakerRepository;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,12 @@ public class BridgeGame {
 
     public List<String> createBridge(int bridgeSize) {
         return bridgeMakerRepository.makeBridge(bridgeSize);
+    }
+
+    public List<String> createMovingChoices(String moving) {
+        List<String> movingChoices = new ArrayList<>();
+        movingChoices.add(moving);
+        return movingChoices;
     }
 
     /**

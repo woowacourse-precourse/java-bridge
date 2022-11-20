@@ -10,4 +10,8 @@ public class PrintGuideMessage {
     public static void printBridgeSizeGuide() {
         System.out.println(GuideMessage.BRIDGE_SIZE_INPUT_MESSAGE.getMessage());
     }
+
+    public static void printMovingGuide() {
+        System.out.println(GuideMessage.MOVING_INPUT_MESSAGE.getMessage());
+    }
 }
