@@ -31,6 +31,9 @@ public class InputValidator {
 
 
     private static boolean isNumber(String bridgeSize) {
+        if (bridgeSize == null || bridgeSize.equals("")) {
+            return false;
+        }
         for (char i : bridgeSize.toCharArray()) {
             if (!Character.isDigit(i)) {
                 return false;
