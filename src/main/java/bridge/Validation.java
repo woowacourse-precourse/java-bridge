@@ -1,7 +1,6 @@
 package bridge;
 
 public class Validation {
-    private static final int NUMBER_ZERO = 0;
     private static final int NUMBER_MIN = 3;
     private static final int NUMBER_MAX = 20;
     private static final String NUMBER_REMOVE_REGEX = "[0-9]";
@@ -13,7 +12,7 @@ public class Validation {
 
     public static void isInputIncludeCharacter(String input) {
         String result = input.replaceAll(NUMBER_REMOVE_REGEX, REGEX_CHANGE_WORD);
-        if (result.length() != NUMBER_ZERO)
+        if (result.length() != 0)
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_INCLUDE_CHARACTER.getMessage());
     }
 
