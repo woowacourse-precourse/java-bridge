@@ -13,8 +13,11 @@
 
 ## enum
 ### BridgeType
-UPPER(1, 'U'), LOWER(0 , 'D')로 저장하며 getBridgeCommand 메서드를 통해 U, D를 반환한다.
-getBridgeNumber 를 통해 1, 0을 반환한다.
+UPPER(1, 'U'), LOWER(0 , 'D')로 저장하며 getCommand 메서드를 통해 U, D를 반환한다.
+getValue 를 통해 1, 0을 반환한다.
+
+### GameCommand
+START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반환한다. 
 
 ## util
 ### BridgeMaker
