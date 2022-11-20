@@ -12,28 +12,43 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String candidate = readLine();
-        validateNumeric(candidate);
-        int lengthOfBridge = Integer.parseInt(candidate);
-        validateRange(lengthOfBridge);
-        return lengthOfBridge;
+        try {
+            String candidate = readLine();
+            validateNumeric(candidate);
+            int lengthOfBridge = Integer.parseInt(candidate);
+            validateRange(lengthOfBridge);
+            return lengthOfBridge;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String candidate = readLine();
-        validateUpOrDown(candidate);
-        return candidate;
+        try {
+            String candidate = readLine();
+            validateUpOrDown(candidate);
+            return candidate;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String candidate = readLine();
-        validateRetry(candidate);
-        return candidate;
+        try {
+            String candidate = readLine();
+            validateRetry(candidate);
+            return candidate;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 }
