@@ -6,10 +6,9 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String BRIDGE_START = "[";
-    private static final String BRIDGE_END = "]";
-    private static final String BRIDGE_DIVIDE = "|";
-    private static final String BLANK = " ";
+    private static final String BRIDGE_START = "[ ";
+    private static final String BRIDGE_END = " ]";
+    private static final String BRIDGE_DIVIDE = " | ";
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
@@ -36,11 +35,10 @@ public class OutputView {
 
     private static void addState(List<String> state, StringBuilder result) {
         for (int moveCount = 0; moveCount < state.size(); moveCount++) {
-            String currentState = BLANK + state.get(moveCount) + BLANK;
             if (moveCount != 0) {
                 result.append(BRIDGE_DIVIDE);
             }
-            result.append(currentState);
+            result.append(state.get(moveCount));
         }
     }
 
