@@ -61,12 +61,17 @@ public class BridgeController {
         return user.equals(answer);
     }
 
-    private Command askRestart() {
+    private void askRestart() {
+        String command = inputCommand().getCommand();
+
+    }
+
+    private Command inputCommand() {
         try {
             return new Command(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return askRestart();
+            return inputCommand();
         }
     }
 }

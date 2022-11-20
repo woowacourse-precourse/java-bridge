@@ -13,4 +13,8 @@ public class Command {
             throw new IllegalArgumentException(ErrorMessage.COMMAND_TYPE.getMessage());
         }
     }
+
+    public String getCommand() {
+        return command;
+    }
 }
