@@ -48,7 +48,15 @@ public class OutputView {
     }
 
     private String getOX(String direction, String userDirection, String bridgeDirection) {
-        return null;
+        if (direction == userDirection) {
+            if (userDirection == bridgeDirection) {
+                return "O";
+            }
+
+            return "X";
+        }
+
+        return " ";
     }
 
     /**
