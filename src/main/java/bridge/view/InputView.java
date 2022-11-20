@@ -2,6 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.regex.Pattern;
+
 import static java.lang.Integer.parseInt;
 
 /**
@@ -17,7 +19,7 @@ public class InputView {
     private static final String BRIDGE_SIZE_ERROR = "정수만 입력 가능합니다.";
     private static final String COMMAND_ERROR = "명령어 형식이 올바르지 않습니다.";
 
-    private static final String COMMAND_REGEX = "^[a-zA-Z]$";
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("^[a-zA-Z]$");
 
     /**
      * 다리의 길이를 입력받는다.
@@ -54,7 +56,7 @@ public class InputView {
     }
 
     private void validateCommand(final String input) {
-        if (!input.matches(COMMAND_REGEX)) {
+        if (!COMMAND_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(COMMAND_ERROR);
         }
     }
