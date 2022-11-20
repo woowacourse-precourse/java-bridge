@@ -10,9 +10,4 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-//    public void printBridge() {
-//        for (String one : bridge) {
-//            System.out.print(one + " ");
-//        }
-//    }
 }
