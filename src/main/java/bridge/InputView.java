@@ -19,17 +19,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(BRIDGE_SIZE_MESSAGE);
-        Integer size = -1;
-        while(size == -1) {
-            try {
-                String bridgeSize = Console.readLine();
-                validation.bridgeLen(bridgeSize);
-                size = Integer.parseInt(bridgeSize);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return size;
+        String bridgeSize = Console.readLine();
+        validation.bridgeLen(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
@@ -37,17 +29,8 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(MOVE_MESSAGE);
-        String command = "init";
-        while(command.equals("init")) {
-            try {
-                String temp = Console.readLine();
-                validation.moveCommand(temp);
-                command = temp;
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-            return command;
-        }
+        String command = Console.readLine();
+        validation.moveCommand(command);
         return command;
     }
 
@@ -56,17 +39,8 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(RETRY_MESSAGE);
-        String command = "init";
-        while(command.equals("init")) {
-            try {
-                String temp = Console.readLine();
-                validation.retryCommand(temp);
-                command = temp;
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-            return command;
-        }
+        String command = Console.readLine();
+        validation.retryCommand(command);
         return command;
     }
 }
