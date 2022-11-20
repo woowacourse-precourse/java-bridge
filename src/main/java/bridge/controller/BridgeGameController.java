@@ -17,5 +17,7 @@ public class BridgeGameController {
     public void run() {
         OutputView.start();
         OutputView.askLength();
+        int size = player.inputBridgeSize();
+        System.out.println(size);
     }
 }
