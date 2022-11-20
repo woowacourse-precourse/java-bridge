@@ -9,4 +9,8 @@ public class Bridge {
     public Bridge(List<String> bridgeShape) {
         this.bridgeShape = bridgeShape;
     }
+
+    public String getShape(int position) {
+        return bridgeShape.get(position);
+    }
 }
