@@ -18,4 +18,12 @@ class BridgePositionTest {
                 .isThrownBy(() -> BridgePosition.convertValueToCode(input))
                 .withMessageContaining(BridgePosition.ERROR_NOT_FOUND_POSITION_VALUE);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", " ", "  "})
+    void 다리의_입력_명령어는_U_와_D만_존재합니다(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> BridgePosition.convertCodeToPosition(input))
+                .withMessageContaining(BridgePosition.ERROR_DID_NOT_FOUND_CODE);
+    }
 }
