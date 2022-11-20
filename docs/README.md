@@ -63,3 +63,8 @@
 
 - [x] RouteMap 클래스에 다리 건너기 실패 여부를 반환하는 메서드 추가
 - [ ] RouteMapTest, BridgeMapTest 리팩토링
+
+- [x] 최종 게임 결과 클래스 추가
+- [ ] BridgeGame 클래스의 move 메서드 반환 타입 변경
+- [ ] BridgeGame의 getTryCnt 메서드 삭제
+- [ ] BridgeGameTest 수정
