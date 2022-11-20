@@ -50,7 +50,7 @@ public class Bridge {
                 return "U";
             }
             if (List.of("O", "X").contains(bridgeLower.get(index).text())) {
-                return "X";
+                return "D";
             }
             throw new IllegalStateException("[ERROR]");
         } catch (IndexOutOfBoundsException e) {
