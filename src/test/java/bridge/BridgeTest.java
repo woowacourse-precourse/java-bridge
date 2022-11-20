@@ -21,27 +21,37 @@ public class BridgeTest {
     @Test
     void moveTest(){
         assertSimpleTest(()->{
-            String testStr = "6\nD\nU";
+            String testStr = "6\nD\nU\nU\nD\nU\nD";
             InputStream is = new ByteArrayInputStream(testStr.getBytes());
             System.setIn(is);
             Bridge bridge = new Bridge();
             bridge.printRoute();
 
-            System.out.println(bridge.isSafe(0));
-            System.out.println( bridge.isSafe(1));
+            System.out.println(bridge.nextStep());
+            System.out.println(bridge.nextStep());
+            System.out.println(bridge.nextStep());
+            System.out.println(bridge.nextStep());
+            System.out.println(bridge.nextStep());
+            System.out.println(bridge.nextStep());
         });
     }
     @Test
     void exceptionTest(){
         assertSimpleTest(()->{
-            String testStr = "6\nD\nU";
+            String testStr = "6\nD\nU\nU\nU\nU\nU\nU";
             InputStream is = new ByteArrayInputStream(testStr.getBytes());
             System.setIn(is);
             Bridge bridge = new Bridge();
             bridge.printRoute();
 
-            System.out.println(bridge.isSafe(6));
-            System.out.println( bridge.isSafe(1));
+            System.out.println(bridge.nextStep());
+            System.out.println( bridge.nextStep());
+            System.out.println(bridge.nextStep());
+            System.out.println( bridge.nextStep());
+            System.out.println(bridge.nextStep());
+            System.out.println( bridge.nextStep());
+            System.out.println(bridge.nextStep());
+            System.out.println( bridge.nextStep());
         });
     }
 }
