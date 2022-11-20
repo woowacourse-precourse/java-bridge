@@ -26,8 +26,9 @@ public class BridgeGame {
         int size = bridgeSize.getSize();
         return bridgeMaker.makeBridge(size);
     }
-    public void move() {
-
+    public void move(UserChoice userChoice) {
+        CrossResult crossResult = bridge.cross(userChoice, choiceResults.index());
+        choiceResults.appendResult(crossResult);
     }
 
     /**
