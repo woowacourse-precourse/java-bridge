@@ -21,16 +21,21 @@ public class InputView {
     }
 
     private void validateBridgeSize(String input) {
-        if(!isDecimal(input)) {
+        if (!isDecimal(input)) {
             throw new IllegalArgumentException();
         }
-        if(!isInRange(input, MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE)) {
+        if (!isInRange(input, MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE)) {
             throw new IllegalArgumentException();
         }
     }
 
     private boolean isDecimal(String input) {
-        return true;
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private boolean isInRange(String input, int from, int to) {
