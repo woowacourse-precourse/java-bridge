@@ -77,4 +77,4 @@
 - [ ] 다리 요소(String) 래핑
 - [ ] Application에서 불필요한 예외 검증 제거
 - [ ] InputType -> Command로 이름 변경
-- [ ] GamePlayer.play() 메서드 추출
+- [X] GamePlayer.play() 메서드 추출
