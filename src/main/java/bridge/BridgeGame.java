@@ -16,7 +16,9 @@ public class BridgeGame {
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private int tryCount = 1;
     private int currentPosition = 0;
+    private String gameResult = GAME_WIN;
     private List<Bridge> movedBridge = new ArrayList<>();
+
 
     public void start() {
         System.out.println(BRIDGE_GAME_START);
@@ -30,10 +32,10 @@ public class BridgeGame {
             boolean isGameOver = move(answerBridge);
             outputController.printMap(movedBridge);
             if (isGameOver) {
-                return;
+                break;
             }
         }
-        outputController.printResult(movedBridge, GAME_WIN, tryCount);
+        outputController.printResult(movedBridge, gameResult, tryCount);
     }
 
     private boolean isMoveFail(Bridge moveResult) {
@@ -44,7 +46,7 @@ public class BridgeGame {
         if (isMoveFail(moveResult)) {
             boolean retryResult = retry();
             if (!retryResult) {
-                outputController.printResult(movedBridge, GAME_LOSE, tryCount);
+                gameResult = GAME_LOSE;
                 return true;
             }
             gameReset();
