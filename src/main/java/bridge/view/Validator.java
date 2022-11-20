@@ -43,7 +43,7 @@ public class Validator {
     /**
      * 플레이어가 이동할 칸 유효성 검사
      */
-    public static void validateInputDIRECTION(String inputDirection) {
+    public static void validateInputDirection(String inputDirection) {
         try {
             if (!inputDirection.equals(Message.UP.getMessage()) && !inputDirection.equals(Message.Down.getMessage())) {
                 throw new IllegalArgumentException();
