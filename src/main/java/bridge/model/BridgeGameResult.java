@@ -3,40 +3,45 @@ package bridge.model;
 public class BridgeGameResult {
     private int tryCount;
     private boolean isSuccess;
-    private MovementRecord lastMovementRecord;
+    private final MovementRecord lastMovementRecord;
 
     public BridgeGameResult() {
-        // TODO 구현 필요
+        tryCount = 0;
+        isSuccess = false;
+        lastMovementRecord = new MovementRecord();
+    }
+
+    public void reset() {
+        tryCount = 0;
+        isSuccess = false;
+        lastMovementRecord.clearMovementRecord();
     }
 
     public void addTryCount() {
-        // TODO 구현 필요
+        tryCount += 1;
     }
 
     public void makeResultSuccess() {
-        // TODO 구현 필요
+        isSuccess = true;
     }
 
     public void clearLastMovementRecord() {
-        // TODO 구현 필요
+        lastMovementRecord.clearMovementRecord();
     }
 
     public void addMovementOnLastMovementRecord(SpotInfo spotInfo) {
-        // TODO 구현 필요
+        lastMovementRecord.addMovementRecord(spotInfo);
     }
 
     public int getTryCount() {
-        // TODO 구현 필요
-        return 0;
+        return tryCount;
     }
 
     public boolean isSuccess() {
-        // TODO 구현 필요
-        return true;
+        return isSuccess;
     }
 
     public SpotInfo getLastMovementRecord(int index) {
-        // TODO 구현 필요
-        return SpotInfo.UP;
+        return lastMovementRecord.getMovementRecord(index);
     }
 }
