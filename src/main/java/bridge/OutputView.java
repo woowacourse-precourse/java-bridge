@@ -33,6 +33,14 @@ public class OutputView {
         printHowManyTimeTry(user);
     }
 
+    public void printWinOrLose(boolean win){
+        if(win == true){
+            System.out.println("게임 성공 여부: 성공");
+            return;
+        }
+        System.out.println("게임 성공 여부: 실패");
+    }
+
     public void printUpperBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
         printMapStart();
         for(int i = 0; i < userPosition; i++){
