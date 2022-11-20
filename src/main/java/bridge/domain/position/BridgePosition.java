@@ -31,6 +31,6 @@ public enum BridgePosition {
         return Arrays.stream(BridgePosition.values())
                 .filter(position -> position.positionCode.equals(code))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FOUND_POSITION_VALUE));
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_DID_NOT_FOUND_CODE));
     }
 }
