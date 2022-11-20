@@ -1,6 +1,7 @@
 package bridge.domainTest;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.StageResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,17 +11,42 @@ import java.util.List;
 public class BridgeGameTest {
 
     @Test
-    @DisplayName("해당 라운드의 사용자의 입력이 건널수 있는 다리인지 체크")
-    void checkAnswerTest() {
+    @DisplayName("해당 라운드의 사용자의 입력이 정답이면 PASS 반환")
+    void passTest() {
         List<String> bridge = List.of("U","D","D","U");
-        List<String> input = List.of("U","D","D","U");
+        int round = 0;
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        for (int round = 0; round < bridge.size(); round++) {
-            boolean result = bridgeGame.checkAnswer(input.get(round), round);
-            Assertions.assertThat(result).isTrue();
-        }
+        StageResult result = bridgeGame.compareInputWithBridge("U", round);
+
+        Assertions.assertThat(result).isEqualTo(StageResult.PASS);
+    }
+
+    @Test
+    @DisplayName("해당 라운드의 사용자의 입력이 틀리면 FAIL 반환")
+    void failTest() {
+        List<String> bridge = List.of("U","D","D","U");
+        int round = 0;
+
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        StageResult result = bridgeGame.compareInputWithBridge("D", round);
+
+        Assertions.assertThat(result).isEqualTo(StageResult.FAIL);
+    }
+
+    @Test
+    @DisplayName("해당 라운드의 사용자의 입력이 틀리면 FAIL 반환")
+    void successTest() {
+        List<String> bridge = List.of("U","D","D","U");
+        int round = 3;
+
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        StageResult result = bridgeGame.compareInputWithBridge("U", round);
+
+        Assertions.assertThat(result).isEqualTo(StageResult.SUCCESS);
     }
 
     @Test
@@ -32,7 +58,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
         for (int round = 0; round < input.size(); round++) {
-            bridgeGame.move(input.get(round), round);
+            bridgeGame.move(input.get(round));
         }
 
         List<String> history = bridgeGame.getHistory();
@@ -49,7 +75,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
         for (int round = 0; round < input.size(); round++) {
-            bridgeGame.move(input.get(round), round);
+            bridgeGame.move(input.get(round));
         }
 
         List<String> history = bridgeGame.getHistory();

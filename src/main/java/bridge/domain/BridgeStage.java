@@ -10,4 +10,16 @@ public class BridgeStage {
     public int currentStage() {
         return stage;
     }
+
+    public void setStage(int stage) {
+        this.stage = stage;
+    }
+
+    public boolean isFinalStage(int bridgeSize, int stage) {
+        if ((bridgeSize - 1) == stage) {
+            return true;
+        }
+
+        return false;
+    }
 }

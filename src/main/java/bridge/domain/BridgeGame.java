@@ -26,20 +26,32 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String userInput, int round) {
+    public void move(String userInput) {
         history.add(userInput);
-
-        boolean result = compareInputWithBridge(userInput, round);
-
-        return result;
     }
 
-    public boolean compareInputWithBridge(String userInput, int round) {
-        if(bridge.get(round).equals(userInput)) {
-            return true;
+    public StageResult compareInputWithBridge(String userInput, int currentStage) {
+        if(bridge.get(currentStage).equals(userInput)) {
+            if(stage.isFinalStage(bridge.size(), currentStage)) {
+                return StageResult.SUCCESS;
+            }
+            return StageResult.PASS;
         }
-        return false;
+        return StageResult.FAIL;
     }
+
+    public StageResult processStage(String userInput) {
+        move(userInput);
+
+        StageResult stageResult = compareInputWithBridge(userInput, stage.currentStage());
+
+        if(stageResult == StageResult.PASS) {
+            stage.nextStage();
+        }
+
+        return stageResult;
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
