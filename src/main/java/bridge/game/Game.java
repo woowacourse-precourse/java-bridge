@@ -69,5 +69,7 @@ public class Game {
     public boolean isQuit() {
         return gameStatus.isEnd();
     }
-
+    public void end() {
+        this.outputView.printResult(this.bridgeGame, this.gameStatus.getTryCount());
+    }
 }
