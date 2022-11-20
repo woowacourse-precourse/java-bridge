@@ -150,7 +150,7 @@ D
 ## Application
 - [X] inputView 변수 생성
 - [x] outputView 변수 생성
-- [ ] bridgeGame 변수 생성
+- [x] bridgeGame 변수 생성
 - [ ] bridgeMaker 변수 생성
 
 ### main
