@@ -16,4 +16,9 @@ public enum GameControl {
     public static boolean isRetry(String target) {
         return target.equals(RETRY.command);
     }
+
+    @Override
+    public String toString() {
+        return this.command;
+    }
 }
