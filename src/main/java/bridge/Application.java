@@ -23,15 +23,15 @@ public class Application {
         System.out.println(bridge);
 
         while (!endGame) {
-            Boolean isMoving = true;
+            bridgeGame.retry();
+            String movingResult = " O ";
             int bridgeIndex = 0;
             gameTryCount += 1;
-            outputView.reset();
-            while (isMoving && bridgeIndex < bridgeSize) {
+            while (movingResult.equals(" O ") && bridgeIndex < bridgeSize) {
                 System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
                 String moving = inputView.readMoving();
-                isMoving = bridgeGame.move(bridge, moving, bridgeIndex);
-                outputView.printMap(isMoving, moving);
+                movingResult = bridgeGame.move(bridge, moving, bridgeIndex);
+                outputView.printMap(bridgeGame);
                 bridgeIndex += 1;
             }
             if (bridgeIndex == bridgeSize) {
@@ -46,6 +46,6 @@ public class Application {
             }
         }
 
-        outputView.printResult(gameResult, gameTryCount);
+        outputView.printResult(bridgeGame, gameResult, gameTryCount);
     }
 }
