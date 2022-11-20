@@ -2,7 +2,7 @@ package bridge.enums;
 
 public enum Constant_BridgeGame {
     UP_SIDE_PROGRESS("upSideProgress"),
-    DOWN_SIDE_PROGESS("downSideProgress"),
+    DOWN_SIDE_PROGRESS("downSideProgress"),
     GAME_COMMAND_UP("U"),
     GAME_COMMAND_DOWN("D"),
     GAME_COMMAND_RETRY("R"),

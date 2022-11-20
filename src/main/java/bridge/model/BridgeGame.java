@@ -39,6 +39,6 @@ public class BridgeGame {
      */
     public void retry() {
         progress.put(UP_SIDE_PROGRESS.get(), new ArrayList<>());
-        progress.put(DOWN_SIDE_PROGESS.get(), new ArrayList<>());
+        progress.put(DOWN_SIDE_PROGRESS.get(), new ArrayList<>());
     }
 }
