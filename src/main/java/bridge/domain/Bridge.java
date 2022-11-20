@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.Direction;
 import java.util.List;
 import java.util.stream.Collectors;
 

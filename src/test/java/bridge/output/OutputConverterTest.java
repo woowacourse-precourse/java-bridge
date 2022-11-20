@@ -3,7 +3,7 @@ package bridge.output;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Bridge;
-import bridge.domain.Direction;
+import bridge.constant.Direction;
 import bridge.domain.Result;
 import bridge.util.OutputConverter;
 import java.util.List;

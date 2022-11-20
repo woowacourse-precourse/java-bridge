@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.Direction;
+import bridge.constant.Direction;
 import bridge.domain.Result;
 import bridge.util.OutputConverter;
 import java.util.List;

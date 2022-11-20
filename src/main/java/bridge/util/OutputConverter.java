@@ -1,7 +1,7 @@
 package bridge.util;
 
-import bridge.domain.Direction;
-import bridge.domain.MoveStatus;
+import bridge.constant.Direction;
+import bridge.constant.MoveStatus;
 import bridge.domain.Result;
 import java.util.List;
 

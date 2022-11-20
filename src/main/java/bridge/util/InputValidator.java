@@ -4,7 +4,7 @@ import static bridge.constant.BridgeConstants.MAX_BRIDGE_SIZE;
 import static bridge.constant.BridgeConstants.MIN_BRIDGE_SIZE;
 
 import bridge.constant.RetryCommand;
-import bridge.domain.Direction;
+import bridge.constant.Direction;
 
 public class InputValidator {
     private static final String BLANK_INPUT_MSG = "비어 있는 입력값 입니다.";

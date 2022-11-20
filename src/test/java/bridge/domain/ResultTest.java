@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.constant.Direction;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
