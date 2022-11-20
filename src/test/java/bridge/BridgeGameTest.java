@@ -114,6 +114,22 @@ public class BridgeGameTest extends NsTest {
         }
     }
 
+    @DisplayName("다시하기 시, 결과 초기화 테스트")
+    @Test
+    void retryInitializationTest() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "D", "R", "D", "R", "U", "U", "U");
+            assertThat(output()).contains(
+                    "[ O | O | O ]",
+                    "[   |   |   ]"
+            );
+
+            int upSideIndex = output().indexOf("[ O | O | O ]");
+            int downSideIndex = output().indexOf("[   |   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 1, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
