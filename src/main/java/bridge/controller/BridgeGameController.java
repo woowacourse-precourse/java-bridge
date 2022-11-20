@@ -9,8 +9,6 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private static final int INIT_POSITION = 0;
-    private static final int INIT_TRIAL = 1;
     private static final String RETRY = "R";
 
     private final InputView inputView;
@@ -27,7 +25,7 @@ public class BridgeGameController {
         inputView.showStartMessage();
 
         Bridge bridge = createBridge();
-        User user = new User(INIT_POSITION, INIT_TRIAL);
+        User user = new User();
         BridgeGame bridgeGame = new BridgeGame(bridge, user);
 
         start(bridgeGame);

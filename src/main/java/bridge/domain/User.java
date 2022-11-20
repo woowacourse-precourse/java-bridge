@@ -2,12 +2,15 @@ package bridge.domain;
 
 public class User {
 
+    private static final int INIT_POSITION = 0;
+    private static final int INIT_TRIAL = 1;
+
     private int position;
     private int trial;
 
-    public User(int position, int trial) {
-        this.position = position;
-        this.trial = trial;
+    public User() {
+        this.position = INIT_POSITION;
+        this.trial = INIT_TRIAL;
     }
 
     public void updateState() {
