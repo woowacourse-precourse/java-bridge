@@ -2,19 +2,16 @@ package bridge.controller;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Command;
 import bridge.service.BridgeGame;
 import bridge.validator.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-
 public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final String UPPER_BRIDGE = "U";
-    private final String DOWNER_BRIDGE = "D";
-    private final String COMMAND_RETRY = "R";
-    private final String COMMAND_QUIT = "Q";
+
     private BridgeGame bridgeGame;
 
     public void run(){
@@ -54,8 +51,8 @@ public class Controller {
     }
 
     private void showRoundResult(){
-        outputView.printMap(bridgeGame.getRoundResult(),UPPER_BRIDGE);
-        outputView.printMap(bridgeGame.getRoundResult(),DOWNER_BRIDGE);
+        outputView.printMap(bridgeGame.getRoundResult(), Command.MOVE_UP);
+        outputView.printMap(bridgeGame.getRoundResult(), Command.MOVE_DOWN);
     }
 
     private void continueOrFinishGame(){
@@ -71,7 +68,7 @@ public class Controller {
 
     private void replayOrExit(){
         String command = getRetryOrQuitCommand();
-        if( command.equals("R")){
+        if(command.equals(Command.RETRY_GAME.getValue())){
             bridgeGame.retry();
             playGame();
         }
@@ -81,7 +78,7 @@ public class Controller {
         String command;
         try{
             command = inputView.readGameCommand();
-            Validator.validateIsStringOneCharacter(command, COMMAND_RETRY, COMMAND_QUIT);
+            Validator.validateIsStringOneCharacter(command, Command.RETRY_GAME.getValue(), Command.QUIT_GAME.getValue());
         } catch (IllegalArgumentException error) {
             outputView.printRetryOrQuitInputError();
             return getRetryOrQuitCommand();

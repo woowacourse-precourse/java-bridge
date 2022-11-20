@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.Command;
 import bridge.service.BridgeGame;
 
 import java.util.List;
@@ -17,19 +18,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<List<String>> result, String bridgeSelection) {
+    public void printMap(List<List<String>> result, Command command) {
         System.out.print("[");
         for(int index=0; index<result.get(0).size(); index++){
-            printMoveOrBlank(result, index, bridgeSelection);
+            printMoveOrBlank(result, index, command);
             printVerticalBar(result.get(0).size(), index);
         }
         System.out.println("]");
     }
 
-    private void printMoveOrBlank(List<List<String>> result, int index, String bridgeSelection){
+    private void printMoveOrBlank(List<List<String>> result, int index, Command move){
         List<String> userBridge = result.get(0);
         List<String> bridgeLog = result.get(1);
-        if(userBridge.get(index).equals(bridgeSelection)){
+        if(userBridge.get(index).equals(move.getValue())){
             System.out.printf(" %s ",bridgeLog.get(index));
             return;
         }
