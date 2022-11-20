@@ -27,7 +27,6 @@ class BridgeGameTest {
         Assertions.assertThat(position).isEqualTo(1);
     }
 
-
     @DisplayName("재시도 테스트")
     void retryTest() {
         bridgeGame.move();
@@ -35,7 +34,6 @@ class BridgeGameTest {
 
         int attempts = bridgeGame.getAttempts();
         Assertions.assertThat(attempts).isEqualTo(2);
-
     }
 
 }
