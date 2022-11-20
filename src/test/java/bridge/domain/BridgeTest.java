@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -47,6 +46,7 @@ public class BridgeTest {
 	@Nested
 	@DisplayName("다리가 'UDU' 일 때")
 	class Describe_canWalk {
+
 		Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
 		@Nested
@@ -61,6 +61,19 @@ public class BridgeTest {
 				boolean actual = bridge.canWalkUp(position);
 				//then
 				assertThat(actual).isEqualTo(expected);
+			}
+		}
+
+		@Nested
+		@DisplayName("다리의 위치가 유효하지 않은 경우")
+		class Context_Invalidate_Position {
+
+			@DisplayName("IllegalArgumentException 반환")
+			@ParameterizedTest(name = "위치 : {0}")
+			@CsvSource({"0", "4"})
+			void it_throws_IllegalArgumentException(int position) {
+				assertThatThrownBy(() -> bridge.canWalkUp(position))
+					.isInstanceOf(IllegalArgumentException.class);
 			}
 		}
 	}
