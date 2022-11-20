@@ -78,4 +78,52 @@ class InputViewTest {
         Assertions.assertThat(byteArrayOutputStream.toString())
                 .contains("[ERROR]");
     }
+
+    @Test
+    void 사용자가_이동할_다리_입력이_U인_경우() {
+        String normalInput = "U";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readMoving();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .doesNotContain("[ERROR]");
+    }
+
+    @Test
+    void 사용자가_이동할_다리_입력이_D인_경우() {
+        String normalInput = "D";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readMoving();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .doesNotContain("[ERROR]");
+    }
+
+    @Test
+    void 사용자가_이동할_다리_입력이_U_또는_D가_아닌_경우() {
+        String wrongInput = "UU\nU";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readMoving();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .contains("[ERROR]");
+    }
+
+    @Test
+    void 사용자가_이동할_다리_입력이_공백인_경우() {
+        String wrongInput = "\n\nU";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readMoving();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .contains("[ERROR]");
+    }
 }
