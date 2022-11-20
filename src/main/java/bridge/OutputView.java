@@ -11,11 +11,24 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(int index, String crossResult,boolean printUpDown) {
+        if(printUpDown){
+            printCrossRight(crossResult,index);
+            printOnlyBridge();
+        }
         printStartBridge();
         printCrossState(crossResult);
-        printDivder(index);
+        printDivider(index);
         printEndBridge();
     }
+
+    public void printCrossRight(String crossResult,int index){
+        printStartBridge();
+        printCrossState(crossResult);
+        printDivider(index);
+        printEndBridge();
+    }
+
+
 
     public void printStartBridge(){
         System.out.print("[ ");
@@ -25,7 +38,7 @@ public class OutputView {
         System.out.print(crossResult);
     }
 
-    public void printDivder(int index){
+    public void printDivider(int index){
         for(int i=0;i<index;i++){
             System.out.print(" | ");
         }
