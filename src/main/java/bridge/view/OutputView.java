@@ -38,20 +38,27 @@ public class OutputView {
     private static String drawMap(List<String> way, List<String> realWay, String position) {
         StringBuilder sb = new StringBuilder(Bridge.BEGIN);
         for (int i = 0; i < way.size(); i++) {
-            if (i != 0) {
-                sb.append(Bridge.DELIMITER);
-            }
-            if (way.get(i).equals(realWay.get(i)) && way.get(i).equals(position)) {
-                sb.append(Bridge.ABLE);
-                continue;
-            } else if (i == way.size() - 1 && way.get(i).equals(position)) {
-                sb.append(Bridge.DISABLE);
+            appendDelimiter(sb, i);
+            if (!way.get(i).equals(position)) {
+                sb.append(Bridge.NONE);
                 continue;
             }
-            sb.append(Bridge.NONE);
+            sb.append(determineOX(way, realWay, i));
         }
-        sb.append(Bridge.END);
-        return sb.toString();
+        return sb.append(Bridge.END).toString();
+    }
+
+    private static void appendDelimiter(StringBuilder sb, int i) {
+        if (i != 0) {
+            sb.append(Bridge.DELIMITER);
+        }
+    }
+
+    private static String determineOX(List<String> way, List<String> realWay, int i) {
+        if (way.get(i).equals(realWay.get(i))) {
+            return Bridge.ABLE;
+        }
+        return Bridge.DISABLE;
     }
 
     public static void printResult(BridgeGame bridgeGame) {
