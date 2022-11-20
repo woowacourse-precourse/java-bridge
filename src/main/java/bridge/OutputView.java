@@ -12,7 +12,7 @@ import java.util.List;
 public class OutputView {
 
     static int now_size = 0;
-    
+
     static List<String> bridge_answer = new ArrayList<>();
     static StringBuilder upBridge = new StringBuilder();
     static StringBuilder downBridge = new StringBuilder();
@@ -26,6 +26,11 @@ public class OutputView {
     public void printResult(){
         System.out.println(upBridge);
         System.out.println(downBridge);
+        System.out.println("\n");
+    }
+
+    public void initNowSize(){
+        now_size = 0;
     }
 
 }
