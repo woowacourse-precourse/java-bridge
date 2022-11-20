@@ -39,12 +39,16 @@ public class MovingStatusSaver {
         return this.movingStatus;
     }
 
+    public int getStatusSize(){
+        return this.movingStatus.size();
+    }
+
     public boolean isStopCondition() {
         if (movingStatus.contains(MovingStatus.UP.sideFail())
                 || movingStatus.contains(MovingStatus.DOWN.sideFail())) {
             return true;
         }
-        if (movingStatus.size() == randomBridge.size()) {
+        if (getStatusSize() == randomBridge.size()) {
             return true;
         }
         return false;
