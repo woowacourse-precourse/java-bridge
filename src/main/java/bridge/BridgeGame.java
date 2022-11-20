@@ -12,12 +12,21 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final InputManager inputManager = new InputManager();
 
-    List<String> bridge;
+    private List<String> bridge;
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     public void gameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
-        int bridgeSize = inputManager.getBridgeSize();
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        try {
+            int bridgeSize = inputManager.getBridgeSize();
+            bridge = bridgeMaker.makeBridge(bridgeSize);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
