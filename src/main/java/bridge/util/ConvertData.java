@@ -1,6 +1,7 @@
 package bridge.util;
 
 import static bridge.enums.ErrorMsg.*;
+import static bridge.enums.Constant_BridgeGame.*;
 
 public class ConvertData {
 
@@ -8,10 +9,10 @@ public class ConvertData {
         String value = new String();
 
         if (number == 0) {
-            value = "D";
+            value = GAME_COMMAND_DOWN.get();
         }
         if (number == 1) {
-            value = "U";
+            value = GAME_COMMAND_UP.get();
         }
 
         return value;
