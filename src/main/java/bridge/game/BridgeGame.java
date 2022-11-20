@@ -32,6 +32,7 @@ public class BridgeGame {
         }
     }
 
+    // getter
     public List<String> getBridge_answer() {
         return bridge_answer;
     }
@@ -40,6 +41,7 @@ public class BridgeGame {
         return bridge_userMove;
     }
 
+    // setter
     public void setBridgeAnswer(List<String> bridge_answer) {
         this.bridge_answer = bridge_answer;
     }
@@ -51,6 +53,22 @@ public class BridgeGame {
      */
     public void move(String userMoveDirection) {
         bridge_userMove.add(userMoveDirection);
+    }
+
+    /**
+     * 게임 성공 여부 확인
+     * <p>
+     * 성공 조건
+     * 1. 다리를 끝까지 건넜을 경우
+     * 2. 마지막까지 이동할 수 있는 칸을 선택했을 경우
+     *
+     * @return 성공 시 true 반환 / 실패 시 false 반환
+     */
+    public boolean checkIfGameIsSucceed(int userNumberOfMoves) {
+        if (userNumberOfMoves == bridge_answer.size()) {
+            return bridge_userMove.equals(bridge_answer);
+        }
+        return false;
     }
 
     /**

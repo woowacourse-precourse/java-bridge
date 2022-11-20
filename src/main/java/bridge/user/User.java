@@ -7,18 +7,16 @@ public class User {
 
     private boolean isPlayingGame;
     private boolean isGameSucceed;
-    private int numberOfTrials;
+    private int numberOfGameTrials;
+    private int numberOfMoves;
 
-    public User(boolean isPlayingGame, boolean isGameSucceed, int numberOfTrials) {
+    public User(boolean isPlayingGame, boolean isGameSucceed, int numberOfGameTrials) {
         this.isPlayingGame = isPlayingGame;
         this.isGameSucceed = isGameSucceed;
-        this.numberOfTrials = numberOfTrials;
+        this.numberOfGameTrials = numberOfGameTrials;
     }
 
-    public void setNotPlayingGame() {
-        isPlayingGame = false;
-    }
-
+    // getter
     public boolean isPlayingGame() {
         return isPlayingGame;
     }
@@ -27,12 +25,30 @@ public class User {
         return isGameSucceed;
     }
 
+    public int getNumberOfMoves() {
+        return numberOfMoves;
+    }
+
+    // setter
+    public void setNotPlayingGame() {
+        isPlayingGame = false;
+    }
+
     public void setGameSucceed() {
         isGameSucceed = true;
     }
 
-    public void increaseNumberOfTrials() {
-        numberOfTrials += 1;
+    // method
+    public void resetNumberOfMoves() {
+        numberOfMoves = 0;
+    }
+
+    public void increaseNumberOfGameTrials() {
+        numberOfGameTrials += 1;
+    }
+
+    public void increaseNumberOfMoves() {
+        numberOfMoves += 1;
     }
 
 }

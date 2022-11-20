@@ -65,6 +65,7 @@ public class GameManager {
     private void moveUser() {
         String userMoveDirection = askUserMoveDirection();
         bridgeGame.move(userMoveDirection);
+        player.increaseNumberOfMoves();
     }
 
     private String askUserMoveDirection() {
@@ -72,12 +73,19 @@ public class GameManager {
         return InputView.readMoving();
     }
 
+    // 현재까지 건넌 다리 출력
     private void printBridge_userPredict() {
         OutputView.printMap(bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
     }
 
+    // 성공 여부 확인
     private boolean isGameSucceed() {
-        return true;
+        int userNumberOfMoves = player.getNumberOfMoves();
+        boolean isGameSucceed = bridgeGame.checkIfGameIsSucceed(userNumberOfMoves);
+        if (isGameSucceed) {
+            player.setGameSucceed();
+        }
+        return isGameSucceed;
     }
 
     private void askRestartGame() {
