@@ -7,8 +7,8 @@ import java.util.Arrays;
 public enum MoveChoice {
     UP("U", 1), DOWN("D", 0);
 
-    private final String moving;
-    private final int positionNumber;
+    public final String moving;
+    public final int positionNumber;
 
     MoveChoice(String moving, int positionNumber) {
         this.moving = moving;
@@ -16,5 +16,6 @@ public enum MoveChoice {
     }
 
     public static String getMoving(int positionNumber) {
+        return null;
     }
 }
