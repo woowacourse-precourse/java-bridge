@@ -1,6 +1,7 @@
 package view;
 
 import static model.BridgeGameConstants.MOVING_SUCCESS;
+import static model.BridgeGameConstants.MOVING_SUCCESS_GAME_END;
 import static model.BridgeGameConstants.MOVING_FAIL_WRONG_MOVING;
 import static model.BridgeGameConstants.MOVING_UP;
 import static model.BridgeGameConstants.MOVING_DOWN;
@@ -49,7 +50,7 @@ public class OutputView {
 	}
 
 	private void updateGameStateMapWhenMovingUp(String moving, int movingResult) {
-		if (moving.equals(MOVING_UP) && movingResult == MOVING_SUCCESS) {
+		if (moving.equals(MOVING_UP) && (movingResult == MOVING_SUCCESS || movingResult == MOVING_SUCCESS_GAME_END)) {
 			currentGameStateUpMap += OUTPUT_TEXT_MOVING_SUCCESS;
 			currentGameStarteDownMap += OUTPUT_TEXT_DO_NOT_GO;
 		}
@@ -60,7 +61,7 @@ public class OutputView {
 	}
 
 	private void updateGameStateMapWhenMovingDown(String moving, int movingResult) {
-		if (moving.equals(MOVING_DOWN) && movingResult == MOVING_SUCCESS) {
+		if (moving.equals(MOVING_DOWN) && (movingResult == MOVING_SUCCESS || movingResult == MOVING_SUCCESS_GAME_END)) {
 			currentGameStateUpMap += OUTPUT_TEXT_DO_NOT_GO;
 			currentGameStarteDownMap += OUTPUT_TEXT_MOVING_SUCCESS;
 		}
@@ -85,6 +86,25 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printResult() {
+	public void printResult(String moving, int movingResult, int totalGameRound) {
+		System.out.println(OUTPUT_TEXT_FINAL_GAME_RESULT);
+		String currentGameStateMap = combineGameStateUpMapAndDownMap();
+		System.out.println(currentGameStateMap);
+		System.out.println();
+		printGameResult(movingResult);
+		printTotalGameRound(totalGameRound);
+	}
+
+	private void printGameResult(int movingResult) {
+		if (movingResult == MOVING_SUCCESS_GAME_END) {
+			System.out.println(OUTPUT_TEXT_GAME_SUCCESS);
+		}
+		if (movingResult == MOVING_FAIL_WRONG_MOVING) {
+			System.out.println(OUTPUT_TEXT_GAME_SUCCESS);
+		}
+	}
+
+	private void printTotalGameRound(int totalGameRound) {
+		System.out.print(OUTPUT_TEXT_TOTAL_GAME_ROUND + totalGameRound);
 	}
 }
