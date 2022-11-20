@@ -64,8 +64,7 @@ public class BridgeResult {
         downsideResult.append(CLOSING_BRACKET);
     }
 
-
-    public void goBackOneBridge(int index) {
+    public void goBackBeforeOneStep(int index) {
         if (index > BRIDGE_FIRST_TRY_INDEX) {
             deleteBridgeOverSecondTry(index);
             appendClosingBracket();
@@ -92,5 +91,4 @@ public class BridgeResult {
             moveFailDownside(bridgeGame, moveSide, index);
         }
     }
-
 }

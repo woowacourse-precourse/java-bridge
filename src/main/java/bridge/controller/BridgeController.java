@@ -38,7 +38,7 @@ public class BridgeController {
             }
             if (BRIDGE_GAME_RESULT) {
                 bridgeGame.retryCount();
-                bridgeResult.goBackOneBridge(i);
+                bridgeResult.goBackBeforeOneStep(i);
                 i--;
             }
             if (!BRIDGE_GAME_RESULT) {
@@ -47,5 +47,4 @@ public class BridgeController {
         }
         OutputView.printBridgeResult(bridgeResult,BRIDGE_GAME_RESULT, bridgeGame.getTryCount());
     }
-
 }
