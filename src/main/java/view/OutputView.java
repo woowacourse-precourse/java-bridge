@@ -12,6 +12,13 @@ public class OutputView {
     public static String upper = OutputMessage.START.getOutputMsg();
     public static String lower = OutputMessage.START.getOutputMsg();
 
+    public void printMap() {
+        upperFix();
+        lowerFix();
+        System.out.println(upper);
+        System.out.println(lower);
+    }
+
     public void addString(String str) {
         if(str.equals("U")) {
             upper += OutputMessage.CORRECT.getOutputMsg();
