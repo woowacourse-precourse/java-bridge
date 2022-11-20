@@ -8,36 +8,41 @@ import java.util.List;
 public class MovingProcessing {
 
     private final InputView inputView;
+    private final RandomBridge randomBridge;
     private final List<String> upSide;
     private final List<String> downSide;
 
     public MovingProcessing() {
         inputView = new InputView();
+        randomBridge = new RandomBridge();
+        randomBridge.initBridge();
         upSide = new ArrayList<>();
         downSide = new ArrayList<>();
     }
 
-    //이부분 바꿀 수 있다면 노력해보자
-    //랜덤으로 입력된 브릿지를 매개변수로 사용자의 입력과 매치한다.
-    public boolean compareBridgeToInput(List<String> bridge) {
-        boolean isSuccess = true;
+    public void readMove() {
+        List<String> bridge = randomBridge.getBridge();
         while (upSide.size() < bridge.size()) {
-            int index = upSide.size();
-            isSuccess = readNextMoving(bridge.get(index));
-            printBridge();
-            if (!isSuccess) {
-                return isSuccess;
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String input = inputView.readMoving();
+            if (input.length() == 0)
+                continue;
+            if (!compareBridgeToInput(input, bridge)){
+                return;
             }
         }
-        return isSuccess;
     }
 
-    private boolean readNextMoving(String bridge) {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String input = inputView.readMoving();
-        if (input.length() == 0)
-            return true;
-        boolean isSuccess = jumpToBridge(input, bridge);
+    //이부분 바꿀 수 있다면 노력해보자
+    //랜덤으로 입력된 브릿지를 매개변수로 사용자의 입력과 매치한다.
+    public boolean compareBridgeToInput(String input, List<String> bridge) {
+        boolean isSuccess = true;
+        int index = upSide.size();
+        isSuccess = jumpToBridge(input, bridge.get(index));
+        printBridge();
+        if (!isSuccess) {
+            return isSuccess;
+        }
         return isSuccess;
     }
 
