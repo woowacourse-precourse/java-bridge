@@ -14,5 +14,7 @@ public class Application {
         inputView.readBridgeSize();
         outputView.printMessageForMoving();
         inputView.readMoving();
+        outputView.printMessageForGameCommand();
+        inputView.readGameCommand();
     }
 }

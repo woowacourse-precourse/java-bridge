@@ -29,6 +29,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        String gameCommand = receiveInput();
         return null;
     }
 
@@ -46,5 +47,12 @@ public class InputView {
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해 주세요.");
         }
+    }
+
+    private void validateGameCommand(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해 주세요.");
+        }
+
     }
 }
