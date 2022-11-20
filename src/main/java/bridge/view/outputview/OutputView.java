@@ -12,14 +12,14 @@ public class OutputView {
     public static final String GAME_STARTING_MESSAGE = String.format("다리 건너기 게임을 시작합니다.%n%n");
     public static final String ASKING_BRIDGE_SIZE_MESSAGE = String.format("다리의 길이를 입력해주세요.%n");
     public static final String ASKING_NEXT_STEP_MESSAGE
-            = String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)%n", Step.U, Step.D);
+            = String.format("%n이동할 칸을 선택해주세요. (위: %s, 아래: %s)%n", Step.U, Step.D);
     public static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
     public static final String TRY_COUNT_MESSAGE_FORMAT = "총 시도한 횟수: %s";
     public static final String ASKING_GAME_COMMAND_MESSAGE
             = String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)%n", Command.R, Command.Q);
-    public static final String GAME_RESULT_PREFIX = String.format("최종 게임 결과%n");
-    public static final String GAME_SUCCESS_MESSAGE = String.format("게임 성공 여부: 성공%n");
-    public static final String GAME_FAILURE_MESSAGE = String.format("게임 성공 여부: 실패%n");
+    public static final String GAME_RESULT_PREFIX = String.format("%n최종 게임 결과%n");
+    public static final String GAME_SUCCESS_MESSAGE = String.format("%n게임 성공 여부: 성공%n");
+    public static final String GAME_FAILURE_MESSAGE = String.format("%n게임 성공 여부: 실패%n");
 
     private final BridgeMessageMaker bridgeMessageMaker;
 
