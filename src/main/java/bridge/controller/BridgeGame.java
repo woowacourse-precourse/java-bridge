@@ -21,7 +21,7 @@ public class BridgeGame {
 
     private InputView inputView = new InputView();
 
-    GameState statement = new GameState();
+    GameState GameState = new GameState();
     JudgeDestination judgeDestination = new JudgeDestination();
     private int gameCount = 1;
     private static int idx = 0;
@@ -63,18 +63,18 @@ public class BridgeGame {
     }
 
     private int convertNowIndex(String nowIndex) {
-        if (nowIndex.equals(statement.UP)) {
-            return statement.UP_STATEMENT;
+        if (nowIndex.equals(GameState.UP)) {
+            return GameState.UP_STATEMENT;
         }
-        return statement.DOWN_STATEMENT;
+        return GameState.DOWN_STATEMENT;
     }
 
     private void setPrintState(List<Boolean> upState, List<Boolean> downState, int upDown) {
-        if (upDown == statement.UP_STATEMENT) {
+        if (upDown == GameState.UP_STATEMENT) {
             upState.add(true);
             downState.add(false);
         }
-        if (upDown == statement.DOWN_STATEMENT) {
+        if (upDown == GameState.DOWN_STATEMENT) {
             upState.add(false);
             downState.add(true);
         }

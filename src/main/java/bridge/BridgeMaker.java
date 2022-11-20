@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.GameState;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class BridgeMaker {
         int generate = bridgeNumberGenerator.generate();
         String in = null;
         if (generate == 0) {
-            in = "D";
+            in = GameState.DOWN;
         }
         if (generate == 1) {
-            in = "U";
+            in = GameState.UP;
         }
         return in;
     }

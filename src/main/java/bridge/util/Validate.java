@@ -5,7 +5,6 @@ import bridge.constant.GameState;
 
 public class Validate {
 
-    private GameState statement = new GameState();
 
     public void validateBridgeSize(String size) {
         try {
@@ -17,14 +16,14 @@ public class Validate {
     }
 
     private void isSizeInRange(int sizeInt) {
-        if (!(sizeInt >= statement.MIN_RANGE && sizeInt <= statement.MAX_RANGE)) {
+        if (!(sizeInt >= GameState.MIN_RANGE && sizeInt <= GameState.MAX_RANGE)) {
             throw new IllegalArgumentException();
         }
     }
 
     public void validateMoving(String size) {
         try {
-            if (!size.equals(statement.DOWN) && !size.equals(statement.UP)) {
+            if (!size.equals(GameState.DOWN) && !size.equals(GameState.UP)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -34,7 +33,7 @@ public class Validate {
 
     public void validateGameDefinition(String definition) {
         try {
-            if (!definition.equals(statement.QUIT) && !definition.equals(statement.RETRY)) {
+            if (!definition.equals(GameState.QUIT) && !definition.equals(GameState.RETRY)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

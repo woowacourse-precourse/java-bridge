@@ -13,9 +13,7 @@ public class BridgePrinting {
     private OutputView outputView = new OutputView();
     private int nowIndex;
     private static boolean stop = false;
-    private GameState statement = new GameState();
-
-
+    
     public BridgePrinting(List<Boolean> upState, List<Boolean> downState, int nowIndex) {
         this.upState = upState;
         this.downState = downState;
@@ -42,16 +40,16 @@ public class BridgePrinting {
     }
 
     private void makeUpUserBridge() {
-        String upStateBridge = statement.startBridge;
-        upStateBridge = upStateBridge + addBridge(upState, statement.UP_STATEMENT);
-        upStateBridge = upStateBridge + statement.endBridge;
+        String upStateBridge = GameState.startBridge;
+        upStateBridge = upStateBridge + addBridge(upState, GameState.UP_STATEMENT);
+        upStateBridge = upStateBridge + GameState.endBridge;
         outputView.printMap(upStateBridge);
     }
 
     private void makeDownUserBridge() {
-        String downStateBridge = statement.startBridge;
-        downStateBridge = downStateBridge + addBridge(downState, statement.DOWN_STATEMENT);
-        downStateBridge = downStateBridge + statement.endBridge;
+        String downStateBridge = GameState.startBridge;
+        downStateBridge = downStateBridge + addBridge(downState, GameState.DOWN_STATEMENT);
+        downStateBridge = downStateBridge + GameState.endBridge;
         outputView.printMap(downStateBridge);
     }
 
@@ -62,7 +60,7 @@ public class BridgePrinting {
             if (isIndexBetweenSpace(index, bridgeState.size()-1)) {
                 continue;
             }
-            setBridge = setBridge + statement.betweenBridge;
+            setBridge = setBridge + GameState.betweenBridge;
         }
         return setBridge;
     }
@@ -73,13 +71,13 @@ public class BridgePrinting {
 
     private String getState(List<Boolean> bridgeState, int now, int upDown) {
         if (isRightStep(bridgeState, now, upDown)) {
-            return statement.EXIST_SQUARE;
+            return GameState.EXIST_SQUARE;
         }
         if (isWrongStep(bridgeState, now, upDown)) {
             stop = true;
-            return statement.NO_EXIST_SQUARE;
+            return GameState.NO_EXIST_SQUARE;
         }
-        return statement.SIDE_SQUARE;
+        return GameState.SIDE_SQUARE;
     }
 
     private boolean isWrongStep(List<Boolean> bridgeState, int now, int upDown) {

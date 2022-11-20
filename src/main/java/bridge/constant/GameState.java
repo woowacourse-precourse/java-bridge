@@ -3,25 +3,25 @@ package bridge.constant;
 public final class GameState {
 
 
-    public final int MIN_RANGE = 3;
-    public final int MAX_RANGE = 20;
-    public final String QUIT="Q";
-    public final String RETRY="R";
+    public static final int MIN_RANGE = 3;
+    public static final int MAX_RANGE = 20;
+    public static final String QUIT="Q";
+    public static final String RETRY="R";
 
-    public final String UP="U";
-    public final String DOWN="D";
+    public static final String UP="U";
+    public static final String DOWN="D";
 
-    public final int UP_STATEMENT=1;
-    public final int DOWN_STATEMENT=0;
+    public static final int UP_STATEMENT=1;
+    public static final int DOWN_STATEMENT=0;
 
-    public final String EXIST_SQUARE= "O ";
+    public static final String EXIST_SQUARE= "O ";
 
-    public final String NO_EXIST_SQUARE= "X ";
+    public static final String NO_EXIST_SQUARE= "X ";
 
-    public final String SIDE_SQUARE= "  ";
+    public static final String SIDE_SQUARE= "  ";
 
-    public final String startBridge="[ ";
-    public final String betweenBridge="| ";
-    public final String endBridge="]";
+    public static final String startBridge="[ ";
+    public static final String betweenBridge="| ";
+    public static final String endBridge="]";
 
 }
