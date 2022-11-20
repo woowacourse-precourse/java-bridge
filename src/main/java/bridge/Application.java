@@ -27,5 +27,7 @@ public class Application {
                 break;
             }
         }while (!bridgeGame.compareMoveCount(brideSize));
+        outputView.printResult(bridgeGame.upBridge,bridgeGame.downBridge,
+                bridgeGame.gameCount, bridgeGame.gameStatus);
     }
 }
