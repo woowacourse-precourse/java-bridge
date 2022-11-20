@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public class OutputView {
 
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String INIT_MAP = "[  ]";
 
     private static Map<String, StringBuilder> map;
@@ -41,14 +42,16 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(GameResult gameResult) {
-        System.out.println("최종 게임 결과");
-        for (StringBuilder printer : map.values()) {
-            System.out.println(printer.toString());
-        }
-        System.out.println();
+        StringBuilder resultBuilder = new StringBuilder();
 
-        System.out.println("게임 성공 여부: " + gameResult.getResult());
-        System.out.println("총 시도한 횟수: " + gameResult.getTotalTry());
+        resultBuilder.append("최종 게임 결과").append(LINE_SEPARATOR);
+        for (StringBuilder printer : map.values()) {
+            resultBuilder.append(printer.toString()).append(LINE_SEPARATOR);
+        }
+        resultBuilder.append(LINE_SEPARATOR);
+
+        resultBuilder.append("게임 성공 여부: ").append(gameResult.getResult()).append(LINE_SEPARATOR);
+        resultBuilder.append("총 시도한 횟수: ").append(gameResult.getTotalTry()).append(LINE_SEPARATOR);
     }
 
     public void initMap() {
