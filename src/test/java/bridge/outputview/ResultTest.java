@@ -19,13 +19,14 @@ public class ResultTest {
 		// given
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
+
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[ O |   |   ]");
 		expectedStatus.put(LOWER_CELL, "[   | O | O ]");
@@ -37,19 +38,21 @@ public class ResultTest {
 		assertThat(actualStatus).isEqualTo(expectedStatus);
 	}
 
+
 	@DisplayName("게임 성공 여부 출력 확인 - 성공")
 	@Test
 	void printSuccess() {
 		// given
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
+
 		String expectedPrint = OUTPUT_GAME_REPORT + SUCCESS_MESSAGE;
 
 		// when
@@ -66,13 +69,14 @@ public class ResultTest {
 		// given
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = UP;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
+
 		String expectedPrint = OUTPUT_GAME_REPORT + FAIL_MESSAGE;
 
 		// when
@@ -89,13 +93,14 @@ public class ResultTest {
 		// given
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = UP;
 		bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
+
 		String expectedPrint = OUTPUT_TOTAL_TRY_COUNT + "3";
 
 		// when
@@ -104,5 +109,9 @@ public class ResultTest {
 
 		// then
 		assertThat(actualPrint).isEqualTo(expectedPrint);
+	}
+
+	private void move(String userSelectedCell, String bridgeLetter) {
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
 	}
 }

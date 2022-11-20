@@ -17,6 +17,7 @@ public class OneStepMoveTest {
 		// given
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
+
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[ O ]");
 		expectedStatus.put(LOWER_CELL, "[   ]");
@@ -34,6 +35,7 @@ public class OneStepMoveTest {
 		// given
 		String userSelectedCell = UP;
 		String bridgeLetter = DOWN;
+
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[ X ]");
 		expectedStatus.put(LOWER_CELL, "[   ]");
@@ -51,6 +53,7 @@ public class OneStepMoveTest {
 		// given
 		String userSelectedCell = DOWN;
 		String bridgeLetter = DOWN;
+
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[   ]");
 		expectedStatus.put(LOWER_CELL, "[ O ]");
@@ -68,6 +71,7 @@ public class OneStepMoveTest {
 		// given
 		String userSelectedCell = DOWN;
 		String bridgeLetter = UP;
+
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[   ]");
 		expectedStatus.put(LOWER_CELL, "[ X ]");

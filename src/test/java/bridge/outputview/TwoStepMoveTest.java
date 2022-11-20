@@ -20,7 +20,7 @@ public class TwoStepMoveTest {
 		// given
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = UP;
 		bridgeLetter = DOWN;
 		HashMap<String, String> expectedStatus = new HashMap<>();
@@ -34,13 +34,14 @@ public class TwoStepMoveTest {
 		assertThat(actualStatus).isEqualTo(expectedStatus);
 	}
 
+
 	@DisplayName("연속된 D가 입력되었을 때, 두 번째 D는 X 표시 출력")
 	@Test
 	void printFailSecondLowerCell() {
 		// given
 		String userSelectedCell = DOWN;
 		String bridgeLetter = DOWN;
-		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = UP;
 		HashMap<String, String> expectedStatus = new HashMap<>();
@@ -52,5 +53,9 @@ public class TwoStepMoveTest {
 
 		// then
 		assertThat(actualStatus).isEqualTo(expectedStatus);
+	}
+
+	private void move(String userSelectedCell, String bridgeLetter) {
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
 	}
 }
