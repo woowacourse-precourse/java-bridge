@@ -27,7 +27,6 @@ public class Player {
     public void initForRetry() {
         increaseTryCount();
         initMoveHistory();
-
     }
 
     public void increaseTryCount() {
