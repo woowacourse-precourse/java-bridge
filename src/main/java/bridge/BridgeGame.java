@@ -1,6 +1,8 @@
 package bridge;
 
 import bridge.util.Validator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
