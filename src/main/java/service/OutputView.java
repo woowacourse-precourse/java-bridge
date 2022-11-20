@@ -3,6 +3,15 @@ package service;
 import domain.GameMessage;
 
 public class OutputView {
+	public void printGameMessage(String type) {
+		for (GameMessage messageType : GameMessage.values()) {
+			if (messageType.toString().equals(type)) {
+				System.out.println(messageType.getGameMessage());
+				return;
+			}
+		}
+	}
+	
 	public void printMap(String map) {
 		System.out.println(map + "\n");
 	}
