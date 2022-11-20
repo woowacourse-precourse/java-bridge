@@ -1,19 +1,19 @@
 package bridge.domain;
 
+import bridge.constant.BridgeGameConstant;
+
 public class Checker {
     private static final Checker checker = new Checker();
-    private final int MAXIMUM_BRIDGE_SIZE = 20;
-    private final int MINIMUM_BRIDGE_SIZE = 3;
-    private final String GAME_RESTART = "R";
-    private final String GAME_QUIT = "Q";
+    private static final int MAXIMUM_BRIDGE_SIZE = 20;
+    private static final int MINIMUM_BRIDGE_SIZE = 3;
 
     private Checker() {}
 
-    static Checker getInstance() {
+    public static Checker getInstance() {
         return checker;
     }
 
-    void validateBridgeSize(String bridgeSize) {
+    public void validateBridgeSize(String bridgeSize) {
         try {
             if (!checkBridgeSizeRange(Integer.parseInt(bridgeSize))) {
                 throw new IllegalArgumentException(InputExceptionMessage.WRONG_BRIDGE_SIZE.getMessage());
@@ -23,13 +23,13 @@ public class Checker {
         }
     }
 
-    void validateMoving(String moving) {
+    public void validateMoving(String moving) {
         if (!checkMovingValue(moving)) {
             throw new IllegalArgumentException(InputExceptionMessage.WRONG_MOVING.getMessage());
         }
     }
 
-    void validateGameCommand(String gameCommand) {
+    public void validateGameCommand(String gameCommand) {
         if (!checkGameCommandValue(gameCommand)) {
             throw new IllegalArgumentException(InputExceptionMessage.WRONG_GAME_COMMAND.getMessage());
         }
@@ -44,9 +44,7 @@ public class Checker {
     }
 
     private boolean checkGameCommandValue(String gameCommand) {
-        return gameCommand.equals(GAME_RESTART) || gameCommand.equals(GAME_QUIT);
+        return gameCommand.equals(BridgeGameConstant.GAME_RESTART)
+                || gameCommand.equals(BridgeGameConstant.GAME_QUIT);
     }
-
-
-
 }
