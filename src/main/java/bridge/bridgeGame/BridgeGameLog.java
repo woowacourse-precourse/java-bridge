@@ -40,8 +40,8 @@ public class BridgeGameLog {
     }
 
     public void addLog(boolean isMove, String command) {
-        final int bridgeIndex = BridgeRouter.getMatchBridge(command).getIndex();
         addDefaultValueIfFull();
+        final int bridgeIndex = BridgeRouter.getMatchBridge(command).getIndex();
         bridges.get(bridgeIndex).set(currentLocation, getValue(isMove));
         if (isMove) {
             currentLocation++;
