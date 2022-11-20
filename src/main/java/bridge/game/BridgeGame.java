@@ -1,7 +1,8 @@
-package bridge;
+package bridge.game;
 
 import static bridge.result.GameStatus.SUCCESS;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeController;
 import bridge.result.Result;
 
@@ -11,9 +12,11 @@ import bridge.result.Result;
 public class BridgeGame {
 
     private final BridgeController bridgeController;
+    private final GameController gameController;
     private Integer gameCount;
 
     public BridgeGame() {
+        this.gameController = new GameController();
         this.bridgeController = new BridgeController(new BridgeRandomNumberGenerator());
         this.gameCount = 0;
     }
@@ -21,7 +24,7 @@ public class BridgeGame {
     public void start() {
         bridgeController.inputBridgeSize();
         Result lastResult = playGame();
-        bridgeController.endGame(lastResult, gameCount);
+        gameController.endGame(lastResult, gameCount);
     }
 
     /**
@@ -49,7 +52,7 @@ public class BridgeGame {
         if (result.getGameStatus() == SUCCESS) {
             return false;
         }
-        return bridgeController.inputGameCommand();
+        return gameController.inputGameCommand();
     }
 
     private Result playGame() {
