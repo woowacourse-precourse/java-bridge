@@ -55,7 +55,8 @@ public class ValidatorTest {
     @DisplayName("이동 입력 값이 Null이면 예외 발생")
     @Test
     void InputDirectionNullTest() {
-
+        assertThatThrownBy(() -> validateInputDirectionException(null))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("재시작, 종료 시 R,Q 외의 문자 입력시 예외 발생")
