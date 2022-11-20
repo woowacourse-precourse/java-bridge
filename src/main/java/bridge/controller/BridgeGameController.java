@@ -53,12 +53,31 @@ public class BridgeGameController {
     }
 
     private void determinePlay(boolean onGoing) {
-        if (bridgeGame.isOnGoing()) {
-            OutputView.askRestart();
-            if (bridgeGame.retry()) {
-                play();
-                return;
+        if (!bridgeGame.isOnGoing()) {
+            end(bridgeGame);
+            return;
+        }
+        restart();
+    }
+
+    private void restart() {
+        boolean verified;
+        do {
+            try {
+                verified = true;
+                askRestart();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                verified = false;
             }
+        } while (!verified);
+    }
+
+    private void askRestart() {
+        OutputView.askRestart();
+        if (bridgeGame.retry()) {
+            play();
+            return;
         }
         end(bridgeGame);
     }
