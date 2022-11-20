@@ -22,5 +22,8 @@ public class GameAgent{
         return bridgeDirection.equals(playerWantedToGo);
     }
 
-
+    public BridgeDirection getCurrentDirection(int currentBridgeLocation){
+        String currentBridgeDirection=bridge.get(currentBridgeLocation);
+        return BridgeDirection.findByWordBridgeDirection(currentBridgeDirection);
+    }
 }
