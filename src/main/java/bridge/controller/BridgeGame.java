@@ -19,17 +19,19 @@ public class BridgeGame {
     private InputView inputView;
     private Bridge bridge;
     private Result result;
+    private int tryCount;
 
     public BridgeGame(){
         this.outputView=new OutputView();
         this.inputView=new InputView();
         this.result=new Result();
+        tryCount=0;
     }
     public void gameStart(){
         outputView.printStartGame();
         int bridgeSize=setBridgeSize();
         System.out.println(bridge.getBridge());
-        move(bridgeSize);
+        finalResult(move(bridgeSize));
     }
     public int setBridgeSize(){
         String bridgeSize=inputView.readBridgeSize();
@@ -47,15 +49,22 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(int bridgeSize) {
+    public boolean move(int bridgeSize) {
+        tryCount++;
         boolean success=true;
-        for(int i=0; i<bridgeSize; i++){
-            if(moveOne(i).equals(Constants.WRONG)) {
+        for(int i=0; i<bridgeSize; i++) {
+            if (moveOne(i).equals(Constants.WRONG)) {
                 success=false;
                 break;
             }
         }
-        outputView.printResult(result.getPlayResult(), success);
+        return success;
+    }
+    public void finalResult(boolean success){
+        boolean quit=true;
+        if(!success) quit=isQuit();
+        if(quit || success)
+            outputView.printResult(result.getPlayResult(),success);
     }
     public String moveOne(int index){
         String moving=inputView.readMoving();
@@ -65,13 +74,17 @@ public class BridgeGame {
         outputView.printMap(result.getPlayResult());
         return movingResult;
     }
+    public boolean isQuit(){
+        String retry=inputView.readGameCommand();
+        Validator.checkRetryOrQuit(retry);
+        if(retry.equals(Constants.QUIT)) return true;
+        return false;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        String retry=inputView.readGameCommand();
-        Validator.checkRetryOrQuit(retry);
     }
 }
