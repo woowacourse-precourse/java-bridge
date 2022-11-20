@@ -47,4 +47,25 @@ public class InputControllerTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @Nested
+    class DirectionTest {
+        @DisplayName("유효한 형식의 방향을 입력하면 오류 없이 반환한다.")
+        @ValueSource(strings = {"U", "D"})
+        @ParameterizedTest
+        void successGetMovingDirection(String moving) {
+            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
+            assertThat(inputController.getMovingDirection(moving))
+                    .isInstanceOf(String.class);
+        }
+
+        @DisplayName("유효하지 않은 방향을 입력하면 오류가 발생한다.")
+        @ValueSource(strings = {"u", "d", "KKK", "%%"})
+        @ParameterizedTest
+        void failGetMovingDirection(String moving) {
+            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
+            assertThatThrownBy(() -> inputController.getMovingDirection(moving))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }
