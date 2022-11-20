@@ -24,18 +24,10 @@ public class BridgeMaker {
         List<String> bridgeInfo = new ArrayList<>();
 
         for (int index = 0; index < size; index++) {
-            bridgeInfo.add(generateBridge());
+            String selectedBridge = BridgeLocation.getBridgeLocationInitial(bridgeNumberGenerator.generate());
+            bridgeInfo.add(selectedBridge);
         }
 
         return bridgeInfo;
-    }
-
-    public String generateBridge() {
-        int bridge = bridgeNumberGenerator.generate();
-
-        if (bridge == 1) {
-            return "U";
-        }
-        return "D";
     }
 }
