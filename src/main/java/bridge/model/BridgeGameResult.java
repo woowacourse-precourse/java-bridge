@@ -20,10 +20,9 @@ public class BridgeGameResult {
         lastMovementRecord = new MovementRecord(oth.lastMovementRecord);
     }
 
-    public void reset() {
-        tryCount = 1;
+    public void resetFlag() {
         isSuccess = false;
-        lastMovementRecord.clearMovementRecord();
+        isFail = false;
     }
 
     public void addTryCount() {

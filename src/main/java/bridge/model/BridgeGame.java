@@ -36,6 +36,7 @@ public class BridgeGame {
      */
     public void retry() {
         currentSpot = 0;
+        result.resetFlag();
         result.addTryCount();
         result.clearLastMovementRecord();
     }
