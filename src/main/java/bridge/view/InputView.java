@@ -27,7 +27,7 @@ public class InputView {
      */
     public String readMoving() {
         String playerMoving = Console.readLine();
-        udValidateCharacter(playerMoving);
+        ValidateUpAndDownCharacter(playerMoving);
         return playerMoving;
     }
 
@@ -36,7 +36,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String restartInput = Console.readLine();
-        rqValidateCharacter(restartInput);
+        ValidateRestartAndEndCharacter(restartInput);
         return restartInput;
     }
 
