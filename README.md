@@ -327,15 +327,15 @@ int number=bridgeNumberGenerator.generate();
 
 
 2. 다리 길이 입력받기
-    * 출력: `다리의 길이를 입력해주세요.\n` 
+    * 출력: `다리의 길이를 입력해주세요.\n`
     * 사용자 입력: 3 이상 20 이하의 숫자
 
 
 2. 다리 생성
     1. 입력받은 다리 길이만큼 0과 1 중에서 무작위 값을 생성
     2. List에 생성된 무작위 값에 따라 U 또는 D 값 insert
-        * 0이라면 U (아래 칸 건너기 가능)
-        * 1이라면 D (위 칸 건너기 가능)
+        * 0이라면 D (아래 칸 건너기 가능)
+        * 1이라면 U (위 칸 건너기 가능)
 
 
 3. 사용자에게서 이동할 칸을 입력받기
@@ -422,8 +422,9 @@ int number=bridgeNumberGenerator.generate();
                 * BridgeGame 객체
             * methods
                 * startBridgeGame - 게임 초기화
-                    1. 게임 시작 문구 출력
-                    2. generateBridgeAnswer - 다리 생성
+                    1. 게임 시작 문구 출력 (OutputView.printGameStartMessage() 호출)
+                    2. askBridgeSize - 사용자가 입력한 다리의 길이 반환
+                    3. generateBridge - 다리 생성
                 * playBridgeGame - 게임 진행
                     1. 사용자가 게임을 진행하는지 확인 (User.isPlayingGame() 호출)
                     2. moveUser - 사용자 이동
