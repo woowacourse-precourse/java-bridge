@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.enums.Direction;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -8,7 +9,7 @@ public class Bridge {
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+        this.bridge = new ArrayList<>(bridge);
     }
 
     public boolean canCross(int position, Direction direction) {
