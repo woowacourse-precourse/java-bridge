@@ -70,12 +70,12 @@ BUILD SUCCESSFUL in 0s
   - **CLASS Methods**
     - [x] public RetrySelector(String retrySelector)
     - [x] public String getRetrySelect()
-- [ ] **CLASS2. BridgeMaker**
+- [x] **CLASS2. BridgeMaker**
   - **Class Variables**
-    - [ ] private final BridgeNumberGenerator bridgeNumberGenerator
+    - [x] private final BridgeNumberGenerator bridgeNumberGenerator
   - **Class Methods**
-    - [ ] public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator)
-    - [ ] public List<String> makeBridge(int size)
+    - [x] public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator)
+    - [x] public List<String> makeBridge(int size)
 - [ ] **CLASS3. BridgeGame**
   - **Class Variables**
     - [ ] private List<String> bridge
