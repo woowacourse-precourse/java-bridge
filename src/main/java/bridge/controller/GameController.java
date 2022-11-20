@@ -34,6 +34,7 @@ public class GameController {
     private void initGame() {
         outputView.printGameStartMessage();
         bridgeGame = generateRandomBridgeGame();
+        outputView.printEmptyLine();
     }
 
     private BridgeGame generateRandomBridgeGame() {

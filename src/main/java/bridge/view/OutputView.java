@@ -20,8 +20,19 @@ public class OutputView {
     private static final String BRIDGE_END_SIGN = "]\n";
     private static final String BRIDGE_DIVIDE_SIGN = "|";
 
+
+    /**
+     * 게임 시작 안내메시지를 출력한다.
+     */
     public void printGameStartMessage() {
         System.out.println(START_GAME_MESSAGE);
+    }
+
+    /**
+     * 줄바꿈을 위해 공백라인을 출력한다.
+     */
+    public void printEmptyLine() {
+        System.out.println();
     }
 
     /**
