@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.constant.Bridge;
+import bridge.constant.Command;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -20,6 +23,19 @@ public class OutputView {
 
     public void printException(String text) {
         printMsg("[ERROR]" + text);
+    }
+
+    public void printSelectMsg() {
+        printEmptyLine();
+        printMsg("이동할 칸을 선택해주세요. (" + Bridge.MOVE_UP.getDetail() + ": " + Bridge.MOVE_DOWN.getDetail() + ", " +
+                Bridge.MOVE_UP.getMove() + ": " + Bridge.MOVE_DOWN.getMove());
+    }
+
+    public void printRetryMsg() {
+        printEmptyLine();
+        printMsg("게임을 다시 시도할지 여부를 입력해주세요. (" + Command.DO_RETRY.getDetail() + ": " +
+                Command.DO_RETRY.getCommand() + ", " + Command.DO_QUIT.getDetail() + ": " +
+                Command.DO_QUIT.getCommand() + ")");
     }
 
     /**
