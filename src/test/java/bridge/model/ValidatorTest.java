@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.view.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +15,7 @@ public class ValidatorTest {
     @ParameterizedTest
     void notNumber(String input) {
         assertThatThrownBy(() -> Validator.validateSize(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ONLY_NUMBER_POSSIBLE.getMessage());
     }
 }
