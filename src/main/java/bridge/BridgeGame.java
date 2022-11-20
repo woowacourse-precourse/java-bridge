@@ -9,6 +9,13 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private final InputMaker inputMaker;
+    private final OutputMaker outputMaker;
+
+    public BridgeGame(InputMaker inputMaker, OutputMaker outputMaker) {
+      this.inputMaker = inputMaker;
+      this.outputMaker = outputMaker;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -22,7 +29,7 @@ public class BridgeGame {
           return retry(bridge, maps, idx, cnt);
         }
       }
-      new OutputView().printResult(maps, bridge.size() - 1, true, cnt);
+      outputMaker.printResult(maps, bridge.size() - 1, true, cnt);
       return true;
     }
 
@@ -36,14 +43,14 @@ public class BridgeGame {
     }
 
     public void makeMaps(char[][] maps, int idx, String ch) {
-      String input = new InputView().readMove();
+      String input = inputMaker.readMove();
       if(ch.equals(input)) {
         makeO(maps, input, idx);
       }
       if(!ch.equals(input)) {
         makeX(maps, input, idx);
       }
-      new OutputView().printMap(maps, idx);
+      outputMaker.printMap(maps, idx);
     }
 
     public void makeX(char[][] maps, String input, int idx) {
@@ -68,11 +75,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(List<String> bridge, char[][] maps, int idx, int cnt) {
-      String comm = new InputView().readRetry();
+      String comm = inputMaker.readRetry();
       if(comm.equals("R")) {
         return move(bridge, cnt + 1);
       }
-      new OutputView().printResult(maps, idx, false, cnt);
+      outputMaker.printResult(maps, idx, false, cnt);
       return false;
     }
 }

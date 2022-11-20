@@ -5,11 +5,12 @@ import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-public class InputView {
+public class InputView implements InputMaker{
 
     /**
      * 다리의 길이를 입력받는다.
      */
+    @Override
     public int readBridgeSize() {
         startGame();
         try {
@@ -20,6 +21,7 @@ public class InputView {
         }
     }
 
+    @Override
     public int validateSize(int parseInt) {
         int input = parseInt;
         if(input < 3 || input > 20) {
@@ -31,6 +33,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
+    @Override
     public String readMoving() {
         System.out.println();
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
@@ -45,6 +48,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
+    @Override
     public String readGameCommand() {
         System.out.println();
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
@@ -56,12 +60,14 @@ public class InputView {
         return input;
     }
 
-    private void startGame() {
+    @Override
+    public void startGame() {
         System.out.println("다리 건너기 게임을 시작합니다.\n" +
                 "\n" +
                 "다리의 길이를 입력해주세요.");
     }
 
+    @Override
     public String readRetry() {
         String comm;
         try {
@@ -72,6 +78,7 @@ public class InputView {
         return comm;
     }
 
+    @Override
     public String readMove() {
         String comm;
         try {
@@ -82,6 +89,7 @@ public class InputView {
         return comm;
     }
 
+    @Override
     public int readSize() {
         int comm;
         try {
