@@ -8,7 +8,7 @@ public class InputHandler {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw ErrorCode.SIZE_NOT_NUMBER.getException();
+            throw ErrorCode.SIZE_NOT_IN_RANGE.getException();
         }
     }
 }

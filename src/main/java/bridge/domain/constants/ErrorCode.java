@@ -1,7 +1,6 @@
 package bridge.domain.constants;
 
 public enum ErrorCode {
-    SIZE_NOT_NUMBER("다리 길이는 숫자만 입력 가능합니다."),
     SIZE_NOT_IN_RANGE("다리 길이는 " + BridgeConstants.BRIDGE_SIZE_START + "부터 "
             + BridgeConstants.BRIDGE_SIZE_END + " 사이의 숫자여야 합니다."),
     MOVING_NOT_U_D("이동할 때 위 칸은 대문자 " + BridgeConstants.BRIDGE_GAME_MOVING_UP + ", 아래 칸은 대문자 "

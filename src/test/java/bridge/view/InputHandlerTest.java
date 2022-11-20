@@ -17,7 +17,7 @@ class InputHandlerTest {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
             new InputHandler().stringToInt(input);
         });
-        assertEquals(ErrorCode.SIZE_NOT_NUMBER.getException().getMessage(),
+        assertEquals(ErrorCode.SIZE_NOT_IN_RANGE.getException().getMessage(),
                 exception.getMessage());
     }
 }
