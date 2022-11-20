@@ -16,7 +16,11 @@ public class GameAgent{
     public void initialize(List<String> bridge){
         this.bridge=bridge;
     }
-    
+
+    public boolean checkPossibleToCross(String playerWantedToGo, int currentBridgeLocation){
+        String bridgeDirection = bridge.get(currentBridgeLocation);
+        return bridgeDirection.equals(playerWantedToGo);
+    }
 
 
 }
