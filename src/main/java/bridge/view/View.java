@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.domain.GameResult;
 import bridge.domain.MovingResult;
-import java.util.Map;
 
 public class View {
 
@@ -30,12 +29,16 @@ public class View {
         return inputView.readGameCommand();
     }
 
-    public void printMap(Map<String, StringBuilder> map, MovingResult moveResult) {
-        outputView.printMap(map, moveResult);
+    public void printMap(MovingResult moveResult, int next) {
+        outputView.printMap(moveResult, next);
     }
 
-    public void printResult(Map<String, StringBuilder> map, GameResult gameResult) {
-        outputView.printResult(map, gameResult);
+    public void printResult(GameResult gameResult) {
+        outputView.printResult(gameResult);
+    }
+
+    public void initMap() {
+        outputView.initMap();
     }
 
 }
