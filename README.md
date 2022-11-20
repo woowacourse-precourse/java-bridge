@@ -437,6 +437,7 @@ int number=bridgeNumberGenerator.generate();
             * fields
                 * bridge_answer - 정답 다리
                 * bridge_userPredict - 사용자가 현재까지 건넌 다리
+                * enum BridgeShape - 다리 모양의 숫자 값(0, 1), 문자 값("U", "D") 저장
             * methods
                 * setBridgeAnswer - 정답 다리 값 저장
                 * move - 칸 이동
