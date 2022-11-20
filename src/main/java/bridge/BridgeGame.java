@@ -14,13 +14,11 @@ public class BridgeGame {
     private static final String RETRY_COMMAND_CHARACTER = "R";
     private static final String QUIT_COMMAND_CHARACTER = "Q";
 
-    private InputView inputView;
     private OutputView outputView;
     private BridgeNumberGenerator bridgeNumberGenerator;
     private BridgeMaker bridgeMaker;
 
     public BridgeGame() {
-        this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -29,7 +27,8 @@ public class BridgeGame {
     public void startGame() {
         try {
             System.out.println(GAME_START_MESSAGE);
-            int bridgeSize = inputView.readBridgeSize();
+            InputController inputController = new InputController();
+            int bridgeSize = inputController.getBridgeSize(InputView.readBridgeSize());
             List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
             int gameCount = 0;
             while (true) {
@@ -39,7 +38,7 @@ public class BridgeGame {
                 List<String> upperBridge = new ArrayList<>();
                 List<String> downBridge = new ArrayList<>();
                 for (int i = 0; i < bridge.size(); i++) {
-                    String moving = inputView.readMoving();
+                    String moving = inputController.getMoving(InputView.readMoving());
                     if (move(moving, bridge.get(i))) {
                         outputView.makeMap(moving, MAP_O_CHARACTER, upperBridge, downBridge);
                         outputView.printMap(upperBridge, downBridge);
@@ -47,7 +46,7 @@ public class BridgeGame {
                         success = false;
                         outputView.makeMap(moving, MAP_X_CHARACTER, upperBridge, downBridge);
                         outputView.printMap(upperBridge, downBridge);
-                        String gameCommand = inputView.readGameCommand();
+                        String gameCommand = inputController.getGameCommand(InputView.readGameCommand());
                         if (retry(gameCommand)) {
                             flag = true;
                         }
