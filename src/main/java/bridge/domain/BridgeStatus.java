@@ -31,6 +31,6 @@ public enum BridgeStatus {
         return Arrays.stream(values())
                 .filter(value -> value.arrow.equals(arrow) && value.status.equals(mark))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalStateException());
     }
 }
