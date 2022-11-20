@@ -18,7 +18,9 @@ public enum ExceptionMessageUtils {
 
     WRONG_GENERATOR("다리를 생성하는 generator는 %d(위 칸) 또는 %d(아래 칸)만을 생성할 수 있습니다.",
             BridgeConst.UP_TILE_VALUE,
-            BridgeConst.DOWN_TILE_VALUE);
+            BridgeConst.DOWN_TILE_VALUE),
+
+    WRONG_CONFIGURATION("잘못된 애플리케이션 구성으로 인한 문제가 발생했습니다.");
 
     private final String message;
 

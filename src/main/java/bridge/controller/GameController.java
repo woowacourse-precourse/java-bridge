@@ -13,6 +13,7 @@ import bridge.dto.output.PrintMapDto;
 import bridge.dto.output.PrintResultDto;
 import bridge.exception.domain.WrongGeneratorException;
 import bridge.utils.game.GameStatus;
+import bridge.utils.message.ExceptionMessageUtils;
 import bridge.view.GuideView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -48,12 +49,18 @@ public class GameController {
         try {
             return gameStatusMappings.get(gameStatus).get();
         } catch (IllegalArgumentException e) {
-            ioViewManager.printException(new PrintExceptionDto(e));
-            return gameStatus;
+            return processException(e.getMessage(), gameStatus);
         } catch (WrongGeneratorException e) {
-            ioViewManager.printException(new PrintExceptionDto(e));
-            return GameStatus.APPLICATION_EXIT;
+            return processException(e.getMessage(), GameStatus.APPLICATION_EXIT);
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            return processException(ExceptionMessageUtils.WRONG_CONFIGURATION.getMessage(),
+                    GameStatus.APPLICATION_EXIT);
         }
+    }
+
+    private GameStatus processException(String message, GameStatus gameStatus) {
+        ioViewManager.printException(new PrintExceptionDto(message));
+        return gameStatus;
     }
 
     private GameStatus applicationStart() {
