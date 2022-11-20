@@ -13,6 +13,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String ENTER_DIRECTION = String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", "U", "D");
+    private static final String ASK_RETRY = String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", "R", "Q");
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -48,7 +49,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        // 질문이랑 입력값 메소드로 분리
+        System.out.println(ASK_RETRY);
+        final String input = Console.readLine();
+        try {
+            InputValidator.retry(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return retry();
+        }
+        return input.toUpperCase();
     }
 
     private static void lineFeed() {
