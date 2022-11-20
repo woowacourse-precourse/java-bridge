@@ -32,4 +32,15 @@ public class Application {
             }
         }
     }
+
+    private static boolean getRetry() {
+        output.printRequestInputRetry();
+        while (true) {
+            try {
+                return input.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                output.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 }
