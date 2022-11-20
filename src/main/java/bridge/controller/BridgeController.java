@@ -15,6 +15,7 @@ public class BridgeController {
             play();
             gameOver();
         } while (bridgeGame.isOngoing());
+        outputView.printResult(bridgeGame);
     }
 
     private void init() {
