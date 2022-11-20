@@ -72,7 +72,7 @@ public class BridgeGame {
 
     public void reGame() {
         player = new Player();
-        tried = 0;
+        tried++;
         gameStatus = GAME_STATUS_NORMAL;
     }
 

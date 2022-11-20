@@ -13,8 +13,8 @@ public class BridgeGameController {
     private BridgeGame bridgeGame;
     private BridgeSize bridgeSize;
     private Player player;
-    private String retryString;
-    private String moveString;
+    private String retryString = "";
+    private String moveString = "";
 
     public BridgeGameController() {
         inputView = new InputView();
@@ -41,19 +41,18 @@ public class BridgeGameController {
         }
     }
 
-    public String readMove() {
+    public void readMove() {
         outputView.printReadMoving();
         try {
             moveString = inputView.readMoving();
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }
-        return moveString;
     }
 
     public boolean move() {
         try {
-            moveString = readMove();
+            readMove();
         } catch (IllegalArgumentException e) {
             outputView.printError("[ERROR] 이동할 칸 입력은 U 혹은 D만 가능합니다.");
             return false;
@@ -61,22 +60,28 @@ public class BridgeGameController {
         return true;
     }
 
+    public boolean validateRetryValue(){
+        if(retryString.equals(InputView.RETRY_YES) || retryString.equals(InputView.RETRY_NO)){
+            return true;
+        }
+        return false;
+    }
+
     public boolean readRetry() {
-        outputView.printReadRetry();
         do {
+            outputView.printReadRetry();
             try {
                 retryString = inputView.readRetry();
             } catch (IllegalArgumentException e) {
                 outputView.printError("[ERROR] 재시도 입력은 R 혹은 Q만 가능합니다.");
             }
-        } while (retryString == null);
+        } while (!validateRetryValue());
         return bridgeGame.retry(retryString);
     }
 
     public boolean isCleared() {
         if (bridgeGame.getGameStatus() == BridgeGame.GAME_STATUS_CLEAR)
             return true;
-        outputView.printReadRetry();
         if (readRetry()) {
             return false;
         }
@@ -87,10 +92,26 @@ public class BridgeGameController {
         outputView.printResult(bridgeGameResult);
     }
 
+    public boolean isEnd() {
+
+        return bridgeGame.getGameStatus() != BridgeGame.GAME_STATUS_NORMAL;
+    }
+
+    public void playOneGame() {
+        bridgeGame.reGame();
+        do {
+            if (!move()) {
+                continue;
+            }
+            bridgeGame.move(moveString);
+            outputView.printMap(bridgeGame);
+        } while (!isEnd());
+    }
+
     public void playGame() {
         bridgeGame = new BridgeGame(makeBridge(), player);
         do {
-            //playOneGame();
+            playOneGame();
         } while (!isCleared());
         printResult(new BridgeGameResult(bridgeGame.getCleared(), bridgeGame.getTried()));
     }
