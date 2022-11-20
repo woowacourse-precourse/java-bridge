@@ -21,20 +21,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class BridgeContainerTest {
 
-    @DisplayName("플레이어 현재 다리에 추가 무브 테스트")
-    @MethodSource("generateTestMoveInput")
-    @ParameterizedTest
-    void insertMoveInPlayerBridgeTest(List<String> inputMoves) {
-        BridgeContainer bridgeContainer = new BridgeContainer();
-        bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(inputMoves, bridgeContainer);
-        Bridge answerBridge = new Bridge(inputMoves);
-
-        Bridge bridge = bridgeContainer.getPlayerBridge().getBridge();
-
-        assertThat(bridge.getSquares()).isEqualTo(answerBridge.getSquares());
-    }
-
     @DisplayName("사용자 입력 결과 참인 테스트")
     @Test
     void checkInsertedMoveTest() {
