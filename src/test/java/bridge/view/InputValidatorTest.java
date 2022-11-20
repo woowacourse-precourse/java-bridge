@@ -1,11 +1,10 @@
 package bridge.view;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputValidatorTest {
     @ParameterizedTest(name = "사용자 입력: {0}이면 형식에 맞다")
@@ -17,7 +16,7 @@ class InputValidatorTest {
     }
 
     @ParameterizedTest(name = "사용자 입력: {0}이면 예외 던진다")
-    @ValueSource(strings = {"u", "d", "UD", "DU", " U", "D ", " ", ""})
+    @ValueSource(strings = {"u", "d", "UD", "DU", " U", "D ", " ", "", "R", "Q"})
     void validateMoving_메서드는_사용자_입력을_받아_형식에_안맞으면_예외_던진다(String moving) {
         assertThatThrownBy(() -> {
             InputValidator.validateMoving(moving);
@@ -38,6 +37,23 @@ class InputValidatorTest {
     void validateBridgeSize_메서드는_사용자_입력을_받아_0_이상의_정수가_아니면_예외_던진다(String bridgeSize) {
         assertThatThrownBy(() -> {
             InputValidator.validateBridgeSize(bridgeSize);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @ParameterizedTest(name = "사용자 입력: {0}이면 형식에 맞다")
+    @ValueSource(strings = {"R", "Q"})
+    void validateGameCommand_메서드는_사용자_입력을_받아_형식에_맞는지_확인한다(String gameCommand) {
+        assertThatNoException().isThrownBy(() -> {
+            InputValidator.validateGameCommand(gameCommand);
+        });
+    }
+
+    @ParameterizedTest(name = "사용자 입력: {0}이면 예외 던진다")
+    @ValueSource(strings = {"r", "q", "RQ", "QR", " R", "Q ", " ", "", "U", "D"})
+    void validateGameCommand_메서드는_사용자_입력을_받아_형식에_안맞으면_예외_던진다(String gameCommand) {
+        assertThatThrownBy(() -> {
+            InputValidator.validateGameCommand(gameCommand);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
