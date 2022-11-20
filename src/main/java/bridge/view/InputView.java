@@ -1,5 +1,10 @@
 package bridge.view;
 
+import static bridge.domain.BridgeSize.makeBridgeSize;
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
+import bridge.domain.BridgeSize;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,8 +13,8 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public BridgeSize readBridgeSize() {
+        return makeBridgeSize(readInt());
     }
 
     /**
@@ -24,5 +29,18 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int readInt() {
+        try {
+            return parseInt(readLine());
+
+        } catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException("다리의 길이 형식인 정수 형식이 아닙니다.");
+        }
+    }
+
+    private int parseInt(String value) {
+        return Integer.parseInt(value);
     }
 }
