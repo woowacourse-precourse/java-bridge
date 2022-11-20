@@ -5,28 +5,31 @@ import java.util.List;
 
 public class UpSide {
     private String upSide;
+    public List<String> upSideArr;
 
-    public UpSide(List<String> bridge) {
-        this.upSide = makeUpSide(bridge);
+    public UpSide() {
+        this.upSide = makeUpSide();
     }
 
-    public String makeUpSide(List<String> bridge) {
-        String upSideString = String.join(" | ", convertUpSide(bridge));
+    public String makeUpSide() {
+        upSideArr = new ArrayList<>();
+        convertUpSide();
+        String upSideString = String.join(" | ", upSideArr);
         upSide = "[ ";
         upSide += upSideString;
         upSide += " ]";
         return upSide;
     }
 
-    public List<String> convertUpSide(List<String> bridge) {
-        List<String> upSideArr = new ArrayList<>();
-        for (String e : bridge) {
+    public void convertUpSide() {
+        for (String e : Application.movingInputs) {
             if (e.equals("U"))
                 upSideArr.add("O");
             if (e.equals("D"))
                 upSideArr.add(" ");
+            if (e.equals("X"))
+                upSideArr.add("X");
         }
-        return upSideArr;
     }
 
     public String getUpSide() {
