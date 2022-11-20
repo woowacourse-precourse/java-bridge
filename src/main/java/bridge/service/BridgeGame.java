@@ -1,13 +1,19 @@
 package bridge.service;
 
+import bridge.repository.BridgeMakerRepository;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private BridgeMakerRepository bridgeMakerRepository;
+
     public BridgeGame() {
     }
 
-    public void createBridge() {
+    public List<String> createBridge(int bridgeSize) {
+        return bridgeMakerRepository.makeBridge(bridgeSize);
     }
 
     /**

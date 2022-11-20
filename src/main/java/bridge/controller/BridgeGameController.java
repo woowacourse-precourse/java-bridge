@@ -4,6 +4,7 @@ import bridge.service.BridgeGame;
 import bridge.validation.BridgeSizeValidation;
 import bridge.view.InputView;
 import bridge.view.PrintGuideMessage;
+import java.util.List;
 
 public class BridgeGameController {
     private final BridgeGame game;
@@ -16,6 +17,7 @@ public class BridgeGameController {
 
     public void startGame() {
         int bridgeSize = getBridgeSize();
+        List<String> bridge = game.createBridge(bridgeSize);
     }
 
     public int getBridgeSize() {
