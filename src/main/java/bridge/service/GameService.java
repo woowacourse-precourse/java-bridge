@@ -5,7 +5,6 @@ import java.util.List;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.repository.UserBridgeRepository;
-import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.util.OutputViewConst;
 
 public class GameService {
@@ -31,18 +30,18 @@ public class GameService {
 		return bridge.checkValidSpace(userSpace, currentSpace);
 	}
 
-	public UserBridgeStatusDto saveUserCorrectSpace(String userLocation) {
+	public String saveUserCorrectSpace(String userLocation) {
 		userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_CORRECT_SPACE);
-		return userBridgeRepository.findUserBridgeStatusDto();
+		return userBridgeRepository.findUserBridgeStatus();
 	}
 
-	public UserBridgeStatusDto saveUserWrongSpace(String userLocation) {
+	public String saveUserWrongSpace(String userLocation) {
 		userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_WRONG_SPACE);
-		return userBridgeRepository.findUserBridgeStatusDto();
+		return userBridgeRepository.findUserBridgeStatus();
 	}
 
-	public UserBridgeStatusDto getUserBridgeStatusDto() {
-		return userBridgeRepository.findUserBridgeStatusDto();
+	public String getUserBridgeStatus() {
+		return userBridgeRepository.findUserBridgeStatus();
 	}
 
 	public void clearUserBridge() {

@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.service.GameService;
 import bridge.util.InputViewConst;
 import bridge.util.OutputViewConst;
@@ -40,7 +39,7 @@ public class BridgeGame {
 
 	private void printResult(Integer attemptCount, String userResult) {
 		outputView.printFinalResultPhrase();
-		outputView.printMap(gameService.getUserBridgeStatusDto());
+		outputView.printMap(gameService.getUserBridgeStatus());
 		outputView.printResult(userResult, attemptCount);
 	}
 
@@ -64,13 +63,11 @@ public class BridgeGame {
 	}
 
 	private void printCorrectMap(String userLocation) {
-		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserCorrectSpace(userLocation);
-		outputView.printMap(userBridgeStatusDto);
+		outputView.printMap(gameService.saveUserCorrectSpace(userLocation));
 	}
 
 	private void printWrongUserMap(String userLocation) {
-		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserWrongSpace(userLocation);
-		outputView.printMap(userBridgeStatusDto);
+		outputView.printMap(gameService.saveUserWrongSpace(userLocation));
 	}
 
 	/**

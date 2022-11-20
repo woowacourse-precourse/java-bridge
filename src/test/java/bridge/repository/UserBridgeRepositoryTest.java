@@ -1,13 +1,9 @@
 package bridge.repository;
 
-import java.util.List;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import bridge.repository.dto.UserBridgeStatusDto;
 
 class UserBridgeRepositoryTest {
 
@@ -27,13 +23,10 @@ class UserBridgeRepositoryTest {
 
 		//when
 		userBridgeRepository.saveUserSpace(location, userCurrentTrace);
-		UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
-		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
+		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
 		//then
-		Assertions.assertThat(userUpperBridge).isEqualTo(List.of("X"));
-		Assertions.assertThat(userLowerBridge).isEqualTo(List.of(" "));
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[ X ]" + "\n" + "[   ]");
 	}
 
 	@DisplayName("saveUserSpace 에서 lower 위치에 userCurrentTrace 저장 확인 테스트")
@@ -45,18 +38,15 @@ class UserBridgeRepositoryTest {
 
 		//when
 		userBridgeRepository.saveUserSpace(location, userCurrentTrace);
-		UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
-		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
+		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
 		//then
-		Assertions.assertThat(userUpperBridge).isEqualTo(List.of(" "));
-		Assertions.assertThat(userLowerBridge).isEqualTo(List.of("X"));
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[   ]" + "\n" + "[ X ]");
 	}
 
-	@DisplayName("findUserBridgeStatusDto 테스트")
+	@DisplayName("findUserBridgeStatus 테스트")
 	@Test
-	void findUserBridgeStatusDto() {
+	void findUserBridgeStatus() {
 		//given
 		String location1 = "U";
 		String userCurrentTrace1 = "O";
@@ -65,41 +55,34 @@ class UserBridgeRepositoryTest {
 		String location3 = "D";
 		String userCurrentTrace3 = "O";
 
+		//when
 		userBridgeRepository.saveUserSpace(location1, userCurrentTrace1);
 		userBridgeRepository.saveUserSpace(location2, userCurrentTrace2);
 		userBridgeRepository.saveUserSpace(location3, userCurrentTrace3);
-		UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
-
-		//when
-		UserBridgeStatusDto userBridgeStatusDtoTest = new UserBridgeStatusDto(List.of("O", " ", " "),
-			List.of(" ", "X", "O"), 3);
+		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
 		//then
-		Assertions.assertThat(userBridgeStatusDto.getUserUpperBridge())
-			.isEqualTo(userBridgeStatusDtoTest.getUserUpperBridge());
-		Assertions.assertThat(userBridgeStatusDto.getUserLowerBridge())
-			.isEqualTo(userBridgeStatusDtoTest.getUserLowerBridge());
-		Assertions.assertThat(userBridgeStatusDto.getUserCurrentLocation())
-			.isEqualTo(userBridgeStatusDtoTest.getUserCurrentLocation());
+		Assertions.assertThat(userBridgeStatus)
+			.isEqualTo("[ O |   |   ]" + "\n" + "[   | X | O ]");
 	}
 
-	@DisplayName("userBridgeRepository 의 clear 테스트")
-	@Test
-	void clear() {
-		//given
-		userBridgeRepository.saveUserSpace("U", "X");
-		userBridgeRepository.saveUserSpace("D", "X");
-
-		//when
-		userBridgeRepository.clear();
-		UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
-		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
-		Integer userCurrentLocation = userBridgeStatusDto.getUserCurrentLocation();
-
-		//then
-		Assertions.assertThat(userUpperBridge).isEmpty();
-		Assertions.assertThat(userLowerBridge).isEmpty();
-		Assertions.assertThat(userCurrentLocation).isEqualTo(0);
-	}
+	// @DisplayName("userBridgeRepository 의 clear 테스트")
+	// @Test
+	// void clear() {
+	// 	//given
+	// 	userBridgeRepository.saveUserSpace("U", "X");
+	// 	userBridgeRepository.saveUserSpace("D", "X");
+	//
+	// 	//when
+	// 	userBridgeRepository.clear();
+	// 	UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
+	// 	List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
+	// 	List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
+	// 	Integer userCurrentLocation = userBridgeStatusDto.getUserCurrentLocation();
+	//
+	// 	//then
+	// 	Assertions.assertThat(userUpperBridge).isEmpty();
+	// 	Assertions.assertThat(userLowerBridge).isEmpty();
+	// 	Assertions.assertThat(userCurrentLocation).isEqualTo(0);
+	// }
 }

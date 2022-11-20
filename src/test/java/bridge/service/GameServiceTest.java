@@ -15,7 +15,6 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeNumberGenerator;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.repository.UserBridgeRepository;
-import bridge.repository.dto.UserBridgeStatusDto;
 
 class GameServiceTest {
 
@@ -75,27 +74,23 @@ class GameServiceTest {
 		String userLocation = "U";
 
 		//when
-		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserCorrectSpace(userLocation);
-		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-		String result = userUpperBridge.get(userUpperBridge.size() - 1);
+		String userBridgeStatus = gameService.saveUserCorrectSpace(userLocation);
 
 		//then
-		Assertions.assertThat(result).isEqualTo("O");
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[ O ]" + "\n" + "[   ]");
 	}
 
-	@DisplayName("saveUserCorrectSpace 에서 upperBridge 에 O 저장 확인 테스트")
+	@DisplayName("saveUserCorrectSpace 에서 lowerBridge 에 O 저장 확인 테스트")
 	@Test
 	void saveUserCorrectSpaceInLowerBridge() {
 		//given
 		String userLocation = "D";
 
 		//when
-		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserCorrectSpace(userLocation);
-		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
-		String result = userLowerBridge.get(userLowerBridge.size() - 1);
+		String userBridgeStatus = gameService.saveUserCorrectSpace(userLocation);
 
 		//then
-		Assertions.assertThat(result).isEqualTo("O");
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[   ]" + "\n" + "[ O ]");
 	}
 
 	@DisplayName("saveUserWrongSpace 에서 upperBridge 에 X 저장 확인 테스트")
@@ -105,27 +100,23 @@ class GameServiceTest {
 		String userLocation = "U";
 
 		//when
-		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserWrongSpace(userLocation);
-		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-		String result = userUpperBridge.get(userUpperBridge.size() - 1);
+		String userBridgeStatus = gameService.saveUserWrongSpace(userLocation);
 
 		//then
-		Assertions.assertThat(result).isEqualTo("X");
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[ X ]" + "\n" + "[   ]");
 	}
 
-	@DisplayName("saveUserWrongSpace 에서 upperBridge 에 X 저장 확인 테스트")
+	@DisplayName("saveUserWrongSpace 에서 lowerBridge 에 X 저장 확인 테스트")
 	@Test
 	void getUserBridgeStatusDtoInLowerBridge() {
 		//given
 		String userLocation = "D";
 
 		//when
-		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserWrongSpace(userLocation);
-		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
-		String result = userLowerBridge.get(userLowerBridge.size() - 1);
+		String userBridgeStatus = gameService.saveUserWrongSpace(userLocation);
 
 		//then
-		Assertions.assertThat(result).isEqualTo("X");
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[   ]" + "\n" + "[ X ]");
 	}
 
 	@DisplayName("userBridgeRepository 안에 데이터가 있는 상태에서 gameService.clearUserBridge() 할시 데이터가 남아 있는 확인 테스트")
@@ -137,14 +128,9 @@ class GameServiceTest {
 
 		//when
 		gameService.clearUserBridge();
-		UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
-		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
-		Integer userCurrentLocation = userBridgeStatusDto.getUserCurrentLocation();
+		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
 		//then
-		Assertions.assertThat(userUpperBridge).isEmpty();
-		Assertions.assertThat(userLowerBridge).isEmpty();
-		Assertions.assertThat(userCurrentLocation).isEqualTo(0);
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[  ]" + "\n" + "[  ]");
 	}
 }

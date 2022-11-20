@@ -2,13 +2,11 @@ package bridge.view;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.util.OutputViewConst;
 
 class OutputViewTest {
@@ -48,15 +46,11 @@ class OutputViewTest {
 	@Test
 	void printMap() {
 		//when
-		UserBridgeStatusDto userBridgeStatusDto = new UserBridgeStatusDto(
-			List.of("O", " ", "O"),
-			List.of(" ", "O", " "),
-			3);
 		String result1 = "[ O |   | O ]";
 		String result2 = "[   | O |   ]";
 
 		//given
-		outputView.printMap(userBridgeStatusDto);
+		outputView.printMap(result1 + "\n" + result2);
 
 		//then
 		Assertions.assertThat(outContent.toString()).contains(result1, result2);

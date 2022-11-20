@@ -1,8 +1,5 @@
 package bridge.view;
 
-import java.util.List;
-
-import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.util.OutputViewConst;
 
 /**
@@ -23,21 +20,8 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printMap(UserBridgeStatusDto userBridgeStatusDto) {
-		Integer bridgeSize = userBridgeStatusDto.getUserCurrentLocation();
-		printBridge(userBridgeStatusDto.getUserUpperBridge(), bridgeSize);
-		printBridge(userBridgeStatusDto.getUserLowerBridge(), bridgeSize);
-	}
-
-	private void printBridge(List<String> userMap, Integer bridgeSize) {
-		System.out.print(OutputViewConst.RESULT_PREFIX);
-		for (int i = 0; i < bridgeSize; i++) {
-			System.out.print(userMap.get(i));
-			if (i != bridgeSize - 1) {
-				System.out.print(OutputViewConst.RESULT_PARTITION);
-			}
-		}
-		System.out.println(OutputViewConst.RESULT_SUFFIX);
+	public void printMap(String userBridgeStatus) {
+		System.out.println(userBridgeStatus);
 	}
 
 	/**

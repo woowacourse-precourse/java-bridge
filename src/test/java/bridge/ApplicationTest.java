@@ -6,15 +6,23 @@ import static org.assertj.core.util.Lists.*;
 
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.UserBridgeStatus;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 class ApplicationTest extends NsTest {
 
 	private static final String ERROR_MESSAGE = "[ERROR]";
+
+	@AfterEach
+	void tearDown() {
+		UserBridgeStatus.UPPER_BRIDGE.clearStatus();
+		UserBridgeStatus.LOWER_BRIDGE.clearStatus();
+	}
 
 	@Test
 	void 다리_생성_테스트() {
