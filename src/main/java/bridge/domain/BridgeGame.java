@@ -8,11 +8,11 @@ import java.util.Map;
 import bridge.dto.BridgeCrossingDTO;
 
 public class BridgeGame {
-    private static final Map<String, Integer> map = new HashMap<>() {{
+    private static final Map<String, Integer> directionToList = new HashMap<>() {{
         put("U", 0);
         put("D", 1);
     }};
-    private static List<List<String>> footPrint;
+    private static List<List<String>> footPrint = new ArrayList<>();
 
     private final Bridge bridge;
     private int tryCount;
@@ -21,16 +21,18 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         tryCount = 1;
+        footPrint.add(new ArrayList<>());
+        footPrint.add(new ArrayList<>());
     }
 
     public void move(String movingDirection) {
-        crossingStatus = bridge.isRightTrack(footPrint.size(), movingDirection);
-        leaveFootPrint(movingDirection, 0);
-        leaveFootPrint(movingDirection, 1);
+        crossingStatus = bridge.isRightTrack(footPrint.get(0).size(), movingDirection);
+        leaveFootPrint(movingDirection, directionToList.get("U"));
+        leaveFootPrint(movingDirection, directionToList.get("D"));
     }
 
     public void leaveFootPrint(String movingDirection, int upAndDown) {
-        if (map.get(movingDirection) != upAndDown) {
+        if (directionToList.get(movingDirection) != upAndDown) {
             footPrint.get(upAndDown).add(" ");
             return;
         }

@@ -37,8 +37,9 @@ public class BridgeController {
         try {
             OutputView.printInputMoving();
             bridgeMoving = InputView.inputBridgeMove();
-
             BridgeCrossingDTO bridgeCrossingDTO = bridgeService.moveUser(bridgeMoving);
+            OutputView.printMap(bridgeCrossingDTO.getFootPrint());
+            moveBridge();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             moveBridge();
