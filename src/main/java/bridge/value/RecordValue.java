@@ -1,8 +1,8 @@
 package bridge.value;
 
 public enum RecordValue {
-    INIT(1),
-    INCREMENT(1);
+    RECORD_INIT(1),
+    RECORD_INCREMENT(1);
     private final int value;
 
     RecordValue(int value) {
