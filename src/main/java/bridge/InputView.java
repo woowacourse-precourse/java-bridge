@@ -4,9 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Scanner;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     private Scanner scanner;
@@ -14,17 +11,15 @@ public class InputView {
     public InputView() {
         scanner = new Scanner(System.in);
     }
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+
     public int readBridgeSize() throws IllegalAccessException {
         String size = Console.readLine();
-        validate(size);
+        validateBridgeSize(size);
 
         return Integer.parseInt(size);
     }
 
-    private void validate(String size) throws IllegalAccessException {
+    private void validateBridgeSize(String size) throws IllegalAccessException {
         int isize;
         for(int i = 0 ; i < size.length() ; i++) {
             if(!Character.isDigit(size.charAt(i))) {
