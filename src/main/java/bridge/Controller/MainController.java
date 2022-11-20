@@ -4,6 +4,7 @@ import bridge.Enum.GameStatus;
 import bridge.Model.BridgeGame;
 import bridge.Model.VO.BridgeSize;
 import bridge.Model.VO.UserChoice;
+import bridge.Model.VO.UserCommand;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -25,6 +26,15 @@ public class MainController {
             bridgeGame.move(userChoice);
             gameStatus = bridgeGame.checkGameStatus();
             outputView.printMap(bridgeGame.getUserChoices(), bridgeGame.getCrossResults());
+        }
+        if(gameStatus.equals(GameStatus.FAIL)){
+            UserCommand userCommand = inputView.readGameCommand();
+            if(userCommand.isQuit()){
+                //pass
+            } else if(userCommand.isRetry()){
+                bridgeGame.retry();
+                run();
+            }
         }
     }
 }
