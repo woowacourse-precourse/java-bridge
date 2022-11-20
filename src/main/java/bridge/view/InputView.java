@@ -89,13 +89,17 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(READ_GAME_COMMAND_GUIDE);
         try {
-            String gameCommand = Console.readLine();
-            validateInputGameCommand(gameCommand);
-            return gameCommand;
+            return inputGameCommand();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
         return readGameCommand();
+    }
+
+    private String inputGameCommand() {
+        String gameCommand = Console.readLine();
+        validateInputGameCommand(gameCommand);
+        return gameCommand;
     }
 
     public void validateInputGameCommand(String gameCommand) {
