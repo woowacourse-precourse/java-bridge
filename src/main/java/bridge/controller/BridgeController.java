@@ -18,9 +18,11 @@ import java.util.List;
 public class BridgeController {
 
     private final BridgeMaker bridgeMaker;
+    private final BridgeGame bridgeGame;
 
     public BridgeController(BridgeNumberGenerator bridgeNumberGenerator) {
-        bridgeMaker = createBridgeMaker(bridgeNumberGenerator);
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        bridgeGame = new BridgeGame();
     }
 
     public void play() {
@@ -28,7 +30,6 @@ public class BridgeController {
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
 
         Bridge bridge = createBridge(bridgeNumbers);
-        BridgeGame bridgeGame = createBridgeGame();
         PassingPositions passingPositions = createPassingPositions(bridge);
         Result result = null;
 
@@ -64,10 +65,6 @@ public class BridgeController {
         }
     }
 
-    private BridgeMaker createBridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
-        return new BridgeMaker(bridgeNumberGenerator);
-    }
-
     private Length createLengthLoop() {
         Length length;
         do {
@@ -87,10 +84,6 @@ public class BridgeController {
 
     private Bridge createBridge(List<String> bridgeNumbers) {
         return new Bridge(bridgeNumbers);
-    }
-
-    private BridgeGame createBridgeGame() {
-        return new BridgeGame();
     }
 
     private PassingPositions createPassingPositions(Bridge bridge) {
