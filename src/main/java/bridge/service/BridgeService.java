@@ -9,14 +9,13 @@ import bridge.dto.BridgeCrossingDTO;
 public class BridgeService {
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
-    private Bridge bridge;
 
     public BridgeService() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void createBridge(int bridgeSize) {
-        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         bridgeGame = new BridgeGame(bridge);
     }
 
