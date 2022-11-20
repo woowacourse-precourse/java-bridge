@@ -7,23 +7,23 @@ import java.util.Objects;
  */
 public class BridgeGame {
     private final Bridge bridge;
-    private final Bridge attempts;
+    private final Bridge playerMove;
     private final TryCount tryCount;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.attempts = new Bridge();
+        this.playerMove = new Bridge();
         this.tryCount = new TryCount();
     }
 
     public BridgeGame(Bridge bridge, TryCount tryCount) {
         this.bridge = bridge;
-        this.attempts = new Bridge();
+        this.playerMove = new Bridge();
         this.tryCount = tryCount;
     }
 
     public void move(BridgeShape moveBridgeShape) {
-        attempts.connect(moveBridgeShape);
+        playerMove.connect(moveBridgeShape);
     }
 
     public BridgeGame retry() {
@@ -31,11 +31,11 @@ public class BridgeGame {
     }
 
     public BridgeGameResult result() {
-        return bridge.compare(attempts);
+        return bridge.compare(playerMove);
     }
 
     public boolean isNotEnd() {
-        return !bridge.sizeEqual(attempts);
+        return !bridge.sizeEqual(playerMove);
     }
 
     public TryCount tryCount() {
@@ -51,12 +51,12 @@ public class BridgeGame {
             return false;
         }
         BridgeGame that = (BridgeGame) o;
-        return Objects.equals(bridge, that.bridge) && Objects.equals(attempts, that.attempts)
+        return Objects.equals(bridge, that.bridge) && Objects.equals(playerMove, that.playerMove)
                 && Objects.equals(tryCount, that.tryCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bridge, attempts, tryCount);
+        return Objects.hash(bridge, playerMove, tryCount);
     }
 }
