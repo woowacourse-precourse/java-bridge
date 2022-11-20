@@ -11,10 +11,10 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public CrossResult cross(UserChoice userChoice, int index){
-        String partOfBridge = bridge.get(index);
+    public CrossResult cross(UserChoice userChoice, int position){
+        String crossableBridge = bridge.get(position);
 
-        if(userChoice.equals(partOfBridge)){
+        if(userChoice.equals(crossableBridge)){
             return CrossResult.SUCCESS;
         }
         return CrossResult.FAIL;
