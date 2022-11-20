@@ -15,7 +15,7 @@
 - [x] 입력 `이동할 칸을 선택해주세요. (위: U, 아래: D)` 후 정답과 비교하는 함수 구현
   - (InputView 이용해서 Console.readLine()이용 )
   - [x] U/D아니면 예외처리 `IllegalArgumentException`를 발생
-- [ ] 정답과 같을 경우 출력하는 함수 구현
+- [x] 정답과 같을 경우 출력하는 함수 구현
 - [ ] 입력`게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)`후 함수 구현
   - (InputView 이용해서 Console.readLine()이용 )
   - R이면 재시작이고 기존 다리 재사용

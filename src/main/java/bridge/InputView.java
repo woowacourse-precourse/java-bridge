@@ -22,9 +22,11 @@ public class InputView {
         try {
             bridgeLength = Integer.valueOf(Console.readLine());
         } catch (NumberFormatException error) {
-            throw new IllegalArgumentException(ERROR_MESSAGE);
+//            throw new IllegalArgumentException(ERROR_MESSAGE);
+            System.out.println(ERROR_MESSAGE);
+            bridgeLength=0;
         }
-        validate.bridgeLengthRange(bridgeLength);
+//        validate.bridgeLengthRange(bridgeLength);
 
         return bridgeLength;
     }
