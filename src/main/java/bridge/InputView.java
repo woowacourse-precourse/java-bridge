@@ -33,12 +33,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String userReadMovingInput = Console.readLine();
+        String userMovingInput = Console.readLine();
         return null;
     }
 
-    public void userReadMovingInputValidation (String userReadMovingInput) {
-        if (!userReadMovingInput.equals("U") && !userReadMovingInput.equals("D")) {
+    public void userMovingInputValidation (String userMovingInput) {
+        if (!userMovingInput.equals("U") && !userMovingInput.equals("D")) {
             throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해야 합니다.");
         }
     }
@@ -47,6 +47,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        String userGameCommandInput = Console.readLine();
         return null;
+    }
+
+    public void userGameCommandValidation (String userGameCommandInput) {
+        if (!userGameCommandInput.equals("R") && !userGameCommandInput.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해야 합니다.");
+        }
     }
 }
