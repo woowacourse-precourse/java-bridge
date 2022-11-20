@@ -8,8 +8,7 @@
 - []게임이 진행되도록 도와준다.
   - [v]플레이어는 (위칸)U, (아래칸)D로 이동할 수 있다. - BridgeGame#move
   - [v]플레이어가 이동했을 때 이동한 칸이 건널 수 있으면 O, 건널 수 없다면 X로 표시한다. - BridgeGame#judge
-  - []게임을 종료한다. - BridgeGame#end
-  - []플레이어가 건너다 실패하면 게임을 재시작한다. - BridgeGame#retry
+  - [v]플레이어가 건너다 실패하면 게임을 재시작한다. - BridgeGame#retry
   - []플레이어가 다리를 끝까지 건넜는지 확인한다. - BridgeGame#isFinished
     (재시작 시 다리 재사용)
 #### 입력
