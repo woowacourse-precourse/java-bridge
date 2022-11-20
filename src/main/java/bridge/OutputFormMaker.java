@@ -31,11 +31,19 @@ public class OutputFormMaker {
         }
         return secondLine;
     }
-    public String createMapForm(List<String> lineList){
+
+    public String createMapForm(List<String> lineList) {
         String line = String.join(" | ", lineList)
-                .replace("true","O")
-                .replace("false","X");
+                .replace("true", "O")
+                .replace("false", "X");
         line = "[ " + line + " ]";
         return line;
+    }
+
+    public String createResult(List<String> user, List<String> bridge) {
+        if (user.equals(bridge)) {
+            return "성공";
+        }
+        return "실패";
     }
 }
