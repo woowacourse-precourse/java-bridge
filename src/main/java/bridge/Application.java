@@ -12,22 +12,29 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame bridgeGame = new BridgeGame();
 
-        int location = 0;
-        boolean retryFlag = false;
+        int location = 0, count = 1;
+        boolean tryFlag = true, retryFlag = false;
 
-        while(location < bridgeGame.getBridgeSize()){
-            if(!bridgeGame.move(location))
+        while(location < bridgeGame.getBridgeSize() && tryFlag){
+            // 다리 맞추기를 시도하고, 실패한 경우
+            if(!bridgeGame.move(location)) {
+                tryFlag = false;
                 retryFlag = bridgeGame.retry();
+            }
 
+            // 재도전을 수락한 경우
             if(retryFlag) {
                 location = 0;
                 bridgeGame.clear();
+                tryFlag = true;
                 retryFlag = false;
+                count++;
                 continue;
             }
 
             location++;
         }
 
+        bridgeGame.printResult(tryFlag, count);
     }
 }

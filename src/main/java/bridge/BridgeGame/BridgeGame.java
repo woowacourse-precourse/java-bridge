@@ -4,8 +4,6 @@ import bridge.BridgeMaker.BridgeMaker;
 import bridge.BridgeMaker.NumberGenerator.BridgeRandomNumberGenerator;
 import bridge.UI.Input.InputView;
 import bridge.UI.Output.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +46,10 @@ public class BridgeGame {
         if(retry.charAt(0) == 'R') return true;
 
         return false;
+    }
+
+    public void printResult(boolean flag, int count){
+        this.outputView.printResult(flag, count);
     }
 
     public int getBridgeSize() {
