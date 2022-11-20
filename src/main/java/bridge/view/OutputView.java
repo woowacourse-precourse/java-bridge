@@ -1,7 +1,10 @@
 package bridge.view;
 
 import bridge.constant.Direction;
+import bridge.constant.MoveStatus;
 import bridge.domain.Result;
+import bridge.dto.CurrentGameResultResponse;
+import bridge.dto.FinishedGameResultResponse;
 import bridge.util.OutputConverter;
 import java.util.List;
 
@@ -30,8 +33,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(final Result result) {
-        List<String> bridges = OutputConverter.resultToStrings(result);
+    public void printMap(final List<MoveStatus> moveStatuses) {
+        List<String> bridges = OutputConverter.resultToStrings(moveStatuses);
 
         System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.UPSIDE.getValue())) + MAP_SUFFIX);
         System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.DOWNSIDE.getValue())) + MAP_SUFFIX);
@@ -47,11 +50,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(final Result result, final int playCount, final boolean isSuccess) {
+    public void printResult(final FinishedGameResultResponse response) {
         printResultHeader();
-        printMap(result);
-        printSuccessState(isSuccess);
-        printPlayCount(playCount);
+        printMap(response.getStatuses());
+        printSuccessState(response.isSuccess());
+        printPlayCount(response.getPlayCount());
     }
 
     private void printResultHeader() {

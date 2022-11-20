@@ -54,7 +54,7 @@ public class OutputConverterTest {
         for (Direction playerDirection : toDirectionList(playerDirections)) {
             result.update(bridge, playerDirection);
         }
-        List<String> convertedResult = OutputConverter.resultToStrings(result);
+        List<String> convertedResult = OutputConverter.resultToStrings(result.getMoveStatuses());
 
         //then
         assertThat(convertedResult.get(UPSIDE_VALUE)).isEqualTo(answer.get(UPSIDE_VALUE));

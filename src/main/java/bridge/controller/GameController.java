@@ -22,13 +22,13 @@ public class GameController {
             play();
         } while (retry());
 
-        outputView.printResult(bridgeGame.resultOfMoving(), bridgeGame.calculatePlayCount(),bridgeGame.isSuccess());
+        outputView.printResult(bridgeGame.resultOfFinishedGame());
     }
 
     public void play() {
         do {
             bridgeGame.move(getValidBridgeMove());
-            outputView.printMap(bridgeGame.resultOfMoving());
+            outputView.printMap(bridgeGame.resultOfMoving().getMoveStatuses());
         } while (!bridgeGame.isEnd());
     }
 

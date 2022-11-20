@@ -4,6 +4,8 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Direction;
 import bridge.constant.RetryCommand;
+import bridge.dto.CurrentGameResultResponse;
+import bridge.dto.FinishedGameResultResponse;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -39,8 +41,12 @@ public class BridgeGame {
         return result.isSuccess(bridge);
     }
 
-    public Result resultOfMoving() {
-        return this.result;
+    public final CurrentGameResultResponse resultOfMoving() {
+        return new CurrentGameResultResponse(result.getMoveStatuses());
+    }
+
+    public final FinishedGameResultResponse resultOfFinishedGame() {
+        return new FinishedGameResultResponse(result.getMoveStatuses(), result.isSuccess(bridge), playCount);
     }
 
     /**
@@ -60,9 +66,5 @@ public class BridgeGame {
         result.reset();
         playCount++;
         return true;
-    }
-
-    public int calculatePlayCount() {
-        return this.playCount;
     }
 }
