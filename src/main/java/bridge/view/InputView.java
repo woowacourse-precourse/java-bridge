@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.util.ConstantMessage;
+import bridge.util.Exceptions;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,10 +13,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        String readLine = "";
+        String readLine = null;
         while (true) {
             readLine = Exceptions.validateBridgeLength(Console.readLine());
-            if (!readLine.equals("[ERROR] 3이상 20이하의 숫자만 입력하세요.")) {
+            if (!readLine.equals(ConstantMessage.BRIDGE_LENGTH_ERROR_MESSAGE)) {
                 break;
             }
             System.out.println(readLine);
@@ -26,7 +28,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String readLine = null;
+        while (true) {
+            readLine = Exceptions.validateMovingBlock(Console.readLine());
+            if (!readLine.equals(ConstantMessage.MOVING_BLOCK_ERROR_MESSAGE)) {
+                break;
+            }
+            System.out.println(readLine);
+        }
+        return readLine;
     }
 
     /**
