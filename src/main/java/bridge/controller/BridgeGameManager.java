@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
+import bridge.model.Direction;
 import bridge.view.InputView;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class BridgeGameManager {
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void play() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리 건너기 게임을 시작합니다.");
         makeBridge();
         crossBridge();
         printGameResult();
@@ -27,7 +28,16 @@ public class BridgeGameManager {
     }
 
     private void crossBridge() {
+        chooseDirection();
+    }
 
+    private Direction chooseDirection() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return chooseDirection();
+        }
     }
 
     private void printGameResult() {
