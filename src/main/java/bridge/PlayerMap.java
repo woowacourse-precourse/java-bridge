@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.data.Direction;
 
+import static bridge.data.Direction.DOWN_DIRECTION;
+import static bridge.data.Direction.UP_DIRECTION;
 import static bridge.data.GameMark.BLANK;
 
 public class PlayerMap {
@@ -27,5 +29,10 @@ public class PlayerMap {
 
     public void move(Direction direction, int position, String mark) {
         playerMap[direction.getDirection()][position] = mark;
+    }
+
+    public void resetPrev(int position) {
+        playerMap[UP_DIRECTION.getDirection()][position] = BLANK.getMark();
+        playerMap[DOWN_DIRECTION.getDirection()][position] = BLANK.getMark();
     }
 }
