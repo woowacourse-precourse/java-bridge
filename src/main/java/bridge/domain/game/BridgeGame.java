@@ -33,7 +33,7 @@ public class BridgeGame {
      */
     public GameStatus move(BridgeUnit nextUnit) {
         GameStatus status = moveAndGetStatus(nextUnit);
-        if (isSuccess(status)) {
+        if (isSuccessToCrossTotalBridge(status)) {
             status = SUCCESS;
         }
         return status;
@@ -53,7 +53,7 @@ public class BridgeGame {
         return bridge.getUnit(position).equals(nextUnit);
     }
 
-    private boolean isSuccess(GameStatus status) {
+    private boolean isSuccessToCrossTotalBridge(GameStatus status) {
         return (gameProgress.size() == bridge.getSize()) && PLAYING.equals(status);
     }
 
