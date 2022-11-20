@@ -5,12 +5,10 @@
   - [v]0과 1 두 숫자를 랜덤으로 생성한다. - BridgeRandomNumber#generate
   - [v]랜덤 숫자를 받아 해당 다리가 건널 수 있는 칸을 (위 칸)U, (아래 칸)D 값을 입력하여 생성한다. - BridgeMaker#makeBridgeOnePart
   - [v]해당 길이 만큼 칸을 생성한다. - BridgeMaker#makeBridge
-- []게임이 진행되도록 도와준다.
+- [v]게임이 진행되도록 도와준다.
   - [v]플레이어는 (위칸)U, (아래칸)D로 이동할 수 있다. - BridgeGame#move
   - [v]플레이어가 이동했을 때 이동한 칸이 건널 수 있으면 O, 건널 수 없다면 X로 표시한다. - BridgeGame#judge
   - [v]플레이어가 건너다 실패하면 게임을 재시작한다. - BridgeGame#retry
-  - []플레이어가 다리를 끝까지 건넜는지 확인한다. - BridgeGame#isFinished
-    (재시작 시 다리 재사용)
 #### 입력
   - []자동으로 생성할 다리 길이 입력 (3~20 이외 예외처리)
   - []라운드마다 플레이어가 이동할 칸 입력 (U,D 이외 예외처리)

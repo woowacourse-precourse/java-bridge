@@ -9,7 +9,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        return Integer.parseInt(camp.nextstep.edu.missionutils.Console.readLine());
     }
 
     /**
