@@ -16,26 +16,16 @@ public class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     * @param bridge
-     * @return if 이동가능, 이동하는 칸('U' or 'D')
-     * else, null
+     * @return 다리 다음 구역으로 이동가능 여부
      */
-    public String move(List<String> bridge) {
-        LifeGuard lifeGuard = new LifeGuard();
-        String moving = inputView.readMoving();
+    public boolean move(String moving, List<String> bridge) {
         String next_bridge = bridge.get(current_position++);
 
-        if (lifeGuard.checkSafety(moving, next_bridge)) {
-            return moving;
-        }
-
-        return null;
+        return moving == next_bridge;
     }
 
     /**
      * 유저가 다리를 건넜는지 체크한다.
-     * @param bridge
      */
     public boolean checkCrossingBridge(List<String> bridge) {
         return current_position == bridge.size();

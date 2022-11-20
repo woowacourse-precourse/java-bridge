@@ -18,8 +18,7 @@
       - [ ] 한 칸마다 위, 아래 랜덤으로 정한다. - BridgeNumberGenerator#generate()
   - [ ] 게임이 끝날때까지 게임을 진행한다. - GameSimulator#startGame()
     - [ ] 다리를 건넜는지 체크한다. - BridgeGame#checkCrossingBridge()
-    - [ ] 다리를 이동한다. - BridgeGame#move()
-      - [ ] 다리와 일치하는 이동인지 체크한다. - LifeGuard#checkSafety
+    - [ ] 다리의 다음 구역으로 이동한다. - BridgeGame#move()
   - [ ] 게임오버가 되었다. - BridgeGame#gameover()
     - [ ] 게임을 재시작한다. - BridgeGame#retry()
   - [ ] 게임을 종료한다. - GameSimulator#quitGame()

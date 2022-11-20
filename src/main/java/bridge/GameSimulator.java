@@ -38,9 +38,8 @@ public class GameSimulator {
     private List<String> startGameRound(List<String> bridge) {
         List<String> userRoute = new ArrayList<>();
 
-        String moving;
-        while (!bridgeGame.checkCrossingBridge(bridge) &&
-                (moving = bridgeGame.move(bridge)) != null) {
+        String moving = inputView.readMoving();
+        while (!bridgeGame.checkCrossingBridge(bridge) && bridgeGame.move(moving, bridge)) {
             userRoute.add(moving);
         }
 
