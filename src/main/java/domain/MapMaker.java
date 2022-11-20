@@ -19,6 +19,18 @@ public class MapMaker {
 		
 	}
 	
+	private void upOrDownCheck(String move, String condition) {
+		if (move.equals("U")) {
+			upperBridge.append(condition);
+			lowerBridge.append(BridgeCondition.EMPTY.getCondition());
+			
+			return;
+		}
+
+		upperBridge.append(BridgeCondition.EMPTY.getCondition());
+		lowerBridge.append(condition);
+	}
+	
 	public String getMap() {
 		String bridgeMap = "[" + upperBridge.toString()	+ "]\n"
 				+ "[" + lowerBridge.toString() + "]";
