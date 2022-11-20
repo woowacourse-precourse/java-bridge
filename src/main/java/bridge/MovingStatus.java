@@ -1,4 +1,4 @@
-package bridge.View;
+package bridge;
 
 import java.util.Arrays;
 

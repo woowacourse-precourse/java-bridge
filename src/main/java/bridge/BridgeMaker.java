@@ -1,7 +1,4 @@
-package bridge.Model;
-
-import bridge.BridgeNumberGenerator;
-import bridge.View.MovingStatus;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
