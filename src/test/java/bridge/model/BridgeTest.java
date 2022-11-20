@@ -1,10 +1,11 @@
-package bridge;
+package bridge.model;
 
+import bridge.model.Bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-import static bridge.ErrorMessage.INCORRECT_BRIDGE_DIRECTION;
+import static bridge.message.ErrorMessage.INCORRECT_BRIDGE_DIRECTION;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

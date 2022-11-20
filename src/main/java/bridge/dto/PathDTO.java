@@ -1,4 +1,4 @@
-package bridge;
+package bridge.dto;
 
 public class PathDTO {
     private final String direction;

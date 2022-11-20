@@ -1,10 +1,14 @@
-package bridge;
+package bridge.view;
+
+import bridge.dto.MapDTO;
+import bridge.dto.PathDTO;
+import bridge.dto.ResultDTO;
 
 import java.util.List;
 
-import static bridge.Direction.DOWN;
-import static bridge.Direction.UP;
-import static bridge.NoticeMessage.*;
+import static bridge.model.Direction.DOWN;
+import static bridge.model.Direction.UP;
+import static bridge.message.NoticeMessage.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

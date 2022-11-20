@@ -1,8 +1,8 @@
-package bridge;
+package bridge.model;
 
 import java.util.List;
 
-import static bridge.ErrorMessage.INCORRECT_BRIDGE_DIRECTION;
+import static bridge.message.ErrorMessage.INCORRECT_BRIDGE_DIRECTION;
 
 public class Bridge {
     private final List<String> path;

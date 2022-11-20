@@ -1,11 +1,12 @@
-package bridge;
+package bridge.util;
 
+import bridge.message.ErrorMessage;
+import bridge.util.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
 

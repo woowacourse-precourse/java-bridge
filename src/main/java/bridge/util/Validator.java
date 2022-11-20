@@ -1,9 +1,9 @@
-package bridge;
+package bridge.util;
 
-import static bridge.Command.END;
-import static bridge.Command.RETRY;
-import static bridge.Direction.*;
-import static bridge.ErrorMessage.*;
+import static bridge.model.Command.END;
+import static bridge.model.Command.RETRY;
+import static bridge.model.Direction.*;
+import static bridge.message.ErrorMessage.*;
 
 public class Validator {
     private static final int BRIDGE_MIN_LENGTH = 1;

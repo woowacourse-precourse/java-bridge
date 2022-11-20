@@ -1,4 +1,4 @@
-package bridge;
+package bridge.message;
 
 public class ErrorMessage {
     private static final String HEADER = "[ERROR] ";

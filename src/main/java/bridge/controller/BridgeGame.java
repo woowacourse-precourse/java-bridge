@@ -1,9 +1,19 @@
-package bridge;
+package bridge.controller;
+
+import bridge.model.Bridge;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.dto.MapDTO;
+import bridge.dto.PathDTO;
+import bridge.dto.ResultDTO;
+import bridge.util.Validator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.Command.END;
+import static bridge.model.Command.END;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

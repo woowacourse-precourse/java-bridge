@@ -1,4 +1,4 @@
-package bridge;
+package bridge.dto;
 
 public class ResultDTO {
     private final MapDTO map;
