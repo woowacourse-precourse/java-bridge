@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -52,6 +53,14 @@ class BridgeMoveTypeTest {
     void whenWrongStringTypeSearchThenExceptionTest(String moveType) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> BridgeMoveType.of(moveType))
+                .withMessage(READ_WRONG_TYPE_EXCEPTION.getMessage());
+    }
+
+    @Test
+    @DisplayName("잘못 입력된 null를 이용하여 다리 이동 타입 검색에 실패하여 예외처리 된다.")
+    void whenNullSearchThenExceptionTest() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> BridgeMoveType.of(null))
                 .withMessage(READ_WRONG_TYPE_EXCEPTION.getMessage());
     }
 
