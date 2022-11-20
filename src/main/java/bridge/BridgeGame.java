@@ -59,8 +59,10 @@ public class BridgeGame {
         gameCount +=1;
     }
 
-    public void compareMoveCount(int brideSize){
+    public boolean compareMoveCount(int brideSize){
         if(moveCount == brideSize){
+            return true;
         }
+        return false;
     }
 }
