@@ -53,7 +53,6 @@ public class BridgeGame {
      */
     public void move() {
         int retryCheckNumber = 1;
-        round = 0;
         while (retryCheckNumber != 0) {
             Print.requestPickAPartOfBridgeMessage();
             try {
@@ -72,7 +71,7 @@ public class BridgeGame {
     /**
      * 사용자가 선택한 칸이 건널 수 있는 칸인지 확인하는 메서드
      */
-    public void check(){
+    public boolean check(){
         CheckCrossBridge checkCrossBridge = new CheckCrossBridge();
         boolean crossPossible = checkCrossBridge.check(userInput, bridge, round);
         if (crossPossible == false){
@@ -84,7 +83,7 @@ public class BridgeGame {
         //String roundResult = String.valueOf(crossPossible)+round;
         //System.out.println(roundResult);
         outputView.printMap(userInput, mark, round);
-
+        return crossPossible;
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -92,5 +91,19 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        int retryCheckNumber = 1;
+        round = 0;
+        while (retryCheckNumber != 0) {
+            Print.askRetryMessage();
+            try {
+                userInput = inputView.readGameCommand();
+                retryCheckNumber = 0;
+                System.out.println(round);
+            } catch (IllegalArgumentException e) {
+                Print.exceptionMessage(e);
+                retryCheckNumber = 1;
+            }
+        }
+
     }
 }

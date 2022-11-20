@@ -58,11 +58,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String pickPart = getUserInput();
+        isRorQ(pickPart);
+        return pickPart;
     }
 
-
-
+    private void isRorQ(String pickPart) throws IllegalArgumentException {
+        if(!pickPart.equals("R") && !pickPart.equals("Q")){
+            throw new IllegalArgumentException(Error.NOT_U_OR_D.getMessage());
+        }
+    }
 
 
 }
