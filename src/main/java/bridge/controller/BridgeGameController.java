@@ -18,9 +18,13 @@ public class BridgeGameController {
     }
 
     public void process() {
-        initializeGame();
-        playGame();
-        finishGame();
+        try {
+            initializeGame();
+            playGame();
+            finishGame();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     private void initializeGame() {
