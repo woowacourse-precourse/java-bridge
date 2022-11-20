@@ -51,7 +51,22 @@ public class BridgeGame {
      * 이동이 가능한 경우 true, 불가한 경우 false를 반환함
      */
     public boolean isMovable(String command, List<String> bridge) {
-        return command.equals(bridge.get(movingStatus.size()));
+        return command.equals(bridge.get(movingStatus.size()-1));
+    }
+
+    /*
+     * 게임을 성공했는 지에 대한 여부를 확인함
+     */
+    public boolean isGameSuccess() {
+        if (bridgeStatus.size() != movingStatus.size()) {
+            return false;
+        }
+        for(int i=0 ; i<bridgeStatus.size() ; i++) {
+            if(!bridgeStatus.get(i).equals(movingStatus.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
