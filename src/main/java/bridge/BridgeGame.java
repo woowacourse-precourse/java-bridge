@@ -46,10 +46,9 @@ public class BridgeGame {
     }
 
     private boolean isSuccess() {
-        boolean success = idx == randomMap.size();
         count++;
-        if(success) {
-            outputView.printResult(success, List.of(UpMap, DownMap), count);
+        if(flag) {
+            outputView.printResult(flag, List.of(UpMap, DownMap), count);
             return true;
         }
         return false;
@@ -82,8 +81,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        boolean re = inputView.readGameCommand();
+        boolean re;
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        re = inputView.readGameCommand();
         if(!re) {
             outputView.printResult(false, List.of(UpMap, DownMap), count);
         }
@@ -98,5 +98,6 @@ public class BridgeGame {
         DownMap = new ArrayList<>();
         flag = true;
         idx = 0;
+        System.out.println(randomMap);
     }
 }
