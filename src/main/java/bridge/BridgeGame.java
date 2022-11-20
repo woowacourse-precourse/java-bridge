@@ -17,6 +17,18 @@ public class BridgeGame {
     private int currentLocation;
     private int restartNumber;
 
+    public HashMap<String, List<String>> getMoveStatus() {4g
+        return moveStatus;
+    }
+
+    public int getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public int getRestartNumber() {
+        return restartNumber;
+    }
+
     public BridgeGame(int bridgeLength) {
         realBridge = generateBridge(bridgeLength);
         moveStatus.put("U", new ArrayList<String>());
