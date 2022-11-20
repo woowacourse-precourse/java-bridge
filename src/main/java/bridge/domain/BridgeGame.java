@@ -11,7 +11,8 @@ public class BridgeGame {
 
     private List<String> bridge;
     private BridgeState bridgeState;
-    private int round;
+    private int round = BRIDGE_GAME_ROUND_INIT;
+    private int totalGameAttempts = BRIDGE_GAME_ATTEMPTS_INIT;
 
     public BridgeGame(List<String> bridge, BridgeState bridgeState) {
         this.bridge = bridge;
@@ -53,5 +54,6 @@ public class BridgeGame {
      */
     public void retry() {
         round = 0;
+        totalGameAttempts++;
     }
 }

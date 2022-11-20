@@ -33,7 +33,7 @@
     - [X] 다리 표시 작업 요청 - BridgeGame#BridgeState#mark()
 - [ ] 게임 재시도 - BridgeGame#retry()
     - [X] 게임 라운드 초기화 
-    - [ ] 게임 총 도전 횟수 카운트
+    - [X] 게임 총 도전 횟수 카운트
     - [ ] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()
 - [ ] 게임 성공 여부 값 반환 - BridgeGame#isWon()
 - [ ] 게임 총 도전 횟수 값 반환 - BridgeGame#getTotalGameAttemps()
