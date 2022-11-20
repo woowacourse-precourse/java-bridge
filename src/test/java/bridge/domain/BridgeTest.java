@@ -61,7 +61,7 @@ class BridgeTest {
         assertThatThrownBy(() -> bridge.compare(attempts)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("사다리 비교 기능 테스트")
+    @DisplayName("사다리 사이즈 비교 기능 테스트")
     @Nested
     class Size {
         @DisplayName("전달된 사다리와 사이즈가 같은지 반환한다.")
