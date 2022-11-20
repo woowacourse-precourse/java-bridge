@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     static InputView inputView = new InputView();
@@ -11,5 +13,6 @@ public class Application {
         // TODO: 프로그램 구현
         outputView.printGameStartMessage();
         int brideSize = inputView.readBridgeSize();
+        List<String> answerBridge = bridgeMaker.makeBridge(brideSize);
     }
 }
