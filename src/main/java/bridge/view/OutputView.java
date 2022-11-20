@@ -22,7 +22,10 @@ public class OutputView {
     }
 
     public void printStartMessage() {
-        System.out.println(Messages.SCAN_BRIDGE_SIZE);
-        System.out.println();
+        print(Messages.PRINT_GAME_START);
+    }
+
+    public void print(Messages message) {
+        System.out.println(message.getMessage());
     }
 }

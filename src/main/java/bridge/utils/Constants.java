@@ -13,8 +13,12 @@ public class Constants {
             SizeOfBridge.START_INCLUSIVE, SizeOfBridge.END_INCLUSIVE);
     // Bridge Exception Message
     public static final String WRONG_BRIDGE_VALUE_MESSAGE = EXCEPTION_PREFIX + "다리의 구성요소가 잘못 생성되었습니다.";
+    // Moving Command Message
+    public static final String WRONG_MOVING_COMMAND_MESSAGE =  EXCEPTION_PREFIX + "이동 커멘드를 잘못 입력하였습니다.";
+    public static final String NOT_EXIST_COMMAND_MESSAGE =  EXCEPTION_PREFIX + "존재하지 않는 커멘드 입니다.";
     // Regex
     public static final String NUMBER_PATTERN = "[1-9]+[0-9]*$";
+    public static final String UPPER_PATTERN = "[A-Z]";
     // Bridge Situation
     public static final int UP_VALUE = 1;
     public static final int DOWN_VALUE = 0;
