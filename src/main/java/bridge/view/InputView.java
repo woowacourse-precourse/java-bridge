@@ -28,12 +28,7 @@ public class InputView {
      */
     public MoveDirection readMoving() {
         String input = Console.readLine();
-        try {
-            return new MoveDirection(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readMoving();
-        }
+        return new MoveDirection(input);
     }
 
     /**

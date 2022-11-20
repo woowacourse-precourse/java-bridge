@@ -19,7 +19,7 @@ public class GameController {
     public void execute() {
         BridgeGameStatus status = new BridgeGameStatus(true);
         while (status.isRunning()) {
-            Bridge bridge = generateBridge();
+            Bridge bridge = this.generateBridge();
 
             BridgeGame bridgeGame = new BridgeGame(bridge);
             BridgeGameReferee referee = new BridgeGameReferee();
@@ -44,7 +44,7 @@ public class GameController {
             return new Bridge(bridgeMaker.makeBridge(bridgeSize));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return generateBridge();
+            return this.generateBridge();
         }
     }
 
@@ -56,6 +56,11 @@ public class GameController {
 
     private MoveDirection readMoving() {
         outputView.printInputMoveDirection();
-        return inputView.readMoving();
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return this.readMoving();
+        }
     }
 }
