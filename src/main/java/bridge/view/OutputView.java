@@ -64,11 +64,11 @@ public class OutputView {
     }
 
     private static String gameStatus(BridgeGame bridgeGame) {
-        if(bridgeGame.isComplete()) return "실패";
+        if(!bridgeGame.isComplete()) return "실패";
         return "성공";
     }
 
     public static void printStart() {
-        System.out.println(OutputPhrases.startGame);
+        System.out.println(OutputPhrases.startGame.getPhrase());
     }
 }
