@@ -1,5 +1,5 @@
 package bridge.util;
 
 public enum MoveResult {
-    Correct, CorrectAndLast, Wrong
+    CORRECT, CORRECT_AND_LAST, WRONG
 }

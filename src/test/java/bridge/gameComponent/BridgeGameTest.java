@@ -117,8 +117,8 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        MoveResult moveResult1 = MoveResult.Correct;
-        MoveResult moveResult2 = MoveResult.Wrong;
+        MoveResult moveResult1 = MoveResult.CORRECT;
+        MoveResult moveResult2 = MoveResult.WRONG;
         //when
         bridgeGame.move();
         bridgeGame.recordMap(moveResult1);
@@ -133,7 +133,7 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        MoveResult moveResult = MoveResult.Wrong;
+        MoveResult moveResult = MoveResult.WRONG;
         //when
         char[][] map = bridgeGame.recordMap(moveResult);
 
@@ -152,7 +152,7 @@ public class BridgeGameTest {
         MoveResult moveResult = bridgeGame.isCorrectMove(userMove);
         //then
         assertThat(moveResult)
-                .isEqualTo(MoveResult.Wrong);
+                .isEqualTo(MoveResult.WRONG);
     }
     @Test
     void isPossibleMoveTest_가능한_경우() {
@@ -164,6 +164,6 @@ public class BridgeGameTest {
         MoveResult moveResult = bridgeGame.isCorrectMove(userMove);
         //then
         assertThat(moveResult)
-                .isEqualTo(MoveResult.Correct);
+                .isEqualTo(MoveResult.CORRECT);
     }
 }

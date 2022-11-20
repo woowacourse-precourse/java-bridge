@@ -74,7 +74,7 @@ public class BridgeGame {
         String userMove = inferUserMove(moveResult);
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);
-        if (moveResult == MoveResult.Correct || moveResult == MoveResult.CorrectAndLast) {
+        if (moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) {
             this.mapRecord[userMoveAsInt][currentStep] = 'O';
             this.mapRecord[userNotMoveAsInt][currentStep] = ' ';
             return this.mapRecord;
@@ -85,9 +85,9 @@ public class BridgeGame {
     }
     public MoveResult isCorrectMove(String move) {
         boolean isPossibleMove = this.bridge.isPossibleMove(this.currentStep + 1, move);
-        if(isPossibleMove && this.currentStep + 1 == this.lastStep) return MoveResult.CorrectAndLast;
-        if(isPossibleMove) return MoveResult.Correct;
-        return MoveResult.Wrong;
+        if(isPossibleMove && this.currentStep + 1 == this.lastStep) return MoveResult.CORRECT_AND_LAST;
+        if(isPossibleMove) return MoveResult.CORRECT;
+        return MoveResult.WRONG;
     }
     private int moveToInt(String move) {
         if (move.equals("U")) return 0;
@@ -104,7 +104,7 @@ public class BridgeGame {
          * D false => [0][index + 1] = 'X'
          */
     private String inferUserMove(MoveResult moveResult) {
-        if(moveResult == MoveResult.Correct || moveResult == MoveResult.CorrectAndLast) {
+        if(moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) {
             return this.bridge.getBridge().get(this.currentStep);
         }
         String supposedToBeRightAnswer = this.bridge.getBridge().get(this.currentStep + 1);
