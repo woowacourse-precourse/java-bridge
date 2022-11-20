@@ -14,4 +14,7 @@ public class Player {
         return playerMoveList;
     }
 
+    public void move(String moveCommand) {
+        playerMoveList.add(moveCommand);
+    }
 }
