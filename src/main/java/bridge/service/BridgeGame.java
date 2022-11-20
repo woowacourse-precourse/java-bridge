@@ -5,6 +5,7 @@ import bridge.domain.GameBoard;
 import bridge.domain.GameResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.*;
 import static bridge.view.InputView.readMoving;
@@ -111,6 +112,7 @@ public class BridgeGame {
     }
 
     public GameResult getFinalGameResult() {
-        return new GameResult(topGameBoard, bottomGameBoard, isGameLose, tryCount);
+        List<GameBoard> gameBoards = List.of(topGameBoard, bottomGameBoard);
+        return new GameResult(gameBoards, isGameLose, tryCount);
     }
 }
