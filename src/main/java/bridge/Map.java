@@ -35,4 +35,8 @@ public class Map {
         this.map.set(userChoice, this.map.get(userChoice).replace(MAP_END, DIVISION_LINE) + mark + MAP_END);
         this.map.set(Math.abs(userChoice - 1), this.map.get(Math.abs(userChoice - 1)).replace(MAP_END, DIVISION_LINE) + BLANK_SPACE + MAP_END);
     }
+
+    public List<String> getMap() {
+        return this.map;
+    }
 }
