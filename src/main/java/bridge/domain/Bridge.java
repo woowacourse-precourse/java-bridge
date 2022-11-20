@@ -18,4 +18,8 @@ public class Bridge {
         if (bridge.contains(BridgeCommand.NOTING.getCommand()))
             throw new IllegalGenerateException(ErrorMessage.BRIDGE_GENERATE_ERROR);
     }
+
+    public boolean isAlive(String position, int index) {
+        return bridge.get(index).equals(position);
+    }
 }
