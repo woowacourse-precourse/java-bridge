@@ -16,12 +16,12 @@ public class BridgeGame {
     private List<String> upLine;
     private List<String> downLine;
     private int bridgeIndex;
-    public String result = "실패";
+    public String result;
 
     public static final String FAIL = "실패";
     public static final String SUCCESS = "성공";
     private static List<String> bridge;
-    private static int countAttempt = 0;
+    private static int attemptCount = 0;
 
     BridgeGame() {
         this.upLine = new ArrayList<String>();
@@ -29,12 +29,12 @@ public class BridgeGame {
         this.bridgeIndex = 0;
     }
 
-    public static int getCountAttempt() {
-        return BridgeGame.countAttempt;
+    public static int getAttemptCount() {
+        return BridgeGame.attemptCount;
     }
 
-    public static void setCountAttempt() {
-        BridgeGame.countAttempt += 1;
+    public static void increaseAttemptCount() {
+        BridgeGame.attemptCount += 1;
     }
 
 
@@ -66,16 +66,17 @@ public class BridgeGame {
         return BridgeGame.bridge.get(bridgeIndex).equals(command);
     }
 
+    private void drawLine(List<String> selectedLine, List<String> oppositeLine, String movable) {
+        selectedLine.add(movable);
+        oppositeLine.add(BridgeShape.BLANK);
+    }
     private void addMovement(List<String> selectedLine, List<String> oppositeLine, boolean isCorrect) {
+        this.bridgeIndex += 1;
         if (isCorrect) {
-            selectedLine.add(BridgeShape.MOVABLE);
-            oppositeLine.add(BridgeShape.BLANK);
-            this.bridgeIndex += 1;
+            drawLine(selectedLine, oppositeLine, BridgeShape.MOVABLE);
             return;
         }
-        selectedLine.add(BridgeShape.UNMOVABLE);
-        oppositeLine.add(BridgeShape.BLANK);
-        this.bridgeIndex += 1;
+        drawLine(selectedLine, oppositeLine, BridgeShape.UNMOVABLE);
     }
 
     /**
@@ -105,9 +106,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String command) {
-        if (command.equals(Command.QUIT)) {
-            return false;
-        }
-        return true;
+        return command.equals(Command.RETRY);
     }
 }
