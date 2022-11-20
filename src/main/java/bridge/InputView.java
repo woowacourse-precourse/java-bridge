@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.systemMessage.ErrorMessage;
+import bridge.util.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -18,7 +18,7 @@ public class InputView {
     public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
         String input = getInput();
-        validateInteger(input);
+        InputValidator.validateInteger(input);
         return Integer.parseInt(input);
     }
 
@@ -32,43 +32,24 @@ public class InputView {
                 BridgeMaker.getDownBridgeLetter()
         );
         String input = getInput();
-        validateMoving(input);
+        InputValidator.validateMoving(input);
         return input;
-    }
-
-    private static void validateMoving(String input) {
-        if (!input.equals(BridgeMaker.getUpBridgeLetter()) && !input.equals(BridgeMaker.getDownBridgeLetter())) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
-        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        System.out.printf(INPUT_GAME_COMMAND_MESSAGE, BridgeGame.getRetryCharacter(), BridgeGame.getQuitCharacter());
-        return getInput();
-    }
-
-
-    private static String getInput() {
-        String input = Console.readLine().trim();
-        validateNotEmpty(input);
+        System.out.printf(INPUT_GAME_COMMAND_MESSAGE, BridgeGame.getRetryCommand(), BridgeGame.getQuitCommand());
+        String input = getInput();
+        InputValidator.validateGameCommand(input);
         return input;
     }
 
-    private static void validateNotEmpty(String input) {
-        if (input.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY_ERROR.getMessage());
-        }
-    }
-
-    private static void validateInteger(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException ne) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_INPUT_TYPE_ERROR.getMessage());
-        }
+    private static String getInput() {
+        String input = Console.readLine().trim();
+        InputValidator.validateNotEmpty(input);
+        return input;
     }
 
 }
