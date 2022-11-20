@@ -33,7 +33,22 @@ class BridgePlayerTest {
     }
 
     @ParameterizedTest(name = "[{index}] playerBridge = {0}, compareBridge = {1}")
-    @MethodSource("whenCheckMoveTypesAllSameThenSuccessDummy")
+    @MethodSource("moveTypesAllSameDummy")
+    @DisplayName("플레이어를 다리에서 이동시키고 마지막 다리 이동 타입이 서로 동일하여 실패한다.")
+    void whenCheckLastMoveTypeNotSameThenFailTest(List<BridgeMoveType> playerBridge, List<BridgeMoveType> compareBridge) {
+        // given
+        BridgePlayer bridgePlayer = new BridgePlayer();
+        playerBridge.forEach(bridgePlayer::moveTo);
+
+        // when
+        boolean isLastMoveTypeNotSame = bridgePlayer.isLastMoveTypeNotSameAs(compareBridge);
+
+        // then
+        assertThat(isLastMoveTypeNotSame).isFalse();
+    }
+
+    @ParameterizedTest(name = "[{index}] playerBridge = {0}, compareBridge = {1}")
+    @MethodSource("moveTypesAllSameDummy")
     @DisplayName("플레이어를 다리에서 이동시키고 다리 이동 정답과 모두 동일한지 확인을 성공한다.")
     void whenCheckMoveTypesAllSameThenSuccessTest(List<BridgeMoveType> playerBridge, List<BridgeMoveType> compareBridge) {
         // given
@@ -118,7 +133,7 @@ class BridgePlayerTest {
         );
     }
 
-    static Stream<Arguments> whenCheckMoveTypesAllSameThenSuccessDummy() {
+    static Stream<Arguments> moveTypesAllSameDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(UP, UP, UP, DOWN, DOWN), List.of(UP, UP, UP, DOWN, DOWN)),
                 Arguments.arguments(List.of(DOWN, DOWN, UP, UP, DOWN), List.of(DOWN, DOWN, UP, UP, DOWN)),
