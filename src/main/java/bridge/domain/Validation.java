@@ -1,14 +1,11 @@
 package bridge.domain;
 
 import static bridge.ui.InputValue.*;
+import static bridge.ui.ReservedMessage.*;
 
 public class Validation {
     private static final int SIZE_FLOOR = 3;
     private static final int SIZE_CEILING = 20;
-    private static final String NOT_NUMBER_FORMAT = "다리의 길이는 정수로 입력되어야 합니다.";
-    private static final String SIZE_OUT_OF_BOUNDS = "다리의 길이는 3 이상 20 이하여야 합니다.";
-    private static final String NOT_U_OR_D = "U(위 칸)와 D(아래 칸) 중 하나의 문자만 선택하여 입력해야 합니다.";
-    private static final String NOT_R_OR_Q = "R(재시도)와 Q(종료) 중 하나의 문자만 선택하여 입력해야 합니다.";
 
     public static int validateBridgeSize(String size) throws IllegalArgumentException {
         int converted = validateFormatOfSize(size);
@@ -20,25 +17,25 @@ public class Validation {
         try {
             return Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_FORMAT);
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMsg());
         }
     }
 
     private static void validateRangeOfSize(int size) {
         if (size < SIZE_FLOOR || size > SIZE_CEILING) {
-            throw new IllegalArgumentException(SIZE_OUT_OF_BOUNDS);
+            throw new IllegalArgumentException(SIZE_OUT_OF_BOUNDS.getMsg());
         }
     }
 
     public static void validateSpace(String space) throws IllegalArgumentException {
         if (!space.equals(UP.getValue()) && !space.equals(DOWN.getValue())) {
-            throw new IllegalArgumentException(NOT_U_OR_D);
+            throw new IllegalArgumentException(NOT_U_OR_D.getMsg());
         }
     }
 
     public static void validateResponseAfterFailure(String response) throws IllegalArgumentException {
         if (!response.equals(RESTART.getValue()) && !response.equals(QUIT.getValue())) {
-            throw new IllegalArgumentException(NOT_R_OR_Q);
+            throw new IllegalArgumentException(NOT_R_OR_Q.getMsg());
         }
     }
 

@@ -3,12 +3,12 @@ package bridge.ui;
 import bridge.domain.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.ui.ReservedMessage.ERROR_MESSAGE;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final String ERROR_MESSAGE = "[ERROR] ";
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -17,7 +17,7 @@ public class InputView {
             String response = Console.readLine();
             return Validation.validateBridgeSize(response);
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + e);
+            System.out.println(ERROR_MESSAGE.getMsg() + e);
             return readBridgeSize();
         }
     }
@@ -31,7 +31,7 @@ public class InputView {
             Validation.validateSpace(response);
             return response;
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + e);
+            System.out.println(ERROR_MESSAGE.getMsg() + e);
             return readMoving();
         }
     }
@@ -45,7 +45,7 @@ public class InputView {
             Validation.validateResponseAfterFailure(response);
             return response;
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + e);
+            System.out.println(ERROR_MESSAGE.getMsg() + e);
             return readGameCommand();
         }
     }
