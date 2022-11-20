@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.view.MessageMaker.NEW_LINE;
+
 import bridge.dto.InputRequestDto;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -14,7 +16,7 @@ public class InputView {
     private static final String GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public void gameStart(){
-        System.out.println(GAME_START_MESSAGE + "\n");
+        System.out.println(GAME_START_MESSAGE + NEW_LINE);
     }
 
     /**
@@ -22,7 +24,9 @@ public class InputView {
      */
     public InputRequestDto readBridgeSize() {
         System.out.println(BRIDGE_SIZE_MESSAGE);
-        return new InputRequestDto(read());
+        InputRequestDto inputRequestDto = new InputRequestDto(read());
+        System.out.print(NEW_LINE);
+        return inputRequestDto;
     }
 
     /**
