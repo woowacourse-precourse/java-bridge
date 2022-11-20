@@ -13,6 +13,8 @@ public class BridgeState {
         this.systemConsole = systemConsole;
     }
 
+    //TODO: enum 변경, 상수화,
+
     public void addBridge(String playerMoving, String bridgeJudgment) {
         if (playerMoving.equals("U") && bridgeJudgment.equals("O")) {
             upBridge.add(bridgeJudgment);

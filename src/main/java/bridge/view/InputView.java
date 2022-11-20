@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constants.Command;
 import bridge.constants.ExceptionMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -8,6 +9,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String REGULAR_PATTERN = "^\\d+$";
+    private static final int STARTING_POINT_CONDITION = 3;
+    private static final int LAST_POINT_CONDITION = 20;
+    private static final String EMPTY_VALUE = "";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -43,14 +47,14 @@ public class InputView {
     }
 
     public void validateNull(String bridgeLength) {
-        if (bridgeLength.equals("")) {
+        if (bridgeLength.equals(EMPTY_VALUE)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_INPUT);
         }
     }
 
     public void validateBetween(String bridgeLength) {
         int bridge = Integer.parseInt(bridgeLength);
-        if (!(bridge >= 3 && bridge <= 20)) {
+        if (!(bridge >= STARTING_POINT_CONDITION && bridge <= LAST_POINT_CONDITION)) {
             throw new IllegalArgumentException(ExceptionMessage.NUMBERS_BETWEEN);
         }
     }
@@ -62,13 +66,15 @@ public class InputView {
     }
 
     public void udValidateCharacter(String playerMoving) {
-        if (!(playerMoving.equals("U") || playerMoving.equals("D"))) {
+        if (!(playerMoving.equals(Command.UP.getCommand()) || playerMoving.equals(
+                Command.DOWN.getCommand()))) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_UP_DOWN_CHARACTERS);
         }
     }
 
     public void rqValidateCharacter(String playerMoving) {
-        if (!(playerMoving.equals("R") || playerMoving.equals("Q"))) {
+        if (!(playerMoving.equals(Command.RE_START.getCommand()) || playerMoving.equals(
+                Command.END.getCommand()))) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_RESTART_QEND_CHARACTERS);
         }
     }

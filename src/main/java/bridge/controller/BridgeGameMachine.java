@@ -11,6 +11,12 @@ import bridge.view.SystemConsole;
 import java.util.List;
 
 public class BridgeGameMachine {
+    private static final int GAME_INITIAL_VALUE = 1;
+    private static final int START_BRIDGE = 0;
+    private static final String FAILURE = "X";
+    private static final String LAST_CHARACTER = "]";
+    private static final String EMPTY_VALUE = "";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final SystemConsole systemConsole;
@@ -22,7 +28,7 @@ public class BridgeGameMachine {
         this.systemConsole = systemConsole;
     }
 
-    //TODO: (상수화), (enum자리 할당), (메서드 길이제한), (변수명, 메서드명), (get() 가져오는것들 확인)
+    //TODO: 메서드 길이제한, (get() 가져오는것들 확인)
 
     public void run() {
         systemConsole.gameStartMessage();
@@ -38,33 +44,30 @@ public class BridgeGameMachine {
         BridgeState bridgeState = new BridgeState(systemConsole);
         BridgeGame bridgeGame = new BridgeGame(bridgeState);
 
-        String playerRetry = "";
+        String playerRetry = EMPTY_VALUE;
         boolean gameSuccess = true;
-        int gameCount = 1;
+        int gameCount = GAME_INITIAL_VALUE;
 
         Loop1:
         while (!(playerRetry.equals(Command.END.getCommand()))) {
 
             bridgeState.initBridgeState();
 
-            for (int bridgeIndex = 0; bridgeIndex < bridgeLength; bridgeIndex++) {
+            for (int bridgeIndex = START_BRIDGE; bridgeIndex < bridgeLength; bridgeIndex++) {
 
                 systemConsole.movementInput();
                 String playerMoving = inputView.readMoving();
 
-
-                String bridgeJudgment = bridgeGame.judgment(playerMoving,
-                        designBridge.get(bridgeIndex));
+                String bridgeJudgment = bridgeGame.judgment(playerMoving, designBridge.get(bridgeIndex));
 
                 BridgeState bridgePlace = bridgeGame.move(playerMoving, bridgeJudgment);
 
-                bridgePlace = bridgeGame.bridgeConnection(bridgeLength, bridgeJudgment,
-                        bridgeIndex);
+                bridgePlace = bridgeGame.bridgeConnection(bridgeLength, bridgeJudgment, bridgeIndex);
 
                 outputView.printMap(bridgePlace);
                 systemConsole.nextLine();
 
-                if (bridgeJudgment.equals("X")) {
+                if (bridgeJudgment.equals(FAILURE)) {
 
                     systemConsole.gameRestartEnd();
                     String gameCommand = inputView.readGameCommand();
@@ -83,9 +86,9 @@ public class BridgeGameMachine {
                     }
                 }
 
-                if (bridgeState.findLastValue().contains("]")) {
+                if (bridgeState.findLastValue().contains(LAST_CHARACTER)) {
                     outputView.printResult(bridgeState, gameCount, gameSuccess);
-                    playerRetry = "Q";
+                    playerRetry = Command.END.getCommand();
                     break;
                 }
             }

@@ -30,6 +30,7 @@ public class SystemConsole {
     }
 
     public void gameSuccess() {
+        System.out.println();
         System.out.println(SystemMessage.GAME_SUCCESS);
     }
 

@@ -1,13 +1,17 @@
 package bridge.domain;
 
+import bridge.constants.Command;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String SUCCESS = "O";
+    private static final String FAILURE = "X";
 
-    private final HashMap<String, StringBuilder> bridgeState;
+    private final BridgeState bridgeState;
 
-    public BridgeGame(HashMap<String, StringBuilder> bridgeState) {
+    public BridgeGame(BridgeState bridgeState) {
         this.bridgeState = bridgeState;
     }
 
@@ -49,9 +53,9 @@ public class BridgeGame {
      * 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(Command.RE_START.getCommand())) {
             bridgeState.reset();
-            return "R";
+            return Command.RE_START.getCommand();
         }
         return gameCommand;
     }
@@ -62,11 +66,11 @@ public class BridgeGame {
         if (playerMoving.equals(designBridge)) {
             resultBridge = "O";
         }
-        return "X";
+        return FAILURE;
     }
 
-    public BridgeState bridgeConnection(int bridgeLength, String bridgeJudgment, int i) {
-        bridgeState.connection(bridgeLength, bridgeJudgment, i);
+    public BridgeState bridgeConnection(int bridgeLength, String bridgeJudgment, int bridgeIndex) {
+        bridgeState.connection(bridgeLength, bridgeJudgment, bridgeIndex);
         return bridgeState;
     }
 }

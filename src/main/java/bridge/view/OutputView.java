@@ -24,7 +24,6 @@ public class OutputView {
     public void printResult(BridgeState bridgeState, int count, boolean success) {
         SystemConsole systemConsole = new SystemConsole();
         bridgeState.endPrintBridge();
-        System.out.println();
 
         gameSuccess(success, systemConsole);
         systemConsole.allTryCount(count);
