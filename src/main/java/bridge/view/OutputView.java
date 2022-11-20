@@ -10,8 +10,11 @@ public class OutputView {
     private static final String PROOF_OF_FAIL = "X";
 
     public void printMap() {
+
     }
     public void printResult(String result, int trialCount) {
+        printGameStatus(result);
+        printTrialCounts(trialCount);
     }
 
     private boolean isFail(String result){
