@@ -81,7 +81,7 @@
     - [x]  addResult -> 라운드와 게임 결과를 입력받아 추가
     - [x]  getResult -> 1라운드 부터의 게임 결과를 반환
     - [x]  retry -> 게임 결과를 초기화
-    - [x]  isPassed -> 게임 결과에 실패가 없는지 확인
+    - [x]  checkPassed -> 게임 결과에 실패가 없는지 확인
 - [x]  Victory 다리건너기 게임 최종 결과를 표현하는 enum
     - [x]  getEnum -> 실패 갯수를 입력받아 이늄을 반환
     - [x]  getResult -> Enum에 따라 성공 또는 실패 문자열을 반환
