@@ -1,4 +1,4 @@
-package bridge;
+package bridge.exception;
 
 public class InputValidator {
     private static final String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
