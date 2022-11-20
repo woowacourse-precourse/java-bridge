@@ -24,7 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
             int number = bridgeNumberGenerator.generate();
-            String string = Crossing.changeString(number);
+            String string = Crossing.toString(number);
 
             bridge.add(string);
         }

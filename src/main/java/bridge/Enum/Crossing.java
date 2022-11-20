@@ -12,7 +12,7 @@ public enum Crossing {
         this.string = string;
     }
 
-    public static String changeString(int number){
+    public static String toString(int number){
         if(Crossing.UP.number == number){
             return Crossing.UP.string;
         }
