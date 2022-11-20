@@ -4,7 +4,6 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.utils.message.FixedMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class BridgeController {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 
-        System.out.println(FixedMessage.GAME_START.getMessage() + "\n");
+        outputView.printGameStart();
         bridge.addAll(bridgeMaker.makeBridge(inputView.readBridgeSize()));
     }
 

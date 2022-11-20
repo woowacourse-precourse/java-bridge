@@ -8,6 +8,7 @@ import static bridge.utils.BridgeConstant.NOTHING_MARKING;
 import static bridge.utils.BridgeConstant.STARTING_POINT_MARKING;
 import static bridge.utils.command.MoveCommand.DOWN;
 import static bridge.utils.command.MoveCommand.UP;
+import static bridge.utils.message.FixedMessage.GAME_START;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,5 +64,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public void printGameStart() {
+        System.out.println(GAME_START.getMessage() + "\n");
     }
 }
