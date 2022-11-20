@@ -17,7 +17,6 @@ public class InputView {
      */
     public int readBridgeSize() {
         int bridgeLength;
-
         printCommand.getBridgeLength();
         try {
             bridgeLength = Integer.valueOf(Console.readLine());
@@ -27,7 +26,6 @@ public class InputView {
             bridgeLength=0;
         }
 //        validate.bridgeLengthRange(bridgeLength);
-
         return bridgeLength;
     }
 

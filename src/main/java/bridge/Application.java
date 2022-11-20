@@ -13,13 +13,10 @@ public class Application {
     }
 
     public static void setBridge(BridgeGame game){
-        PrintCommand printCommand = new PrintCommand();
-        InputView input = new InputView();
         BridgeNumberGenerator numGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numGenerator);
-
-        printCommand.gameStart();
-        game.bridgeLength = input.readBridgeSize();
+        new PrintCommand().gameStart();
+        game.bridgeLength = new InputView().readBridgeSize();
         game.bridgeRoute = bridgeMaker.makeBridge(game.bridgeLength);
     }
 
@@ -31,27 +28,24 @@ public class Application {
     }
 
     public static boolean gameMove(BridgeGame game) {
-        InputView input = new InputView();
         int length=game.bridgeLength;
         Boolean isSuccess;
         for (int loop = 0; loop < length; loop++) {
-            isSuccess = game.move(input.readMoving(), loop);
+            isSuccess = game.move(new InputView().readMoving(), loop);
             if (!isSuccess) return false;
         }
         return true;
     }
 
     public static void gamePlay(BridgeGame game) {
-        InputView input = new InputView();
         game.trialCount += 1;
         while (true) {
             if (gameMove(game)) {
                 game.isSuccess=true;
                 break;
             }
-            Boolean isQuit = game.retry(input.readGameCommand());
+            Boolean isQuit = game.retry(new InputView().readGameCommand());
             if (isQuit) break;
         }
     }
-
 }
