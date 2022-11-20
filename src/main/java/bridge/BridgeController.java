@@ -21,8 +21,8 @@ public class BridgeController {
     }
 
     public void gameStart() {
-        BridgeGame bridgeGame = new BridgeGame(createBridge());
-        playGame(bridgeGame);
+        BridgeGame bridgeGame = playGame(new BridgeGame(createBridge()));
+        outputView.printResult(bridgeGame.result(), bridgeGame.tryCount());
     }
 
     private Bridge createBridge() {
@@ -31,27 +31,28 @@ public class BridgeController {
         return Bridge.createByBridgeShapeValue(bridgeShapeValues);
     }
 
-    private void playGame(BridgeGame bridgeGame) {
+    private BridgeGame playGame(BridgeGame bridgeGame) {
         while (bridgeGame.isNotEnd()) {
-            move(bridgeGame);
-            BridgeGameResult result = bridgeGame.result();
-            outputView.printMap(result);
+            BridgeGameResult result = move(bridgeGame);
             if (result.isFail()) {
-                retryGame(bridgeGame);
-                return;
+                return retryGame(bridgeGame);
             }
         }
-        outputView.printResult(bridgeGame.result(), bridgeGame.tryCount());
+        return bridgeGame;
     }
 
-    private void retryGame(BridgeGame bridgeGame) {
+    private BridgeGame retryGame(BridgeGame bridgeGame) {
         if (GameCommand.of(inputView.readGameCommand()).isRetry()) {
-            playGame(bridgeGame.retry());
+            return playGame(bridgeGame.retry());
         }
+        return bridgeGame;
     }
 
-    private void move(BridgeGame bridgeGame) {
+    private BridgeGameResult move(BridgeGame bridgeGame) {
         BridgeShape moveBridgeShape = BridgeShape.of(inputView.readMoving());
         bridgeGame.move(moveBridgeShape);
+        BridgeGameResult result = bridgeGame.result();
+        outputView.printMap(result);
+        return result;
     }
 }
