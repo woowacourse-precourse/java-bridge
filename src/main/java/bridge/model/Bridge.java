@@ -9,9 +9,8 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean compareSquare(String square, int index) {
+    public boolean checkStep( int index, String step) {
         return bridge.get(index)
-                .equals(square);
+                .equals(step);
     }
-
 }
