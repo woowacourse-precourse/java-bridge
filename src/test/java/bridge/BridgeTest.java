@@ -20,7 +20,7 @@ public class BridgeTest {
         assertThat(lowerBridge).containsExactly("X", "O", "X");
     }
 
-    @DisplayName("Bridge 의 매개변수로 U, D 가 아닌 값이 오면 에러가 발생한다.")
+    @DisplayName("Bridge 의 매개변수로 U, D 가 아닌 값이 오면 예외가 발생한다.")
     @Test
     void createBridgeByInvalidValue() {
         assertThatThrownBy(() -> new Bridge(List.of("O, X, 0")))
