@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.StringJoiner;
+
 public class ResultInformation {
     private final char[] upBridge;
     private final char[] downBridge;
@@ -17,6 +19,16 @@ public class ResultInformation {
 
     void updateDownBridge(Position position, char sign) {
         downBridge[position.getPosition()] = sign;
+    }
+
+    String makeMap(int tryCount) {
+        StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
+        StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
+        for (int i = 0; i < tryCount; i++) {
+            upJoiner.add(String.valueOf(upBridge[i]));
+            downJoiner.add(String.valueOf(downBridge[i]));
+        }
+        return upJoiner + "\n" + downJoiner;
     }
 
 }
