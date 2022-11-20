@@ -1,7 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 
 /**
@@ -19,14 +17,19 @@ public class BridgeGame {
     }
 
     public void gameStart() {
+        printStartMessage();
+        while (true) {
+            try {
+                int bridgeSize = inputManager.getBridgeSize();
+                bridge = bridgeMaker.makeBridge(bridgeSize);
+                break;
+            } catch (IllegalArgumentException e) {System.out.println(e.getMessage());}
+        }
+    }
+
+    private void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
-        try {
-            int bridgeSize = inputManager.getBridgeSize();
-            bridge = bridgeMaker.makeBridge(bridgeSize);
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
     }
 
 
