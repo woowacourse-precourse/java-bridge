@@ -24,4 +24,14 @@ public class InputController {
             }
         }
     }
+
+    public static String readGameCommand() {
+        while (true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
