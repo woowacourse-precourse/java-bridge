@@ -7,7 +7,7 @@ public class Player {
     private int tries;
     public Player() {
         this.currentIndex = -1;
-        this.tries = 0;
+        this.tries = 1;
     }
 
     public int getCurrentIndex() {
@@ -18,7 +18,7 @@ public class Player {
         return InputView.readBridgeSize();
     }
 
-    public void oneMoreTry() {
+    public void retry() {
         this.tries++;
     }
 
@@ -28,5 +28,9 @@ public class Player {
 
     public void move() {
         this.currentIndex++;
+    }
+
+    public String inputCommand() {
+        return InputView.readGameCommand();
     }
 }

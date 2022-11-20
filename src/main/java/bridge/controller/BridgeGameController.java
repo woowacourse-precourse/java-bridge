@@ -18,13 +18,10 @@ public class BridgeGameController {
     }
 
     private void play() {
-        bridgeGame.tryGame();
-        boolean isMoving = true;
         do {
             OutputView.askMove();
-            isMoving = bridgeGame.move();
-        } while (isMoving && bridgeGame.isOnGoing());
-        if (!isMoving) {
+        } while (bridgeGame.move() && bridgeGame.isOnGoing());
+        if (bridgeGame.isOnGoing()) {
             OutputView.askRestart();
             if (bridgeGame.retry()) {
                 play();

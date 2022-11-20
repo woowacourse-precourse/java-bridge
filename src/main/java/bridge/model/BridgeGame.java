@@ -41,7 +41,8 @@ public class BridgeGame {
     }
 
     public boolean retry() {
-        String
+        String command = player.inputCommand();
+        return false;
     }
 
 
