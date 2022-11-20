@@ -17,10 +17,10 @@ public enum UpDown {
         this.square = square;
     }
 
-    public static String convertsquare(int choice){
+    public static String convertSquare(int choice){
         return Arrays.stream(values())
                 .filter(c -> c.choice == choice)
                 .map(c -> c.square).findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.isProper));
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.isProperMsg()));
     }
 }

@@ -1,16 +1,15 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
+import bridge.domain.BridgeSize;
 import bridge.domain.Move;
 import bridge.view.InputView;
 
 public class BridgeController {
 
     InputView inputView = new InputView();
-    Bridge bridge = new Bridge();
+    BridgeSize bridge = new BridgeSize();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     Move mm = new Move();
 

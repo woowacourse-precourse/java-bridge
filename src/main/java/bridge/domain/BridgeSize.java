@@ -1,11 +1,10 @@
 package bridge.domain;
 
 import bridge.view.ExceptionMessage;
-import bridge.view.InputView;
 
 import java.util.regex.Pattern;
 
-public class Bridge {
+public class BridgeSize {
 
     private static final Pattern pattern = Pattern.compile("^[0-9]*$");
 
