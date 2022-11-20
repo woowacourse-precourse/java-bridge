@@ -1,10 +1,14 @@
 package bridge.Controller.Service;
 
 import Utils.ValidateUtils;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.Bridge;
 import bridge.Domain.BridgeGame;
+import bridge.Domain.BridgeMaker;
 import bridge.View.InputView;
 import bridge.View.OutputView;
+
+import java.util.List;
 
 public class StartGameService {
 
@@ -13,6 +17,13 @@ public class StartGameService {
         String bridgeSize = InputView.readBridgeSize();
         ValidateUtils.isValidateLength(bridgeSize);
         int size = Integer.parseInt(bridgeSize);
-        return new BridgeGame(new Bridge(size));
+        return new BridgeGame(makeNewBridge(size));
+
+    }
+
+    public Bridge makeNewBridge(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        return new Bridge(bridge);
     }
 }
