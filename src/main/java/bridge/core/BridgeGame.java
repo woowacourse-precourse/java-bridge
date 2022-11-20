@@ -1,4 +1,4 @@
-package bridge;
+package bridge.core;
 
 import bridge.domain.Bridge;
 import bridge.type.FinishCondition;

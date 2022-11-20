@@ -1,9 +1,9 @@
-package bridge;
+package bridge.core;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.type.BridgeBlock;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

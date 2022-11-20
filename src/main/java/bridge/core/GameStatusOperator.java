@@ -1,4 +1,4 @@
-package bridge;
+package bridge.core;
 
 import bridge.type.GameStatus;
 
@@ -31,9 +31,7 @@ public class GameStatusOperator {
 
     public void toOngoing() { gameStatus = GameStatus.ONGOING; }
 
-    public void toQuit() {
-        gameStatus = GameStatus.QUIT;
-    }
+    public void toQuit() { gameStatus = GameStatus.QUIT; }
 
     public void toRestart() {
         gameStatus = GameStatus.RESTART;

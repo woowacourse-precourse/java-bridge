@@ -1,5 +1,6 @@
-package bridge;
+package bridge.controller;
 
+import bridge.core.BridgeGame;
 import bridge.type.FinishCondition;
 import bridge.type.GameStatus;
 import bridge.type.PassCondition;

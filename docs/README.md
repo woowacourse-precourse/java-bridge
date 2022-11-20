@@ -10,7 +10,7 @@
 - [x] 게임 초기화
 - [x] 플레이어가 다리에서 한 칸 이동
 - [x] 플레이어가 게임을 재시작
-- [ ] 플레이어가 게임을 종료
+- [x] 플레이어가 게임을 종료
 
 ### InputView
 - [x] 다리 길이를 입력
@@ -22,7 +22,7 @@
 - [ ] 게임 진행 중 게임 상황 출력
 - [ ] 게임 종료 후 게임 결과 출력
 
-### GameController
+### BridgeGameController & BridgeGameHandler 
 - [ ] 기능 통합
 
 ### Exception

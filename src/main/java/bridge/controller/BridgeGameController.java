@@ -1,7 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
-import bridge.BridgeGameHandler;
+import bridge.core.BridgeGame;
 import bridge.type.FinishCondition;
 import bridge.type.ProcessCondition;
 

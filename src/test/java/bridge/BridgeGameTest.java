@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.core.BridgeGame;
+import bridge.core.GameStatusOperator;
 import bridge.domain.Bridge;
 import bridge.type.FinishCondition;
 import bridge.type.GameStatus;
