@@ -11,7 +11,7 @@ public class Result {
     private static final String NONE = "   ";
     private List<String> upBridgeResult;
     private List<String> downBridgeResult;
-    private int tryCount;
+    private int tryCount = 1;
 
     public Result() {
         upBridgeResult = new ArrayList<>();
@@ -37,6 +37,15 @@ public class Result {
         String tryCount = Converter.toStringFromInt(this.tryCount);
 
         return List.of(winning, tryCount);
+    }
+
+    public void initialize() {
+        upBridgeResult = new ArrayList<>();
+        downBridgeResult = new ArrayList<>();
+    }
+
+    public void plusTryCount() {
+        tryCount += 1;
     }
 
     private String getResultString(boolean moveSuccess) {
