@@ -39,7 +39,25 @@ public class BridgeGame {
     }
 
     public void playGame() {
-
+        outputView.printGameStart();
+        setAnswerBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        List<String> bridge = getAnswerBridge();
+        while (bridgeIndex < bridge.size()) {
+            if (move(inputView.readMoving()) == false) {
+                outputView.printMap(upperBridge, lowerBridge);
+                String retryFlag = inputView.readGameCommand();
+                if (retryFlag.equals("Q")) {
+                    break;
+                }
+                if (retryFlag.equals("R")) {
+                    retry();
+                    continue;
+                }
+            }
+            outputView.printMap(upperBridge, lowerBridge);
+            bridgeIndex++;
+        }
+        outputView.printResult(upperBridge, lowerBridge);
     }
 
     /**
