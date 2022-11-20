@@ -6,9 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.ARRAY;
 import static org.assertj.core.util.Lists.newArrayList;
 
 public class BridgeTest {
@@ -82,11 +84,9 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(BridgeLane.UP);
-            game.move(BridgeLane.UP);
-
-            boolean expectedOutput = true;
-            assertThat(game.move(BridgeLane.DOWN)).isEqualTo(expectedOutput);
+            List<BridgeLane> moveSequence = newArrayList(BridgeLane.UP, BridgeLane.UP);
+            moveSequentially(game, moveSequence);
+            assertThat(getMoveRecord(game)).isEqualTo(moveSequence);
         }
 
         @Test
@@ -95,12 +95,9 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(BridgeLane.UP);
-            game.move(BridgeLane.UP);
-            game.move(BridgeLane.DOWN);
-
-            boolean expectedOutput = false;
-            assertThat(game.move(BridgeLane.DOWN)).isEqualTo(expectedOutput);
+            List<BridgeLane> moveSequence = newArrayList(BridgeLane.UP, BridgeLane.UP, BridgeLane.DOWN);
+            moveSequentially(game, moveSequence);
+            assertThat(getMoveRecord(game)).isEqualTo(moveSequence);
         }
 
         @Test
@@ -109,12 +106,12 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(BridgeLane.UP);
-            game.move(BridgeLane.UP);
+            List<BridgeLane> moveSequence = newArrayList(BridgeLane.UP, BridgeLane.UP);
+            moveSequentially(game, moveSequence);
             game.retry();
+            game.move(BridgeLane.DOWN);
 
-            boolean expectedOutput = false;
-            assertThat(game.move(BridgeLane.DOWN)).isEqualTo(expectedOutput);
+            assertThat(getMoveRecord(game)).isEqualTo(newArrayList(BridgeLane.DOWN));
         }
 
         @Test
@@ -196,5 +193,19 @@ public class BridgeTest {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(bridgeInfo);
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         return bridgeMaker.makeBridge(bridgeInfo.size());
+    }
+
+    private void moveSequentially(BridgeGame game, List<BridgeLane> sequence) {
+        for(BridgeLane bridgeLane : sequence) {
+            game.move(bridgeLane);
+        }
+    }
+
+    private List<BridgeLane> getMoveRecord(BridgeGame game) {
+        List<BridgeLane> movementRecord = new ArrayList<>();
+        for(int i = 1; i <= game.getCurrentPosition(); i++) {
+            movementRecord.add(game.getCurrentMovementRecord(i));
+        }
+        return movementRecord;
     }
 }
