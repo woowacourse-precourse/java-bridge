@@ -22,4 +22,13 @@ public class Result {
         upStairs.add("   ");
         downsStairs.add(" O ");
     }
+
+    public void recordDirection(String direction) {
+        if(direction.equals("U")) {
+            addUpstairs();
+        }
+        if(direction.equals("D")) {
+            addDownsStairs();
+        }
+    }
 }
