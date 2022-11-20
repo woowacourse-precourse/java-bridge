@@ -1,5 +1,6 @@
 package bridge;
 
+import enumCollections.GameResult;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
 import enumCollections.Position;
@@ -15,8 +16,7 @@ public class Controller {
 
     public void startGame(BridgeGame bridgeGame) {
         bridgeGame.generateBridge(getBridgeSize());
-        GameStatus gameResult = play(bridgeGame, GameStatus.CONTINUE);
-        getResult(gameResult, bridgeGame);
+        play(bridgeGame, GameStatus.CONTINUE);
     }
 
     private int getBridgeSize() {
@@ -37,6 +37,7 @@ public class Controller {
                     gameStatus
             );
         }
+        getResult(gameStatus, bridgeGame, map);
         return gameStatus;
     }
 
@@ -54,8 +55,12 @@ public class Controller {
         return GameStatus.FAILURE;
     }
 
-    private void getResult(GameStatus gameResult, BridgeGame bridgeGame) {
+    private void getResult(GameStatus gameResult, BridgeGame bridgeGame, Map map) {
+        outputView.printGuideMessage(GuideMessage.RESULT, GameStatus.getMessage(gameResult));
+        outputView.printMap(map);
+        outputView.printNewline();
         outputView.printResult(gameResult);
+        outputView.printGuideMessage(GuideMessage.GAME_TRIAL, bridgeGame.getTrial());
     }
 
     private void addMap(Map map, Position availableSide, GameStatus gameStatus) {

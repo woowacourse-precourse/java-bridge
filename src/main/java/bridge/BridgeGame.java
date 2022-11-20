@@ -57,4 +57,8 @@ public class BridgeGame {
     public Position getAvailableSquare(int bridgeIndex) {
         return Position.getPosition(bridge.getAvailableSquare(bridgeIndex));
     }
+
+    public String getTrial() {
+        return Integer.toString(this.trial);
+    }
 }
