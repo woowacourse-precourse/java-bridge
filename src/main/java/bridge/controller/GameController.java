@@ -33,7 +33,8 @@ public class GameController {
         printFinalResult();
     }
 
-    private void initializeGame() { //public -> private 순으로 재정렬
+    private void initializeGame() {
+        printGameStart();
         bridgeGame = new BridgeGame(createNewBridge());
         isPlaying = true;
         tryCount = 1;
@@ -60,6 +61,10 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private void printGameStart() {
+        outputView.printStart();
     }
 
     private List<String> generateBridge() {

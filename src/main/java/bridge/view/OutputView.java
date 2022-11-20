@@ -16,6 +16,7 @@ public class OutputView {
      */
     public void printMap(List<List<String>> crossedBridge) {
         crossedBridge.forEach(this::printEachMap);
+        System.out.println();
     }
 
     /**
@@ -29,12 +30,16 @@ public class OutputView {
         printFinalGameResult(tryCount, isSuccess);
     }
 
+    public void printStart() {
+        System.out.println(PrintMessage.START.printMessage() + "\n");
+    }
+
     private void printEachMap(List<String> crossedBridge) {
         System.out.println(MapConverter.convertToMap(crossedBridge));
     }
 
     private void printFinalGameResult(int tryCount, boolean isSuccess) {
         System.out.println(PrintMessage.RESULT.printMessage(isSuccess));
-        System.out.printf(PrintMessage.TRY.printMessage() + "\n", tryCount);
+        System.out.println(PrintMessage.TRY.printMessage(tryCount));
     }
 }
