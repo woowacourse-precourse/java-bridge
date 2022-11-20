@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Bridge 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -19,11 +21,11 @@ class BridgeTest {
 
     @Test
     void isEqualAtIndex_메서드는_특정_index_의_다리_위치가_맞는지를_반환한다() {
-        Bridge bridge = new Bridge(List.of("U", "D", "D", "U"));
+        final Bridge bridge = new Bridge(List.of("U", "D", "D", "U"));
 
-        assertThat(bridge.isEqualAtIndex(0, Position.UP)).isTrue();
-        assertThat(bridge.isEqualAtIndex(1, Position.UP)).isFalse();
-        assertThat(bridge.isEqualAtIndex(2, Position.UP)).isFalse();
-        assertThat(bridge.isEqualAtIndex(3, Position.UP)).isTrue();
+        assertTrue(bridge.isEqualAtIndex(0, Position.UP));
+        assertFalse(bridge.isEqualAtIndex(1, Position.UP));
+        assertFalse(bridge.isEqualAtIndex(2, Position.UP));
+        assertTrue(bridge.isEqualAtIndex(3, Position.UP));
     }
 }
