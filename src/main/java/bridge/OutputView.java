@@ -1,5 +1,8 @@
 package bridge;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +12,7 @@ import java.util.List;
 public class OutputView {
 
     static int now_size = 0;
+    
     static List<String> bridge_answer = new ArrayList<>();
     static StringBuilder upBridge = new StringBuilder();
     static StringBuilder downBridge = new StringBuilder();
@@ -19,7 +23,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(){
         System.out.println(upBridge);
         System.out.println(downBridge);
     }
