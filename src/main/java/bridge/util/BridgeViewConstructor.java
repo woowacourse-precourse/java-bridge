@@ -26,12 +26,20 @@ public class BridgeViewConstructor {
         }
     }
 
+    private void constructLast(List<String> player, List<String> bridge){
+        if(isSameLast(player, bridge)) {
+            appendRightAnswer(getLastIndex(player));
+            return;
+        }
+        appendWrongAnswer(getLastIndex(player));
+    }
+
     private String getLastIndex(List<String> list){
         return list.get(list.size()-1);
     }
 
     private boolean isSameLast(List<String> player, List<String> bridge){
-        return player.get(player.size()-1).equals(bridge.get(player.size()-1));
+        return getLastIndex(player).equals(bridge.get(player.size()-1));
     }
 
     private void appendRightAnswer(String playerIndexed){
