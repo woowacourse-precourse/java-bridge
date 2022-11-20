@@ -23,7 +23,7 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         int position = player.move(direction);
-        return bridges.isSuccess(position, direction);
+        return bridges.isRight(position, direction);
     }
 
     /**

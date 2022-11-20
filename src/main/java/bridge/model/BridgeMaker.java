@@ -25,11 +25,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return IntStream.range(0, size)
                 .mapToObj(i -> bridgeNumberGenerator.generate())
-                .map(this::apply)
+                .map(this::changeToDirection)
                 .collect(Collectors.toList());
     }
 
-    private String apply(Integer value) {
+    private String changeToDirection(Integer value) {
         if (value == DOWN_DEFAULT_VALUE) {
             return DOWN_BRIDGE;
         }

@@ -13,7 +13,7 @@ public class Bridges {
         this.bridges = bridgeMaker.makeBridge(size);
     }
 
-    boolean isSuccess(int position, String direction) {
+    boolean isRight(int position, String direction) {
         return bridges.get(position - INDEX_SIZE_DIFFERENT).equals(direction);
     }
 

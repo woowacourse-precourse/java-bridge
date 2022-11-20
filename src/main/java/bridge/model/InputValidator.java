@@ -8,7 +8,6 @@ public class InputValidator {
     public static final int BRIDGE_MIN_SIZE = 3;
     public static final int BRIDGE_MAX_SIZE = 20;
     public static final String IS_NUMBER = "[0-9]*";
-
     public static final String RESTART_GAME = "R";
     public static final String QUIT_GAME = "Q";
     public static final String ERROR_BRIDGE_SIZE = "[ERROR] 3-20사이의 숫자가 아닙니다.";
@@ -17,6 +16,7 @@ public class InputValidator {
 
     private InputValidator() {
     }
+    //TODO 수정 고려
 
     public static boolean isValidSize(String inputSize) {
         if (inputSize == null || inputSize.isBlank()) {

@@ -32,6 +32,7 @@ public class Player {
         return directions.isEmpty();
     }
 
+    //TODO  print 분리
     String printFailureResult() {
         StringBuilder result = new StringBuilder();
         getFailureResult(getUpResult(), result, DIRECTION_UP);
