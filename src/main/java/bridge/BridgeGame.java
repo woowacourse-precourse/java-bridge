@@ -11,18 +11,22 @@ public class BridgeGame {
     private InputView inputView;
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
-    private List<List<String>> userMap;
+    private List<String> UpMap;
+    private List<String> DownMap;
     private List<String> randomMap;
     private int bridgesize;
     private boolean flag;
     private String move;
+    private int count;
+    private int idx;
 
     public BridgeGame(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
         this.bridgesize = 0;
-        flag = false;
+        this.flag = false;
+        this.count = 0;
     }
 
     /**
@@ -30,15 +34,43 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        while(flag) {
+    public boolean move() {
+        while(flag && idx < randomMap.size()) {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             move = inputView.readMoving();
+            buildUserMap();
+            outputView.printMap(List.of(UpMap, DownMap));
+            idx++;
         }
+        return isSuccess();
     }
 
-    public void buildUserMap() {
+    private boolean isSuccess() {
+        if(idx == randomMap.size()) {
+            return true;
+        }
+        return false;
+    }
 
+    private void buildUserMap() {
+        if(move.equals("U")) {
+            validateMove("U", UpMap, DownMap);
+        }
+        if(move.equals("D")) {
+            validateMove("D", DownMap, UpMap);
+        }
+
+    }
+
+    private void validateMove(String move, List<String> list1, List<String> list2) {
+        if(randomMap.get(idx).equals(move)) {
+            list1.add("O");
+        }
+        if(!randomMap.get(idx).equals(move)) {
+            list1.add("X");
+            flag = false;
+        }
+        list2.add(" ");
     }
 
     /**
@@ -53,7 +85,9 @@ public class BridgeGame {
         System.out.println("다리의 길이를 입력해주세요.");
         bridgesize = inputView.readBridgeSize();
         randomMap = bridgeMaker.makeBridge(bridgesize);
-        userMap = new ArrayList<>();
+        UpMap = new ArrayList<>();
+        DownMap = new ArrayList<>();
         flag = true;
+        idx = 0;
     }
 }
