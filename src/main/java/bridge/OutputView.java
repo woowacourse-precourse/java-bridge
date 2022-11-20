@@ -21,7 +21,7 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printStartPhrases() {
+    public void printGameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
     }
@@ -32,5 +32,9 @@ public class OutputView {
 
     public void printMovedirectionInputRequest() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printRestartInputRequeset() {
+
     }
 }
