@@ -3,12 +3,13 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
-        while (bridgeGame.move(inputView.readMoving()) || bridgeGame.retry(inputView.readGameCommand())) {
-            outputView.printMap(bridgeGame.upperBridge, bridgeGame.bottomBridge);
+        BridgeGame bridgeGame = new BridgeGame(InputView.readBridgeSize());
+        while ((bridgeGame.move(InputView.readMoving()) || bridgeGame.retry(InputView.readGameCommand()))) {
+            OutputView.printMap(bridgeGame.upperBridge, bridgeGame.bottomBridge);
+            if (bridgeGame.clearCheck()) {
+                break;
+            }
         }
-        outputView.printResult(bridgeGame.upperBridge, bridgeGame.bottomBridge);
+        OutputView.printResult(bridgeGame.upperBridge, bridgeGame.bottomBridge);
     }
 }
