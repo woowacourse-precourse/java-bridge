@@ -9,6 +9,9 @@ public class Program {
     private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private static BridgeGame bridgeGame;
 
+    private Program() {
+    }
+
     public static void init() {
         startGame();
         setupBridge();
@@ -54,13 +57,12 @@ public class Program {
 
     private static void setupGame() {
         bridgeGame = new BridgeGame();
-        BridgeGame.setCountAttempt();
+        BridgeGame.increaseAttemptCount();
     }
 
     private static boolean proceedGame() {
         while (true) {
-            boolean isSuccessMovement = generateMovement();
-            if (!isSuccessMovement) {
+            if (!generateMovement()) {
                 return askToQuitGame();
             }
             if (bridgeGame.isSuccessFinish()) {
