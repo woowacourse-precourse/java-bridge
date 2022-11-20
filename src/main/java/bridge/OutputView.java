@@ -1,9 +1,7 @@
 package bridge;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -15,14 +13,14 @@ public class OutputView {
     }
 
     public static void printMessageForBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println("\n다리의 길이를 입력해주세요.");
     }
 
     public static void printMessageForMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
-    public static void printMessageForTermination() { System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"); }
+    public static void printMessageForTermination() { System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"); }
 
     public static void printErrorMessage(String e) { System.out.println(e); }
     /**
@@ -34,10 +32,8 @@ public class OutputView {
     public static boolean printMap(List<Integer> movingSuccess) {
         List<String> upPrintChecker = Arrays.asList("   ", "   ", " O ", " X ");
         List<String> downPrintChecker = Arrays.asList(" O ", " X ", "   ", "   ");
-        String upBridge = createBridge(movingSuccess, upPrintChecker);
-        String downBridge = createBridge(movingSuccess, downPrintChecker);
-        System.out.println("[" + upBridge + "]");
-        System.out.println("[" + downBridge + "]");
+        System.out.println("[" + createBridge(movingSuccess, upPrintChecker) + "]");
+        System.out.println("[" + createBridge(movingSuccess, downPrintChecker) + "]");
         return checkResult(movingSuccess);
     }
 
@@ -52,20 +48,6 @@ public class OutputView {
         return printBridge;
     }
 
-    private Map<String, Object> createUpMovingChecker() {
-        Map<String, Object> movingChecker = new HashMap<>();
-        movingChecker.put("U", " O ");
-        movingChecker.put("D", "   ");
-        return  movingChecker;
-    }
-
-    private Map<String, Object> createDownMovingChecker() {
-        Map<String, Object> movingChecker = new HashMap<>();
-        movingChecker.put("U", "   ");
-        movingChecker.put("D", " O ");
-        return  movingChecker;
-    }
-
     private static boolean checkResult(List<Integer> movingSuccess) {
         return movingSuccess.get(movingSuccess.size() - 1) == 0 || movingSuccess.get(movingSuccess.size() - 1) == 2;
     }
@@ -78,7 +60,7 @@ public class OutputView {
     public static void printResult(List<Integer> movingSuccess, int numberOfAttempts) {
         System.out.println("최종 게임 결과");
         boolean result = printMap(movingSuccess);
-        System.out.println("게임 성공 여부: " + SuccessOrFailure(result));
+        System.out.println("\n게임 성공 여부: " + SuccessOrFailure(result));
         System.out.println("총 시도한 횟수: " + numberOfAttempts);
     }
 
