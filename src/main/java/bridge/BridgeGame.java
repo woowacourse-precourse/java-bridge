@@ -33,4 +33,10 @@ public class BridgeGame {
         return (bridge.size() == moved.size()) && (moved.get(idx).equals(bridge.get(idx)));
     }
 
+    // 다리를 건너다 실패했는지 확인하는 기능
+    public static boolean isFailed(List<String> bridge, List<String> moved) {
+        int idx = moved.size() - 1;
+        return !moved.get(idx).equals(bridge.get(idx));
+    }
+
 }
