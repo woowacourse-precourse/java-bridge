@@ -8,7 +8,8 @@ public enum ErrorMessage {
     MOVING_NULL_EXCEPTION("[ERROR] 빈 문자열이 입력되었습니다. 대문자 U(위칸), D(아래칸)중 하나를 입력해 주세요."),
     MOVING_BLANK_EXCEPTION("[ERROR] 공백의 문자열이 입력되었습니다. 대문자 U(위칸), D(아래칸)중 하나를 입력해 주세요."),
     MOVING_TYPE_EXCEPTION("[ERROR] 입력 타입과 일치하지 않습니다. 대문자 U(위칸), D(아래칸)중 하나를 입력해 주세요."),
-    COMMAND_NULL_EXCEPTION("[ERROR] 빈 문자열이 입력되었습니다. 대문자 R(재시도), Q(종료)중 하나를 입력해 주세요.");
+    COMMAND_NULL_EXCEPTION("[ERROR] 빈 문자열이 입력되었습니다. 대문자 R(재시도), Q(종료)중 하나를 입력해 주세요."),
+    COMMAND_BLANK_EXCEPTION("[ERROR] 공백의 문자열이 입력되었습니다. 대문자 R(재시도), Q(종료)중 하나를 입력해 주세요.");
 
     private final String message;
 
