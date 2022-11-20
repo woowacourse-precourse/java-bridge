@@ -1,16 +1,30 @@
 package bridge.ui;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    private static final String OPEN_SQUARE_BRACKET = "[ ";
+    private static final String CLOSE_SQUARE_BRACKET = " ]";
+    private static final String VERTICAL_BAR = " | ";
+    private static final int FIRST_MOVE = 0;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> moveResult) {
+        StringBuilder bridgeUpperResult = new StringBuilder();
+        StringBuilder bridgeLowerResult = new StringBuilder();
+        addFormat(bridgeUpperResult, bridgeLowerResult, OPEN_SQUARE_BRACKET);
+        createMoveResultFormat(moveResult, bridgeUpperResult, bridgeLowerResult);
+        addFormat(bridgeUpperResult, bridgeLowerResult, CLOSE_SQUARE_BRACKET);
+
+        System.out.println(bridgeUpperResult + "\n" + bridgeLowerResult + "\n");
     }
 
     /**
@@ -40,5 +54,30 @@ public class OutputView {
      */
     public void printChoiceMovingSpace() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    /**
+     * 이동한 다리의 상태를 정해진 출력 형식에 맞춰주는 로직
+     */
+    private void createMoveResultFormat(List<String> moveResult, StringBuilder bridgeUpperResult,
+                                        StringBuilder bridgeLowerResult) {
+        for (int i = 0; i < moveResult.size(); i += 2) {
+            if (i == FIRST_MOVE) {
+                bridgeUpperResult.append(moveResult.get(i));
+                bridgeLowerResult.append(moveResult.get(i + 1));
+            }
+            addFormat(bridgeUpperResult, bridgeLowerResult, VERTICAL_BAR);
+            bridgeUpperResult.append(moveResult.get(i));
+            bridgeLowerResult.append(moveResult.get(i + 1));
+        }
+    }
+
+    /**
+     * 처음과 끝을 정해진 출력 형식에 맞춰주는 로직
+     */
+    private void addFormat(StringBuilder bridgeUpperResult, StringBuilder bridgeLowerResult,
+                           String format) {
+        bridgeUpperResult.append(format);
+        bridgeLowerResult.append(format);
     }
 }
