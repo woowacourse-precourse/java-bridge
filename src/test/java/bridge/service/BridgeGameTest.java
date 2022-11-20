@@ -15,7 +15,7 @@ class BridgeGameTest {
     @ValueSource(ints = {2, 21})
     void 길이가_3_미만_20_초과인_다리를_만들면_예외_던지는_기능(int size) {
         assertThatThrownBy(() -> {
-            bridgeGame.makeBridges(size);
+            bridgeGame.makeBridge(size);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -24,7 +24,7 @@ class BridgeGameTest {
     @ValueSource(ints = {3, 20})
     void 길이가_3_이상_20_이하인_다리를_만드는_기능(int size) {
         assertThatNoException().isThrownBy(() -> {
-            bridgeGame.makeBridges(size);
+            bridgeGame.makeBridge(size);
         });
     }
 }

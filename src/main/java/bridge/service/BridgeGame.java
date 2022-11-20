@@ -17,7 +17,7 @@ public class BridgeGame {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public Bridge makeBridges(int bridgeSize) {
+    public Bridge makeBridge(int bridgeSize) {
         return bridgeMaker.makeBridge(bridgeSize).stream()
                 .map(Moving::valueOf)
                 .collect(collectingAndThen(toList(), Bridge::new));
