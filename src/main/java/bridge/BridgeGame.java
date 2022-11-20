@@ -45,6 +45,14 @@ public class BridgeGame {
         playerTryCount += 1;
     }
 
+    public boolean isGameWin(String last){
+        if(bridge.size()==playerPosition+1){
+            if(last.equals(bridge.get(bridge.size())))
+                return true;
+        }
+        return false;
+    }
+
     public int getPlayerTryCount(){
         return playerTryCount;
     }
