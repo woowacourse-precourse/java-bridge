@@ -1,9 +1,6 @@
 package bridge.controller;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeBlock;
-import bridge.domain.MovingResult;
-import bridge.domain.Phase;
+import bridge.domain.*;
 import bridge.service.BridgeGame;
 import bridge.util.BridgeMaker;
 import bridge.view.InputView;
@@ -32,23 +29,25 @@ public class BridgeController {
         //입력값 받기
         outputView.printGameStartMessage();
         Bridge bridge = new Bridge(convertType(makeBridgeByInputSize()));
+        List<MovingResult> movingResults = new ArrayList<>();
         Phase phase = new Phase();
+        BridgeResult bridgeResult = new BridgeResult();
 
         //다리 선택
         while (true) {
-            doGame(bridge, phase);
+            doGame(bridge, phase, movingResults, bridgeResult);
         }
     }
 
     //TODO : 메서드명 변경 필요
-    private void doGame(Bridge bridge, Phase phase) {
+    private void doGame(Bridge bridge, Phase phase, List<MovingResult> movingResults, BridgeResult bridgeResult) {
         outputView.printSelectBlock();
         BridgeBlock inputBlock = valueOf(inputView.readMoving());
 
         MovingResult movingResult = bridgeGame.move(bridge, inputBlock, phase);
-        List<MovingResult> movingResults = new ArrayList<>();
+        bridgeResult.addResult(movingResult);
         movingResults.add(movingResult);
-        outputView.printMap(movingResults);
+        outputView.printMap(bridgeResult);
     }
 
     private List<String> makeBridgeByInputSize() {

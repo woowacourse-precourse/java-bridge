@@ -20,7 +20,6 @@ public class BridgeMessageMaker {
             lowerLine.append(PARTITION);
         }
     }
-
     public StringBuilder getUpperLine() {
         return upperLine;
     }

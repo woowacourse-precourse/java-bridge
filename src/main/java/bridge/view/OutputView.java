@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeBlock;
+import bridge.domain.BridgeResult;
 import bridge.domain.MovingResult;
 import bridge.util.BridgeMessageMaker;
 
@@ -31,26 +32,13 @@ public class OutputView {
         System.out.println(SELECT_BLOCK_MESSAGE);
     }
 
-    public void printMap(List<MovingResult> movingResults) {
-        Iterator<MovingResult> resultIter = movingResults.iterator();
-        while (resultIter.hasNext()){
-            makeMessage(resultIter);
-        }
-        System.out.println("[ " + bridgeMessageMaker.getUpperLine() + " ]");
-        System.out.println("[ " + bridgeMessageMaker.getLowerLine() + " ]");
+    public void printMap(BridgeResult movingResults) {
+        printMapOfCase(movingResults);
     }
 
-    //TODO : 좀 더 깔끔하게 처리 불가능한가?
-    private void makeMessage(Iterator<MovingResult> resultIter) {
-        String state = resultIter.next().getState();
-        if (resultIter.next().getBridgeBlock().equals(BridgeBlock.U)) {
-            bridgeMessageMaker.upLineMessageMaker(state, resultIter.hasNext());
-            bridgeMessageMaker.downLineMessageMaker(BLANK, resultIter.hasNext());
-        }
-        if (resultIter.next().getBridgeBlock().equals(BridgeBlock.D)) {
-            bridgeMessageMaker.downLineMessageMaker(state, resultIter.hasNext());
-            bridgeMessageMaker.upLineMessageMaker(BLANK, resultIter.hasNext());
-        }
+    private void printMapOfCase(BridgeResult movingResults) {
+        System.out.println("[ "+ movingResults.upperMapToString() + " ]");
+        System.out.println("[ "+ movingResults.lowerMapToString() + " ]");
     }
 
     /**
