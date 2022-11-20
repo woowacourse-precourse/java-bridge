@@ -33,6 +33,7 @@ public class Application {
     public static void prepareExceptionBeforeBridgeGame() {
         try {
             startBridgeGame();
+            endBridgeGame();
         } catch (IllegalStateException e) {
             System.out.println(error.getMessage());
         } catch (IllegalArgumentException e) {
@@ -54,6 +55,11 @@ public class Application {
 
     public static void playBridgeGame() {
 
+    }
+
+    public static void endBridgeGame() {
+        outputView.printResult(topBridge, bottomBridge);
+        outputView.printSFAndNumber(passFail, number);
     }
 
     public static void setError(Error errorMessage) {
