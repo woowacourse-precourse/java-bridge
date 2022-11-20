@@ -9,8 +9,20 @@
 6. 출력문으로 사용할 문자열들 모아둘 상수 클래스 추가
 7. 에러 출력문으로 사용할 문자열들 모아둘 상수 클래스 추가
 8. OutputView 클래스에 출력 관련 메서드들 구현
+    - printMap, printResult 메서드는 BridgeGame, BridgeGameController 완성 후에 구현
 9. InputView 클래스에 입력 관련 메서드들 구현
 10. BridgeGame 클래스에 게임 관련 메서드들 구현
+    - 다리를 움직이는 move 메서드 구현
+    - move 메서드를 호출할 때마다 상태 업데이트 하는 check 메서드 구현
+    - 재시도 할 경우 상태 초기화 해주는 retry 메서드 구현
 11. 게임을 진행을 호출하기 위한 BridgeGameController 추가
+    - 필드로 InputView, OutputView, Bridge, BridgeGame 과 게임 종료 상태인 complete 을 가짐
 12. BridgeGameController에 게임 진행 관련 메서드들 구현
-13. main 함수에서 BridgeGameController의 게임 시작 메서드 호출
+    - 게임을 시작하는 gameStart 메서드 구현
+        - 입력을 받아 다음 칸으로 이동하는 move 메서드 구현
+        - move 할 때마다 BridgeGame 의 상태를 확인하는 checkBridgeGameStatus 메서드 구현
+13. 이동한 칸에 대한 printMap 출력에 관한 enum 클래스 추가
+14. 게임 결과별 printResult 출력에 관한 enum 클래스 추가
+15. OutputView 클래스의 printMap, printResult 메서드 구현
+16. BridgeGameController의 gameStart 메서드 완성
+17. main 함수에서 BridgeGameController의 게임 시작 메서드 호출
