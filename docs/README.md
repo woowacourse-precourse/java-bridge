@@ -184,7 +184,7 @@ D
   - [x] bridgeGame의 downBridge를 printMap함수에 매개변수로 전달하여 출력
   - [x] gameChecked의 값이 false인지 비교
     - [x] readGameCommand함수를 실행 후, userGameCommand에 저장
-    - [x] userGameCommand가 R인지 비교
-      - [x] retry함수를 실행
-    - [x] break문 사용
+    - [x] userGameCommand가 Q인지 비교
+      - [x] break문 사용
+    - [x] retry함수를 실행
 - [x] printResult함수 실행
