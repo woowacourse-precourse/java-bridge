@@ -33,9 +33,9 @@ public class InputView {
     public static String readMoving() {
         printReadMovingMessage();
         String input = Console.readLine();
-        if(input != "U" && input != "D")
-            throw new IllegalArgumentException("[ERROR] 위 칸(U) 또는 아래 칸(D)으로만 이동 가능합니다.");
-        return input;
+        if(input.equals("U") || input.equals("D"))
+            return input;
+        throw new IllegalArgumentException("[ERROR] 위 칸(U) 또는 아래 칸(D)으로만 이동 가능합니다.");
     }
 
     private static void printReadMovingMessage() {
