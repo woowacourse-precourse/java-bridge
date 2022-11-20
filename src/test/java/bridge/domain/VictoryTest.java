@@ -26,6 +26,12 @@ class VictoryTest {
     @ParameterizedTest(name = "Victory.{0}의경우 getResult 메서드가 {1}를 반환한다")
     @CsvSource({"VICTORY, 성공", "DEFEAT, 실패"})
     void getResult_메서드는_성공_또는_실패를_반환한다(Victory victory, String result) {
-        assertThat(victory.getResult()).isEqualTo(result);
+        assertThat(victory.getMessage()).isEqualTo(result);
+    }
+
+    @ParameterizedTest(name = "Victory.{0}의경우 isVictory 메서드가 {1}를 반환한다")
+    @CsvSource({"VICTORY, true", "DEFEAT, false"})
+    void isVictory_메서드는_성공인지_확인하여_boolean을_반환한다(Victory victory, boolean result) {
+        assertThat(victory.isVictory()).isEqualTo(result);
     }
 }

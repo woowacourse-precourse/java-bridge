@@ -6,10 +6,10 @@ public enum Victory {
 
     private static final long ZERO_FAIL = 0L;
 
-    private final String result;
+    private final String message;
 
-    Victory(String result) {
-        this.result = result;
+    Victory(String message) {
+        this.message = message;
     }
 
     public static Victory getEnum(long FailCount) {
@@ -19,7 +19,11 @@ public enum Victory {
         return DEFEAT;
     }
 
-    public String getResult() {
-        return result;
+    public boolean isVictory() {
+        return this == VICTORY;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

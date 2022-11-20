@@ -87,6 +87,7 @@
 - [x]  Victory 다리건너기 게임 최종 결과를 표현하는 enum
     - [x]  getEnum -> 실패 갯수를 입력받아 이늄을 반환
     - [x]  getResult -> Enum에 따라 성공 또는 실패 문자열을 반환
+    - [x]  isVictory -> 승리여부 반환
 
 ### Other
 
