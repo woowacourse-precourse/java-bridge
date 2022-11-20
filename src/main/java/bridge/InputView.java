@@ -10,6 +10,8 @@ public class InputView {
     private final int minLength = 3;
     private final int maxLength = 20;
     private final String bridgeSize = "다리의 길이를 입력해주세요.";
+
+    //region 다리길이
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -44,7 +46,9 @@ public class InputView {
         if(!input.matches(REGEX))
             throw new IllegalArgumentException("다리의 길이는 숫자로 작성해주셔야 합니다.");
     }
+    //endregion
 
+    //region 이동
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -65,11 +69,28 @@ public class InputView {
             readMoving();
         }
     }
+    //endregion
 
+    //region 재시도 여부
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+        ValidateGameCommand(input);
+        return input;
     }
+
+    private void ValidateGameCommand(String input) {
+        try{
+            if (!input.equals("R") && !input.equals("Q"))
+                throw new IllegalArgumentException("게임 재시도는 R(재시도)와 Q(종료) 중 하나의 문자를 입력하셔야 합니다.");
+        }
+        catch (IllegalArgumentException ex){
+            System.out.println("[ERROR]" + ex.getMessage());
+            readGameCommand();
+        }
+    }
+    //endregion
 }
