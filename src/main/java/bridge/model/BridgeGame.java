@@ -2,6 +2,8 @@ package bridge.model;
 
 import static bridge.model.RoundStatus.CLEAR;
 import static bridge.model.RoundStatus.FAIL;
+import static bridge.util.BridgeGameConstant.GAME_STATUS_MESSAGE;
+import static bridge.util.BridgeGameConstant.TRY_COUNT_MESSAGE;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
@@ -58,13 +60,13 @@ public class BridgeGame {
 
     public Map<String, String> getResultToString() {
         Map<String, String> result = new HashMap<>(
-                Map.of("총 시도한 횟수", Integer.toString(tryCount))
+                Map.of(TRY_COUNT_MESSAGE, Integer.toString(tryCount))
         );
         if (round.isClear()) {
-            result.put("게임 성공 여부", CLEAR.getText());
+            result.put(GAME_STATUS_MESSAGE, CLEAR.getText());
             return result;
         }
-        result.put("게임 성공 여부", FAIL.getText());
+        result.put(GAME_STATUS_MESSAGE, FAIL.getText());
         return result;
     }
 }

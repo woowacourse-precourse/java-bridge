@@ -1,5 +1,8 @@
 package bridge.view;
 
+import static bridge.util.BridgeGameConstant.GAME_STATUS_MESSAGE;
+import static bridge.util.BridgeGameConstant.TRY_COUNT_MESSAGE;
+
 import java.util.Map;
 
 /**
@@ -29,9 +32,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Map<String, String> result) {
-        String gameStatusMessage = "게임 성공 여부";
-        String tryCountMessage = "총 시도한 횟수";
-        System.out.println(gameStatusMessage + ": " + result.get(gameStatusMessage));
-        System.out.println(tryCountMessage + ": " + result.get(tryCountMessage));
+        System.out.println(GAME_STATUS_MESSAGE + ": " + result.get(GAME_STATUS_MESSAGE));
+        System.out.println(TRY_COUNT_MESSAGE + ": " + result.get(TRY_COUNT_MESSAGE));
     }
 }

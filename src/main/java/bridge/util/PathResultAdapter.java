@@ -1,8 +1,10 @@
 package bridge.util;
 
-import static bridge.util.BridgeGameConstant.DOWN_SIGN;
-import static bridge.util.BridgeGameConstant.UP_SIGN;
 import static bridge.model.RoundStatus.FAIL;
+import static bridge.util.BridgeGameConstant.ACCESSIBLE_SIGN;
+import static bridge.util.BridgeGameConstant.DOWN_SIGN;
+import static bridge.util.BridgeGameConstant.INACCESSIBLE_SIGN;
+import static bridge.util.BridgeGameConstant.UP_SIGN;
 
 import bridge.model.RoundStatus;
 import java.util.ArrayList;
@@ -48,14 +50,14 @@ public class PathResultAdapter {
 
     private static String getPathResultWhenFail(String courseDirection, String selectedDirection) {
         if (courseDirection.equals(selectedDirection)) {
-            return " X ";
+            return INACCESSIBLE_SIGN;
         }
         return "   ";
     }
 
     private static String getPathResult(String courseDirection, String selectedDirection) {
         if (courseDirection.equals(selectedDirection)) {
-            return " O ";
+            return ACCESSIBLE_SIGN;
         }
         return "   ";
     }
