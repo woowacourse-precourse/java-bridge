@@ -48,7 +48,7 @@ public class BridgeController {
             bridgeGame.retry(passingPositions);
             attempt++;
         }
-            outputView.printResult(result, attempt);
+        outputView.printResult(result, attempt);
     }
 
     private Result playEachRound(Length length, PassingPositions passingPositions, Result result) {
