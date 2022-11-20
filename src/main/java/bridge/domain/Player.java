@@ -14,4 +14,8 @@ public class Player {
     public void movePlayer(String moving) {
         playerMoving.add(moving);
     }
+
+    public List<String> getPlayerMoving() {
+        return playerMoving;
+    }
 }
