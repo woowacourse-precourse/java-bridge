@@ -16,9 +16,11 @@ public enum ResultType {
     }
 
     public static ResultType getByBoolean(Boolean move) {
+    public static String getMarkByBoolean(Boolean move) {
         return Arrays.stream(values())
                 .filter(type -> type.move == move)
                 .findAny()
-                .orElse(NONE);
+                .map(ResultType::getMark)
+                .orElse(NONE.getMark());
     }
 }
