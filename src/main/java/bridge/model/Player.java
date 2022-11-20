@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+    private PlayerStatus playerStatus;
     private final List<Moving> history;
 
     public Player() {
+        playerStatus = PlayerStatus.MOVING;
         history = new ArrayList<>();
     }
 
     public PlayerStatus move(Moving choice, Bridge bridge) {
         history.add(choice);
-        return bridge.acceptPlayer(nextLocation(), choice);
+        playerStatus = bridge.acceptPlayer(nextLocation(), choice);
+        return playerStatus;
     }
 
     private int nextLocation() {
@@ -21,5 +24,9 @@ public class Player {
 
     public List<Moving> getHistory() {
         return history;
+    }
+
+    public PlayerStatus getPlayerStatus() {
+        return playerStatus;
     }
 }

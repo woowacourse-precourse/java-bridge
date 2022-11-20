@@ -33,19 +33,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Player player, PlayerStatus playerStatus) {
-        printPartialMap(player.getHistory(), playerStatus, Moving.U);
-        printPartialMap(player.getHistory(), playerStatus, Moving.D);
+    public void printMap(Player player) {
+        printPartialMap(player, Moving.U);
+        printPartialMap(player, Moving.D);
     }
 
-    private void printPartialMap(List<Moving> movingHistory, PlayerStatus playerStatus, Moving expected) {
+    private void printPartialMap(Player player, Moving expected) {
+        List<Moving> movingHistory = player.getHistory();
         System.out.print(MAP_HEAD);
         for (int i = 0; i < movingHistory.size() - 1; i++) {
             printMoving(movingHistory.get(i), expected);
             System.out.print(MOVING_DELIMITER);
         }
-        printLastMoving(movingHistory.get(movingHistory.size() - 1), expected, playerStatus);
-        System.out.print(MAP_TAIL);
+        printLastMoving(movingHistory.get(movingHistory.size() - 1), expected, player.getPlayerStatus());
+        System.out.println(MAP_TAIL);
     }
 
     private void printMoving(Moving moving, Moving expected) {
