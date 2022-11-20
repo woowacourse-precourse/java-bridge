@@ -3,18 +3,11 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-import Util.Util;
-import View.InputView;
-import View.OutputView;
-
 public class Map {
 
-    Util util = new Util();
     private List<String> mapUpper = new ArrayList<>();
     private List<String> mapLower = new ArrayList<>();
     private List<String> crossable;
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
     private int limitSize;
 
     public List<String> getMapUpper() {
@@ -43,25 +36,22 @@ public class Map {
     }
 
     public void makeMapLower(boolean isCorrect) {
+        mapUpper.add("   ");
         if (isCorrect) {
-            mapUpper.add("   ");
             mapLower.add(" O ");
+            return;
         }
-        if (!isCorrect) {
-            mapUpper.add("   ");
-            mapLower.add(" X ");
-        }
+        mapLower.add(" X ");
     }
 
+
     public void makeMapUpper(boolean isCorrect) {
+        mapLower.add("   ");
         if (isCorrect) {
             mapUpper.add(" O ");
-            mapLower.add("   ");
+            return;
         }
-        if (!isCorrect) {
-            mapUpper.add(" X ");
-            mapLower.add("   ");
-        }
+        mapUpper.add(" X ");
     }
 
     public void extendMap(int index) {
@@ -72,25 +62,13 @@ public class Map {
     }
 
     public boolean checkWhenInputIsD(String answer) {
-        if (answer.equals("D")) {
-            makeMapLower(true);
-            return true;
-        }
-        if (!answer.equals("D")) {
-            makeMapLower(false);
-        }
-        return false;
+        makeMapLower(answer.equals("D"));
+        return answer.equals("D");
     }
 
     public boolean checkWhenInputIsU(String answer) {
-        if (answer.equals("U")) {
-            makeMapUpper(true);
-            return true;
-        }
-        if (!answer.equals("U")) {
-            makeMapUpper(false);
-        }
-        return false;
+        makeMapUpper(answer.equals("U"));
+        return answer.equals("U");
     }
 
     public boolean runMap(String moving, String answer) {
