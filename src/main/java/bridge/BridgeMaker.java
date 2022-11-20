@@ -1,7 +1,4 @@
-package bridge.controller;
-
-import bridge.BridgeNumberGenerator;
-import bridge.view.InputView;
+package bridge;
 
 import java.util.*;
 
