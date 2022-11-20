@@ -16,6 +16,10 @@ public enum MoveChoice {
     }
 
     public static String getMoving(int positionNumber) {
-        return null;
+
+        MoveChoice moveChoice = Arrays.stream(MoveChoice.values())
+                .filter((choice) -> choice.positionNumber == positionNumber).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_A_MOVE_CHOICE));
+        return moveChoice.moving;
     }
 }
