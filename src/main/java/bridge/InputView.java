@@ -12,7 +12,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         OutputView.printStart();
-        System.out.println("다리의 길이를 입력해주세요.\n");
+        System.out.println("\n다리의 길이를 입력해주세요.");
         bridge_size = Integer.parseInt(Console.readLine());
         return bridge_size;
     }
