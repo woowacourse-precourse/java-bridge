@@ -30,4 +30,8 @@ public class PlayerController {
     public void increaseMovedDistance() {
         playerService.increaseMovedDistance();
     }
+
+    public void backToStartPoint() {
+        playerService.backToStartPoint();
+    }
 }

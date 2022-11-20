@@ -1,7 +1,6 @@
 package bridge.domain.player;
 
 public class Player {
-    public static final int INIT_DISTANCE = 0;
 
     private final AttemptCount attemptCount;
     private final MovedDistance movedDistance;
@@ -22,11 +21,11 @@ public class Player {
         return new Player(movedDistance.increaseDistance(), attemptCount);
     }
 
-    public MovedDistance getMovedDistance() {
-        return movedDistance;
+    public int getMovedDistance() {
+        return movedDistance.toInt();
     }
 
-    public Player backToStartPoint() {
-        return Player.of(INIT_DISTANCE, attemptCount.toInt());
+    public Player makeNewAttempt() {
+        return new Player(movedDistance.reset(), attemptCount.increaseCount());
     }
 }

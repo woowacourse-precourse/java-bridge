@@ -1,6 +1,7 @@
 package bridge.domain.player;
 
 public class MovedDistance {
+    public final static int INIT_DISTANCE = 0;
 
     private final int distance;
 
@@ -14,6 +15,10 @@ public class MovedDistance {
 
     public MovedDistance increaseDistance() {
         return new MovedDistance(distance + 1);
+    }
+
+    public MovedDistance reset() {
+        return new MovedDistance(INIT_DISTANCE);
     }
 
     public int toInt() {

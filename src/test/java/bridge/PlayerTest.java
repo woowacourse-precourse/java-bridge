@@ -48,6 +48,6 @@ class PlayerTest {
         playerController.increaseMovedDistance();
         Player player = playerRepository.get();
 
-        assertThat(player.getMovedDistance().toInt()).isEqualTo(1);
+        assertThat(player.getMovedDistance()).isEqualTo(1);
     }
 }
