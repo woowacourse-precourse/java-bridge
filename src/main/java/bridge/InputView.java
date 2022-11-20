@@ -21,12 +21,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(READ_BRIDGE_SIZE_MESSAGE);
-        try {
-            return validateBridgeSize(parseStrToInt(Console.readLine()));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readBridgeSize();
+        while (true) {
+            System.out.println(READ_BRIDGE_SIZE_MESSAGE);
+            try {
+                return validateBridgeSize(parseStrToInt(Console.readLine()));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -34,12 +35,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(READ_MOVING_MESSAGE);
-        try {
-            return validateMoving(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readMoving();
+        while (true) {
+            System.out.println(READ_MOVING_MESSAGE);
+            try {
+                return validateMoving(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -47,12 +49,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(READ_GAME_COMMAND_MESSAGE);
-        try {
-            return validateGameCommand(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readGameCommand();
+        while (true) {
+            System.out.println(READ_GAME_COMMAND_MESSAGE);
+            try {
+                return validateGameCommand(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
