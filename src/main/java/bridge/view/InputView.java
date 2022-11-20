@@ -14,7 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize(String input) {
+    public int readBridgeSize(String input) {
         try {
             int bridgeSize = Integer.parseInt(input);
             validateBridgeSize(bridgeSize);
@@ -27,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving(String direction) {
+    public String readMoving(String direction) {
         validateMove(direction);
         return direction;
     }
@@ -35,7 +35,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand(String retry) {
+    public String readGameCommand(String retry) {
         validateWhetherToRetry(retry);
         return retry;
     }
@@ -44,17 +44,17 @@ public class InputView {
         아래 메서드는 위 메서드를 오버로딩해서 테스트를 용이하게 만들었다.
         수정할 여지가 있는지 고민할 필요가 있다.
     */
-    public static int readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println(InputMessage.ENTER_BRIDGE_LENGTH_MESSAGE.getMessage());
         return readBridgeSize(Console.readLine());
     }
 
-    public static String readMoving() {
+    public String readMoving() {
         System.out.println(InputMessage.SELECT_CELL_TO_MOVE_MESSAGE.getMessage());
         return readMoving(Console.readLine());
     }
 
-    public static String readGameCommand() {
+    public String readGameCommand() {
         System.out.println(InputMessage.ENTER_WHETHER_TO_RETRY_GAME_MESSAGE.getMessage());
         return readGameCommand(Console.readLine());
     }

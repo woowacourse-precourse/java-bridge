@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
+    private final static InputView inputView = new InputView();
 
     @DisplayName("다리 크기 입력 테스트")
     @Nested
@@ -19,14 +20,14 @@ public class InputViewTest {
         @CsvSource(value = {"1:1", "23:23", "12321412:12321412", "012:12"}, delimiter = ':')
         @ParameterizedTest
         void successCase(String inputSize, int outputSize) {
-            assertThat(InputView.readBridgeSize(inputSize)).isEqualTo(outputSize);
+            assertThat(inputView.readBridgeSize(inputSize)).isEqualTo(outputSize);
         }
 
         @DisplayName("예외 케이스: 실수가 입력되는 경우")
         @ValueSource(strings = {"1.1", "-1.23", "3.0"})
         @ParameterizedTest
         void failCaseRealNumber(String inputSize) {
-            assertThatThrownBy(() -> InputView.readBridgeSize(inputSize))
+            assertThatThrownBy(() -> inputView.readBridgeSize(inputSize))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -34,7 +35,7 @@ public class InputViewTest {
         @ValueSource(strings = {"0", "-1", "-123"})
         @ParameterizedTest
         void failCaseLowerThanOne(String inputSize) {
-            assertThatThrownBy(() -> InputView.readBridgeSize(inputSize))
+            assertThatThrownBy(() -> inputView.readBridgeSize(inputSize))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -42,7 +43,7 @@ public class InputViewTest {
         @ValueSource(strings = {"123d", "-='", "ewew", "0-12"})
         @ParameterizedTest
         void failCaseString(String input) {
-            assertThatThrownBy(() -> InputView.readBridgeSize(input))
+            assertThatThrownBy(() -> inputView.readBridgeSize(input))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -55,14 +56,14 @@ public class InputViewTest {
         @CsvSource(value = {"U:U", "D:D"}, delimiter = ':')
         @ParameterizedTest
         void success(String inputDirection, String outputDirection) {
-            assertThat(InputView.readMoving(inputDirection)).isEqualTo(outputDirection);
+            assertThat(inputView.readMoving(inputDirection)).isEqualTo(outputDirection);
         }
 
         @DisplayName("예외 케이스: U 또는 D가 입력되지 않은 경우")
         @ValueSource(strings = {"21342", "O", "I", "["})
         @ParameterizedTest
         void failCaseNotUD(String inputDirection) {
-            assertThatThrownBy(() -> InputView.readMoving(inputDirection))
+            assertThatThrownBy(() -> inputView.readMoving(inputDirection))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -75,7 +76,7 @@ public class InputViewTest {
         @CsvSource(value = {"R:R", "Q:Q"}, delimiter = ':')
         @ParameterizedTest
         void success(String inputRetry, String outputRetry) {
-            assertThat(InputView.readGameCommand(inputRetry))
+            assertThat(inputView.readGameCommand(inputRetry))
                     .isEqualTo(outputRetry);
         }
 
@@ -83,7 +84,7 @@ public class InputViewTest {
         @ValueSource(strings = {"1", "E", "y", "-"})
         @ParameterizedTest
         void failCaseNotRQ(String inputRetry) {
-            assertThatThrownBy(() -> InputView.readGameCommand(inputRetry))
+            assertThatThrownBy(() -> inputView.readGameCommand(inputRetry))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
