@@ -2,8 +2,20 @@ package bridge.exception;
 
 public class BridgeGameInputException {
 
-    public void validateBridgeSize(int size) {
-        if (size < 3 || size > 20) {
+    public void validateBridgeSize(String size) {
+        validateBridgeSizeNumber(size);
+        validateBridgeSizeRange(size);
+    }
+
+    private void validateBridgeSizeNumber(String size) {
+        if (!size.matches("^[0-9]*$")) {
+            throw new IllegalArgumentException("[ERROR] 다리의 길이는 숫자만 입력가능합니다.");
+        }
+    }
+
+    private void validateBridgeSizeRange(String size) {
+        int bridgeSize = Integer.parseInt(size);
+        if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException("[ERROR] 다리의 길이는 3에서 20사이입니다.");
         }
     }
