@@ -16,7 +16,7 @@ class BridgeGameTest {
     @DisplayName("플레이어가 선택한 칸으로 이동시키고 이동 결과를 저장한다.")
     void moveTest() {
         //given
-        Bridge bridge = new Bridge(List.of("0", "0", "1"));
+        Bridge bridge = new Bridge(List.of("D", "D", "U"));
         BridgeGame bridgeGame = new BridgeGame(bridge, new Player(), new GameStatus());
 
         String playerSelection1 = "D";
@@ -41,15 +41,13 @@ class BridgeGameTest {
     class HandleAfterMoveTest {
 
         @Test
-        @DisplayName("플레이어가 건널 수 없는 칸으로 이동한 것이라면 상태는 실패이며, 게임 시도 횟수가 증가한다.")
+        @DisplayName("플레이어가 건널 수 없는 칸으로 이동한 것이라면 상태는 실패이다.")
         void case1() {
             //given
-            Bridge bridge = new Bridge(List.of("0", "0", "1"));
+            Bridge bridge = new Bridge(List.of("D", "D", "U"));
             Player player = new Player();
             GameStatus gameStatus = new GameStatus();
             BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
-
-            int beforeMoveAttempt = gameStatus.getAttempt();
 
             String playerSelection = "U";
 
@@ -57,21 +55,17 @@ class BridgeGameTest {
             bridgeGame.move(playerSelection);
 
             //then
-            int afterMoveAttempt = gameStatus.getAttempt();
             assertThat(player.isCross()).isEqualTo(false);
-            assertThat(afterMoveAttempt).isEqualTo(beforeMoveAttempt + 1);
         }
 
         @Test
-        @DisplayName("플레이어가 건널 수 있는 칸으로 이동한 것이라면 상태는 성공이며, 게임 시도 횟수는 변화 없다.")
+        @DisplayName("플레이어가 건널 수 있는 칸으로 이동한 것이라면 상태는 성공이다.")
         void case2() {
             //given
-            Bridge bridge = new Bridge(List.of("0", "0", "1"));
+            Bridge bridge = new Bridge(List.of("D", "D", "U"));
             Player player = new Player();
             GameStatus gameStatus = new GameStatus();
             BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
-
-            int beforeMoveAttempt = gameStatus.getAttempt();
 
             String playerSelection = "D";
 
@@ -79,9 +73,7 @@ class BridgeGameTest {
             bridgeGame.move(playerSelection);
 
             //then
-            int afterMoveAttempt = gameStatus.getAttempt();
             assertThat(player.isCross()).isEqualTo(true);
-            assertThat(afterMoveAttempt).isEqualTo(beforeMoveAttempt);
         }
     }
 
@@ -93,7 +85,7 @@ class BridgeGameTest {
         @DisplayName("플레이어가 다리 끝까지 건너면 성공이다.")
         void case1() {
             //given
-            Bridge bridge = new Bridge(List.of("0", "0", "1"));
+            Bridge bridge = new Bridge(List.of("D", "D", "U"));
 
             Player player = new Player();
             player.movePlayerLocation();
@@ -116,7 +108,7 @@ class BridgeGameTest {
         @DisplayName("플레이어가 다리 끝까지 건너지 못하면 실패이다.")
         void case2() {
             //given
-            Bridge bridge = new Bridge(List.of("0", "0", "1"));
+            Bridge bridge = new Bridge(List.of("D", "D", "U"));
 
             Player player = new Player();
             player.movePlayerLocation();
@@ -136,10 +128,10 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("플레이어가 재시작 선택 시 게임 결과와 플레이어의 상태가 초기화 된다.")
+    @DisplayName("플레이어가 재시작 선택 시 게임 결과와 플레이어의 상태가 초기화 되고, 게임 시도 횟수가 증가한다.")
     void retryTest() {
         //given
-        Bridge bridge = new Bridge(List.of("0", "0", "1"));
+        Bridge bridge = new Bridge(List.of("D", "D", "U"));
 
         Player player = new Player();
 
@@ -148,6 +140,7 @@ class BridgeGameTest {
         bridgeGame.move("D");
 
         int beforeRetryPlayerLocation = player.getPlayerLocation();
+        int beforeRetryAttempt = gameStatus.getAttempt();
 
         int beforeRetryDownBridgeSize = bridgeGame.getBridgeResult().getDownBridge().size();
         int beforeRetryUpBridgeSize = bridgeGame.getBridgeResult().getUpBridge().size();
@@ -161,6 +154,7 @@ class BridgeGameTest {
                 .isEqualTo(beforeRetryDownBridgeSize - 1);
         assertThat(bridgeGame.getBridgeResult().getUpBridge().size())
                 .isEqualTo(beforeRetryUpBridgeSize - 1);
+        assertThat(gameStatus.getAttempt()).isEqualTo(beforeRetryAttempt + 1);
 
     }
 }
