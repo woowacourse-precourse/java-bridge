@@ -2,6 +2,7 @@ package bridge.game;
 
 import bridge.game.context.BridgeGameContext;
 import bridge.game.status.BridgeGameStatus;
+import bridge.game.status.GameEndStatus;
 import bridge.game.status.InitStatus;
 import bridge.view.BridgeGameView;
 
@@ -17,7 +18,14 @@ public class BridgeGameLauncher {
 
     public void execute() {
         while (status.runnable()) {
-            status = status.next(context, view);
+            try {
+                status = status.next(context, view);
+            } catch (IllegalStateException exception) {
+                System.out.println(exception.getMessage());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+                status = new GameEndStatus();
+            }
         }
     }
 }
