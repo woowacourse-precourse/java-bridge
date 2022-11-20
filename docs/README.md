@@ -50,7 +50,7 @@
     - [x] 게임 시작 → startGame
         1. 다리 이동 리턴
         2. 다리 이동
-    - [ ] 게임 재시작 or 종료 → checkGameStatus
+    - [x] 게임 재시작 or 종료 → checkGameStatus
         1. 게임 재시작인지 종료인지 확인
         2. 결과에 따라서 게임 재시작이나 게임 종료 호출
     - [ ] 게임 재시작 → retryGame

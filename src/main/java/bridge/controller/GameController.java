@@ -34,6 +34,18 @@ public class GameController {
     }
 
     public void checkGameStatus() {
+        if (bridgeGame.isFallBridge()) {
+            retryGame();
+        }
 
+        endGame();
+    }
+
+    public void retryGame() {
+        //TODO: 기능 추가
+    }
+
+    public void endGame() {
+        //TODO: 기능 추가
     }
 }
