@@ -18,7 +18,7 @@ public class BridgeGameController {
 		InputView.printIntroMessage();
 		BridgeGame bridgeGame = settingBridgeGame();
 		startBridgeGame(bridgeGame);
-		OutputView.printResult(progressMap.getProgressMap(), bridgeGame);
+		OutputView.printResult(progressMap, bridgeGame);
 	}
 
 	private BridgeGame settingBridgeGame() {
@@ -51,7 +51,7 @@ public class BridgeGameController {
 		progressMap = bridgeGameService.initGameMap();
 		while (!progressMap.isMoveFailed() && bridgeGame.isNotFinish(progressMap)) {
 			moveBridgeOneTime(bridgeGame);
-			OutputView.printMap(progressMap.getProgressMap());
+			OutputView.printMap(progressMap);
 		}
 	}
 

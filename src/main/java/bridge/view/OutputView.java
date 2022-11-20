@@ -3,6 +3,7 @@ package bridge.view;
 import java.util.List;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.ProgressMap;
 
 public class OutputView {
 	private static final String PRINT_MAP_FIRST_LETTER = "[";
@@ -11,9 +12,10 @@ public class OutputView {
 
 	private OutputView() {}
 
-	public static void printMap(List<List<String>> result) {
-		String upBridge = createBridgeMap(result.get(0));
-		String downBridge = createBridgeMap(result.get(1));
+	public static void printMap(ProgressMap result) {
+		List<List<String>> gameResult = result.getProgressMap();
+		String upBridge = createBridgeMap(gameResult.get(0));
+		String downBridge = createBridgeMap(gameResult.get(1));
 		System.out.println(upBridge);
 		System.out.println(downBridge);
 		System.out.println();
@@ -28,28 +30,28 @@ public class OutputView {
 		return stringBuilder.append(PRINT_MAP_LAST_LETTER).toString();
 	}
 
-	public static void printResult(List<List<String>> result, BridgeGame bridgeGame) {
-		if (result.get(0).size() == bridgeGame.getBridgeSize()) {
+	public static void printResult(ProgressMap result, BridgeGame bridgeGame) {
+		if (result.whatMapSize() == bridgeGame.getBridgeSize()) {
 			printClearMap(result, bridgeGame.getRepeatCount());
 		}
-		if (result.get(0).size() != bridgeGame.getBridgeSize()) {
+		if (result.whatMapSize() != bridgeGame.getBridgeSize()) {
 			printFailedMap(result, bridgeGame.getRepeatCount());
 		}
 	}
 
-	private static void printClearMap(List<List<String>> result, int count) {
+	private static void printClearMap(ProgressMap result, int count) {
 		printResultIntro(result);
 		System.out.println("게임 성공 여부: 성공");
 		printResultOutro(count);
 	}
 
-	private static void printFailedMap(List<List<String>> result, int count) {
+	private static void printFailedMap(ProgressMap result, int count) {
 		printResultIntro(result);
 		System.out.println("게임 성공 여부: 실패");
 		printResultOutro(count);
 	}
 
-	private static void printResultIntro(List<List<String>> result) {
+	private static void printResultIntro(ProgressMap result) {
 		System.out.println("최종 게임 결과");
 		printMap(result);
 	}
