@@ -1,5 +1,6 @@
 package bridge.views;
 
+import bridge.utils.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 // TODO Singleton 패턴으로 구현 고민해보기
