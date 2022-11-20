@@ -26,9 +26,9 @@ public class InputViewTest {
     @DisplayName("다리의 길이는 3 이상 ~ 20 이하의 숫자")
     @ValueSource(strings = {"3", "15", "20"})
     @ParameterizedTest
-    void readBridgeSize_테스트(String input) {
-        putSystemInput(input);
-        assertThat(Integer.parseInt(input)).isEqualTo(InputView.readBridgeSize());
+    void readBridgeSize_테스트(String bridgeLength) {
+        putSystemInput(bridgeLength);
+        assertThat(Integer.parseInt(bridgeLength)).isEqualTo(InputView.readBridgeSize());
     }
 
     @DisplayName("다리의 길이 입력에 대한 예외처리")
@@ -38,6 +38,27 @@ public class InputViewTest {
         putSystemInput(input);
         assertSimpleTest(() ->
                 assertThatThrownBy(InputView::readBridgeSize)
+                        .isInstanceOf(IllegalArgumentException.class));
+    }
+
+    /**
+     * readMoving - 사용자가 이동할 칸 입력
+     */
+    @DisplayName("사용자가 이동할 수 있는 칸은 U 또는 D")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void readMoving_테스트(String userMoveDirection) {
+        putSystemInput(userMoveDirection);
+        assertThat(userMoveDirection).isEqualTo(InputView.readMoving());
+    }
+
+    @DisplayName("사용자가 이동할 칸 입력에 대한 예외처리")
+    @ValueSource(strings = {"0", "1", "UU", "DD", "UD", "DU", "읶"})
+    @ParameterizedTest
+    void readMoving_예외_테스트(String userMoveDirection) {
+        putSystemInput(userMoveDirection);
+        assertSimpleTest(() ->
+                assertThatThrownBy(InputView::readMoving)
                         .isInstanceOf(IllegalArgumentException.class));
     }
 
