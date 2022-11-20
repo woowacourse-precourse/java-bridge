@@ -27,12 +27,21 @@ public class OutputView {
 
     private String makeFormattedResult(GameStatus gameStatus) {
         String normalizedGameHistory = normalize(gameStatus.getGameHistory());
-
         List<String> upperLine = makeUpperLine(normalizedGameHistory);
         List<String> lowerLine = makeLowerLine(normalizedGameHistory);
-        convertIfGameOver(gameStatus, upperLine, lowerLine);
+        String formattedResult = formatLine(upperLine) + "\n" + formatLine(lowerLine) + "\n";
 
-        return formatLine(upperLine) + "\n" + formatLine(lowerLine) + "\n";
+        if (gameStatus.isFail()) {
+            formattedResult = addFailSymbolAndGetResult(formattedResult);
+        }
+        return formattedResult;
+    }
+
+    private String addFailSymbolAndGetResult(String target) {
+        int finalSymbolIndex = target.lastIndexOf("O");
+        StringBuilder forAddSymbol = new StringBuilder(target);
+        forAddSymbol.setCharAt(finalSymbolIndex, 'X');
+        return forAddSymbol.toString();
     }
 
     private String normalize(String gameHistory) {
@@ -76,18 +85,5 @@ public class OutputView {
         return toJoin.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
-    }
-
-    private void convertIfGameOver(GameStatus gameStatus, List<String> upperLine, List<String> lowerLine) {
-        if (gameStatus.isFail()) {
-            convertIfNeeded(upperLine);
-            convertIfNeeded(lowerLine);
-        }
-    }
-
-    private void convertIfNeeded(List<String> line) {
-        if (line.get(line.size() - 1).equals("O")) {
-            line.set(line.size() - 1, "X");
-        }
     }
 }
