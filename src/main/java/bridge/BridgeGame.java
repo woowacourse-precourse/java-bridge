@@ -17,6 +17,10 @@ public class BridgeGame {
     private int currentLocation;
     private int restartNumber;
 
+    public List<String> getRealBridge() {
+        return realBridge;
+    }
+
     public HashMap<String, List<String>> getMoveStatus() {
         return moveStatus;
     }
@@ -30,27 +34,25 @@ public class BridgeGame {
     }
 
     public BridgeGame(int bridgeLength) {
-        realBridge = generateBridge(bridgeLength);
+        generateBridge(bridgeLength);
+        moveStatus = new HashMap<>();
         moveStatus.put("U", new ArrayList<String>());
         moveStatus.put("D", new ArrayList<String>());
         currentLocation = -1;
         restartNumber = 1;
     }
 
-    private List<String> generateBridge(int bridgeLength) {
-        List<String> bridge = new ArrayList<>();
+    private void generateBridge(int bridgeLength) {
+        realBridge = new ArrayList<>();
         for (int i = 0; i < bridgeLength; i++) {
             realBridge.add(bridgeIntegerMapper.get(numberGenerator.generate()));
         }
-
-        return bridge;
     }
+
     public boolean move(String direction) {
         currentLocation++;
-        if (realBridge.get(currentLocation) == direction) {
-            return reflectMovement(true, direction);
-        }
-        return reflectMovement(false, direction);
+        boolean isCorrectLocation = realBridge.get(currentLocation) == direction;
+        return reflectMovement(isCorrectLocation, direction);
     }
 
     public void retry() {
