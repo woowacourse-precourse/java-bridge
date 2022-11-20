@@ -5,12 +5,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static bridge.domain.BridgeMoveType.DOWN;
 import static bridge.domain.BridgeMoveType.UP;
+import static bridge.exception.BridgePlayerExceptionMessage.BRIDGE_SIZE_SIZE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BridgePlayerTest {
 
@@ -75,6 +78,20 @@ class BridgePlayerTest {
         assertThat(playerMoveHistory).isEmpty();
     }
 
+    @ParameterizedTest(name = "[{index}] playerBridge = {0}, compareBridge = {1}")
+    @MethodSource("whenCheckLastMoveTypeSizeIsZeroThenExceptionDummy")
+    @DisplayName("마지막 다리 이동 타입을 비교할 때 두 다리 중 하나라도 사이즈가 0이라면 실패하여 예외 처리된다.")
+    void whenCheckLastMoveTypeSizeIsZeroThenExceptionTest(List<BridgeMoveType> playerBridge, List<BridgeMoveType> compareBridge) {
+        // given & when
+        BridgePlayer bridgePlayer = new BridgePlayer();
+        playerBridge.forEach(bridgePlayer::moveTo);
+
+        // then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new BridgePlayer().isLastMoveTypeNotSameAs(compareBridge))
+                .withMessage(BRIDGE_SIZE_SIZE_EXCEPTION.getMessage());
+    }
+
     static Stream<Arguments> whenCheckLastMoveTypeNotSameThenSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(UP, UP, UP, DOWN, DOWN), List.of(UP, UP, DOWN, DOWN, UP)),
@@ -108,6 +125,18 @@ class BridgePlayerTest {
                 Arguments.arguments(List.of(UP, DOWN, UP, UP, DOWN)),
                 Arguments.arguments(List.of(UP, UP, DOWN, DOWN, DOWN)),
                 Arguments.arguments(List.of(DOWN, UP, UP, DOWN, DOWN))
+        );
+    }
+
+    static Stream<Arguments> whenCheckLastMoveTypeSizeIsZeroThenExceptionDummy() {
+        return Stream.of(
+                Arguments.arguments(Collections.emptyList(), List.of(UP, UP, UP, DOWN, DOWN)),
+                Arguments.arguments(List.of(DOWN, DOWN, UP, UP, DOWN), Collections.emptyList()),
+                Arguments.arguments(Collections.emptyList(), List.of(UP, DOWN, UP)),
+                Arguments.arguments(Collections.emptyList(), List.of(DOWN, UP, UP, DOWN, DOWN)),
+                Arguments.arguments(Collections.emptyList(), List.of(UP)),
+                Arguments.arguments(List.of(UP, UP,  DOWN, DOWN), Collections.emptyList()),
+                Arguments.arguments(Collections.emptyList(), Collections.emptyList())
         );
     }
 }
