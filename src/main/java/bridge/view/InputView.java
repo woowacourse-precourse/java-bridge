@@ -12,22 +12,19 @@ import bridge.messages.Message;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private String inputSize;
-    private String inputDirection;
-    private String inputRestart;
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int inputBridgeSize() {
         System.out.println(Message.INPUT_SIZE.getMessage());
-        inputSize = readLine();
+        String inputSize = readLine();
         System.out.println();
         try {
             validateInputSizeException(inputSize);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            inputBridgeSize();
+            return inputBridgeSize();
         }
         return Integer.parseInt(inputSize);
     }
@@ -37,12 +34,12 @@ public class InputView {
      */
     public String inputMovingDirection() {
         System.out.println(Message.SELECT_DIRECTION.getMessage());
-        inputDirection = readLine();
+        String inputDirection = readLine();
         try {
             validateInputDirectionException(inputDirection);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            inputMovingDirection();
+            return inputMovingDirection();
         }
         return inputDirection;
     }
@@ -52,12 +49,12 @@ public class InputView {
      */
     public String inputGameRestart() {
         System.out.println(Message.ASK_RESTART.getMessage());
-        inputRestart = readLine();
+        String inputRestart = readLine();
         try {
         validateInputGameRestartException(inputRestart);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            inputGameRestart();
+            return inputGameRestart();
         }
         return inputRestart;
     }
