@@ -39,12 +39,12 @@ public class BridgeMaker {
     }
 
     private void validate(int size) {
-        if (isInvalideRange(size)) {
+        if (isInvalidRange(size)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE_RANGE);
         }
     }
 
-    private static boolean isInvalideRange(int size) {
+    private static boolean isInvalidRange(int size) {
         return size < MIN_SIZE || size > MAX_SIZE;
     }
 
