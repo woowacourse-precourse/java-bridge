@@ -51,7 +51,7 @@ public class Bridge {
     }
 
     public boolean whetherFollowingEndOrNot() {
-        return getCurrent() < getBridgeEndIndex();
+        return getCurrent() == getBridgeEndIndex();
     }
 
     public int getBridgeEndIndex() {
@@ -145,4 +145,7 @@ public class Bridge {
     }
 
 
+    public void minusCurrent() {
+        current -= 1;
+    }
 }

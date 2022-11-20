@@ -28,7 +28,12 @@ public class BridgeGame {
     }
 
     public void start() {
-
+        bridge.readAndMove(inputView);
+        // readAndMove 메서드에서 빠져나왔다면
+        if (bridge.whetherFollowingEndOrNot()) {
+            outputView.printResult(bridge);
+            return;
+        }
     }
 
     /**
