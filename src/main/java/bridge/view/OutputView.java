@@ -36,13 +36,11 @@ public class OutputView {
     }
 
     private void gameSuccess(boolean success, SystemConsole systemConsole) {
-        if (success == true) {
+        if (success) {
             systemConsole.gameSuccess();
+            return;
         }
-
-        if (success == false) {
-            systemConsole.gameFailure();
-        }
+        systemConsole.gameFailure();
     }
 }
 
