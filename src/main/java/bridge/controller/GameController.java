@@ -12,6 +12,8 @@ import static bridge.utils.GameStatus.LOSE;
 import static bridge.utils.GameStatus.PLAYING;
 
 public class GameController {
+    private static final String RESTART_COMMAND = "R";
+
     private final BridgeGame bridgeGame;
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -32,7 +34,7 @@ public class GameController {
         playMoving();
         if (isFailure()) {
             String gameCommand = inputView.readGameCommand();
-            if ("R".equals(gameCommand)) {
+            if (RESTART_COMMAND.equals(gameCommand)) {
                 bridgeGame.retry();
                 play();
                 return;
