@@ -26,7 +26,6 @@ public class OutputView {
         secondLineMap = secondLineMap.replace("D", "O").replace("d", "X");
         System.out.println(firstLineMap);
         System.out.println(secondLineMap);
-        System.out.println();
     }
 
     private String drawMapToPreviousRound(Bridge bridge, int round){
@@ -61,15 +60,16 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
+        System.out.println();
         System.out.println(OutputMessage.FINAL_GAME_RESULT_MESSAGE);
         printMap(bridgeGame.getBridge(), bridgeGame.getRound(), bridgeGame.getGameStatus());
+        System.out.println();
         System.out.println(OutputMessage.GAME_SUCCESS_OR_NOT_MESSAGE + bridgeGame.getGameStatus().korean());
         System.out.println(OutputMessage.TOTAL_TRY_COUNT_MESSAGE + bridgeGame.getTryCount());
     }
 
     public void printGameStart(){
         System.out.println(OutputMessage.GAME_START_MESSAGE);
-        System.out.println();
     }
 
     public void printErrorMessage(String errorMessage) {
@@ -77,14 +77,17 @@ public class OutputView {
     }
 
     public void printChooseMoving(){
+        System.out.println();
         System.out.println(OutputMessage.MOVING_SELECT_MESSAGE);
     }
 
     public void printChooseBridgeSize(){
+        System.out.println();
         System.out.println(OutputMessage.BRIDGE_SIZE_SELECT_MESSAGE);
     }
 
     public void printChooseGameCommand(){
+        System.out.println();
         System.out.println(OutputMessage.GAME_COMMAND_SELECT_MESSAGE);
     }
 
