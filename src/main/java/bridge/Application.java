@@ -20,8 +20,7 @@ public class Application {
         outputView.guideStart();
         int bridgeSize = getBridgeSize();
         List<String> bridge = getBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.run();
-        bridgeGame.printResult();
+        GameRunner gameRunner = new GameRunner(bridge);
+        gameRunner.run();
     }
 }
