@@ -22,11 +22,19 @@ public class OutputView {
     private static final String GAME_CLEAR_SUCCESS = "성공";
     private static final String GAME_CLEAR_FAIL = "실패";
 
+    private static final int CONSTANCE_FOR_GET_VALUES_EXCEPT_RECENT_RESULT = 1;
+
+    /**
+     * 성공 - 실패 여부가 불확실한 현재 라운드 결과(getCurrentRoundResult)와
+     * 성공일 수 밖에 없는 이전 라운드를 별개의 로직으로(getOtherRoundResult) 구하여 지도를 출력
+     */
     public void printMap(Bridge bridge,
                          MoveResult moveResult) {
-        Map<String, String> recentValue = getRecentValueResult(moveResult);
-        Map<String, List<String>> otherValues = getOtherValues(bridge, moveResult.getRound());
-        printJoiningMessage(recentValue, otherValues);
+        Map<String, String> currentRoundResult = getCurrentRoundResult(moveResult);
+        Map<String, List<String>> otherRoundResult = getOtherRoundResult(bridge, moveResult.getRound());
+
+        printEachJoiningBlocks(currentRoundResult, otherRoundResult, UPPER_BLOCKS_KEY);
+        printEachJoiningBlocks(currentRoundResult, otherRoundResult, LOWER_BLOCKS_KEY);
     }
 
     public void printResult(Bridge bridge,
@@ -37,11 +45,10 @@ public class OutputView {
         System.out.printf("총 시도한 횟수: %s\n", gameResult.getTryCount());
     }
 
-    private Map<String, String> getRecentValueResult(MoveResult moveResult) {
-        String message = moveResult.getMessage();
+    private Map<String, String> getCurrentRoundResult(MoveResult moveResult) {
         String resultMark = getResultMark(moveResult.isSuccess());
 
-        if (message.equals(MOVE_TO_UPPER_BLOCK)) {
+        if (moveResult.getMessage().equals(MOVE_TO_UPPER_BLOCK)) {
             return Map.of(UPPER_BLOCKS_KEY, resultMark, LOWER_BLOCKS_KEY, BLANK);
         }
 
@@ -55,45 +62,40 @@ public class OutputView {
         return ANSWER_IS_WRONG;
     }
 
-    private Map<String, List<String>> getOtherValues(Bridge bridge, int round) {
+    private Map<String, List<String>> getOtherRoundResult(Bridge bridge, int round) {
         List<String> upperBlocks = new ArrayList<>();
         List<String> lowerBlocks = new ArrayList<>();
 
-        //TODO -1 상수 네이밍 떠올리자
         bridge.getBlocks()
                 .stream()
-                .limit(round -1)
+                .limit(round - CONSTANCE_FOR_GET_VALUES_EXCEPT_RECENT_RESULT)
                 .forEach(block -> setOtherValues(upperBlocks, lowerBlocks, block));
 
         return Map.of(UPPER_BLOCKS_KEY, upperBlocks, LOWER_BLOCKS_KEY, lowerBlocks);
     }
 
-    private void setOtherValues(List<String> up, List<String> down, String block) {
+    private void setOtherValues(List<String> upperBlocks, List<String> lowerBlocks, String block) {
         if (block.equals(MOVE_TO_UPPER_BLOCK)) {
-            up.add(ANSWER_IS_RIGHT);
-            down.add(BLANK);
+            upperBlocks.add(ANSWER_IS_RIGHT);
+            lowerBlocks.add(BLANK);
         }
 
         if (block.equals(MOVE_TO_LOWER_BLOCK)) {
-            up.add(BLANK);
-            down.add(ANSWER_IS_RIGHT);
+            upperBlocks.add(BLANK);
+            lowerBlocks.add(ANSWER_IS_RIGHT);
         }
     }
 
-    private void printJoiningMessage(Map<String, String> recentValue,
-                                     Map<String, List<String>> otherValues) {
-        List<String> upperBlocks = otherValues.get(UPPER_BLOCKS_KEY);
-        upperBlocks.add(recentValue.get(UPPER_BLOCKS_KEY));
-
-        List<String> lowerBlocks = otherValues.get(LOWER_BLOCKS_KEY);
-        lowerBlocks.add(recentValue.get(LOWER_BLOCKS_KEY));
-
-        System.out.printf("[ %s ]\n", String.join(" | ", upperBlocks));
-        System.out.printf("[ %s ]\n", String.join(" | ", lowerBlocks));
+    private void printEachJoiningBlocks(Map<String, String> recentValue,
+                                        Map<String, List<String>> otherValues,
+                                        String key) {
+        List<String> blocks = otherValues.get(key);
+        blocks.add(recentValue.get(key));
+        System.out.printf("[ %s ]\n", String.join(" | ", blocks));
     }
 
-    private String getSuccessMessage(GameResult gameResultTest) {
-        if (gameResultTest.isGameClear()) {
+    private String getSuccessMessage(GameResult gameResult) {
+        if (gameResult.isGameClear()) {
             return GAME_CLEAR_SUCCESS;
         }
         return GAME_CLEAR_FAIL;
