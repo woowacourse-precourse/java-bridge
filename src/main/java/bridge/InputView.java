@@ -49,7 +49,7 @@ public class InputView {
         String restartOrQuit;
         printCommand.getRestart();
         restartOrQuit=Console.readLine();
-        
+        validate.isRestartOrQuit(restartOrQuit);
         return restartOrQuit;
     }
 }
