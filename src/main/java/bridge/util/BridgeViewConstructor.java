@@ -26,8 +26,12 @@ public class BridgeViewConstructor {
         }
     }
 
-    private boolean isSameIndex(String playerIndexed, String bridgeIndexed){
-        return playerIndexed.equals(bridgeIndexed);
+    private String getLastIndex(List<String> list){
+        return list.get(list.size()-1);
+    }
+
+    private boolean isSameLast(List<String> player, List<String> bridge){
+        return player.get(player.size()-1).equals(bridge.get(player.size()-1));
     }
 
     private void appendRightAnswer(String playerIndexed){

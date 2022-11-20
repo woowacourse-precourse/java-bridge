@@ -28,17 +28,19 @@ START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반
 
 ### BridgeViewConstructor
 1. constructBridge : 플레이어 리스트와 bridge리스트를 입력받아 결과 문자열을 반환한다. 
-   1. isSameInIndex : 인덱스에서 플레이어와 리스트가 같을 때 참을 반환한다. 
-   2. appendRightAnswer :
+   1. appendRightAnswer :
       1. isU : U면 참을 반환한다. 
       2. appendWithO : 입력된 다리에 위쪽 다리에 O를 추가한다. 
       3. appendWithBlank : 입력된 다리에 공백을 추가한다. 
-   3. appendWrongAnswer : 
+   2. appendWrongAnswer : 
       1. isU : 
       2. appendWithBlank
       3. appendWithX : 입력된 다리쪽에 X를 추가한다. 
-   4. makeBracket : 위, 아래쪽 다리의 결과에 괄호를 추가한다.
-   5. constructBeforelast : 플레이어 리스트 길이 -1까지 다리들을 추가한다. 
+   3. makeBracket : 위, 아래쪽 다리의 결과에 괄호를 추가한다.
+   4. constructBeforeLast : 플레이어 리스트 길이 -1까지 다리들을 추가한다. 
+   5. constructLast :
+      1. getLastIndex : 리스트의 마지막 값을 반환한다. 
+      2. isSameLast : 마지막이 같으면 참을 반환한다. 
 
 ## View
 ### InputView
