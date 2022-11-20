@@ -5,8 +5,9 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> correctBridge;
-    private List<String> upperBridge;
-    private List<String> bottomBridge;
+    // upper,bottom bridge 상태에서 1은 O, 0은 X, 2는 가지 않음을 의미한다
+    private List<Integer> upperBridge;
+    private List<Integer> bottomBridge;
 
     public BridgeGame(List<String> correctBridge) {
         this.correctBridge = correctBridge;
@@ -24,8 +25,17 @@ public class BridgeGame {
         return retryInput.equals("R");
     }
 
-    private void makeBridgeState(String nextBridge) {
+    private void makeBridgeSuccessState(String nextBridge) {
+        if (checkUpperBridge(nextBridge)) {
+            upperBridge.add(1);
+        }
+        bottomBridge.add(2);
+    }
 
+    private void makeBridgeFailState(String nextBridge) {
+        if (checkUpperBridge(nextBridge)) {
+
+        }
     }
 
     private Boolean checkUpperBridge(String nextBridge) {
