@@ -12,7 +12,14 @@ public class OutputView {
         System.out.println(result.makeUpStairsMessage());
         System.out.println(result.makeDownStairsMessage());
     }
-
+    
+    public void printResult(Player player, Result result, String message) {
+        printMap(result);
+        System.out.println("최종 게임 결과");
+        printMap(result);
+        System.out.println("게임 성공 여부: " + message);
+        System.out.println("총 시도한 횟수: " + player.getTryGameCount());
+    }
 
     public void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
