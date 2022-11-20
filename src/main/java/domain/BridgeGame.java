@@ -10,7 +10,7 @@ import view.OutputView;
  */
 public class BridgeGame {
     InputView inputView = new InputView();
-
+    OutputView outputView = new OutputView();
     private int userPos;
     private int attempts;
     private boolean success;
@@ -27,15 +27,14 @@ public class BridgeGame {
     public int getAttempts() { return attempts; }
     public boolean getSuccess() { return success; }
 
-    public boolean move(String choice,AllBridge allBridge) {
+    public void move(String choice,AllBridge allBridge) {
         if(choice.equals(allBridge.getBridge().get(userPos))) {
+            outputView.addString(allBridge.getBridge().get(userPos));
             userPos += 1;
-            return false;
+            return;
         }
-        if(retryOrEnd()) {
-            return true;
-        }
-        return false;
+        outputView.addXString(allBridge.getBridge().get(userPos));
+        userPos = 0;
     }
 
     public boolean retry(AllBridge allBridge) {
