@@ -36,10 +36,5 @@ public class BridgeMaker {
     public int generateNumber(){
         return bridgeNumberGenerator.generate();
     }
-    public String judgeRow(int row){
-        if(row == 0){
-            return "D";
-        }
-        return "U";
-    }
+
 }

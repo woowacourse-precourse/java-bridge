@@ -30,8 +30,7 @@ class BridgeMakerTest {
     @ParameterizedTest
     @CsvSource({"1,U", "0,D"})
     void validateToCrossByRandomNumber(int number, String expected) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        String actual = bridgeMaker.judgeRow(number);
+        String actual = Row.judge(number);
         assertThat(actual).isEqualTo(expected);
     }
 }
