@@ -1,5 +1,6 @@
-package bridge;
+package bridge.model;
 
+import bridge.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,13 @@ public class BridgeGame {
      */
     public void move(String userInput, String bridge) {
         Bridgelocation bridgelocation = Bridgelocation.valueOf(userInput,Utility.StringEquals(userInput, bridge));
+        validate(bridgelocation);
         result.add(bridgelocation.getBridge());
+    }
+    private void validate(Bridgelocation bridgelocation){
+        if(bridgelocation == Bridgelocation.ERROR){
+            throw new IllegalArgumentException("[ERROR] 잘못된 값입니다.");
+        }
     }
 
     /**
