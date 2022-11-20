@@ -43,7 +43,7 @@ public class BridgeGame {
         return true;
     }
 
-    private boolean isSuccess(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
+    public boolean isSuccess(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
         BridgeGameResult lastGameResult = bridgeGameResults.get(bridgeGameResults.size() - 1);
         if (bridgeGameResults.size() == bridgeSize && lastGameResult.getIsMatched()) {
             return true;
