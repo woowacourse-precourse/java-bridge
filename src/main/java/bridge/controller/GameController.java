@@ -24,7 +24,9 @@ public class GameController {
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        while (gameFlag) {
+        crossBridge(bridge, user);
+        while (user.isRestartGame()) {
+            user = new User();
             crossBridge(bridge, user);
         }
     }
@@ -52,7 +54,6 @@ public class GameController {
             return;
         }
         outputView.printResult(userBridge, true, tryCount);
-        gameFlag = false;
     }
 
     private void setRetryOrQuit(String retryOrQuit) {
