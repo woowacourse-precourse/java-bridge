@@ -1,0 +1,30 @@
+package bridge;
+
+public enum BridgeStatus {
+	UP("U", 1),
+	DOWN("D", 0);
+
+	private final String statusString;
+	private final int statusInt;
+
+	BridgeStatus(String bridgeValue1,int bridgeValue2){
+		this.statusString = bridgeValue1;
+		this.statusInt = bridgeValue2;
+	}
+
+	public String getBridgeString() {
+		return statusString;
+	}
+
+	public int getBridgeInt() {
+		return statusInt;
+	}
+
+	public static String findMate(int number){
+		for (BridgeStatus status : BridgeStatus.values()){
+			if (status.statusInt == number)
+				return status.statusString;
+		}
+		return null;
+	}
+}
