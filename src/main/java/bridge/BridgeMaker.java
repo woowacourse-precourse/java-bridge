@@ -29,7 +29,14 @@ public class BridgeMaker {
 
     private List<String> changeToStringBridge(List<Integer> bridgeNumberList) {
         return bridgeNumberList.stream()
-                .map(String::valueOf)
+                .map(num -> toAlphabet(num))
                 .collect(Collectors.toList());
+    }
+
+    private String toAlphabet(int num) {
+        if (num == 1) {
+            return "U";
+        }
+        return "D";
     }
 }
