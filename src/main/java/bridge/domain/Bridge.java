@@ -13,4 +13,8 @@ public class Bridge {
     public String canMoveDirection(int idx) {
         return directions.get(idx);
     }
+
+    public boolean isFinish(int size) {
+        return directions.size() == size;
+    }
 }
