@@ -9,6 +9,7 @@ import static org.assertj.core.util.Lists.newArrayList;
  */
 public class BridgeGame {
     public static int index = 0;
+    public static int gameCount = 1;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -28,6 +29,8 @@ public class BridgeGame {
      */
     public void retry() {
         index = 0;
+        gameCount += 1;
+
 
     }
 }
