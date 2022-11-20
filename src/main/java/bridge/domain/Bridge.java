@@ -1,16 +1,20 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class Bridge {
 
-	private final int length;
+	public static final int MIN_LENGTH = 3;
+	public static final int MAX_LENGTH = 20;
+	private final List<String> value;
 
-	public Bridge(int length) {
-		validateLength(length);
-		this.length = length;
+	public Bridge(List<String> bridge) {
+		validateLength(bridge.size());
+		this.value = bridge;
 	}
 
 	private void validateLength(int length) {
-		if (length < 3 || length > 20) {
+		if (length < MIN_LENGTH || length > MAX_LENGTH) {
 			throw new IllegalArgumentException();
 		}
 	}
