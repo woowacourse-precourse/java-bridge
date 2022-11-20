@@ -1,27 +1,44 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import static Constant.MoveCondition.*;
 import static Constant.ErrorMessage.ILLEGAL_LIST_INDEX;
+import static Constant.BridgeMakerConstant.*;
+import static Constant.GameCondition.*;
 public class Bridge {
     private List<String> bridgeRoute;
+    private List<List<String>> stepMemory;
+    private List<Boolean> safeMemory;
     private int bridgeLength;
     private int currentPosition;
+    static final String blank = " ";
     InputView userInput;
     Bridge(){
         userInput = new InputView();
         bridgeLength = userInput.readBridgeSize();
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeRoute = maker.makeBridge(bridgeLength);
+        bridgeRoute=maker.makeBridge(bridgeLength);
+        stepMemory = new ArrayList<>();
+        for(int i=0; i<BRIDGE_ROUTE.getBranchNum(); i++){
+            stepMemory.add(new ArrayList<>());
+        }
+        safeMemory = new ArrayList<>();
         currentPosition=-1;
     }
+
+
     public boolean nextStep(){
         currentPosition++;
         if(currentPosition>=bridgeLength){
             throw new IllegalArgumentException(ILLEGAL_LIST_INDEX.getErrorMsg());
         }
         String direction = userInput.readMoving();
-        return isSafe(direction);
+        boolean stepResult = isSafe(direction);
+        safeMemory.add(stepResult);
+        drawStep(direction);
+        return stepResult;
 
     }
     private boolean isSafe(String direction){
@@ -33,16 +50,42 @@ public class Bridge {
         }
         throw new RuntimeException("존재하지 않는 move명령이 들어왔습니다.");
     }
-    private boolean isArrive(){
+    public boolean isArrive(){
         if(currentPosition==bridgeLength){
             return true;
         }
         return false;
     }
-    public void printRoute(){
-        System.out.println(bridgeLength);
+    public void drawStep(String direction){
+        HashMap<String,Integer> moveHash = BRIDGE_ROUTE.getHash();
+        String targetShape;
+        if(safeMemory.get(currentPosition)) {
+            targetShape = "O";
+        }else{
+            targetShape = "X";
+        }
+        for(int i=0; i<BRIDGE_ROUTE.getBranchNum(); i++){
+            if(i == moveHash.get(direction)){
+                stepMemory.get(i).add(targetShape);
+                continue;
+            }
+            stepMemory.get(i).add(blank);
+        }
     }
-    public void resetStep(){
-        currentPosition = -1;
+    public void printRoute(){
+        for(int i=0; i<BRIDGE_ROUTE.getBranchNum(); i++){
+            String outputString = String.join(" | ", stepMemory.get(i));
+            System.out.println("[ "+outputString+" ]");
+        }
+
+    }
+    public boolean resetStep(){
+        boolean choice = userInput.isRestart();
+        if(choice) {
+            currentPosition = -1;
+            stepMemory = new ArrayList<>();
+            safeMemory = new ArrayList<>();
+        }
+        return choice;
     }
 }
