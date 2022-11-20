@@ -24,9 +24,12 @@ public class BridgeGameController {
             OutputView.askMove();
             isMoving = bridgeGame.move();
         } while (isMoving && bridgeGame.isOnGoing());
-        if (!isMoving && bridgeGame.retry()) {
-            play();
-            return;
+        if (!isMoving) {
+            OutputView.askRestart();
+            if (bridgeGame.retry()) {
+                play();
+                return;
+            }
         }
         end();
     }
