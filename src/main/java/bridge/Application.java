@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.Constants.Command;
 import java.util.List;
 
 public class Application {
@@ -13,13 +12,11 @@ public class Application {
     private static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         // 게임을 시작하는 문구 출력
         startGame();
         setBridge();
         playGame();
         finishGame();
-
     }
 
     private static void startGame(){
@@ -54,29 +51,43 @@ public class Application {
         outputView.printResult(bridgeGame);
     }
 
+
+    private static boolean askToQuitGame() {
+        outputView.printInputRetryCommand();
+        String command = getRetryCommand();
+        boolean isRetry = bridgeGame.retry(command);
+        if(!isRetry){
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean generateMovement() {
+        outputView.printInputMoveDirection();
+        String direction = getDirection();
+
+        boolean isSuccess = bridgeGame.move(direction);
+        outputView.printMap(bridgeGame);
+
+        return isSuccess;
+    }
+    private static boolean proceedGame() {
+        while(true) {
+                boolean isSuccessMovement = generateMovement();
+                if(!isSuccessMovement) {
+                    return askToQuitGame();
+                }
+                if(bridgeGame.isSuccessFinish()) {
+                    return true;
+                }
+            }
+    }
     private static void playGame() {
         while(true){
             setGame();
-            // 이동이 성공했을 시에 계속 입력 받기
-            while(true) {
-                // 이동할 칸 입력 받기
-                outputView.printInputMoveDirection();
-                String direction = getDirection();
-
-                boolean isCorrectDirection = bridgeGame.move(direction);
-                outputView.printMap(bridgeGame);
-                if(!isCorrectDirection) {
-                    outputView.printInputRetryCommand();
-                    String command = getRetryCommand();
-                    boolean isRetry = bridgeGame.retry(command);
-                    if(!isRetry){
-                        return;
-                    }
-                    break;
-                }
-                if(bridgeGame.isSuccessFinish()) {
-                    return;
-                }
+            boolean isCompleted = proceedGame();
+            if(isCompleted) {
+                break;
             }
         }
     }
