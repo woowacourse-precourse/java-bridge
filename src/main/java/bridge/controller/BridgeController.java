@@ -31,6 +31,12 @@ public class BridgeController {
         }
     }
 
+    private void play() {
+        do {
+            takeTurn();
+        } while (bridgeGame.isAlive());
+    }
+
     private void takeTurn() {
         outputView.printAskingMoving();
         move();
