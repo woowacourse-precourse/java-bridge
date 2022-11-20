@@ -1,8 +1,7 @@
 package bridge.view;
 
-import static bridge.command.enums.PlayerMove.D;
-import static bridge.command.enums.PlayerMove.U;
-import static bridge.result.GameStatus.FAIL;
+import static bridge.view.map.OutputMapView.printLowerBridge;
+import static bridge.view.map.OutputMapView.printUpperBridge;
 
 import bridge.result.GameStatus;
 import bridge.result.Result;
@@ -17,12 +16,6 @@ public class OutputView {
     private static final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String START_GAME_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
-    private static final String MAP_START = "[ ";
-    private static final String MAP_END = " ]";
-    private static final String MAP_WALL = " | ";
-    private static final String MAP_EMPTY_SQUARE = " ";
-    private static final String MAP_CORRECT_SQUARE = "O";
-    private static final String MAP_WRONG_SQUARE = "X";
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
     private static final String SUCCESS_OR_NOT_MESSAGE = "게임 성공 여부: ";
     private static final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
@@ -38,8 +31,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Result result) {
-        printUpperBridge(result);
-        printLowerBridge(result);
+        List<String> squares = result.getSquares();
+        GameStatus gameStatus = result.getGameStatus();
+        printUpperBridge(squares, gameStatus);
+        printLowerBridge(squares, gameStatus);
     }
 
     public void printInputGameCommand() {
@@ -68,86 +63,5 @@ public class OutputView {
 
     public void printInputMoveMessage() {
         System.out.println(INPUT_MOVE_MESSAGE);
-    }
-
-
-    private void printUpperBridge(Result result) {
-        List<String> squares = result.getSquares();
-        int squaresSize = squares.size();
-        System.out.print(MAP_START);
-        for (int squareIdx = 0; squareIdx < squaresSize - 1; squareIdx++) {
-            printUpperBridgeSquare(squares.get(squareIdx));
-            printMapWall();
-        }
-        printLastUpperBridgeSquare(squares.get(squaresSize - 1), result.getGameStatus());
-    }
-
-    private void printLowerBridge(Result result) {
-        List<String> squares = result.getSquares();
-        int squaresSize = squares.size();
-        System.out.print(MAP_START);
-        for (int squareIdx = 0; squareIdx < squaresSize - 1; squareIdx++) {
-            printLowerBridgeSquare(squares.get(squareIdx));
-            printMapWall();
-        }
-        printLastLowerBridgeSquare(squares.get(squaresSize - 1), result.getGameStatus());
-    }
-
-    private void printMapWall() {
-        System.out.print(MAP_WALL);
-    }
-
-    private void printWrongSquare(GameStatus gameStatus) {
-        if (gameStatus.equals(FAIL)) {
-            System.out.print(MAP_WRONG_SQUARE);
-        }
-    }
-
-    private void printCorrectSquare(GameStatus gameStatus) {
-        if (!gameStatus.equals(FAIL)) {
-            System.out.print(MAP_CORRECT_SQUARE);
-        }
-    }
-
-    private void printEmptySquare() {
-        System.out.print(MAP_EMPTY_SQUARE);
-    }
-
-    private void printLowerBridgeSquare(String square) {
-        if (square.equals(D.toString())) {
-            System.out.print(MAP_CORRECT_SQUARE);
-            return;
-        }
-        System.out.print(MAP_EMPTY_SQUARE);
-    }
-
-    private void printUpperBridgeSquare(String square) {
-        if (square.equals(U.toString())) {
-            System.out.print(MAP_CORRECT_SQUARE);
-            return;
-        }
-        System.out.print(MAP_EMPTY_SQUARE);
-    }
-
-    private void printLastUpperBridgeSquare(String LastSquare, GameStatus gameStatus) {
-        if (LastSquare.equals(D.toString())) {
-            System.out.print(MAP_EMPTY_SQUARE);
-            System.out.println(MAP_END);
-            return;
-        }
-        printWrongSquare(gameStatus);
-        printCorrectSquare(gameStatus);
-        System.out.println(MAP_END);
-    }
-
-    private void printLastLowerBridgeSquare(String LastSquare, GameStatus gameStatus) {
-        if (LastSquare.equals(U.toString())) {
-            printEmptySquare();
-            System.out.println(MAP_END + "\n");
-            return;
-        }
-        printWrongSquare(gameStatus);
-        printCorrectSquare(gameStatus);
-        System.out.println(MAP_END + "\n");
     }
 }
