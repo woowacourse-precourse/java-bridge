@@ -36,4 +36,10 @@ public class OutputView {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
+    /**
+     * 게임을 재시도할지 종료할지를 선택하도록 지시하는 내용을 출력한다.
+     */
+    public void printGameCommand() {
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
 }
