@@ -10,7 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    Validation validation;
+    private final Validation validation;
 
     public InputView() {
         validation = new Validation();

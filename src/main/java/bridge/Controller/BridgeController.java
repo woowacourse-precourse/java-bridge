@@ -7,8 +7,8 @@ import java.util.List;
 
 public class BridgeController {
 
-    BridgeMaker bridgeMaker;
-    TotalView view;
+    private final BridgeMaker bridgeMaker;
+    private final TotalView view;
 
     public BridgeController() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
