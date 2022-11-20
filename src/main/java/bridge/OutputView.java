@@ -15,12 +15,16 @@ enum Brackets {
     }
 }
 
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String RESULT_MESSAGE = "최종 게임 결과";
+    private static final String SUCCESS_RESULT_MESSAGE = "게임 성공 여부: ";
+    private static final String TRIAL_MESSAGE = "총 시도한 횟수: ";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -36,8 +40,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int length, List<String> answer, List<String> submitted) {
+        System.out.println(RESULT_MESSAGE);
+        printUpperBridge(length-1,answer,submitted);
+        printLowerBridge(length-1,answer,submitted);
     }
+
+    public void printSuccessOrFail(BridgeGame game) {
+        String SorF="실퍠";
+        System.out.print(SUCCESS_RESULT_MESSAGE);
+        if(game.isSuccess){
+            SorF="성공";
+        }
+        System.out.println(SorF);
+    }
+
+    public void printTrialCount(BridgeGame game) {
+        System.out.print(TRIAL_MESSAGE);
+        System.out.println(game.trialCount);
+    }
+
     public void printUpperBridge(int step, List<String> answer, List<String> submitted) {
         System.out.print(Brackets.START.getSymbol());
         for (int loop = 0; loop < step+1; loop++) {
