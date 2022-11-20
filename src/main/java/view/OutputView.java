@@ -1,6 +1,7 @@
 package view;
 
 import dto.GameResult;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,15 +18,21 @@ public class OutputView {
     private final Map<Boolean, String> successMapper = Map.of(false, "실패", true, "성공");
     private final String ERROR_FORMAT = "[ERROR] %s";
 
+    public void printInitComment(){
+        System.out.println(GAME_INIT_COMMENT);
+    }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(GameResult gameResult) {
-        for (List<MoveResult> rowMoveResults : gameResult.getMoveResult()) {
-            System.out.println(getFormattedRow(rowMoveResults));
+        List<List<MoveResult>> moveResults = gameResult.getMoveResult();
+
+        for (int i = moveResults.size() - 1 ; i >= 0 ; i--) {
+            System.out.println(getFormattedRow(moveResults.get(i)));
         }
+        System.out.println();
     }
 
     /**
@@ -36,7 +43,6 @@ public class OutputView {
     public void printResult(GameResult gameResult) {
         System.out.println("최종 게임 결과");
         printMap(gameResult);
-        System.out.println();
 
         System.out.println(String.format(SUCCESS_FORMAT, successMapper.get(gameResult.getStatus().succeed())));
         System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT, gameResult.getTryCount()));
