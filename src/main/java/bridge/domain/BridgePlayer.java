@@ -22,4 +22,8 @@ public class BridgePlayer {
     public void moveTo(BridgeMoveType moveType) {
         playerBridge.add(moveType);
     }
+
+    public void clearPlayerBridge() {
+        playerBridge.clear();
+    }
 }
