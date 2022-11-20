@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -35,9 +33,9 @@ public class OutputView {
 
     private StringBuilder buildBridgeLine(Line flag, BridgeGame game) {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < game.getPlayerPosition(); ++i) {
+        for (int i = 0; i < game.getPosition(); ++i) {
             builder.append(getCell(flag, i, game));
-            if (i != game.getPlayerIndex()) {
+            if (i != game.getIndex()) {
                 builder.append(SEPARATOR);
             }
         }
@@ -47,10 +45,10 @@ public class OutputView {
     }
 
     private String getCell(Line flag, int index, BridgeGame game) {
-        if (index < game.getPlayerIndex() && isSameLine(flag, game.getBridge().get(index))) {
+        if (index < game.getIndex() && isSameLine(flag, game.getBridge().get(index))) {
             return CORRECT_CELL;
         }
-        if (index == game.getPlayerIndex() && isSameLine(flag, game.getLastCommand())) {
+        if (index == game.getIndex() && isSameLine(flag, game.getLastCommand())) {
             if (game.getLastCommand().equals(game.getBridge().get(index))) {
                 return CORRECT_CELL;
             }

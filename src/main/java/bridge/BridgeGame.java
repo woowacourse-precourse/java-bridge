@@ -52,7 +52,7 @@ public class BridgeGame {
      * @return 플레이어가 생존했다면 true 죽었다면 false
      */
     public boolean isPlayerAlive() {
-        if (getPlayerPosition() == 0 || bridge.get(getPlayerPosition() - 1).equals(lastCommand)) {
+        if (getPosition() == 0 || bridge.get(getPosition() - 1).equals(lastCommand)) {
             return true;
         }
         return false;
@@ -64,7 +64,7 @@ public class BridgeGame {
      * @return 플레이어가 승리했다면 true 아니라면 false
      */
     public boolean isSuccess() {
-        if (bridge.size() == getPlayerPosition()) {
+        if (bridge.size() == getPosition()) {
             return true;
         }
         return false;
@@ -99,11 +99,11 @@ public class BridgeGame {
         return bridge;
     }
 
-    public int getPlayerPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public int getPlayerIndex() {
+    public int getIndex() {
         return position - 1;
     }
 
