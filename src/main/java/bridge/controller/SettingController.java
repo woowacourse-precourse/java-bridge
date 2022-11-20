@@ -17,11 +17,11 @@ public class SettingController {
     }
 
     public BridgeGame setBridgeGame() {
+        outputView.printStart();
+        outputView.printInputSize();
         int bridgeSize = inputBridgeSize();
         BridgeMaker bridgeMaker = getRandomNumberBridgeMaker();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker, bridgeSize);
-
-        return bridgeGame;
+        return new BridgeGame(bridgeMaker, bridgeSize);
     }
 
     private int inputBridgeSize() {
