@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.BridgeValue;
+
 public class Validation {
     private final static int MIN_BRIDGE_SIZE = 3;
     private final static int MAX_BRIDGE_SIZE = 20;
