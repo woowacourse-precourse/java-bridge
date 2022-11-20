@@ -20,28 +20,27 @@ public class BridgeViewConstructor {
         return playerIndexed.equals(bridgeIndexed);
     }
 
-    private void appendRightAnswer(StringBuilder bridge){
-        bridge.append(RIGHT_BRIDGE).append(BRIDGE_CONNECTOR);
+    private void appendRightAnswer(){
     }
 
-    private void appendWrongAnswer(StringBuilder bridge){
-        bridge.append(WRONG_BRIDGE).append(BRIDGE_CONNECTOR);
+    private void appendWrongAnswer(){
     }
 
     private boolean isU(){
         return true;
     }
 
-    private void appendWithO(){
+    private void appendWithO(StringBuilder bridge){
+        bridge.append(WRONG_BRIDGE).append(BRIDGE_CONNECTOR);
+    }
+
+    private void appendWithBlank(StringBuilder bridge){
+        bridge.append(BLANK_BRIDGE).append(BRIDGE_CONNECTOR);
 
     }
 
-    private void appendWithBlank(){
-
-    }
-
-    private void appendWithX(){
-
+    private void appendWithX(StringBuilder bridge){
+        bridge.append(RIGHT_BRIDGE).append(BRIDGE_CONNECTOR);
     }
 
     private void makeBracket(){
