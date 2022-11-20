@@ -15,9 +15,11 @@ public class BridgeController {
 
     private void init() {
         outputView.printStartingGame();
+        outputView.printAskingBridgeLength();
         while (true) {
             try {
                 bridgeGame = new BridgeGame(inputView.readBridgeSize());
+                System.out.println();
                 return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
