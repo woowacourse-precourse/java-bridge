@@ -17,4 +17,12 @@ class InputViewValidatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> validator.checkCommand(command));
     }
+
+    @DisplayName("이동할 칸 입력이 U 또는 D이 아닐 경우 예외 발생 확인")
+    @CsvSource(value = {"u", "d", "a", "b", "A", "B", "UU", "DD"})
+    @ParameterizedTest
+    void makeWrongMoving(String moving) {
+        assertThrows(IllegalArgumentException.class,
+                () -> validator.checkCommand(moving));
+    }
 }
