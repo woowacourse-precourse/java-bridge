@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String GAME_START_GUIDE = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_SUCCESS_GUIDE = "게임 성공 여부: ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
@@ -24,6 +25,10 @@ public class OutputView {
     private static final String BRIDGE_END = "]";
     private static final String BRIDGE_START = "[";
     private static final String NEW_LINE = "\n";
+
+    public void printGameStart() {
+        System.out.println(GAME_START_GUIDE + NEW_LINE);
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
