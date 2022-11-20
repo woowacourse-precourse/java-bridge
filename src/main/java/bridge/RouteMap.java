@@ -25,4 +25,9 @@ public class RouteMap {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "upSide: " + upSide + ", " + "downSide: " + downSide;
+    }
+
 }
