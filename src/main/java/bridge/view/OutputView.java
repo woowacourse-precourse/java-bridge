@@ -5,6 +5,41 @@ package bridge.view;
  */
 public class OutputView {
 
+    public final static String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    public final static String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    public final static String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public final static String READ_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
+    private void printlnMessage(String message) {
+
+        System.out.println(message);
+    }
+
+    private void printMessage(String message) {
+
+        System.out.print(message);
+    }
+
+    public void printStart() {
+
+        printlnMessage(GAME_START_MESSAGE);
+    }
+
+    public void printReadBridgeSize() {
+
+        printlnMessage(READ_BRIDGE_SIZE_MESSAGE);
+    }
+
+    public void printReadMoving() {
+
+        printlnMessage(READ_MOVING_MESSAGE);
+    }
+
+    public void printReadRetry() {
+
+        printlnMessage(READ_RETRY_MESSAGE);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
