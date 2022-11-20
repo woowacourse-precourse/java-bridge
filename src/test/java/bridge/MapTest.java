@@ -8,73 +8,99 @@ import org.junit.jupiter.api.Test;
 class MapTest {
     @Test
     void test1Right() {
-        Map map = new Map(List.of("U", "D", "U", "D"));
+        Map map = new Map();
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[ O ]");
-        assertThat(map.getPath("D")).isEqualTo("[   ]");
+        map.update("U", "U");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[ O ]",
+                        "[   ]"));
 
-        map.update("D");
-        assertThat(map.getPath("U")).isEqualTo("[ O |   ]");
-        assertThat(map.getPath("D")).isEqualTo("[   | O ]");
+        map.update("D", "D");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[ O |   ]",
+                        "[   | O ]"));
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[ O |   | O ]");
-        assertThat(map.getPath("D")).isEqualTo("[   | O |   ]");
+        map.update("U", "U");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[ O |   | O ]",
+                        "[   | O |   ]"));
 
-        map.update("D");
-        assertThat(map.getPath("U")).isEqualTo("[ O |   | O |   ]");
-        assertThat(map.getPath("D")).isEqualTo("[   | O |   | O ]");
+        map.update("D", "D");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[ O |   | O |   ]",
+                        "[   | O |   | O ]"));
     }
 
     @Test
     void test1Wrong() {
-        Map map = new Map(List.of("U", "D", "U", "D"));
+        Map map = new Map();
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[ O ]");
-        assertThat(map.getPath("D")).isEqualTo("[   ]");
+        map.update("U", "U");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[ O ]",
+                        "[   ]"));
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[ O | X ]");
-        assertThat(map.getPath("D")).isEqualTo("[   |   ]");
+        map.update("U", "D");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[ O | X ]",
+                        "[   |   ]"));
     }
 
     @Test
     void test2Right() {
-        Map map = new Map(List.of("D", "U", "D", "U"));
+        Map map = new Map();
 
-        map.update("D");
-        assertThat(map.getPath("U")).isEqualTo("[   ]");
-        assertThat(map.getPath("D")).isEqualTo("[ O ]");
+        map.update("D", "D");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[   ]",
+                        "[ O ]"));
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[   | O ]");
-        assertThat(map.getPath("D")).isEqualTo("[ O |   ]");
+        map.update("U", "U");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[   | O ]",
+                        "[ O |   ]"));
 
-        map.update("D");
-        assertThat(map.getPath("U")).isEqualTo("[   | O |   ]");
-        assertThat(map.getPath("D")).isEqualTo("[ O |   | O ]");
+        map.update("D", "D");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[   | O |   ]",
+                        "[ O |   | O ]"));
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[   | O |   | O ]");
-        assertThat(map.getPath("D")).isEqualTo("[ O |   | O |   ]");
+        map.update("U", "U");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[   | O |   | O ]",
+                        "[ O |   | O |   ]"));
     }
 
     @Test
     void test2Wrong() {
-        Map map = new Map(List.of("D", "U", "D", "U"));
+        Map map = new Map();
 
-        map.update("D");
-        assertThat(map.getPath("U")).isEqualTo("[   ]");
-        assertThat(map.getPath("D")).isEqualTo("[ O ]");
+        map.update("D", "D");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[   ]",
+                        "[ O ]"));
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[   | O ]");
-        assertThat(map.getPath("D")).isEqualTo("[ O |   ]");
+        map.update("U", "U");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[   | O ]",
+                        "[ O |   ]"));
 
-        map.update("U");
-        assertThat(map.getPath("U")).isEqualTo("[   | O | X ]");
-        assertThat(map.getPath("D")).isEqualTo("[ O |   |   ]");
+        map.update("U", "D");
+        assertThat(map.getCurrentMap())
+                .isEqualTo(List.of(
+                        "[   | O | X ]",
+                        "[ O |   |   ]"));
     }
 }

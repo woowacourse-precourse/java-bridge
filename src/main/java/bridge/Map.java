@@ -5,19 +5,16 @@ import java.util.List;
 
 public class Map {
     private final String MARK_NOT_PATH = " ";
-    List<String> bridge;
     List<String> upperPath;
     List<String> lowerPath;
 
-    public Map(List<String> bridge) {
-        this.bridge = bridge;
-        upperPath = new ArrayList<>(bridge.size());
-        lowerPath = new ArrayList<>(bridge.size());
+    public Map() {
+        upperPath = new ArrayList<>();
+        lowerPath = new ArrayList<>();
     }
 
-    public void update(String direction) {
+    public void update(String direction, String answer) {
         String mark;
-        String answer = bridge.get(upperPath.size());
         if (direction.equals(answer)) {
             mark = "O";
         } else {
@@ -34,14 +31,8 @@ public class Map {
         }
     }
 
-    public String getPath(String flag) {
-        if (flag.equals("U")) {
-            return makePathStringFormat(upperPath);
-        }
-        if (flag.equals("D")) {
-            return makePathStringFormat(lowerPath);
-        }
-        return "";
+    public List<String> getCurrentMap() {
+        return List.of(makePathStringFormat(upperPath), makePathStringFormat(lowerPath));
     }
 
     private String makePathStringFormat(List<String> path) {
