@@ -26,4 +26,13 @@ public class BridgeGameTest {
         assertThat(bridgeGame.move(0, "U"))
                 .isTrue();
     }
+
+    @DisplayName("다리 건너기를 실패했을 경우 올바른 값을 반환하는지 테스트")
+    @Test()
+    public void failMove() {
+        BridgeGame bridgeGame = new BridgeGame(3);
+        bridgeGame.setBridge(List.of("U", "D", "D"));
+        assertThat(bridgeGame.move(0, "D"))
+                .isFalse();
+    }
 }
