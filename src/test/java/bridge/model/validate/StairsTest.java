@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.validate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import bridge.Error;
+import bridge.model.constant.Error;
 
 class StairsTest {
 	@DisplayName("U 혹은 D를 입력하면 Location Enum을 반환한다")

@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.validate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import bridge.Error;
+import bridge.model.constant.Error;
 
 class ExitOptionTest {
 	@DisplayName("R 혹은 Q를 입력하면 Boolean을 리턴한다.")

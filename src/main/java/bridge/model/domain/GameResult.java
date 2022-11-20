@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.domain;
 
 public class GameResult {
 	private static final String SUCCESS = "성공";

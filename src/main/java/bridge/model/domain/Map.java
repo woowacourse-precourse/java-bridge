@@ -1,6 +1,8 @@
-package bridge.model;
+package bridge.model.domain;
 
 import java.util.List;
+
+import bridge.model.validate.Stairs;
 
 public class Map {
 

@@ -1,8 +1,8 @@
-package bridge.model;
+package bridge.model.validate;
 
 import java.util.List;
 
-import bridge.Error;
+import bridge.model.constant.Error;
 
 public enum ExitOption {
 	REPLAY("R"),

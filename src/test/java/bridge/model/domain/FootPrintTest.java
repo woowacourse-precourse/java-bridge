@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,6 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import bridge.model.domain.FootPrint;
+import bridge.model.validate.Stairs;
 
 class FootPrintTest {
 	@DisplayName("층수와 정답 여부를 입력하면 footPrints를 리턴한다.")

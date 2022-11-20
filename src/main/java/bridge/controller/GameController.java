@@ -2,8 +2,8 @@ package bridge.controller;
 
 import java.util.List;
 
-import bridge.model.Stairs;
-import bridge.service.BridgeGame;
+import bridge.model.validate.Stairs;
+import bridge.model.service.BridgeGame;
 import bridge.view.OutputView;
 
 public class GameController {

@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.validate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import bridge.Error;
+import bridge.model.constant.Error;
 
 class BridgeSizeTest {
 	@DisplayName("3 에서 20 사이 자연수를 입력하면 해당 숫자를 반환한다")

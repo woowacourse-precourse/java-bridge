@@ -1,8 +1,8 @@
-package bridge;
+package bridge.model.constant;
 
-import bridge.model.BridgeSize;
-import bridge.model.ExitOption;
-import bridge.model.Stairs;
+import bridge.model.validate.BridgeSize;
+import bridge.model.validate.ExitOption;
+import bridge.model.validate.Stairs;
 
 public enum Error {
 	FORMAT("자연수만 입력해주세요."),

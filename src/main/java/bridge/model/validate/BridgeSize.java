@@ -1,6 +1,6 @@
-package bridge.model;
+package bridge.model.validate;
 
-import bridge.Error;
+import bridge.model.constant.Error;
 
 public class BridgeSize {
 	public static final int MIN_NUMBER = 3;

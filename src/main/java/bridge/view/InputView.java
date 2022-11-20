@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.Error;
-import bridge.model.ExitOption;
-import bridge.model.Stairs;
+import bridge.model.constant.Error;
+import bridge.model.validate.ExitOption;
+import bridge.model.validate.Stairs;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

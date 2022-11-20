@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import bridge.model.domain.FootPrint;
+import bridge.model.domain.Map;
 
 class MapTest {
 
