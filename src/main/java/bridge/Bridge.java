@@ -54,15 +54,19 @@ public class Bridge {
      *  일단 여기서 로그 메시지를 출력해본다
      */
     public void readAndMove(InputView inputView) {
-        String upperOrLower = inputView.readMoving();
 
-        if (isNextMovable(upperOrLower)) {
-            printSuccess();
-            move();
-        } else {
+        do {
+            String upperOrLower = inputView.readMoving();
+
+            if (isNextMovable(upperOrLower)) {
+                printSuccess();
+                move();
+                continue;
+            }
             printFailure();
             return;
-        }
+
+        } while (whetherFollowingEndOrNot());
     }
 
     /**
