@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.util.InputConstant;
+import bridge.util.OutputConstant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,20 +17,20 @@ public class Result {
     }
 
     public void addUpstairs() {
-        upStairs.add(" O ");
-        downsStairs.add("   ");
+        upStairs.add(OutputConstant.PASS_POSSIBLE.getValue());
+        downsStairs.add(OutputConstant.EMPTY.getValue());
     }
 
     public void addDownsStairs() {
-        upStairs.add("   ");
-        downsStairs.add(" O ");
+        upStairs.add(OutputConstant.EMPTY.getValue());
+        downsStairs.add(OutputConstant.PASS_POSSIBLE.getValue());
     }
 
     public void recordDirection(String direction) {
-        if(direction.equals("U")) {
+        if(direction.equals(InputConstant.UP.getValue())) {
             addUpstairs();
         }
-        if(direction.equals("D")) {
+        if(direction.equals(InputConstant.DOWN.getValue())) {
             addDownsStairs();
         }
     }
@@ -36,21 +39,21 @@ public class Result {
         if(upStairs.size() == EMPTY) {
             return "";
         }
-        return upStairs.toString().replaceAll(", ", "|");
+        return upStairs.toString().replaceAll(OutputConstant.COMMA.getValue(), OutputConstant.BAR.getValue());
     }
 
     public String makeDownStairsMessage() {
         if(downsStairs.size() == EMPTY) {
             return "";
         }
-        return downsStairs.toString().replaceAll(", ", "|");
+        return downsStairs.toString().replaceAll(OutputConstant.COMMA.getValue(), OutputConstant.BAR.getValue());
     }
 
     public void changeUpStairsRecord() {
-        upStairs.set(upStairs.size() - 1, " X ");
+        upStairs.set(upStairs.size() - 1, OutputConstant.PASS_IMPOSSIBLE.getValue());
     }
 
     public void changeDownStairsRecord() {
-        downsStairs.set(downsStairs.size() - 1, " X ");
+        downsStairs.set(downsStairs.size() - 1, OutputConstant.PASS_IMPOSSIBLE.getValue());
     }
 }

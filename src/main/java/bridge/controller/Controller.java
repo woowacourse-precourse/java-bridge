@@ -5,6 +5,8 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.domain.Result;
+import bridge.util.InputConstant;
+import bridge.util.MessageConstant;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -59,16 +61,16 @@ public class Controller {
             outputView.printSelectDirectionMessage();
             bridgeGame.move(inputDirection());
         } while (!bridgeGame.isFinish());
-        outputView.printResult(player, result, "성공");
+        outputView.printResult(player, result, MessageConstant.SUCCESS.getValue());
     }
     public void compareDecision(String decision) {
-        if(decision.equals("R")) {
+        if(decision.equals(InputConstant.RESTART.getValue())) {
             result = new Result();
             bridgeGame.initialize(result);
             start();
         }
-        if(decision.equals("Q")) {
-            outputView.printResult(player, result, "실패");
+        if(decision.equals(InputConstant.QUIT.getValue())) {
+            outputView.printResult(player, result, MessageConstant.FAIL.getValue());
         }
     }
     public void decisionGameContinuous() {

@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.Player;
 import bridge.domain.Result;
+import bridge.util.MessageConstant;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -15,25 +16,25 @@ public class OutputView {
     
     public void printResult(Player player, Result result, String message) {
         printMap(result);
-        System.out.println("최종 게임 결과");
+        System.out.println(MessageConstant.TOTAL_RESULT.getValue());
         printMap(result);
-        System.out.println("게임 성공 여부: " + message);
-        System.out.println("총 시도한 횟수: " + player.getTryGameCount());
+        System.out.println(MessageConstant.SUCCESS_OR_NOT.getValue() + message);
+        System.out.println(MessageConstant.TRY_COUNT.getValue() + player.getTryGameCount());
     }
 
     public void printStartMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(MessageConstant.START_GAME.getValue());
     }
 
     public void printInputLengthMessage() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(MessageConstant.INPUT_BRIDGE_LENGTH.getValue());
     }
 
     public void printSelectDirectionMessage() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(MessageConstant.SELECT_DIRECTION.getValue());
     }
 
     public void printSelectAgainMessage() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(MessageConstant.ERROR_INPUT_GAME_CONTINUOUS.getValue());
     }
 }

@@ -2,6 +2,7 @@ package bridge.domain;
 
 
 import java.util.List;
+import java.util.Objects;
 
 public class Bridge {
     private final List<String> directions;
@@ -11,7 +12,7 @@ public class Bridge {
     }
 
     public boolean canMoveDirection(String direction, int idx) {
-        return directions.get(idx) == direction;
+        return Objects.equals(directions.get(idx), direction);
     }
 
     public boolean isFinish(int size) {

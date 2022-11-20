@@ -1,6 +1,9 @@
 package bridge.domain;
 
 
+import bridge.util.InputConstant;
+import bridge.util.MessageConstant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +26,13 @@ public class BridgeGame {
     }
 
     public void retry() throws IllegalArgumentException {
-        if(inputs.get(inputs.size() - 1).equals("U")) {
+        if(inputs.get(inputs.size() - 1).equals(InputConstant.UP.getValue())) {
             result.changeUpStairsRecord();
         }
-        if(inputs.get(inputs.size() - 1).equals("D")) {
+        if(inputs.get(inputs.size() - 1).equals(InputConstant.DOWN.getValue())) {
             result.changeDownStairsRecord();
         }
-        throw new IllegalArgumentException("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        throw new IllegalArgumentException(MessageConstant.ERROR_INPUT_GAME_CONTINUOUS.getValue());
     }
 
     public void inputDirection(String direction) {

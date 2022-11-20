@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.util.InputConstant;
+import bridge.util.MessageConstant;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
@@ -11,9 +13,7 @@ public class InputView {
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 20;
 
-    private static final String QUIT = "Q";
-
-    private static final String RESTART = "R";
+    private static final String ZERO = "0";
 
     public String input() {
         return Console.readLine();
@@ -47,38 +47,38 @@ public class InputView {
 
     public void validateIsNotEmpty(String size) {
         if(size.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력이 비어있습니다.");
+            throw new IllegalArgumentException(MessageConstant.ERROR_EMPTY.getValue());
         }
     }
 
     public void validateIsNumber(String size) {
         String regExp = "^[0-9]*$";
-        if(!size.matches(regExp) || String.valueOf(size.charAt(0)).equals("0")) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        if(!size.matches(regExp) || String.valueOf(size.charAt(0)).equals(ZERO)) {
+            throw new IllegalArgumentException(MessageConstant.ERROR_BRIDGE_LENGTH.getValue());
         }
     }
 
     public int validateIsLengthRange(String input) {
         int size = Integer.parseInt(input);
         if(size < MIN_LENGTH || size > MAX_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(MessageConstant.ERROR_BRIDGE_LENGTH.getValue());
         }
         return size;
     }
 
     public void validateDirection(String direction) {
         if(!isExistDirection(direction)) {
-            throw new IllegalArgumentException("[ERROR] U(위) 또는 D(아래)만을 입력해야 합니다.");
+            throw new IllegalArgumentException(MessageConstant.ERROR_INPUT_DIRECTION.getValue());
         }
     }
 
     public boolean isExistDirection(String direction) {
-        return Arrays.asList("U", "D").contains(direction);
+        return Arrays.asList(InputConstant.UP.getValue(), InputConstant.DOWN.getValue()).contains(direction);
     }
 
     public void validateDecision(String decision) {
-        if(!decision.equals(RESTART) && !decision.equals(QUIT)) {
-            throw new IllegalArgumentException("[ERROR] R(재시도) 또는 Q(종료)만을 입력해야 합니다.");
+        if(!decision.equals(InputConstant.RESTART.getValue()) && !decision.equals(InputConstant.QUIT.getValue())) {
+            throw new IllegalArgumentException(MessageConstant.ERROR_INPUT_GAME_CONTINUOUS.getValue());
         }
     }
 }
