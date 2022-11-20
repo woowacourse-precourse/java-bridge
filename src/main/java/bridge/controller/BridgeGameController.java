@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
+
 import bridge.model.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -36,12 +37,11 @@ public class BridgeGameController {
             bridgeGame.move(nextMove);
             printBridgeMap();
 
-            if(bridgeGame.getResult().isSuccess()) {
+            if(bridgeGame.getStatus() == BridgeGame.Status.SUCCESS) {
                 willRetry = false;
                 continue;
             }
-
-            if(bridgeGame.getResult().isFail()) {
+            if(bridgeGame.getStatus() == BridgeGame.Status.FAIL) {
                 RestartInfo gameCommand = getAndProcessGameCommandInput();
                 if(gameCommand == RestartInfo.RETRY) {
                     bridgeGame.retry();
@@ -53,7 +53,7 @@ public class BridgeGameController {
             }
         } while(willRetry);
 
-        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getResult());
+        outputView.printResult(bridgeGame);
     }
 
     private RestartInfo getAndProcessGameCommandInput() {

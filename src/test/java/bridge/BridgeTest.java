@@ -128,11 +128,11 @@ public class BridgeTest {
             game.move(BridgeLane.UP);
 
             int expectedTryCount = 2;
-            assertThat(game.getResult().getTryCount()).isEqualTo(expectedTryCount);
+            assertThat(game.getTryCount()).isEqualTo(expectedTryCount);
         }
 
         @Test
-        @DisplayName("최종 지점에 도달하지 않으면 결과의 상태가 success가 되지 않는다.")
+        @DisplayName("최종 지점에 도달하지 않으면 결과의 상태가 TBD가 된다.")
         void isNotSuccessTest() {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
@@ -141,12 +141,12 @@ public class BridgeTest {
             game.move(BridgeLane.UP);
             game.move(BridgeLane.DOWN);
 
-            boolean expectedSuccess = false;
-            assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
+            BridgeGame.Status expectedStatus = BridgeGame.Status.TBD;
+            assertThat(game.getStatus()).isEqualTo(expectedStatus);
         }
 
         @Test
-        @DisplayName("안전하지 않은 칸으로 가면 결과의 상태가 success가 되지 않는다.")
+        @DisplayName("안전하지 않은 칸으로 가면 결과의 상태가 FAIL이 된다.")
         void isNotSuccessTest2() {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0));
             BridgeGame game = new BridgeGame(bridge);
@@ -155,8 +155,8 @@ public class BridgeTest {
             game.move(BridgeLane.UP);
             game.move(BridgeLane.UP);
 
-            boolean expectedSuccess = false;
-            assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
+            BridgeGame.Status expectedStatus = BridgeGame.Status.FAIL;
+            assertThat(game.getStatus()).isEqualTo(expectedStatus);
         }
 
         @Test
@@ -168,8 +168,8 @@ public class BridgeTest {
             game.move(BridgeLane.UP);
             game.move(BridgeLane.UP);
 
-            boolean expectedSuccess = true;
-            assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
+            BridgeGame.Status expectedStatus = BridgeGame.Status.SUCCESS;
+            assertThat(game.getStatus()).isEqualTo(expectedStatus);
         }
 
         @Test
@@ -183,7 +183,7 @@ public class BridgeTest {
             game.move(BridgeLane.UP);
 
             BridgeLane expectedSpotInfo = BridgeLane.UP;
-            assertThat(game.getResult().getLastMovementRecord(1)).isEqualTo(expectedSpotInfo);
+            assertThat(game.getCurrentMovementRecord(1)).isEqualTo(expectedSpotInfo);
         }
     }
 

@@ -28,14 +28,25 @@ public class OutputView {
     public void printGameStartAlert() {
         System.out.println(GAME_START_ALERT);
     }
+
     public void printBridgeSizeInputAlert() {
         System.out.println(BRIDGE_LENGTH_INPUT_ALERT);
     }
+
     public void printNextMovementInputAlert() {
         System.out.println(NEXT_MOVEMENT_INPUT_ALERT);
     }
+
     public void printRetryInputAlert() {
         System.out.println(RETRY_INPUT_ALERT);
+    }
+
+    public void printEmptyLine() {
+        System.out.println();
+    }
+
+    public void printError(String errorText) {
+        System.out.println(ERROR_PREFIX + errorText);
     }
 
     /**
@@ -44,10 +55,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        Bridge bridge = bridgeGame.getBridge();
-        BridgeGameResult bridgeGameResult = bridgeGame.getResult();
-
-        System.out.println(getBridgeMovementText(bridge, bridgeGameResult));
+        System.out.println(getBridgeMovementText(bridgeGame));
 
     }
 
@@ -56,32 +64,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Bridge bridge, BridgeGameResult bridgeGameResult) {
+    public void printResult(BridgeGame bridgeGame) {
         System.out.println(LAST_MOVEMENT_RESULT_LABEL);
-        System.out.println(getBridgeMovementText(bridge, bridgeGameResult));
-        System.out.println(getIfIsSuccessText(bridgeGameResult));
-        System.out.println(getTryCountText(bridgeGameResult));
+        System.out.println(getBridgeMovementText(bridgeGame));
+        System.out.println(getIfIsSuccessText(bridgeGame));
+        System.out.println(getTryCountText(bridgeGame));
     }
 
-    public void printError(String errorText) {
-        System.out.println(ERROR_PREFIX + errorText);
-    }
-
-    private String getBridgeMovementText(Bridge bridge, BridgeGameResult bridgeGameResult) {
+    private String getBridgeMovementText(BridgeGame bridgeGame) {
         StringBuilder output = new StringBuilder();
         BridgeLane[] lineSpots = BridgeLane.values();
         for (BridgeLane lineSpot : lineSpots) {
-            output.append(getOneLaneTextOnBridgeMovement(bridge, bridgeGameResult, lineSpot));
+            output.append(getOneLineTextOnBridgeMovement(bridgeGame, lineSpot));
             output.append("\n");
         }
         return output.toString();
     }
 
-    private String getOneLaneTextOnBridgeMovement(Bridge bridge, BridgeGameResult bridgeGameResult, BridgeLane line) {
+    private String getOneLineTextOnBridgeMovement(BridgeGame bridgeGame, BridgeLane line) {
         StringBuilder oneLineOnBridge = new StringBuilder("[");
-        for(int i = 1; i <= bridgeGameResult.getLastMovementCount(); i++) {
-            oneLineOnBridge.append(getSpotText(bridge, bridgeGameResult, i, line));
-            if(i != bridgeGameResult.getLastMovementCount()) {
+        for(int i = 1; i <= bridgeGame.getCurrentPosition(); i++) {
+            oneLineOnBridge.append(getSpotText(bridgeGame, i, line));
+            if(i != bridgeGame.getCurrentPosition()) {
                 oneLineOnBridge.append("|");
             }
         }
@@ -89,27 +93,27 @@ public class OutputView {
         return oneLineOnBridge.toString();
     }
 
-    private String getIfIsSuccessText(BridgeGameResult bridgeGameResult) {
-        if(bridgeGameResult.isSuccess()) {
+    private String getIfIsSuccessText(BridgeGame bridgeGame) {
+        if(bridgeGame.getStatus() == BridgeGame.Status.SUCCESS) {
             return IF_IS_SUCCESS_PREFIX + SUCCESS_TEXT;
         }
         return IF_IS_SUCCESS_PREFIX + FAIL_TEXT;
     }
 
-    private String getTryCountText(BridgeGameResult bridgeGameResult) {
-        return TRY_COUNT_PREFIX + bridgeGameResult.getTryCount();
+    private String getTryCountText(BridgeGame bridgeGame) {
+        return TRY_COUNT_PREFIX + bridgeGame.getTryCount();
     }
 
-    private String getSpotText(Bridge bridge, BridgeGameResult bridgeGameResult, int index, BridgeLane spotInfo) {
-        BridgeLane targetMovement = bridgeGameResult.getLastMovementRecord(index);
+    private String getSpotText(BridgeGame bridgeGame, int index, BridgeLane spotInfo) {
+        BridgeLane targetMovement = bridgeGame.getCurrentMovementRecord(index);
         if(targetMovement == spotInfo) {
-            return BLANK + getSafetySymbol(bridge, index, spotInfo) + BLANK;
+            return BLANK + getSafetySymbol(bridgeGame, index, spotInfo) + BLANK;
         }
         return BLANK + BLANK + BLANK;
     }
 
-    private String getSafetySymbol(Bridge bridge, int index, BridgeLane spotInfo) {
-        if(bridge.isSafeSpot(index, spotInfo)) {
+    private String getSafetySymbol(BridgeGame bridgeGame, int index, BridgeLane spotInfo) {
+        if(bridgeGame.isSafeSpot(index, spotInfo)) {
             return SAFE_SYMBOL;
         }
         return UNSAFE_SYMBOL;
