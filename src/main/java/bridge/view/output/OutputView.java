@@ -51,5 +51,6 @@ public class OutputView {
     public void printException(Exception e) {
         System.out.println(e.getMessage());
         Arrays.stream(e.getStackTrace()).forEach(System.out::println);
+        System.out.println();
     }
 }
