@@ -7,7 +7,7 @@ public class InitStatus implements BridgeGameStatus {
 
     @Override
     public BridgeGameStatus next(BridgeGameContext context, BridgeGameView bridgeGameView) {
-        return null;
+        return new GameStartStatus();
     }
 
     @Override
