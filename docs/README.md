@@ -85,6 +85,7 @@
 ### Other
 
 - [x]  BridgeGameController 요청 처리
+- [x]  BridgeGameService 비즈니스 로직 처리
 - [x]  InputView 입력 처리
     - [x]  readBridgeSize -> 다리 길이 입력
     - [x]  readMoving -> 사용자의 이동 방향 입력
