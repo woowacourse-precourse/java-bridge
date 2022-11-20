@@ -46,7 +46,7 @@ public class Valid {
 
     public static boolean isEnterNotLetter(String enter) {
         boolean isNotLetter = false;
-        enter = enter.replaceAll("[a-zA-z]", "");
+        enter = enter.replaceAll("[a-zA-Z]", "");
         if (!enter.equals("")) {
             isNotLetter = true;
         }

@@ -35,7 +35,7 @@ public class BridgeGameController {
     public void restartOrNot() {
         if (inputView.readGameCommand().equals("R")) {
             countRestart++;
-            repeatMakeBridge();
+            repeatMakeResult();
         }
     }
 
@@ -49,34 +49,34 @@ public class BridgeGameController {
         }
     }
 
-    public void isValueSame(String userInput, int index) {
+    public void sameWithAnswer(String userInput, int index) {
         bridgeGame.isValueSame(userInput, upAndDown);
         outputView.printMap(upAndDown);
         isValueSpecial(index);
     }
 
-    public void isValueDiff(String userInput) {
+    public void diffWithAnswer(String userInput) {
         bridgeGame.isValueDiff(userInput, upAndDown);
         outputView.printMap(upAndDown);
         upAndDown = new ArrayList<>(Arrays.asList("", ""));
         restartOrNot();
     }
 
-    public String makeBridge(String answerInput, int index) {
+    public String makeResult(String answerInput, int index) {
         String userInput = inputView.readMoving();
         if (userInput.equals(answerInput)) {
-            isValueSame(userInput, index);
+            sameWithAnswer(userInput, index);
         }
         if (!userInput.equals(answerInput)) {
-            isValueDiff(userInput);
+            diffWithAnswer(userInput);
         }
         return userInput;
     }
 
-    public void repeatMakeBridge() {
+    public void repeatMakeResult() {
         int i = 0;
         while (i < answerBridge.size()) {
-            String userInput = makeBridge(answerBridge.get(i), i);
+            String userInput = makeResult(answerBridge.get(i), i);
             if (!userInput.equals(answerBridge.get(i))) {
                 break;
             }
@@ -84,53 +84,9 @@ public class BridgeGameController {
         }
     }
 
-    public void doAfterValid(String message) {
-        String exceptionMessage = "java.lang.IllegalArgumentException: ";
-        if (message.equals(exceptionMessage+ValidMessage.ValidLength.getMessage())) {
-            startGame();
-        }
-        if (message.equals(exceptionMessage+ValidMessage.ValidMove.getMessage())) {
-            doAfterEnterException();
-        }
-        if (message.equals(exceptionMessage+ValidMessage.ValidFinish.getMessage())) {
-            doAfterFinishException();
-        }
-    }
-
-    public void doAfterEnterException() {
-        String errorMessage = "";
-        try {
-            repeatMakeBridge();
-        } catch (IllegalArgumentException message) {
-            errorMessage = String.valueOf(message);
-            System.out.println(errorMessage);
-        } finally {
-            doAfterValid(errorMessage);
-        }
-    }
-
-    public void doAfterFinishException() {
-        String errorMessage = "";
-        try {
-            restartOrNot();
-        } catch (IllegalArgumentException message) {
-            errorMessage = String.valueOf(message);
-            System.out.println(errorMessage);
-        } finally {
-            doAfterValid(errorMessage);
-        }
-    }
-
     public void startGame() {
-        String errorMessage = "";
-        try {
-            answerBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-            repeatMakeBridge();
-        } catch (IllegalArgumentException message) {
-            errorMessage = String.valueOf(message);
-            System.out.println(errorMessage);
-        } finally {
-            doAfterValid(errorMessage);
-        }
+        int size = inputView.readBridgeSize();
+        answerBridge = bridgeMaker.makeBridge(size);
+        repeatMakeResult();
     }
 }

@@ -14,7 +14,12 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(GameAnnounce.start.getAnnouncement());
         String size = Console.readLine();
-        Valid.isLengthValid(size);
+        try {
+            Valid.isLengthValid(size);
+        } catch(IllegalArgumentException message) {
+            System.out.println(message);
+            return readBridgeSize();
+        }
         return Integer.parseInt(size);
     }
 
@@ -24,7 +29,12 @@ public class InputView {
     public String readMoving() {
         System.out.println(GameAnnounce.userMove.getAnnouncement());
         String moving = Console.readLine();
-        Valid.isEnterValid(moving);
+        try {
+            Valid.isEnterValid(moving);
+        } catch (IllegalArgumentException message) {
+            System.out.println(message);
+            return readMoving();
+        }
         return moving;
     }
 
@@ -34,7 +44,12 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(GameAnnounce.userRestart.getAnnouncement());
         String finish = Console.readLine();
-        Valid.isEnterFinishValid(finish);
+        try {
+            Valid.isEnterFinishValid(finish);
+        } catch (IllegalArgumentException message) {
+            System.out.println(message);
+            return readGameCommand();
+        }
         return finish;
     }
 }
