@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.view.Validator.validateInputDirectionException;
 import static bridge.view.Validator.validateInputSizeException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -28,9 +29,11 @@ public class ValidatorTest {
     }
 
     @DisplayName("U,D 외의 문자를 입력했다면 ERROR 출력")
-    @Test
-    void validateInputDirectionTest() {
-
+    @ValueSource(strings = {"x", "1", "R", "Q"})
+    @ParameterizedTest
+    void validateInputDirectionTest(String input) {
+        assertThatThrownBy(() -> validateInputDirectionException(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("U, D를 대문자로 입력했는지 테스트")
