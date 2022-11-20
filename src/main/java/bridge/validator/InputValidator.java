@@ -8,4 +8,10 @@ public class InputValidator {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE.getMessage());
         }
     }
+
+    public  void validateMove(String move) {
+        if(!(move.equals("U") || move.equals("D"))) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_SHOULD_BE_U_OR_D.getMessage());
+        }
+    }
 }

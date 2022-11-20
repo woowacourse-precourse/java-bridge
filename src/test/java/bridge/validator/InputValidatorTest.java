@@ -43,4 +43,52 @@ public class InputValidatorTest {
         assertThat(throwable)
                 .isNull();
     }
+    @Test
+    void validateMoveTest_U또는D_아닌_경우() {
+        //given
+        String move = "Test";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateMove(move);
+        });
+        //then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void validateMoveTest_빈_문자열_경우() {
+        //given
+        String move = "";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateMove(move);
+        });
+        //then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void validateMoveTest_U_정상() {
+        //given
+        String move = "U";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateMove(move);
+        });
+        //then
+        assertThat(throwable)
+                .isNull();
+    }
+    @Test
+    void validateMoveTest_D_정상() {
+        //given
+        String move = "D";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateMove(move);
+        });
+        //then
+        assertThat(throwable)
+                .isNull();
+    }
 }

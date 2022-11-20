@@ -8,7 +8,7 @@
 
 ## 입력 유효성 검사 InputValidator
 - [x] 다리 크기 유효성 검사 InputValidator#validateBridgeSize(int size)
-- [ ] U 또는 D 입력 유효성 검사 InputValidator#validateReadMoving(String upDown)
+- [x] U 또는 D 입력 유효성 검사 InputValidator#validateMove(String move)
 - [ ] R 또는 Q 입력 유효성 검사 InputValidator#validateRetry(String retryQuit)
 
 ## 출력 OutputView
