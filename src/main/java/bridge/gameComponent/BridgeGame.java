@@ -23,41 +23,12 @@ public class BridgeGame {
         this.numberOfTrials = 1;
         this.moveRecord = new char[2][this.lastStep + 1];
     }
-
-    public int getNumberOfTrials() {
-        return numberOfTrials;
-    }
-
-    public int getCurrentStep() {
-        return currentStep;
-    }
-
-    public int getLastStep() {
-        return lastStep;
-    }
-    public char[][] getMoveRecord() {
-        return moveRecord;
-    }
-/**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    /**
-     * 마지막 칸까지 도달했다면 1 리턴, 그렇지 않으면 0 리턴
-     **/
     public void move() {
         if(currentStep >= lastStep) {
             throw new IllegalStateException(ExceptionMessage.CANNOT_MOVE_FURTHER.getMessage());
         }
         currentStep++;
     }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void retry() {
         if (isSuccess()) throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
         this.numberOfTrials++;
@@ -114,5 +85,19 @@ public class BridgeGame {
         String supposedToBeRightAnswer = this.bridge.getBridge().get(this.currentStep + 1);
         if(supposedToBeRightAnswer.equals("U")) return "D";
         return "U";
+    }
+    public int getNumberOfTrials() {
+        return numberOfTrials;
+    }
+
+    public int getCurrentStep() {
+        return currentStep;
+    }
+
+    public int getLastStep() {
+        return lastStep;
+    }
+    public char[][] getMoveRecord() {
+        return moveRecord;
     }
 }

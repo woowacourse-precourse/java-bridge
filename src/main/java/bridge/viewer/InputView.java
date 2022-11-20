@@ -28,9 +28,7 @@ public class InputView {
                 int bridgeSize = Converter.stringToInt(inputValue);
                 validator.validateBridgeSize(bridgeSize);
                 return bridgeSize;
-            } catch (IllegalArgumentException e) {
-                ExceptionPrinter.printException(e.getMessage());
-            }
+            } catch (IllegalArgumentException e) {ExceptionPrinter.printException(e.getMessage());}
         }
     }
 
