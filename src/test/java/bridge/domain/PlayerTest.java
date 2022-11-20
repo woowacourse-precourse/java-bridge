@@ -51,4 +51,14 @@ class PlayerTest {
 
         verify(bridgeGameResult, only()).getResult();
     }
+
+    @Test
+    void checkGamePassed_메서드는_BridgeGameResult의_checkPassed를_호출한다() {
+        BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
+        Player player = new Player(GamePlayCount.firstGame(), Round.firstRound(), bridgeGameResult);
+
+        player.checkGamePassed();
+
+        verify(bridgeGameResult, only()).checkPassed();
+    }
 }

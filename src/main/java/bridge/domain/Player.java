@@ -33,4 +33,8 @@ public class Player {
     public List<List<MoveResult>> getBridgeGameResult() {
         return bridgeGameResult.getResult();
     }
+
+    public Victory checkGamePassed() {
+        return bridgeGameResult.checkPassed();
+    }
 }
