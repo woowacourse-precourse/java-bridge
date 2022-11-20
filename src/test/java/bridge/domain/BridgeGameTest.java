@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,6 +13,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameTest {
+
+    private Bridge bridge;
+    private BridgeGame bridgeGame;
+
+    @BeforeEach
+    void init() {
+        bridge = new Bridge(List.of("U", "U", "D"));
+        bridgeGame = new BridgeGame(bridge);
+    }
 
     @DisplayName("이동할 칸 선택시 U, D가 아닌 다른 문자를 입력하면 예외가 발생한다.")
     @ParameterizedTest
@@ -25,7 +35,6 @@ public class BridgeGameTest {
     @ParameterizedTest
     @CsvSource({"0,U", "1,U", "2,D"})
     void judgeMovementDirection(int index, String direction) {
-        Bridge bridge = new Bridge(List.of("U", "U", "D"));
         assertThat(bridge.isPossibleMove(index, direction)).isTrue();
     }
 
@@ -40,12 +49,8 @@ public class BridgeGameTest {
     @DisplayName("재시작할 경우 처음에 만든 다리를 재사용한다.")
     @Test
     void reuseBridge() {
-        Bridge originBridge = new Bridge(List.of("U", "U", "D"));
-        BridgeGame bridgeGame = new BridgeGame(originBridge);
-
-        bridgeGame.retry(originBridge);
+        bridgeGame.retry(bridge);
         Bridge retryBridge = bridgeGame.getBridge();
-
-        assertThat(originBridge.getBridge()).isEqualTo(retryBridge.getBridge());
+        assertThat(bridge.getBridge()).isEqualTo(retryBridge.getBridge());
     }
 }
