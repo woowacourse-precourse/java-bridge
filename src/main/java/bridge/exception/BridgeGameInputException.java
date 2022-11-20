@@ -46,6 +46,5 @@ public class BridgeGameInputException {
             throw new IllegalArgumentException(ERROR_MESSAGE + "게임 재시작여부는 R또는 Q만 입력가능합니다.");
         }
     }
-
 }
 
