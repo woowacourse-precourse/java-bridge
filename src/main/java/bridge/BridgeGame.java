@@ -15,6 +15,7 @@ public class BridgeGame {
     private int currentPosition = -1;
     private int totalTryCount = 1;
     private boolean success = true;
+    private boolean complete = false;
 
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -24,6 +25,7 @@ public class BridgeGame {
     public void requestBridge() {
         int bridgeSize = bridgeMaker.requestReadBridegeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(bridge);
     }
 
     /**
@@ -35,8 +37,10 @@ public class BridgeGame {
         currentPosition++;
         String moveCommand = convertCommand(bridgePlay.requestReadMoving());
         if(!bridge.get(currentPosition).equals(moveCommand)) {
-            success = false;
-            return false;
+            return success = false;
+        }
+        if(currentPosition == bridge.size()-1) {
+            complete = true;
         }
         return true;
     }
@@ -74,5 +78,9 @@ public class BridgeGame {
 
     public boolean isSuccess() {
         return success;
+    }
+
+    public boolean isComplete() {
+        return complete;
     }
 }

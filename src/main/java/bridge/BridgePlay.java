@@ -35,5 +35,8 @@ public class BridgePlay {
         }
         return true;
     }
-
+//    public void requestShowGameStart() {
+//        OutputView outputView = new OutputView();
+//        outputView.printGameStart();
+//    }
 }

@@ -26,35 +26,37 @@ public class OutputView {
     public void printMap(BridgeGame bridgeGame) { // 리팩토링 고민 좀 해봐.
         List<String> bridge = bridgeGame.getBridge();
         int currentPosition = bridgeGame.getCurrentPosition();
+        //if(currentPosition==0)
         String firstLine = "[";
         String secondLine = "[";
+
         for(int i = 0; i < currentPosition; i++) {
             if(i!=0) {
                 firstLine += "|";
                 secondLine += "|";
             }
-            if(bridge.get(i) == "1") {
+            if(bridge.get(i).equals("1")) {
                 firstLine += " O ";
                 secondLine += "   ";
             }
-            if(bridge.get(i) == "0") {
+            if(bridge.get(i).equals("0")) {
                 firstLine += "   ";
                 secondLine += " O ";
             }
         }
-        if(bridge.get(currentPosition)=="1" && bridgeGame.isSuccess()) {
+        if(bridge.get(currentPosition).equals("1") && bridgeGame.isSuccess()) {
             firstLine += "| O ]";
             secondLine += "|   ]";
         }
-        if(bridge.get(currentPosition)=="1" && !bridgeGame.isSuccess()) {
+        if(bridge.get(currentPosition).equals("1") && !bridgeGame.isSuccess()) {
             firstLine += "| X ]";
             secondLine += "|   ]";
         }
-        if(bridge.get(currentPosition)=="0" && bridgeGame.isSuccess()) {
+        if(bridge.get(currentPosition).equals("0") && bridgeGame.isSuccess()) {
             firstLine += "|   ]";
             secondLine += "| O ]";
         }
-        if(bridge.get(currentPosition)=="0" && !bridgeGame.isSuccess()) {
+        if(bridge.get(currentPosition).equals("0") && !bridgeGame.isSuccess()) {
             firstLine += "|   ]";
             secondLine += "| X ]";
         }
@@ -67,9 +69,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
+        System.out.println("\n최종 게임 결과");
         printMap(bridgeGame);
-        System.out.println("\n게임 성공 여부: ");
+        System.out.print("\n게임 성공 여부: ");
         if(bridgeGame.isSuccess()) {
             System.out.println("성공");
         }
