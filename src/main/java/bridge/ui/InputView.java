@@ -6,7 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final String INPUT_BRIDGE_SIZE = "\n다리의 길이를 입력해주세요.";
+    private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_MOVING = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -15,6 +16,7 @@ public class InputView {
         try {
             System.out.println(INPUT_BRIDGE_SIZE);
             int bridgeSize = Integer.parseInt(Console.readLine());
+            System.out.println();
             return bridgeSize;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 3에서 20 사이의 숫자를 입력해주세요.");
