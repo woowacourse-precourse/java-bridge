@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.model.data.MapData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +13,16 @@ public class MapMaker {
     private final List<String> upsideRecords;
     private final List<String> downsideRecords;
 
-    public MapMaker(List<String> uStatus, List<String> dStatus) {
-        this.upsideRecords = uStatus;
-        this.downsideRecords = dStatus;
+    public MapMaker(List<String> uRecords, List<String> dRecords) {
+        this.upsideRecords = uRecords;
+        this.downsideRecords = dRecords;
+    }
+
+    public MapData makeMap() {
+        String upsideMap = MAP_START + String.join(MAP_DIVIDER, upsideRecords) + MAP_FINISH;
+        String downsideMap = MAP_START + String.join(MAP_DIVIDER, downsideRecords) + MAP_FINISH;
+
+        return new MapData(upsideMap, downsideMap);
     }
 
     public String makeUpsideMap() {

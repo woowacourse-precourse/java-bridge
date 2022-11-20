@@ -1,6 +1,10 @@
 package bridge.ui;
 
+import bridge.model.dto.GameResultDto;
+import bridge.model.dto.MapDto;
 import bridge.util.ErrorCode;
+
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -21,7 +25,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String upsideMap, String downsideMap) {
+    public void printMap(MapDto mapDto) {
+        String upsideMap = mapDto.getUpsideMap();
+        String downsideMap = mapDto.getDownsideMap();
         System.out.println(upsideMap);
         System.out.println(downsideMap);
     }
@@ -31,14 +37,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String upsideMap, String downsideMap, String totalResult, int totalTrials) {
+    public void printResult(GameResultDto gameResult) {
         System.out.println();
         System.out.println(TOTAL_RESULT_INFO_MESSAGE);
-        System.out.println(upsideMap);
-        System.out.println(downsideMap);
+        printMap(gameResult.getMapData());
         System.out.println();
-        System.out.println(TOTAL_SUCCESS_RESULT + totalResult);
-        System.out.println(TOTAL_TRIALS + totalTrials);
+        System.out.println(TOTAL_SUCCESS_RESULT + gameResult.getTotalResult());
+        System.out.println(TOTAL_TRIALS + gameResult.getTotalTrials());
     }
 
     public void printErrorMessage(ErrorCode errorCode) {
