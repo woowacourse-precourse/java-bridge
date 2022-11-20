@@ -33,8 +33,8 @@ public class BridgeGame {
     }
 
     private boolean isGameOver() {
-        return gameUser.hasBridgeDifferentFrom(answerBridge) ||
-                gameUser.hasBridgeLength(answerBridge.length());
+        return gameUser.getOffFrom(answerBridge) ||
+                gameUser.isOnTheFinalBlock(answerBridge);
     }
 
     private void move(String moving) {

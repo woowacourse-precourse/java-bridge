@@ -18,12 +18,12 @@ public class GameUser {
         userBridge.reset();
     }
 
-    public boolean hasBridgeDifferentFrom(Bridge otherBridge) {
+    public boolean getOffFrom(Bridge otherBridge) {
         return !userBridge.isPartOfBridge(otherBridge);
     }
 
-    public boolean hasBridgeLength(int otherLength) {
-        return userBridge.length() == otherLength;
+    public boolean isOnTheFinalBlock(Bridge otherBridge) {
+        return userBridge.length() == otherBridge.length();
     }
 
     @Override
