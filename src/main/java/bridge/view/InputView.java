@@ -8,14 +8,14 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public String input(){
+    public static String input(){
         return Console.readLine();
     }
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         return Validator.validateBridgeLength(input());
     }
 
@@ -32,4 +32,5 @@ public class InputView {
     public String readGameCommand() {
         return Validator.validateRestartOrQuit(input());
     }
+
 }
