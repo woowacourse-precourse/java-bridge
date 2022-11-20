@@ -1,8 +1,5 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
 	private InputController input;
@@ -24,14 +21,9 @@ public class BridgeGame {
 		int round = 0;
 		output.printStart();
 		status = move(round, status);
-		output.printResult(status, gameTry); // status 를 매개변수로 받아 성고 실패 여부 판별 true : 성공, false : 실패
+		output.printResult(status, gameTry);
 	}
 
-	/**
-	 * 사용자가 칸을 이동할 때 사용하는 메서드
-	 * <p>
-	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-	 */
 	public boolean move(int round, boolean status) {
 		while (round < bridge.getSize() && status) {
 			String userInput = input.requestMove();
@@ -48,7 +40,6 @@ public class BridgeGame {
 		if (movement.equals(" O ")) {
 			return 1;
 		}
-
 		return 0;
 	}
 
@@ -60,20 +51,13 @@ public class BridgeGame {
 		if (userInput.equals("U")) {
 			return bridge.getUpperBridge().get(round);
 		}
-
 		return bridge.getLowerBridge().get(round);
 	}
 
-	/**
-	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-	 * <p>
-	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-	 */
 	public boolean retry(boolean status) {
 		if (status) {
 			return true;
 		}
-
 		gameTry++;
 		return input.requestRetry().equals("R");
 	}
