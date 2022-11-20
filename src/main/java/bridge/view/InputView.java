@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.Message;
+import bridge.util.Message;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,7 +13,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(Message.START_MESSAGE);
-        System.out.println(Message.INPUT_BRIDGE_LENGTH_MESSAGE);
+        System.out.println(Message.INPUT_BRIDGE_SIZE_MESSAGE);
         String bridgeSize = Console.readLine();
         return Integer.parseInt(bridgeSize);
     }

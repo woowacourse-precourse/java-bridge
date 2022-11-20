@@ -8,7 +8,7 @@
 ```
 다리의 길이를 입력해주세요.
 ```
-- 개행 후 INPUT_BRIDGE_LENGTH_MESSAGE 출력
+- 개행 후 INPUT_BRIDGE_SIZE_MESSAGE 출력
 - 다리의 길이 입력값 처리
 ```
 이동할 칸을 선택해주세요. (위: U, 아래: D)
