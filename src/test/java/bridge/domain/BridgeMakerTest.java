@@ -23,15 +23,4 @@ class BridgeMakerTest {
 
         Assertions.assertThat(bridge.size()).isEqualTo(size);
     }
-
-    @DisplayName("다리 길이 입력 예외 테스트")
-    @ValueSource(strings = {"0", "26"})
-    @ParameterizedTest
-    void makeBridgeExceptionTest(String inputSize) {
-        int size = Integer.parseInt(inputSize);
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
