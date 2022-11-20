@@ -46,4 +46,33 @@ class BridgeGameTest {
         assertThatThrownBy(() -> bridgeGame.move("A"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("재시작으로 R을 입력하면 필드값을 초기화한다.")
+    @Test
+    void 재시작으로_R을_입력하면_게임을_초기화한다() {
+        // when
+        bridgeGame.move("D");
+        bridgeGame.retry("R");
+
+        // then
+        assertThat(bridgeGame.isFail()).isFalse();
+    }
+
+    @DisplayName("재시작으로 Q를 입력하면 값을 초기화하지 않는다.")
+    @Test
+    void BridgeGameTest() {
+        // when
+        bridgeGame.move("D");
+        bridgeGame.retry("Q");
+
+        // then
+        assertThat(bridgeGame.isFail()).isTrue();
+    }
+
+    @DisplayName("재시작으로 잘못된 값을 입력하면 예외가 발생한다.")
+    @Test
+    void 재시작으로_잘못된_값을_입력하면_예외가_발생한다() {
+        assertThatThrownBy(() -> bridgeGame.retry("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
