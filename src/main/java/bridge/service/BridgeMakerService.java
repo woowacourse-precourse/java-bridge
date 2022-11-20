@@ -7,11 +7,7 @@ import bridge.domain.Bridge;
 public class BridgeMakerService {
 
     public static Bridge createBridge(int size) {
-        BridgeMaker bridgeMaker = createBridgeMaker();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return new Bridge(bridgeMaker.makeBridge(size));
-    }
-
-    private static BridgeMaker createBridgeMaker() {
-        return new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 }
