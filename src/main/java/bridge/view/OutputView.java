@@ -90,10 +90,10 @@ public class OutputView {
         printMap(result);
         if(result.hasWrong()) {
             System.out.println(GAME_IS_SUCCEED_MESSAGE + FAIL_MESSAGE);
+            System.out.println(TOTAL_TRY_COUNT + result.getTryCount());
+            return;
         }
-        if (result.isHitAllAnswers()) {
-            System.out.println(GAME_IS_SUCCEED_MESSAGE + SUCCESS_MESSAGE);
-        }
+        System.out.println(GAME_IS_SUCCEED_MESSAGE + SUCCESS_MESSAGE);
         System.out.println(TOTAL_TRY_COUNT + result.getTryCount());
     }
 

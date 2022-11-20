@@ -56,8 +56,4 @@ public class Result {
     public boolean hasWrong() {
         return isAnswers.contains(false);
     }
-
-    public boolean isHitAllAnswers() {
-        return !isAnswers.contains(false);
-    }
 }
