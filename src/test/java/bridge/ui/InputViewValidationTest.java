@@ -13,4 +13,15 @@ class InputViewValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void validateIsInRangeBySmallNumber() {
+        assertThatThrownBy(() -> InputViewValidation.validateIsInRange("2"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateIsInRangeByBigNumber() {
+        assertThatThrownBy(() -> InputViewValidation.validateIsInRange("21"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
