@@ -1,11 +1,10 @@
 package bridge.view;
 
+import static bridge.util.Constants.*;
+
 import java.util.Arrays;
 
 public class InputValidator {
-    private static final int MINIMUM_BRIDGE_SIZE = 3;
-    private static final int MAXIMUM_BRIDGE_SIZE = 20;
-
     private static final String NO_SPACE = "";
     private static final String NON_DIGIT_CHARACTER = "[^0-9]";
     private static final String NON_ALPHABETIC_CHARACTER = "[^a-zA-Z]";
@@ -18,7 +17,7 @@ public class InputValidator {
 
     private static void validateAnswerToRetry(String input) {
         if (!isRetry(input) && !isQuit(input)) {
-            throw new IllegalArgumentException("[ERROR] 게임 재개 여부는 \"R\" 또는 \"Q\"만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
         }
     }
 
@@ -39,7 +38,7 @@ public class InputValidator {
 
     private static void validateAlphabeticType(String input) {
         if (isNotAlphabetic(input)) {
-            throw new IllegalArgumentException("[ERROR] 오직 알파벳 형태만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ERROR_TITLE + NON_ALPHABETIC_CHARACTER_FOUND);
         }
     }
 
@@ -54,7 +53,7 @@ public class InputValidator {
 
     private static void validateDirection(String input) {
         if (!isUp(input) && !isDown(input)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 \"U\" 또는 \"D\"로 입력되어야 합니다.");
+            throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
         }
     }
 
@@ -74,21 +73,21 @@ public class InputValidator {
 
     private static void validateBlank(String input) {
         if (input == null | input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다.");
+            throw new IllegalArgumentException(ERROR_TITLE + EMPTY_INPUT);
         }
     }
 
     private static void validateNumericType(String input) {
         if (isNotNumeric(input)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 오직 숫자 형태만 받을 수 있습니다.");
+            throw new IllegalArgumentException(ERROR_TITLE + NON_NUMERIC_CHARACTER_FOUND);
         }
     }
 
     private static void validateRange(int size) {
         if (size < MINIMUM_BRIDGE_SIZE || size > MAXIMUM_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(
+            throw new IllegalArgumentException(ERROR_TITLE +
                     String.format(
-                            "[ERROR] 다리 길이는 %d부터 %d 사이의 숫자여야 합니다.",
+                            BRIDGE_SIZE_FORMAT,
                             MINIMUM_BRIDGE_SIZE,
                             MAXIMUM_BRIDGE_SIZE
                     ));
