@@ -1,7 +1,6 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
+import static bridge.Constants.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -20,8 +19,26 @@ public class BridgeGame {
 	 * <p>
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void move() {
+	public void move(Map map, Bridge bridge, PlayerBridge playerBridge) {
+		String answer = getAnswer(bridge, playerBridge);
 
+		if (playerBridge.getLastValue().equals(UP)) {
+			map.addUp(answer);
+			map.addDown(SPACE);
+		}
+		if (playerBridge.getLastValue().equals(DOWN)) {
+			map.addUp(SPACE);
+			map.addDown(answer);
+		}
+	}
+
+	private String getAnswer(Bridge bridge, PlayerBridge playerBridge) {
+		int index = playerBridge.getLastIndex();
+
+		if (playerBridge.getLastValue().equals(bridge.getValueOfIndex(index))) {
+			return O;
+		}
+		return X;
 	}
 
 	/**
@@ -30,5 +47,6 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public void retry() {
+
 	}
 }

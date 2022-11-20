@@ -7,6 +7,7 @@ public class Application {
 	public static void main(String[] args) {
 		InputView inputView = new InputView();
 		PlayerBridge playerBridge = new PlayerBridge();
+		Map map = new Map();
 
 		System.out.println(START);
 
@@ -21,7 +22,7 @@ public class Application {
 		System.out.println(WRITE_WANNA_MOVE);
 		playerBridge.add(inputView.readMoving());
 
-		// todo move
-
+		// todo move( 값 비교)
+		new BridgeGame().move(map, bridge, playerBridge);
 	}
 }

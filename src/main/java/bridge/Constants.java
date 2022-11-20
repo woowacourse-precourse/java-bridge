@@ -1,6 +1,12 @@
 package bridge;
 
 public final class Constants {
+	public static final String UP = "U";
+	public static final String DOWN = "D";
+
+	public static final String O = "O";
+	public static final String X = "X";
+	public static final String SPACE = " ";
 	public static final String START = "다리 건너기 게임을 시작합니다.";
 	public static final String WRITE_BRIDGE_SIZE = "\n다리의 길이를 입력해주세요.";
 	public static final String WRITE_WANNA_MOVE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
