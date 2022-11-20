@@ -40,5 +40,7 @@ public class InputView {
 
     public void readBridgeSizeOfNoNumberException(String bridgeSize){
         String brideSizeRegularExpression = "^\\d{1,2}$";
+        if(!bridgeSize.matches(readBridgeSizeMessage)){
+        }
     }
 }
