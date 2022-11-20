@@ -22,7 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateSize(size);
-        List<String> bridge = new ArrayList<>(Arrays.asList(" "));
+        List<String> bridge = new ArrayList<>();
         for (int count = 0; count < size; count++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             addMovableSpace(bridge, bridgeNumber);

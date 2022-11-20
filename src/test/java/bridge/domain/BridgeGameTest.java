@@ -20,7 +20,8 @@ public class BridgeGameTest {
     @BeforeEach
     void initializeBridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new TestNumberGenerator(newArrayList(1, 0, 0)));
-        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3), new Player());
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(3));
+        bridgeGame = new BridgeGame(bridge, new Player());
     }
 
     @DisplayName("칸 이동 로직 테스트")

@@ -11,4 +11,22 @@ public class Bridge {
     public List<String> getMovableSpaces() {
         return movableSpaces;
     }
+
+    public int size() {
+        return movableSpaces.size();
+    }
+
+    private String get(int index) {
+        if (index < 1 || size() < index) {
+            throw new IllegalStateException("[ERROR] 음..");
+        }
+        return movableSpaces.get(index - 1);
+    }
+
+    public boolean isBroken(int index, String spaceToMove) {
+        if (get(index).equals(spaceToMove)) {
+            return false;
+        }
+        return true;
+    }
 }
