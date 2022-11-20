@@ -3,19 +3,19 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
-import bridge.view.InputView;
+import bridge.model.BridgeGame;
+import bridge.model.PassingSpace;
 import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgeController {
-    private final InputView inputView = new InputView();
+public class CreatingController {
+    private final InputController inputController = new InputController();
     private final OutputView outputView = new OutputView();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public Bridge createBridge() {
         try {
-            int bridgeSize = inputBridgeSize();
+            int bridgeSize = inputController.inputBridgeSize();
             Bridge bridge = makeBridge(bridgeSize);
             return bridge;
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -25,14 +25,14 @@ public class BridgeController {
     }
 
     private Bridge makeBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridgeProtoType = bridgeMaker.makeBridge(bridgeSize);
         Bridge bridge = new Bridge(bridgeProtoType);
         return bridge;
     }
 
-    private int inputBridgeSize() {
-        outputView.printRequestBridgeSizeInput();
-        int bridgeSize = inputView.readBridgeSize();
-        return bridgeSize;
+    public BridgeGame createBridgeGame(Bridge bridge) {
+        PassingSpace passingSpace = new PassingSpace();
+        return new BridgeGame(bridge, passingSpace);
     }
 }
