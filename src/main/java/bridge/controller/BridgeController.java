@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.BridgeCrossingStatus;
 import bridge.dto.BridgeCrossingDTO;
 import bridge.service.BridgeService;
 import bridge.view.InputView;
@@ -14,35 +15,48 @@ public class BridgeController {
 
     public void run() {
         OutputView.printGameStart();
-        createBridge();
-        moveBridge();
+        createBridge(inputBridgeSize());
+        moveOnTheBridge(inputBridgeMove());
     }
 
-    private void createBridge() {
-        int bridgeSize;
-
+    private int inputBridgeSize() {
         try {
             OutputView.printInputNumber();
-            bridgeSize = InputView.inputBridgeSize();
-            bridgeService.createBridge(bridgeSize);
+            return InputView.inputBridgeSize();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            createBridge();
+            inputBridgeSize();
         }
+        return 0;
     }
 
-    private void moveBridge() {
-        String bridgeMoving;
+    private void createBridge(int bridgeSize) {
+        bridgeService.createBridge(bridgeSize);
+    }
 
+    private String inputBridgeMove() {
         try {
             OutputView.printInputMoving();
-            bridgeMoving = InputView.inputBridgeMove();
-            BridgeCrossingDTO bridgeCrossingDTO = bridgeService.moveUser(bridgeMoving);
-            OutputView.printMap(bridgeCrossingDTO.getFootPrint());
-            moveBridge();
+            return InputView.inputBridgeMove();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            moveBridge();
+            inputBridgeMove();
+        }
+        return null;
+    }
+
+    private void moveOnTheBridge(String bridgeMoving) {
+        BridgeCrossingDTO bridgeCrossingDTO = bridgeService.moveUser(bridgeMoving);
+        OutputView.printMap(bridgeCrossingDTO.getFootPrint());
+        checkRestart(bridgeCrossingDTO);
+    }
+
+    private void checkRestart(BridgeCrossingDTO bridgeCrossingDTO) {
+        if (bridgeCrossingDTO.getCrossStatus().equals(BridgeCrossingStatus.SUCCESS.getStatus())) {
+
+        }
+        if (bridgeCrossingDTO.getCrossStatus().equals(BridgeCrossingStatus.PROGRESS.getStatus())) {
+            moveOnTheBridge(inputBridgeMove());
         }
     }
 

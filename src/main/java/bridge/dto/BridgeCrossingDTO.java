@@ -21,7 +21,7 @@ public class BridgeCrossingDTO {
         return tryCount;
     }
 
-    public String isCrossComplete() {
+    public String getCrossStatus() {
         return crossStatus;
     }
 }
