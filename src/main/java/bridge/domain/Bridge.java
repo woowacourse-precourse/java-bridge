@@ -10,8 +10,8 @@ public class Bridge {
         this.directions = directions;
     }
 
-    public String canMoveDirection(int idx) {
-        return directions.get(idx);
+    public boolean canMoveDirection(String direction, int idx) {
+        return directions.get(idx) == direction;
     }
 
     public boolean isFinish(int size) {

@@ -48,6 +48,6 @@ public class BridgeGame {
 
     public boolean hasNotSameDirection() {
         int lastIdx = inputs.size() - 1;
-        return !inputs.get(lastIdx).equals(bridge.canMoveDirection(lastIdx));
+        return !bridge.canMoveDirection(inputs.get(lastIdx), lastIdx);
     }
 }
