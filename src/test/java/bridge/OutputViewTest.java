@@ -43,6 +43,6 @@ public class OutputViewTest {
         assertThat(output()).contains(
                 "[ O ]\n[   ]",
                 "[ O | O ]\n[   |   ]",
-                "[ O | O |   ]\n[   |   | X ]");
+                "[ O | O |   ]\n[   |   | O ]");
     }
 }

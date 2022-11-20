@@ -7,9 +7,14 @@ import java.util.List;
  */
 public class OutputView {
     List<String> bridge;
+    StringBuilder top;
+    StringBuilder bottom;
+
 
     public OutputView(List<String> bridge){
         this.bridge = bridge;
+        this.top = new StringBuilder();
+        this.bottom = new StringBuilder();
     }
 
     /**
@@ -18,9 +23,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(int currentLocation, String move) {
-        System.out.print("[");
-        printTop(currentLocation, move);
-        System.out.println("]");
+        if(move.equals("U")) compareTop(currentLocation);
+
+        if(move.equals("D")) compareBottom(currentLocation);
+
+        System.out.println(top.toString());
+        System.out.println(bottom.toString());
     }
 
     /**
@@ -29,16 +37,34 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+
     }
 
-    private void printTop(int location, String move) {
-        System.out.print(compare(location, move));
+    private boolean compareTop(int location) {
+        // 다리를 맞춘 경우
+        if(bridge.get(location).equals("U")) {
+            top.append('O');
+            bottom.append(' ');
+            return true;
+        }
+
+        // 다리를 틀린 경우
+        top.append('X');
+        bottom.append(' ');
+        return false;
     }
 
-    private String compare(int location, String move) {
-        if(bridge.get(location) == move) return " O ";
+    private boolean compareBottom(int location) {
+        // 다리를 맞춘 경우
+        if(bridge.get(location).equals("D")) {
+            bottom.append('O');
+            top.append(' ');
+            return true;
+        }
 
-        return " X ";
+        // 다리를 틀린 경우
+        bottom.append('X');
+        top.append(' ');
+        return false;
     }
-
 }

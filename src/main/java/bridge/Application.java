@@ -13,12 +13,20 @@ public class Application {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
+        System.out.print("다리 사이즈 : ");
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         OutputView outputView = new OutputView(bridge);
 
-        String move = inputView.readMoving();
-        outputView.printMap(0, move);
+        System.out.println(bridge);
+
+        for(int i = 0; i < bridgeSize; i++) {
+            System.out.print("움직일 방향 : ");
+            String move = inputView.readMoving();
+            outputView.printMap(i, move);
+        }
+
+        System.out.print("재시작 여부 : ");
         inputView.readGameCommand();
     }
 }
