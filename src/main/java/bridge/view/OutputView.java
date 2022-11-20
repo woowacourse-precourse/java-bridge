@@ -1,7 +1,7 @@
 package bridge.view;
 
-import static bridge.player.PlayerMove.D;
-import static bridge.player.PlayerMove.U;
+import static bridge.command.enums.PlayerMove.D;
+import static bridge.command.enums.PlayerMove.U;
 import static bridge.result.GameStatus.FAIL;
 
 import bridge.result.GameStatus;

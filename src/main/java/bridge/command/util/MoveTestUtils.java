@@ -1,6 +1,6 @@
-package bridge.option.util;
+package bridge.command.util;
 
-import bridge.option.Move;
+import bridge.command.Move;
 import java.util.ArrayList;
 import java.util.List;
 

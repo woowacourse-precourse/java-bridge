@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import static bridge.option.util.MoveTestUtils.convertStringListToMoveList;
+import static bridge.command.util.MoveTestUtils.convertStringListToMoveList;
 import static bridge.result.GameStatus.FAIL;
 import static bridge.result.GameStatus.PROGRESS;
 import static bridge.result.GameStatus.SUCCESS;
@@ -10,9 +10,8 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.BridgeNumberGenerator;
 import bridge.bridgemaker.BridgeMaker;
 import bridge.bridgemaker.TestBridgeNumberGenerator;
-import bridge.option.Move;
+import bridge.command.Move;
 import bridge.result.Result;
-import bridge.size.BridgeSize;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

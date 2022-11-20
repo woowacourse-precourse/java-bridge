@@ -3,7 +3,7 @@ package bridge.domain;
 import bridge.BridgeNumberGenerator;
 import bridge.bridgemaker.BridgeMaker;
 import bridge.gamebridge.BridgeContainer;
-import bridge.option.Move;
+import bridge.command.Move;
 import bridge.result.Result;
 import java.util.List;
 

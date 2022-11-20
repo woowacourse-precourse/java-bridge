@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.option.Command;
-import bridge.option.Move;
-import bridge.size.BridgeSize;
+import bridge.command.Command;
+import bridge.command.Move;
+import bridge.command.Size;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,9 +13,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public BridgeSize readBridgeSize() {
+    public Size readBridgeSize() {
         String size = Console.readLine();
-        return new BridgeSize(size);
+        return new Size(size);
     }
 
     /**

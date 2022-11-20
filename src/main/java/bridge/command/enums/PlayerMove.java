@@ -1,4 +1,4 @@
-package bridge.player;
+package bridge.command.enums;
 
 import java.util.Arrays;
 

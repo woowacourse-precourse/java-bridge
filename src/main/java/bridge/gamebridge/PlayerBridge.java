@@ -1,7 +1,7 @@
 package bridge.gamebridge;
 
 import bridge.domain.Bridge;
-import bridge.option.Move;
+import bridge.command.Move;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,12 +1,12 @@
 package bridge.domain;
 
-import static bridge.option.GameCommand.RESTART;
+import static bridge.command.enums.GameCommand.RESTART;
 
 import bridge.BridgeNumberGenerator;
-import bridge.option.Command;
-import bridge.option.GameCommand;
+import bridge.command.Command;
+import bridge.command.enums.GameCommand;
 import bridge.result.Result;
-import bridge.size.BridgeSize;
+import bridge.command.Size;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -26,8 +26,8 @@ public class BridgeController {
         outputView.printStartGame();
         try {
             outputView.printInputBridgeSizeMessage();
-            BridgeSize bridgeSize = inputView.readBridgeSize();
-            bridgeService.generateBridge(bridgeSize.getSize());
+            Size size = inputView.readBridgeSize();
+            bridgeService.generateBridge(size.getSize());
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
             inputBridgeSize();

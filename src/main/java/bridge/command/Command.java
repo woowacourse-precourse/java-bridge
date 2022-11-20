@@ -1,6 +1,8 @@
-package bridge.option;
+package bridge.command;
 
 import static bridge.config.ExceptionMessage.WRONG_GAME_OPTION;
+
+import bridge.command.enums.GameCommand;
 
 public class Command {
 

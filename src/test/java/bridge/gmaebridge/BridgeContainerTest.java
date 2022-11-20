@@ -1,6 +1,6 @@
 package bridge.gmaebridge;
 
-import static bridge.option.util.MoveTestUtils.convertStringListToMoveList;
+import static bridge.command.util.MoveTestUtils.convertStringListToMoveList;
 import static bridge.result.GameStatus.FAIL;
 import static bridge.result.GameStatus.PROGRESS;
 import static bridge.result.GameStatus.SUCCESS;
@@ -9,15 +9,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.Bridge;
 import bridge.gamebridge.BridgeContainer;
-import bridge.option.Move;
+import bridge.command.Move;
 import bridge.result.Result;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 public class BridgeContainerTest {
 

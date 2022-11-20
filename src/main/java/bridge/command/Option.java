@@ -1,4 +1,4 @@
-package bridge.option;
+package bridge.command;
 
 import static bridge.config.ExceptionMessage.NOT_ALL_UPPERCASE;
 import static bridge.config.ExceptionMessage.WRONG_OPTION_LENGTH;

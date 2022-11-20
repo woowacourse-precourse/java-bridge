@@ -1,6 +1,6 @@
 package bridge.domain.validation;
 
-import bridge.player.PlayerMove;
+import bridge.command.enums.PlayerMove;
 import bridge.config.ExceptionMessage;
 import java.util.List;
 

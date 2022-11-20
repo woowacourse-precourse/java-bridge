@@ -1,9 +1,9 @@
-package bridge.size;
+package bridge.command;
 
 import static bridge.config.ExceptionMessage.NOT_NUMBER_SIZE;
 import static bridge.config.ExceptionMessage.NUMBER_OUT_OF_RANGE;
 
-public class BridgeSize {
+public class Size {
 
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
@@ -14,7 +14,7 @@ public class BridgeSize {
         return size;
     }
 
-    public BridgeSize(String size) {
+    public Size(String size) {
         this.size = validateOnlyNumber(size);
         validate(this.size);
     }

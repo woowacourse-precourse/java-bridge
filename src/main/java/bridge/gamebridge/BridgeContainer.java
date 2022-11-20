@@ -3,7 +3,7 @@ package bridge.gamebridge;
 import static bridge.config.ExceptionMessage.EMPTY_ANSWER_BRIDGE;
 
 import bridge.domain.Bridge;
-import bridge.option.Move;
+import bridge.command.Move;
 import bridge.result.Result;
 
 public class BridgeContainer {

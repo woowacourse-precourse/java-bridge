@@ -1,4 +1,4 @@
-package bridge.option;
+package bridge.command.enums;
 
 import java.util.Arrays;
 

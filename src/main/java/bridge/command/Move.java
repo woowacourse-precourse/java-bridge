@@ -1,8 +1,8 @@
-package bridge.option;
+package bridge.command;
 
 import static bridge.config.ExceptionMessage.WRONG_MOVE_OPTION;
 
-import bridge.player.PlayerMove;
+import bridge.command.enums.PlayerMove;
 
 public class Move {
 

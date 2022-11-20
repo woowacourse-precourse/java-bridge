@@ -1,7 +1,7 @@
 package bridge.bridgemaker;
 
 import bridge.BridgeNumberGenerator;
-import bridge.player.PlayerMove;
+import bridge.command.enums.PlayerMove;
 import java.util.ArrayList;
 import java.util.List;
 
