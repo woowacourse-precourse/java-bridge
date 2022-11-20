@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import bridge.constant.GameState;
 import bridge.util.Validate;
 import bridge.view.InputView;
 import org.assertj.core.api.Assertions;
@@ -13,8 +14,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 class JudgeDestinationTest {
 
     private InputView inputView = new InputView();
-    private final String QUIT = "Q";
-    private final String RETRY = "R";
+    private GameState statement = new GameState();
+
     private final Boolean GAME_OVER = false;
     private final Boolean RESTART = true;
 
@@ -32,8 +33,8 @@ class JudgeDestinationTest {
     @DisplayName("게임 재시작 종료 판별, 종료시 예외 입력시 오류 발생")
     void judgeRestartOrOver() {
         JudgeDestination judgeDestination = new JudgeDestination();
-        Boolean result = judgeDestination.judgeRestartOrOver(QUIT);
-        Boolean result2 = judgeDestination.judgeRestartOrOver(RETRY);
+        Boolean result = judgeDestination.judgeRestartOrOver(statement.QUIT);
+        Boolean result2 = judgeDestination.judgeRestartOrOver(statement.RETRY);
         Assertions.assertThat(result).isEqualTo(GAME_OVER);
         Assertions.assertThat(result2).isEqualTo(RESTART);
     }

@@ -1,11 +1,11 @@
 package bridge.util;
 
 import bridge.constant.ERROR;
+import bridge.constant.GameState;
 
 public class Validate {
 
-    private static final int MIN_RANGE = 3;
-    private static final int MAX_RANGE = 20;
+    private GameState statement = new GameState();
 
     public void validateBridgeSize(String size) {
         try {
@@ -17,14 +17,14 @@ public class Validate {
     }
 
     private void isSizeInRange(int sizeInt) {
-        if (!(sizeInt >= MIN_RANGE && sizeInt <= MAX_RANGE)) {
+        if (!(sizeInt >= statement.MIN_RANGE && sizeInt <= statement.MAX_RANGE)) {
             throw new IllegalArgumentException();
         }
     }
 
     public void validateMoving(String size) {
         try {
-            if (!size.equals("D") && !size.equals("U")) {
+            if (!size.equals(statement.DOWN) && !size.equals(statement.UP)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -34,7 +34,7 @@ public class Validate {
 
     public void validateGameDefinition(String definition) {
         try {
-            if (!definition.equals("Q") && !definition.equals("R")) {
+            if (!definition.equals(statement.QUIT) && !definition.equals(statement.RETRY)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

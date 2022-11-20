@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.constant.GameState;
 import bridge.domain.JudgeDestination;
 import bridge.domain.BridgePrinting;
 import bridge.view.InputView;
@@ -17,13 +18,13 @@ public class BridgeGame {
     private List<Boolean> upState = new ArrayList<>();
     private List<Boolean> downState = new ArrayList<>();
     private OutputView outputView = new OutputView();
-    static final int UP = 1;
-    static final int DOWN = 0;
-    JudgeDestination judgeDestination = new JudgeDestination();
-    private int count = 1;
-    private static int idx = 0;
+
     private InputView inputView = new InputView();
 
+    GameState statement = new GameState();
+    JudgeDestination judgeDestination = new JudgeDestination();
+    private int gameCount = 1;
+    private static int idx = 0;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -42,7 +43,7 @@ public class BridgeGame {
             System.out.println("bridgeState = " + bridgeState); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
             moving.add(inputView.readMoving());
             setPrintState(upState, downState, convertNowIndex(bridgeState.get(idx)));
-            makeBridgeMap(upState, downState, moving.get(idx));
+            makeUserBridge(upState, downState, moving.get(idx));
             idx++;
         }
     }
@@ -55,25 +56,25 @@ public class BridgeGame {
         BridgePrinting.clearUpDownLocation();
     }
 
-    private void makeBridgeMap(List<Boolean> upState  , List<Boolean> downState,
+    private void makeUserBridge(List<Boolean> upState  , List<Boolean> downState,
         String nowIndex) {
         BridgePrinting bridgePrinting = new BridgePrinting(upState, downState, convertNowIndex(nowIndex));
         bridgePrinting.makeList();
     }
 
     private int convertNowIndex(String nowIndex) {
-        if (nowIndex.equals("U")) {
-            return UP;
+        if (nowIndex.equals(statement.UP)) {
+            return statement.UP_STATEMENT;
         }
-        return DOWN;
+        return statement.DOWN_STATEMENT;
     }
 
     private void setPrintState(List<Boolean> upState, List<Boolean> downState, int upDown) {
-        if (upDown == UP) {
+        if (upDown == statement.UP_STATEMENT) {
             upState.add(true);
             downState.add(false);
         }
-        if (upDown == DOWN) {
+        if (upDown == statement.DOWN_STATEMENT) {
             upState.add(false);
             downState.add(true);
         }
@@ -98,7 +99,7 @@ public class BridgeGame {
      */
     public void retry(int bridgeSize,
         List<String> bridgeState) { // 수정 부분 체크 retry 는 조금 별로 더 수정해야할 거 같음 retry말고 이전 작업에서처리
-        count++;
+        gameCount++;
         BridgePrinting.initRestart();
         start(bridgeState, bridgeSize);
         return;
@@ -118,13 +119,14 @@ public class BridgeGame {
     }
 
     private void setQuit(int bridgeSize) {
-        int nowIndex = convertNowIndex(moving.get(idx - 1));
+        final int final_idx=idx-1;
+        int nowIndex = convertNowIndex(moving.get(final_idx));
         BridgePrinting resultBridgePrinting = new BridgePrinting(upState, downState, nowIndex);
         if (bridgeSize == idx && !BridgePrinting.isMoveStop()) {
-            outputView.printResult(count, resultBridgePrinting, true);
+            outputView.printResult(gameCount, resultBridgePrinting, true);
             return;
         }
-        outputView.printResult(count, resultBridgePrinting, false);
+        outputView.printResult(gameCount, resultBridgePrinting, false);
     }
 
 }

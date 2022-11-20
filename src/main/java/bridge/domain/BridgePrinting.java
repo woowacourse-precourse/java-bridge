@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.GameState;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class BridgePrinting {
     private OutputView outputView = new OutputView();
     private int nowIndex;
     private static boolean stop = false;
+    private GameState statement = new GameState();
 
 
     public BridgePrinting(List<Boolean> upState, List<Boolean> downState, int nowIndex) {
@@ -39,33 +41,30 @@ public class BridgePrinting {
         System.out.println();
     }
 
-
     private void makeUpUserBridge() {
-        String upStateBridge = "[ ";
-        final int UP = 1;
-        upStateBridge = upStateBridge + addBridge(upState, UP);
-        upStateBridge = upStateBridge + "]";
+        String upStateBridge = statement.startBridge;
+        upStateBridge = upStateBridge + addBridge(upState, statement.UP_STATEMENT);
+        upStateBridge = upStateBridge + statement.endBridge;
         outputView.printMap(upStateBridge);
     }
 
     private void makeDownUserBridge() {
-        String downStateBridge = "[ ";
-        final int DOWN = 0;
-        downStateBridge = downStateBridge + addBridge(downState, DOWN);
-        downStateBridge = downStateBridge + "]";
+        String downStateBridge = statement.startBridge;
+        downStateBridge = downStateBridge + addBridge(downState, statement.DOWN_STATEMENT);
+        downStateBridge = downStateBridge + statement.endBridge;
         outputView.printMap(downStateBridge);
     }
 
     private String addBridge(List<Boolean> bridgeState, int upDown) {
-        String stateBridge = "";
+        String setBridge = "";
         for (int index = 0; index < bridgeState.size(); index++) {
-            stateBridge = stateBridge + getState(bridgeState, index, upDown);
+            setBridge = setBridge + getState(bridgeState, index, upDown);
             if (isIndexBetweenSpace(index, bridgeState.size()-1)) {
                 continue;
             }
-            stateBridge = stateBridge + "| ";
+            setBridge = setBridge + statement.betweenBridge;
         }
-        return stateBridge;
+        return setBridge;
     }
 
     private boolean isIndexBetweenSpace(int index, int bridgeStateSize) {
@@ -74,13 +73,13 @@ public class BridgePrinting {
 
     private String getState(List<Boolean> bridgeState, int now, int upDown) {
         if (isRightStep(bridgeState, now, upDown)) {
-            return "O ";
+            return statement.EXIST_SQUARE;
         }
         if (isWrongStep(bridgeState, now, upDown)) {
             stop = true;
-            return "X ";
+            return statement.NO_EXIST_SQUARE;
         }
-        return "  ";
+        return statement.SIDE_SQUARE;
     }
 
     private boolean isWrongStep(List<Boolean> bridgeState, int now, int upDown) {
