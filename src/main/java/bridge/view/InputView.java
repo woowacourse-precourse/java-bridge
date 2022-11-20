@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.GameControl;
+import bridge.domain.GameMoving;
 import bridge.verifier.BridgeSizeVerifier;
 import bridge.verifier.GameCommandVerifier;
 import bridge.verifier.MovingVerifier;
@@ -16,7 +18,7 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.printf("이동할 칸을 선택해주세요. (위: %s, 아래: %s)\n", GameMoving.UP, GameMoving.DOWN);
         String moving = Console.readLine();
 
         MovingVerifier movingVerifier = new MovingVerifier();
@@ -25,7 +27,7 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.printf("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)\n", GameControl.RETRY, GameControl.QUIT);
         String gameCommand = Console.readLine();
 
         GameCommandVerifier gameCommandVerifier = new GameCommandVerifier();
