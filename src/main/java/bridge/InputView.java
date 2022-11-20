@@ -25,12 +25,14 @@ public class InputView {
     private void validateRange(String readLine){
         int readLength= Integer.parseInt(readLine);
         if(readLength > MAX_BRIDGE_SIZE || readLength < MIN_BRIDGE_SIZE ){
+            System.out.println(RANGE_ERROR);
             throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
 
     private void validateType(String readLine){
-        if(readLine.matches(ONLY_CONTAINS_NUMBER_REGEX)){
+        if(!readLine.matches(ONLY_CONTAINS_NUMBER_REGEX)){
+            System.out.println(NUMBER_ERROR);
             throw new IllegalArgumentException(NUMBER_ERROR);
         }
     }
