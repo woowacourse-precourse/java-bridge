@@ -47,4 +47,13 @@ public class BridgeController {
     public void exitGame(){
         outputView.printResult(bridgeGame.getResultBridge(), bridgeGame.getGameCount(), bridgeGame.getGameResult());
     }
+
+    public void repeatGame(){
+        do {
+            if (this.setGameResult()) {
+                break;
+            }
+        }
+        while (!this.isOver());
+    }
 }
