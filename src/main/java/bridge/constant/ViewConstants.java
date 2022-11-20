@@ -15,4 +15,6 @@ public class ViewConstants {
     public static final String SUCCESS = "O";
     public static final String FAILURE = "X";
     public static final String SPACE = " ";
+
+    public static final String NATURAL_NUMBER_REGEX = "[1-9][0-9]*";
 }
