@@ -11,6 +11,7 @@ public class Bridge {
     private int size;
     private GameStatistics gameStatistics;
     private BridgeMaker bridgeMaker;
+
     public Bridge(GameStatistics gameStatistics) {
         this.gameStatistics = gameStatistics;
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -85,24 +86,29 @@ public class Bridge {
     }
 
     public boolean buildBridge() {
-        boolean checkProcess;
         List<Boolean> checkRoad = gameStatistics.getCheckRoad();
-        if (checkRoad.get(Player.currentLocation)) {
-            checkProcess = true;
-            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
-                setDownBridge("O");
-            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
-                setUpBridge("O");
-            }
-        } else { //false
-            checkProcess = false;
-            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
-                setUpBridge("X");
-            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
-                setDownBridge("X");
-            }
+        Boolean answer = checkRoad.get(Player.currentLocation);
+        if (answer) {
+            return makeBridgeForO();
+        } return makeBridgeForX();
+    }
+
+    private Boolean makeBridgeForO() {
+        if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
+            setDownBridge("O");
+        } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
+            setUpBridge("O");
         }
-        return checkProcess;
+        return true;
+    }
+
+    private Boolean makeBridgeForX() {
+        if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
+            setUpBridge("X");
+        } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
+            setDownBridge("X");
+        }
+        return false;
     }
 
     public BridgeMaker getBridgeMaker() {
