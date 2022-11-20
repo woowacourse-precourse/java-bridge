@@ -28,13 +28,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String readLine = null;
+        String readLine;
         while (true) {
-            readLine = Exceptions.validateMovingBlock(Console.readLine());
-            if (!readLine.equals(ConstantMessage.MOVING_BLOCK_ERROR_MESSAGE)) {
+            readLine = Console.readLine();
+            if (readLine.equals(OutputView.printBridgeLengthErrorMessage(readLine))) {
                 break;
             }
-            System.out.println(readLine);
         }
         return readLine;
     }
