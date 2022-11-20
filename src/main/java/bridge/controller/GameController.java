@@ -22,6 +22,7 @@ public class GameController {
         this.bridgeGame = new BridgeGame(bridgeSize);
 
         startGame();
+        endGame();
     }
 
     public void startGame() {
@@ -32,29 +33,17 @@ public class GameController {
             outputView.printMap(this.bridgeGame.getProgress().get(DOWN_SIDE_PROGRESS.get()));
         }
 
-        checkGameStatus();
-    }
-
-    public void checkGameStatus() {
-        if (bridgeGame.isFallBridge()) {
-            retryGame();
-        }
-
-        if (!bridgeGame.isFallBridge()) {
-            endGame();
-        }
+        retryGame();
     }
 
     public void retryGame() {
-        String gameCommand = inputController.inputGameCommand();
+        if (bridgeGame.isFallBridge()) {
+            String gameCommand = inputController.inputGameCommand();
 
-        if (gameCommand.equals(GAME_COMMAND_RETRY.get())) {
-            bridgeGame.retry();
-            startGame();
-        }
-
-        if (gameCommand.equals(GAME_COMMAND_QUIT.get())) {
-            endGame();
+            if (gameCommand.equals(GAME_COMMAND_RETRY.get())) {
+                bridgeGame.retry();
+                startGame();
+            }
         }
     }
 
