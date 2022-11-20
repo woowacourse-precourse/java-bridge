@@ -24,7 +24,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return IntStream.rangeClosed(1, size)
                 .mapToObj(i -> bridgeNumberGenerator.generate())
-                .map(Command::getByCode)
+                .map(Command::getAbbreviationBy)
                 .collect(Collectors.toList());
     }
 }

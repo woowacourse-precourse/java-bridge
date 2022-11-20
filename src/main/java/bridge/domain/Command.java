@@ -16,11 +16,11 @@ public enum Command {
         this.numberCode = numberCode;
     }
 
-    public static String getByCode(int code) {
+    public static String getAbbreviationBy(int code) {
         if (code == 1) {
-            return Command.UP.getAbbreviation();
+            return Command.UP.abbreviation;
         }
-        return Command.DOWN.getAbbreviation();
+        return Command.DOWN.abbreviation;
     }
 
     public static Command getByAbbreviation(String abbreviation) {
