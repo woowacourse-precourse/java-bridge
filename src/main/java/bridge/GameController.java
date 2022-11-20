@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.support.BridgeGameReferee;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

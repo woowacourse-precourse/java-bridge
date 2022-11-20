@@ -1,8 +1,9 @@
 package bridge.support.validator;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class InputValidatorTest {
@@ -15,9 +16,9 @@ class InputValidatorTest {
         String input = "삼";
         //when
         //then
-        Assertions.assertThatThrownBy(() -> {
-                      InputValidator.validateParseStringToInteger(input);
-                  })
+        assertThatThrownBy(() -> {
+            InputValidator.validateParseStringToInteger(input);
+        })
                   .isInstanceOf(IllegalArgumentException.class)
                   .hasMessageContaining(NOT_A_NUMBER_MESSAGE);
     }

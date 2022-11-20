@@ -1,7 +1,5 @@
-package bridge.support;
+package bridge;
 
-import bridge.MoveDirection;
-import bridge.Result;
 import bridge.view.OutputView;
 
 public class BridgeGameReferee {
