@@ -1,25 +1,35 @@
 package model;
 
 import dto.GameResult;
-import model.enums.GameStatus;
-import model.enums.MoveResult;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import model.enums.GameStatus;
+import model.enums.MoveChoice;
+import model.enums.MoveResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private List<MoveResult> moveResults;
+    private List<List<MoveResult>> moveResults;
     private Bridge bridge;
     private int tryCount;
+
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
+        this.tryCount = 1;
+        this.moveResults = List.of(new ArrayList<MoveResult>().stream().limit(2).collect(Collectors.toList()));
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String moveChoice) {
     }
 
     /**
@@ -28,6 +38,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public GameResult getFinalGameResult() {
     }
 
     public GameResult getGameResult() {
@@ -44,5 +57,8 @@ public class BridgeGame {
 
     private boolean failed() {
         return false;
+    }
+
+    private void updateMoveResults(int row, boolean succeed) {
     }
 }
