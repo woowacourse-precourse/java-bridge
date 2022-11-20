@@ -24,7 +24,7 @@ public class Player {
         return directions.size();
     }
 
-    boolean isCompleted(int size) {
+    boolean isCompletedGame(int size) {
         return directions.size() == size;
     }
 
@@ -50,8 +50,8 @@ public class Player {
 
 
     String printSuccessResult() {
-        return getResultFormat(getUpResult())
-                + getResultFormat(getDownResult());
+        SuccessResultPrinter successResultPrinter = new SuccessResultPrinter(directions);
+        return successResultPrinter.print();
     }
 
     private String getResultFormat(String result) {
