@@ -70,6 +70,12 @@
         - 사용자 입력에 따라 다리 상태 변경
 - **`domain/BridgeMaker`**
     - 역할 : 다리 생성
+- **`domain/BridgeGame`**
+    - 역할 : 다리 건너기 게임 관리, 상태 저장
+    - `changeStatus()`
+      - 다리 상태 변경
+    - `isProceeding()`
+      - 다리 건너기 게임이 진행 중인지 반환
 - **`view/OutputView`**
     - 역할 : 출력 처리
     - `final String` 관리
