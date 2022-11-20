@@ -1,6 +1,9 @@
 package bridge.domain;
 
+import static bridge.option.GameCommand.RESTART;
+
 import bridge.BridgeNumberGenerator;
+import bridge.option.Command;
 import bridge.option.GameCommand;
 import bridge.result.Result;
 import bridge.size.BridgeSize;
@@ -43,10 +46,11 @@ public class BridgeController {
         }
     }
 
-    public GameCommand inputGameCommand() {
+    public boolean inputGameCommand() {
         try {
             outputView.printInputGameCommand();
-            return inputView.readGameCommand();
+            Command command = inputView.readGameCommand();
+            return determineGameStatus(command);
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
             return inputGameCommand();
@@ -55,5 +59,10 @@ public class BridgeController {
 
     public void restartGame() {
         bridgeService.clearPlayerBridge();
+    }
+
+    private boolean determineGameStatus(Command command) {
+        GameCommand gameCommand = GameCommand.findGameCommand(command.getCommand());
+        return gameCommand.equals(RESTART);
     }
 }
