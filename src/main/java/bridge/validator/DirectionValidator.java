@@ -1,7 +1,7 @@
 package bridge.validator;
 
-import static bridge.constant.BridgeGameConstant.DOWN_SIGN;
-import static bridge.constant.BridgeGameConstant.UP_SIGN;
+import static bridge.util.BridgeGameConstant.DOWN_SIGN;
+import static bridge.util.BridgeGameConstant.UP_SIGN;
 import static bridge.validator.ErrorStatus.DIRECTION_SIGN_ERROR;
 
 public class DirectionValidator {

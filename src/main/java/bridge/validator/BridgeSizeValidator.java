@@ -1,7 +1,7 @@
 package bridge.validator;
 
-import static bridge.constant.BridgeGameConstant.VALID_MAX_RANGE;
-import static bridge.constant.BridgeGameConstant.VALID_MIN_RANGE;
+import static bridge.util.BridgeGameConstant.VALID_MAX_RANGE;
+import static bridge.util.BridgeGameConstant.VALID_MIN_RANGE;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_RANGE_ERROR;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_TYPE_ERROR;
 

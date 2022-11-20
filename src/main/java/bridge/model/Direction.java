@@ -1,7 +1,7 @@
 package bridge.model;
 
-import static bridge.constant.BridgeGameConstant.DOWN_SIGN;
-import static bridge.constant.BridgeGameConstant.UP_SIGN;
+import static bridge.util.BridgeGameConstant.DOWN_SIGN;
+import static bridge.util.BridgeGameConstant.UP_SIGN;
 
 import java.util.Arrays;
 import java.util.Objects;

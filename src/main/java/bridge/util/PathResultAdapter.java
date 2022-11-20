@@ -1,7 +1,7 @@
 package bridge.util;
 
-import static bridge.constant.BridgeGameConstant.DOWN_SIGN;
-import static bridge.constant.BridgeGameConstant.UP_SIGN;
+import static bridge.util.BridgeGameConstant.DOWN_SIGN;
+import static bridge.util.BridgeGameConstant.UP_SIGN;
 import static bridge.model.RoundStatus.FAIL;
 
 import bridge.model.RoundStatus;

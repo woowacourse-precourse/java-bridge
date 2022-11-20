@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.util;
 
 public class BridgeGameConstant {
     public static final int VALID_MIN_RANGE = 3;

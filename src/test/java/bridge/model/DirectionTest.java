@@ -1,6 +1,6 @@
 package bridge.model;
 
-import static bridge.constant.BridgeGameConstant.UP_SIGN;
+import static bridge.util.BridgeGameConstant.UP_SIGN;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
