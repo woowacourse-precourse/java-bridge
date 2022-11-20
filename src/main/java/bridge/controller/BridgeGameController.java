@@ -48,7 +48,6 @@ public class BridgeGameController {
                 return length;
             }
             catch(IllegalArgumentException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -60,7 +59,6 @@ public class BridgeGameController {
                 return command;
             }
             catch(IllegalArgumentException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -72,7 +70,6 @@ public class BridgeGameController {
                 return command;
             }
             catch(IllegalArgumentException e) {
-                e.printStackTrace();
             }
         }
     }
