@@ -42,8 +42,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        String upLineForm = String.join(BridgeShape.SEPERATOR, bridgeGame.getUpLine());
-        String downLineForm = String.join(BridgeShape.SEPERATOR, bridgeGame.getDownLine());
+        String upLineForm = bridgeGame.getUpLineForm();
+        String downLineForm = bridgeGame.getDownLineForm();
         System.out.println(BridgeShape.START_LINE + upLineForm + BridgeShape.END_LINE);
         System.out.println(BridgeShape.START_LINE + downLineForm + BridgeShape.END_LINE);
     }

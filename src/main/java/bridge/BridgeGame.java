@@ -40,11 +40,12 @@ public class BridgeGame {
         return false;
     }
 
-    public List<String> getUpLine() {
-        return this.upLine;
+    public String getUpLineForm() {
+        return String.join(BridgeShape.SEPERATOR, this.upLine);
+
     }
-    public List<String> getDownLine() {
-        return this.downLine;
+    public String getDownLineForm() {
+        return String.join(BridgeShape.SEPERATOR, this.downLine);
     }
 
     public static int getCountAttempt() {
@@ -65,12 +66,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    
+    //TODO 브릿지 그리는 부분 분리하기
     public boolean move(String direction) {
         if(direction.equals(Command.UP)) {
-            if(bridge.get(bridgeIndex).equals(Command.UP)) {
+            if(BridgeGame.bridge.get(bridgeIndex).equals(Command.UP)) {
                 this.upLine.add(BridgeShape.MOVABLE);
                 this.downLine.add(BridgeShape.BLANK);
-                bridgeIndex += 1;
+                this.bridgeIndex += 1;
                 return true;
             }
             this.upLine.add(BridgeShape.UNMOVABLE);
@@ -78,7 +81,7 @@ public class BridgeGame {
             bridgeIndex += 1;
             return false;
         }
-        if(bridge.get(bridgeIndex).equals(Command.UP)) {
+        if(BridgeGame.bridge.get(bridgeIndex).equals(Command.UP)) {
             this.downLine.add(BridgeShape.UNMOVABLE);
             this.upLine.add(BridgeShape.BLANK);
             bridgeIndex += 1;
