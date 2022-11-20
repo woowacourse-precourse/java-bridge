@@ -48,12 +48,6 @@ public class BridgeGameController {
         return !bridge.isPlayerRightBridge(player);
     }
 
-    public boolean isFinished(){
-        if(isSuccess()) return true;
-        if(isPaused() && wannaQuit()) return true;
-        return false;
-    }
-
     public boolean isSuccess(){
         return player.isGameFinished(bridge);
     }

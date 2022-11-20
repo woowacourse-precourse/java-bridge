@@ -93,9 +93,8 @@ START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반
 3. resetGame : player.clearBridge 해주고 trialCount++해준다.
 4. concludeGame : OutputView.printResult에 trialCount와 Player.isGameFinished를 입력받아 출력해준다. 
 5. isPaused : Bridge.isPlayerRightInput의 역을 반환한다.
-6. isFinished
-   1. isSuccess : Player.isGameFinished를 출력해준다. 
-   2. wannaQuit : InputView.readGameCommand가 Q이면 참을 반환한다. 
+6. isSuccess : Player.isGameFinished를 출력해준다. 
+7. wannaQuit : InputView.readGameCommand가 Q이면 참을 반환한다. 
 
 ## Application
 ### BridgeGame
