@@ -13,10 +13,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(OrderAnnotation.class)
 class PlayerBoardTest {
     private static final int BRIDGE_SIZE = 3;
-    private PlayerBoard playerBoard ;
+    private PlayerBoard playerBoard;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         playerBoard = new PlayerBoard(BRIDGE_SIZE);
     }
 
@@ -24,7 +24,7 @@ class PlayerBoardTest {
     @DisplayName("isOver 메서드 통과 테스트")
     @Test
     void isPass() {
-        for(int i = 0; i < BRIDGE_SIZE-1; i++){
+        for (int i = 0; i < BRIDGE_SIZE - 1; i++) {
             playerBoard.addResultOfBridge("U", "O");
             assertThat(playerBoard.isOver()).isFalse();
         }
@@ -37,7 +37,7 @@ class PlayerBoardTest {
     @Test
     void getGameRound() {
         playerBoard.addResultOfBridge("U", "O");
-        playerBoard.addResultOfBridge("D","O");
+        playerBoard.addResultOfBridge("D", "O");
         assertThat(playerBoard.getGameRound()).isEqualTo(2);
     }
 
@@ -45,7 +45,7 @@ class PlayerBoardTest {
     @DisplayName("addResultOfBridge 예외 미발생 여부 테스트")
     @Test
     void addResultOfBridge() {
-        assertThatCode(()-> playerBoard.addResultOfBridge("U", "O")).doesNotThrowAnyException();
+        assertThatCode(() -> playerBoard.addResultOfBridge("U", "O")).doesNotThrowAnyException();
     }
 
     @Order(4)
@@ -53,7 +53,7 @@ class PlayerBoardTest {
     @Test
     void testToString() {
         playerBoard.addResultOfBridge("U", "O");
-        playerBoard.addResultOfBridge("D","O");
+        playerBoard.addResultOfBridge("D", "O");
         String correctUpBridge = "[ O |   ]\n";
         String correctDownBridge = "[   | O ]\n";
         assertThat(playerBoard.getBridgeStatus("U")).isEqualTo(correctUpBridge);

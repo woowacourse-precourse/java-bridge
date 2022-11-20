@@ -12,7 +12,8 @@ public class PlayerBoard {
     private static final String UP = "U";
     private static final String DOWN = "D";
 
-    private final int endRound ;
+    private final int endRound;
+
     private int gameRound;
     private List<String> upBridge;
     private List<String> downBridge;
@@ -24,9 +25,10 @@ public class PlayerBoard {
         downBridge = new ArrayList<>();
     }
 
-    boolean isOver(){
+    boolean isOver() {
         return gameRound == endRound;
     }
+
     int getGameRound() {
         return gameRound;
     }
@@ -43,13 +45,13 @@ public class PlayerBoard {
         gameRound++;
     }
 
-    String getBridgeStatus(String side){
-        StringJoiner joiner = new StringJoiner(DELIMITER,PREFIX,SUFFIX);
-        for(int i = 0; i< gameRound; i++) {
-            if (side.equals(UP)){
+    String getBridgeStatus(String side) {
+        StringJoiner joiner = new StringJoiner(DELIMITER, PREFIX, SUFFIX);
+        for (int i = 0; i < gameRound; i++) {
+            if (side.equals(UP)) {
                 joiner.add(upBridge.get(i));
             }
-            if (side.equals(DOWN)){
+            if (side.equals(DOWN)) {
                 joiner.add(downBridge.get(i));
             }
         }

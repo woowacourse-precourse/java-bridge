@@ -13,7 +13,7 @@ class ResultConverterTest {
     private static final ResultConverter converter = new ResultConverter();
 
     @DisplayName("OX 변환")
-    @ParameterizedTest(name ="{displayName} ({index}) : {1}")
+    @ParameterizedTest(name = "{displayName} ({index}) : {1}")
     @MethodSource("paramsForMarkConvert")
     void convertToMark(boolean isCrossable, String correctReturn) {
         assertThat(converter.convertToMark(isCrossable)).isEqualTo(correctReturn);

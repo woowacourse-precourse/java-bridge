@@ -8,9 +8,8 @@ import bridge.util.Commands;
 import java.util.List;
 
 public class Processor {
-
-    private static final String UP = "U" ;
-    private static final String DOWN = "D" ;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
     private final OutputView output;
     private final InputView input;
 
@@ -34,23 +33,23 @@ public class Processor {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    String askMoving(){
+    String askMoving() {
         String moving;
-        do{
+        do {
             moving = input.readMoving();
-        }while (moving.equals("error"));
-        return moving ;
+        } while (moving.equals("error"));
+        return moving;
     }
 
-    String askContinue(){
+    String askContinue() {
         String choice;
-        do{
+        do {
             choice = input.readContinue();
-        }while (choice.equals("error"));
-        return choice ;
+        } while (choice.equals("error"));
+        return choice;
     }
 
-    void getRoundResult(String upsideBridge, String downsideBridge){
+    void getRoundResult(String upsideBridge, String downsideBridge) {
         output.printMap(upsideBridge, downsideBridge);
     }
 

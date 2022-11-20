@@ -21,11 +21,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 @TestMethodOrder(OrderAnnotation.class)
 class ContinueInputValidatorTest {
 
-    private static final  ContinueInputValidator continueInputValidator  = new ContinueInputValidator();
+    private static final ContinueInputValidator continueInputValidator = new ContinueInputValidator();
 
     @Order(4)
     @DisplayName("통합 유효성 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {1}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {1}")
     @MethodSource("paramsForTotalValidate")
     void validate(String inputValue, String testOutputMessage) {
         assertSimpleTest(() ->
@@ -45,16 +45,17 @@ class ContinueInputValidatorTest {
                 Arguments.of("D", "D")
         );
     }
+
     @Order(5)
     @DisplayName("통합 유효성 검사 - 통과 case")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "R",
             "Q"
     })
     void validate(String inputValue) {
-        assertThatCode(()-> continueInputValidator.validate(inputValue)).doesNotThrowAnyException();
-        assertThatNoException().isThrownBy(()-> continueInputValidator.validate(inputValue));
+        assertThatCode(() -> continueInputValidator.validate(inputValue)).doesNotThrowAnyException();
+        assertThatNoException().isThrownBy(() -> continueInputValidator.validate(inputValue));
     }
 
     @Order(1)
@@ -81,7 +82,7 @@ class ContinueInputValidatorTest {
 
     @Order(2)
     @DisplayName("알파벳 r/q 입력 여부 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "123",
             "a",
@@ -101,7 +102,7 @@ class ContinueInputValidatorTest {
 
     @Order(3)
     @DisplayName("대문자 R/Q 값 입력 여부 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "r",
             "q",

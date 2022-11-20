@@ -23,13 +23,13 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++ ) {
+        for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
             if (randomNumber == 1) {
-                bridge.add(i,UPSIDE_VALUE);
+                bridge.add(i, UPSIDE_VALUE);
                 continue;
             }
-            bridge.add(i,DOWNSIDE_VALUE);
+            bridge.add(i, DOWNSIDE_VALUE);
         }
         return bridge;
     }

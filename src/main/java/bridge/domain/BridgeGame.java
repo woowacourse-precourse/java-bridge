@@ -8,23 +8,26 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String UP = "U" ;
-    private static final String DOWN = "D" ;
-    private final List<String> bridge;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+
     private final BridgeCalculator bridgeCalculator;
     private final ResultConverter resultConverter;
     private final Processor processor;
-    private PlayerBoard playerBoard;
+    private final List<String> bridge;
 
-    private int attempts;
+    private PlayerBoard playerBoard;
     private boolean isComplete;
     private boolean wannaRetry;
+    private int attempts;
+
     public BridgeGame() {
         this.attempts = 1;
         this.isComplete = true;
         this.wannaRetry = true;
         this.processor = new Processor();
         this.resultConverter = new ResultConverter();
+
         this.bridge = processor.startGame();
         this.playerBoard = new PlayerBoard(bridge.size());
         this.bridgeCalculator = new BridgeCalculator(bridge);
@@ -44,7 +47,6 @@ public class BridgeGame {
     }
 
 
-
     private boolean startRound() {
         String inputMoving = processor.askMoving();
         int recentRound = playerBoard.getGameRound();
@@ -55,7 +57,7 @@ public class BridgeGame {
         move(inputMoving, resultValue);
         String upsideBridge = playerBoard.getBridgeStatus(UP);
         String downsideBridge = playerBoard.getBridgeStatus(DOWN);
-        processor.getRoundResult(upsideBridge,downsideBridge);
+        processor.getRoundResult(upsideBridge, downsideBridge);
         return isCrossable;
     }
 

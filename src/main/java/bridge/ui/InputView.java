@@ -10,10 +10,10 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final OutputView out;
     private final BridgeSizeInputValidator sizeInputValidator;
     private final ContinueInputValidator continueInputValidator;
     private final MovingInputValidator movingInputValidator;
+    private final OutputView out;
 
     public InputView(OutputView out) {
         this.out = out;
@@ -28,10 +28,10 @@ public class InputView {
     public int readBridgeSize() {
         out.printMessage(Commands.REQUEST_BRIDGE_SIZE.message());
         String bridgeSize = Console.readLine();
-        try{
+        try {
             sizeInputValidator.validate(bridgeSize);
             return Integer.parseInt(bridgeSize.trim());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             out.printMessage(e.getMessage());
         }
         return -1;
@@ -46,7 +46,7 @@ public class InputView {
         try {
             movingInputValidator.validate(moving);
             return moving.trim();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             out.printMessage(e.getMessage());
         }
         return "error";
@@ -58,10 +58,10 @@ public class InputView {
     public String readContinue() {
         out.printMessage(Commands.REQUEST_CONTINUE.message());
         String choice = Console.readLine();
-        try{
+        try {
             continueInputValidator.validate(choice);
             return choice.trim();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             out.printMessage(e.getMessage());
         }
         return "error";

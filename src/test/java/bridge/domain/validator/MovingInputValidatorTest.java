@@ -20,11 +20,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("이동 방향 입력 값 유효성 검사 테스트")
 @TestMethodOrder(OrderAnnotation.class)
 class MovingInputValidatorTest {
-    private static final  MovingInputValidator movingInputValidator  = new MovingInputValidator();
+    private static final MovingInputValidator movingInputValidator = new MovingInputValidator();
 
     @Order(4)
     @DisplayName("통합 유효성 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {1}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {1}")
     @MethodSource("paramsForTotalValidate")
     void validate(String inputValue, String testOutputMessage) {
         assertSimpleTest(() ->
@@ -43,16 +43,17 @@ class MovingInputValidatorTest {
                 Arguments.of("d", "d")
         );
     }
+
     @Order(5)
     @DisplayName("통합 유효성 검사 - 통과 case")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "U",
             "D"
     })
     void validate(String inputValue) {
-        assertThatCode(()-> movingInputValidator.validate(inputValue)).doesNotThrowAnyException();
-        assertThatNoException().isThrownBy(()-> movingInputValidator.validate(inputValue));
+        assertThatCode(() -> movingInputValidator.validate(inputValue)).doesNotThrowAnyException();
+        assertThatNoException().isThrownBy(() -> movingInputValidator.validate(inputValue));
     }
 
     @Order(1)
@@ -79,7 +80,7 @@ class MovingInputValidatorTest {
 
     @Order(2)
     @DisplayName("알파벳 u/d 값 입력 여부 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "123",
             "a",
@@ -99,7 +100,7 @@ class MovingInputValidatorTest {
 
     @Order(3)
     @DisplayName("대문자 U/D 값 입력 여부 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "u",
             "d",

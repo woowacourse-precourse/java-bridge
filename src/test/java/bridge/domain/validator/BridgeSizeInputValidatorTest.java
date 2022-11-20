@@ -18,17 +18,17 @@ import org.junit.jupiter.params.provider.ValueSource;
 @TestMethodOrder(OrderAnnotation.class)
 class BridgeSizeInputValidatorTest {
 
-    private static final  BridgeSizeInputValidator sizeInputValidator  = new BridgeSizeInputValidator();
+    private static final BridgeSizeInputValidator sizeInputValidator = new BridgeSizeInputValidator();
 
     @Order(4)
     @DisplayName("통합 유효성 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {1}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {1}")
     @MethodSource("paramsForTotalValidate")
     void validate(String inputValue, String testOutputMessage) {
-    assertSimpleTest(() ->
+        assertSimpleTest(() ->
                 assertThatThrownBy(() -> sizeInputValidator.validate(inputValue))
-                .isInstanceOf(IllegalArgumentException.class)
-    );
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
     }
     private static Stream<Arguments> paramsForTotalValidate() {
         return Stream.of(
@@ -37,20 +37,21 @@ class BridgeSizeInputValidatorTest {
                 Arguments.of("ㄱㄴㄷㄹ", "ㄱㄴㄷㄹ"),
                 Arguments.of("99", "99"),
                 Arguments.of("123456", "123456")
-    );
+        );
     }
+
     @Order(5)
     @DisplayName("통합 유효성 검사 - 통과 case")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "   12",
             "4",
             "20",
             "3"
-            })
+    })
     void validate(String inputValue) {
-    assertThatCode(()-> sizeInputValidator.validate(inputValue)).doesNotThrowAnyException();
-    assertThatNoException().isThrownBy(()-> sizeInputValidator.validate(inputValue));
+        assertThatCode(() -> sizeInputValidator.validate(inputValue)).doesNotThrowAnyException();
+        assertThatNoException().isThrownBy(() -> sizeInputValidator.validate(inputValue));
 
     }
 
@@ -78,37 +79,37 @@ class BridgeSizeInputValidatorTest {
 
     @Order(2)
     @DisplayName("올바른 숫자 값 입력 여부 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "abcd",
             "ㄱㄴㄷㄹㅁ",
             "100000000"
-            })
+    })
     void validateIsInvalid(String inputValue) {
-    assertSimpleTest(() ->
+        assertSimpleTest(() ->
                 assertThatThrownBy(() -> sizeInputValidator.validateIsInvalid(inputValue))
-                .isInstanceOf(IllegalArgumentException.class)
-    );
-    assertThatExceptionOfType(IllegalArgumentException.class)
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> sizeInputValidator.validateIsInvalid(inputValue))
                 .withMessageContaining("[ERROR]");
     }
 
     @Order(3)
     @DisplayName("길이 범위 검사")
-    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ParameterizedTest(name = "{displayName} 입력값({index}) : {0}")
     @ValueSource(strings = {
             "-1",
             "2",
             "21",
             "99"
-            })
+    })
     void validateRange(String inputValue) {
-    assertSimpleTest(() ->
+        assertSimpleTest(() ->
                 assertThatThrownBy(() -> sizeInputValidator.validateRange(inputValue))
-                .isInstanceOf(IllegalArgumentException.class)
-    );
-    assertThatExceptionOfType(IllegalArgumentException.class)
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> sizeInputValidator.validateRange(inputValue))
                 .withMessage(Errors.OUT_OF_BOUND.message());
     }

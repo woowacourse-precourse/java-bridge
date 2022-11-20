@@ -8,14 +8,13 @@ public enum Errors {
     INVALID_MOVE_VALUE("[ERROR] 이동할 칸 입력은 U 혹은 D 여야 합니다.\n"),
     INVALID_CONTINUE_VALUE("[ERROR] 재시작 여부 입력은 R 혹은 Q 여야 합니다.\n");
 
+    private final String message;
 
-    private final String message ;
-
-    Errors(String message){
+    Errors(String message) {
         this.message = message;
     }
 
-    public String message(){
-        return message ;
+    public String message() {
+        return message;
     }
 }
