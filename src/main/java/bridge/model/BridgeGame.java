@@ -1,5 +1,7 @@
 package bridge.model;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -12,8 +14,8 @@ public class BridgeGame {
     private final MovementRecord currentMovementRecord;
     private int tryCount;
 
-    public BridgeGame(Bridge bridge) {
-        this.bridge = new Bridge(bridge);
+    public BridgeGame(List<String> safeLaneInfo) {
+        this.bridge = new Bridge(safeLaneInfo);
         this.currentMovementRecord = new MovementRecord();
         tryCount = 1;
     }

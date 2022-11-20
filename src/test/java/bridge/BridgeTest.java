@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.ARRAY;
 import static org.assertj.core.util.Lists.newArrayList;
 
 public class BridgeTest {
@@ -29,7 +28,7 @@ public class BridgeTest {
         @Test
         @DisplayName("다리 길이 테스트")
         void bridgeLengthTest() {
-            Bridge bridge = makeBridge(newArrayList(1, 0, 1, 0, 0));
+            Bridge bridge = new Bridge(makeBridgeInfo(newArrayList(1, 0, 1, 0, 0)));
 
             int expectedBridgeLength = 5;
             assertThat(bridge.getBridgeSize()).isEqualTo(expectedBridgeLength);
@@ -38,7 +37,7 @@ public class BridgeTest {
         @Test
         @DisplayName("다리 안전한 칸 테스트")
         void bridgeSafetyTest() {
-            Bridge bridge = makeBridge(newArrayList(1, 0, 0, 1, 1));
+            Bridge bridge = new Bridge(makeBridgeInfo(newArrayList(1, 0, 0, 1, 1)));
 
             boolean expectedSafety = true;
             assertThat(bridge.isSafeSpot(3, BridgeLane.DOWN)).isEqualTo(expectedSafety);
@@ -81,8 +80,7 @@ public class BridgeTest {
         @Test
         @DisplayName("안전한 칸으로 이동하면 true를 반환한다.")
         void moveTest1() {
-            Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1, 1, 0, 1, 0, 0, 1)));
 
             List<BridgeLane> moveSequence = newArrayList(BridgeLane.UP, BridgeLane.UP);
             moveSequentially(game, moveSequence);
@@ -92,8 +90,7 @@ public class BridgeTest {
         @Test
         @DisplayName("안전하지 않은 칸으로 이동하면 false를 반환한다.")
         void moveTest2() {
-            Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1, 1, 0, 1, 0, 0, 1)));
 
             List<BridgeLane> moveSequence = newArrayList(BridgeLane.UP, BridgeLane.UP, BridgeLane.DOWN);
             moveSequentially(game, moveSequence);
@@ -103,8 +100,7 @@ public class BridgeTest {
         @Test
         @DisplayName("retry를 하면 시작점으로 돌아간다.")
         void moveAfterRetryTest() {
-            Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1, 1, 0, 1, 0, 0, 1)));
 
             List<BridgeLane> moveSequence = newArrayList(BridgeLane.UP, BridgeLane.UP);
             moveSequentially(game, moveSequence);
@@ -117,8 +113,7 @@ public class BridgeTest {
         @Test
         @DisplayName("retry를 한 만큼 시도 횟수가 카운팅 된다.")
         void tryCountTest() {
-            Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1, 1, 0, 1, 0, 0, 1)));
 
             game.move(BridgeLane.DOWN);
             game.retry();
@@ -131,8 +126,7 @@ public class BridgeTest {
         @Test
         @DisplayName("최종 지점에 도달하지 않으면 결과의 상태가 TBD가 된다.")
         void isNotSuccessTest() {
-            Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1, 1, 0, 1, 0, 0, 1)));
 
             game.move(BridgeLane.UP);
             game.move(BridgeLane.UP);
@@ -145,8 +139,7 @@ public class BridgeTest {
         @Test
         @DisplayName("안전하지 않은 칸으로 가면 결과의 상태가 FAIL이 된다.")
         void isNotSuccessTest2() {
-            Bridge bridge = makeBridge(newArrayList(1, 1, 0));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1, 1, 0)));
 
             game.move(BridgeLane.UP);
             game.move(BridgeLane.UP);
@@ -159,8 +152,7 @@ public class BridgeTest {
         @Test
         @DisplayName("안전한 칸으로 가면 결과의 상태가 success가 된다.")
         void isSuccessTest() {
-            Bridge bridge = makeBridge(newArrayList(1, 1));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1, 1)));
 
             game.move(BridgeLane.UP);
             game.move(BridgeLane.UP);
@@ -172,8 +164,7 @@ public class BridgeTest {
         @Test
         @DisplayName("retry를 하면 최근 이동 기록이 초기화 된다.")
         void lastMovementTest() {
-            Bridge bridge = makeBridge(newArrayList(1));
-            BridgeGame game = new BridgeGame(bridge);
+            BridgeGame game = new BridgeGame(makeBridgeInfo(newArrayList(1)));
 
             game.move(BridgeLane.DOWN);
             game.retry();
@@ -182,11 +173,6 @@ public class BridgeTest {
             BridgeLane expectedSpotInfo = BridgeLane.UP;
             assertThat(game.getCurrentMovementRecord(1)).isEqualTo(expectedSpotInfo);
         }
-    }
-
-    private Bridge makeBridge(List<Integer> bridgeInfo) {
-        List<String> stringBridgeInfo = makeBridgeInfo(bridgeInfo);
-        return new Bridge(stringBridgeInfo);
     }
 
     private List<String> makeBridgeInfo(List<Integer> bridgeInfo) {

@@ -10,10 +10,6 @@ public class MovementRecord {
         movementMap = new ArrayList<>();
     }
 
-    public MovementRecord(MovementRecord oth) {
-        movementMap = new ArrayList<>(oth.movementMap);
-    }
-
     public BridgeLane getMovementRecord(int index) {
         return movementMap.get(index - 1);
     }

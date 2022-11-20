@@ -13,10 +13,6 @@ public class Bridge {
         }
     }
 
-    public Bridge(Bridge oth) {
-        safeLaneMap = new ArrayList<>(oth.safeLaneMap);
-    }
-
     public int getBridgeSize() {
         return safeLaneMap.size();
     }

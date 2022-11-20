@@ -81,6 +81,6 @@ public class BridgeGameController {
 
     private void makeRandomBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
     }
 }
