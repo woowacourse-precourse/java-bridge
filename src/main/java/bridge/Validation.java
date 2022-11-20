@@ -18,6 +18,7 @@ public class Validation {
     private final static int UPPERBOUND = 20;
 
     public Validation(String lineInput, InputType inputType) {
+        isNoLineFound(lineInput);
         checkLengthLimit(lineInput, inputType);
         if (inputType == InputType.BRIDGELENGTH) {
             validateBridgeSize(lineInput);
@@ -25,10 +26,12 @@ public class Validation {
         }
         validateCode(lineInput, inputType);
     }
-    
-    /**
-     * 모든 입력의 입력 길이 예외를 검토하는 메소드
-     */
+
+    private void isNoLineFound(String lineInput) {
+        if (lineInput.equals(""))
+            throw new IllegalArgumentException("[ERROR] 값을 입력해주세요.");
+    }
+
     private void checkLengthLimit(String lineInput, InputType inputType) {
         if (lineInput.length() <= inputType.lengthLimit) return;
         if (inputType == InputType.BRIDGELENGTH)
