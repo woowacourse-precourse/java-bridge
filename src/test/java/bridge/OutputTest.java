@@ -1,8 +1,8 @@
 package bridge;
 
-import bridge.domain.bridgemaking.BridgeMakerImpl;
-import bridge.domain.User;
-import bridge.ui.OutputView;
+import bridge.domain.user.UserMaker;
+import bridge.domain.user.User;
+import bridge.domain.ui.OutputView;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class OutputTest {
     private static final OutputView outputView = new OutputView();
     private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private static final BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
+    private static final UserMaker USER_MAKER = new UserMaker();
     private static User testUserStatus;
 
     @BeforeAll
@@ -25,7 +25,7 @@ public class OutputTest {
         System.setOut(new PrintStream(output));
         List<String> answerBridge = new ArrayList<>(List.of("U", "D", "U", "D"));
         int bridgeSize = answerBridge.size();
-        testUserStatus = bridgeMakerImpl.makeNewUser(bridgeSize);
+        testUserStatus = USER_MAKER.makeUser(bridgeSize);
     }
 
     @AfterAll

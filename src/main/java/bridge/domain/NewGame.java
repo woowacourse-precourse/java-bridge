@@ -1,25 +1,31 @@
 package bridge.domain;
 
-import bridge.domain.bridgemaking.BridgeMakerImpl;
-import bridge.ui.InputView;
-import bridge.ui.OutputView;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.domain.user.User;
+import bridge.domain.user.UserMaker;
+import bridge.domain.utils.BridgeGame;
+import bridge.domain.ui.InputView;
+import bridge.domain.ui.OutputView;
 
 import java.util.List;
 
 import static bridge.domain.bridgemaking.BridgeComponent.*;
-import static bridge.ui.InputValue.RESTART;
+import static bridge.domain.ui.InputValue.RESTART;
 
 public class NewGame {
     private static final OutputView outputView = new OutputView();
     private static final InputView inputView = new InputView();
-    private final BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final UserMaker userMaker = new UserMaker();
     private final BridgeGame bridgeGame;
     private List<String> answerBridge;
     private User user;
 
     public NewGame() {
         int brideSize = getSizeInput();
-        makeBridges(brideSize);
+        makeBridge(brideSize);
+        makeUser(brideSize);
         bridgeGame = new BridgeGame(user, answerBridge);
 
         play();
@@ -30,9 +36,13 @@ public class NewGame {
         return inputView.readBridgeSize();
     }
 
-    private void makeBridges(int bridgeSize) {
-        answerBridge = bridgeMakerImpl.makeAnswerBridge(bridgeSize);
-        user = bridgeMakerImpl.makeNewUser(bridgeSize);
+    private void makeBridge(int bridgeSize) {
+        answerBridge = bridgeMaker.makeBridge(bridgeSize);
+        user = userMaker.makeUser(bridgeSize);
+    }
+
+    private void makeUser(int bridgeSize) {
+        this.user = userMaker.makeUser(bridgeSize);
     }
 
     private void play() {

@@ -1,9 +1,9 @@
-package bridge.ui;
+package bridge.domain.ui;
 
-import bridge.domain.Validation;
+import bridge.domain.utils.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.ui.ReservedMessage.ERROR_MESSAGE;
+import static bridge.domain.ui.ReservedMessage.ERROR_MESSAGE;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

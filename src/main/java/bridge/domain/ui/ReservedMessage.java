@@ -1,4 +1,4 @@
-package bridge.ui;
+package bridge.domain.ui;
 
 public enum ReservedMessage {
     STARTING_MESSAGE("다리 건너기 게임을 시작합니다."),

@@ -1,11 +1,11 @@
-package bridge.ui;
+package bridge.domain.ui;
 
-import bridge.domain.User;
+import bridge.domain.user.User;
 
 import java.util.List;
 
 import static bridge.domain.bridgemaking.Space.*;
-import static bridge.ui.ReservedMessage.*;
+import static bridge.domain.ui.ReservedMessage.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

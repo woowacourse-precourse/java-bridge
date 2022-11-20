@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Validation;
+import bridge.domain.utils.Validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

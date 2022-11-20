@@ -1,6 +1,7 @@
-package bridge.domain;
+package bridge.domain.utils;
 
 import bridge.domain.bridgemaking.Space;
+import bridge.domain.user.User;
 
 import java.util.List;
 

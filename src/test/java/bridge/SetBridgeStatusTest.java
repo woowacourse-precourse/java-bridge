@@ -1,9 +1,9 @@
 package bridge;
 
-import bridge.domain.bridgemaking.BridgeMakerImpl;
-import bridge.domain.User;
-import bridge.domain.BridgeGame;
-import bridge.ui.OutputView;
+import bridge.domain.user.UserMaker;
+import bridge.domain.user.User;
+import bridge.domain.utils.BridgeGame;
+import bridge.domain.ui.OutputView;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -33,8 +33,8 @@ public class SetBridgeStatusTest {
         System.setOut(new PrintStream(output));
         userInput = "D";
         testAnswerBridge = new ArrayList<>(Arrays.asList("U", "D", "U", "D"));
-        BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
-        testBridge = bridgeMakerImpl.makeNewUser(3);
+        UserMaker userMaker = new UserMaker();
+        testBridge = userMaker.makeUser(3);
         bridgeGame = new BridgeGame(testBridge, testAnswerBridge);
     }
 

@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.domain.bridgemaking.BridgeMakerImpl;
-import bridge.domain.User;
+import bridge.domain.user.UserMaker;
+import bridge.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +10,13 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGenerationTest {
-    private final BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
+    private final UserMaker userMaker = new UserMaker();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     @DisplayName("새로운 User 객체를 생성한다.")
     @Test
     void generateUsersBridgeCrossStatusTest() {
-        User initialBridge = bridgeMakerImpl.makeNewUser(3);
+        User initialBridge = userMaker.makeUser(3);
 
         List<String> topSpace = initialBridge.getCurrentBridge().get(1);
         assertThat(topSpace).isEqualTo(List.of("[", "]"));
@@ -27,7 +28,7 @@ public class BridgeGenerationTest {
     @DisplayName("길이가 10인 새로운 answerBridge를 생성한다.")
     @Test
     void generateAnswerBridgeTest() {
-        List<String> answerBridge = bridgeMakerImpl.makeAnswerBridge(10);
+        List<String> answerBridge = bridgeMaker.makeBridge(10);
         assertThat(answerBridge.size()).isEqualTo(10);
         assertThat(answerBridge).satisfiesAnyOf(
                 value -> {assertThat(answerBridge).containsOnly("U", "D");},

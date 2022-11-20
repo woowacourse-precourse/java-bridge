@@ -1,7 +1,6 @@
-package bridge.domain;
+package bridge.domain.user;
 
 import bridge.domain.bridgemaking.BridgeComponent;
-import bridge.domain.bridgemaking.BridgeMakerImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,7 +71,7 @@ public class User {
         this.currentBridge.clear();
 
         // 처음과 끝에 "["와 "]" 추가.
-        currentBridge = BridgeMakerImpl.makeInitialBridge();
+        currentBridge = UserMaker.makeUsersCurrentBridge();
     }
 
     // 실패 후 재시도할 때마다 시도 횟수 증가

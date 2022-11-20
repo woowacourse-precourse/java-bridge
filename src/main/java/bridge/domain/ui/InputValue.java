@@ -1,4 +1,4 @@
-package bridge.ui;
+package bridge.domain.ui;
 
 public enum InputValue {
     UP("U"),

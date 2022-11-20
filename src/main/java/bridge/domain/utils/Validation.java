@@ -1,7 +1,7 @@
-package bridge.domain;
+package bridge.domain.utils;
 
-import static bridge.ui.InputValue.*;
-import static bridge.ui.ReservedMessage.*;
+import static bridge.domain.ui.InputValue.*;
+import static bridge.domain.ui.ReservedMessage.*;
 
 public class Validation {
     private static final int SIZE_FLOOR = 3;
