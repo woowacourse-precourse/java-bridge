@@ -22,4 +22,16 @@ public enum Direction {
                 .orElse(null))
                 .message;
     }
+
+    public static Direction getDirection (String message) {
+        return Stream.of(values())
+                .filter(value -> isDirectionEqual(message, value))
+                .findFirst()
+                .orElse(null);
+    }
+
+    private static Boolean isDirectionEqual(String message, Direction direction) {
+        String directionMessage = direction.message;
+        return message.equals(directionMessage);
+    }
 }
