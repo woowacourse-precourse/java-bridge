@@ -16,4 +16,11 @@ public class BridgeRouter {
                 .findAny()
                 .orElseThrow(NotFoundBridgeException::new);
     }
+
+    public static Bridge getMatchBridge(String direction) {
+        return bridges.stream()
+                .filter(bridge -> bridge.getDirection().equals(direction))
+                .findAny()
+                .orElseThrow(NotFoundBridgeException::new);
+    }
 }

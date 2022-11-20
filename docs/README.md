@@ -2,6 +2,10 @@
 
 ### BridgeGame
 
+*[x] game을 플레이 한다 #play()
+*[x] 움직인다. #move()
+* [x] 재시도한다. #retry()
+
 ### BridgeMaker
 
 * [x] 0이면 "U", 1이면 "D"로 반환 #makeBridge(int size)
@@ -18,6 +22,14 @@
     * [x] 올바르지 않은 입력(R나 Q가 아닌경우) 예외 발생. IllegalReadGameCommandException
 
 ### OutputView
+
+*[x] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. #printMap(List<List<String>> logs)
+*[x] 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.#printResult(boolean isEnd, long count)
+*[x] 문자를 출력한다 #println(String letter)
+
+### BridgeGameLog
+
+*[x] 로그를 추가한다 #(boolean isMove, String command)
 
 ## 🚀 기능 요구 사항
 

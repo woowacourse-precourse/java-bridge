@@ -10,4 +10,9 @@ public class DownBridge implements Bridge {
     public int getValue() {
         return 0;
     }
+
+    @Override
+    public int getIndex() {
+        return 1;
+    }
 }

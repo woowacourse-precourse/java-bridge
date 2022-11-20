@@ -10,4 +10,9 @@ public class UpBridge implements Bridge {
     public int getValue() {
         return 1;
     }
+
+    @Override
+    public int getIndex() {
+        return 0;
+    }
 }

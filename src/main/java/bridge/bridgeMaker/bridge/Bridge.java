@@ -5,6 +5,8 @@ public interface Bridge {
 
     int getValue();
 
+    int getIndex();
+
     default boolean isSame(int value) {
         return getValue() == value;
     }
