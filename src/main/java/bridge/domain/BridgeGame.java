@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private Bridge bridge;
-    private User user;
-    private List<String> matchingStatus;
+    private final Bridge bridge;
+    private final User user;
+    private final List<String> matchingStatus;
     private int totalAttempts;
     private boolean gameFailed;
 
