@@ -13,9 +13,12 @@ public class BridgeGame {
         gameResult = GameResult.getInstance();
     }
 
-    public void createBridge(int size) {
+    public int createBridge(int size) {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
         bridge = new Bridges(bridgeMaker.makeBridge(size));
-        System.out.println(bridge);
+        return size;
     }
 
     public String move(String moveSpace, int index) {
@@ -23,17 +26,16 @@ public class BridgeGame {
         return gameResult.updateMoveResult(moveSpace, canMove);
     }
 
-    public boolean canNotMove() {
+    public boolean fail() {
         return gameResult.canNotGo();
     }
 
-    public String retry(String gameCommand) {
+    public void retry(String gameCommand) {
         if (gameCommand.equals("R")) {
             gameResult.reset();
-            return "continue";
         }
         if (gameCommand.equals("Q")) {
-            return getFinishResult();
+            throw new IllegalStateException(getFinishResult());
         }
         throw new IllegalArgumentException("[ERROR] 게임 커멘드 입력 오류입니다");
     }

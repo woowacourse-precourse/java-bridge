@@ -17,32 +17,39 @@ public class GameController {
 
     public void start() {
         outputView.startGame();
-        int bridgeSize = inputView.readBridgeSize();
-        if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        int bridgeSize = createBridge();
+        try {
+            moveUserOnBridge(bridgeSize);
+        } catch (IllegalStateException | IllegalArgumentException exception) {
+            outputView.printResult(exception.getMessage());
         }
-        bridgeGame.createBridge(bridgeSize);
+    }
 
-        for (int index = 0; index < bridgeSize; index++) {
-            outputView.askMoveSpace();
-            String moveSpace = inputView.readMoving();
+    private int createBridge() {
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeGame.createBridge(bridgeSize);
+    }
 
-            String updateMoveResult = bridgeGame.move(moveSpace, index);
+    private void moveUserOnBridge(int bridgeSize) {
+        for (int attempt = 0; attempt < bridgeSize; attempt++) {
+            String updateMoveResult = bridgeGame.move(inputView.readMoving(), attempt);
             outputView.printMap(updateMoveResult);
+            attempt = failGame(attempt);
+            finish(bridgeSize, attempt);
+        }
+    }
 
-            if (bridgeGame.canNotMove()) {
-                outputView.askRetry();
-                String gameCommand = inputView.readGameCommand();
-                String retryResult = bridgeGame.retry(gameCommand);
-                if (!retryResult.equals("continue")) {
-                    outputView.printResult(retryResult);
-                    break;
-                }
-                index = -1;
-            }
-            if (index == bridgeSize - 1) {
-                outputView.printResult(bridgeGame.getFinishResult());
-            }
+    private int failGame(int attempt) {
+        if (bridgeGame.fail()) {
+            bridgeGame.retry(inputView.readGameCommand());
+            return -1;
+        }
+        return attempt;
+    }
+
+    private void finish(int bridgeSize, int attempt) {
+        if (attempt == bridgeSize - 1) {
+            outputView.printResult(bridgeGame.getFinishResult());
         }
     }
 }
