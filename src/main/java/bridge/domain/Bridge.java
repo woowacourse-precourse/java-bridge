@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.util.Constants;
+
 import java.util.List;
 
 public class Bridge {
@@ -9,8 +11,8 @@ public class Bridge {
         this.bridge=bridge;
     }
     public List<String> getBridge(){return  bridge;}
-    public boolean getMoveResult(String moving){
-        if(bridge.get(0).equals(moving)) { return true; }
-        return false;
+    public String getMoveResult(String moving){
+        if(bridge.get(0).equals(moving)) { return Constants.CORRECT; }
+        return Constants.WRONG;
     }
 }
