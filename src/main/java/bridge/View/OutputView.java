@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printGameStart(){
+    public void printGameStart() {
         System.out.println(Message.START_GAME);
     }
 
@@ -30,6 +30,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> upperBridge, List<String> lowerBridge) {
+        System.out.println(Message.GAME_RESULT);
+        printMap(upperBridge, lowerBridge);
     }
 }
