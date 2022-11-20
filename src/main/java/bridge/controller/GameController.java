@@ -5,7 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.domain.Tile;
-import bridge.util.ValidateReader;
+import bridge.util.RepeatValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -38,7 +38,7 @@ public class GameController {
     }
 
     private BridgeGame generateRandomBridgeGame() {
-        return ValidateReader.readUntilValidate(() -> {
+        return RepeatValidator.readUntilValidate(() -> {
             int bridgeSize = inputView.readBridgeSize();
             List<String> bridgeDirections = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
             return BridgeGame.from(bridgeDirections);
@@ -61,7 +61,7 @@ public class GameController {
     }
 
     private void playOneTurn(Player player) {
-        Tile movingTargetTile = ValidateReader.readUntilValidate(() ->
+        Tile movingTargetTile = RepeatValidator.readUntilValidate(() ->
                 Tile.findByDirectionSign(inputView.readMoving()));
 
         bridgeGame.move(player, movingTargetTile);
@@ -75,7 +75,7 @@ public class GameController {
     }
 
     private boolean askForTryAgain(Player player) {
-        String input = ValidateReader.readUntilValidate(() ->
+        String input = RepeatValidator.readUntilValidate(() ->
                 inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT));
 
         if (input.equals(GAME_RETRY_INPUT)) {

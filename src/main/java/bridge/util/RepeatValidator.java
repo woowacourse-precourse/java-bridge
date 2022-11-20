@@ -1,6 +1,6 @@
 package bridge.util;
 
-public class ValidateReader {
+public class RepeatValidator {
 
     /**
      * 사용자 입력을 받는 expression 실행 중 예외 발생시 예외가 발생하지 않을때까지 expression을 반복하여 다시 실행
