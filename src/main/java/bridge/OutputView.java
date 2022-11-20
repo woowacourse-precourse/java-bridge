@@ -9,7 +9,7 @@ public class OutputView {
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
     public void printStartMessage() {
-        System.out.print(START_MESSAGE + "\n");
+        System.out.println(START_MESSAGE);
     }
 
     /**
@@ -27,9 +27,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame game) {
-        System.out.print("최종 게임 결과\n");
-        System.out.print(game.getBridge().toString());
-        System.out.print("게임 성공 여부: " + game.toString() + "\n");
-        System.out.print("총 시도한 횟수: " + game.getTryCount() + "\n");
+        System.out.println("최종 게임 결과");
+        System.out.println(game.getBridge().toString());
+        System.out.println("게임 성공 여부: " + game.toString());
+        System.out.println("총 시도한 횟수: " + game.getTryCount());
     }
 }

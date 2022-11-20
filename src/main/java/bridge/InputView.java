@@ -15,7 +15,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         while (true) {
-            System.out.println("\n" + ASK_BRIDGE_SIZE_MESSAGE);
+            System.out.println(ASK_BRIDGE_SIZE_MESSAGE);
             try {
                 int bridgeSize = strToInt(Console.readLine());
                 validateBridgeSize(bridgeSize);
@@ -45,7 +45,7 @@ public class InputView {
      */
     public String readMoving() {
         while (true) {
-            System.out.println("\n" + ASK_MOVING_MESSAGE);
+            System.out.println(ASK_MOVING_MESSAGE);
             try {
                 String line = Console.readLine();
                 validateMovingCommand(line);
@@ -68,7 +68,7 @@ public class InputView {
      */
     public String readGameCommand() {
         while (true) {
-            System.out.println("\n" + ASK_RETRY_MESSAGE);
+            System.out.println(ASK_RETRY_MESSAGE);
             try {
                 String line = Console.readLine();
                 validateGameCommand(line);
