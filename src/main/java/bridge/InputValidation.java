@@ -17,7 +17,9 @@ public class InputValidation {
         }
     }
 
-    public String readGameCommandValidation(String command) {
-        return null;
+    public void readGameCommandValidation(String command) {
+        if (!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException();
+        }
     }
 }
