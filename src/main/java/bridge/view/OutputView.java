@@ -66,6 +66,10 @@ public class OutputView {
     public void printNewLine() {
         System.out.println();
     }
+
+    public void printErrorNotice(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }
 
 
