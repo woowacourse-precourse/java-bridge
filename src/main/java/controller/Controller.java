@@ -10,7 +10,7 @@ public class Controller {
 
     public void run() {
         Bridge bridge = createBridge();
-        String movingPlace = inputView.readMoving();
+        move(bridge);
     }
 
     private Bridge createBridge() {
@@ -22,6 +22,13 @@ public class Controller {
         int bridgeSize = inputView.readBridgeSize();
 
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    private void move(Bridge bridge) {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        String movingPlace = inputView.readMoving();
+        bridgeGame.move(bridge, movingPlace);
     }
 
 }
