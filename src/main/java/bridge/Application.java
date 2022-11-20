@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -39,13 +40,23 @@ public class Application {
         return false;
     }
 
+    /**
+     * 게임이 완전히 종료된 경우 결과를 출력한다.
+     */
+    private static void finish(List<String> curMove, boolean isSuccess, int count){
+        output.printResult(curMove, isSuccess, count);
+    }
+
     public static void main(String[] args) {
+        List<String> curMove = new ArrayList<>();
         start();
         while (!game.isDone()){
-            List<String> curMove = choice();
+            curMove = choice();
             if (result(curMove)){
+                finish(curMove, false, game.getCount());
                 break;
             }
         }
+        finish(curMove, true, game.getCount());
     }
 }
