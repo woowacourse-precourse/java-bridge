@@ -21,7 +21,7 @@ public class BridgeGame {
     private void isComplete(Bridge bridge, User user) {
         if (bridge.getLocation() == bridge.getBridge().size()) {
             user.gameWin();
-            user.setGameOver();
+            user.gameOver();
         }
     }
 
