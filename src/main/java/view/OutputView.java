@@ -12,7 +12,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> bridge, int index) {
+        StringBuilder upBridge = new StringBuilder();
+        StringBuilder downBridge = new StringBuilder();
+        upBridge.append("[");
+        downBridge.append("[");
+        for (int i = 0; i < index; i++) {
+            if (bridge.get(i).equals("U")) {
+                upBridge.append(" O ");
+                downBridge.append("   ");
+                continue;
+            }
+
+            upBridge.append("   ");
+            downBridge.append(" O ");
+        }
+
+        upBridge.append("]");
+        downBridge.append("]");
     }
 
     /**
@@ -20,29 +37,29 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge) {
-        StringBuilder upBridge = new StringBuilder();
-        StringBuilder downBridge = new StringBuilder();
+    public void printResult(List<String> bridge, boolean successOrNot, int trialCount) {
+        System.out.println("최종 게임 결과");
 
-        upBridge.append("[");
-        downBridge.append("[");
+        printMap(bridge,0);
 
-        for (String unit : bridge) {
-            if (unit.equals("U")) {
-                upBridge.append(" O |");
-                downBridge.append("   |");
-                continue;
-            }
-
-            upBridge.append("   |");
-            downBridge.append(" O |");
-
+        if (successOrNot) {
+            printSuccessMessage(trialCount);
+            return;
         }
-        upBridge.append("]");
-        downBridge.append("]");
+        printFailureMessage(trialCount);
+    }
 
-        System.out.println(upBridge.toString());
-        System.out.println(downBridge.toString());
+    /**
+     * Print Game Result Message
+     */
+    public void printSuccessMessage(int trial) {
+        System.out.println("게임 성공 여부: 성공");
+        System.out.println("총 시도한 횟수: "+ trial);
+    }
+
+    public void printFailureMessage(int trial) {
+        System.out.println("게임 성공 여부: 실패");
+        System.out.println("총 시도한 횟수: " + trial);
     }
 
     public void printGameStartMessage() {
@@ -50,6 +67,10 @@ public class OutputView {
         System.out.println();
     }
 
+
+    /**
+     * Print User Input Request Message
+     */
     public void printBridgeSizeRequestMessage() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
