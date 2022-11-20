@@ -10,10 +10,11 @@ import java.util.List;
 
 public class GameService {
     private final BridgeGame bridgeGame;
-    private final List<BridgeDto> cache = new ArrayList<>();
+    private final List<BridgeDto> cache;
 
     public GameService(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
+        this.cache = new ArrayList<>();
     }
 
     public static GameService createNewGame(ViewService viewService) {
