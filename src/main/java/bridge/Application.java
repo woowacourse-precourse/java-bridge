@@ -10,7 +10,7 @@ public class Application {
             bridgeGame.move();
         }
         catch(IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println(e.getMessage());
         }
     }
 }
