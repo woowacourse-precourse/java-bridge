@@ -11,6 +11,8 @@ public class InputView {
     static final int MAX_BRIDGE = 20;
     static final String UP = "U";
     static final String DOWN = "D";
+    static final String RETRY = "R";
+    static final String QUIT = "Q";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -37,7 +39,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + RETRY + ", 종료: "+ QUIT + ")");
+        String retryInput = Console.readLine();
+        retryValidate(retryInput);
+        return retryInput;
     }
 
     private void numericValidate(String str) throws IllegalArgumentException {
@@ -56,6 +61,12 @@ public class InputView {
 
     private void upDownValidate(String str) throws IllegalArgumentException {
         if (!str.equals(UP) && !str.equals(DOWN)) {
+            throw new IllegalArgumentException(ErrorEnum.PREFIX.getMessage() + ErrorEnum.UP_DOWN.getMessage());
+        }
+    }
+
+    private void retryValidate(String str) throws IllegalArgumentException {
+        if (!str.equals(RETRY) && !str.equals(QUIT)) {
             throw new IllegalArgumentException(ErrorEnum.PREFIX.getMessage() + ErrorEnum.UP_DOWN.getMessage());
         }
     }
