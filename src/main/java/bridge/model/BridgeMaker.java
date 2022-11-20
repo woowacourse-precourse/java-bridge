@@ -25,7 +25,7 @@ public class BridgeMaker {
     }
 
     private void selectUpOrDown(int size, List<String> bridge) {
-        for(int i = 0; i < size; i ++) {
+        for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
             if (randomNumber == 0) {
                 bridge.add("D");

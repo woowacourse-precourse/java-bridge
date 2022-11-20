@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class OutputView {
     private static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.";
-    private static final String BRIDGE_START ="[ ";
-    private static final String BRIDGE_END =" ]";
+    private static final String BRIDGE_START = "[ ";
+    private static final String BRIDGE_END = " ]";
     private static final String LAST_RESULT = "최종 게임 결과";
     private static final String GAME_END = "게임 성공 여부: ";
     private static final String WIN = "성공";
@@ -30,7 +30,7 @@ public class OutputView {
 
     private void printUpSideBridge(List<String> upSideBridge) {
         System.out.print(BRIDGE_START);
-        for(int i = 0; i < upSideBridge.size() - 1; i++){
+        for (int i = 0; i < upSideBridge.size() - 1; i++) {
             System.out.print(upSideBridge.get(i) + " | ");
         }
         System.out.print(upSideBridge.get(upSideBridge.size() - 1));
@@ -39,7 +39,7 @@ public class OutputView {
 
     private void printDownSideBridge(List<String> downSideBridge) {
         System.out.print(BRIDGE_START);
-        for(int i = 0; i < downSideBridge.size() - 1; i++){
+        for (int i = 0; i < downSideBridge.size() - 1; i++) {
             System.out.print(downSideBridge.get(i) + " | ");
         }
         System.out.print(downSideBridge.get(downSideBridge.size() - 1));
@@ -62,7 +62,7 @@ public class OutputView {
         System.out.println(RESULT_COUNT + ": " + progressCount);
     }
 
-    public void printStartGame(){
+    public void printStartGame() {
         System.out.println(START_BRIDGE_GAME + "\n");
     }
 

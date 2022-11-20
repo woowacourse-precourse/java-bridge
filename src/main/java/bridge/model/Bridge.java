@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Bridge {
     private List<String> bridge;
+
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public List<String> getBridge() {

@@ -35,7 +35,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public void printError(String text){
+    public void printError(String text) {
         System.out.println(text);
     }
 

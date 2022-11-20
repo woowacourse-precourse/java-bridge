@@ -6,25 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Referee {
+
+    public static boolean succeed = true;
     private List<String> upSideBridgeResult = new ArrayList<>();
     private List<String> downSideBridgeResult = new ArrayList<>();
-    public static boolean succeed = true;
-
     private int progressCount = 0;
 
-    public void addPlayerChoiceResult(List<String> bridge, String choice, int index){
+    public void addPlayerChoiceResult(List<String> bridge, String choice, int index) {
         isBridgeAnswerMatch(bridge, choice, index);
         isBridgeNotMatch(bridge, choice, index);
     }
 
     private boolean isBridgeAnswerMatch(List<String> bridge, String choice, int index) {
-        if (choice.equals("U") && bridge.get(index).equals(choice)){
+        if (choice.equals("U") && bridge.get(index).equals(choice)) {
             addAnswer("O", " ");
             succeed = true;
             return true;
         }
 
-        if (choice.equals("D") && bridge.get(index).equals(choice)){
+        if (choice.equals("D") && bridge.get(index).equals(choice)) {
             addAnswer(" ", "O");
             succeed = true;
             return true;
@@ -32,14 +32,14 @@ public class Referee {
         return false;
     }
 
-    private  boolean isBridgeNotMatch(List<String> bridge, String choice, int index) {
-        if (choice.equals("U") && !bridge.get(index).equals(choice)){
+    private boolean isBridgeNotMatch(List<String> bridge, String choice, int index) {
+        if (choice.equals("U") && !bridge.get(index).equals(choice)) {
             addAnswer("X", " ");
             succeed = false;
             return false;
         }
 
-        if (choice.equals("D") && !bridge.get(index).equals(choice)){
+        if (choice.equals("D") && !bridge.get(index).equals(choice)) {
             addAnswer(" ", "X");
             succeed = false;
             return false;
@@ -52,7 +52,7 @@ public class Referee {
         downSideBridgeResult.add(second);
     }
 
-    public boolean isClear(){
+    public boolean isClear() {
         return BridgeGame.BRIDGE_LENGTH == progressCount;
     }
 

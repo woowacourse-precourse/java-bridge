@@ -12,6 +12,7 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
     public static int BRIDGE_LENGTH = 0;
     private static int holeGameCount = 1;
     private InputView inputView = new InputView();
@@ -35,7 +36,7 @@ public class BridgeGame {
     private void printResult() {
         outputView.printEndGame();
         outputView.printMap(referee.getUpSideBridgeResult(), referee.getDownSideBridgeResult());
-        outputView.printResult(referee.getProgressCount());
+        outputView.printResult(holeGameCount);
     }
 
     public void generateBridge() {
@@ -47,6 +48,7 @@ public class BridgeGame {
         }
         bridge.setBridge(BRIDGE_LENGTH);
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
