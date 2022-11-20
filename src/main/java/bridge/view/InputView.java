@@ -7,19 +7,28 @@ import bridge.utils.common.BridgeConst;
 import bridge.utils.common.CommandConst;
 import bridge.utils.message.ExceptionMessageUtils;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.function.Consumer;
 
 public class InputView {
+
+    private static final String NULL_STRING = "";
 
     private static final int COMMAND_LENGTH = 1;
     private static final int INPUT_CHAR_INDEX = 0;
 
+    private final Consumer<String> print;
+
+    public InputView(Consumer<String> print) {
+        this.print = print;
+    }
+
     public ReadBridgeSizeDto readBridgeSize() {
-        print(InputViewMessage.MAKE_BRIDGE.message);
+        print.accept(InputViewMessage.MAKE_BRIDGE.message);
 
         try {
             int playerInput = Integer.parseInt(Console.readLine());
             validateBridgeSize(playerInput);
-            printNewLine();
+            print.accept(NULL_STRING);
             return new ReadBridgeSizeDto(playerInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessageUtils.WRONG_BRIDGE_SIZE.getMessage());
@@ -37,7 +46,7 @@ public class InputView {
     }
 
     public ReadMovingDto readMoving() {
-        print(InputViewMessage.GAME_PLAY.message);
+        print.accept(InputViewMessage.GAME_PLAY.message);
 
         String playerInput = Console.readLine();
 
@@ -48,7 +57,7 @@ public class InputView {
     }
 
     public ReadGameCommandDto readGameCommand() {
-        print(InputViewMessage.GAME_RETRY.message);
+        print.accept(InputViewMessage.GAME_RETRY.message);
 
         String playerInput = Console.readLine();
 
@@ -56,14 +65,6 @@ public class InputView {
             return new ReadGameCommandDto(playerInput);
         }
         throw new IllegalArgumentException(ExceptionMessageUtils.WRONG_GAME_COMMAND.getMessage());
-    }
-
-    private void print(String message) {
-        System.out.println(message);
-    }
-
-    private void printNewLine() {
-        System.out.println();
     }
 
     private boolean isUpperCase(String input) {

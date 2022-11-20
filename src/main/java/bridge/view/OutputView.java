@@ -4,19 +4,28 @@ import bridge.dto.output.PrintExceptionDto;
 import bridge.dto.output.PrintGameInfoDto;
 import bridge.dto.output.PrintMapDto;
 import bridge.dto.output.PrintResultDto;
+import java.util.function.Consumer;
 
 public class OutputView {
 
+    private static final String NULL_STRING = "";
+
     private static final String SUCCESS = "성공";
     private static final String FAILED = "실패";
+
+    private final Consumer<String> print;
+
+    public OutputView(Consumer<String> print) {
+        this.print = print;
+    }
 
     public void printMap(PrintMapDto printMapDto) {
         String upBridgeHistory = printMapDto.getUpBridgeHistory();
         String downBridgeHistory = printMapDto.getDownBridgeHistory();
 
-        print(OutputViewMessage.HISTORY_FORMAT.getFullMessage(upBridgeHistory));
-        print(OutputViewMessage.HISTORY_FORMAT.getFullMessage(downBridgeHistory));
-        printNewLine();
+        print.accept(OutputViewMessage.HISTORY_FORMAT.getFullMessage(upBridgeHistory));
+        print.accept(OutputViewMessage.HISTORY_FORMAT.getFullMessage(downBridgeHistory));
+        print.accept(NULL_STRING);
     }
 
     public void printResult(PrintResultDto printResultDto) {
@@ -27,14 +36,14 @@ public class OutputView {
         boolean success = printGameInfoDto.isSuccess();
         long tryCount = printGameInfoDto.getTryCount();
 
-        print(OutputViewMessage.GAME_RESULT.getFullMessage(successMapToMessage(success)));
-        print(OutputViewMessage.GAME_TRY_COUNT.getFullMessage(tryCount));
+        print.accept(OutputViewMessage.GAME_RESULT.getFullMessage(successMapToMessage(success)));
+        print.accept(OutputViewMessage.GAME_TRY_COUNT.getFullMessage(tryCount));
     }
 
     public void printException(PrintExceptionDto printExceptionDto) {
         String exceptionMessage = printExceptionDto.getMessage();
 
-        print(OutputViewMessage.EXCEPTION.getFullMessage(exceptionMessage));
+        print.accept(OutputViewMessage.EXCEPTION.getFullMessage(exceptionMessage));
     }
 
     private String successMapToMessage(boolean success) {
@@ -42,14 +51,6 @@ public class OutputView {
             return SUCCESS;
         }
         return FAILED;
-    }
-
-    private void print(String message) {
-        System.out.println(message);
-    }
-
-    private void printNewLine() {
-        System.out.println();
     }
 
     private enum OutputViewMessage {
