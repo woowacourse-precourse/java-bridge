@@ -24,7 +24,6 @@ public class BridgeGameController {
             }
             if (bridgeGame.winBridgeGame(moving)) {
                 printResult(WIN_GAME);
-                bridgeGame.quit();
                 break;
             }
         }
@@ -69,7 +68,6 @@ public class BridgeGameController {
         }
         if (!retry) {
             printResult(LOSE_GAME);
-            bridgeGame.quit();
         }
     }
 
@@ -86,5 +84,6 @@ public class BridgeGameController {
         OutputView.printFinalMapMessage();
         OutputView.printMap(BridgeResultData.getUpBridgeResults(), BridgeResultData.getDownBridgeResults());
         OutputView.printResult(gameResult, trials);
+        bridgeGame.quit();
     }
 }
