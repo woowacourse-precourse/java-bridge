@@ -13,4 +13,5 @@ public class Constants {
     public static final String O = "O";
     public static final String X = "X";
     public static final String SPACE = " ";
+    public static final String DELIMITER = "|";
 }
