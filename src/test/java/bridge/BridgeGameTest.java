@@ -79,4 +79,37 @@ class BridgeGameTest {
 
         assertThat(game.isEnd()).isEqualTo(true);
     }
+
+    @Test
+    void 재시도_테스트1() {
+        BridgeGame game = new BridgeGame(new ArrayNumberGenerator(List.of(1, 0, 0, 1, 1)), 5);
+
+        game.move(1);
+        game.move(0);
+        game.move(1);
+        game.move(1);
+        game.move(1);
+
+        assertThat(game.isFailed()).isEqualTo(true);
+        game.retry();
+        assertThat(game.isFailed()).isEqualTo(false);
+        assertThat(game.getTryCount()).isEqualTo(2);
+    }
+
+    @Test
+    void 재시도_테스트2() {
+        BridgeGame game = new BridgeGame(new ArrayNumberGenerator(List.of(1, 0, 0, 1, 1)), 5);
+
+        game.move(1);
+        game.move(0);
+        game.move(0);
+        game.move(1);
+        game.move(1);
+
+        assertThat(game.isEnd()).isEqualTo(true);
+        assertThat(game.isFailed()).isEqualTo(false);
+        game.retry();
+        assertThat(game.isEnd()).isEqualTo(false);
+        assertThat(game.getTryCount()).isEqualTo(2);
+    }
 }
