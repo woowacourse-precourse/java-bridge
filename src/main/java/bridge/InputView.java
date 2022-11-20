@@ -39,10 +39,10 @@ public class InputView {
         String line = Console.readLine();
         if (!(line.equals("R") || line.equals("Q")))
             throw new IllegalArgumentException("이동할 칸의 입력은 R또는 Q여야 합니다");
-        return null;
+        return line;
     }
 
-    boolean isAllDigit(String string) {
+    private boolean isAllDigit(String string) {
         return string.chars()
                 .allMatch(Character::isDigit);
     }
