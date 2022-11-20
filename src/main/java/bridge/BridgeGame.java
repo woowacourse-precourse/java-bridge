@@ -6,8 +6,9 @@ import bridge.domain.*;
 import java.util.List;
 
 public class BridgeGame {
-    private Movement movement;
+    private final Bridge bridge;
     private final BridgeMap bridgeMap = new BridgeMap();
+    private Movement movement = new Movement();
     private int tryCount = Constant.INITIAL_COUNT;
 
     public BridgeGame(Bridge bridge) {
@@ -29,11 +30,30 @@ public class BridgeGame {
     }
 
     private void clearGame() {
-        movement.clearMoving();
+        movement = new Movement();
         bridgeMap.clearMap();
     }
 
-    private void saveCompareResult(Moving moving) {
-        bridgeMap.addMap(moving, movement.canMove());
+    public boolean canMove() {
+        return bridge.canMove(movement);
+    }
+
+    public boolean isFinish() {
+        return bridge.isFinish(movement);
+    }
+
+    public String isSuccess() {
+        if (isFinish() && canMove()) {
+            return Constant.SUCCESS;
+        }
+        return Constant.FAILURE;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public List<List<String>> getMap() {
+        return bridgeMap.getMap();
     }
 }

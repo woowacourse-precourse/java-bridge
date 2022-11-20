@@ -9,15 +9,16 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isFinish(List<Moving> movement) {
-        if (this.bridge.size() == movement.size()) {
+    public boolean isFinish(Movement movement) {
+        if (this.bridge.size() == movement.getMoveCount()) {
             return true;
         }
         return false;
     }
 
-    public boolean canMove(int nowIndex, Moving status) {
-        if (!status.equals(bridge.get(nowIndex))) {
+    public boolean canMove(Movement movement) {
+        int nowIndex = movement.getMoveCount()-1;
+        if (!movement.getMoving().equals(bridge.get(nowIndex))) {
             return false;
         }
         return true;
