@@ -28,6 +28,10 @@ public class OutputView {
     public void printMap() {
     }
 
+    public void printAskingRestartingGame() {
+        System.out.println(ViewConstants.ASKING_RESTARTING_GAME);
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
