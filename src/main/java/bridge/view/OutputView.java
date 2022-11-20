@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.GameResultState;
+
 import java.util.List;
 
 /**
@@ -7,10 +9,14 @@ import java.util.List;
  */
 public class OutputView {
 
-    public static final String SPACE = " ";
-    public static final String SEPARATOR = "|";
-    public static final String OPEN_BRACKET = "[";
-    public static final String CLOSED_BRACKET = "]";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String SPACE = " ";
+    private static final String SEPARATOR = "|";
+    private static final String OPEN_BRACKET = "[";
+    private static final String CLOSED_BRACKET = "]";
+    private static final String RESULT_MESSAGE = "최종 게임 결과";
+    private static final String WIN_OR_LOSE_MESSAGE = "게임 성공 여부: %s" + LINE_SEPARATOR;
+    private static final String TOTAL_TRIES_MESSAGE = "총 시도한 횟수: %d";
 
     public void printMap(final List<String> upBridges, final List<String> downBridges) {
         System.out.println(createBridgeMap(upBridges));
@@ -52,11 +58,12 @@ public class OutputView {
                 .append(SPACE);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void printResultMessage() {
+        System.out.println(RESULT_MESSAGE);
+    }
+
+    public void printResult(final GameResultState state, final int totalTries) {
+        System.out.printf(WIN_OR_LOSE_MESSAGE, state.getMessage());
+        System.out.printf(TOTAL_TRIES_MESSAGE, totalTries);
     }
 }

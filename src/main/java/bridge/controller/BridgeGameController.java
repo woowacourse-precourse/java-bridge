@@ -1,11 +1,14 @@
 package bridge.controller;
 
+import bridge.model.GameResultState;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
 import java.util.Objects;
+
+import static bridge.model.GameResultState.LOSE;
 
 public class BridgeGameController {
 
@@ -22,7 +25,7 @@ public class BridgeGameController {
 
     public void start() {
         initBridge();
-        gameProceed();
+        proceedGame();
     }
 
     private void initBridge() {
@@ -30,25 +33,52 @@ public class BridgeGameController {
         bridgeGameService.makeBridge(bridgeSize);
     }
 
-    private void gameProceed() {
+    private void proceedGame() {
         currentPosition++;
         String move = inputView.printMoveMessage();
         boolean success = bridgeGameService.moveAndReturnSuccess(currentPosition, move);
-        printIntermediateResult();
+        printMap();
 
-        if (!success) {
+        judgeProceed(success);
+    }
+
+    private void judgeProceed(final boolean success) {
+        if (isLose(success)) {
             String gameCommand = inputView.printGameCommand();
-            if (Objects.equals(gameCommand, RETRY_SIGN)) {
-                currentPosition = 0;
-                totalTries++;
-                bridgeGameService.clearRepository();
-                gameProceed();
-                return;
-            }
+            proceedOrQuitGame(gameCommand);
+
+            printEndMessage(LOSE);
         }
     }
 
-    private void printIntermediateResult() {
+    private static boolean isLose(final boolean success) {
+        return !success;
+    }
+
+    private void proceedOrQuitGame(final String gameCommand) {
+        if (isRetryCommand(gameCommand)) {
+            initialize();
+            proceedGame();
+        }
+    }
+
+    private static boolean isRetryCommand(final String gameCommand) {
+        return Objects.equals(gameCommand, RETRY_SIGN);
+    }
+
+    private void initialize() {
+        currentPosition = 0;
+        totalTries++;
+        bridgeGameService.clearRepository();
+    }
+
+    private void printEndMessage(GameResultState state) {
+        outputView.printResultMessage();
+        printMap();
+        outputView.printResult(state, totalTries);
+    }
+
+    private void printMap() {
         List<String> upBridges = bridgeGameService.getUpBridges();
         List<String> downBridges = bridgeGameService.getDownBridges();
         outputView.printMap(upBridges, downBridges);

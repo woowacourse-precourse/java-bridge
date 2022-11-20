@@ -23,15 +23,15 @@
   - [x] 다리 칸의 구분은 ` | ` 로 표현한다. OutputView#printMap()
   - [x] 현재까지 건넌 다리를 모두 출력한다. OutputView#printMap()
 - [ ] 다리를 끝까지 건너면 게임은 종료된다.
-  - [ ] 다리를 건너다 실패하면 그만두거나 다시 시작할 수 있다.
-    - [ ] 이때, 재시작해도 처음에 만든 다리로 재사용된다.
-  - [ ] 게임 종료시 총 시도한 횟수를 표시한다.
-  - [ ] 게임 종료시 성공 여부를 표시한다.
+  - [x] 다리를 건너다 실패하면 그만두거나 다시 시작할 수 있다.
+    - [x] 이때, 재시작해도 처음에 만든 다리로 재사용된다.
+  - [x] 게임 종료시 총 시도한 횟수를 표시한다. OutputView#printResult()
+  - [x] 게임 종료시 성공 여부를 표시한다. OutputView#printResult()
 - [x] 사용자의 입력을 검증한다. ValidationUtils
-  - [ ] 사용자의 잘못된 값을 입력하면, 예외를 발생시키기고 다시 입력을 받는다.
+  - [x] 사용자의 잘못된 값을 입력하면, 예외를 발생시키기고 다시 입력을 받는다. ValidationUtils
   - [x] 다리의 길이는 3이상 20이하의 숫자를 받을 수 있다. ValidationUtils#validateBridgeSize()
   - [x] 이동할 칸은 U나 D만 받을 수 있다. ValidationUtils#validateMove()
-  - [ ] 게임 재시작/종료 여부는 R(재시작), Q(종료)만 받을 수 있다.
+  - [x] 게임 재시작/종료 여부는 R(재시작), Q(종료)만 받을 수 있다. ValidationUtils#validateGameCommand()
 
 ## 🚀 기능 요구 사항
 
