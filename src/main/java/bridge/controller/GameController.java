@@ -8,12 +8,16 @@ import bridge.support.BridgeRandomNumberGenerator;
 
 import java.util.List;
 
+import static bridge.utils.GameStatus.LOSE;
+import static bridge.utils.GameStatus.PLAYING;
+
 public class GameController {
     private final BridgeGame bridgeGame;
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public GameController() {
+        outputView.printInit();
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = createBridge(bridgeSize);
         this.bridgeGame = new BridgeGame(bridge);
@@ -25,7 +29,34 @@ public class GameController {
     }
 
     public void play() {
+        playMoving();
+        if (isFailure()) {
+            String gameCommand = inputView.readGameCommand();
+            if ("R".equals(gameCommand)) {
+                bridgeGame.retry();
+                play();
+                return;
+            }
+        }
 
+        outputView.printResult(bridgeGame);
     }
+
+    private void playMoving() {
+        while (!isEnd()) {
+            String moveCommand = inputView.readMoving();
+            bridgeGame.move(moveCommand);
+            outputView.printMap(bridgeGame);
+        }
+    }
+
+    private boolean isEnd() {
+        return !PLAYING.equals(bridgeGame.getStatus());
+    }
+
+    private boolean isFailure() {
+        return LOSE.equals(bridgeGame.getStatus());
+    }
+
 
 }
