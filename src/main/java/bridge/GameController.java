@@ -21,16 +21,20 @@ public class GameController {
         while (status.isRunning()) {
             Bridge bridge = this.generateBridge();
             BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
+            Result result = playGame(bridge, bridgeGame, status);
+        }
+    }
 
-            Result result = new Result();
-            for (int i = 0; i < bridge.getBridgeSize(); i++) {
-                bridgeGame.move(result, this.readMoving(), i);
-                if (result.hasWrong()) {
-                    status.changeToGameOver();
-                    break;
-                }
+    private Result playGame(Bridge bridge, BridgeGame bridgeGame, BridgeGameStatus status) {
+        Result result = new Result();
+        for (int i = 0; i < bridge.getBridgeSize(); i++) {
+            bridgeGame.move(result, this.readMoving(), i);
+            if (result.hasWrong()) {
+                status.changeToGameOver();
+                break;
             }
         }
+        return result;
     }
 
     private Bridge generateBridge() {
