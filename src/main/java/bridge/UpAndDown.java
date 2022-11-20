@@ -28,14 +28,6 @@ public enum UpAndDown {
         return false;
     }
 
-    public String getDirection() {
-        return direction;
-    }
-
-    public int getInputDirectionNumber() {
-        return inputDirectionNumber;
-    }
-
     public int getIndex() {
         return index;
     }
