@@ -40,7 +40,8 @@ public class InputValidator {
         }
     }
 
-    public static void moving(CapitalLetter letter) {
+    public static void moving(String input) {
+        final CapitalLetter letter = new CapitalLetter(input);
         if (!isUp(letter) && !isDown(letter)) {
             throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
         }
@@ -54,7 +55,8 @@ public class InputValidator {
         return letter.isDown();
     }
 
-    public static void gameCommand(CapitalLetter letter) {
+    public static void gameCommand(String input) {
+        final CapitalLetter letter = new CapitalLetter(input);
         if (!isRetry(letter) && !isQuit(letter)) {
             throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
         }

@@ -71,26 +71,22 @@ public class InputView {
     }
 
     private static CapitalLetter toMovingValue(String input) {
-        final CapitalLetter letter;
         try {
-            letter = new CapitalLetter(input);
-            InputValidator.moving(letter);
+            InputValidator.moving(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
-        return letter;
+        return new CapitalLetter(input);
     }
 
     private static CapitalLetter toGameCommandValue(String input) {
-        final CapitalLetter letter;
         try {
-            letter = new CapitalLetter(input);
-            InputValidator.gameCommand(letter);
+            InputValidator.gameCommand(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
-        return letter;
+        return new CapitalLetter(input);
     }
 }
