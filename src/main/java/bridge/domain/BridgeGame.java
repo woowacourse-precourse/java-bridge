@@ -27,8 +27,8 @@ public class BridgeGame {
      */
     public void move(String arrow) {
         validateBridgeArrow(arrow);
-        round++;
         bridgeState.mark(makeBridgeStatus(arrow));
+        round++;
     }
 
     private void validateBridgeArrow(String arrow) {
