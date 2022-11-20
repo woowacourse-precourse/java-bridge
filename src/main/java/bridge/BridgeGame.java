@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.Utils.Constants.QUIT;
-import static bridge.Utils.Constants.RETRY;
+import static bridge.Utils.Constant.GameCommand.QUIT;
+import static bridge.Utils.Constant.GameCommand.RETRY;
 
 import bridge.Controller.BridgeController;
 import bridge.Controller.ViewController;
@@ -61,10 +61,10 @@ public class BridgeGame {
 
     public void quitOrRetry() {
         String command = viewController.getCommand();
-        if (command.equals(QUIT)) {
+        if (command.equals(QUIT.toString())) {
             quit(false);
         }
-        if (command.equals(RETRY)) {
+        if (command.equals(RETRY.toString())) {
             retry();
         }
     }
