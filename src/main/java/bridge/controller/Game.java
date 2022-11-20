@@ -54,8 +54,6 @@ public class Game {
         bridge = bridgeMaker.makeBridge(size);
     }
 
-
-    ///
     public void playBridgeGame() {
         while (gameControll.getGamePower()) {
             viewMove();
