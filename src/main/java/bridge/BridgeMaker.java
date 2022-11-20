@@ -8,7 +8,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    // 다리 통행 가능 정보를 담고 있는 리스트
     public static List<String> bridge_info;
+    // 현재 체크 중인 다리 인덱스
     public static int bridge_index = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -32,6 +34,6 @@ public class BridgeMaker {
                 bridge_info.add("U");
             }
         }
-        return null;
+        return bridge_info;
     }
 }
