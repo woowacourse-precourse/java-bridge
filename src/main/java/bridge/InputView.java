@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.utils.MoveCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Matcher;
@@ -15,8 +16,6 @@ public class InputView {
     private static final String REGEX_NOT_NUMBER = "\\D";
     private static final long MIN_BRIDGE_SIZE = 3;
     private static final long MAX_BRIDGE_SIZE = 20;
-    private static final String MOVING_COMMAND_UP = "U";
-    private static final String MOVING_COMMAND_DOWN = "D";
     private static final String RESTART_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";
 
@@ -63,13 +62,9 @@ public class InputView {
     }
 
     private void validateMoving(String input) {
-        if (isNotMovingCommand(input)) {
+        if (!MoveCommand.contains(input)) {
             throw new IllegalArgumentException(INVALID_MOVING_COMMAND.getMessage());
         }
-    }
-
-    private boolean isNotMovingCommand(String input) {
-        return !MOVING_COMMAND_UP.equals(input) && !MOVING_COMMAND_DOWN.equals(input);
     }
 
     /**

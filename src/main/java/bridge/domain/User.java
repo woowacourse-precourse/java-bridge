@@ -1,12 +1,12 @@
 package bridge.domain;
 
-import static bridge.utils.ErrorMessage.INVALID_INPUT_VALUE;
+import bridge.utils.MoveCommand;
+
+import static bridge.utils.ErrorMessage.INVALID_MOVING_COMMAND;
 
 public class User {
     private int step = 0;
     private boolean live = true;
-    private static final String UP_STARE = "U";
-    private static final String DOWN_STARE = "D";
 
     public void init() {
         this.step = 0;
@@ -14,7 +14,7 @@ public class User {
     }
 
     public void move(Bridge bridge, String input) {
-        validateStatus(input);
+        validateCommand(input);
         if (!bridge.isSafe(step, input)) {
             live = false;
             return;
@@ -22,14 +22,10 @@ public class User {
         step++;
     }
 
-    private void validateStatus(String status) {
-        if (isNotStatus(status)) {
-            throw new IllegalArgumentException(INVALID_INPUT_VALUE.getMessage());
+    private void validateCommand(String input) {
+        if (!MoveCommand.contains(input)) {
+            throw new IllegalArgumentException(INVALID_MOVING_COMMAND.getMessage());
         }
-    }
-
-    private boolean isNotStatus(String status) {
-        return !UP_STARE.equals(status) && !DOWN_STARE.equals(status);
     }
 
     public int getStep() {

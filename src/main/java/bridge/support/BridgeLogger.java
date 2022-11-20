@@ -1,5 +1,8 @@
 package bridge.support;
 
+import static bridge.utils.MoveCommand.COMMAND_DOWN;
+import static bridge.utils.MoveCommand.COMMAND_UP;
+
 public class BridgeLogger {
     private final StringBuilder UpLog = new StringBuilder();
     private final StringBuilder DownLog = new StringBuilder();
@@ -10,8 +13,6 @@ public class BridgeLogger {
     private final static String NONE = " ";
     private final static String SUCCESS = "O";
     private final static String FAILURE = "X";
-    private final static String UP_STARE = "U";
-    private final static String DOWN_STARE = "D";
 
     public BridgeLogger() {
         UpLog.append(PREFIX);
@@ -38,11 +39,12 @@ public class BridgeLogger {
     public void log(String input, boolean live) {
         String status = getStatus(live);
 
-        if (UP_STARE.equals(input)) {
+
+        if (COMMAND_UP.equals(input)) {
             logUPAndDown(status, NONE);
         }
 
-        if (DOWN_STARE.equals(input)) {
+        if (COMMAND_DOWN.equals(input)) {
             logUPAndDown(NONE, status);
         }
     }

@@ -1,10 +1,12 @@
 package bridge.utils;
 
+import java.util.Arrays;
+
 import static bridge.utils.ErrorMessage.INVALID_INPUT_VALUE;
 
 public enum MoveCommand {
-    UP("U", 1),
-    DOWN("D", 0);
+    COMMAND_UP("U", 1),
+    COMMAND_DOWN("D", 0);
 
     private final String command;
     private final int code;
@@ -12,6 +14,11 @@ public enum MoveCommand {
     MoveCommand(String command, int code) {
         this.command = command;
         this.code = code;
+    }
+
+    public static boolean contains(String status) {
+        return Arrays.stream(values())
+                .anyMatch(cmd -> cmd.command.equals(status));
     }
 
     public String getCommand() {
@@ -27,4 +34,7 @@ public enum MoveCommand {
         throw new IllegalArgumentException(INVALID_INPUT_VALUE.getMessage());
     }
 
+    public boolean equals(String input) {
+        return this.command.equals(input);
+    }
 }
