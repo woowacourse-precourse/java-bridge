@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.model.BridgeGame;
 import bridge.model.BridgeLength;
 import bridge.model.BridgeMoving;
 import bridge.model.BridgeRetry;

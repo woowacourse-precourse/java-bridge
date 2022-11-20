@@ -1,5 +1,6 @@
-package bridge;
+package bridge.model;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeComparator;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeMap;
