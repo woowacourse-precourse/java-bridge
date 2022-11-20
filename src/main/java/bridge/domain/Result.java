@@ -1,7 +1,7 @@
 package bridge.domain;
 
 public class Result {
-    private final BridgeStatus bridgeStatus;
+    private BridgeStatus bridgeStatus;
     private GameStatus gameOver;
 
     public Result() {
@@ -11,6 +11,7 @@ public class Result {
 
     public void init() {
         gameOver = GameStatus.PLAYING;
+        bridgeStatus = new BridgeStatus();
     }
 
     public void addBlocks(BlockExpression blockExpression) {
