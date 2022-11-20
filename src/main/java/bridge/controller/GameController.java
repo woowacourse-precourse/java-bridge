@@ -48,6 +48,11 @@ public class GameController {
     public void askRestartOrEnd(String userBridge, int tryCount, User user) {
         String retryOrQuit  = inputView.readGameCommand();
         setRetryOrQuit(retryOrQuit);
+        if(retryOrQuit.equals("R")) {
+            user.plusRetryCount();
+            user = new User();
+            return;
+        }
         outputView.printResult(userBridge, true, tryCount);
         gameFlag = false;
     }

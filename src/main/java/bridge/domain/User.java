@@ -1,11 +1,10 @@
 package bridge.domain;
 
 public class User {
-    private int retryCount;
+    private int retryCount = 1;
     private final Bridge bridge;
 
     public User() {
-        this.retryCount = 1;
         this.bridge = new Bridge();
     }
 
