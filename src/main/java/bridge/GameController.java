@@ -14,11 +14,15 @@ public class GameController {
     }
 
     public void startGame() {
-        int bridgeSize = InputView.readBridgeSize().getSize();
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = makeBridgeInputSize();
         bridgeGame = new BridgeGame(bridge);
         startMove();
         OutputView.printResult(bridgeGame.getMap(), bridgeGame.isSuccess(), bridgeGame.getTryCount());
+    }
+
+    private Bridge makeBridgeInputSize() {
+        int size = InputView.readBridgeSize().getSize();
+        return new Bridge(bridgeMaker.makeBridge(size));
     }
 
     private void startMove() {
