@@ -21,11 +21,22 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        validateSize(size);
         List<Integer> bridge = new ArrayList<>();
         IntStream.range(0, size)
                 .forEach(i -> bridge.add(bridgeNumberGenerator.generate()));
         return bridge.stream()
                 .map(BridgeLocation::getSignature)
                 .collect(Collectors.toList());
+    }
+
+    private void validateSize(int size) {
+        if(isOutOfSize(size)) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_OUT_OF_SIZE.toString());
+        }
+    }
+
+    private boolean isOutOfSize(int size) {
+        return size < GameSetting.MIN_BRIDGE_SIZE.getValue() || size > GameSetting.MAX_BRIDGE_SIZE.getValue();
     }
 }

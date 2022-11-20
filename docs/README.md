@@ -18,7 +18,7 @@
 - [ ] 횡단 왼료 여부 판단
 ## BridgeMaker
 - [X] 랜덤 다리 생성
-  - [ ] [예외] 입력값이 범위 검증
+  - [X] [예외] 입력값이 범위 검증
 ## BridgeRandomNumberGenerator
 - [X] 다리 요소 생성
 ## InputView
