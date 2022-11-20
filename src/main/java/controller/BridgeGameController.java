@@ -48,13 +48,13 @@ public class BridgeGameController {
     public void processOneGame() {
         do {
             bridgeGame.move(getMoving());
-            outputView.printMap(bridgeGame.getGameResult());
+            outputView.printMap(bridgeGame.getSimpleGameResult());
         } while (bridgeGame.getGameStatus().in_process());
     }
 
 
     public void end() {
-        outputView.printResult(bridgeGame.getFinalGameResult());
+        outputView.printResult(bridgeGame.getGameResult());
     }
 
     private int getBridgeSize() {

@@ -29,10 +29,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(GameResult gameResult) {
-        List<List<MoveResult>> moveResults = gameResult.getMoveResult();
+        List<List<MoveResult>> bridgeMoveResults = gameResult.getMoveResult();
 
-        for (int i = moveResults.size() - 1 ; i >= 0 ; i--) {
-            System.out.println(getFormattedRow(moveResults.get(i)));
+        for (int i = bridgeMoveResults.size() - 1 ; i >= 0 ; i--) {
+            System.out.println(getFormattedRow(bridgeMoveResults.get(i)));
         }
         System.out.println();
     }

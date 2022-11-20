@@ -69,7 +69,7 @@ public class BridgeGameTest extends NsTest {
         @Test
         @DisplayName("getGameResult는 이동 기록만을 담아 반환한다.")
         void onlyContainsMoveResult() {
-            GameResult gameResult = bridgeGame.getGameResult();
+            GameResult gameResult = bridgeGame.getSimpleGameResult();
             assertThatThrownBy(() -> gameResult.getTryCount()).isInstanceOf(NoSuchElementException.class);
             assertThatThrownBy(() -> gameResult.getStatus()).isInstanceOf(NoSuchElementException.class);
             List<List<MoveResult>> dummy = List.of(new ArrayList<>(), new ArrayList<>());
@@ -79,7 +79,7 @@ public class BridgeGameTest extends NsTest {
         @Test
         @DisplayName("getFinalGameResult는 모든 정보를 담아 반환환다.")
         void containsAllData() {
-            GameResult gameResult = bridgeGame.getFinalGameResult();
+            GameResult gameResult = bridgeGame.getGameResult();
             assertThat(gameResult.getTryCount()).isEqualTo(1);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
             List<List<MoveResult>> dummy = List.of(new ArrayList<>(), new ArrayList<>());
@@ -96,7 +96,7 @@ public class BridgeGameTest extends NsTest {
         void increaseTryCountAndResetMoveHistory() {
             bridgeGame.move(UP);
             bridgeGame.retry();
-            GameResult gameResult = bridgeGame.getFinalGameResult();
+            GameResult gameResult = bridgeGame.getGameResult();
             assertThat(gameResult.getTryCount()).isEqualTo(2);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
 
