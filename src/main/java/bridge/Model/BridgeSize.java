@@ -12,7 +12,7 @@ public class BridgeSize {
     }
 
     private void validData(int data) throws IllegalArgumentException{
-        if(MIN_SIZE >= 3 && MAX_SIZE <= 20){
+        if(data >= MIN_SIZE && data <= MAX_SIZE){
             return;
         }
         throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
