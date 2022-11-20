@@ -1,6 +1,7 @@
 package bridge.validator;
 
 import bridge.constant.ErrorConstant;
+import bridge.util.TypeConversionUtil;
 
 import java.util.regex.Pattern;
 
@@ -24,7 +25,7 @@ public class InputBridgeSizeValidator {
     }
 
     private boolean isWrongBridgeSizeRange(String bridgeSize) {
-        int convertedBridgeSize = Integer.parseInt(bridgeSize);
+        int convertedBridgeSize = TypeConversionUtil.StringToInt(bridgeSize);
         return convertedBridgeSize < MIN_BRIDGE_SIZE || convertedBridgeSize > MAX_BRIDGE_SIZE;
     }
 }

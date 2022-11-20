@@ -6,7 +6,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.model.GeneratedBridge;
 import bridge.model.PlayerBridge;
 import bridge.model.PrintBridge;
-
+import bridge.util.TypeConversionUtil;
 
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class BridgeGame {
     }
 
     public void generateBridge(String bridgeSize) {
-        List<String> bridgeShape = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
+        List<String> bridgeShape = bridgeMaker.makeBridge(TypeConversionUtil.StringToInt(bridgeSize));
         generatedBridge = new GeneratedBridge(bridgeShape);
     }
 
@@ -63,7 +63,7 @@ public class BridgeGame {
     }
 
     public void judgeGameStatus(String inputBridgeSize) {
-        if (nextStepIndex == Integer.parseInt(inputBridgeSize) && canMove) {
+        if (nextStepIndex == (TypeConversionUtil.StringToInt(inputBridgeSize)) && canMove) {
             isGameSuccess = true;
         }
     }
