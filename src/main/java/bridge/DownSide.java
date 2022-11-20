@@ -5,28 +5,31 @@ import java.util.List;
 
 public class DownSide {
     private String downSide;
+    public List<String> downSideArr;
 
-    public DownSide(List<String> bridge) {
-        this.downSide = makeDownSide(bridge);
+    public DownSide() {
+        this.downSide = makeDownSide();
     }
 
-    public String makeDownSide(List<String> bridge) {
-        String downSideString = String.join(" | ", convertDownSide(bridge));
+    public String makeDownSide() {
+        downSideArr = new ArrayList<>();
+        convertDownSide();
+        String downSideString = String.join(" | ", downSideArr);
         downSide = "[ ";
         downSide += downSideString;
         downSide += " ]";
         return downSide;
     }
 
-    public List<String> convertDownSide(List<String> bridge) {
-        List<String> downSideArr = new ArrayList<>();
-        for (String e : bridge) {
+    public void convertDownSide() {
+        for (String e : Application.movingInputs) {
             if (e.equals("U"))
-                downSideArr.add(" ");
-            if (e.equals("D"))
                 downSideArr.add("O");
+            if (e.equals("D"))
+                downSideArr.add(" ");
+            if (e.equals("X"))
+                downSideArr.add("X");
         }
-        return downSideArr;
     }
 
     public String getDownSide() {
