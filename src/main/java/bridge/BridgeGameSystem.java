@@ -9,6 +9,7 @@ public class BridgeGameSystem {
         startGame();
         int bridgeSize = getBridgeSize();
         List<String> bridge = getBridge(bridgeSize);
+//        String move = getMoveDirect();
     }
 
     public static void startGame(){
@@ -20,6 +21,15 @@ public class BridgeGameSystem {
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             return getBridgeSize();
+        }
+    }
+
+    public static String getMoveDirect(){
+        try{
+            return inputView.readMoving();
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getMoveDirect();
         }
     }
 
