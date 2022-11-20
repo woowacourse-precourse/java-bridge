@@ -15,8 +15,7 @@ public class BridgeMove {
 
     private void validate(String s) {
         if (!(s.equals("D") || s.equals("U"))) {
-            System.out.printf(Message.ERROR_DIRECTION_OUT_OF_RANGE.get());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.ERROR_DIRECTION_OUT_OF_RANGE.get());
         }
     }
 }

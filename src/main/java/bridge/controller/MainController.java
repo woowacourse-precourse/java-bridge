@@ -10,9 +10,21 @@ import java.util.List;
 
 public class MainController {
     public static void run() {
-        BridgeSize bridgeSize = new BridgeSize(InputView.readBridgeSize());
+        OutputView.printWelcome();
+        BridgeSize bridgeSize = getBridgeSize();
         BridgeGame bridgeGame = makeBridgeGame(bridgeSize.get());
         processBridgeGame(bridgeGame);
+    }
+
+    private static BridgeSize getBridgeSize() {
+        while (true) {
+            try {
+                BridgeSize bridgeSize = new BridgeSize(InputView.readBridgeSize());
+                return bridgeSize;
+            } catch (IllegalArgumentException E) {
+                System.out.printf(E.getMessage());
+            }
+        }
     }
 
     private static BridgeGame makeBridgeGame(int size) {
@@ -41,15 +53,31 @@ public class MainController {
         return true;
     }
 
+    private static String getDirection() {
+        while (true) {
+            try {
+                String direction = new BridgeMove(InputView.readMoving()).get();
+                return direction;
+            } catch (IllegalArgumentException E) {
+                System.out.printf(E.getMessage());
+            }
+        }
+    }
+
     private static void moveBridge(BridgeGame bridgeGame) {
-        String direction = new BridgeMove(InputView.readMoving()).get();
+        String direction = getDirection();
         bridgeGame.move(direction);
         OutputView.printMap(bridgeGame.getBridgeMap().get());
     }
 
-    public static boolean askRetry() {
-        BridgeCommand bridgeCommand = new BridgeCommand(InputView.readGameCommand());
-        return bridgeCommand.getIsRetry();
+    private static boolean askRetry() {
+        while (true) {
+            try {
+                BridgeCommand bridgeCommand = new BridgeCommand(InputView.readGameCommand());
+                return bridgeCommand.getIsRetry();
+            } catch (IllegalArgumentException E) {
+                System.out.printf(E.getMessage());
+            }
+        }
     }
-
 }
