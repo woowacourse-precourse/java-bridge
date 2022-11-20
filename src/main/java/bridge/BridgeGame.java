@@ -1,61 +1,61 @@
 package bridge;
-
-
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
-// * 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
-// * BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다.
-// * BridgeGame의 패키지는 변경할 수 있다.
-// * BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
-// * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
- */
+
 public class BridgeGame {
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-
-    static String failOrTure ="성공";
-    static List<String> randomBridge;
+    static InputView inputView = new InputView();
+    static OutputView outputView = new OutputView();
+    static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    static String falseOrTure ="성공";
     static int count = 1;
+    static List<String> randomBridges;
 
-    public void move() {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        randomBridge = bridgeMaker.makeBridge(inputView.bridgeLength);
-        System.out.println(randomBridge);
-        for(int i = 0; i < randomBridge.size(); i++){
-            String upAndDown = inputView.readMoving();
-            if(!randomBridge.get(i).equals(upAndDown)) {
-                outputView.wrongPrintMap(randomBridge.get(i));
-                failOrTure = "실패";
+    public static void move() {
+        randomBridges = bridgeMaker.makeBridge(inputView.bridgeLength);   //랜덤다리 생성
+        for (String randomBridge : randomBridges) {
+            movingCheck(randomBridge, inputView.readMoving());            //값 비교 후 알맞은 값 삽입
+            if (falseOrTure.equals("실패")) {
                 break;
             }
-            if(randomBridge.get(i).equals(upAndDown)){
-                outputView.printMap(randomBridge.get(i));
-                failOrTure = "성공";
-            }
         }
-        if(failOrTure.equals("성공")){
-            outputView.printResult(failOrTure, count);
+        successOrFalseCheck(falseOrTure);    //성공 시 결과 출력, 실패 시 retry 구문 실행
+    }
+    public static String movingCheck(String randomBridge, String upAndDown){
+        if(!randomBridge.equals(upAndDown)) {
+            outputView.falsePrintMap(upAndDown);    //값이 다를 시 출력값에 X 삽입
+            falseOrTure = "실패";
+        }
+        if(randomBridge.equals(upAndDown)){
+            outputView.printMap(upAndDown);         //값이 같을 시 출력값에 O 삽입
+        }
+        return falseOrTure;
+    }
+    public static void successOrFalseCheck(String falseOrTure){
+        if(falseOrTure.equals("성공")){   //성공 시 값 출력
+            outputView.printResult(falseOrTure, count);
+        }
+        if(falseOrTure.equals("실패")){   //실패 시 retry 구문 실행
+            retry();
         }
     }
 
-
-    public String retry() {
+    public static void retry() {
         String retry = inputView.readGameCommand();
         if(retry.equals("R")){
-            outputView.printMap1.clear();
-            outputView.printMap2.clear();
-            randomBridge.clear();
-            count++;
-            move();
+            clearAndRetry();    //재시도시 초기화 및 count 증가 후 재시도
         }
         if(retry.equals("Q")){
-            outputView.printResult(failOrTure, count);
+            outputView.printResult(falseOrTure, count);
         }
-        return retry;
     }
-
+    public static void  clearAndRetry(){
+        outputView.upByPrintMap.clear();
+        outputView.downByPrintMap.clear();
+        randomBridges.clear();
+        falseOrTure = "성공";
+        count++;
+        move();
+    }
 }
