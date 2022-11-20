@@ -48,16 +48,30 @@ public class BridgeController {
     private void moveOnTheBridge(String bridgeMoving) {
         BridgeCrossingDTO bridgeCrossingDTO = bridgeService.moveUser(bridgeMoving);
         OutputView.printMap(bridgeCrossingDTO.getFootPrint());
-        checkRestart(bridgeCrossingDTO);
+        checkContinue(bridgeCrossingDTO);
     }
 
-    private void checkRestart(BridgeCrossingDTO bridgeCrossingDTO) {
+    private void checkContinue(BridgeCrossingDTO bridgeCrossingDTO) {
         if (bridgeCrossingDTO.getCrossStatus().equals(BridgeCrossingStatus.SUCCESS.getStatus())) {
-
+            outputGameResult(bridgeCrossingDTO.getCrossStatus(), bridgeCrossingDTO.getTryCount());
         }
         if (bridgeCrossingDTO.getCrossStatus().equals(BridgeCrossingStatus.PROGRESS.getStatus())) {
             moveOnTheBridge(inputBridgeMove());
         }
+        if (bridgeCrossingDTO.getCrossStatus().equals(BridgeCrossingStatus.FAIL.getStatus())) {
+            checkRestart(inputGameRestart(), bridgeCrossingDTO);
+        }
+    }
+
+    private String inputGameRestart() {
+        return null;
+    }
+
+
+    private void checkRestart(String inputGameRestart, BridgeCrossingDTO bridgeCrossingDTO) {
+    }
+    private void outputGameResult(String crossStatus, int tryCount) {
+
     }
 
 }
