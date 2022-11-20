@@ -8,4 +8,6 @@ public class Constants {
     public static final String CORRECT="O";
     public static final String WRONG="X";
     public static final String NOTHING=" ";
+    public static final String SUCCESS="성공";
+    public static final String FAIL="실패";
 }
