@@ -21,6 +21,7 @@ public class InputView {
         outputView.printLengthMessage();
         String bridgeSize = Console.readLine();
         validateBridgeSizeInput(bridgeSize);
+        System.out.println();
 
         return Integer.parseInt(bridgeSize);
     }
