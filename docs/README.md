@@ -90,7 +90,7 @@ public class BridgeMaker {
 >- [x] 다리의 길이를 저장하는 기능 ( setBridgeSize )
 >- [x] 다리의 길이를 조회하는 기능 ( getBridgeSize )
 >- [x] 다리의 값을 저장하는 기능 ( setBridgeLoad )
->- [ ] 다리의 값을 조회하는 기능 ( getBridgeLoad )
+>- [x] 다리의 값을 조회하는 기능 ( getBridgeLoad )
 
 **User**
 >- [ ] 이동할 칸을 입력 받는 기능 ( addNext )

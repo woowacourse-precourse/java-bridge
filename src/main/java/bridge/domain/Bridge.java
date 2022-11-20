@@ -20,5 +20,7 @@ public class Bridge {
         this.bridgeLoad = bridgeLoad;
     }
 
-
+    public List<String> getBridgeLoad(List<String> bridgeLoad){
+        return this.bridgeLoad;
+    }
 }
