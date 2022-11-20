@@ -13,9 +13,9 @@ public enum BridgeEnum {
         this.bridgeStringType = stringType;
     }
 
-    public static BridgeEnum createBridgeType(int bridgeNumberType) {
+    public static BridgeEnum createBridgeNumberType(int locationNumber) {
         return Arrays.stream(values())
-                .filter(pointValue -> pointValue.bridgeNumberType == bridgeNumberType)
+                .filter(pointValue -> pointValue.bridgeNumberType == locationNumber)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 정보입니다."));
     }

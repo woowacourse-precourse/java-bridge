@@ -21,7 +21,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return Arrays.stream(new String[size])
-                .map(bridgeStringType -> BridgeEnum.createBridgeType(bridgeNumberGenerator.generate()).getStringType())
+                .map(bridgeStringType -> BridgeEnum.createBridgeNumberType(bridgeNumberGenerator.generate()).getStringType())
                 .collect(Collectors.toList());
     }
 }
