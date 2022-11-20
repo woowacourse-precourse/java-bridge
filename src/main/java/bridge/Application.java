@@ -7,20 +7,18 @@ public class Application {
     public static void main(String[] args) {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
-
         outputView.printGreeting();
-
-        outputView.printBridgeSizeInputMessage();
-        int bridgeSize = inputView.readBridgeSize();
-
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = initializeBridgeGame(inputView, outputView);
 
         outputView.printMoveInputMessage();
         String direction = inputView.readMoving();
 
         bridgeGame.move(direction);
+    }
+
+    private static BridgeGame initializeBridgeGame(InputView inputView, OutputView outputView) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        outputView.printBridgeSizeInputMessage();
+        return new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
     }
 }
