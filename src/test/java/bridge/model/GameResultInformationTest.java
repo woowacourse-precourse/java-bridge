@@ -20,7 +20,7 @@ public class GameResultInformationTest {
     @DisplayName("시도한 횟수를 증가시키고, 반환받을 수 있다.")
     @Test
     void increaseAndGetCountOfTry() {
-        int expected = 2;
+        int expected = 3;
 
         GameResultInformation.increaseCountOfTry();
         GameResultInformation.increaseCountOfTry();

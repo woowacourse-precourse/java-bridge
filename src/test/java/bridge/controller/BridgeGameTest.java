@@ -21,7 +21,7 @@ public class BridgeGameTest {
 
     BridgeGame bridgeGame = new BridgeGame();
 
-    final int MOVE_SPACE = 0;
+    final int ZERO_SPACE = 0;
 
     @BeforeAll
     static void setTestBridge() {
@@ -37,14 +37,14 @@ public class BridgeGameTest {
     @DisplayName("이동 기능 - 이동 가능할 경우 CAN_MOVE를 반환한다.")
     @Test
     void returnCanMoveTest() {
-        assertThat(bridgeGame.move(MOVE_SPACE, Direction.UP)).isEqualTo(
+        assertThat(bridgeGame.move(ZERO_SPACE, Direction.UP)).isEqualTo(
                 MovingPossibility.CAN_MOVE);
     }
 
     @DisplayName("이동 기능 - 이동 불가능할 경우 CAN_NOT_MOVE를 반환한다.")
     @Test
     void returnCanNotMoveTest() {
-        assertThat(bridgeGame.move(MOVE_SPACE, Direction.DOWN)).isEqualTo(
+        assertThat(bridgeGame.move(ZERO_SPACE, Direction.DOWN)).isEqualTo(
                 MovingPossibility.CAN_NOT_MOVE);
     }
 
@@ -55,7 +55,7 @@ public class BridgeGameTest {
         final String DOWN_BRIDGE = "[   ]";
         Map<Direction, String> expectedBridge = makeBridgeRecord(UP_BRIDGE, DOWN_BRIDGE);
 
-        bridgeGame.move(MOVE_SPACE, Direction.UP);
+        bridgeGame.move(ZERO_SPACE, Direction.UP);
 
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
@@ -67,7 +67,7 @@ public class BridgeGameTest {
         final String DOWN_BRIDGE = "[ X ]";
         Map<Direction, String> expectedBridge = makeBridgeRecord(UP_BRIDGE, DOWN_BRIDGE);
 
-        bridgeGame.move(MOVE_SPACE, Direction.DOWN);
+        bridgeGame.move(ZERO_SPACE, Direction.DOWN);
 
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
@@ -92,7 +92,7 @@ public class BridgeGameTest {
     @DisplayName("재시도 기능 - 재시도할 경우, 이동한 기록이 리셋된다.")
     @Test
     void retryResetCrossedRecordTest() {
-        bridgeGame.move(MOVE_SPACE, Direction.UP);
+        bridgeGame.move(ZERO_SPACE, Direction.UP);
         Map<Direction, String> emptyBridgeRecord = setEmptyBridge();
 
         assertThat(CrossRecord.getCrossedBridge()).isNotEqualTo(emptyBridgeRecord);

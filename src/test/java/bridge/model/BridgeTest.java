@@ -76,7 +76,7 @@ public class BridgeTest {
     @ParameterizedTest
     @ValueSource(ints = 1)
     @Order(7)
-    void canMoveImpossibleTest(int space, String direction) {
+    void canMoveImpossibleTest(int space) {
         initializeBridge();
 
         assertThat(Bridge.checkMovingPossibility(space, Direction.UP)).isEqualTo(
