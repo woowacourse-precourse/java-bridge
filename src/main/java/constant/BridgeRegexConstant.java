@@ -9,7 +9,7 @@ public enum BridgeRegexConstant {
         this.bridgeRegexConstant = bridgeRegexConstant;
     }
 
-    public String getBridgeRegexConstant() {
+    public String getConstant() {
         return bridgeRegexConstant;
     }
 }
