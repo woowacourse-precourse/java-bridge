@@ -29,7 +29,7 @@ public class InputTest {
     @DisplayName("NULL 을 포함하여 숫자가 아닌 값이 입력됐을 때 예외가 발생한다.")
     void 입력값이_숫자가아니면_예외발생(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNumber(input))
-                .withMessage("[ERROR] 숫자만 입력할 수 있습니다.");
+                .withMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
     @ParameterizedTest
