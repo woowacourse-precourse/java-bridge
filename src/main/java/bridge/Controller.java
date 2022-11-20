@@ -15,7 +15,7 @@ public class Controller {
     public void startGame(BridgeGame bridgeGame) {
         bridgeGame.generateBridge(getBridgeSize());
         GameStatus gameResult = play(bridgeGame, GameStatus.CONTINUE);
-        getResult(gameResult);
+        getResult(gameResult, bridgeGame);
     }
 
     private int getBridgeSize() {
@@ -23,12 +23,15 @@ public class Controller {
         return this.inputView.readBridgeSize();
     }
 
-    private GameStatus play(BridgeGame bridgeGame, GameStatus gameStatus) {
+    public GameStatus play(BridgeGame bridgeGame, GameStatus gameStatus) {
+        Map map = new Map();
         while (gameStatus == GameStatus.CONTINUE) {
             gameStatus = bridgeGame.tryMoveTo(getMoving());
             if (gameStatus == GameStatus.FAILURE) {
                 gameStatus = askRepeatGame(gameStatus, bridgeGame);
             }
+            map.add(bridgeGame.getAvailableSquare(bridgeGame.getCurrentPosition()), gameStatus);
+            outputView.printMap(map);
         }
         return gameStatus;
     }
@@ -47,7 +50,7 @@ public class Controller {
         return GameStatus.FAILURE;
     }
 
-    private void getResult(GameStatus gameResult) {
+    private void getResult(GameStatus gameResult, BridgeGame bridgeGame) {
         outputView.printResult(gameResult);
     }
 }
