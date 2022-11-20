@@ -38,6 +38,7 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println(QUIT_OR_RESTART_PHRASE);
         String input = Console.readLine();
+        validateIsROrQ(input);
         return input;
     }
 
@@ -53,6 +54,13 @@ public class InputView {
 
     private static void validateIsUOrD(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
+            System.out.println(INVALID_VALUE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateIsROrQ(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
             System.out.println(INVALID_VALUE);
             throw new IllegalArgumentException();
         }
