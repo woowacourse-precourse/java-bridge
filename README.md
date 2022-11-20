@@ -56,11 +56,11 @@ BUILD SUCCESSFUL in 0s
 
 - [ ] **CLASS1. enum BridgeBlock**
   - **Class Variables**
-    - [ ] UPPER_BLOCK("U")
-    - [ ] LOWER_BLOCK("D")
-    - [ ] private final String bridgeBlock
+    - [x] UPPER_BLOCK("U")
+    - [x] LOWER_BLOCK("D")
+    - [x] private final String bridgeBlock
   - **Class Methods**
-    - [ ] public BridgeBlock(String bridgeBlock)
+    - [x] public BridgeBlock(String bridgeBlock)
     - [ ] public String getBridgeBlock()
 - [ ] **CLASS2. enum RetrySelector**
   - **Class Variables**
