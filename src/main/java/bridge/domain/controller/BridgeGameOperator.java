@@ -25,20 +25,14 @@ public class BridgeGameOperator {
     }
 
     public void playBridgeGame() {
-        final String RESTART = "R";
-
         GameResultInformation.increaseCountOfTry();
         printStartGuideAndSetBridge();
 
-        String retryInput = RESTART;
-        while (retryInput.equals(RESTART)) {
+        boolean gameStart = true;
+        while (gameStart) {
             tryOneGame();
 
-            outputView.printRetryGuide();
-            retryInput = inputView.readGameCommand();
-            if (retryInput.equals(RESTART)) {
-                bridgeGame.retry();
-            }
+            gameStart = selectRetryOrNot();
         }
     }
 
@@ -85,5 +79,22 @@ public class BridgeGameOperator {
             return Direction.UP;
         }
         return Direction.DOWN;
+    }
+
+    private boolean selectRetryOrNot() {
+        outputView.printRetryGuide();
+
+        return isRetrySelected();
+    }
+
+    private boolean isRetrySelected() {
+        final String RESTART = "R";
+
+        String retryInput = inputView.readGameCommand();
+        if (retryInput.equals(RESTART)) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
     }
 }
