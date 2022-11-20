@@ -1,6 +1,9 @@
 package bridge.validation;
 
 public class ReadBridgeSizeValidation {
+    private static final int MIN_BRIDGE_SIZE = 3;
+    private static final int MAX_BRIDGE_SIZE = 20;
+
     public void validate(String inputBridgeSize) {
         validateInputIsInteger(inputBridgeSize);
         validateSizeRange(inputBridgeSize);
@@ -17,7 +20,7 @@ public class ReadBridgeSizeValidation {
     public void validateSizeRange(String inputBridgeSize) {
         int bridgeSize = Integer.parseInt(inputBridgeSize);
 
-        if (bridgeSize < 3 || bridgeSize > 20) {
+        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException("[ERROR] 다리의 길이는 3이상, 20이하여야 합니다.");
         }
     }
