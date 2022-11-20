@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(ViewConstants.ASKING_BRIDGE_LENGTH);
     }
 
-    public void printAskingNextMove() {
+    public void printAskingMoving() {
         System.out.println(ViewConstants.ASKING_MOVING);
     }
 
