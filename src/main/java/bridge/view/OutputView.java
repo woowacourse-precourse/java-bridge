@@ -16,6 +16,16 @@ public class OutputView {
     private static final String DOWN = "D";
     private static final String BLANK = "   ";
     private static final String DIVIDER = "|";
+    private static final String START_MAP = "[";
+    private static final String END_MAP = "]";
+    private static final String NEW_LINE = "\n";
+    private static final String RESULT_TITLE_MESSAGE = "최종 게임 결과";
+    private static final String IS_SUCCESSFUL_MESSAGE = "게임 성공 여부: ";
+    private static final String TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
+    private static final String SUCCESS_MESSAGE = "성공";
+    private static final String FAIL_MESSAGE = "실패";
+    private static final int FIRST_INDEX = 0;
+    private static final int LAST_INDEX = 1;
 
     public void printStart() {
         System.out.println(START_MESSAGE);
@@ -36,19 +46,14 @@ public class OutputView {
             up.append(makeUpMap(result.get(i), bridge.get(i)));
             down.append(makeDownMap(result.get(i), bridge.get(i)));
         }
-        makeBothEnds(up, down);
-        System.out.println(up);
-        System.out.println(down);
-        System.out.println();
+        System.out.println(makeBothEnds(up) + makeBothEnds(down));
     }
 
-    private void makeBothEnds(StringBuilder up, StringBuilder down) {
-        up.insert(0, "[");
-        down.insert(0, "[");
-        up.deleteCharAt(up.length() - 1);
-        down.deleteCharAt(down.length() - 1);
-        up.append("]");
-        down.append("]");
+    private String makeBothEnds(StringBuilder oneBridge) {
+        oneBridge.insert(FIRST_INDEX, START_MAP);
+        oneBridge.deleteCharAt(oneBridge.length() - LAST_INDEX);
+        oneBridge.append(END_MAP).append(NEW_LINE);
+        return String.valueOf(oneBridge);
     }
 
     private String makeUpMap(boolean result, String moving) {
@@ -78,20 +83,21 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(ResultDto resultDto) {
-        System.out.println("최종 게임 결과");
+        System.out.println(RESULT_TITLE_MESSAGE);
         printMap(resultDto.getMapDto());
-        System.out.println("게임 성공 여부: " + getSuccessMessage(resultDto.isSuccess()));
-        System.out.println("총 시도한 횟수: " + resultDto.getTryCount());
+        System.out.println(IS_SUCCESSFUL_MESSAGE + getSuccessMessage(resultDto.isSuccess()));
+        System.out.println(TRY_COUNT_MESSAGE + resultDto.getTryCount());
     }
 
     private String getSuccessMessage(boolean isSuccess) {
         if (isSuccess) {
-            return "성공";
+            return SUCCESS_MESSAGE;
         }
-        return "실패";
+        return FAIL_MESSAGE;
     }
 
     public void printError(Exception e) {
         System.out.println(e.getMessage());
+        System.out.println();
     }
 }
