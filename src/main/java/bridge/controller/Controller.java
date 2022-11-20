@@ -71,4 +71,13 @@ public class Controller {
             outputView.printResult(player, result, "실패");
         }
     }
+    public void decisionGameContinuous() {
+        try {
+            String decision = inputView.input();
+            compareDecision(inputView.readGameCommand(decision));
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            decisionGameContinuous();
+        }
+    }
 }
