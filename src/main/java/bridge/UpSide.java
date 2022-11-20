@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpSide {
-    private String upSide;
+    private String upSide="";
+
+    public UpSide(List<String> bridge) {
+        this.upSide = makeUpSide(bridge);
+    }
 
     public String makeUpSide(List<String> bridge) {
         String upSideString = String.join(" | ", convertUpSide(bridge));
@@ -24,5 +28,9 @@ public class UpSide {
                 upSideArr.add(" ");
         }
         return upSideArr;
+    }
+
+    public String getUpSide() {
+        return this.upSide;
     }
 }
