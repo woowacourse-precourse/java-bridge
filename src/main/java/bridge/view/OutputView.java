@@ -25,34 +25,32 @@ public class OutputView {
 
     // Bridge 맵 출력
     public void printMap(Bridge bridge) {
-        String[] bridgeMap = bridge.getBridgeMap();
-        StringBuilder topRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_UP_KEY);
-        StringBuilder bottomRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_DOWN_KEY);
+        StringBuilder topRow = createSingleLineMap(bridge, Setting.MOVE_UP_KEY);
+        StringBuilder bottomRow = createSingleLineMap(bridge, Setting.MOVE_DOWN_KEY);
         System.out.println(topRow);
         System.out.println(bottomRow+"\n");
     }
 
     // Bridge 맵 한줄 생성 기능
-    private StringBuilder createSingleLineMap(Bridge bridge, String[] bridgeMap, String key) {
-        StringBuilder row = new StringBuilder("[ ");
+    private StringBuilder createSingleLineMap(Bridge bridge, String key) {
+        StringBuilder row = new StringBuilder(Setting.BRIDGE_FIRST_LETTER);
         for (int index = 0; index < bridge.getBridgeMap().length; index++) {
             addDelimiter(row, index);
-            if (bridge.getUserKeyList().get(index).equals(key)) {
-                row.append(bridgeMap[index]);
+            if (bridge.getUserKeyListIndex(index).equals(key)) {
+                row.append(bridge.getBridgeMap()[index]);
                 continue;
             }
-            row.append(" ");
+            row.append(Setting.WRONG_ANSWER_LETTER);
         }
-        row.append(" ]");
+        row.append(Setting.BRIDGE_LAST_LETTER);
         return row;
     }
 
     // 구분자 더하기
-    private StringBuilder addDelimiter(StringBuilder row, int index) {
+    private void addDelimiter(StringBuilder row, int index) {
         if (index > 0) {
-            row.append(" | ");
+            row.append(Setting.DELIMITER);
         }
-        return row;
     }
 
     // 에러메세지 출력 기능
