@@ -18,6 +18,7 @@ public class BridgeGame {
     private GameStatus gameStatus = new GameStatus();
     private User user = new User();
     private Bridge bridge = new Bridge();
+    private BridgeGameService bridgeGameService = new BridgeGameService();
 
     public void startGame(int size){
         bridge.setBridgeSize(size);
@@ -46,5 +47,10 @@ public class BridgeGame {
     public void retry() {
         user.clearLog();
         gameStatus.addGameCount();
+    }
+
+    public String endGame() {
+        bridgeGameService.setEndMessage();
+        return bridgeGameService.getEndMessage();
     }
 }
