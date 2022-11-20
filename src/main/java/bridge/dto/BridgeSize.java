@@ -1,7 +1,7 @@
 package bridge.dto;
 
 public class BridgeSize {
-    int bridgeSize;
+    private final int bridgeSize;
 
     public BridgeSize(String bridgeSize) {
         this(parseBridgeSize(bridgeSize));
@@ -11,7 +11,7 @@ public class BridgeSize {
         this.bridgeSize = bridgeSize;
     }
 
-    private static int parseBridgeSize(String bridgeSize) {
+    private static int parseBridgeSize(final String bridgeSize) {
 
         return Integer.parseInt(bridgeSize);
     }
