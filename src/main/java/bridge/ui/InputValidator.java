@@ -9,6 +9,10 @@ public class InputValidator {
     private static final int SIZE_LIMIT_START = 3;
     private static final int SIZE_LIMIT_END = 20;
 
+    public static boolean isInputBlank(String input){
+        return input.isBlank();
+    }
+
     public static boolean isValidBridge(String bridgeSize){
         return isNumeric(bridgeSize) && isValidInRange(bridgeSize);
     }

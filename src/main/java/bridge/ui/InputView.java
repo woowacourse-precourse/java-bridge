@@ -1,6 +1,7 @@
 package bridge.ui;
 
 import static bridge.ui.InputValidator.*;
+import static bridge.ui.MessageUtil.EMPTY_INPUT;
 import static bridge.ui.MessageUtil.INVALID_BRIDGE_SIZE;
 import static bridge.ui.MessageUtil.INVALID_GAME_CMD;
 import static bridge.ui.MessageUtil.INVALID_MOVE_CHOICE;
@@ -12,7 +13,11 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     public String userInput(){
-        return Console.readLine();
+        String input = Console.readLine();
+        if (isInputBlank(input)) {
+            throw new IllegalArgumentException(EMPTY_INPUT.message);
+        }
+        return input;
     }
 
     /**
