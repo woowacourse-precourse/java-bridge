@@ -21,7 +21,7 @@ public class GameManager {
     private static BridgeGame bridgeGame;
 
     /**
-     * 사용자, 유저 생성
+     * 다리 생성 게임, 사용자 생성
      */
     public GameManager() {
         bridgeGame = new BridgeGame();
@@ -61,7 +61,15 @@ public class GameManager {
         printGameResult();
     }
 
+    // 칸 이동
     private void moveUser() {
+        String userMoveDirection = askUserMoveDirection();
+        bridgeGame.move(userMoveDirection);
+    }
+
+    private String askUserMoveDirection() {
+        OutputView.askUserMoveDirection();
+        return InputView.readMoving();
     }
 
     private void printBridge_userPredict() {
