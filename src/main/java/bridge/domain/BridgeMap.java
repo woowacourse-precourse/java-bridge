@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BridgeMap {
-    List<String> topMap = new ArrayList<>();
-    List<String> bottomMap = new ArrayList<>();
+    private List<String> topMap = new ArrayList<>();
+    private List<String> bottomMap = new ArrayList<>();
 
     public void addMap(Moving direction, boolean result) {
         if (direction.equals(Constant.UP)) {
