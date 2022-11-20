@@ -1,4 +1,3 @@
-
 ```
 다시 건너기 게임을 시작합니다.
 
@@ -36,15 +35,16 @@
           BridgeNumberGenerator
           BridgeRandomNumberGenerator
 
-
 ## 기능 목록
 
-- [ ]  다리 길이 입력 기능
+[InputView.java](../src/main/java/bridge/view/InputView.java)
+- [x]  다리 길이 입력 기능
+- [x]  움직일 칸 입력 기능
+- [x]  게임 재시작 입력 기능
+
 - [ ]  다리 생성 기능
-- [ ]  움직일 칸 입력 기능
 - [ ]  사용자 입력과 다리 내용물 비교 기능
-- [ ]  게임 재시작 입력 기능
-- [ ]  출력 기능
+- [ ] 출력 기능
 
 ## 예외 목록
 
