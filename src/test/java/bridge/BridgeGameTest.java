@@ -46,4 +46,44 @@ class BridgeGameTest {
         SuccessFail isSuccess = bridgeGame.isSuccess(bridge, player);
         assertThat(isSuccess).isEqualTo(FAIL);
     }
+
+    @Test
+    void isFinish_true1() {
+        List<String> bridge = List.of("U", "D", "U");
+        List<String> player = List.of("U", "U");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.player = player;
+        boolean isFinish = bridgeGame.isFinish();
+        assertThat(isFinish).isEqualTo(true);
+    }
+
+    @Test
+    void isFinish_true2() {
+        List<String> bridge = List.of("U", "D", "U");
+        List<String> player = List.of("U", "D", "U");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.player = player;
+        boolean isFinish = bridgeGame.isFinish();
+        assertThat(isFinish).isEqualTo(true);
+    }
+
+    @Test
+    void isFinish_true3() {
+        List<String> bridge = List.of("U", "D", "U");
+        List<String> player = List.of("U", "D", "D");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.player = player;
+        boolean isFinish = bridgeGame.isFinish();
+        assertThat(isFinish).isEqualTo(true);
+    }
+
+    @Test
+    void isFinish_false() {
+        List<String> bridge = List.of("U", "D", "U");
+        List<String> player = List.of("U", "D");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.player = player;
+        boolean isFinish = bridgeGame.isFinish();
+        assertThat(isFinish).isEqualTo(false);
+    }
 }
