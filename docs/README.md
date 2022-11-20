@@ -31,3 +31,13 @@
 
 ## 기능 명세
 - --
+
+### OutputView 클래스
+  - ```printGameStart``` : 게임 시작 문구 출력
+  - ```printMap``` : 이동한 다리 상태 출력
+  - ```printResult``` : 게임 최종 결과 출력 
+
+### InputView 클래스
+  - ```readBridgeSize``` : 다리 길이 문구 출력 및 입력
+  - ```readMoving``` :  이동 문구 출력 및 입력
+  - ```readGameCommand``` : 게임 재시작 혹은 종료 문구 출력 및 입력
