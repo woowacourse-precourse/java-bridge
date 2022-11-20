@@ -40,10 +40,14 @@ public class AppConfig {
     }
 
     private InputView inputView() {
-        return new InputView();
+        return new InputView(validator());
     }
 
     private OutputView outputView() {
         return new OutputView();
+    }
+
+    private Validator validator() {
+        return new Validator();
     }
 }

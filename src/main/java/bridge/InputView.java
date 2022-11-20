@@ -7,7 +7,12 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private Validator validator = new Validator();
+    private Validator validator;
+
+    public InputView(Validator validator) {
+        this.validator = validator;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
