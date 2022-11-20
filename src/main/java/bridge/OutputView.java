@@ -74,6 +74,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(List<Integer> movingSuccess, int numberOfAttempts) {
+        System.out.println("최종 게임 결과");
+        boolean result = printMap(movingSuccess);
+        System.out.println("게임 성공 여부: " + SuccessOrFailure(result));
+        System.out.println("총 시도한 횟수: " + numberOfAttempts);
+    }
+
+    private static String SuccessOrFailure(boolean result) {
+        if (result) {
+            return "성공";
+        }
+        return "실패";
     }
 }
