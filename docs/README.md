@@ -133,3 +133,4 @@ D
 ### retry
 - [ ] upBridge변수의 요소 제거
 - [ ] downBridge변수의 요소 제거
+- [ ] moveCount변수를 0으로 초기화
