@@ -16,11 +16,13 @@ public class BridgeGame {
     UserChoices userChoices;
     CrossResults crossResults;
     Bridge bridge;
+    int tryCount;
 
     public BridgeGame(BridgeSize bridgeSize){
         userChoices = new UserChoices();
         crossResults = new CrossResults();
         bridge = new Bridge(makeBridge(bridgeSize));
+        tryCount = 1;
     }
     private List<String> makeBridge(BridgeSize bridgeSize){
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -61,6 +63,10 @@ public class BridgeGame {
     public void retry() {
         userChoices = new UserChoices();
         crossResults = new CrossResults();
+        increaseTryCount();
+    }
+    private void increaseTryCount(){
+        tryCount++;
     }
 
     public UserChoices getUserChoices(){
