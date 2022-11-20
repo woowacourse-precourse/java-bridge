@@ -3,21 +3,26 @@ package bridge;
 import java.util.List;
 
 public class MainGame {
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
-    private final List<String> bridge;
-    private final BridgeGame bridgeGame;
-    private int countGame = 1;
+    private final OutputView outputView;
+    private final InputView inputView;
+    private final BridgeMaker bridgeMaker;
+    private BridgeGame bridgeGame;
+    private int countGame;
     private boolean restart;
 
     public MainGame() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
+        bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        outputView = new OutputView();
+        inputView = new InputView();
+        countGame = 1;
         restart = true;
+    }
+
+    public void startRound() {
         outputView.printStart();
         outputView.printLengthInput();
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         bridgeGame = new BridgeGame(bridge);
     }
 
