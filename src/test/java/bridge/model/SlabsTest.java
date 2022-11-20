@@ -18,17 +18,28 @@ class SlabsTest {
     @Test
     void DB_모두_넣기() {
         Slabs slabs = Slabs.getInstance();
-        List<SlabType> slabsValues = List.of(SlabType.DOWN, SlabType.DOWN, SlabType.UP);
+        List<SlabDTO> dto = this.slabs();
 
-        assertThat(slabs.insertAll(slabsValues)).isTrue();
+        assertThat(slabs.insertAll(dto)).isTrue();
     }
 
     @Test
     void DB_모두_가져오기() {
         Slabs slabs = Slabs.getInstance();
-        List<SlabType> slabsValues = List.of(SlabType.DOWN, SlabType.DOWN, SlabType.UP);
-        slabs.insertAll(slabsValues);
+        List<SlabDTO> dto = this.slabs();
+        slabs.insertAll(dto);
 
-        assertThat(slabs.getAll()).isEqualTo(slabsValues);
+        assertThat(slabs.getAll()).isEqualTo(dto);
+    }
+
+    List<SlabDTO> slabs() {
+        return List.of(
+                new SlabDTO(0, SlabType.DOWN, true),
+                new SlabDTO(0, SlabType.UP, false),
+                new SlabDTO(1, SlabType.UP, true),
+                new SlabDTO(1, SlabType.DOWN, false),
+                new SlabDTO(2, SlabType.DOWN, true),
+                new SlabDTO(2, SlabType.UP, false)
+        );
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Slabs {
     private static Slabs slabs;
-    private final List<SlabType> database;
+    private final List<SlabDTO> database;
 
     private Slabs() {
         this.database = new LinkedList<>();
@@ -23,21 +23,11 @@ public class Slabs {
         return slabs;
     }
 
-    public boolean insertAll(List<SlabType> data) {
+    public boolean insertAll(List<SlabDTO> data) {
         return this.database.addAll(data);
     }
 
-    public List<SlabType> getAll() {
+    public List<SlabDTO> getAll() {
         return Collections.unmodifiableList(this.database);
-    }
-
-    public int indexOf(SlabType data) {
-        int index = this.database.indexOf(data);
-
-        if (index < 0) {
-            throw new RuntimeException(LangType.get(LangType.NOT_FOUND_DATA));
-        }
-
-        return index;
     }
 }
