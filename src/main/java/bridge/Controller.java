@@ -11,7 +11,7 @@ public class Controller {
         this.bridgeMaker = new BridgeMaker(generator);
     }
 
-    public void start() {
+    public void startGame() {
         outputView.printGameStart();
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
