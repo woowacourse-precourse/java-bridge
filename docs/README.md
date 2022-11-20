@@ -21,10 +21,10 @@
     - [x] 재시도 여부 입력받기 - InputView#readGameCommand
     - [ ] 예외처리 (R 또는 Q중 하나가 아닐 때) - InputView#validateGameCommand
   
-- [ ] 게임 종료 문구 출력 기능 - OutputView#printResult
-  - [ ] 최종 게임 결과 출력 
-  - [ ] 게임 성공 여부 출력 
-  - [ ] 총 시도한 횟수 출력  
+- [x] 게임 종료 문구 출력 기능 - OutputView#printResult
+  - [x] 최종 게임 결과 출력 
+  - [x] 게임 성공 여부 출력 
+  - [x] 총 시도한 횟수 출력  
 
 
 ⚠️예외처리 : 잘못된 값 입력한 경우⚠️
