@@ -1,5 +1,7 @@
 package bridge;
 
+import java.text.MessageFormat;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -60,4 +62,12 @@ public class BridgeGame {
         return position.isNotArrive() && position.isNotReset();
     }
 
+    public String printGameResult() {
+        return MessageFormat.format("\n최종 게임 결과\n{0}\n{1}", this, result);
+    }
+
+    @Override
+    public String toString() {
+        return result.printStatus(count);
+    }
 }

@@ -11,7 +11,7 @@ public class OutputView {
     private final static String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private final static String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final static String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    public void printGameStartMessage() {
+    public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
     }
 
@@ -42,5 +42,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(BridgeGame bridgeGame) {
+        System.out.println(bridgeGame.printGameResult());
     }
 }

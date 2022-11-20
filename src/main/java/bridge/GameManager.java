@@ -12,6 +12,7 @@ public class GameManager {
     }
 
     public void play() {
+        OutputView.printGameStartMessage();
         boolean status;
         do {
             status = moveForward();

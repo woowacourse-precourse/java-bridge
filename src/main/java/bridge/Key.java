@@ -20,16 +20,8 @@ public enum Key {
         return input == U;
     }
 
-    public static boolean matchDown(String input) {
-        return input.equals(D.getValue());
-    }
-
     public static boolean matchDown(Key input) {
         return input == D;
-    }
-
-    public static boolean matchRetry(String input) {
-        return input.equals(R.getValue());
     }
 
     public static boolean matchEnd(String input) {

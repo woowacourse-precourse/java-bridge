@@ -44,4 +44,8 @@ public class ResultInformation {
     boolean isPossibility() {
         return upBridge[bridgeSize - 1] == O_SIGN || downBridge[bridgeSize - 1] == O_SIGN;
     }
+
+    int getTryCount() {
+        return tryCount;
+    }
 }
