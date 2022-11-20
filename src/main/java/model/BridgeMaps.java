@@ -1,6 +1,8 @@
 package model;
 
 import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static model.BridgeType.UP;
@@ -10,6 +12,18 @@ public class BridgeMaps {
 
     public BridgeMaps() {
         maps = new EnumMap<>(BridgeType.class);
+    }
+
+    public Map<BridgeType, List<String>> getMaps() {
+        Map<BridgeType, List<String>> maps = new HashMap<>();
+        for (BridgeType type : this.maps.keySet()) {
+            maps.put(type, getMap(type));
+        }
+        return Map.copyOf(maps);
+    }
+
+    private List<String> getMap(BridgeType type) {
+        return maps.get(type).getMap();
     }
 
     public int getStage() {

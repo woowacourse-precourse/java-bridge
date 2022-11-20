@@ -7,12 +7,11 @@ public class TryCount {
         this.count = 1;
     }
 
-    public void increase() {
-        this.count++;
+    public int getCount() {
+        return count;
     }
 
-    @Override
-    public String toString() {
-        return Integer.toString(count);
+    public void increase() {
+        this.count++;
     }
 }

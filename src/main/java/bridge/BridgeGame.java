@@ -5,7 +5,11 @@ import model.BridgeMaps;
 import model.BridgeType;
 import model.GameResult;
 import model.MoveMark;
+import model.ResultType;
 import model.TryCount;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -23,16 +27,16 @@ public class BridgeGame {
         this.result = new GameResult();
     }
 
-    public BridgeMaps getMaps() {
-        return maps;
+    public Map<BridgeType, List<String>> getMaps() {
+        return maps.getMaps();
     }
 
-    public TryCount getCount() {
-        return count;
+    public int getTryCount() {
+        return count.getCount();
     }
 
-    public GameResult getResult() {
-        return result;
+    public ResultType getGameResult() {
+        return result.getResult();
     }
 
     /**

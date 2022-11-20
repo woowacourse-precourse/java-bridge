@@ -13,6 +13,10 @@ public class BridgeMap {
         map = new ArrayList<>();
     }
 
+    public List<String> getMap() {
+        return List.copyOf(map);
+    }
+
     public int getStage() {
         return map.size();
     }

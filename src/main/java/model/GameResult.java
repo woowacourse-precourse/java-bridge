@@ -9,6 +9,10 @@ public class GameResult {
         this.result = WIN;
     }
 
+    public ResultType getResult() {
+        return result;
+    }
+
     public boolean isRun() {
         return this.result.isRun();
     }
@@ -19,10 +23,5 @@ public class GameResult {
 
     public void reset() {
         this.result = WIN;
-    }
-
-    @Override
-    public String toString() {
-        return result.getMessage();
     }
 }
