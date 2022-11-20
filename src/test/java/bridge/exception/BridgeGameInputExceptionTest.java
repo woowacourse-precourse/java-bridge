@@ -9,11 +9,22 @@ import org.junit.jupiter.api.Test;
 class BridgeGameInputExceptionTest {
     private final BridgeGameInputException bridgeGameInputException = new BridgeGameInputException();
 
-    @DisplayName("다리의 길이가 3~20인지 아니라면 예외가 발생한다.")
+    @DisplayName("다리의 길이가 3~20사이가 아니라면 예외가 발생한다.")
     @Test
-    public void validateWrongBridgeSize() {
+    public void validateWrongBridgeSizeRange() {
         //given
         String size = "1";
+
+        //when,then
+        assertThatThrownBy(() -> bridgeGameInputException.validateBridgeSize(size))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리의 길이가 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    public void validateWrongBridgeSizeType() {
+        //given
+        String size = "a";
 
         //when,then
         assertThatThrownBy(() -> bridgeGameInputException.validateBridgeSize(size))
