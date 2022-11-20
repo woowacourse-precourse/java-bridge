@@ -12,4 +12,9 @@ public class Bridge {
     public Bridge(List<String> movableBlocks) {
         this.movableBlocks = movableBlocks;
     }
+
+    public boolean checkMoveResult(int position, String moveDirection) {
+        String movableBlockAtPosition = movableBlocks.get(position);
+        return movableBlockAtPosition.equals(moveDirection);
+    }
 }
