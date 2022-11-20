@@ -20,8 +20,8 @@ public class Bridge {
         return bridge;
     }
 
-    public String getBlock(int index) {
-        return bridge.get(index);
+    public int getSize() {
+        return bridge.size();
     }
 
     public void setBridge(List<String> bridge) {

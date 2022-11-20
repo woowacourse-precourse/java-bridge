@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import java.util.List;
+
 import bridge.domain.Bridge;
 import bridge.service.BridgeGame;
 import bridge.domain.BridgeResult;
@@ -17,35 +19,36 @@ public class BridgeGameController {
     public BridgeGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.bridgeGame = new BridgeGame(new Bridge(), new BridgeResult());
+        this.bridgeGame = new BridgeGame(new BridgeResult());
         this.trial = 0;
     }
 
     public void run() {
         outputView.startBridgeGame();
-        int bridgeSize = inputView.readBridgeSize();
+        Bridge bridge = inputView.readBridgeSize();
 
-        bridgeGame.makeBridge(bridgeSize);
-        moveTotalBlocks(bridgeSize);
+        moveTotalBlocks(bridge.getBridge());
 
-        outputView.printResult(bridgeGame.getResultBridge(), bridgeGame.completeCrossing(bridgeSize), this.trial);
+        outputView.printResult(bridgeGame.getResultBridge(),
+                bridgeGame.completeCrossing(bridge.getSize()),
+                this.trial);
     }
 
-    private void moveTotalBlocks(int bridgeSize) {
+    private void moveTotalBlocks(List<String> bridge) {
         do {
-            this.trial++;
+            increaseTrial();
             bridgeGame.initialize();
-            moveByBlock(START_BLOCK_POSITION, bridgeSize);
+            moveByBlock(START_BLOCK_POSITION, bridge);
 
-            if (bridgeGame.completeCrossing(bridgeSize)) {
+            if (bridgeGame.completeCrossing(bridge.size())) {
                 break;
             }
         } while (bridgeGame.retry(inputView.readGameCommand()));
     }
 
-    private void moveByBlock(int blockPosition, int bridgeSize) {
-        while (blockPosition != bridgeSize) {
-            String trial = bridgeGame.move(inputView.readMoving(), blockPosition);
+    private void moveByBlock(int blockPosition, List<String> bridge) {
+        while (blockPosition != bridge.size()) {
+            String trial = bridgeGame.move(inputView.readMoving(), blockPosition, bridge);
             outputView.printMap(bridgeGame.getResultBridge());
             blockPosition++;
 
@@ -53,5 +56,9 @@ public class BridgeGameController {
                 break;
             }
         }
+    }
+
+    private void increaseTrial() {
+        trial++;
     }
 }
