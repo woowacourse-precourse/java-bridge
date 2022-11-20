@@ -10,3 +10,8 @@
 ## Functions
 **BrigdeMaker.java**
 * makeBridge : 입력받은 다리의 길이만큼 각 다리의 건널 수 있는 칸을 표현한 리스트를 반환한다.
+
+**InputView.java**
+* readBridgeSize : 다리의 길이를 입력받는다.
+* readMoving : 사용자가 이동할 칸을 입력받는다.
+* readGameCommand : 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
