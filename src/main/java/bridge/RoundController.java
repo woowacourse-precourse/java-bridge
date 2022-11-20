@@ -46,8 +46,6 @@ public class RoundController {
     public boolean statusResult() {
         if (!moveToStatus()) {
             outputView.printMap(bridgeFirstLayer, bridgeSecondLayer);
-            bridgeFirstLayer.remove(bridgeFirstLayer.size()-1);
-            bridgeSecondLayer.remove(bridgeSecondLayer.size()-1);
             return false;
         }
 
@@ -60,13 +58,14 @@ public class RoundController {
             if (inputView.readGameCommand().equals(Retry.QUIT.get())) {
                 return false;
             }
+            bridgeFirstLayer.remove(bridgeFirstLayer.size() - 1);
+            bridgeSecondLayer.remove(bridgeSecondLayer.size() - 1);
             trial += 1;
         }
         return true;
     }
 
     public void bridgeRound() {
-        makeBridgeWithSize();
         System.out.println(bridgeShape);
 
         while (position < bridgeShape.size()) {
