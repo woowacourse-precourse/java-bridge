@@ -4,6 +4,10 @@ public class Validate {
 	private String errorMessage;
 
 	public void validateSize(String size) {
+		if(2 < Integer.parseInt(size) && Integer.parseInt(size) < 21) {
+			return;
+		}
+		
 		if (size.charAt(0) - 48 < 3 || 20 < size.charAt(0) - 48) {
 			errorMessage = ErrorMessage.WRONG_SIZE.getErrorMessage();
 			throw new IllegalArgumentException(errorMessage);
