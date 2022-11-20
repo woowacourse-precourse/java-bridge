@@ -20,21 +20,15 @@ public class Bridge {
 		}
 	}
 
-	public boolean canWalkUp(int position) {
+	public boolean canWalk(int position, String direction) {
 		validatePosition(position);
 		int index = position - 1;
-		return value.get(index).equals(Constants.UP);
+		return value.get(index).equals(direction);
 	}
 
 	public void validatePosition(int position) {
 		if (position < 1 || position > value.size()) {
 			throw new IllegalArgumentException();
 		}
-	}
-
-	public boolean canWalkDown(int position) {
-		validatePosition(position);
-		int index = position - 1;
-		return value.get(index).equals(Constants.DOWN);
 	}
 }

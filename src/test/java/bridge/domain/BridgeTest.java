@@ -3,6 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.Constants;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -38,7 +39,7 @@ public class BridgeTest {
 		//given
 		Bridge bridge = new Bridge(List.of("U", "D", "U"));
 		//when
-		boolean actual = bridge.canWalkUp(position);
+		boolean actual = bridge.canWalk(position, Constants.UP);
 		//then
 		assertThat(actual).isEqualTo(expected);
 	}
@@ -58,7 +59,7 @@ public class BridgeTest {
 			@CsvSource({"1, true", "2, false", "3, true"})
 			void it_returns_boolean(int position, boolean expected) {
 				//when
-				boolean actual = bridge.canWalkUp(position);
+				boolean actual = bridge.canWalk(position, Constants.UP);
 				//then
 				assertThat(actual).isEqualTo(expected);
 			}
@@ -72,7 +73,7 @@ public class BridgeTest {
 			@ParameterizedTest(name = "위치 : {0}")
 			@CsvSource({"0", "4"})
 			void it_throws_IllegalArgumentException(int position) {
-				assertThatThrownBy(() -> bridge.canWalkUp(position))
+				assertThatThrownBy(() -> bridge.canWalk(position, Constants.UP))
 					.isInstanceOf(IllegalArgumentException.class);
 			}
 		}
