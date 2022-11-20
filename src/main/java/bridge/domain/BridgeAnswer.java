@@ -22,11 +22,11 @@ public class BridgeAnswer {
     }
 
     public BridgeGameState compareWith(BridgePlayer bridgePlayer) {
-        if (bridgePlayer.isNotSameLocation(bridgeAnswer)) {
-            return LOSE;
+        if (bridgePlayer.isLastMoveTypeNotSameAs(bridgeAnswer)) {
+            return FAIL;
         }
-        if (bridgePlayer.isPlayerReached(bridgeAnswer)) {
-            return WIN;
+        if (bridgePlayer.isAllMoveTypeSameAs(bridgeAnswer)) {
+            return SUCCESS;
         }
         return CONTINUE;
     }
