@@ -13,5 +13,12 @@ public class GameController {
         outputView.printStart();
         int bridgeSize = inputController.inputBridgeSize();
         this.bridgeGame = new BridgeGame(bridgeSize);
+
+        startGame();
+    }
+
+    public void startGame() {
+        String moving = inputController.inputMoving();
+        this.bridgeGame.move(moving);
     }
 }
