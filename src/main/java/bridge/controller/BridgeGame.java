@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -11,6 +12,7 @@ import bridge.view.InputView;
 public class BridgeGame {
 
     private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static Bridge bridge;
 
@@ -30,6 +32,7 @@ public class BridgeGame {
         if (moving.equals(bridge.getShape(position))) {
             success = true;
         }
+        outputView.printMap(position, success, bridge);
     }
 
     /**
