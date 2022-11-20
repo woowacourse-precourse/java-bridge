@@ -87,7 +87,7 @@ public class Validator {
                 throw new NullPointerException();
             }
         } catch (NullPointerException e) {
-            throw new NullPointerException(ErrorMessage.INPUT_NULL.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.getErrorMessage());
         }
     }
 
