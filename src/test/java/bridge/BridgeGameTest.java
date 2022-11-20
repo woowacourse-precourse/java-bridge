@@ -45,6 +45,7 @@ public class BridgeGameTest extends NsTest {
                 assertThat(upSideIndex).isLessThan(downSideIndex);
             }, 1, 1, 1);
         }
+
         @Test
         void moveUpFailTest() {
             assertRandomNumberInRangeTest(() -> {
@@ -59,6 +60,7 @@ public class BridgeGameTest extends NsTest {
                 assertThat(upSideIndex).isLessThan(downSideIndex);
             }, 0, 0, 0);
         }
+
         @Test
         void moveDownSuccessTest() {
             assertRandomNumberInRangeTest(() -> {
@@ -73,6 +75,7 @@ public class BridgeGameTest extends NsTest {
                 assertThat(upSideIndex).isLessThan(downSideIndex);
             }, 0, 0, 0);
         }
+
         @Test
         void moveDownFailTest() {
             assertRandomNumberInRangeTest(() -> {
@@ -85,6 +88,30 @@ public class BridgeGameTest extends NsTest {
                 int upSideIndex = output().indexOf("[   ]");
                 int downSideIndex = output().indexOf("[ X ]");
                 assertThat(upSideIndex).isLessThan(downSideIndex);
+            }, 1, 1, 1);
+        }
+    }
+
+    @DisplayName("이동 실패 시, 다시하기 입력 테스트")
+    @Nested
+    class AskRetryTest {
+        @Test
+        void askRetryExceptionTest() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U", "D", "L", "L");
+                assertThat(output()).contains(ERROR_MESSAGE, "커맨드는 'R' 또는 'Q' 만 입력 가능합니다.");
+            }, 1, 1, 1);
+        }
+
+        @Test
+        void moveFailAndAskRetryTest() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U", "D");
+                assertThat(output()).contains(
+                        "[ O |   ]",
+                        "[   | X ]",
+                        "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+                );
             }, 1, 1, 1);
         }
     }
