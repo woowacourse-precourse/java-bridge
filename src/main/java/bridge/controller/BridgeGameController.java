@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
+import bridge.model.BridgeGameResult;
 import bridge.model.BridgeSize;
 import bridge.model.Player;
 import bridge.view.InputView;
@@ -72,12 +73,25 @@ public class BridgeGameController {
         return bridgeGame.retry(retryString);
     }
 
+    public boolean isCleared() {
+        if (bridgeGame.getGameStatus() == BridgeGame.GAME_STATUS_CLEAR)
+            return true;
+        outputView.printReadRetry();
+        if (readRetry()) {
+            return false;
+        }
+        return true;
+    }
+
+    public void printResult(BridgeGameResult bridgeGameResult) {
+        outputView.printResult(bridgeGameResult);
+    }
 
     public void playGame() {
         bridgeGame = new BridgeGame(makeBridge(), player);
-        while (!move()) {
-
-        }
-        readRetry();
+        do {
+            //playOneGame();
+        } while (!isCleared());
+        printResult(new BridgeGameResult(bridgeGame.getCleared(), bridgeGame.getTried()));
     }
 }
