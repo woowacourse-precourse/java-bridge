@@ -39,4 +39,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printGameResult() {
+        System.out.println(ViewConstants.GAME_RESULT);
+    }
 }
