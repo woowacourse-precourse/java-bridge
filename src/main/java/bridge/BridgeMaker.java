@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Block;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,23 +9,10 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final int UP_BRIDGE_NUMBER = 1;
-    private static final int DOWN_BRIDGE_NUMBER = 0;
-    private static final int BRIDGE_MIN_SIZE = 3;
-    private static final int BRIDGE_MAX_SIZE = 20;
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-    }
-
-    public static int getBridgeMinSize() {
-        return BRIDGE_MIN_SIZE;
-    }
-
-    public static int getBridgeMaxSize() {
-        return BRIDGE_MAX_SIZE;
     }
 
     /**
@@ -32,7 +20,6 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateSize(size);
         List<Integer> bridgeNumbers = getBridgeNumbers(size);
         List<String> bridgeCharacters = new ArrayList<>();
         for (Integer bridgeNumber : bridgeNumbers) {
@@ -40,12 +27,6 @@ public class BridgeMaker {
             bridgeCharacters.add(bridgeCharacter);
         }
         return bridgeCharacters;
-    }
-
-    private void validateSize(int size) {
-        if (size < BRIDGE_MIN_SIZE || size > BRIDGE_MAX_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_SIZE_ERROR.getMessage());
-        }
     }
 
     private List<Integer> getBridgeNumbers(int size) {
@@ -58,10 +39,10 @@ public class BridgeMaker {
     }
 
     private String convertNumberToString(int bridgeNumber) {
-        if (bridgeNumber == UP_BRIDGE_NUMBER) {
-            return BridgeGame.getUpBridgeCharacter();
+        if (bridgeNumber == Block.UP_BRIDGE.getNumber()) {
+            return Block.UP_BRIDGE.getString();
         }
-        return BridgeGame.getDownBridgeCharacter();
+        return Block.DOWN_BRIDGE.getString();
     }
 
 }
