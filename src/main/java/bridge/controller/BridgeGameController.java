@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.enums.GameCommand;
 import bridge.service.BridgeGame;
 import bridge.service.BridgeGameValidateService;
 import bridge.view.InputView;
@@ -7,8 +8,6 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private static final String RETRY_COMMAND = "R";
-    private static final String END_COMMAND = "Q";
     private static final int TRY_COUNT_INIT_VALUE = 1;
     private static final String GAME_RESULT_SUCCESS = "성공";
     private static final String GAME_RESULT_FAILURE = "실패";
@@ -106,13 +105,13 @@ public class BridgeGameController {
 
     private void retryOrEnd() {
         inputRetryOrEndCommand();
-        if (gameRetryOrEndCommand.equals(RETRY_COMMAND)) {
+        if (gameRetryOrEndCommand.equals(GameCommand.RETRY.getCommand())) {
             tryCount++;
             bridgeGame.retry();
             moveUntilSuccessOrFailure();
             gameSuccessOrRetryOrEnd();
         }
-        if (gameRetryOrEndCommand.equals(END_COMMAND)) {
+        if (gameRetryOrEndCommand.equals(GameCommand.END.getCommand())) {
             printGameResult();
         }
     }
