@@ -69,8 +69,4 @@ public class BridgeGame {
         return FAILURE;
     }
 
-    public BridgeState bridgeConnection(int bridgeLength, String bridgeJudgment, int bridgeIndex) {
-        bridgeState.connection(bridgeLength, bridgeJudgment, bridgeIndex);
-        return bridgeState;
-    }
 }
