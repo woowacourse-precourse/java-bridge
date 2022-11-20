@@ -2,6 +2,9 @@ package bridge;
 
 public class Controller {
 
+    public static final String RETRY_GAME_COMMAND = "R";
+    public static final String QUIT_GAME_COMMAND = "Q";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
@@ -24,6 +27,7 @@ public class Controller {
             moveResult = bridgeGame.move(moveDirection);
             outputView.printMap(bridgeGame.getMoveHistory());
         }
+        String gameCommand = inputView.readGameCommand(outputView::printGameCommandInput);
 
         if (bridgeGame.isReachedEndOfBridge()) {
             outputView.printResult();

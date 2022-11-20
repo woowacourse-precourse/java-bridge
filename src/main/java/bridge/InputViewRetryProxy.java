@@ -22,6 +22,11 @@ public class InputViewRetryProxy extends InputView {
         return retryWhenFail(() -> target.readMoving(printInputMessage));
     }
 
+    @Override
+    public String readGameCommand(Runnable printInputMessage) {
+        return retryWhenFail(() -> target.readGameCommand(printInputMessage));
+    }
+
     private <R> R retryWhenFail(Supplier<R> supplier) {
         try {
             return supplier.get();

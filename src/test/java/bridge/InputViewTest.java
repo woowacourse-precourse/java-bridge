@@ -36,10 +36,24 @@ public class InputViewTest {
     }
 
     @ParameterizedTest(name = "이동할 다음 칸을 {0}로 잘못 입력한 경우 예외가 발생한다.")
-    @ValueSource(strings = {"A", "UU", "", "u", "d"})
+    @ValueSource(strings = {"A", "UU", "", " ", "d"})
     void validateMoveDirectionExceptionTest(String input) {
         assertThatThrownBy(() -> inputView.validateMoveDirection(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_MOVE_DIRECTION_ERROR);
+    }
+
+    @ParameterizedTest(name = "게임 커멘드를 {0}로 입력하면 성공한다.")
+    @ValueSource(strings = {"R", "Q"})
+    void validateGameCommandTest(String input) {
+        inputView.validateGameCommand(input);
+    }
+
+    @ParameterizedTest(name = "게임 커멘드를 {0}로 잘못 입력한 경우 예외가 발생한다.")
+    @ValueSource(strings = {"RR", "U", "", " ", "q"})
+    void validateGameCommandExceptionTest(String input) {
+        assertThatThrownBy(() -> inputView.validateGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_GAME_COMMAND_ERROR);
     }
 }
