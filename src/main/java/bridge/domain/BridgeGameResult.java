@@ -6,7 +6,7 @@ public class BridgeGameResult {
     private static final String SUCCESS = "성공";
 
     private int tryCount;
-    private String gameResult = FAIL;
+    private String result = FAIL;
     private BridgeMoveState moveState = new BridgeMoveState();
 
     public int increaseTryCount() {
@@ -22,15 +22,15 @@ public class BridgeGameResult {
     }
 
     public void setSuccess() {
-        gameResult = SUCCESS;
+        result = SUCCESS;
     }
 
     public int getTryCount() {
         return tryCount;
     }
 
-    public String getGameResult() {
-        return gameResult;
+    public String getResult() {
+        return result;
     }
 
     public BridgeMoveState getMoveState() {

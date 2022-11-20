@@ -47,7 +47,7 @@ public class OutputView {
     public void printResult(BridgeGameResult gameResult) {
         System.out.println(separateLine() + GAME_RESULT);
         printMap(gameResult);
-        System.out.println(separateLine() + GAME_SUCCESS + gameResult.getGameResult());
+        System.out.println(separateLine() + GAME_SUCCESS + gameResult.getResult());
         System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
     }
 

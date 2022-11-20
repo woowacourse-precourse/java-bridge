@@ -42,7 +42,7 @@ class BridgeGameResultTest {
     @Test
     void checkSetGameResult() {
         gameResult.setSuccess();
-        String actual = gameResult.getGameResult();
+        String actual = gameResult.getResult();
         assertThat(actual).isEqualTo("성공");
     }
 }
