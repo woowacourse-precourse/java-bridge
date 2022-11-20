@@ -12,7 +12,6 @@ public class BridgeGame {
         if(bridge.get(index).equals(moving)) return "O";
         return "X";
     }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

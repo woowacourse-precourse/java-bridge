@@ -15,11 +15,10 @@ public class GameLauncher {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-
-
     static List<String> str = new ArrayList<>(Arrays.asList("[]","[]"));
     static boolean PF = false;
     static int gameCount = 0;
+
 
     public void run(){
         outputView.startBridge();

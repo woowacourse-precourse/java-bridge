@@ -21,8 +21,8 @@ public class BridgeMaker {
         List<String> result = new ArrayList<>();
         for(int i=0;i<size;i++){
             int UD = bridgeNumberGenerator.generate();
-            if(UD==0) result.add("U");
-            if(UD==1) result.add("D");
+            if(UD==0) result.add("D");
+            if(UD==1) result.add("U");
         }
         return result;
     }
