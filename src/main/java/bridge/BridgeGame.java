@@ -31,4 +31,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void createBridge(int size) {
+        bridge.create(size);
+    }
 }
