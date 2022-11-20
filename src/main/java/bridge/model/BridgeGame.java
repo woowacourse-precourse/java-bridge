@@ -1,5 +1,7 @@
 package bridge.model;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -25,6 +27,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
-    public void setBridge() {
+    public void setBridge(int size) {
+        List<String> bridge =bridgeMaker.makeBridge(size);
+        System.out.println(bridge);
     }
 }

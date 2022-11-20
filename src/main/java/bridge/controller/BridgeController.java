@@ -1,17 +1,21 @@
 package bridge.controller;
 
+import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
     private OutputView outputView;
     private InputView inputView;
+    private BridgeGame bridgeGame;
     public BridgeController() {
         inputView = new InputView();
         outputView = new OutputView();
+        bridgeGame = new BridgeGame();
     }
     public void setBridgeController() {
-        inputView.readBridgeSize();
+        int size = inputView.readBridgeSize();
+        bridgeGame.setBridge(size);
     }
     public void moveController() {}
     public void retryController() {}

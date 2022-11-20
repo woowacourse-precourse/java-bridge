@@ -1,5 +1,4 @@
 package bridge.view;
-import camp.nextstep.edu.missionutils.Console;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -11,12 +10,18 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    private String getInput(String prompt) {
+        System.out.println(prompt);
+        return readLine();
+    }
+
     public int readBridgeSize() {
         int size = 0;
-        System.out.println("\n다리의 길이를 입력해주세요.");
         try {
-            size = Integer.parseInt(readLine());
-            return size;
+            size = Integer.parseInt(getInput("\n다리의 길이를 입력해주세요."));
+            if (size < 3 || size > 20) {
+                throw new IllegalArgumentException();
+            }
         } catch (Exception e) {
             generateError("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
