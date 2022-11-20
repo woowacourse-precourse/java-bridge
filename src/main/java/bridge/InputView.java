@@ -14,12 +14,16 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(inputMessage.INPUT_LENGTH.get());
-        String bridgeSize = handleSizeException();
+        String bridgeSize;
+
+        do {
+            bridgeSize = Console.readLine();
+        } while (!handleSizeException(bridgeSize));
 
         return Integer.parseInt(bridgeSize);
     }
 
-    public String validateSize(String size) {
+    public void validateSize(String size) {
         if (!Pattern.matches("^[0-9]*$", size)) {
             throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_BRIDGE_SIZE.get());
         }
@@ -27,19 +31,16 @@ public class InputView {
         if ((Integer.parseInt(size) < 3) || (Integer.parseInt(size) > 20)) {
             throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_BRIDGE_SIZE.get());
         }
-
-        return size;
     }
 
-    public String handleSizeException() {
-        String bridgeSize = null;
+    public boolean handleSizeException(String bridgeSize) {
         try {
-            bridgeSize = validateSize(Console.readLine());
+            validateSize(bridgeSize);
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
-            handleSizeException();
+            return false;
         }
-        return bridgeSize;
     }
 
     /**
@@ -47,9 +48,13 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(inputMessage.INPUT_MOVE.get());
-        String moving = handleMovingException();
+        String moving;
 
-        return moving;
+        do {
+            moving = Console.readLine();
+        } while (!handleMovingException(moving));
+
+        return validateMoving(moving);
     }
 
     public String validateMoving(String moving) {
@@ -62,15 +67,14 @@ public class InputView {
         return moving;
     }
 
-    public String handleMovingException() {
-        String moving = null;
+    public boolean handleMovingException(String moving) {
         try {
-            moving = validateMoving(Console.readLine());
+            validateMoving(moving);
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
-            handleMovingException();
+            return false;
         }
-        return moving;
     }
 
     /**
@@ -78,9 +82,13 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(inputMessage.INPUT_RETRY.get());
-        String retryCommand = handleRetryException();
+        String retryCommand;
 
-        return retryCommand;
+        do {
+            retryCommand = Console.readLine();
+        } while (!handleRetryException(retryCommand));
+
+        return validateRetry(retryCommand);
     }
 
     public String validateRetry(String retry) {
@@ -93,15 +101,14 @@ public class InputView {
         return retry;
     }
 
-    public String handleRetryException() {
-        String retry = null;
+    public boolean handleRetryException(String retry) {
         try {
-            retry = validateRetry(Console.readLine());
+            validateRetry(retry);
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
-            handleRetryException();
+            return false;
         }
-        return retry;
     }
 }
 
