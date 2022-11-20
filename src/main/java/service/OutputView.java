@@ -11,7 +11,7 @@ public class OutputView {
 			}
 		}
 	}
-	
+
 	public void printMap(String map) {
 		System.out.println(map + "\n");
 	}
@@ -27,4 +27,7 @@ public class OutputView {
 		System.out.println(resultBuilder.toString());
 	}
 
+	public void printError(String errorMessage) {
+		System.out.println(errorMessage);
+	}
 }
