@@ -1,14 +1,13 @@
 package bridge.validation;
 
+import bridge.util.Constant;
+
 import java.util.List;
 
 public class InputValidator {
 
     private static final String DIGIT_REGEX = "^[0-9]+$";
     private static final String ALPHA_REGEX = "^[a-zA-Z]+$";
-
-    private static final int BRIDGE_MIN_SIZE = 3;
-    private static final int BRIDGE_MAX_SIZE = 20;
 
     private static final List<String> directions = List.of("U", "D");
     private static final List<String> retries = List.of("R", "Q");
@@ -41,7 +40,7 @@ public class InputValidator {
     }
 
     private static boolean isWrongBridgeSize(int bridgeSize) {
-        return (bridgeSize < BRIDGE_MIN_SIZE || bridgeSize > BRIDGE_MAX_SIZE);
+        return (bridgeSize < Constant.BRIDGE_MIN_SIZE || bridgeSize > Constant.BRIDGE_MAX_SIZE);
     }
 
     private static boolean isNotAlpha(String inputAlpha) {
