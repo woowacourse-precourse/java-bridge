@@ -4,7 +4,7 @@ public class GameRecord {
     private int retryCount;
 
     public GameRecord() {
-        this.retryCount = 0;
+        this.retryCount = 1;
     }
 
     public void addRetryCount() {
