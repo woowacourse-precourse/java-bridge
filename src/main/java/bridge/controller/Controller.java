@@ -12,9 +12,11 @@ import java.util.List;
 
 public class Controller {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.\n";
+    private static final String RETRY = "R";
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -23,10 +25,12 @@ public class Controller {
         System.out.println(GAME_START);
 
         Bridge answerBridge = makeAnswerBridge(bridgeMaker);
-        Bridge playerBridge = playingGame(answerBridge);
+        System.out.println(answerBridge.getBridge());
+        Bridge playerBridge = new Bridge(new ArrayList<>());
+        playerBridge = playingGame(playerBridge, answerBridge);
     }
 
-    private Bridge makeAnswerBridge( BridgeMaker bridgeMaker) {
+    private Bridge makeAnswerBridge(BridgeMaker bridgeMaker) {
         Bridge answerBridge;
         try {
             answerBridge = setAnswerBridge(bridgeMaker);
@@ -42,13 +46,12 @@ public class Controller {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private Bridge playingGame(Bridge answerBridge) {
-        Bridge playerBridge = new Bridge(new ArrayList<>());
+    private Bridge playingGame(Bridge playerBridge, Bridge answerBridge) {
         try{
             playerBridge = readPlayerBridge(playerBridge, answerBridge);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
-            playerBridge = playingGame(answerBridge);
+            playerBridge = playingGame(playerBridge, answerBridge);
         }
         return playerBridge;
     }
@@ -59,20 +62,33 @@ public class Controller {
         int position;
         while(playerInput.size() != answerBridge.getBridge().size()) {
             // 매칭 하는 부분 따로 빼서 리펙토링
-            String moveMessage = inputView.readMoving();
+            String moveMessage = getMoveMessage();
             playerInput.add(moveMessage);
 
-            BridgeGame bridgeGame = new BridgeGame();
             position = bridgeGame.move(answerBridge.getBridge(), cnt, moveMessage);
 
             outputView.printMap(answerBridge.getBridge(), playerInput);
 
-            if (cnt == position) {
-                playerInput.remove(position);
-                break;
-            }
+            // 재시도 추가
+
             cnt = position;
         }
+        // 최종시도 횟수과 최종결과만 전송
         return new Bridge(playerInput);
+    }
+
+    private String getMoveMessage() {
+        String moveMessage;
+        try {
+            moveMessage = readMoveMessage();
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            moveMessage = getMoveMessage();
+        }
+        return moveMessage;
+    }
+
+    private String readMoveMessage() {
+        return inputView.readMoving();
     }
 }
