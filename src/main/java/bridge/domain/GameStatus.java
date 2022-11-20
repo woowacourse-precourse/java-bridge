@@ -18,4 +18,8 @@ public class GameStatus {
     public void addGameCount(boolean gameCount){
         this.gameCount += 1;
     }
+
+    public Integer getGameCount(){
+        return this.gameCount;
+    }
 }

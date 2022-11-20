@@ -101,7 +101,7 @@ public class BridgeMaker {
 >- [x] Bridge와 User의 일치 여부를 저장하는 기능 ( setMatchCorrect )
 >- [x] Bridge와 User의 일치 여부를 조회하는 기능 ( getMatchCorrect )
 >- [x] 게임 시작 횟수를 더하는 기능 ( addGameCount )
->- [ ] 게임 시작 횟수를 조회하는 기능 ( getGameCount )
+>- [x] 게임 시작 횟수를 조회하는 기능 ( getGameCount )
 
 
 *****
