@@ -36,6 +36,15 @@ public class BridgeGame {
         return answer;
     }
 
+    public void updateMap(String playerChoice, String isRightBridge) {
+        if (playerChoice.equals(BridgeAnswer.UP.getName())) {
+            upMap.add(playerLocationIndex, isRightBridge);
+            downMap.add(playerLocationIndex, " ");
+        } else if (playerChoice.equals(BridgeAnswer.DOWN.getName())) {
+            upMap.add(playerLocationIndex, " ");
+            downMap.add(playerLocationIndex, isRightBridge);
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
