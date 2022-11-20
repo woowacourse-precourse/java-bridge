@@ -13,8 +13,8 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        setPlayer();
         try {
+            setPlayer();
             start();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -25,17 +25,19 @@ public class Application {
         bridgeGame.plusTryCount();
         bridgeGame.resetGameData();
         System.out.println(playerSetting.getPlayerBridge());
-        boolean correct;
-        do {
-            correct = isCorrectMove();
-        } while (canNotEnd(correct));
+        while (isCorrectMove()) {
+            if (isSuccessful()) {
+                return;
+            }
+        }
+        restart();
     }
 
     private static void restart() {
-        // 1. 재시작
-        // 1.1. start() 메소드 실행
-        // 2. 종료
-        // 2.1. 결과 출력
+        if (bridgeGame.retry(inputView.readGameCommand())) {
+            start();
+        }
+        outputView.printResult(false, bridgeGame.getHistoryMap(), bridgeGame.getTryCount());
     }
 
     private static void setPlayer() {
@@ -51,16 +53,9 @@ public class Application {
         return result;
     }
 
-    private static boolean canNotEnd(boolean correct) {
-        if(isSuccessful()) {
-            return false;
-        }
-        return correct;
-    }
-
     private static boolean isSuccessful() {
-        if(bridgeGame.getPlayerLocation() >= playerSetting.getPlayerBridgeSize()) {
-            // 성공시 프린트
+        if (bridgeGame.getPlayerLocation() >= playerSetting.getPlayerBridgeSize()) {
+            outputView.printResult(true, bridgeGame.getHistoryMap(), bridgeGame.getTryCount());
             return true;
         }
         return false;

@@ -19,6 +19,10 @@ public class GameData {
         this.tryCount++;
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
+
     public void resetLocation() {
         this.location = 0;
     }

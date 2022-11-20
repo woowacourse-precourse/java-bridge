@@ -13,11 +13,9 @@
 
 # Game
 - [ ] `Player`가 실패하고 재시작을 선택한 경우 `Bridge`의 정보는 그대로 사용한다.
-- [ ] `Player`가 재시작을 선택하면 새로운 `Bridge`를 생성한다.
 
 # View
 - [X] `BridgeMap`을 출력한다.
-- [ ] 
 
 # Exception
 - [X] `Player`가 다리의 길이를 잘못 입력한 경우 예외를 던진다.
