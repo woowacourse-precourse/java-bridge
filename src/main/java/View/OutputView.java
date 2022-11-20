@@ -19,7 +19,7 @@ public class OutputView {
                 bridge += block;
                 bridge += "|";
             }
-            bridge = bridge.substring(0, result.size() - 1);
+            bridge = bridge.substring(0, bridge.length() -1);
             bridge += "]";
             System.out.println(bridge);
         }
@@ -31,8 +31,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<String>> result, boolean isSuccess, int gameCount) {
-        final String gameResultMessage = "최종 게임 결과";
-        final String isGameSuccessMessage = "게임 성공 여부: ";
+        final String gameResultMessage = "\n최종 게임 결과";
+        final String isGameSuccessMessage = "\n게임 성공 여부: ";
         final String totalGameCount = "총 시도한 횟수: ";
 
         System.out.println(gameResultMessage);
@@ -51,7 +51,7 @@ public class OutputView {
     }
 
     public void printStart(){
-        final String startMessage = "다리 건너기 게임을 시작합니다.";
+        final String startMessage = "다리 건너기 게임을 시작합니다.\n";
         System.out.println(startMessage);
     }
 
@@ -61,12 +61,12 @@ public class OutputView {
     }
 
     public void printReadMoving(){
-        final String readMovingMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+        final String readMovingMessage = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
         System.out.println(readMovingMessage);
     }
 
     public void printReadGameCommand(){
-        final String readGameCommandMessage = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+        final String readGameCommandMessage = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
         System.out.println(readGameCommandMessage);
     }
 }
