@@ -9,3 +9,8 @@ readGameCommand: 게임 재시도/종료 여부 입력받기
 
 BridgeMaker  
 >makeBridge(int size): 다리 길이에 따른 U,D 리스트 반환
+
+BridgeGame  
+>int position:현재위치, int retryNumber:재시도 횟수  
+>move(): 현재위치 +1
+>retry(): 현재위치 -1, 재시도 횟수 +1
