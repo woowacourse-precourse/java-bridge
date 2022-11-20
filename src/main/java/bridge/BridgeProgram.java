@@ -56,7 +56,7 @@ public class BridgeProgram {
             try {
                 return bridgeGame.move(inputView.readMoving());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printError(e);
             }
         }
     }
@@ -71,9 +71,15 @@ public class BridgeProgram {
     }
 
     private String validateGameCommand() {
-        String gameCommand = inputView.readGameCommand();
-        GameCommandException.validate(gameCommand);
-        return gameCommand;
+        while (true) {
+            try {
+                String gameCommand = inputView.readGameCommand();
+                GameCommandException.validate(gameCommand);
+                return gameCommand;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
     }
 
     private void quit() {
