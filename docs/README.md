@@ -5,9 +5,9 @@
 ## 🚀 기능 요구 사항 목록
 
 ###다리 생성
-- [ ] 게임 시작 안내 Output#startGame() = “다리 건너기 게임을 시작합니다.”
-  - [ ] 다리의 길이 입력받는 기능 Output#getBridgeSize =“다리의 길이를 입력해주세요.”
-  - [ ] 3~ 20범위 (넘어서는 경우 예외처리) : Input#readBridgeSize()
+- [X] 게임 시작 안내 Output#startGame() = “다리 건너기 게임을 시작합니다.”
+  - [X] 다리의 길이 입력받는 기능 Output#getBridgeSize =“다리의 길이를 입력해주세요.”
+  - [X] 3~ 20범위 (넘어서는 경우 예외처리) : Input#readBridgeSize()
 
 - [ ] 길이에 맞게 다리를 생성하는 기능.
     -[ ] 위 칸 :1 , 아래칸: 0. 무작위 값으로 결정 : BridgeMaker#makeBridge()
