@@ -3,6 +3,10 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Validator.validate;
+import static bridge.Validator.validateCommand;
+
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -53,16 +57,5 @@ public class BridgeGame {
         return tryCount;
     }
 
-    private void validate(String moving) {
-        if (!moving.equals(Direction.Code.UP.getName()) && !moving.equals(Direction.Code.DOWN.getName())) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateCommand(String command) {
-        if (!command.equals("R") && !command.equals("Q")) {
-            throw new IllegalArgumentException();
-        }
-    }
 }
 
