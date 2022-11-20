@@ -27,12 +27,20 @@ public class InputView {
         while (true) {
             try {
                 System.out.println(BRIDGE_SIZE_INPUT_PROMPT);
-                int inputSize = Integer.parseInt(Console.readLine());
+                int inputSize = readLineAndParseInt();
                 validateBridgeSize(inputSize);
                 return inputSize;
             } catch (IllegalArgumentException e) {
                 Logger.log(e);
             }
+        }
+    }
+
+    private int readLineAndParseInt() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE);
         }
     }
 

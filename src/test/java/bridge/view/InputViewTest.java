@@ -39,6 +39,19 @@ class InputViewTest {
             });
         }
 
+        @DisplayName("숫자가 아닌 입력이 들어올 경우 예외메시지를 출력한다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"s", "apple", " ", ";;"})
+        public void throwExceptionWhenInvalidString(String bridgeSize) {
+            String exceptionMessage = "다리 길이는 " + Bridge.MIN_SIZE + "부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야 합니다.";
+            assertSimpleTest(() -> {
+                run(bridgeSize, "3");
+                assertThat(
+                        output().contains(exceptionMessage)
+                );
+            });
+        }
+
         @Override
         protected void runMain() {
             inputView.readBridgeSize();
