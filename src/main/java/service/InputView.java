@@ -19,6 +19,8 @@ public class InputView {
     }
 
     public String readGameCommand() {
-    	return null;
+    	String gameCommand = Console.readLine();
+    	validate.validateGameCommand(gameCommand);
+        return gameCommand;
     }
 }
