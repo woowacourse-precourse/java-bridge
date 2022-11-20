@@ -48,10 +48,9 @@ class InputViewTest {
     void readGameCommand() {
         assertThrows(IllegalArgumentException.class, () -> {
             String command = "none";
-            String result;
             systemIn(command);
 
-            result = inputView.readGameCommand();
+            inputView.readGameCommand();
         });
     }
 }
