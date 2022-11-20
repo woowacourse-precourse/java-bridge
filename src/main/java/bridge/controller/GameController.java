@@ -4,12 +4,9 @@ import java.util.List;
 
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.Movement;
 import bridge.domain.Player;
-import bridge.util.MessageUtil;
 
 public class GameController {
 
@@ -27,7 +24,7 @@ public class GameController {
     }
 
     private Bridge createBridge() {
-        int bridgeSizeInput = inputController.getBridgeSize();
+        int bridgeSizeInput = inputController.getBridgeSizeInput();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSizeInput);
         return new Bridge(bridge);

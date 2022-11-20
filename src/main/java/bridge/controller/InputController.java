@@ -7,11 +7,11 @@ import bridge.view.InputView;
 
 public class InputController {
 
-    public int getBridgeSize() {
-        while(true) {
+    public int getBridgeSizeInput() {
+        while (true) {
             try {
                 return readAndParseBridgeSizeInput();
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -25,11 +25,11 @@ public class InputController {
         return bridgeSize;
     }
 
-    public Movement getDirection() {
-        while(true) {
+    public Movement getDirectionInput() {
+        while (true) {
             try {
                 return readAndParseMovementInput();
-            } catch(IllegalArgumentException e2) {
+            } catch (IllegalArgumentException e2) {
                 System.out.println(e2.getMessage());
             }
         }
@@ -43,6 +43,24 @@ public class InputController {
         return movement;
     }
 
+    public boolean retryCommandInput() {
+        while (true) {
+            try {
+                return readAndParseGameCommandInput();
+            } catch (IllegalArgumentException e3) {
 
+            }
+        }
+    }
+
+    private boolean readAndParseGameCommandInput() {
+        MessageUtil.retryCommandMsg();
+        String retryCommandInput = InputView.readGameCommand();
+        ParserUtil.parseGameCommand(retryCommandInput);
+        if (retryCommandInput.equals("R")) {
+            return true;
+        }
+        return false;
+    }
 
 }

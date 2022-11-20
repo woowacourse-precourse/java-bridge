@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.InputController;
-import bridge.domain.Answer;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
@@ -26,16 +25,15 @@ public class BridgeGame {
             movePlayer();
             if (!checkAnswer()) {
                 System.out.println("틀렸다 자식아");
-                judgeFalse();
+                retry();
                 break;
-
             }
             judgeTrue();
         }
     }
 
     private void movePlayer() {
-        Movement movementInput = inputController.getDirection();
+        Movement movementInput = inputController.getDirectionInput();
         player.updateMovement(movementInput);
     }
 
@@ -62,7 +60,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        System.out.println("기회는 단 한번뿐");
-        player.resetPlayer();
+        System.out.println("한번 더 기회를 준다");
+        judgeFalse();
+        if (inputController.retryCommandInput()) {
+            player.resetPlayer();
+            move();
+        }
     }
 }
