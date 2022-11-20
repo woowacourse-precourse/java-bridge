@@ -3,7 +3,7 @@ package bridge;
 public class MoveInsert {
 
     public static void moveInsert() {
-        if (BridgeGame.isRightWay()) {
+        if (StartGame.isRightWay()) {
             rightWayInsert();
             return;
         }
