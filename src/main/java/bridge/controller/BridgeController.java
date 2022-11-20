@@ -39,7 +39,7 @@ public class BridgeController {
         this.outputView.printMap(bridgePicture);
         if (this.bridgeGame.isFail()) {
             String gameCommand = this.inputView.readGameCommand();
-            retryTurn(gameCommand);
+            this.bridgeGame.retry(gameCommand);
         }
     }
 }

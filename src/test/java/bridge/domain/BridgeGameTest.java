@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.constant.GameCommand.QUIT;
+import static bridge.constant.GameCommand.RETRY;
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -98,6 +100,39 @@ class BridgeGameTest {
             boolean isOnWay = bridgeGame.isEnd();
             // then
             assertThat(isOnWay).isFalse();
+        }
+    }
+
+    @DisplayName("게임 재시작 여부를 입력 받아, 게임 상태를 조정한다.")
+    @Nested
+    class Retry {
+
+        @DisplayName("게임을 재시작하는 경우")
+        @Test
+        void should_BeOnWay_When_Input_Retry() {
+            // given
+            bridgeGame.move(UPPER_SIDE);
+            boolean isFail = bridgeGame.isFail();
+            // when
+            bridgeGame.retry(RETRY);
+            boolean isOnWay = bridgeGame.isOnWay();
+            // then
+            assertThat(isFail).isTrue();
+            assertThat(isOnWay).isTrue();
+        }
+
+        @DisplayName("게임을 종료하는 경우")
+        @Test
+        void should_BeEnd_When_Input_Quit() {
+            // given
+            bridgeGame.move(UPPER_SIDE);
+            boolean isFail = bridgeGame.isFail();
+            // when
+            bridgeGame.retry(QUIT);
+            boolean isEnd = bridgeGame.isEnd();
+            // then
+            assertThat(isFail).isTrue();
+            assertThat(isEnd).isTrue();
         }
     }
 }
