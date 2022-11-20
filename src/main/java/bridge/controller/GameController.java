@@ -12,8 +12,6 @@ public class GameController {
 
     public static final int START_ROUND = 1;
     public static final int ROUND_INCREMENT_VALUE = 1;
-    public static final String RESTART = "R";
-    public static final String QUIT = "Q";
 
     private final BridgeGame bridgeGame;
 
