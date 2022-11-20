@@ -9,15 +9,15 @@ public class BridgePrinting {
 
     private List<Boolean> upState;
     private List<Boolean> downState;
-    private static List<Integer> upDownLocation = new ArrayList<>();
+    private static List<Integer> traceLocation = new ArrayList<>();
     private OutputView outputView = new OutputView();
-    private int nowIndex;
+    private int nowLocation;
     private static boolean stop = false;
     
-    public BridgePrinting(List<Boolean> upState, List<Boolean> downState, int nowIndex) {
+    public BridgePrinting(List<Boolean> upState, List<Boolean> downState, int nowLocation) {
         this.upState = upState;
         this.downState = downState;
-        this.nowIndex = nowIndex;
+        this.nowLocation = nowLocation;
     }
 
     public static boolean isMoveStop() {
@@ -25,7 +25,7 @@ public class BridgePrinting {
     }
 
     public static void clearUpDownLocation() {
-        upDownLocation.clear();
+        traceLocation.clear();
     }
 
     public static void initRestart() {
@@ -33,7 +33,7 @@ public class BridgePrinting {
     }
 
     public void makeList() {
-        upDownLocation.add(nowIndex);
+        traceLocation.add(nowLocation);
         makeUpUserBridge();
         makeDownUserBridge();
         System.out.println();
@@ -46,14 +46,14 @@ public class BridgePrinting {
         outputView.printMap(upStateBridge);
     }
 
-    private void makeDownUserBridge() {
+    public void makeDownUserBridge() {
         String downStateBridge = GameState.startBridge;
         downStateBridge = downStateBridge + addBridge(downState, GameState.DOWN_STATEMENT);
         downStateBridge = downStateBridge + GameState.endBridge;
         outputView.printMap(downStateBridge);
     }
 
-    private String addBridge(List<Boolean> bridgeState, int upDown) {
+    public String addBridge(List<Boolean> bridgeState, int upDown) {
         String setBridge = "";
         for (int index = 0; index < bridgeState.size(); index++) {
             setBridge = setBridge + getState(bridgeState, index, upDown);
@@ -65,29 +65,31 @@ public class BridgePrinting {
         return setBridge;
     }
 
-    private boolean isIndexBetweenSpace(int index, int bridgeStateSize) {
+    public boolean isIndexBetweenSpace(int index, int bridgeStateSize) {
         return index == bridgeStateSize;
     }
 
-    private String getState(List<Boolean> bridgeState, int now, int upDown) {
-        if (isRightStep(bridgeState, now, upDown)) {
+    public String getState(List<Boolean> bridgeState, int nowIndex, int nowState) {
+        if (isRightStep(bridgeState, nowIndex, nowState)) {
             return GameState.EXIST_SQUARE;
         }
-        if (isWrongStep(bridgeState, now, upDown)) {
+        if (isWrongStep(bridgeState, nowIndex, nowState)) {
             stop = true;
             return GameState.NO_EXIST_SQUARE;
         }
         return GameState.SIDE_SQUARE;
     }
 
-    private boolean isWrongStep(List<Boolean> bridgeState, int now, int upDown) {
-        return !bridgeState.get(now) && upDownLocation.get(now)
-            == upDown;
+    public boolean isWrongStep(List<Boolean> bridgeState, int now, int nowState) {
+        return !bridgeState.get(now) && traceLocation.get(now)
+            == nowState;
     }
 
-    private boolean isRightStep(List<Boolean> bridgeState, int now, int upDown) {
-        return bridgeState.get(now) && upDownLocation.get(now) == upDown;
+    public boolean isRightStep(List<Boolean> bridgeState, int now, int nowState) {
+        return bridgeState.get(now) && traceLocation.get(now) == nowState;
     }
+
+
 
 
 }
