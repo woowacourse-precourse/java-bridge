@@ -13,20 +13,34 @@ public class InputView {
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
     private Pattern pattern = Pattern.compile("^[0-9]*?");
+    private static final int MIN_RANGE = 3;
+    private static final int MAX_RANGE = 20;
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = Console.readLine();
+        validateBridgeSize(input);
+        return Integer.parseInt(input);
+    }
+
+    public void validateBridgeSize(String input){
+        validateNotNumber(input);
+        validateRange(input);
+    }
+
+    public void validateNotNumber(String input){
         if(!pattern.matcher(input).matches()){
             throw new IllegalArgumentException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
         }
+    }
+
+    public void validateRange(String input){
         int bridgeSize = Integer.parseInt(input);
-        if(bridgeSize < 3 || bridgeSize > 20){
+        if(bridgeSize < MIN_RANGE || bridgeSize > MAX_RANGE){
             throw new IllegalArgumentException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
         }
-        return bridgeSize;
     }
 
     /**
