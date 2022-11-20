@@ -31,8 +31,11 @@ public class BridgeGameController {
         while(true){
             List<String> stepResult = playBridgeGame();
             gameResult = bridgeGame.retry(stepResult, bridge, gameResult);
-            String gameCommand = inputView.readGameCommand();
-            if(gameResult[0] == 1 || gameCommand.equals("Q")){
+            if(gameResult[0] == 1){
+                outputView.printResult(stepResult, bridge, gameResult);
+                return;
+            }
+            if(inputView.readGameCommand().equals("Q")){
                 outputView.printResult(stepResult, bridge, gameResult);
                 return;
             }
