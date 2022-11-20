@@ -7,6 +7,8 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -22,7 +24,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트() {
+    void 기능_테스트1() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
@@ -37,6 +39,34 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+    }
+
+    @Test
+    void 기능_테스트2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 기능_테스트3() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "R", "3", "U", "D", "U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1,0, 1, 1, 0, 1);
     }
 
     @Test
