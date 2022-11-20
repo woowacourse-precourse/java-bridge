@@ -17,18 +17,18 @@ public class BridgeGameManager {
         int bridgeSize = inputBridgeSizeRepeat();
         List<String> targetBridge = bridgeGame.makeTargetBridge(bridgeSize);
 
-        int tries = 0;
-        while (tries < targetBridge.size()) {
+        int step = 0;
+        while (step < targetBridge.size()) {
             String upDownInput = inputUpDownRepeat();
             bridgeGame.move(upDownInput);
             printStatus(bridgeGame, targetBridge);
 
             // 만약 새로 간 칸이 잘 못된 칸이라면
-            if (isFault(targetBridge, tries, upDownInput)) {
+            if (isFault(targetBridge, step, upDownInput)) {
                 String retryAnswer = inputRetryRepeat();
 
                 if (retryAnswer.equals("R")) {
-                    bridgeGame.back(tries);
+                    bridgeGame.back(step);
                     bridgeGame.retry();
                     continue;
                 }
@@ -37,7 +37,7 @@ public class BridgeGameManager {
                     break;
                 }
             }
-            tries++;
+            step++;
         }
 
         printResult(targetBridge, bridgeGame);
