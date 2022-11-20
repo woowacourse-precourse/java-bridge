@@ -26,8 +26,16 @@ public class InputViewTest extends NsTest {
     @DisplayName("입력된 인풋이 숫자가 아닌 문자열일 경우 Exception 발생")
     @ValueSource(strings = {"It", "Is", "Wrong"})
     @ParameterizedTest
-    void 범위_테스트(String input) {
+    void 숫자_테스트(String input) {
         assertThatThrownBy(() -> InputView.isNumeric(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 인풋이 U 혹은 D가 아닐 경우 Exception 발생")
+    @ValueSource(strings = {"A", "d", "u", "!", "-1"})
+    @ParameterizedTest
+    void 위아래_테스트(String input) {
+        assertThatThrownBy(() -> InputView.upOrDownCheck(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
