@@ -223,3 +223,18 @@ Q / D를 입력 받아 알맞은 `RetryIntention`반환하는 기능
 (성공한 위치는 `true`, 실패한 위치는 `false`)
 
 </aside>
+
+## 🎮Exceptions
+
+❗프로그램 실행 과정에서 발생하는 에러 목록을 정의하는 역할
+
+<aside>
+입력 값이 숫자가 아닌 경우 (`NOT_A_NUMBER`)
+
+입력 값이 범위를 벗어난 경우(`OUT_OF_RANGE`)
+
+입력 값이 비어있는 경우(`NULL_INPUT`)
+
+입력 값이 알맞지 않은 경우(`INCORRECT_INPUT`)
+
+</aside>
