@@ -6,17 +6,18 @@ package bridge;
 public class StateView {
 
     public void printInitialization() {
-        System.out.println(stateMessage.INITIALIZATION.get());
+        System.out.println(StateMessage.INITIALIZATION.get());
     }
 }
 
-enum stateMessage {
+enum StateMessage {
 
-    INITIALIZATION("다리 건너기 게임을 시작합니다.\n");
+    INITIALIZATION("다리 건너기 게임을 시작합니다.\n"),
+    ERROR("[ERROR]");
 
     private final String message;
 
-    stateMessage(String message) {
+    StateMessage(String message) {
         this.message = message;
     }
 
