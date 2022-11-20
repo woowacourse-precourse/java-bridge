@@ -9,8 +9,12 @@ public class User {
         return tryCount;
     }
 
+    private void setTryCount(int tryCount) {
+        this.tryCount = tryCount;
+    }
+
     public void increaseTryCount() {
-        tryCount++;
+        setTryCount(this.tryCount + 1);
     }
 
     public void setSuccess() {
@@ -24,7 +28,7 @@ public class User {
     public void setGameOver() {
         gameOver = true;
     }
-    public boolean isGameOver(){
+    public boolean isGameOver() {
         return gameOver;
     }
 }
