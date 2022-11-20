@@ -8,4 +8,14 @@ public class InputMessage {
     public static final String TOTAL_RESULT = "최종 게임 결과";
     public static final String IS_SUCCESS_GAME = "게임 성공 여부: ";
     public static final String TOTAL_TRY = "총 시도한 횟수: ";
+
+
+
+    public void gameOver(String isSucess, int totalTry) {
+        System.out.println(IS_SUCCESS_GAME + isSucess);
+        System.out.println(TOTAL_TRY + totalTry);
+    }
+
+
+
 }
