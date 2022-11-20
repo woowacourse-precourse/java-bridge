@@ -8,11 +8,12 @@ import java.util.ArrayList;
  */
 public class BridgeGame {
 
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgeMaker bridgeMaker;
     private List<String> bridge;
     private List<String> userSelect = new ArrayList<>();
 
-    public BridgeGame(int size) {
+    public BridgeGame(BridgeNumberGenerator numberGenerator,int size) {
+        this.bridgeMaker = new BridgeMaker(numberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
     }
 

@@ -15,7 +15,7 @@ public class Application {
         output.printRequestInputBridgeSize();
         while (true) {
             try {
-                return new BridgeGame(input.readBridgeSize());
+                return new BridgeGame(new BridgeRandomNumberGenerator(), input.readBridgeSize());
             } catch (IllegalArgumentException e) {
                 output.printErrorMessage(e.getMessage());
             }

@@ -10,7 +10,7 @@ class BridgeGameTest {
 
     @Test
     void 이동_테스트() {
-        BridgeGame game = new BridgeGame(5);
+        BridgeGame game = new BridgeGame(new BridgeRandomNumberGenerator(), 5);
         game.move(1);
         game.move(1);
         game.move(1);
