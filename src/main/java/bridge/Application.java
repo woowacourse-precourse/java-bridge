@@ -18,7 +18,7 @@ public class Application {
             gameController.GAMESTART();
             do {
                 gameController.RUNPROCESS();
-                if (bridgeGame.isSuccecs()) {
+                if (bridgeGame.isSuccecss()) {
                     break;
                 }
             } while (gameController.SELECTRESTART());

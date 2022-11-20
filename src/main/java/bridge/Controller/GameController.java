@@ -32,26 +32,14 @@ public class GameController {
     public void RUNPROCESS() {
         bridgeGame.increaseGameCount();
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
-            List<String> bridge = bridgeGame.getBridge();
-            List<Boolean> matchResult = bridgeGame.getMatchResult();
-            String input = inputView.readMoving();
-            boolean match = bridge.get(i).equals(input);
-            matchResult.add(match);
-            bridgeGame.setMatchResult(matchResult);
-            outputView.printMap(matchResult, bridge);
+            boolean match = bridgeGame.move(inputView,outputView,i);
             if (!match) { break; }
-            if (i == bridgeGame.getBridgeSize() - 1) {
-                bridgeGame.gameSuccecs();
-            }
+            if (i == bridgeGame.getBridgeSize() - 1) { bridgeGame.gameSuccecs(); }
         }
     }
 
     public boolean SELECTRESTART() {
-        if (inputView.readGameCommand().equals("R")) {
-            bridgeGame.setMatchResult(new ArrayList<>());
-            return true;
-        }
-        return false;
+        return bridgeGame.retry(inputView,bridgeGame);
     }
 
     public void STOPGAME() {
