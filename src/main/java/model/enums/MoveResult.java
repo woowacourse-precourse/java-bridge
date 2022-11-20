@@ -5,8 +5,8 @@ import java.util.Arrays;
 public enum MoveResult {
     SUCCESS("O", true), FAIL("X", false), NULL(" ", null);
 
-    private String stringValue;
-    private Boolean succeed;
+    private final String stringValue;
+    private final Boolean succeed;
 
     MoveResult(String stringValue, Boolean succeed) {
         this.stringValue = stringValue;

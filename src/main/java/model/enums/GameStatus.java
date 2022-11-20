@@ -5,8 +5,8 @@ import java.util.Arrays;
 public enum GameStatus {
     IN_PROCESS(false, false), OVER(false, true), CLEARED(true, false);
 
-    private boolean succeed;
-    private boolean fail;
+    private final boolean succeed;
+    private final boolean fail;
 
     GameStatus(boolean succeed, boolean fail) {
         this.succeed = succeed;
