@@ -42,7 +42,10 @@ public class BridgeGame {
 
     public boolean retry() {
         String command = player.inputCommand();
-        if (command.equals())
+        if (command.equals(Constants.RESTART)) {
+            player.retry();
+            return true;
+        }
         return false;
     }
 
