@@ -36,6 +36,16 @@ public class BridgeGame {
         );
     }
 
+    private void updateGameStatus() {
+        if (bridge.equals(userPath)) {
+            gameStatus = GameStatus.WIN;
+        }
+        if (bridge.size() == userPath.size()) {
+            gameStatus = GameStatus.LOSE;
+        }
+        if (!isLastMoveCorrect()) {
+            gameStatus = GameStatus.LOSE;
+        }
     }
 
     private void validateMove(String direction) {
