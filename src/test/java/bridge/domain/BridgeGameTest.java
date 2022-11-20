@@ -38,4 +38,15 @@ class BridgeGameTest {
 
         assertThat(bridgeGame.isFinished()).isFalse();
     }
+
+    @Test
+    void 게임을_재시도한다() {
+        BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER));
+
+        bridgeGame.move(UPPER.capitalLetter());
+        assertThat(bridgeGame.isFinished()).isTrue();
+
+        bridgeGame.retry();
+        assertThat(bridgeGame.isFinished()).isFalse();
+    }
 }
