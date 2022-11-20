@@ -56,12 +56,12 @@ public class BridgeGameController {
     }
 
     private BridgeMap movingBridge(List<String> bridge) {
-        String playerBridgeMove = inputView.readMoving();
+        BridgeMove playerBridgeMove = inputView.readMoving();
 
         int countOfRound = bridgeGame.getCountOfRound();
-        MoveResult moveResult = bridgeGame.move(bridge, playerBridgeMove, countOfRound);
+        MoveResult moveResult = bridgeGame.move(bridge, playerBridgeMove.getFirstLetter(), countOfRound);
 
-        return new BridgeMap(BridgeMove.findByInput(playerBridgeMove), moveResult);
+        return new BridgeMap(playerBridgeMove, moveResult);
     }
 
     private void canNotMoveBridge(BridgeMap bridgeMap) {

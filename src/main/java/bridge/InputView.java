@@ -44,7 +44,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public BridgeMove readMoving() {
         BridgeMove bridgeMove;
         do {
             System.out.println(READ_MOVING.getMessage());
@@ -52,7 +52,7 @@ public class InputView {
             bridgeMove = getBridgeMoveByString(input);
         } while (bridgeMove.isMiss());
 
-        return bridgeMove.getFirstLetter();
+        return bridgeMove;
     }
 
     private BridgeMove getBridgeMoveByString(String input) {
