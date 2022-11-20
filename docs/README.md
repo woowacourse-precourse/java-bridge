@@ -126,6 +126,12 @@ D
 - [x] moveCount라는 인스턴스 변수 생성
 - [x] gameCount라는 인스턴스 변수 생성
 
+### BridgeGame
+- [ ] upBridge를 초기화
+- [ ] downBridge를 초기화
+- [ ] moveCount를 0으로 초기화
+- [ ] gameCount를 0으로 초기화
+
 ### move
 - [x] 결과 다리와 비교
 - [x] 같으면 true, 틀리면 false를 리턴
