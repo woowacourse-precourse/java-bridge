@@ -1,6 +1,9 @@
 package view;
 
+import bridge.BridgeMove;
+
 public class Valid {
+
     public static boolean isLengthEmpty(String length) {
         boolean isEmpty = false;
         if (length.length() == 0) {
@@ -52,7 +55,7 @@ public class Valid {
 
     public static boolean isEnterNotRequiredLetter(String enter) {
         boolean isNotRequired = false;
-        if (!enter.equals("U") && !enter.equals("D")) {
+        if (!enter.equals(BridgeMove.up.getMoving()) && !enter.equals(BridgeMove.down.getMoving())) {
             isNotRequired = true;
         }
         return isNotRequired;
@@ -64,7 +67,7 @@ public class Valid {
         }
     }
 
-    public static boolean isLastEnterNotRequiredLetter(String enter) {
+    public static boolean isFinishNotRequiredLetter(String enter) {
         boolean isNotRequired = false;
         if (!enter.equals("R") && !enter.equals("Q")) {
             isNotRequired = true;
@@ -73,7 +76,7 @@ public class Valid {
     }
 
     public static void isEnterFinishValid(String enter) {
-        if (isEnterEmpty(enter) || isEnterNotLetter(enter) || isLastEnterNotRequiredLetter(enter)) {
+        if (isEnterEmpty(enter) || isEnterNotLetter(enter) || isFinishNotRequiredLetter(enter)) {
             throw new IllegalArgumentException(ValidMessage.ValidFinish.getMessage());
         }
     }
