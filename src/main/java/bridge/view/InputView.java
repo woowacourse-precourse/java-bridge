@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeSize;
 import bridge.domain.BridgeState;
+import bridge.domain.GameCommand;
 import bridge.domain.InputException;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -77,6 +78,7 @@ public class InputView {
     public String readGameCommand() {
         String gameCommand = Console.readLine();
         validateBlankCommand(gameCommand);
+        validateInvalidCommand(gameCommand);
         return gameCommand;
     }
 
@@ -84,5 +86,14 @@ public class InputView {
         if(uncheckedInput.isBlank()) {
             throw new IllegalArgumentException(InputException.BLANK_GAME_END_INPUT.getExceptionMessage());
         }
+    }
+
+    public void validateInvalidCommand(String uncheckedInput) {
+        for(GameCommand command: GameCommand.values()) {
+            if(uncheckedInput.equals(command.getGameCommand())) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(InputException.INVALID_GAME_END_INPUT.getExceptionMessage());
     }
 }
