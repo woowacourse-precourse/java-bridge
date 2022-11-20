@@ -10,4 +10,8 @@ public class Converter {
             throw new IllegalArgumentException(str + intConvertFailMessage);
         }
     }
+    public static boolean retryQuitToBoolean(String retryQuit) {
+        if(retryQuit.equals("R")) return true;
+        return false;
+    }
 }

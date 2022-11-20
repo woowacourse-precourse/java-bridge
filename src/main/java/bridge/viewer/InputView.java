@@ -53,13 +53,13 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readRetry() {
+    public boolean readRetry() {
         while(true) {
             System.out.println(inputRetryMessage);
             try {
                 String retryQuit = Console.readLine();
                 validator.validateRetry(retryQuit);
-                return retryQuit;
+                return Converter.retryQuitToBoolean(retryQuit);
             } catch (IllegalArgumentException e) {
                 ExceptionPrinter.printException(e.getMessage());
             }
