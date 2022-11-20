@@ -1,5 +1,7 @@
 package bridge.util;
 
+import static bridge.constant.ErrorType.NUMBER_ERROR;
+
 public class TypeConversion {
 
     public static int stringToInt(String string) {
@@ -8,7 +10,7 @@ public class TypeConversion {
         try {
             conversionValue = Integer.parseInt(string);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(NUMBER_ERROR.getMessage());
         }
 
         return conversionValue;
