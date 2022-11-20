@@ -25,10 +25,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        List<String> bridge = bridgeGame.getBridge();
-        List<String> userThinkBridge = bridgeGame.getUserThinkBridge();
-        printUpMap(bridge, userThinkBridge);
-        printDownMap(bridge, userThinkBridge);
+        printLine(bridgeGame, Moving.UP.getDirection(), Moving.DOWN.getDirection());
+        printLine(bridgeGame, Moving.DOWN.getDirection(), Moving.UP.getDirection());
     }
 
     /**
@@ -44,46 +42,64 @@ public class OutputView {
         System.out.println(GAME_TRY + userTry);
     }
 
-    private void printUpMap(List<String> bridge, List<String> userThinkBridge){
+    private void printLine(BridgeGame bridgeGame, String printLine, String otherLine){
+        List<String> userThinkBridge = bridgeGame.getUserThinkBridge();
         System.out.print(START_BRIDGE);
-        printFirstUpBridge(bridge, userThinkBridge);
-        for (int i = 1; i < userThinkBridge.size(); i++) {
-            if (bridge.get(i).equals(Moving.UP.getDirection())){
+
+        if (userThinkBridge.size() == 1){
+            printOnlyOneMap(bridgeGame, printLine, otherLine);
+            return;
+        }
+
+        printMiddleMap(bridgeGame, printLine);
+        printLastMap(bridgeGame, printLine);
+    }
+
+    private void printOnlyOneMap(BridgeGame bridgeGame, String printLine, String otherLine){
+        String userMoving = bridgeGame.getUserMoving();
+        if (userMoving.equals(printLine) && bridgeGame.getBridge().get(0).equals(userMoving)){
+            System.out.println("O" + END_BRIDGE);
+            return;
+        }
+        if (userMoving.equals(otherLine)){
+            System.out.println(" " + END_BRIDGE);
+            return;
+        }
+        System.out.println("X" + END_BRIDGE);
+    }
+
+    private void printMiddleMap(BridgeGame bridgeGame, String printLine){
+        List<String> bridge = bridgeGame.getBridge();
+        List<String> userThinkBridge = bridgeGame.getUserThinkBridge();
+        printFirstBridgeMap(bridgeGame, printLine);
+        for (int i = 1; i < userThinkBridge.size() - 1; i++) {
+            if (bridge.get(i).equals(printLine)){
                 System.out.print(DIVISION_BRIDGE + userThinkBridge.get(i));
                 continue;
             }
             System.out.print(DIVISION_BRIDGE + BLANK_BRIDGE);
         }
-        System.out.println(END_BRIDGE);
     }
 
-    private void printDownMap(List<String> bridge, List<String> userThinkBridge){
-        System.out.print(START_BRIDGE);
-        printFirstDownBridge(bridge, userThinkBridge);
-        for (int i = 1; i < userThinkBridge.size(); i++) {
-            if (bridge.get(i).equals(Moving.DOWN.getDirection())){
-                System.out.print(DIVISION_BRIDGE + userThinkBridge.get(i));
-                continue;
-            }
-            System.out.print(DIVISION_BRIDGE + BLANK_BRIDGE);
-        }
-        System.out.println(END_BRIDGE);
-    }
-
-    private void printFirstUpBridge(List<String> bridge, List<String> userThinkBridge){
-        if (bridge.get(0).equals(Moving.UP.getDirection())){
-            System.out.print(userThinkBridge.get(0));
+    private void printFirstBridgeMap(BridgeGame bridgeGame, String printLine){
+        if (bridgeGame.getBridge().get(0).equals(printLine)){
+            System.out.print(bridgeGame.getUserThinkBridge().get(0));
             return;
         }
         System.out.print(BLANK_BRIDGE);
     }
 
-    private void printFirstDownBridge(List<String> bridge, List<String> userThinkBridge){
-        if (bridge.get(0).equals(Moving.DOWN.getDirection())){
-            System.out.print(userThinkBridge.get(0));
+    private void printLastMap(BridgeGame bridgeGame, String printLine){
+        String userMoving = bridgeGame.getUserMoving();
+        if (printLine.equals(userMoving) && bridgeGame.compareLastBridgeAndUserThink()){
+            System.out.println(DIVISION_BRIDGE + "O" + END_BRIDGE);
             return;
         }
-        System.out.print(BLANK_BRIDGE);
+        if (printLine.equals(userMoving) && !bridgeGame.compareLastBridgeAndUserThink()){
+            System.out.println(DIVISION_BRIDGE + "X" + END_BRIDGE);
+            return;
+        }
+        System.out.println(DIVISION_BRIDGE + " " + END_BRIDGE);
     }
 
     private String decisionSuccessOrFail(boolean quitFlag){
