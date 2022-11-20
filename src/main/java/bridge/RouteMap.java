@@ -16,4 +16,13 @@ public class RouteMap {
         return mapFormat.convertToFormatStrings(List.of(upSide, downSide));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof RouteMap) {
+            return upSide.equals(((RouteMap) other).upSide)
+                    && downSide.equals(((RouteMap) other).downSide);
+        }
+        return false;
+    }
+
 }

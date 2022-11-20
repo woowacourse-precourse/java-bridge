@@ -22,4 +22,22 @@ public class RouteMapTest {
                         "[   | O |   ]"
                 ));
     }
+
+    @DisplayName("같은 경로를 가진 두 객체는 동일하다")
+    @Test
+    void equalsTest() {
+        RouteMap routeMap1 = new RouteMap(upSide, downSide);
+        RouteMap routeMap2 = new RouteMap(upSide, downSide);
+
+        assertThat(routeMap1).isEqualTo(routeMap2);
+    }
+
+    @DisplayName("다른 경로를 가진 두 객체는 동일하지 않다")
+    @Test
+    void notEqualsTest() {
+        RouteMap routeMap1 = new RouteMap(upSide, downSide);
+        RouteMap routeMap2 = new RouteMap(downSide, upSide);
+
+        assertThat(routeMap1).isNotEqualTo(routeMap2);
+    }
 }
