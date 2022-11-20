@@ -14,4 +14,10 @@ public class CheckingException {
             throw new IllegalArgumentException("[ERROR] 올바른 위 아래 칸 입력 값이 아닙니다.");
         }
     }
+
+    public void isInputRorQ(String retryAnswer) {
+        if (!retryAnswer.equals("R") && !retryAnswer.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 올바른 재시도 종료 입력 값이 아닙니다.");
+        }
+    }
 }
