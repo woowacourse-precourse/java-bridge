@@ -10,7 +10,9 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeGame bridgeGame = new BridgeGame();
+
         int bridgeSize = inputView.readBridgeSize();
+
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         List<String> userRoute = new ArrayList<>();
 
