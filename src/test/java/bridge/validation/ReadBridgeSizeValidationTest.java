@@ -20,4 +20,11 @@ public class ReadBridgeSizeValidationTest {
         assertThatThrownBy(() -> readBridgeSizeValidation.validateInputIsInteger("a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("다리 길이가 3보다 작거나 20보다 큰 경우, 예외가 발생한다.")
+    @Test
+    public void validateSizeRangeTest() {
+        assertThatThrownBy(() -> readBridgeSizeValidation.validateSizeRange("21"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
