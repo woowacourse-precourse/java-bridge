@@ -1,5 +1,7 @@
 package view;
 
+import static constant.Message.*;
+
 import bridge.Bridge;
 import constant.Message;
 
@@ -15,19 +17,26 @@ public class OutputView {
      */
     public void printMap() {
     }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Bridge bridge) {
-        System.out.println(Message.PRINT_GAME_RESULT);
-        bridge.minusCurrent();
-        bridge.printSuccess();
+    public void printResult(Bridge bridge, String result) {
+        System.out.println(PRINT_GAME_RESULT);
+        if (result == SUCCESS) {
+            bridge.minusCurrent();
+            bridge.printSuccess();
+            System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, result));
+            System.out.println(String.format(TOTAL_NUMBERS_OF_ATTEMPTS, bridge.getGameCount()));
+            return;
+        }
+        bridge.printFailure();
+        System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, result));
+        System.out.println(String.format(TOTAL_NUMBERS_OF_ATTEMPTS, bridge.getGameCount()));
     }
 
     public void printStartMessage() {
-        System.out.println(Message.PRINT_START_MESSAGE);
+        System.out.println(PRINT_START_MESSAGE);
     }
 }
