@@ -68,7 +68,22 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(Message.REQUEST_IS_RESTART_GAME);
         String isRestartGame = Console.readLine();
+
+        boolean isThrowError = validate(this::validateIsRestartGame, isRestartGame);
+        if (isThrowError) {
+            return readGameCommand();
+        }
         return isRestartGame;
+    }
+
+    private void validateIsRestartGame(String isRestartGame) {
+        if (isInvalidRestartGameForm(isRestartGame)) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_RESTART_GAME_FORM);
+        }
+    }
+
+    private boolean isInvalidRestartGameForm(String isRestartGame) {
+        return !isRestartGame.equals(Constant.QUIT_GAME) && !isRestartGame.equals(Constant.RESTART_GAME);
     }
 
     public boolean validate(Consumer<String> validateFunction, String input) {
