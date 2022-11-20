@@ -58,10 +58,11 @@ public class Application {
      */
     static void moveBridge(List<String> bridge) {
         BridgeGame bridgeGame = new BridgeGame();
-        int index = 0;
+        OutputView outputView = new OutputView();
 
         String checkMove = Application.inputMove();
-        List<List<String>> moveResult = bridgeGame.move(bridge, index, checkMove);
+        List<List<String>> moveResult = bridgeGame.move(bridge, checkMove);
+        outputView.printMap(moveResult);
     }
 
     public static void main(String[] args) {
