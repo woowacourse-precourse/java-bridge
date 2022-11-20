@@ -1,4 +1,6 @@
-package bridge;
+package bridge.ioView;
+
+import bridge.BridgeGame;
 
 import java.util.List;
 
