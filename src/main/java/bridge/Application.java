@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,13 +13,29 @@ public class Application {
         outputView.printGameStart();
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(new GameStatus(), Collections.emptyList(), bridgeSize);
+        List<List<String>> bridgeValues = null;
 
-        for (int i = 0; i < bridgeSize; i++) {
-            String moveTo = inputView.readMoving();
-            List<String> bridgeMoved = bridgeGame.move(moveTo);
-//            outputView.printMap(bridgeMoved, bridgeMoved.size());
+        while (true) {
+            for (int i = 0; i < bridgeSize; i++) {
+                String moveTo = inputView.readMoving();
+                bridgeGame.move(moveTo);
+                bridgeValues = bridgeGame.decideBridgeValues();
+                outputView.printMap(bridgeValues);
+                if (bridgeGame.isGameEnd()) {
+                    break;
+                }
+            }
+            if (bridgeGame.getGameStatus().isGameWon().equals("성공")) {
+                break;
+            }
+
+            String retryStatus = inputView.readGameCommand();
+
+            if (!bridgeGame.retry(retryStatus)) {
+                break;
+            }
         }
-
+        outputView.printResult(bridgeValues, bridgeGame.getGameStatus());
 
     }
 }

@@ -48,6 +48,10 @@ public class BridgeGame {
 
     public String isMovable(int currentPosition) {
         if (bridgeMoved.get(currentPosition).equals(correctBridge.get(currentPosition))) {
+            if (currentPosition == correctBridge.size() - 1) {
+                gameStatus.setGameWon(true);
+                gameStatus.setGameEnd(true);
+            }
             return "O";
         }
         gameStatus.setGameEnd(true);
@@ -85,5 +89,7 @@ public class BridgeGame {
         return correctBridge;
     }
 
-
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
 }
