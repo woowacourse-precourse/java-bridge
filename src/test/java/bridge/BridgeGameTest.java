@@ -35,6 +35,16 @@ public class BridgeGameTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @DisplayName("3번 게임을 재시작하면 총 시도횟수 4를 반환한다")
+    @Test
+    void retryTest() {
+        BridgeGame bridgeGame2 = bridgeGame.retry();
+        BridgeGame bridgeGame3 = bridgeGame2.retry();
+        BridgeGame bridgeGame4 = bridgeGame3.retry();
+
+        assertThat(bridgeGame4.getTryCnt()).isEqualTo(4);
+    }
+
     private static Stream<Arguments> moveUpSideTestSource() {
         return Stream.of(
                 Arguments.of(1, new RouteMap(
