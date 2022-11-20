@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.BridgeSize;
 
 /**
@@ -25,8 +26,8 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void createBridge(BridgeSize bridgeSize) {
+    public Bridge createBridge(BridgeSize bridgeSize) {
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        maker.makeBridge(bridgeSize.getLength());
+        return new Bridge(maker.makeBridge(bridgeSize.getLength()));
     }
 }
