@@ -47,9 +47,10 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 2. [X] 다리 생성
 3. [X] 다리를 이동했는지 true/false 메시지 보내기
 4. [ ] 재시작, 종료
-5. [ ] 다리를 다 건녔는지 확인
+5. [X] 다리를 다 건녔는지 확인
 6. [ ] 게임 결과, 시도 횟수 저장
 7. [ ] 다리 이동 현재 위치와 갈 위치의 비교
+8. [X] 시도한 횟수 카운트
 
 ## 입출력 요구 사항
 
