@@ -1,6 +1,7 @@
 package view;
 
 public class OutputViewConstants {
+	public static final String OUTPUT_TEXT_GAME_START = "다리 건너기 게임을 시작합니다.";
 	public static final String OUTPUT_TEXT_OPEN_SQUARE_BRACKETS = "[";
 	public static final String OUTPUT_TEXT_CLOSE_SQUARE_BRACKETS = "]";
 	public static final String OUTPUT_TEXT_VERTICAL_BAR = "|";
