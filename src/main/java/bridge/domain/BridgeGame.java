@@ -20,6 +20,10 @@ public class BridgeGame {
         return index;
     }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -105,34 +109,37 @@ public class BridgeGame {
         lowerBridge.deleteCharAt(lowerBridge.length()-1);
     }
 
-    public boolean moveBridge(BridgeGame bridgeGame, List<String> bridge, String inputMove, int index, Bridge bridge1) {
+    public boolean moveBridge(BridgeGame bridgeGame, String inputMove, Bridge bridge) {
         boolean result = false;
-        if (bridgeGame.checkStatus(bridge, inputMove, index)) {
+        List<String> bridgeList = bridgeGame.getBridge();
+        int bridgeGameIndex = bridgeGame.getIndex();
+        if (bridgeGame.checkStatus(bridgeList, inputMove, bridgeGameIndex)) {
             if (inputMove.equals("U")) {
-                writeUpperBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), true);
+                writeUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
                 bridgeGame.move();
             }
             if (inputMove.equals("D")) {
-                writeLowerBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), true);
+                writeLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
                 bridgeGame.move();
             }
             result = true;
         }
-        if (!bridgeGame.checkStatus(bridge, inputMove, index)) {
+        if (!bridgeGame.checkStatus(bridgeList, inputMove, bridgeGameIndex)) {
             if (inputMove.equals("U")) {
-                writeUpperBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), false);
+                writeUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
             }
             if (inputMove.equals("D")) {
-                writeLowerBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), false);
+                writeLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
             }
             result = false;
         }
         return result;
     }
 
-    public boolean moveBridgeInit(BridgeGame bridgeGame, List<String> bridge, String inputMove, int index, Bridge bridge1) {
+    public boolean moveBridgeInit(BridgeGame bridgeGame, String inputMove, Bridge bridge1) {
         boolean result = false;
-        if (bridgeGame.checkStatus(bridge, inputMove, index)) {
+        List<String> bridgeList = bridgeGame.getBridge();
+        if (bridgeGame.checkStatus(bridgeList, inputMove, 0)) {
             if (inputMove.equals("U")) {
                 writeInitUpperBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), true);
                 bridgeGame.move();
@@ -143,7 +150,7 @@ public class BridgeGame {
             }
             result = true;
         }
-        if (!bridgeGame.checkStatus(bridge, inputMove, index)) {
+        if (!bridgeGame.checkStatus(bridgeList, inputMove, 0)) {
             if (inputMove.equals("U")) {
                 writeInitUpperBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), false);
             }

@@ -30,10 +30,9 @@ public class Controller {
 
     public void start(BridgeGame bridgeGame, List<String> bridgeList) {
 
-        int bridgeSize = bridgeList.size();
-
         StringBuilder upperBridge = new StringBuilder();
         StringBuilder lowerBridge = new StringBuilder();
+
         while (true) {
 
             outputView.printSelectMove();
@@ -45,7 +44,7 @@ public class Controller {
 
             int index = bridgeGame.getIndex();
             if (index == 0) {
-                if(bridgeGame.moveBridgeInit(bridgeGame, bridgeList, inputMove, index, bridge)) {
+                if(bridgeGame.moveBridgeInit(bridgeGame, inputMove, bridge)) {
                     outputView.printMap(bridge);
                 }
                 else {
@@ -57,7 +56,7 @@ public class Controller {
                 }
             }
             if (index != 0) {
-                if(bridgeGame.moveBridge(bridgeGame, bridgeList, inputMove, index, bridge)) {
+                if(bridgeGame.moveBridge(bridgeGame, inputMove, bridge)) {
                     outputView.printMap(bridge);
                 }
                 else {
@@ -65,17 +64,24 @@ public class Controller {
                     bridgeGame.initIndex();
 
                     if(!retry(bridgeGame, bridgeList)){
+                        gameEnd();
                         break;
                     }
                 }
             }
-            int checkIndex = bridgeGame.getIndex();
-            if(checkIndex == bridgeSize) {
-                user.checkSuccess();
-                break;
-            }
+            if (checkBridgeIndex(bridgeGame, bridgeList)) break;
         }
-        gameEnd();
+    }
+
+    private boolean checkBridgeIndex(BridgeGame bridgeGame, List<String> bridgeList) {
+        int bridgeSize = bridgeList.size();
+        int curIndex = bridgeGame.getIndex();
+        if(curIndex == bridgeSize) {
+            user.checkSuccess();
+            gameEnd();
+            return true;
+        }
+        return false;
     }
 
     public boolean retry(BridgeGame bridgeGame, List<String> bridgeList) {
