@@ -10,13 +10,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
-    private final BridgeMover bridgeMover;
+    private final BridgePlay bridgePlay;
     private List<String> bridge;
     private int currentPosition = -1;
 
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeMover = new BridgeMover();
+        bridgePlay = new BridgePlay();
     }
 
     public void requestBridge() {
@@ -31,7 +31,7 @@ public class BridgeGame {
      */
     public boolean move() {
         currentPosition++;
-        String moveCommand = convertCommand(bridgeMover.requestReadMoving());
+        String moveCommand = convertCommand(bridgePlay.requestReadMoving());
         if(!bridge.get(currentPosition).equals(moveCommand)) {
             currentPosition = -1;
             return false;
@@ -48,6 +48,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        if(bridgePlay.requestReadMoving().equals("R")) {
+            return true;
+        }
+        return false;
     }
 }
