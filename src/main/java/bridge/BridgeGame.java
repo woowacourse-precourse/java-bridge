@@ -1,15 +1,19 @@
 package bridge;
 
+import bridge.util.Validator;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private OutputView outputView;
     private InputView inputView;
+    private BridgeMaker bridgeMaker;
 
     public BridgeGame(){
         this.outputView=new OutputView();
         this.inputView=new InputView();
+        this.bridgeMaker=new BridgeMaker(new BridgeRandomNumberGenerator());
     }
     public void gameStart(){
         setBridgeSize();
@@ -17,6 +21,7 @@ public class BridgeGame {
     public void setBridgeSize(){
         outputView.printStartGame();
         String bridgeSize=inputView.readBridgeSize();
+        Validator.isDigit(bridgeSize);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
