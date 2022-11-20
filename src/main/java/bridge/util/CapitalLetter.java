@@ -12,7 +12,7 @@ public class CapitalLetter {
 
     private final String alphabet;
 
-    CapitalLetter(String alphabet) {
+    public CapitalLetter(String alphabet) {
         validateAlphabeticType(alphabet);
         this.alphabet = alphabet;
     }
