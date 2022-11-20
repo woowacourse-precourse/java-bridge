@@ -21,19 +21,21 @@ public class BridgeGame {
 	}
 
 	public void startApplication() {
-		inputController.startGame();
-		Integer bridgeSize = inputController.getBridgeSize();
+		Integer bridgeSize = getBridgeSize();
 		gameService.makeBridge(bridgeSize);
 		Integer attemptCount = 0;
 		String userResult;
 		do {
 			userResult = move(bridgeSize);
 			attemptCount++;
-			if (userResult.equals(GameConst.SUCCESS)) {
-				break;
-			}
-		} while (retry());
+		} while (userResult.equals(GameConst.FAIL) && retry());
 		printResult(attemptCount, userResult);
+	}
+
+	private Integer getBridgeSize() {
+		inputController.startGame();
+		Integer bridgeSize = inputController.getBridgeSize();
+		return bridgeSize;
 	}
 
 	private void printResult(Integer attemptCount, String userResult) {

@@ -29,8 +29,7 @@ public enum UserBridgeStatus {
 				statusToString += PARTITION;
 			}
 		}
-		statusToString += SUFFIX;
-		return statusToString;
+		return statusToString + SUFFIX;
 	}
 
 	public void clearStatus() {

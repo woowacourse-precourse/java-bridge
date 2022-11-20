@@ -14,11 +14,19 @@ public class UserBridgeRepository {
 	public void saveUserSpace(String location, String userCurrentTrace) {
 		userCurrentLocation++;
 		if (location.equals(GameConst.MOVING_UP)) {
-			UserBridgeStatus.UPPER_BRIDGE.updateStatus(userCurrentTrace);
-			UserBridgeStatus.LOWER_BRIDGE.updateStatus(GameConst.BLANK_SPACE);
+			saveUserUpperSpace(userCurrentTrace);
+			saveUserLowerSpace(GameConst.BLANK_SPACE);
 			return;
 		}
-		UserBridgeStatus.UPPER_BRIDGE.updateStatus(GameConst.BLANK_SPACE);
+		saveUserUpperSpace(GameConst.BLANK_SPACE);
+		saveUserLowerSpace(userCurrentTrace);
+	}
+
+	private void saveUserUpperSpace(String userCurrentTrace) {
+		UserBridgeStatus.UPPER_BRIDGE.updateStatus(userCurrentTrace);
+	}
+
+	private void saveUserLowerSpace(String userCurrentTrace) {
 		UserBridgeStatus.LOWER_BRIDGE.updateStatus(userCurrentTrace);
 	}
 
