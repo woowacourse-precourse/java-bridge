@@ -1,8 +1,6 @@
 package bridge.model;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public enum Position {
 
@@ -38,4 +36,10 @@ public enum Position {
         return string.equals(position.abbreviation);
     }
 
+    public static String returnByPosition(Position diagramPosition, Position position, String string) {
+        if (position == diagramPosition) {
+            return string;
+        }
+        return " ";
+    }
 }
