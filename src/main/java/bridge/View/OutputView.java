@@ -32,6 +32,7 @@ public class OutputView {
     public void printUpSideMap() {
         printPreBracket();
         for (int i = 0; i < upSide.size(); i++) {
+            printBar(upSide.size(), i);
             System.out.print(upSide.get(i));
         }
         printPostBracket();
@@ -40,6 +41,7 @@ public class OutputView {
     public void printDownSideMap() {
         printPreBracket();
         for (int i = 0; i < downSide.size(); i++) {
+            printBar(downSide.size(), i);
             System.out.print(downSide.get(i));
         }
         printPostBracket();
@@ -82,6 +84,13 @@ public class OutputView {
 
     private void printPostBracket() {
         System.out.println("]");
+    }
+
+    private void printBar(int size, int index) {
+        if (index != 0)
+            if (size != index) {
+                System.out.print("|");
+            }
     }
 
     /**
