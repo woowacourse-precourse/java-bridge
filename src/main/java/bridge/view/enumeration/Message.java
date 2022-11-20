@@ -1,4 +1,4 @@
-package bridge.domain.enumeration;
+package bridge.view.enumeration;
 
 public enum Message {
     BRIDGE_SIZE_REQUEST_MESSAGE("다리의 길이를 입력해주세요."),

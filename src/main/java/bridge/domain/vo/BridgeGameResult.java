@@ -2,9 +2,9 @@ package bridge.domain.vo;
 
 import java.util.Objects;
 
-import static bridge.domain.enumeration.ErrorMessage.MOVING_IS_NOT_U_AND_D;
-import static bridge.domain.enumeration.MovingType.DOWN;
-import static bridge.domain.enumeration.MovingType.UP;
+import static bridge.view.enumeration.ErrorMessage.MOVING_IS_NOT_U_AND_D;
+import static bridge.domain.vo.enumeration.MovingType.DOWN;
+import static bridge.domain.vo.enumeration.MovingType.UP;
 
 public class BridgeGameResult {
 

@@ -1,4 +1,4 @@
-package bridge.domain.enumeration;
+package bridge.domain.vo.enumeration;
 
 public enum MovingType {
     UP("U"),

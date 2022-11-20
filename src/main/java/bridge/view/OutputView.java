@@ -6,8 +6,8 @@ import java.util.List;
 
 import static bridge.domain.BridgeGame.RETRY_COUNT;
 import static bridge.domain.vo.BridgeGameResult.*;
-import static bridge.domain.enumeration.Format.*;
-import static bridge.domain.enumeration.Message.*;
+import static bridge.view.enumeration.Format.*;
+import static bridge.view.enumeration.Message.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

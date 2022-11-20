@@ -1,9 +1,7 @@
 package bridge.domain.vo;
 
-import bridge.domain.enumeration.MovingType;
-
-import static bridge.domain.enumeration.ErrorMessage.*;
-import static bridge.domain.enumeration.MovingType.*;
+import static bridge.view.enumeration.ErrorMessage.*;
+import static bridge.domain.vo.enumeration.MovingType.*;
 
 public class Moving {
 

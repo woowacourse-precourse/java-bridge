@@ -1,13 +1,11 @@
 package bridge.domain.vo;
 
-import bridge.domain.enumeration.MovingType;
-import org.junit.jupiter.api.BeforeAll;
+import bridge.domain.vo.enumeration.MovingType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static bridge.domain.vo.BridgeGameResult.createBridgeGameResult;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameResultTest {
 

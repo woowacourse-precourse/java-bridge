@@ -1,4 +1,4 @@
-package bridge.domain.enumeration;
+package bridge.view.enumeration;
 
 public enum Format {
     CORRECT(" O "),

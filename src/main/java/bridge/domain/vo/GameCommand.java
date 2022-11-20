@@ -1,7 +1,7 @@
 package bridge.domain.vo;
 
-import static bridge.domain.enumeration.ErrorMessage.*;
-import static bridge.domain.enumeration.GameCommandType.*;
+import static bridge.view.enumeration.ErrorMessage.*;
+import static bridge.domain.vo.enumeration.GameCommandType.*;
 
 public class GameCommand {
 

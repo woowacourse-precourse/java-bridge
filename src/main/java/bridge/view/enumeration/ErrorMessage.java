@@ -1,4 +1,4 @@
-package bridge.domain.enumeration;
+package bridge.view.enumeration;
 
 public enum ErrorMessage {
     IS_NOT_NUMBER("[ERROR] 문자열이 아닌 숫자(정수)를 입력해주세요."),
