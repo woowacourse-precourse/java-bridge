@@ -19,6 +19,19 @@ public class MapMaker {
 		
 	}
 	
+	private boolean conditionCheck(String rightCondition, String move) {
+		String condition = BridgeCondition.WRONG.getCondition();
+		
+		if(rightCondition.equals(move)) {
+			condition = BridgeCondition.RIGHT.getCondition();
+			upOrDownCheck(move, condition);
+			return true;
+		}
+		
+		upOrDownCheck(move, condition);
+		return false;
+	}
+	
 	private void upOrDownCheck(String move, String condition) {
 		if (move.equals("U")) {
 			upperBridge.append(condition);
