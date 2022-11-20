@@ -19,7 +19,7 @@ public enum BridgeType {
         this.bridgeNumber = bridgeNumber;
     }
 
-    public static String convertRandomNumberToText(int randomNumber) {
+    public static String convertRandomNumberToCommand(int randomNumber) {
         return Arrays.stream(BridgeType.values())
                 .filter(bridgeType -> bridgeType.bridgeNumber == randomNumber)
                 .findFirst()
@@ -28,9 +28,9 @@ public enum BridgeType {
                 .command;
     }
 
-    public static BridgeType searchBridgeToText(String text) {
+    public static BridgeType searchBridgeToCommand(String command) {
         return Arrays.stream(BridgeType.values())
-                .filter(bridgeType -> bridgeType.command.equals(text))
+                .filter(bridgeType -> bridgeType.isEqualCommand(command))
                 .findFirst()
                 .orElseThrow(() ->
                         new IllegalArgumentException("허용되지 않는 글자입니다. 일치하는 다리를 찾을 수 없습니다."));

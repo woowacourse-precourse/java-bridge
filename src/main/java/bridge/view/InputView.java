@@ -30,7 +30,7 @@ public class InputView {
      */
     public BridgeType readMoving() {
         String input = Console.readLine();
-        return BridgeType.searchBridgeToText(input);
+        return BridgeType.searchBridgeToCommand(input);
     }
 
     /**
