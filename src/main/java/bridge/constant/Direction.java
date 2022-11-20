@@ -29,6 +29,13 @@ public enum Direction {
         return UPSIDE.shortcut.equals(userInput) || DOWNSIDE.shortcut.equals(userInput);
     }
 
+    public static String toShortcut(int value) {
+        if (value == DOWNSIDE.value) {
+            return DOWNSIDE.shortcut;
+        }
+        return UPSIDE.shortcut;
+    }
+
     private final int value;
     private final String shortcut;
 
