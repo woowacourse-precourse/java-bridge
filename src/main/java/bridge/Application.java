@@ -5,6 +5,7 @@ import java.util.List;
 
 import static bridge.view.InputView.*;
 import static bridge.view.OutputView.printMap;
+import static bridge.view.OutputView.printResult;
 
 public class Application {
 
@@ -24,12 +25,16 @@ public class Application {
                 printMap(bridge, gameStatus);
                 if(!moveResult) {
                     if(readGameCommand().equals("Q")) {
+                        printResult(bridge, gameStatus, game.getAllCount(), "실패");
                         break;
                     }
                     setGame();
                     game.retry();
                 }
-
+                if(bridge.size() ==gameStatus.size()) {
+                    printResult(bridge,gameStatus, game.getAllCount(), "성공");
+                    break;
+                }
             }
 
         } catch (IllegalArgumentException e) {
