@@ -18,6 +18,7 @@ public class OutputView {
         System.out.println();
         printMapElement(bridgeDownMap, location);
         System.out.println();
+        System.out.println();
     }
 
     private static void printMapElement(List<String> bridgeMap, int location) {
@@ -76,5 +77,12 @@ public class OutputView {
         }
     }
 
+    public void initPrint(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
+    }
 
+    public void exceptionPrint(String message){
+        System.out.println(message);
+    }
 }

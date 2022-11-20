@@ -70,11 +70,4 @@ class ApplicationTest extends NsTest {
         }
     }
 
-    @Nested
-    class BridgeLengthValidateTest{
-
-
-
-    }
-
 }
