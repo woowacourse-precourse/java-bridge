@@ -19,6 +19,8 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
         outputView.printMoveInputMessage();
-        inputView.readMoving();
+        String direction = inputView.readMoving();
+
+        bridgeGame.move(direction);
     }
 }
