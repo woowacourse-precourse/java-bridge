@@ -9,6 +9,7 @@ public class MovingProcessing {
 
     private final InputView inputView;
     private final RandomBridge randomBridge;
+    private final OutputView outputView;
     private final List<String> upSide;
     private final List<String> downSide;
 
@@ -16,6 +17,7 @@ public class MovingProcessing {
         inputView = new InputView();
         randomBridge = new RandomBridge();
         randomBridge.initBridge();
+        outputView = new OutputView();
         upSide = new ArrayList<>();
         downSide = new ArrayList<>();
     }
@@ -39,7 +41,7 @@ public class MovingProcessing {
         boolean isSuccess = true;
         int index = upSide.size();
         isSuccess = jumpToBridge(input, bridge.get(index));
-        printBridge();
+        outputView.printMap(upSide, downSide);
         if (!isSuccess) {
             return isSuccess;
         }
@@ -78,10 +80,4 @@ public class MovingProcessing {
         }
     }
 
-    public void printBridge() {
-        String upSideBridge = upSide.stream().collect(joining(" | ", "[ ", " ]"));
-        String downSideBridge = downSide.stream().collect(joining(" | ", "[ ", " ]"));
-        System.out.println(upSideBridge);
-        System.out.println(downSideBridge);
-    }
 }
