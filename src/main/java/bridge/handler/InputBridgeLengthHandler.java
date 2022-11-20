@@ -37,7 +37,9 @@ public class InputBridgeLengthHandler {
     }
 
     private void checkInRange(String bridgeLength) {
-        if(bridgeLength.length() < 3 || bridgeLength.length() > 20){
+        int bridgeLengthNumber = Integer.parseInt(bridgeLength);
+
+        if(bridgeLengthNumber < 3 || bridgeLengthNumber > 20){
             throw new IllegalArgumentException(orderView.ERROR_ORDER + " 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
