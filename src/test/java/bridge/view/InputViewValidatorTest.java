@@ -25,4 +25,12 @@ class InputViewValidatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> validator.checkCommand(moving));
     }
+
+    @DisplayName("숫자가 아닐 경우 예외 발생 확인")
+    @CsvSource(value = {"a", "A", "가", "_"})
+    @ParameterizedTest
+    void makeNonNumberInput(String input) {
+        assertThrows(IllegalArgumentException.class,
+                () -> validator.checkNumberFormat(input));
+    }
 }
