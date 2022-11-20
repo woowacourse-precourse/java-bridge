@@ -7,14 +7,14 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public enum BridgeType {
+public enum BridgeSpaceType {
     U(1),
     D(0),
     UNKNOWN(-1);
 
     private final int value;
 
-    BridgeType(int value) {
+    BridgeSpaceType(int value) {
         this.value = value;
     }
 
@@ -22,11 +22,11 @@ public enum BridgeType {
         return value;
     }
 
-    public static BridgeType find(int value) {
+    public static BridgeSpaceType find(int value) {
         return Optional.ofNullable(values.get(value)).orElse(UNKNOWN);
     }
 
-    private static final Map<Integer, BridgeType> values =
+    private static final Map<Integer, BridgeSpaceType> values =
             Collections.unmodifiableMap(Stream.of(values())
-                    .collect(Collectors.toMap(BridgeType::getValue, Function.identity())));
+                    .collect(Collectors.toMap(BridgeSpaceType::getValue, Function.identity())));
 }
