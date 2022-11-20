@@ -71,4 +71,25 @@ public class BridgeGameController {
         }
         return MOVING;
     }
+
+    private void inputRetryOrEnd(){
+        while (true){
+            try {
+                String command = InputView.inputGameCommand();
+                Validation.isValidRetryOrEnd(command);
+                retryOrEnd(command);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void retryOrEnd(String command){
+        if (command.equals("R")){
+            bridgeGame.retry();
+        } else if (command.equals("Q")) {
+            moving = false;
+        }
+    }
 }
