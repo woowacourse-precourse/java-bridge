@@ -63,4 +63,17 @@ class BridgeGameTest {
 
         Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.BRIDGE_INPUT_ONLY_UP_AND_DOWN);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A,R", "1234,Q"})
+    void 재시작할때__정해진값이_아니면_에러를발생한다(String input) {
+        final byte[] buf = String.join("\n", input.split(",")).getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(newConsole));
+
+        new InputView().readGameCommand();
+
+        Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.INPUT_ONLY_RETRY_OR_END);
+    }
 }
