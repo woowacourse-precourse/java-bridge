@@ -1,4 +1,4 @@
-package bridge.domain.mapmaker;
+package bridge.domain.map;
 
 public enum MapSymbol {
 

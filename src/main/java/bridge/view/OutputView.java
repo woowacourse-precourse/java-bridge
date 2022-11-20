@@ -2,13 +2,13 @@ package bridge.view;
 
 import bridge.domain.bridge.CrossStatus;
 import bridge.domain.map.BridgeMap;
-import bridge.domain.mapmaker.MapSymbol;
+import bridge.domain.map.MapSymbol;
 import bridge.domain.trycount.TryCount;
 
 import java.util.List;
 
 import static bridge.domain.bridge.CrossStatus.SUCCESS;
-import static bridge.domain.mapmaker.MapSymbol.END;
+import static bridge.domain.map.MapSymbol.END;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

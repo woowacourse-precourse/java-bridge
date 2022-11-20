@@ -2,7 +2,6 @@ package bridge.domain.map;
 
 import bridge.domain.bridge.CrossStatus;
 import bridge.domain.direction.Direction;
-import bridge.domain.mapmaker.MapSymbol;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +9,7 @@ import java.util.List;
 
 import static bridge.domain.bridge.CrossStatus.FAIL;
 import static bridge.domain.direction.Direction.UP;
-import static bridge.domain.mapmaker.MapSymbol.*;
+import static bridge.domain.map.MapSymbol.*;
 
 public class BridgeMap {
 
