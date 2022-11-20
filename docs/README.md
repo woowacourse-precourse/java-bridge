@@ -27,10 +27,14 @@
 
 ## OutputView 클래스
  - 출력을 관리하는 클래스
- - 관련된 인스턴스 메소드 만들어서 하는 식으로
-
-1. printMap() : 현재까지 이동한 다리의 상태를 출력한다.
-2. printResult() : 게임의 최종 결과를 출력한다.
+1. START_MESSAGE : 다리 건너기 게임을 시작합니다.
+2. MOVE_MESSAGE : 이동할 칸을 선택해주세요. (위: U, 아래: D) 
+3. RETRY_MESSAGE : 게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+4. printStartMessage() : 게임 시작 메세지를 출력한다.
+5. printMoveMessage() : 이동 메세지를 출력한다.
+6. printRetryMessage() : 재시도 메세지를 출력한다. -> 4, 5, 6은 input단에서 사용
+7. printMap() : 현재까지 이동한 다리의 상태를 출력한다.
+8. printResult() : 게임의 최종 결과를 출력한다.
 
 ## BridgeGame 클래스
  - 실제 게임 진행과 관련된 기능 관리 클래스
