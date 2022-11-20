@@ -26,14 +26,13 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         validateSize(size);
         return Stream.generate(bridgeNumberGenerator::generate)
-                .map(BridgeUnit::from)
-                .map(BridgeUnit::getCode)
+                .map(number -> BridgeUnit.from(number).getCode())
                 .limit(size)
                 .collect(Collectors.toList());
     }
 
     private void validateSize(int size) {
-        if (!(MINIMUM_BRIDGE_SIZE <= size && size <= MAXIMUM_BRIDGE_SIZE)) {
+        if (size < MINIMUM_BRIDGE_SIZE || MAXIMUM_BRIDGE_SIZE < size) {
             throw new IllegalArgumentException(BRIDGE_MAKER_SIZE_ERROR);
         }
     }

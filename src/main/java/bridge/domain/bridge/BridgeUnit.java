@@ -18,11 +18,11 @@ public enum BridgeUnit {
     }
 
     public static BridgeUnit from(String code) {
-        return from((bridgeUnit) -> bridgeUnit.code.equals(code));
+        return from(bridgeUnit -> bridgeUnit.code.equals(code));
     }
 
     public static BridgeUnit from(int number) {
-        return from((bridgeUnit) -> bridgeUnit.number == number);
+        return from(bridgeUnit -> bridgeUnit.number == number);
     }
 
     private static BridgeUnit from(Predicate<BridgeUnit> bridgeUnitPredicate) {
