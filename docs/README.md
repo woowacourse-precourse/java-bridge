@@ -10,6 +10,7 @@
   - `InputView.readBridgeSize()`를 호출하여 다리 길이를 입력받는다.
   - `BridgeMaker.makeBridge()`를 호출하여 다리를 생성한다.
 - 라운드마다 플레이어가 이동할 칸을 입력받는다.
+  - `BridgeGame.play()`를 통해 게임을 진행한다.
 - 게임 재시작/종료 여부를 입력받는다.
 
 #### 출력
@@ -21,9 +22,24 @@
 
 ## Class
 - BridgeGame
+  - 생성자
+    - 다리의 길이를 입력받고 다리를 생성한다.
+  - play()
+    - 라운드마다 `move()`를 호출하여 게임을 진행한다.
+    - 
 - BridgeMaker
 - BridgeRandomNumberGenerator
 - InputView
 - OutputView
+- ExceptionHandler
+  - 예외처리를 위한 클래스
+  
 
 ## Exception Handling
+- checkBridgeSize()
+  - 입력된 다리 길이가 적법한지 확인한다.
+- convert2Integer()
+  - 입력된 문자열이 정수로 변환될 수 있는지 확인한다.
+  - 변환된 정수를 반환한다.
+- checkBridgeSizeRange()
+  - 입력된 정수의 범위가 적법한지 확인한다.
