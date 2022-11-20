@@ -10,4 +10,8 @@ public class Setting {
     public static final int MIN_BRIDGE_SIZE = 3;
     public static final String KEY_MATCH = "O";
     public static final String KEY_NOT_MATCH = "X";
+    public static final String BRIDGE_FIRST_LETTER = "[ ";
+    public static final String BRIDGE_LAST_LETTER = " ]";
+    public static final String DELIMITER = " | ";
+    public static final String WRONG_ANSWER_LETTER = " ";
 }
