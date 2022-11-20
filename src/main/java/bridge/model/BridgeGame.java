@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.model.BridgeMaker;
 import bridge. BridgeRandomNumberGenerator;
 import static bridge.enums.Constant_BridgeGame.*;
 
