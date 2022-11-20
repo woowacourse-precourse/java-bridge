@@ -8,6 +8,8 @@ public class Validator {
     static final int MAX_SIZE = 20;
     static final String UP = "U";
     static final String DOWN = "D";
+    static final String RESTART = "R";
+    static final String QUIT = "Q";
 
     private Validator() {}
 
@@ -56,6 +58,30 @@ public class Validator {
     public static void isUpOrDown(String input) {
         if (!(input.equals(UP) || input.equals(DOWN))) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
+        }
+    }
+
+    public static void isOneStringCommand(String command) {
+        if (command.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시도 여부는 한 문자여야 합니다.");
+        }
+    }
+
+    /**
+     * 입력값이 대문자가 아니라면 예외를 반환한다.
+     * */
+    public static void isUppercaseCommand(String command) {
+        if (!Character.isUpperCase(command.charAt(0))) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시도 여부는 대문자여야 합니다.");
+        }
+    }
+
+    /**
+     * 입력값이 U 또는 D가 아니라면 예외를 반환한다.
+     * */
+    public static void isRestartOrQuit(String input) {
+        if (!(input.equals(RESTART) || input.equals(QUIT))) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시도 여부는 R 또는 Q여야 합니다.");
         }
     }
 }

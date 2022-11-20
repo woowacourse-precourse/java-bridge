@@ -21,6 +21,9 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
+        Validator.isOneString(input);
+        Validator.isUppercase(input);
+        Validator.isUpOrDown(input);
         return input;
     }
 
@@ -29,6 +32,9 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = Console.readLine();
+        Validator.isOneStringCommand(command);
+        Validator.isUppercaseCommand(command);
+        Validator.isRestartOrQuit(command);
         return command;
     }
 }
