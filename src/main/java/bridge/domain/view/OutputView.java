@@ -18,8 +18,13 @@ import java.util.Map;
  */
 public class OutputView {
 
+    public void printEmptyLine() {
+        System.out.print("\n");
+    }
+
     public void printStartGuide() {
         System.out.println(GuideSentences.START.getSentence());
+        printEmptyLine();
     }
 
     public void printInputBridgeLengthGuide() {
@@ -41,6 +46,7 @@ public class OutputView {
             String oneDirectionRecord = crossRecord.get(BRIDGE_DIRECTION);
             System.out.println(oneDirectionRecord);
         }
+        printEmptyLine();
     }
 
     /**
