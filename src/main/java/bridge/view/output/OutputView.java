@@ -64,4 +64,8 @@ public class OutputView {
         }
         return "실패";
     }
+
+    public void printStartGame() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
 }
