@@ -1,0 +1,19 @@
+package bridge;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class BridgeGameTest {
+
+    //이동 입력값에 따라 적적한 결과가 반환되는지 테스트
+
+    //이동 입력값에 따라 적절한 결과가 출력되는지 테스트
+
+
+    //게임을 재시작 할 때, outputView 필드를 제대로 초기화 하는지 테스트
+
+    //게임을 끝낼때 성공, 실패 여부에 따른 결과를 잘 출력하는지 테스트
+
+
+    //play메서드에서 2번째 턴 부터 ]대신 |로 잘 바꿔서 출력 되는지 테스트
+    //play메서드에서 게임 결과에 따라 적절한 값이 반환되는지 테스트
+}
