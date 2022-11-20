@@ -3,17 +3,20 @@ package bridge.model;
 public class BridgeGameResult {
     private int tryCount;
     private boolean isSuccess;
+    private boolean isFail;
     private final MovementRecord lastMovementRecord;
 
     public BridgeGameResult() {
         tryCount = 1;
         isSuccess = false;
+        isFail = false;
         lastMovementRecord = new MovementRecord();
     }
 
     public BridgeGameResult(BridgeGameResult oth) {
         tryCount = oth.tryCount;
         isSuccess = oth.isSuccess;
+        isFail = oth.isFail;
         lastMovementRecord = new MovementRecord(oth.lastMovementRecord);
     }
 
@@ -31,6 +34,10 @@ public class BridgeGameResult {
         isSuccess = true;
     }
 
+    public void makeResultFail() {
+        isFail = true;
+    }
+
     public void clearLastMovementRecord() {
         lastMovementRecord.clearMovementRecord();
     }
@@ -45,6 +52,10 @@ public class BridgeGameResult {
 
     public boolean isSuccess() {
         return isSuccess;
+    }
+
+    public boolean isFail() {
+        return isFail;
     }
 
     public int getLastMovementCount() {
