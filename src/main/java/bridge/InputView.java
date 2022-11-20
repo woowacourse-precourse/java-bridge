@@ -7,6 +7,8 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    static final int MIN_BRIDGE = 3;
+    static final int MAX_BRIDGE = 20;
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -15,6 +17,7 @@ public class InputView {
         String sizeInput = Console.readLine();
         numericValidate(sizeInput);
         Integer size = Integer.parseInt(sizeInput);
+        bridgeValueValidate(size);
         return size;
     }
 
@@ -37,6 +40,12 @@ public class InputView {
             Integer.parseInt(str);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorEnum.PREFIX.getMessage() + ErrorEnum.NUMERIC.getMessage());
+        }
+    }
+
+    private void bridgeValueValidate(int num) throws IllegalArgumentException {
+        if (num < MIN_BRIDGE || num > MAX_BRIDGE) {
+            throw new IllegalArgumentException(ErrorEnum.PREFIX.getMessage() + ErrorEnum.BRIDGE_VALUE.getMessage());
         }
     }
 }
