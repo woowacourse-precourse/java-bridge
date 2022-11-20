@@ -46,4 +46,13 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INCORRECT_MOVING);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"QR", "D"})
+    @DisplayName("올바른 커맨드(R, Q)가 아닌 경우 예외 처리")
+    void validateGameCommand(String input) {
+        assertThatThrownBy(() -> validator.validateGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INCORRECT_GAME_COMMAND);
+    }
 }

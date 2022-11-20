@@ -1,8 +1,9 @@
 package bridge;
 
+import static bridge.Command.END;
+import static bridge.Command.RETRY;
 import static bridge.Direction.*;
-import static bridge.ErrorMessage.INCORRECT_BRIDGE_SIZE;
-import static bridge.ErrorMessage.INCORRECT_MOVING;
+import static bridge.ErrorMessage.*;
 
 public class Validator {
     private static final int BRIDGE_MIN_LENGTH = 1;
@@ -45,4 +46,13 @@ public class Validator {
         }
     }
 
+    public void validateGameCommand(String input) {
+        if (!isGameCommand(input)) {
+            throw new IllegalArgumentException(INCORRECT_GAME_COMMAND);
+        }
+    }
+
+    private boolean isGameCommand(String input) {
+        return input.equals(RETRY.getName()) || input.equals(END.getName());
+    }
 }
