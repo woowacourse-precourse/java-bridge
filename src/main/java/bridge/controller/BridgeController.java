@@ -27,9 +27,8 @@ public class BridgeController {
     public void playGame(User user, Bridge bridge) {
         while (!user.isGameDoneStatus()) {
             String moveDirection = inputService.requestMove();
-            boolean isUserAnswerCorrect = bridge.isCorrectMoveDirection(moveDirection);
-            outputView.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect);
-            processGame(bridge, user, isUserAnswerCorrect);
+            outputView.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect(moveDirection, bridge));
+            processGame(bridge, user, isUserAnswerCorrect(moveDirection, bridge));
             continue;
         }
         outputView.printResult(user);
@@ -42,5 +41,9 @@ public class BridgeController {
             return;
         }
         bridgeGame.move(bridge, user);
+    }
+
+    public boolean isUserAnswerCorrect(String moveDirection, Bridge bridge) {
+        return bridge.isCorrectMoveDirection(moveDirection);
     }
 }
