@@ -22,12 +22,19 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             int n = bridgeNumberGenerator.generate();
+//            bridge.add(getDirection(n));
             if (n == 0) {
                 bridge.add("D");
-            } else if (n == 1) {
+            }
+            if (n == 1) {
                 bridge.add("U");
             }
         }
         return bridge;
+    }
+
+    public String getDirection(int number) {
+        return BridgeChoice.fromNumber(number)
+                .getDirection();
     }
 }

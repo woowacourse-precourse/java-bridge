@@ -7,19 +7,15 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-//    final private BridgeMaker bridgeMaker;
-//    final private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
-//    final private Bridge bridge;
+    private Bridge bridge;
     private List<String> user;
     private int tryCount;
-//
-//    public BridgeGame(int size) {
-//        bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-//        bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-//        bridge = new Bridge(bridgeMaker.makeBridge(size));
-//        user = new ArrayList<>();
-//        tryCount = 1;
-//    }
+
+    public BridgeGame(int size, BridgeMaker bridgeMaker) {
+        user = new ArrayList<>();
+        tryCount = 1;
+        bridge = new Bridge(bridgeMaker.makeBridge(size));
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -38,10 +34,5 @@ public class BridgeGame {
     public void retry() {
         user.clear();
         tryCount++;
-    }
-
-    public String createResult(Bridge bridge) {
-        String result = " ";
-        return result;
     }
 }

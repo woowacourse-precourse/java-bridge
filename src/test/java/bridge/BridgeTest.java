@@ -20,8 +20,10 @@ class BridgeTest {
     void 이동칸_비교_테스트() {
         List<String> input = Arrays.asList("D", "U");
         List<String> input2 = Arrays.asList("D", "U", "D");
+        List<String> input3 = Arrays.asList("U");
 
         assertThat(bridge.compare(input)).isTrue();
         assertThat(bridge.compare(input2)).isFalse();
+        assertThat(bridge.compare(input3)).isFalse();
     }
 }
