@@ -47,5 +47,18 @@ public class Application {
             // 다리 상태 변경
             bridgeGame.changeStatus(bridge, userMoving);
         }
+
+        if (bridgeGame.getStatus() == Status.FAIL) {
+            String command = "";
+            while (command.equals("")) {
+                try {
+                    outputView.printInputCommand();
+                    command = inputView.readGameCommand();
+                } catch (IllegalArgumentException exception) {
+                    System.out.println(exception.getMessage());
+                }
+            }
+            System.out.println(command);
+        }
     }
 }
