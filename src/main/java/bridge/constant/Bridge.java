@@ -24,8 +24,11 @@ public enum Bridge {
         return detail;
     }
 
-    public static Bridge inspectMove(String move) {
-        Arrays.stream(Bridge.values())
-                .filter(bridge -> bridge)
+    public static String convertNumberToMove(int randomNumber) {
+        return Arrays.stream(Bridge.values())
+                .filter(bridge -> bridge.number == randomNumber)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("입력이 지정된 숫자가 아닙니다! 난수 생성 모듈을 확인하세요."))
+                .move;
     }
 }
