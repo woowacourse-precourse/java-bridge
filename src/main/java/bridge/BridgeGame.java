@@ -6,6 +6,7 @@ import static bridge.domain.bridge.BridgeAndPasser.compress;
 import static bridge.domain.bridge.BridgePasser.makeBridgePasser;
 import static bridge.domain.game.GameResult.makeGameResult;
 
+import bridge.domain.BridgeSize;
 import bridge.domain.game.GameRecord;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeAndPasser;
@@ -28,8 +29,8 @@ public class BridgeGame {
         this.gameRecord = gameRecord;
     }
 
-    public static BridgeGame createGame(int bridgeSize) {
-        Bridge bridge = convert(bridgeMaker().makeBridge(bridgeSize));
+    public static BridgeGame createGame(BridgeSize bridgeSize) {
+        Bridge bridge = convert(bridgeMaker().makeBridge(bridgeSize.value()));
         BridgePasser bridgePasser = makeBridgePasser(bridge);
 
         return new BridgeGame(bridgePasser, bridge, new GameRecord());
