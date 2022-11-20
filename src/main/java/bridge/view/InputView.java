@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import static bridge.config.BaseException.INVALID_INPUT;
 import static bridge.config.Constant.QUIT;
 import static bridge.config.Constant.RETRY;
+import static bridge.config.Message.INPUT_BRIDGE_LENGTH;
 import static bridge.config.Message.SELECT_GAME_RETRY;
 
 /**
@@ -16,7 +17,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(INPUT_BRIDGE_LENGTH);
+        String result = Console.readLine();
+        return Integer.parseInt(result);
     }
 
     /**
