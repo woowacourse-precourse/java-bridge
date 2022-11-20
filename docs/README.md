@@ -49,7 +49,7 @@
 - BridgeGame - 다리를 건널 수 있는지 , 다시 게임 시작할건지 판별해주는 클래스
 - BridgeMaker - 다리를 만들어주는 클래스
 - BridgeNumberGenerator
-- ResetGame - 게임을 리셋 시켜주는 클래스
+- BridgeRandomNumberGenerator
 
 # model 
 - 클래스
@@ -63,6 +63,11 @@
 - OutputView
 - 
 # controller - view와 model를 이어주는 패키지
+- BridgeSize -> size를 입력받아서 다리를 만든다.
+- BridgeMove -> 어디로 갈지 입력 받고 처리한다.
+- BridgeRetry -> 다시시작할지 입력 받고 처리한다.
+- GameController -> 전반적으로 게임 진행을 해주는 역할.
+- GameResultPrint -> 게임의 다리 모양, 최종 결과를 출력해주는 역할
 
 # service
 - valification
