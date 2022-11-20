@@ -11,7 +11,7 @@ public class BridgeGamePlay {
     }
     private void playGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()), new Player());
         BridgeGame bridgeGame = new BridgeGame(bridge);
         OutputView outputView = new OutputView(bridge, bridgeGame);
         playLoop(bridge, bridgeGame, outputView);

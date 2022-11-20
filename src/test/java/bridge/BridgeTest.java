@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class BridgeTest {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static final int BRIDGE_SIZE = 3;
-    private final Bridge bridge = new Bridge(bridgeMaker.makeBridge(BRIDGE_SIZE));
+    private final Bridge bridge = new Bridge(bridgeMaker.makeBridge(BRIDGE_SIZE), new Player());
     private final BridgeGame bridgeGame = new BridgeGame(bridge);
 
     @DisplayName("U나 D가 입력 됐을 때 이동 가능한지 판별하는 기능이 제대로 동작하는지 테스트")

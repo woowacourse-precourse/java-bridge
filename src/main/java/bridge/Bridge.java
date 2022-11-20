@@ -4,20 +4,16 @@ import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
-    private int location = 0;
     private boolean correct;
-    private String lastMoving;
+    private Player player;
 
     private enum lineFlag {
         FIRST, SECOND;
     }
 
-    public Bridge(List<String> bridge) {
+    public Bridge(List<String> bridge, Player player) {
         this.bridge = bridge;
-    }
-
-    public int getLocation() {
-        return this.location;
+        this.player = player;
     }
 
     public boolean getCorrect() {
@@ -28,26 +24,23 @@ public class Bridge {
         this.correct = correct;
     }
 
-    public void setLastMoving(String moving) {
-        this.lastMoving = moving;
-    }
-
     public List<String> getBridge() {
         return this.bridge;
+    }
+
+    public Player getPlayer() {
+        return this.player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     /**
      * 이동 가능한지 여부를 확인한다.
      */
     public boolean possibleMove(String moving) {
-        return getAnswer(location).equals(moving);
-    }
-
-    /**
-     * 현재 위치를 1 증가시킨다.
-     */
-    public void locationUpdate() {
-        this.location++;
+        return getAnswer(player.getLocation()).equals(moving);
     }
 
     /**
@@ -62,7 +55,7 @@ public class Bridge {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int length = location;
+        int length = player.getLocation();
         if (!correct) {
             length++;
         }
@@ -89,11 +82,11 @@ public class Bridge {
      * O, X, 공백 중 하나를 조건에 맞게 StringBuilder에 append한다.
      */
     private void appendCorrect(StringBuilder sb, int i, lineFlag flag) {
-        if (i < location && flagCompare(flag, bridge.get(i))) {
+        if (i < player.getLocation() && flagCompare(flag, bridge.get(i))) {
             sb.append("O");
             return;
         }
-        if (i == location && flagCompare(flag, lastMoving)) {
+        if (i == player.getLocation() && flagCompare(flag, player.getLastMoving())) {
             sb.append("X");
             return ;
         }
@@ -110,15 +103,11 @@ public class Bridge {
     }
 
     public boolean getGameResult() {
-        return location == bridge.size();
+        return player.getLocation() == bridge.size();
     }
     public String getGameResultString() {
         if (getGameResult())
             return "성공";
         return "실패";
-    }
-
-    public void resetLocation() {
-        this.location = 0;
     }
 }
