@@ -48,8 +48,8 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("입력한 restart가 R,Q가 아니면 예외를 반환한다")
-    void restartTest() {
+    @DisplayName("입력한 retry가 R,Q가 아니면 예외를 반환한다")
+    void retryTest() {
         String userInput ="A";
 
         try {

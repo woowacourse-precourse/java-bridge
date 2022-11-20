@@ -11,8 +11,8 @@ public class BridgeStage {
         return stage;
     }
 
-    public void setStage(int stage) {
-        this.stage = stage;
+    public void resetStage() {
+        this.stage = 0;
     }
 
     public boolean isFinalStage(int bridgeSize, int stage) {

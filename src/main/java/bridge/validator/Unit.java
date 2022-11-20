@@ -5,7 +5,7 @@ public enum Unit {
     BRIDGE_MAXIMUM_SIZE(20),
     UP ("U"),
     DOWN ("D"),
-    RESTART ("R"),
+    RETRY ("R"),
     QUITE ("Q");
 
     private int size;
