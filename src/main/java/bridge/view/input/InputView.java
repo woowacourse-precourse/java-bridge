@@ -3,6 +3,7 @@ package bridge.view.input;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.domain.Constants.BRIDGE_ARROW_VALUE_LENGTH;
+import static bridge.domain.Constants.BRIDGE_GAME_COMMAND_LENGTH;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -39,6 +40,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        String command = Console.readLine();
+        validateCommandValueLength(command);
         return null;
+    }
+
+    private void validateCommandValueLength(String command) {
+        if (command.length() > BRIDGE_GAME_COMMAND_LENGTH) {
+            throw new IllegalArgumentException();
+        }
     }
 }

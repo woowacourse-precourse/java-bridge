@@ -8,6 +8,7 @@
 - [X] 이동할 칸 입력 (위: U, 아래: D) - InputView#readMoving()
     - [X] 입력 값 예외처리(길이 1의 문자를 입력했는지 검증) - InputView#validateMovingValueLength()
 - [ ] 게임 재시도 여부 입력 (재시도: R, 종료: Q) - InputView#readGameCommand()
+  - [X] 입력 값 예외처리(길이 1의 문자를 입력했는지 검증) - InputView#validateCommandValueLength()
 ***
 #### 📤 출력
 - [X] 게임 시작 안내 메시지 출력 - OutputView#printGameStartNotification()
