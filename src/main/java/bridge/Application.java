@@ -15,26 +15,30 @@ public class Application {
 	static int bridgeSize = 0;
 	static String inputMoving = "";
 	static String restartOrQuit = "";
-	static int tryCount = 0;
 	static boolean retrycheck = false;
-	static String successOrFailure = "실패";
 	static String currentStateBridge = "";
 	static InputView inputView = new InputView();
 	static OutputView outputView = new OutputView();
-    
+    static BridgeGame bridgeGame;
     static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     
     public static void main(String[] args) {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        bridgeSize = inputView.readBridgeSize();
-    	BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    	madeBridge = bridgeMaker.makeBridge(bridgeSize);
+    	int tryCount = 0;
+    	
+    	makeBridgeFirst();
     	do {
-    		BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+    		bridgeGame = new BridgeGame(bridgeSize);
     		retrycheck = inputBridgeState(bridgeGame);
     		tryCount++;
     	} while(retrycheck);
-    	outputView.printResult(tryCount, currentStateBridge, successOrFailure);
+    	outputView.printResult(tryCount, currentStateBridge, checkSuccessOrFailure(bridgeGame));
+    }
+    
+    public static void makeBridgeFirst() {
+    	System.out.println("다리 건너기 게임을 시작합니다.");
+        bridgeSize = inputView.readBridgeSize();
+     	BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+     	madeBridge = bridgeMaker.makeBridge(bridgeSize);
     }
     
     public static boolean inputBridgeState(BridgeGame bridgeGame) {
@@ -50,8 +54,10 @@ public class Application {
     	return false;   // 다리를 다 건넜을 때 return false.
     }
     
-    public static void checkSuccessOrFailure(BridgeGame bridgeGame) {
+    public static String checkSuccessOrFailure(BridgeGame bridgeGame) {
+    	String successOrFailure = "실패";
     	successOrFailure = bridgeGame.checkSuccessFailure();
+    	return successOrFailure;
     }
     
     public static void successBridgeState(BridgeGame bridgeGame) {
