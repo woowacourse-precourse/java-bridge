@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class BridgeGameHistory {
     
@@ -39,6 +41,33 @@ public class BridgeGameHistory {
         if (moveHistories.get(tryCount) == null) {
             throw new IllegalArgumentException("존재하지 않는 History입니다.");
         }
+    }
+    
+    private List<Entry<Integer, List<BridgeMoveHistory>>> sortBySuccessMoveCount() {
+        return moveHistories.entrySet().stream().sorted((e1, e2) -> {
+                    int countByE1 = countSuccessMoveHistories(e1.getValue());
+                    int countByE2 = countSuccessMoveHistories(e2.getValue());
+                    if (countByE1 == countByE2) {
+                        return e2.getKey() - e1.getKey();
+                    }
+                    return countByE2 - countByE1;
+                })
+                .collect(Collectors.toList());
+    }
+    
+    /**
+     * @return 최고 기록의 tryCount
+     */
+    public int getTryCountOfBestRecord() {
+        List<Entry<Integer, List<BridgeMoveHistory>>> sortedBySuccessMoveCount = sortBySuccessMoveCount();
+        if (sortedBySuccessMoveCount.size() != 0) {
+            return sortedBySuccessMoveCount.get(0).getKey();
+        }
+        return -1;
+    }
+    
+    private int countSuccessMoveHistories(List<BridgeMoveHistory> moveHistories) {
+        return (int) moveHistories.stream().filter(BridgeMoveHistory::isSuccess).count();
     }
     
     public Map<BridgeMove, List<String>> getMoveResultByTryCount(Integer tryCount) {
