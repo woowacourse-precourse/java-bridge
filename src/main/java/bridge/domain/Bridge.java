@@ -11,7 +11,7 @@ public class Bridge {
     }
 
     public boolean canMove(List<String> userMoved, int idx) {
-        return bridge.get(idx) == userMoved.get(idx);
+        return bridge.get(idx).equals(userMoved.get(idx));
     }
 
     public int getBridgeSize() {
