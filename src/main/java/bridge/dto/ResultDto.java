@@ -22,7 +22,7 @@ public class ResultDto {
         return isComplete;
     }
 
-    public BridgeRouteDto getCurrentPositionDto() {
+    public BridgeRouteDto getBridgeRouteDto() {
         return bridgeRouteDto;
     }
 }

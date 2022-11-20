@@ -11,6 +11,14 @@ import java.util.List;
 
 public class OutputView {
 
+    public void printGreetingMessage() {
+        System.out.println(GuideMessage.BRIDGE_GAME_START.getMessage());
+        System.out.println();
+    }
+
+    public void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
 
     public void printMap(BridgeRouteDto bridgeRouteDto) {
         List<String> resultMapInfo = makeResultMapInfo(bridgeRouteDto.getBridge(), bridgeRouteDto.getMoveHistory());
@@ -101,7 +109,7 @@ public class OutputView {
 
     public void printResult(ResultDto resultDto) {
         System.out.println(GuideMessage.GAME_RESULT.getMessage());
-        printMap(resultDto.getCurrentPositionDto());
+        printMap(resultDto.getBridgeRouteDto());
         printGameStatus(resultDto.getIsComplete());
         System.out.println(GuideMessage.TRY_COUNT.getMessage() + resultDto.getTryCount());
     }
@@ -112,14 +120,5 @@ public class OutputView {
             return;
         }
         System.out.println(GuideMessage.GAME_FAIL.getMessage());
-    }
-
-    public void printError(Exception e) {
-        System.out.println(e.getMessage());
-    }
-
-    public void printGreetingMessage() {
-        System.out.println(GuideMessage.BRIDGE_GAME_START.getMessage());
-        System.out.println();
     }
 }
