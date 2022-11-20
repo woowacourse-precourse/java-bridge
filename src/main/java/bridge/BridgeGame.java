@@ -26,6 +26,7 @@ public class BridgeGame {
      */
     public boolean move() {
         String direction = inputView.readMoving();
+        validate.validateIsUpOrDown(direction);
         visited.add(direction);
         printUpBridge();
         printDownBridge();
