@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeTest {
     Bridge bridge;
@@ -25,5 +27,11 @@ class BridgeTest {
         assertThat(bridge.compare(input)).isEqualTo("O");
         assertThat(bridge.compare(input2)).isEqualTo("X");
         assertThat(bridge.compare(input3)).isEqualTo("X");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"true,O","false,X"})
+    void 비교_사인_변환_테스트(boolean comparison, String sign) {
+        assertThat(bridge.getSign(comparison)).isEqualTo(sign);
     }
 }
