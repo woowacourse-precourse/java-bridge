@@ -1,79 +1,44 @@
-package bridge;
+package bridge.generator;
 
 import java.util.List;
-import java.util.function.Function;
 
-public class BridgeStringGenerator {
-    public static String generateFailString(List<String> footprints) {
-        String result = getUpString(footprints, s -> {
-            if (s.equals("U")) {
-                return "X";
-            }
-            return " ";
-        });
+public abstract class BridgeStringGenerator {
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
-        return result + getDownString(footprints, s -> {
-            if (s.equals("D")) {
-                return "X";
-            }
-            return " ";
-        });
+    public String generate(List<String> footprints) {
+        return getUpBridgeString(footprints) + getDownBridgeString(footprints);
     }
 
-    public static String generateSuccessString(List<String> footprints) {
-        String result = getUpString(footprints, s -> {
-            if (s.equals("U")) {
-                return "O";
-            }
-            return " ";
-        });
-
-        return result + getDownString(footprints, s -> {
-            if (s.equals("D")) {
-                return "O";
-            }
-            return " ";
-        });
+    private String getUpBridgeString(List<String> footprints) {
+        return makeBridgeString(footprints, UP);
     }
 
-    private static String getUpString(List<String> footprints, Function<String, String> function) {
+    private String getDownBridgeString(List<String> footprints) {
+        return makeBridgeString(footprints, DOWN);
+    }
+
+    private String makeBridgeString(List<String> footprints, String direction) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("[ ");
-        sb.append(appendSuccessString(footprints, s -> {
-            if (s.equals("U")) {
-                return "O";
-            }
-            return " ";
-        }));
 
-        sb.append(function.apply(footprints.get(footprints.size() - 1)));
-        sb.append(" ]\n");
-        return sb.toString();
-    }
-
-    private static String getDownString(List<String> footprints, Function<String, String> function) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("[ ");
-        sb.append(appendSuccessString(footprints, s -> {
-            if (s.equals("D")) {
-                return "O";
-            }
-            return " ";
-        }));
-
-        sb.append(function.apply(footprints.get(footprints.size() - 1)));
-        sb.append(" ]\n");
-        return sb.toString();
-    }
-
-    private static String appendSuccessString(List<String> footprints, Function<String, String> function) {
-        StringBuilder sb = new StringBuilder();
         for (int j = 0; j < footprints.size() - 1; j++) {
-            sb.append(function.apply(footprints.get(j)));
+            sb.append(makeCircleString(footprints.get(j), direction));
             sb.append(" | ");
         }
+
+        sb.append(makeLastFigure(footprints.get(footprints.size() - 1), direction));
+        sb.append(" ]\n");
         return sb.toString();
     }
+
+    protected String makeCircleString(String footprintDirection, String checkDirection) {
+        if (footprintDirection.equals(checkDirection)) {
+            return "O";
+        }
+        return " ";
+    }
+
+    public abstract String makeLastFigure(String footprintDirection, String checkDirection);
 }

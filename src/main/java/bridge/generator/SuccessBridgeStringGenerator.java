@@ -1,9 +1,8 @@
 package bridge.generator;
 
-public class FailBridgeStringGenerator extends BridgeStringGenerator{
+public class SuccessBridgeStringGenerator extends BridgeStringGenerator {
     @Override
     public String makeLastFigure(String footprintDirection, String checkDirection) {
-        if(footprintDirection.equals(checkDirection))return "X";
-        return " ";
+        return makeCircleString(footprintDirection, checkDirection);
     }
 }
