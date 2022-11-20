@@ -23,4 +23,14 @@ public class ExceptionHandler {
     private static boolean isRange(int input) {
         return input < 3 || input > 20;
     }
+
+    public static void checkUorD(String input) throws IllegalArgumentException {
+        if (!isUorD(input)) {
+            throw new IllegalArgumentException(Errors.NOT_UORD.getMessage());
+        }
+    }
+
+    private static boolean isUorD(String input) {
+        return input == "U" || input == "D";
+    }
 }
