@@ -2,6 +2,9 @@ package bridge.game;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.game.bridgeGame.BridgeGame;
+import bridge.game.bridgeGame.BridgeGameStatus;
+import bridge.structure.Bridge;
+import bridge.structure.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -24,4 +27,12 @@ public class Game {
         this.outputView.printStart();
         System.out.println();
     }
+
+    public void initBridgeGame() {
+        this.outputView.printInputSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(this.inputView.readBridgeSize()));
+        this.bridgeGame = new BridgeGame(bridge);
+    }
+
 }
