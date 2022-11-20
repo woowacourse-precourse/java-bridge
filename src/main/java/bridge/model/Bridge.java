@@ -9,6 +9,10 @@ public class Bridge {
         this.bridge = bridge;
     }
 
+    public int getBridgeSize() {
+        return bridge.size();
+    }
+
     public boolean ableToMove(String location, int index) {
         if (location.equals(bridge.get(index))) {
             return true;

@@ -20,12 +20,12 @@ public class BridgeGameController {
         play();
     }
 
-    private void play() {
+    public void play() {
         bridgeGame.tryGame();
-        boolean isMoving;
+        boolean isMoving = true;
         do {
             OutputView.askMove();
             isMoving = bridgeGame.move();
-        } while (isMoving);
+        } while (isMoving && bridgeGame.isOnGoing());
     }
 }

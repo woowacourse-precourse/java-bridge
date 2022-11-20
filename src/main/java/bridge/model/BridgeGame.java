@@ -4,9 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Player player;
@@ -30,6 +27,13 @@ public class BridgeGame {
     public boolean move() {
         String nextLocation = player.inputMove();
         if (bridge.ableToMove(nextLocation, player.getCurrentIndex() + 1)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isOnGoing() {
+        if (player.getCurrentIndex() < bridge.getBridgeSize() - 1) {
             return true;
         }
         return false;
