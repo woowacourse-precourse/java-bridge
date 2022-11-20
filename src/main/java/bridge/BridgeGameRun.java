@@ -7,14 +7,12 @@ public class BridgeGameRun {
     private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
 
-    public static void runBridgeGame() {
+    private List<String> bridge = new ArrayList<>();
 
-        System.out.println("다리 건너기 게임을 시작합니다.");
+    public void runBridgeGame() {
 
-        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int bridgeSize = input.readBridgeSize();
+        beginningPart();
 
-        List<String> bridge = maker.makeBridge(bridgeSize);
 
         List<String> path = new ArrayList<>();
 
@@ -45,5 +43,13 @@ public class BridgeGameRun {
         } while (game.retry(gameRetryCommand));
 
         output.printResult(judge, gameTryCount);
+    }
+    private void beginningPart(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
+
+        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        int bridgeSize =input.readBridgeSize();
+        bridge = maker.makeBridge(bridgeSize);
     }
 }
