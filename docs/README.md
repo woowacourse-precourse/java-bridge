@@ -16,6 +16,8 @@
 * retry : 사용자가 게임을 재시작할 때 사용한다.
 * makeBridgeGame : 사용자가 게임을 시작할 때 사용한다.
 * setSize : 인스턴스 변수 size(다리 길이)에 대한 setter 함수이다.
+* isDone : 사용자가 다리를 다 건너는 데 성공한 상태인지 확인할 때 사용한다.
+* isOver : 사용자가 칸을 이동에 실패한 상태인지 확인할 때 사용한다.
 
 **InputView.java**
 * readBridgeSize : 다리의 길이를 입력받는다.
