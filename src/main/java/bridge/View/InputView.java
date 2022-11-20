@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String READ_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private InputValidator inputValidator = new InputValidator();
 
     /**
@@ -31,7 +32,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println();
+        System.out.println(READ_MOVING_MESSAGE);
 
         String input = Console.readLine();
 
