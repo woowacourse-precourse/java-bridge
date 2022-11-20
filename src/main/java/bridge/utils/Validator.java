@@ -12,4 +12,10 @@ public class Validator {
             throw new IllegalArgumentException("보기에 있는 값만 입력 가능합니다.");
         }
     }
+
+    public static void checkRetryInput(String retryInput) {
+        if(!retryInput.equals("R") && !retryInput.equals("Q")) {
+            throw new IllegalArgumentException("보기에 있는 값만 입력 가능합니다.");
+        }
+    }
 }
