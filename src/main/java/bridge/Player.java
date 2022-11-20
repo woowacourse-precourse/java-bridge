@@ -12,4 +12,8 @@ public class Player {
     public void increaseAttempt(){
         this.attempt+=1;
     }
+
+    public void moveBackSpace(){
+        this.currentSpace-=1;
+    }
 }
