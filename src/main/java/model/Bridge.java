@@ -12,6 +12,9 @@ public class Bridge {
         this.moveChoices = moveChoices;
     }
 
+    public int size(){
+        return moveChoices.size();
+    }
     public boolean movable(int position, String moveChoice) {
         return moveChoice.equals(moveChoices.get(position));
     }

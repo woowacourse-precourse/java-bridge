@@ -1,4 +1,4 @@
-package model;
+package model.enums;
 
 import static model.BridgeGameExceptions.NOT_A_MOVE_CHOICE;
 

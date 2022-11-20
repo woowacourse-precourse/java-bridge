@@ -2,11 +2,11 @@ package validator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 
 import model.Bridge;
-import model.MoveChoice;
-import model.RetryIntention;
+import model.enums.MoveChoice;
+import model.enums.RetryIntention;
+import model.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

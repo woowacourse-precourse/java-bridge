@@ -1,4 +1,4 @@
-package validator;
+package model;
 
 import static model.BridgeGameExceptions.NOT_A_MOVE_CHOICE;
 import static model.BridgeGameExceptions.NOT_A_RETRY_INTENTION;
@@ -6,8 +6,8 @@ import static model.BridgeGameExceptions.OUT_OF_RANGE;
 
 import java.util.Arrays;
 import model.Bridge;
-import model.MoveChoice;
-import model.RetryIntention;
+import model.enums.MoveChoice;
+import model.enums.RetryIntention;
 
 public class InputValidator {
 

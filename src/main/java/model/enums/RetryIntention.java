@@ -1,8 +1,7 @@
-package model;
+package model.enums;
 
 import static model.BridgeGameExceptions.NOT_A_RETRY_INTENTION;
 
-import com.sun.net.httpserver.Authenticator.Retry;
 import java.util.Arrays;
 
 public enum RetryIntention {

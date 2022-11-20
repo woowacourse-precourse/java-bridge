@@ -1,7 +1,6 @@
-package model;
+package model.enums;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum MoveResult {
     SUCCESS("O", true), FAIL("X", false), NULL(" ", null);
