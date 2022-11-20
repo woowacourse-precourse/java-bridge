@@ -13,9 +13,11 @@ public class OutputView {
     private static final String INPUT_BRIDGE_SIZE_MESSAGE = "\n다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVE_DIRECTION_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_GAME_RETRY_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
+    private static final String GAME_RESULT_MESSAGE = "\n최종 게임 결과";
     private static final String GAME_IS_SUCCEED_MESSAGE = "\n게임 성공 여부: ";
     private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
+    private static final String FAIL_MESSAGE = "실패";
+    private static final String SUCCESS_MESSAGE = "성공";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -83,10 +85,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Result result) {
         System.out.println(GAME_RESULT_MESSAGE);
-        // 게임 결과 출력!
-
+        printMap(result);
+        if(result.hasWrong()) {
+            System.out.println(GAME_IS_SUCCEED_MESSAGE + FAIL_MESSAGE);
+        }
+        if (result.isHitAllAnswers()) {
+            System.out.println(GAME_IS_SUCCEED_MESSAGE + SUCCESS_MESSAGE);
+        }
+        System.out.println(TOTAL_TRY_COUNT + result.getTryCount());
     }
 
     public void printGameStart() {
