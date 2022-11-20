@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Constants.Command;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +27,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<String>();
         for(int i = 0; i < size; i++) {
-            int randomNumber = this.bridgeNumberGenerator.generate();
-            if(randomNumber == 0) {
-                bridge.add("D");
+            if(this.bridgeNumberGenerator.generate() == 0) {
+                bridge.add(Command.DOWN);
                 continue;
             }
-            bridge.add("U");
+            bridge.add(Command.UP);
         }
         return bridge;
     }
