@@ -2,7 +2,7 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import util.BridgeSizeValidator;
-import util.Converter;
+import util.ConverterUtil;
 import util.GameCommandValidator;
 import util.MovingValidator;
 
@@ -19,17 +19,17 @@ public class InputView {
     public int readBridgeSize() throws IllegalArgumentException {
         String size = Console.readLine();
         BridgeSizeValidator.isValid(size);
-        return Converter.convertStringToInt(size);
+        return ConverterUtil.convertStringToInt(size);
     }
 
     public String readMoving() throws IllegalArgumentException {
-        String moving = Converter.convertToUpperCase(Console.readLine());
+        String moving = ConverterUtil.convertToUpperCase(Console.readLine());
         MovingValidator.isValid(moving);
         return moving;
     }
 
     public String readGameCommand() throws IllegalArgumentException {
-        String gameCommand = Converter.convertToUpperCase(Console.readLine());
+        String gameCommand = ConverterUtil.convertToUpperCase(Console.readLine());
         GameCommandValidator.isValid(gameCommand);
         return gameCommand;
     }

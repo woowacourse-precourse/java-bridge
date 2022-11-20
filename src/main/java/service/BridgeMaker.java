@@ -1,8 +1,9 @@
 package service;
 
+import constant.BothSideConstant;
+import constant.InputConstant;
 import generator.BridgeNumberGenerator;
 import constant.NumberConstant;
-import constant.StringConstant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +17,6 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
         buildBridgePath(size, bridge);
         return Collections.unmodifiableList(bridge);
     }
@@ -47,18 +47,18 @@ public class BridgeMaker {
     }
 
     public boolean isBridgeNumberUpSide(int bridgeNumber) {
-        return bridgeNumber == NumberConstant.UP_SIDE.getConstant();
+        return bridgeNumber == BothSideConstant.UP_SIDE.getConstant();
     }
 
     public boolean isBridgeNumberDownSide(int bridgeNumber) {
-        return bridgeNumber == NumberConstant.DOWN_SIDE.getConstant();
+        return bridgeNumber == BothSideConstant.DOWN_SIDE.getConstant();
     }
 
     public void addBridgeUpPath(List<String> bridge) {
-        bridge.add(StringConstant.UP_SIDE.getConstant());
+        bridge.add(InputConstant.UP_SIDE.getConstant());
     }
 
     public void addBridgeDownPath(List<String> bridge) {
-        bridge.add(StringConstant.DOWN_SIDE.getConstant());
+        bridge.add(InputConstant.DOWN_SIDE.getConstant());
     }
 }

@@ -1,12 +1,12 @@
 package controller;
 
-import constant.NumberConstant;
+import constant.BridgeConstant;
 import generator.BridgeRandomNumberGenerator;
 import java.util.ArrayList;
 import model.BridgeGame;
 import java.util.List;
 import service.BridgeMaker;
-import util.Cleaner;
+import util.CleanerUtil;
 import view.InputView;
 import view.OutputView;
 
@@ -20,13 +20,13 @@ public class BridgeController {
         List<String> bridge = makeBridge();
         BridgeGame.move(bridge, bothSide);
         printResult(bothSide, BridgeGame.tryNumber);
-        Cleaner.clearTryNumber();
+        CleanerUtil.clearTryNumber();
     }
 
     private static List<List<String>> init() {
         List<List<String>> bothSide = new ArrayList<>();
-        List<String> downSide = new ArrayList<>(NumberConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
-        List<String> upSide = new ArrayList<>(NumberConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
+        List<String> downSide = new ArrayList<>(BridgeConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
+        List<String> upSide = new ArrayList<>(BridgeConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
 
         bothSide.add(downSide);
         bothSide.add(upSide);

@@ -1,8 +1,8 @@
 package util;
 
-import constant.ErrorMessage;
+import constant.ErrorConstant;
+import constant.InputConstant;
 import constant.NumberConstant;
-import constant.StringConstant;
 
 public class MovingValidator {
     public static void isValid(String moving) {
@@ -12,14 +12,14 @@ public class MovingValidator {
 
     private static void isOneLetter(String moving) {
         if (moving.length() != NumberConstant.ONE_LETTER.getConstant()) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_LENGTH.getErrorMessage());
+            throw new IllegalArgumentException(ErrorConstant.INPUT_LENGTH.getConstant());
         }
     }
 
     private static void isEqualsUOrD(String moving) {
-        if (!moving.equals(StringConstant.UP_SIDE.getConstant())
-                && !moving.equals(StringConstant.DOWN_SIDE.getConstant())) {
-            throw new IllegalArgumentException(ErrorMessage.MOVE_INVALID.getErrorMessage());
+        if (!moving.equals(InputConstant.UP_SIDE.getConstant())
+                && !moving.equals(InputConstant.DOWN_SIDE.getConstant())) {
+            throw new IllegalArgumentException(ErrorConstant.MOVE_INVALID.getConstant());
         }
     }
 }

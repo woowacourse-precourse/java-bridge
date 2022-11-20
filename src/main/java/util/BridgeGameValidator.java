@@ -1,7 +1,8 @@
 package util;
 
-import constant.NumberConstant;
-import constant.StringConstant;
+import constant.BothSideConstant;
+import constant.InputConstant;
+import constant.PrintConstant;
 import java.util.List;
 
 public class BridgeGameValidator {
@@ -12,24 +13,25 @@ public class BridgeGameValidator {
     }
 
     private static boolean isUserInputDone(List<String> bridge, List<List<String>> bothSide) {
-        return bridge.size() == bothSide.get(NumberConstant.UP_SIDE.getConstant()).size();
+        return bridge.size() == bothSide.get(BothSideConstant.UP_SIDE.getConstant()).size();
     }
 
     public static boolean isBridgeEqualsD(String bridgeIndex) {
-        return bridgeIndex.equals(StringConstant.DOWN_SIDE.getConstant());
+        return bridgeIndex.equals(InputConstant.DOWN_SIDE.getConstant());
     }
 
     public static boolean isBridgeEqualsU(String bridgeIndex) {
-        return bridgeIndex.equals(StringConstant.UP_SIDE.getConstant());
+        return bridgeIndex.equals(InputConstant.UP_SIDE.getConstant());
     }
 
     public static boolean isContainWrongPath(List<List<String>> bothSide) {
-        return bothSide.get(NumberConstant.UP_SIDE.getConstant()).contains(StringConstant.WRONG_PATH.getConstant())
-                || bothSide.get(NumberConstant.DOWN_SIDE.getConstant())
-                .contains(StringConstant.WRONG_PATH.getConstant());
+        return bothSide.get(BothSideConstant.UP_SIDE.getConstant())
+                .contains(PrintConstant.WRONG_PATH.getConstant())
+                || bothSide.get(BothSideConstant.DOWN_SIDE.getConstant())
+                .contains(PrintConstant.WRONG_PATH.getConstant());
     }
 
     public static boolean isUserInputRetry(String retryOrQuit) {
-        return retryOrQuit.equals(StringConstant.RETRY.getConstant());
+        return retryOrQuit.equals(InputConstant.RETRY.getConstant());
     }
 }

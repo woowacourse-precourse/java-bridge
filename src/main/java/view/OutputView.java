@@ -1,6 +1,6 @@
 package view;
 
-import constant.StringConstant;
+import constant.PrintConstant;
 import java.util.List;
 
 public class OutputView {
@@ -85,31 +85,31 @@ public class OutputView {
     }
 
     private void printStartSquareBracket() {
-        System.out.print(StringConstant.START_SQUARE_BRACKET.getConstant());
+        System.out.print(PrintConstant.START_SQUARE_BRACKET.getConstant());
     }
 
     private void printDelimeter() {
-        System.out.print(StringConstant.DELIMETER.getConstant());
+        System.out.print(PrintConstant.DELIMETER.getConstant());
     }
 
     private void printEndSquareBracket() {
-        System.out.println(StringConstant.END_SQUARE_BRACKET.getConstant());
+        System.out.println(PrintConstant.END_SQUARE_BRACKET.getConstant());
     }
 
     private boolean isWin(List<List<String>> bothSide) {
-        return !bothSide.get(0).contains(StringConstant.WRONG_PATH.getConstant())
-                && !bothSide.get(1).contains(StringConstant.WRONG_PATH.getConstant());
+        return !bothSide.get(0).contains(PrintConstant.WRONG_PATH.getConstant())
+                && !bothSide.get(1).contains(PrintConstant.WRONG_PATH.getConstant());
     }
 
     private boolean isFail(List<List<String>> bothSide) {
-        return bothSide.get(0).contains(StringConstant.WRONG_PATH.getConstant())
-                || bothSide.get(1).contains(StringConstant.WRONG_PATH.getConstant());
+        return bothSide.get(0).contains(PrintConstant.WRONG_PATH.getConstant())
+                || bothSide.get(1).contains(PrintConstant.WRONG_PATH.getConstant());
     }
 
     private void printWin(int tryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
-        System.out.println(StringConstant.WIN.getConstant());
+        System.out.println(PrintConstant.WIN.getConstant());
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
@@ -119,7 +119,7 @@ public class OutputView {
     private void printFail(int tryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
-        System.out.println(StringConstant.FAIL.getConstant());
+        System.out.println(PrintConstant.FAIL.getConstant());
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
