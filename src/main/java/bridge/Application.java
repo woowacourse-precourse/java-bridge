@@ -15,7 +15,7 @@ public class Application {
         int brideSize = inputView.readBridgeSize();
         List<String> answerBridge = bridgeMaker.makeBridge(brideSize);
         do {
-
+            String userRemoveCommand = inputView.readMoving();
         }while (!bridgeGame.compareMoveCount(brideSize));
     }
 }
