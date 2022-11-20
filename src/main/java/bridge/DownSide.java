@@ -15,9 +15,6 @@ public class DownSide {
         return downSide;
     }
 
-    public void addDownSide(String input) {
-        downSideArr.add(input);
-    }
     public String getDownSide(){
         return downSide;
     }
