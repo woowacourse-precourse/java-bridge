@@ -26,7 +26,7 @@ public class InputView {
     public String readMoving() {
         String moving = Console.readLine();
         validateMovingValueLength(moving);
-        return null;
+        return moving;
     }
 
     private void validateMovingValueLength(String moving) {
