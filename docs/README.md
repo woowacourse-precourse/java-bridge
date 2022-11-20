@@ -155,7 +155,7 @@ D
 
 ### main
 - [x] printGameStartMessage함수를 실행
-- [ ] readBridgeSize함수를 실행 후, 반환값을 bridgeSize에 저장
+- [x] readBridgeSize함수를 실행 후, 반환값을 bridgeSize에 저장
 - [ ] makeBridge함수에 bridgeSize를 매개변수로 넣고, 반환값을 answerBridge에 저장 
 - [ ] bridgeSize의 횟수만큼 반복하는 do-while문 생성
   - [ ] readMoving함수를 실행 후, 반환값을 userRemoveCommand에 저장
