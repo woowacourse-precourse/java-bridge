@@ -35,7 +35,7 @@ class FloorTest {
 
     @Nested
     @DisplayName("부숴지는 바닥인지 테스트")
-    class floorBroken {
+    class floorBrokenTest {
 
         @DisplayName("바닥이 부숴진다")
         @ParameterizedTest(name = "바닥이 {0}이면 {1}일때 부숴진다.")
