@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.View.InputView;
+import bridge.View.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,15 +11,34 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    BridgeMaker bridgeMaker;
+    InputView inputView;
+    OutputView outputView;
+
     private List<String> upperBridge;
     private List<String> lowerBridge;
     private List<String> answerBridge;
     private int bridgeIndex;
 
+    public void setAnswerBridge(List<String> answerBridge) {
+        this.answerBridge = answerBridge;
+    }
+
+    public List<String> getAnswerBridge() {
+        return answerBridge;
+    }
+
     public BridgeGame() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        inputView = new InputView();
+        outputView = new OutputView();
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
         bridgeIndex = 0;
+    }
+
+    public void playGame() {
+        
     }
 
     /**
@@ -24,31 +46,32 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction) {
-        if(answerBridge.get(bridgeIndex) != direction){
+    public boolean move(String direction) {
+        if (answerBridge.get(bridgeIndex) != direction) {
             addWrongBridgeResult(direction);
-            return;
+            return false;
         }
         addBridgeResult(direction);
+        return true;
     }
 
     private void addBridgeResult(String direction) {
-        if(direction == "U"){
+        if (direction.equals("U")) {
             upperBridge.add("O");
             lowerBridge.add(" ");
         }
-        if(direction == "D"){
+        if (direction.equals("D")) {
             upperBridge.add(" ");
             lowerBridge.add("O");
         }
     }
 
     private void addWrongBridgeResult(String direction) {
-        if(direction == "U"){
+        if (direction.equals("U")) {
             upperBridge.add("X");
             lowerBridge.add(" ");
         }
-        if(direction == "D"){
+        if (direction.equals("D")) {
             upperBridge.add(" ");
             lowerBridge.add("X");
         }
