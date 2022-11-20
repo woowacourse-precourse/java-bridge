@@ -117,7 +117,7 @@ public class BridgeMaker {
 >- [x] 출력값을 조회하는 기능 ( getMergeBridge )
 >- [ ] 게임 종료 메시지를 만드는 기능 ( setEndMessage )
 >- [ ] 게임 종료 메시지를 조회하는 기능 ( getEndMessage )
->- [ ] User 기록과 Bridge의 기록이 알맞은지 결정하는 기능 ( setMatch )
+>- [x] User 기록과 Bridge의 기록이 알맞은지 결정하는 기능 ( setMatch )
 
 *****
 ### 🟧 controller package

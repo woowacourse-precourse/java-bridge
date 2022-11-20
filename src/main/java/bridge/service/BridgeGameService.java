@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameStatus;
 import bridge.domain.User;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.UpperCase;
 
@@ -11,7 +12,7 @@ public class BridgeGameService {
     private String mergeBride;
     private Bridge bridge = new Bridge();
     private User user = new User();
-
+    private GameStatus gameStatus = new GameStatus();
 
     public void setMergeBridge() {
         List<String> bridgeLoad = bridge.getBridgeLoad();
@@ -19,6 +20,24 @@ public class BridgeGameService {
 
         mergeBride = makeMergeBridge(bridgeLoad, userMove);
     }
+
+    public String getMergeBridge() {
+        return this.mergeBride;
+    }
+
+    public void setMatch(){
+        List<String> bridgeLoad = bridge.getBridgeLoad();
+        List<String> userMove = user.getMove();
+        int userCheckSize = userMove.size() - 1;
+        boolean check = userMove.get(userCheckSize).equals(bridgeLoad.get(userCheckSize));
+        if (check){
+            gameStatus.setMatchCorrect(true);
+        }
+        if (!check){
+            gameStatus.setMatchCorrect(false);
+        }
+    }
+
 
     private String makeMergeBridge(List<String> bridgeLoad, List<String> userMove) {
         ArrayList<String> checkList = new ArrayList<>();
@@ -87,7 +106,4 @@ public class BridgeGameService {
         return returnMessage;
     }
 
-    public String getMergeBridge() {
-        return this.mergeBride;
-    }
 }

@@ -11,7 +11,7 @@ public class GameStatus {
         this.isCorrect = isCorrect;
     }
 
-    public boolean getMatchCorrect(boolean isCorrect){
+    public boolean getMatchCorrect(){
         return this.isCorrect;
     }
 
