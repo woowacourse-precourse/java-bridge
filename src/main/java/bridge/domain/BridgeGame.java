@@ -1,8 +1,5 @@
 package bridge.domain;
 
-import static bridge.domain.ResultMessageStatus.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import bridge.BridgeRandomNumberGenerator;
@@ -13,15 +10,11 @@ import bridge.BridgeRandomNumberGenerator;
 public class BridgeGame {
 	private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 	private final List<String> bridge;
-	private final List<ResultMessageStatus> resultMessageStatuses;
 	private int gameStage;
-	private int tryCount;
 
 	public BridgeGame(int bridgeSize) {
 		this.bridge = bridgeMaker.makeBridge(bridgeSize);
-		this.resultMessageStatuses = new ArrayList<>();
 		this.gameStage = 0;
-		this.tryCount = 1;
 	}
 
 	/**
@@ -29,12 +22,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-	public ResultStatus move(String command) {
+	public String move(String command) {
 		String bridgeCommand = bridge.get(gameStage);
-		ResultMessageStatus moveResultMessage = makeResultMessageStatus(bridgeCommand, command);
-		resultMessageStatuses.add(moveResultMessage);
 		gameStage += 1;
-		return ResultStatus.makeResultStatus(bridgeCommand, command);
+		return bridgeCommand;
 	}
 
 	/**
@@ -44,19 +35,9 @@ public class BridgeGame {
      */
 	public void retry() {
 		gameStage = 0;
-		tryCount += 1;
-		resultMessageStatuses.clear();
 	}
 
-	public boolean isFinish(ResultStatus resultStatus, int bridgeSize) {
-		return resultStatus == ResultStatus.FAILURE || gameStage == bridgeSize;
-	}
-
-	public List<ResultMessageStatus> getResultMessageStatuses() {
-		return resultMessageStatuses;
-	}
-
-	public int getTryCount() {
-		return tryCount;
+	public boolean isFinishGameStage(int bridgeSize) {
+		return gameStage == bridgeSize;
 	}
 }
