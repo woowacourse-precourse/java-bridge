@@ -20,4 +20,6 @@
     - 1. 다리 길이 입력 시 형식, 범위
     - 2. 이동 커맨드 입력 시 형식
     - 3. 재시작 커맨드 입력 시 형식
+
+
 ***runException 함수 내에서 NoSuchElementException으로 테스트 하므로 프로그램 내 모든 예외 NoSuchElementException으로 통일***
