@@ -14,9 +14,14 @@ public class InputView {
 
     // 다리 길이 입력 받고 Integer 캐스팅 후 변환
     public int readBridgeSize() {
+        String size;
+
         System.out.println(READ_BRIDGE_SIZE_MESSAGE);
 
-        return Integer.parseInt(readLine());
+        size = readLine();
+        exception.isSizeInputCorrect(size);
+
+        return Integer.parseInt(size);
     }
 
 
