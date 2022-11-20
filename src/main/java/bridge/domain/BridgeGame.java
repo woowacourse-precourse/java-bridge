@@ -33,7 +33,7 @@ public class BridgeGame {
             return FAILED;
         }
         gameProgress.add(new MapUnit(nextUnit, true));
-        if (gameProgress.size() == bridge.getSize()) {
+        if (isSuccess()) {
             return SUCCESS;
         }
         return PLAYING;
@@ -42,6 +42,10 @@ public class BridgeGame {
     private boolean canMove(BridgeUnit nextUnit) {
         int position = gameProgress.size();
         return bridge.getUnit(position).equals(nextUnit);
+    }
+
+    private boolean isSuccess() {
+        return gameProgress.size() == bridge.getSize();
     }
 
     /**
