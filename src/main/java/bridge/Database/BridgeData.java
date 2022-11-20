@@ -31,7 +31,7 @@ public class BridgeData {
         this.totalAttempt += 1;
     }
 
-    public void setTotalAttempt() {
+    public void initializeTotalAttempt() {
         this.totalAttempt = 0;
     }
 }

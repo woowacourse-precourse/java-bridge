@@ -75,7 +75,7 @@ public class BridgeGameTest {
 
             bridgeGame.move();
             assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(nextStep);
-            assertThat(bridgeGame.isGameSucceed()).isFalse();
+            assertThat(bridgeGame.getIsGameSucceed()).isFalse();
         }
 
         @DisplayName("다 건넜을 경우 성공을 선언한다.")
@@ -93,7 +93,7 @@ public class BridgeGameTest {
             System.out.println(bridgeData.getBridge());
             System.out.println(bridgeData.getBridgeDesignByUser());
 
-            assertThat(bridgeGame.isGameSucceed()).isTrue();
+            assertThat(bridgeGame.getIsGameSucceed()).isTrue();
         }
     }
 
