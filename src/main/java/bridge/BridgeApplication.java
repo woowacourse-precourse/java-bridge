@@ -27,36 +27,85 @@ public class BridgeApplication {
     }
 
     public void run() {
+        outputView.printStartMessage();
+        BridgeGame bridgeGame = initBridgeGame();
+
+        GameStatus status = PLAYING;
+        do {
+            status = crossBridge(bridgeGame, status);
+            status = readGameCommandIfFailed(bridgeGame, status);
+        } while (PLAYING.equals(status));
+        outputView.printResult(bridgeGame, status);
+    }
+
+    private BridgeGame initBridgeGame() {
         try {
-            outputView.printStartMessage();
-            int bridgeSize = inputView.readBridgeSize();
-
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            List<String> bridgeRaw = bridgeMaker.makeBridge(bridgeSize);
-            Bridge bridge = new Bridge(bridgeRaw);
-
-            BridgeGame bridgeGame = new BridgeGame(bridge);
-
-            GameStatus status = PLAYING;
-            do {
-                while (PLAYING.equals(status)) {
-                    String moving = inputView.readMoving();
-                    BridgeUnit nextUnit = BridgeUnit.from(moving);
-
-                    status = bridgeGame.move(nextUnit);
-                    outputView.printMap(bridgeGame);
-                }
-                if (FAILED.equals(status)) {
-                    String code = inputView.readGameCommand();
-                    Command command = Command.from(code);
-                    if (RETRY.equals(command)) {
-                        status = bridgeGame.retry();
-                    }
-                }
-            } while (PLAYING.equals(status));
-            outputView.printResult(bridgeGame, status);
+            int bridgeSize = readBridgeSize();
+            Bridge bridge = initBridge(bridgeSize);
+            return new BridgeGame(bridge);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
+            return initBridgeGame();
         }
+    }
+
+    private int readBridgeSize() {
+        try {
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readBridgeSize();
+        }
+    }
+
+    private Bridge initBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridgeRaw = bridgeMaker.makeBridge(bridgeSize);
+        return new Bridge(bridgeRaw);
+    }
+
+    private GameStatus crossBridge(BridgeGame bridgeGame, GameStatus status) {
+        while (PLAYING.equals(status)) {
+            BridgeUnit nextUnit = getNextBridgeUnit();
+
+            status = bridgeGame.move(nextUnit);
+            outputView.printMap(bridgeGame);
+        }
+        return status;
+    }
+
+    private BridgeUnit getNextBridgeUnit() {
+        try {
+            String moving = inputView.readMoving();
+            return BridgeUnit.from(moving);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return getNextBridgeUnit();
+        }
+    }
+
+    private GameStatus readGameCommandIfFailed(BridgeGame bridgeGame, GameStatus status) {
+        if (FAILED.equals(status)) {
+            Command command = readCommand();
+            status = invokeIfRetry(bridgeGame, status, command);
+        }
+        return status;
+    }
+
+    private Command readCommand() {
+        try {
+            String code = inputView.readGameCommand();
+            return Command.from(code);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readCommand();
+        }
+    }
+
+    private GameStatus invokeIfRetry(BridgeGame bridgeGame, GameStatus status, Command command) {
+        if (RETRY.equals(command)) {
+            status = bridgeGame.retry();
+        }
+        return status;
     }
 }
