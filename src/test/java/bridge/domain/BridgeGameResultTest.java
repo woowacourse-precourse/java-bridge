@@ -14,7 +14,7 @@ class BridgeGameResultTest {
     @Test
     void checkIncreaseTryCount() {
         int actual = gameResult.increaseTryCount();
-        assertThat(actual).isEqualTo(2);
+        assertThat(actual).isEqualTo(1);
     }
 
     @DisplayName("현재까지 이동한 다리 상태를 초기화한다.")
