@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.utils.constants.Result;
+import bridge.utils.output.BridgeStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -14,11 +16,13 @@ public class BridgeGameController {
     private static int gameCount = 1;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
+    private final BridgeStatus bridgeStatus;
     private boolean gameResult;
 
     public BridgeGameController() {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridgeGame = new BridgeGame();
+        this.bridgeStatus = new BridgeStatus();
     }
 
     public void createBridge() {
@@ -27,22 +31,36 @@ public class BridgeGameController {
     }
 
     public void run(){
-        int bridgeSize = bridge.size();
-        boolean isMoveSuccess;
-        List<String> userAnswer = new ArrayList<>();
-        for (int moveCount = 0; moveCount < bridgeSize; moveCount++) {
-            String moving = InputView.readMoving();
-            isMoveSuccess = bridgeGame.move(bridge, moving);
-            userAnswer.add(moving);
-            OutputView.printMap(bridge,userAnswer);
+        if (isPassBridge()) {
+            gameResult = true;
+            end();
+            return;
+        }
+        gameResult = false;
+        retry();
+    }
+
+    private boolean isPassBridge() {
+        List<Result> results = new ArrayList<>();
+        for (String correctStep : bridge) {
+            boolean isMoveSuccess = oneStepMove(results, correctStep);
+
             if (!isMoveSuccess){
-                gameResult = false;
-                retry();
-                return;
+                return false;
             }
         }
-        gameResult = true;
-        end();
+        return true;
+    }
+
+    private boolean oneStepMove(List<Result> results, String correctStep) {
+        String moving = InputView.readMoving();
+        boolean isMoveSuccess = bridgeGame.move(correctStep, moving);
+
+        results.add(Result.getResult(moving, isMoveSuccess));
+        bridgeStatus.init(results);
+
+        OutputView.printMap(bridgeStatus.toString());
+        return isMoveSuccess;
     }
 
     public void retry() {
@@ -58,6 +76,6 @@ public class BridgeGameController {
     }
 
     public void end() {
-        OutputView.printResult(gameResult, gameCount);
+        OutputView.printResult(bridgeStatus.toString(), gameResult, gameCount);
     }
 }
