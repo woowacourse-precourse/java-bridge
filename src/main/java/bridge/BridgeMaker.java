@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.Command;
+import bridge.enums.Numeric;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +22,9 @@ public class BridgeMaker {
 	}
 
 	public String selectUpDown() {
-		if (bridgeNumberGenerator.generate() == 1) {
-			return "U";
+		if (bridgeNumberGenerator.generate() == Numeric.UP_SIGN.getValue()) {
+			return Command.UP.getValue();
 		}
-		return "D";
+		return Command.DOWN.getValue();
 	}
 }

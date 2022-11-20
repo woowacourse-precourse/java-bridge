@@ -1,13 +1,15 @@
 package bridge;
 
+import bridge.enums.Command;
+import bridge.enums.Map;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
 
-	private List<String> bridge;
-	private List<String> upperBridge = new ArrayList<>();
-	private List<String> lowerBridge = new ArrayList<>();
+	private final List<String> bridge;
+	private final List<String> upperBridge = new ArrayList<>();
+	private final List<String> lowerBridge = new ArrayList<>();
 
 	Bridge(List<String> bridge) {
 		this.bridge = bridge;
@@ -22,16 +24,16 @@ public class Bridge {
 	}
 
 	private void up(String shape) {
-		if (shape.equals("U")) {
-			upperBridge.add(" O ");
-			lowerBridge.add(" X ");
+		if (shape.equals(Command.UP.getValue())) {
+			upperBridge.add(Map.SAFE.getValue());
+			lowerBridge.add(Map.DIE.getValue());
 		}
 	}
 
 	private void down(String shape) {
-		if (shape.equals("D")) {
-			upperBridge.add(" X ");
-			lowerBridge.add(" O ");
+		if (shape.equals(Command.DOWN.getValue())) {
+			upperBridge.add(Map.DIE.getValue());
+			lowerBridge.add(Map.SAFE.getValue());
 		}
 	}
 

@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.enums.Command;
+import bridge.enums.Error;
+import bridge.enums.InputPattern;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 
@@ -10,8 +13,8 @@ public class InputView {
 	}
 
 	public int validateBridgeSize(String userInput) {
-		if (!Pattern.matches("^[3-9]|1[0-9]|20$", userInput)) {
-			throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+		if (!Pattern.matches(InputPattern.BRIDGE_SIZE.getValue(), userInput)) {
+			throw new IllegalArgumentException(Error.BRIDGE_SIZE.getValue());
 		}
 
 		return Integer.parseInt(userInput);
@@ -22,15 +25,15 @@ public class InputView {
 	}
 
 	public String validateMove(String userInput) {
-		if (!Pattern.matches("^U|D$", userInput)) {
-			throw new IllegalArgumentException("위:U, 아래: D");
+		if (!Pattern.matches(InputPattern.MOVE.getValue(), userInput)) {
+			throw new IllegalArgumentException(Error.MOVE.getValue());
 		}
 
-		if (userInput.equals("U")) {
-			return "U";
+		if (userInput.equals(Command.UP.getValue())) {
+			return Command.UP.getValue();
 		}
 
-		return "D";
+		return Command.DOWN.getValue();
 	}
 
 	public String readGameCommand() {
@@ -38,14 +41,12 @@ public class InputView {
 	}
 
 	public String validateRetry(String userInput) {
-		if (userInput.equals("R")) {
-			return "R";
+		if (userInput.equals(Command.RESTART.getValue())) {
+			return Command.RESTART.getValue();
 		}
-
-		if (userInput.equals("Q")) {
-			return "Q";
+		if (userInput.equals(Command.QUIT.getValue())) {
+			return Command.QUIT.getValue();
 		}
-
-		throw new IllegalArgumentException("재시도: R, 종료: Q");
+		throw new IllegalArgumentException(Error.RETRY.getValue());
 	}
 }

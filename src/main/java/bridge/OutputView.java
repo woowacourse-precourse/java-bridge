@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.enums.Command;
+import bridge.enums.Format;
+import bridge.enums.Map;
+import bridge.enums.Message;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,26 +20,26 @@ public class OutputView {
 	}
 
 	public void movementUp(int round, Bridge bridge, String movement) {
-		if (movement.equals("U")) {
+		if (movement.equals(Command.UP.getValue())) {
 			upperMap.add(bridge.getUpperBridge().get(round));
-			lowerMap.add("   ");
+			lowerMap.add(Map.BLANK.getValue());
 		}
 	}
 
 	public void movementDown(int round, Bridge bridge, String movement) {
-		if (movement.equals("D")) {
-			upperMap.add("   ");
+		if (movement.equals(Command.DOWN.getValue())) {
+			upperMap.add(Map.BLANK.getValue());
 			lowerMap.add(bridge.getLowerBridge().get(round));
 		}
 	}
 
 	public void formatting() {
-		System.out.println(upperMap.toString().replaceAll(", ", "|"));
-		System.out.println(lowerMap.toString().replaceAll(", ", "|"));
+		System.out.println(upperMap.toString().replaceAll(Format.COMMA.getValue(), Format.BAR.getValue()));
+		System.out.println(lowerMap.toString().replaceAll(Format.COMMA.getValue(), Format.BAR.getValue()));
 	}
 
 	public void ifBlocked(int round) {
-		if (upperMap.get(round).equals(" X ") || lowerMap.get(round).equals(" X ")) {
+		if (upperMap.get(round).equals(Map.DIE.getValue()) || lowerMap.get(round).equals(Map.DIE.getValue())) {
 			upperMap.remove(round);
 			lowerMap.remove(round);
 		}
@@ -43,27 +47,27 @@ public class OutputView {
 
 	public void printResult(boolean status, int gameTry) {
 		if (status) {
-			System.out.println("최종 게임 결과\n게임 성공 여부: 성공");
-			System.out.println("총 시도한 횟수: " + gameTry);
+			System.out.println(Message.RESULT_SUCCESS.getValue());
+			System.out.println(Message.RESULT_TRY.getValue() + gameTry);
 			return;
 		}
-		System.out.println("게임 성공 여부: 실패");
-		System.out.println("총 시도한 횟수: " + gameTry);
+		System.out.println(Message.RESULT_FAIL.getValue());
+		System.out.println(Message.RESULT_TRY.getValue() + gameTry);
 	}
 
 	public void printStart() {
-		System.out.println("다리 건너기 게임을 시작합니다.");
+		System.out.println(Message.HEADER_START.getValue());
 	}
 
 	public void printRequestBridgeSize() {
-		System.out.println("다리의 길이를 입력해주세요.");
+		System.out.println(Message.REQUEST_BRIDGE_SIZE.getValue());
 	}
 
 	public void printRequestUpDown() {
-		System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+		System.out.println(Message.REQUEST_MOVE.getValue());
 	}
 
 	public void printRequestRetry() {
-		System.out.println("게임을 다시 시도할 지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+		System.out.println(Message.REQUEST_RETRY.getValue());
 	}
 }
