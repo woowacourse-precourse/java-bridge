@@ -9,6 +9,8 @@ public class InputView {
 
     static final int MIN_BRIDGE = 3;
     static final int MAX_BRIDGE = 20;
+    static final String UP = "U";
+    static final String DOWN = "D";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -25,7 +27,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("이동할 칸을 선택해주세요. (위: " + UP + ", 아래: "+ DOWN + ")");
         String moveInput = Console.readLine();
         upDownValidate(moveInput);
         return moveInput;
@@ -53,7 +55,7 @@ public class InputView {
     }
 
     private void upDownValidate(String str) throws IllegalArgumentException {
-        if (!str.equals("U") && !str.equals("D")) {
+        if (!str.equals(UP) && !str.equals(DOWN)) {
             throw new IllegalArgumentException(ErrorEnum.PREFIX.getMessage() + ErrorEnum.UP_DOWN.getMessage());
         }
     }
