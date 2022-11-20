@@ -19,7 +19,6 @@ public class Validator {
         if(!Pattern.matches(movePattern, input)){
             throw new IllegalArgumentException(ERROR_MESSAGE + "이동 형태는 U또는 D여야 합니다");
         }
-        System.out.println("통과");
     }
 
     public static void validateNumeric(String input){
