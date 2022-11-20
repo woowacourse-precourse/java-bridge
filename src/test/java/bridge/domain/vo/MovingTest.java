@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MovingTest {
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("U 또는 D의 문자 1개를 입력 시 예외가 발생하지 않는다.")
     @Test
@@ -34,13 +35,15 @@ class MovingTest {
     @Test
     void case1() {
         assertThatThrownBy(() -> createMoving("hi"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @DisplayName("Moving을 U 또는 D로 입력하지 않을 시 예외가 발생한다.")
     @Test
     void case2() {
         assertThatThrownBy(() -> createMoving("A"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 }
