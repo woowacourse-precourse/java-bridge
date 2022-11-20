@@ -20,6 +20,7 @@ public class OutputView {
         String downBridgeMap = renderMap(bridgeResult.getDownBridge());
         System.out.println("[" + upBridgeMap + "]");
         System.out.println("[" + downBridgeMap + "]");
+        System.out.println();
     }
 
     private String renderMap(List<String> bridge) {
