@@ -24,24 +24,24 @@ public class OutputView {
 
     private String makeUpDirectionMap(List<String> bridgeDirections, List<String> userMoveHistory) {
         List<String> map = new ArrayList<>();
-        for (int i = 0; i < userMoveHistory.size(); i++) {
-            if (!bridgeDirections.get(i).equals(BridgeDirection.UP.getFirstLetter())) {
-                map.add(" ");
+        for (int moveHistoryIndex = 0; moveHistoryIndex < userMoveHistory.size(); moveHistoryIndex++) {
+            if (!bridgeDirections.get(moveHistoryIndex).equals(BridgeDirection.UP.getFirstLetter())) {
+                map.add(OutputMessage.EMPTY_SPACING.getMessage());
                 continue;
             }
-            map.add(makeStatus(bridgeDirections.get(i), userMoveHistory.get(i)));
+            map.add(makeStatus(bridgeDirections.get(moveHistoryIndex), userMoveHistory.get(moveHistoryIndex)));
         }
         return map.toString();
     }
 
     private String makeDownDirectionMap(List<String> bridgeDirections, List<String> userMoveHistory) {
         List<String> map = new ArrayList<>();
-        for (int i = 0; i < userMoveHistory.size(); i++) {
-            if (!bridgeDirections.get(i).equals(BridgeDirection.DOWN.getFirstLetter())) {
-                map.add(" ");
+        for (int moveHistoryIndex = 0; moveHistoryIndex < userMoveHistory.size(); moveHistoryIndex++) {
+            if (!bridgeDirections.get(moveHistoryIndex).equals(BridgeDirection.DOWN.getFirstLetter())) {
+                map.add(OutputMessage.EMPTY_SPACING.getMessage());
                 continue;
             }
-            map.add(makeStatus(bridgeDirections.get(i), userMoveHistory.get(i)));
+            map.add(makeStatus(bridgeDirections.get(moveHistoryIndex), userMoveHistory.get(moveHistoryIndex)));
         }
         return map.toString();
     }
