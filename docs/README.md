@@ -87,7 +87,7 @@ public class BridgeMaker {
 # 게임은 다리를 다 만든 뒤 유저가 확인하는 느낌으로 구현
 ### 🟧 domain package
 **Bridge**
->- [ ] 다리의 길이를 저장하는 기능 ( setBridgeSize )
+>- [x] 다리의 길이를 저장하는 기능 ( setBridgeSize )
 >- [ ] 다리의 길이를 조회하는 기능 ( getBridgeSize )
 >- [ ] 다리의 값을 저장하는 기능 ( setBridgeLoad )
 >- [ ] 다리의 값을 조회하는 기능 ( getBridgeLoad )
