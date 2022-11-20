@@ -83,6 +83,7 @@ public class Application {
         }
         topBridge.clear();
         bottomBridge.clear();
+        passFail = true;
         return true;
     }
 
