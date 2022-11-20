@@ -48,6 +48,7 @@ public class OutputView {
 
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
+        System.out.println();
     }
 
     public void printMoveMessage() {
