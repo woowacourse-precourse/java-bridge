@@ -6,6 +6,8 @@ import java.util.List;
 public class GameRound {
     private static final String MOVING_COMMAND_UP = "U";
     private static final String MOVING_COMMAND_DOWN = "D";
+    private static final String CORRECT_POSITION = "O";
+    private static final String UNCORRECT_POSITION = "X";
     private static final String BLANK = " ";
 
     private List<List<String>> playedBridge;
@@ -43,13 +45,48 @@ public class GameRound {
         isWin = win;
     }
 
-    public void recordResult(String movingCommand, String bridgeLocation) {
-        if(movingCommand.equals(MOVING_COMMAND_UP)) {
-            playedBridge.get(0).add(bridgeLocation);
-            playedBridge.get(1).add(BLANK);
+    public void recordResult(String movingCommand, String nowBridgePosition) {
+        if (isCorrect(movingCommand, nowBridgePosition)) {
+            if (movingCommand.equals(MOVING_COMMAND_UP)) {
+                recordUpperCorrect();
+                return;
+            }
+            recordLowerCorrect();
             return;
         }
-        playedBridge.get(1).add(bridgeLocation);
+
+        if (movingCommand.equals(MOVING_COMMAND_UP)) {
+            recordUpperUncorrect();
+            return;
+        }
+        recordLowerUncorrect();
+    }
+
+    private boolean isCorrect(String movingCommand, String nowBridgePosition) {
+        if (movingCommand.equals(nowBridgePosition)) {
+            return true;
+        }
+        return false;
+    }
+
+    private void recordUpperCorrect() {
+        playedBridge.get(0).add(CORRECT_POSITION);
+        playedBridge.get(1).add(BLANK);
+    }
+
+    private void recordLowerCorrect() {
+        playedBridge.get(1).add(CORRECT_POSITION);
         playedBridge.get(0).add(BLANK);
     }
+
+    private void recordUpperUncorrect() {
+        playedBridge.get(0).add(UNCORRECT_POSITION);
+        playedBridge.get(1).add(BLANK);
+    }
+
+    private void recordLowerUncorrect() {
+        playedBridge.get(1).add(UNCORRECT_POSITION);
+        playedBridge.get(0).add(BLANK);
+    }
+
 }
