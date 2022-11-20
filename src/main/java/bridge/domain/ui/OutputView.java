@@ -4,7 +4,7 @@ import bridge.domain.user.User;
 
 import java.util.List;
 
-import static bridge.domain.bridgemaking.Space.*;
+import static bridge.domain.utils.Space.*;
 import static bridge.domain.ui.ReservedMessage.*;
 
 /**

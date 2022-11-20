@@ -1,20 +1,18 @@
 package bridge.domain.user;
 
-import bridge.domain.bridgemaking.BridgeComponent;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static bridge.domain.bridgemaking.Space.*;
+import static bridge.domain.utils.Space.*;
 
 public class User {
     private List<List<String>> currentBridge;
     private final int bridgeSize;
     private boolean isSucceeded;
     private int theNumOfTrials;
-    private static final String BLANK = BridgeComponent.BLANK.getComponent();
-    private static final String DELIMITER = BridgeComponent.DELIMITER.getComponent();
+    private static final String BLANK = CurrentBridgeElement.BLANK.getElement();
+    private static final String DELIMITER = CurrentBridgeElement.DELIMITER.getElement();
     private static final int FIRST_BRIDGE = 1;
     private static final int INITIAL_BRIDGE_SIZE = 2;
 

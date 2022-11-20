@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static bridge.domain.bridgemaking.Space.*;
+import static bridge.domain.utils.Space.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class SetBridgeStatusTest {

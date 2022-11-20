@@ -1,4 +1,4 @@
-package bridge.domain.bridgemaking;
+package bridge.domain.utils;
 
 public enum Space {
     DOWN(0), UP(1);

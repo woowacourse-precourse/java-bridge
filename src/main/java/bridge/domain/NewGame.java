@@ -10,7 +10,7 @@ import bridge.domain.ui.OutputView;
 
 import java.util.List;
 
-import static bridge.domain.bridgemaking.BridgeComponent.*;
+import static bridge.domain.user.CurrentBridgeElement.*;
 import static bridge.domain.ui.InputValue.RESTART;
 
 public class NewGame {
@@ -48,7 +48,7 @@ public class NewGame {
     private void play() {
         String movingResult = "O";
         int bridgeSize = user.getBridgeSize();
-        for (int round = 1; round <= bridgeSize && movingResult.equals(CROSS_SUCCEEDED.getComponent()); round++) {
+        for (int round = 1; round <= bridgeSize && movingResult.equals(CROSS_SUCCEEDED.getElement()); round++) {
             outputView.printMessageToGetSpaceToMove();
             movingResult = bridgeGame.processEachRound(round, inputView.readMoving());
             outputView.printMap(user);
@@ -58,7 +58,7 @@ public class NewGame {
 
     private void processTasksAfterGameEnds(String movingResult) {
         // 모든 다리를 건너 게임을 성공한 경우.
-        if (movingResult.equals(CROSS_SUCCEEDED.getComponent())) {
+        if (movingResult.equals(CROSS_SUCCEEDED.getElement())) {
             handleSucceededSituation();
             return;
         }
