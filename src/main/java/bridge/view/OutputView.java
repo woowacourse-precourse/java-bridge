@@ -35,15 +35,23 @@ public class OutputView {
     // Bridge 맵 한줄 생성 기능
     private StringBuilder createSingleLineMap(Bridge bridge, String[] bridgeMap, String key) {
         StringBuilder row = new StringBuilder("[ ");
-        for (int i = 0; i < bridge.getBridgeMap().length; i++) {
-            if (i > 0) row.append(" | ");
-            if (bridge.getUserKeyList().get(i).equals(key)) {
-                row.append(bridgeMap[i]);
+        for (int index = 0; index < bridge.getBridgeMap().length; index++) {
+            addDelimiter(row, index);
+            if (bridge.getUserKeyList().get(index).equals(key)) {
+                row.append(bridgeMap[index]);
                 continue;
             }
             row.append(" ");
         }
         row.append(" ]");
+        return row;
+    }
+
+    // 구분자 더하기
+    private StringBuilder addDelimiter(StringBuilder row, int index) {
+        if (index > 0) {
+            row.append(" | ");
+        }
         return row;
     }
 
