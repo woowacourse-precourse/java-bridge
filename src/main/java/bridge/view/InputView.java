@@ -6,11 +6,6 @@ import bridge.domain.BridgeSize;
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- * TODO 메서드 시그니처(인자, 이름)와 반환 타입 변경 가능
- * TODO 메서드 추가 가능
- */
 public class InputView {
 
     private final InputDataConverter inputDataConverter;
