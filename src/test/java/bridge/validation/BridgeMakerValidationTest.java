@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeMakerValidationTest {
@@ -18,6 +20,13 @@ public class BridgeMakerValidationTest {
     @Test
     public void validateGeneratedNumValueTest() {
         assertThatThrownBy(() -> bridgeMakerValidation.validateGeneratedNumValue(3))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("랜덤값에 대응하지 않는 칸이 다리에 추가되는 경우, 예외가 발생한다.")
+    @Test
+    public void validateCorrespondingBoxAddedToBridgeTest() {
+        assertThatThrownBy(() -> bridgeMakerValidation.validateCorrespondingBoxAddedToBridge(0, List.of("U")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
