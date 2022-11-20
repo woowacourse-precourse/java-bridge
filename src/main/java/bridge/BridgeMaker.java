@@ -25,9 +25,14 @@ public class BridgeMaker {
     }
 
     private String getBridgeBlock() {
-        if (bridgeNumberGenerator.generate() == 1) {
+        int generateValue = bridgeNumberGenerator.generate();
+        if (generateValue == 1) {
             return MOVE_TO_UPPER_BLOCK;
         }
-        return MOVE_TO_LOWER_BLOCK;
+        if (generateValue == 0) {
+            return MOVE_TO_LOWER_BLOCK;
+        }
+
+        throw new IllegalStateException("NumberGenerator가 잘못된 값을 반환합니다. 생성값 : " + generateValue);
     }
 }
