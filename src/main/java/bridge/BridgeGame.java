@@ -17,6 +17,13 @@ public class BridgeGame {
         this.bridgeController = new BridgeController(new BridgeRandomNumberGenerator());
         this.gameCount = 0;
     }
+
+    public void start() {
+        bridgeController.inputBridgeSize();
+        Result lastResult = playGame();
+        bridgeController.endGame(lastResult, gameCount);
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

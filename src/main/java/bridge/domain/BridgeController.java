@@ -61,6 +61,10 @@ public class BridgeController {
         bridgeService.clearPlayerBridge();
     }
 
+    public void endGame(Result result, Integer gameCount) {
+        outputView.printResult(result, gameCount);
+    }
+
     private boolean determineGameStatus(Command command) {
         GameCommand gameCommand = GameCommand.findGameCommand(command.getCommand());
         return gameCommand.equals(RESTART);
