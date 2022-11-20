@@ -7,4 +7,8 @@ public class Client {
         viewMaker.receiveClientRequest();
     }
 
+    public static User introduceGameUser(ViewMaker viewMaker) {
+        return new User(viewMaker);
+    }
+
 }
