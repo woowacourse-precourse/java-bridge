@@ -1,9 +1,8 @@
 package bridge.view;
 
 import bridge.BridgeRule;
-import bridge.MoveRule;
+import bridge.Command;
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Objects;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -39,10 +38,10 @@ public class InputView {
      */
     public String readMoving() {
         String move = readValue();
-        if (move.equals(MoveRule.MOVE_UP.getMove()) || !move.equals(MoveRule.MOVE_DOWN.getMove())) {
-            throw new IllegalArgumentException("허용되지 않는 값! U(위쪽) D(아래쪽) 중 하나를 입력하셔야 합니다!");
+        if (move.equals(Command.MOVE_UP.getCommand()) || move.equals(Command.MOVE_DOWN.getCommand())) {
+            return move;
         }
-        return move;
+        throw new IllegalArgumentException("허용되지 않는 값! U(위쪽) D(아래쪽) 중 하나를 입력하셔야 합니다!");
     }
 
     /**
@@ -50,9 +49,9 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = readValue();
-        if (Objects.equals(command, "Q") || Objects.equals(command, "R")) {
-            throw new IllegalArgumentException("허용되지 않는 값! R(재시작) Q(종료) 중 하나를 입력하셔야 합니다!");
+        if (command.equals(Command.DO_QUIT.getCommand()) || command.equals(Command.DO_RETRY.getCommand())) {
+            return command;
         }
-        return command;
+        throw new IllegalArgumentException("허용되지 않는 값! R(재시작) Q(종료) 중 하나를 입력하셔야 합니다!");
     }
 }
