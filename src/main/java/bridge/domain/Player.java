@@ -6,8 +6,8 @@ import java.util.List;
 public class Player {
 
     private int tryCount;
-    private List<Tile> movingPathLog;
     private boolean aliveState;
+    private List<Tile> movingPathLog;
 
     public Player() {
         this.tryCount = 1;
@@ -69,6 +69,10 @@ public class Player {
         return getCurrentPositionIndex() >= position;
     }
 
+    private int getCurrentPositionIndex() {
+        return movingPathLog.size() - 1;
+    }
+
     /**
      * player의 생존 상태 확인
      *
@@ -95,9 +99,5 @@ public class Player {
      */
     public int getTryCount() {
         return this.tryCount;
-    }
-
-    private int getCurrentPositionIndex() {
-        return movingPathLog.size() - 1;
     }
 }

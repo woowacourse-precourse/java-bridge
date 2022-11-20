@@ -40,7 +40,9 @@ public class GameController {
     private BridgeGame generateRandomBridgeGame() {
         return RepeatValidator.readUntilValidate(() -> {
             int bridgeSize = inputView.readBridgeSize();
-            List<String> bridgeDirections = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+            BridgeMaker randomBridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            List<String> bridgeDirections = randomBridgeMaker.makeBridge(bridgeSize);
+
             return BridgeGame.from(bridgeDirections);
         });
     }

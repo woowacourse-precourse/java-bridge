@@ -42,26 +42,26 @@ public class OutputView {
      * @param player     결과를 출력할 사용자 입력
      */
     public void printMap(BridgeGame bridgeGame, Player player) {
-        StringBuilder totalBridgeMapBuilder = new StringBuilder();
+        StringBuilder totalMapBuilder = new StringBuilder();
 
         for (Tile tile : Tile.values()) {
-            totalBridgeMapBuilder.append(generateTileMap(tile, bridgeGame, player));
+            totalMapBuilder.append(generateTileMap(tile, bridgeGame, player));
         }
 
-        System.out.println(totalBridgeMapBuilder.toString());
+        System.out.println(totalMapBuilder.toString());
     }
 
-    private String generateTileMap(Tile tile, BridgeGame bridgeGame, Player player) {
-        StringBuilder bridgeMapBuilder = new StringBuilder(BRIDGE_START_SIGN);
-        int index = 0;
-        while (player.isPassedPosition(index)) {
-            Tile playerTile = player.getPassedTileLogOf(index);
-            bridgeMapBuilder.append(tile.toFormatString(playerTile, bridgeGame.checkBridgeTileAt(index++, playerTile)));
-            bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
+    private String generateTileMap(Tile baseTile, BridgeGame bridgeGame, Player player) {
+        StringBuilder mapBuilder = new StringBuilder(BRIDGE_START_SIGN);
+        int position = 0;
+        while (player.isPassedPosition(position)) {
+            Tile passedTile = player.getPassedTileLogOf(position);
+            mapBuilder.append(baseTile.toMapString(passedTile, bridgeGame.checkBridgeTileAt(position++, passedTile)));
+            mapBuilder.append(BRIDGE_DIVIDE_SIGN);
         }
-        bridgeMapBuilder.replace(bridgeMapBuilder.length() - 1, bridgeMapBuilder.length(), BRIDGE_END_SIGN);
+        mapBuilder.replace(mapBuilder.length() - 1, mapBuilder.length(), BRIDGE_END_SIGN);
 
-        return bridgeMapBuilder.toString();
+        return mapBuilder.toString();
     }
 
     /**

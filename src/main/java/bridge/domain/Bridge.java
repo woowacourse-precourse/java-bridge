@@ -8,7 +8,7 @@ public class Bridge {
     public static final int MIN_SIZE = 3;
     public static final int MAX_SIZE = 20;
 
-    public static final String BRIDGE_SIZE_EXCEPTION_MESSAGE = "[ERROR] 다리의 길이는 %d부터 %d 사이의 숫자여야 합니다.";
+    private static final String BRIDGE_SIZE_EXCEPTION_MESSAGE_FORMAT = "[ERROR] 다리의 길이는 %d부터 %d 사이의 숫자여야 합니다.";
 
     private final List<Tile> bridgeTiles;
 
@@ -17,7 +17,7 @@ public class Bridge {
     }
 
     public static Bridge from(List<String> tileDirectionSigns) {
-        validateBridgePositions(tileDirectionSigns);
+        validateBridgeDirections(tileDirectionSigns);
 
         List<Tile> tiles = new ArrayList<>();
         for (String directionSign : tileDirectionSigns) {
@@ -27,9 +27,9 @@ public class Bridge {
         return new Bridge(tiles);
     }
 
-    private static void validateBridgePositions(List<String> bridgePositions) {
-        if (bridgePositions.size() < MIN_SIZE || bridgePositions.size() > MAX_SIZE) {
-            throw new IllegalArgumentException(String.format(BRIDGE_SIZE_EXCEPTION_MESSAGE, MIN_SIZE, MAX_SIZE));
+    private static void validateBridgeDirections(List<String> bridgeDirections) {
+        if (bridgeDirections.size() < MIN_SIZE || bridgeDirections.size() > MAX_SIZE) {
+            throw new IllegalArgumentException(String.format(BRIDGE_SIZE_EXCEPTION_MESSAGE_FORMAT, MIN_SIZE, MAX_SIZE));
         }
     }
 
@@ -37,7 +37,7 @@ public class Bridge {
         return bridgeTiles.get(positionIndex).equals(tile);
     }
 
-    public int getBridgeSize() {
+    public int size() {
         return bridgeTiles.size();
     }
 }

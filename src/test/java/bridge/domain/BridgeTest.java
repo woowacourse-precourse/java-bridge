@@ -46,7 +46,7 @@ class BridgeTest {
     @Test
     void bridgeSizeTest() {
         Bridge bridge = Bridge.from(List.of("U", "D", "U"));
-        assertThat(bridge.getBridgeSize()).isEqualTo(3);
+        assertThat(bridge.size()).isEqualTo(3);
     }
 
 }
