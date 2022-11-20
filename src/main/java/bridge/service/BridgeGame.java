@@ -1,4 +1,4 @@
-package bridge;
+package bridge.service;
 
 import bridge.domain.Bridge;
 import bridge.domain.User;
@@ -18,7 +18,7 @@ public class BridgeGame {
     private final User user;
     private final Bridge bridge;
 
-    BridgeGame(List<String> floors) {
+    public BridgeGame(List<String> floors) {
         user = new User();
         bridge = new Bridge(floors);
     }
