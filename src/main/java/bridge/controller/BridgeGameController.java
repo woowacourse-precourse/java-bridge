@@ -24,7 +24,7 @@ public class BridgeGameController {
     }
 
     public void resetGame(){
-
+        player.clearBridge();
     }
 
     public void concludeGame(){

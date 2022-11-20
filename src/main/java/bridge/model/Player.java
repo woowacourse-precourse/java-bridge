@@ -22,4 +22,8 @@ public class Player {
     public boolean isGameFinished(Bridge bridge){
         return bridges.equals(bridge.getBridges());
     }
+
+    public void clearBridge(){
+        bridges = new ArrayList<>();
+    }
 }

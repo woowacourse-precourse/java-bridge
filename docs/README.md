@@ -89,7 +89,7 @@ START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반
 ### BridgeGameController
 1. 생성자 : InputView.readBridgeSize를 입력받아 Bridge를 생성하고 Player을 생성해준다. 전역변수 trialCount를 1로 초기화해준다. 
 2. moveAStep : Input.readMoving을 입력받아 Player.addNewBridgeInput해준다. Bridge.makeResultBridge를 반환해 OutputView.printMap해준다. 
-3. resetGame : Player을 재생성해주고, trialCount++해준다. 
+3. resetGame : player.clearBridge 해주고 trialCount++해준다.
 4. concludeGame : OutputView.printResult에 trialCount와 Player.isGameFinished를 입력받아 출력해준다. 
 5. isPaused : Bridge.isPlayerRightInput의 역을 반환한다.
 6. isFinished
