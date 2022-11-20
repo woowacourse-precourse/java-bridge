@@ -4,8 +4,6 @@ public class Checker {
     private static final Checker checker = new Checker();
     private final int MAXIMUM_BRIDGE_SIZE = 20;
     private final int MINIMUM_BRIDGE_SIZE = 3;
-    private final String MOVING_UP = "U";
-    private final String MOVING_DOWN = "D";
     private final String GAME_RESTART = "R";
     private final String GAME_QUIT = "Q";
 
@@ -42,7 +40,7 @@ public class Checker {
     }
 
     private boolean checkMovingValue(String moving) {
-        return moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN);
+        return moving.equals(Moving.UP.getValue()) || moving.equals(Moving.DOWN.getValue());
     }
 
     private boolean checkGameCommandValue(String gameCommand) {
