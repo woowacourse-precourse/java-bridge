@@ -31,4 +31,11 @@ public enum BridgeManagement {
                 .orElseThrow(() -> new IllegalArgumentException("입력이 지정된 숫자가 아닙니다! 난수 생성 모듈을 확인하세요."))
                 .move;
     }
+
+    public static BridgeManagement searchBridgeType(String move) {
+        return Arrays.stream(BridgeManagement.values())
+                .filter(bridge -> move.equals(bridge.move))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("허용되지 않는 값! U(위쪽) D(아래쪽) 중 하나를 입력하셔야 합니다!"));
+    }
 }
