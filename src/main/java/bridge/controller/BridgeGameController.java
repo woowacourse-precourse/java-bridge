@@ -4,13 +4,17 @@ import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-public class Application {
+public class BridgeGameController {
 
-    private static InputView inputView;
-    private static OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public static void main(String[] args) {
-        viewInitialize();
+    public BridgeGameController() {
+        inputView = new InputView();
+        outputView = new OutputView();
+    }
+
+    public void gameStart() {
         BridgeGame bridgeGame = makeBridgeGame();
         do {
             playGame(bridgeGame);
@@ -19,24 +23,19 @@ public class Application {
         outputView.printResult(bridgeGame);
     }
 
-    private static void viewInitialize() {
-        inputView = new InputView();
-        outputView = new OutputView();
-    }
-
-    private static BridgeGame makeBridgeGame() {
+    private BridgeGame makeBridgeGame() {
         int bridgeSize = inputView.readBridgeSize();
         return new BridgeGame(bridgeSize);
     }
 
-    private static void checkWhetherGameRetry(BridgeGame bridgeGame) {
+    private void checkWhetherGameRetry(BridgeGame bridgeGame) {
         if (bridgeGame.isGameFailed()) {
             String gameCommand = inputView.readGameCommand();
             bridgeGame.retry(gameCommand);
         }
     }
 
-    private static void playGame(BridgeGame bridgeGame) {
+    private void playGame(BridgeGame bridgeGame) {
         do {
             String moving = inputView.readMoving();
             bridgeGame.move(moving);
