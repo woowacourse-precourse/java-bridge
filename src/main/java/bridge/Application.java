@@ -29,10 +29,10 @@ public class Application {
         return bridgeGame.move(direction);
     }
 
-    private static boolean gameContinueCheck(boolean correct) { // 틀렸을 경우 게임 재시작 여부, 확인
+    private static boolean gameContinueCheck(boolean correct) { // 틀렸을 경우 게임 재시작 여부 확인
         if (correct) return true;
         String retry = inputView.readGameCommand();
-        if (retry.equals(InputView.RETRY)){
+        if (retry.equals(InputView.RETRY)) {
             bridgeGame.retry();
             return true;
         }

@@ -7,13 +7,14 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridge;
+    private final List<String> bridge;
     private int nextIndex;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         nextIndex = 0;
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -34,7 +35,7 @@ public class BridgeGame {
         nextIndex = 0;
     }
 
-    public List<String> getBridge(){
+    public List<String> getBridge() {
         return this.bridge;
     }
 
@@ -43,9 +44,6 @@ public class BridgeGame {
     }
 
     public Boolean gameFinishedCheck() {
-        if (nextIndex >= bridge.size()) {
-            return true;
-        }
-        return false;
+        return nextIndex >= bridge.size();
     }
 }
