@@ -18,7 +18,7 @@ public class OutputView {
      */
     public void printMap(String map) {
         StringBuilder sb = new StringBuilder();
-        String bridge = map.replace(",", " | ")
+        String bridge = map.replace(", ", " | ")
                 .replace("[", "[ ")
                 .replace("]", " ]");
         sb.append(bridge).append("\n");
