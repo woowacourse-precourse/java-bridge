@@ -1,5 +1,10 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Controller {
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private static BridgeMaker bridgeMaker;
@@ -12,12 +17,40 @@ public class Controller {
 
     public void startGame() {
         try {
+            int count = 0;
+            boolean game = true;
             InputView inputView = new InputView();
             int bridgeSize = inputView.readBridgeSize();
-            bridgeMaker.makeBridge(bridgeSize);
-//            if (inputView.readMoving().equals("U")) {
-//                System.out.println("[ O ] " +" \n" + "[   ]");
-//            }
+
+            List<String> test = new ArrayList<>();
+
+            test = bridgeMaker.makeBridge(bridgeSize);
+            for (String s : test) {
+                System.out.println("s = " + s);
+            }
+            System.out.println("움직이다 ( U and D )");
+
+
+
+
+            BridgeGame bridgeGame = new BridgeGame();
+            while (game) {
+                String moving = inputView.readMoving();
+                game = bridgeGame.move(test, moving, count);
+
+                count++;
+                if (count == 4) {
+                    game = false;
+                }
+                if (game == false) {
+                    System.out.println("다시 시작하시겠습니까?");
+                    System.out.println("Yes");
+                    game = true;
+                    count = 0;
+                }
+            }
+
+
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

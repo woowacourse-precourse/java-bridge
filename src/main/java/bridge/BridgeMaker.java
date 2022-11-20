@@ -18,7 +18,7 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 Frame [  |  |  ]
      */
-    private List<String> makeBridgeFrame(int size, int randomBridgeSpace) {
+    private List<String> makeBridgeFrame(int size, String randomBridgeSpace) {
         List<String> test = new ArrayList<>();
         for (int i = 0; i < size; i++) {
 
@@ -36,6 +36,7 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             upAndDown.add(makeBridgeSpace());
         }
+
         return upAndDown;
     }
 
