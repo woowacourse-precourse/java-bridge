@@ -1,18 +1,20 @@
 package bridge.models;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeDirectionTest {
-
-    @Test
-    void numberToCapital_1일때_U_반환() {
-        assertThat(BridgeDirection.numberToCapital(1)).isEqualTo("U");
+    @ParameterizedTest
+    @CsvSource(value = {"0: DOWN", "1: UP"}, delimiter = ':')
+    void getDirection_올바른_값_반환(int number, BridgeDirection bridgeDirection) {
+        assertThat(BridgeDirection.getDirection(number)).isEqualTo(bridgeDirection);
     }
 
-    @Test
-    void numberToCapital_0일때_D_반환() {
-        assertThat(BridgeDirection.numberToCapital(0)).isEqualTo("D");
+    @ParameterizedTest
+    @CsvSource(value = {"-1: ERROR", "2: ERROR", "10: ERROR"}, delimiter = ':')
+    void getDirection_올바르지_않은_값_ERROR_반환(int number, BridgeDirection bridgeDirection) {
+        assertThat(BridgeDirection.getDirection(number)).isEqualTo(bridgeDirection);
     }
 }
