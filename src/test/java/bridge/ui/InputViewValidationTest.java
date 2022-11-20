@@ -24,4 +24,10 @@ class InputViewValidationTest {
         assertThatThrownBy(() -> InputViewValidation.validateIsInRange("21"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void validateIsUorDByA(){
+        assertThatThrownBy(() -> InputViewValidation.validateIsUorD("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
