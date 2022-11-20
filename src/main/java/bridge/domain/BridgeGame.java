@@ -42,6 +42,16 @@ public class BridgeGame {
         }
     }
 
+    private String makeSymbol(int index, String position) {
+        if (path.get(index).equals(position)) {
+            if (path.get(index).equals(bridge.get(index))) {
+                return BridgeConstants.SUCCESS;
+            }
+            return BridgeConstants.FAILURE;
+        }
+        return BridgeConstants.SPACE;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
