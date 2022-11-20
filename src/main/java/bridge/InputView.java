@@ -39,7 +39,8 @@ public class InputView {
 
         System.out.println(READ_GAME_COMMAND_MESSAGE);
         cmd = readLine();
-
+        exception.isCommandCorrect(cmd);
+        
         return cmd;
     }
 }
