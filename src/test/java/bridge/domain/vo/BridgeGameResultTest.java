@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static bridge.domain.vo.BridgeGameResult.createBridgeGameResult;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,13 +19,13 @@ class BridgeGameResultTest {
     @DisplayName("BridgeGameResult를 생성한다.")
     @Test
     void createBridgeGameResultTest() {
-        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving))
+        assertThat(createBridgeGameResult(isMatched, userMoving))
                 .isInstanceOf(BridgeGameResult.class);
 
-        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving).getIsMatched())
+        assertThat(createBridgeGameResult(isMatched, userMoving).getIsMatched())
                 .isTrue();
 
-        assertThat(BridgeGameResult.createBridgeGameResult(isMatched, userMoving).getUserMoving())
+        assertThat(createBridgeGameResult(isMatched, userMoving).getUserMoving())
                 .isEqualTo(upMoving);
     }
 
