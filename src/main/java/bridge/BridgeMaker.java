@@ -21,7 +21,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for(int i=0;i<size;i++) {
+        for (int i = 0; i < size; i++) {
             bridge.add(convertNumberToDirection(bridgeNumberGenerator.generate()));
         }
 
@@ -29,7 +29,7 @@ public class BridgeMaker {
     }
 
     private String convertNumberToDirection(int number) {
-        if(number == 0) {
+        if (number == 0) {
             return "D";
         }
 

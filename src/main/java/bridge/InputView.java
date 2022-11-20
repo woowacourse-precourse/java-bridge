@@ -67,7 +67,7 @@ public class InputView {
     }
 
     private boolean isUpOrDown(String input) {
-        return input == "U" || input == "D";
+        return input.equals("U") || input.equals("D");
     }
 
     /**
@@ -79,16 +79,16 @@ public class InputView {
 
         validateGameCommand(input);
 
-        return input == "R";
+        return input.equals("R");
     }
 
     private void validateGameCommand(String input) {
-        if(!isRetryOrQuit(input)) {
+        if (!isRetryOrQuit(input)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "R또는 Q로 입력하여야합니다.");
         }
     }
 
     private boolean isRetryOrQuit(String input) {
-        return input == "R" || input == "Q";
+        return input.equals("R") || input.equals("Q");
     }
 }

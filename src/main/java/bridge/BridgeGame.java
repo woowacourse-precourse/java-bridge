@@ -7,8 +7,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private InputView inputView = new InputView();
-
     /**
      * 현재 user가 bridge에 위치하고있는 곳(bridge index)
      */
@@ -21,7 +19,7 @@ public class BridgeGame {
     public boolean move(String moving, List<String> bridge) {
         String next_bridge = bridge.get(current_position++);
 
-        return moving == next_bridge;
+        return moving.equals(next_bridge);
     }
 
     /**

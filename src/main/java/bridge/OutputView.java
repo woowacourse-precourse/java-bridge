@@ -49,8 +49,8 @@ public class OutputView {
     }
 
     private void printCell(String direction, String userDirection, String bridgeDirection) {
-        if (direction == userDirection) {
-            if (userDirection == bridgeDirection) {
+        if (direction.equals(userDirection)) {
+            if (userDirection.equals(bridgeDirection)) {
                 System.out.print(" O ");
             }
             System.out.print(" X ");
