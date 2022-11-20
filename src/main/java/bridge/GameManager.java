@@ -3,13 +3,11 @@ package bridge;
 import bridge.config.Config;
 import bridge.domain.Direction;
 import bridge.domain.GameCommand;
-import bridge.exception.ErrorMessage;
 import bridge.exception.FailException;
 import bridge.exception.InvalidInputException;
 import bridge.game.BridgeGame;
 import bridge.game.GameStatus;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.View;
 import java.util.List;
 
 public class GameManager {
@@ -21,7 +19,7 @@ public class GameManager {
     }
 
     public static void execute() {
-        OutputView.startGame();
+        View.startGame();
 
         Config config = new Config();
         List<String> bridge = buildBridge(config.bridgeNumberGenerator());
@@ -31,22 +29,10 @@ public class GameManager {
     }
 
     private static List<String> buildBridge(BridgeNumberGenerator bridgeNumberGenerator) {
-        OutputView.getBridgeLength();
-
-        int bridgeSize = getBridgeLength();
+        int bridgeSize = View.getBridgeLength();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         return bridgeMaker.makeBridge(bridgeSize);
-    }
-
-    private static int getBridgeLength() {
-        while (true) {
-            try {
-                return InputView.readBridgeSize();
-            } catch (NumberFormatException e) {
-                OutputView.printErrorMessage(ErrorMessage.BRIDGE_LENGTH_IS_BETWEEN_3_AND_20);
-            }
-        }
     }
 
     private void startGame() {
@@ -65,7 +51,7 @@ public class GameManager {
         try {
             return move();
         } catch (InvalidInputException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            View.printErrorMessage(e.getMessage());
             return GameCommand.PROGRESS;
         } catch (FailException e) {
             return getUserDecision();
@@ -73,21 +59,19 @@ public class GameManager {
     }
 
     private GameCommand move() {
-        OutputView.selectRoom();
-        Direction direction = InputView.readMoving();
+        Direction direction = View.readMoving();
         bridgeGame.move(direction);
-        OutputView.printMap(bridgeGame.getMap());
+        View.printMap(bridgeGame.getMap());
 
         if (bridgeGame.isFinish()) {
-            OutputView.printResult(bridgeGame.getStatus(), direction);
+            View.printResult(bridgeGame.getStatus(), direction);
             return GameCommand.FINISH;
         }
         return GameCommand.PROGRESS;
     }
 
     private GameCommand getUserDecision() {
-        OutputView.checkRestart();
-        String input = InputView.readGameCommand();
+        String input = View.checkRestart();
         GameCommand.checkStatus(input);
 
         return GameCommand.getStatus(input);
