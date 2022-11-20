@@ -40,8 +40,7 @@
 ***
 - [ ] 다리 상태 표시 - BridgeState#mark()
     - [ ] 현재 위, 아래 다리 모두 비어있는지 확인 - BridgeState#isEmpty()
-    - [ ] 위 칸 또는 아래 칸 중 선택한 방향에 대해 건널 수 있는지 여부 표시 
-    - [ ] 위 칸 또는 아래 칸 중 선택하지 않는 방향에 대해 공백 표시   
+    - [X] 위 칸 또는 아래 칸 중 선택한 방향에 대해 건널 수 있는지 여부 표시, 위 칸 또는 아래 칸 중 선택하지 않는 방향에 대해 공백 표시
 - [ ] 다리 상태 값 반환 - BridgeState#getBridgeState()
 - [ ] 다리 상태 초기화 - BridgeState#initBridgeState()
 ***
