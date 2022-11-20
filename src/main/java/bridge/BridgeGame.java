@@ -7,12 +7,12 @@ import java.util.List;
  */
 public class BridgeGame {
     Controller controller = new Controller();
-    public int bridgeLength = 1;
-    public int gameCount = 1;
-    public List<String> bridge;
-    public int [] upCase;
-    public int [] downCase;
-    public void play(){
+    private int bridgeLength = 1;
+    private int gameCount = 1;
+    private List<String> bridge;
+    private int [] upCase;
+    private int [] downCase;
+    public void play() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         controller.startMessage();
         controller.bridgeSizeMessage();
@@ -33,7 +33,7 @@ public class BridgeGame {
         }
         return false;
     }
-    public void doNotMove(String moveCommand, int i){
+    public void doNotMove(String moveCommand, int i) {
         if(moveCommand.equals("U")) {
             upCase[i] += 2;
         }
@@ -52,13 +52,13 @@ public class BridgeGame {
         gameCount += 1;
         initBridge();
     }
-    public void initBridge(){
+    public void initBridge() {
         upCase = new int[bridge.size()];
         downCase = new int[bridge.size()];
         bridgeLength = 1;
         compareMoveAndBridge();
     }
-    public void compareMoveAndBridge(){
+    public void compareMoveAndBridge() {
         for (int i = 0; i < bridge.size(); i++) {
             controller.movingCommandMessage();
             String movingCommand = controller.inputMovingCommand();

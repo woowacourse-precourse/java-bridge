@@ -33,39 +33,30 @@ public class InputView {
         return restartCommand;
     }
     public void getBrideSize() {
-        while(true){
-            try {
-                bridgeSize = Console.readLine();
-                validateUserInput.checkBridgeLength(bridgeSize);
-            }catch(IllegalArgumentException e){
-                System.out.println("[ERROR] 다리 길이는 3 ~ 20 사이의 숫자여야 합니다.");
-                continue;
-            }
-            break;
+        try {
+            bridgeSize = Console.readLine();
+            validateUserInput.checkBridgeLength(bridgeSize);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 다리 길이는 3 ~ 20 사이의 숫자여야 합니다.");
+            getBrideSize();
         }
     }
-    public void getReadMoving(){
-        while(true){
-            try {
-                movingCommand = Console.readLine();
-                validateUserInput.checkReadMoving(movingCommand);
-            }catch(IllegalArgumentException e){
-                System.out.println("[ERROR] U, D 커멘드만 입력해주세요.");
-                continue;
-            }
-            break;
+    public void getReadMoving() {
+        try {
+            movingCommand = Console.readLine();
+            validateUserInput.checkReadMoving(movingCommand);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] U, D 커멘드만 입력해주세요.");
+            getReadMoving();
         }
     }
     public void getReadCommand(){
-        while(true){
-            try {
-                restartCommand = Console.readLine();
-                validateUserInput.checkGameCommand(restartCommand);
-            }catch(IllegalArgumentException e){
-                System.out.println("[ERROR] R, Q 커멘드만 입력해주세요.");
-                continue;
-            }
-            break;
+        try {
+            restartCommand = Console.readLine();
+            validateUserInput.checkGameCommand(restartCommand);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] R, Q 커멘드만 입력해주세요.");
+            getReadCommand();
         }
     }
 }
