@@ -12,4 +12,7 @@ public abstract class Rules {
 
     public static final String PLATE_DOWN_PLATE_SYMBOL = "D";
     public static final String PLATE_UP_PLATE_SYMBOL = "U";
+
+    public static final String GAME_RETRY = "R";
+    public static final String GAME_QUIT = "Q";
 }

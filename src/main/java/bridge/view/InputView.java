@@ -11,10 +11,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final String ASK_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private final String ASK_NEXT_STEP = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String ASK_RETRY_GAME = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         System.out.println(ASK_BRIDGE_SIZE);
         String input = readString();
@@ -28,9 +26,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         System.out.println(ASK_NEXT_STEP);
         String input = readString();
@@ -50,11 +45,23 @@ public class InputView {
                         + "|" + Rules.PLATE_UP_PLATE_SYMBOL);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        System.out.println(ASK_RETRY_GAME);
+        String input = readString();
+        validateRetryQuit(input);
+        return input;
+    }
+
+    private void validateRetryQuit(String input) {
+        if (isRorQ(input)) {
+            throw new IllegalArgumentException(Errors.ERROR_GAME_RETRY_OR_QUIT.getMessage());
+        }
+    }
+
+    private boolean isRorQ(String input) {
+        return !input.matches(
+                Rules.GAME_RETRY
+                        + "|" + Rules.GAME_QUIT);
     }
 
     private String readString() {
