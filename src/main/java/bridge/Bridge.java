@@ -51,7 +51,7 @@ public class Bridge {
         throw new RuntimeException("존재하지 않는 move명령이 들어왔습니다.");
     }
     public boolean isArrive(){
-        if(currentPosition==bridgeLength){
+        if(currentPosition==bridgeLength-1){
             return true;
         }
         return false;
