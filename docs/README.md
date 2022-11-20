@@ -10,7 +10,7 @@
   - 예외사항
     - U/D 외의 문자가 입력된 경우
 
-- [ ] 사용자의 게임 재시도 입력을 받는다. - `#readGameCommand()`
+- [x] 사용자의 게임 재시도 입력을 받는다. - `#readGameCommand()`
   - 예외사항
     - R/Q 외의 문자가 입력된 경우
 
@@ -37,7 +37,7 @@
 ### 브릿지 게임 진행 - ClassName : BridgeGame
 - [x] 이동하기 - `#move()`
 - [x] 게임을 재시도하는 경우 - `#retry()`
-- [ ] 재시도 횟수 반환 - `#getAttempts()`
+- [x] 재시도 횟수 반환 - `#getAttempts()`
 
 ---
 
@@ -45,6 +45,7 @@
 - [x] 이동할 수 있는지 없는지 확인 - `#isMovableBlock()`
 - 예외사항
   - U/D 이외의 문자가 포함된 경우
+- [ ] 현재까지 이동한 다리 정보 조회 - `#getCrossedBridge`
 
 ---
 
