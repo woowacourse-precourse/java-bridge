@@ -14,13 +14,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        try {
-            int bridgeSize = Integer.parseInt(readLine());
-            bridgeGameInputException.validateBridgeSize(bridgeSize);
-            return bridgeSize;
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 다리의 길이는 숫자만 입력해야합니다.");
-        }
+        String bridgeSize = readLine();
+        bridgeGameInputException.validateBridgeSize(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
