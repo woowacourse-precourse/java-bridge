@@ -1,7 +1,6 @@
 package bridge;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -15,21 +14,21 @@ public class OutputView {
 
         private final Boolean isRightLocation;
         private final Boolean isRightStep;
-        private final String OutputMessage;
+        private final String outputMap;
 
-        PrintLastElement(Boolean isRightLocation, Boolean isRightStep, String outputMessage) {
+        PrintLastElement(Boolean isRightLocation, Boolean isRightStep, String outputMap) {
             this.isRightLocation = isRightLocation;
             this.isRightStep = isRightStep;
-            OutputMessage = outputMessage;
+            this.outputMap = outputMap;
         }
 
-        public static void getMessage(String lastStep, String lastBridge, String printLocation){
+        public static void getMap(String lastStep, String lastBridge, String printLocation){
             boolean isRightLocation = lastStep.equals(printLocation);
             boolean isRightStep = lastStep.equals(lastBridge);
-            String outputMessage = Arrays.stream(values())
+            String outputMap = Arrays.stream(values())
                     .filter(find -> find.isRightLocation.equals(isRightLocation) && find.isRightStep.equals(isRightStep))
-                    .findAny().get().OutputMessage;
-            System.out.println(outputMessage);
+                    .findAny().get().outputMap;
+            System.out.println(outputMap);
         }
     }
 
@@ -43,10 +42,10 @@ public class OutputView {
         String lastBridge = bridge.get(stepResult.size()-1);
 
         printUpMap(stepResult);
-        PrintLastElement.getMessage(lastStep, lastBridge, "U");
+        PrintLastElement.getMap(lastStep, lastBridge, "U");
 
         printDownMap(stepResult);
-        PrintLastElement.getMessage(lastStep, lastBridge, "D");
+        PrintLastElement.getMap(lastStep, lastBridge, "D");
     }
 
     public void printUpMap(List<String> stepResult) {

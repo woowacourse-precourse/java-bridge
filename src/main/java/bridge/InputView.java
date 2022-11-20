@@ -12,7 +12,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
     private static final List<Integer> bridgeSizeRangeInteger = IntStream.rangeClosed(3, 20).boxed().collect(Collectors.toList());
     private static final List<String> bridgeSizeRange = bridgeSizeRangeInteger.stream().map(Objects::toString).collect(Collectors.toList());
-    public enum input {
+    public enum Input {
         Bridge_Size("bridge_size",
                 "다리의 길이를 입력해주세요.",
                 "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.",
@@ -32,7 +32,7 @@ public class InputView {
         private final String error_message;
         private final List<String> right_input;
 
-        input(String input_type, String input_message, String error_message, List<String> right_input) {
+        Input(String input_type, String input_message, String error_message, List<String> right_input) {
             this.input_type = input_type;
             this.input_message = input_message;
             this.error_message = error_message;
@@ -81,13 +81,13 @@ public class InputView {
 
     private String validateAndReturnInput(String input_type){
         while(true){
-            System.out.println(input.inputMessageByInputType(input_type));
+            System.out.println(Input.inputMessageByInputType(input_type));
             String input_value = readLine();
-            Optional validateInput = input.isRightInput(input_type, input_value);
+            Optional validateInput = Input.isRightInput(input_type, input_value);
             if(validateInput.isPresent()){
                return input_value;
             }
-            System.out.println(input.errorMessageByInputType(input_type));
+            System.out.println(Input.errorMessageByInputType(input_type));
         }
     }
 }
