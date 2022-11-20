@@ -30,4 +30,20 @@ public class InputValidateTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("선택할 수 있는 방향인지")
+    @ParameterizedTest
+    @ValueSource(strings = {"UE"})
+    void inputImpossibleMoving(String input) {
+        Assertions.assertThatThrownBy(() -> InputValidate.possibleMovingSelect(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("선택할 수 있는 결정인지")
+    @ParameterizedTest
+    @ValueSource(strings = {"T"})
+    void inputImpossibleDecision(String input) {
+        Assertions.assertThatThrownBy(() -> InputValidate.possibleRetryDecision(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
