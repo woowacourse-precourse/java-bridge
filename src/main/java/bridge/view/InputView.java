@@ -1,6 +1,6 @@
 package bridge.view;
 
-import static bridge.validator.BridgeValidator.validateBridgeLength;
+import static bridge.validator.BridgeSizeValidator.validateBridgeSize;
 import static bridge.validator.MoveValidator.validateMovingPath;
 import static bridge.validator.RetryValidator.validateRetryCommand;
 
@@ -13,12 +13,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() { //전부 이렇게 while문으로 감싸야 하나? 내일 더 보자..
+    public int readBridgeSize() {
         while (true) {
             try {
                 System.out.println("다리의 길이를 입력해주세요.");
                 String input = Console.readLine();
-                validateBridgeLength(input);
+                validateBridgeSize(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

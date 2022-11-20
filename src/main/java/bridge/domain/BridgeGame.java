@@ -26,14 +26,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String userPath) {
+    public void move(String userPath) {
         userPaths.add(userPath);
-        return isRightPath(userLocation++, userPath);
-    }
-
-    private boolean isRightPath(int location, String userPath) {
-        String currentPath = bridge.get(location);
-        return currentPath.equals(userPath);
+        userLocation++;
     }
 
     /**
@@ -54,20 +49,19 @@ public class BridgeGame {
     }
 
     public boolean doesCrossedBridge() {
-        if (userLocation == bridge.size()) {
-            return true;
-        }
-
-        return false;
-        //return userLocatoion >= bridge.size() 가능
+        return userLocation == bridge.size();
     }
 
-    public List<String> getPassedPaths() {
+    public boolean getLastRoundResult() {
+        int lastRound = userPaths.size() - 1;
+        String userPath = userPaths.get(lastRound);
+        String bridgePath = bridge.get(lastRound);
+
+        return userPath.equals(bridgePath);
+    }
+
+    public List<String> getUserPaths() {
         return userPaths;
-    }
-
-    public int getBridgeSize() {
-        return this.bridge.size();
     }
 
     public int getTryCount() {

@@ -17,24 +17,21 @@ public class BridgeGameManager {
 	}
 
 	public void run() {
-		boolean roundResult = false;
 		String retryOrEnd = "";
 		while (!(bridgeGame.doesCrossedBridge() || retryOrEnd.equals("Q"))) {
-			roundResult = roundRun();
-			if (roundResult == false) {
+			roundRun();
+			if (bridgeGame.getLastRoundResult() == false) {
 				retryOrEnd = inputView.readGameCommand();
 				bridgeGame.retry(retryOrEnd);
 			}
 		}
 
-		outputView.printResult(bridgeGame, roundResult);
+		outputView.printResult(bridgeGame);
 	}
 
-	public boolean roundRun() {
-		String userPath = inputView.readMoving(); //InputView 클래스 사용
-		boolean roundResult = bridgeGame.move(userPath); //BridgeGame 클래스 사용
-		outputView.printMap(bridgeGame.getPassedPaths(), roundResult); //OutputView 클래스 사용
-
-		return roundResult;
+	private void roundRun() {
+		String userPath = inputView.readMoving();
+		bridgeGame.move(userPath);
+		outputView.printMap(bridgeGame);
 	}
 }
