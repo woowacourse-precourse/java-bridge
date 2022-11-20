@@ -14,10 +14,35 @@ public class BridgeGame {
     Boolean gameCorrect = false;
     Boolean gameOver = false;
 
-    public void move() {
+    public void move(String input) {
+        if (correct(input) == false) {
+            gameOver = true;
+            drawFalseMap(input);
+            return;
+        }
+        drawTrueMap(input);
+        checkEnd();
     }
 
-    public void retry() {
+    public void retry(String input) {
+        if (isQuit(input)) {
+            gameOver = true;
+        } else if (isRetry(input)) {
+            gameOver = false;
+            cleanUserInput();
+            userTry++;
+        }
+    }
+
+    public List<List<Integer>> map() {
+        return List.of(userCorrectUp, userCorrectDown);
+    }
+
+    private void checkEnd() {
+        if (gameBridge.size() == userCorrectUp.size()) {
+            gameOver = true;
+            gameCorrect = true;
+        }
     }
 
     BridgeGame(Integer size) {
@@ -26,11 +51,37 @@ public class BridgeGame {
         cleanUserInput();
     }
 
+    private void drawTrueMap(String input) {
+        if (isUp(input)) {
+            userCorrectUp.add(1);
+            userCorrectDown.add(0);
+            return;
+        }
+        userCorrectUp.add(0);
+        userCorrectDown.add(1);
+
+    }
+
+    private void drawFalseMap(String input) {
+        if (isUp(input)) {
+            userCorrectUp.add(-1);
+            userCorrectDown.add(0);
+            return;
+        }
+        userCorrectUp.add(0);
+        userCorrectDown.add(-1);
+    }
+
     private void cleanUserInput() {
         userCorrectUp = new ArrayList<>();
         userCorrectDown = new ArrayList<>();
     }
-    private boolean isUp(String input){
+
+    private boolean correct(String input) {
+        return input.equals(gameBridge.get(userCorrectUp.size()));
+    }
+
+    private boolean isUp(String input) {
         return input.equals("U");
     }
 
