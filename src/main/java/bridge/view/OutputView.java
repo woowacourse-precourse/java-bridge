@@ -28,7 +28,6 @@ public class OutputView {
 
         System.out.println("최종 게임 결과");
         System.out.println(bridge);
-        System.out.println();
         System.out.println("게임 성공 여부: " + successOrFail);
         System.out.println("총 시도한 횟수: " + trial);
     }
