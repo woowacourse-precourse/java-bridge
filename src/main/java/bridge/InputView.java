@@ -50,8 +50,7 @@ public class InputView {
      */
     private boolean checkBridgeSize(String input){
         if (!input.matches("-?\\d+")){
-            IllegalArgumentException e = new IllegalArgumentException();
-            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다. " + e.toString());
+            System.out.println(new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다. "));
             return false;
         }
         return true;
@@ -62,8 +61,7 @@ public class InputView {
      */
     private boolean checkMoving(String input){
         if (!(input.equals("U") || input.equals("D"))){
-            IllegalArgumentException e = new IllegalArgumentException();
-            System.out.println("[ERROR] 위쪽 선택을 원하면 U, 아래쪽 선택을 원하면 D를 입력해야 합니다. " + e.toString());
+            System.out.println(new IllegalArgumentException("[ERROR] 위쪽 선택을 원하면 U, 아래쪽 선택을 원하면 D를 입력해야 합니다. "));
             return false;
         }
         return true;
@@ -74,8 +72,7 @@ public class InputView {
      */
     private boolean checkGameCommand(String input){
         if (!(input.equals("R") || input.equals("Q"))){
-            IllegalArgumentException e = new IllegalArgumentException();
-            System.out.println("[ERROR] 재시작을 원하면 R, 종료를 원하면 Q를 입력해야 합니다. " + e.toString());
+            System.out.println(new IllegalArgumentException("[ERROR] 재시작을 원하면 R, 종료를 원하면 Q를 입력해야 합니다. "));
             return false;
         }
         return true;
