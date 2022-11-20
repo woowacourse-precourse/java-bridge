@@ -20,33 +20,13 @@ public class InputException {
         }
     }
 
-    public static String validateMovingValue(String input) {
-        try {
-            accurateValue(input);
-            return input;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return validateMovingValue(InputView.readMoving());
-        }
-    }
-
-    private static void accurateValue(String value) {
-        if(!(value.equals(MovingCommand.UpStairs.get()) || value.equals(MovingCommand.DownStairs.get()))) {
+    public static void validateMovingCommand(String input) {
+        if(!(input.equals(MovingCommand.UpStairs.get()) || input.equals(MovingCommand.DownStairs.get()))) {
             throw new IllegalArgumentException(ExceptionPhrases.MovingValue.getPhrase());
         }
     }
 
-    public static String validateGameCommand(String command) {
-        try {
-            accurateCommand(command);
-            return command;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return validateGameCommand(InputView.readGameCommand());
-        }
-    }
-
-    private static void accurateCommand(String command) {
+    public static void validateGameCommand(String command) {
         if(!(command.equals(GameCommand.Restart.get()) || command.equals(GameCommand.Quit.get()))) {
             throw new IllegalArgumentException(ExceptionPhrases.GameCommand.getPhrase());
         }

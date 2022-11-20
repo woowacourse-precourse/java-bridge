@@ -47,8 +47,20 @@ public class BridgeGameController {
     }
 
     private void moveAndPrint(int index) {
-        bridgeGame.move(index, InputException.validateMovingValue(InputView.readMoving()));
-        OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getResult());
+        try {
+            String command = getMovingCommand();
+            bridgeGame.move(index, command);
+            OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getResult());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            moveAndPrint(index);
+        }
+    }
+
+    private static String getMovingCommand() {
+        String command = InputView.readMoving();
+        InputException.validateMovingCommand(command);
+        return command;
     }
 
     private void end() {
@@ -56,9 +68,23 @@ public class BridgeGameController {
     }
 
     private void retry() {
-        if(InputException.validateGameCommand(InputView.readGameCommand()).equals(GameCommand.Restart.get())) {
-            bridgeGame.retry();
-            progress();
+        try {
+            String command = getGameCommand();
+            if(command.equals(GameCommand.Restart.get())) executeRetry();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            retry();
         }
+    }
+
+    private void executeRetry() {
+        bridgeGame.retry();
+        progress();
+    }
+
+    private static String getGameCommand() {
+        String command = InputView.readGameCommand();
+        InputException.validateGameCommand(command);
+        return command;
     }
 }
