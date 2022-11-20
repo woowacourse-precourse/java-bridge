@@ -29,4 +29,16 @@ public class Referee {
         String validBridge = bridge.get(index);
         return !validBridge.equals(moveDirection);
     }
+
+    public Boolean isFinalRoundPass(String moveDirection) {
+        return isFinalRound() && isPass(moveDirection);
+    }
+
+    public Boolean isFinalRound() {
+        return bridge.size() == currentRoundNumber;
+    }
+
+    public Boolean isPass(String moveDirection) {
+        return !isFail(moveDirection);
+    }
 }
