@@ -21,6 +21,11 @@ public class OutputView {
         System.out.println(resultStateDown);
     }
 
+    public void printMap() {
+        System.out.println(resultStateUp);
+        System.out.println(resultStateDown);
+    }
+
     private void addState(char dir, char ox) {
         changFormat();
         if (dir == 'U') {

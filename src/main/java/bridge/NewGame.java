@@ -21,6 +21,11 @@ public class NewGame {
             gameResult = bridgeGame.play();
             if (!gameResult.equals("R")) {break;}
         }
+        printResult(tryCount,gameResult);
+    }
+
+    private void printResult(int tryCount, String gameResult){
+        System.out.println("최종 게임 결과");
         bridgeGame.finish(gameResult,tryCount);
     }
 }

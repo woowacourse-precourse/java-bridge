@@ -13,7 +13,7 @@ public class BridgeGame extends BridgeGameInit{
     }
 
     public String play() {
-        System.out.println("bridge = " + bridge);
+//        System.out.println("bridge = " + bridge);
         for (int i=0; i < bridge.size(); i++) {
             String gameResult = move(i);
             if (gameResult.equals("Q")) {
@@ -54,6 +54,7 @@ public class BridgeGame extends BridgeGameInit{
     }
 
     public void finish(String result, int tryCount) {
+        outputView.printMap();
         if (result == "F") {
             outputView.printResult("실패", tryCount);
         } else if (result == "S") {
