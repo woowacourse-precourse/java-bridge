@@ -16,10 +16,10 @@ public enum RetryIntention {
     }
 
     public static boolean wantRetry(String userIntention) {
+
         RetryIntention retryIntention = Arrays.stream(RetryIntention.values())
                 .filter((intention) -> intention.intention.equals(userIntention)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_A_RETRY_INTENTION));
-
         return retryIntention.wantRetry;
     }
 }

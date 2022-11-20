@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import model.enums.GameStatus;
 import model.enums.MoveChoice;
-import model.enums.MoveResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -72,8 +71,8 @@ public class BridgeGameTest extends NsTest {
             GameResult gameResult = bridgeGame.getSimpleGameResult();
             assertThatThrownBy(() -> gameResult.getTryCount()).isInstanceOf(NoSuchElementException.class);
             assertThatThrownBy(() -> gameResult.getStatus()).isInstanceOf(NoSuchElementException.class);
-            List<List<MoveResult>> dummy = List.of(new ArrayList<>(), new ArrayList<>());
-            assertThat(gameResult.getMoveResult()).isEqualTo(dummy);
+            List<MoveInformation> dummy = new ArrayList<>();
+            assertThat(gameResult.getBridgeMoveInformation()).isEqualTo(dummy);
         }
 
         @Test
@@ -82,8 +81,8 @@ public class BridgeGameTest extends NsTest {
             GameResult gameResult = bridgeGame.getGameResult();
             assertThat(gameResult.getTryCount()).isEqualTo(1);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
-            List<List<MoveResult>> dummy = List.of(new ArrayList<>(), new ArrayList<>());
-            assertThat(gameResult.getMoveResult()).isEqualTo(dummy);
+            List<MoveInformation> dummy = new ArrayList<>();
+            assertThat(gameResult.getBridgeMoveInformation()).isEqualTo(dummy);
         }
     }
 
@@ -100,9 +99,8 @@ public class BridgeGameTest extends NsTest {
             assertThat(gameResult.getTryCount()).isEqualTo(2);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
 
-            for (List<MoveResult> rowMoveResult : gameResult.getMoveResult()) {
-                assertThat(rowMoveResult).isEmpty();
-            }
+            assertThat(gameResult.getBridgeMoveInformation()).isEmpty();
+
         }
     }
 

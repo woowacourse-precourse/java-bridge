@@ -22,6 +22,6 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return Stream.generate(() -> bridgeNumberGenerator.generate()).limit(size)
-                .map((positionNumber) -> MoveChoice.getMoving(positionNumber)).collect(Collectors.toUnmodifiableList());
+                .map((positionNumber) -> MoveChoice.getMatchChoice(positionNumber).getMoving()).collect(Collectors.toUnmodifiableList());
     }
 }

@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.NoSuchElementException;
 import model.enums.MoveChoice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -19,38 +20,38 @@ public class MoveChoiceTest {
 
 
     @Nested
-    @DisplayName("getMoving 메서드는 숫자 값을 입력받아")
-    class describe_getMoving {
+    @DisplayName("getMatchMoving 메서드는 숫자 값을 입력받아")
+    class describe_getMatchMoving_Integer {
 
         @Test
-        @DisplayName("알맞은 MoveChoice 객체의 moving 문자열을 반환한다.")
+        @DisplayName("알맞은 MoveChoice 객체를 반환한다.")
         void returnMovingTest() {
-            assertThat(MoveChoice.getMoving(UP_NUMBER)).isEqualTo(MoveChoice.UP.moving);
-            assertThat(MoveChoice.getMoving(DOWN_NUMBER)).isEqualTo(MoveChoice.DOWN.moving);
+            assertThat(MoveChoice.getMatchChoice(UP_NUMBER)).isEqualTo(MoveChoice.UP);
+            assertThat(MoveChoice.getMatchChoice(DOWN_NUMBER)).isEqualTo(MoveChoice.DOWN);
         }
 
         @Test
         @DisplayName("유효하지 않은 입력인 경우 예외를 발생시킨다.")
         void throwExceptionTest() {
-            assertThatThrownBy(() -> MoveChoice.getMoving(ERROR_NUMBER)).isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> MoveChoice.getMatchChoice(ERROR_NUMBER)).isInstanceOf(NoSuchElementException.class);
         }
     }
 
     @Nested
-    @DisplayName("getPositionNumber 메서드는 문자열을 입력받아")
-    class describe_getPositionNumber {
+    @DisplayName("getMatchMoving 메서드는 문자열을 입력받아")
+    class describe_getMatchMoving_String {
 
         @Test
         @DisplayName("알맞은 MoveChoice 객체의 getPositionNumber 값을 반환한다.")
         void returnMovingTest() {
-            assertThat(MoveChoice.getPositionNumber(UP_MOVING)).isEqualTo(MoveChoice.UP.positionNumber);
-            assertThat(MoveChoice.getPositionNumber(DOWN_MOVING)).isEqualTo(MoveChoice.DOWN.positionNumber);
+            assertThat(MoveChoice.getMatchChoice(UP_MOVING)).isEqualTo(MoveChoice.UP);
+            assertThat(MoveChoice.getMatchChoice(DOWN_MOVING)).isEqualTo(MoveChoice.DOWN);
         }
 
         @Test
         @DisplayName("유효하지 않은 입력인 경우 예외를 발생시킨다.")
         void throwExceptionTest() {
-            assertThatThrownBy(() -> MoveChoice.getPositionNumber(ERROR_MOVING)).isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> MoveChoice.getMatchChoice(ERROR_MOVING)).isInstanceOf(NoSuchElementException.class);
         }
     }
 }

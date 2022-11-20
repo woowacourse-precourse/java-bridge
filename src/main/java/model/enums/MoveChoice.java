@@ -15,19 +15,18 @@ public enum MoveChoice {
         this.positionNumber = positionNumber;
     }
 
-    public static String getMoving(int positionNumber) {
-
-        MoveChoice moveChoice = Arrays.stream(MoveChoice.values())
-                .filter((choice) -> choice.positionNumber == positionNumber).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_A_MOVE_CHOICE));
-        return moveChoice.moving;
+    public String getMoving() {
+        return moving;
     }
 
-    public static int getPositionNumber(String moving) {
+    public int getPositionNumber() {
+        return positionNumber;
+    }
 
-        MoveChoice moveChoice = Arrays.stream(MoveChoice.values())
-                .filter((choice) -> choice.moving.equals(moving)).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_A_MOVE_CHOICE));
-        return moveChoice.positionNumber;
+    public static MoveChoice getMatchChoice(String moving){
+        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.moving.equals(moving)).findAny().get();
+    }
+    public static MoveChoice getMatchChoice(int positionNumber){
+        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.positionNumber == positionNumber).findAny().get();
     }
 }

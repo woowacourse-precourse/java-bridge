@@ -17,7 +17,7 @@ public enum MoveResult {
         return stringValue;
     }
 
-    public boolean isSucceed() {
+    public boolean succeed() {
         return succeed;
     }
 

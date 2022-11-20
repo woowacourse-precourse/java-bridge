@@ -7,7 +7,7 @@ import model.BridgeGameExceptions;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final String GET_BRIDGE_SIZE_COMMENT = "다리의 길이를 입력해주세요.";
+    private final String GET_BRIDGE_SIZE_COMMENT = "\n다리의 길이를 입력해주세요.";
     private final String GET_MOVE_CHOICE_COMMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String GET_RETRY_INTENTION_COMMENT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
@@ -16,7 +16,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(GET_BRIDGE_SIZE_COMMENT);
-        return getInteger();
+        Integer integer = getInteger();
+        System.out.println();
+
+        return integer;
     }
 
     /**

@@ -5,7 +5,6 @@ import static model.BridgeGameExceptions.NOT_A_RETRY_INTENTION;
 import static model.BridgeGameExceptions.OUT_OF_RANGE;
 
 import java.util.Arrays;
-import model.Bridge;
 import model.enums.MoveChoice;
 import model.enums.RetryIntention;
 

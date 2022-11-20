@@ -1,7 +1,6 @@
 package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import model.enums.MoveResult;
 import org.junit.jupiter.api.DisplayName;

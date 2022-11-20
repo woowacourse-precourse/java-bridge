@@ -35,13 +35,11 @@ public class BridgeGameController {
             processOneGame();
             status = bridgeGame.getGameStatus();
 
-            if (status.succeed()) {
+            if (status.succeed() || !RetryIntention.wantRetry(getRetryIntention())) {
                 return;
             }
 
-            if (RetryIntention.wantRetry(getRetryIntention())) {
-                bridgeGame.retry();
-            }
+            bridgeGame.retry();
         }
     }
 

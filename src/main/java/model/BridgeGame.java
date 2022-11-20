@@ -1,18 +1,12 @@
 package model;
 
-import static model.enums.MoveChoice.getPositionNumber;
-import static model.enums.MoveResult.FAIL;
-import static model.enums.MoveResult.NULL;
-import static model.enums.MoveResult.getMatchResult;
-
 import dto.GameResult;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import model.enums.GameStatus;
+import model.enums.MoveChoice;
 import model.enums.MoveResult;
 
 /**
@@ -20,14 +14,14 @@ import model.enums.MoveResult;
  */
 public class BridgeGame {
 
-    private List<List<MoveResult>> bridgeMoveResults;
+    private List<MoveInformation> bridgeMoveInformation;
     private Bridge bridge;
     private int tryCount;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.tryCount = 1;
-        this.bridgeMoveResults = List.of(new ArrayList<>(), new ArrayList<>());
+        this.bridgeMoveInformation = new ArrayList<>();
     }
 
     /**
@@ -36,8 +30,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moveChoice) {
-        int targetIndex = bridgeMoveResults.get(0).size();
-        updateMoveResults(getPositionNumber(moveChoice), bridge.movable(targetIndex, moveChoice));
+        int targetIndex = bridgeMoveInformation.size();
+        updateMoveResults(MoveChoice.getMatchChoice(moveChoice), bridge.movable(targetIndex, moveChoice));
     }
 
     /**
@@ -47,7 +41,7 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
-        this.bridgeMoveResults = List.of(new ArrayList<>(), new ArrayList<>());
+        this.bridgeMoveInformation = new ArrayList<>();
     }
 
     public GameResult getGameResult() {
@@ -63,34 +57,26 @@ public class BridgeGame {
     }
 
     private boolean succeed() {
-        if (failed() || bridge.size() != bridgeMoveResults.get(0).size()) {
+        if (failed() || bridge.size() != bridgeMoveInformation.size()) {
             return false;
         }
         return true;
     }
 
     private boolean failed() {
-        int lastIndex = bridgeMoveResults.get(0).size() - 1;
+        int lastIndex = bridgeMoveInformation.size() - 1;
         if (lastIndex < 0) {
             return false;
         }
 
-        return IntStream.range(0, bridgeMoveResults.size()).anyMatch((i) -> bridgeMoveResults.get(i).get(lastIndex).equals(FAIL));
+        return bridgeMoveInformation.get(lastIndex).moveSucceed() != true;
     }
 
-    private void updateMoveResults(int row, boolean succeed) {
-        for (int i = 0; i < bridgeMoveResults.size(); i++) {
-            List<MoveResult> rowMoveResult = bridgeMoveResults.get(i);
-            if (i == row) {
-                rowMoveResult.add(getMatchResult(succeed));
-                continue;
-            }
-            rowMoveResult.add(NULL);
-        }
+    private void updateMoveResults(MoveChoice moveChoice, boolean succeed) {
+        bridgeMoveInformation.add(new MoveInformation(MoveResult.getMatchResult(succeed), moveChoice));
     }
 
-    private List<List<MoveResult>> getBridgeMoveResults() {
-        return bridgeMoveResults.stream().map((rowMoveResults) -> Collections.unmodifiableList(rowMoveResults))
-                .collect(Collectors.toUnmodifiableList());
+    private List<MoveInformation> getBridgeMoveResults() {
+        return Collections.unmodifiableList(bridgeMoveInformation);
     }
 }

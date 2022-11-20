@@ -1,7 +1,7 @@
 package dto;
 
+import model.MoveInformation;
 import model.enums.GameStatus;
-import model.enums.MoveResult;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,12 +9,12 @@ public class GameResult {
 
     private Optional<Integer> tryCount;
     private Optional<GameStatus> status;
-    private List<List<MoveResult>> moveResult;
+    private List<MoveInformation> bridgeMoveInformation;
 
-    public GameResult(Optional<Integer> tryCount, Optional<GameStatus> status, List<List<MoveResult>> moveResult) {
+    public GameResult(Optional<Integer> tryCount, Optional<GameStatus> status, List<MoveInformation> bridgeMoveInformation) {
         this.tryCount = tryCount;
         this.status = status;
-        this.moveResult = moveResult;
+        this.bridgeMoveInformation = bridgeMoveInformation;
     }
 
     public Integer getTryCount() {
@@ -25,7 +25,7 @@ public class GameResult {
         return status.get();
     }
 
-    public List<List<MoveResult>> getMoveResult() {
-        return moveResult;
+    public List<MoveInformation> getBridgeMoveInformation() {
+        return bridgeMoveInformation;
     }
 }
