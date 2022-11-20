@@ -53,7 +53,7 @@ public class InputController {
         }
     }
 
-    private boolean readAndParseGameCommandInput() {
+    public boolean readAndParseGameCommandInput() {
         MessageUtil.retryCommandMsg();
         String retryCommandInput = InputView.readGameCommand();
         ParserUtil.parseGameCommand(retryCommandInput);

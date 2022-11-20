@@ -27,4 +27,13 @@ class ParserUtilTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("재도전 의사 입력값이 'r'이나 'Q'가 아닐 경우 오류 발생")
+    @ParameterizedTest
+    @ValueSource (strings = {"", "1", "u", "@"})
+    void parseRetryCommandInput(String input) {
+        assertThatThrownBy(() -> {
+            ParserUtil.parseGameCommand(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
