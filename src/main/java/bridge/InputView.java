@@ -12,38 +12,38 @@ public class InputView {
         scanner = new Scanner(System.in);
     }
 
-    public int readBridgeSize() throws IllegalAccessException {
+    public int readBridgeSize() throws IllegalArgumentException {
         String size = Console.readLine();
         validateBridgeSize(size);
 
         return Integer.parseInt(size);
     }
 
-    private void validateBridgeSize(String size) throws IllegalAccessException {
+    private void validateBridgeSize(String size) throws IllegalArgumentException {
         int isize;
         for(int i = 0 ; i < size.length() ; i++) {
             if(!Character.isDigit(size.charAt(i))) {
-                throw new IllegalAccessException();
+                throw new IllegalArgumentException();
             }
         }
         isize = Integer.parseInt(size);
         if(isize<3 || isize>20) {
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalAccessException {
+    public String readMoving() throws IllegalArgumentException {
         String move = Console.readLine();
         validateMoving(move);
         return move;
     }
 
-    private void validateMoving(String move) throws IllegalAccessException {
+    private void validateMoving(String move) throws IllegalArgumentException {
         if(!(move.equals("U") || move.equals("D"))) {
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
     }
 
