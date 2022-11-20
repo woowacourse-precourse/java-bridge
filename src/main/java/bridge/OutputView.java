@@ -37,6 +37,13 @@ public class OutputView {
     public static void printMapOneLine(BridgeGame game, String last, String line, String otherLine) {
         List<String> bridge = game.getBridge();
         System.out.print("[ ");
+        printFrontSome(game, line, otherLine);
+        printLastOne(game, last, line, otherLine);
+        System.out.println(" ]");
+    }
+
+    public static void printFrontSome(BridgeGame game, String line, String otherLine){
+        List<String> bridge = game.getBridge();
         for (int i = 0; i < game.getPlayerPosition(); i++) {
             if (bridge.get(i).equals(line)) {
                 System.out.print("O | ");
@@ -45,10 +52,7 @@ public class OutputView {
                 System.out.print("  | ");
             }
         }
-        printLastOne(game, last, line, otherLine);
-        System.out.println(" ]");
     }
-
     public static void printLastOne(BridgeGame game, String last, String line, String otherLine) {
         List<String> bridge = game.getBridge();
         if (last.equals(line)) {
