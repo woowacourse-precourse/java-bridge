@@ -14,6 +14,8 @@ public class Controller {
     }
 
     private Bridge createBridge() {
+        outputView.printGameStart();
+
         BridgeNumberGenerator BridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(BridgeRandomNumberGenerator);
 
