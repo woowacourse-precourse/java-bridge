@@ -1,24 +1,44 @@
 package bridge.dto;
 
 import bridge.BridgeMark;
+import bridge.GameStatus;
 
 import java.util.List;
 
 public class GameResultDto {
 
-    private final List<BridgeMark> record;
-    private final int attempt;
+    private final GameStatus gameStatus;
+    private final GameRecord gameRecord;
 
-    public GameResultDto(List<BridgeMark> record, int attempt) {
-        this.record = record;
-        this.attempt = attempt;
+    public static class GameRecord {
+
+        private final List<BridgeMark> record;
+        private final int attempt;
+
+        public GameRecord(List<BridgeMark> record, int attempt) {
+            this.record = record;
+            this.attempt = attempt;
+        }
+
+        public List<BridgeMark> getRecord() {
+            return record;
+        }
+
+        public int getAttempt() {
+            return attempt;
+        }
     }
 
-    public List<BridgeMark> getRecord() {
-        return record;
+    public GameResultDto(GameStatus gameStatus, GameRecord gameRecord) {
+        this.gameStatus = gameStatus;
+        this.gameRecord = gameRecord;
     }
 
-    public int getAttempt() {
-        return attempt;
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    public GameRecord getGameRecord() {
+        return gameRecord;
     }
 }

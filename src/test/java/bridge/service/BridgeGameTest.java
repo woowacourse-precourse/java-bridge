@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static bridge.dto.GameResultDto.GameRecord;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -24,28 +25,32 @@ class BridgeGameTest {
     @DisplayName("플레이어가 한 라운드 플레이하면 게임 계속 가능 결과 반환")
     @Test
     void moveResultContinue() {
-        GameStatus gameStatus = bridgeGame.move(1, "U");
+        GameResultDto gameResultDto = bridgeGame.move(1, "U");
+        GameStatus gameStatus = gameResultDto.getGameStatus();
         assertThat(gameStatus.isContinue()).isTrue();
     }
 
     @DisplayName("플레이어가 한 라운드 플레이하면 게임 실패 결과 반환")
     @Test
     void moveResultFail() {
-        GameStatus gameStatus = bridgeGame.move(3, "U");
+        GameResultDto gameResultDto = bridgeGame.move(3, "U");
+        GameStatus gameStatus = gameResultDto.getGameStatus();
         assertThat(gameStatus.isFail()).isTrue();
     }
 
     @DisplayName("플레이어가 마지막 라운드 플레이하면 게임 성공 결과 반환")
     @Test
     void moveResultSuccess() {
-        GameStatus gameStatus = bridgeGame.move(6, "U");
+        GameResultDto gameResultDto = bridgeGame.move(6, "U");
+        GameStatus gameStatus = gameResultDto.getGameStatus();
         assertThat(gameStatus.isSuccess()).isTrue();
     }
 
     @DisplayName("플레이어가 마지막 라운드 플레이하면 게임 실패 결과 반환")
     @Test
     void moveResultLastFail() {
-        GameStatus gameStatus = bridgeGame.move(6, "D");
+        GameResultDto gameResultDto = bridgeGame.move(6, "D");
+        GameStatus gameStatus = gameResultDto.getGameStatus();
         assertThat(gameStatus.isFail()).isTrue();
     }
 
@@ -54,12 +59,12 @@ class BridgeGameTest {
     void getMoveReport() {
         bridgeGame.move(1, "U");
         bridgeGame.move(2, "U");
-        bridgeGame.move(3, "D");
+        GameResultDto gameResultDto = bridgeGame.move(3, "D");
 
-        GameResultDto responseDto = bridgeGame.getGameReport();
+        GameRecord gameRecord = gameResultDto.getGameRecord();
 
-        assertThat(responseDto.getAttempt()).isEqualTo(1);
-        assertThat(responseDto.getRecord())
+        assertThat(gameRecord.getAttempt()).isEqualTo(1);
+        assertThat(gameRecord.getRecord())
                 .containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
 
@@ -69,7 +74,9 @@ class BridgeGameTest {
         bridgeGame.retry();
         bridgeGame.retry();
 
-        GameResultDto responseDto = bridgeGame.getGameReport();
-        assertThat(responseDto.getAttempt()).isEqualTo(3);
+        GameResultDto gameResultDto = bridgeGame.move(3, "D");
+        GameRecord gameRecord = gameResultDto.getGameRecord();
+
+        assertThat(gameRecord.getAttempt()).isEqualTo(3);
     }
 }

@@ -1,9 +1,9 @@
 package bridge;
 
-import bridge.dto.GameResultDto;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.dto.GameResultDto.GameRecord;
 
 public class Player {
 
@@ -25,11 +25,11 @@ public class Player {
         record.clear();
     }
 
-    public GameResultDto toResponseDto() {
-        return new GameResultDto(new ArrayList<>(record), attempt);
-    }
-
     public void increaseAttempt() {
         attempt++;
+    }
+
+    public GameRecord toResponseDto() {
+        return new GameRecord(new ArrayList<>(record), attempt);
     }
 }

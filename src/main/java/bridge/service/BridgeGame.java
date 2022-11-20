@@ -8,6 +8,9 @@ import bridge.GameStatus;
 import bridge.Player;
 import bridge.dto.GameResultDto;
 
+import static bridge.dto.GameResultDto.GameRecord;
+
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  *
@@ -20,7 +23,7 @@ import bridge.dto.GameResultDto;
 public class BridgeGame {
 
     private Bridge bridge;
-    private Player player;
+    private final Player player;
 
     public BridgeGame() {
         this.player = new Player();
@@ -36,10 +39,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameStatus move(int round, String moveMark) {
-        BridgeMark mark = BridgeMark.of(moveMark);
-        player.record(mark);
-        return bridge.cross(round, mark);
+    public GameResultDto move(int round, String moveMark) {
+        BridgeMark movingMark = BridgeMark.of(moveMark);
+        player.record(movingMark);
+        GameStatus gameStatus = bridge.cross(round, movingMark);
+
+        GameRecord gameRecord = player.toResponseDto();
+        return createGameResultDto(gameStatus, gameRecord);
+    }
+
+    private GameResultDto createGameResultDto(GameStatus gameStatus, GameRecord gameRecord) {
+        return new GameResultDto(gameStatus, gameRecord);
     }
 
     /**
@@ -50,9 +60,5 @@ public class BridgeGame {
     public void retry() {
         player.clear();
         player.increaseAttempt();
-    }
-
-    public GameResultDto getGameReport() {
-        return player.toResponseDto();
     }
 }

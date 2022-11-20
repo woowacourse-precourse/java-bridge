@@ -10,7 +10,7 @@ import bridge.view.OutputView;
 public class GameController {
 
     public static final int START_ROUND = 1;
-    public static final int ROUND_INCREMENT = 1;
+    public static final int ROUND_INCREMENT_VALUE = 1;
     public static final String RESTART = "R";
     public static final String QUIT = "Q";
 
@@ -35,26 +35,26 @@ public class GameController {
         OutputView.printMove();
         String movingMark = InputView.readMoving();
 
-        GameStatus gameStatus = bridgeGame.move(round, movingMark);
-        GameResultDto gameResult = bridgeGame.getGameReport();
-        OutputView.printMap(gameStatus, gameResult);
+        GameResultDto gameResult = bridgeGame.move(round, movingMark);
+        OutputView.printMap(gameResult);
 
-        checkGameStatus(round, gameStatus, gameResult);
+        checkNextRound(round, gameResult);
     }
 
-    private void checkGameStatus(int round, GameStatus gameStatus, GameResultDto gameResult) {
+    private void checkNextRound(int round, GameResultDto gameResult) {
+        GameStatus gameStatus = gameResult.getGameStatus();
         if (gameStatus.isSuccess()) {
-            OutputView.printResult(gameStatus, gameResult);
+            OutputView.printResult(gameResult);
         }
         if (gameStatus.isFail()) {
-            checkRestart(gameStatus, gameResult);
+            checkRestart(gameResult);
         }
         if (gameStatus.isContinue()) {
-            recursiveRound(round + ROUND_INCREMENT);
+            recursiveRound(round + ROUND_INCREMENT_VALUE);
         }
     }
 
-    private void checkRestart(GameStatus gameStatus, GameResultDto gameResult) {
+    private void checkRestart(GameResultDto gameResult) {
         OutputView.printRestart();
         String restart = InputView.readGameCommand();
 
@@ -63,7 +63,7 @@ public class GameController {
             recursiveRound(START_ROUND);
         }
         if (restart.equals(QUIT)) {
-            OutputView.printResult(gameStatus, gameResult);
+            OutputView.printResult(gameResult);
         }
     }
 }

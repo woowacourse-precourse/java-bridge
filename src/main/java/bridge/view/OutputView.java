@@ -1,11 +1,9 @@
 package bridge.view;
 
-import bridge.BridgeMark;
 import bridge.GameStatus;
 import bridge.dto.GameResultDto;
 
-import java.util.List;
-
+import static bridge.dto.GameResultDto.GameRecord;
 import static bridge.view.BridgeMapViewCreator.BridgeMap;
 
 /**
@@ -44,10 +42,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(GameStatus gameStatus, GameResultDto gameResultDto) {
-        List<BridgeMark> records = gameResultDto.getRecord();
-        BridgeMap bridgeMap = BridgeMapViewCreator.create(gameStatus, records);
+    public static void printMap(GameResultDto gameResult) {
+        GameStatus gameStatus = gameResult.getGameStatus();
+        GameRecord gameRecord = gameResult.getGameRecord();
 
+        BridgeMap bridgeMap = BridgeMapViewCreator.create(gameStatus, gameRecord.getRecord());
         System.out.println(bridgeMap.getUpBridge());
         System.out.println(bridgeMap.getDownBridge());
         printBlank();
@@ -58,12 +57,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(GameStatus gameStatus, GameResultDto gameResultDto) {
+    public static void printResult(GameResultDto gameResult) {
         System.out.println(GAME_END_MESSAGE);
-        printMap(gameStatus, gameResultDto);
+        printMap(gameResult);
         printBlank();
+
+        GameStatus gameStatus = gameResult.getGameStatus();
+        GameRecord gameRecord = gameResult.getGameRecord();
         System.out.printf(GAME_RESULT_MESSAGE, gameStatus.getMessage());
-        System.out.printf(GAME_RESULT_ATTEMPT_MESSAGE, gameResultDto.getAttempt());
+        System.out.printf(GAME_RESULT_ATTEMPT_MESSAGE, gameRecord.getAttempt());
     }
 
     public static void printRestart() {
