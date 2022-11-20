@@ -9,7 +9,7 @@ public class Bridge {
     private static final String EMPTY_CELL = "   ";
     private static final String CORRECT_CELL = " O ";
     private static final String INCORRECT_CELL = " X ";
-    private static final String SEPERATOR = "|";
+    private static final String SEPARATOR = "|";
 
     public Bridge(int size, Player player) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -30,8 +30,8 @@ public class Bridge {
             top.append(getTopCell(i));
             bottom.append(getBottomCell(i));
             if (i != player.getIndex()) {
-                top.append(SEPERATOR);
-                bottom.append(SEPERATOR);
+                top.append(SEPARATOR);
+                bottom.append(SEPARATOR);
             }
         }
         top.append("]\n");
@@ -79,9 +79,5 @@ public class Bridge {
 
     public int size() {
         return bridge.size();
-    }
-
-    public void setPlayer(Player newPlayer) {
-        player = newPlayer;
     }
 }
