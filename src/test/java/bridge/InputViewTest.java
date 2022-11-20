@@ -23,4 +23,11 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.validInteger("hello"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("InputView 통해 Move 입력 시 U 혹은 D 가 아닌 값을 입력 시 예외가 발생한다.")
+    @Test
+    void validMovingValueTest() {
+        assertThatThrownBy(() -> inputView.validMoving("O"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
