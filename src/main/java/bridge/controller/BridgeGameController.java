@@ -21,10 +21,6 @@ public class BridgeGameController {
 
     private final ExceptionHandle exceptionHandle = new ExceptionHandle(outputView);
 
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
     public void startGame() {
         outputView.printGameStart();
         List<String> bridge = createBridge();
@@ -37,11 +33,12 @@ public class BridgeGameController {
         return exceptionHandle.getCorrectInput(() -> {
             outputView.printRequestBridgeLength();
             int bridgeSize = inputView.readBridgeSize();
-            return bridgeMaker.makeBridge(bridgeSize);
+            return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
         });
     }
 
     private GameStatus play(BridgeGame bridgeGame) {
+
         while (true) {
             GameStatus gameStatus = bridgeGame.move(choiceBridge());
             outputView.printMap(bridgeGame.getBridgeMoveLog());
