@@ -6,8 +6,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.Model.BridgeSizeValidator;
-import bridge.Model.Validator;
+import bridge.Controller.BridgeSizeValidator;
+import bridge.Controller.MovingCommandValidator;
+import bridge.Controller.Validator;
 import bridge.View.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
@@ -21,6 +22,7 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static final String ERROR_NON_NUMERIC_VALUE = "[ERROR] 숫자 이외의 값을 입력할 수 없습니다.";
     private static final String ERROR_OUT_OF_RANGE = "[ERROR] 입력 가능한 범위를 초과하였습니다.(3 <= N <= 20)";
+    private static final String ERROR_NON_EXISTENT_COMMAND = "[ERROR] 올바르지 않은 명령입니다.";
     private static InputStream in;
     private static InputView inputView = new InputView();
     private static Validator validator;
@@ -106,6 +108,66 @@ class ApplicationTest extends NsTest {
                 "U", "D", "D", "U", "U", "U", "D", "D", "U", "D",
                 "U", "D", "D", "U", "U", "U", "D", "D", "U", "D",
                 "U", "D", "D", "U", "U", "U", "D", "D", "U", "D");
+    }
+    //endregion
+
+    //region 이동할 칸 입력 단위 테스트 케이스
+    @Test
+    void 이동할_칸_입력_예외테스트_지정문자이외입력(){
+        assertThatThrownBy(() -> {
+            validator = new MovingCommandValidator();
+            validator.validate("B");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 이동할_칸_입력_예외테스트_소문자입력(){
+        assertThatThrownBy(() -> {
+            validator = new MovingCommandValidator();
+            validator.validate("u");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 이동할_칸_입력_예외테스트_숫자입력(){
+        assertThatThrownBy(() -> {
+            validator = new MovingCommandValidator();
+            validator.validate("5");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 이동할_칸_입력_예외테스트_제어문자입력(){
+        assertThatThrownBy(() -> {
+            validator = new MovingCommandValidator();
+            validator.validate("\r");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 이동할_칸_입력_기능테스트_U(){
+        String input = "U";
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        String movingCommand = inputView.readMoving();
+        assertThat(movingCommand).isEqualTo("U");
+    }
+
+    @Test
+    void 이동할_칸_입력_기능테스트_D(){
+        String input = "D";
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        String movingCommand = inputView.readMoving();
+        assertThat(movingCommand).isEqualTo("D");
     }
     //endregion
 
