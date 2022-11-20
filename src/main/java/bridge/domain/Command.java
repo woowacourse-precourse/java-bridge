@@ -16,10 +16,9 @@ public enum Command {
     }
 
     public static Command getCommandByString(String commandData) {
-        Optional<Command> returnCommand = Arrays.stream(Command.values())
+        return Arrays.stream(Command.values())
                 .filter((ch) -> ch.command.equals(commandData))
-                .findAny();
-        returnCommand.orElseThrow(() -> new IllegalArgumentException(INVALID_STRING_ERROR_MESSAGE));
-        return returnCommand.get();
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_STRING_ERROR_MESSAGE));
     }
 }
