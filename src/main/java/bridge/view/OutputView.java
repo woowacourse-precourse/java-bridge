@@ -10,6 +10,7 @@ import static bridge.utils.command.MoveCommand.DOWN;
 import static bridge.utils.command.MoveCommand.UP;
 import static bridge.utils.message.FixedMessage.GAME_START;
 
+import bridge.BridgeGame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,28 +26,33 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
-     * @param movingData
-     * @param movingResults
+     * @param bridgeGame
      */
-    public void printMap(List<String> movingData, List<Boolean> movingResults) {
+    public void printMap(BridgeGame bridgeGame) {
         List<String> topLineMap = new ArrayList<>();
         List<String> bottomLineMap = new ArrayList<>();
 
-        for (int movingResultsIndex = 0; movingResultsIndex < movingResults.size(); movingResultsIndex++) {
-            if (Objects.equals(movingData.get(movingResultsIndex), UP.getCommand())) {
-                topLineMap.add(markMovingSuccessOrFail(movingResults, movingResultsIndex));
+        makeLineMap(bridgeGame, topLineMap, bottomLineMap);
+
+        System.out.println(formatMap(topLineMap));
+        System.out.println(formatMap(bottomLineMap));
+    }
+
+    private void makeLineMap(BridgeGame bridgeGame, List<String> topLineMap, List<String> bottomLineMap) {
+        for (int index = 0; index < bridgeGame.getCountOfMovingResults(); index++) {
+            if (Objects.equals(bridgeGame.findMovingByIndex(index), UP.getCommand())) {
+                topLineMap.add(markMovingSuccessOrFail(bridgeGame.findMovingResultByIndex(index)));
                 bottomLineMap.add(NOTHING_MARKING);
             }
-            if (Objects.equals(movingData.get(movingResultsIndex), DOWN.getCommand())) {
-                bottomLineMap.add(markMovingSuccessOrFail(movingResults, movingResultsIndex));
+            if (Objects.equals(bridgeGame.findMovingByIndex(index), DOWN.getCommand())) {
+                bottomLineMap.add(markMovingSuccessOrFail(bridgeGame.findMovingResultByIndex(index)));
                 topLineMap.add(NOTHING_MARKING);
             }
         }
-        System.out.println(formatMap(topLineMap) + "\n" + formatMap(bottomLineMap));
     }
 
-    private String markMovingSuccessOrFail(List<Boolean> movingResults, int movingResultsIndex) {
-        if (Boolean.TRUE.equals(movingResults.get(movingResultsIndex))) {
+    private String markMovingSuccessOrFail(Boolean movingResult) {
+        if (Boolean.TRUE.equals(movingResult)) {
             return MOVING_SUCCESS_MARKING;
         }
         return MOVING_FAIL_MARKING;
