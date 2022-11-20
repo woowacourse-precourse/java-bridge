@@ -1,13 +1,16 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 public class BridgeTest {
     @DisplayName("다리 길이가 정상인 경우에 대한 테스트")
@@ -35,5 +38,14 @@ public class BridgeTest {
         Validation validation = new Validation();
         assertThatThrownBy(() -> validation.validateBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리 생성 테스트")
+    @Test
+    void createBridge() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(0, 1, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).isEqualTo(newArrayList("D", "U", "D"));
     }
 }
