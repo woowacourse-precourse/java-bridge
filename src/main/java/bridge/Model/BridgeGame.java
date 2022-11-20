@@ -60,4 +60,12 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public UserChoices getUserChoices(){
+        return userChoices;
+    }
+
+    public CrossResults getCrossResults(){
+        return crossResults;
+    }
 }

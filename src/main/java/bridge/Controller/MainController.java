@@ -1,7 +1,9 @@
 package bridge.Controller;
 
+import bridge.Enum.GameStatus;
 import bridge.Model.BridgeGame;
 import bridge.Model.VO.BridgeSize;
+import bridge.Model.VO.UserChoice;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -14,5 +16,15 @@ public class MainController {
         System.out.println("다리 건너기 게임을 시작합니다.");
         BridgeSize bridgeSize = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
+    }
+
+    public void run(){
+        GameStatus gameStatus = GameStatus.RUNNING;
+        while(gameStatus.equals(GameStatus.RUNNING)) {
+            UserChoice userChoice = inputView.readMoving();
+            bridgeGame.move(userChoice);
+            gameStatus = bridgeGame.checkGameStatus();
+            outputView.printMap(bridgeGame.getUserChoices(), bridgeGame.getCrossResults());
+        }
     }
 }
