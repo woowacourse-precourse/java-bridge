@@ -17,8 +17,7 @@ public class Bridge {
     }
 
     private int getBridgeSize() {
-        ValidationException validationException = new ValidationException();
-        InputView inputView = new InputView(validationException);
+        InputView inputView = new InputView(new ValidationException());
 
         return inputView.readBridgeSize();
     }
