@@ -21,8 +21,9 @@ public class BridgeGameTest extends BridgeGameTestTool{
     void moveTest(List<String> bridge, List<String> movingRoute) {
         try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
             BridgeGame bridgeGame = new BridgeGame(bridge.size());
+            moveByMovingRoute(movingRoute, bridgeGame);
 
-            BridgeGameDto result = moveByMovingRoute(movingRoute, bridgeGame);
+            BridgeGameDto result = bridgeGame.getBridgeGameDto();
 
             assertThat(result.getBridge()).isEqualTo(bridge);
             assertThat(result.getRoute()).isEqualTo(movingRoute);
@@ -50,9 +51,9 @@ public class BridgeGameTest extends BridgeGameTestTool{
             bridgeGame.move("U");
             bridgeGame.retry();
 
-            BridgeGameDto result = bridgeGame.move("D");
+            BridgeGameDto result = bridgeGame.getBridgeGameDto();
 
-            assertThat(result.getRoute()).isEqualTo(List.of("D"));
+            assertThat(result.getRoute()).isEqualTo(List.of());
         }
     }
 
@@ -92,7 +93,7 @@ public class BridgeGameTest extends BridgeGameTestTool{
             bridgeGame.retry();
             int excepted = 3;
 
-            int result = bridgeGame.move("U").getCountOfTry();
+            int result = bridgeGame.getBridgeGameDto().getCountOfTry();
 
             assertThat(result).isEqualTo(excepted);
         }

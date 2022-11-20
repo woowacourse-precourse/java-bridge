@@ -21,6 +21,7 @@ public class BridgeGameApplication {
         outputView.printStartGame();
         makeBridgeGame();
         runApplication();
+        printResult();
     }
 
     private void makeBridgeGame() {
@@ -29,31 +30,32 @@ public class BridgeGameApplication {
     }
 
     private void runApplication() {
-        BridgeGameDto result;
         while (true) {
-            result = playGame();
-
+            playGame();
             if (bridgeGame.isSuccess() || !isRetry()) {
                 break;
             }
             bridgeGame.retry();
         }
-        outputView.printResult(result);
     }
     
-    private BridgeGameDto playGame() {
+    private void playGame() {
         while (true) {
             String moving = inputView.readMoving();
-            BridgeGameDto currentBridgeDto = bridgeGame.move(moving);
-            outputView.printMap(currentBridgeDto);
+            bridgeGame.move(moving);
+            outputView.printMap(bridgeGame.getBridgeGameDto());
             
             if (!bridgeGame.isContinue()) {
-                return currentBridgeDto;
+                return;
             }
         }
     }
     
     private boolean isRetry() {
         return inputView.readGameCommand().equals(Constants.RETRY);
+    }
+
+    private void printResult() {
+        outputView.printResult(bridgeGame.getBridgeGameDto());
     }
 }

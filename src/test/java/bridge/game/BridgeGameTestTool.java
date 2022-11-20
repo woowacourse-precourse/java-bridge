@@ -21,11 +21,9 @@ public abstract class BridgeGameTestTool {
                 });
     }
 
-    BridgeGameDto moveByMovingRoute(List<String> movingRoutes, BridgeGame bridgeGame) {
-        BridgeGameDto bridgeGameDto = null;
+    void moveByMovingRoute(List<String> movingRoutes, BridgeGame bridgeGame) {
         for (String movingRoute : movingRoutes) {
-            bridgeGameDto = bridgeGame.move(movingRoute);
+            bridgeGame.move(movingRoute);
         }
-        return bridgeGameDto;
     }
 }
