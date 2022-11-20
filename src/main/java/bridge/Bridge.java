@@ -13,7 +13,7 @@ public class Bridge {
         bridgeLength = userInput.readBridgeSize();
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeRoute = maker.makeBridge(bridgeLength);
-        currentPosition=0;
+        currentPosition=-1;
     }
     public boolean nextStep(){
         currentPosition++;
@@ -33,10 +33,16 @@ public class Bridge {
         }
         throw new RuntimeException("존재하지 않는 move명령이 들어왔습니다.");
     }
+    private boolean isArrive(){
+        if(currentPosition==bridgeLength){
+            return true;
+        }
+        return false;
+    }
     public void printRoute(){
         System.out.println(bridgeLength);
     }
     public void resetStep(){
-        currentPosition = 0;
+        currentPosition = -1;
     }
 }
