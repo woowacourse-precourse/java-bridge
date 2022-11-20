@@ -39,6 +39,37 @@ class BridgeMakerTest {
                 .hasMessageContaining(ERROR_INVALID_BRIDGE_NUMBER);
     }
 
+    @DisplayName("입력받은 길이의 다리를 생성한다.")
+    @ParameterizedTest
+    @MethodSource("generateMakeBridgeTestData")
+    void makeBridge(List<Integer> bridgeNumbers, int bridgeSize, List<String> expectedBridge) {
+        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(bridgeNumbers);
+        BridgeMaker bridgeMaker = new BridgeMaker(testNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        assertThat(bridge)
+            .containsExactly(toString(expectedBridge));
+    }
+
+    static Stream<Arguments> generateMakeBridgeTestData() {
+        return Stream.of(
+                arguments(newArrayList(0, 0, 1), "3",
+                        List.of("D", "D", "U")),
+                arguments(newArrayList(1, 1, 0, 0, 1, 1, 0, 0, 0, 0), "10",
+                        List.of("U", "U", "D", "D", "U", "U", "D", "D", "D", "D"))
+        );
+    }
+
+    static String toString(List<String> bridge) {
+
+        String string = bridge.toString()
+                .replace("[", "\"")
+                .replace("]", "\"");
+        String result = String.join("\", \"", string);
+        System.out.println("string = " + string);
+        System.out.println("result = " + result);
+        return result;
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
