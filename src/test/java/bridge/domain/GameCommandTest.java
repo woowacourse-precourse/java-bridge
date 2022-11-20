@@ -32,4 +32,15 @@ class GameCommandTest {
             );
         }
     }
+
+    @DisplayName("GameCommand 가 Restart 인지 boolean 값을 반환한다.")
+    @Test
+    void isRestart() {
+        assertAll(
+                () -> assertThat(GameCommand.of("R").isRestart()).isTrue(),
+                () -> assertThat(GameCommand.RESTART.isRestart()).isTrue(),
+                () -> assertThat(GameCommand.of("Q").isRestart()).isFalse(),
+                () -> assertThat(GameCommand.QUIT.isRestart()).isFalse()
+        );
+    }
 }

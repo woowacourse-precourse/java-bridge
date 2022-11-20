@@ -18,4 +18,8 @@ public enum GameCommand {
                 .findAny()
                 .orElseThrow(() -> new NoSuchGameCommandException(text));
     }
+
+    public boolean isRestart() {
+        return this == GameCommand.RESTART;
+    }
 }
