@@ -76,6 +76,44 @@ class InputViewTest extends NsTest {
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("사용자가 이동할 칸으로 'U' 또는 'D'를 입력받늗다.")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void readMovingCorrect(String str) {
+        InputView inputView = new InputView();
+        command("U", "D");
+
+        String moving = inputView.readMoving();
+
+        assertThat(moving).isEqualTo(str);
+    }
+
+    @DisplayName("정의되지 않은 문자열이 입력될 경우 예외를 발생한다.")
+    @ValueSource(strings = {"A", "123", "haha", "DD"})
+    @ParameterizedTest
+    void readMovingIncorrect(String str) {
+        InputView inputView = new InputView();
+        command("A", "123", "haha", "DD");
+
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("정의되지 않은 문자열이 입력될 경우 예외를 발생한다. - 메시지 점검")
+    @ValueSource(strings = {"A", "123", "haha", "DD"})
+    @ParameterizedTest
+    void readMovingIncorrectMessage(String str) {
+        InputView inputView = new InputView();
+        command("A", "123", "haha", "DD");
+
+        try {
+            inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        assertThat(output().trim()).contains(ErrorPhrases.NOT_COMMAND_STRING.toString());
+    }
+
     @Override
     protected void runMain() {
     }

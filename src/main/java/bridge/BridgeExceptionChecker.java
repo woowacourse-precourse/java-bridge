@@ -21,4 +21,19 @@ public class BridgeExceptionChecker {
             throw new IllegalArgumentException(ErrorPhrases.NUMBER_STRING_OUT_OF_RANGE.toString());
         }
     }
+
+    static void raiseExceptionIfIsNotCommand(String str) {
+        if (!isCommand(str)) {
+            throw new IllegalArgumentException(ErrorPhrases.NOT_COMMAND_STRING.toString());
+        }
+    }
+
+    private static boolean isCommand(String str) {
+        for (VerticalPositionValue val : VerticalPositionValue.values()) {
+            if (val.getSign().equals(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
