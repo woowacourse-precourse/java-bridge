@@ -8,11 +8,11 @@ import bridge.support.BridgeRandomNumberGenerator;
 
 import java.util.List;
 
+import static bridge.utils.GameCommand.COMMAND_RESTART;
 import static bridge.utils.GameStatus.LOSE;
 import static bridge.utils.GameStatus.PLAYING;
 
 public class GameController {
-    private static final String RESTART_COMMAND = "R";
 
     private final BridgeGame bridgeGame;
     private final InputView inputView = new InputView();
@@ -34,7 +34,7 @@ public class GameController {
         playMoving();
         if (isFailure()) {
             String gameCommand = inputView.readGameCommand();
-            if (RESTART_COMMAND.equals(gameCommand)) {
+            if (COMMAND_RESTART.equals(gameCommand)) {
                 bridgeGame.retry();
                 play();
                 return;

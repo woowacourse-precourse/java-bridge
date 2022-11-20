@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.utils.GameCommand;
 import bridge.utils.MoveCommand;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -16,9 +17,6 @@ public class InputView {
     private static final String REGEX_NOT_NUMBER = "\\D";
     private static final long MIN_BRIDGE_SIZE = 3;
     private static final long MAX_BRIDGE_SIZE = 20;
-    private static final String RESTART_COMMAND = "R";
-    private static final String QUIT_COMMAND = "Q";
-
 
     /**
      * 다리의 길이를 입력받는다.
@@ -78,12 +76,8 @@ public class InputView {
     }
 
     private void validateGameCommand(String input) {
-        if (isNotGameCommand(input)) {
+        if (!GameCommand.contains(input)) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND.getMessage());
         }
-    }
-
-    private boolean isNotGameCommand(String input) {
-        return !RESTART_COMMAND.equals(input) && !QUIT_COMMAND.equals(input);
     }
 }
