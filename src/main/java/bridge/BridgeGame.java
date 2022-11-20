@@ -2,10 +2,12 @@ package bridge;
 
 import static bridge.configuration.AppConfig.bridgeMaker;
 import static bridge.domain.bridge.Bridge.convert;
+import static bridge.domain.bridge.BridgeAndPasser.compress;
 import static bridge.domain.bridge.BridgePasser.makeBridgePasser;
 
 import bridge.domain.GameRecord;
 import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeAndPasser;
 import bridge.domain.bridge.BridgePasser;
 import bridge.value.BridgeCharacter;
 
@@ -45,5 +47,10 @@ public class BridgeGame {
 
     public boolean isGameSuccess() {
         return bridgePasser.isBridgeEnd();
+    }
+
+    public void retry() {
+        bridgePasser.clear();
+        gameRecord.addRetryCount();
     }
 }
