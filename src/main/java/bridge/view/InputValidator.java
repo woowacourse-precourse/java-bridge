@@ -30,4 +30,12 @@ public class InputValidator {
         System.out.println("[ERROR] U 또는 D를 입력하세요.");
         throw new IllegalArgumentException();
     }
+
+    public void validateGameCommand(String input) throws IllegalArgumentException {
+        if (input.equals("R") || input.equals("Q")) {
+            return;
+        }
+        System.out.println("[ERROR] R 또는 Q를 입력하세요.");
+        throw new IllegalArgumentException();
+    }
 }
