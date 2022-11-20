@@ -148,6 +148,11 @@ D
 - [x] gameCount에 1를 더함
 
 ## Application
+- [ ] inputView 변수 생성 
+- [ ] outputView 변수 생성
+- [ ] bridgeGame 변수 생성
+- [ ] bridgeMaker 변수 생성
+
 ### main
 - [ ] printGameStartMessage함수를 실행
 - [ ] readBridgeSize함수를 실행 후, 반환값을 bridgeSize에 저장
