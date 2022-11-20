@@ -5,6 +5,10 @@ package bridge;
  */
 public class InputView {
 
+    public String readLine() {
+        return camp.nextstep.edu.missionutils.Console.readLine();
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
