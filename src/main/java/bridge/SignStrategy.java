@@ -1,13 +1,13 @@
 package bridge;
 
 public interface SignStrategy {
-    void appendSignIDownSignAnswer(boolean isAnswer, MoveDirection direction);
+    void appendSignIsDownSignAnswer(boolean isAnswer, MoveDirection direction);
 
-    void appendSignIDownSignWrongAnswer(boolean isAnswer, MoveDirection direction);
+    void appendSignIsDownSignWrongAnswer(boolean isAnswer, MoveDirection direction);
 
-    void appendSignIUpSignAnswer(boolean isAnswer, MoveDirection direction);
+    void appendSignIsUpSignAnswer(boolean isAnswer, MoveDirection direction);
 
-    void appendSignIUpSignWrongAnswer(boolean isAnswer, MoveDirection direction);
+    void appendSignIsUpSignWrongAnswer(boolean isAnswer, MoveDirection direction);
 
     void appendSeparatorIsNotLast(int index, int size);
 }
