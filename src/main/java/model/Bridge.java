@@ -13,5 +13,6 @@ public class Bridge {
     }
 
     public boolean movable(int position, String moveChoice) {
+        return moveChoice.equals(moveChoices.get(position));
     }
 }
