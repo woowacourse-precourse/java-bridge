@@ -8,7 +8,7 @@ import java.util.List;
 public class OutputView {
 
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private static final String PRINT_MAP_MESSAGE = "최종 게임 결과";
+    private static final String PRINT_FINAL_MAP_MESSAGE = "최종 게임 결과";
     private static final String GAME_RESULT_MESSAGE = "게임 성공 여부: %s%n";
     private static final String NUMBER_OF_TRIALS_MESSAGE = "총 시도한 횟수: %d";
     private static final String BRIDGE_START_DELIMITER = "[ ";
@@ -26,7 +26,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<String> upBridgeResult, List<String> downBridgeResult) {
-        System.out.println(printBridge(upBridgeResult) + printBridge(downBridgeResult));
+        System.out.println(printBridge(upBridgeResult));
+        System.out.println(printBridge(downBridgeResult));
         System.out.println();
     }
 
@@ -54,7 +55,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printFinalMapMessage() {
-        System.out.println(PRINT_MAP_MESSAGE);
+        System.out.println(PRINT_FINAL_MAP_MESSAGE);
     }
 
     public static void printResult(String gameResult, int trials) {
