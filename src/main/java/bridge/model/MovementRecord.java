@@ -11,7 +11,7 @@ public class MovementRecord {
     }
 
     public SpotInfo getMovementRecord(int index) {
-        return movementMap.get(index);
+        return movementMap.get(index - 1);
     }
 
     public int getMovementCount() {
