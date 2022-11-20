@@ -18,6 +18,10 @@ public enum BridgeGameStatus {
         return this.equals(PLAY);
     }
 
+    public boolean isNotPlayable() {
+        return this.equals(STOP);
+    }
+
     public static BridgeGameStatus gameStart() {
         return PLAY;
     }

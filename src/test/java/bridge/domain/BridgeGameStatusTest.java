@@ -23,6 +23,14 @@ class BridgeGameStatusTest {
         assertThat(playable).isEqualTo(result);
     }
 
+    @ParameterizedTest
+    @CsvSource({"PLAY, false", "STOP, true"})
+    void isNotPlayable_메서드는_게임의_진행_불가능여부를_반환한다(BridgeGameStatus bridgeGameStatus, boolean result) {
+        boolean playable = bridgeGameStatus.isNotPlayable();
+
+        assertThat(playable).isEqualTo(result);
+    }
+
     @Test
     void gameStart_메서드는_PLAY를_반환한다() {
         assertThat(BridgeGameStatus.gameStart()).isEqualTo(BridgeGameStatus.PLAY);
