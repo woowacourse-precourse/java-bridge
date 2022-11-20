@@ -1,17 +1,12 @@
 package bridge.domain;
 
-import bridge.view.SystemConsole;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeState {
+
     private final List<String> upBridge = new ArrayList<>();
     private final List<String> downBridge = new ArrayList<>();
-    private final SystemConsole systemConsole;
-
-    public BridgeState(SystemConsole systemConsole) {
-        this.systemConsole = systemConsole;
-    }
 
     //TODO: enum 변경, 상수화,
 
@@ -37,36 +32,14 @@ public class BridgeState {
         }
     }
 
-    public void connection(int bridgeLength, String bridgeJudgment, int i) {
-        if (i != bridgeLength - 1 && bridgeJudgment.equals("O")) {
-            upBridge.add(" | ");
-            downBridge.add(" | ");
-        }
-
-        if (i == bridgeLength - 1 || bridgeJudgment.equals("X")) {
-            upBridge.add(" ]");
-            downBridge.add(" ]");
-        }
+    //TODO: 너무 겟터 스럽게 작성을 금지 다시 수정하기.
+    public List<String> getUpBridge() {
+        return upBridge;
     }
 
-    public void printBridge() {
-        for (String uparr : upBridge) {
-            System.out.print(uparr);
-        }
-        System.out.println();
-
-        for (String downBridge : downBridge) {
-            System.out.print(downBridge);
-        }
-        System.out.println();
-    }
-
-    public String findLastValue() {
-        StringBuilder str = new StringBuilder();
-        for (String arr : upBridge) {
-            str.append(arr);
-        }
-        return str.toString();
+    //TODO: 너무 겟터 스럽게 작성을 금지 다시 수정하기.
+    public List<String> getDownBridge() {
+        return downBridge;
     }
 
     public void reset() {
