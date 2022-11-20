@@ -23,16 +23,16 @@ public class BridgeMaker {
         bridge = new ArrayList<>();
 
         for (int repeatCnt = 0; repeatCnt < size; repeatCnt++) {
-            int generatedNum = bridgeNumberGenerator.generate();
-
-            if (generatedNum == 0) {
-                bridge.add("D");
-            }
-            if (generatedNum == 1) {
-                bridge.add("U");
-            }
+            generateNumAndAddBoxToBridge();
         }
 
         return bridge;
+    }
+
+    private void generateNumAndAddBoxToBridge() {
+        int generatedNum = bridgeNumberGenerator.generate();
+
+        if (generatedNum == 0) bridge.add("D");
+        if (generatedNum == 1) bridge.add("U");
     }
 }
