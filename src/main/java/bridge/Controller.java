@@ -15,6 +15,9 @@ public class Controller {
         outputView.printGameStart();
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
+        while (true) {
+            String move = inputView.readMoving();
+        }
     }
 
 }
