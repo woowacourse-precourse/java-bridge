@@ -1,5 +1,8 @@
 package bridge.view;
 
+import static bridge.Constants.MoveMark.*;
+import static bridge.Constants.CommandMark.*;
+
 public class Validator {
     static final int MIN_BRIDGE_SIZE = 3;
     static final int MAX_BRIDGE_SIZE = 20;
@@ -15,13 +18,13 @@ public class Validator {
     }
 
     public void validateMoving(String input) {
-        if (!input.equals("D") && !input.equals("U")) {
+        if (!input.equals(DOWN.mark()) && !input.equals(UP.mark())) {
             throw new IllegalArgumentException(IS_NOT_PROPER_MOVING);
         }
     }
 
     public void validateGameCommand(String input) {
-        if (!input.equals("R") && !input.equals("Q")) {
+        if (!input.equals(RETRY.mark()) && !input.equals(QUIT.mark())) {
             throw new IllegalArgumentException(IS_NOT_PROPER_COMMAND);
         }
     }
