@@ -19,7 +19,7 @@
         - [x] 해당 다리에 이동 결과 추가 → addProgress
     - [x] 계속 이동할 수 있는지 확인 → isContinue
     - [x] 다리를 건넜는지 떨어졌는지 확인 → isFallBridge
-    - [ ] 게임 재시작 → retry
+    - [x] 게임 재시작 → retry
         
         재시도 회수 저장
     - [x] 생성한 다리 저장 → BridgeGame 생성자로 해결

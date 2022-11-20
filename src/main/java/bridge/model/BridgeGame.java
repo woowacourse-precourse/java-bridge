@@ -12,14 +12,17 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private Map<String, List<String>> progress = new HashMap<>();
+    private int tryAttempt;
 
     public BridgeGame(int size) {
+        this.tryAttempt = 0;
         retry();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
     public void retry() {
+        this.tryAttempt++;
         progress.put(UP_SIDE_PROGRESS.get(), new ArrayList<>());
         progress.put(DOWN_SIDE_PROGRESS.get(), new ArrayList<>());
     }
