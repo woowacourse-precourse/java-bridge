@@ -38,6 +38,7 @@ START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반
       2. appendWithBlank
       3. appendWithX : 입력된 다리쪽에 X를 추가한다. 
    4. makeBracket : 위, 아래쪽 다리의 결과에 괄호를 추가한다.
+   5. constructBeforelast : 플레이어 리스트 길이 -1까지 다리들을 추가한다. 
 
 ## View
 ### InputView

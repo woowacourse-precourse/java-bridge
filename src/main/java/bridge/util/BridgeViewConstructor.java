@@ -20,6 +20,12 @@ public class BridgeViewConstructor {
         return null;
     }
 
+    private void constructBeforeLast(List<String> player){
+        for(int bridgeEach = 0; bridgeEach < player.size()-1; bridgeEach++){
+            appendRightAnswer(player.get(bridgeEach));
+        }
+    }
+
     private boolean isSameIndex(String playerIndexed, String bridgeIndexed){
         return playerIndexed.equals(bridgeIndexed);
     }
