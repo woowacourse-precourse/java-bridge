@@ -42,7 +42,9 @@
     - [X] 현재 위, 아래 다리 모두 비어있는지 확인 - BridgeState#isEmpty()
     - [X] 위 칸 또는 아래 칸 중 선택한 방향에 대해 건널 수 있는지 여부 표시, 위 칸 또는 아래 칸 중 선택하지 않는 방향에 대해 공백 표시
       - [X] 위, 아래 다리가 모두 비어있는 경우, 다리 건널 수 있는지 여부 값과 공백 표시 + 위, 아래 다리가 비어있지 않은 경우, "|" 값을 추가한 뒤 다리 건널 수 있는지 여부 값과 공백 표시 
-- [X] 다리 상태 값 반환 - BridgeState#getBridgeState()
+- [X] 다리 상태 값 반환
+    - [X] 위 다리 상태 반환 - BridgeState#getUpBridgeState()
+    - [X] 아래 다리 상태 반환 - BridgeState#getDownBridgeStaet()
 - [X] 다리 상태 초기화 - BridgeState#initBridgeState()
 ***
 
@@ -52,3 +54,4 @@
 - [X] 다리 길이 유효 숫자 범위 내 길이 지정 시, 해당 길이의 다리 생성 - BridgeMakerTest#makeBridgePerSize()
 
 - [X] 다리 방향 입력 값이 U(위 칸) 또는 D(아래 칸) 중 하나가 아닌 경우 예외 발생 - BridgeGameTest#validateBridgeArrow()
+- [ ] 위 다리

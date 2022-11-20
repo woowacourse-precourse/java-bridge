@@ -39,7 +39,11 @@ public class BridgeState {
         downBridge = new StringBuilder();
     }
 
-    public StringBuilder getBridgeState() {
-        return upBridge.append("\n").append(downBridge);
+    public String getUpBridgeState() {
+        return upBridge.toString();
+    }
+
+    public String getDownBridgeState() {
+        return downBridge.toString();
     }
 }
