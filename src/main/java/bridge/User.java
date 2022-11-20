@@ -20,6 +20,16 @@ public class User {
 
   public boolean isCorrectlyMove(List<String> bridge) {
     final int index = moveStatus.size() - 1;
+    if (index < 0) return true;
     return bridge.get(index).equals(moveStatus.get(index));
+  }
+
+  public void startNewGame() {
+    this.tryCount++;
+    this.moveStatus.clear();
+  }
+
+  public boolean isArriveFinishLine(int bridgeLength) {
+    return bridgeLength == moveStatus.size();
   }
 }

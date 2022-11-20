@@ -2,9 +2,6 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.InputView.*;
-import static bridge.OutputView.*;
-
 /** 다리 건너기 게임을 관리하는 클래스 */
 public class BridgeGame {
   private final User user;
@@ -17,17 +14,12 @@ public class BridgeGame {
   }
 
   public void gameInit() {
-    bridge = makeBridgeByLengthInput();
-    // user 시도횟수 증가, move status 초기화
+    user.startNewGame();
   }
 
   /** 사용자가 칸을 이동할 때 사용하는 메서드 */
-  public boolean move() {
-    moveByDirectionInput();
-    if (user.isCorrectlyMove(bridge)) {
-      return true;
-    }
-    return false;
+  public void move(String moveDirection) {
+    user.move(moveDirection);
   }
 
   /**
@@ -35,16 +27,27 @@ public class BridgeGame {
    *
    * <p>재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
-  public void retry() {}
+  public void retry() {
 
-  private List<String> makeBridgeByLengthInput() {
-    printLengthInputMessage();
-    return bridgeMaker.makeBridge(readBridgeSize());
   }
 
-  private void moveByDirectionInput() {
-    printMoveDirInputMessage();
-    String moveDirection = readMoving();
-    user.move(moveDirection);
+  public void makeBridge(int length) {
+    bridge = bridgeMaker.makeBridge(length);
+  }
+
+  public boolean isTryFinish() {
+    return !user.isCorrectlyMove(bridge) || isTrySuccess();
+  }
+
+  public boolean isTrySuccess() {
+    return user.isCorrectlyMove(bridge) && isArriveFinishLine();
+  }
+
+  private boolean isArriveFinishLine() {
+    return user.isArriveFinishLine(bridge.size());
+  }
+
+  public void showResult() {
+    OutputView.printMap();
   }
 }
