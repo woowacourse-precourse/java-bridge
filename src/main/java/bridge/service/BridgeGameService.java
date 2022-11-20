@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.domain.AnswerBridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameStatus;
 import bridge.domain.Direction;
 import bridge.domain.MoveResult;
 import bridge.domain.Player;
@@ -11,7 +12,7 @@ import java.util.Objects;
 
 public class BridgeGameService {
 
-    private static final String INVALID_GAME_STATE_MESSAGE = "게임을 진행할 수 없습니다.";
+    private static final String INVALID_GAME_STATE_MESSAGE = "다리 건너기 게임을 진행할 수 없습니다.";
 
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
@@ -27,22 +28,28 @@ public class BridgeGameService {
     }
 
     public List<List<MoveResult>> play(Player player, String move) {
-        validate();
-        Direction direction = Direction.toEnum(move);
-        player.move(bridgeGame, direction);
-        return player.getBridgeGameResult();
-    }
-
-    private void validate() {
         if (!isPlayable()) {
             throw new IllegalStateException(INVALID_GAME_STATE_MESSAGE);
         }
+        player.move(bridgeGame, Direction.toEnum(move));
+        return player.getBridgeGameResult();
     }
 
     public boolean isPlayable() {
-        if (Objects.isNull(bridgeGame)) {
+        if (!isInitialized()) {
             return false;
         }
         return bridgeGame.isPlayable();
+    }
+
+    private boolean isInitialized() {
+        return !Objects.isNull(bridgeGame);
+    }
+
+    public void retry(String command) {
+        if (!isInitialized()) {
+            throw new IllegalStateException(INVALID_GAME_STATE_MESSAGE);
+        }
+        bridgeGame.retry(BridgeGameStatus.getEnum(command));
     }
 }
