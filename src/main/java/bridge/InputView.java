@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.stream.Stream;
-
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -21,7 +19,6 @@ public class InputView {
     private final int MIN_BRIDGE_SIZE = 3;
 
 
-
     private final String OPENING_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private final String ASK_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private final String ASK_UP_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
@@ -31,10 +28,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(OPENING_MESSAGE);
-        System.out.println(ASK_BRIDGE_SIZE);
-        int bridgeSize =  Integer.parseInt(Console.readLine());
-        return bridgeSize;
+        try {
+            System.out.println(OPENING_MESSAGE);
+            System.out.println(ASK_BRIDGE_SIZE);
+            int bridgeSize = Integer.parseInt(Console.readLine());
+            validateBridgeSize(bridgeSize);
+            return bridgeSize;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -58,25 +60,19 @@ public class InputView {
     }
 
     private void validateBridgeSize(int bridgeSize) {
-        if( bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateBridgeSizeDataType(int bridgeSize) {
-        if( bridgeSize < 3 || bridgeSize > 20) {
+        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateInputMoving(String moveChoice) {
-        if(!moveChoice.equals(CHOOSE_UP) || !moveChoice.equals(CHOOSE_DOWN)) {
+        if (!moveChoice.equals(CHOOSE_UP) && !moveChoice.equals(CHOOSE_DOWN)) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateInputGameCommand(String gameCommandChoice) {
-        if(!gameCommandChoice.equals(CHOOSE_RESTART) || !gameCommandChoice.equals(CHOOSE_END)) {
+        if (!gameCommandChoice.equals(CHOOSE_RESTART) && !gameCommandChoice.equals(CHOOSE_END)) {
             throw new IllegalArgumentException();
         }
     }
