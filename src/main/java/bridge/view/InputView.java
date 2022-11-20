@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.bridge.BridgeSize;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -10,9 +11,9 @@ public class InputView extends IOPrinter {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public String readBridgeSize() {
+    public BridgeSize readBridgeSize() {
         this.printBeforeNextLine("다리의 길이를 입력해주세요.");
-        return Console.readLine();
+        return new BridgeSize(Console.readLine());
     }
 
     /**
