@@ -14,4 +14,10 @@ public class Bridge {
         }
         return false;
    }
+   public boolean isCrossedBridge(List<String> visited) {
+        if(visited.size() == answerBridge.size()) {
+            return true;
+        }
+        return false;
+   }
 }
