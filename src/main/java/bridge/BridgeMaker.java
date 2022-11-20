@@ -3,6 +3,9 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.constant.Constants.DOWN_COMMAND;
+import static bridge.constant.Constants.UP_COMMAND;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -23,9 +26,9 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
             if (number == 0) {
-                bridge.add("D");
+                bridge.add(DOWN_COMMAND);
             } else if (number == 1) {
-                bridge.add("U");
+                bridge.add(UP_COMMAND);
             }
         }
         return bridge;

@@ -14,13 +14,13 @@ public class Validator {
     }
 
     public static void validateForIllegalInputUpOrDown(String input) {
-        if (!input.equals("U") && !input.equals("D")) {
+        if (!UP_COMMAND.equals(input) && !DOWN_COMMAND.equals(input)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_U_OR_D_MESSAGE);
         }
     }
 
     public static void validateForIllegalInputRestartOrQuit(String input) {
-        if (!input.equals("R") && !input.equals("Q")) {
+        if (!RESTART_COMMAND.equals(input) && !QUIT_COMMAND.equals(input)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_R_OR_Q_MESSAGE);
         }
     }

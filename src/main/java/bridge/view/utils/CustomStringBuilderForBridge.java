@@ -1,5 +1,7 @@
 package bridge.view.utils;
 
+import static bridge.constant.Constants.*;
+
 public class CustomStringBuilderForBridge {
     private StringBuilder upperBridge;
     private StringBuilder lowerBridge;
@@ -10,37 +12,37 @@ public class CustomStringBuilderForBridge {
     }
 
     public void addStartBracket() {
-        upperBridge.append("[");
-        lowerBridge.append("[");
+        upperBridge.append(START_BRACKET);
+        lowerBridge.append(START_BRACKET);
     }
 
     public void addEndBracket() {
-        upperBridge.append("]");
-        lowerBridge.append("]");
+        upperBridge.append(END_BRACKET);
+        lowerBridge.append(END_BRACKET);
     }
 
     public void addStick() {
-        upperBridge.append("|");
-        lowerBridge.append("|");
+        upperBridge.append(STICK);
+        lowerBridge.append(STICK);
     }
 
     public void addO(String UorD) {
-        if (UorD.equals("U")) {
-            upperBridge.append(" O ");
-            lowerBridge.append("   ");
-        } else if (UorD.equals("D")) {
-            upperBridge.append("   ");
-            lowerBridge.append(" O ");
+        if (UP_COMMAND.equals(UorD)) {
+            upperBridge.append(O_SIGN);
+            lowerBridge.append(THREE_SPACES);
+        } else if (DOWN_COMMAND.equals(UorD)) {
+            upperBridge.append(THREE_SPACES);
+            lowerBridge.append(O_SIGN);
         }
     }
 
     public void addX(String UorD) {
-        if (UorD.equals("U")) {
-            upperBridge.append(" X ");
-            lowerBridge.append("   ");
-        } else if (UorD.equals("D")) {
-            upperBridge.append("   ");
-            lowerBridge.append(" X ");
+        if (UP_COMMAND.equals(UorD)) {
+            upperBridge.append(X_SIGN);
+            lowerBridge.append(THREE_SPACES);
+        } else if (DOWN_COMMAND.equals(UorD)) {
+            upperBridge.append(THREE_SPACES);
+            lowerBridge.append(X_SIGN);
         }
     }
 

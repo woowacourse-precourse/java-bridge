@@ -39,7 +39,7 @@ class ValidatorTest {
     @ParameterizedTest
     void validateForIllegalInputUpOrDown1(String input) {
         Throwable t = catchThrowable(() -> {
-            if (!input.equals("U") && !input.equals("D")) {
+            if (!UP_COMMAND.equals(input) && !DOWN_COMMAND.equals(input)) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_U_OR_D_MESSAGE);
             }
         });
@@ -51,7 +51,7 @@ class ValidatorTest {
     @ParameterizedTest
     void validateForIllegalInputUpOrDown2(String input) {
         Throwable t = catchThrowable(() -> {
-            if (!input.equals("U") && !input.equals("D")) {
+            if (!UP_COMMAND.equals(input) && !DOWN_COMMAND.equals(input)) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_U_OR_D_MESSAGE);
             }
         });
@@ -65,7 +65,7 @@ class ValidatorTest {
     @ParameterizedTest
     void validateForIllegalInputRestartOrQuit1(String input) {
         Throwable t = catchThrowable(() -> {
-            if (!input.equals("R") && !input.equals("Q")) {
+            if (!RESTART_COMMAND.equals(input) && !QUIT_COMMAND.equals(input)) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_R_OR_Q_MESSAGE);
             }
         });
@@ -77,7 +77,7 @@ class ValidatorTest {
     @ParameterizedTest
     void validateForIllegalInputRestartOrQuit2(String input) {
         Throwable t = catchThrowable(() -> {
-            if (!input.equals("R") && !input.equals("Q")) {
+            if (!RESTART_COMMAND.equals(input) && !QUIT_COMMAND.equals(input)) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_R_OR_Q_MESSAGE);
             }
         });
