@@ -43,17 +43,18 @@ class BridgeGameTest {
     }
 
     @DisplayName("createBridgeMap 테스트")
-    @ParameterizedTest
-    @CsvSource(value = {"O:\u0020", "X:\u0020"}, delimiter = ':')
-    void createBridgeMap(String input1, String input2) {
+    @Test
+    void createBridgeMap() {
         //Given
         int expectSize = 1;
+        String input1 = "O";
+        String input2 = " ";
         BridgeMap bridgeMap = bridgeGame.getBridgeMap();
-        bridgeMap.add(input1, input2);
         //When
-
+        bridgeMap.add(input1, input2);
         //Then
         assertThat(bridgeMap.getUpMap().size()).isEqualTo(1);
+        assertThat(bridgeMap.getDownMap().get(0)).isEqualTo(" ");
         assertThat(bridgeMap.getDownMap().size()).isEqualTo(1);
     }
 
