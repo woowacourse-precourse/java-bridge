@@ -12,6 +12,10 @@ public class InputValidator {
     private static final String INVALID_BRIDGE_MOVE_INPUT_MSG = "유효하지 않은 다리 이동 명령입니다. (위: U, 아래: D)";
     private static final String INVALID_GAME_COMMAND_INPUT_MSG = "유효하지 않은 게임 재시작 명령입니다. (재시도: R, 종료: Q)";
 
+    private InputValidator() {
+
+    }
+
     public static void validateBridgeSize(String userInput) {
         validateBlank(userInput);
         validateNumeric(userInput);

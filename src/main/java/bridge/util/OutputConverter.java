@@ -2,10 +2,13 @@ package bridge.util;
 
 import bridge.constant.Direction;
 import bridge.constant.MoveStatus;
-import bridge.domain.Result;
 import java.util.List;
 
 public class OutputConverter {
+
+    private OutputConverter() {
+
+    }
 
     public static List<String> resultToStrings(List<MoveStatus> moveStatuses) {
         StringBuilder upSideBridgeBuilder = new StringBuilder();
