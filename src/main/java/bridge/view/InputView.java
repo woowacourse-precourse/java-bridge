@@ -4,6 +4,7 @@ import static bridge.utils.constants.BridgeConstants.*;
 
 import bridge.utils.constants.GameConstants;
 import bridge.utils.validator.BridgeValidator;
+import bridge.utils.validator.GameValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -27,6 +28,7 @@ public class InputView {
     public static String readMoving() {
         System.out.println(INPUT_BRIDGE_MOVE_OPTION);
         String moving = Console.readLine();
+        GameValidator.validMovingOption(moving);
         return moving;
     }
 
