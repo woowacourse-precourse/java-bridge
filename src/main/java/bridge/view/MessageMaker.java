@@ -1,7 +1,15 @@
 package bridge.view;
 
 import static bridge.BridgeMaker.TOP_ROW;
-import static bridge.view.OutputMessage.*;
+import static bridge.view.OutputMessage.EMPTY;
+import static bridge.view.OutputMessage.END_LINE;
+import static bridge.view.OutputMessage.FAIL;
+import static bridge.view.OutputMessage.FINAL_FAIL;
+import static bridge.view.OutputMessage.FINAL_SUCCESS;
+import static bridge.view.OutputMessage.SPLIT;
+import static bridge.view.OutputMessage.START_LINE;
+import static bridge.view.OutputMessage.SUCCESS;
+import static bridge.view.OutputMessage.findMessage;
 
 import bridge.dto.StepResponseDto;
 import java.util.List;
