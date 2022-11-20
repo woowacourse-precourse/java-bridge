@@ -2,7 +2,7 @@ package bridge;
 
 public enum OutputType {
     PRINT_GAME_START("다리 건너기 게임을 시작합니다.\n"),
-    PRINT_MAP_TITLE("최종 게임 결과"),
+    PRINT_RESULT_TITLE("최종 게임 결과"),
     PRINT_MAP_FRONT("[ %s "),
     PRINT_MAP_MID("| %s "),
     PRINT_MAP_BACK("]\n"),
