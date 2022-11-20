@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Map;
 import Util.Util;
-import View.InputView;
 import View.OutputView;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
@@ -15,7 +14,6 @@ public class BridgeGame {
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
     Util util = new Util();
 
     public boolean move(Map map, List<String> crossable, int index) {
@@ -42,8 +40,7 @@ public class BridgeGame {
 
     public boolean retry() {
         String continueOrEnd;
-        outputView.printContinueOrEndRequest();
-        continueOrEnd = inputView.readGameCommand();
+        continueOrEnd = util.determineIfContinue();
         if (continueOrEnd.equals("R")) {
             return true;
         }

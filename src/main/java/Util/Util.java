@@ -18,4 +18,9 @@ public class Util {
         return inputView.readBridgeSize();
     }
 
+    public String determineIfContinue() {
+        outputView.printContinueOrEndRequest();
+        return inputView.readGameCommand();
+    }
+
 }
