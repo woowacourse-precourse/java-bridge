@@ -16,6 +16,10 @@ public class User {
         userMoved.add(moving);
     }
 
+    public void clearUserMoved() {
+        userMoved.clear();
+    }
+
     public List<String> getUserMoved() {
         return Collections.unmodifiableList(userMoved);
     }
