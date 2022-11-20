@@ -9,4 +9,5 @@ public class ErrorMessage {
     public static final String ASK_INPUT_VALUE = "%s 입력값이 필요합니다.";
     public static final String ASK_INPUT_NUMBER = "%s 숫자를 입력하셔야 합니다.";
     public static final String ASK_INPUT_CHARACTER_U_OR_D = "%s 'U'나 'D'를 입력하셔야 합니다.";
+    public static final String ASK_INPUT_CHARACTER_R_OR_Q = "%s 'R'나 'Q'를 입력하셔야 합니다.";
 }
