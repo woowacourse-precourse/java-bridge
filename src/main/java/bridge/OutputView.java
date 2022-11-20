@@ -16,41 +16,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> visited, String moveDirection, String result) {
-        upBridge(visited, moveDirection, result);
-        downBridge(visited, moveDirection, result);
-    }
-
-    private void upBridge(List<String> visited, String moveDirection, String result) {
+    public void printMap(List<String> results) {
         System.out.println("[");
-        for (String visit : visited) {
-            checkEqual(visit, UP, SUCCESS);
+        for(int i = 0; i < results.size(); i++) {
+            System.out.println(results.get(i));
+            if(i == results.size() -1) {
+                break;
+            }
             System.out.println("|");
         }
-        if(!result.isEmpty()) {
-            checkEqual(moveDirection, UP, result);
-        }
         System.out.println("]");
-    }
-
-    private void downBridge(List<String> visited, String moveDirection, String result) {
-        System.out.println("[");
-        for (String visit : visited) {
-            checkEqual(visit, DOWN, SUCCESS);
-            System.out.println("|");
-        }
-        if(!result.isEmpty()) {
-            checkEqual(moveDirection, DOWN, result);
-        }
-        System.out.println("]");
-    }
-
-    private void checkEqual(String visited, String moveDirection, String result) {
-        if(visited.equals(moveDirection)) {
-            System.out.println(result);
-            return;
-        }
-        System.out.println(" ");
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

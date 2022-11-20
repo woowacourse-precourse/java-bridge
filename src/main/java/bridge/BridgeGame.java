@@ -26,14 +26,39 @@ public class BridgeGame {
      */
     public boolean move() {
         String direction = inputview.readMoving();
-        boolean isRightDirection = bridge.isRightDirection(visited.size(), direction);
-        if(isRightDirection) {
-            outputView.printMap(visited, direction, "0");
-            visited.add(direction);
-            return true;
+        visited.add(direction);
+        printUpBridge();
+        printDownBridge();
+        int index = visited.size() - 1;
+        return bridge.isRightDirection(index, direction);
+    }
+    private void printUpBridge() {
+        List<String> upBridge = new ArrayList<>();
+        for(int i = 0; i < visited.size(); i++) {
+            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
+            String result = getResult(i, "U", rightDirection);
+            upBridge.add(result);
         }
-        outputView.printMap(visited, direction, "X");
-        return false;
+        outputView.printMap(upBridge);
+    }
+    private void printDownBridge() {
+        List<String> downBridge = new ArrayList<>();
+        for(int i = 0; i < visited.size(); i++) {
+            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
+            String result = getResult(i, "D", rightDirection);
+            downBridge.add(result);
+        }
+        outputView.printMap(downBridge);
+    }
+    private String getResult(int i, String direction, boolean rightDirection) {
+        String result = "X";
+        if(rightDirection) {
+            result = "O";
+        }
+        if(!visited.get(i).equals(direction)) {
+            result = " ";
+        }
+        return result;
     }
     public boolean isGameCompleted() {
         if(bridge.isCrossedBridge(visited)) {
