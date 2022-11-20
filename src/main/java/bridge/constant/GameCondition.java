@@ -1,6 +1,6 @@
 package bridge.constant;
 
-public enum Condition {
+public enum GameCondition {
     IN_PROGRESS("현재 진행 중", "O"),
     GOAL("성공", "O"),
     FAILURE("실패", "X");
@@ -8,7 +8,7 @@ public enum Condition {
     private final String detail;
     private final String symbol;
 
-    Condition(String detail, String symbol) {
+    GameCondition(String detail, String symbol) {
         this.detail = detail;
         this.symbol = symbol;
     }
