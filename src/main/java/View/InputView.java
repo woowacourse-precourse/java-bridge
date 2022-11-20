@@ -1,5 +1,6 @@
-package bridge;
+package View;
 
+import Util.Exception;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {

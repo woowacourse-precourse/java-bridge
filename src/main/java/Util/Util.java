@@ -1,4 +1,7 @@
-package bridge;
+package Util;
+
+import View.InputView;
+import View.OutputView;
 
 public class Util {
 

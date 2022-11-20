@@ -6,9 +6,6 @@ import java.util.ArrayList;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private int limitSize;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -23,7 +20,6 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        this.limitSize = size;
         List<String> crossable = new ArrayList<>();
         int addNumber;
         for (int index = 0; index < size; index++) {

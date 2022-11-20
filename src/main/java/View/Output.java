@@ -1,4 +1,4 @@
-package bridge;
+package View;
 
 public enum Output {
 

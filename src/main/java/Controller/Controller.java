@@ -1,6 +1,12 @@
-package bridge;
+package Controller;
 
-import javax.naming.ldap.Control;
+import Model.Map;
+import Util.Util;
+import View.OutputView;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+
 import java.util.List;
 
 public class Controller {

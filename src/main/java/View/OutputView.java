@@ -1,4 +1,6 @@
-package bridge;
+package View;
+
+import Model.Map;
 
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class OutputView {
         System.out.println(Output.GAME_RESULT_TITLE.getOutput());
     }
 
-    public void printResult(Map map,boolean isWin, int numberOfAttempt) {
+    public void printResult(Map map, boolean isWin, int numberOfAttempt) {
         printTitle();
         printMap(map.getMapUpper(),map.getMapLower());
         if (isWin) {

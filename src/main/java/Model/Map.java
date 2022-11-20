@@ -1,8 +1,11 @@
-package bridge;
+package Model;
 
 import java.util.ArrayList;
 import java.util.List;
-import bridge.OutputView;
+
+import Util.Util;
+import View.InputView;
+import View.OutputView;
 
 public class Map {
 
