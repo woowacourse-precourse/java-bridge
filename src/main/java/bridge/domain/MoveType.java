@@ -23,4 +23,8 @@ public enum MoveType {
             throw new IllegalArgumentException("[ERROR] U 또는 D 를 입력해야 합니다.");
         }
     }
+
+    public boolean isSame(String position) {
+        return value.equals(position);
+    }
 }
