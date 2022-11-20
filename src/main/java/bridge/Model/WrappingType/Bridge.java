@@ -13,8 +13,7 @@ public class Bridge {
 
     public CrossResult cross(UserChoice userChoice, int position) {
         String crossableBridge = bridge.get(position);
-
-        if (userChoice.equals(crossableBridge)) {
+        if (userChoice.compare(crossableBridge)) {
             return CrossResult.SUCCESS;
         }
         return CrossResult.FAIL;
