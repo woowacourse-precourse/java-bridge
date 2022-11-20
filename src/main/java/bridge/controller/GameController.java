@@ -31,7 +31,7 @@ public class GameController {
     }
 
     public void play() {
-        playMoving();
+        move();
         if (isFailure()) {
             String gameCommand = inputView.readGameCommand();
             if (COMMAND_RESTART.equals(gameCommand)) {
@@ -44,7 +44,7 @@ public class GameController {
         outputView.printResult(bridgeGame);
     }
 
-    private void playMoving() {
+    private void move() {
         while (!isEnd()) {
             String moveCommand = inputView.readMoving();
             bridgeGame.move(moveCommand);
