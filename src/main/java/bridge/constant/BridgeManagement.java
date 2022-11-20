@@ -2,7 +2,7 @@ package bridge.constant;
 
 import java.util.Arrays;
 
-public enum Bridge {
+public enum BridgeManagement {
     MOVE_UP("U", "위", 1),
     MOVE_DOWN("D", "아래", 0);
 
@@ -10,7 +10,7 @@ public enum Bridge {
     private final String detail;
     private final int number;
 
-    Bridge(String move, String detail, int number) {
+    BridgeManagement(String move, String detail, int number) {
         this.move = move;
         this.detail = detail;
         this.number = number;
@@ -25,7 +25,7 @@ public enum Bridge {
     }
 
     public static String convertNumberToMove(int randomNumber) {
-        return Arrays.stream(Bridge.values())
+        return Arrays.stream(BridgeManagement.values())
                 .filter(bridge -> bridge.number == randomNumber)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("입력이 지정된 숫자가 아닙니다! 난수 생성 모듈을 확인하세요."))
