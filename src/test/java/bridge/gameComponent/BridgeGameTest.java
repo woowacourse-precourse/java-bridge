@@ -1,10 +1,11 @@
 package bridge.gameComponent;
 
+import org.assertj.core.data.Index;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 public class BridgeGameTest {
@@ -108,5 +109,39 @@ public class BridgeGameTest {
         //then
         assertThat(isSuccess)
                 .isFalse();
+    }
+
+    @Test
+    void recordMapTest() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        String userMove1 = "U";
+        boolean isPossibleMove1 = true;
+        String userMove2 = "U";
+        boolean isPossibleMove2 = false;
+        //when
+        bridgeGame.move();
+        bridgeGame.recordMap(userMove1, isPossibleMove1);
+        char[][] map = bridgeGame.recordMap(userMove2, isPossibleMove2);
+        //then
+        assertThat(map)
+                .contains(new char[] {'O','X','\u0000'}, Index.atIndex(0))
+                .contains(new char[] {' ', ' ', '\u0000'}, Index.atIndex(1));
+    }
+    @Test
+    void recordMapTest_최초실패() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        String userMove1 = "U";
+        boolean isPossibleMove1 = false;
+        //when
+        char[][] map = bridgeGame.recordMap(userMove1, isPossibleMove1);
+
+        //then
+        assertThat(map)
+                .contains(new char[] {'X','\u0000','\u0000'}, Index.atIndex(0))
+                .contains(new char[] {' ', '\u0000', '\u0000'}, Index.atIndex(1));
     }
 }

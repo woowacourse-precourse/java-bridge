@@ -13,7 +13,7 @@
 
 ## 출력 OutputView
 - [x] 게임 시작 메시지 InputView#printStart()
-- [ ] 다리 그리기 OutputView#printMap(List<String> bridge, int index, boolean isSuccess)
+- [ ] 다리 그리기 OutputView#printMap(char[][] map, int index)
 - [ ] 종료 메시지 출력 OutputView#printEndMessage()
 - [ ] 결과 출력 OutputView#printResult()
 
@@ -35,15 +35,18 @@
 - [x] 게임 시작하기 BrideGame#BridegeGame(Bridge bridge)
   - 생성한 Bridge를 입력 받아 endIndex(마지막 칸)을 기록
   - 현재 칸과 현재 시도 횟수 세팅
+  - 현재까지 움직인 지도(char 2차원 배열) 초기 세팅 
   - 예외. Bridge가 null일 경우
 - [x] 움직이기 BrideGame#move()
   - 현재까지 움직인 칸 index++
   - 마지막 칸까지 도달했다면, 1 리턴
   - 마지막 칸까지 도달하지 않았다면, 0리턴
   - 예외. 마지막 칸을 넘어서 움직인 경우
+- [x] 현재까지의 맵 array 기록하기 BridgeGame#recordMap(String userMove, boolean isPossibleMove)
 - [X] 다시 시도 BridgeGame#retry()
   - 진행 상황 리셋
   - 시도 횟수 증가
+  - 기록 지도 초기화
   - 예외. 이미 게임이 성공해서 종료된 상황인데 다시 시도하는 경우 예외 발생
 - [x] 성공 여부 얻기 BridgeGame#isSuccess()
 - 

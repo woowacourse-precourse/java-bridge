@@ -9,6 +9,7 @@ public class BridgeGame {
     private int index; //현재까지 움직인 칸
     private int endIndex; //마지막 칸
     private int numberOfTries;
+    private char[][] mapRecord; //현재까지 움직인 다리 기록
 
     public BridgeGame(Bridge bridge) {
         if (bridge == null) {
@@ -17,6 +18,7 @@ public class BridgeGame {
         this.index = -1;
         this.endIndex = bridge.getBridge().size() - 1;
         this.numberOfTries = 1;
+        this.mapRecord = new char[2][this.endIndex + 1];
     }
 
     public int getNumberOfTries() {
@@ -55,10 +57,33 @@ public class BridgeGame {
         if (isSuccess()) throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
         this.numberOfTries++;
         this.index = -1;
+        this.mapRecord = new char[2][this.endIndex + 1];
     }
 
     public boolean isSuccess() {
         if (index == endIndex) return true;
         return false;
+    }
+
+    public char[][] recordMap(String userMove, boolean isPossibleMove) {
+        int userMoveAsInt = moveToInt(userMove);
+        int userNotMoveAsInt = notMoveToInt(userMove);
+        if(isPossibleMove) {
+            this.mapRecord[userMoveAsInt][index] = 'O';
+            this.mapRecord[userNotMoveAsInt][index] = ' ';
+            return this.mapRecord;
+        }
+        this.mapRecord[userMoveAsInt][index + 1] = 'X';
+        this.mapRecord[userNotMoveAsInt][index + 1] = ' ';
+        return this.mapRecord;
+    }
+
+    private int moveToInt(String move) {
+        if(move.equals("U")) return 0;
+        return 1;
+    }
+    private int notMoveToInt(String move) {
+        if(move.equals("U")) return 1;
+        return 0;
     }
 }
