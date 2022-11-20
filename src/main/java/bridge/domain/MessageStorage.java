@@ -1,12 +1,12 @@
 package bridge.domain;
 
-public enum GameMessageStorage {
+public enum MessageStorage {
     UP("U"),
     DOWN("D");
 
     private final String message;
 
-    GameMessageStorage(String message){
+    MessageStorage(String message){
         this.message=message;
     }
 

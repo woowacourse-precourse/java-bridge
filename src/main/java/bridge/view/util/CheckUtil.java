@@ -1,6 +1,6 @@
 package bridge.view.util;
 
-import bridge.domain.GameMessageStorage;
+import bridge.domain.MessageStorage;
 
 public class CheckUtil {
     public static int checkInputBridgeSize(int bridgeSize,String message) {
@@ -11,7 +11,7 @@ public class CheckUtil {
     }
 
     public static String checkInputReadMoving(String readMove,String message){
-        if(!readMove.equals(GameMessageStorage.UP) || !readMove.equals(GameMessageStorage.DOWN)){
+        if(!readMove.equals(MessageStorage.UP.getMessage()) || !readMove.equals(MessageStorage.DOWN.getMessage())){
             throw new IllegalArgumentException(message);
         }
         return readMove;
