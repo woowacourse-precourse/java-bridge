@@ -57,7 +57,7 @@ public class GameManager {
   }
 
   private boolean checkRetryByInput() {
-    // 게임 재시도 여부 메세지 출력
+    printCheckRetryInputMessage();
     // 입력받아서 재시도할 것인지 안할 것인지 판단
     return true;
   }
