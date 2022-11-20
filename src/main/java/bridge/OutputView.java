@@ -13,57 +13,53 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, int coordinate, boolean isDirectionanAndLocationSame) {
-        printFirstLayer(bridge, coordinate, isDirectionanAndLocationSame);
-        printSecondLayer(bridge, coordinate, isDirectionanAndLocationSame);
+        printFirstLine(bridge, coordinate, isDirectionanAndLocationSame);
+        printSecondLine(bridge, coordinate, isDirectionanAndLocationSame);
     }
 
-    public void printFirstLayer(List<String> bridge, int coordinate, boolean isDirectionanAndLocationSame) {
+    public void printFirstLine(List<String> bridge, int coordinate, boolean isDirectionAndLocationSame) {
+        printStartPart();
+        printMiddlePart(bridge, coordinate, "U");
+        printEndPart(bridge, isDirectionAndLocationSame, coordinate, "U");
+    }
+
+    public void printSecondLine(List<String> bridge, int coordinate,boolean isDirectionAndLocationSame) {
+        printStartPart();
+        printMiddlePart(bridge, coordinate, "D");
+        printEndPart(bridge, isDirectionAndLocationSame, coordinate, "D");
+    }
+
+
+    private void printStartPart() {
         System.out.print("[ ");
+    }
+
+    private void printMiddlePart(List<String> bridge, int coordinate, String direction) {
         for (int i = -1; i <= coordinate; i ++) {
             if (i == -1) continue;
-            if (bridge.get(i).equals("U")) {
+            if (bridge.get(i).equals(direction)) {
                 System.out.print("O | ");
             }
-            if(bridge.get(i).equals("D")) {
+            if(!bridge.get(i).equals(direction)) {
                 System.out.print("  | ");
             }
         }
-        if (bridge.get(coordinate+1).equals("U")) {
-            if (isDirectionanAndLocationSame == true) {
+    }
+
+    private void printEndPart(List<String> bridge, boolean isDirectionAndLocationSame, int coordinate, String direction) {
+        if (bridge.get(coordinate+1).equals(direction)) {
+            if (isDirectionAndLocationSame == true) {
                 System.out.println("O ]");
             }
-            if (isDirectionanAndLocationSame == false) {
+            if (isDirectionAndLocationSame == false) {
                 System.out.println("X ]");
             }
         }
-        if (bridge.get(coordinate+1).equals("D")) {
+        if (!bridge.get(coordinate+1).equals(direction)) {
             System.out.println("  ]");
         }
     }
 
-    public void printSecondLayer(List<String> bridge, int coordinate,boolean isDirectionanAndLocationSame) {
-        System.out.print("[ ");
-        for (int i = -1; i <= coordinate; i ++) {
-            if (i == -1) continue;
-            if (bridge.get(i).equals("D")) {
-                System.out.print("O | ");
-            }
-            if(bridge.get(i).equals("U")) {
-                System.out.print("  | ");
-            }
-        }
-        if (bridge.get(coordinate+1).equals("D")) {
-            if (isDirectionanAndLocationSame == true) {
-                System.out.println("O ]");
-            }
-            if (isDirectionanAndLocationSame == false) {
-                System.out.println("X ]");
-            }
-        }
-        if (bridge.get(coordinate+1).equals("U")) {
-            System.out.println("  ]");
-        }
-    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
