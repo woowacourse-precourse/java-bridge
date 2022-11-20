@@ -1,8 +1,7 @@
 package bridge.input;
 
-import static bridge.constant.BridgeConstants.MAX_BRIDGE_SIZE;
-import static bridge.constant.BridgeConstants.MIN_BRIDGE_SIZE;
 
+import bridge.constant.BridgeLength;
 import bridge.util.InputValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -44,7 +43,7 @@ public class InputValidatorTest {
     public void validateRangedInputForBridgeSize(String userInput) throws Exception {
         //given
         final String INVALID_BRIDGE_SIZE_INPUT =
-                "유효하지 않은 다리 크기입니다. (" + MIN_BRIDGE_SIZE + "이상 " + MAX_BRIDGE_SIZE + "이하)";
+                "유효하지 않은 다리 크기입니다. (" + BridgeLength.MIN.getLength() + "이상 " + BridgeLength.MAX.getLength() + "이하)";
         //when
         //then
         Assertions.assertThatThrownBy(() -> InputValidator.validateBridgeSize(userInput))
