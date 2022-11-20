@@ -5,6 +5,7 @@ import bridge.service.BridgeGame;
 import bridge.validation.BridgeSizeValidation;
 import bridge.validation.MovingValidation;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import bridge.view.PrintGuideMessage;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class BridgeGameController {
         List<String> bridge = game.createBridge(bridgeSize);
         List<String> movingChoices = game.createMovingChoices(getMoving());
         String move = game.move(new Player(movingChoices), bridge);
+        printMap(new Player(movingChoices), bridge, move);
     }
 
     public int getBridgeSize() {
@@ -39,7 +41,9 @@ public class BridgeGameController {
         return input;
     }
 
-    public void printMap() {
+    public void printMap(Player player, List<String> bridge, String move) {
+        OutputView outputView = new OutputView();
+        outputView.printMap(player, bridge, move);
     }
 
     public void getGameCommand() {
