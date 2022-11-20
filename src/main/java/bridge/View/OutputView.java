@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class OutputView {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
-    private List<String> upSide = new ArrayList<>();
-    private List<String> downSide = new ArrayList<>();
+    public List<String> upSide = new ArrayList<>();
+    public List<String> downSide = new ArrayList<>();
 
     public void printGameStart() {
         System.out.println(GAME_START);
@@ -26,12 +26,12 @@ public class OutputView {
      */
     public void printMap(int index) {
         printPreBracket();
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < upSide.size(); i++) {
             System.out.print(upSide.get(i));
         }
         printPostBracket();
         printPreBracket();
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < downSide.size(); i++) {
             System.out.print(downSide.get(i));
         }
         printPostBracket();
