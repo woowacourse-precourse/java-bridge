@@ -12,14 +12,14 @@ public class InputView {
     private static final String ENTER_RETRY_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
 
-    private static String input() {
+    private String input() {
         return Console.readLine();
     }
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static String readBridgeSize() {
+    public String readBridgeSize() {
         System.out.println(ENTER_BRIDGE_SIZE);
         return input();
     }
@@ -27,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
+    public String readMoving() {
         System.out.println(ENTER_SPACE_WANT_TO_MOVE);
         return input();
     }
@@ -35,7 +35,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
+    public String readGameCommand() {
         System.out.println(ENTER_RETRY_OR_QUIT);
         return input();
     }

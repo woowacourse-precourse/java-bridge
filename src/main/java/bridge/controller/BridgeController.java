@@ -19,10 +19,14 @@ public class BridgeController {
 
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public BridgeController(BridgeNumberGenerator bridgeNumberGenerator) {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridgeGame = new BridgeGame();
+        inputView = new InputView();
+        outputView = new OutputView();
     }
 
     public void play() {
@@ -49,7 +53,7 @@ public class BridgeController {
                 Position position = createPosition(distance, direction);
                 bridgeGame.move(position, passingPositions);
                 result = passingPositions.makeResult();
-            } while (!OutputView.printMap(result));
+            } while (!outputView.printMap(result));
 
             GameCommand gameCommand = createGameCommandLoop();
             if (gameCommand.isSameQuit()) {
@@ -61,7 +65,7 @@ public class BridgeController {
         }
 
         if (result != null) {
-            OutputView.printResult(result, attempt);
+            outputView.printResult(result, attempt);
         }
     }
 
@@ -75,9 +79,9 @@ public class BridgeController {
 
     private Length createLength() {
         try {
-            return new Length(InputView.readBridgeSize());
+            return new Length(inputView.readBridgeSize());
         } catch (IllegalArgumentException ex) {
-            OutputView.printError(ex.getMessage());
+            outputView.printError(ex.getMessage());
         }
         return null;
     }
@@ -100,9 +104,9 @@ public class BridgeController {
 
     private Direction createDirection() {
         try {
-            return new Direction(InputView.readMoving());
+            return new Direction(inputView.readMoving());
         } catch (IllegalArgumentException ex) {
-            OutputView.printError(ex.getMessage());
+            outputView.printError(ex.getMessage());
         }
         return null;
     }
@@ -121,9 +125,9 @@ public class BridgeController {
 
     private GameCommand createGameCommand() {
         try {
-            return new GameCommand(InputView.readGameCommand());
+            return new GameCommand(inputView.readGameCommand());
         } catch (IllegalArgumentException ex) {
-            OutputView.printError(ex.getMessage());
+            outputView.printError(ex.getMessage());
         }
         return null;
     }
