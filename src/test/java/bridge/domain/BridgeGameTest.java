@@ -2,8 +2,6 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,11 +13,11 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeGameTest {
-    private BridgeGame bridgeGame;
+    private Bridge upDownUpBridge;
 
     @BeforeEach
     void setUp() {
-        this.bridgeGame = new BridgeGame(new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP)));
+        upDownUpBridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP));
     }
 
     @DisplayName("플레이어 이동 테스트")
@@ -29,16 +27,29 @@ class BridgeGameTest {
         @NullAndEmptySource
         @ValueSource(strings = {" ", "u", "d", "UP", "DOWN", "abc", "cde"})
         void moveInvalidValue(String shapeName) {
+            BridgeGame bridgeGame = new BridgeGame(upDownUpBridge);
+
             assertThatThrownBy(() -> bridgeGame.move(shapeName)).isInstanceOf(IllegalArgumentException.class);
         }
 
-        @DisplayName("이동할 때 위 칸은 대문자 U를 아래 칸은 대문자 D를 입력한다")
+        @DisplayName("이동할 때 위 칸은 대문자 U를 입력한다")
         @Test
-        void move() {
-            assertAll(
-                    () -> assertDoesNotThrow(() -> bridgeGame.move("U")),
-                    () -> assertDoesNotThrow(() -> bridgeGame.move("D"))
-            );
+        void moveUp() {
+            BridgeGame bridgeGame = new BridgeGame(upDownUpBridge);
+            bridgeGame.move("U");
+            BridgeGameResult result = bridgeGame.result();
+
+            assertThat(result).isEqualTo(new BridgeGameResult(upDownUpBridge, List.of(true)));
+        }
+
+        @DisplayName("이동할 때 아래 칸은 대문자 D를 입력한다")
+        @Test
+        void moveDown() {
+            BridgeGame bridgeGame = new BridgeGame(upDownUpBridge);
+            bridgeGame.move("D");
+            BridgeGameResult result = bridgeGame.result();
+
+            assertThat(result).isEqualTo(new BridgeGameResult(upDownUpBridge, List.of(false)));
         }
     }
 
