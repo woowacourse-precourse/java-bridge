@@ -1,6 +1,6 @@
 package bridge.Message;
 
-public class message {
+public class Message {
 
     public static String START_GAME = "다리 건너기 게임을 시작합니다.\n";
     public static String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.\n";
