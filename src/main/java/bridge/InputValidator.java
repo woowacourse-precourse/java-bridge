@@ -7,6 +7,7 @@ public class InputValidator {
 
     private static final String BRIDGE_SIZE_LIMIT = "^[3-9]{1}$|^1{1}[0-9]{1}$|^2{1}0{1}$";
     private static final String DIRECTIONS = "^[U|D]{1}$";
+    private static final String PROGRESS_STATUS = "^[R|Q]{1}$";
 
     private final String input;
 
@@ -23,6 +24,12 @@ public class InputValidator {
     public void isUpOrDown() {
         if (!input.matches(DIRECTIONS)) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_DIRECTION_ERROR.toString());
+        }
+    }
+
+    public void isRetryOrQuit() {
+        if (!input.matches(PROGRESS_STATUS)) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_PROGRESS_STATUS_ERROR.toString());
         }
     }
 }
