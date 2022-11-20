@@ -32,4 +32,11 @@ class BridgeMakerTest {
         assertThat(bridge.contains("U")).isEqualTo(false);
     }
 
+    @Test
+    void checkBridgeListBySameStringList(){
+        int size = 10;
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        assertThat(bridge).isEqualTo(List.of("D","D","D","D","D","D","D","D","D","D"));
+    }
+
 }
