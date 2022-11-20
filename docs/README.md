@@ -37,7 +37,7 @@
     - [x] 게임 성공 여부 성공을 출력한다. (OutputView # printResult)
     - [x] 시도 횟수를 출력한다. (OutputView # printResult)
 ## 예외 처리
-- [ ] 아래에 해당하는 예외가 발생할 시 IllegalArgumentException를 일으키고 [ERROR]로 시작하는 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [x] 아래에 해당하는 예외가 발생할 시 IllegalArgumentException를 일으키고 [ERROR]로 시작하는 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 ### 1. 다리 길이 입력 예외 처리
 - [x] 입력이 3 이상 20 이하의 숫자가 아니면 예외 처리한다. (InputView # isLengthOutOfRange)
 - [x] 입력이 숫자가 아니면 예외 처리한다. (InputView # isNotNumber)

@@ -51,6 +51,16 @@ public class BridgeGame {
         }
     }
 
+    private void keepMoving(boolean continueGame, List<String> userMoving) {
+        while (continueGame) {
+            if (completeCrossBridge(userMoving)) {
+                successOrFail = true;
+                break;
+            }
+            continueGame = moveOnce();
+        }
+    }
+
     private boolean completeCrossBridge(List<String> userMoving) {
         if (userMoving.size() == bridge.size()) {
             return true;
@@ -59,21 +69,11 @@ public class BridgeGame {
         return false;
     }
 
-    private void keepMoving(boolean continueGame, List<String> userMoving) {
-        while (continueGame) {
-            if (completeCrossBridge(userMoving)) {
-                successOrFail = true;
-                break;
-            }
-            continueGame = getMoving(userMoving);
-        }
-    }
-
-    private boolean getMoving(List<String> userMoving) {
+    private boolean moveOnce() {
         ViewMessage.printMovingInputRequest();
 
         String moving = InputView.readMoving();
-        userMoving = user.recordUserMoving(moving);
+        List<String> userMoving = user.recordUserMoving(moving);
         return OutputView.printMap(userMoving, bridge);
     }
 
