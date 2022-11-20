@@ -34,7 +34,6 @@
 ### BridgeMaker (Random)
 
 - 주어진 다리 길이만큼 안전경로를 만드는 기능
-- 주어진 다리 길이만큼 빈 경로를 만드는 기능
 
 ### BridgeGame (Service)
 
