@@ -11,8 +11,8 @@ public class Application {
         try {
             System.out.println(Messages.START_MESSAGE);
             BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(bridgeNumberGenerator));
-            bridgeGame.startGame();
+            GameController gameController = new GameController(new BridgeMaker(bridgeNumberGenerator));
+            gameController.startGame();
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
