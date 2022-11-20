@@ -10,10 +10,12 @@ public class Application {
         outputView.printGreeting();
         BridgeGame bridgeGame = initialize(inputView, outputView);
 
-        outputView.printMoveInputMessage();
-        String direction = inputView.readMoving();
+        while (bridgeGame.getGameStatus().equals(GameStatus.ONGOING)) {
+            outputView.printMoveInputMessage();
+            String direction = inputView.readMoving();
 
-        bridgeGame.move(direction);
+            bridgeGame.move(direction);
+        }
     }
 
     private static BridgeGame initialize(InputView inputView, OutputView outputView) {
