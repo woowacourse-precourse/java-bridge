@@ -12,6 +12,11 @@ public class BridgeGameController {
     public void run() {
         start();
         play();
+        end();
+    }
+
+    private void end() {
+        OutputView.printResult(bridgeGame.getPlayer(), gameStatus);
     }
 
     private void play() {
@@ -29,7 +34,7 @@ public class BridgeGameController {
 
     private void moveBridge() {
         gameStatus = bridgeGame.move(InputView.readMoving());
-        OutputView.printMap(bridgeGame.getPlayerMoveResult());
+        OutputView.printMap(bridgeGame.getPlayer());
     }
 
     private void start() {

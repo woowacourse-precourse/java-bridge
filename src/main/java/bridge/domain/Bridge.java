@@ -9,6 +9,10 @@ public class Bridge {
         this.bridges = bridges;
     }
 
+    public boolean isFinish(int distance) {
+        return bridges.size() == distance;
+    }
+
     public MoveResult crossBridge(int distance, Move moveTo) {
         return MoveResult.move(Move.from(bridges.get(distance)), moveTo);
     }

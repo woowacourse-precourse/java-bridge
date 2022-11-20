@@ -26,14 +26,18 @@ public class BridgeGame {
      */
     public GameStatus move(Move moveTo) {
         if (player.move(bridge, moveTo)) {
+            if (bridge.isFinish(player.getMoveDistance())) {
+                return GameStatus.CLEAR;
+            }
+
             return GameStatus.PLAYING;
         }
 
         return GameStatus.FAIL;
     }
 
-    public Map<Move, List<MoveResult>> getPlayerMoveResult() {
-        return player.getMoveResults();
+    public Player getPlayer() {
+        return player;
     }
 
     /**
