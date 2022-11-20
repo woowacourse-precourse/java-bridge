@@ -38,18 +38,23 @@ public class OutputView {
         System.out.println(START_FORM + upState + END_FORM);
         System.out.println(START_FORM + downState + END_FORM);
     }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int index, boolean check, String moveUpOrDown) {
-        if (index >= 1) {
+    public void printMap(int location, boolean check, String moveUpOrDown) {
+        setBoundaryLine(location);
+        checkUpOrDown(moveUpOrDown, check);
+        printResultMap();
+    }
+
+    private void setBoundaryLine(int location) {
+        if (location >= 1) {
             upState.append(BOUNDARY_LINE);
             downState.append(BOUNDARY_LINE);
         }
-        checkUpOrDown(moveUpOrDown, check);
-        printResultMap();
     }
 
     private void checkUpOrDown(String UpAndDown, boolean check) {
