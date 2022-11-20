@@ -36,7 +36,7 @@ class InputExceptionHandlerTest {
 	}
 
 	@ParameterizedTest
-	@DisplayName("다리 길이 입력이 3~20 사이에 숫자가 아니면 예외가 발생한다. - 실패")
+	@DisplayName("이동 칸에 대한 입력이 U 또는 D가 아닐 경우 예외처리 된다. - 실패")
 	@ValueSource(strings = {"1", "Q", "UP", "UD"})
 	void checkMovingCommandFailureWhenNotMovingCommand(String input) {
 		assertThatThrownBy(
@@ -45,7 +45,7 @@ class InputExceptionHandlerTest {
 	}
 
 	@ParameterizedTest
-	@DisplayName("이동 칸에 대한 입력은 U 또는 D으로 입력받는다. - 성공")
+	@DisplayName("재시도 입력은 Q 또는 R로 입력받는다. - 성공")
 	@ValueSource(strings = {"Q", "R"})
 	void checkRetryCommand(String input) {
 		assertThatCode(
@@ -54,7 +54,7 @@ class InputExceptionHandlerTest {
 	}
 
 	@ParameterizedTest
-	@DisplayName("다리 길이 입력이 3~20 사이에 숫자가 아니면 예외가 발생한다. - 실패")
+	@DisplayName("재시도 입력이 Q 또는 R이 아닐 경우 예외 처리된다. - 실패")
 	@ValueSource(strings = {"1", "D", "U", "QR"})
 	void checkRetryCommandFailureWhenNotRetryCommand(String input) {
 		assertThatThrownBy(

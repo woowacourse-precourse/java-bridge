@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.Move;
 import bridge.exception.InputExceptionHandler;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -25,7 +26,7 @@ public class InputView {
 	/**
 	 * 사용자가 이동할 칸을 입력받는다.
 	 */
-	public static String readMoving() {
+	public static Move readMoving() {
 		while (true) {
 			OutputView.printMoving();
 			try {

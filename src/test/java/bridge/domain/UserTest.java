@@ -20,24 +20,24 @@ class UserTest {
 	@Test
 	@DisplayName("이동한 칸들이 일치하는지 확인한다. - 성공")
 	void checkSelections() {
-		user.move("U");
-		user.move("D");
-		assertThat(user.getSelections()).containsExactly("U", "D");
+		user.move(Move.UP);
+		user.move(Move.DOWN);
+		assertThat(user.getSelections()).containsExactly(Move.UP, Move.DOWN);
 	}
 
 	@Test
 	@DisplayName("현재 칸에 있는 위치가 어디인지 확인해준다")
 	void checkCurrentSelection() {
-		user.move("U");
-		user.move("D");
-		assertThat(user.getCurrentSelection()).isEqualTo("D");
+		user.move(Move.UP);
+		user.move(Move.DOWN);
+		assertThat(user.getCurrentSelection()).isEqualTo(Move.DOWN);
 	}
 
 	@Test
 	@DisplayName("현재 진행된 칸 수 를 반환해준다.")
 	void checkSelectionCount() {
-		user.move("U");
-		user.move("D");
+		user.move(Move.UP);
+		user.move(Move.DOWN);
 		assertThat(user.getSelectionCount()).isEqualTo(2);
 	}
 

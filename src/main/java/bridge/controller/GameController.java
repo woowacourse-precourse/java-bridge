@@ -1,9 +1,8 @@
 package bridge.controller;
 
-import static bridge.constant.Constant.*;
-
 import java.util.List;
 
+import bridge.constant.GameConstant;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
@@ -37,13 +36,13 @@ public class GameController {
 			OutputView.printMap(bridgeGame.currentMap());
 			end = bridgeGame.end();
 		}
-		if (bridgeGame.result().equals(FAIL.getConstant())) {
+		if (bridgeGame.result().equals(GameConstant.FAIL)) {
 			retry();
 		}
 	}
 
 	private void retry() {
-		if (InputView.readGameCommand().equals(RETRY_COMMAND.getConstant())) {
+		if (InputView.readGameCommand().equals(GameConstant.RETRY_COMMAND)) {
 			bridgeGame.retry();
 			progress();
 		}

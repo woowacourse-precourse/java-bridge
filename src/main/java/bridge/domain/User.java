@@ -1,10 +1,12 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class User {
-	private final List<String> selections;
+
+	private final List<Move> selections;
 	private int trialCount;
 
 	public User() {
@@ -12,19 +14,19 @@ public class User {
 		trialCount = 1;
 	}
 
-	public void move(String movePosition) {
-		selections.add(movePosition);
+	public void move(Move move) {
+		selections.add(move);
 	}
 
-	public List<String> getSelections() {
-		return new ArrayList<>(selections);
+	public List<Move> getSelections() {
+		return Collections.unmodifiableList(selections);
 	}
 
 	public int getCurrentSelectionIndex() {
 		return selections.size() - 1;
 	}
 
-	public String getCurrentSelection() {
+	public Move getCurrentSelection() {
 		return selections.get(getCurrentSelectionIndex());
 	}
 

@@ -1,24 +1,28 @@
 package bridge.domain;
 
-import static bridge.constant.ErrorMessage.*;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Bridge {
-	private final List<String> bridge;
+
+	private static final String NOT_INDEX_RANGE = "[ERROR] 다리의 길이와 일치하지 않는 위치입니다.";
+
+	private final List<Move> bridge;
 
 	public Bridge(List<String> bridge) {
-		this.bridge = bridge;
+		this.bridge = bridge.stream()
+			.map(Move::find)
+			.collect(Collectors.toList());
 	}
 
-	public boolean match(int index, String command) {
+	public boolean match(int index, Move move) {
 		validateIndexRange(index);
-		return bridge.get(index).equals(command);
+		return bridge.get(index).equals(move);
 	}
 
 	private void validateIndexRange(int index) {
 		if (index < 0 || index >= this.length()) {
-			throw new IllegalArgumentException(NOT_INDEX_RANGE.getMessage());
+			throw new IllegalArgumentException(NOT_INDEX_RANGE);
 		}
 	}
 

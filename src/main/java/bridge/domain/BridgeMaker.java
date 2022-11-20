@@ -1,9 +1,5 @@
 package bridge.domain;
 
-import static bridge.constant.Constant.*;
-import static bridge.constant.ErrorMessage.*;
-import static bridge.constant.NumericConstant.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,12 +26,7 @@ public class BridgeMaker {
 	}
 
 	private String changeToMovingCommand(int number) {
-		if (number == DOWN_BRIDGE_NUMBER.getConstValue()) {
-			return DOWN_BRIDGE_COMMAND.getConstant();
-		}
-		if (number == UP_BRIDGE_NUMBER.getConstValue()) {
-			return UP_BRIDGE_COMMAND.getConstant();
-		}
-		throw new IllegalArgumentException(NOT_MOVING_NUMBER.getMessage());
+		Move move = Move.find(number);
+		return move.getMoveCommand();
 	}
 }

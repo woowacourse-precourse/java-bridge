@@ -25,7 +25,7 @@ class BridgeTest {
 	@DisplayName("현재 다리의 한 부분과 일치한다 - 성공")
 	@CsvSource({"0,D", "1,U", "2,U"})
 	void checkSuccessMatching(int index, String movingCommand) {
-		assertThat(bridge.match(index, movingCommand)).isTrue();
+		assertThat(bridge.match(index, Move.find(movingCommand))).isTrue();
 	}
 
 	@ParameterizedTest
@@ -33,7 +33,7 @@ class BridgeTest {
 	@CsvSource({"-1,D", "4,U"})
 	void checkMatchingFailureWhenNotRangeOfIndex(int index, String movingCommand) {
 		assertThatThrownBy(
-			() -> bridge.match(index, movingCommand)
+			() -> bridge.match(index, Move.find(movingCommand))
 		).isInstanceOf(IllegalArgumentException.class);
 	}
 

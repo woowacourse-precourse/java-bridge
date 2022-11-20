@@ -1,6 +1,5 @@
 package bridge.service;
 
-import static bridge.constant.Constant.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -10,7 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import bridge.constant.GameConstant;
 import bridge.domain.Bridge;
+import bridge.domain.Move;
 import bridge.domain.User;
 
 class BridgeGameTest {
@@ -28,7 +29,7 @@ class BridgeGameTest {
 	void currentMap() {
 		List<String> map = new ArrayList<>(List.of("U", "U", "U"));
 		for (int i = 0; i < 3; i++) {
-			bridgeGame.move(map.get(i));
+			bridgeGame.move(Move.find(map.get(i)));
 		}
 		List<List<String>> currentMap = bridgeGame.currentMap();
 		List<String> targetMap = new ArrayList<>(List.of("O", "O", "X"));
@@ -42,12 +43,12 @@ class BridgeGameTest {
 	void checkClear() {
 		List<String> map = new ArrayList<>(List.of("U", "U", "D", "D", "D"));
 		for (int i = 0; i < 5; i++) {
-			bridgeGame.move(map.get(i));
+			bridgeGame.move(Move.find(map.get(i)));
 			if (!bridgeGame.end()) {
 				break;
 			}
 		}
-		assertThat(bridgeGame.result()).isEqualTo(CLEAR.getConstant());
+		assertThat(bridgeGame.result()).isEqualTo(GameConstant.CLEAR);
 	}
 
 	@Test
@@ -55,13 +56,13 @@ class BridgeGameTest {
 	void checkClearFailure() {
 		List<String> map = new ArrayList<>(List.of("U", "U", "U", "U", "D"));
 		for (int i = 0; i < 5; i++) {
-			bridgeGame.move(map.get(i));
+			bridgeGame.move(Move.find(map.get(i)));
 			System.out.println(bridgeGame.result());
 			if (!bridgeGame.end()) {
 				break;
 			}
 		}
-		assertThat(bridgeGame.result()).isEqualTo(FAIL.getConstant());
+		assertThat(bridgeGame.result()).isEqualTo(GameConstant.FAIL);
 	}
 
 	@Test
