@@ -63,7 +63,7 @@
     - [x] 다리 길이 입력 및 검증 → inputBridgeSize
         1. 다리 길이 입력
         2. 다리 길이 유효성 검사
-    - [ ] 이동할 칸 입력 및 검증 → inputMoving
+    - [x] 이동할 칸 입력 및 검증 → inputMoving
         1. 이동할 칸 입력
         2. 이동할 칸 유효성 검사
     - [ ] 게임 재시작 입력 및 검증 → inputStart

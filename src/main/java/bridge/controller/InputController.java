@@ -18,4 +18,15 @@ public class InputController {
             return inputBridgeSize();
         }
     }
+
+    public String inputMoving() {
+        try {
+            String moving = inputView.readMoving();
+            inputValidator.Moving(moving);
+            return moving;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputMoving();
+        }
+    }
 }
