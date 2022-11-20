@@ -1,18 +1,23 @@
 package bridge.mock;
 
+import bridge.mock.exception.MockInputNotFoundException;
 import bridge.system.util.BridgeNumberGenerator;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class MockNumberGenerator implements BridgeNumberGenerator {
-    private final List<Integer> numbers;
+    private final Iterator<Integer> numbers;
 
     public MockNumberGenerator(List<Integer> numbers) {
-        this.numbers = numbers;
+        this.numbers = numbers.iterator();
     }
 
     @Override
     public int generate() {
-        return numbers.remove(0);
+        if (this.numbers.hasNext()) {
+            return numbers.next();
+        }
+        throw new MockInputNotFoundException();
     }
 }
