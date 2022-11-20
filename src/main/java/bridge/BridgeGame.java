@@ -19,7 +19,6 @@ public class BridgeGame {
 
     public List<String> bridge;
     public List<String> userInput;
-    public List<String> userStatus;
     public int userLocation = 0;
 
 
@@ -30,12 +29,11 @@ public class BridgeGame {
     }
 
     public void game() {
-        System.out.println(STARTGAME+'\n');
+        System.out.println(STARTGAME + '\n');
 
         int bridgeSize = inputView.readBridgeSize();
-        this.bridge  = bridgeMaker.makeBridge(bridgeSize);
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.userInput = new ArrayList<>();
-        this.userStatus = new ArrayList<>();
 
         while (userLocation < bridgeSize) {
             String moving = inputView.readMoving();
@@ -52,18 +50,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moving) {
-        if (canMove(moving)) {
-            userStatus.add("O");
-            outputView.printMap(bridge, userInput, userStatus);
-        } else {
-            userStatus.add("X");
-            outputView.printMap(bridge, userInput, userStatus);
+        outputView.printMap(bridge, userInput);
+        if (!canMove(moving)) {
             retry();
         }
     }
 
     private boolean canMove(String moving) {
-        if (bridge.get(userLocation) == moving) {
+        if (bridge.get(userLocation).equals(moving)) {
             return true;
         }
         return false;
@@ -76,12 +70,11 @@ public class BridgeGame {
      */
     public void retry() {
         String gameCommand = inputView.readGameCommand();
-        if (gameCommand == "R") {
-            userLocation = 0;
+        if (gameCommand.equals("R")) {
+            userLocation = -1;
             userInput.clear();
-            userStatus.clear();
         }
-        if (gameCommand == "Q") {
+        if (gameCommand.equals("Q")) {
             userLocation = bridge.size();
         }
     }
