@@ -23,14 +23,10 @@ public class BridgeGame {
         BridgeGameManager gameManager = new BridgeGameManager();
         gameManager.inputChanger(userUpDown);
 
-        // send the result to printMap
+        // send the result to printMap in a form
         // OutputView.printMap(bridge);
-        // should use outputview enum here
         System.out.println();
     }
-
-
-
 
 
     /**
@@ -38,6 +34,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public static void retry() {
+        InputView.readGameCommand();
+        // check using inputRetryOrnot
+//        if(InputView.readGameCommand().equals()){
+//        }
     }
+
 }

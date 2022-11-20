@@ -29,16 +29,22 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        printRetryInst();
+        String retryOrNot = camp.nextstep.edu.missionutils.Console.readLine();
+        return retryOrNot;
     }
 
     // UI logic for overall process
-    public static void printStartInst(){
+    private static void printStartInst(){
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
-    public static void printMoveInst(){
+    private static void printMoveInst(){
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    private static void printRetryInst(){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }

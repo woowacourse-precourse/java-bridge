@@ -12,13 +12,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> bridge) {
+    public static void printMap(List<String> bridgeCheck) {
 
         // should also user enum here
-        for (String b: bridge){
-            System.out.printf("%s","O");
+        for (String b: bridgeCheck){
+//            System.out.printf("%s","O");
 
+            System.out.println(b);
         }
+
+        // think that we are checking twice
+        // first if there's 1 > 0 / second if there's 0 > 0
     }
 
     /**

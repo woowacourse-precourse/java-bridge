@@ -13,7 +13,7 @@ public class Application {
         newBridge.makeBridge(bridgeLength);
 
         BridgeGame newGame = new BridgeGame();
-        while (BridgeGame.bridge.size() < bridgeLength) {
+        while (BridgeGame.bridge.size() <= bridgeLength-1) {
             newGame.move(bridgeLength);
         }
     }
