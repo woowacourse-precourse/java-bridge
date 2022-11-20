@@ -42,7 +42,10 @@ public class InputView {
         }
     }
 
-    public static String readRetry() {
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public static String readGameCommand() {
         while(true) {
             System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             String retryOrQuit = Console.readLine();
@@ -53,12 +56,5 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
     }
 }
