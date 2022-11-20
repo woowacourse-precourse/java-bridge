@@ -14,8 +14,7 @@ public class BridgeGame {
     public void run() {
         try {
             outputView.startMsg();
-            int bridgeSize = inputView.readBridgeSize();
-            bridgeMaker.makeBridge(bridgeSize);
+            bridgeMaker.makeBridge(inputView.readBridgeSize());
         } catch (IllegalArgumentException exception) {
             OutputView.printMsg("[ERROR] " + exception.getMessage());
         }
