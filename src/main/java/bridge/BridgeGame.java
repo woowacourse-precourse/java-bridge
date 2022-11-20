@@ -35,6 +35,10 @@ public class BridgeGame {
         this.attempts++;
     }
 
+    public Bridge getBridge() {
+        return this.bridge;
+    }
+
     public int getAttempts() {
         return this.attempts;
     }
