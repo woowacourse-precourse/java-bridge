@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    public static final int BRIDGE_MAX_LENGTH = 20;
+    public static final int BRIDGE_MIN_LENGTH = 3;
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -34,7 +37,7 @@ public class BridgeMaker {
     }
 
     private void validate(int size){
-        if(size < 3 || 20 < size)
+        if(size < BRIDGE_MIN_LENGTH || BRIDGE_MAX_LENGTH < size)
             throw new CustomIllegalArgumentException(
                     "다리의 길이는 3이상 20이하의 값이어야 합니다."
             );
