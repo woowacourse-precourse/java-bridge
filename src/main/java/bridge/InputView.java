@@ -52,7 +52,6 @@ public class InputView {
         }
 
         public static Optional isRightInput(String input_type, String input_value){
-            System.out.println(input.inputMessageByInputType(input_type));
             return Arrays.stream(values())
                     .filter(find -> find.input_type == input_type && find.right_input.contains(input_value))
                     .findAny();
@@ -82,6 +81,7 @@ public class InputView {
 
     private String validateAndReturnInput(String input_type){
         while(true){
+            System.out.println(input.inputMessageByInputType(input_type));
             String input_value = readLine();
             Optional validateInput = input.isRightInput(input_type, input_value);
             if(validateInput.isPresent()){
