@@ -15,6 +15,10 @@ public class BridgeGameController {
     private Player player;
     private String retryString = "";
     private String moveString = "";
+    private final static String ERROR_INVALID_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private final static String ERROR_INVALID_MOVE_COMMAND = "[ERROR] 이동할 칸 입력은 U 혹은 D만 가능합니다.";
+    private final static String ERROR_INVALID_RETRY_COMMAND = "[ERROR] 재시도 입력은 R 혹은 Q만 가능합니다.";
+
 
     public BridgeGameController() {
         inputView = new InputView();
@@ -37,7 +41,7 @@ public class BridgeGameController {
         try {
             bridgeSize = new BridgeSize(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
-            outputView.printError("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            outputView.printError(ERROR_INVALID_BRIDGE_SIZE);
         }
     }
 
@@ -54,14 +58,14 @@ public class BridgeGameController {
         try {
             readMove();
         } catch (IllegalArgumentException e) {
-            outputView.printError("[ERROR] 이동할 칸 입력은 U 혹은 D만 가능합니다.");
+            outputView.printError(ERROR_INVALID_MOVE_COMMAND);
             return false;
         }
         return true;
     }
 
-    public boolean validateRetryValue(){
-        if(retryString.equals(InputView.RETRY_YES) || retryString.equals(InputView.RETRY_NO)){
+    public boolean validateRetryValue() {
+        if (retryString.equals(InputView.RETRY_YES) || retryString.equals(InputView.RETRY_NO)) {
             return true;
         }
         return false;
@@ -73,7 +77,7 @@ public class BridgeGameController {
             try {
                 retryString = inputView.readRetry();
             } catch (IllegalArgumentException e) {
-                outputView.printError("[ERROR] 재시도 입력은 R 혹은 Q만 가능합니다.");
+                outputView.printError(ERROR_INVALID_RETRY_COMMAND);
             }
         } while (!validateRetryValue());
         return bridgeGame.retry(retryString);
