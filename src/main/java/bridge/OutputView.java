@@ -5,14 +5,23 @@ package bridge;
  */
 public class OutputView {
 
+    static final String START_MAP="[ ";
+    static final String END_MAP=" ]";
+    static final String BRIDGE_DIVISION=" | ";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String SingleMap) {
+        System.out.print(START_MAP);
+        System.out.print(SingleMap.charAt(0));
+        for(int i=1;i<SingleMap.length();i++){
+            System.out.print(BRIDGE_DIVISION);
+            System.out.print(SingleMap.charAt(i));
+        }
+        System.out.println(END_MAP);
     }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
