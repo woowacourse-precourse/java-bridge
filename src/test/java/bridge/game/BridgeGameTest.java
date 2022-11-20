@@ -58,10 +58,29 @@ public class BridgeGameTest extends NsTest {
 
     @DisplayName("게임 미성공 확인 테스트")
     @Test
-    void checkIfGameIsSucceed_fail_테스트() {
+    void checkIfGameIsSucceed_not_seccess_테스트() {
         bridgeGame.move(BridgeGame.BridgeShape.DOWN.getStringValue());
         bridgeGame.move(BridgeGame.BridgeShape.UP.getStringValue());
         assertThat(false).isEqualTo(bridgeGame.checkIfGameIsSucceed(bridgeLength));
+    }
+
+    /**
+     * checkIfGameIsFailed - 게임 실패 유무 확인
+     */
+    @DisplayName("게임 실패 확인 테스트")
+    @Test
+    void checkIfGameIsFailed_fail_테스트() {
+        bridgeGame.move(BridgeGame.BridgeShape.DOWN.getStringValue());
+        bridgeGame.move(BridgeGame.BridgeShape.UP.getStringValue());
+        assertThat(true).isEqualTo(bridgeGame.checkIfGameIsFailed(bridgeLength));
+    }
+
+    @DisplayName("게임 미실패 확인 테스트")
+    @Test
+    void checkIfGameIsFailed_not_fail_테스트() {
+        bridgeGame.move(BridgeGame.BridgeShape.DOWN.getStringValue());
+        bridgeGame.move(BridgeGame.BridgeShape.DOWN.getStringValue());
+        assertThat(false).isEqualTo(bridgeGame.checkIfGameIsFailed(bridgeLength));
     }
 
 
