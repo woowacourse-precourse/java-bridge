@@ -33,8 +33,12 @@ public class Direction {
         }
     }
 
-    public boolean isUpper() {
+    public boolean isSameUp() {
         return direction.equals("U");
+    }
+
+    public boolean isSameDown() {
+        return direction.equals("D");
     }
 
     public boolean isSameDirection(Direction other) {

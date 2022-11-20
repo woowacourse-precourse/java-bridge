@@ -25,39 +25,39 @@ public class PassingPositions {
     public Result makeResult() {
         List<String> upDirections = new ArrayList<>();
         List<String> downDirections = new ArrayList<>();
-        movableWithUpOrDown(upDirections, downDirections);
+        moveLoop(upDirections, downDirections);
         return new Result(upDirections, downDirections);
     }
 
-    private void movableWithUpOrDown(List<String> upDirections, List<String> downDirections) {
+    private void moveLoop(List<String> upDirections, List<String> downDirections) {
         passingPositions
                 .forEach(position -> {
-                    if (position.getDirection().isUpper()) {
-                        movableWithUp(bridge.compare(position), upDirections, downDirections);
+                    if (position.getDirection().isSameUp()) {
+                        moveToUp(bridge.compare(position), upDirections, downDirections);
                     }
-                    if (!position.getDirection().isUpper()) {
-                        movableWithDown(bridge.compare(position), upDirections, downDirections);
+                    if (position.getDirection().isSameDown()) {
+                        moveToDown(bridge.compare(position), upDirections, downDirections);
                     }
                 });
     }
 
-    private void movableWithUp(String compare, List<String> upDirections, List<String> downDirections) {
-        addMovableDirection(upDirections, compare);
-        addWrongDirection(downDirections);
+    private void moveToUp(String compare, List<String> upDirections, List<String> downDirections) {
+        moveToSelected(upDirections, compare);
+        doNotMove(downDirections);
     }
 
-    private void movableWithDown(String compare, List<String> upDirections, List<String> downDirections) {
-        addMovableDirection(downDirections, compare);
-        addWrongDirection(upDirections);
+    private void moveToDown(String compare, List<String> upDirections, List<String> downDirections) {
+        moveToSelected(downDirections, compare);
+        doNotMove(upDirections);
     }
 
-    private void addMovableDirection(List<String> directions, String compare) {
-        directions.add(SEPARATOR);
-        directions.add(compare);
+    private void moveToSelected(List<String> selectedDirections, String compare) {
+        selectedDirections.add(SEPARATOR);
+        selectedDirections.add(compare);
     }
 
-    private void addWrongDirection(List<String> directions) {
-        directions.add(SEPARATOR);
-        directions.add(SPACE);
+    private void doNotMove(List<String> notSelectedDirections) {
+        notSelectedDirections.add(SEPARATOR);
+        notSelectedDirections.add(SPACE);
     }
 }
