@@ -4,7 +4,7 @@ public enum GameState {
     START("S"),
     END("Q"),
     RETRY("R"),
-    FAILED("F");
+    FAILED("X");
 
     private final String state;
 

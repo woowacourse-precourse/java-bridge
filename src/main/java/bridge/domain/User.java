@@ -1,6 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.utils.BridgeCommand;
 import bridge.domain.utils.BridgeState;
+import bridge.domain.utils.GameState;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,5 +36,15 @@ public class User {
     public void initialize() {
         bridgeGames.clear();
         retryCount++;
+    }
+
+    public GameState isGameSuccess() {
+        if (bridgeGames.contains(GameState.FAILED.getState()))
+            return GameState.FAILED;
+        return GameState.END;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
     }
 }

@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.domain.User;
 import bridge.domain.utils.BridgeCommand;
 import bridge.domain.utils.BridgeState;
+import bridge.domain.utils.GameState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
 public class OutputView {
 
     public static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
+    public static final String FINAL_GAME_OUTPUT = "최종 게임 결과";
+    public static final String FINAL_GAME_IS_SUCCESS = "게임 성공 여부: %s\n";
+    public static final String FINAL_GAME_TRY_COUNT = "총 시도한 횟수: %d\n";
     private static final String SUCCESS_CROSSING = " O ";
     private static final String FAILED_CROSSING = " X ";
     private static final String NOTING_CROSSING = "   ";
@@ -38,7 +42,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(User user) {
+        System.out.println(FINAL_GAME_OUTPUT);
+        printMap(user);
+        System.out.printf(FINAL_GAME_IS_SUCCESS,checkIsSuccess(user));
+        System.out.printf(FINAL_GAME_TRY_COUNT,user.getRetryCount());
     }
 
     private List<String> exchangeBridge(String position, User user) {
@@ -65,6 +73,12 @@ public class OutputView {
                 System.out.print("|");
         }
         System.out.println("]");
+    }
+
+    private String checkIsSuccess(User user) {
+        if (user.isGameSuccess() == GameState.FAILED)
+            return "실패";
+        return "성공";
     }
 
 }

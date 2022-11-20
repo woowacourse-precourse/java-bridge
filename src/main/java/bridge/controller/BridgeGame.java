@@ -34,6 +34,7 @@ public class BridgeGame {
             if (gameState != GameState.START)
                 gameState = retry(user);
         }
+        outputView.printResult(user);
     }
 
     /**
