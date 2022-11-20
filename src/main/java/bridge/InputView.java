@@ -37,7 +37,7 @@ public class InputView {
 			String input;
 			try {
 				input = readLine();
-				checkInput(input);
+				checkWayInput(input);
 			} catch (IllegalArgumentException illegalArgumentException) {
 				System.out.println(ERROR_WRONG_BRIDGE_VALUE);
 				continue;
@@ -46,7 +46,7 @@ public class InputView {
 		}
 	}
 
-	private void checkInput(String input) {
+	private void checkWayInput(String input) {
 		if (!input.equals("U") && !input.equals("D")){
 			throw new IllegalArgumentException();
 		}
@@ -56,6 +56,22 @@ public class InputView {
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
 	public String readGameCommand() {
-		return null;
+		while (true) {
+			String input;
+			try {
+				input = readLine();
+				checkRetryInput(input);
+			} catch (IllegalArgumentException illegalArgumentException) {
+				System.out.println(ERROR_WRONG_BRIDGE_VALUE);
+				continue;
+			}
+			return input;
+		}
+	}
+
+	private void checkRetryInput(String input) {
+		if (!input.equals("R") && !input.equals("Q")){
+			throw new IllegalArgumentException();
+		}
 	}
 }
