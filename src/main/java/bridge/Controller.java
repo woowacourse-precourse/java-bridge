@@ -5,10 +5,13 @@ public class Controller {
     OutputView outputView;
     BridgeMaker bridgeMaker;
 
-    public Controller(InputView inputView, OutputView outputView, BridgeRandomNumberGenerator bridgeMaker) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.bridgeMaker = new BridgeMaker(bridgeMaker);
+    public Controller(InputView input, OutputView output, BridgeRandomNumberGenerator generator) {
+        this.inputView = input;
+        this.outputView = output;
+        this.bridgeMaker = new BridgeMaker(generator);
     }
 
+    public void start() {
+        outputView.printGameStart();
+    }
 }
