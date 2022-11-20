@@ -13,7 +13,7 @@ public class BridgeGame {
     private static final String WIN = "성공";
     private static final String LOSE = "실패";
 
-    public static int gameManagement(List<String> nowBridge, List<String> generatedBridge) {
+    public int gameManagement(List<String> nowBridge, List<String> generatedBridge) {
         int count = 0;
         do {
             gameService(nowBridge, generatedBridge);
