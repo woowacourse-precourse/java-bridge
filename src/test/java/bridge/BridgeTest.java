@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.Model.Bridge;
-import bridge.Model.UserChoice;
+import bridge.Model.VO.Bridge;
+import bridge.Model.VO.UserChoice;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

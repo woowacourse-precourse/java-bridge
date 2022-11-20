@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Model.UserChoice;
+import bridge.Model.VO.UserChoice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

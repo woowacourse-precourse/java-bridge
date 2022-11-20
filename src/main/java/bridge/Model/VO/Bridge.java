@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.Model.VO;
 
 import bridge.ChoiceResult;
 

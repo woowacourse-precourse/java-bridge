@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.Model.VO;
 
 public class BridgeSize {
     private final static int MIN_SIZE = 3;

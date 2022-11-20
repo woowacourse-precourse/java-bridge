@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Model.BridgeSize;
+import bridge.Model.VO.BridgeSize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
