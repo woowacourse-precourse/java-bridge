@@ -9,6 +9,7 @@ import java.util.List;
 public class BridgeMaker {
 
     public static List<String> bridge_info;
+    public static int bridge_index = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
