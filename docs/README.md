@@ -54,11 +54,11 @@
 ---
 ## 게임 운영
 ### 게임 운영자 GameManager
-- [ ] 초기 세팅(의존성 설정) GameManager#initialSetting()
-- [ ] 다리 생성(사용자에 입력받아 다리 생성) GameManager#setBridge()
-- [ ] 게임 진행 순서 운영 GameManager#manageGame()
-- [ ] 게임 진행(사용자에게 입력받아 guess 게임 진행) GameManger#processGame()
-- [ ] 게임 종료 GameMager#endGame()
+- [x] 게임 진행 순서 운영 GameManager#start()
+  - [x] 초기 세팅(의존성 설정) GameManager#GameManger()
+  - [x] 다리 생성(사용자에 입력받아 다리 생성) GameManager#setBridge()
+  - [x] 게임 진행(사용자에게 입력받아 guess 게임 진행) GameManger#processGame()
+  - [x] 게임 종료 GameMager#endGame()
 ---     
 ## 추가 기능
 - [ ] AOP 프록시를 이용하여 예외 발생시 다시 입력 받도록 구현
