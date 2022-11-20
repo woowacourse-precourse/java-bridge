@@ -1,7 +1,9 @@
 package bridge.model;
 
 public enum Movable {
-    O("O", true), X("X", false), BLANK(" ", false);
+    O("O", true),
+    X("X", false),
+    BLANK(" ", false);
 
     private final String mark;
     private final boolean canMovable;

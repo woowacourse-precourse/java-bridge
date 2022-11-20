@@ -1,7 +1,8 @@
-package bridge;
+package bridge.model;
 
 public enum Space {
-    U("U", 1), D("D", 0);
+    U("U", 1),
+    D("D", 0);
 
     private final String value;
     private final int index;
@@ -22,15 +23,10 @@ public enum Space {
         return value;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
     public Space cross() {
         if (this.equals(Space.U)) {
             return Space.D;
         }
-
         return Space.U;
     }
 }

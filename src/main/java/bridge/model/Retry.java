@@ -12,10 +12,6 @@ public enum Retry {
         this.isRetry = isRetry;
     }
 
-    public String getValue() {
-        return value;
-    }
-
     public boolean isRetry() {
         return isRetry;
     }
