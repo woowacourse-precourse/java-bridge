@@ -9,6 +9,7 @@ import bridge.util.Converter;
 import bridge.util.Validator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
@@ -33,9 +34,14 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         getMovingInputAndMove(bridgeGame);
+        commandGame(bridgeGame);
     }
 
-    private void playGame(BridgeGame bridgeGame, String moving) {
+    private void commandGame(BridgeGame bridgeGame) {
+        askToRetryOrQuit();
+    }
+
+    private boolean playGame(BridgeGame bridgeGame, String moving) {
         boolean moveSuccess = bridgeGame.move(moving);
 
         bridgeGame.updateRecords(moving, moveSuccess);
@@ -46,6 +52,7 @@ public class BridgeGameController {
         String upsideMap = mapMaker.makeUpsideMap();
         String downsideMap = mapMaker.makeDownsideMap();
         outputView.printMap(upsideMap, downsideMap);
+        return moveSuccess;
     }
 
     private void getBridgeSizeInputAndStartGame() {
@@ -61,12 +68,25 @@ public class BridgeGameController {
 
     private void getMovingInputAndMove(BridgeGame bridgeGame) {
         try {
-            String moving = inputView.readMoving();
-            validateMoving(moving);
-            playGame(bridgeGame, moving);
+            boolean succeed = true;
+            while (succeed) {
+                String moving = inputView.readMoving();
+                validateMoving(moving);
+                succeed = playGame(bridgeGame, moving);
+            }
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INVALID_MOVING);
             getMovingInputAndMove(bridgeGame);
+        }
+    }
+
+    private void askToRetryOrQuit() {
+        try {
+            String letter = inputView.readGameCommand();
+            validateCommand(letter);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(INVALID_COMMAND);
+            askToRetryOrQuit();
         }
     }
 
@@ -78,6 +98,12 @@ public class BridgeGameController {
 
     private void validateMoving(String moving) {
         if (!validator.isValidMoving(moving)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateCommand(String letter) {
+        if (!validator.isValidCommand(letter)) {
             throw new IllegalArgumentException();
         }
     }
