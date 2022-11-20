@@ -24,6 +24,10 @@ public class BridgeProgram {
         outputView.printStart();
     }
 
+    private boolean canRetry() {
+        return !bridgeGame.success() && retry();
+    }
+
     private void make() {
         while (true) {
             try {
