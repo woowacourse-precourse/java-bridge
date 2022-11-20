@@ -15,7 +15,7 @@ public class BridgeGame {
     /**
     * 생성된 다리와 사용자의 입력을 비교해 게임의 상태를 변경한다.
     * */
-    public void changeResult(List<String> bridge, List<String> userMoving) {
+    public void changeStatus(List<String> bridge, List<String> userMoving) {
         for (int index = 0; index < userMoving.size(); index++) {
             String bridgeValue = bridge.get(index);
             String userValue = userMoving.get(index);

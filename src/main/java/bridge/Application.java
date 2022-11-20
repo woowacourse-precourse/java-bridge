@@ -45,7 +45,7 @@ public class Application {
             outputView.printMap(bridge, userMoving);
 
             // 다리 상태 변경
-            bridgeGame.changeResult(bridge, userMoving);
+            bridgeGame.changeStatus(bridge, userMoving);
         }
     }
 }
