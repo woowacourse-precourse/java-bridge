@@ -1,6 +1,6 @@
 package bridge.util;
 
-import bridge.model.ErrorMessage;
+import bridge.view.ErrorMessage;
 
 public class InputValidator {
     public InputValidator() {
