@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private List<String> pathOfUpperBridge;
-    private List<String> pathOfLowerBridge;
+    private final List<String> pathOfUpperBridge;
+    private final List<String> pathOfLowerBridge;
     private int round;
 
     public User() {
@@ -31,6 +31,7 @@ public class User {
             this.pathOfUpperBridge.add(" ");
             this.pathOfLowerBridge.add(result);
         }
+        plusRound();
     }
 
     public void plusRound() {
