@@ -1,4 +1,4 @@
-package bridge;
+package bridge.paths;
 
 import bridge.exceptions.CustomInternalOperationError;
 import bridge.identifiers.Direction;
