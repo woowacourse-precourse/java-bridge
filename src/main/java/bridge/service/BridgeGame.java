@@ -73,6 +73,6 @@ public class BridgeGame {
     }
 
     public int getTryCount() {
-        return tryCount;
+        return gameRecord.getTryCount();
     }
 }

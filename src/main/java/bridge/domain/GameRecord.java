@@ -16,4 +16,8 @@ public class GameRecord {
     public void recordRetry() {
         tryCount += 1;
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
