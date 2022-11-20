@@ -28,6 +28,7 @@ public class BridgeGame {
     public void move(int idx, String input) {
         if (bridge.isMatch(idx, input)) {
             pass(input);
+            return;
         }
         fail(input);
     }
