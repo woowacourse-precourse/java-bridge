@@ -29,52 +29,57 @@ public class Bridge {
         }};
     }
 
+    private void isFirstBridgeUpToDown(String mark) {
+        upBridge.add(1, makeSpace(mark));
+        downBridge.add(1, "   ");
+    }
+
+    private void isFirstBridgeDownToUp(String mark) {
+        downBridge.add(1, makeSpace(mark));
+        upBridge.add(1, "   ");
+    }
+
     public void setUpBridge(String mark) {
         if (Player.currentLocation == 0) {
-            if (mark.equals("O")) {
-                upBridge.add(1, " O ");
-                downBridge.add(1, "   ");
-            } else {
-                upBridge.add(1, " X ");
-                downBridge.add(1, "   ");
-            }
-        } else {
-            if (mark.equals("O")) {
-                upBridge.add(Player.currentLocation * 2, "|");
-                upBridge.add(Player.currentLocation * 2 + 1, " O ");
-                downBridge.add(Player.currentLocation * 2, "|");
-                downBridge.add(Player.currentLocation * 2 + 1, "   ");
-            } else {
-                upBridge.add(Player.currentLocation * 2, "|");
-                upBridge.add(Player.currentLocation * 2 + 1, " X ");
-                downBridge.add(Player.currentLocation * 2, "|");
-                downBridge.add(Player.currentLocation * 2 + 1, "   ");
-            }
+            isFirstBridgeUpToDown(mark);
+            return;
         }
+        if (isContains(mark)) {
+            checkBridgeSequence(mark, upBridge, downBridge);
+            return;
+        }
+        checkBridgeSequence(mark, upBridge, downBridge);
+    }
+
+    private void checkBridgeSequence(String mark, ArrayList<String> upBridge, ArrayList<String> downBridge) {
+        moreThanFirstBridge(mark, upBridge);
+        moreThanFirstBridgeSpace(downBridge);
     }
 
     public void setDownBridge(String mark) {
         if (Player.currentLocation == 0) {
-            if (mark.equals("O")) {
-                downBridge.add(1, " O ");
-                upBridge.add(1, "   ");
-            } else {
-                downBridge.add(1, " X ");
-                upBridge.add(1, "   ");
-            }
-        } else {
-            if (mark.equals("O")) {
-                downBridge.add(Player.currentLocation * 2, "|");
-                downBridge.add(Player.currentLocation * 2 + 1, " O ");
-                upBridge.add(Player.currentLocation * 2, "|");
-                upBridge.add(Player.currentLocation * 2 + 1, "   ");
-            } else {
-                downBridge.add(Player.currentLocation * 2, "|");
-                downBridge.add(Player.currentLocation * 2 + 1, " X ");
-                upBridge.add(Player.currentLocation * 2, "|");
-                upBridge.add(Player.currentLocation * 2 + 1, "   ");
-            }
+            isFirstBridgeDownToUp(mark);
+            return;
         }
+        if (isContains(mark)) {
+            checkBridgeSequence(mark, downBridge, upBridge);
+            return;
+        }
+        checkBridgeSequence(mark, downBridge, upBridge);
+    }
+
+    private boolean isContains(String mark) {
+        return mark.contains(" O ");
+    }
+
+    private void moreThanFirstBridgeSpace(ArrayList<String> bridge) {
+        bridge.add(Player.currentLocation * 2, "|");
+        bridge.add(Player.currentLocation * 2 + 1, "   ");
+    }
+
+    private void moreThanFirstBridge(String mark, ArrayList<String> bridge) {
+        bridge.add(Player.currentLocation * 2, "|");
+        bridge.add(Player.currentLocation * 2 + 1, makeSpace(mark));
     }
 
     public void resetBridge() {
@@ -89,11 +94,11 @@ public class Bridge {
         List<Boolean> checkRoad = gameStatistics.getCheckRoad();
         Boolean answer = checkRoad.get(Player.currentLocation);
         if (answer) {
-            return makeBridgeForO();
-        } return makeBridgeForX();
+            return checkAnswerRoadForO();
+        } return checkAnswerRoadForX();
     }
 
-    private Boolean makeBridgeForO() {
+    private Boolean checkAnswerRoadForO() {
         if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
             setDownBridge("O");
         } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
@@ -102,7 +107,7 @@ public class Bridge {
         return true;
     }
 
-    private Boolean makeBridgeForX() {
+    private Boolean checkAnswerRoadForX() {
         if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
             setUpBridge("X");
         } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
@@ -125,6 +130,10 @@ public class Bridge {
 
     public int getSize() {
         return size;
+    }
+
+    private String makeSpace(String mark) {
+        return " " + mark + " ";
     }
 }
 
