@@ -3,6 +3,9 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
+    private static final int BRIDGE_SIZE_MIN = 3;
+    private static final int BRIDGE_SIZE_MAX = 20;
+
     private int length;
     private List<String> bridge;
 
@@ -23,6 +26,12 @@ public class Bridge {
         }
         for (String b : bridge) {
             Move.fromString(b);
+        }
+    }
+
+    public static void validateLength(int length) {
+        if (length < BRIDGE_SIZE_MIN || BRIDGE_SIZE_MAX < length) {
+            throw new IllegalArgumentException("[ERROR] bridge size mismatch");
         }
     }
 

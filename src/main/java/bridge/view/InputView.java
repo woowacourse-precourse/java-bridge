@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -28,6 +29,7 @@ public class InputView {
     }
 
     private void validateBridgeSizeRange(int bridgeSize) {
+        Bridge.validateLength(bridgeSize);
     }
 
     private void convertToInteger() {
