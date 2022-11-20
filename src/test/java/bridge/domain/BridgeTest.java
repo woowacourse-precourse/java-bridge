@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -83,6 +84,30 @@ class BridgeTest {
         }
     }
 
+    @DisplayName("Bridge - blocks의 불변성 테스트")
+    @Nested
+    class ImmutabilityTest {
+
+        @DisplayName("생성하는데 쓰인 리스트를 변경시켜도 불변이 유지된다.")
+        @Test
+        void bridge_is_immutable_if_modified_parameter_list() {
+            List<String> blocks = createBlocks(10);
+            Bridge bridge = new Bridge(blocks);
+            blocks.add("1");
+
+            assertThat(bridge.getBlocks().size()).isEqualTo(10);
+        }
+
+        @DisplayName("Bridge 내부 blocks를 변경하면 예외 반환를 한다")
+        @Test
+        void if_modified_bridge_is_exception() {
+            List<String> blocks = createBlocks(10);
+            Bridge bridge = new Bridge(blocks);
+
+            assertThatThrownBy(() -> bridge.getBlocks().add("U"))
+                    .isInstanceOf(UnsupportedOperationException.class);
+        }
+    }
     private List<String> createBlocks(int size) {
         return IntStream.range(0, size)
                 .mapToObj(idx -> getRandomBlock())
