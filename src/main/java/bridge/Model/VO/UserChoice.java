@@ -3,16 +3,17 @@ package bridge.Model.VO;
 import bridge.Enum.Crossing;
 
 public class UserChoice {
-    private String choice;
+    private Crossing choice;
 
     public UserChoice(String choice){
-        validData(choice);
-        this.choice = choice;
+        this.choice = validData(choice);
     }
 
-    private void validData(String choice){
-        if(choice.equals(Crossing.DOWN.getString()) || choice.equals(Crossing.UP.getString())){
-            return;
+    private Crossing validData(String choice){
+        if(choice.equals(Crossing.DOWN.getString())){
+            return Crossing.DOWN;
+        } else if(choice.equals(Crossing.UP.getString())){
+            return Crossing.UP;
         }
         throw new IllegalArgumentException("올바른 값을 입력해주세요");
     }
