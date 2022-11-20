@@ -1,18 +1,15 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.domain.GameRecord;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import java.util.List;
 
 public class GameController {
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
     private GameRecord gameRecord;
-    private List<String> bridge;
 
     public GameController() {
         inputView = new InputView();
