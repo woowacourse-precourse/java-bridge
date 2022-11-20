@@ -25,8 +25,42 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> movingStatus, List<String> bridge) {
+    public void printMap(List<String> movingStatus, boolean isSuccess) {
+        StringJoiner[] bridgeInfo = new StringJoiner[2];
+        bridgeInfo[0] = new StringJoiner(" | ", "[ ", " ]");
+        bridgeInfo[1] = new StringJoiner(" | ", "[ ", " ]");
+        for(int i=0 ; i<movingStatus.size()-1 ; i++) {
+            bridgeInfo[getIndex(movingStatus.get(i))].add("O");
+            bridgeInfo[getReverseNumber(getIndex(movingStatus.get(i)))].add(" ");
+        }
+        addLastStatus(bridgeInfo, movingStatus.get(movingStatus.size()-1), isSuccess);
+        System.out.println(bridgeInfo[0].toString());
+        System.out.println(bridgeInfo[1].toString());
+    }
 
+    private void addLastStatus(StringJoiner[] bridgeInfo, String lastMoving, boolean isSuccess) {
+        if(isSuccess) { // 마지막 이동이 성공함
+            bridgeInfo[getIndex(lastMoving)].add("O");
+            bridgeInfo[getReverseNumber(getIndex(lastMoving))].add(" ");
+            return;
+        }
+        // 마지막 이동이 실패함
+        bridgeInfo[getIndex(lastMoving)].add("X");
+        bridgeInfo[getReverseNumber(getIndex(lastMoving))].add(" ");
+    }
+
+    private int getReverseNumber(int number) {
+        if(number == 1) {
+            return 0;
+        }
+        return 1;
+    }
+
+    private int getIndex(String command) {
+        if(command.equals("U")) {
+            return 0;
+        }
+        return 1;
     }
 
     /**
