@@ -34,6 +34,7 @@ public class BridgeGameController {
     }
 
     private void proceedGame() {
+        totalTries++;
         currentPosition++;
         String move = inputView.printMoveMessage();
         boolean success = bridgeGameService.moveAndReturnSuccess(currentPosition, move);
