@@ -32,10 +32,25 @@ public class GameController {
 		do {
 			outputView.printRequestMove();
 			String moveInput = inputView.readMoving();
-			bridgeResult.crossBridge(bridgeGame.move(moveInput), moveInput);
+			BridgeStatus bridgeStatus = bridgeGame.move(moveInput);
+			bridgeResult.crossBridge(bridgeStatus, moveInput);
 			outputView.printMap(bridgeResult);
+			checkRetry(bridgeStatus);
 		} while (bridgeGame.checkEnd() == BridgeStatus.PASS);
+	}
 
+	private void checkRetry(BridgeStatus bridgeStatus) {
+		if (bridgeStatus == BridgeStatus.FAIL) {
+			outputView.printRequestRetry();
+			askContinue(inputView.readGameCommand());
+		}
+	}
 
+	private void askContinue(String Input) {
+		if (Input.equals("R")) {
+			bridgeGame.retry();
+			crossingBridge();
+		}
+		bridgeGame.end();
 	}
 }

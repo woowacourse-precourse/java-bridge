@@ -21,6 +21,12 @@ public class BridgeGame {
 			return BridgeStatus.END;
 		return BridgeStatus.PASS;
 	}
+
+	public void end() {
+		while (!bridge.isEnd(bridgeNumber)) {
+			bridgeNumber++;
+		}
+	}
 	/**
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
 	 * <p>
