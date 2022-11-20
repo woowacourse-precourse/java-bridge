@@ -37,6 +37,6 @@ public class BridgeGameResult {
 
     public SpotInfo getLastMovementRecord(int index) {
         // TODO 구현 필요
-        return SpotInfo.FIRST;
+        return SpotInfo.UP;
     }
 }

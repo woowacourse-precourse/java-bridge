@@ -1,21 +1,34 @@
 package bridge.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private List<SpotInfo> bridgeMap;
+    private final List<SpotInfo> bridgeMap;
 
-    public Bridge(List<String> bridgeMap) {
-        // TODO 구현 필요
+    public Bridge(List<String> bridgeInfo) {
+        bridgeMap = new ArrayList<>();
+        for(String spotInfoText : bridgeInfo) {
+            bridgeMap.add(makeSpotInfo(spotInfoText));
+        }
     }
 
     public int getBridgeLength() {
-        // TODO 구현 필요
-        return 0;
+        return bridgeMap.size();
     }
 
     public boolean isSafeSpot(int index, SpotInfo spotInfo) {
-        // TODO 구현 필요
-        return true;
+        SpotInfo spotInfoOnIndex = bridgeMap.get(index);
+        return spotInfoOnIndex.equals(spotInfo);
+    }
+
+    private SpotInfo makeSpotInfo(String spotInfoText) {
+        if(spotInfoText.equals("U")) {
+            return SpotInfo.UP;
+        }
+        if(spotInfoText.equals("D")) {
+            return SpotInfo.DOWN;
+        }
+        throw new IllegalArgumentException("다리를 생성할 때는 U 혹은 D 중 하나를 이용해 생성합니다.");
     }
 }

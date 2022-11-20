@@ -11,7 +11,7 @@ public class MovementRecord {
 
     public SpotInfo getMovementRecord(int index) {
         // TODO 구현 필요
-        return SpotInfo.FIRST;
+        return SpotInfo.UP;
     }
 
     public int getMovementCount() {
