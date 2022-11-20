@@ -14,6 +14,14 @@ public class Validator {
         validateBridgeSize(input);
     }
 
+    public static void validateMoveInput(String input){
+        String movePattern = "[UD]";
+        if(!Pattern.matches(movePattern, input)){
+            throw new IllegalArgumentException(ERROR_MESSAGE + "이동 형태는 U또는 D여야 합니다");
+        }
+        System.out.println("통과");
+    }
+
     public static void validateNumeric(String input){
         String numericPattern = "^[0-9]*$";
         if(!Pattern.matches(numericPattern, input)){
@@ -27,4 +35,5 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_MESSAGE + "다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
+
 }
