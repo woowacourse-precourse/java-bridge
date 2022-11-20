@@ -34,4 +34,8 @@ public class PlayerSteps {
     public List<Node> getSteps() {
         return Collections.unmodifiableList(steps);
     }
+
+    public void deleteLastStep() {
+        steps.remove(steps.size() - 1);
+    }
 }

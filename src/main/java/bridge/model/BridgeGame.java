@@ -58,7 +58,7 @@ public class BridgeGame {
      */
     public void retry() {
         numberOfAttempts++;
-        // TODO 사용자 입력 하나 지우기
+        steps.deleteLastStep();
     }
 
     public List<String> makeMap() {

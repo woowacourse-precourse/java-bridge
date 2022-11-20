@@ -1,5 +1,6 @@
 package bridge.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,7 +19,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 class PlayerStepsTest {
     @Nested
-    class CompareWithLastNode {
+    class CompareWithLastNodeTest {
         @Test
         @DisplayName("브릿지와 마지막 노드의 위치가 일치할 경우 true를 반환한다.")
         public void returnTrueWhenTheNodeMatches() {
@@ -68,7 +69,7 @@ class PlayerStepsTest {
 
     @Nested
     @DisplayName("getSteps() 테스트")
-    class GetNodes {
+    class GetNodesTest {
         PlayerSteps playerSteps;
 
         @BeforeEach
@@ -78,7 +79,7 @@ class PlayerStepsTest {
 
         @Test
         @DisplayName("추가한 순서대로 노드를 읽어온다")
-        public void getNodes() {
+        public void getSteps() {
             List<Node> willBeAdded = List.of(Node.UP, Node.DOWN, Node.DOWN, Node.UP);
             for (Node node : willBeAdded) {
                 playerSteps.add(node);
@@ -86,6 +87,38 @@ class PlayerStepsTest {
             List<Node> steps = playerSteps.getSteps();
 
             assertEquals(steps, willBeAdded);
+        }
+    }
+
+    @Nested
+    @DisplayName("deleteLastStep() 테스트")
+    class DeleteLastStepTest {
+        PlayerSteps playerSteps;
+
+        @BeforeEach
+        public void setUp() {
+            playerSteps = new PlayerSteps(5);
+            playerSteps.add(Node.UP);
+            playerSteps.add(Node.DOWN);
+            playerSteps.add(Node.UP);
+        }
+
+        @Test
+        @DisplayName("삭제했을 때 마지막 스텝이 지워진다")
+        public void deleteLastStep() {
+            // given
+            playerSteps.add(Node.DOWN);
+            List<Node> stepsBeforeDeletion = List.copyOf(playerSteps.getSteps());
+
+            // when
+            playerSteps.deleteLastStep();
+
+            // then
+            List<Node> stepsAfterDeletion = playerSteps.getSteps();
+
+            assertThat(stepsAfterDeletion)
+                    .isEqualTo(stepsBeforeDeletion.subList(0, stepsBeforeDeletion.size() - 1));
+
         }
     }
 }
