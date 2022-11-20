@@ -11,13 +11,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public void play(List<String> bridge, int stage) {
+    public int play(List<String> bridge, int stage) {
         try {
             OutputView.printMoveChoiceMessage();
             //move(InputView.readMoving(), bridge.get(stage));
+            System.out.println(stage);
             System.out.println(move(InputView.readMoving(), bridge.get(stage)));
+            return stage;
         } catch (UserInputException e) {
             e.printStackTrace();
+            return stage-1;
         }
     }
 

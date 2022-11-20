@@ -13,7 +13,7 @@ public class Controller {
         System.out.println(bridge);
         BridgeGame bridgeGame = new BridgeGame();
         for (int stage = 0; stage < bridgeLength; stage++) {
-            bridgeGame.play(bridge, stage);
+            stage = bridgeGame.play(bridge, stage);
         }
     }
 }
