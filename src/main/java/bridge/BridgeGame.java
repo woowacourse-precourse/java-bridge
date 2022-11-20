@@ -30,6 +30,12 @@ public class BridgeGame {
         return resultOfStep;
     }
 
+    public void checkSuccess() {
+        if (bridge.size() == user.getRound()) {
+            success = true;
+        }
+    }
+
     public boolean isResultOfStep(String direction) {
         int round = user.getRound();
         return bridge.get(round).equals(direction);
@@ -59,10 +65,12 @@ public class BridgeGame {
     public int getAttempt() {
         return this.attempt;
     }
+
     public boolean isSuccess() {
         return this.success;
     }
-    public User getUser(){
+
+    public User getUser() {
         return user;
     }
 }
