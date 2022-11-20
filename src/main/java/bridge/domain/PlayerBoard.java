@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.util.Directions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -9,8 +10,6 @@ public class PlayerBoard {
     private static final String SUFFIX = " ]\n";
     private static final String DELIMITER = " | ";
     private static final String BLANK = " ";
-    private static final String UP = "U";
-    private static final String DOWN = "D";
 
     private final int endRound;
 
@@ -34,11 +33,11 @@ public class PlayerBoard {
     }
 
     void addResultOfBridge(String targetSide, String roundResult) {
-        if (targetSide.equals(UP)) {
+        if (targetSide.equals(Directions.UP.getValue())) {
             upBridge.add(gameRound, roundResult);
             downBridge.add(gameRound, BLANK);
         }
-        if (targetSide.equals(DOWN)) {
+        if (targetSide.equals(Directions.DOWN.getValue())) {
             downBridge.add(gameRound, roundResult);
             upBridge.add(gameRound, BLANK);
         }
@@ -48,10 +47,10 @@ public class PlayerBoard {
     String getBridgeStatus(String side) {
         StringJoiner joiner = new StringJoiner(DELIMITER, PREFIX, SUFFIX);
         for (int i = 0; i < gameRound; i++) {
-            if (side.equals(UP)) {
+            if (side.equals(Directions.UP.getValue())) {
                 joiner.add(upBridge.get(i));
             }
-            if (side.equals(DOWN)) {
+            if (side.equals(Directions.DOWN.getValue())) {
                 joiner.add(downBridge.get(i));
             }
         }

@@ -2,14 +2,13 @@ package bridge.domain;
 
 import bridge.domain.calculator.BridgeCalculator;
 import bridge.domain.converter.ResultConverter;
+import bridge.util.Directions;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String UP = "U";
-    private static final String DOWN = "D";
 
     private final BridgeCalculator bridgeCalculator;
     private final ResultConverter resultConverter;
@@ -55,8 +54,8 @@ public class BridgeGame {
         String resultValue = resultConverter.convertToMark(isCrossable);
 
         move(inputMoving, resultValue);
-        String upsideBridge = playerBoard.getBridgeStatus(UP);
-        String downsideBridge = playerBoard.getBridgeStatus(DOWN);
+        String upsideBridge = playerBoard.getBridgeStatus(Directions.UP.getValue());
+        String downsideBridge = playerBoard.getBridgeStatus(Directions.DOWN.getValue());
         processor.getRoundResult(upsideBridge, downsideBridge);
         return isCrossable;
     }

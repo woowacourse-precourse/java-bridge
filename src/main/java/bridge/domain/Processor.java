@@ -5,11 +5,10 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 import bridge.util.Commands;
+import bridge.util.Directions;
 import java.util.List;
 
 public class Processor {
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private final OutputView output;
     private final InputView input;
 
@@ -55,8 +54,8 @@ public class Processor {
 
     void getGameResult(boolean isComplete, int attempts, PlayerBoard playerBoard) {
         output.printMessage(Commands.FINAL_RESULT_MESSAGE.message());
-        String upsideBridge = playerBoard.getBridgeStatus(UP);
-        String downsideBridge = playerBoard.getBridgeStatus(DOWN);
+        String upsideBridge = playerBoard.getBridgeStatus(Directions.UP.getValue());
+        String downsideBridge = playerBoard.getBridgeStatus(Directions.DOWN.getValue());
         output.printMap(upsideBridge, downsideBridge);
         output.printResult(isComplete, attempts);
     }

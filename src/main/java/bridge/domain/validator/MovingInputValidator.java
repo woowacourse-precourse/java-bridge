@@ -1,12 +1,10 @@
 package bridge.domain.validator;
 
 import bridge.ui.InputView;
+import bridge.util.Directions;
 import bridge.util.Errors;
 
 public class MovingInputValidator implements Validator {
-
-    private static final String MOVE_UP_VALUE = "U";
-    private static final String MOVE_DOWN_VALUE = "D";
 
     /**
      * 이동 방향 입력 값 통합 Validate 메서드
@@ -48,7 +46,7 @@ public class MovingInputValidator implements Validator {
     /**
      * 이동 방향 입력 값이 유효한 값인지 검사한다.
      * <p>
-     *     <strong>대소문자 상관없이</strong> {@link #MOVE_UP_VALUE} 혹은 {@link #MOVE_DOWN_VALUE} 값과의 일치 여부
+     *     <strong>대소문자 상관없이</strong> {@link bridge.util.Directions#UP} 혹은 {@link bridge.util.Directions#DOWN} 값과의 일치 여부
      * </p>
      *
      * @exception IllegalArgumentException (메세지) {@link Errors#INVALID_MOVE_VALUE}
@@ -65,7 +63,7 @@ public class MovingInputValidator implements Validator {
     /**
      * 재시도 여부 입력 값이 R 혹은 Q 값이 맞는지 검사한다.
      * <p>
-     *     {@link #MOVE_UP_VALUE} 혹은 {@link #MOVE_DOWN_VALUE} 값과의 일치 여부
+     *     {@link bridge.util.Directions#UP} 혹은 {@link bridge.util.Directions#DOWN} 값과의 일치 여부
      * </p>
      *
      * @exception IllegalArgumentException (메세지) {@link Errors#NOT_UPPERCASE}
@@ -73,7 +71,7 @@ public class MovingInputValidator implements Validator {
      * @see #validate(String)
      */
     public void validateIsUpperCase(String inputValue) {
-        if (inputValue.equals(MOVE_UP_VALUE.toLowerCase()) || inputValue.equals(MOVE_DOWN_VALUE.toLowerCase())) {
+        if (!(inputValue.equals(Directions.UP.getValue()) || inputValue.equals(Directions.DOWN.getValue()))) {
             throw new IllegalArgumentException(Errors.NOT_UPPERCASE.message());
         }
     }
