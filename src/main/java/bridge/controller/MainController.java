@@ -15,26 +15,41 @@ public class MainController {
         processBridgeGame(bridgeGame);
     }
 
-    public static BridgeGame makeBridgeGame(int size) {
+    private static BridgeGame makeBridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(size);
-        System.out.println(bridge);
         return new BridgeGame(bridge);
     }
 
-    public static void processBridgeGame(BridgeGame bridgeGame) {
+    private static void processBridgeGame(BridgeGame bridgeGame) {
         do {
-            String direction = new BridgeMove(InputView.readMoving()).get();
-            boolean isCorrect = bridgeGame.move(direction);
-            OutputView.printMap(bridgeGame.getBridgeMap().get());
-            if (!isCorrect) {
-                BridgeCommand bridgeCommand = new BridgeCommand(InputView.readGameCommand());
-                if (!bridgeCommand.getIsRetry()) {
-                    break;
-                }
-                bridgeGame.retry();
+            if (!processTurn(bridgeGame)) {
+                break;
             }
         } while (!bridgeGame.checkEnd());
+    }
+
+    private static boolean processTurn(BridgeGame bridgeGame) {
+        moveBridge(bridgeGame);
+        if (!bridgeGame.getLastState()) {
+            if(!askRetry()) {
+                bridgeGame.end();
+                return false;
+            }
+            bridgeGame.retry();
+        }
+        return true;
+    }
+
+    private static void moveBridge(BridgeGame bridgeGame) {
+        String direction = new BridgeMove(InputView.readMoving()).get();
+        bridgeGame.move(direction);
+        OutputView.printMap(bridgeGame.getBridgeMap().get());
+    }
+
+    public static boolean askRetry() {
+        BridgeCommand bridgeCommand = new BridgeCommand(InputView.readGameCommand());
+        return bridgeCommand.getIsRetry();
     }
 
 }

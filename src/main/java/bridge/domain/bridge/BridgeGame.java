@@ -6,6 +6,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
+    private boolean lastState;
     private int turn;
     private int tries;
     BridgeMap bridgeMap;
@@ -21,11 +22,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String direction) {
-        boolean isCorrect = checkValue(direction);
-        bridgeMap.addMap(direction, isCorrect);
+    public void move(String direction) {
+        this.lastState = checkValue(direction);
+        bridgeMap.addMap(direction, this.lastState);
         this.turn ++;
-        return isCorrect;
     }
 
     /**
@@ -38,16 +38,27 @@ public class BridgeGame {
         this.tries ++;
     }
 
+    public void end() {
+        this.turn = this.bridge.size();
+    }
+
     public BridgeMap getBridgeMap() {
         return this.bridgeMap;
     }
+
+    public boolean getLastState() {
+        return this.lastState;
+    }
+
+
     public boolean checkEnd() {
         return this.turn == this.bridge.size();
     }
 
     private void initState() {
         this.turn = 0;
-        bridgeMap = new BridgeMap();
+        this.lastState = false;
+        this.bridgeMap = new BridgeMap();
     }
     private boolean checkValue(String direction) {
         String answer = this.bridge.get(this.turn);
