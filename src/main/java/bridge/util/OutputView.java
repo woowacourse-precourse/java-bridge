@@ -1,5 +1,6 @@
 package bridge.util;
 
+import bridge.BridgeGame;
 import bridge.move.BridgeMove;
 
 /**
@@ -14,8 +15,10 @@ public class OutputView {
      */
 
     private final BridgeMove move =new BridgeMove();
+    private final BridgeGame game = new BridgeGame();
+
     public StringBuilder printMap(String move_result,int index) {
-        return move.bridgeMoveByResult(move_result, index);
+        return game.move(move_result, index);
     }
 
 
