@@ -22,4 +22,12 @@ public enum MoveChoice {
                 .orElseThrow(() -> new IllegalArgumentException(NOT_A_MOVE_CHOICE));
         return moveChoice.moving;
     }
+
+    public static int getPositionNumber(String moving) {
+
+        MoveChoice moveChoice = Arrays.stream(MoveChoice.values())
+                .filter((choice) -> choice.moving.equals(moving)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_A_MOVE_CHOICE));
+        return moveChoice.positionNumber;
+    }
 }
