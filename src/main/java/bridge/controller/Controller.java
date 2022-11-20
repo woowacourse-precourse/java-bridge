@@ -1,24 +1,28 @@
-package bridge;
+package bridge.controller;
+
+import bridge.*;
+import bridge.Model.Bridge;
+import bridge.Model.BridgeGame;
+import bridge.Model.BridgeMaker;
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 import java.util.List;
 
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
-    private Bridge bridge;
     private BridgeGame bridgeGame;
 
     public Controller() {
         inputView = new InputView();
         outputView = new OutputView();
-
     }
 
-    void run() {
-        bridge = createBridge();
+    public void run() {
+        Bridge bridge = createBridge();
         bridgeGame = new BridgeGame(bridge);
         runGame();
-        outputView.printResult(bridgeGame);
     }
 
     Bridge createBridge() {
@@ -38,6 +42,7 @@ public class Controller {
             if (bridgeGame.checkSuccess())
                 break;
         }
+        outputView.printResult(bridgeGame);
     }
 
     void inputMovement() {

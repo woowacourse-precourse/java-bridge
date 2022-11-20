@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Model;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class Bridge {
         return this.bridgeAnswer.size();
     }
 
-    public String getAnswerByCount(int movementCount) {
-        return this.bridgeAnswer.get(movementCount);
+    boolean checkAnswer(String movement, int movementCount) {
+        return this.bridgeAnswer.get(movementCount).equals(movement);
     }
 }

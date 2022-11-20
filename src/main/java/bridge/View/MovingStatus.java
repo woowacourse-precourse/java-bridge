@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 import java.util.Arrays;
 
@@ -32,7 +32,7 @@ public enum MovingStatus {
         return this.movingCommand;
     }
 
-    int getMovingNumber() {
+    public int getMovingNumber() {
         return this.movingNumber;
     }
 }

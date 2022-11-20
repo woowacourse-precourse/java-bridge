@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 public enum ExceptionMessage {
     NUMERIC_EXCEPTION_MESSAGE("[ERROR] 다리 길이는 숫자여야 합니다."),
