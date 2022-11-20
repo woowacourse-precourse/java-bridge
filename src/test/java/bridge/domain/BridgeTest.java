@@ -23,7 +23,7 @@ class BridgeTest {
     @BeforeEach
     void init() {
         bridgeSize = 3;
-        BridgeMaker bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator());
+        BridgeMaker bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(List.of(0, 1, 0)));
         List<String> rawBridge = bridgeMaker.makeBridge(bridgeSize);
         bridge = new Bridge(rawBridge);
     }

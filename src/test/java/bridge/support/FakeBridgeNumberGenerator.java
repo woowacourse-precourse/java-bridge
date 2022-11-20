@@ -2,17 +2,18 @@ package bridge.support;
 
 import bridge.domain.bridge.BridgeNumberGenerator;
 
+import java.util.List;
+
 public class FakeBridgeNumberGenerator implements BridgeNumberGenerator {
 
-    private boolean isOne;
+    private final List<Integer> numbers;
+
+    public FakeBridgeNumberGenerator(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
 
     @Override
     public int generate() {
-        int returnValue = 0;
-        if (isOne) {
-            returnValue = 1;
-        }
-        isOne = !isOne;
-        return returnValue;
+        return numbers.remove(0);
     }
 }

@@ -20,7 +20,7 @@ class BridgeMakerTest {
 
     @BeforeEach
     void init() {
-        bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator());
+        bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(List.of(0, 1, 0)));
     }
 
     @Test
