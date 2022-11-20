@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.constant.ErrorMessage;
 import bridge.constant.EventMessage;
+import bridge.util.Converter;
 import bridge.util.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -17,7 +18,10 @@ public class InputView {
         System.out.println(EventMessage.INPUT_BRIDGE_SIZE);
         String input = getNumberInput();
 
-        return 0;
+        // 문자열 -> 숫자로 변환
+        int bridgeSize = Converter.StringToInteger(input);
+
+        return bridgeSize;
     }
 
     /**
