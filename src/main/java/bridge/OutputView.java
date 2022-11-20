@@ -26,7 +26,7 @@ public class OutputView {
     public void printResult(){
         System.out.println(upBridge);
         System.out.println(downBridge);
-        System.out.println("\n");
+        System.out.print("\n");
     }
 
     public void initNowSize(){
