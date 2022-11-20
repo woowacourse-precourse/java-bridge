@@ -23,9 +23,9 @@
   - 에러 메시지는 "[ERROR]"로 시작하는 에러 메시지 출력 후 다시 입력 받기
   - IllegalArgumentException, IllegalStateException 같은 명확한 유형 처리하기
 ### 입력 구현 사항
-- [ ] 자동으로 생성할 다리 길이 입력 (3 <= x <= 20)
-- [ ] 라운드마다 플레이어가 이동할 칸 입력 (U, D만 가능)
-- [ ] 게임 재시작/종료 여부를 입력 (R, Q만 가능)
+- [X] 자동으로 생성할 다리 길이 입력 (3 <= x <= 20)
+- [X] 라운드마다 플레이어가 이동할 칸 입력 (U, D만 가능)
+- [X] 게임 재시작/종료 여부를 입력 (R, Q만 가능)
 ### 입력 Exception 구현 사항
 - [X] 다리 길이가 입력되지 않은 경우 IllegalArgumentException
 - [X] 다리 길이가 숫자가 아닌 경우 IllegalArgumentException
@@ -33,7 +33,7 @@
 - [X] 플레이어가 이동할 칸이 입력되지 않은 경우 IllegalArgumentException
 - [X] 플레이어가 이동할 칸이 U, D가 아닌 경우 IllegalArgumentException
 - [X] 게임 재시작/종료 여부가 입력되지 않은 경우 IllegalArgumentException
-- [ ] 게임 재시작/종료 여부가 R, Q가 아닌 경우 IllegalArgumentException
+- [X] 게임 재시작/종료 여부가 R, Q가 아닌 경우 IllegalArgumentException
 ### 출력 구현 사항
 - [ ] 게임 시작 문구 출력
 - [ ] 게임 종료 문구 출력
