@@ -20,6 +20,23 @@ public class BridgeGame {
     private List<String> lowerBridge;
     private List<String> answerBridge;
     private int bridgeIndex;
+    private boolean isSuccess;
+    private int tryCount;
+
+    private static final String SUCCESS = "성공";
+    private static final String FAILURE = "실패";
+
+
+    public BridgeGame() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        inputView = new InputView();
+        outputView = new OutputView();
+        upperBridge = new ArrayList<>();
+        lowerBridge = new ArrayList<>();
+        bridgeIndex = 0;
+        isSuccess = true;
+        tryCount = 0;
+    }
 
     public void setAnswerBridge(List<String> answerBridge) {
         this.answerBridge = answerBridge;
@@ -29,20 +46,22 @@ public class BridgeGame {
         return answerBridge;
     }
 
-    public BridgeGame() {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        inputView = new InputView();
-        outputView = new OutputView();
-        upperBridge = new ArrayList<>();
-        lowerBridge = new ArrayList<>();
-        bridgeIndex = 0;
-    }
-
     public void playGame() {
         outputView.printGameStart();
         List<String> bridge = makeAnswerBridge();
         pickMovingDirection(bridge);
         outputView.printResult(upperBridge, lowerBridge);
+        System.out.print(Message.GAME_SUCCESS_OR_FAILURE);
+        showWhetherGameSuccess();
+    }
+
+    private void showWhetherGameSuccess() {
+        if(isSuccess){
+            System.out.println(SUCCESS);
+        }
+        if(!isSuccess){
+            System.out.println(FAILURE);
+        }
     }
 
     private void pickMovingDirection(List<String> bridge) {
@@ -74,6 +93,7 @@ public class BridgeGame {
 
     private boolean isQuit(String retryFlag) {
         if (retryFlag.equals("Q")) {
+            isSuccess = false;
             return true;
         }
         return false;
@@ -122,6 +142,7 @@ public class BridgeGame {
      */
     public void retry() {
         bridgeIndex = 0;
+        tryCount++;
         upperBridge.clear();
         lowerBridge.clear();
     }
