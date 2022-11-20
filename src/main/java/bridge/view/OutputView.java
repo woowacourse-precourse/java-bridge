@@ -15,7 +15,7 @@ public class OutputView {
     private static final String DIVISION = "| ";
     private static final String NONE = " ";
 
-    private String Map;
+    private String currentStateOfBridge;
     private boolean isFirst;
     private int attempt = 0;
 
@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public void initMap(){
-        this.Map = NONE + "\n" + NONE;
+        this.currentStateOfBridge = NONE + "\n" + NONE;
         this.isFirst = true;
         this.attempt += 1;
     }
@@ -35,15 +35,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String right, int upOrDown) {
-        String[] splitMap = Map.split("\\n");
+        String[] splitMap = currentStateOfBridge.split("\\n");
         if(!this.isFirst) {
             splitMap = notFirstPrintMap(splitMap, right, upOrDown);
         }
         if (this.isFirst){
             splitMap = firstPrintMap(splitMap, right, upOrDown);
         }
-        Map = splitMap[0] + "\n" + splitMap[1];
-        System.out.println(Map);
+        currentStateOfBridge = splitMap[0] + "\n" + splitMap[1];
+        System.out.println(currentStateOfBridge);
     }
 
     private String[] firstPrintMap(String[] splitMap, String right, int upOrDown){
@@ -65,7 +65,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String result) {
-        System.out.println(OUTPUT_RESULT_MESSAGE + LINE +  Map);
+        System.out.println(OUTPUT_RESULT_MESSAGE + LINE +  currentStateOfBridge);
         System.out.println(OUTPUT_RESULT_IS_SUCCESS + result);
         System.out.println(OUTPUT_RESULT_TRY_NUMBER + this.attempt);
     }
