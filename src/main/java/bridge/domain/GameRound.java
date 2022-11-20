@@ -35,7 +35,7 @@ public class GameRound {
         this.bridgeIndex = bridgeIndex;
     }
 
-    public boolean isWin() {
+    public boolean getIsWin() {
         return isWin;
     }
 

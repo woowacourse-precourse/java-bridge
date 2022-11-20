@@ -32,7 +32,7 @@ public class GameController {
             gameRecord.setPlayTimes(gameRecord.getPlayTimes() + 1);
             bridgeGame.generateNewRound();
             play();
-        } while (true);
+        } while (isRetry());
 
         // 결과 출력 및 종료
     }
@@ -63,6 +63,24 @@ public class GameController {
             // 현재 까지의 결과 출력
             outputView.printMap(bridgeGame.getGameRound());
         } while (bridgeGame.isBeAbleProceed(correctResult));
+    }
 
+    private boolean isRetry() {
+        if(isWin()) return false;
+        try {
+            outputView.printRetryCommand();
+            return bridgeGame.retry(inputView.readGameCommand());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            isRetry();
+        }
+        return true;
+    }
+
+    private boolean isWin() {
+        if(bridgeGame.isSuccess()){
+            return true;
+        }
+        return false;
     }
 }
