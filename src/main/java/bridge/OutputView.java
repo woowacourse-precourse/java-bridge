@@ -24,45 +24,98 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) { // 리팩토링 고민 좀 해봐.
+        System.out.println(makeFirstLine(bridgeGame));
+        System.out.println(makeSecondLine(bridgeGame));
+    }
+    public String makeFirstLine(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
         int currentPosition = bridgeGame.getCurrentPosition();
-        //if(currentPosition==0)
-        String firstLine = "[";
-        String secondLine = "[";
-
-        for(int i = 0; i < currentPosition; i++) {
-            if(i!=0) {
-                firstLine += "|";
-                secondLine += "|";
-            }
-            if(bridge.get(i).equals("1")) {
-                firstLine += " O ";
-                secondLine += "   ";
-            }
-            if(bridge.get(i).equals("0")) {
-                firstLine += "   ";
-                secondLine += " O ";
-            }
+        if(currentPosition == 0) {
+            return makeFirstLinePositionIsZero(bridgeGame);
         }
-        if(bridge.get(currentPosition).equals("1") && bridgeGame.isSuccess()) {
-            firstLine += "| O ]";
-            secondLine += "|   ]";
-        }
-        if(bridge.get(currentPosition).equals("1") && !bridgeGame.isSuccess()) {
-            firstLine += "| X ]";
-            secondLine += "|   ]";
-        }
-        if(bridge.get(currentPosition).equals("0") && bridgeGame.isSuccess()) {
-            firstLine += "|   ]";
-            secondLine += "| O ]";
-        }
-        if(bridge.get(currentPosition).equals("0") && !bridgeGame.isSuccess()) {
-            firstLine += "|   ]";
-            secondLine += "| X ]";
-        }
-        System.out.println(firstLine);
-        System.out.println(secondLine);
+        String line = "[";
+        return line + makeFirstLineMiddle(bridgeGame) + makeFirstLineEnd(bridgeGame);
     }
+    public String makeFirstLinePositionIsZero(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        if(bridge.get(0).equals("1") && bridgeGame.isSuccess()) {
+            return "[ O ]";
+        }
+        if(bridge.get(0).equals("1") && !bridgeGame.isSuccess()) {
+            return "[ X ]";
+        }
+        return "   ";
+    }
+    public String makeFirstLineMiddle(BridgeGame bridgeGame) {
+        String line = "";
+        List<String> bridge = bridgeGame.getBridge();
+        for(int i = 0; i < bridgeGame.getCurrentPosition(); i++) {
+            line += convertToResultForFirstLine(bridge.get(i));
+        }
+        return line;
+    }
+    public String convertToResultForFirstLine(String move) {
+        if(move.equals("1")) {
+            return " O |";
+        }
+        return "   |";
+    }
+    public String makeFirstLineEnd(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        if(bridge.get(0).equals("1") && bridgeGame.isSuccess()) {
+            return " O ]";
+        }
+        if(bridge.get(0).equals("1") && !bridgeGame.isSuccess()) {
+            return " X ]";
+        }
+        return "   ]";
+    }
+    ///////////
+    public String makeSecondLine(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        int currentPosition = bridgeGame.getCurrentPosition();
+        if(currentPosition == 0) {
+            return makeSecondLinePositionIsZero(bridgeGame);
+        }
+        String line = "[";
+        return line + makeSecondLineMiddle(bridgeGame) + makeSecondLineEnd(bridgeGame);
+    }
+    public String makeSecondLinePositionIsZero(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        if(bridge.get(0).equals("0") && bridgeGame.isSuccess()) {
+            return "[ O ]";
+        }
+        if(bridge.get(0).equals("0") && !bridgeGame.isSuccess()) {
+            return "[ X ]";
+        }
+        return "   ";
+    }
+    public String makeSecondLineMiddle(BridgeGame bridgeGame) {
+        String line = "";
+        List<String> bridge = bridgeGame.getBridge();
+        for(int i = 0; i < bridgeGame.getCurrentPosition(); i++) {
+            line += convertToResultForSecondLine(bridge.get(i));
+        }
+        return line;
+    }
+    public String convertToResultForSecondLine(String move) {
+        if(move.equals("0")) {
+            return " O |";
+        }
+        return "   |";
+    }
+    public String makeSecondLineEnd(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        if(bridge.get(0).equals("0") && bridgeGame.isSuccess()) {
+            return " O ]";
+        }
+        if(bridge.get(0).equals("0") && !bridgeGame.isSuccess()) {
+            return " X ]";
+        }
+        return "   ]";
+    }
+
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
