@@ -1,6 +1,5 @@
-package bridge.domain.result;
+package bridge.domain.map;
 
-import bridge.domain.game.Map;
 import bridge.domain.player.MovementCommand;
 
 import java.util.Arrays;
@@ -8,8 +7,8 @@ import java.util.List;
 
 public enum BridgeSideDescription {
 
-	upperSide("U", Map.upperBridgeDescription, Map.underBridgeDescription),
-	underSide("D", Map.underBridgeDescription, Map.upperBridgeDescription);
+	upperSide("U", BridgeMap.upperBridgeDescription, BridgeMap.underBridgeDescription),
+	underSide("D", BridgeMap.underBridgeDescription, BridgeMap.upperBridgeDescription);
 
 	private final String sideSymbol;
 	private final List<String> side;

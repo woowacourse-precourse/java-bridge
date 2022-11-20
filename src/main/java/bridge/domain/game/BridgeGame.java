@@ -2,6 +2,7 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridgeMaker.BridgeMaker;
+import bridge.domain.map.BridgeMap;
 import bridge.domain.player.BridgeSizeCommand;
 import bridge.domain.player.CommandReader;
 import bridge.domain.player.GameProceedCommand;
@@ -47,12 +48,13 @@ public class BridgeGame {
 
 	private String retryOrQuit() {
 		String commandChoice = "";
+
 		if (crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(requestRetry().getGameCommand())) {
 			commandChoice = GameProceedCommand.QUIT;
 			return commandChoice;
 		}
-		Map.underBridgeDescription.clear();
-		Map.upperBridgeDescription.clear();
+
+		BridgeMap.clearBridgeDescription();
 		return commandChoice;
 	}
 

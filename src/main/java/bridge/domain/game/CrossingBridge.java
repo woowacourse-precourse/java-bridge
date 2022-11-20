@@ -1,8 +1,8 @@
 package bridge.domain.game;
 
+import bridge.domain.map.BridgeMap;
 import bridge.domain.player.CommandReader;
 import bridge.domain.player.MovementCommand;
-import bridge.domain.result.ResultRendering;
 import bridge.view.input.InputCommandReader;
 import bridge.view.output.OutputView;
 
@@ -29,9 +29,9 @@ public class CrossingBridge {
 			MovementCommand movementCommand = (MovementCommand) InputCommandReader.read(CommandReader.GAME_MOVEMENT).command();
 			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 			stepAhead(crossingDecision, bridgeNowCrossing);
+			ResultRendering resultRendering = ResultRendering.generatedBy(BridgeMap.depictedBy(crossingDecision, movementCommand));
 			OutputView.withContentOf(
-					ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription(), false, false)
-					.ConsoleMessage();
+							resultRendering.getBridgeDescription(), false, false).ConsoleMessage();
 		} while (isCrossContinue(bridgeNowCrossing));
 	}
 
