@@ -22,11 +22,12 @@ public class Application {
         final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(answerBridge);
 
-        final List<String> upSideResult = new ArrayList<>();
-        final List<String> downSideResult = new ArrayList<>();
+        List<String> upSideResult = new ArrayList<>();
+        List<String> downSideResult = new ArrayList<>();
         final BridgeGame bridgeGame = new BridgeGame(answerBridge);
 
-        for (int index = 0; index < answerBridge.size(); index++) {
+        int index = 0;
+        while (index < answerBridge.size()) {
             final String playerMoving = InputView.readMoving();
             final String result = bridgeGame.move(answerBridge.get(index), playerMoving);
 
@@ -41,6 +42,20 @@ public class Application {
             }
 
             OutputView.printMap(index, upSideResult, downSideResult);
+            index++;
+
+            if (result.equals("X")) {
+                final String playerCommand = InputView.readGameCommand();
+                if (playerCommand.equals("R")) {
+                    index = 0;
+                    upSideResult = new ArrayList<>();
+                    downSideResult = new ArrayList<>();
+                    bridgeGame.retry();
+                }
+                if (playerCommand.equals("Q")) {
+                    index = answerBridge.size();
+                }
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class BridgeGame {
     private static final int INITIAL_COUNT = 1;
 
-    private int trialCount;
+    int trialCount;
     private final List<String> answerBridge;
 
     public BridgeGame(List<String> answerBridge) {
@@ -40,9 +40,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<String> upSideResult, List<String> downSideResult) {
-        upSideResult = new ArrayList<>();
-        downSideResult = new ArrayList<>();
+    public void retry() {
         trialCount++;
     }
 }
