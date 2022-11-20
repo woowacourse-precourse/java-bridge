@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class BridgeGame {
         return getCorrectPosition(bridgePosition).equals(userPosition);
     }
 
-    public boolean checkArriveDestination(boolean canMove, int bridgePosition) {
+    public boolean checkClear(boolean canMove, int bridgePosition) {
         return canMove && (this.bridge.size()-1 == bridgePosition);
     }
 
@@ -41,8 +40,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> retry(List<String> userPath) {
-        return new ArrayList<String>();
+    public void retry(UserPath userPath) {
+        userPath.clearPath();
     }
 
 }

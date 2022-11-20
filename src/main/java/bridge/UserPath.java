@@ -23,6 +23,6 @@ public class UserPath {
     }
 
     public int getBridgePosition() {
-        return this.userPath.size();
+        return this.userPath.size()-1;
     }
 }

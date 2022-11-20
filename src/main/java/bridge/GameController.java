@@ -17,33 +17,19 @@ public class GameController {
         this.bridgeMaker = bridgeMaker;
     }
     public void manageGame(BridgeGame bridgeGame, UserPath userPath) {
-        boolean clear = false;
+        int tryCount = 1;
         while(true) {
-            int tryCount = 1;
-            boolean canMove = startGame(bridgeGame, userPath;
-            if (bridgeGame.checkArriveDestination(canMove, bridgePosition)) {
-                outputView.printMapResult(bridge, userPath);
-                clear = true;
-                break; // 클리어 -> 게임종료
+            boolean canMove = startGame(bridgeGame, userPath);
+            boolean isClear = bridgeGame.checkClear(canMove, userPath.getBridgePosition());
+            if (isClear) {
+                break; // 클리어 or 재시작:Q -> 게임종료
             }
-            bridgePosition += 1;
-            if(canMove) {
-                continue;
-            }
-            // 틀렸으므로 재시작 여부 확인
-            String reGame = inputView.readGameCommand();
-            if (!canMove && reGame.equals("Q")) { // 재시작x
-                break;
-            }
-            if (!canMove && reGame.equals("R")) { // 재시작 o
-                userPath = bridgeGame.retry(userPath);
-                bridgePosition = 0;
-                tryCount += 1;
+            if (!canMove) {
+                reStartGame(userPath, bridgeGame);
+                tryCount++;
             }
         }
-        // 게임종료 절차
-        outputView.printGameResult(clear);
-        outputView.printTotalTry(tryCount);
+        endGame(isClear, tryCount);
     }
 
     public int createBridgeSize() {
@@ -65,22 +51,42 @@ public class GameController {
     }
 
     public boolean activateUserTurn(BridgeGame bridgeGame, UserPath userPath) {
-        String userSelect = inputView.readMoving();
-        userPath.addPath(userSelect);
-        // 건널 다리의 위치는 userPath의 길이와 동일하다
-        boolean canMove = bridgeGame.move(userSelect, userPath.getBridgePosition());
-        outputView.printMap(bridgeGame.getBridge(), userPath.getUserPath());
-        return canMove;
+        while(true) {
+            String userSelect = inputView.readMoving();
+            userPath.addPath(userSelect);
+            boolean canMove = bridgeGame.move(userSelect, userPath.getBridgePosition()); // 건널 다리의 위치는 userPath의 길이와 동일하다
+            outputView.printMap(bridgeGame.getBridge(), userPath.getUserPath());
+            if(!canMove) {
+                break;
+            }
+        }
     }
 
-    public boolean startGame(BridgeGame bridgeGame, UserPath userPath) {
+    public void startGame(BridgeGame bridgeGame, UserPath userPath) {
+
         try {
             return activateUserTurn(bridgeGame, userPath);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return activateUserTurn(bridgeGame, userPath);
         }
+    }
 
+    public boolean reStartGame(UserPath userPath, BridgeGame bridgeGame) {
+        try {
+            if (inputView.readGameCommand().equals("R")) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            reStartGame(userPath, bridgeGame);
+        }
+        return false;
+    }
+
+    public void endGame(boolean success, int tryCount) {
+        outputView.printGameResult(success);
+        outputView.printTotalTry(tryCount);
     }
 
 }
