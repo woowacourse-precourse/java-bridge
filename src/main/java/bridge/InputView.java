@@ -9,6 +9,10 @@ public class InputView {
     private static final String ASK_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String ASK_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String CANT_CONV_ERROR_MESSAGE = "변환할 수 없는 문자열입니다.";
+    private static final String BRIDGE_OUT_OF_RANGE_ERROR_MESSAGE = "브릿지 크기가 범위 밖입니다.";
+    private static final String WRONG_MOVING_ERROR_MESSAGE = "잘못된 이동 명령어 입니다.";
+    private static final String WRONG_COMMAND_ERROR_MESSAGE = "잘못된 게임 명령어 입니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -30,13 +34,13 @@ public class InputView {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(ErrorMessageGenerator.generate("변환할 수 없는 문자열입니다."));
+            throw new IllegalArgumentException(ErrorMessageGenerator.generate(CANT_CONV_ERROR_MESSAGE));
         }
     }
 
     private static void validateBridgeSize(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException(ErrorMessageGenerator.generate("브릿지 크기가 범위 밖입니다."));
+            throw new IllegalArgumentException(ErrorMessageGenerator.generate(BRIDGE_OUT_OF_RANGE_ERROR_MESSAGE));
         }
     }
 
@@ -60,7 +64,7 @@ public class InputView {
         if (line.equals(BridgeGame.CMD_UP) || line.equals(BridgeGame.CMD_DOWN)) {
             return;
         }
-        throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 이동 명령어 입니다."));
+        throw new IllegalArgumentException(ErrorMessageGenerator.generate(WRONG_MOVING_ERROR_MESSAGE));
     }
 
     /**
@@ -83,6 +87,6 @@ public class InputView {
         if (line.equals(BridgeGame.CMD_RETRY) || line.equals(BridgeGame.CMD_QUIT)) {
             return;
         }
-        throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 게임 명령어 입니다."));
+        throw new IllegalArgumentException(ErrorMessageGenerator.generate(WRONG_COMMAND_ERROR_MESSAGE));
     }
 }
