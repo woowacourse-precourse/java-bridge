@@ -5,7 +5,8 @@ public class BridgeSizeValidator implements Validator {
     private static final String ERROR_OUT_OF_RANGE = "[ERROR] 입력 가능한 범위를 초과하였습니다.(3 <= N <= 20)";
 
     public void validate(String input) {
-
+        validateNumericInput(input);
+        validateRange(input);
     }
 
     private void validateNumericInput(String input){
