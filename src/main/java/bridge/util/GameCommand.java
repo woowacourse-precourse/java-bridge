@@ -1,10 +1,11 @@
 package bridge.util;
 
 public enum GameCommand {
+
     RETRY("R"),
     QUIT("Q");
 
-    private String command;
+    private final String command;
 
     GameCommand(String command) {
         this.command = command;

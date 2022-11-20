@@ -1,6 +1,7 @@
 package bridge.util;
 
 public enum BridgePosition {
+
     UP("U", 1),
     DOWN("D", 0);
 

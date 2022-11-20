@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameProcessor {
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
