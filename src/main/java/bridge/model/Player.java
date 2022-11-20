@@ -6,4 +6,8 @@ public class Player {
     public int inputBridgeSize() {
         return InputView.readBridgeSize();
     }
+
+    public String inputMove() {
+        return InputView.readMoving();
+    }
 }
