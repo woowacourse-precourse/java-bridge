@@ -21,28 +21,28 @@ public class CurrentBridgeStatusMaker {
 
     private void makeStartPartBridge() {
         currentBridgeStatus = new ArrayList<>();
-        currentBridgeStatus.add(new StringBuilder("["));
-        currentBridgeStatus.add(new StringBuilder("["));
+        currentBridgeStatus.add(new StringBuilder(BridgeDrawing.BRIDGE_START_DRAWING.toString()));
+        currentBridgeStatus.add(new StringBuilder(BridgeDrawing.BRIDGE_START_DRAWING.toString()));
     }
 
     private void compare(String currentPlayerPosition, String playerEqualPosition) {
         if(currentPlayerPosition.equals(playerEqualPosition)) {
-            markBridge(currentPlayerPosition, "O");
+            markBridge(currentPlayerPosition, BridgeDrawing.O);
             return;
         }
 
-        markBridge(currentPlayerPosition, "X");
+        markBridge(currentPlayerPosition, BridgeDrawing.X);
     }
 
     private void makeEndPartBridge() {
-        updateUpBridge("]");
-        updateDownBridge("]");
+        updateUpBridge(BridgeDrawing.BRIDGE_END_DRAWING.toString());
+        updateDownBridge(BridgeDrawing.BRIDGE_END_DRAWING.toString());
     }
 
     private void updateUpBridge(String add) {
         StringBuilder upBridge = currentBridgeStatus.get(UP);
 
-        if(add.equals("]")) {
+        if(add.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
             upBridge.replace(upBridge.length() - 1, upBridge.length(), add);
             return;
         }
@@ -53,7 +53,7 @@ public class CurrentBridgeStatusMaker {
     private void updateDownBridge(String add) {
         StringBuilder downBridge = currentBridgeStatus.get(DOWN);
 
-        if(add.equals("]")) {
+        if(add.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
             downBridge.replace(downBridge.length() - 1, downBridge.length(), add);
             return;
         }
@@ -61,15 +61,15 @@ public class CurrentBridgeStatusMaker {
         downBridge.append(add);
     }
 
-    void markBridge(String currentPlayerPosition, String mark) {
+    void markBridge(String currentPlayerPosition, BridgeDrawing bridgeDrawing) {
         if(currentPlayerPosition.equals("U")) {
-            updateUpBridge(" " + mark + " |");
-            updateDownBridge("   |");
+            updateUpBridge(String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(), bridgeDrawing.toString()));
+            updateDownBridge(BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
             return;
         }
 
-        updateUpBridge("   |");
-        updateDownBridge(" " + mark + " |");
+        updateUpBridge(BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
+        updateDownBridge(String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(), bridgeDrawing.toString()));
     }
 
 }
