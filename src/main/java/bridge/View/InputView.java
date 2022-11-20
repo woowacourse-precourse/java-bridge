@@ -1,8 +1,8 @@
 package bridge.View;
 
 import bridge.Model.WrappingType.BridgeSize;
-import bridge.Model.WrappingType.UserChoice;
-import bridge.Model.WrappingType.UserCommand;
+import bridge.Model.WrappingType.ChoiceDirection;
+import bridge.Model.WrappingType.Command;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -20,17 +20,17 @@ public class InputView {
         return new BridgeSize(size);
     }
 
-    public UserChoice readMoving() {
+    public ChoiceDirection readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String choice = readLine();
+        String choiceDirection = readLine();
 
-        return new UserChoice(choice);
+        return new ChoiceDirection(choiceDirection);
     }
 
-    public UserCommand readGameCommand() {
+    public Command readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String command = readLine();
 
-        return new UserCommand(command);
+        return new Command(command);
     }
 }

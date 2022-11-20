@@ -1,11 +1,11 @@
 package bridge.View;
 
 import bridge.Enum.CrossResult;
-import bridge.Enum.Crossing;
+import bridge.Enum.Direction;
 import bridge.Enum.GameStatus;
 import bridge.Model.WrappingType.CrossResults;
-import bridge.Model.WrappingType.UserChoice;
-import bridge.Model.WrappingType.UserChoices;
+import bridge.Model.WrappingType.ChoiceDirection;
+import bridge.Model.WrappingType.ChoiceDirections;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,34 +15,34 @@ public class OutputView {
     private static final int UP_LINE = 0;
     private static final int DOWN_LINE = 1;
 
-    public void printMap(UserChoices userChoices, CrossResults crossResults) {
-        List<String> line = createLineString(userChoices, crossResults);
+    public void printMap(ChoiceDirections choiceDirections, CrossResults crossResults) {
+        List<String> line = createLineString(choiceDirections, crossResults);
         String upLine = line.get(UP_LINE);
         String downLine = line.get(DOWN_LINE);
         System.out.println(upLine);
         System.out.println(downLine);
     }
 
-    private List<String> createLineString(UserChoices userChoices, CrossResults crossResults) {
+    private List<String> createLineString(ChoiceDirections choiceDirections, CrossResults crossResults) {
         List<String> line = new ArrayList<>(Arrays.asList("[", "["));
-        int length = userChoices.length();
-        for (int position = 0; position < userChoices.length(); position++) {
-            UserChoice userChoice = userChoices.get(position);
+        int length = choiceDirections.length();
+        for (int position = 0; position < choiceDirections.length(); position++) {
+            ChoiceDirection choiceDirection = choiceDirections.get(position);
             CrossResult crossResult = crossResults.get(position);
-            line = concatCrossResult(line, userChoice, crossResult);
+            line = concatCrossResult(line, choiceDirection, crossResult);
             line = concatDivisionLine(line, position, length);
         }
 
         return line;
     }
 
-    private List<String> concatCrossResult(List<String> line, UserChoice userChoice, CrossResult crossResult) {
+    private List<String> concatCrossResult(List<String> line, ChoiceDirection choiceDirection, CrossResult crossResult) {
         String upLine = line.get(UP_LINE);
         String downLine = line.get(DOWN_LINE);
-        if (userChoice.compare(Crossing.UP)) {
+        if (choiceDirection.compare(Direction.UP)) {
             line.set(UP_LINE, upLine.concat(" " + crossResult.getString() + " "));
             line.set(DOWN_LINE, downLine.concat(" " + " " + " "));
-        } else if (userChoice.compare(Crossing.DOWN)) {
+        } else if (choiceDirection.compare(Direction.DOWN)) {
             line.set(UP_LINE, upLine.concat(" " + " " + " "));
             line.set(DOWN_LINE, downLine.concat(" " + crossResult.getString() + " "));
         }
@@ -63,9 +63,9 @@ public class OutputView {
     }
 
 
-    public void printResult(UserChoices userChoices, CrossResults crossResults, GameStatus gameStatus, int tryCount) {
+    public void printResult(ChoiceDirections choiceDirections, CrossResults crossResults, GameStatus gameStatus, int tryCount) {
         System.out.println("최종 게임 결과\n");
-        printMap(userChoices, crossResults);
+        printMap(choiceDirections, crossResults);
         System.out.println("게임 성공 여부: " + gameStatus.getStatus());
         System.out.println("총 시도한 횟수: " + tryCount);
     }

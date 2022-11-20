@@ -9,13 +9,13 @@ import bridge.Model.WrappingType.*;
 import java.util.List;
 
 public class BridgeGame {
-    UserChoices userChoices;
-    CrossResults crossResults;
-    Bridge bridge;
-    int tryCount;
+    private ChoiceDirections choiceDirections;
+    private CrossResults crossResults;
+    private Bridge bridge;
+    private int tryCount;
 
     public BridgeGame(BridgeSize bridgeSize) {
-        userChoices = new UserChoices();
+        choiceDirections = new ChoiceDirections();
         crossResults = new CrossResults();
         bridge = new Bridge(makeBridge(bridgeSize));
         tryCount = 1;
@@ -28,25 +28,24 @@ public class BridgeGame {
         return bridgeMaker.makeBridge(size);
     }
 
-    public void move(UserChoice userChoice) {
-        CrossResult crossResult = bridge.cross(userChoice, crossResults.position());
-        userChoices.add(userChoice);
+    public void move(ChoiceDirection choiceDirection) {
+        CrossResult crossResult = bridge.cross(choiceDirection, crossResults.nextPosition());
+        choiceDirections.add(choiceDirection);
         crossResults.add(crossResult);
     }
 
     public GameStatus checkGameStatus() {
-        GameStatus status = GameStatus.RUNNING;
         if (isEndPoint()) {
-            status = GameStatus.SUCCESS;
+            return GameStatus.SUCCESS;
         }
         if (isFailed()) {
-            status = GameStatus.FAIL;
+            return GameStatus.FAIL;
         }
-        return status;
+        return GameStatus.RUNNING;
     }
 
     private boolean isEndPoint() {
-        return bridge.length() - crossResults.position() == 0;
+        return bridge.length() - crossResults.nextPosition() == 0;
     }
 
     private boolean isFailed() {
@@ -54,7 +53,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        userChoices = new UserChoices();
+        choiceDirections = new ChoiceDirections();
         crossResults = new CrossResults();
         increaseTryCount();
     }
@@ -63,8 +62,8 @@ public class BridgeGame {
         tryCount++;
     }
 
-    public UserChoices getUserChoices() {
-        return userChoices;
+    public ChoiceDirections getChoiceDirections() {
+        return choiceDirections;
     }
 
     public CrossResults getCrossResults() {

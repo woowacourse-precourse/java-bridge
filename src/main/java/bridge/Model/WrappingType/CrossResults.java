@@ -12,7 +12,7 @@ public class CrossResults {
         this.crossResults = new ArrayList<>();
     }
 
-    public int position() {
+    public int nextPosition() {
         return crossResults.size();
     }
 

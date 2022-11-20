@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Enum.Crossing;
+import bridge.Enum.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +17,9 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            String string = Crossing.toString(number);
+            String direction = Direction.toString(number);
 
-            bridge.add(string);
+            bridge.add(direction);
         }
         return bridge;
     }

@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Enum.Crossing;
+import bridge.Enum.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -12,7 +12,7 @@ public class CrossingTest {
     @CsvSource(value = {"0:D", "1:U"}, delimiter = ':')
     @DisplayName("toString 메소드 테스트")
     void toStringTest(int number, String string) {
-        String actual = Crossing.toString(number);
+        String actual = Direction.toString(number);
         assertThat(actual).isEqualTo(string);
     }
 }

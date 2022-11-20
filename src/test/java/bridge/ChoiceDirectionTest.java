@@ -1,19 +1,19 @@
 package bridge;
 
-import bridge.Model.WrappingType.UserChoice;
+import bridge.Model.WrappingType.ChoiceDirection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class UserChoiceTest {
+public class ChoiceDirectionTest {
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
     @DisplayName("유효")
     void valid(String choice) {
-        UserChoice userChoice = new UserChoice(choice);
-        assertThat(userChoice).isInstanceOf(UserChoice.class);
+        ChoiceDirection userChoice = new ChoiceDirection(choice);
+        assertThat(userChoice).isInstanceOf(ChoiceDirection.class);
     }
 
     @ParameterizedTest
@@ -21,7 +21,7 @@ public class UserChoiceTest {
     @DisplayName("예외")
     void notValid(String choice) {
         assertThatThrownBy(() -> {
-            new UserChoice(choice);
+            new ChoiceDirection(choice);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

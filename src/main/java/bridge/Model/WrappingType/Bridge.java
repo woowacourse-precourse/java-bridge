@@ -11,9 +11,9 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public CrossResult cross(UserChoice userChoice, int position) {
-        String crossableBridge = bridge.get(position);
-        if (userChoice.compare(crossableBridge)) {
+    public CrossResult cross(ChoiceDirection choiceDirection, int nextPosition) {
+        String nextBridgeDirection = bridge.get(nextPosition);
+        if (choiceDirection.compare(nextBridgeDirection)) {
             return CrossResult.SUCCESS;
         }
         return CrossResult.FAIL;

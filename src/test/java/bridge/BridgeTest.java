@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.Enum.CrossResult;
 import bridge.Model.WrappingType.Bridge;
-import bridge.Model.WrappingType.UserChoice;
+import bridge.Model.WrappingType.ChoiceDirection;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -18,7 +18,7 @@ public class BridgeTest {
     @ParameterizedTest
     @MethodSource("generateData")
     void canCrossingTest(String choice, int index, CrossResult result) {
-        UserChoice userChoice = new UserChoice(choice);
+        ChoiceDirection userChoice = new ChoiceDirection(choice);
         CrossResult actual = bridge.cross(userChoice, index);
         assertThat(actual).isEqualTo(result);
     }
