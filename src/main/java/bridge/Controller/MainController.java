@@ -26,17 +26,21 @@ public class MainController {
             bridgeGame.move(userChoice);
             gameStatus = bridgeGame.checkGameStatus();
             outputView.printMap(bridgeGame.getUserChoices(), bridgeGame.getCrossResults());
-
-            if (gameStatus.equals(GameStatus.FAIL)) {
-                UserCommand userCommand = inputView.readGameCommand();
-                if (userCommand.isQuit()) {
-                    //pass
-                } else if (userCommand.isRetry()) {
-                    bridgeGame.retry();
-                    gameStatus = GameStatus.RUNNING;
-                }
-            }
+            gameStatus = checkKeepRunning(gameStatus);
         }
         outputView.printResult(bridgeGame.getUserChoices(), bridgeGame.getCrossResults(), gameStatus, bridgeGame.getTryCount());
+    }
+
+    private GameStatus checkKeepRunning(GameStatus gameStatus){
+        if (gameStatus.equals(GameStatus.FAIL)) {
+            UserCommand userCommand = inputView.readGameCommand();
+            if (userCommand.isQuit()) {
+                //pass
+            } else if (userCommand.isRetry()) {
+                bridgeGame.retry();
+                gameStatus = GameStatus.RUNNING;
+            }
+        }
+        return gameStatus;
     }
 }
