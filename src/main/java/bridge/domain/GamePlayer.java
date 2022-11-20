@@ -1,4 +1,8 @@
-package bridge;
+package bridge.domain;
+
+import bridge.view.InputView;
+import bridge.view.InputViewAdapter;
+import bridge.view.OutputView;
 
 public class GamePlayer {
     private final InputView inputView;

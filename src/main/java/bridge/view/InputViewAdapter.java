@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 public class InputViewAdapter extends InputView {
     public int readBridgeSize() {

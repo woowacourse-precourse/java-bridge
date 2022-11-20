@@ -1,4 +1,6 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.GameKeySet;
 
 public class InputValidation {
     private static final String ERROR_TOKEN = "[ERROR]";
