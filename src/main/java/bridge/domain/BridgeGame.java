@@ -8,10 +8,12 @@ import bridge.BridgeRandomNumberGenerator;
  */
 public class BridgeGame {
     private int stage;
+    private int totalTryCount;
     private Bridge bridge;
 
     public BridgeGame(int size) {
         this.stage = 0;
+        this.totalTryCount = 0;
         makeBridge(size);
     }
 
@@ -25,7 +27,30 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(String userInput) {
+        this.stage++;
+        return canMove(userInput);
+    }
+
+    private boolean canMove(String userInput) {
+        if(bridge.isSameTile(userInput, stage)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isGameEnd(String userInput) {
+        if(!canMove(userInput) || isGameSuccess(userInput)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isGameSuccess(String userInput) {
+        if(canMove(userInput) && bridge.isLastTile(stage)) {
+            return true;
+        }
+        return false;
     }
 
     /**
