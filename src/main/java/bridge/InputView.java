@@ -4,7 +4,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize;
         while (true) {
-            System.out.println("다리의 길이를 입력해주세요. (위: U, 아래: D)");
+            System.out.println("다리의 길이를 입력해주세요.");
             bridgeSize = camp.nextstep.edu.missionutils.Console.readLine();
             if (!bridgeSizeErrorHandling(bridgeSize)) {
                 return Integer.parseInt(bridgeSize);
@@ -15,12 +15,12 @@ public class InputView {
     public String readMoving() {
         String moving;
         while (true) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             moving = camp.nextstep.edu.missionutils.Console.readLine();
             if (!movingErrorHandling(moving)) {
-                break;
+                return moving;
             }
         }
-        return moving;
     }
 
     public String readGameCommand() {
