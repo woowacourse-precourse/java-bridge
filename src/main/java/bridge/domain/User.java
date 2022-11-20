@@ -8,18 +8,22 @@ import java.util.List;
 
 public class User {
 
-    private List<String> route = new ArrayList<>();
+    private final List<String> route = new ArrayList<>();
     private int attemptNum = 1;
     private int location = -1;
     private int bridgeSize;
     private Status status = Status.DOING;
-    private Bridge bridge;
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private final Bridge bridge;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
-    User(){
+    User() {
         this.bridgeSize = inputView.readBridgeSize();
-        this.bridge = new Bridge(this.bridgeSize,new BridgeRandomNumberGenerator());
+        this.bridge = new Bridge(this.bridgeSize, new BridgeRandomNumberGenerator());
+    }
+
+    private boolean isCrossBridge() {
+        return location == bridgeSize - 1;
     }
 
 }
