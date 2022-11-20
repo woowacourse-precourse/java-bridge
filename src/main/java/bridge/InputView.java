@@ -44,6 +44,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        InputStreamReader ir = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(ir);
+        String gameCommand;
+        try {
+            gameCommand = br.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return gameCommand;
     }
 }
