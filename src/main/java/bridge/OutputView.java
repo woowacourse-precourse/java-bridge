@@ -8,13 +8,12 @@ import java.util.stream.Collectors;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
+    private static final String GAME_START = "다리 건너기 게임을 시작합니다.\n";
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     public void printStart() {
         System.out.println(GAME_START);
-        System.out.println();
     }
 
     public void printInputBridgeSize() {
