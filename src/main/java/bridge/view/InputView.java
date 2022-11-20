@@ -19,6 +19,17 @@ public class InputView {
     }
 
     /**
+     * 다리 길이 입력이 숫자인지 검증
+     */
+    public static void validateBridgeLength(String bridgeLength) {
+        String numberExpression = "^[0-9]+$";
+
+        if (!bridgeLength.matches(numberExpression)) {
+            throw new IllegalArgumentException(Error.INPUT_NUMBER_ERROR.getMessage());
+        }
+    }
+
+    /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
