@@ -8,6 +8,7 @@ import static bridge.constant.GameStatus.ON_WAY;
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 
+import bridge.constant.GameCommand;
 import bridge.constant.GameStatus;
 import bridge.constant.Moving;
 import java.util.List;
@@ -47,6 +48,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String gameCommand) {
+        validateGameCommand(gameCommand);
         if (gameCommand.equals(RETRY)) {
             this.gameStatus = ON_WAY;
             this.tryCount += 1;
@@ -87,6 +89,15 @@ public class BridgeGame {
         }
         throw new IllegalArgumentException(String.format(
                 "[ERROR] 위로 이동하려면 \"%s\", 아래로 이동하려면 \"%s\"를 입력하세요.", UPPER_SIDE, LOWER_SIDE
+        ));
+    }
+
+    private void validateGameCommand(String gameCommand) {
+        if (gameCommand.equals(RETRY) || gameCommand.equals(QUIT)) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format(
+                "[ERROR] 게임을 재시작하려면 \"%s\", 종료하려면 \"%s\"를 입력하세요.", RETRY, QUIT
         ));
     }
 }
