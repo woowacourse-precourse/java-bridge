@@ -15,6 +15,7 @@ public class Application {
 
         while (true) {
             if(bridgeGame.move(bridge)){
+                success = "성공";
                 break;
             }
 
@@ -22,7 +23,6 @@ public class Application {
                 trial++;
                 continue;
             }
-            success = "성공";
             break;
         }
 
