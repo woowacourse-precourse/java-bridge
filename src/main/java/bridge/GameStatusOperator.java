@@ -25,9 +25,11 @@ public class GameStatusOperator {
         numberOfTry++;
     }
 
-    public void changePosition() {
-        currentPosition++;
-    }
+    public void initPosition() { currentPosition = START_POSITION; }
+
+    public void changePosition() { currentPosition++; }
+
+    public void toOngoing() { gameStatus = GameStatus.ONGOING; }
 
     public void toQuit() {
         gameStatus = GameStatus.QUIT;
@@ -35,10 +37,6 @@ public class GameStatusOperator {
 
     public void toRestart() {
         gameStatus = GameStatus.RESTART;
-    }
-
-    public void toInitialPosition() {
-        currentPosition = START_POSITION;
     }
 
     //== Getter ==//

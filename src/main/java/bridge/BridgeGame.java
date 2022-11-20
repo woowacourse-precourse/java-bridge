@@ -23,10 +23,10 @@ public class BridgeGame {
         return new BridgeGame(bridge, gameStatusOperator);
     }
 
-    public GameStatus start() {
+    public ProcessCondition start() {
         gameStatusOperator.incrementNumberOfTry();
         gameStatusOperator.toOngoing();
-        return gameStatusOperator.getGameStatus();
+        return GameStatus.START;
     }
 
     public ProcessCondition move(String selectBlock) {
@@ -38,8 +38,8 @@ public class BridgeGame {
         return PassCondition.FAIL;
     }
 
-    public GameStatus retry() {
-        gameStatusOperator.toInitialPosition();
+    public ProcessCondition retry() {
+        gameStatusOperator.initPosition();
         gameStatusOperator.toRestart();
         return start();
     }
