@@ -33,14 +33,11 @@ public class InputView {
 
     private int readInt() {
         try {
-            return parseInt(readLine());
+            return Integer.parseInt(readLine());
 
         } catch (IllegalArgumentException illegalArgumentException) {
             throw new IllegalArgumentException("다리의 길이 형식인 정수 형식이 아닙니다.");
         }
     }
 
-    private int parseInt(String value) {
-        return Integer.parseInt(value);
-    }
 }
