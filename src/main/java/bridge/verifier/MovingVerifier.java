@@ -12,7 +12,7 @@ public class MovingVerifier {
         isNotUnderstandable(target);
     }
 
-    public void isNotUnderstandable(String target) {
+    private void isNotUnderstandable(String target) {
         if (!target.equals("U") && !target.equals("D")) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_UNDERSTANDABLE_COMMAND);
         }

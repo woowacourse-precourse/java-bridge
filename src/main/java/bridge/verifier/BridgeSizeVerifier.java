@@ -14,7 +14,7 @@ public class BridgeSizeVerifier {
         checkRange(target);
     }
 
-    public void checkRange(String target) {
+    private void checkRange(String target) {
         int bridgeSize = Integer.parseInt(target);
         if (bridgeSize < BRIDGE_SIZE_LOWERBOUND || bridgeSize > BRIDGE_SIZE_UPPERBOUND) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
