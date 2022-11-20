@@ -1,6 +1,6 @@
 package bridge.Model;
 
-import bridge.View.MovingStatus;
+import bridge.MovingStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -31,7 +31,7 @@ public class BridgeGame {
         this.bridgeMap = new BridgeMap();
     }
 
-    void moveMap(String movement) {;
+    void moveMap(String movement) {
         int moving = MovingStatus.findByCommand(movement).getMovingNumber();
         this.bridgeMap.updateMap(moving, isAnswer);
     }
