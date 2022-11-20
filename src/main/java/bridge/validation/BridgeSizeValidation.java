@@ -11,6 +11,13 @@ public class BridgeSizeValidation {
     public BridgeSizeValidation() {
     }
 
+    public void isValidate(String bridgeSize) {
+        isNull(bridgeSize);
+        isBlank(bridgeSize);
+        isNumber(bridgeSize);
+        isCorrectRange(bridgeSize);
+    }
+
     public void throwError(String message) {
         throw new IllegalArgumentException(message);
     }
