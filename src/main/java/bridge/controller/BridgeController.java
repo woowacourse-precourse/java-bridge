@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;
 import bridge.model.service.BridgeService;
 import bridge.view.InputView;
@@ -14,6 +15,7 @@ public class BridgeController {
     public void run() {
         createBridge();
         move();
+        printResult();
     }
 
     private void createBridge() {
@@ -38,6 +40,11 @@ public class BridgeController {
         MoveResultDto moveResultDto = bridgeService.move(bridgeType);
         outputView.printMap(moveResultDto.getBridgeMap(), moveResultDto.isRightLastBridgePick());
         return moveResultDto;
+    }
+
+    private void printResult() {
+        GameResultDto gameResult = bridgeService.readGameResult();
+        outputView.printResult(gameResult.getBridgeMap(), gameResult.getSuccessOrFail(), gameResult.getRetryCount());
     }
 
 }

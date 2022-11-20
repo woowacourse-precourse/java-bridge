@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Constant;
 import bridge.enums.Bridge;
 import bridge.model.domain.BridgeGame;
+import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;
 import java.util.List;
 
@@ -29,4 +30,9 @@ public class BridgeService {
         bridgeGame.retry(isRestartGame);
         return isRestartGame;
     }
+
+    public GameResultDto readGameResult() {
+        return bridgeGame.readGameResult();
+    }
+
 }
