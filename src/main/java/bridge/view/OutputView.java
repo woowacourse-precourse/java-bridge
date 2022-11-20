@@ -90,4 +90,8 @@ public class OutputView {
         }
         return "실패";
     }
+
+    public void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }
