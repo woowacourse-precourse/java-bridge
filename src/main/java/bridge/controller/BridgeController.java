@@ -31,20 +31,9 @@ public class BridgeController {
     private void playGame() {
         BridgeGame game = initGame();
 
-        while (!game.isComplete()) {
-            boolean moveSuccess = move(game);
-
-            if (moveSuccess) {
-                continue;
-            }
-
-            boolean isRetry = retry();
-
-            if(!isRetry) {
-                break;
-            }
-
-            game.retry();
+        boolean keepPlay = true;
+        while (!game.isComplete() && keepPlay) {
+            keepPlay = playTurn(game);
         }
         end(game);
     }
@@ -60,6 +49,16 @@ public class BridgeController {
         return new BridgeGame(bridge);
     }
 
+    public boolean playTurn(BridgeGame game) {
+        boolean success = move(game);
+
+        if(success) {
+            return true;
+        }
+
+        return retry(game);
+    }
+
     public boolean move(BridgeGame game) {
         outputView.printInputMoveCellMsg();
         String movement = inputView.readMoving();
@@ -73,11 +72,16 @@ public class BridgeController {
         return success;
     }
 
-    public boolean retry() {
+    public boolean retry(BridgeGame game) {
         outputView.printRestartMsg();
         String command = inputView.readGameCommand();
 
-        return command.equals(UserKeySet.RETRY.toString());
+        boolean isRetry = command.equals(UserKeySet.RETRY.toString());
+        if(isRetry) {
+            game.retry();
+        }
+
+        return isRetry;
     }
 
     public void end(BridgeGame game) {
