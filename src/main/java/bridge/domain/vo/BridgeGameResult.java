@@ -2,6 +2,7 @@ package bridge.domain.vo;
 
 import java.util.Objects;
 
+import static bridge.domain.enumeration.ErrorMessage.MOVING_IS_NOT_U_AND_D;
 import static bridge.domain.enumeration.MovingType.DOWN;
 import static bridge.domain.enumeration.MovingType.UP;
 
@@ -15,8 +16,15 @@ public class BridgeGameResult {
     }
 
     private BridgeGameResult(boolean isMatched, String userMoving) {
+        validateBrideGameResult(isMatched, userMoving);
         this.isMatched = isMatched;
         this.userMoving = userMoving;
+    }
+
+    private void validateBrideGameResult(boolean isMatched, String userMoving) {
+        if (!checkDown(userMoving) && !checkUp(userMoving)) {
+            throw new IllegalArgumentException(MOVING_IS_NOT_U_AND_D.getErrorMessage());
+        }
     }
 
     public static boolean checkUp(String userMoving) {
