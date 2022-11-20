@@ -28,8 +28,7 @@ public class DependencyContainer {
     }
 
     public static InputViewInterface inputView() {
-        InputViewInterface target = new InputView();
-        InvocationHandler invocationHandler = new InputViewExceptionHandlingProxy(target, outputView());
+        InvocationHandler invocationHandler = new InputViewExceptionHandlingProxy(new InputView(), outputView());
         return (InputViewInterface) Proxy.newProxyInstance(
                 InputViewInterface.class.getClassLoader(),
                 new Class[]{InputViewInterface.class},

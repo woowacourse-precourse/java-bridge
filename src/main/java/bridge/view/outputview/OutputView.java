@@ -17,7 +17,7 @@ public class OutputView {
     public static final String TRY_COUNT_MESSAGE_FORMAT = "총 시도한 횟수: %s";
     public static final String ASKING_GAME_COMMAND_MESSAGE
             = String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)%n", Command.R, Command.Q);
-    public static final String GAME_RESULT_PREFIX = "최종 게임 결과";
+    public static final String GAME_RESULT_PREFIX = String.format("최종 게임 결과%n");
     public static final String GAME_SUCCESS_MESSAGE = String.format("게임 성공 여부: 성공%n");
     public static final String GAME_FAILURE_MESSAGE = String.format("게임 성공 여부: 실패%n");
 
@@ -54,7 +54,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(GameResult gameResult, boolean isFinished) {
-        System.out.println(GAME_RESULT_PREFIX);
+        System.out.print(GAME_RESULT_PREFIX);
         printMap(gameResult.getStepResults());
         printIsFinished(isFinished);
         printTryCount(gameResult.getTryCount());
