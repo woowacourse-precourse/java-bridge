@@ -1,6 +1,6 @@
 package bridge.Domain;
 
-import static bridge.Utils.Constants.BLANK;
+import static bridge.Utils.Constant.MatchResult.BLANK;
 import static bridge.Utils.Constants.DOWN;
 import static bridge.Utils.Constants.UP;
 
@@ -24,10 +24,10 @@ public class BridgeMap {
     public void add(String upOrDown, String isCorrect) {
         if (upOrDown.equals(UP)) {
             upMap.add(isCorrect);
-            downMap.add(BLANK);
+            downMap.add(BLANK.toString());
         }
         if (upOrDown.equals(DOWN)) {
-            upMap.add(BLANK);
+            upMap.add(BLANK.toString());
             downMap.add(isCorrect);
         }
     }

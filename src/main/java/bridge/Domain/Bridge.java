@@ -1,7 +1,7 @@
 package bridge.Domain;
 
-import static bridge.Utils.Constants.FALSE;
-import static bridge.Utils.Constants.RIGHT;
+import static bridge.Utils.Constant.MatchResult.CORRECT;
+import static bridge.Utils.Constant.MatchResult.INCORRECT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +31,10 @@ public class Bridge {
 
     private boolean matching(String myMoving, String answerMoving) {
         if (myMoving.equals(answerMoving)) {
-            result.add(myMoving, RIGHT);
+            result.add(myMoving, CORRECT.toString());
             return true;
         }
-        result.add(myMoving, FALSE);
+        result.add(myMoving, INCORRECT.toString());
         return false;
     }
 
