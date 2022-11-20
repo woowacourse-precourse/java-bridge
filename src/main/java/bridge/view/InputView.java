@@ -11,7 +11,11 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return Integer.parseInt(readLine());
+        try {
+            return Integer.parseInt(readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 입력 형식이 아닙니다.");
+        }
     }
 
     /**
