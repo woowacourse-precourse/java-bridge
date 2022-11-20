@@ -14,6 +14,7 @@ public class BridgeGame {
     private BridgeMakerRepository bridgeMakerRepository;
     private CompareBridgeRepository compareBridgeRepository;
     private int attempts = 1;
+    private final List<String> movingChoices = new ArrayList<>();
 
     public BridgeGame() {
     }
@@ -24,7 +25,6 @@ public class BridgeGame {
     }
 
     public List<String> createMovingChoices(String moving) {
-        List<String> movingChoices = new ArrayList<>();
         movingChoices.add(moving);
         return movingChoices;
     }
