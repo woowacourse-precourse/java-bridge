@@ -3,13 +3,20 @@ package bridge;
 public class ClassContext {
     private static ClassContext instance;
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final BridgeGame bridgeGame = new BridgeGame();
-    private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private BridgeMaker bridgeMaker;
+    private static InputView inputView;
+    private static BridgeGame bridgeGame;
+    private static OutputView outputView;
+    private static GameLauncher gameLauncher;
+    private static BridgeNumberGenerator bridgeNumberGenerator;
+    private static BridgeMaker bridgeMaker;
 
     private ClassContext() {
+        inputView = new InputView();
+        bridgeGame = new BridgeGame();
+        outputView = new OutputView(bridgeGame);
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        gameLauncher = new GameLauncher(inputView, outputView, bridgeGame, bridgeMaker);
     }
 
     public static ClassContext getInstance() {
@@ -18,28 +25,13 @@ public class ClassContext {
         return ClassContext.instance;
     }
 
-    public InputView getInputView() {
-        return this.inputView;
+    public static void setBridgeNumberGenerator(BridgeNumberGenerator bridgeNumberGenerator) {
+        ClassContext.bridgeNumberGenerator = bridgeNumberGenerator;
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        gameLauncher = new GameLauncher(inputView, outputView, bridgeGame, bridgeMaker);
     }
 
-    public OutputView getOutputView() {
-        return this.outputView;
-    }
-
-    public BridgeNumberGenerator bridgeNumberGenerator() {
-        return this.bridgeNumberGenerator;
-    }
-
-    public BridgeGame bridgeGame() {
-        return this.bridgeGame;
-    }
-
-    public BridgeMaker bridgeMaker(){
-        this.bridgeMaker = new BridgeMaker(this.bridgeNumberGenerator);
-        return this.bridgeMaker;
-    }
-
-    public void setBridgeNumberGenerator(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
+    public static GameLauncher getGameLauncher() {
+        return gameLauncher;
     }
 }
