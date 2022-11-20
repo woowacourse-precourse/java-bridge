@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.Constants;
 import java.util.List;
 
 public class Bridge {
@@ -17,5 +18,15 @@ public class Bridge {
 		if (length < MIN_LENGTH || length > MAX_LENGTH) {
 			throw new IllegalArgumentException();
 		}
+	}
+
+	public boolean canWalkUp(int position) {
+		int index = position - 1;
+		return value.get(index).equals(Constants.UP);
+	}
+
+	public boolean canWalkDown(int position) {
+		int index = position - 1;
+		return value.get(index).equals(Constants.DOWN);
 	}
 }
