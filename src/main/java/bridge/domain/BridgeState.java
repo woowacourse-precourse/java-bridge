@@ -38,4 +38,8 @@ public class BridgeState {
         upBridge = new StringBuilder();
         downBridge = new StringBuilder();
     }
+
+    public StringBuilder getBridgeState() {
+        return upBridge.append("\n").append(downBridge);
+    }
 }
