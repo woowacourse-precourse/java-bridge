@@ -22,8 +22,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean move(String direction) {
+        Boolean canCross = bridge.canCross(user.getStep(), direction);
         user.stepForward(direction);
-        return bridge.canCross(user.getStep(), direction);
+        return canCross;
     }
 
     /**
@@ -41,7 +42,7 @@ public class BridgeGame {
     }
 
     public Boolean isEnd() {
-        return bridge.getSize() == user.getStep();
+        return bridge.getDirections().equals(user.getMoveHistory());
     }
 
     public Integer getTryCount() {
