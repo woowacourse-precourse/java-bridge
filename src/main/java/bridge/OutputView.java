@@ -30,7 +30,13 @@ public class OutputView {
     }
 
     public void printUpperBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
-
+        printMapStart();
+        for(int i = 0; i < userPosition; i++){
+            printOnePartOfUpperBridge(i, bridge);
+            printSeparation();
+        }
+        printWhetherUserDecisionIsCorrectInUpperBridge(userDecision, checkDirection);
+        printMapEnd();
     }
 
     public void printLowerBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
@@ -39,12 +45,20 @@ public class OutputView {
             printOnePartOfLowerBridge(i, bridge);
             printSeparation();
         }
-        printWhetherUserDecisionIsCorrect(userDecision, checkDirection);
+        printWhetherUserDecisionIsCorrectInLowerBridge(userDecision, checkDirection);
         printMapEnd();
     }
 
-    public void printWhetherUserDecisionIsCorrect(String userDecision, boolean checkDirection){
+    public void printWhetherUserDecisionIsCorrectInUpperBridge(String userDecision, boolean checkDirection){
         if(userDecision.equals("U")){
+            printWhetherCheckDirectionIsCorrect(checkDirection);
+            return;
+        }
+        System.out.print("   ");
+    }
+
+    public void printWhetherUserDecisionIsCorrectInLowerBridge(String userDecision, boolean checkDirection){
+        if(userDecision.equals("D")){
             printWhetherCheckDirectionIsCorrect(checkDirection);
             return;
         }
