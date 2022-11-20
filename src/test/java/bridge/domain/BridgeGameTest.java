@@ -136,13 +136,13 @@ class BridgeGameTest {
         }
     }
 
-    @DisplayName("다리를 완전히 건넜는지 확인한다.")
+    @DisplayName("다리 건너기를 성공했는지 확인한다.")
     @Nested
     class CheckIsCrossBridgeCompletely {
 
-        @DisplayName("완전히 건넌 경우")
+        @DisplayName("성공한 경우")
         @Test
-        void should_BeTrue_When_CrossBridgeCompletely() {
+        void should_BeTrue_When_SuccessToCrossBridge() {
             // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
@@ -153,7 +153,7 @@ class BridgeGameTest {
             assertThat(isSuccess).isTrue();
         }
 
-        @DisplayName("완전히 건너지 못한 경우")
+        @DisplayName("실패한 경우")
         @Test
         void should_BeFalse_When_FailToCrossBridge() {
             // given

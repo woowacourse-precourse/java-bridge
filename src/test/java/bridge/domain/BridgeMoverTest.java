@@ -58,4 +58,39 @@ class BridgeMoverTest {
             assertThat(gameStatusAfterMoving).isEqualTo(END);
         }
     }
+
+    @DisplayName("다리를 완전히 건넜는지 확인한다.")
+    @Nested
+    class CheckIsCrossBridgeCompletely {
+
+        @DisplayName("현재 위치와 다리의 길이가 같을 때")
+        @Test
+        void should_BeTrue_When_CrossBridgeCompletely() {
+            // given
+            bridgeMover.go(UPPER_SIDE);
+            bridgeMover.go(LOWER_SIDE);
+            bridgeMover.go(UPPER_SIDE);
+            bridgeMover.go(LOWER_SIDE);
+            bridgeMover.go(UPPER_SIDE);
+            // when
+            boolean isCrossCompletely = bridgeMover.isCrossCompletely();
+            // then
+            assertThat(isCrossCompletely).isTrue();
+        }
+
+        @DisplayName("현재 위치가 다리의 길이보다 작을 때")
+        @Test
+        void should_BeTrue_When_CrossBridgeCompletely() {
+            // given
+            bridgeMover.go(UPPER_SIDE);
+            bridgeMover.go(LOWER_SIDE);
+            bridgeMover.go(UPPER_SIDE);
+            bridgeMover.go(LOWER_SIDE);
+            bridgeMover.go(LOWER_SIDE);
+            // when
+            boolean isCrossCompletely = bridgeMover.isCrossCompletely();
+            // then
+            assertThat(isCrossCompletely).isFalse();
+        }
+    }
 }
