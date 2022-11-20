@@ -14,13 +14,11 @@ public class BridgeGameManager {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.setTryNumber();
 
-        OutputView.printStart();
+        printStart();
 
         int bridgeSize = inputBridgeSizeRepeat();
 
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> targetBridge = bridgeMaker.makeBridge(bridgeSize);
+        List<String> targetBridge = bridgeGame.makeTargetBridge(bridgeSize);
 
         System.out.println(targetBridge);
 
@@ -104,5 +102,9 @@ public class BridgeGameManager {
         OutputView.printSuccessFailure(targetBridge, bridgeGame.getPreStatus());
         OutputView.printTryNumber(bridgeGame.getTryNumber());
         bridgeGame.resetTryNumber();
+    }
+
+    private void printStart() {
+        OutputView.printStart();
     }
 }

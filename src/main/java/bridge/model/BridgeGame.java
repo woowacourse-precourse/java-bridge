@@ -1,11 +1,20 @@
 package bridge.model;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
     private int tryNumber;
     private List<String> preStatus = new ArrayList<>();
+
+    public List<String> makeTargetBridge(int bridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
 
     public void move(String whereMoving) {
         this.preStatus.add(whereMoving);
