@@ -20,6 +20,10 @@ public class Player {
         return this.currentIndex;
     }
 
+    public int getTries() {
+        return this.tries;
+    }
+
     public List<String> getWay() {
         return this.way;
     }

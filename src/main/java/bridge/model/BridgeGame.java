@@ -8,6 +8,7 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Player player;
     private Bridge bridge;
+    private String result = Constants.FAIL;
 
     public BridgeGame() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -38,6 +39,7 @@ public class BridgeGame {
         if (player.getCurrentIndex() < bridge.getBridgeSize() - 1) {
             return true;
         }
+        result = Constants.SUCCESS;
         return false;
     }
 
@@ -56,6 +58,10 @@ public class BridgeGame {
 
     public Bridge getBridge() {
         return this.bridge;
+    }
+
+    public String getResult() {
+        return this.result;
     }
 
 }

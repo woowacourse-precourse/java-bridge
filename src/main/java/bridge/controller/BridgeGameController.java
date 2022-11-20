@@ -1,6 +1,8 @@
 package bridge.controller;
 
+import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.model.Player;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
@@ -35,9 +37,10 @@ public class BridgeGameController {
                 return;
             }
         }
-        end();
+        end(bridgeGame);
     }
 
-    private void end() {
+    private void end(BridgeGame bridgeGame) {
+        OutputView.printResult(bridgeGame);
     }
 }
