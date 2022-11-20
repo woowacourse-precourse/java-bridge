@@ -2,13 +2,13 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.InputView.*;
 import static bridge.enums.Sentence.*;
 
 public class BridgeGame {
 
     private final Move move = new Move();
-    private final OutputView outputView = new OutputView();
+    private final ReEnter reEnter = new ReEnter();
+
     private boolean isTrue = true;
     private boolean isClear = true;
     private int TRY_COUNT = 0;
@@ -22,7 +22,7 @@ public class BridgeGame {
     public void gamingSet(List<String> bridge) {
         TRY_COUNT++;
         for (int i = 0; i < bridge.size(); i++) {
-            String userMoveInput = reGetMoveString();
+            String userMoveInput = reEnter.reGetMoveString();
             move.moving(bridge.get(i), userMoveInput);
             move.printMoving();
             if (move.checkWrong()) {
@@ -33,7 +33,7 @@ public class BridgeGame {
     }
 
     public void playTheGaming() {
-        List<String> bridge = gameSet(reGetBridgeLength());
+        List<String> bridge = gameSet(reEnter.reGetBridgeLength());
         while (isTrue) {
             gamingSet(bridge);
             if (!isClear) {
@@ -49,7 +49,7 @@ public class BridgeGame {
     }
 
     public boolean retry() {
-        if (reGetExitOrRestart().equals("R")) {
+        if (reEnter.reGetExitOrRestart().equals("R")) {
             move.clearMoving();
             return isTrue = true;
         }

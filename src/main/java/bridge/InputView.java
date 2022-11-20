@@ -23,15 +23,6 @@ public class InputView {
         return Integer.parseInt(inputBridgeLength);
     }
 
-    public static int reGetBridgeLength() {
-        try {
-            return getBridgeLength();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-            return reGetBridgeLength();
-        }
-    }
-
     public static String getMoveString() {
         System.out.println(MOVE.getValue());
         String inputDorU = Console.readLine();
@@ -40,16 +31,6 @@ public class InputView {
         }
         return inputDorU;
     }
-
-    public static String reGetMoveString() {
-        try {
-            return getMoveString();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-            return reGetMoveString();
-        }
-    }
-
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -61,14 +42,5 @@ public class InputView {
             throw new IllegalArgumentException(ER_NOT_Q_OR_R.getMessage());
         }
         return exitOrRestart;
-    }
-
-    public static String reGetExitOrRestart() {
-        try {
-            return getExitOrRestart();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-            return reGetExitOrRestart();
-        }
     }
 }
