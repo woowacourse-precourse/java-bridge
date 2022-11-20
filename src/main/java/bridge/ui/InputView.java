@@ -14,6 +14,9 @@ public class InputView {
     private static final List<String> CORRECT_MOVING_CASE = new ArrayList(Arrays.asList("D", "U"));
     private boolean invalidMoving = true;
     private String nextMoving;
+    private static final List<String> CORRECT_GAME_COMMAND = new ArrayList<>(Arrays.asList("R", "Q"));
+    private boolean invalidGameCommand = true;
+    private String nextGameCommand;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -85,6 +88,29 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        invalidGameCommand = true;
+        while (invalidGameCommand) {
+            receiveGameCommand();
+        }
+
+        return nextGameCommand;
+    }
+
+    private void receiveGameCommand() {
+        try {
+            String commandInput = Console.readLine();
+            checkGameCommand(commandInput);
+            nextGameCommand = commandInput;
+            invalidGameCommand = false;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+        }
+    }
+
+    private void checkGameCommand(String command) throws IllegalArgumentException {
+        boolean correctCommand = CORRECT_GAME_COMMAND.contains(command);
+        if (!correctCommand) {
+            throw new IllegalArgumentException("[ERROR] 대문자 'R' 혹은 'Q' 만 입력 가능합니다");
+        }
     }
 }
