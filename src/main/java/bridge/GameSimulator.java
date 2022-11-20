@@ -12,14 +12,13 @@ public class GameSimulator {
     public void simulateGame() {
         int bridgeSize = initializeGame();
         List<String> bridge = makeBridge(bridgeSize);
-        List<String> userRoute;
+        List<String> userRoute = new ArrayList<>();
         int trial = 0;
 
         do {
             trial++;
-            userRoute = startGameRound(bridge);
-            outputView.printMap(userRoute, bridge);
-        } while (gameover(bridge));
+            startGameRound(userRoute, bridge);
+        } while (gameover(userRoute, bridge));
         quitGame(trial, bridge, userRoute);
     }
 
@@ -36,12 +35,12 @@ public class GameSimulator {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private List<String> startGameRound(List<String> bridge) {
-        List<String> userRoute = new ArrayList<>();
-
+    private List<String> startGameRound(List<String> userRoute, List<String> bridge) {
         while (!bridgeGame.checkCrossingBridge(bridge)) {
             String moving = inputView.readMoving();
             userRoute.add(moving);
+            outputView.printMap(userRoute, bridge);
+
             if(!bridgeGame.move(moving, bridge)) {
                 break;
             }
@@ -51,16 +50,15 @@ public class GameSimulator {
 
     /**
      * 게임 한 라운드가 끝난 뒤 game clear 체크 및 game retry를 한다.
-     * @param bridge
      * @return 재시작 여부
      */
-    private boolean gameover(List<String> bridge) {
+    private boolean gameover(List<String> userRoute, List<String> bridge) {
         if(bridgeGame.checkCrossingBridge(bridge)) {
             return false;
         }
 
         if(inputView.readGameCommand()) {
-            bridgeGame.retry();
+            bridgeGame.retry(userRoute);
             return true;
         }
 
