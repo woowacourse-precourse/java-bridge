@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.controller.BridgeGame;
 import bridge.dto.MapDto;
+import bridge.exception.GameCommandException;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -49,5 +50,20 @@ public class BridgeProgram {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private boolean retry() {
+        String gameCommand = validateGameCommand();
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
+    }
+
+    private String validateGameCommand() {
+        String gameCommand = inputView.readGameCommand();
+        GameCommandException.validate(gameCommand);
+        return gameCommand;
     }
 }
