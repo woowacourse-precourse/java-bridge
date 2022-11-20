@@ -44,14 +44,26 @@ public class Controller {
     // 다리를 건너는 기능
     private void move() {
         do {
-            try {
-                service.move();
-                if (!service.isAnswer()) break;
-            } catch (IllegalArgumentException error) {
-                service.catchError(error);
+            if (isAnswerCell()) {
+                break;
             }
         } while (!service.isBridgeEnd());
     }
+
+    // 정답 칸으로 이동했는지 boolean값 반환
+    private boolean isAnswerCell() {
+        try {
+            service.move();
+            if (!service.isAnswer()) {
+                return true;
+            }
+        } catch (IllegalArgumentException error) {
+            service.catchError(error);
+        }
+        return false;
+    }
+
+
 
     // 다시 시작 여부를 묻는 기능
     private boolean retry() {
