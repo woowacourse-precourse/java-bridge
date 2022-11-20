@@ -1,4 +1,9 @@
-package bridge;
+package bridge.view;
+
+import bridge.model.BridgeGame;
+import bridge.constant.ErrorMessage;
+import bridge.constant.GuidanceMessage;
+import bridge.model.MovingHistory;
 
 import java.util.List;
 

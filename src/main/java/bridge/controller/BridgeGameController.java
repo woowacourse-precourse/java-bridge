@@ -1,4 +1,15 @@
-package bridge;
+package bridge.controller;
+
+import bridge.model.BridgeGame;
+import bridge.model.BridgeMaker;
+import bridge.model.BridgeNumberGenerator;
+import bridge.model.BridgeRandomNumberGenerator;
+import bridge.model.GameCommand;
+import bridge.model.MovingHistory;
+import bridge.model.MovingResult;
+import bridge.constant.GuidanceMessage;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 

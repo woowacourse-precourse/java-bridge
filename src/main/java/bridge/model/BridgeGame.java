@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model;
+
+import bridge.constant.ErrorMessage;
 
 import java.util.List;
 
