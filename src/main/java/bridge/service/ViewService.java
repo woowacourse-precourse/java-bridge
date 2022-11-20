@@ -29,7 +29,7 @@ public class ViewService {
         return size.get();
     }
 
-    public String askMovement() {
+    public String askMove() {
         Optional<String> move;
         do {
             move = inputView.readMoving();

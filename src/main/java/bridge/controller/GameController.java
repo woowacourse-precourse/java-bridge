@@ -44,13 +44,13 @@ public class GameController {
     private MatchResult doRound() {
         MatchResult matchResult;
         do {
-            matchResult = chooseMovement();
+            matchResult = chooseMove();
         } while (matchResult.equals(MatchResult.SUCCESS));
         return matchResult;
     }
 
-    private MatchResult chooseMovement() {
-        String movement = viewService.askMovement();
+    private MatchResult chooseMove() {
+        String movement = viewService.askMove();
         MatchResult recentResult = gameService.moveForward(movement);
 
         BridgeDto dto = gameService.getRecentBridge();
