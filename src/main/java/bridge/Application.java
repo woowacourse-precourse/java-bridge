@@ -38,8 +38,9 @@ public class Application {
                 }
             }
 
-            System.out.println(moving);
             userMoving.add(moving);
+
+            outputView.printMap(bridge, userMoving);
         }
     }
 }
