@@ -15,7 +15,7 @@
 - [X] 플레이어가 이동할 칸을 선택 Output#getMove() = “이동할 칸을 선택해주세요. (위: U, 아래: D)"
     -[X] 위 칸: U, 아래칸:D (예외 시 오류 처리) : Input#readMoving()
 - [X] 플레이어가 입력한 칸과 만들어진 칸이 일치하는지 확인 BridgeGame#isRightChoice()
-- [ ] 결과 출력 Output#printMap
+- [X] 결과 출력 Output#printMap
    => 이동가능한 칸: O, 건널 수 없는 칸: X
     * 다리의 시작은 [, 다리의 끝은 ]으로 표시
     * 다리 칸의 구분은 |(앞뒤 공백 포함) 문자열로 구분
