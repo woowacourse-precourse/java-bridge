@@ -41,6 +41,11 @@ public class OutputView {
     }
 
     private void printStatus(Integer bridgeUnit) {
-
+        if (bridgeUnit == 1) {
+            System.out.println("O");
+        }
+        if (bridgeUnit == 2) {
+            System.out.println("X");
+        }
     }
 }
