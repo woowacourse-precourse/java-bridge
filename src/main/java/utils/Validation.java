@@ -4,6 +4,8 @@ import static constant.ErrorMessage.*;
 import static constant.ErrorMessage.*;
 
 import constant.ErrorMessage;
+import constant.Message;
+import org.assertj.core.util.Strings;
 import org.mockito.internal.matchers.Null;
 
 public class Validation {
@@ -45,5 +47,20 @@ public class Validation {
         }
     }
 
+    public void validGameCommand(String gameCommand) throws IllegalArgumentException {
+        try {
+            if (Strings.isNullOrEmpty(gameCommand)) {
+                throw new NullPointerException(String.format(ASK_INPUT_VALUE, ERROR_HEAD_MESSAGE));
+            }
+            validIsRegameOrQuitCharacter(gameCommand);
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
 
+    private void validIsRegameOrQuitCharacter(String gameCommand) throws IllegalArgumentException {
+        if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
+            throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_R_OR_Q, ERROR_HEAD_MESSAGE));
+        }
+    }
 }
