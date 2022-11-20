@@ -63,3 +63,9 @@ U
 게임 성공 여부: 성공
 총 시도한 횟수: 2
 ```
+
+# 다리게임 기능 테스트 목록
+
+### 1. 다리 길이 입력 기능 테스트
+- [x] 입력 다리 길이가 숫자가 아니라면 `IllegalArgumentException` 발생
+- [x] 입력 다리 길이가 지정된 범위의 값이 아니라면 `IllegalArgumentException` 발생
