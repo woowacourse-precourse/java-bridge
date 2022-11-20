@@ -9,6 +9,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static List<String> bridgeIntegerMapper = Arrays.asList("D", "U"); //1일 때 위, 0일 때 밑
 
     private BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
@@ -34,19 +36,12 @@ public class BridgeGame {
     }
 
     public BridgeGame(int bridgeLength) {
-        generateBridge(bridgeLength);
+        realBridge = bridgeMaker.makeBridge(bridgeLength);
         moveStatus = new HashMap<>();
         moveStatus.put("U", new ArrayList<String>());
         moveStatus.put("D", new ArrayList<String>());
         currentLocation = -1;
         restartNumber = 1;
-    }
-
-    private void generateBridge(int bridgeLength) {
-        realBridge = new ArrayList<>();
-        for (int i = 0; i < bridgeLength; i++) {
-            realBridge.add(bridgeIntegerMapper.get(numberGenerator.generate()));
-        }
     }
 
     public boolean move(String direction) {

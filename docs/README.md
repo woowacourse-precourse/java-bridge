@@ -35,7 +35,8 @@
 6. printRetryMessage() : 재시도 메세지를 출력한다. -> 4, 5, 6은 input단에서 사용
 7. printMap() : 현재까지 이동한 다리의 상태를 출력한다.
 8. printResult() : 게임의 최종 결과를 출력한다.
-9. formatMoveStatus() : List를 정해진 형식의 string으로 변환한다.
+9. printErrorMessage() : 오류 메세지를 출력한다.
+10. formatMoveStatus() : List를 정해진 형식의 string으로 변환한다.
 
 ## BridgeGame 클래스
  - 실제 게임 진행과 관련된 기능 관리 클래스
@@ -47,7 +48,6 @@
 4. restartNumber : 재시작 횟수를 저장하는 정수
 5. move() : 사용자의 칸 이동을 반영한다
 6. retry() : 사용자가 게임을 다시 시도할 때 변경사항을 유지
-7. generateBridge() : 길이를 입력받아 다리 List를 만든다. 
 8. reflectMovement() : 이동을 moveStatus 변수에 반영한다. 
 
 ## BridgeMaker 클래스 (변경 불가)
