@@ -35,6 +35,12 @@ public class InputView {
     public static String readMoving() {
         System.out.println(ENTER_DIRECTION);
         final String input = Console.readLine();
+        try {
+            InputValidator.moving(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
         return input.toUpperCase();
     }
 
