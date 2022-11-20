@@ -18,7 +18,6 @@ class InputViewTest {
         System.setOut(new PrintStream(byteArrayOutputStream));
     }
 
-
     @Test
     void 다리의_길이_입력이_정상인경우() {
         String normalInput = "3";
