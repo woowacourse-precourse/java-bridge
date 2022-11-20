@@ -30,4 +30,11 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.validMoving("O"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("InputView 통해 retry 입력 시 R 혹은 Q 가 아닌 값을 입력 시 예외가 발생한다.")
+    @Test
+    void validRetryValueTest() {
+        assertThatThrownBy(() -> inputView.validMoving("X"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

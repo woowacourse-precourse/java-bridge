@@ -9,6 +9,8 @@ public class InputView {
 
     public static final String MOVE_UP = "U";
     public static final String MOVE_DOWN = "D";
+    public static final String RETRY_YES = "R";
+    public static final String RETRY_NO = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -45,7 +47,15 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readRetry() {
+        String retry = Console.readLine();
+        validRetry(retry);
+        return retry;
+    }
+
+    public void validRetry(String retry) {
+        if (!(retry.equals(RETRY_YES) || retry.equals(RETRY_NO))) {
+            throw new IllegalArgumentException();
+        }
     }
 }
