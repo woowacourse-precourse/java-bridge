@@ -9,6 +9,8 @@ import java.util.List;
 public class MessageMaker implements MessageFactory{
 
     public static final String RETRY_MESSAGE = "총 시도한 횟수: ";
+    public static final String NEW_LINE = "\n";
+
     private final StringBuilder upperBridge;
     private final StringBuilder underBridge;
     private final List<String> steps;
@@ -42,9 +44,9 @@ public class MessageMaker implements MessageFactory{
     @Override
     public String finalMessage(StepResponseDto stepResponseDto) {
         if (stepResponseDto.isFinal()) {
-            return findMessage(FINAL_SUCCESS) + "\n" + RETRY_MESSAGE + stepResponseDto.getRetryCount();
+            return findMessage(FINAL_SUCCESS) + NEW_LINE + RETRY_MESSAGE + stepResponseDto.getRetryCount();
         }
-        return findMessage(FINAL_FAIL) + "\n" + RETRY_MESSAGE + stepResponseDto.getRetryCount();
+        return findMessage(FINAL_FAIL) + NEW_LINE + RETRY_MESSAGE + stepResponseDto.getRetryCount();
     }
 
     private void judgeMessageLocation(int step, OutputMessage message) {
@@ -63,6 +65,6 @@ public class MessageMaker implements MessageFactory{
     private String replaceFinalMessage(StringBuilder upperBridge, StringBuilder underBridge) {
         upperBridge.deleteCharAt(upperBridge.length() - 1).append(findMessage(END_LINE));
         underBridge.deleteCharAt(upperBridge.length() - 1).append(findMessage(END_LINE));
-        return upperBridge + "\n" + underBridge + "\n";
+        return upperBridge + NEW_LINE + underBridge + NEW_LINE;
     }
 }

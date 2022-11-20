@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.view.MessageMaker.NEW_LINE;
+
 import bridge.dto.StepResponseDto;
 import global.config.AppConfig;
 
@@ -31,9 +33,9 @@ public enum OutputMessage {
     public static String getFinalMessage(StepResponseDto stepResponseDto) {
         MessageFactory messageFactory = new AppConfig().messageFactory(stepResponseDto.getStep());
         if (stepResponseDto.isFinal()) {
-            return messageFactory.successMessage() + "\n" +messageFactory.finalMessage(stepResponseDto);
+            return messageFactory.successMessage() + NEW_LINE +messageFactory.finalMessage(stepResponseDto);
         }
-        return messageFactory.failMessage() + "\n" + messageFactory.finalMessage(stepResponseDto);
+        return messageFactory.failMessage() + NEW_LINE + messageFactory.finalMessage(stepResponseDto);
     }
 
 

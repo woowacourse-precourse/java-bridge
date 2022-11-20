@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.view.MessageMaker.NEW_LINE;
 import static bridge.view.OutputMessage.*;
 
 import bridge.dto.StepResponseDto;
@@ -27,6 +28,6 @@ public class OutputView {
      */
     public void printResult(StepResponseDto stepResponseDto) {
         System.out.println(FINAL_GAME_RESULT);
-        System.out.println(getFinalMessage(stepResponseDto) + "\n");
+        System.out.println(getFinalMessage(stepResponseDto) + NEW_LINE);
     }
 }
