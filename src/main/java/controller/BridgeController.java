@@ -1,17 +1,25 @@
 package controller;
 
 import bridge.*;
+import bridge.model.GameEnd;
+import bridge.move.CompareMove;
 import bridge.util.InputView;
 import bridge.util.OutputView;
 
 import java.util.List;
 
 public class BridgeController {
+
 	private final OutputView outputView = new OutputView();
 	private final InputView inputView = new InputView();
 	private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 	private final BridgeMaker bridgeMaker=new BridgeMaker(bridgeNumberGenerator);
+	private final ResultController resultController=new ResultController();
+	private final CompareMove compareMove=new CompareMove();
+
 	private List<String> bridge_list;
+	private final int TRY_COUNT=1;
+	private String RESULT_CONDITION;
 
 	public void BridgeGameStart(){
 		outputView.printStartGame();
@@ -29,9 +37,9 @@ public class BridgeController {
 	}
 
 	private void crossingTheBridge(){
-		System.out.println(bridge_list);
 		for (int index=0;index<bridge_list.size();index++){
-			String bridge_move_result = compareInputAndIndex(bridgeMoveOutputAndInput(), bridge_list.get(index));
+			String bridge_move_result = compareMove.compareInputAndIndex(bridgeMoveOutputAndInput(),
+																bridge_list.get(index));
 			printMapByStringBuilder(bridge_move_result,index);
 			if (bridge_move_result.contains("X")){
 				break;
@@ -42,19 +50,6 @@ public class BridgeController {
 	private String bridgeMoveOutputAndInput(){
 		outputView.printMove();
 		return inputView.readMoving();
-	}
-
-	private String compareInputAndIndex(String bridge_move,String list_index){
-		if (bridge_move.equals(list_index)&&list_index.equals("U")){
-			return "OU";
-		}
-		if (bridge_move.equals(list_index)&&list_index.equals("D")){
-			return "OD";
-		}
-		if (!bridge_move.equals(list_index)&&list_index.equals("U")){
-			return "XD";
-		}
-		return "XU";
 	}
 
 	private void printMapByStringBuilder(String bridge_move_result,int index){
