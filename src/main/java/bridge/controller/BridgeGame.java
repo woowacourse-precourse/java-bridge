@@ -59,6 +59,7 @@ public class BridgeGame {
     }
     public String moveOne(int index){
         String moving=inputView.readMoving();
+        Validator.checkMoving(moving);
         String movingResult=bridge.getMoveResult(moving, index);
         result.addResult(moving, movingResult);
         outputView.printMap(result.getPlayResult());
