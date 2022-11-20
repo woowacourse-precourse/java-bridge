@@ -3,9 +3,9 @@ package bridge.controller;
 import bridge.view.InputView;
 
 public class InputController {
-    private static final InputView inputView = new InputView();
+    private final InputView inputView = new InputView();
 
-    public static int readBridgeSize() {
+    public int readBridgeSize() {
         while (true) {
             try {
                 return inputView.readBridgeSize();
@@ -15,7 +15,7 @@ public class InputController {
         }
     }
 
-    public static String readMoving() {
+    public String readMoving() {
         while (true) {
             try {
                 return inputView.readMoving();
@@ -25,7 +25,7 @@ public class InputController {
         }
     }
 
-    public static String readGameCommand() {
+    public String readGameCommand() {
         while (true) {
             try {
                 return inputView.readGameCommand();

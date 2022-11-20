@@ -5,13 +5,13 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameContoller {
-    OutputView outputView = new OutputView();
+    private final InputController inputController = new InputController();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
-//        System.out.println(InputController.readBridgeSize());
-//        InputView inputView = new InputView();
-//        System.out.println(InputController.readMoving());
-//        System.out.println(InputController.readGameCommand());
-        outputView.printStart();
+//        System.out.println(inputController.readBridgeSize());
+//        System.out.println(inputController.readMoving());
+        System.out.println(inputController.readGameCommand());
+//        outputView.printStart();
     }
 }
