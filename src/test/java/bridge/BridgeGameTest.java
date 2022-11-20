@@ -38,4 +38,11 @@ public class BridgeGameTest {
 
         assertThat(true).isEqualTo(bridgeGame.retry("R"));
     }
+
+    @Test
+    void rightMoveTest() {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        assertThat(true).isEqualTo(bridgeGame.rightMove("U", "U"));
+    }
 }
