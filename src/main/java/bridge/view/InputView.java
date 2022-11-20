@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.BridgeValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -7,15 +8,8 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 	private static final String INPUT_MAKE_BRIDGE_NUMBER = "다리의 길이를 입력해주세요.";
-	private static final int MINIMUM_BRIDGE_NUMBER = 3; 
-	private static final int MAXIMUM_BRIDGE_NUMBER = 20; 
 	private static final String INPUT_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 	private static final String INPUT_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-	private static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해주셔야 합니다.";
-	private static final String NOT_VALID_MOVING_STRING_ERROR_MESSAGE = "[ERROR] 유효한 입력값은 U 혹은 D 만 가능합니다.";
-	private static final String NOT_VALID_RETRY_STRING_ERROR_MESSAGE = "[ERROR] 유효한 입력값은 R 혹은 Q 만 가능합니다.";
-	private static final String NOT_VALID_NUMBER_RANGE_ERROR_MESSAGE = 
-			"[ERROR] 유효한 숫자 범위는 "+ MINIMUM_BRIDGE_NUMBER + "~" + MAXIMUM_BRIDGE_NUMBER + "입니다.";
 	
 	
     /**
@@ -25,7 +19,7 @@ public class InputView {
     	System.out.println(INPUT_MAKE_BRIDGE_NUMBER);
     	String bridgeNumber = Console.readLine();
     	try {
-    		validateInput(bridgeNumber);
+    		BridgeValidator.validateInput(bridgeNumber);
     	} catch(IllegalArgumentException e) {
     		System.out.println(e);
     		return readBridgeSize();
@@ -40,7 +34,7 @@ public class InputView {
     	System.out.println(INPUT_MOVING_MESSAGE);
     	String moving = Console.readLine();
     	try {
-    		validateMovingString(moving);
+    		BridgeValidator.validateMovingString(moving);
     	} catch(IllegalArgumentException e) {
     		System.out.println(e);
     		return readMoving();
@@ -55,7 +49,7 @@ public class InputView {
     	System.out.println(INPUT_RETRY_MESSAGE);
     	String command = Console.readLine();
     	try {
-    		validateCommand(command);
+    		BridgeValidator.validateCommand(command);
     	} catch(IllegalArgumentException e) {
     		System.out.println(e);
     		return readGameCommand();
@@ -63,36 +57,5 @@ public class InputView {
         return command;
     }
     
-    private static int validateInput(final String bridgeNumber) {
-    	int convertBridgeNumberToInt = Integer.parseInt(validateInteger(bridgeNumber));
-    	return validateNumberRange(convertBridgeNumberToInt);
-    }
     
-    private static String validateInteger(final String bridgeNumber) {
-    	if (!bridgeNumber.chars().allMatch(Character::isDigit)) {
-			throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
-		}
-    	return bridgeNumber;
-    }
-    
-    private static int validateNumberRange(final int value) {
-		if (value < MINIMUM_BRIDGE_NUMBER || MAXIMUM_BRIDGE_NUMBER < value) {
-			throw new IllegalArgumentException(NOT_VALID_NUMBER_RANGE_ERROR_MESSAGE);
-		}
-		return value;
-    }
-    
-    private static String validateMovingString(String moving) {
-    	if (moving.equals("U") || moving.equals("D")) {
-    		return moving;
-    	}
-    	throw new IllegalArgumentException(NOT_VALID_MOVING_STRING_ERROR_MESSAGE);	
-    }
-    
-    private static String validateCommand(String command) {
-    	if(command.equals("R") || command.equals("Q")) {
-    		return command;
-    	}
-    	throw new IllegalArgumentException(NOT_VALID_RETRY_STRING_ERROR_MESSAGE);	
-    }
 }
