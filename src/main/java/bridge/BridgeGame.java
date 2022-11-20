@@ -36,19 +36,17 @@ public class BridgeGame {
 
 
     public void resultBridge(List<String> user_answer) {
+        System.out.println("resultBridge실행");
         initBridgeStringBuilder();
-        for (int i = 0; i < OutputView.now_size + 1; i++) {
+        for (int i = 0; i < OutputView.now_size+1 ; i++) {
             if (checkAnswer(bridge_answer.get(i), user_answer.get(i))) {
                 addAnswer(bridge_answer.get(i), i);
             }
             if (!checkAnswer(bridge_answer.get(i), user_answer.get(i))) {
                 addWrongAnswer(bridge_answer.get(i), i);
-                outputView.printResult();
-                InputView.readGameCommand();
+                break;
             }
         }
-        OutputView.now_size++;
-        outputView.printResult();
     }
 
     public static void initBridgeStringBuilder() {
@@ -100,6 +98,4 @@ public class BridgeGame {
     public List<String> getBridgeAnswer(){
         return bridge_answer;
     }
-
-
 }
