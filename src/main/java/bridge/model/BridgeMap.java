@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMap {
-    private static final String BLANK_BLOCK = " ";
+    private static final BridgeMap bridgeMap = new BridgeMap();
     private static final List<String> upperBridgeMap = new ArrayList<>();
     private static final List<String> lowerBridgeMap = new ArrayList<>();
-    private static final BridgeMap bridgeMap = new BridgeMap();
+    private static final String BLANK_BLOCK = " ";
 
     private BridgeMap() {
     }

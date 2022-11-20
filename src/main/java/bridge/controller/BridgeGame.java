@@ -10,24 +10,24 @@ import bridge.model.Bridge;
 import bridge.model.BridgeMap;
 import bridge.model.Player;
 
-import static bridge.util.BridgeConstant.FALL_POSITION;
+import static bridge.util.BridgeConstant.FALL_BLOCK;
+import static bridge.util.BridgeConstant.CONTINUE_GAME;
+import static bridge.util.BridgeConstant.QUIT_GAME;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final Boolean CONTINUE = true;
-    private final Boolean QUIT = false;
     private final Boolean WIN = true;
     private final Boolean LOSE = false;
+    private boolean isContinue = true;
+    private boolean isWin = false;
 
     BridgeMove bridgeMove = new BridgeMove();
     BridgeRetry bridgeRetry = new BridgeRetry();
     BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
     BridgeResult bridgeResult = new BridgeResult();
     Bridge bridge;
-    boolean isContinue = true;
-    boolean isWin = false;
 
     public void init() {
         BridgeMap.getBridgeMap().initializeBridges();
@@ -48,7 +48,7 @@ public class BridgeGame {
 
     private void gameSet(boolean winOrLose) {
         isWin = winOrLose;
-        isContinue = QUIT;
+        isContinue = QUIT_GAME;
     }
 
     private void check(Player player) {
@@ -67,7 +67,7 @@ public class BridgeGame {
     private boolean getMoveSuccess(Player player) {
         int positionX = player.getXPosition();
         int positionY = player.getYPosition();
-        return !bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
+        return !bridge.getBridge()[positionY][positionX].equals(FALL_BLOCK);
     }
 
 
@@ -89,7 +89,7 @@ public class BridgeGame {
      */
     public void retry(Player player) {
         boolean continueCommand = bridgeRetry.getContinueCode(player);
-        if (continueCommand == CONTINUE) {
+        if (continueCommand == CONTINUE_GAME) {
             return;
         }
         gameSet(LOSE);

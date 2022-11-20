@@ -3,11 +3,11 @@ package bridge.domain;
 import bridge.model.BridgeMap;
 import bridge.model.Player;
 
+import static bridge.util.BridgeConstant.FALL_BLOCK;
 import static bridge.util.BridgeConstant.UP_POSITION;
 
 public class BridgeMapMaker {
     public final String SUCCESS_BLOCK = "O";
-    public final String FAIL_BLOCK = "X";
 
     public void addBridgeMapBlock(Player player, boolean success) {
         BridgeMap bridgeMap = BridgeMap.getBridgeMap();
@@ -24,6 +24,6 @@ public class BridgeMapMaker {
         if (success) {
             return SUCCESS_BLOCK;
         }
-        return FAIL_BLOCK;
+        return FALL_BLOCK;
     }
 }

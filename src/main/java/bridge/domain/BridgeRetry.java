@@ -4,10 +4,10 @@ import bridge.model.BridgeMap;
 import bridge.model.Player;
 import bridge.view.InputView;
 
-public class BridgeRetry {
-    private final boolean CONTINUE_GAME = true;
-    private final boolean QUIT_GAME = false;
+import static bridge.util.BridgeConstant.CONTINUE_GAME;
+import static bridge.util.BridgeConstant.QUIT_GAME;
 
+public class BridgeRetry {
     public boolean getContinueCode(Player player) {
         boolean continueCode = InputView.getInputView().readGameCommand();
         if (continueCode) {
