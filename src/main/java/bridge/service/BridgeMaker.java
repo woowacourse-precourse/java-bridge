@@ -1,4 +1,4 @@
-package bridge;
+package bridge.service;
 
 import bridge.util.BridgeNumberGenerator;
 
@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
+ * 클래스 제한 사항: 인스턴스 변수(필드) 변경 불가, 인자, 이름, 반환타입 변경 불가
  */
 public class BridgeMaker {
 
