@@ -14,6 +14,11 @@ public class User {
         position++;
     }
 
+    public void retry() {
+        position = 0;
+        trial++;
+    }
+
     public int getPosition() {
         return position;
     }
