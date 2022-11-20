@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.validator.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
