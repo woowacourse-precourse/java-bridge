@@ -2,6 +2,8 @@ package bridge.view;
 
 import bridge.domain.BridgeGame;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  * 패키지 변경가능, 메서드 이름 변경 불가. 인자와 반환타입은 추가 및 변경 가능
@@ -35,11 +37,37 @@ public class OutputView {
     }
 
     private void printUpperPart(BridgeGame bridgeGame) {
-        ;
+        int playerLocation = bridgeGame.getPlayerLocation();
+        List<String> upperBridge = bridgeGame.getBridge().subList(1, playerLocation + 1);
+
+        String upperPart = String.join("|", upperBridge);
+        // 만약 실패했고 실패한 지점의 정답이 D였다면 사망표시
+        if (bridgeGame.isFailed() && upperPart.charAt(upperPart.length() - 1) == 'D') {
+            upperPart = upperPart.substring(0, upperPart.length() - 1) + " X ";
+        } else if (bridgeGame.isFailed() && upperPart.charAt(upperPart.length() - 1) == 'U') {
+            upperPart = upperPart.substring(0, upperPart.length() - 1) + "   ";
+        }
+
+        upperPart = upperPart.replace("U", " O ");
+        upperPart = upperPart.replace("D", "   ");
+        System.out.println("[" + upperPart + "]");
     }
 
     private void printLowerPart(BridgeGame bridgeGame) {
-        ;
+        int playerLocation = bridgeGame.getPlayerLocation();
+        List<String> lowerBridge = bridgeGame.getBridge().subList(1, playerLocation + 1);
+
+        String lowerPart = String.join("|", lowerBridge);
+        // 만약 실패했고 실패한 지점의 정답이 U였다면 사망표시
+        if (bridgeGame.isFailed() && lowerPart.charAt(lowerPart.length() - 1) == 'U') {
+            lowerPart = lowerPart.substring(0, lowerPart.length() - 1) + " X ";
+        } else if (bridgeGame.isFailed() && lowerPart.charAt(lowerPart.length() - 1) == 'D') {
+            lowerPart = lowerPart.substring(0, lowerPart.length() - 1) + "   ";
+        }
+
+        lowerPart = lowerPart.replace("U", "   ");
+        lowerPart = lowerPart.replace("D", " O ");
+        System.out.println("[" + lowerPart + "]");
     }
 
     public void printGameCommandInputRequest() {

@@ -59,4 +59,12 @@ public class BridgeGame {
         player.reVive();
         tryCount += 1;
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getPlayerLocation() {
+        return player.getCurrentSpaceIndex();
+    }
 }
