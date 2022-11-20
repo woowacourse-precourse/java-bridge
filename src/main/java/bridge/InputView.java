@@ -13,22 +13,27 @@ public class InputView {
     }
 
     public int readBridgeSize() {
+        int isize = 0;
         String size = Console.readLine();
+
         validateBridgeSize(size);
+        isize = Integer.parseInt(size);
+        validateNumArea(isize);
 
         return Integer.parseInt(size);
     }
 
+    private void validateNumArea(int data) {
+        if(data<3 || data>20) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private void validateBridgeSize(String size) {
-        int isize;
         for(int i = 0 ; i < size.length() ; i++) {
             if(!Character.isDigit(size.charAt(i))) {
                 throw new IllegalArgumentException();
             }
-        }
-        isize = Integer.parseInt(size);
-        if(isize<3 || isize>20) {
-            throw new IllegalArgumentException();
         }
     }
 
