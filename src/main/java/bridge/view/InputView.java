@@ -42,12 +42,4 @@ public class InputView {
         System.out.println(comment);
         return Console.readLine();
     }
-
-    private int scanBridgeMovement(){
-        return 1;
-    }
-
-    private int scanGameCommand(){
-        return 1;
-    }
 }
