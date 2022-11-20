@@ -23,7 +23,7 @@ public class BridgeMaker {
         while (bridge.size() < size) {
             bridge.add(upDown());
         }
-        return null;
+        return bridge;
     }
 
     private String upDown() {
