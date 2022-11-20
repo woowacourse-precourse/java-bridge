@@ -31,9 +31,9 @@ public class PlayerMap {
         }
     }
 
-    private void addMap(String value, String bridgeGameMovingBlanc) {
-        firstLine.add(value);
-        secondLine.add(bridgeGameMovingBlanc);
+    private void addMap(String firstValue, String secondValue) {
+        firstLine.add(firstValue);
+        secondLine.add(secondValue);
     }
 
     private String getStatus(boolean value) {
