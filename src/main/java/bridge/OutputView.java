@@ -17,13 +17,14 @@ public class OutputView {
         List<String> bridgeFirstLayer = makeTotalBridge(firstLayer);
         List<String> bridgeSecondLayer = makeTotalBridge(secondLayer);
 
-        for (int i=0; i<bridgeFirstLayer.size(); i++) {
-            System.out.print(bridgeFirstLayer.get(i));
-        }
-
+        printLayer(bridgeFirstLayer);
         System.out.println();
-        for (int i=0; i<bridgeSecondLayer.size(); i++) {
-            System.out.print(bridgeSecondLayer.get(i));
+        printLayer(bridgeSecondLayer);
+    }
+
+    public void printLayer(List<String> layer) {
+        for (String s : layer) {
+            System.out.print(s);
         }
     }
 
@@ -45,13 +46,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<String>> layers, int success, int trial) {
-        System.out.println(OutputMessage.OUTPUT_TOTAL.get());
+        System.out.println("\n" + OutputMessage.OUTPUT_TOTAL.get());
         printMap(layers.get(0), layers.get(1));
         if (success == 0) {
-            System.out.println(OutputMessage.OUTPUT_RESULT.get() + OutputMessage.OUTPUT_FAILURE.get());
+            System.out.println("\n" + OutputMessage.OUTPUT_RESULT.get() + OutputMessage.OUTPUT_FAILURE.get());
         }
         if (success == 1) {
-            System.out.println(OutputMessage.OUTPUT_RESULT.get() + OutputMessage.OUTPUT_SUCCESS.get());
+            System.out.println("\n" + OutputMessage.OUTPUT_RESULT.get() + OutputMessage.OUTPUT_SUCCESS.get());
         }
         System.out.println(OutputMessage.OUTPUT_TRIAL.get() + trial);
     }
@@ -66,8 +67,8 @@ enum OutputMessage {
     OUTPUT_SUCCESS("성공"),
     OUTPUT_FAILURE("실패"),
 
-    OUTPUT_TOTAL("\n최종 게임 결과"),
-    OUTPUT_RESULT("\n게임 성공 여부: "),
+    OUTPUT_TOTAL("최종 게임 결과"),
+    OUTPUT_RESULT("게임 성공 여부: "),
     OUTPUT_TRIAL("총 시도한 횟수: ");
 
     private final String message;
