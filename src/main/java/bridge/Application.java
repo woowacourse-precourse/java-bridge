@@ -10,6 +10,8 @@ public class Application {
     static InputView inputview = new InputView();
     static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     static BridgeGame bridgeGame = new BridgeGame();
+    static boolean success;
+    static int tryCount = 0;
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -28,7 +30,7 @@ public class Application {
 
     private static void gameStart() {
         playerMove = new ArrayList<>();
-        boolean success = true;
+        success = true;
         while(success){
             bridgeGame.move();
             success = CheckSuccess();

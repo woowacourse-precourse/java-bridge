@@ -12,10 +12,41 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> playerMove) {
-        List<String> answer = getAnswer(bridge, playerMove);
-        printBridge(answer, playerMove);
+    public void printMap() {
+        List<String> answer = getAnswer(Application.bridge, Application.playerMove);
+        printBridge(answer, Application.playerMove);
     }
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void printResult() {
+        System.out.println("최종 게임 결과");
+        List<String> answer = getAnswer(Application.bridge, Application.playerMove);
+        printBridge(answer, Application.playerMove);
+        System.out.println();
+        printGameSuccessOrFail();
+        printGameTryCount();
+    }
+
+    private void printGameTryCount() {
+        String str = "총 시도한 횟수: " + String.valueOf(Application.tryCount);
+        System.out.println(str);
+    }
+
+    private void printGameSuccessOrFail() {
+        System.out.println(GameResult(Application.success));
+    }
+
+    private String GameResult(boolean success) {
+        String result = "게임 성공 여부: ";
+        if(success)
+            return result + "성공";
+
+        return result + "실패";
+    }
+
 
     private List<String> getAnswer(List<String> bridge, List<String> playerMove){
         List<String> answer = new ArrayList<>();
@@ -55,12 +86,5 @@ public class OutputView {
             return "O";
 
         return "X";
-    }
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
     }
 }

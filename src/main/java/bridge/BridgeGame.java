@@ -16,7 +16,7 @@ public class BridgeGame {
     public void move() {
         String move = inputView.readMoving();
         Application.playerMove.add(move);
-        outputView.printMap(Application.bridge, Application.playerMove);
+        outputView.printMap();
     }
 
 
