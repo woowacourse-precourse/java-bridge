@@ -1,4 +1,4 @@
-package bridge.input.message;
+package bridge.input;
 
 public enum Exception {
 

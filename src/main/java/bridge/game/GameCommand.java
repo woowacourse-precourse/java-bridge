@@ -1,13 +1,13 @@
-package bridge.input;
+package bridge.game;
 
-public enum Command {
+public enum GameCommand {
 
     RETRY("R"),
     QUIT("Q");
 
     private final String letter;
 
-    Command(String letter) {
+    GameCommand(String letter) {
         this.letter = letter;
     }
 

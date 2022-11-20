@@ -1,7 +1,5 @@
 package bridge.input;
 
-import bridge.input.message.Exception;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

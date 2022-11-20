@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.game.BridgeGame;
 import bridge.game.Status;
-import bridge.input.Command;
+import bridge.game.GameCommand;
 import bridge.input.InputView;
 import bridge.map.Map;
 import bridge.output.OutputView;
@@ -60,7 +60,7 @@ public class Application {
 
     private boolean fail() {
         String gameCommand = inputView.readGameCommand();
-        if (gameCommand.equals(Command.RETRY.getLetter())) {
+        if (gameCommand.equals(GameCommand.RETRY.getLetter())) {
             bridgeGame.retry();
             return false;
         }

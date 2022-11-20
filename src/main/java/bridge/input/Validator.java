@@ -1,17 +1,14 @@
 package bridge.input;
 
+import bridge.game.BridgeSize;
+import bridge.game.GameCommand;
 import bridge.game.Moving;
-import bridge.input.message.Exception;
 
 public class Validator {
 
-    private static final int MINIMUM_BRIDGE_SIZE_LENGTH = 1;
-    private static final int MAXIMUM_BRIDGE_SIZE_LENGTH = 2;
-    private static final int MINIMUM_BRIDGE_SIZE = 3;
-    private static final int MAXIMUM_BRIDGE_SIZE = 20;
-
     public static void bridgeSize(String bridgeSize) {
         isLengthInRange(bridgeSize);
+        isFirstLetterZero(bridgeSize);
         isNumber(bridgeSize);
         isInRange(bridgeSize);
     }
@@ -23,26 +20,31 @@ public class Validator {
     }
 
     public static void gameCommand(String gameCommand) {
-        if (!(gameCommand.equals(Command.RETRY.getLetter()) || gameCommand.equals(Command.QUIT.getLetter()))) {
+        if (!(gameCommand.equals(GameCommand.RETRY.getLetter()) || gameCommand.equals(GameCommand.QUIT.getLetter()))) {
             throw new IllegalArgumentException(Exception.GAME_COMMAND.getMessage());
         }
     }
 
     private static void isLengthInRange(String bridgeSize) {
-        int bridgeSizeLength = bridgeSize.length();
-        if (bridgeSizeLength < MINIMUM_BRIDGE_SIZE_LENGTH || bridgeSizeLength > MAXIMUM_BRIDGE_SIZE_LENGTH) {
+        int length = bridgeSize.length();
+
+        if (length < BridgeSize.MINIMUM_LENGTH.getNumber() || length > BridgeSize.MAXIMUM_LENGTH.getNumber()) {
             throw new IllegalArgumentException(Exception.LENGTH.getMessage());
         }
     }
 
-    private static void isNumber(String bridgeSize) {
+    private static void isFirstLetterZero(String bridgeSize) {
         char firstLetter = bridgeSize.charAt(0);
+
         if (firstLetter == '0') {
             throw new IllegalArgumentException(Exception.FIRST_LETTER.getMessage());
         }
+    }
 
+    private static void isNumber(String bridgeSize) {
         for (int index = 0; index < bridgeSize.length(); index++) {
             char letter = bridgeSize.charAt(index);
+
             if (!Character.isDigit(letter)) {
                 throw new IllegalArgumentException(Exception.NUMBER.getMessage());
             }
@@ -51,7 +53,8 @@ public class Validator {
 
     private static void isInRange(String bridgeSize) {
         int number = Integer.parseInt(bridgeSize);
-        if (number < MINIMUM_BRIDGE_SIZE || number > MAXIMUM_BRIDGE_SIZE) {
+
+        if (number < BridgeSize.MINIMUM.getNumber() || number > BridgeSize.MAXIMUM.getNumber()) {
             throw new IllegalArgumentException(Exception.RANGE.getMessage());
         }
     }
