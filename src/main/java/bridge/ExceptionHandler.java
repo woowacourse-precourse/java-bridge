@@ -9,4 +9,10 @@ public class ExceptionHandler {
             throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
         }
     }
+
+    public static void checkIsNumber(String input) throws IllegalArgumentException {
+        if (!input.matches("^[0-9]*$")) {
+            throw new IllegalArgumentException(Error.NOT_NUMBER.getMessage());
+        }
+    }
 }
