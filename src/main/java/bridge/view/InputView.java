@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.view.Validator.validateInputDirectionException;
+import static bridge.view.Validator.validateInputGameRestartException;
 import static bridge.view.Validator.validateInputSizeException;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -13,6 +14,7 @@ import bridge.messages.Message;
 public class InputView {
     private String inputSize;
     private String inputDirection;
+    private String inputRestart;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -50,10 +52,14 @@ public class InputView {
      */
     public String inputGameRestart() {
         System.out.println(Message.ASK_RESTART.getMessage());
-        String inputRestart = readLine();
-        Validator.validateInputGameRestartNull(inputRestart);
-        Validator.validateInputGameRestart(inputRestart);
-        Validator.validateInputGameRestartLowerCase(inputRestart);
+        inputRestart = readLine();
+        try {
+        validateInputGameRestartException(inputRestart);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            inputGameRestart();
+        }
         return inputRestart;
     }
+
 }
