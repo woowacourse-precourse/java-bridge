@@ -43,10 +43,7 @@ public class OutputView {
     }
 
     public static void printGameSuccess(boolean isSuccess) {
-        String result = BridgeResultType.IMPOSSIBLE.getMessage();
-        if(isSuccess) {
-            result = BridgeResultType.POSSIBLE.getMessage();
-        }
+        String result = BridgeResultType.getMessage(isSuccess); 
         String output = getOutputSystemMessage(OutputSystemMessage.GAME_SUCCESS_OUTPUT) + result;
         System.out.println(output);
     }

@@ -20,4 +20,11 @@ public enum BridgeResultType {
     public String getMessage() {
         return message;
     }
+
+    public static String getMessage(boolean isSuccess) {
+        if(isSuccess) {
+            return POSSIBLE.message;
+        }
+        return IMPOSSIBLE.message;
+    }
 }
