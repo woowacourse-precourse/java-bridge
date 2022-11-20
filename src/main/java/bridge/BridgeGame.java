@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.domain.Block;
+import bridge.domain.Bridge;
+import bridge.repository.BridgeResultData;
+import bridge.repository.MovingData;
 import java.util.List;
 
 /**
@@ -10,25 +14,17 @@ public class BridgeGame {
     private static final String RIGHT_ANSWER = "O";
     private static final String WRONG_ANSWER = "X";
     private static final String NOT_CHOSEN = " ";
-    private static final String UP_BRIDGE_CHARACTER = "U";
-    private static final String DOWN_BRIDGE_CHARACTER = "D";
     private static final String RETRY_CHARACTER = "R";
     private static final String QUIT_CHARACTER = "Q";
 
-    public static String getUpBridgeCharacter() {
-        return UP_BRIDGE_CHARACTER;
+    private final Bridge bridge;
+
+    public BridgeGame(int size) {
+        this.bridge = new Bridge(size);
     }
 
-    public static String getDownBridgeCharacter() {
-        return DOWN_BRIDGE_CHARACTER;
-    }
-
-    public static String getRetryCharacter() {
-        return RETRY_CHARACTER;
-    }
-
-    public static String getQuitCharacter() {
-        return QUIT_CHARACTER;
+    public List<String> getBridge() {
+        return bridge.getBridge();
     }
 
     /**
@@ -36,42 +32,26 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String moving) {
-        validateMovingInput(moving);
-        return moving;
+    public void move(String moving) {
+        MovingData.add(moving);
+        BridgeResultData.add(
+                getBridgeResult(moving, "UP_BRIDGE"),
+                getBridgeResult(moving, "DOWN_BRIDGE")
+        );
     }
 
-    private void validateMovingInput(String moving) {
-        if (!moving.equals(UP_BRIDGE_CHARACTER) && !moving.equals(DOWN_BRIDGE_CHARACTER)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
-        }
-    }
-
-    /**
-     * 사용자가 이동한 칸의 정답을 확인할 때 사용하는 메서드
-     */
-    public String getUpBridgeResult(List<String> bridge, int index, String moving) {
-        if (isMovingCorrect(bridge, index, moving) && moving.equals(UP_BRIDGE_CHARACTER)) {
+    public String getBridgeResult(String moving, String bridgeSide) {
+        if (!movingIsWrong(moving) && moving.equals(Block.valueOf(bridgeSide).getString())) {
             return RIGHT_ANSWER;
         }
-        if (!isMovingCorrect(bridge, index, moving) && moving.equals(UP_BRIDGE_CHARACTER)) {
+        if (movingIsWrong(moving) && moving.equals(Block.valueOf(bridgeSide).getString())) {
             return WRONG_ANSWER;
         }
         return NOT_CHOSEN;
     }
 
-    public String getDownBridgeResult(List<String> bridge, int index, String moving) {
-        if (isMovingCorrect(bridge, index, moving) && moving.equals(DOWN_BRIDGE_CHARACTER)) {
-            return RIGHT_ANSWER;
-        }
-        if (!isMovingCorrect(bridge, index, moving) && moving.equals(DOWN_BRIDGE_CHARACTER)) {
-            return WRONG_ANSWER;
-        }
-        return NOT_CHOSEN;
-    }
-
-    public boolean isMovingCorrect(List<String> bridge, int index, String moving) {
-        return bridge.get(index).equals(moving);
+    public boolean movingIsWrong(String moving) { // bridge 메소드 호출하니까 에러 있었음
+        return !getBridge().get(MovingData.getLastIndex()).equals(moving);
     }
 
     /**
@@ -79,7 +59,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String input) {
+    public void retry() {
+        MovingData.reset();
+        BridgeResultData.reset();
+    }
+
+    public boolean readRetry(String input) {
         validateRetryOrQuit(input);
         return input.equals(RETRY_CHARACTER);
     }
@@ -90,4 +75,8 @@ public class BridgeGame {
         }
     }
 
+    public boolean winBridgeGame(String moving) {
+        return bridge.isCorrectMoving(MovingData.getLastIndex(), moving)
+                && bridge.getSize() == MovingData.getSize();  // bridge.getSize()하면 안됨?
+    }
 }
