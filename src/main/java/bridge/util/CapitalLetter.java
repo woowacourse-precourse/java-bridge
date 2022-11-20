@@ -9,31 +9,15 @@ public class CapitalLetter {
     private static final String NO_SPACE = "";
     private static final String NON_ALPHABETIC_CHARACTER = "[^a-zA-Z]";
 
-    private final String alphabet;
+    private final String letter;
 
-    public CapitalLetter(String alphabet) {
-        validateAlphabeticType(alphabet);
-        this.alphabet = alphabet.toUpperCase();
+    public CapitalLetter(String letter) {
+        validateAlphabeticType(letter);
+        this.letter = letter;
     }
 
-    public boolean isUp() {
-        return isSame(CommandKeys.UP, alphabet);
-    }
-
-    public boolean isDown() {
-        return isSame(CommandKeys.DOWN, alphabet);
-    }
-
-    public boolean isRetry() {
-        return isSame(CommandKeys.RETRY, alphabet);
-    }
-
-    public boolean isQuit() {
-        return isSame(CommandKeys.QUIT, alphabet);
-    }
-
-    private static boolean isSame(CommandKeys commandKey, String input) {
-        return commandKey.getLetter().equals(input);
+    public String capitalize() {
+        return letter.toUpperCase();
     }
 
     private static void validateAlphabeticType(String input) {
@@ -55,7 +39,7 @@ public class CapitalLetter {
     public boolean equals(Object obj) {
         if (obj instanceof CapitalLetter) {
             CapitalLetter theOther = (CapitalLetter) obj;
-            if (alphabet.equals(theOther.alphabet)) {
+            if (letter.equals(theOther.letter)) {
                 return true;
             }
         }
@@ -64,6 +48,6 @@ public class CapitalLetter {
 
     @Override
     public int hashCode() {
-        return alphabet.hashCode();
+        return letter.hashCode();
     }
 }

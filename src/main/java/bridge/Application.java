@@ -2,6 +2,7 @@ package bridge;
 
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.util.CapitalLetter;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -33,15 +34,15 @@ public class Application {
 
         int index = 0;
         while (index < answerBridge.size()) {
-            final String playerMoving = InputView.readMoving();
-            final String result = bridgeGame.move(answerBridge.get(index), playerMoving);
+            final CapitalLetter currentMoving = InputView.readMoving();
+            final String result = bridgeGame.move(answerBridge.get(index), currentMoving);
 
-            if (playerMoving.equals("U")) {
+            if (currentMoving.equals("U")) {
                 upSideResult.add(result);
                 downSideResult.add(BLANK_SPACE);
             }
 
-            if (playerMoving.equals("D")) {
+            if (currentMoving.equals("D")) {
                 upSideResult.add(BLANK_SPACE);
                 downSideResult.add(result);
             }

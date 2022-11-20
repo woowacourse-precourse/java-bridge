@@ -3,6 +3,7 @@ package bridge.view;
 import static bridge.util.Constants.*;
 
 import bridge.util.CapitalLetter;
+import bridge.util.CommandKeys;
 import java.util.Arrays;
 
 public class InputValidator {
@@ -48,11 +49,11 @@ public class InputValidator {
     }
 
     private static boolean isUp(CapitalLetter letter) {
-        return letter.isUp();
+        return isSame(CommandKeys.UP, letter.capitalize());
     }
 
     private static boolean isDown(CapitalLetter letter) {
-        return letter.isDown();
+        return isSame(CommandKeys.DOWN, letter.capitalize());
     }
 
     public static void gameCommand(String input) {
@@ -63,10 +64,14 @@ public class InputValidator {
     }
 
     private static boolean isRetry(CapitalLetter letter) {
-        return letter.isRetry();
+        return isSame(CommandKeys.RETRY, letter.capitalize());
     }
 
     private static boolean isQuit(CapitalLetter letter) {
-        return letter.isQuit();
+        return isSame(CommandKeys.QUIT, letter.capitalize());
+    }
+
+    private static boolean isSame(CommandKeys commandKey, String input) {
+        return commandKey.getLetter().equals(input);
     }
 }
