@@ -171,4 +171,4 @@ D
     - [x] readGameCommand함수를 실행 후, userGameCommand에 저장
     - [x] userGameCommand가 R인지 비교
       - [x] retry함수를 실행
-    - [ ] break문 사용
+    - [x] break문 사용
