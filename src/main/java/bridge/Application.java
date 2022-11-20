@@ -9,6 +9,9 @@ public class Application {
     public static void main(String[] args) {
         output.printGameStart();
         game = createGame();
+
+        while (run())
+            game.retry();
     }
 
     public static boolean run() {
