@@ -137,8 +137,8 @@ public class BridgeMaker {
 >- [x] 게임 재시도 여부를 입력받는 기능 ( readGameCommand )
 
 **OutputView**
->- [ ] 만들어진 User의 Map을 출력하는 기능 ( printMap )
->- [ ] 최종 Game 결과를 출력하는 기능 ( printResult )
+>- [x] 만들어진 User의 Map을 출력하는 기능 ( printMap )
+>- [x] 최종 Game 결과를 출력하는 기능 ( printResult )
 
 
 
