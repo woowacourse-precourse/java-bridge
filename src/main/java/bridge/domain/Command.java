@@ -7,9 +7,9 @@ public enum Command {
     Restart("R"),
     Quit("Q");
 
-    private static String INVALID_STRING_ERROR_MESSAGE = "[ERROR] 유효하지 않은 게임 진행 Command입니다.";
+    private static final String INVALID_STRING_ERROR_MESSAGE = "[ERROR] 유효하지 않은 게임 진행 Command입니다.";
 
-    private String command;
+    private final String command;
 
     Command(String command) {
         this.command = command;
