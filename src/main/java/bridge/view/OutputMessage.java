@@ -15,6 +15,7 @@ public enum OutputMessage {
     START_SQUARE_BRACKET("[ "),
     END_SQUARE_BRACKET(" ]"),
     VERTICAL_BAR(" | "),
+    FINAL_GAME_RESULT("최종 게임 결과"),
     IS_GAME_CLEAR("게임 성공 여부: %s\n"),
     RETRY_COUNT("총 시도한 횟수: %d\n");
 

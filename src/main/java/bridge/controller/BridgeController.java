@@ -27,9 +27,8 @@ public class BridgeController {
             return InputView.inputBridgeSize();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            inputBridgeSize();
+            return inputBridgeSize();
         }
-        return 0;
     }
 
     private void createBridge(int bridgeSize) {
@@ -42,9 +41,8 @@ public class BridgeController {
             return InputView.inputBridgeMove();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            inputBridgeMove();
+            return inputBridgeMove();
         }
-        return null;
     }
 
     private void moveOnTheBridge(String bridgeMoving) {
@@ -55,7 +53,7 @@ public class BridgeController {
 
     private void checkContinue(BridgeCrossingDTO bridgeCrossingDTO) {
         if (bridgeCrossingDTO.getCrossStatus().equals(BridgeCrossingStatus.SUCCESS.getStatus())) {
-            outputGameResult(bridgeCrossingDTO.getCrossStatus(), bridgeCrossingDTO.getTryCount());
+            outputGameResult(bridgeCrossingDTO);
         }
         if (bridgeCrossingDTO.getCrossStatus().equals(BridgeCrossingStatus.PROGRESS.getStatus())) {
             moveOnTheBridge(inputBridgeMove());
@@ -71,15 +69,13 @@ public class BridgeController {
             return InputView.inputGameReStart();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            inputGameRestart();
+            return inputGameRestart();
         }
-        return null;
     }
-
 
     private void checkRestart(String inputGameRestart, BridgeCrossingDTO bridgeCrossingDTO) {
         if (inputGameRestart.equals(GAME_QUIT_KEY)) {
-            outputGameResult(bridgeCrossingDTO.getCrossStatus(), bridgeCrossingDTO.getTryCount());
+            outputGameResult(bridgeCrossingDTO);
         }
         if (inputGameRestart.equals(GAME_RESTART_KEY)) {
             bridgeService.retryGame();
@@ -87,7 +83,10 @@ public class BridgeController {
         }
     }
 
-    private void outputGameResult(String crossStatus, int tryCount) {
-        OutputView.printResult(crossStatus, tryCount);
+    private void outputGameResult(BridgeCrossingDTO bridgeCrossingDTO) {
+        OutputView.printOutputEnd();
+        OutputView.printMap(bridgeCrossingDTO.getFootPrint());
+        OutputView.printClearStatus(bridgeCrossingDTO.getCrossStatus());
+        OutputView.printTryCount(bridgeCrossingDTO.getTryCount());
     }
 }

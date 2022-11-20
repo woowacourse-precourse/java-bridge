@@ -24,6 +24,10 @@ public class OutputView {
         System.out.println(OutputMessage.INPUT_RESTART_MESSAGE.getMessage());
     }
 
+    public static void printOutputEnd() {
+        System.out.println(OutputMessage.FINAL_GAME_RESULT.getMessage());
+    }
+
     public static void printMap(List<List<String>> footPrint) {
         for (List<String> hierarchical: footPrint) {
             System.out.print(OutputMessage.START_SQUARE_BRACKET.getMessage());
@@ -41,8 +45,11 @@ public class OutputView {
         System.out.print(hierarchical.get(hierarchical.size() - 1));
     }
 
-    public static void printResult(String crossStatus, int tryCount) {
+    public static void printClearStatus(String crossStatus) {
         System.out.printf(OutputMessage.IS_GAME_CLEAR.getMessage(), crossStatus);
+    }
+
+    public static void printTryCount(int tryCount) {
         System.out.printf(OutputMessage.RETRY_COUNT.getMessage(), tryCount);
     }
 }
