@@ -32,20 +32,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<Boolean> movingResult) {
+    public static void printMap(List<String> bridge, List<Boolean> movingResult) {
         printBridge(getUpperBridge(bridge, movingResult));
         printBridge(getLowerBridge(bridge, movingResult));
         System.out.println();
     }
 
-    private void printBridge(List<String> upperOrLowerBridge) {
+    private static void printBridge(List<String> upperOrLowerBridge) {
         String bridge = upperOrLowerBridge
                 .stream()
                 .collect(Collectors.joining(SEPARATOR));
         System.out.println(OPEN_BRACKET + bridge + CLOSE_BRACKET);
     }
 
-    private List<String> getLowerBridge(List<String> bridge, List<Boolean> movingResult) {
+    private static List<String> getLowerBridge(List<String> bridge, List<Boolean> movingResult) {
         List<String> lowerBridgeResult = new LinkedList<>();
         for(int i=0;i< movingResult.size();i++){
             lowerBridgeResult.add(calculateLowerBridge(bridge.get(i), movingResult.get(i)));
@@ -53,7 +53,7 @@ public class OutputView {
         return lowerBridgeResult;
     }
 
-    private List<String> getUpperBridge(List<String> bridge, List<Boolean> movingResult) {
+    private static List<String> getUpperBridge(List<String> bridge, List<Boolean> movingResult) {
         List<String> upperBridgeResult = new LinkedList<>();
         for(int i=0;i< movingResult.size();i++){
             upperBridgeResult.add(calculateUpperBridge(bridge.get(i), movingResult.get(i)));
@@ -61,7 +61,7 @@ public class OutputView {
         return upperBridgeResult;
     }
 
-    private String calculateLowerBridge(String bridge, boolean move) {
+    private static String calculateLowerBridge(String bridge, boolean move) {
         if(move==CORRECT_BRIDGE && bridge.equals(DOWN_BRIDGE)) {
             return CORRECT_BRIDGE_RESULT;
         }
@@ -71,7 +71,7 @@ public class OutputView {
         return EMPTY_BRIDGE;
     }
 
-    private String calculateUpperBridge(String bridge, boolean move) {
+    private static String calculateUpperBridge(String bridge, boolean move) {
         if(move==CORRECT_BRIDGE && bridge.equals(UP_BRIDGE)){
             return CORRECT_BRIDGE_RESULT;
         }
@@ -86,14 +86,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge, BridgeGame bridgeGame) {
+    public static void printResult(List<String> bridge, BridgeGame bridgeGame) {
         System.out.println(GAME_RESULT);
         printMap(bridge, bridgeGame.getMovingResult());
         System.out.println(SUCCESS_OR_FAIL + getGameResult(bridge, bridgeGame.getMovingResult()));
         System.out.println(TOTAL_TRY_COUNT + bridgeGame.getTryCount());
     }
 
-    private String getGameResult(List<String> bridge, List<Boolean> getMovingResult) {
+    private static String getGameResult(List<String> bridge, List<Boolean> getMovingResult) {
         if(bridge.size() != getMovingResult.size()) {
             return "실패";
         }
