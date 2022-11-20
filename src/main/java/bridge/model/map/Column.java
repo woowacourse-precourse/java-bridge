@@ -1,8 +1,8 @@
 package bridge.model.map;
 
 public class Column {
-    String up;
-    String down;
+    protected String up;
+    protected String down;
 
     public Column(String up, String down) {
         this.up = up;
