@@ -62,7 +62,13 @@ public class Application {
     }
 
     public static void playBridgeGame() {
-
+        while (true) {
+            bridgeMovement();
+            outputView.printMap(topBridge, bottomBridge);
+            if (topBridge.size() == size || !passFail) {
+                break;
+            }
+        }
     }
 
     public static void endBridgeGame() {
