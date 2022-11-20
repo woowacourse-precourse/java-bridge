@@ -49,22 +49,22 @@ public class OutputView {
 
     private void printUpperBridge(List<String> userMoving) {
         System.out.print(START_OF_BRIDGE);
-        for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
-            if (userMoving.get(bridgeIndex).equals(UP)) System.out.print(CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals(DOWN) || userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(SPACE);
-            if (bridgeIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
+        for (int userMovingIndex = 0; userMovingIndex < userMoving.size(); userMovingIndex++) {
+            if (userMoving.get(userMovingIndex).equals(UP)) System.out.print(CROSSE_BRIDGE);
+            if (userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            if (userMoving.get(userMovingIndex).equals(DOWN) || userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(SPACE);
+            if (userMovingIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
     }
 
     private void printLowerBridge(List<String> userMoving) {
         System.out.print(START_OF_BRIDGE);
-        for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
-            if (userMoving.get(bridgeIndex).equals(DOWN)) System.out.print(CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals(UP) || userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(SPACE);
-            if (bridgeIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
+        for (int userMovingIndex = 0; userMovingIndex < userMoving.size(); userMovingIndex++) {
+            if (userMoving.get(userMovingIndex).equals(DOWN)) System.out.print(CROSSE_BRIDGE);
+            if (userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            if (userMoving.get(userMovingIndex).equals(UP) || userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(SPACE);
+            if (userMovingIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
     }
