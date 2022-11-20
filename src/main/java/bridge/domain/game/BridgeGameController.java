@@ -21,6 +21,7 @@ public class BridgeGameController {
     public void start() {
         outputView.printStartMessage();
         play();
+        outputView.printResult(bridgeGameService.getGame());
     }
     
     private void play() {
