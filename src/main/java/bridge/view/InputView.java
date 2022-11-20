@@ -1,27 +1,26 @@
 package bridge.view;
 
+import static bridge.constant.ErrorConstant.ENTER_BRIDGE_LENGTH;
+import static bridge.constant.ErrorConstant.PICK_COMMAND;
+import static bridge.constant.ErrorConstant.PICK_POSITION;
+import static bridge.type.MovingType.DOWN;
+import static bridge.type.MovingType.UP;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
-public class InputView {
+import bridge.type.ErrorType;
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public static int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+public class InputView {
+    private static final String REGEX = "[0-9]+";
+
+    public int readBridgeSize() {
+        System.out.println(ENTER_BRIDGE_LENGTH);
         return validateDigit(readLine());
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public static String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    public String readMoving() {
+        System.out.println(PICK_POSITION);
         String moving = readLine();
-        try{
+        try {
             validateMoving(moving);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -30,13 +29,10 @@ public class InputView {
         return moving;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public static String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    public String readGameCommand() {
+        System.out.println(PICK_COMMAND);
         String command = readLine();
-        try{
+        try {
             validateRetryOrExit(command);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -45,22 +41,22 @@ public class InputView {
         return command;
     }
 
-    private static int validateDigit(String input) throws IllegalArgumentException {
-        if (!input.matches("[0-9]+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+    private int validateDigit(String input) throws IllegalArgumentException {
+        if (!input.matches(REGEX)) {
+            throw new IllegalArgumentException(ErrorType.DIGIT_ERROR.printError());
         }
         return Integer.parseInt(input);
     }
 
-    private static void validateMoving(String input) {
-        if (!input.equals("U") && !input.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] U 혹은 D를 입력해 주세요.");
+    private void validateMoving(String input) {
+        if (!input.equals(UP.getKey()) && !input.equals(DOWN.getKey())) {
+            throw new IllegalArgumentException(ErrorType.MOVING_ERROR.printError());
         }
     }
 
-    private static void validateRetryOrExit(String input) {
+    private void validateRetryOrExit(String input) {
         if (!input.equals("R") && !input.equals("Q")) {
-            throw new IllegalArgumentException("[ERROR] R 혹은 Q를 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorType.COMMAND_ERROR.printError());
         }
     }
 }

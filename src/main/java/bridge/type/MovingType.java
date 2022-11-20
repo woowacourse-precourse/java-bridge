@@ -3,8 +3,8 @@ package bridge.type;
 import java.util.Arrays;
 
 public enum MovingType {
-    UP("U",0),
-    DOWN("D",1);
+    UP("U", 0),
+    DOWN("D", 1);
 
     private final String key;
     private final int value;

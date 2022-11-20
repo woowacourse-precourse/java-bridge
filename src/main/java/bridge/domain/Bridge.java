@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.type.ErrorType;
 import java.util.List;
 
 public class Bridge {
@@ -17,7 +18,7 @@ public class Bridge {
 
     private void validateBridgeSize(int size) throws IllegalArgumentException {
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 3이상 20 이하 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorType.BRIDGE_SIZE_ERROR.printError());
         }
     }
 }
