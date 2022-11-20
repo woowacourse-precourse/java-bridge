@@ -22,6 +22,11 @@ public class BridgeProgram {
 
     public void play() {
         outputView.printStart();
+        make();
+        do {
+            move();
+        } while (canRetry());
+        quit();
     }
 
     private boolean canRetry() {
