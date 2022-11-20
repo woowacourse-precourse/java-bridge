@@ -20,7 +20,10 @@ public class Bridge {
         return bridge;
     }
 
-    public String getBridgeIdx(int index) {
-        return bridge.get(index);
+    public boolean isSameStringWithUser(int index, String UorD) {
+        if(UorD.equals(bridge.get(index))) {
+            return true;
+        }
+        return false;
     }
 }

@@ -29,7 +29,7 @@ public class BridgeGame {
     }
 
     private Progress compareBridgeAndUser(int currentIndex) {
-        if (bridge.getBridgeIdx(currentIndex).equals(userAnswer.get(currentIndex))) {
+        if (bridge.isSameStringWithUser(currentIndex, userAnswer.get(currentIndex))) {
             if (userAnswer.size() == bridge.getBridge().size()) {
                 return Progress.SUCCESS;
             }
