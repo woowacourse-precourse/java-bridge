@@ -105,7 +105,7 @@ D
 - [ ] [예외처리] R와 Q가 아닌 다른 글자일 경우, 다시 입력을 받는다.
 
 ### readBridgeSizeOfNoNumberException
-- [ ] brideSizeRegularExpression에 숫자가 한자리에서 두자리까지의 숫자에 대한 정규표현식을 저장
+- [x] brideSizeRegularExpression에 숫자가 한자리에서 두자리까지의 숫자에 대한 정규표현식을 저장
 - [ ] 매개변수가 brideSizeRegularExpression에 들어맞는지, 확인
 - [ ] false이면, 예외 던짐
 
