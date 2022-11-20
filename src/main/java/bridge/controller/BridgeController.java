@@ -31,6 +31,12 @@ public class BridgeController {
         }
     }
 
+    private void takeTurn() {
+        outputView.printAskingMoving();
+        move();
+        outputView.printMap(bridgeGame.makeMap());
+    }
+
     private void move() {
         while (true) {
             try {
