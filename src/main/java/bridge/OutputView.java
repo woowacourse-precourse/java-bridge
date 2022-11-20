@@ -5,9 +5,9 @@ import java.util.List;
 public class OutputView {
 
     public void printMap(List<Integer> upperBridge, List<Integer> bottomBridge) {
-
+        upperBridgeMap(upperBridge);
         System.out.println("\n");
-
+        bottomBridgeMap(bottomBridge);
     }
 
     public void printResult() {
