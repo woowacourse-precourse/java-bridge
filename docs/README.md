@@ -21,6 +21,12 @@
 
 - 입력이 올바르지 않을 경우, IllegalException을 발생한다.
 
+## Bridge
+
+- size만큼의 길이를 가진 다리를 생성하는 생성자.
+
+- 위로 갈 것인지, 위로 갈 것인지 brdige 뒤에 추가하는 기능
+
 ## BrideMaker
 
 - size에 맞는 다리를 반환한다.(이 때, BridgeCondition Enum class를 이용한다.)
