@@ -55,7 +55,14 @@ class BridgeTest {
         Assertions.assertThat(movable.isMovable()).isFalse();
     }
 
+    @DisplayName("다리는 올바른 길이를 반환한다.")
     @Test
     void size() {
+        List<String> bridgePrototype = List.of("U", "D", "U", "D");
+        Bridge bridge = new Bridge(bridgePrototype);
+
+        int size = bridge.size();
+
+        Assertions.assertThat(size).isEqualTo(4);
     }
 }
