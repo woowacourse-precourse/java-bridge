@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RouteMap {
@@ -14,6 +15,16 @@ public class RouteMap {
 
     public List<String> format() {
         return mapFormat.convertToFormatStrings(List.of(upSide, downSide));
+    }
+
+    public RouteMap join(RouteMap other) {
+        List<String> newUpSide = new ArrayList<>(upSide);
+        List<String> newDownSide = new ArrayList<>(downSide);
+
+        newUpSide.addAll(other.upSide);
+        newDownSide.addAll(other.downSide);
+
+        return new RouteMap(newUpSide, newDownSide);
     }
 
     @Override
