@@ -7,6 +7,8 @@ import bridge.domain.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.domain.bridgemaking.BridgeComponent.*;
+
 public class BridgeMakerImpl {
     public User makeNewUser(int bridgeSize) {
         List<List<String>> madeBridge = makeInitialBridge();
@@ -15,7 +17,7 @@ public class BridgeMakerImpl {
 
     // 다리 리스트에 "["와 "]" 추가
     public static List<List<String>> makeInitialBridge() {
-        List<String> bridgeStructure = new ArrayList<>(List.of(BridgeComponent.HEAD.getComponent(), BridgeComponent.TAIL.getComponent()));
+        List<String> bridgeStructure = new ArrayList<>(List.of(HEAD.getComponent(), TAIL.getComponent()));
         List<List<String>> madeBridge = new ArrayList<>();
 
         madeBridge.add(new ArrayList<>(bridgeStructure));
