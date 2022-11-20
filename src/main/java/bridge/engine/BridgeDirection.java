@@ -15,4 +15,14 @@ public enum BridgeDirection {
     public int getValue() {
         return value;
     }
+
+    public static boolean isMatch(String target) {
+        for (BridgeDirection direction : BridgeDirection.values()) {
+            if (direction.name().equals(target)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

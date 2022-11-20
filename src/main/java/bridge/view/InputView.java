@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.validator.BridgeSizeValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,7 +12,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = Console.readLine();
+        final BridgeSizeValidator validator = new BridgeSizeValidator();
+        String bridgeSize;
+        boolean isValid;
+
+        do {
+            bridgeSize = Console.readLine();
+            isValid = validator.validate(bridgeSize);
+        } while (!isValid);
 
         return Integer.parseInt(bridgeSize);
     }
@@ -20,13 +28,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return Console.readLine();
+        String direction = Console.readLine();
+
+        return direction;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return Console.readLine();
+        String command = Console.readLine();
+
+        return command;
     }
 }

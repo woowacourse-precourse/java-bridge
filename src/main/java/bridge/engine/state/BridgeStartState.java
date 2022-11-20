@@ -22,7 +22,7 @@ public class BridgeStartState implements BridgeState {
         outputView.printNewLine();
 
         outputView.printInputBridgeSize();
-        int size = inputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
 
         bridgeGame.setState(bridgeGame.getMoveState());
     }
@@ -38,7 +38,5 @@ public class BridgeStartState implements BridgeState {
     }
 
     @Override
-    public void end() {
-
-    }
+    public void end() {}
 }

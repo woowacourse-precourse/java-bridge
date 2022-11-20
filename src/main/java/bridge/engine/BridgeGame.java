@@ -46,7 +46,6 @@ public class BridgeGame {
 
         while (isMoving) {
             boolean isSuccess = move();
-            System.out.println("isSuccess : " + isSuccess);
 
             if (!isSuccess) {
                 isMoving = retry();

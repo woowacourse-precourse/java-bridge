@@ -15,4 +15,14 @@ public enum GameCommand {
     public boolean isRetry() {
         return isRetry;
     }
+
+    public static boolean isMatch(String target) {
+        for (GameCommand command : GameCommand.values()) {
+            if (command.name().equals(target)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

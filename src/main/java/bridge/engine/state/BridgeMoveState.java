@@ -1,5 +1,6 @@
 package bridge.engine.state;
 
+import bridge.engine.BridgeDirection;
 import bridge.engine.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -26,14 +27,12 @@ public class BridgeMoveState implements BridgeState {
         boolean isCanBeCross = false;
 
         outputView.printInputBridge();
-        String direction = inputView.readMoving();
+        BridgeDirection.valueOf(inputView.readMoving());
 
         //TODO:: 건널 수 있는지 확인 절차
-
         if (!isCanBeCross) {
             bridgeGame.setState(bridgeGame.getRetryState());
         }
-
         outputView.printMap();
         return false;
     }

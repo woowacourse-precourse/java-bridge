@@ -40,7 +40,5 @@ public class BridgeRetryState implements BridgeState {
     }
 
     @Override
-    public void end() {
-        outputView.printResult();
-    }
+    public void end() {}
 }
