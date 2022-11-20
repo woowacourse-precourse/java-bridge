@@ -28,7 +28,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public GameStatus move(BridgeType bridgeType) {
-        GameStatus gameStatus = getGameStatus(bridgeType);
+        GameStatus gameStatus = checkGameStatus(bridgeType);
         bridgeMoveLog.writeLog(bridgeType, gameStatus.getSafe());
         return judgeGameStatus(gameStatus);
     }
@@ -49,7 +49,7 @@ public class BridgeGame {
         return tryCount;
     }
 
-    private GameStatus getGameStatus(BridgeType bridgeType) {
+    private GameStatus checkGameStatus(BridgeType bridgeType) {
         String command = bridge.get(movePosition++);
 
         if (bridgeType.isEqualCommand(command)) {
