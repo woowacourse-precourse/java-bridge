@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.exception.BridgeChoiceException;
+import bridge.exception.BridgeLengthException;
+import bridge.exception.GameCommandException;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -9,24 +12,35 @@ public class InputView {
     private static final String INQUIRE_GAME_STOP = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public int readBridgeSize() {
-        return 0;
+        BridgeLengthException bridgeLengthException = new BridgeLengthException();
+        try{
+            return bridgeLengthException.validate(readInput(INQUIRE_BRIDGE_LENGTH));
+        }catch (IllegalArgumentException exception){
+            return readBridgeSize();
+        }
     }
 
     public String readMoving() {
-        return null;
+        BridgeChoiceException bridgeChoiceException = new BridgeChoiceException();
+        try{
+            return bridgeChoiceException.validate(readInput(INQUIRE_BRIDGE_MOVEMENT));
+        }catch (IllegalArgumentException exception){
+            return readMoving();
+        }
     }
 
     public String readGameCommand() {
-        return null;
+        GameCommandException gameCommandException = new GameCommandException();
+        try{
+            return gameCommandException.validate(readInput(INQUIRE_GAME_STOP));
+        }catch (IllegalArgumentException exception){
+            return readGameCommand();
+        }
     }
 
     private String readInput(String comment){
         System.out.println(comment);
         return Console.readLine();
-    }
-
-    private int scanBridgeSize(){
-        return 1;
     }
 
     private int scanBridgeMovement(){

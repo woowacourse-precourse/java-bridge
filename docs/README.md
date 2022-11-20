@@ -45,18 +45,15 @@ START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반
 
 ## View
 ### InputView
-1. readBridgeSize
+1. readBridgeSize : 입력을 요청받아 입력이 맞는 입력일 때 까지 반복시킨다.
    1. readInput : 입력 문자열을 출력하여 입력을 요청하고 콘솔의 입력문자열을 반환한다.
    2. validate : BridgeLengthException 에서 validate 을 한 후 정수형으로 반환한다.
-   3. scanBridgeSize : 입력을 요청받아 입력이 맞는 입력일 때 까지 반복시킨다.
-2. readMoving
+2. readMoving : 입력을 요청받아 입력이 맞는 입력일 때 까지 반복시킨다.
    1. readInput : 입력 문자열을 출력하여 입력을 요청하고 콘솔의 입력문자열을 반환한다.
    2. validate : BridgeChoiceException.validate을 실행해 문자열을 반환한다.
-   3. scanBridgeMovement : 입력을 요청받아 입력이 맞는 입력일 때 까지 반복시킨다.
-3. readGameCommand
+3. readGameCommand : 입력을 요청받아 입력이 맞는 입력일 때 까지 반복시킨다.
    1. readInput : 입력 문자열을 출력하여 입력을 요청하고 콘솔의 입력문자열을 반환한다.
-   2. scanGameCommand : 입력을 요청받아 입력이 맞는 입력일 때 까지 반복시킨다.
-   3. validate : GameCommandException.validate를 실행해 문자열을 반환한다.
+   2. validate : GameCommandException.validate를 실행해 문자열을 반환한다.
 
 ### OutputView
 1. printMap : 입력 문자열 두개를 줄바꿈 처리해서 출력시킨다.
