@@ -1,5 +1,6 @@
 package bridge.domain.bridgegame;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
@@ -13,15 +14,14 @@ public class GameMap {
     private final static String BRIDGE_START_POINT = "[ ";
     private final static String BRIDGE_ENDPOINT = " ]";
 
-    private final HashMap<String, List<String>> gameMap = new HashMap<>();
+    private final HashMap<String, List<String>> gameMap;
 
-    private GameMap(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
-        gameMap.put(UPPER_BRIDGE, upperBridgeMap);
-        gameMap.put(LOWER_BRIDGE, lowerBridgeMap);
+    private GameMap(HashMap<String, List<String>> gameMap) {
+        this.gameMap = gameMap;
     }
 
-    public static GameMap generateMap(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
-        return new GameMap(upperBridgeMap, lowerBridgeMap);
+    public static GameMap from(HashMap<String, List<String>> gameMap) {
+        return new GameMap(gameMap);
     }
 
     private String generateMapAt(String position) {
@@ -43,9 +43,18 @@ public class GameMap {
         gameMap.put(position, bridgeMap);
     }
 
-    public void addGameResult(String direction, boolean movingSuccess) {
-        addBlockMap(direction, GameMapElement.getMapElement(movingSuccess));
+    public GameMap addGameResult(String direction, boolean success) {
+        addBlockMap(direction, GameMapElement.getMapElement(success));
         addBlockMap(getOppositeDirection(direction), GameMapElement.getMapElement());
+
+        return new GameMap(gameMap);
+    }
+
+    public GameMap reset() {
+        gameMap.put(UPPER_BRIDGE, new ArrayList<>());
+        gameMap.put(LOWER_BRIDGE, new ArrayList<>());
+
+        return new GameMap(gameMap);
     }
 
     @Override

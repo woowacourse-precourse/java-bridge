@@ -1,5 +1,6 @@
 package bridge.domain.bridgegame;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -9,12 +10,12 @@ public class BridgeGame {
 
     private final GameMap gameMap;
 
-    private BridgeGame(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
-        this.gameMap = GameMap.generateMap(upperBridgeMap, lowerBridgeMap);
+    private BridgeGame(GameMap gameMap) {
+        this.gameMap = gameMap;
     }
 
-    public static BridgeGame from(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
-        return new BridgeGame(upperBridgeMap, lowerBridgeMap);
+    public static BridgeGame from(HashMap<String, List<String>> gameMap) {
+        return new BridgeGame(GameMap.from(gameMap));
     }
 
     /**
@@ -22,7 +23,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public BridgeGame move(String movingDirection, boolean movingSuccess) {
+        GameMap resultGameMap = gameMap.addGameResult(movingDirection, movingSuccess);
+        return new BridgeGame(resultGameMap);
+    }
+
+    public String getGameMap() {
+        return gameMap.toString();
     }
 
     /**
@@ -30,6 +37,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public BridgeGame retry() {
+        return new BridgeGame(gameMap.reset());
     }
 }
