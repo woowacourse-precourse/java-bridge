@@ -25,13 +25,13 @@ class SlabTypeTest {
         );
     }
 
-    @ParameterizedTest(name = "타입 이름 가져오기")
-    @MethodSource("타입_이름_가져오기_데이터")
-    void 타입_이름_가져오기(SlabType slabType, String result) {
+    @ParameterizedTest(name = "타입 이름 로드")
+    @MethodSource("타입_이름_로드_데이터")
+    void 타입_이름_로드(SlabType slabType, String result) {
         assertThat(slabType.getTypeName()).isEqualTo(result);
     }
 
-    static Stream<Arguments> 타입_이름_가져오기_데이터() {
+    static Stream<Arguments> 타입_이름_로드_데이터() {
         return Stream.of(
                 Arguments.of(SlabType.UNKNOWN, "N"),
                 Arguments.of(SlabType.DOWN, "D"),
@@ -39,13 +39,13 @@ class SlabTypeTest {
         );
     }
 
-    @ParameterizedTest(name = "타입 아이디 가져오기")
-    @MethodSource("타입_아이디_가져오기_데이터")
-    void 타입_아이디_가져오기(SlabType slabType, int result) {
+    @ParameterizedTest(name = "타입 아이디 로드")
+    @MethodSource("타입_아이디_로드_데이터")
+    void 타입_아이디_로드(SlabType slabType, int result) {
         assertThat(slabType.getId()).isEqualTo(result);
     }
 
-    static Stream<Arguments> 타입_아이디_가져오기_데이터() {
+    static Stream<Arguments> 타입_아이디_로드_데이터() {
         return Stream.of(
                 Arguments.of(SlabType.UNKNOWN, -1),
                 Arguments.of(SlabType.DOWN, 0),

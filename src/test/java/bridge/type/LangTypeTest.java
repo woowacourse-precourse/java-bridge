@@ -13,12 +13,12 @@ class LangTypeTest {
     }
 
     @Test
-    void format() {
+    void 문자열_포맷() {
         assertThat(LangType.format(LangType.HELLO_WORLD, "안녕")).isEqualTo("안녕 세계 안녕");
     }
 
     @Test
-    void get() {
+    void 문자열_로드() {
         assertThat(LangType.get(LangType.HELLO_WORLD)).isEqualTo("안녕 세계 %s");
     }
 }

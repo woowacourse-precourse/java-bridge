@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SlabsTest {
     @Test
-    void DB_인스턴스_가져오기() {
+    void 인스턴스_로드() {
         assertThat(Slabs.getInstance()).isInstanceOf(Slabs.class);
     }
 
     @Test
-    void DB_모두_넣기() {
+    void 모두_삽입() {
         Slabs slabs = Slabs.getInstance();
         List<SlabDTO> dto = this.slabs();
 
@@ -24,7 +24,7 @@ class SlabsTest {
     }
 
     @Test
-    void DB_모두_가져오기() {
+    void 모두_로드() {
         Slabs slabs = Slabs.getInstance();
         List<SlabDTO> dto = this.slabs();
         slabs.insertAll(dto);
