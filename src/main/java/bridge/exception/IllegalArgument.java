@@ -8,4 +8,11 @@ public class IllegalArgument {
         }
         return true;
     }
+
+    public static boolean isNotInBridgeSizeRange(String bridgeSizeInput) {
+        if (Integer.parseInt(bridgeSizeInput) <3 || Integer.parseInt(bridgeSizeInput) > 20) {
+            return true;
+        }
+        return false;
+    }
 }
