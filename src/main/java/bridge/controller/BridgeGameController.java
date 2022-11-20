@@ -33,7 +33,7 @@ public class BridgeGameController {
 
     private void playBridgeGame(BridgeGame bridgeGame) {
         movePlayer(bridgeGame);
-        if (!bridgeGame.isMove()) {
+        if (!bridgeGame.isMoveSuccess()) {
             bridgeGame.retry(inputGameCommand());
         }
         if (bridgeGame.isEnd()) {

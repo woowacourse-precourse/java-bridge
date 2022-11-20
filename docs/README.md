@@ -21,53 +21,82 @@
 ### Domain
 
 BridgeGame
+- [X] move()
+- [X] retry()
+- [X] getCount
+- [X] getStatus
+- [X] getPlayerMap
+- [X] isMove
+- [X] isEnd
 
 BridgeMaker
+- [X] makeBridge
 
 BridgeRandomNumber
+- [X] Random 값 추출
 
 ### VO
 
 BridgeMap
+- [X] isMove
+- [X] getSize
 
 BridgeSize
+- [X] getValue
+- [X] validSize
+  - [X] 3~20
+  - [X] 예외시 예외 메시지 출력
+
+
+BridgeStatus
+- [X] makerValueToMovingValue : 랜덤값으로 나온 값을 U, D으로 변경
+
 
 GameCommand
+- [X] R, Q 만 입력가능
+- [X] 예외시 예외 메시지 출력
+- [X] toString : return value
+- [X] equals : 스트링값 입력시 비교
 
 Moving
+- [X] U, D 만 입력가능
+- [X] 예외시 예외 메시지 출력
+- [X] toString : return value
+- [X] equals : 스트링값 입력시 비교
 
 playerMap
+- [X] move : 이동되는 경로를 O, X로 그린다.
 
 ## View
 
 InputHandler
-
  - [x] stringToInt
+ - [X] 숫자만 입력가능
+ - [X] 예외시 예외 메시지 출력
 
 InputView
-
  - [x] readBridgeSize
  - [x] readMoving
  - [x] readGameCommand
 
 OutputView
-
+ - [x] printStartBridgeGame
  - [x] printMap
  - [x] printResult
 
 ### Controller
 
 BridgeGameController
-
+- [X] run
 - [x] inputBridgeSize
+  - [x] 잘못 입력시 오류 메시지 출력 후 재입력
 - [x] makeBridge
-- [x] playBridgeGame
-- [x] inputMoving
-- [x] printMap
-- [x] inputGameCommand
-- [x] printResult
-
-
+- [x] playBridgeGame  : 게임 시작
+  - [x] inputMoving
+    -  [x] 잘못 입력시 오류 메시지 출력 후 재입력
+  - [x] movePlayer
+  - [x] inputGameCommand
+  	- [x] 잘못 입력시 오류 메시지 출력 후 재입력
 
 ## 기능 목록
 

@@ -59,6 +59,6 @@ class BridgeGameTest {
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
         bridgeGame.move(new Moving(playerValue));
-        assertThat(bridgeGame.isMove()).isEqualTo(value);
+        assertThat(bridgeGame.isMoveSuccess()).isEqualTo(value);
     }
 }

@@ -65,7 +65,7 @@ public class BridgeGame {
         return playerMap.getDetail();
     }
 
-    public boolean isMove() {
+    public boolean isMoveSuccess() {
         return isMove;
     }
 
