@@ -2,7 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
 import bridge.bridgemaker.BridgeMaker;
-import bridge.gamebridge.GameBridge;
+import bridge.gamebridge.BridgeContainer;
 import bridge.option.Move;
 import bridge.result.Result;
 import java.util.List;
@@ -10,23 +10,23 @@ import java.util.List;
 public class BridgeService {
 
     private final BridgeMaker bridgeMaker;
-    private final GameBridge gameBridge;
+    private final BridgeContainer bridgeContainer;
 
     public BridgeService(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        this.gameBridge = new GameBridge();
+        this.bridgeContainer = new BridgeContainer();
     }
 
     public void generateBridge(int size) {
         List<String> squares = bridgeMaker.makeBridge(size);
-        gameBridge.generateAnswerBridge(new Bridge(squares));
+        bridgeContainer.generateAnswerBridge(new Bridge(squares));
     }
 
     public Result insertMove(Move move) {
-        return gameBridge.insertMove(move);
+        return bridgeContainer.insertMove(move);
     }
 
     public void clearPlayerBridge() {
-        gameBridge.clearPlayerBridge();
+        bridgeContainer.clearPlayerBridge();
     }
 }

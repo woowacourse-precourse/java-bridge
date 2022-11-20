@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.Bridge;
-import bridge.gamebridge.GameBridge;
+import bridge.gamebridge.BridgeContainer;
 import bridge.option.Move;
 import bridge.result.Result;
 import java.util.List;
@@ -19,18 +19,18 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class GameBridgeTest {
+public class BridgeContainerTest {
 
     @DisplayName("플레이어 현재 다리에 추가 무브 테스트")
     @MethodSource("generateTestMoveInput")
     @ParameterizedTest
     void insertMoveInPlayerBridgeTest(List<String> inputMoves) {
-        GameBridge gameBridge = new GameBridge();
-        gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(inputMoves, gameBridge);
+        BridgeContainer bridgeContainer = new BridgeContainer();
+        bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
+        insertMovesForTest(inputMoves, bridgeContainer);
         Bridge answerBridge = new Bridge(inputMoves);
 
-        Bridge bridge = gameBridge.getPlayerBridge().getBridge();
+        Bridge bridge = bridgeContainer.getPlayerBridge().getBridge();
 
         assertThat(bridge.getSquares()).isEqualTo(answerBridge.getSquares());
     }
@@ -38,11 +38,11 @@ public class GameBridgeTest {
     @DisplayName("사용자 입력 결과 참인 테스트")
     @Test
     void checkInsertedMoveTest() {
-        GameBridge gameBridge = new GameBridge();
-        gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(List.of("U", "D"), gameBridge);
+        BridgeContainer bridgeContainer = new BridgeContainer();
+        bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
+        insertMovesForTest(List.of("U", "D"), bridgeContainer);
 
-        Result result = gameBridge.insertMove(new Move("U"));
+        Result result = bridgeContainer.insertMove(new Move("U"));
 
         assertThat(result.getGameStatus()).isEqualTo(PROGRESS);
     }
@@ -50,11 +50,11 @@ public class GameBridgeTest {
     @DisplayName("사용자 입력 결과 거짓인 테스트")
     @Test
     void checkInsertedWrongMoveTest() {
-        GameBridge gameBridge = new GameBridge();
-        gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(List.of("U", "D"), gameBridge);
+        BridgeContainer bridgeContainer = new BridgeContainer();
+        bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
+        insertMovesForTest(List.of("U", "D"), bridgeContainer);
 
-        Result result = gameBridge.insertMove(new Move("D"));
+        Result result = bridgeContainer.insertMove(new Move("D"));
 
         assertThat(result.getGameStatus()).isEqualTo(FAIL);
     }
@@ -62,11 +62,11 @@ public class GameBridgeTest {
     @DisplayName("사용자가 게임을 클리어 했을 때 테스트")
     @Test
     void checkInsertSuccessBridge() {
-        GameBridge gameBridge = new GameBridge();
-        gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(List.of("U", "D", "U", "U"), gameBridge);
+        BridgeContainer bridgeContainer = new BridgeContainer();
+        bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
+        insertMovesForTest(List.of("U", "D", "U", "U"), bridgeContainer);
 
-        Result result = gameBridge.insertMove(new Move("D"));
+        Result result = bridgeContainer.insertMove(new Move("D"));
 
         assertThat(result.getGameStatus()).isEqualTo(SUCCESS);
     }
@@ -74,8 +74,8 @@ public class GameBridgeTest {
     @DisplayName("정답 브릿지를 생성하지 않고 입력하면 예외가 발생한다.")
     @Test
     void insertMoveBeforeGenerateAnswerBridge() {
-        GameBridge gameBridge = new GameBridge();
-        assertThatThrownBy(() -> gameBridge.insertMove(new Move("U")))
+        BridgeContainer bridgeContainer = new BridgeContainer();
+        assertThatThrownBy(() -> bridgeContainer.insertMove(new Move("U")))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -87,10 +87,10 @@ public class GameBridgeTest {
         );
     }
 
-    private void insertMovesForTest(List<String> inputMoves, GameBridge gameBridge) {
+    private void insertMovesForTest(List<String> inputMoves, BridgeContainer bridgeContainer) {
         List<Move> moves = convertStringListToMoveList(inputMoves);
         for (Move move : moves) {
-            gameBridge.insertMove(move);
+            bridgeContainer.insertMove(move);
         }
     }
 }

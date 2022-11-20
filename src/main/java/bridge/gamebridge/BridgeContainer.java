@@ -8,12 +8,12 @@ import bridge.result.Result;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameBridge {
+public class BridgeContainer {
 
     private AnswerBridge answerBridge;
     private final PlayerBridge playerBridge;
 
-    public GameBridge() {
+    public BridgeContainer() {
         this.playerBridge = new PlayerBridge();
     }
 
