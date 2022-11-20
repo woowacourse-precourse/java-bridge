@@ -34,8 +34,11 @@ public class BridgeGame {
         user.move(moving);
         List<String> userMoved = user.getUserMoved();
         if (!bridge.canMove(userMoved, userMoved.size() - 1)) {
+            matchingStatus.add("X");
             gameFailed = true;
+            return;
         }
+        matchingStatus.add("O");
     }
 
     /**
