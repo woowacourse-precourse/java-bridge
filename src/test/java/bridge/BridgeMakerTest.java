@@ -20,10 +20,11 @@ class BridgeMakerTest {
 
     @Test
     void 안전경로_생성_중_랜덤_오류_테스트() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 2));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).isEqualTo(null);
+        assertThatThrownBy(()-> {
+            BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 2));
+            BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+            bridgeMaker.makeBridge(3);
+        }).isInstanceOf(IllegalStateException.class);
     }
 
     @Test
@@ -38,7 +39,7 @@ class BridgeMakerTest {
     void 안전경로_생성_중_다리_길이가_가능범위보다_커서_예외처리된다(){
         assertThatThrownBy(()-> {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            bridgeMaker.makeBridge(2);
+            bridgeMaker.makeBridge(21);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
