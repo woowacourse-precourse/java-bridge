@@ -28,8 +28,7 @@ public class MainController {
         while (true) {
             BridgeMove move = new BridgeMove(InputView.readMoving());
             boolean isCanMove = bridgeGame.move(move.get());
-            OutputView.printMap(bridgeGame.getBridgeMap());
+            OutputView.printMap(bridgeGame.getBridgeMap().get());
         }
     }
-
 }

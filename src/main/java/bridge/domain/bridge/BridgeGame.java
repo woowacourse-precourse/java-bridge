@@ -11,18 +11,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private final List<List<String>> bridgeMap;
     private int turn;
+    private final BridgeMap bridgeMap;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.turn = 0;
-        bridgeMap = new ArrayList<>() {
-            {
-                add(new ArrayList<>());
-                add(new ArrayList<>());
-            }
-        };
+        this.bridgeMap = new BridgeMap();
     }
 
     /**
@@ -32,16 +27,12 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         boolean isCorrect = checkValue(direction);
-        addMap(direction, isCorrect);
+        bridgeMap.addMap(direction, isCorrect);
+        this.turn ++;
         if (isTurnOutOfRange() || !isCorrect) {
             return false;
         }
-        this.turn ++;
         return true;
-    }
-
-    public List<List<String>> getBridgeMap() {
-        return this.bridgeMap;
     }
 
     private boolean isTurnOutOfRange() {
@@ -50,28 +41,18 @@ public class BridgeGame {
 
     private boolean checkValue(String direction) {
         String answer = this.bridge.get(this.turn);
+        System.out.println(direction + "" + answer);
         return direction.equals(answer);
     }
 
-    private void addMap(String direction, boolean isCorrect) {
-        int index = Direction.getBySymbol(direction).getKey();
-        int otherIndex = getOtherIndex(index);
-        String symbol = Correct.getByCorrect(isCorrect).getSymbol();
-
-        bridgeMap.get(index).add(symbol);
-        bridgeMap.get(otherIndex).add(" ");
-    }
-
-    private int getOtherIndex(int index) {
-        List<Integer> indexes = new ArrayList<>(List.of(0, 1));
-        indexes.remove(index);
-        return indexes.get(0);
-    }
 
     public boolean checkWin() {
         return this.turn == (this.bridge.size() - 1);
     }
 
+    public BridgeMap getBridgeMap() {
+        return this.bridgeMap;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
