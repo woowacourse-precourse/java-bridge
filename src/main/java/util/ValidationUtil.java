@@ -18,7 +18,7 @@ public class ValidationUtil {
     }
 
     public void validateExitCode(String exitCode) {
-        if (!exitCode.equals("R") || !exitCode.equals("Q")) {
+        if (!exitCode.equals("R") && !exitCode.equals("Q")) {
             throw new UserInputException(ErrorResponse.INPUT_EXITCODE_ERROR);
         }
     }
