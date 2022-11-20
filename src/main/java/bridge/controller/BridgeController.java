@@ -12,6 +12,7 @@ public class BridgeController {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
     private final InputService inputService = new InputService();
+    private final static String RESET = "R";
 
     public void start() {
         gameStartMessage();
@@ -29,7 +30,6 @@ public class BridgeController {
             String moveDirection = inputService.requestMove();
             outputView.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect(moveDirection, bridge));
             processGame(bridge, user, isUserAnswerCorrect(moveDirection, bridge));
-            continue;
         }
         outputView.printResult(user);
     }
@@ -38,9 +38,19 @@ public class BridgeController {
         if (!isUserAnswerCorrect) {
             String gameStatus = inputService.requestStatusOfGame();
             bridgeGame.doFailCase(bridge, user, gameStatus);
+            if (isResetCase(gameStatus)) {
+                outputView.initMapView();
+            }
             return;
         }
         bridgeGame.move(bridge, user);
+    }
+
+    public boolean isResetCase(String gameStatus) {
+        if (gameStatus.equals(RESET)) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isUserAnswerCorrect(String moveDirection, Bridge bridge) {
