@@ -21,7 +21,18 @@ public class Validation {
     // 숫자가 맞다면 3~20사이의 숫자인지 검증하는 기능
     public static void isInRange(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException("[ERROR] 3~20사이의 숫자만 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    // 플레이어가 이동할 칸을 검증하는 기능
+    public static void validateMoving(String enteredMoving) {
+        if (!(enteredMoving.equals("U") || enteredMoving.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] U또는 D만 입력해 주세요");
         }
     }
 }
+
+
+
+
