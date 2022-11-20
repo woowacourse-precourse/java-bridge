@@ -22,6 +22,7 @@ public class BridgeGameController {
         do {
             OutputView.askMove();
             isMoving = bridgeGame.move();
+            OutputView.printMap(bridgeGame.getPlayer().getWay(), bridgeGame.getBridge().getBridge());
         } while (isMoving && bridgeGame.isOnGoing());
         determinePlay(bridgeGame.isOnGoing());
     }
