@@ -33,10 +33,12 @@ public class BridgeController {
     public void play() {
         initBridgeGame();
 
-        StageResult stageResult = StageResult.PASS;
+        try {
+            while(true) {
+                processGame();
+            }
+        } catch (IllegalArgumentException e) {
 
-        while (stageResult == StageResult.PASS) {
-            processGame();
         }
     }
 
