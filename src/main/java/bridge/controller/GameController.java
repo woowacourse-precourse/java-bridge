@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.model.GameResultDto;
 import bridge.model.PassingSpace;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,6 +17,7 @@ public class GameController {
     }
 
     public void run(BridgeGame bridgeGame) {
+        outputView.printStartGame();
         do {
             runRound(bridgeGame);
         } while (continueGame(bridgeGame));
@@ -30,9 +32,8 @@ public class GameController {
     }
 
     private void printResult(BridgeGame bridgeGame) {
-        String drawing = bridgeGame.drawPassingSpace();
-        boolean isSuccess = bridgeGame.isSuccessCrossingBridge();
-        outputView.printResult(drawing, isSuccess, bridgeGame.getNumberOfTry());
+        GameResultDto gameResult = bridgeGame.getGameResult();
+        outputView.printResult(gameResult);
     }
 
     private String selectRetryGame() {
@@ -52,10 +53,10 @@ public class GameController {
             moving = selectMoving();
             bridgeGame.move(moving);
             outputView.printMap(bridgeGame.drawPassingSpace());
-        } while (continueRound(bridgeGame, moving));
+        } while (continueRound(bridgeGame));
     }
 
-    private boolean continueRound(BridgeGame bridgeGame, String moving) {
+    private boolean continueRound(BridgeGame bridgeGame) {
         return bridgeGame.isRightSpace() && !bridgeGame.isSuccessCrossingBridge();
     }
 

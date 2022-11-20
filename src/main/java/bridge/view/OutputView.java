@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.GameResultDto;
+
 public class OutputView {
     public void printStartGame() {
         System.out.println(Constants.START_GAME_OUTPUT);
@@ -21,11 +23,11 @@ public class OutputView {
         System.out.println(map);
     }
 
-    public void printResult(String map, boolean isSuccess, int numberOfTry) {
+    public void printResult(GameResultDto gameResultDto) {
         printFinalGameResult();
-        printMap(map);
-        printSuccess(isSuccess);
-        printNumberOfTry(numberOfTry);
+        printMap(gameResultDto.getMap());
+        printSuccess(gameResultDto.isSuccess());
+        printNumberOfTry(gameResultDto.getNumberOfTry());
     }
 
     private void printFinalGameResult() {

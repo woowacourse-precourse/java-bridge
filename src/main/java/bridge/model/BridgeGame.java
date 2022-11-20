@@ -32,7 +32,7 @@ public class BridgeGame {
         return passingSpace.toString();
     }
 
-    public void judgeSuccessMoving(String selectedSpace) {
+    private void judgeSuccessMoving(String selectedSpace) {
         Movable movable = bridge.compareSpace(position, selectedSpace);
         isRightSpace =  movable.isMovable();
     }
@@ -51,8 +51,10 @@ public class BridgeGame {
         return bridge.size() == position && isRightSpace;
     }
 
-    public int getNumberOfTry() {
-        return numberOfTry;
+    public GameResultDto getGameResult() {
+        String passingSpace = drawPassingSpace();
+        boolean isSuccess = isSuccessCrossingBridge();
+        return new GameResultDto(passingSpace, isSuccess, numberOfTry);
     }
 
     public boolean isRightSpace() {
