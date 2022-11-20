@@ -64,6 +64,13 @@ public class BridgeController {
     }
 
     private String inputGameRestart() {
+        try {
+            OutputView.printInputRestart();
+            return InputView.inputGameReStart();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            inputGameRestart();
+        }
         return null;
     }
 
