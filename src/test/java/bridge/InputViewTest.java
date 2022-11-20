@@ -17,4 +17,12 @@ public class InputViewTest {
         System.setIn(in);
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ValueSource(strings = {"123", "DU", "DD", "ABCabc"})
+    @ParameterizedTest
+    void 다리선택_입력값_유효섬_검사(String input){
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
 }
