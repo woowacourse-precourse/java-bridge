@@ -1,10 +1,13 @@
 package bridge;
 
-import org.junit.jupiter.api.Test;
-
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class OutputTest {
+import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.Test;
+
+
+public class OutputTest extends NsTest{
 
     @Test
     void 사용자_위치_값확인_로직_테스트() {
@@ -26,5 +29,22 @@ public class OutputTest {
 
         check = 2;
         assertThat(check).isEqualTo(2);
+    }
+
+    @Test
+    void 위쪽다리에서_사용자결정_유효한지_테스트() {
+        assertSimpleTest(() -> {
+            OutputView outputView = new OutputView();
+            String userDecision = "U";
+            boolean checkDirection = true;
+
+            outputView.printWhetherUserDecisionIsCorrectInUpperBridge(userDecision,checkDirection);
+            assertThat(output()).contains("O");
+        });
+    }
+
+    @Override
+    protected void runMain() {
+        Application.main(new String[]{});
     }
 }

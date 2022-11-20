@@ -36,6 +36,7 @@ public class BridgeGame {
         if(checkBridgeValueInUserPosition(user, moving, bridge) && user.getUserPosition() == size){
             return true;
         }
+        System.out.println("???");
         return false;
     }
 }

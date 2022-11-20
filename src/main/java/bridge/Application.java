@@ -23,8 +23,8 @@ public class Application {
             if(checkDirection){
                 if(bridgeGame.checkGameIsOver(user, direction, size, bridge)){
                     outputView.printResult();
+                    System.out.print("DASDF");
                     break;
-
                 }
             }else{
                 if(inputView.readGameCommand() == "R") {
