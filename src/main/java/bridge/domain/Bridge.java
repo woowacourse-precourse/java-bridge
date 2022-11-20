@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Bridge {
 
-    private int size;
-    private List<String> bridgeLoad;
+    private static int size;
+    private static List<String> bridgeLoad;
 
 
     public void setBridgeSize(int size){
@@ -20,7 +20,7 @@ public class Bridge {
         this.bridgeLoad = bridgeLoad;
     }
 
-    public List<String> getBridgeLoad(List<String> bridgeLoad){
+    public List<String> getBridgeLoad(){
         return this.bridgeLoad;
     }
 }
