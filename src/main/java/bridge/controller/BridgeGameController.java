@@ -42,7 +42,7 @@ public class BridgeGameController {
 		while (startGame && bridgeGame.isNotFinish(progressMap)) {
 			crossBridge(bridgeGame);
 			if (progressMap.isMoveFailed()) {
-				startGame = failBridgeMove(bridgeGame);
+				startGame = bridgeGame.retry(askRetry());
 			}
 		}
 	}
@@ -82,7 +82,6 @@ public class BridgeGameController {
 
 	private boolean failBridgeMove(BridgeGame bridgeGame) {
 		if (askRetry()) {
-			bridgeGame.retry();
 			return true;
 		}
 		return false;

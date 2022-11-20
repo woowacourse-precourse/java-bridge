@@ -28,8 +28,12 @@ public class BridgeGame {
 		return bridge.size();
 	}
 
-	public void retry() {
-		repeatCount++;
+	public boolean retry(boolean userChoice) {
+		if (userChoice) {
+			repeatCount++;
+			return true;
+		}
+		return false;
 	}
 
 	public int getRepeatCount() {
