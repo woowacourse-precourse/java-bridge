@@ -38,9 +38,22 @@ public class BridgeGame {
 	 * <p>
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void move(Stairs stairs, boolean isEquals) {
-		List<String> footPrints = FootPrint.makeFootPrints(stairs.getNumber(), isEquals);
+	public void move(String square, Stairs stairs) {
+		result.chooseStairs(stairs.isEquals(square));
+		List<String> footPrints = FootPrint.makeFootPrints(stairs.getNumber(), result.isRightChoice());
 		map.drawMap(footPrints);
+	}
+
+	public boolean isRightStairs() {
+		return result.isRightChoice();
+	}
+
+	public void changeResultToFail() {
+		result.changeResultToFail();
+	}
+
+	public boolean isLose() {
+		return result.isGameLose();
 	}
 
 	/**
@@ -50,14 +63,6 @@ public class BridgeGame {
 	 */
 	public boolean retry(ExitOption exitOption) {
 		return exitOption.isReplay();
-	}
-
-	public void changeResultToFail() {
-		result.changeResultToFail();
-	}
-
-	public boolean isLose() {
-		return result.isGameLose();
 	}
 
 	public Map getMap() {
