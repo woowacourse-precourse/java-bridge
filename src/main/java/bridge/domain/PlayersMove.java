@@ -19,7 +19,7 @@ public class PlayersMove {
         return playersMove;
     }
 
-    public String getPlayersMoveAtIdx(int idx) {
-        return playersMove.get(idx);
+    public String getPlayersMoveAtIdx(int moveIdx) {
+        return playersMove.get(moveIdx);
     }
 }

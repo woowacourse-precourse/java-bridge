@@ -22,7 +22,7 @@ public class Bridge {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public String getBridgeMove(int idx) {
-        return bridge.get(idx);
+    public String getBridgeMove(int moveIdx) {
+        return bridge.get(moveIdx);
     }
 }

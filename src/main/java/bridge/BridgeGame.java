@@ -31,8 +31,8 @@ public class BridgeGame {
 
     public List<Boolean> matchResults() {
         List<Boolean> matchRecord = new ArrayList<>(moveCount);
-        for (int i = 0; i < moveCount; i++) {
-            boolean match = isMatch(bridge.getBridgeMove(i), playersMove.getPlayersMoveAtIdx(i));
+        for (int moveIdx = 0; moveIdx < moveCount; moveIdx++) {
+            boolean match = isMatch(bridge.getBridgeMove(moveIdx), playersMove.getPlayersMoveAtIdx(moveIdx));
             matchRecord.add(match);
         }
         return matchRecord;
