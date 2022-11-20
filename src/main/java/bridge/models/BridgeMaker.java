@@ -4,13 +4,7 @@ import bridge.utils.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- * BridgeMaker의 필드(인스턴스 변수)를 변경할 수 없다.
- * BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
- */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -21,10 +15,11 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
+    // TODO bridgeNumberGenerator 단위 테스트 구현 어떻게? - 테스트 어려운 부분 분리하기
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridge.add(BridgeDirection.numberToCapital(bridgeNumberGenerator.generate()));
+            bridge.add(BridgeDirection.getDirection(bridgeNumberGenerator.generate()).getCapital());
         }
         return bridge;
     }
