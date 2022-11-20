@@ -23,23 +23,20 @@ public class GameController {
         System.out.println("다리 건너기 게임을 시작합니다.");
         int input = inputView.readBridgeSize();
         bridgeGame.setBridgeSize(input);
-        List<String> bridge = bridgeMaker.makeBridge(input);
-        bridgeGame.setBridge(bridge);
+        bridgeGame.setBridge(bridgeMaker.makeBridge(input));
     }
 
     public void RUNPROCESS() {
         bridgeGame.increaseGameCount();
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
-            String input = inputView.readMoving();
             List<String> bridge = bridgeGame.getBridge();
             List<Boolean> matchResult = bridgeGame.getMatchResult();
+            String input = inputView.readMoving();
             boolean match = bridge.get(i).equals(input);
             matchResult.add(match);
             bridgeGame.setMatchResult(matchResult);
             printBridge(matchResult, bridge);
-            if (!match) {
-                break;
-            }
+            if (!match) { break; }
             if (i == bridgeGame.getBridgeSize() - 1) {
                 bridgeGame.gameSuccecs();
             }
@@ -47,72 +44,49 @@ public class GameController {
     }
 
     public boolean SELECTRESTART() {
-        String input = inputView.readGameCommand();
-        if (input.equals("R")) {
+        if (inputView.readGameCommand().equals("R")) {
             bridgeGame.setMatchResult(new ArrayList<>());
+            return true;
         }
-        return input.equals("R");
+        return false;
     }
 
     public void STOPGAME() {
         System.out.println("최종 게임 결과");
         printBridge(bridgeGame.getMatchResult(),bridgeGame.getBridge());
         String success = "성공";
-        if (!bridgeGame.isSuccecs()) {
-            success = "실패";
-        }
-        System.out.println("게임 성공 여부: "+success);
-        System.out.println("총 시도한 횟수: "+bridgeGame.getGameCount());
+        if (!bridgeGame.isSuccecs()) { success = "실패"; }
+        System.out.println("게임 성공 여부: "+ success);
+        System.out.println("총 시도한 횟수: "+ bridgeGame.getGameCount());
     }
 
     public void printBridge(List<Boolean> matchResult, List<String> bridge) {
-        // 첫째줄 출력
-        for (int i = 0; i < matchResult.size(); i++) {
-            if (i == 0) {
-                System.out.print("[");
-            }
-            if (bridge.get(i).equals("U") && matchResult.get(i)) {
-                    System.out.print(" O ");
-            }
-            if (bridge.get(i).equals("U") && !matchResult.get(i)) {
-                    System.out.print("   ");
-            }
-            if (bridge.get(i).equals("D") && !matchResult.get(i)) {
-                System.out.print(" X ");
-            }
-            if (bridge.get(i).equals("D") && matchResult.get(i)) {
-                System.out.print("   ");
-            }
-            if (i == matchResult.size()-1) {
-                System.out.println("]");
-                break;
-            }
-            System.out.print("|");
-        }
-        // 둘째줄 출력
-        for (int i = 0; i < matchResult.size(); i++) {
-            if (i == 0) {
-                System.out.print("[");
-            }
-            if (bridge.get(i).equals("D") && matchResult.get(i)) {
-                System.out.print(" O ");
-            }
-            if (bridge.get(i).equals("D") && !matchResult.get(i)) {
-                System.out.print("   ");
-            }
-            if (bridge.get(i).equals("U") && !matchResult.get(i)) {
-                System.out.print(" X ");
-            }
-            if (bridge.get(i).equals("U") && matchResult.get(i)) {
-                System.out.print("   ");
-            }
-            if (i == matchResult.size()-1) {
-                System.out.println("]\n");
-                break;
-            }
-            System.out.print("|");
-        }
+        System.out.print("[");
+        printBridgeCell(matchResult,bridge,"U");
+        System.out.println("]");
+        System.out.print("[");
+        printBridgeCell(matchResult,bridge,"D");
+        System.out.println("]");
+    }
 
+    public void printBridgeCell(List<Boolean> matchResult, List<String> bridge, String way) {
+        for (int i = 0; i < matchResult.size(); i++) {
+            printBridgeCellLoop(matchResult,bridge,way,i);
+        }
+    }
+
+    public void printBridgeCellLoop(List<Boolean> matchResult, List<String> bridge, String way, int i) {
+        if (bridge.get(i).equals(way)) {
+            String correct = " O ";
+            if (!matchResult.get(i)) { correct = "   "; }
+            System.out.print(correct);
+        }
+        if (!bridge.get(i).equals(way)) {
+            String wrong = " X ";
+            if (matchResult.get(i)) { wrong = "   "; }
+            System.out.print(wrong);
+        }
+        if (i != matchResult.size()-1) { System.out.print("|"); }
     }
 
 }

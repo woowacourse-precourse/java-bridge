@@ -23,11 +23,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            if (bridgeNumberGenerator.generate() == 1) {
-                bridge.add("U");
-                continue;
-            }
-            bridge.add("D");
+            String way = "D";
+            if (bridgeNumberGenerator.generate() == 1) { way = "U"; }
+            bridge.add(way);
         }
         return bridge;
     }
