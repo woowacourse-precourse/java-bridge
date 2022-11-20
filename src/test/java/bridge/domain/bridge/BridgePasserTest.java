@@ -59,4 +59,25 @@ class BridgePasserTest {
             bridgePasser.move();
         }).isInstanceOf(IllegalStateException.class);
     }
+
+    @Test
+    void 다리가_끝났는지_테스트() {
+        bridgePasser.move();
+        bridgePasser.move();
+        bridgePasser.move();
+        bridgePasser.move();
+
+        boolean actual = bridgePasser.isBridgeEnd();
+        assertThat(actual).isTrue();
+    }
+
+    @Test
+    void 다리가_끝나지않았는지_테스트() {
+        bridgePasser.move();
+        bridgePasser.move();
+        bridgePasser.move();
+
+        boolean actual = bridgePasser.isBridgeEnd();
+        assertThat(actual).isFalse();
+    }
 }
