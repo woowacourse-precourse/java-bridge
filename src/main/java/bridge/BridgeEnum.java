@@ -20,6 +20,13 @@ public enum BridgeEnum {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 정보입니다."));
     }
 
+    public static BridgeEnum createBridgeStringType(String location) {
+        return Arrays.stream(values())
+                .filter(locationValue -> locationValue.bridgeStringType.equals(location))
+                .findFirst()
+                .orElseThrow();
+    }
+
     public String getStringType() {
         return bridgeStringType;
     }
