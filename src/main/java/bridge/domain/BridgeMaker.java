@@ -1,8 +1,8 @@
 package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
 import bridge.constants.ErrorMessages;
 import bridge.domain.enums.Direction;
-import bridge.domain.generator.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 

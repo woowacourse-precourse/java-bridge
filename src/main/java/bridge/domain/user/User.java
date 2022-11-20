@@ -1,5 +1,6 @@
-package bridge.domain;
+package bridge.domain.user;
 
+import bridge.domain.Bridge;
 import bridge.domain.enums.Direction;
 
 public class User {

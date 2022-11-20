@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.user;
 
 public class UserData {
 

@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.domain.enums.Direction;
 import bridge.domain.enums.GameCommand;
 import bridge.domain.enums.GameStatus;
+import bridge.domain.user.User;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
