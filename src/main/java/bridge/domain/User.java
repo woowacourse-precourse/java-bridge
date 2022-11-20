@@ -17,7 +17,7 @@ public class User {
         setTryCount(this.tryCount + 1);
     }
 
-    public void gameWin(){
+    public void gameWin() {
         setSuccess();
     }
 
@@ -29,7 +29,11 @@ public class User {
         return isSuccess;
     }
 
-    public void setGameOver() {
+    public void gameOver() {
+        setGameOver();
+    }
+
+    private void setGameOver() {
         gameOver = true;
     }
 
