@@ -21,10 +21,6 @@ public enum MoveCommand {
                 .anyMatch(cmd -> cmd.command.equals(status));
     }
 
-    public String getCommand() {
-        return command;
-    }
-
     public static String of(int code) {
         for (MoveCommand move : values()) {
             if (move.code == code) {
