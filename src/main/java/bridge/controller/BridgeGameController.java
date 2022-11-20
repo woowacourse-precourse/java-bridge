@@ -40,12 +40,12 @@ public class BridgeGameController {
                 continue;
             }
             if(bridgeGame.getStatus() == BridgeGame.Status.FAIL) {
-                RestartInfo gameCommand = getAndProcessGameCommandInput();
-                if(gameCommand == RestartInfo.RETRY) {
+                GameCommand gameCommand = getAndProcessGameCommandInput();
+                if(gameCommand == GameCommand.RETRY) {
                     bridgeGame.retry();
                     continue;
                 }
-                if(gameCommand == RestartInfo.QUIT) {
+                if(gameCommand == GameCommand.QUIT) {
                     willRetry = false;
                 }
             }
@@ -54,7 +54,7 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame);
     }
 
-    private RestartInfo getAndProcessGameCommandInput() {
+    private GameCommand getAndProcessGameCommandInput() {
         outputView.printRetryInputAlert();
         return inputView.readGameCommand();
     }

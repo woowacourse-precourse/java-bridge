@@ -1,6 +1,7 @@
 package bridge.controller;
 
-import bridge.domain.*;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeLane;
 
 public class OutputView {
     private final String GAME_START_ALERT = "다리 건너기 게임을 시작합니다.";
@@ -47,36 +48,36 @@ public class OutputView {
     }
 
     public void printMap(BridgeGame bridgeGame) {
-        System.out.println(getBridgeMovementText(bridgeGame));
+        System.out.println(getMovementText(bridgeGame));
     }
 
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(LAST_MOVEMENT_RESULT_LABEL);
-        System.out.println(getBridgeMovementText(bridgeGame));
+        System.out.println(getMovementText(bridgeGame));
         System.out.println(getIfIsSuccessText(bridgeGame));
         System.out.println(getTryCountText(bridgeGame));
     }
 
-    private String getBridgeMovementText(BridgeGame bridgeGame) {
+    private String getMovementText(BridgeGame bridgeGame) {
         StringBuilder output = new StringBuilder();
         BridgeLane[] lineSpots = BridgeLane.values();
         for (BridgeLane lineSpot : lineSpots) {
-            output.append(getOneLineTextOnBridgeMovement(bridgeGame, lineSpot));
+            output.append(getOneLaneMovementText(bridgeGame, lineSpot));
             output.append("\n");
         }
         return output.toString();
     }
 
-    private String getOneLineTextOnBridgeMovement(BridgeGame bridgeGame, BridgeLane line) {
-        StringBuilder oneLineOnBridge = new StringBuilder("[");
+    private String getOneLaneMovementText(BridgeGame bridgeGame, BridgeLane bridgeLane) {
+        StringBuilder output = new StringBuilder("[");
         for(int i = 1; i <= bridgeGame.getCurrentPosition(); i++) {
-            oneLineOnBridge.append(getSpotText(bridgeGame, i, line));
+            output.append(getSpotText(bridgeGame, i, bridgeLane));
             if(i != bridgeGame.getCurrentPosition()) {
-                oneLineOnBridge.append("|");
+                output.append("|");
             }
         }
-        oneLineOnBridge.append("]");
-        return oneLineOnBridge.toString();
+        output.append("]");
+        return output.toString();
     }
 
     private String getIfIsSuccessText(BridgeGame bridgeGame) {
