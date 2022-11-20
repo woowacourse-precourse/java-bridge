@@ -166,4 +166,17 @@ class BridgeGameTest {
             assertThat(isSuccess).isFalse();
         }
     }
+
+    @DisplayName("이동 현황을 반환한다.")
+    @Test
+    void should_ReturnBridgePicture_When_RequestToGet() {
+        // given
+        bridgeGame.move(UPPER_SIDE);
+        bridgeGame.move(LOWER_SIDE);
+        bridgeGame.move(UPPER_SIDE);
+        // when
+        String bridgePicture = bridgeGame.getPicture();
+        // then
+        assertThat(bridgePicture).isEqualTo("[ O |   | O ]" + "\n" + "[   | O |   ]");
+    }
 }
