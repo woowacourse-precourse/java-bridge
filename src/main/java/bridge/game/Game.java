@@ -35,4 +35,14 @@ public class Game {
         this.bridgeGame = new BridgeGame(bridge);
     }
 
+    public void playBridgeGame() {
+        while (!bridgeGame.getBridgeGameStatus()
+                .isContinue()) {
+            this.outputView.printInputMove();
+            this.bridgeGame.move(this.inputView.readMoving());
+            this.outputView.printMap(this.bridgeGame.getBridgeResults());
+            System.out.println();
+        }
+    }
+
 }
