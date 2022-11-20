@@ -77,4 +77,17 @@ public class OutputView {
             }
         }
     }
+
+    public void printSuccess(List<String> bridge, int step){
+        if(bridge.size() == step){
+            System.out.println("게임 성공 여부 : 성공");
+        }
+        if(bridge.size() != step){
+            System.out.println("게임 성공 여부 : 실패");
+        }
+    }
+
+    public void printTryCount(int count){
+        System.out.println("총 시도한 횟수: " + count);
+    }
 }
