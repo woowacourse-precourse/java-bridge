@@ -1,6 +1,8 @@
 package bridge.view;
 
+import bridge.constant.BridgeDirection;
 import bridge.constant.OutputMessage;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +16,68 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridgeDirections, List<String> userMoveHistory) {
+        String upDirectionMap = makeUpDirectionMap(bridgeDirections, userMoveHistory);
+        String downDirectionMap = makeDownDirectionMap(bridgeDirections, userMoveHistory);
+        System.out.println(convertToPrintFormat(upDirectionMap));
+        System.out.println(convertToPrintFormat(downDirectionMap));
+    }
 
+    private String makeUpDirectionMap(List<String> bridgeDirections, List<String> userMoveHistory) {
+        List<String> map = new ArrayList<>();
+        for (int i = 0; i < userMoveHistory.size(); i++) {
+            if (!bridgeDirections.get(i).equals(BridgeDirection.UP.getFirstLetter())) {
+                map.add(" ");
+                continue;
+            }
+            map.add(makeStatus(bridgeDirections.get(i), userMoveHistory.get(i)));
+        }
+        return map.toString();
+    }
+
+    private String makeDownDirectionMap(List<String> bridgeDirections, List<String> userMoveHistory) {
+        List<String> map = new ArrayList<>();
+        for (int i = 0; i < userMoveHistory.size(); i++) {
+            if (!bridgeDirections.get(i).equals(BridgeDirection.DOWN.getFirstLetter())) {
+                map.add(" ");
+                continue;
+            }
+            map.add(makeStatus(bridgeDirections.get(i), userMoveHistory.get(i)));
+        }
+        return map.toString();
+    }
+
+    private String makeStatus(String bridgeDirection, String userDirection) {
+        if (userDirection.equals(bridgeDirection)) {
+            return OutputMessage.MOVE_SUCCESS.getMessage();
+        }
+        return OutputMessage.MOVE_FAIL.getMessage();
+    }
+
+    private String convertToPrintFormat(String output) {
+        output = openBracketConvertToPrintFormat(output);
+        output = convertToSeparator(output);
+        return closeBracketConvertToPrintFormat(output);
+    }
+
+    private String openBracketConvertToPrintFormat(String output) {
+        return output.replaceAll(
+                OutputMessage.OPEN_BRACKET.getMessage(),
+                OutputMessage.OPEN_BRACKET.getMessage() + OutputMessage.EMPTY_SPACING.getMessage()
+        );
+    }
+
+    private String convertToSeparator(String output) {
+        return output.replaceAll(
+                OutputMessage.COMMA.getMessage(),
+                OutputMessage.EMPTY_SPACING.getMessage() + OutputMessage.SEPARATOR.getMessage()
+        );
+    }
+
+    private String closeBracketConvertToPrintFormat(String output) {
+        return output.replaceAll(
+                OutputMessage.CLOSE_BRACKET.getMessage(),
+                OutputMessage.EMPTY_SPACING.getMessage() + OutputMessage.CLOSE_BRACKET.getMessage()
+        );
     }
 
     /**
