@@ -20,7 +20,7 @@
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 ### 기능 목록
-- 다리의 길이를 입력 받는다.
+- 다리의 길이를 입력 받는다. 이때 정수가 아닌 값을 입력 받으면 예외처리 한다. - InputView#readBridgeSize()
 - 입력 받은 다리의 길이의 다리를 생성한다.
 
 - 사용자가 이동할 칸을 입력 받는다.
