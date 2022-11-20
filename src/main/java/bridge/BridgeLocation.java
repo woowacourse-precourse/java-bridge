@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum BridgeLocation {
-    DOWN("D", 1),
-    UP("U", 0);
+    DOWN("D", 0),
+    UP("U", 1);
 
     private final String signature;
     private final int generateValue;
@@ -13,8 +13,8 @@ public enum BridgeLocation {
     private static Map<Integer, String> mapToSignature = new HashMap<>();
 
     static {
-        mapToSignature.put(1, "D");
-        mapToSignature.put(0, "U");
+        mapToSignature.put(0, "D");
+        mapToSignature.put(1, "U");
     }
 
     BridgeLocation(String signature, int generateValue) {
