@@ -62,7 +62,23 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void readGameCommand() {
+    @ParameterizedTest
+    @CsvSource(value = {"R,R", "Q,Q"})
+    void readGameCommandSuccessTest(String input, String expected) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        assertThat(inputView.readGameCommand())
+                .isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "A"})
+    void readGameCommandSuccessTest(String input) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
