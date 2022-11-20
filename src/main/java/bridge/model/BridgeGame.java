@@ -30,7 +30,10 @@ public class BridgeGame {
     public GameStatus move(BridgeType bridgeType) {
         GameStatus gameStatus = getGameStatus(bridgeType);
         bridgeMoveLog.writeLog(bridgeType, gameStatus.getSafe());
+        return judgeGameStatus(gameStatus);
+    }
 
+    private GameStatus judgeGameStatus(GameStatus gameStatus) {
         if (movePosition == bridge.size() && gameStatus == GameStatus.CROSSING) {
             return GameStatus.SUCCESS;
         }
