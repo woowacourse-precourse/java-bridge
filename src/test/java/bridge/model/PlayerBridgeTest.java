@@ -20,7 +20,7 @@ class PlayerBridgeTest {
     @Test
     void 위_칸으로_이동_가능할_때_위_칸으로_이동() {
         List<String> expectedUpShape = List.of(" O ");
-        List<String> expectedDownShape = List.of("  ");
+        List<String> expectedDownShape = List.of("   ");
         String inputNextStep = "U";
         boolean canMove = true;
         playerBridge.moveNextStep(inputNextStep, canMove);
@@ -34,7 +34,7 @@ class PlayerBridgeTest {
     @Test
     void 위_칸으로_이동_불가능할_때_위_칸으로_이동() {
         List<String> expectedUpShape = List.of(" X ");
-        List<String> expectedDownShape = List.of("  ");
+        List<String> expectedDownShape = List.of("   ");
         String inputNextStep = "U";
         boolean canMove = false;
         playerBridge.moveNextStep(inputNextStep, canMove);
@@ -47,7 +47,7 @@ class PlayerBridgeTest {
 
     @Test
     void 아래_칸으로_이동_가능할_때_아래_칸으로_이동() {
-        List<String> expectedUpShape = List.of("  ");
+        List<String> expectedUpShape = List.of("   ");
         List<String> expectedDownShape = List.of(" O ");
         String inputNextStep = "D";
         boolean canMove = true;
@@ -61,7 +61,7 @@ class PlayerBridgeTest {
 
     @Test
     void 아래_칸으로_이동_불가능할_때_아래_칸으로_이동() {
-        List<String> expectedUpShape = List.of("  ");
+        List<String> expectedUpShape = List.of("   ");
         List<String> expectedDownShape = List.of(" X ");
         String inputNextStep = "D";
         boolean canMove = false;
