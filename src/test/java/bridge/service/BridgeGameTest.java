@@ -25,6 +25,7 @@ class BridgeGameTest {
         List<String> answer = List.of("U", "D", "U", "D");
         bridgeGame.createBridge(answer);
         bridgeGame.createBridgeMap();
+        bridgeGame.createPlayer();
 
     }
 
@@ -130,7 +131,32 @@ class BridgeGameTest {
     void success() {
     }
 
-    @Test
-    void retry() {
+    @DisplayName("retry 'R'입력 테스트(BridgeMap 초기화)")
+    @ParameterizedTest
+    @CsvSource(value = {"U:R"}, delimiter = ':')
+    void retry_R(String move, String retry) {
+        //Given
+        int expectSize = 0;
+        //When
+        bridgeGame.move(move);
+        bridgeGame.retry(retry);
+
+        //Then
+        assertThat(bridgeGame.getBridgeMap().getUpMap().size()).isEqualTo(expectSize);
+    }
+
+    @DisplayName("retry 'Q'입력 테스트(BridgeMap 초기화)")
+    @ParameterizedTest
+    @CsvSource(value = {"U:Q"}, delimiter = ':')
+    void retry_Q(String move, String retry) {
+        //Given
+        int expectSize = 1;
+        String expectAnswer = "Q";
+        //When
+        bridgeGame.move(move);
+        bridgeGame.retry(retry);
+        //Then
+        assertThat(bridgeGame.getBridgeMap().getUpMap().size()).isEqualTo(expectSize);
+        assertThat(bridgeGame.getPlayer().getAnswer()).isEqualTo(expectAnswer);
     }
 }
