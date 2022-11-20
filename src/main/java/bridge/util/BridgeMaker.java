@@ -27,6 +27,12 @@ public class BridgeMaker {
 
     }
 
+
+    private String changeValueToCommand(int value){
+        if(value == UPPER.getValue()) return UPPER.getCommand();
+        return LOWER.getCommand();
+    }
+
     private int chooseSideOfBridge(){
         return bridgeNumberGenerator.generate();
     }
