@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -12,14 +14,33 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String moving) {
+    public String move(List<String> up_bridge, List<String> down_bridge) {
         // 사용자가 이동할 칸 moving, 다리 index
-        String result = "   ";
-        if (moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index)) && moving.equals("U")){
-            result = " O ";
+        InputView input = new InputView();
+        String moving = input.readMoving();
+        String result = "";
+
+        if (moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index))){
+            if (moving.equals("U")){
+                up_bridge.add(" O ");
+                down_bridge.add("   ");
+            }
+            if (moving.equals("D")){
+                up_bridge.add("   ");
+                down_bridge.add(" O ");
+            }
+            result = "O";
         }
-        if (moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index)) && moving.equals("D")){
-            result = " X ";
+        if (!(moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index)))){
+            if (moving.equals("U")){
+                up_bridge.add(" X ");
+                down_bridge.add("   ");
+            }
+            if (moving.equals("D")){
+                up_bridge.add("   ");
+                down_bridge.add(" X ");
+            }
+            result = "X";
         }
         return result;
     }
