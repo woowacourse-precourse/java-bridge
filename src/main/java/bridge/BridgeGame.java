@@ -8,19 +8,28 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static List<String> bridgeList = new ArrayList<>();
     private final BridgeRandomNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     
+    private List<String> bridgeList = new ArrayList<>();
     private List<String> bridgeStatus = new ArrayList<>();
     private boolean flag = false;
     private int count = 1;
+    private int size;
+
+    /**
+     * size의 Setter 메서드
+     */
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     /**
      * 사용자가 게임을 시작할 때 사용하는 메서드
      */
     public void makeBridgeGame(int size){
-        bridgeList = bridgeMaker.makeBridge(size);
+        setSize(size);
+        bridgeList = bridgeMaker.makeBridge(this.size);
     }
 
     /**
