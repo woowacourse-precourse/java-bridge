@@ -39,10 +39,24 @@ public class BridgeGameService {
         }
     }
 
+    public void setEndMessage() {
+        String endMessage = "최종 게임 결과\n";
+        String endResult = mergeBride;
+        String endCheck = "게임 성공 여부 " + endCheckStatus(gameStatus.getMatchCorrect());
+        String endCount = Integer.toString(gameStatus.getGameCount());
+        this.endMessage = endMessage + endResult + endCheck + endCount;
+    }
+
     public String getEndMessage(){
         return this.endMessage;
     }
 
+    private String endCheckStatus(boolean isCorrect){
+        if (isCorrect){
+            return "성공\n";
+        }
+            return "실패\n";
+    }
     private String makeMergeBridge(List<String> bridgeLoad, List<String> userMove) {
         ArrayList<String> checkList = new ArrayList<>();
         for (int i = 0; i < userMove.size(); i++) {
@@ -108,7 +122,7 @@ public class BridgeGameService {
                 returnMessage += " | ";
             }
         }
-        returnMessage += " ]\n";
+        returnMessage += " ]\n\n";
         return returnMessage;
     }
 
