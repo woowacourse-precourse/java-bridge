@@ -67,7 +67,7 @@ public class OutputView {
         }
         return "   ]";
     }
-    ///////////
+
     public String makeSecondLine(BridgeGame bridgeGame) {
         if(bridgeGame.getCurrentPosition() == 0) {
             return makeSecondLinePositionIsZero(bridgeGame);
