@@ -30,5 +30,9 @@ public class OutputView {
     public void printRetryCommand(String retryCommand) {
         System.out.println(retryCommand);
     }
+
+    public void printFinalResult() {
+        System.out.println(GameMessage.GAME_FINAL_RESULT.getMessage());
+    }
 }
 
