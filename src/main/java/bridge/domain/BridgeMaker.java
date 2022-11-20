@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.domain.GameBridge.makeUpDown;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i< size; i++) {
-            bridge.add(String.valueOf(bridgeNumberGenerator.generate()));
+            bridge.add(makeUpDown(bridgeNumberGenerator.generate()));
         }
         return bridge;
     }
