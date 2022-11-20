@@ -42,13 +42,25 @@ public class BridgeGameProcessor {
     }
 
     private boolean isRetry(BridgeGame bridgeGame) {
-        outputView.printGameCommandSelectionMessage();
-        return bridgeGame.retry(inputView.readGameCommand());
+        while (true) {
+            try {
+                outputView.printGameCommandSelectionMessage();
+                return bridgeGame.retry(inputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private boolean isMoving(BridgeGame bridgeGame) {
-        outputView.printPositionSelectionMessage();
-        return bridgeGame.move(inputView.readMoving());
+        while (true) {
+            try {
+                outputView.printPositionSelectionMessage();
+                return bridgeGame.move(inputView.readMoving());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private BridgeGame setBridgeGame(Bridge bridge) {
@@ -56,7 +68,13 @@ public class BridgeGameProcessor {
     }
 
     private Bridge setBridge() {
-        outputView.printBridgeSizeInputMessage();
-        return new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        while (true) {
+            try {
+                outputView.printBridgeSizeInputMessage();
+                return new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
