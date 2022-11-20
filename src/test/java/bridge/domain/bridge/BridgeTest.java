@@ -74,10 +74,10 @@ class BridgeTest {
 
     @Test
     void 불변_테스트() {
-        List<BridgeCharacter> bridgeValue = bridge.bridge();
+        List<BridgeCharacter> bridgeValue = bridge.characters();
         bridgeValue.set(0, null);
 
-        BridgeCharacter actual = bridge.bridge().get(0);
+        BridgeCharacter actual = bridge.characters().get(0);
 
         assertThat(actual).isNotNull();
     }

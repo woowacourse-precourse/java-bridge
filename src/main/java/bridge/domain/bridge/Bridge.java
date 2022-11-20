@@ -35,7 +35,7 @@ public class Bridge {
         return bridge.get(bridgeLocation.value()).equals(bridgeCharacter);
     }
 
-    public List<BridgeCharacter> bridge() {
+    public List<BridgeCharacter> characters() {
         return new ArrayList<>(bridge);
     }
 }
