@@ -10,7 +10,7 @@ public class InputValidator {
     private static final int MAX_SIZE = 20;
     private static final Pattern BLOCK_FORMAT = Pattern.compile("^[UD]$");
     private static final Pattern GAME_RETRY_FORMAT = Pattern.compile("^[RQ]$");
-    private static final int SPACE_LENGTH = 1;
+    private static final int BLOCK_LENGTH = 1;
 
 
     private InputValidator() {
@@ -54,8 +54,8 @@ public class InputValidator {
         }
     }
 
-    private static void validateOneLength(String space) {
-        if (space.length() != SPACE_LENGTH) {
+    private static void validateOneLength(String input) {
+        if (input.length() != BLOCK_LENGTH) {
             printNotOnlyOneLengthException();
         }
     }
