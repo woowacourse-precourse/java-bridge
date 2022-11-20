@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 
-import static bridge.view.InputView.*;
+import static bridge.constant.BridgeGameConstant.*;
 import static org.assertj.core.api.Assertions.*;
 
 class InputViewTest {

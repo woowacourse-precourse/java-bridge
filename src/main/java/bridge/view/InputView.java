@@ -9,14 +9,6 @@ public class InputView {
     private static final String MOVING_REGEX = "[" + UP_BRIDGE + DOWN_BRIDGE + "]";
     private static final String GAME_COMMAND_REGEX = "[" + RETRY_COMMAND + QUIT_COMMAND + "]";
 
-    static final class ExceptionMessage {
-        static final String PREFIX = "[ERROR] ";
-        static final String INVALID_BRIDGE_SIZE_ONLY_INTEGER = PREFIX + "다리 길이는 정수이어야 합니다.";
-        static final String INVALID_BRIDGE_SIZE_RANGE = PREFIX + "다리 길이는 " + BRIDGE_SIZE_MIN + "부터 " + BRIDGE_SIZE_MAX + " 사이의 값이어야 합니다.";
-        static final String INVALID_MOVING = PREFIX + "이동할 칸은 " + UP_BRIDGE + " 또는 " + DOWN_BRIDGE + " 이어야 합니다.";
-        static final String INVALID_GAME_COMMAND = PREFIX + "게임 재시도 여부는 " + RETRY_COMMAND + " 또는 " + QUIT_COMMAND + " 이어야 합니다.";
-    }
-
     public int readBridgeSize() throws IllegalArgumentException {
         String bridgeSize = Console.readLine();
         validateBridgeSize(bridgeSize);
