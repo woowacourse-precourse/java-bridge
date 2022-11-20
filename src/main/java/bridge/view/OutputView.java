@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세여.(재시도: R, 종료: Q)");
     }
 
-    public void printResultMap() {
+    public void printProgressMap() {
         System.out.println(START_FORM + upState + END_FORM);
         System.out.println(START_FORM + downState + END_FORM);
     }
@@ -47,7 +47,7 @@ public class OutputView {
     public void printMap(int location, boolean pass, String moveUpOrDown) {
         setBoundaryLine(location);
         checkUpOrDown(moveUpOrDown, pass);
-        printResultMap();
+        printProgressMap();
     }
 
     private void setBoundaryLine(int location) {
@@ -98,7 +98,7 @@ public class OutputView {
      */
     public void printResult(User user) {
         System.out.println("\n최종 게임 결과");
-        printResultMap();
+        printProgressMap();
         System.out.println("\n게임 성공 여부: " + isPass(user.isSuccessComplete()));
         System.out.println("총 시도한 횟수: " + user.getTryCount());
     }
