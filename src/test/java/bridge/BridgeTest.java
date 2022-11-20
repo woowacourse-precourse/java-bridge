@@ -25,11 +25,14 @@ public class BridgeTest {
             InputStream is = new ByteArrayInputStream(testStr.getBytes());
             System.setIn(is);
             Bridge bridge = new Bridge();
-            bridge.printRoute();
+
 
             System.out.println(bridge.nextStep());
+            bridge.printRoute();
             System.out.println(bridge.nextStep());
+            bridge.printRoute();
             System.out.println(bridge.nextStep());
+            bridge.printRoute();
             System.out.println(bridge.nextStep());
             System.out.println(bridge.nextStep());
             System.out.println(bridge.nextStep());
