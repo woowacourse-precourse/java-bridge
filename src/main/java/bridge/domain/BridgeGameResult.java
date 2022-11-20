@@ -1,7 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.constant.BridgeComponent;
-import bridge.domain.constant.Direction;
+import bridge.domain.constant.Command;
 import java.util.Objects;
 
 public class BridgeGameResult {
@@ -54,10 +54,10 @@ public class BridgeGameResult {
     }
 
     private void tryMoveBridge(Bridge bridge, int currentPosition, String direction) {
-        if (Objects.equals(direction, Direction.UPPER.toString())) {
+        if (Objects.equals(direction, Command.UPPER.toString())) {
             tryMoveUpperBridge(bridge, currentPosition, direction);
         }
-        if (Objects.equals(direction, Direction.LOWER.toString())) {
+        if (Objects.equals(direction, Command.LOWER.toString())) {
             tryMoveLowerBridge(bridge, currentPosition, direction);
         }
     }

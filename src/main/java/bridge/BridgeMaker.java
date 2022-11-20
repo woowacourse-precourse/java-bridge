@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.constant.Direction;
+import bridge.domain.constant.Command;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +32,8 @@ public class BridgeMaker {
         int bridgeSide = bridgeNumberGenerator.generate();
 
         if (bridgeSide == 0) {
-            return Direction.LOWER.toString();
+            return Command.LOWER.toString();
         }
-        return Direction.UPPER.toString();
+        return Command.UPPER.toString();
     }
 }

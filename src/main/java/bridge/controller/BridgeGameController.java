@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.constant.Command;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.Objects;
@@ -43,7 +44,7 @@ public class BridgeGameController {
     }
 
     private boolean handleRestartAndQuit(String command, BridgeGame bridgeGame, Bridge bridge) {
-        if (Objects.equals(command, "R")) {
+        if (Objects.equals(command, Command.RETRY.toString())) {
             bridgeGame.retry(bridge);
             return false;
         }
