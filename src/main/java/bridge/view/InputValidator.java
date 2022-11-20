@@ -10,6 +10,27 @@ public class InputValidator {
     private static final String NON_DIGIT_CHARACTER = "[^0-9]";
     private static final String NON_ALPHABETIC_CHARACTER = "[^a-zA-Z]";
 
+    public static void gameCommand(String input) {
+        validateBlank(input);
+        validateAlphabeticType(input);
+        validateAnswerToRetry(input.toUpperCase());
+    }
+
+    private static void validateAnswerToRetry(String input) {
+        if (!isUp(input) && !isDown(input)) {
+            throw new IllegalArgumentException("[ERROR] 게임 재개 여부는 \"R\" 또는 \"Q\"만 입력할 수 있습니다.");
+        }
+    }
+
+    private static boolean isRetry(String input) {
+        // 템플릿 메소드(hasSameMeaning)로 분리 & 각 상수는 enum으로 관리해서 이름 명시
+        return input.equals("R");
+    }
+
+    private static boolean isQuit(String input) {
+        return input.equals("Q");
+    }
+
     public static void moving(String input) {
         validateBlank(input);
         validateAlphabeticType(input);
@@ -18,7 +39,7 @@ public class InputValidator {
 
     private static void validateAlphabeticType(String input) {
         if (isNotAlphabetic(input)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 오직 알파벳 형태만 받을 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 오직 알파벳 형태만 입력할 수 있습니다.");
         }
     }
 

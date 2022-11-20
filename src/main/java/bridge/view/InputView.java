@@ -53,10 +53,10 @@ public class InputView {
         System.out.println(ASK_RETRY);
         final String input = Console.readLine();
         try {
-            InputValidator.retry(input);
+            InputValidator.gameCommand(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return retry();
+            return readGameCommand();
         }
         return input.toUpperCase();
     }
