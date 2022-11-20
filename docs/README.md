@@ -51,8 +51,10 @@
   - (3) BridgeMaker
     - makeBridge
       - [] 다리의 길이와 모양에 따른 모양 출력
-      - 예외처리
-        - 올바르지 않은 다리의 길이 입력
+      - checkUpperBridge : 위칸인지 확인 하는 메소드
+    - 예외처리
+      - 올바르지 않은 다리의 길이 입력
+      
 ---
   - (4) BridgeGame
     - move
