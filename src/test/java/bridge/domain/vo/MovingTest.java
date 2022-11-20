@@ -14,7 +14,7 @@ class MovingTest {
     @ParameterizedTest(name = "[{index}] input {0} ")
     @ValueSource(strings = {"U", "D"})
     void Normal_Test(String input) {
-        Assertions.assertThat(new Moving(input).toString()).isEqualTo(input);
+        Assertions.assertThat(new Moving(input).equals(input)).isTrue();
     }
 
     @DisplayName("Unvalidated GameMoving")
