@@ -18,7 +18,9 @@ public class Application {
     public static void main(String[] args) {
         List<String> bridge = getBridge();
 
-        play(bridge);
+        BridgeGame game = play(bridge);
+
+        result(game);
     }
 
     private static List<String> getBridge() {
@@ -46,9 +48,8 @@ public class Application {
         }
     }
 
-    private static void play(List<String> bridge) {
+    private static BridgeGame play(List<String> bridge) {
         BridgeGame game = new BridgeGame(bridge);
-
         while (!game.isFinish()) {
             String choiceMove = getChoiceMove();
             showMoveResult(game.move(choiceMove));
@@ -57,6 +58,7 @@ public class Application {
                 game.retry(getChoiceRetry());
             }
         }
+        return game;
     }
 
     private static String getChoiceMove() {
@@ -85,4 +87,7 @@ public class Application {
         }
     }
 
+    private static void result(BridgeGame game) {
+        output.printResult(game);
+    }
 }

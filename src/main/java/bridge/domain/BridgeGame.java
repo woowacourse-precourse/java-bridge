@@ -13,12 +13,14 @@ public class BridgeGame {
     private List<String> bridge;
     private boolean fail;
     private boolean finish;
+    private int totalCount;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.moveResult = new MoveResult();
         this.fail = false;
         this.finish = false;
+        totalCount = 1;
     }
 
     /**
@@ -90,5 +92,14 @@ public class BridgeGame {
         this.moveResult = new MoveResult();
         this.fail = false;
         this.finish = false;
+        this.totalCount++;
+    }
+
+    public MoveResult getMoveResult() {
+        return moveResult;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
     }
 }

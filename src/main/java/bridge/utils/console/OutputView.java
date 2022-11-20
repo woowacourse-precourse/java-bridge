@@ -1,7 +1,11 @@
 package bridge.utils.console;
 
+import static bridge.utils.message.GameMessagesUtil.RESULT;
 import static bridge.utils.message.GameMessagesUtil.SHOW_BRIDGE;
+import static bridge.utils.message.GameMessagesUtil.SUCCESS_OR_NOT;
+import static bridge.utils.message.GameMessagesUtil.TOTAL_TRY;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
 
 /**
@@ -14,8 +18,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(MoveResult moveResults) {
-        printParamMessage(SHOW_BRIDGE.getMessage(), moveResults.getUpMovesString(), moveResults.getDownMovesString());
+    public void printMap(MoveResult moveResult) {
+        printParamMessage(SHOW_BRIDGE.getMessage(), moveResult.getUpMovesString(), moveResult.getDownMovesString());
     }
 
     /**
@@ -23,7 +27,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame game) {
+        printMessage(RESULT.getMessage());
+        printMap(game.getMoveResult());
+        printParamMessage(SUCCESS_OR_NOT.getMessage(), isSuccessful(game.isFail()));
+        printParamMessage(TOTAL_TRY.getMessage(), game.getTotalCount());
+    }
+
+    private String isSuccessful(boolean fail) {
+        if (fail) {
+            return "실패";
+        }
+        return "성공";
     }
 
     public void printMessage() {
@@ -32,6 +47,14 @@ public class OutputView {
 
     public void printMessage(String message) {
         System.out.println(message);
+    }
+
+    private void printParamMessage(String message, int param) {
+        System.out.println(String.format(message, param));
+    }
+
+    private void printParamMessage(String message, String param) {
+        System.out.println(String.format(message, param));
     }
 
     public void printParamMessage(String message, String upMoves, String downMoves) {
