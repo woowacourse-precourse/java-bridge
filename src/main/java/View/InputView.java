@@ -3,6 +3,8 @@ package View;
 import bridge.UpAndDown;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.regex.Pattern;
+
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -10,13 +12,21 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
+    private Pattern pattern = Pattern.compile("^[0-9]*?");
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = Console.readLine();
-        return Integer.parseInt(bridgeSize);
+        String input = Console.readLine();
+        if(!pattern.matcher(input).matches()){
+            throw new IllegalArgumentException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
+        }
+        int bridgeSize = Integer.parseInt(input);
+        if(bridgeSize < 3 || bridgeSize > 20){
+            throw new IllegalArgumentException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
+        }
+        return bridgeSize;
     }
 
     /**
@@ -35,7 +45,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine();
-        if(isGameCommandInputValid(gameCommand)){
+        if(!isGameCommandInputValid(gameCommand)){
             throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
         }
         return gameCommand;
