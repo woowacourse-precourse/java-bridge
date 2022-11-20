@@ -9,8 +9,8 @@ public class OutputView {
     private static final String SKIP_LINE = "\n";
     private static final String PROOF_OF_FAIL = "X";
 
-    public void printMap() {
-
+    public void printMap(String result) {
+        System.out.println(result);
     }
     public void printResult(String result, int trialCount) {
         printGameStatus(result);
