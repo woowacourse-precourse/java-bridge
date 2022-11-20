@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.types.BridgeType;
+import bridge.types.MoveResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

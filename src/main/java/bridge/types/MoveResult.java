@@ -1,4 +1,4 @@
-package bridge;
+package bridge.types;
 
 public enum MoveResult {
     PASS(true), FAIL(false);
