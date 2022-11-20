@@ -23,4 +23,17 @@ class BridgeMakerTest {
         //then
         assertThat(bridge.size()).isEqualTo(size);
     }
+
+    @DisplayName("생성된 bridge가 U와 D로만 이루어져 있는지 테스트")
+    @Test
+    public void convertUpOrDown() {
+        //given
+        int size = 10;
+
+        //when
+        List<String> bridge = bridgeMaker.makeBridge(size);
+
+        //then
+        assertThat(bridge.stream().allMatch(i -> (i.equals("U") || i.equals("D")))).isEqualTo(true);
+    }
 }
