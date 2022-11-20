@@ -1,12 +1,7 @@
 package bridge;
 
 /**
- * 필드 변수 추가 가능
- * 패키지 변경 가능
- * 메서드 이름 변경 불가
- * 인자 변경 가능
- * 타입 변경 가능
- * 추가 메서드 구현 가능
+ * 필드 변수 추가 가능 패키지 변경 가능 메서드 이름 변경 불가 인자 변경 가능 타입 변경 가능 추가 메서드 구현 가능
  */
 
 import bridge.Constants.BridgeShape;
@@ -34,7 +29,7 @@ public class BridgeGame {
     }
 
     public boolean isFinish() {
-        if(BridgeGame.bridge.size() == this.bridgeIndex) {
+        if (BridgeGame.bridge.size() == this.bridgeIndex) {
             return true;
         }
         return false;
@@ -44,6 +39,7 @@ public class BridgeGame {
         return String.join(BridgeShape.SEPERATOR, this.upLine);
 
     }
+
     public String getDownLineForm() {
         return String.join(BridgeShape.SEPERATOR, this.downLine);
     }
@@ -61,36 +57,71 @@ public class BridgeGame {
         BridgeGame.bridge = bridge;
     }
 
+    public boolean isCorrectDirection(String command) {
+        if (BridgeGame.bridge.get(bridgeIndex).equals(command)) {
+            return true;
+        }
+        return false;
+    }
+
+//    public boolean judgeMovement(String direction, String command) {
+//        if (isCorrectDirection(Command.UP)) {
+//            this.upLine.add(BridgeShape.MOVABLE);
+//            this.downLine.add(BridgeShape.BLANK);
+//            this.bridgeIndex += 1;
+//            return true;
+//        }
+//        this.upLine.add(BridgeShape.UNMOVABLE);
+//        this.downLine.add(BridgeShape.BLANK);
+//        this.bridgeIndex += 1;
+//        return false;
+//    }
+
+    public void addMovement(List<String> selectedLine, List<String> oppositeLine, boolean isCorrect) {
+        if (isCorrect) {
+            selectedLine.add(BridgeShape.MOVABLE);
+            oppositeLine.add(BridgeShape.BLANK);
+            this.bridgeIndex += 1;
+            return;
+        }
+        selectedLine.add(BridgeShape.UNMOVABLE);
+        oppositeLine.add(BridgeShape.BLANK);
+        this.bridgeIndex += 1;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    
     //TODO 브릿지 그리는 부분 분리하기
     public boolean move(String direction) {
-        if(direction.equals(Command.UP)) {
-            if(BridgeGame.bridge.get(bridgeIndex).equals(Command.UP)) {
-                this.upLine.add(BridgeShape.MOVABLE);
-                this.downLine.add(BridgeShape.BLANK);
-                this.bridgeIndex += 1;
-                return true;
-            }
-            this.upLine.add(BridgeShape.UNMOVABLE);
-            this.downLine.add(BridgeShape.BLANK);
-            bridgeIndex += 1;
-            return false;
+        List<String> mainLine = this.upLine;
+        List<String> oppositeLine = this.downLine;
+        if (direction.equals(Command.DOWN)) {
+            mainLine = this.downLine;
+            oppositeLine = this.upLine;
         }
-        if(BridgeGame.bridge.get(bridgeIndex).equals(Command.UP)) {
-            this.downLine.add(BridgeShape.UNMOVABLE);
-            this.upLine.add(BridgeShape.BLANK);
-            bridgeIndex += 1;
-            return false;
+        if (isCorrectDirection(direction)) {
+            addMovement(mainLine, oppositeLine, true);
+            return true;
         }
-        this.downLine.add(BridgeShape.MOVABLE);
-        this.upLine.add(BridgeShape.BLANK);
-        bridgeIndex += 1;
-        return true;
+        addMovement(mainLine, oppositeLine, false);
+        return false;
+//        if(direction.equals(Command.UP)) {
+//            if(isCorrectDirection(Command.UP)) {
+//                addMoving(mainLine, oppositeLine, true);
+//                return true;
+//            }
+//            addMoving(mainLine, oppositeLine, false);
+//            return false;
+//        }
+//        if(isCorrectDirection(Command.DOWN)) {
+//            addMoving(mainLine, oppositeLine, true);
+//            return true;
+//        }
+//        addMoving(mainLine, oppositeLine, false);
+//        return false;
     }
 
     /**
