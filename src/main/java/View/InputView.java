@@ -48,12 +48,15 @@ public class InputView {
      */
     public String readMoving() {
         String movingBlock = Console.readLine();
-        if(!isMovingBlockInputValid(movingBlock)){
-            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
-        }
+        validateMovingBlockInput(movingBlock);
         return movingBlock;
     }
 
+    void validateMovingBlockInput(String movingBlock){
+        if(!isMovingBlockInputValid(movingBlock)){
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
