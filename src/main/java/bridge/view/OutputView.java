@@ -1,9 +1,9 @@
 package bridge.view;
 
-import bridge.MoveDirection;
 import bridge.Result;
+import bridge.ResultSignResolver;
 
-import java.util.List;
+import static bridge.support.ResultSign.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -30,53 +30,21 @@ public class OutputView {
 
     private void printFirstBridge(Result result) {
         StringBuilder sb = new StringBuilder();
-        printOpenSquareBracket(sb);
-        List<Boolean> isAnswers = result.getIsAnswers();
-        List<MoveDirection> directions = result.getDirections();
-        for (int i = 0; i < isAnswers.size(); i++) {
-            if (result.isDownSignAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append(" ");
-            }
-            if (result.isDownSignWrongAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append(" ");
-            }
-            if (result.isUpSignAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append("O");
-            }
-            if (result.isUpSignWrongAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append("X");
-            }
-            if (i < isAnswers.size() - 1) {
-                sb.append(" | ");
-            }
-        }
-        printCloseSquareBracket(sb);
+
+        appendOpenSquareBracket(sb);
+        ResultSignResolver resolver = new ResultSignResolver(result);
+        sb.append(resolver.resolveResult());
+        appendCloseSquareBracket(sb);
+
         System.out.print(sb);
     }
 
     private void printSecondBridge(Result result) {
         StringBuilder sb = new StringBuilder();
-        printOpenSquareBracket(sb);
-        List<Boolean> isAnswers = result.getIsAnswers();
-        List<MoveDirection> directions = result.getDirections();
-        for (int i = 0; i < isAnswers.size(); i++) {
-            if (result.isUpSignAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append(" ");
-            }
-            if (result.isUpSignWrongAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append(" ");
-            }
-            if (result.isDownSignAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append("O");
-            }
-            if (result.isDownSignWrongAnswer(isAnswers.get(i), directions.get(i))) {
-                sb.append("X");
-            }
-            if (i < isAnswers.size() - 1) {
-                sb.append(" | ");
-            }
-        }
-        printCloseSquareBracket(sb);
+        appendOpenSquareBracket(sb);
+        sb.append(ResultSignResolver.discriminateSecondBridgeSign(result));
+        appendCloseSquareBracket(sb);
+
         System.out.print(sb);
     }
 
@@ -113,12 +81,11 @@ public class OutputView {
         System.out.println(INPUT_GAME_RETRY_MESSAGE);
     }
 
-    private void printOpenSquareBracket(StringBuilder sb) {
-        sb.append("[ ");
+    private void appendOpenSquareBracket(StringBuilder sb) {
+        sb.append(OPEN_BRACKET.getSign());
     }
 
-    private void printCloseSquareBracket(StringBuilder sb) {
-        sb.append(" ]")
-          .append("\n");
+    private void appendCloseSquareBracket(StringBuilder sb) {
+        sb.append(CLOSE_BRACKET.getSign());
     }
 }
