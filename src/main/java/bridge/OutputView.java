@@ -28,4 +28,8 @@ public class OutputView {
     public void printBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
+
+    public void printError(ExceptionMesssage exceptionMesssage) {
+        System.out.println(exceptionMesssage.getMessage());
+    }
 }

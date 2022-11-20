@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
+ * 메서드의 시그니처(인자, 이름)와 반환타입을 변경할 수 없다.
  */
 public class BridgeMaker {
 

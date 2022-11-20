@@ -8,15 +8,17 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final static int MIN_BRIDGE_SIZE = 3;
     private final static int MAX_BRIDGE_SIZE = 20;
+
+    private OutputView outputView = new OutputView();
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = "";
+        String input = Console.readLine();
         try {
-            input = Console.readLine();
             validateInputBridgeSize(input);
         } catch(IllegalArgumentException e) {
+            outputView.printError(ExceptionMesssage.BRIDGE_SIZE_ERROR);
             readBridgeSize();
         }
         return Integer.parseInt(input);
@@ -40,7 +42,6 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.println(ExceptionMesssage.BRIDGE_SIZE_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -50,7 +51,6 @@ public class InputView {
         int number = Integer.parseInt(input);
 
         if (number < MIN_BRIDGE_SIZE || number > MAX_BRIDGE_SIZE) {
-            System.out.println(ExceptionMesssage.BRIDGE_SIZE_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
     }

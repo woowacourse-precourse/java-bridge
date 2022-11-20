@@ -2,6 +2,7 @@ package bridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
+ * InputView와 OutputView는 사용할 수 없다.
  */
 public class BridgeGame {
 
