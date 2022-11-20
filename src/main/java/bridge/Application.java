@@ -6,6 +6,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		InputView inputView = new InputView();
+		PlayerBridge playerBridge = new PlayerBridge();
 
 		System.out.println(START);
 
@@ -18,7 +19,7 @@ public class Application {
 
 		// todo 사용자 U, D 입력
 		System.out.println(WRITE_WANNA_MOVE);
-		String want = inputView.readMoving();
+		playerBridge.add(inputView.readMoving());
 
 		// todo move
 
