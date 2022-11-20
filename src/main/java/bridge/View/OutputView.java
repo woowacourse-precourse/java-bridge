@@ -24,7 +24,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int index) {
+    public void printMap() {
         printPreBracket();
         for (int i = 0; i < upSide.size(); i++) {
             System.out.print(upSide.get(i));
