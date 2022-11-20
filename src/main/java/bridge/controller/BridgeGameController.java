@@ -70,6 +70,7 @@ public class BridgeGameController {
         if (retry) {
             gameCount++;
             run();
+            return;
         }
 
         end();
