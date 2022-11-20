@@ -5,6 +5,8 @@ import bridge.domain.BridgeGameResult;
 
 public class BridgeGame {
 
+    private static final String RETRY = "R";
+
     private final Bridge bridge;
     private final BridgeGameResult bridgeGameResult;
 
@@ -30,6 +32,10 @@ public class BridgeGame {
 
     public void succeed() {
         bridgeGameResult.setSuccess();
+    }
+
+    public boolean doesRetry(String command) {
+        return command.equals(RETRY);
     }
 
     public BridgeGameResult getBridgeGameResult() {

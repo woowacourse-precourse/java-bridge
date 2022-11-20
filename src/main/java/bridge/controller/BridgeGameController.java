@@ -10,9 +10,6 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    private static final String RETRY = "R";
-    private static final String QUIT = "Q";
-
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
@@ -78,21 +75,22 @@ public class BridgeGameController {
 
     private void finish(boolean canMove) {
         if (canMove) {
-            bridgeGame.succeed();
-            play = false;
-            return;
+            succeed();
         }
-        outputView.printGameCommandMsg();
-        checkPlay(inputView.readGameCommand());
+        fail();
     }
 
-    private void checkPlay(String command) {
-        if (command.equals(RETRY)) {
-            bridgeGame.retry();
-        }
+    private void succeed() {
+        bridgeGame.succeed();
+        play = false;
+    }
 
-        if (command.equals(QUIT)) {
-            play = false;
+    private void fail() {
+        outputView.printGameCommandMsg();
+        if (bridgeGame.doesRetry(inputView.readGameCommand())) {
+            bridgeGame.retry();
+            return;
         }
+        play = false;
     }
 }
