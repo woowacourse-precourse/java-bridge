@@ -32,12 +32,12 @@ public class BridgeGameService {
         return bridgeGame.move(nextUnit);
     }
 
-    public GameStatus readGameCommand(GameStatus status, String code) {
+    public GameStatus executeGameCommand(GameStatus status, String code) {
         Command command = Command.from(code);
-        return invokeIfRetry(command, status);
+        return executeIfRetry(command, status);
     }
 
-    private GameStatus invokeIfRetry(Command command, GameStatus status) {
+    private GameStatus executeIfRetry(Command command, GameStatus status) {
         if (RETRY.equals(command)) {
             return bridgeGame.retry();
         }

@@ -60,7 +60,9 @@ public class BridgeApplication {
     private void playBridgeGame() {
         while (PLAYING.equals(status)) {
             crossBridge();
-            status = readGameCommandIfFailed();
+            if (FAILED.equals(status)) {
+                status = executeGameCommand();
+            }
         }
     }
 
@@ -80,16 +82,13 @@ public class BridgeApplication {
         }
     }
 
-    private GameStatus readGameCommandIfFailed() {
+    private GameStatus executeGameCommand() {
         try {
-            if (FAILED.equals(status)) {
-                String command = inputView.readGameCommand();
-                return service.readGameCommand(status, command);
-            }
-            return status;
+            String command = inputView.readGameCommand();
+            return service.executeGameCommand(status, command);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return readGameCommandIfFailed();
+            return executeGameCommand();
         }
     }
 }
