@@ -11,6 +11,8 @@ public class Application {
 
     private static int number = 0;
 
+    private static boolean passFail = true;
+
     private static InputView inputView = new InputView();
 
     private static OutputView outputView = new OutputView();
