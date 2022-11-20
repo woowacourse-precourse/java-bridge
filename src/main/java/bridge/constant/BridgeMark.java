@@ -30,7 +30,7 @@ public enum BridgeMark {
 
     public static void validateInput(String mark) {
         Arrays.stream(BridgeMark.values())
-                .map(BridgeMark::name)
+                .map(BridgeMark::getMark)
                 .filter(s -> s.equals(mark))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_MOVING_MARK));
@@ -46,5 +46,9 @@ public enum BridgeMark {
 
     public boolean isDown() {
         return this == DOWN;
+    }
+
+    public String getMark() {
+        return mark;
     }
 }
