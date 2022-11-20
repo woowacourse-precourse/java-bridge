@@ -50,7 +50,6 @@ public class BridgeGameController {
 
     private void printBridgeMap() {
         outputView.printMap(bridgeGame);
-        outputView.printEmptyLine();
     }
 
     private boolean retryOrNot() {
