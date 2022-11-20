@@ -22,22 +22,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(int stepCount) {
+    public static void printMap(int stepCount, List<String> upSideResult, List<String> downSideResult) {
         StringJoiner upSideBridge = new StringJoiner(BLANK_SPACE);
         StringJoiner downSideBridge = new StringJoiner(BLANK_SPACE);
 
-        updateMap(upSideBridge, stepCount);
-        updateMap(downSideBridge, stepCount);
+        updateMap(upSideBridge, stepCount, upSideResult);
+        updateMap(downSideBridge, stepCount, downSideResult);
 
         System.out.println(upSideBridge);
         System.out.println(downSideBridge);
     }
 
-    private static void updateMap(StringJoiner oneSideBridge, int stepCount) {
+    private static void updateMap(StringJoiner oneSideBridge, int stepCount, List<String> result) {
         oneSideBridge.add(BRIDGE_HEAD);
-        for (int index = 0; index < stepCount; index++) {
-            oneSideBridge.add(BLANK_SPACE);
-            if (stepCount != 1 && index != stepCount - 1) {
+        for (int i = 0; i <= stepCount; i++) {
+            oneSideBridge.add(result.get(i));
+            if (stepCount > 0 && i < stepCount) {
                 oneSideBridge.add(BRIDGE_PARTITION);
             }
         }
