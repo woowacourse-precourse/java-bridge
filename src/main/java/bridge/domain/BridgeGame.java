@@ -20,6 +20,10 @@ public class BridgeGame {
         return bridge.getBridge();
     }
 
+    public int getBridgeSize(){
+        return bridge.getBridgeSize();
+    }
+
     public List<String> getUserThinkBridge() {
         return userThinkBridge.getBridge();
     }
