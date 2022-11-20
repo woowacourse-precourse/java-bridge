@@ -32,10 +32,10 @@
     * 1, ㄱ, \t, \n
   * 다리 생성 테스트 (원하는 만큼 제대로 생성되었는가?)
   * move 테스트 (bridge와 input을 넣었을 때, 예상한 결과가 출력되는가?)
-## Todo 
-  * [ ] refactor : 함수 이름 변경 BridgeGame - getResult()
-  * [ ] refactor : 주석 제거
-  * [ ] java 컨벤션 지키기
+## Todo
+* [ ] refactor : 함수 이름 변경 BridgeGame - getResult()
+* [ ] refactor : 주석 제거
+* [ ] java 컨벤션 지키기
 
 ## 🔍 진행 방식
 
