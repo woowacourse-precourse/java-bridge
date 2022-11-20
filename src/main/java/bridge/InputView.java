@@ -34,7 +34,7 @@ public class InputView {
             return candidate;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readGameCommand();
+            return readMoving();
         }
     }
 
