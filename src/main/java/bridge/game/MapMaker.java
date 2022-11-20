@@ -19,7 +19,7 @@ public class MapMaker {
 
     public String getUpperBridgeMap(List<Move> moves) {
         List<Result> upperBridgeResult = makeUpperBridgeResult(moves);
-        String upperBridgeMap = changeResultToString(upperBridgeResult);
+        String upperBridgeMap = changeResultsToString(upperBridgeResult);
         return START + upperBridgeMap + END + NEW_LINE;
     }
 
@@ -43,7 +43,7 @@ public class MapMaker {
         results.add(Result.FAIL);
     }
 
-    public String changeResultToString(List<Result> results) {
+    public String changeResultsToString(List<Result> results) {
         String result = "";
         for (int i = 0; i < results.size() - 1; i++) {
             result += results.get(i) + DIVIDE;
@@ -58,7 +58,7 @@ public class MapMaker {
 
     public String getLowerBridge(List<Move> moves) {
         List<Result> lowerBridgeResult = makeLowerBridgeResult(moves);
-        String lowerBridgeMap = changeResultToString(lowerBridgeResult);
+        String lowerBridgeMap = changeResultsToString(lowerBridgeResult);
         return START + lowerBridgeMap + END + NEW_LINE;
     }
 
