@@ -11,21 +11,21 @@ import model.enums.RetryIntention;
 
 public class InputValidator {
 
-    void validateBridgeLength(int bridgeLength) {
+    public void validateBridgeLength(int bridgeLength) {
         if (Bridge.LOWER_BOUND <= bridgeLength && bridgeLength <= Bridge.UPPER_BOUND) {
             return;
         }
         throw new IllegalArgumentException(OUT_OF_RANGE);
     }
 
-    void validateMoveChoice(String moving) {
+    public void validateMoveChoice(String moving) {
         if (Arrays.stream(MoveChoice.values()).anyMatch((choice) -> choice.moving.equals(moving))) {
             return;
         }
         throw new IllegalArgumentException(NOT_A_MOVE_CHOICE);
     }
 
-    void validateRetryIntention(String userIntention) {
+    public void validateRetryIntention(String userIntention) {
         if (Arrays.stream(RetryIntention.values()).anyMatch((intention) -> intention.intention.equals(userIntention))) {
             return;
         }
