@@ -29,4 +29,8 @@ public enum BridgeStatus {
         }
         return 0;
     }
+
+    public int getStatusNumber() {
+        return this.statusNumber;
+    }
 }
