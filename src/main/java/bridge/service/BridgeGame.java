@@ -66,8 +66,8 @@ public class BridgeGame {
         }
     }
 
-    public boolean gameOver() {
-        return result.gameOver();
+    public boolean playing() {
+        return !result.gameOver();
     }
 
     public boolean isFail() {
