@@ -7,12 +7,12 @@ import bridge.model.GameMessage;
  */
 public class OutputView {
 
-    public static void start() {
+    public void start() {
         System.out.println(GameMessage.GAME_START.getMessage());
         System.out.println();
     }
 
-    public static void askLength() {
+    public void askLength() {
         System.out.println(GameMessage.ASK_LENGTH.getMessage());
     }
 
