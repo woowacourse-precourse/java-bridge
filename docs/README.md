@@ -30,9 +30,9 @@
 `Constants.java`    
 상수 클래스  
 
-`ErrorMessage.java`    
-에러 메시지 클래스  
-`Constants` 클래스와 유사하지만 문자열(에러 메시지)만을 위한 클래스.  
+`BridgeGameException.java`    
+예외 처리 메소드와 에러 메시지 상수를 담당하는 클래스 
+`Constants` 클래스와 유사하지만 에러 메시지는 예외 처리를 담당하는 해당 클래스에서 처리.  
 
 `BridgeNumberGenerator.java` 와 `BridgeRandomNumberGenerator.java`  
 요구사항에 의거하여 별도 수정 없이 사용만 할 인터페이스와 클래스.  
