@@ -1,10 +1,13 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeConstant;
 import bridge.model.BridgeGame;
+import bridge.model.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeGameController {
 
@@ -56,7 +59,8 @@ public class BridgeGameController {
     private void initBridge() {
         this.output.printInputBridgeSize();
         int size = this.input.readBridgeSize();
-        this.bridge = new Bridge(size);
+        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+        this.bridge = new Bridge(bridge);
     }
 
     private void initFields() {
