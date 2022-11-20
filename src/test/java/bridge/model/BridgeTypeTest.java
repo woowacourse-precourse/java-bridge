@@ -12,7 +12,7 @@ class BridgeTypeTest {
     @ParameterizedTest
     public void 다리_생성_시_랜덤값_일치하는_텍스트로_전환(int randomNumber) {
         Assertions.assertThatCode(() ->
-                        BridgeType.convertRandomNumberToText(randomNumber))
+                        BridgeType.convertRandomNumberToCommand(randomNumber))
                 .doesNotThrowAnyException();
     }
 
@@ -20,14 +20,14 @@ class BridgeTypeTest {
     @ParameterizedTest
     public void 다리_생성_시_랜덤값_불일치(int randomNumber) {
         Assertions.assertThatThrownBy(() ->
-                        BridgeType.convertRandomNumberToText(randomNumber))
+                        BridgeType.convertRandomNumberToCommand(randomNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @EnumSource(BridgeType.class)
     @ParameterizedTest
     public void 텍스트로_건널_다리_찾기(BridgeType bridgeType) {
-        Assertions.assertThat(BridgeType.searchBridgeToText(bridgeType.getText()))
+        Assertions.assertThat(BridgeType.searchBridgeByCommand(bridgeType.getCommand()))
                 .isEqualTo(bridgeType);
     }
 
@@ -35,14 +35,14 @@ class BridgeTypeTest {
     @ParameterizedTest
     public void 텍스트로_건널_다리_검색불가(String text) {
         Assertions.assertThatThrownBy(() ->
-                        BridgeType.searchBridgeToText(text))
+                        BridgeType.searchBridgeByCommand(text))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void 텍스트로_건널_다리_null() {
         Assertions.assertThatThrownBy(() ->
-                        BridgeType.searchBridgeToText(null))
+                        BridgeType.searchBridgeByCommand(null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -11,7 +11,7 @@ class ContinueTypeTest {
     @EnumSource(ContinueType.class)
     @ParameterizedTest
     public void 텍스트로_계속할지_확인(ContinueType continueType) {
-        Assertions.assertThat(ContinueType.searchContinueTypeToText(continueType.getText()))
+        Assertions.assertThat(ContinueType.searchContinueTypeByCommand(continueType.getCommand()))
                 .isEqualTo(continueType);
     }
 
@@ -19,14 +19,14 @@ class ContinueTypeTest {
     @ParameterizedTest
     public void 텍스트로_계속할지_응답불가(String text) {
         Assertions.assertThatThrownBy(() ->
-                        ContinueType.searchContinueTypeToText(text))
+                        ContinueType.searchContinueTypeByCommand(text))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void 텍스트로_계속할지_null() {
         Assertions.assertThatThrownBy(() ->
-                        ContinueType.searchContinueTypeToText(null))
+                        ContinueType.searchContinueTypeByCommand(null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
