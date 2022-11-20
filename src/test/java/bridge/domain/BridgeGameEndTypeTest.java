@@ -4,12 +4,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
 import static bridge.domain.BridgeGameEndType.END;
 import static bridge.domain.BridgeGameEndType.RESTART;
+import static bridge.exception.BridgeGameEndTypeExceptionMessage.NO_SUCH_BRIDGE_GAME_END_TYPE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BridgeGameEndTypeTest {
 
@@ -22,6 +25,15 @@ class BridgeGameEndTypeTest {
 
         // then
         assertThat(findBridgeGameEndType).isEqualTo(bridgeGameEndType);
+    }
+
+    @ParameterizedTest(name = "[{index}] gameEndType = {0}")
+    @ValueSource(strings = {"QQ", "RR", "QR", "RQ", "QRQ", "", " ", "q", "r", "A", "B", "!", "@", "#", "$", "%", "^"})
+    @DisplayName("잘못 입력된 String 타입의 입력값을 이용한 다리 게임 종료 타입 검색에 실패하여 예외처리 된다.")
+    void whenWrongStringTypeSearchThenExceptionTest(String gameEndType) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> BridgeGameEndType.of(gameEndType))
+                .withMessage(NO_SUCH_BRIDGE_GAME_END_TYPE_EXCEPTION.getMessage());
     }
 
     static Stream<Arguments> whenStringTypeSearchThenSuccessDummy() {
