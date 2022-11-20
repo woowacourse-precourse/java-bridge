@@ -23,13 +23,16 @@ public class OutputView {
      */
     public void printMap(String upAndDown) {
         trueCalculation(upAndDown);     // 성공시 입력값에 따라 O 삽입
-        System.out.println(upByPrintMap.stream().collect(Collectors.joining("|","[","]")) + "\n" + downByPrintMap.stream().collect(Collectors.joining("|","[","]")));
+        System.out.println(upByPrintMap.stream().collect(Collectors.joining("|","[","]")));
+        System.out.println(downByPrintMap.stream().collect(Collectors.joining("|","[","]")));
     }
 
     //11줄
     public void falsePrintMap(String upAndDown){
         falseCalculation(upAndDown);    // 실패시 입력값에 따라 X 삽입
-        System.out.println(upByPrintMap.stream().collect(Collectors.joining("|","[","]")) + "\n" + downByPrintMap.stream().collect(Collectors.joining("|","[","]")));
+        System.out.println(upByPrintMap.stream().collect(Collectors.joining("|","[","]")));
+        System.out.println(downByPrintMap.stream().collect(Collectors.joining("|","[","]")));
+
     }
 
     static void trueCalculation(String upAndDown){
@@ -51,6 +54,10 @@ public class OutputView {
             upByPrintMap.add("   ");
             downByPrintMap.add(" X ");
         }
+    }
+    static void init(){
+        upByPrintMap.clear();
+        downByPrintMap.clear();
     }
 
     /**
