@@ -14,8 +14,6 @@ import java.util.NoSuchElementException;
 import model.enums.GameStatus;
 import model.enums.MoveChoice;
 import model.enums.MoveResult;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -23,7 +21,7 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeGameTest extends NsTest {
 
-    private final int SIZE = 5;
+    private final int SIZE = 3;
     private final String UP = MoveChoice.UP.moving;
     private final String DOWN = MoveChoice.DOWN.moving;
 
@@ -33,7 +31,7 @@ public class BridgeGameTest extends NsTest {
     private void initialize() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(3)));
+        bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(SIZE)));
     }
 
 
@@ -74,17 +72,17 @@ public class BridgeGameTest extends NsTest {
             GameResult gameResult = bridgeGame.getGameResult();
             assertThatThrownBy(() -> gameResult.getTryCount()).isInstanceOf(NoSuchElementException.class);
             assertThatThrownBy(() -> gameResult.getStatus()).isInstanceOf(NoSuchElementException.class);
-            List<List<MoveResult>> dummy = List.of(new ArrayList<>(),new ArrayList<>());
+            List<List<MoveResult>> dummy = List.of(new ArrayList<>(), new ArrayList<>());
             assertThat(gameResult.getMoveResult()).isEqualTo(dummy);
         }
 
         @Test
-        @DisplayName("getGameResult는 모든 정보를 담아 반환환다.")
+        @DisplayName("getFinalGameResult는 모든 정보를 담아 반환환다.")
         void containsAllData() {
             GameResult gameResult = bridgeGame.getFinalGameResult();
             assertThat(gameResult.getTryCount()).isEqualTo(1);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
-            List<List<MoveResult>> dummy = List.of(new ArrayList<>(),new ArrayList<>());
+            List<List<MoveResult>> dummy = List.of(new ArrayList<>(), new ArrayList<>());
             assertThat(gameResult.getMoveResult()).isEqualTo(dummy);
         }
     }
