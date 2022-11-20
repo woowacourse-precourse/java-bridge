@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BridgeState {
@@ -30,10 +31,10 @@ public class BridgeState {
     }
 
     public List<String> getUpperBridge() {
-        return upper;
+        return Collections.unmodifiableList(upper);
     }
 
     public List<String> getLowerBridge() {
-        return lower;
+        return Collections.unmodifiableList(lower);
     }
 }
