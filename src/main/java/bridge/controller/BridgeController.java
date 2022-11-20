@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.constant.Message;
 import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;
 import bridge.model.service.BridgeService;
@@ -19,6 +20,7 @@ public class BridgeController {
     }
 
     private void createBridge() {
+        System.out.println(Message.START_GAME);
         int bridgeSize = inputView.readBridgeSize();
         bridgeService.createBridge(bridgeSize);
     }
