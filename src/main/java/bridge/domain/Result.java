@@ -12,7 +12,7 @@ public class Result {
         this.location = 0;
     }
 
-    public void update(Bridge bridge, String userDirection) {
+    public void update(Bridge bridge, Direction userDirection) {
         status.add(MoveStatus.of(bridge.canMove(userDirection, location), userDirection));
         location++;
     }
@@ -31,8 +31,8 @@ public class Result {
     }
 
     public List<String> toStrings() {
-        String upSide = buildBridge(Direction.UPSIDE.shortcut());
-        String downSide = buildBridge(Direction.DOWNSIDE.shortcut());
+        String upSide = buildBridge(Direction.UPSIDE.getShortcut());
+        String downSide = buildBridge(Direction.DOWNSIDE.getShortcut());
 
         return List.of(upSide, downSide);
     }

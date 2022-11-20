@@ -7,26 +7,37 @@ public enum Direction {
     DOWNSIDE(0, "D"),
     UPSIDE(1, "U");
 
-    private static Map<Integer, Direction> storage = new HashMap<>();
+    private static Map<Integer, Direction> valueKeyStorage = new HashMap<>();
+    private static Map<String, Direction> shortcutKeyStorage = new HashMap<>();
 
     static {
-        storage.put(DOWNSIDE.value, DOWNSIDE);
-        storage.put(UPSIDE.value, UPSIDE);
+        for (Direction direction : Direction.values()) {
+            valueKeyStorage.put(direction.value, direction);
+            shortcutKeyStorage.put(direction.shortcut, direction);
+        }
     }
 
     public static Direction from(int value) {
-        return storage.get(value);
+        return valueKeyStorage.get(value);
+    }
+
+    public static Direction from(String shortcut) {
+        return shortcutKeyStorage.get(shortcut);
     }
 
     private final int value;
-    private final String shortCut;
+    private final String shortcut;
 
-    Direction(int value, String shortCut) {
+    Direction(int value, String shortcut) {
         this.value = value;
-        this.shortCut = shortCut;
+        this.shortcut = shortcut;
     }
 
-    public String shortcut() {
-        return this.shortCut;
+    public String getShortcut() {
+        return this.shortcut;
+    }
+
+    public int getValue() {
+        return this.value;
     }
 }

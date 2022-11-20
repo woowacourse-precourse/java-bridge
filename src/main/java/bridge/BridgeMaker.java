@@ -22,7 +22,7 @@ public class BridgeMaker {
         String bridgeBuilder = "";
 
         for(int step=0; step<size;step++){
-            bridgeBuilder += Direction.from(bridgeNumberGenerator.generate()).shortcut();
+            bridgeBuilder += Direction.from(bridgeNumberGenerator.generate()).getShortcut();
         }
 
         return List.of(bridgeBuilder.split(""));

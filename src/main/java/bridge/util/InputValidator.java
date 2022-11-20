@@ -51,7 +51,7 @@ public class InputValidator {
     }
 
     private static void validateMoveOrder(String userInput) {
-        if (!userInput.equals(Direction.UPSIDE.shortcut()) && !userInput.equals(Direction.DOWNSIDE.shortcut())) {
+        if (!userInput.equals(Direction.UPSIDE.getShortcut()) && !userInput.equals(Direction.DOWNSIDE.getShortcut())) {
             throw new IllegalArgumentException(INVALID_BRIDGE_MOVE_INPUT_MSG);
         }
     }
