@@ -5,33 +5,42 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
+    private static final String RETRY_COMMAND = "R";
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private final Bridge bridge;
 
     public GameController(InputView inputView, OutputView outputView, BridgeNumberGenerator bridgeNumberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+        bridge = this.generateBridge();
         outputView.printGameStart();
     }
 
     public void execute() {
-        BridgeGameStatus status = new BridgeGameStatus(true);
+        BridgeGameStatus status = new BridgeGameStatus(RETRY_COMMAND);
         while (status.isRunning()) {
-            Bridge bridge = this.generateBridge();
             BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
-            Result result = playGame(bridge, bridgeGame, status);
+            Result result = playGame(bridge, bridgeGame);
+            result.increaseTryCount();
+            if (bridgeGame.retry(result)) {
+                readGameCommand(status);
+                outputView.printResult(result);
+                continue;
+            }
+            outputView.printResult(result);
+            break;
         }
     }
 
-    private Result playGame(Bridge bridge, BridgeGame bridgeGame, BridgeGameStatus status) {
+    private Result playGame(Bridge bridge, BridgeGame bridgeGame) {
         Result result = new Result();
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
             bridgeGame.move(result, this.readMoving(), i);
             if (result.hasWrong()) {
-                status.changeToGameOver();
-                break;
+                return result;
             }
         }
         return result;
@@ -48,7 +57,6 @@ public class GameController {
         }
     }
 
-
     private int readBridgeSize() {
         outputView.printInputBridgeSize();
         return inputView.readBridgeSize();
@@ -62,5 +70,10 @@ public class GameController {
             System.out.println(e.getMessage());
             return this.readMoving();
         }
+    }
+
+    private void readGameCommand(BridgeGameStatus status) {
+        outputView.printInputGameCommand();
+        status.changeStatus(inputView.readGameCommand());
     }
 }
