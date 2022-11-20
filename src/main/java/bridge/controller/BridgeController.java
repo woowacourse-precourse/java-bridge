@@ -17,10 +17,13 @@ import java.util.List;
 
 public class BridgeController {
 
-    public void play() {
-        BridgeNumberGenerator bridgeNumberGenerator = createBridgeNumberGenerator();
-        BridgeMaker bridgeMaker = createBridgeMaker(bridgeNumberGenerator);
+    private final BridgeMaker bridgeMaker;
 
+    public BridgeController(BridgeNumberGenerator bridgeNumberGenerator) {
+        bridgeMaker = createBridgeMaker(bridgeNumberGenerator);
+    }
+
+    public void play() {
         Length length = createLengthLoop();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
 
@@ -59,11 +62,6 @@ public class BridgeController {
         if (result != null) {
             OutputView.printResult(result, attempt);
         }
-    }
-
-
-    private BridgeNumberGenerator createBridgeNumberGenerator() {
-        return new BridgeRandomNumberGenerator();
     }
 
     private BridgeMaker createBridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
