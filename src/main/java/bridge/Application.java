@@ -26,6 +26,7 @@ public class Application {
         BridgeMaker bridgeMaker = BridgeMaker.getInstance();
         InputView inputView = new InputView();
         BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
 
         int size;
         int count = 0;
@@ -40,9 +41,13 @@ public class Application {
         while (size-- > 0) {
             boolean result = bridgeGame.move(count);
             if (result) {
+                outputView.printMap(count, result);
+                System.out.println();
                 count++;
             }
             if (!result) {
+                outputView.printMap(count, result);
+                System.out.println();
                 String retry = bridgeGame.retry();
                 return retry;
             }
