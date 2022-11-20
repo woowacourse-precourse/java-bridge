@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum GameCommand {
     RESTART("R"),
-    END("E"),
+    END("Q"),
     UNKNOWN("");
 
     private final String keyValue;
