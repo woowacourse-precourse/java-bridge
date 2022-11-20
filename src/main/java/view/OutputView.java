@@ -50,4 +50,16 @@ public class OutputView {
         lower = lower.substring(0,lower.length()-1);
         lower += OutputMessage.END.getOutputMsg();
     }
+
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println(OutputMessage.GAME_RESULT.getOutputMsg());
+        printMap();
+        if(bridgeGame.getSuccess()) {
+            System.out.println(OutputMessage.WIN_GAME.getOutputMsg());
+            System.out.println(OutputMessage.TRY.getOutputMsg() + bridgeGame.getAttempts());
+            return;
+        }
+        System.out.println(OutputMessage.LOSE_GAME.getOutputMsg());
+        System.out.println(OutputMessage.TRY.getOutputMsg() + bridgeGame.getAttempts());
+    }
 }
