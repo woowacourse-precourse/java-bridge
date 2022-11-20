@@ -20,11 +20,11 @@ public class BridgeMaker {
     }
 
     /**
-     * @param shapes 만들 다리의 모양
+     * @param shape 만들 다리의 모양
      * @return 다리
      */
-    public Bridge makeBridge(List<String> shapes) {
-        return new Bridge(shapes);
+    public Bridge makeBridge(List<String> shape) {
+        return new Bridge(shape);
     }
 
     /**
