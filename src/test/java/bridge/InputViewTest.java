@@ -34,7 +34,13 @@ class InputViewTest {
 
     @Test()
     void readMoving()  {
+        assertThrows(IllegalArgumentException.class, () -> {
+            String move = "none";
+            String result;
+            systemIn(move);
 
+            result = inputView.readMoving();
+        });
     }
 
 
