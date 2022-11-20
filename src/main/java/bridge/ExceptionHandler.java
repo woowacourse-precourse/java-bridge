@@ -30,4 +30,10 @@ public class ExceptionHandler {
             throw new IllegalArgumentException(Error.NOT_CHARACTER.getMessage());
         }
     }
+
+    public static void checkInvalidMove(String move) throws IllegalArgumentException {
+        if (!move.equals(UP.getCommand()) && !move.equals(DOWN.getCommand())) {
+            throw new IllegalArgumentException(Error.INVALID_MOVE.getMessage());
+        }
+    }
 }
