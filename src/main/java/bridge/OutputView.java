@@ -73,13 +73,16 @@ public class OutputView {
     public void printResult(BridgeGame game) {
         System.out.println("\n최종 게임 결과");
         printMap(game.getBridge(), game.getCurrentIdx(), game.getGuess());
-        System.out.print("\n게임 성공 여부: ");
-        if (game.isComplete()) {
-            System.out.println("성공");
-        }
-        if (!game.isComplete()) {
-            System.out.println("실패");
-        }
+
+        System.out.print("\n게임 성공 여부: " + success(game));
+
         System.out.println("총 시도한 횟수: " + game.getTryCount());
+    }
+
+    private static String success(BridgeGame game) {
+        if (game.isComplete()) {
+            return "성공";
+        }
+        return "실패";
     }
 }
