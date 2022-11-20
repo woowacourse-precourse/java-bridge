@@ -12,38 +12,24 @@ import java.util.List;
 public class BridgeGameManager {
     public void run() {
         BridgeGame bridgeGame = makeGame();
-
         setGame(bridgeGame);
-
         printStart();
-
         int bridgeSize = inputBridgeSizeRepeat();
-
         List<String> targetBridge = bridgeGame.makeTargetBridge(bridgeSize);
 
-        System.out.println(targetBridge);
-
-        int step = 0;
-        while (step < targetBridge.size()) {
-            // 이동 할 칸 입력받음
+        int tries = 0;
+        while (tries < targetBridge.size()) {
             String upDownInput = inputUpDownRepeat();
-
-            System.out.println(upDownInput);
-
-            // 이동 시키키기
             bridgeGame.move(upDownInput);
-
-            // 현재상태 출력
-            List<String> preStatus = bridgeGame.getPreStatus();
-            OutputView.printMap(targetBridge, preStatus);
+            printStatus(bridgeGame, targetBridge);
 
             // 만약 새로 간 칸이 잘 못된 칸이라면
-            if (!targetBridge.get(step).equals(upDownInput)) {
+            if (!targetBridge.get(tries).equals(upDownInput)) {
 
                 String retryAnswer = inputRetryRepeat();
 
                 if (retryAnswer.equals("R")) {
-                    bridgeGame.back(step);
+                    bridgeGame.back(tries);
                     bridgeGame.retry();
                     continue;
                 }
@@ -52,10 +38,15 @@ public class BridgeGameManager {
                     break;
                 }
             }
-            step++;
+            tries++;
         }
 
         printResult(targetBridge, bridgeGame);
+    }
+
+    private void printStatus(BridgeGame bridgeGame, List<String> targetBridge) {
+        List<String> preStatus = bridgeGame.getPreStatus();
+        OutputView.printMap(targetBridge, preStatus);
     }
 
     private void setGame(BridgeGame bridgeGame) {
