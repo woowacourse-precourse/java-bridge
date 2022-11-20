@@ -11,7 +11,13 @@ public class RandomBridge {
         inputView = new InputView();
     }
 
-    //브릿지의 크기를 입력
+    //브릿지를 초기화 해주는 메소드
+    public void initBridge(){
+        int bridgeSize = readBirdgeSize();
+        makeBridge(bridgeSize);
+    }
+
+    //브릿지의 크기를 입력하는 메소드
     private int readBirdgeSize() {
         while (true) {
             System.out.println("다리의 길이를 입력해주세요.");
