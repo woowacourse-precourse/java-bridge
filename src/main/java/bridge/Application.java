@@ -4,6 +4,7 @@ import bridge.Controller.GameController;
 import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
 import bridge.View.InputView;
+import bridge.View.OutputView;
 
 public class Application {
 
@@ -11,7 +12,8 @@ public class Application {
         InputView inputView = new InputView();
         BridgeGame bridgeGame = new BridgeGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker);
+        OutputView outputView = new OutputView();
+        GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker,outputView);
         try {
             gameController.GAMESTART();
             do {
