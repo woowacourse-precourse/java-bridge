@@ -5,7 +5,6 @@ import bridge.Exception.MoveException;
 import bridge.Exception.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -73,7 +72,6 @@ public class InputView {
     }
 
     private String readLine() {
-//        return new Scanner(System.in).nextLine();
         return Console.readLine();
     }
 }

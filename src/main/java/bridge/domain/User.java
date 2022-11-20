@@ -2,9 +2,11 @@ package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class User {
     private Integer round = 0;
+    private Integer position = 0;
 
     //테이블 생성
     private List<List<StringBuilder>> moveTable = new ArrayList<>();
@@ -20,9 +22,14 @@ public class User {
         return round;
     }
 
+    public Integer getPosition() {
+        return position;
+    }
+
     public void startRound() {
         moveTable.get(0).clear();
         moveTable.get(1).clear();
+        position = 0;
         round++;
     }
 
@@ -42,6 +49,7 @@ public class User {
     }
 
     public String move(List<String> bridge, Integer index, String way) {
+        position++;
         append(bridge.get(index).equals(way), way);
         return footPrints();
     }
@@ -80,6 +88,14 @@ public class User {
     }
 
     public boolean canGoAllBridges() {
-        return !moveTable.get(0).contains(" X ") && !moveTable.get(1).contains(" X ");
+        boolean upLineThrough = moveTable.get(0).stream()
+                .map(stringBuilder -> stringBuilder.toString())
+                .collect(Collectors.toList())
+                .contains(" X ");
+        boolean downLineThrough = moveTable.get(1).stream()
+                .map(stringBuilder -> stringBuilder.toString())
+                .collect(Collectors.toList())
+                .contains(" X ");;
+        return !(upLineThrough || downLineThrough);
     }
 }

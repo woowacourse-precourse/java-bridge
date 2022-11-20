@@ -6,11 +6,11 @@ import bridge.view.OutputView;
 
 public class ApplicationContext {
     public GameProcess process() {
-        return new GameProcess(bridgeGame(), bridgeMaker(), inputView(), outputView());
+        return new GameProcess(bridgeGame(), inputView(), outputView());
     }
 
     public BridgeGame bridgeGame() {
-        return new BridgeGame();
+        return new BridgeGame(bridgeMaker());
     }
 
     public BridgeMaker bridgeMaker() {
