@@ -31,6 +31,13 @@ public class Validation {
             throw new IllegalArgumentException("[ERROR] U또는 D만 입력해 주세요");
         }
     }
+
+    // 게임 재시작/종료 여부를 검증하는 기능
+    public static void validateGameCommand(String enteredGameCommand) {
+        if (!(enteredGameCommand.equals("R") || enteredGameCommand.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] R또는 Q만 입력해 주세요");
+        }
+    }
 }
 
 
