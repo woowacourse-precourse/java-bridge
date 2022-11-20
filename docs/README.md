@@ -151,8 +151,8 @@ D
 - [x] gameStatus를 false로 초기화
 
 ### move
-- [x] moveCount에 1을 더함
 - [x] 결과 다리와 비교
+- [x] moveCount에 1을 더함
 - [x] 같으면 true, 틀리면 false를 리턴
 
 ### retry
