@@ -6,7 +6,7 @@ import java.util.List;
 enum GameState {
     Over,
     Playing,
-    Done
+    Success
 }
 
 public class BridgeGame {
@@ -15,6 +15,7 @@ public class BridgeGame {
     private List<String> bridgeState;
     private String userState;
     private int moveTime;
+    private int tryTime;
 
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -26,7 +27,7 @@ public class BridgeGame {
             userState = String.valueOf(GameState.Over);
             move = move + "X";
         } else if (moveTime == bridge.size()) {
-            userState = String.valueOf(GameState.Done);
+            userState = String.valueOf(GameState.Success);
         }
         bridgeState.add(move);
         return bridgeState;
@@ -38,21 +39,31 @@ public class BridgeGame {
         }
         return false;
     }
+
     public void setBridge(int size) {
         moveTime = 0;
+        tryTime = 1;
         bridge = bridgeMaker.makeBridge(size);
         userState = String.valueOf(GameState.Playing);
         bridgeState = new ArrayList<String>();
-//        System.out.println(bridge);
     }
 
     public String getUserState() {
         return userState;
     }
+
     public void retry() {
+        tryTime++;
         moveTime = 0;
         userState = String.valueOf(GameState.Playing);
         bridgeState = new ArrayList<String>();
-//        System.out.println(bridge);
+    }
+
+    public List<String> getBridgeState() {
+        return bridgeState;
+    }
+
+    public int getTryTime() {
+        return tryTime;
     }
 }

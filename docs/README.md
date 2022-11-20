@@ -22,12 +22,12 @@
 - [x] 다리의 길이를 입력하는 함수 readBridgeSize()
 - [x] 이동할 칸을 입력하는 함수 readMoving()
 - [x] 게임 재시도 여부를 입력하는 함수 readGameCommand()
-- [ ] 에러 메시지를 받아 에러를 발생시키는 함수 generateError()
+- [x] 에러 메시지를 받아 에러를 발생시키는 함수 generateError()
 
 #### OutputView
 - [x] 게임 시작을 알리는 함수 printStart()
 - [x] 다리를 출력하는 함수 printMap()
-- [ ] 결과를 출력하는 함수 printResult()
+- [x] 결과를 출력하는 함수 printResult()
 
 ### Controller
 
