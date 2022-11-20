@@ -32,10 +32,6 @@ public class InputView {
         }
     }
 
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public static String getMoveString() {
         System.out.println(MOVE.getValue());
         String inputDorU = Console.readLine();
@@ -43,6 +39,15 @@ public class InputView {
             throw new IllegalArgumentException(ER_NOT_D_OR_U.getMessage());
         }
         return inputDorU;
+    }
+
+    public static String reGetMoveString() {
+        try {
+            return getMoveString();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            illegalArgumentException.getMessage();
+            return reGetMoveString();
+        }
     }
 
 

@@ -22,7 +22,7 @@ public class BridgeGame {
     public void gamingSet(List<String> bridge) {
         TRY_COUNT++;
         for (int i = 0; i < bridge.size(); i++) {
-            String userMoveInput = getMoveString();
+            String userMoveInput = reGetMoveString();
             move.moving(bridge.get(i), userMoveInput);
             move.printMoving();
             if (move.checkWrong()) {
