@@ -12,6 +12,15 @@ public class Bridge {
     public Bridge(int size) {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = this.bridgeMaker.makeBridge(size);
+        validateBridge(bridge);
         this.bridge.addAll(bridge);
+    }
+
+    private void validateBridge(List<String> bridge) {
+        for (String space : bridge) {
+            if (!space.equals(BridgeSpace.UP.getValue()) && !space.equals(BridgeSpace.DOWN.getValue())) {
+                throw new IllegalStateException();
+            }
+        }
     }
 }
