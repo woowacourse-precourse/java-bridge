@@ -14,15 +14,12 @@ import java.util.List;
 import static bridge.util.ErrorCode.*;
 
 public class BridgeGameController {
-    private static final String UPSIDE = "U";
-    private static final String DOWNSIDE = "D";
     private static final String RETRY_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final Validator validator = new Validator();
-    private final Converter converter = new Converter();
 
     private final BridgeGame bridgeGame = new BridgeGame();
 
@@ -50,22 +47,31 @@ public class BridgeGameController {
     }
 
     private void getBridgeSizeInputAndStartGame() {
-        try {
-            int bridgeSize = inputView.readBridgeSize();
-            checkBridgeSizeAndThrowException(bridgeSize);
-            bridgeGame.start(bridgeSize);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(INVALID_BRIDGE_SIZE);
-            getBridgeSizeInputAndStartGame();
+        while (true) {
+            try {
+                int bridgeSize = getInputBridgeSize();
+                bridgeGame.start(bridgeSize);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(INVALID_BRIDGE_SIZE);
+            }
         }
     }
 
+    private int getInputBridgeSize() {
+        int bridgeSize = inputView.readBridgeSize();
+        validator.validateBridgeSizeAndThrowException(bridgeSize);
+        return bridgeSize;
+    }
+
     private void getMoveInputAndMove(BridgeGame bridgeGame) {
-        try {
-            getInputAndMove(bridgeGame);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(INVALID_MOVING);
-            getMoveInputAndMove(bridgeGame);
+        while (true) {
+            try {
+                getInputAndMove(bridgeGame);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(INVALID_MOVING);
+            }
         }
     }
 
@@ -73,42 +79,33 @@ public class BridgeGameController {
         boolean successTf = true;
         while (successTf && !bridgeGame.isArrived()) {
             String moving = inputView.readMoving();
-            checkMovingAndThrowException(moving);
+            validator.validateMovingAndThrowException(moving);
             successTf = playGame(bridgeGame, moving);
         }
         if (bridgeGame.isArrived()) {
             GameResultData gameResultData = bridgeGame.finish(successTf);
             outputView.printResult(gameResultData);
         }
-        askToRetryOrQuit(bridgeGame);
-    }
-
-    private void askToRetryOrQuit(BridgeGame bridgeGame) {
-        try {
-            String commandLetter = inputView.readGameCommand();
-            checkCommandAndThrowException(commandLetter);
-            commandGame(bridgeGame, commandLetter);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(INVALID_COMMAND);
+        if (!successTf && !bridgeGame.isArrived()) {
             askToRetryOrQuit(bridgeGame);
         }
     }
 
-    private void checkBridgeSizeAndThrowException(int size) {
-        if (!validator.isValidRange(size)) {
-            throw new IllegalArgumentException();
+    private void askToRetryOrQuit(BridgeGame bridgeGame) {
+        while (true) {
+            try {
+                String command = getInputCommandLetter();
+                commandGame(bridgeGame, command);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(INVALID_COMMAND);
+            }
         }
     }
 
-    private void checkMovingAndThrowException(String moving) {
-        if (!validator.isValidMoving(moving)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkCommandAndThrowException(String letter) {
-        if (!validator.isValidCommand(letter)) {
-            throw new IllegalArgumentException();
-        }
+    private String getInputCommandLetter() {
+        String commandLetter = inputView.readGameCommand();
+        validator.validateCommandAndThrowException(commandLetter);
+        return commandLetter;
     }
 }
