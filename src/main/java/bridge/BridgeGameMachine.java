@@ -6,6 +6,7 @@ import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class BridgeGameMachine {
 
@@ -18,35 +19,31 @@ public class BridgeGameMachine {
     }
 
     public void play() {
-        try {
-            printStartGame();
+        printStartGame();
 
-            int bridgeSize = inputBridgeSize();
-            BridgeGame bridgeGame = createNewGame(bridgeSize);
+        int bridgeSize = inputBridgeSize();
+        BridgeGame bridgeGame = createNewGame(bridgeSize);
 
-            while (true) {
-                String moving = inputMoving();
-                bridgeGame.move(moving);
-                printMovingMap(bridgeGame);
+        while (true) {
+            String moving = inputMoving();
+            bridgeGame.move(moving);
+            printMovingMap(bridgeGame);
 
-                if (!bridgeGame.canContinue()) {
-                    if (!bridgeGame.isLatestMovingSuccess()) {
-                        String gameCommand = inputGameCommand();
+            if (!bridgeGame.canContinue()) {
+                if (!bridgeGame.isLatestMovingSuccess()) {
+                    String gameCommand = inputGameCommand();
 
-                        if ("R".equals(gameCommand)) {
-                            bridgeGame.retry();
-                            continue;
-                        }
+                    if ("R".equals(gameCommand)) {
+                        bridgeGame.retry();
+                        continue;
                     }
-
-                    break;
                 }
-            }
 
-            printResult(bridgeGame);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
+                break;
+            }
         }
+
+        printResult(bridgeGame);
     }
 
     private void printResult(BridgeGame bridgeGame) {
@@ -57,8 +54,10 @@ public class BridgeGameMachine {
     }
 
     private String inputGameCommand() {
-        outputView.printEnterGameCommand();
-        return inputView.readGameCommand();
+        return repeatInputUntilSuccess(() -> {
+            outputView.printEnterGameCommand();
+            return inputView.readGameCommand();
+        });
     }
 
     private void printMovingMap(BridgeGame bridgeGame) {
@@ -68,15 +67,19 @@ public class BridgeGameMachine {
     }
 
     private String inputMoving() {
-        outputView.printEnterMoving();
-        return inputView.readMoving();
+        return repeatInputUntilSuccess(() -> {
+            outputView.printEnterMoving();
+            return inputView.readMoving();
+        });
     }
 
     private int inputBridgeSize() {
-        outputView.printEnterBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
-        outputView.println();
-        return bridgeSize;
+        return repeatInputUntilSuccess(() -> {
+            outputView.printEnterBridgeSize();
+            int bridgeSize = inputView.readBridgeSize();
+            outputView.println();
+            return bridgeSize;
+        });
     }
 
     private void printStartGame() {
@@ -92,5 +95,16 @@ public class BridgeGameMachine {
         Player player = new Player();
 
         return new BridgeGame(bridge, player);
+    }
+
+    private <T> T repeatInputUntilSuccess(
+            Supplier<T> callback) {
+        while (true) {
+            try {
+                return callback.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 }
