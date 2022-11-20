@@ -44,6 +44,13 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean isFinish() {
+        if(bridge.getBoards().size()==record.getBoards().size()) {
+            return true;
+        }
+        return false;
+    }
+
     public Bridge getBridge() {
         return bridge;
     }
@@ -51,4 +58,6 @@ public class BridgeGame {
     public BridgeRecord getRecord() {
         return record;
     }
+
+
 }

@@ -19,17 +19,18 @@ public class GameController {
 		outputView.printStart();
 		game.start(inputView.readBridgeSize());
 
-		while (!tryMove()){
-		}
+		while (!tryMove());
 
+		outputView.printResult(game.getRecord(), game.isFinish());
 	}
 
 	private boolean tryMove() {
-		boolean success=game.move(inputView.readMoving());
 		boolean isEnd = false;
+		boolean success=game.move(inputView.readMoving());
 
 		if(success) {
 			outputView.printMap(game.getRecord().getBoards());
+			isEnd=game.isFinish();
 		} else if (!success) {
 			outputView.printMap(game.getRecord().getBoards());
 			isEnd=game.retry(inputView.readGameCommand());

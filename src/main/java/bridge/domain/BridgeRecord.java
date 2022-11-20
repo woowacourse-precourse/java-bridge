@@ -39,5 +39,7 @@ public class BridgeRecord {
 		return boards;
 	}
 
-
+	public int getTryCount() {
+		return tryCount;
+	}
 }

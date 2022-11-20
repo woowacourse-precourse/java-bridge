@@ -16,6 +16,11 @@ public class OutputView {
     private static final String OPEN_BRIDGE_FORMAT = "[";
     private static final String CLOSE_BRIDGE_FORMAT = "]";
     private static final String BRIDGE_DIVISION_FORMAT = "|";
+    private static final String GAME_END_MESSAGE = "최종 게임 결과";
+    private static final String IS_SUCCESS_MESSAGE = "게임 성공 여부: %s\n";
+    private static final String TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
+    private static final String SUCCESS_MESSAGE = "성공";
+    private static final String FAIL_MESSAGE = "실패";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -52,7 +57,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeRecord bridgeRecord, boolean isSuccess) {
+        System.out.println(GAME_END_MESSAGE);
+        printMap(bridgeRecord.getBoards());
+        System.out.printf(IS_SUCCESS_MESSAGE, convertToMessage(isSuccess));
+        System.out.printf(TRY_COUNT_MESSAGE,bridgeRecord.getTryCount());
+    }
+
+    private String convertToMessage(boolean isSuccess){
+        if(isSuccess){
+            return SUCCESS_MESSAGE;
+        }
+        return FAIL_MESSAGE;
     }
 
     public void printStart() {
