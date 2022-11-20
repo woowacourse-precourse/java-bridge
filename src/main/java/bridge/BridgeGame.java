@@ -5,6 +5,7 @@ package bridge;
  */
 public class BridgeGame {
 
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -20,4 +21,25 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void gameOver(){
+
+    }
+
+    public void finalResult(){
+
+    }
+
+    public void gamePass(){
+
+    }
+
+    public void gameEnd(){
+
+    }
+
+    public void trialAmount(){
+
+    }
+
 }
