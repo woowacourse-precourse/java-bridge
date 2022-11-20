@@ -82,11 +82,11 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
-            game.move(SpotInfo.DOWN);
+            game.move(SpotInfo.UP);
+            game.move(SpotInfo.UP);
 
             boolean expectedOutput = true;
-            assertThat(game.move(SpotInfo.UP)).isEqualTo(expectedOutput);
+            assertThat(game.move(SpotInfo.DOWN)).isEqualTo(expectedOutput);
         }
 
         @Test
@@ -95,12 +95,12 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
-            game.move(SpotInfo.DOWN);
             game.move(SpotInfo.UP);
+            game.move(SpotInfo.UP);
+            game.move(SpotInfo.DOWN);
 
             boolean expectedOutput = false;
-            assertThat(game.move(SpotInfo.UP)).isEqualTo(expectedOutput);
+            assertThat(game.move(SpotInfo.DOWN)).isEqualTo(expectedOutput);
         }
 
         @Test
@@ -109,12 +109,12 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
-            game.move(SpotInfo.DOWN);
+            game.move(SpotInfo.UP);
+            game.move(SpotInfo.UP);
             game.retry();
 
             boolean expectedOutput = false;
-            assertThat(game.move(SpotInfo.UP)).isEqualTo(expectedOutput);
+            assertThat(game.move(SpotInfo.DOWN)).isEqualTo(expectedOutput);
         }
 
         @Test
@@ -123,7 +123,7 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
+            game.move(SpotInfo.DOWN);
             game.retry();
             game.move(SpotInfo.UP);
 
@@ -137,9 +137,9 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
-            game.move(SpotInfo.DOWN);
             game.move(SpotInfo.UP);
+            game.move(SpotInfo.UP);
+            game.move(SpotInfo.DOWN);
 
             boolean expectedSuccess = false;
             assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
@@ -151,9 +151,9 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
-            game.move(SpotInfo.DOWN);
-            game.move(SpotInfo.DOWN);
+            game.move(SpotInfo.UP);
+            game.move(SpotInfo.UP);
+            game.move(SpotInfo.UP);
 
             boolean expectedSuccess = false;
             assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
@@ -165,8 +165,8 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
-            game.move(SpotInfo.DOWN);
+            game.move(SpotInfo.UP);
+            game.move(SpotInfo.UP);
 
             boolean expectedSuccess = true;
             assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
@@ -178,11 +178,11 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
-            game.retry();
             game.move(SpotInfo.DOWN);
+            game.retry();
+            game.move(SpotInfo.UP);
 
-            SpotInfo expectedSpotInfo = SpotInfo.DOWN;
+            SpotInfo expectedSpotInfo = SpotInfo.UP;
             assertThat(game.getResult().getLastMovementRecord(1)).isEqualTo(expectedSpotInfo);
         }
     }
