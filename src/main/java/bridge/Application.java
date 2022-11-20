@@ -3,6 +3,7 @@ package bridge;
 import bridge.model.Bridge;
 import bridge.model.BridgeSize;
 import bridge.model.Direction;
+import bridge.model.GameCommand;
 import bridge.model.GameMap;
 import bridge.model.MoveResult;
 import bridge.model.Player;
@@ -28,7 +29,7 @@ public class Application {
         gameMap.draw(moveResult);
         outputView.printMap(gameMap);
         if (bridgeGame.end()) {
-            System.out.println("end");
+            bridgeGame.retry(inputGameCommand());
         }
     }
 
@@ -54,6 +55,15 @@ public class Application {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputDirection();
+        }
+    }
+
+    private static GameCommand inputGameCommand() {
+        try {
+            return GameCommand.fromInput(inputView.readGameCommand());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputGameCommand();
         }
     }
 }
