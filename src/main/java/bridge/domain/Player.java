@@ -1,15 +1,11 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Player  {
-    private final int bridgeLength;
     private int temp;
 
-    public Player(int length) {
+    public Player() {
         this.temp = 0;
-        this.bridgeLength = length;
     }
 
 
