@@ -130,7 +130,7 @@ D
 - [x] upBridge를 초기화
 - [x] downBridge를 초기화
 - [x] moveCount를 0으로 초기화
-- [ ] gameCount를 0으로 초기화
+- [x] gameCount를 0으로 초기화
 
 ### move
 - [x] 결과 다리와 비교
