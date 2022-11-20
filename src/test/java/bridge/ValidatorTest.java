@@ -54,16 +54,31 @@ public class ValidatorTest {
     class IsOneString {
         @DisplayName("입력값이 한 문자인 경우 예외를 반환하지 않는다.")
         @Test
-        void inputOneString() {
+        void movingOneString() {
             Assertions.assertThatNoException()
-                    .isThrownBy(() -> Validator.isOneString("F"));
+                    .isThrownBy(() -> Validator.isOneStringMoving("F"));
         }
 
         @DisplayName("입력값이 한 문자가 아닌 경우 예외를 반환한다.")
         @Test
-        void inputNotOneString() {
-            Assertions.assertThatThrownBy(() -> Validator.isOneString("ABC"))
+        void movingNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isOneStringMoving("ABC"))
                     .hasMessageContaining("[ERROR] 이동할 칸은 한 문자여야 합니다.")
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("입력값이 한 문자인 경우 예외를 반환하지 않는다.")
+        @Test
+        void commandOneString() {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> Validator.isOneStringCommand("B"));
+        }
+
+        @DisplayName("입력값이 한 문자가 아닌 경우 예외를 반환한다.")
+        @Test
+        void commandNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isOneStringCommand("GEG"))
+                    .hasMessageContaining("[ERROR] 게임 재시도 여부는 한 문자여야 합니다.")
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -72,16 +87,31 @@ public class ValidatorTest {
     class IsUppercase {
         @DisplayName("입력값이 대문자인 경우 예외를 반환하지 않는다.")
         @Test
-        void inputUppercaseString() {
+        void movingUppercaseString() {
             Assertions.assertThatNoException()
-                    .isThrownBy(() -> Validator.isUppercase("F"));
+                    .isThrownBy(() -> Validator.isUppercaseMoving("F"));
         }
 
         @DisplayName("입력값이 대문자가 아닌 경우 예외를 반환한다.")
         @Test
-        void inputNotOneString() {
-            Assertions.assertThatThrownBy(() -> Validator.isUppercase("d"))
+        void movingNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isUppercaseMoving("d"))
                     .hasMessageContaining("[ERROR] 이동할 칸은 대문자여야 합니다.")
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("입력값이 대문자인 경우 예외를 반환하지 않는다.")
+        @Test
+        void commandUppercaseString() {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> Validator.isUppercaseCommand("Y"));
+        }
+
+        @DisplayName("입력값이 대문자가 아닌 경우 예외를 반환한다.")
+        @Test
+        void commandNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isUppercaseCommand("n"))
+                    .hasMessageContaining("[ERROR] 게임 재시도 여부는 대문자여야 합니다.")
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -100,6 +130,24 @@ public class ValidatorTest {
         void inputNotOneString() {
             Assertions.assertThatThrownBy(() -> Validator.isUpOrDown("R"))
                     .hasMessageContaining("[ERROR] 이동할 칸은 U 또는 D여야 합니다.")
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Nested
+    class IsRestartOrQuit {
+        @DisplayName("입력값이 R 또는 Q인 경우 예외를 반환하지 않는다.")
+        @Test
+        void inputOneString() {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> Validator.isRestartOrQuit("R"));
+        }
+
+        @DisplayName("입력값이 R 또는 Q가 아닌 경우 예외를 반환한다.")
+        @Test
+        void inputNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isRestartOrQuit("C"))
+                    .hasMessageContaining("[ERROR] 게임 재시도 여부는 R 또는 Q여야 합니다.")
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
