@@ -1,4 +1,4 @@
-package bridge.commom.validation.implement;
+package bridge.commom.validation;
 
 public class InputValidator {
     public static void isPositiveInteger(String input) throws IllegalArgumentException {

@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.commom.validation.implement.InputValidator;
+import bridge.commom.validation.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,6 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine().replaceAll(" ", "");
         InputValidator.isPositiveInteger(input);
         return Integer.parseInt(input);
