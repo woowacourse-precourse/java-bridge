@@ -18,4 +18,8 @@ public class Bridge {
                 .filter(i -> path.get(i).equals(direction))
                 .boxed().collect(Collectors.toList());
     }
+
+    public int getDestinationIndex() {
+        return path.size() - 1;
+    }
 }

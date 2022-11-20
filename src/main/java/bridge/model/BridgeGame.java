@@ -35,6 +35,10 @@ public class BridgeGame {
         return courseResult.get(0) + "\n" + courseResult.get(1);
     }
 
+    public boolean isPlaying() {
+        return round.isRoundPlaying(bridge.getDestinationIndex());
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
