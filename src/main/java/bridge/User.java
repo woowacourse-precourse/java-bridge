@@ -1,42 +1,36 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
-    private String pathOfUpperBridge;
-    private String pathOfLowerBridge;
+    private List<String> pathOfUpperBridge;
+    private List<String> pathOfLowerBridge;
     private int round;
 
     public User() {
-        this.pathOfUpperBridge = "";
-        this.pathOfLowerBridge = "";
+        this.pathOfUpperBridge = new ArrayList<>();
+        this.pathOfLowerBridge = new ArrayList<>();
         this.round = 0;
     }
 
-    public String getPathOfUpperBridge() {
+    public List<String> getPathOfUpperBridge() {
         return pathOfUpperBridge;
     }
 
-    public String getPathOfLowerBridge() {
+    public List<String> getPathOfLowerBridge() {
         return pathOfLowerBridge;
     }
 
     public void addPathOfBridge(String direction, String result) {
-        firstOrNot();
         if (direction.equals("U")) {
-            this.pathOfUpperBridge += result;
-            this.pathOfLowerBridge += " ";
+            this.pathOfUpperBridge.add(result);
+            this.pathOfLowerBridge.add(" ");
         }
         if (direction.equals("D")) {
-            this.pathOfUpperBridge += " ";
-            this.pathOfLowerBridge += result;
+            this.pathOfUpperBridge.add(" ");
+            this.pathOfLowerBridge.add(result);
         }
-    }
-
-    public void firstOrNot() {
-        if (round == 0) {
-            return;
-        }
-        pathOfUpperBridge += " | ";
-        pathOfLowerBridge += " | ";
     }
 
     public void plusRound() {
