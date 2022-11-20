@@ -51,14 +51,14 @@ public class BridgeGame {
 
     public boolean move(String direction) {
         currentLocation++;
-        boolean isCorrectLocation = realBridge.get(currentLocation) == direction;
+        boolean isCorrectLocation = realBridge.get(currentLocation).equals(direction);
         return reflectMovement(isCorrectLocation, direction);
     }
 
     public void retry() {
         moveStatus.put("U", new ArrayList<>());
         moveStatus.put("D", new ArrayList<>());
-        currentLocation = 0;
+        currentLocation = -1;
         restartNumber++;
     }
 
