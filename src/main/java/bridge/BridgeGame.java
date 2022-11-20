@@ -11,9 +11,10 @@ public class BridgeGame {
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private List<String> bridge = new ArrayList<>();
-
-    public void init(int size) {
+    private int cursor;
+    BridgeGame(int size) {
         bridge = bridgeMaker.makeBridge(size);
+        cursor = 0;
     }
 
     /**
