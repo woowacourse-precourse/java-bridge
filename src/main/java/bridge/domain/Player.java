@@ -6,7 +6,6 @@ import java.util.List;
 public class Player {
 
     private int tryCount;
-    private int positionIndex;
     private List<Tile> movingLog;
     private boolean aliveState;
 
@@ -24,8 +23,7 @@ public class Player {
      */
     public int moveForward(Tile targetTile) {
         movingLog.add(targetTile);
-        positionIndex++;
-        return positionIndex;
+        return movingLog.size() - 1;
     }
 
     /**
@@ -49,7 +47,6 @@ public class Player {
 
     private void initPosition() {
         movingLog = new ArrayList<>();
-        this.positionIndex = -1;
     }
 
     /**
@@ -59,7 +56,7 @@ public class Player {
      * @return 현 위치가 맞으면 true, 아니면 false
      */
     public boolean isCurrentPosition(int position) {
-        return positionIndex == position;
+        return movingLog.size() - 1 == position;
     }
 
     /**
@@ -69,7 +66,7 @@ public class Player {
      * @return 지나간 길이면 true, 아니면 false
      */
     public boolean isPassedPosition(int position) {
-        return positionIndex >= position;
+        return movingLog.size() - 1 >= position;
     }
 
     /**
