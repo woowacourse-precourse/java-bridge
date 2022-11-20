@@ -43,7 +43,7 @@ public class BridgeGameController {
     }
 
     public boolean isPaused(){
-        return false;
+        return !bridge.isPlayerRightBridge(player);
     }
 
     public boolean isFinished(){
