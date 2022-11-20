@@ -8,6 +8,7 @@ public class Application {
         BridgeController bridgeController = new BridgeController();
         try {
             bridgeController.startController();
+            bridgeController.setBridgeController();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
