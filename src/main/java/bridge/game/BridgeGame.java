@@ -7,13 +7,13 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> bridge;
-    private int currentPosition;
+    private int indexOfDestination;
     private int totalTry;
     private Map map;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        currentPosition = 0;
+        indexOfDestination = 0;
         totalTry = 1;
         map = new Map();
     }
@@ -27,29 +27,32 @@ public class BridgeGame {
     }
 
     public int move(String moving) {
-        if (canMove(moving)) {
-            if (currentPosition == bridge.size() - 1) {
-                return Status.SUCCESS.getNumber();
-            }
-            currentPosition++;
-            return Status.CONTINUE.getNumber();
+        if (isCrossable(moving)) {
+            map.addCrossing(moving);
+            return isEndOfBridge();
         }
+
+        map.addNoCrossing(moving);
         return Status.FAIL.getNumber();
     }
 
-    private boolean canMove(String moving) {
-        String bridgeStatus = bridge.get(currentPosition);
-        if (bridgeStatus.equals(moving)) {
-            map.addCanCross(moving);
-            return true;
-        }
-        map.addCanNotCross(moving);
-        return false;
-    }
-
     public void retry() {
-        currentPosition = 0;
+        indexOfDestination = 0;
         totalTry++;
         map = new Map();
+    }
+
+    private boolean isCrossable(String moving) {
+        String destinationStatus = bridge.get(indexOfDestination);
+        return destinationStatus.equals(moving);
+    }
+
+    private int isEndOfBridge() {
+        if (indexOfDestination == bridge.size() - 1) {
+            return Status.SUCCESS.getNumber();
+        }
+
+        indexOfDestination++;
+        return Status.CONTINUE.getNumber();
     }
 }

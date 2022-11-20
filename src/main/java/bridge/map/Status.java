@@ -2,8 +2,8 @@ package bridge.map;
 
 public enum Status {
 
-    CAN_CROSS("O"),
-    CAN_NOT_CROSS("X"),
+    CROSSING("O"),
+    NO_CROSSING("X"),
     BLANK(" ");
 
     private final String letter;

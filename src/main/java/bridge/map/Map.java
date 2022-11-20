@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
+
     private final List<String> up;
     private final List<String> down;
 
@@ -14,24 +15,26 @@ public class Map {
         down = new ArrayList<>();
     }
 
-    public void addCanCross(String moving) {
+    public void addCrossing(String moving) {
         if (moving.equals(Command.UP.getLetter())) {
-            up.add(Status.CAN_CROSS.getLetter());
+            up.add(Status.CROSSING.getLetter());
             down.add(Status.BLANK.getLetter());
             return;
         }
+
         up.add(Status.BLANK.getLetter());
-        down.add(Status.CAN_CROSS.getLetter());
+        down.add(Status.CROSSING.getLetter());
     }
 
-    public void addCanNotCross(String moving) {
+    public void addNoCrossing(String moving) {
         if (moving.equals(Command.UP.getLetter())) {
-            up.add(Status.CAN_NOT_CROSS.getLetter());
+            up.add(Status.NO_CROSSING.getLetter());
             down.add(Status.BLANK.getLetter());
             return;
         }
+
         up.add(Status.BLANK.getLetter());
-        down.add(Status.CAN_NOT_CROSS.getLetter());
+        down.add(Status.NO_CROSSING.getLetter());
     }
 
     @Override
