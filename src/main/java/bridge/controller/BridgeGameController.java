@@ -8,6 +8,8 @@ import bridge.util.BridgeViewConstructor;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import static bridge.model.GameStatus.QUIT;
+
 public class BridgeGameController {
 
     private final InputView inputView = new InputView();
@@ -55,6 +57,6 @@ public class BridgeGameController {
     }
 
     private boolean isQuit(){
-        return false;
+        return inputView.readGameCommand().equals(QUIT.getCommand());
     }
 }
