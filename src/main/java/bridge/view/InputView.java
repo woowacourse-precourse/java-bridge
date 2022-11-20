@@ -3,6 +3,7 @@ package bridge.view;
 import static bridge.utils.constants.BridgeConstants.*;
 
 import bridge.utils.constants.GameConstants;
+import bridge.utils.validator.BridgeValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -16,6 +17,7 @@ public class InputView {
     public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
         String bridgeSize = Console.readLine();
+        BridgeValidator.validSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
 
