@@ -1,15 +1,27 @@
-package bridge;
+package bridge.view;
+
+import bridge.dto.BridgeSize;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
+ *
+ * 여기서만 사용자 입력 받음
+ * 메서드의 시그니처(인자, 이름)와 반환 타입은 변경 가능
+ * 입력을 위해 필요한 메서드 추가 가능
  */
 public class InputView {
+
+    private static final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public BridgeSize readBridgeSize() {
+        System.out.println(BRIDGE_SIZE_MESSAGE);
+        String bridgeSize = Console.readLine();
+
+        return new BridgeSize(bridgeSize);
     }
 
     /**
