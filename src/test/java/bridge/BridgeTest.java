@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
 
 import java.util.List;
 
