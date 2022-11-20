@@ -18,7 +18,7 @@ public class Bridge {
     }
 
     public boolean isSafeSpot(int index, SpotInfo spotInfo) {
-        SpotInfo spotInfoOnIndex = bridgeMap.get(index);
+        SpotInfo spotInfoOnIndex = bridgeMap.get(index - 1);
         return spotInfoOnIndex.equals(spotInfo);
     }
 

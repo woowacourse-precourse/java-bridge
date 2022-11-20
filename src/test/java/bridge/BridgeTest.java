@@ -39,7 +39,7 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 0, 0, 1, 1));
 
             boolean expectedSafety = true;
-            assertThat(bridge.isSafeSpot(4, SpotInfo.UP)).isEqualTo(expectedSafety);
+            assertThat(bridge.isSafeSpot(3, SpotInfo.DOWN)).isEqualTo(expectedSafety);
         }
     }
 
