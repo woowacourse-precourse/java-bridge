@@ -24,4 +24,8 @@ public class Bridge {
     public void clearAll(){
         bridge.clear();
     }
+
+    public String getBridgeComponent(int index){
+        return bridge.get(index);
+    }
 }
