@@ -41,7 +41,7 @@ class UserTest {
         User user = new User();
 
         //when
-        user.setSuccess();
+        user.gameWin();
 
         //then
         assertThat(user.isSuccessComplete()).isEqualTo(true);
@@ -67,7 +67,7 @@ class UserTest {
         User user = new User();
 
         //when
-        user.setGameOver();
+        user.gameOver();
 
         //then
         assertThat(user.isGameOver()).isEqualTo(true);
