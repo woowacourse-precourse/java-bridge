@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.InputView;
 import bridge.Move;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ public class Map {
     private Iterator<String> answer;
 
     public Map(List<String> generatedMap) {
-        InputView inputView = new InputView();
         ArrayList<LinkedList<String>> initializedMap = new ArrayList<>();
         for (int i = 0; i < SIZE_OF_TILES; i++) {
             initializedMap.add(new LinkedList<String>());
@@ -23,17 +21,17 @@ public class Map {
         this.map = initializedMap;
     }
 
-    public void insertMove(Move move) {
-
-
+    public boolean insertMove(Move move) {
         for (LinkedList<String> target : map) {
             target.add(" ");
         }
         LinkedList<String> target = map.get(move.getOrder());
-        target.set(target.size() - 1, compareWithCurrentAnswer(move.getLocation()));
-
-        if (answer.hasNext() == false) {
+        String compareResult = compareWithCurrentAnswer(move.getLocation());
+        target.set(target.size() - 1,compareResult);
+        if(compareResult=="O"){
+            return true;
         }
+        return false;
     }
 
     private String compareWithCurrentAnswer(String move) {
@@ -43,7 +41,6 @@ public class Map {
         return "X";
     }
 
-    //길이 줄여야함
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -52,8 +49,7 @@ public class Map {
             for (String temp1 : target) {
                 sb.append(temp1 + " | ");
             }
-            sb.delete(sb.length() - 3, sb.length());
-            sb.append(" ]\n");
+            sb.replace(sb.length()-3,sb.length()," ]\n");
         }
         sb.delete(sb.length() - 1, sb.length());
         return sb.toString();
