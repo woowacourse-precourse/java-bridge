@@ -36,7 +36,7 @@ public class BridgeGameController {
     }
 
     private void play() {
-        GameResultCode movingResult = moveUser();
+        GameResultCode movingResult = moveUserUntilEnd();
         if (movingResult == GameResultCode.FAIL) { // 게임에 실패한 경우
             determineWhatToDo();
         }
@@ -59,21 +59,26 @@ public class BridgeGameController {
         }
     }
 
-    private GameResultCode moveUser() { // TODO 코드 분리하기...
+    private GameResultCode moveUserUntilEnd() { // 열 한줄인데, 더 이상 못 줄이겠습니다 ㅠㅠ
         try {
-            String command = inputView.readMoving();
-            FootrestLocation footrestLocation = FootrestLocation.findByUserInput(command);
-            GameResultCode gameResult = game.move(footrestLocation);
-
-            outputView.printMap(game.getFootPrint());
+            GameResultCode gameResult = moveUser();
             if (gameResult == GameResultCode.MOVE_SUCCESS) {
-                return moveUser();
+                return moveUserUntilEnd();
             }
             return gameResult;
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e);
-            return moveUser();
+            return moveUserUntilEnd();
         }
+    }
+
+    private GameResultCode moveUser() {
+        String command = inputView.readMoving();
+        FootrestLocation footrestLocation = FootrestLocation.findByUserInput(command);
+        GameResultCode gameResult = game.move(footrestLocation);
+
+        outputView.printMap(game.getFootPrint());
+        return gameResult;
     }
 
     private Bridge makeBridge() {
