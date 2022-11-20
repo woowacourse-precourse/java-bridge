@@ -27,7 +27,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public char judgeRandomNumber(int randomNumber) {
+    private char judgeRandomNumber(int randomNumber) {
         return BridgeMakerEnum.valuesOfBridge(randomNumber);
     }
 
@@ -35,14 +35,14 @@ public class BridgeMaker {
         InputView inputView = new InputView();
         String input = new String();
 
-        while (!isValidateInputBridgeSize(input)) {
+        do {
             input = inputView.readBridgeSize();
-        }
+        } while (!isValidateInputBridgeSize(input));
 
         return Integer.parseInt(input);
     }
 
-    public boolean isValidateInputBridgeSize(String bridgeSize) {
+    private boolean isValidateInputBridgeSize(String bridgeSize) {
         try{
             checkIsNumber(bridgeSize);
             checkIsRightRange(Integer.parseInt(bridgeSize));
@@ -53,7 +53,7 @@ public class BridgeMaker {
         return true;
     }
 
-    public void checkIsNumber(String bridgeSize) {
+    private void checkIsNumber(String bridgeSize) {
         try {
             Integer.parseInt(bridgeSize);
         } catch (IllegalArgumentException e) {
@@ -61,7 +61,7 @@ public class BridgeMaker {
         }
     }
 
-    public void checkIsRightRange(int bridgeSize) {
+    private void checkIsRightRange(int bridgeSize) {
         if (bridgeSize < Setting.MIN_BRIDGE_SIZE) {
             throw new BridgeIllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
