@@ -11,6 +11,7 @@ public class GameStart {
 
     public static Bridge gameStart(BridgeMaker bridgeMaker) {
         outputView.printStart();
+
         while (true) {
             try {
                 return new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));

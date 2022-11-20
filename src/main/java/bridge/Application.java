@@ -11,11 +11,11 @@ import static bridge.controller.GameStart.gameStart;
 public class Application {
     private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static Bridge bridge;
+    private static int retryCnt;
 
     public static void main(String[] args) {
-        int retryCnt = -1;
         bridge = gameStart(bridgeMaker);
-        gameRun(bridge, retryCnt);
+        retryCnt = gameRun(bridge);
         gameResult(retryCnt);
     }
 

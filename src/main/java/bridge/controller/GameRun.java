@@ -14,10 +14,10 @@ public class GameRun {
     private final static OutputView outputView = new OutputView();
 
 
-    public static int gameRun(Bridge bridge, int retryCnt) {
+    public static int gameRun(Bridge bridge) {
+        int retryCnt = -1;
         do {
-            bridgeGame.retry();
-            retryCnt++;
+            retryCnt = bridgeGame.retry(retryCnt);
             while (repeatUserMovement(bridge)) {
                 userMove();
                 outputView.printMap(new ArrayList<>(), new ArrayList<>());
