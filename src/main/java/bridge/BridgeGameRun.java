@@ -13,21 +13,14 @@ public class BridgeGameRun {
     private int gameTryCount = 0;
 
     public void runBridgeGame() {
-
         beginningPart();
 
-        String gameRetryCommand;
-        String judge = "실패";
-
+        String judge;
         do {
             oneRound();
+            judge = game.judgeSuccessFailure(bridge, path);
 
-            if (game.judgeSuccessFailure(bridge, path)) {
-                judge = "성공";
-                break;
-            }
-            gameRetryCommand = input.readGameCommand();
-        } while (game.retry(gameRetryCommand));
+        } while (judge.equals("실패") && game.retry(input.readGameCommand()));
 
         output.printResult(judge, gameTryCount);
     }
@@ -51,4 +44,5 @@ public class BridgeGameRun {
 
         } while (game.move(bridge, path));
     }
+
 }
