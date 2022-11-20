@@ -1,6 +1,6 @@
 package bridge.validation;
 
-import bridge.InputView;
+import bridge.util.InputView;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

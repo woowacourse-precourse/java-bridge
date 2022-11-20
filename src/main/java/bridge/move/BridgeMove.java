@@ -1,4 +1,4 @@
-package bridge;
+package bridge.move;
 
 public class BridgeMove {
 	private final StringBuilder result=new StringBuilder();

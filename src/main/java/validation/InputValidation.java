@@ -1,7 +1,7 @@
 package validation;
 
 
-import bridge.OutputView;
+import bridge.util.OutputView;
 
 public class InputValidation {
 
