@@ -16,6 +16,7 @@
 ## 기능 구현
 - [x] 다리 길이 입력
 - [x] 건너갈 위치(U,D)입력
+- [X] 다리 생성 메소드 
 - [ ] 건너기 실패 시 게임 종료
 - [ ] 건너기 실패/성공 후 종료 문구 출력
 - [x] 재시작 여부 입력
@@ -43,8 +44,9 @@
   - BridgeMaker를 통해 Bridge에 들어갈 데이터 받기
   - **InputView, OutputView 클래스 사용X**
   - nextStep이라는 메소드를 통해 Bridge클래스 움직임 구현
-    - Fail, Success, Arrive 라는 enum 생성으로 움직임 성공 여부 파악
-    - 이를 통해 게임 진행상황 파악
+    - Fail, Success라는 enum 생성으로 움직임 성공 여부 파악
+    - 최대 길이까지 Success시 건너기 성공으로 판정
+    - 건너간 루트 저장
 - Bridge 클래스
   - BridgeMaker로 전달받은 인자로 다리 생성
   - Move에 관한 메소드 생성 및 BridgeGame의 nextStep에서 호출
