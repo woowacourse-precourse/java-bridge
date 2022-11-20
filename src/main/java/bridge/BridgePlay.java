@@ -25,7 +25,7 @@ public class BridgePlay {
             isValidRetry(retryCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            retryCommand = inputView.readGameCommand();
+            retryCommand = requestReadRetry();
         }
         return retryCommand;
     }
