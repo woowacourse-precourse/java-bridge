@@ -60,3 +60,10 @@
 - [X] 두번째 라운드까지 다리 건너고 나서 아래 다리 상태 값 확인 - BridgeGameTest#confirmSecondRoundDownBridgeState()
 - [X] 게임 재시작 시 총 게임 도전 횟수 카운트 값 확인 - BridgeGameTest#confimTotalGameAttemptsWhenRetry()
 - [X] 게임 재시작 시 위, 아래 다리 상태 초기화 상태 확인 - BridgeGameTest#confirmInitBridgeStateWhenRetry()
+
+- [X] 방향 키 + 다리 건널 수 있는지 여부 값을 통해 BridgeStatus 상수 참조 - BridgeStatusTest#referBridgeStatus()
+  - [X] UP_O: 위 방향 선택 + 건널 수 있음
+  - [X] UP_X: 위 방향 선택 + 건널 수 없음
+  - [X] DOWN_O: 아래 방향 선택 + 건널 수 있음
+  - [X] DOWN_X: 아래 방향 선택 + 건널 수 없음
+- [ ] 방향 키 + 다리 건널 수 있는지 여부 값을 통해 BridgeStatus 참조 불가능 시 예외처리 - validateReferabilityBridgeStatus()
