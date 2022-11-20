@@ -34,6 +34,13 @@ public class BridgeProgram {
         }
     }
 
+    private void move() {
+        do {
+            MapDto mapDto = getMap();
+            outputView.printMap(mapDto);
+        } while (bridgeGame.canMove());
+    }
+
     private MapDto getMap() {
         while (true) {
             try {
