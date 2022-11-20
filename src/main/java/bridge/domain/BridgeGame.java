@@ -67,6 +67,11 @@ public class BridgeGame {
         return path.size() != bridge.size() && path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
     }
 
+    public boolean isWin() {
+        int pathLastIndex = path.size() - 1;
+        return path.size() == bridge.size() && path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
+    }
+
     public String calculateResult() {
         int pathLastIndex = path.size() - 1;
         if (path.get(pathLastIndex).equals(bridge.get(pathLastIndex))) {
