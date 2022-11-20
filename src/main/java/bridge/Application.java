@@ -44,5 +44,4 @@ public class Application {
         }
         return bridgeGame.closeGame(moveResult);
     }
-
 }

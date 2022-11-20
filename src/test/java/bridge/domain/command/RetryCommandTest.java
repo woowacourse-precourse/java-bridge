@@ -18,7 +18,6 @@ class RetryCommandTest {
     @DisplayName("게임 재시작 여부 메시지가")
     class test {
 
-
         @DisplayName(RETRY +", " + QUIT + "일시 정상적으로 생성한다")
         @ValueSource(strings = {RETRY, QUIT})
         @ParameterizedTest
@@ -26,7 +25,6 @@ class RetryCommandTest {
             assertThatNoException()
                     .isThrownBy(() -> new RetryCommand(input));
         }
-
 
         @DisplayName(RETRY + "," + QUIT + "가 아니라면 예외를 반환한다.")
         @Test

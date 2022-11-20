@@ -25,7 +25,6 @@ class MoveCommandTest {
                     .isThrownBy(() -> new MoveCommand(input));
         }
 
-
         @DisplayName(MOVE_TO_UPPER_BLOCK + "," + MOVE_TO_LOWER_BLOCK + "가 아니라면 예외를 반환한다.")
         @Test
         void test3() {
