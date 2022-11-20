@@ -31,6 +31,17 @@ class BridgeGameInputExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("다리의 길이가 비어있다면 예외가 발생한다.")
+    @Test
+    public void validateWrongBridgeSizeBlankTest() {
+        //given
+        String size = " ";
+
+        //when,then
+        assertThatThrownBy(() -> bridgeGameInputException.validateBridgeSize(size))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("이동하는 입력값이 잘못되었으면다예외가 발생한.")
     @Test
     public void validateWrongMoveInputTest() {
