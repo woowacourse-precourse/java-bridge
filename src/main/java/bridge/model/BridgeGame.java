@@ -30,6 +30,11 @@ public class BridgeGame {
         round.updateStatusAfterMove(direction, bridge.getAccessibleIndexes(direction));
     }
 
+    public String getResultToString() {
+        List<String> courseResult = round.getCourseResult();
+        return courseResult.get(0) + "\n" + courseResult.get(1);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

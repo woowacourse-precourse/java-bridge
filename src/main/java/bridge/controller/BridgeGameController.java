@@ -19,6 +19,8 @@ public class BridgeGameController {
 
     public void start() {
         outputView.printStartMessage();
+        setForGame();
+        run();
     }
 
     private void setForGame() {
@@ -29,5 +31,6 @@ public class BridgeGameController {
     private void run() {
         String direction = inputView.readMoving();
         bridgeGame.move(direction);
+        outputView.printMap(bridgeGame.getResultToString());
     }
 }
