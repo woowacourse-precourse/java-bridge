@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.constant.ViewConstants;
+import bridge.domain.BridgeGame;
 
 import java.util.List;
 
@@ -22,6 +23,25 @@ public class OutputView {
         System.out.println(ViewConstants.ASKING_MOVING);
     }
 
+    public void printAskingRestartingGame() {
+        System.out.println(ViewConstants.ASKING_RESTARTING_GAME);
+    }
+
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void printResult(BridgeGame bridgeGame) {
+        printGameResult();
+        printMap(bridgeGame.makeMap());
+        printAttemptTimes(bridgeGame.getAttemptTimes());
+    }
+
+    public void printGameResult() {
+        System.out.println(ViewConstants.GAME_RESULT);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -33,26 +53,6 @@ public class OutputView {
 
     private void printRow(List<String> row) {
         System.out.println(ViewConstants.FRONT + String.join(ViewConstants.DELIMITER, row) + ViewConstants.BACK);
-    }
-
-    public void printAskingRestartingGame() {
-        System.out.println(ViewConstants.ASKING_RESTARTING_GAME);
-    }
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult(String result, int attemptTimes) {
-        printGameResult();
-        printMap();
-        printSuccessOrFailure(result);
-        printAttemptTimes(attemptTimes);
-    }
-
-    public void printGameResult() {
-        System.out.println(ViewConstants.GAME_RESULT);
     }
 
     public void printSuccessOrFailure(String result) {
