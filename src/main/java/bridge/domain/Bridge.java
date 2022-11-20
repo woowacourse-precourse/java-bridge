@@ -13,7 +13,8 @@ public class Bridge {
     }
 
     public boolean canCross(int position, Direction direction) {
-        return getBridgeAt(position).equals(direction.getCommand());
+        String command = direction.getCommand();
+        return getBridgeAt(position).equals(command);
     }
 
     private String getBridgeAt(int position) {
