@@ -36,7 +36,14 @@ public class GameController {
             String result = bridgeGame.move(direction, bridge.get(currentIndex));
             addResultBridge(isUp, result, user);
             outputView.printMessage(user.toString());
+            if(result.equals("X")) {
+                askRestartOrEnd();
+                return;
+            }
         }
+    }
+    public void askRestartOrEnd() {
+        String retryOrQuit  = inputView.readGameCommand();
     }
     public void addResultBridge(boolean isUp, String result, User user) {
         if(isUp) {
