@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class GameResult {
     private User user;
     private int resultNumber;
@@ -11,8 +13,8 @@ public class GameResult {
         this.countOfAttempt = countOfAttempt;
     }
 
-    public User getUser() {
-        return user;
+    public List<String> getUserMap() {
+        return user.getUserMap();
     }
 
     public int getResultNumber() {

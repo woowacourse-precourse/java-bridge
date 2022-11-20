@@ -15,7 +15,7 @@ public class OutputView {
     public static void printGameResult(GameResult gameResult) {
         printExceededAttempt(gameResult.getResultNumber());
         printResultText();
-        printMap(MapConverter.convertMap(gameResult.getUser().getUserMap()));
+        printMap(MapConverter.convertMap(gameResult.getUserMap()));
         printResult(gameResult.getResultNumber());
         printCountOfAttempt(gameResult.getCountOfAttempt());
     }
