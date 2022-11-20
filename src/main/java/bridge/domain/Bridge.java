@@ -1,12 +1,11 @@
 package bridge.domain;
 
+import static bridge.utils.Constant.ZERO;
 import static bridge.utils.Util.getInt;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.controller.InputController;
 import bridge.utils.validator.BridgeValidator;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -19,7 +18,7 @@ public class Bridge {
         new BridgeValidator(size);
         this.size = getInt(size);
         makeBridgeBySize(this.size);
-        this.step = step;
+        this.step = ZERO;
     }
 
     private void makeBridgeBySize(int size){
@@ -28,28 +27,14 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
-    public String successUpMove(Move move){
-        String result = "";
-        if(move.isUpMove()){
-            result = successMove(move);
-        }
-        return result;
-    }
-
-    public String successDownMove(Move move){
-        String result = "";
-        if(!move.isUpMove()){
-            result = successMove(move);
-        }
-        return result;
-    }
-
-    private String successMove(Move move){
-        if(move.goToNextMove(this.bridge.get(this.step))){
+    public BridgeResult isGoodMove(Move move){
+        String nowStep = this.bridge.get(this.step);
+        boolean nowResult = false;
+        if(move.goToNextMove(nowStep)){
             this.step += 1;
-            return "O";
+            nowResult = true;
         }
-        return "X";
+        return new BridgeResult(nowStep,nowResult);
     }
 
 
