@@ -1,9 +1,13 @@
 package bridge.domain;
 
 public class User {
-    private int tryCount = 1;
+    private int tryCount;
     private boolean isSuccessComplete;
     private boolean gameOver;
+
+    public User(){
+        this.tryCount = 1;
+    }
 
     public int getTryCount() {
         return tryCount;
