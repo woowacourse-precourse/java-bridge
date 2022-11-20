@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +44,8 @@ public class Controller {
 
                 if (game == false && count == bridgeSize) {
                     System.out.println("다시 시작하시겠습니까?");
-                    System.out.println("Yes");
+                    game = bridgeGame.retry(inputView.readGameCommand());
                     challengeCount++;
-                    game = true;
                     count = 0;
                 } else if (game == true && count == bridgeSize) {
                     System.out.println("게임 종료 ( 지워야 됨 )");
