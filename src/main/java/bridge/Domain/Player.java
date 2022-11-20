@@ -18,10 +18,6 @@ public class Player {
         return bridge.isValidDistance(distance) && bridge.canCrossBridge(distance, position);
     }
 
-    public int getPosition() {
-        return this.distance;
-    }
-
     public boolean isPlayerInEndOfBridge() {
         return bridge.isBridgeEnd(distance);
     }
