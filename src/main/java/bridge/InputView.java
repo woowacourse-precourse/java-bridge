@@ -15,8 +15,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(readBridgeSizeMessage);
-        String bridgeSize = readLine();
+        String bridgeSize = "";
+        try{
+            System.out.println(readBridgeSizeMessage);
+            bridgeSize = readLine();
+            readBridgeSizeOfNoNumberException(bridgeSize);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
     }
 
@@ -40,7 +47,7 @@ public class InputView {
 
     public void readBridgeSizeOfNoNumberException(String bridgeSize){
         String brideSizeRegularExpression = "^\\d{1,2}$";
-        if(!bridgeSize.matches(readBridgeSizeMessage)){
+        if(!bridgeSize.matches(brideSizeRegularExpression)){
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
