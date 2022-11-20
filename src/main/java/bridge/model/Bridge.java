@@ -16,6 +16,10 @@ public class Bridge {
         this.bridge.addAll(bridge);
     }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     private void validateBridge(List<String> bridge) {
         for (String space : bridge) {
             if (!space.equals(BridgeSpace.UP.getValue()) && !space.equals(BridgeSpace.DOWN.getValue())) {
