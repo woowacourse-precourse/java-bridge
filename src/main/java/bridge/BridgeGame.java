@@ -11,7 +11,7 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final BridgePlay bridgePlay;
-    private List<String> bridge;
+    private List<String> bridge; // U D R D..
     private int currentPosition = -1;
     private int totalTryCount = 1;
     private boolean success = true;
@@ -35,7 +35,7 @@ public class BridgeGame {
      */
     public boolean move() {
         currentPosition++;
-        String moveCommand = convertCommand(bridgePlay.requestReadMoving());
+        String moveCommand = bridgePlay.requestReadMoving();
         if(!bridge.get(currentPosition).equals(moveCommand)) {
             return success = false;
         }
@@ -43,10 +43,6 @@ public class BridgeGame {
             complete = true;
         }
         return true;
-    }
-    public String convertCommand(String command) {
-        if(command.equals("U")) return "1";
-        return "0";
     }
 
     /**

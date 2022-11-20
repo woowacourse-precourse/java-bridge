@@ -39,8 +39,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+        String[] convertToString = {"D", "U"};
         for(int i = 0; i<size; i++) {
-            bridge.add(String.valueOf(bridgeNumberGenerator.generate()));
+            bridge.add(convertToString[bridgeNumberGenerator.generate()]);
         }
         return bridge;
     }

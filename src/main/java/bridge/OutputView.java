@@ -28,23 +28,20 @@ public class OutputView {
         System.out.println(makeSecondLine(bridgeGame));
     }
     public String makeFirstLine(BridgeGame bridgeGame) {
-        List<String> bridge = bridgeGame.getBridge();
-        int currentPosition = bridgeGame.getCurrentPosition();
-        if(currentPosition == 0) {
+        if(bridgeGame.getCurrentPosition() == 0) {
             return makeFirstLinePositionIsZero(bridgeGame);
         }
-        String line = "[";
-        return line + makeFirstLineMiddle(bridgeGame) + makeFirstLineEnd(bridgeGame);
+        return "[" + makeFirstLineMiddle(bridgeGame) + makeFirstLineEnd(bridgeGame);
     }
     public String makeFirstLinePositionIsZero(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
-        if(bridge.get(0).equals("1") && bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("U") && bridgeGame.isSuccess()) {
             return "[ O ]";
         }
-        if(bridge.get(0).equals("1") && !bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("U") && !bridgeGame.isSuccess()) {
             return "[ X ]";
         }
-        return "   ";
+        return "[   ]";
     }
     public String makeFirstLineMiddle(BridgeGame bridgeGame) {
         String line = "";
@@ -55,40 +52,37 @@ public class OutputView {
         return line;
     }
     public String convertToResultForFirstLine(String move) {
-        if(move.equals("1")) {
+        if(move.equals("U")) {
             return " O |";
         }
         return "   |";
     }
     public String makeFirstLineEnd(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
-        if(bridge.get(0).equals("1") && bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("U") && bridgeGame.isSuccess()) {
             return " O ]";
         }
-        if(bridge.get(0).equals("1") && !bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("U") && !bridgeGame.isSuccess()) {
             return " X ]";
         }
         return "   ]";
     }
     ///////////
     public String makeSecondLine(BridgeGame bridgeGame) {
-        List<String> bridge = bridgeGame.getBridge();
-        int currentPosition = bridgeGame.getCurrentPosition();
-        if(currentPosition == 0) {
+        if(bridgeGame.getCurrentPosition() == 0) {
             return makeSecondLinePositionIsZero(bridgeGame);
         }
-        String line = "[";
-        return line + makeSecondLineMiddle(bridgeGame) + makeSecondLineEnd(bridgeGame);
+        return "[" + makeSecondLineMiddle(bridgeGame) + makeSecondLineEnd(bridgeGame);
     }
     public String makeSecondLinePositionIsZero(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
-        if(bridge.get(0).equals("0") && bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("D") && bridgeGame.isSuccess()) {
             return "[ O ]";
         }
-        if(bridge.get(0).equals("0") && !bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("D") && !bridgeGame.isSuccess()) {
             return "[ X ]";
         }
-        return "   ";
+        return "[   ]";
     }
     public String makeSecondLineMiddle(BridgeGame bridgeGame) {
         String line = "";
@@ -99,17 +93,17 @@ public class OutputView {
         return line;
     }
     public String convertToResultForSecondLine(String move) {
-        if(move.equals("0")) {
+        if(move.equals("D")) {
             return " O |";
         }
         return "   |";
     }
     public String makeSecondLineEnd(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
-        if(bridge.get(0).equals("0") && bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("D") && bridgeGame.isSuccess()) {
             return " O ]";
         }
-        if(bridge.get(0).equals("0") && !bridgeGame.isSuccess()) {
+        if(bridge.get(0).equals("D") && !bridgeGame.isSuccess()) {
             return " X ]";
         }
         return "   ]";
