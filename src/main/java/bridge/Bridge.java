@@ -15,6 +15,9 @@ public class Bridge {
     private static final String INCORRECT_CELL = " X ";
     private static final String SEPARATOR = "|";
 
+    /*
+    생성자
+     */
     public Bridge(int size, Player player) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);

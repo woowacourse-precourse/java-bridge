@@ -32,6 +32,7 @@ public class BridgeGameRunner {
 
     /**
      * 라운드를 다시 시도할건지 묻는 메서드
+     *
      * @return 다시 시도한다면 true 아니라면 false
      */
     private boolean askRetry() {

@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -83,6 +81,7 @@ public class BridgeGame {
 
     /**
      * 새로운 브릿지 맵을 생성하는 메서드
+     *
      * @param size 브릿지 맵 크기
      */
     public void generateBridge(int size) {
