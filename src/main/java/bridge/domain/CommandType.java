@@ -24,5 +24,9 @@ public enum CommandType {
         }
     }
 
+    public  boolean isQuit() {
+        return this.value.equals("Q");
+    }
+
 }
 
