@@ -14,6 +14,7 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private List<String> route;
+    private int countOfTry = 1;
 
     BridgeGame(int length) {
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(length);
@@ -27,7 +28,7 @@ public class BridgeGame {
      */
     public BridgeGameDto move(String road) {
         route.add(road);
-        return new BridgeGameDto(bridge, route);
+        return new BridgeGameDto(bridge, route, countOfTry);
     }
 
     /**
@@ -37,6 +38,7 @@ public class BridgeGame {
      */
     public void retry() {
         route.clear();
+        countOfTry++;
     }
 
     public boolean isContinue() {

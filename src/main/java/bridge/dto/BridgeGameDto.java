@@ -6,10 +6,12 @@ public class BridgeGameDto {
 
     private List<String> bridge;
     private List<String> route;
+    private int countOfTry;
 
-    public BridgeGameDto(List<String> bridge, List<String> route) {
+    public BridgeGameDto(List<String> bridge, List<String> route, int countOfRetry) {
         this.bridge = bridge;
         this.route = route;
+        this.countOfTry = countOfRetry;
     }
 
     public List<String> getBridge() {
@@ -18,5 +20,9 @@ public class BridgeGameDto {
 
     public List<String> getRoute() {
         return route;
+    }
+
+    public int getCountOfTry() {
+        return countOfTry;
     }
 }

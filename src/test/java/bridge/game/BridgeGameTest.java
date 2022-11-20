@@ -87,6 +87,21 @@ public class BridgeGameTest {
         }
     }
 
+    @Test
+    void countOfTryTest() {
+        List<String> bridge = List.of("U","U","D","D");
+        try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
+            BridgeGame bridgeGame = new BridgeGame(bridge.size());
+            bridgeGame.retry();
+            bridgeGame.retry();
+            int excepted = 3;
+
+            int result = bridgeGame.move("U").getCountOfTry();
+
+            assertThat(result).isEqualTo(excepted);
+        }
+    }
+
     MockedConstruction<BridgeMaker> mockedBridgeMaker(List<String> bridge) {
         return mockConstruction(BridgeMaker.class,
                 withSettings().defaultAnswer(RETURNS_MOCKS),
