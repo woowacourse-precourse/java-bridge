@@ -1,9 +1,15 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        System.out.println(Integer.parseInt("12"));
+        BridgeController bridgeController = new BridgeController();
+        try {
+            bridgeController.startController();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
