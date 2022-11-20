@@ -1,12 +1,11 @@
 package bridge.model.constant;
 
-import bridge.model.validate.BridgeSize;
 import bridge.model.validate.ExitOption;
 import bridge.model.validate.Stairs;
 
 public enum Error {
 	FORMAT("자연수만 입력해주세요."),
-	RANGE(String.format("%d 에서 %d 사이의 자연수만 입력해 주세요", BridgeSize.MIN_NUMBER, BridgeSize.MAX_NUMBER)),
+	RANGE(String.format("다리 길이는 %d부터 %d 사이의 숫자여야 합니다.", Size.MIN.getNumber(), Size.MAX.getNumber())),
 	STAIRS_COMMAND(String.format("%s 혹은 %s만 입력해주세요.", Stairs.UP.getCommand(), Stairs.DOWN.getCommand())),
 	STAIRS_NUMBER(String.format("%d 혹은 %d만 입력해주세요.", Stairs.UP.getNumber(), Stairs.DOWN.getNumber())),
 	EXIT_OPTION(String.format("%s 혹은 %s만 입력해주세요.", ExitOption.REPLAY.getCommand(), ExitOption.QUIT.getCommand())),

@@ -1,10 +1,9 @@
 package bridge.model.validate;
 
 import bridge.model.constant.Error;
+import bridge.model.constant.Size;
 
 public class BridgeSize {
-	public static final int MIN_NUMBER = 3;
-	public static final int MAX_NUMBER = 20;
 
 	private final int bridgeSize;
 
@@ -24,6 +23,6 @@ public class BridgeSize {
 	}
 
 	private static boolean isInRange(int value) {
-		return MIN_NUMBER <= value && value <= MAX_NUMBER;
+		return Size.MIN.getNumber() <= value && value <= Size.MAX.getNumber();
 	}
 }
