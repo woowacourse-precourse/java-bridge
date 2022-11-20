@@ -52,5 +52,12 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    private String createSuccessOrFailureMessage(boolean isWon) {
+        if (isWon) {
+            return GameMessage.GAME_SUCCESS.getMessage();
+        }
+        return GameMessage.GAME_FAILURE.getMessage();
+    }
 }
 
