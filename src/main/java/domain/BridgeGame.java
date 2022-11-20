@@ -1,5 +1,6 @@
 package domain;
 
+import view.InputMessage;
 import view.InputView;
 
 /**
@@ -35,15 +36,19 @@ public class BridgeGame {
         return false;
     }
 
-    private boolean retryOrEnd() {
-        if(inputView.readGameCommand().equals("Q")) {
-            return true;
+    public boolean checkRetry() {
+        if(userPos == 0) {
+            System.out.println(InputMessage.RESTART.getInputMsg());
+            if(inputView.readGameCommand().equals("R")) {
+                attempts++;
+                return false;
+            }
+            return false;
         }
-        retry();
         return false;
     }
 
-    public boolean checkEnd(AllBridge allBridge) {
+    public boolean checkFinish(AllBridge allBridge) {
         if(userPos == allBridge.getBridge().size()) {
             success = true;
             return true;
