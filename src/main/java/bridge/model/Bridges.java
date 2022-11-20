@@ -17,7 +17,7 @@ public class Bridges {
         return bridges.get(position - INDEX_SIZE_DIFFERENT).equals(direction);
     }
 
-    boolean isEnd(Player player) {
-        return player.isCompleted(size);
+    boolean isCompletedGame(Player player) {
+        return player.isCompletedGame(size);
     }
 }

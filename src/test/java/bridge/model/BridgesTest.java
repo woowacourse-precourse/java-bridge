@@ -13,12 +13,12 @@ public class BridgesTest {
     void check_is_end() {
         Bridges bridges = new Bridges(3, new BridgeFakeOneZeroLoopNumberGenerator());
         Player player = new Player();
-        assertThat(bridges.isEnd(player)).isFalse();
+        assertThat(bridges.isCompletedGame(player)).isFalse();
         player.move("U");
-        assertThat(bridges.isEnd(player)).isFalse();
+        assertThat(bridges.isCompletedGame(player)).isFalse();
         player.move("U");
         player.move("U");
-        assertThat(bridges.isEnd(player)).isTrue();
+        assertThat(bridges.isCompletedGame(player)).isTrue();
     }
 
     @DisplayName("특정한 위치의 방향 확인 기능")

@@ -22,11 +22,11 @@ public class BridgeGameTest {
     @Test
     void is_completed_move() {
         BridgeGame bridgeGame = new BridgeGame(2, new BridgeFakeOneZeroLoopNumberGenerator());
-        assertThat(bridgeGame.isSuccess()).isFalse();
+        assertThat(bridgeGame.isCompletedGame()).isFalse();
         bridgeGame.move("D");
-        assertThat(bridgeGame.isSuccess()).isFalse();
+        assertThat(bridgeGame.isCompletedGame()).isFalse();
         bridgeGame.move("U");
-        assertThat(bridgeGame.isSuccess()).isTrue();
+        assertThat(bridgeGame.isCompletedGame()).isTrue();
     }
 
     @DisplayName("게임 다시 시도")
@@ -35,7 +35,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeOneZeroLoopNumberGenerator());
         assertThat(bridgeGame.isStartStatus()).isTrue();
         bridgeGame.move("D");
-        assertThat(bridgeGame.isSuccess()).isFalse();
+        assertThat(bridgeGame.isCompletedGame()).isFalse();
         bridgeGame.retry();
         assertThat(bridgeGame.isStartStatus()).isTrue();
     }
