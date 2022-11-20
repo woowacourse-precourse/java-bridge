@@ -1,7 +1,9 @@
 package bridge.controller;
 
+import static bridge.model.GameCommand.findCommandByInput;
 import static bridge.model.Position.findPositionByAbbreviation;
 
+import bridge.model.GameCommand;
 import bridge.model.Position;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -30,10 +32,10 @@ public class InputController {
         }
     }
 
-    public static String getGameCommand() {
+    public static GameCommand getGameCommand() {
         try {
             outputView.printGameCommandInput();
-            return inputView.readGameCommand();
+            return findCommandByInput(inputView.readGameCommand());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
             return getGameCommand();

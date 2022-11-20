@@ -10,6 +10,7 @@ public enum GameCommand {
 
     private final String input;
 
+
     GameCommand(String input) {
         this.input = input;
     }
@@ -25,5 +26,17 @@ public enum GameCommand {
                 .map(command -> command.input)
                 .collect(Collectors.toList());
     }
+
+    public static GameCommand findCommandByInput(String input) {
+        return Arrays.stream(GameCommand.values())
+                .filter(command -> command.input.equals(input))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
+    }
+
+    public static boolean selectedRetry(GameCommand command) {
+        return command == GameCommand.RETRY;
+    }
+
 
 }

@@ -2,6 +2,7 @@ package bridge.controller;
 
 import static bridge.controller.InputController.getBridgeSize;
 import static bridge.controller.InputController.getGameCommand;
+import static bridge.model.GameCommand.selectedRetry;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
@@ -10,6 +11,7 @@ import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Diagram;
 import bridge.model.FinalResult;
+import bridge.model.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -34,11 +36,11 @@ public class GameController {
                 outputView.printResult(diagram, finalResult);
             }
             if (!finalResult.isSuccess()) {
-                String retryOrQuit = getGameCommand();
-                if (retryOrQuit.equals("R")) {
+                GameCommand gameCommand = getGameCommand();
+                if (selectedRetry(gameCommand)) {
                     finalResult.addAttempts();
                 }
-                if (retryOrQuit.equals("Q")) {
+                if (!selectedRetry(gameCommand)) {
                     finalResult.quit();
                     outputView.printResult(diagram, finalResult);
                 }
