@@ -4,7 +4,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.BridgeConstants;
 import bridge.constant.ExceptionConstants;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
@@ -27,9 +26,5 @@ public class Bridge {
 
     public int size() {
         return bridge.size();
-    }
-
-    public List<String> getBridge() {
-        return Collections.unmodifiableList(bridge);
     }
 }
