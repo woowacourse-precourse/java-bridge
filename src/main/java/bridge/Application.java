@@ -1,5 +1,10 @@
 package bridge;
 
+import bridge.model.BridgeMaker;
+import bridge.model.BridgeNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -9,9 +14,8 @@ public class Application {
     }
 
     public static void gameStart() {
-        System.out.println(OutputView.printGameStartPhrase());
-        System.out.println();
-        System.out.println(OutputView.printBridgeLengthInputPhrase());
+        OutputView.printGameStartPhrase();
+        OutputView.printBridgeLengthInputPhrase();
     }
 
     public static void makeBridge() {
