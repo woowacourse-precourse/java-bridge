@@ -12,6 +12,8 @@ import java.util.stream.IntStream;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    private static final int MINIMUM_SIZE = 3;
+    private static final int MAXIMUM_SIZE = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -24,6 +26,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        validate(size);
         List<String> bridge = new ArrayList<>();
         IntStream.range(0, size).forEach(count -> {
             String moving = convertNumberToMoving(bridgeNumberGenerator.generate());
@@ -38,5 +41,12 @@ public class BridgeMaker {
             return UPPER_SIDE;
         }
         return LOWER_SIDE;
+    }
+
+    private void validate(int size) {
+        if (MINIMUM_SIZE <= size && size <= MAXIMUM_SIZE) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format("[ERROR] 다리 길이는 %d 이상 %d 이하여야 합니다.", MINIMUM_SIZE, MAXIMUM_SIZE));
     }
 }
