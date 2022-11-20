@@ -6,6 +6,7 @@ public class OutputView {
     private static final String TOTAL_TRIAL = "총 시도한 횟수: ";
     private static final String SUCCESS = "성공";
     private static final String FAILURE = "실패";
+    private static final String SKIP_LINE = "\n";
     private static final String PROOF_OF_FAIL = "X";
 
     public void printMap() {
@@ -17,8 +18,8 @@ public class OutputView {
         return result.contains(PROOF_OF_FAIL);
     }
 
-    private void printGameStatus(){
-
+    private void printGameStatus(String result){
+        System.out.println(TOTAL_RESULT+SKIP_LINE+result+SKIP_LINE);
     }
 
     private void printTrialCounts(){
