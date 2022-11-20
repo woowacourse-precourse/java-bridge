@@ -9,18 +9,21 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    List<String> choiceResults = new ArrayList<>();
+    ChoiceResults choiceResults;
     Bridge bridge;
 
     public BridgeGame(BridgeSize bridgeSize){
+        choiceResults = new ChoiceResults();
+        bridge = new Bridge(makeBridge(bridgeSize));
+    }
+    private List<String> makeBridge(BridgeSize bridgeSize){
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
         int size = bridgeSize.getSize();
-        bridge = new Bridge(bridgeMaker.makeBridge(size));
+        return bridgeMaker.makeBridge(size);
     }
-
     public void move() {
+
     }
 
     /**
