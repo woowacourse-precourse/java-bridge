@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.util.BridgeGameConstant.RESTART_SIGN;
+
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -39,6 +41,9 @@ public class BridgeGameController {
     }
 
     private void restartGame() {
-        inputView.readGameCommand();
+        while (inputView.readGameCommand().equals(RESTART_SIGN)) {
+            bridgeGame.retry();
+            run();
+        }
     }
 }
