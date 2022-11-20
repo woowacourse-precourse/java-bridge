@@ -13,36 +13,36 @@ public class InputValidator {
     private static final String INVALID_BRIDGE_MOVE_INPUT_MSG = "유효하지 않은 다리 이동 명령입니다.";
     private static final String INVALID_GAME_COMMAND_INPUT_MSG = "유효하지 않은 게임 재시작 명령입니다.";
 
-    public void validateBridgeSize(String userInput) {
+    public static void validateBridgeSize(String userInput) {
         validateBlank(userInput);
         validateNumeric(userInput);
         validateRange(userInput);
     }
 
-    public void validateBridgeMove(String userInput) {
+    public static void validateBridgeMove(String userInput) {
         validateBlank(userInput);
         validateMoveOrder(userInput);
     }
 
-    public void validateGameCommand(String userInput) {
+    public static void validateGameCommand(String userInput) {
         validateBlank(userInput);
         validateCommandOrder(userInput);
 
     }
 
-    private void validateBlank(String userInput) {
+    private static void validateBlank(String userInput) {
         if (userInput.isBlank()) {
             throw new IllegalArgumentException(BLANK_INPUT_MSG);
         }
     }
 
-    private void validateNumeric(String userInput) {
+    private static void validateNumeric(String userInput) {
         if (!userInput.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(NOT_NUMERIC_INPUT_MSG);
         }
     }
 
-    private void validateRange(String userInput) {
+    private static void validateRange(String userInput) {
         int bridgeSize = Integer.parseInt(userInput);
 
         if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
@@ -50,13 +50,13 @@ public class InputValidator {
         }
     }
 
-    private void validateMoveOrder(String userInput) {
+    private static void validateMoveOrder(String userInput) {
         if (!userInput.equals(Direction.UPSIDE.shortcut()) && !userInput.equals(Direction.DOWNSIDE.shortcut())) {
             throw new IllegalArgumentException(INVALID_BRIDGE_MOVE_INPUT_MSG);
         }
     }
 
-    private void validateCommandOrder(String userInput) {
+    private static void validateCommandOrder(String userInput) {
         if (!userInput.equals(Command.RETRY.shortCut()) && !userInput.equals(Command.QUIT.shortCut())) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND_INPUT_MSG);
         }

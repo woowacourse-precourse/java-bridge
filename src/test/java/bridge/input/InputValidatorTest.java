@@ -13,12 +13,11 @@ public class InputValidatorTest {
     @DisplayName("다리생성을 위한 사용자 입력이 비어 있거나 공백으로만 이루어진 경우 에러 메세지와 함께 IllegalArgumentException이 발생한다.")
     public void validateBlankInput() throws Exception{
         //given
-        InputValidator inputValidator = new InputValidator();
         final String BLANK_INPUT_MSG = "비어 있는 입력값 입니다.";
         String userInput = "";
         //when
         //then
-        Assertions.assertThatThrownBy(() -> inputValidator.validateBridgeSize(userInput))
+        Assertions.assertThatThrownBy(() -> InputValidator.validateBridgeSize(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BLANK_INPUT_MSG);
     }
@@ -28,11 +27,10 @@ public class InputValidatorTest {
     @ValueSource(strings = {"1,","1a","1가","!12","abc","가나다","1:b",})
     public void validateNotNumericInput(String userInput) throws Exception{
         //given
-        InputValidator inputValidator = new InputValidator();
         final String NOT_NUMERIC_INPUT_MSG = "숫자 이외의 값이 존재하는 입력값입니다.";
         //when
         //then
-        Assertions.assertThatThrownBy(() -> inputValidator.validateBridgeSize(userInput))
+        Assertions.assertThatThrownBy(() -> InputValidator.validateBridgeSize(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_NUMERIC_INPUT_MSG);
     }
@@ -42,11 +40,10 @@ public class InputValidatorTest {
     @ValueSource(strings = {"0","1","2","21","30","100"})
     public void validateRangedInputForBridgeSize(String userInput) throws Exception{
         //given
-        InputValidator inputValidator = new InputValidator();
         final String INVALID_BRIDGE_SIZE_INPUT = "유효하지 않은 다리 크기입니다.";
         //when
         //then
-        Assertions.assertThatThrownBy(() -> inputValidator.validateBridgeSize(userInput))
+        Assertions.assertThatThrownBy(() -> InputValidator.validateBridgeSize(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_BRIDGE_SIZE_INPUT);
     }
@@ -56,11 +53,10 @@ public class InputValidatorTest {
     @ValueSource(strings = { "U ","D "," U "," D ","u","d"})
     public void validateWrongInputForCrossBridge(String userInput) throws Exception{
         //given
-        InputValidator inputValidator = new InputValidator();
         final String INVALID_BRIDGE_MOVE_INPUT = "유효하지 않은 다리 이동 명령입니다.";
         //when
         //then
-        Assertions.assertThatThrownBy(() -> inputValidator.validateBridgeMove(userInput))
+        Assertions.assertThatThrownBy(() -> InputValidator.validateBridgeMove(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_BRIDGE_MOVE_INPUT);
     }
@@ -70,10 +66,9 @@ public class InputValidatorTest {
     @ValueSource(strings = { "U","D"})
     public void validateCorrectInputForCrossBridge(String userInput) throws Exception{
         //given
-        InputValidator inputValidator = new InputValidator();
         //when
         //then
-        inputValidator.validateBridgeMove(userInput);
+        InputValidator.validateBridgeMove(userInput);
     }
 
     @ParameterizedTest
@@ -81,11 +76,10 @@ public class InputValidatorTest {
     @ValueSource(strings = {" R", "R "," R ", " Q","Q "," Q ", "q","r","123","abc","가나다"})
     public void validateWrongInputForRestartGame(String userInput) throws Exception{
         //given
-        InputValidator inputValidator = new InputValidator();
         final String INVALID_GAME_COMMAND_INPUT_MSG = "유효하지 않은 게임 재시작 명령입니다.";
         //when
         //then
-        Assertions.assertThatThrownBy(() -> inputValidator.validateGameCommand(userInput))
+        Assertions.assertThatThrownBy(() -> InputValidator.validateGameCommand(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_GAME_COMMAND_INPUT_MSG);
     }
@@ -95,9 +89,8 @@ public class InputValidatorTest {
     @ValueSource(strings = { "R","Q"})
     public void validateCorrectInputForRestartGame(String userInput) throws Exception{
         //given
-        InputValidator inputValidator = new InputValidator();
         //when
         //then
-        inputValidator.validateGameCommand(userInput);
+        InputValidator.validateGameCommand(userInput);
     }
 }

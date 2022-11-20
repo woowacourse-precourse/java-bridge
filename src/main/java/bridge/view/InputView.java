@@ -9,22 +9,14 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private final InputValidator inputValidator;
-    private final InputConverter inputConverter;
-
-    public InputView() {
-        this.inputValidator = new InputValidator();
-        this.inputConverter = new InputConverter();
-    }
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String userInput = Console.readLine();
-        inputValidator.validateBridgeSize(userInput);
+        InputValidator.validateBridgeSize(userInput);
 
-        return inputConverter.toInt(userInput);
+        return InputConverter.toInt(userInput);
     }
 
     /**
@@ -32,7 +24,7 @@ public class InputView {
      */
     public String readMoving() {
         String userInput = Console.readLine();
-        inputValidator.validateBridgeMove(userInput);
+        InputValidator.validateBridgeMove(userInput);
 
         return userInput;
     }
@@ -42,7 +34,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String userInput = Console.readLine();
-        inputValidator.validateGameCommand(userInput);
+        InputValidator.validateGameCommand(userInput);
 
         return userInput;
     }
