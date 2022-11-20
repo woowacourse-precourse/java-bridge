@@ -52,4 +52,10 @@ public class BridgeGame {
         // 길이에 대한 에외 검사 추가
     }//lengthens
 
+    public boolean isSuccess(List<String> userSelectResult,List<String> computerBridge) {
+        boolean success= compareBridge.isSame(userSelectResult,computerBridge);
+        outputView.printMap(userSelectResult,success);
+
+        return success;
+    }//compare
 } // end class
