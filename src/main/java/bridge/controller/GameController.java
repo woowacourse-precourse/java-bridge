@@ -1,73 +1,48 @@
 package bridge.controller;
 
-import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.GameResultDto;
-import bridge.model.PassingSpace;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
-    private final InputView inputView = new InputView();
+    private final InputController inputController = new InputController();
     private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame;
 
-    public BridgeGame createBridgeGame(Bridge bridge) {
-        PassingSpace passingSpace = new PassingSpace();
-        return new BridgeGame(bridge, passingSpace);
+    public GameController(BridgeGame bridgeGame) {
+        this.bridgeGame = bridgeGame;
     }
 
-    public void run(BridgeGame bridgeGame) {
-        outputView.printStartGame();
+    public void run() {
         do {
-            runRound(bridgeGame);
-        } while (continueGame(bridgeGame));
-        printResult(bridgeGame);
+            runRound();
+        } while (continueGame());
+        printResult();
     }
 
-    private boolean continueGame(BridgeGame bridgeGame) {
-        if (bridgeGame.isSuccessCrossingBridge()) {
-            return false;
-        }
-        return bridgeGame.retry(selectRetryGame());
-    }
-
-    private void printResult(BridgeGame bridgeGame) {
-        GameResultDto gameResult = bridgeGame.getGameResult();
-        outputView.printResult(gameResult);
-    }
-
-    private String selectRetryGame() {
-        try {
-            outputView.printSelectRetryOrNotInput();
-            String selectRetryingGame = inputView.readGameCommand();
-            return selectRetryingGame;
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printExceptionMessage(illegalArgumentException);
-            return selectRetryGame();
-        }
-    }
-
-    private void runRound(BridgeGame bridgeGame) {
+    private void runRound() {
         String moving;
         do {
-            moving = selectMoving();
+            moving = inputController.selectMoving();
             bridgeGame.move(moving);
             outputView.printMap(bridgeGame.drawPassingSpace());
-        } while (continueRound(bridgeGame));
+        } while (continueRound(moving));
     }
 
-    private boolean continueRound(BridgeGame bridgeGame) {
+    private boolean continueRound(String moving) {
         return bridgeGame.isRightSpace() && !bridgeGame.isSuccessCrossingBridge();
     }
 
-    private String selectMoving() {
-        try {
-            outputView.printSelectUpOrDownInput();
-            String readMoving = inputView.readMoving();
-            return readMoving;
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printExceptionMessage(illegalArgumentException);
-            return selectMoving();
+    private boolean continueGame() {
+        if (bridgeGame.isSuccessCrossingBridge()) {
+            return false;
         }
+        String selectRetrying = inputController.selectRetryGame();
+        return bridgeGame.retry(selectRetrying);
+    }
+
+    private void printResult() {
+        GameResultDto gameResult = bridgeGame.getGameResult();
+        outputView.printResult(gameResult);
     }
 }
