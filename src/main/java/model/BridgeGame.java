@@ -7,6 +7,7 @@ import static model.enums.MoveResult.getMatchResult;
 import dto.GameResult;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import model.enums.GameStatus;
@@ -24,7 +25,7 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.tryCount = 1;
-        this.moveResults = List.of(new ArrayList<MoveResult>().stream().limit(2).collect(Collectors.toList()));
+        this.moveResults = List.of(new ArrayList<>(), new ArrayList<>());
     }
 
     /**
@@ -42,19 +43,19 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
-        moveResults = List.of(new ArrayList<MoveResult>().stream().limit(2).collect(Collectors.toList()));
+        this.moveResults = List.of(new ArrayList<>(), new ArrayList<>());
     }
 
     public GameResult getFinalGameResult() {
-        return null;
+        return new GameResult(Optional.of(tryCount), Optional.of(getGameStatus()), moveResults);
     }
 
     public GameResult getGameResult() {
-        return null;
+        return new GameResult(Optional.empty(), Optional.empty(), moveResults);
     }
 
     public GameStatus getGameStatus() {
-        return GameStatus.getMatchStatus(succeed(),failed());
+        return GameStatus.getMatchStatus(succeed(), failed());
     }
 
     private boolean succeed() {
@@ -66,18 +67,17 @@ public class BridgeGame {
 
     private boolean failed() {
         int lastIndex = moveResults.get(0).size() - 1;
-        if(lastIndex < 0){
+        if (lastIndex < 0) {
             return false;
         }
 
-        return IntStream.range(0, moveResults.size())
-                .anyMatch((i) -> moveResults.get(i).get(lastIndex).equals(FAIL));
+        return IntStream.range(0, moveResults.size()).anyMatch((i) -> moveResults.get(i).get(lastIndex).equals(FAIL));
     }
 
     private void updateMoveResults(int row, boolean succeed) {
-        for(int i = 0 ; i < moveResults.size() ; i++){
+        for (int i = 0; i < moveResults.size(); i++) {
             List<MoveResult> rowMoveResult = moveResults.get(i);
-            if(i == row) {
+            if (i == row) {
                 rowMoveResult.add(getMatchResult(succeed));
                 continue;
             }
