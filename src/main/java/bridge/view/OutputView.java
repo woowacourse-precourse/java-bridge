@@ -15,7 +15,6 @@ public class OutputView {
     }
     
     public void printResult(Player player, Result result, String message) {
-        printMap(result);
         System.out.println(MessageConstant.TOTAL_RESULT.getValue());
         printMap(result);
         System.out.println(MessageConstant.SUCCESS_OR_NOT.getValue() + message);

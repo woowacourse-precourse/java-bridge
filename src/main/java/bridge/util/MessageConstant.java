@@ -12,7 +12,7 @@ public enum MessageConstant {
 
     START_GAME("다리 건너기 게임을 시작합니다.\n"),
 
-    TOTAL_RESULT("최종 게임 결과"),
+    TOTAL_RESULT("\n최종 게임 결과"),
 
     SUCCESS_OR_NOT("게임 성공 여부: "),
 
