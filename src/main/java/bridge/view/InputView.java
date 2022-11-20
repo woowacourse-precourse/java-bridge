@@ -10,16 +10,31 @@ public class InputView {
 
     public static BridgeSize readBridgeSize() {
         System.out.println(Messages.BRIDGE_SIZE_INPUT_MESSAGE);
-        return new BridgeSize(Console.readLine());
+        try {
+            return new BridgeSize(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     public static Moving readMoving() {
         System.out.println(Messages.MOVING_MESSAGE);
-        return new Moving(Console.readLine());
+        try {
+            return new Moving(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     public static Command readGameCommand() {
         System.out.println(Messages.RETRY_MESSAGE);
-        return new Command(Console.readLine());
+        try {
+            return new Command(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 }
