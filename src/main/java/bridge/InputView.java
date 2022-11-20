@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String userInput = Console.readLine();
 
         try {
@@ -24,7 +24,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String userInput = Console.readLine();
 
         try {
