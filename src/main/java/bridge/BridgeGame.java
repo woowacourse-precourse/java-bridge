@@ -8,7 +8,7 @@ import java.util.List;
 
 import static bridge.data.Direction.DOWN_DIRECTION;
 import static bridge.data.Direction.UP_DIRECTION;
-import static bridge.data.GameCommand.UP;
+import static bridge.data.GameCommand.*;
 
 public class BridgeGame {
 
@@ -26,7 +26,13 @@ public class BridgeGame {
         position++;
     }
 
-    public void retry() {
+    public boolean retry(String retryCommand) {
+        if (retryCommand.equals(QUIT.getCommand())) {
+            return false;
+        } else if (retryCommand.equals(RETRY.getCommand())) {
+            return true;
+        }
+        return true;
     }
 
     private Direction createDirection(String move) {
