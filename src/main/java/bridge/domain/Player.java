@@ -8,6 +8,7 @@ public class Player {
     private int distance = 0;
     private List<Movement> route = new ArrayList<>();
     private List<Boolean> answer = new ArrayList<>();
+    public String result;
 
     public boolean matchPlayerAndBridge(Bridge bridge) {
         List<String> bridgeValues = bridge.getBridge();
@@ -38,11 +39,11 @@ public class Player {
     }
 
     public List<Movement> getRoute() {
-        return route;
+        return List.copyOf(route);
     }
 
     public List<Boolean> getAnswer() {
-        return answer;
+        return List.copyOf(answer);
     }
 
 }

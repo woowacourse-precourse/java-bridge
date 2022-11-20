@@ -7,6 +7,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.Player;
+import bridge.view.OutputView;
 
 public class GameController {
 
@@ -37,7 +38,7 @@ public class GameController {
     private void crossABridge(Bridge bridge, Player player) {
         BridgeGame bridgeGame = new BridgeGame(bridge, player, inputController);
         bridgeGame.move();
-
-        // 결과 출력
+        System.out.println("최종 결과다 짜샤");
+        System.out.println(player.result);
     }
 }
