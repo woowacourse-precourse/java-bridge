@@ -123,7 +123,7 @@ D
 ## BridgeGame
 - [x] upBridge라는 인스턴스 변수 생성
 - [x] downBridge라는 인스턴스 변수 생성
-- [ ] moveCount라는 인스턴스 변수 생성
+- [x] moveCount라는 인스턴스 변수 생성
 - [ ] gameCount라는 인스턴스 변수 생성
 
 ### move
