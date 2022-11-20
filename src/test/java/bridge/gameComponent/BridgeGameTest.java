@@ -54,4 +54,35 @@ public class BridgeGameTest {
         assertThat(bridgeGame.getIndex())
                 .isEqualTo(1);
     }
+
+    @Test
+    void retryTest_게임_성공_예외() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move();
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            bridgeGame.retry();
+        });
+        //then
+        assertThat(throwable)
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void retryTest_정상() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move();
+        //when
+        bridgeGame.retry();
+        //then
+        assertThat(bridgeGame.getNumberOfTries())
+                .isEqualTo(2);
+        assertThat(bridgeGame.getIndex())
+                .isEqualTo(-1);
+    }
+
 }

@@ -35,9 +35,10 @@
   - 마지막 칸까지 도달했다면, 1 리턴
   - 마지막 칸까지 도달하지 않았다면, 0리턴
   - 예외. 마지막 칸을 넘어서 움직인 경우
-- [ ] 다시 시도 BridgeGame#retry()
+- [X] 다시 시도 BridgeGame#retry()
   - 진행 상황 리셋
   - 시도 횟수 증가
+  - 예외. 이미 게임이 성공해서 종료된 상황인데 다시 시도하는 경우 예외 발생
 - [ ] 성공 여부 얻기 BridgeGame#isSuccess()
 - [ ] 시도 횟수 얻기 BridgeGame#getNumberOfTries()
 - 
