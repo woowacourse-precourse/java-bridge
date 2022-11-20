@@ -1,9 +1,6 @@
 package bridge.view;
 
-
-import bridge.constants.Command;
 import bridge.domain.BridgeState;
-import java.util.HashMap;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -19,7 +16,6 @@ public class OutputView {
         bridgeState.printBridge();
     }
 
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -27,7 +23,6 @@ public class OutputView {
      */
     public void printResult(BridgeState bridgeState, int count, boolean success) {
         SystemConsole systemConsole = new SystemConsole();
-
         bridgeState.endPrintBridge();
         System.out.println();
 

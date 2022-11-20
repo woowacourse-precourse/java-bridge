@@ -12,23 +12,20 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeInput = Console.readLine();
-        int bridgeLength = Integer.parseInt(bridgeInput);
-        return bridgeLength;
+        return Integer.parseInt(bridgeInput);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String playerMoving = Console.readLine();
-        return playerMoving;
+        return Console.readLine();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String restartInput = Console.readLine();
-        return restartInput;
+        return Console.readLine();
     }
 }
