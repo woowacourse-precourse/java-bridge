@@ -79,7 +79,7 @@ class BridgePlayerTest {
     }
 
     @ParameterizedTest(name = "[{index}] playerBridge = {0}, compareBridge = {1}")
-    @MethodSource("whenCheckLastMoveTypeSizeIsZeroThenExceptionDummy")
+    @MethodSource("whenBridgeSizeIsZeroThenExceptionDummy")
     @DisplayName("마지막 다리 이동 타입을 비교할 때 두 다리 중 하나라도 사이즈가 0이라면 실패하여 예외 처리된다.")
     void whenCheckLastMoveTypeSizeIsZeroThenExceptionTest(List<BridgeMoveType> playerBridge, List<BridgeMoveType> compareBridge) {
         // given & when
@@ -88,7 +88,21 @@ class BridgePlayerTest {
 
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new BridgePlayer().isLastMoveTypeNotSameAs(compareBridge))
+                .isThrownBy(() -> bridgePlayer.isLastMoveTypeNotSameAs(compareBridge))
+                .withMessage(BRIDGE_SIZE_SIZE_EXCEPTION.getMessage());
+    }
+
+    @ParameterizedTest(name = "[{index}] playerBridge = {0}, compareBridge = {1}")
+    @MethodSource("whenBridgeSizeIsZeroThenExceptionDummy")
+    @DisplayName("모든 다리 이동 타입을 비교할 때 두 다리 중 하나라도 사이즈가 0이라면 실패하여 예외 처리된다.")
+    void whenCheckAllMoveTypesSizeIsZeroThenExceptionTest(List<BridgeMoveType> playerBridge, List<BridgeMoveType> compareBridge) {
+        // given & when
+        BridgePlayer bridgePlayer = new BridgePlayer();
+        playerBridge.forEach(bridgePlayer::moveTo);
+
+        // then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bridgePlayer.isAllMoveTypeSameAs(compareBridge))
                 .withMessage(BRIDGE_SIZE_SIZE_EXCEPTION.getMessage());
     }
 
@@ -128,7 +142,7 @@ class BridgePlayerTest {
         );
     }
 
-    static Stream<Arguments> whenCheckLastMoveTypeSizeIsZeroThenExceptionDummy() {
+    static Stream<Arguments> whenBridgeSizeIsZeroThenExceptionDummy() {
         return Stream.of(
                 Arguments.arguments(Collections.emptyList(), List.of(UP, UP, UP, DOWN, DOWN)),
                 Arguments.arguments(List.of(DOWN, DOWN, UP, UP, DOWN), Collections.emptyList()),
