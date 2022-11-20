@@ -45,15 +45,9 @@ public class OutputView {
     private void printUpperBridge(List<String> userMoving) {
         System.out.print(START_OF_BRIDGE);
         for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
-            if (userMoving.get(bridgeIndex).equals("U")) {
-                System.out.print(CROSSE_BRIDGE);
-            }
-            if(userMoving.get(bridgeIndex).equals("UX") ){
-                System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            }
-            if (userMoving.get(bridgeIndex).equals("D")||userMoving.get(bridgeIndex).equals("DX")) {
-                System.out.print(SPACE);
-            }
+            if (userMoving.get(bridgeIndex).equals("U")) System.out.print(CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals("UX")) System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals("D") || userMoving.get(bridgeIndex).equals("DX")) System.out.print(SPACE);
             if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
@@ -62,15 +56,9 @@ public class OutputView {
     private void printLowerBridge(List<String> userMoving) {
         System.out.print(START_OF_BRIDGE);
         for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
-            if (userMoving.get(bridgeIndex).equals("D")) {
-                System.out.print(CROSSE_BRIDGE);
-            }
-            if(userMoving.get(bridgeIndex).equals("DX") ){
-                System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            }
-            if (userMoving.get(bridgeIndex).equals("U") || userMoving.get(bridgeIndex).equals("UX")) {
-                System.out.print(SPACE);
-            }
+            if (userMoving.get(bridgeIndex).equals("D")) System.out.print(CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals("DX")) System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals("U") || userMoving.get(bridgeIndex).equals("UX")) System.out.print(SPACE);
             if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
@@ -87,7 +75,7 @@ public class OutputView {
         printLowerBridge(bridge);
         //실행 예시와 맞추기 위해 한 칸 띄워준다.
         System.out.println();
-        System.out.println(GAME_SUCCESS_OR_NOT_MSG+successOrFail);
-        System.out.println(TOTAL_NUMBER_MSG+count);
+        System.out.println(GAME_SUCCESS_OR_NOT_MSG + successOrFail);
+        System.out.println(TOTAL_NUMBER_MSG + count);
     }
 }
