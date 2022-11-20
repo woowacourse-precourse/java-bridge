@@ -22,7 +22,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
-        System.out.println("최종 게임 결과");
+        System.out.println(Message.GAME_FINAL_RESULT);
         List<String> answer = getAnswer(Application.bridge, Application.playerMove);
         printBridge(answer, Application.playerMove);
         System.out.println();
@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     private void printGameTryCount() {
-        String str = "총 시도한 횟수: " + String.valueOf(Application.tryCount);
+        String str = Message.TOTAL_TRY_COUNT + Application.tryCount;
         System.out.println(str);
     }
 
@@ -40,11 +40,10 @@ public class OutputView {
     }
 
     private String GameResult(boolean success) {
-        String result = "게임 성공 여부: ";
         if(success)
-            return result + "성공";
+            return Message.GAME_SUCCESS;
 
-        return result + "실패";
+        return Message.GAME_FAIL;
     }
 
 
@@ -89,6 +88,6 @@ public class OutputView {
     }
 
     public static void printError(String errorMessage){
-        System.out.println("[ERROR]" + errorMessage);
+        System.out.println(Message.ERROR + errorMessage);
     }
 }
