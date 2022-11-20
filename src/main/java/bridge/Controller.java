@@ -39,14 +39,15 @@ public class Controller {
                 game = bridgeGame.move(test, moving, count);
 
                 count++;
-                if (count == 4) {
-                    game = false;
-                }
-                if (game == false) {
+
+                if (game == false && count == 4) {
                     System.out.println("다시 시작하시겠습니까?");
                     System.out.println("Yes");
                     game = true;
                     count = 0;
+                } else if (game == true && count == 4) {
+                    System.out.println("게임 종료");
+                    game = false;
                 }
             }
 

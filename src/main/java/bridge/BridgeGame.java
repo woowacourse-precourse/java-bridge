@@ -15,6 +15,7 @@ public class BridgeGame {
     public boolean move(List<String> bridge, String moving, int count) {
         CurrentLocationInformation currentLocationInformation = new CurrentLocationInformation();
         currentLocationInformation.showMyLocation(bridge, moving, count);
+        System.out.println("true or false : " + (bridge.get(count).equals(moving)));
         return (bridge.get(count).equals(moving));
     }
 

@@ -18,7 +18,7 @@ public class InputView {
             /* 예외 처리에 대한 내용 */
             InputException.validate(bridgeSize);
             return Integer.parseInt(bridgeSize);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
@@ -40,6 +40,8 @@ public class InputView {
      */
     public String readGameCommand() {
         String askTryGame = Console.readLine();
+
+        /* 예외 처리에 대한 내용*/
 
         return askTryGame;
     }

@@ -5,31 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class test {
-    public static List<String> str = new ArrayList<>();
-
     public static void main(String[] args) {
+        int a = 1;
+        int b = 2;
+        int n = 1;
 
-        boolean game = true;
-        test t = new test();
-        int count = 0;
-        int result = 0;
-        while(game) {
-
-           testList();
-
-            System.out.println(result);
-            result++;
-            if (result == 3) {
-                game = false;
-            }
+        if (n == 1) {
+            System.out.println("a : " + a);
+            a = 2;
+        } else if (a == 2) {
+            System.out.println("b : " + b);
         }
-    }
 
-
-    public static void testList() {
-        str.add("hi");
-        for (String s : str) {
-            System.out.println(s);
-        }
     }
 }
