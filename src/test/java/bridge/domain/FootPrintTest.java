@@ -15,11 +15,11 @@ class FootPrintTest {
     @Test
     void 정상_움직이는게_저장() {
         FootPrint footPrint = new FootPrint();
-        footPrint.record(FootrestLocation.UP);
+        footPrint.record(FootrestLocation.UP, true);
         Assertions.assertThat(footPrint.getOrder()).isEqualTo(1);
-        footPrint.record(FootrestLocation.DOWN);
+        footPrint.record(FootrestLocation.DOWN, true);
         Assertions.assertThat(footPrint.getOrder()).isEqualTo(2);
-        footPrint.record(FootrestLocation.DOWN);
+        footPrint.record(FootrestLocation.DOWN, true);
         Assertions.assertThat(footPrint.getOrder()).isEqualTo(3);
     }
 

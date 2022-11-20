@@ -18,4 +18,8 @@ public enum FootrestLocation {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("U,D만 입력 가능합니다"));
     }
+
+    public String getUserInput() {
+        return userInput;
+    }
 }

@@ -28,20 +28,19 @@ public class Result {
     }
 
     public GameResultCode recordMoving(FootrestLocation footrestLocation) {
-        footPrint.record(footrestLocation);
+        footPrint.record(footrestLocation, true);
         return GameResultCode.MOVE_SUCCESS;
     }
 
     public GameResultCode recordFail(FootrestLocation footrestLocation) {
-        recordMoving(footrestLocation);
+        footPrint.record(footrestLocation, false);
         isSuccess = false;
         tryCnt += 1;
-        footPrint.failAtLast();
         return GameResultCode.FAIL;
     }
 
     public GameResultCode recordSuccess(FootrestLocation footrestLocation) {
-        recordMoving(footrestLocation);
+        footPrint.record(footrestLocation, true);
         isSuccess = true;
         tryCnt += 1;
         return GameResultCode.SUCCESS;

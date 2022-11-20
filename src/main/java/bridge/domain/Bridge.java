@@ -21,7 +21,6 @@ public class Bridge {
     }
 
     public boolean canMove(Integer order, FootrestLocation footrestLocation) {
-        //order 크기 검증
         if (structure.size() <= order || order < MIN_INDEX) {
             throw new IllegalStateException("다리 인덱스를 벗어남");
         }

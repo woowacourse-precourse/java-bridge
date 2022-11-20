@@ -1,6 +1,7 @@
 package bridge.utils;
 
 import bridge.BridgeNumberGenerator;
+import bridge.domain.FootrestLocation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +26,10 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             if (bridgeNumberGenerator.generate() == 0) {
-                bridge.add("D");
-            } else {
-                bridge.add("U");
+                bridge.add(FootrestLocation.DOWN.getUserInput());
+                continue;
             }
+            bridge.add(FootrestLocation.UP.getUserInput());
         }
         return bridge;
     }
