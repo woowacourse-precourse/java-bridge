@@ -38,11 +38,11 @@ public class BridgeMaker {
 
 
     private List<String> addStringByBridgeNumber(List<String> bridge, int bridgeNumber) {
-        if (bridgeNumber == 0) {
-            bridge.add("D");
+        if (bridgeNumber == BridgeType.UP.getIntCode()) {
+            bridge.add(BridgeType.UP.getStringCode());
         }
-        if (bridgeNumber == 1) {
-            bridge.add("U");
+        if (bridgeNumber == BridgeType.DOWN.getIntCode()) {
+            bridge.add(BridgeType.DOWN.getStringCode());
         }
         return bridge;
     }
