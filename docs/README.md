@@ -116,7 +116,7 @@ public class BridgeMaker {
 >- [x] User 기록과 Bridge의 값으로 출력 값을 만드는 기능  ( setMergeBridge )
 >- [x] 출력값을 조회하는 기능 ( getMergeBridge )
 >- [ ] 게임 종료 메시지를 만드는 기능 ( setEndMessage )
->- [ ] 게임 종료 메시지를 조회하는 기능 ( getEndMessage )
+>- [x] 게임 종료 메시지를 조회하는 기능 ( getEndMessage )
 >- [x] User 기록과 Bridge의 기록이 알맞은지 결정하는 기능 ( setMatch )
 
 *****

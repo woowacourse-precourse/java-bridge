@@ -10,6 +10,7 @@ import java.util.List;
 
 public class BridgeGameService {
     private String mergeBride;
+    private String endMessage;
     private Bridge bridge = new Bridge();
     private User user = new User();
     private GameStatus gameStatus = new GameStatus();
@@ -38,6 +39,9 @@ public class BridgeGameService {
         }
     }
 
+    public String getEndMessage(){
+        return this.endMessage;
+    }
 
     private String makeMergeBridge(List<String> bridgeLoad, List<String> userMove) {
         ArrayList<String> checkList = new ArrayList<>();
