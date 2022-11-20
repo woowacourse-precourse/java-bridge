@@ -25,9 +25,9 @@ public enum BridgeUnit {
         return from(bridgeUnit -> bridgeUnit.number == number);
     }
 
-    private static BridgeUnit from(Predicate<BridgeUnit> bridgeUnitPredicate) {
+    private static BridgeUnit from(Predicate<BridgeUnit> isEqualToField) {
         return Arrays.stream(BridgeUnit.values())
-                .filter(bridgeUnitPredicate)
+                .filter(isEqualToField)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_BRIDGE_UNIT_CODE_ERROR));
     }
