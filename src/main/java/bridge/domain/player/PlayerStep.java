@@ -11,12 +11,12 @@ public class PlayerStep {
     private final BridgeTile playerMoving;
     private final boolean movable;
 
-    public PlayerStep(BridgeTile playerMoving, boolean movable) {
+    public PlayerStep(final BridgeTile playerMoving, boolean movable) {
         this.playerMoving = playerMoving;
         this.movable = movable;
     }
 
-    public String getMovableLog(BridgeTile bridgeTile) {
+    public String getMovableLog(final BridgeTile bridgeTile) {
         if (bridgeTile != playerMoving) {
             return NOT_MOVE;
         }

@@ -58,7 +58,7 @@ public class GameController {
         }
     }
 
-    private GameStatus processException(String message, GameStatus gameStatus) {
+    private GameStatus processException(String message, final GameStatus gameStatus) {
         ioViewManager.printException(new PrintExceptionDto(message));
         return gameStatus;
     }

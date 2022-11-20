@@ -32,32 +32,32 @@ public class Player {
         return BridgeConst.MIN_BRIDGE_SIZE <= size && size <= BridgeConst.MAX_BRIDGE_SIZE;
     }
 
-    public boolean move(Bridge bridge, BridgeTile playerStep) {
+    public boolean move(final Bridge bridge, final BridgeTile playerStep) {
         boolean moving = bridge.calculatePlayerMoving(playerStep, playerStepHistory.size());
         playerStepHistory.add(new PlayerStep(playerStep, moving));
 
         return moving;
     }
 
-    public String getPlayerTargetTileHistory(BridgeTile targetTile) {
+    public String getPlayerTargetTileHistory(final BridgeTile targetTile) {
         return playerStepHistory
                 .stream()
                 .map(playerAnswer -> changeLogFromHistory(playerAnswer, targetTile))
                 .collect(Collectors.joining(HISTORY_SEPARATOR));
     }
 
-    private String changeLogFromHistory(PlayerStep playerStep, BridgeTile targetTile) {
+    private String changeLogFromHistory(final PlayerStep playerStep, final BridgeTile targetTile) {
         return playerStep.getMovableLog(targetTile);
     }
 
-    public boolean isSuccessful(Bridge bridge) {
+    public boolean isSuccessful(final Bridge bridge) {
         if (playerStepHistory.size() < BridgeConst.MIN_BRIDGE_SIZE) {
             return false;
         }
         return lastPlayerStepMovable(bridge);
     }
 
-    private boolean lastPlayerStepMovable(Bridge bridge) {
+    private boolean lastPlayerStepMovable(final Bridge bridge) {
         return bridge.isEnd(playerStepHistory.size())
                 && playerStepHistory.get(playerStepHistory.size() - 1).isMovable();
     }

@@ -8,7 +8,7 @@ public class ExitDto {
     private final Player player;
     private final Bridge bridge;
 
-    public ExitDto(Player player, Bridge bridge) {
+    public ExitDto(final Player player, final Bridge bridge) {
         this.player = player;
         this.bridge = bridge;
     }

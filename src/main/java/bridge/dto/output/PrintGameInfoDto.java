@@ -9,7 +9,7 @@ public class PrintGameInfoDto {
     private final long tryCount;
     private final boolean success;
 
-    public PrintGameInfoDto(ExitDto exitDto) {
+    public PrintGameInfoDto(final ExitDto exitDto) {
         Player player = exitDto.getPlayer();
         Bridge bridge = exitDto.getBridge();
 

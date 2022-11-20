@@ -15,12 +15,12 @@ public class BridgeGame {
     private final Player player;
     private final Bridge bridge;
 
-    public BridgeGame(int size, BridgeNumberGenerator generator) {
+    public BridgeGame(int size, final BridgeNumberGenerator generator) {
         this.bridge = new Bridge(size, generator);
         this.player = new Player(size);
     }
 
-    public MoveDto move(ReadMovingDto readMovingDto) {
+    public MoveDto move(final ReadMovingDto readMovingDto) {
         BridgeTile playerStep = BridgeTile.findTile(readMovingDto.getMovingCommand());
         boolean movable = player.move(bridge, playerStep);
         boolean success = player.isSuccessful(bridge);
@@ -28,7 +28,7 @@ public class BridgeGame {
         return new MoveDto(GameStatus.findNextGamePlay(success, movable), player);
     }
 
-    public RetryDto retry(ReadGameCommandDto readGameCommandDto) {
+    public RetryDto retry(final ReadGameCommandDto readGameCommandDto) {
         String gameCommand = readGameCommandDto.getGameCommand();
         GameStatus nextGameStatus = GameCommand.findNextGameOver(gameCommand);
 

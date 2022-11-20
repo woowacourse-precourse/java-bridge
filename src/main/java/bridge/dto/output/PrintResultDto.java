@@ -8,7 +8,7 @@ public class PrintResultDto {
     private final PrintMapDto printMapDto;
     private final PrintGameInfoDto printGameInfoDto;
 
-    public PrintResultDto(ExitDto exitDto) {
+    public PrintResultDto(final ExitDto exitDto) {
         Player player = exitDto.getPlayer();
 
         this.printMapDto = new PrintMapDto(player);

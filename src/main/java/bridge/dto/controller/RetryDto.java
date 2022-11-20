@@ -6,7 +6,7 @@ public class RetryDto {
 
     private final GameStatus nextGameStatus;
 
-    public RetryDto(GameStatus nextGameStatus) {
+    public RetryDto(final GameStatus nextGameStatus) {
         this.nextGameStatus = nextGameStatus;
     }
 

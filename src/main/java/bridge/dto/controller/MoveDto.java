@@ -8,7 +8,7 @@ public class MoveDto {
     private final GameStatus nextGameStatus;
     private final Player player;
 
-    public MoveDto(GameStatus nextGameStatus, Player player) {
+    public MoveDto(final GameStatus nextGameStatus, final Player player) {
         this.nextGameStatus = nextGameStatus;
         this.player = player;
     }

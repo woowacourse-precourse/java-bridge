@@ -11,7 +11,7 @@ public class Bridge {
 
     private final List<BridgeTile> bridgeTiles;
 
-    public Bridge(int size, BridgeNumberGenerator generator) {
+    public Bridge(int size, final BridgeNumberGenerator generator) {
         validateBridgeSize(size);
 
         List<String> bridgeCommand = makeBridgeCommand(size, generator);
@@ -32,13 +32,13 @@ public class Bridge {
         return BridgeConst.MIN_BRIDGE_SIZE <= size && size <= BridgeConst.MAX_BRIDGE_SIZE;
     }
 
-    private List<String> makeBridgeCommand(int size, BridgeNumberGenerator generator) {
+    private List<String> makeBridgeCommand(int size, final BridgeNumberGenerator generator) {
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
         return bridgeMaker.makeBridge(size);
     }
 
-    public boolean calculatePlayerMoving(BridgeTile playerStep, int playerPosition) {
+    public boolean calculatePlayerMoving(final BridgeTile playerStep, int playerPosition) {
         return bridgeTiles.get(playerPosition) == playerStep;
     }
 

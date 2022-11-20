@@ -8,7 +8,7 @@ public class PrintMapDto {
     private final String upBridgeHistory;
     private final String downBridgeHistory;
 
-    public PrintMapDto(Player player) {
+    public PrintMapDto(final Player player) {
         this.upBridgeHistory = player.getPlayerTargetTileHistory(BridgeTile.UP);
         this.downBridgeHistory = player.getPlayerTargetTileHistory(BridgeTile.DOWN);
     }
