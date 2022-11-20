@@ -1,8 +1,13 @@
 package bridge.game;
 
+import bridge.bridge.Bridge;
+import bridge.config.BridgeStatus;
+import bridge.config.GameResultStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.SystemView;
+
+import java.util.List;
 
 import static bridge.config.BaseException.INVALID_INPUT;
 
@@ -33,8 +38,9 @@ public class GameController {
         }
     }
 
-    public void moveBridge() {
-
+    public GameResultStatus moveBridge(Bridge bridge) {
+        GameResultStatus gameResultStatus = bridgeGame.move(bridge);
+        return gameResultStatus;
     }
 
     public void printResultMap() {

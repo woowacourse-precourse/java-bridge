@@ -11,8 +11,8 @@ public class BridgeController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private final InputView inputView = new InputView();
 
-    public List<BridgeStatus> createBridge() {
-        List<BridgeStatus> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+    public Bridge createBridge() {
+        Bridge bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         return bridge;
     }
 

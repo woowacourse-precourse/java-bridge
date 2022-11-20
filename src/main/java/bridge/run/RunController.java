@@ -1,5 +1,6 @@
 package bridge.run;
 
+import bridge.bridge.Bridge;
 import bridge.bridge.BridgeController;
 import bridge.config.BridgeStatus;
 import bridge.game.GameController;
@@ -12,7 +13,7 @@ public class RunController {
     private final BridgeController bridgeController;
     private final GameController gameController;
 
-    private List<BridgeStatus> bridge = new ArrayList<>();
+    private Bridge bridge;
     private boolean status;
 
     public RunController(BridgeController bridgeController, GameController gameController) {
@@ -21,17 +22,15 @@ public class RunController {
     }
 
     public void run() {
-
         status = gameController.runGame();
-
+        bridge = bridgeController.createBridge();
         while (status) {
-            bridge = bridgeController.createBridge();
-            gameController.moveBridge();
-            status = gameController.retryGame();
+            if (gameController.moveBridge(bridge).getResult().equals("X")) {
+                status = gameController.retryGame();
+            }
+            gameController.printResultMap();
         }
-
-        gameController.printResultMap();
         gameController.printResultAndCount();
-
     }
+
 }
