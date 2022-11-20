@@ -1,35 +1,40 @@
 package bridge;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BridgeGameTest {
 
-    @DisplayName("칸 움직이기 성공 테스트")
-    @Test
-    void successMovingTest() {
-        List<String> blocks = List.of("U", "D");
-        Bridge bridge = new Bridge(blocks);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+    List<String> blocks;
+    Bridge bridge;
+    BridgeGame bridgeGame;
 
-        Assertions.assertThat(bridgeGame.move("U")).isEqualTo(1);
-        Assertions.assertThat(bridgeGame.move("D")).isEqualTo(2);
-
+    @BeforeEach
+    void setUp() {
+        blocks = List.of("U", "D", "U");
+        bridge = new Bridge(blocks);
+        bridgeGame = new BridgeGame(bridge);
     }
 
-    @DisplayName("칸 움직이기 실패 테스트")
+    @DisplayName("칸 움직이기 테스트")
     @Test
-    void failedMovingTest() {
-        List<String> blocks = List.of("U", "D");
-        Bridge bridge = new Bridge(blocks);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+    void successMovingTest() {
+        int position = bridgeGame.move();
+        Assertions.assertThat(position).isEqualTo(1);
+    }
 
-        Assertions.assertThat(bridgeGame.move("D")).isEqualTo(0);
+
+    @DisplayName("재시도 테스트")
+    void retryTest() {
+        bridgeGame.move();
+        bridgeGame.retry();
+
+        int attempts = bridgeGame.getAttempts();
+        Assertions.assertThat(attempts).isEqualTo(2);
 
     }
 
