@@ -39,19 +39,40 @@
 
 [InputView.java](../src/main/java/bridge/view/InputView.java)
 
-- [x] 다리 길이 입력 기능
-- [x] 움직일 칸 입력 기능
-- [x] 게임 재시작 입력 기능
+- 다리 길이 입력 기능
 
-[BridgeConverter.java](../src/main/java/bridge/domain/bridgebuilder/BridgeConverter.java)
+```
+- 공백 제거
+- 3 ~ 20 범위의 정수가 아닌 경우 예외 처리
+```
+- 움직일 칸 입력 기능
 
-- [x] 난수로 생성된 숫자를 담은 List<Integer>를 List<String>으로 바꾸는 기능
+```
+- 공백 제거
+- 대문자 U나 D가 아닐 경우 예외 처리
+```
 
-[BridgeMaker.java](../src/main/java/bridge/domain/bridgebuilder/BridgeMaker.java)
+- 게임 재시작 입력 기능
 
-- [x] 다리 생성 기능
-- [ ] 사용자 입력과 다리 내용물 비교 기능
-- [ ] 출력 기능
+```
+- 공백 제거
+- 대문자 R이나 Q가 아닐 경우 예외 처리
+```
+
+- 다리 생성 기능
+
+```
+- 난수를 받아서 List<Integer>에 담는다.
+- List<Integer>를 List<String>으로 변환
+```
+
+- 사용자 입력과 다리 내용물 비교 기능
+
+```
+- 사용자 입력과 다리 내용물이 같다면 O나 X를 userBridge에 추가
+```
+
+- 출력 기능
 
 ## 예외 목록
 
