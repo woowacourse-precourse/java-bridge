@@ -8,4 +8,6 @@ public class Utility {
     public static String QUIT = "Q";
 
     public static List<String> MOVE_NAME = Arrays.asList("DOWN", "UP");
+
+    public static String ERROR_MESSAGE = "[ERROR]";
 }
