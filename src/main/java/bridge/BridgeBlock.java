@@ -9,4 +9,8 @@ public enum BridgeBlock {
     BridgeBlock(String bridgeBlock) {
         this.bridgeBlock = bridgeBlock;
     }
+
+    public String getBridgeBlock() {
+        return bridgeBlock;
+    }
 }

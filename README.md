@@ -54,14 +54,14 @@ BUILD SUCCESSFUL in 0s
 
 ### 🔥 구현 기능 목록
 
-- [ ] **CLASS1. enum BridgeBlock**
+- [x] **CLASS1. enum BridgeBlock**
   - **Class Variables**
     - [x] UPPER_BLOCK("U")
     - [x] LOWER_BLOCK("D")
     - [x] private final String bridgeBlock
   - **Class Methods**
     - [x] public BridgeBlock(String bridgeBlock)
-    - [ ] public String getBridgeBlock()
+    - [x] public String getBridgeBlock()
 - [ ] **CLASS2. enum RetrySelector**
   - **Class Variables**
     - [ ] RETRY("R")
