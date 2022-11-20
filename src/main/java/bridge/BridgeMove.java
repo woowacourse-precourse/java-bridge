@@ -12,8 +12,8 @@ public enum BridgeMove {
     UP("U", 1),
     DOWN("D", 0);
     
-    private String direction;
-    private Integer generateNumber;
+    private final String direction;
+    private final Integer generateNumber;
     
     BridgeMove(String direction, Integer generateNumber) {
         this.direction = direction;
