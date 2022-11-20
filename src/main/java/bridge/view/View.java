@@ -29,8 +29,8 @@ public class View {
         return inputView.readGameCommand();
     }
 
-    public void printMap(MovingResult moveResult, int next) {
-        outputView.printMap(moveResult, next);
+    public void printMap(MovingResult moveResult) {
+        outputView.printMap(moveResult);
     }
 
     public void printResult(GameResult gameResult) {
