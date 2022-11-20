@@ -46,4 +46,10 @@ public class Controller {
         result = new Result();
         bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(size)), result);
     }
+
+    public void initialize() {
+        int size = inputBridgeLength();
+        this.player = new Player();
+        setUpBridge(size);
+    }
 }
