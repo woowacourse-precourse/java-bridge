@@ -20,4 +20,32 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printGameStart() {
+
+    }
+
+    public void printBridgeSizeInput() {
+
+    }
+    public void printMovingInput() {
+
+    }
+    public void printGameOver() {
+
+    }
+    public void printSuccess() {
+
+    }
+    public void printTrialAmount() {
+
+    }
+
+    public void printNotMovable() {
+
+    }
+
+    public void printMovable (){
+
+    }
 }
