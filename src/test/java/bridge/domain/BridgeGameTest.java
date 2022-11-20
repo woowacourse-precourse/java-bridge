@@ -27,7 +27,7 @@ class BridgeGameTest {
     }
 
     @DisplayName("움직임 명령 예외케이스 테스트")
-    @ValueSource(strings = {"1", "A", "b", "u", "d", "R", "Q"})
+    @ValueSource(strings = {"1", "A", "b", "u", "d", "R", "Q", "", " "})
     @ParameterizedTest
     void move_InvalidMoveCommand_ExceptionThrown(String input) {
         assertThatThrownBy(() -> bridgeGame.move(input))
@@ -43,7 +43,7 @@ class BridgeGameTest {
     }
 
     @DisplayName("재시작 기능 예외케이스 테스트")
-    @ValueSource(strings = {"1", "A", "b", "u", "d", "U", "D"})
+    @ValueSource(strings = {"1", "A", "r", "q", "d", "U", "D", "", " "})
     @ParameterizedTest
     void move_InvalidGameCommand_ExceptionThrown(String input) {
         assertThatThrownBy(() -> bridgeGame.retry(input))
