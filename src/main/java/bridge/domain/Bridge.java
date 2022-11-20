@@ -66,4 +66,9 @@ public class Bridge {
     public int getNumberOfAttempts() {
         return this.numberOfAttempts;
     }
+
+    // 사용자 입력값이 만든 다리와 길이기 일치할경우 boolean값 반환
+    public boolean isBridgeEnd() {
+        return bridge.size() == userKeyList.size();
+    }
 }
