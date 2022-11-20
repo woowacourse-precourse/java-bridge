@@ -13,15 +13,16 @@ public class InputView {
     private static final int BRIDGE_LENGTH_MIN = 3;
     private static final int BRIDGE_LENGTH_MAX = 20;
     private static final String READ_BRIDGE_SIZE_GUIDE = "다리의 길이를 입력해주세요.";
-    private static final String READ_MOVING_GUIDE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String READ_GAME_COMMAND_GUIDE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String INPUT_NUMBER_EXCEPTION_MESSAGE = "숫자가 아닙니다.";
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String READ_MOVING_GUIDE = "이동할 칸을 선택해주세요. (위: " + UP + ", 아래: " + DOWN + ")";
     private static final String MOVE_REGEX = String.join("|", UP, DOWN);
-    private static final String RESTART = "R";
+    private static final String RETRY = "R";
     private static final String QUIT = "Q";
-    private static final String GAME_COMMAND_REGEX = String.join("|", RESTART, QUIT);
+    private static final String READ_GAME_COMMAND_GUIDE
+            = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + RETRY + ", 종료: " + QUIT + ")";
+    private static final String GAME_COMMAND_REGEX = String.join("|", RETRY, QUIT);
+    private static final String INPUT_NUMBER_EXCEPTION_MESSAGE = "숫자가 아닙니다.";
 
 
     /**
@@ -93,7 +94,7 @@ public class InputView {
 
     public void validateInputGameCommand(String gameCommand) {
         if (gameCommand == null || !gameCommand.matches(GAME_COMMAND_REGEX)) {
-            throw new GameCommandInputException(RESTART, QUIT);
+            throw new GameCommandInputException(RETRY, QUIT);
         }
     }
 }
