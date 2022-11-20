@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private static InputView input = new InputView();
-    private static OutputView output = new OutputView();
-    private static BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private static BridgeGame game = new BridgeGame();
+    private static final InputView input = new InputView();
+    private static final OutputView output = new OutputView();
+    private static final BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static final BridgeGame game = new BridgeGame();
     
     private static List<String> bridge = new ArrayList<>();
     private static GameState state = GameState.START;
