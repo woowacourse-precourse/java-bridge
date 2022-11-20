@@ -1,9 +1,14 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BridgeGame {
+    public static String SUCCESS = "성공";
+    public static String FAILURE = "실패";
+    public static String MOVING = "이동";
     private final List<String> bridge;
     private final List<String> bridgeCrossingResult = new ArrayList<>();
     private int retryCount = 1;
@@ -47,6 +52,15 @@ public class BridgeGame {
             map.add(" ");
         }
         return map;
+    }
+
+    public String judgment(){
+        if (bridgeCrossingResult.get(bridgeCrossingResult.size()-1).equals("O") && bridgeCrossingResult.size() == bridge.size()){
+            return SUCCESS;
+        } else if (bridgeCrossingResult.get(bridgeCrossingResult.size()-1).equals("O") && bridgeCrossingResult.size() != bridge.size()) {
+            return MOVING;
+        }
+        return FAILURE;
     }
 
     @Override
