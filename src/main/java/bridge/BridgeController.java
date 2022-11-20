@@ -44,7 +44,9 @@ public class BridgeController {
     }
 
     private void askRetry() {
-
+        OutputView.askRetry();
+        Command command = inputView.readGameCommand();
+        command.exec(bridgeGame);
     }
 
 
