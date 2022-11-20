@@ -4,6 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.Result;
+import bridge.util.Constants;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -26,14 +27,16 @@ public class BridgeGame {
     }
     public void gameStart(){
         outputView.printStartGame();
-        setBridgeSize();
-        move();
+        int bridgeSize=setBridgeSize();
+        System.out.println(bridge.getBridge());
+        move(bridgeSize);
     }
-    public void setBridgeSize(){
+    public int setBridgeSize(){
         String bridgeSize=inputView.readBridgeSize();
         if(Validator.isDigit(bridgeSize) && Validator.checkRange(bridgeSize)){
             makeBridge(Integer.parseInt(bridgeSize));
         }
+        return Integer.parseInt(bridgeSize);
     }
     public void makeBridge(int bridgeSize){
         BridgeMaker bridgeMaker=new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -44,12 +47,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        String moving=inputView.readMoving();
-        result.addResult(moving, bridge.getMoveResult(moving));
-        outputView.printMap(result.getPlayResult());
+    public void move(int bridgeSize) {
+        for(int i=0; i<bridgeSize; i++){
+            if(moveOne(i).equals(Constants.WRONG)) break;
+        }
     }
-
+    public String moveOne(int index){
+        String moving=inputView.readMoving();
+        String movingResult=bridge.getMoveResult(moving, index);
+        result.addResult(moving, movingResult);
+        outputView.printMap(result.getPlayResult());
+        return movingResult;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

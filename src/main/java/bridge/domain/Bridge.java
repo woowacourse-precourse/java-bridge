@@ -11,8 +11,8 @@ public class Bridge {
         this.bridge=bridge;
     }
     public List<String> getBridge(){return  bridge;}
-    public String getMoveResult(String moving){
-        if(bridge.get(0).equals(moving)) { return Constants.CORRECT; }
+    public String getMoveResult(String moving, int index){
+        if(bridge.get(index).equals(moving)) { return Constants.CORRECT; }
         return Constants.WRONG;
     }
 }
