@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.data.Direction;
+
 import static bridge.data.GameMark.BLANK;
 
 public class PlayerMap {
@@ -21,5 +23,9 @@ public class PlayerMap {
 
     public String getMark(int row, int col) {
         return playerMap[row][col];
+    }
+
+    public void move(Direction direction, int position, String mark) {
+        playerMap[direction.getDirection()][position] = mark;
     }
 }
