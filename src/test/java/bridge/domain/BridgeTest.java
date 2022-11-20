@@ -23,11 +23,11 @@ class BridgeTest{
     @Test
     @DisplayName("이동가능한 칸일 때 O를 반환하는지 확인")
     void getMoveResultTrue(){
-        assertThat(bridge.getMoveResult("U")).isEqualTo(Constants.CORRECT);
+        assertThat(bridge.getMoveResult("U", 0)).isEqualTo(Constants.CORRECT);
     }
     @Test
     @DisplayName("이동 불가능한 칸일 때 X를 반환하는지 확인")
     void getMoveResultFalse(){
-        assertThat(bridge.getMoveResult("D")).isEqualTo(Constants.WRONG);
+        assertThat(bridge.getMoveResult("D", 0)).isEqualTo(Constants.WRONG);
     }
 }
