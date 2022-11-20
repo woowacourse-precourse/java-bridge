@@ -14,48 +14,73 @@ public class Controller {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker  = new BridgeMaker(bridgeRandomNumberGenerator);
     private BridgeGame bridgeGame = new BridgeGame();
-
     private Bridge bridge;
     private OutputView outputView;
+    private int tryNumbers;
+    private boolean pass;
+    List<String> choices;
 
     public void game() throws IllegalArgumentException{
-        int size = InputController.setBridgeSize();
+        int size = makeBridgeObject();
+        outputView = new OutputView(bridge);
+        tryNumbers = 0;
+        pass = false;
 
+        doWhileGameEnd(size);
+
+        printFinalResult(pass, tryNumbers);
+    }
+
+    private int makeBridgeObject() {
+        int size = InputController.setBridgeSize();
         List<String> bridgeRoads = bridgeMaker.makeBridge(size);
         bridge = new Bridge(bridgeRoads);
-        outputView = new OutputView(bridge);
-        String retryChoice = null;
-        int tryNumbers = 0;
-        boolean pass = false;
 
-        List<String> choices = new ArrayList<>();
+        return size;
+    }
 
+    private void doWhileGameEnd(int size) {
+        boolean retry = false;
+        choices = new ArrayList<>();
         do {
             tryNumbers++;
-            for (int i = 0 ; i< size; i++) {
-                outputView.clearBuffer();
-                String choice = InputController.setMoveChoice();
-                boolean moveIsValid = bridgeGame.move(bridge, choice, i);
-                choices.add(choice);
 
-                /* 출력 */
-                outputView.printMap(i, choices);
+            retry = iterateToCrossEachBridge(size, retry);
+        } while (retry);
+    }
 
-                if (!moveIsValid) {
-                    choices.clear();
-                    retryChoice = InputController.setGameCommand();
-                    break;
-                }
-
-                if (i==size-1) {
-                    pass = true;
-                    retryChoice = "Q";
-                }
+    private boolean iterateToCrossEachBridge(int size, boolean retry) {
+        for (int i = 0 ; i< size; i++) {
+            String choice = makeChoice(i);
+            if (!(bridgeGame.move(bridge, choice, i))) {
+                choices.clear();
+                return bridgeGame.retry(InputController.setGameCommand());
             }
-        } while (retryChoice.equals("R"));
+            retry = gamePass(i, size);
+        }
+        return retry;
+    }
 
-        /* 결과 출력 OutputView#printResult() */
-        System.out.println("");
+    private String makeChoice(int i) {
+        String choice = InputController.setMoveChoice();
+        choices.add(choice);
+        outputView.printMap(i, choices);
+
+        return choice;
+    }
+
+    private boolean gamePass(int i, int size) {
+        if (i==size-1) {
+            pass = true;
+            boolean retry = bridgeGame.retry("Q");
+
+            return retry;
+        }
+        return true;
+    }
+
+    private void printFinalResult(boolean pass , int tryNumbers) {
+        System.out.println();
         outputView.printResult(pass, tryNumbers);
     }
 }
