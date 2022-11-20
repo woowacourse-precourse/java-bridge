@@ -19,6 +19,16 @@ public class CurrentLocationInformation {
         outputView.printMap(gameState);
     }
 
+    public String getResultLocation() {
+        int size = upStr.size();
+        String resultLocation = "";
+        resultLocation += upStr.get(size - 1);
+        resultLocation += " ]" + "\n";
+        resultLocation += str.get(size - 1);
+        resultLocation += " ]";
+        return resultLocation;
+    }
+
     private void makeUpLocation(List<String> bridge, int count, String moving) {
         List<Boolean> test = new ArrayList<>();
         for (int i = 0; i < bridge.size(); i++) {

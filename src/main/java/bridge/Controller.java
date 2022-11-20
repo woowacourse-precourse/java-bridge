@@ -7,6 +7,7 @@ public class Controller {
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private static BridgeMaker bridgeMaker;
     private static BridgeSizeInputException bridgeSizeInputException;
+    private CurrentLocationInformation currentLocationInformation = new CurrentLocationInformation();
 
     public Controller() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -16,6 +17,7 @@ public class Controller {
     public void startGame() {
         try {
             int count = 0;
+            int challengeCount = 1;
             boolean game = true;
             InputView inputView = new InputView();
             int bridgeSize = inputView.readBridgeSize();
@@ -38,14 +40,19 @@ public class Controller {
 
                 count++;
 
-                if (game == false && count == 3) {
+                if (game == false && count == bridgeSize) {
                     System.out.println("다시 시작하시겠습니까?");
                     System.out.println("Yes");
+                    challengeCount++;
                     game = true;
                     count = 0;
-                } else if (game == true && count == 3) {
-                    System.out.println("게임 종료");
+                } else if (game == true && count == bridgeSize) {
+                    System.out.println("게임 종료 ( 지워야 됨 )");
+                    OutputView outputView = new OutputView();
+                    outputView.printResult(currentLocationInformation, challengeCount, game);
+                    System.out.println("총 시도한 횟수: " + challengeCount);
                     game = false;
+
                 }
             }
 
