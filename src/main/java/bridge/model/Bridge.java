@@ -13,4 +13,12 @@ public class Bridge {
     private List<Direction> toDirection(List<String> bridge) {
         return bridge.stream().map(Direction::valueOf).collect(Collectors.toList());
     }
+
+    public boolean isMovable(int position, Direction direction) {
+        return bridge.get(position) == direction;
+    }
+
+    public boolean end(int position) {
+        return bridge.size() == position;
+    }
 }

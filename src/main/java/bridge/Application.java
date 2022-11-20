@@ -3,7 +3,8 @@ package bridge;
 import bridge.model.Bridge;
 import bridge.model.BridgeSize;
 import bridge.model.Direction;
-import bridge.model.GameBoard;
+import bridge.model.GameMap;
+import bridge.model.MoveResult;
 import bridge.model.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,7 +17,19 @@ public class Application {
         outputView.printGameStart();
 
         BridgeGame bridgeGame = new BridgeGame(createBridge(), new Player());
-        GameBoard gameBoard = new GameBoard();
+        GameMap gameMap = new GameMap();
+        while (!bridgeGame.quit()) {
+            playGame(bridgeGame, gameMap);
+        }
+    }
+
+    private static void playGame(BridgeGame bridgeGame, GameMap gameMap) {
+        MoveResult moveResult = bridgeGame.move(inputDirection());
+        gameMap.draw(moveResult);
+        outputView.printMap(gameMap);
+        if (bridgeGame.end()) {
+            System.out.println("end");
+        }
     }
 
     private static BridgeSize inputBridgeSize() {
