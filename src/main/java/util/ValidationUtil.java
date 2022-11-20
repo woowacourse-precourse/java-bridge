@@ -30,6 +30,12 @@ public class ValidationUtil {
         }
     }
 
+    public void validateUserMovementIfNull(String movement) {
+        if (movement.equals("")) {
+            throw new UserInputException(ErrorResponse.INPUT_MOVEMENT_NULL_ERROR);
+        }
+    }
+
     public void validateExitCode(String exitCode) {
         if (!exitCode.equals("R") && !exitCode.equals("Q")) {
             throw new UserInputException(ErrorResponse.INPUT_EXITCODE_ERROR);
