@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import bridge.validation.enumeration.Mode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,4 +21,15 @@ class ValidationTest {
                 .withMessageStartingWith(ERROR_MESSAGE);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"", "u", "d", "123", "****", "1qwer"})
+    void 유효하지_않은_이동할칸(String upOrDown){
+        assertThatIllegalArgumentException()
+                .isThrownBy(()->{
+                    Validation.verifyUserInputIsCharacter(upOrDown, Mode.UpOrDown);
+                })
+                .withMessageStartingWith(ERROR_MESSAGE);
+    }
+
+    
 }
