@@ -34,6 +34,10 @@ public class BridgeGame {
         return bridge.get(position).equals(direct);
     }
 
+    public boolean isEndBridge() {
+        return bridge.size() == position;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
