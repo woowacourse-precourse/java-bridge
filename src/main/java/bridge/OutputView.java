@@ -15,7 +15,7 @@ public class OutputView {
         printMap(upperBridge, bottomBridge);
         System.out.println("\n 게임 성공 여부:");
         checkFinalResult(upperBridge, bottomBridge);
-        // 총 시도한 횟수 기록 필요
+        System.out.println("총 시도한 횟수: " + BridgeGame.tryCount);
     }
 
     private void checkFinalResult(List<Integer> upperBridge, List<Integer> bottomBridge) {
