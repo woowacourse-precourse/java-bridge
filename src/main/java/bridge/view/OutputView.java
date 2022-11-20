@@ -8,9 +8,12 @@ public class OutputView {
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_NEXT_MOVEMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_RESTART = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private static final String OPEN_BRIDGE = "[ ";
     private static final String CLOSE_BRIDGE = " ]";
     private static final String BRIDGE_PARTITION = " | ";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
 
     public static void printStartMessage() {
         System.out.println(START_MESSAGE);
@@ -27,10 +30,15 @@ public class OutputView {
     public static void printMap(List<Character> upperMap, List<Character> lowerMap) {
         printOneLineOfBridge(upperMap);
         printOneLineOfBridge(lowerMap);
+        printBlankLine();
     }
 
     public static void printRestartMessage() {
         System.out.println(INPUT_RESTART);
+    }
+
+    public static void printResultHeader() {
+        System.out.println(GAME_RESULT_MESSAGE);
     }
 
     /**
@@ -38,7 +46,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult() {
+    public static void printResult(boolean success, int trialCount) {
+
     }
 
     public static void printBlankLine() {

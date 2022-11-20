@@ -20,6 +20,7 @@ public class BridgeGameController {
     public void process() {
         initializeGame();
         playGame();
+        finishGame();
     }
 
     private void initializeGame() {
@@ -86,5 +87,11 @@ public class BridgeGameController {
         OutputView.printRestartMessage();
         String gameCommand = InputView.readGameCommand();
         return gameCommand.equals(RESTART);
+    }
+
+    private void finishGame() {
+        OutputView.printResultHeader();
+        OutputView.printMap(mapConverter.getUpperMap(), mapConverter.getLowerMap());
+        OutputView.printBlankLine();
     }
 }
