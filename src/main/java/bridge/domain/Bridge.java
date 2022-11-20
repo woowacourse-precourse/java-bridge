@@ -14,4 +14,8 @@ public class Bridge {
     public boolean isCanCross(int location, String goal) {
         return bridge.get(location).equals(goal);
     }
+
+    public int size() {
+        return bridge.size();
+    }
 }
