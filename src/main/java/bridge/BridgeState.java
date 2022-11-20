@@ -10,6 +10,7 @@ public class BridgeState {
     private static final String START_OF_BRIDGE = "[ ";
     private static final String SEPARATE_OF_BRIDGE = " | ";
     private static final String END_OF_BRIDGE = " ]";
+    private static final String EMPTY = " ";
 
     private final List<String> directions = new ArrayList<>();
     private final List<String> stateOfBridge = new ArrayList<>();
@@ -61,10 +62,10 @@ public class BridgeState {
     private void markAnswerOnBridge(int round, String currentDirection) {
         if (currentDirection.equals(BridgeConstants.UP_DIRECTION)) {
             upBridgeFigure.append(stateOfBridge.get(round));
-            downBridgeFigure.append(" ");
+            downBridgeFigure.append(EMPTY);
         }
         if (currentDirection.equals(BridgeConstants.DOWN_DIRECTION)) {
-            upBridgeFigure.append(" ");
+            upBridgeFigure.append(EMPTY);
             downBridgeFigure.append(stateOfBridge.get(round));
         }
     }
