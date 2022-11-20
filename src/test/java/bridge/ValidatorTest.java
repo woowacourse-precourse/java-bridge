@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class ValidatorTest {
 
     @DisplayName("3 이상 20 이하의 숫자가 아닐 시 예외 발생")
-    @ValueSource(strings = {"1", "0", "-1", "21"})
+    @ValueSource(strings = {"4e", "0", "-1", "21", "칠"})
     @ParameterizedTest
     void InputSizeTest(String input) {
         assertThatThrownBy(() -> validateInputSizeException(input))
