@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -57,5 +58,16 @@ class BridgeTest {
         Bridge attempts = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP, BridgeShape.DOWN));
 
         assertThatThrownBy(() -> bridge.compare(attempts)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("전달된 사다리와 사이즈가 같은지 반환한다.")
+    @Test
+    public void sizeEqualBridge() {
+        Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
+
+        assertAll(
+                assertThat(bridge.sizeEqual(Bridge.createByBridgeShapeValue(List.of("D", "U", "D"))))::isTrue,
+                assertThat(bridge.sizeEqual(Bridge.createByBridgeShapeValue(List.of("D", "U"))))::isFalse
+        );
     }
 }
