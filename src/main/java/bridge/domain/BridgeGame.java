@@ -32,4 +32,8 @@ public class BridgeGame {
     public BridgeGameResult result() {
         return bridge.compare(attempts);
     }
+
+    public boolean isNotEnd() {
+        return !bridge.sizeEqual(attempts);
+    }
 }

@@ -52,4 +52,29 @@ class BridgeGameTest {
 
         assertThat(bridgeGame.result()).isEqualTo(new BridgeGameResult(bridge, List.of(true, true, true, false)));
     }
+
+    @DisplayName("게임이 안끝났는지 반환한다.")
+    @Nested
+    class isNotEnd {
+        @DisplayName("게임이 끝나지 않았으면 True 를 반환한다.")
+        @Test
+        void isNotEndTrue() {
+            BridgeGame bridgeGame = new BridgeGame(upDownUpBridge);
+            bridgeGame.move(BridgeShape.UP);
+            bridgeGame.move(BridgeShape.DOWN);
+
+            assertThat(bridgeGame.isNotEnd()).isTrue();
+        }
+
+        @DisplayName("게임이 끝났으면 False 를 반환한다.")
+        @Test
+        void isNotEndFalse() {
+            BridgeGame bridgeGame = new BridgeGame(upDownUpBridge);
+            bridgeGame.move(BridgeShape.UP);
+            bridgeGame.move(BridgeShape.DOWN);
+            bridgeGame.move(BridgeShape.UP);
+
+            assertThat(bridgeGame.isNotEnd()).isFalse();
+        }
+    }
 }

@@ -17,7 +17,9 @@ public class BridgeController {
 
     public void gameStart() {
         BridgeGame bridgeGame = new BridgeGame(createBridge());
-        move(bridgeGame);
+        while (bridgeGame.isNotEnd()) {
+            move(bridgeGame);
+        }
     }
 
     private Bridge createBridge() {
