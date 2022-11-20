@@ -22,28 +22,29 @@ public class BridgeGame {
      */
     public void move(List<String> bridge, String moving) {
         moveBridge(bridge, moving);
-
-
         outputView.printMap(upBridge, downBridge);
     }
 
-    private void moveBridge(List<String> bridge, String moving) {
+    public void moveBridge(List<String> bridge, String moving) {
         if (bridge.get(bridgeCount).equals(moving) && moving.equals("U")) {
             upBridge.add("O");
             downBridge.add(" ");
             bridgeCount++;
+            return;
         }
 
         if (bridge.get(bridgeCount).equals(moving) && moving.equals("D")) {
             upBridge.add(" ");
             downBridge.add("O");
             bridgeCount++;
+            return;
         }
 
         if (!bridge.get(bridgeCount).equals(moving) && moving.equals("U")) {
             upBridge.add("X");
             downBridge.add(" ");
             bridge.add("X");
+            return;
         }
 
         if (!bridge.get(bridgeCount).equals(moving) && moving.equals("D")) {
@@ -52,6 +53,7 @@ public class BridgeGame {
             bridge.add("X");
         }
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
