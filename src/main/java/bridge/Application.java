@@ -6,7 +6,11 @@ public class Application {
         // TODO: 프로그램 구현
 
         printStart();
+        InputView inputView = new InputView();
 
+        int bridgeSize = inputView.readBridgeSize();
+
+        
     }
 
     public static void printStart() {
