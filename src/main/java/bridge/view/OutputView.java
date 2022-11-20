@@ -76,7 +76,7 @@ public class OutputView {
         upState.append(" ");
     }
 
-    public void initUpOrDownState() {
+    public void clearMap() {
         upState = new StringBuilder();
         downState = new StringBuilder();
     }
