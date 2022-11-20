@@ -5,22 +5,22 @@ import domain.Validate;
 
 public class InputView {
 	Validate validate = new Validate();
-	
-    public int readBridgeSize() {
-    	int bridgeSize = Integer.parseInt(Console.readLine());
-    	validate.validateSize(bridgeSize);
-    	return bridgeSize;
-    }
 
-    public String readMoving() {
-    	String move = Console.readLine();
-    	validate.validateMove(move);
-        return move;
-    }
+	public int readBridgeSize() {
+		String bridgeSize = Console.readLine();
+		validate.validateSize(bridgeSize);
+		return Integer.parseInt(bridgeSize);
+	}
 
-    public String readGameCommand() {
-    	String gameCommand = Console.readLine();
-    	validate.validateGameCommand(gameCommand);
-        return gameCommand;
-    }
+	public String readMoving() {
+		String move = Console.readLine();
+		validate.validateMove(move);
+		return move;
+	}
+
+	public String readGameCommand() {
+		String gameCommand = Console.readLine();
+		validate.validateGameCommand(gameCommand);
+		return gameCommand;
+	}
 }
