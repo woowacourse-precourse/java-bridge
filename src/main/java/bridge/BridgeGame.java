@@ -15,6 +15,7 @@ public class BridgeGame {
 
     BridgeGame(){
         upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
     }
 
     /**
