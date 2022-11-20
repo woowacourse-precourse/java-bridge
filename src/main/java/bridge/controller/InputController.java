@@ -29,4 +29,15 @@ public class InputController {
             return inputMoving();
         }
     }
+
+    public String inputGameCommand() {
+        try {
+            String gameCommand = inputView.readGameCommand();
+            inputValidator.GameCommand(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputGameCommand();
+        }
+    }
 }

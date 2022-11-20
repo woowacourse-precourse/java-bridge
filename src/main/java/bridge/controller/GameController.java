@@ -42,7 +42,7 @@ public class GameController {
     }
 
     public void retryGame() {
-        //TODO: 기능 추가
+        inputController.inputGameCommand();
     }
 
     public void endGame() {
