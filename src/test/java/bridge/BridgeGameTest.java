@@ -5,6 +5,7 @@ import bridge.domain.Player;
 import bridge.service.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,6 +19,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 public class BridgeGameTest {
 
     private static final String EXCEPTION_MESSAGE_INVALID_MOVE = "[ERROR] 이동 가능 칸은 U 또는 D 만 있습니다.";
+    private static final String EXCEPTION_MESSAGE_INVALID_RETRY = "[ERROR] 재시도 여부는 R 또는 Q 만 입력해야 됩니다.";
     BridgeGame bridgeGame;
 
     @BeforeEach
@@ -62,5 +64,26 @@ public class BridgeGameTest {
         assertThat(false).isEqualTo(bridgeGame.move(input4));
         assertThat(false).isEqualTo(bridgeGame.move(input5));
         assertThat(false).isEqualTo(bridgeGame.move(input6));
+    }
+
+    @DisplayName("retry 함수가 잘못된 값이 들어올시 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1", "Re", "Qt", "U", "D", "P", "S", "\n", " "})
+    void retryByInvalidValue(String input) {
+        assertThatThrownBy(() -> bridgeGame.retry(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(EXCEPTION_MESSAGE_INVALID_RETRY);
+    }
+
+    @DisplayName("retry 함수가 정상적으로 true를 반환한다.")
+    @Test
+    void executeRetryToTrue() {
+        assertThat(true).isEqualTo(bridgeGame.retry("R"));
+    }
+
+    @DisplayName("retry 함수가 정상적으로 false를 반환한다.")
+    @Test
+    void executeRetryToFalse() {
+        assertThat(false).isEqualTo(bridgeGame.retry("Q"));
     }
 }
