@@ -32,28 +32,16 @@ public class BridgeGameAnswer {
 
     private List<String> getCollectMessage(String answer, boolean isLast) {
         if (answer.equals("U")) {
-            if (isLast) {
-                return List.of(" O ", "   ");
-            }
-            return List.of(" O |", "   |");
+            return BridgeShape.COLLECT_UP.getShapeMessages(isLast);
         }
-        if (isLast) {
-            return List.of("   ", " O ");
-        }
-        return List.of("   |", " O |");
+        return BridgeShape.COLLECT_DOWN.getShapeMessages(isLast);
     }
 
     private List<String> getWrongMessage(String answer, boolean isLast) {
         if (answer.equals("U")) {
-            if (isLast) {
-                return List.of("  ", " X ");
-            }
-            return List.of("   |", " X |");
+            return BridgeShape.WRONG_UP.getShapeMessages(isLast);
         }
-        if (isLast) {
-            return List.of(" X ", "   ");
-        }
-        return List.of(" X |", "   |");
+        return BridgeShape.WRONG_DOWN.getShapeMessages(isLast);
     }
 
     private boolean isLastIndex(List<String> history, int index) {
