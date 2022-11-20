@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.verifier.BridgeSizeVerifier;
+import bridge.system.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,7 @@ public class Bridge {
     List<String> bridge;
 
     public Bridge(List<String> bridge) {
-        BridgeSizeVerifier bridgeSizeVerifier = new BridgeSizeVerifier();
-        int bridgeSize = bridge.size();
-        bridgeSizeVerifier.check(String.valueOf(bridgeSize));
-
+        validate(bridge);
         this.bridge = bridge;
     }
 
@@ -40,5 +37,15 @@ public class Bridge {
     @Override
     public String toString() {
         return bridge.toString();
+    }
+
+    private void validate(List<String> target) {
+        int invalidCount = (int) target.stream()
+                .filter(block -> !block.equals(GameMoving.UP.toString()))
+                .filter(block -> !block.equals(GameMoving.DOWN.toString()))
+                .count();
+        if (invalidCount != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.BRIDGE_ELEMENT_INVALID);
+        }
     }
 }

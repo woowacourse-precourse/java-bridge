@@ -7,4 +7,6 @@ public class ExceptionMessage {
 
     public static final String IS_NOT_ALPHABETIC = "[ERROR] 입력된 값은 알파벳이 아닙니다.";
     public static final String IS_NOT_UNDERSTANDABLE_COMMAND = "[ERROR] 이해할 수 없는 커맨드 값입니다.";
+
+    public static final String BRIDGE_ELEMENT_INVALID = "[ERROR] 브리지 생성 오류입니다. 이해할 수 없는 값이 포함되어 있습니다.";
 }
