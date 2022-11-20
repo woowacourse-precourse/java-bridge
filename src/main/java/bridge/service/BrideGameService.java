@@ -1,20 +1,22 @@
 package bridge.service;
 
 import static bridge.exception.Error.*;
-import static bridge.view.InputView.*;
 import static bridge.view.OutputView.*;
 
 import bridge.repository.BridgeRepository;
+import bridge.view.InputView;
 
 public class BrideGameService {
 
     private BridgeRepository bridgeRepository;
 
     public void execute() {
+        InputView inputView = new InputView();
+
         printBridgeGameStartMessage();
 
         try {
-            initializeBridgeRepositoryByBridgeSize(readBridgeSize());
+            initializeBridgeRepositoryByBridgeSize(inputView.readBridgeSize());
         } catch (NumberFormatException e) {
             throw new NumberFormatException(NOT_INT.getMessage());
         }
@@ -22,7 +24,7 @@ public class BrideGameService {
     }
 
     private void initializeBridgeRepositoryByBridgeSize(int size) {
-        bridgeRepository = new BridgeRepository(readBridgeSize());
+        bridgeRepository = new BridgeRepository(size);
     }
 
 }
