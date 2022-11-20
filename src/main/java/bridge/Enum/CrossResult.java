@@ -11,4 +11,8 @@ public enum CrossResult {
         this.bool = bool;
         this.string = string;
     }
+
+    public String getString(){
+        return string;
+    }
 }

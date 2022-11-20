@@ -24,7 +24,7 @@ public class CrossResults {
         return crossResults.contains(crossResult);
     }
 
-    public List<CrossResult> getCrossResults(){
-        return crossResults;
+    public CrossResult get(int position){
+        return crossResults.get(position);
     }
 }

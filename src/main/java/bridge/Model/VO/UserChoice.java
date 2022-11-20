@@ -23,4 +23,8 @@ public class UserChoice {
         String other = (String)object;
         return choice.getString().equals(other);
     }
+
+    public boolean compare(Crossing crossing){
+        return choice.equals(crossing);
+    }
 }

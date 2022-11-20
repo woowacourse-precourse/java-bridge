@@ -13,4 +13,12 @@ public class UserChoices {
     public void add(UserChoice userChoice){
         userChoices.add(userChoice);
     }
+
+    public int length(){
+        return userChoices.size();
+    }
+
+    public UserChoice get(int position){
+        return userChoices.get(position);
+    }
 }
