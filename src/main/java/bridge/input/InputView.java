@@ -5,45 +5,72 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public int readBridgeSize() {
-        while (true) {
+    public static int readBridgeSize() {
+        String bridgeSize = null;
+        boolean isValid = false;
+
+        while (!isValid) {
             OutputView.printReadBridgeSizeMessage();
-            String bridgeSize = Console.readLine();
-
-            try {
-                Validator.bridgeSize(bridgeSize);
-                return Integer.parseInt(bridgeSize);
-            } catch (IllegalArgumentException e) {
-                OutputView.printReadBridgeSizeErrorMessage();
-            }
+            bridgeSize = Console.readLine();
+            isValid = isValidBridgeSize(bridgeSize);
         }
+
+        return Integer.parseInt(bridgeSize);
     }
 
-    public String readMoving() {
-        while (true) {
+    public static String readMoving() {
+        String moving = null;
+        boolean isValid = false;
+
+        while (!isValid) {
             OutputView.printReadMovingMessage();
-            String moving = Console.readLine();
+            moving = Console.readLine();
+            isValid = isValidMoving(moving);
+        }
 
-            try {
-                Validator.moving(moving);
-                return moving;
-            } catch (IllegalArgumentException e) {
-                OutputView.printReadMovingErrorMessage();
-            }
+        return moving;
+    }
+
+    public static String readGameCommand() {
+        String gameCommand = null;
+        boolean isValid = false;
+
+        while (!isValid) {
+            OutputView.printReadGameCommandMessage();
+            gameCommand = Console.readLine();
+            isValid = isValidGameCommand(gameCommand);
+        }
+
+        return gameCommand;
+    }
+
+    private static boolean isValidBridgeSize(String bridgeSize) {
+        try {
+            Validator.bridgeSize(bridgeSize);
+            return true;
+        } catch (IllegalArgumentException e) {
+            OutputView.printReadBridgeSizeErrorMessage();
+            return false;
         }
     }
 
-    public String readGameCommand() {
-        while (true) {
-            OutputView.printReadGameCommandMessage();
-            String gameCommand = Console.readLine();
+    private static boolean isValidMoving(String moving) {
+        try {
+            Validator.moving(moving);
+            return true;
+        } catch (IllegalArgumentException e) {
+            OutputView.printReadMovingErrorMessage();
+            return false;
+        }
+    }
 
-            try {
-                Validator.gameCommand(gameCommand);
-                return gameCommand;
-            } catch (IllegalArgumentException e) {
-                OutputView.printReadGameCommandErrorMessage();
-            }
+    private static boolean isValidGameCommand(String gameCommand) {
+        try {
+            Validator.gameCommand(gameCommand);
+            return true;
+        } catch (IllegalArgumentException e) {
+            OutputView.printReadGameCommandErrorMessage();
+            return false;
         }
     }
 }
