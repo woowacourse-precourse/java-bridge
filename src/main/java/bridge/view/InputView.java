@@ -24,7 +24,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         outputView.printMessage(Messages.VIEW_BRIDGE_SIZE);
-        String userInput = readInput();
+        String userInput = "";
 
         userInput = readBridgeSizeUntilCollectFormat(userInput);
 
@@ -49,7 +49,7 @@ public class InputView {
      */
     public String readMoving() {
         outputView.printMessage(Messages.VIEW_SELECT_UP_DOWN);
-        String userInput = readInput();
+        String userInput = "";
 
         userInput = readMoveUntilCollectFormat(userInput);
 
@@ -74,7 +74,7 @@ public class InputView {
      */
     public String readGameCommand() {
         outputView.printMessage(Messages.VIEW_RETRY);
-        String userInput = readInput();
+        String userInput = "";
 
         userInput = readGameCommandUntilCollectFormat(userInput);
 
@@ -96,6 +96,7 @@ public class InputView {
 
 
     public String readInput() {
-        return Console.readLine();
+        String userInput = Console.readLine();
+        return userInput;
     }
 }

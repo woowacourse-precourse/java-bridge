@@ -106,4 +106,19 @@ public class BridgeGameTest {
 
         Assertions.assertThat(stage).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("게임을 재시작하면 BridgeStage, BridgeRecord를 초기화 한다")
+    void retryTest() {
+        List<String> bridge = List.of("U","D","D","U");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.pass();
+        bridgeGame.move("U");
+
+        bridgeGame.retry();
+
+        Assertions.assertThat(BridgeStage.currentStage()).isEqualTo(0);
+        Assertions.assertThat(BridgeRecord.getRecord()).isEmpty();
+    }
 }
