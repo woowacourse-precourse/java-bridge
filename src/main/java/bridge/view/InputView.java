@@ -23,7 +23,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public void readMoving() {
         System.out.println(MOVE_MESSAGE);
         String moving = Console.readLine();
         bridgeGame.move(moving);
@@ -32,7 +32,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public void readGameCommand() {
+        System.out.println(RETRY_MESSAGE);
+        String command = Console.readLine();
+        bridgeGame.retry();
     }
 }

@@ -134,7 +134,7 @@ public class BridgeMaker {
 **InputView**
 >- [x] 다리 길이를 입력받는 기능 ( readBridgeSize )
 >- [x] 이동할 칸을 입력받는 기능 ( readMoving )
->- [ ] 게임 재시도 여부를 입력받는 기능 ( readGameCommand )
+>- [x] 게임 재시도 여부를 입력받는 기능 ( readGameCommand )
 
 **OutputView**
 >- [ ] 만들어진 User의 Map을 출력하는 기능 ( printMap )
