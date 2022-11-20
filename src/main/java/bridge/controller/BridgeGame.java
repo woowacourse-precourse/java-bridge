@@ -9,7 +9,7 @@ import bridge.view.OutputView;
 public class BridgeGame {
 
     public void run() {
-        OutputView.print(GameMessage.GAME_START.getMessage());
+        OutputView.start();
     }
 
     /**

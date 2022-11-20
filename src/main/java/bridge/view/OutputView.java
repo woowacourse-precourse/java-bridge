@@ -1,12 +1,15 @@
 package bridge.view;
 
+import bridge.model.GameMessage;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    public static void print(String message) {
-        System.out.println(message);
+    public static void start() {
+        System.out.println(GameMessage.GAME_START.getMessage());
+        System.out.println();
     }
 
     /**
