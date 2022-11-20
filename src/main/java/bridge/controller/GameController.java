@@ -19,19 +19,18 @@ public class GameController {
     private final BridgeGame bridgeGame = new BridgeGame();
 
     public void startGame() {
-        User user = new User();
+        User user = new User(1);
         inputView.printMessage(inputMessage.START_GAME);
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         crossBridge(bridge, user);
         while (user.isRestartGame()) {
-            user = new User();
+            user = new User(user.getRetryCount());
             crossBridge(bridge, user);
         }
     }
     public void crossBridge(List<String> bridge, User user) {
-        int tryCount = user.getRetryCount();
         int currentIndex = 0;
         while (true) {
             String direction = setDirection(inputView.readMoving());
@@ -40,10 +39,17 @@ public class GameController {
             currentIndex++;
             outputView.printMap(user.toString());
             if(result.equals("X")) {
-                askRestartOrEnd(user.toString(), tryCount, user);
-                break;
+                askRestartOrEnd(user.toString(), user.getRetryCount(), user);
+                return;
+            }
+            if(currentIndex == bridge.size()) {
+                outputView.printResult(user.toString(), false, user.getRetryCount());
+                return;
             }
         }
+    }
+    public void printStatusBridge(String userBridge) {
+        outputView.printMap(userBridge);
     }
     public void askRestartOrEnd(String userBridge, int tryCount, User user) {
         String retryOrQuit  = inputView.readGameCommand();

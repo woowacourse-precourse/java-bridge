@@ -1,11 +1,12 @@
 package bridge.domain;
 
 public class User {
-    private int retryCount = 1;
+    private int retryCount;
     private final Bridge bridge;
     private boolean isRestartGame = false;
 
-    public User() {
+    public User(int retryCount) {
+        this.retryCount = retryCount;
         this.bridge = new Bridge();
     }
 
@@ -27,7 +28,7 @@ public class User {
         bridge.addLowerBridge(resultBlock);
     }
     public void plusRetryCount () {
-        retryCount++;
+        this.retryCount++;
     }
 
     public int getRetryCount() {
