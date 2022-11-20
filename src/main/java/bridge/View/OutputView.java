@@ -21,6 +21,12 @@ public class OutputView {
     }
 
     public void printBridgeCellLoop(List<Boolean> matchResult, List<String> bridge, String way, int i) {
+        printEqual(matchResult,bridge,way,i);
+        printNotEqual(matchResult,bridge,way,i);
+        printWall(i,matchResult);
+    }
+
+    public void printEqual(List<Boolean> matchResult, List<String> bridge, String way, int i) {
         if (bridge.get(i).equals(way)) {
             String correct = " O ";
             if (!matchResult.get(i)) {
@@ -28,6 +34,9 @@ public class OutputView {
             }
             System.out.print(correct);
         }
+    }
+
+    public void printNotEqual(List<Boolean> matchResult, List<String> bridge, String way, int i) {
         if (!bridge.get(i).equals(way)) {
             String wrong = " X ";
             if (matchResult.get(i)) {
@@ -35,11 +44,13 @@ public class OutputView {
             }
             System.out.print(wrong);
         }
+    }
+
+    public void printWall(int i,List<Boolean> matchResult ) {
         if (i != matchResult.size() - 1) {
             System.out.print("|");
         }
     }
-
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getMatchResult(),bridgeGame.getBridge());
