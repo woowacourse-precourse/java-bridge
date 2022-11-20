@@ -59,13 +59,26 @@ public class InputView {
         return answer;
     }
 
-    public static void readGameCommand() {
-        OutputView.now_size = OutputView.bridge_answer.size();
+    public static String readGameCommand() {
+        System.out.println("리드게임커맨드실행");
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String a = Console.readLine();
+        return a;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public List<String> getMove() {
+        return move;
+    }
+
+    public void checkGameCommand(String a){
         if(Objects.equals(a, "R")){
             ++BridgeGame.play_count;
             OutputView.now_size = 0;
+            move.clear();
             Application.playBridgeGame();
         }
         if(Objects.equals(a,"Q")){
@@ -75,12 +88,7 @@ public class InputView {
             System.out.println("총 시도한 횟수 : " + BridgeGame.play_count);
         }
     }
-
-    public int getSize() {
-        return size;
-    }
-
-    public List<String> getMove() {
-        return move;
+    public void clearMove(){
+        move.clear();
     }
 }
