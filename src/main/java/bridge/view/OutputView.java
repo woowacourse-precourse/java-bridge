@@ -19,5 +19,26 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        // TODO: 2022/11/20 printMap 구현 후 수정
+        System.out.println(Message.GAME_RESULT_TITLE);
+        printMap();
+        System.out.println(Message.GAME_RESULT_STATUS);
+        System.out.println(Message.GAME_RESULT_COUNT);
+    }
+
+    public void printGameStart() {
+        System.out.println(Message.GAME_START + Message.NEW_LINE);
+    }
+
+    public void printInputBridgeSize() {
+        System.out.println(Message.INPUT_BRIDGE_SIZE);
+    }
+
+    public void printInputBridgeSpace() {
+        System.out.println(Message.INPUT_BRIDGE_SPACE);
+    }
+
+    public void printInputGameRetry() {
+        System.out.println(Message.INPUT_GAME_RETRY);
     }
 }
