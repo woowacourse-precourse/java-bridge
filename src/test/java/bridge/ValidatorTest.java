@@ -23,7 +23,8 @@ public class ValidatorTest {
     @DisplayName("다리 길이 값 Null 테스트")
     @Test
     void validateInputSizeNullTest() {
-
+        assertThatThrownBy(() -> validateInputSizeException(null))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("U,D 외의 문자를 입력했다면 ERROR 출력")
