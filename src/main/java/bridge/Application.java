@@ -12,6 +12,8 @@ public class Application {
 
         while (run())
             game.retry();
+
+        output.printResult(game);
     }
 
     public static boolean run() {
