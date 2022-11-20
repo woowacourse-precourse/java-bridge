@@ -69,4 +69,8 @@ public class BridgeGame {
         result.put(GAME_STATUS_MESSAGE, FAIL.getText());
         return result;
     }
+
+    public boolean isGameClear() {
+        return round.isClear();
+    }
 }

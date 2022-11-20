@@ -23,7 +23,6 @@ public class BridgeGameController {
         outputView.printStartMessage();
         setForGame();
         run();
-        restartGame();
         finishGame();
     }
 
@@ -33,19 +32,24 @@ public class BridgeGameController {
     }
 
     private void run() {
-        do {
+        while (bridgeGame.isPlaying()) {
             String direction = inputView.readMoving();
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame.getPathResultToString());
         }
-        while (bridgeGame.isPlaying());
+
+        if (bridgeGame.isGameClear()) {
+            return;
+        }
+
+        if (inputView.readGameCommand().equals(RESTART_SIGN)) {
+            restartGame();
+        }
     }
 
     private void restartGame() {
-        while (inputView.readGameCommand().equals(RESTART_SIGN)) {
-            bridgeGame.retry();
-            run();
-        }
+        bridgeGame.retry();
+        run();
     }
 
     private void finishGame() {
