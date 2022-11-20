@@ -110,55 +110,63 @@ public class BridgeGame {
     }
 
     public boolean moveBridge(BridgeGame bridgeGame, String inputMove, Bridge bridge) {
-        boolean result = false;
         List<String> bridgeList = bridgeGame.getBridge();
         int bridgeGameIndex = bridgeGame.getIndex();
         if (bridgeGame.checkStatus(bridgeList, inputMove, bridgeGameIndex)) {
-            if (inputMove.equals("U")) {
-                writeUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
-                bridgeGame.move();
-            }
-            if (inputMove.equals("D")) {
-                writeLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
-                bridgeGame.move();
-            }
-            result = true;
+            writeBridgeTrueValue(bridgeGame, inputMove, bridge);
+            return true;
         }
-        if (!bridgeGame.checkStatus(bridgeList, inputMove, bridgeGameIndex)) {
-            if (inputMove.equals("U")) {
-                writeUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
-            }
-            if (inputMove.equals("D")) {
-                writeLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
-            }
-            result = false;
-        }
-        return result;
+        writeBridgeFalseValue(inputMove, bridge);
+        return false;
     }
 
-    public boolean moveBridgeInit(BridgeGame bridgeGame, String inputMove, Bridge bridge1) {
-        boolean result = false;
+    private void writeBridgeFalseValue(String inputMove, Bridge bridge) {
+        if (inputMove.equals("U")) {
+            writeUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
+        }
+        if (inputMove.equals("D")) {
+            writeLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
+        }
+    }
+
+    private void writeBridgeTrueValue(BridgeGame bridgeGame, String inputMove, Bridge bridge) {
+        if (inputMove.equals("U")) {
+            writeUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
+            bridgeGame.move();
+        }
+        if (inputMove.equals("D")) {
+            writeLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
+            bridgeGame.move();
+        }
+    }
+
+    public boolean moveBridgeInit(BridgeGame bridgeGame, String inputMove, Bridge bridge) {
         List<String> bridgeList = bridgeGame.getBridge();
         if (bridgeGame.checkStatus(bridgeList, inputMove, 0)) {
-            if (inputMove.equals("U")) {
-                writeInitUpperBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), true);
-                bridgeGame.move();
-            }
-            if (inputMove.equals("D")) {
-                writeInitLowerBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), true);
-                bridgeGame.move();
-            }
-            result = true;
+            writeInitBridgeTrueValue(bridgeGame, inputMove, bridge);
+            return true;
         }
-        if (!bridgeGame.checkStatus(bridgeList, inputMove, 0)) {
-            if (inputMove.equals("U")) {
-                writeInitUpperBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), false);
-            }
-            if (inputMove.equals("D")) {
-                writeInitLowerBridge(bridge1.getUpperBridge(), bridge1.getLowerBridge(), false);
-            }
-            result = false;
+        writeInitBridgeFalseValue(inputMove, bridge);
+        return false;
+    }
+
+    private void writeInitBridgeFalseValue(String inputMove, Bridge bridge) {
+        if (inputMove.equals("U")) {
+            writeInitUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
         }
-        return result;
+        if (inputMove.equals("D")) {
+            writeInitLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), false);
+        }
+    }
+
+    private void writeInitBridgeTrueValue(BridgeGame bridgeGame, String inputMove, Bridge bridge) {
+        if (inputMove.equals("U")) {
+            writeInitUpperBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
+            bridgeGame.move();
+        }
+        if (inputMove.equals("D")) {
+            writeInitLowerBridge(bridge.getUpperBridge(), bridge.getLowerBridge(), true);
+            bridgeGame.move();
+        }
     }
 }

@@ -50,7 +50,7 @@ public class Controller {
                 else {
                     outputView.printMap(bridge);
                     bridgeGame.initIndex();
-                    if(!retry(bridgeGame, bridgeList)){
+                    if(retry(bridgeGame, bridgeList)){
                         break;
                     }
                 }
@@ -63,7 +63,7 @@ public class Controller {
                     outputView.printMap(bridge);
                     bridgeGame.initIndex();
 
-                    if(!retry(bridgeGame, bridgeList)){
+                    if(retry(bridgeGame, bridgeList)){
                         gameEnd();
                         break;
                     }
@@ -92,7 +92,7 @@ public class Controller {
             user.addTryCount();
             start(bridgeGame, bridgeList);
         }
-        return flag;
+        return !flag;
     }
 
     private void gameEnd() {
