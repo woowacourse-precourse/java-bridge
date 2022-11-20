@@ -23,4 +23,12 @@ class BridgeControllerTest {
         assertThatThrownBy(() -> bridgeController.validateLetter("a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("게임이 실패 하고 다른 문자가 입력 되는 경우 예외처리.")
+    @Test
+    void inputEndLetterByAnotherLetter() {
+        BridgeController bridgeController = new BridgeController();
+        assertThatThrownBy(() -> bridgeController.validateEndLetter("b"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
