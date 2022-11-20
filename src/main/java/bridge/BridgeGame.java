@@ -23,9 +23,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction) {
+    public boolean move(String direction) {
         validateMove(direction);
+        if (!gameStatus.equals(GameStatus.ONGOING)) {
+            return false;
+        }
         userPath.add(direction);
+        updateGameStatus();
+        return true;
+    }
+
     private boolean isLastMoveCorrect() {
         int lastMoveIndex = userPath.size() - 1;
         if (lastMoveIndex == -1) {
