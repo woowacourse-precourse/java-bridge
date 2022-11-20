@@ -43,7 +43,7 @@ public class BridgeGame {
         String position = inputView.readMoving();
         boolean isAlive = bridge.isAlive(position, user.crossingBridgeNumber());
         user.addUserState(BridgeState.convertToBridgeState(position, isAlive));
-        return null;
+        return isGameEnd(user, bridge, isAlive);
     }
 
     /**
@@ -64,6 +64,14 @@ public class BridgeGame {
             makeBridgeGame(bridgeMaker);
         }
         return null;
+    }
+
+    public GameState isGameEnd(User user, Bridge bridge, boolean isAlive) {
+        if (bridge.getBridgeSize() == user.crossingBridgeNumber() && isAlive)
+            return GameState.END;
+        if (!isAlive)
+            return GameState.RETRY;
+        return GameState.START;
     }
 
 }

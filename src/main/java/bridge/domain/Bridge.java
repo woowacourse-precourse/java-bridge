@@ -22,4 +22,8 @@ public class Bridge {
     public boolean isAlive(String position, int index) {
         return bridge.get(index).equals(position);
     }
+
+    public int getBridgeSize() {
+        return bridge.size();
+    }
 }
