@@ -1,10 +1,7 @@
 package bridge.view;
 
-import bridge.domain.BridgeMaker;
 import bridge.handler.InputBridgeLengthHandler;
 import camp.nextstep.edu.missionutils.Console;
-import org.junit.jupiter.api.Order;
-import org.mockito.internal.matchers.Or;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -14,13 +11,17 @@ public class InputView {
     InputBridgeLengthHandler inputBridgeLengthHandler = new InputBridgeLengthHandler();
     /**
      * 다리의 길이를 입력받는다.
+     *
+     * @return
      */
-    public void readBridgeSize() {
+    public String readBridgeSize() {
         System.out.println(orderView.START_ORDER);
         orderView.lineSkip();
         System.out.println(orderView.INPUT_BRIDGE_LENGTH);
-        inputBridgeLengthHandler.checkException(Console.readLine());
+        String bridgeLength = inputBridgeLengthHandler.checkException(Console.readLine());
         orderView.lineSkip();
+
+        return bridgeLength;
     }
 
     /**
