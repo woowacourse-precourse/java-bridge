@@ -18,5 +18,9 @@ public class OutputView {
         System.out.println(bridgeSize);
         System.out.println();
     }
+
+    public void printInputMove() {
+        System.out.println(GameMessage.INPUT_MOVE.getMessage());
+    }
 }
 
