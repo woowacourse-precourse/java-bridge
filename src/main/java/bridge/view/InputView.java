@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.ExceptionConstants;
 import bridge.constant.ViewConstants;
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;
 
@@ -13,8 +14,10 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public int readBridgeSize() throws IllegalArgumentException {
+        String input = Console.readLine();
+        isNaturalNumber(input);
+        return Integer.parseInt(input);
     }
 
     /**
