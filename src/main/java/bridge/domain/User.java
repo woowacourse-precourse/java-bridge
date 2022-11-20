@@ -24,4 +24,8 @@ public class User {
     public int crossingBridgeNumber() {
         return bridgeGames.size();
     }
+
+    public BridgeState getUserCrossing(int index) {
+        return bridgeGames.get(index);
+    }
 }

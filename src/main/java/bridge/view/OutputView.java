@@ -1,11 +1,21 @@
 package bridge.view;
 
+import bridge.domain.User;
+import bridge.domain.utils.BridgeCommand;
+import bridge.domain.utils.BridgeState;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
     public static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
+    private static final String SUCCESS_CROSSING = " O ";
+    private static final String FAILED_CROSSING = " X ";
+    private static final String NOTING_CROSSING = "   ";
 
     public void printStartGame() {
         System.out.println(START_GAME);
@@ -16,7 +26,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(User user) {
+        List<String> upBridge = exchangeBridge(BridgeCommand.UP.getCommand(), user);
+        List<String> downBridge = exchangeBridge(BridgeCommand.DOWN.getCommand(), user);
+        printOneLineMap(upBridge);
+        printOneLineMap(downBridge);
     }
 
     /**
@@ -26,4 +40,31 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    private List<String> exchangeBridge(String position, User user) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < user.crossingBridgeNumber(); i++) {
+            result.add(checkCrossing(user.getUserCrossing(i), position));
+        }
+        return result;
+    }
+
+    private String checkCrossing(BridgeState bridgeState, String position) {
+        if (bridgeState.getPosition().equals(position) && bridgeState.isAlive())
+            return SUCCESS_CROSSING;
+        if (bridgeState.getPosition().equals(position) && !bridgeState.isAlive())
+            return FAILED_CROSSING;
+        return NOTING_CROSSING;
+    }
+
+    private void printOneLineMap(List<String> bridge) {
+        System.out.print("[");
+        for (int i = 0; i < bridge.size(); i++) {
+            System.out.print(bridge.get(i));
+            if (i != bridge.size() - 1)
+                System.out.print("|");
+        }
+        System.out.println("]");
+    }
+
 }

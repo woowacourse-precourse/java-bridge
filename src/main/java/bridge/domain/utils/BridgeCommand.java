@@ -3,7 +3,7 @@ package bridge.domain.utils;
 public enum BridgeCommand {
     DOWN(0, "D"),
     UP(1, "U"),
-    NOTING(2, "X");
+    NOTING(2, " ");
 
     private int randomNumber;
     private String command;

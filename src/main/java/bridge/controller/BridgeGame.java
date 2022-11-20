@@ -31,6 +31,7 @@ public class BridgeGame {
         final Bridge bridge = makeBridgeGame(bridgeMaker);
         while (gameState == GameState.START || gameState == GameState.RETRY) {
             gameState = move(user, bridge);
+            outputView.printMap(user);
         }
     }
 
