@@ -20,6 +20,10 @@ public class Bridge {
         return BlockInput.equals(movableBlocks.get(position));
     }
 
+    public List<String> getCrossedBridge(int position) {
+        return movableBlocks.subList(0, position);
+    }
+
     private void validate(List<String> movableBlocks) {
         for (String block : movableBlocks) {
             if (!isValidBlock(block)) {
