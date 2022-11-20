@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.util.Validator;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -22,8 +24,12 @@ public class BridgeGame {
         outputView.printStartGame();
         String bridgeSize=inputView.readBridgeSize();
         if(Validator.isDigit(bridgeSize) && Validator.checkRange(bridgeSize)){
-
+            makeBridge(Integer.parseInt(bridgeSize));
         }
+    }
+    public void makeBridge(int bridgeSize){
+        List<String> bridge=bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(bridge);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
