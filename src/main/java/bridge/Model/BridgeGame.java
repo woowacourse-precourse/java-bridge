@@ -7,18 +7,18 @@ import bridge.GameStatus;
 import bridge.Model.VO.Bridge;
 import bridge.Model.VO.BridgeSize;
 import bridge.Model.VO.UserChoice;
-import bridge.Model.VO.ChoiceResults;
+import bridge.Model.VO.CrossResults;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    ChoiceResults choiceResults;
+    CrossResults crossResults;
     Bridge bridge;
 
     public BridgeGame(BridgeSize bridgeSize){
-        choiceResults = new ChoiceResults();
+        crossResults = new CrossResults();
         bridge = new Bridge(makeBridge(bridgeSize));
     }
     private List<String> makeBridge(BridgeSize bridgeSize){
@@ -28,8 +28,8 @@ public class BridgeGame {
         return bridgeMaker.makeBridge(size);
     }
     public void move(UserChoice userChoice) {
-        CrossResult crossResult = bridge.cross(userChoice, choiceResults.position());
-        choiceResults.appendResult(crossResult);
+        CrossResult crossResult = bridge.cross(userChoice, crossResults.position());
+        crossResults.appendResult(crossResult);
     }
 
     public GameStatus checkGameStatus(){
@@ -44,11 +44,11 @@ public class BridgeGame {
     }
 
     private boolean isEndPoint(){
-        return bridge.length() - choiceResults.position() == 0;
+        return bridge.length() - crossResults.position() == 0;
     }
 
     private boolean isFailed(){
-        return choiceResults.contain(CrossResult.FAIL);
+        return crossResults.contain(CrossResult.FAIL);
     }
 
     /**

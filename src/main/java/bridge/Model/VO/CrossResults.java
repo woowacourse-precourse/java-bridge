@@ -5,10 +5,10 @@ import bridge.CrossResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChoiceResults {
+public class CrossResults {
     List<CrossResult> crossResults;
 
-    public ChoiceResults(){
+    public CrossResults(){
         this.crossResults = new ArrayList<>();
     }
 
@@ -22,5 +22,9 @@ public class ChoiceResults {
 
     public boolean contain(CrossResult crossResult){
         return crossResults.contains(crossResult);
+    }
+
+    public List<CrossResult> getCrossResults(){
+        return crossResults;
     }
 }
