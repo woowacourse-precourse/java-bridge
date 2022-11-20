@@ -26,5 +26,9 @@ public class OutputView {
     public void printInputRetryCommand() {
         System.out.println(GameMessage.INPUT_RETRY_COMMAND.getMessage());
     }
+
+    public void printRetryCommand(String retryCommand) {
+        System.out.println(retryCommand);
+    }
 }
 
