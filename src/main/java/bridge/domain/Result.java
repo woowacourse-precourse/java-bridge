@@ -16,6 +16,16 @@ public class Result {
         this.round = round;
     }
 
+    // 이동한 칸이 건널 수 있으면 O 아니면 X를 나타내는 기능
+    public List<String> convertResult(String userInput, List<String> bridge) {
+        if (round.checkRoundFirst()) {
+            convertResultFirstRound(userInput, bridge);
+        } else if (!round.checkRoundFirst()) {
+            convertResultAfterFirstRound(userInput, bridge);
+        }
+        return map;
+    }
+
     // 첫 번째 라운드 결과
     public void convertResultFirstRound(String userInput, List<String> bridge) {
         if (compareBridgeRootToUserInput(userInput, bridge)) {
