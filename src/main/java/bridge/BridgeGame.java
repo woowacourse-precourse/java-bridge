@@ -27,23 +27,41 @@ public class BridgeGame {
         return bridgeList;
     }
 
-    public void move(List<String> bridgeList) {
+    public boolean move(List<String> bridgeList) {
+        outputView.getUpResultList().clear();
+        outputView.getDownResultList().clear();
         for (String bridge : bridgeList){
             String input = inputView.readMoving();
             this.gameSet = outputView.makeResult(bridge,input,gameSet);
             outputView.printMap();
             if (this.gameSet){
-                break;
+
+                return true;
             }
         }
+        return false;
     }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String input = inputView.readGameCommand();
+        if (input.equals("R")){
+            this.gameSet=false;
+            return true;
+        }
+        return false;
+    }
+    public void gameResult(int count){
+        outputView.printResult(getStringResult(),count);
+    }
+    public String getStringResult(){
+        if (gameSet){
+            return "실패";
+        }
+        return "성공";
     }
 }
