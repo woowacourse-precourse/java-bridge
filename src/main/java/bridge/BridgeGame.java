@@ -1,9 +1,10 @@
 package bridge;
 
-import bridge.Constants.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.Constants.MapMark.*;
+import static bridge.Constants.MoveMark.*;
 
 public class BridgeGame {
     private int tryCount = 1;
@@ -40,20 +41,20 @@ public class BridgeGame {
     }
 
     private void mapIfCorrect(String moving) {
-        if (moving.equals(MoveMark.UP.mark())) {
-            addMap(MapMark.CORRECT.mark(), MapMark.NOTHING.mark());
+        if (moving.equals(UP.mark())) {
+            addMap(CORRECT.mark(), NOTHING.mark());
         }
-        if (moving.equals(MoveMark.DOWN.mark())) {
-            addMap(MapMark.NOTHING.mark(), MapMark.CORRECT.mark());
+        if (moving.equals(DOWN.mark())) {
+            addMap(NOTHING.mark(), CORRECT.mark());
         }
     }
 
     private void mapIfWrong(String moving) {
-        if (moving.equals(MoveMark.UP.mark())) {
-            addMap(MapMark.WRONG.mark(), MapMark.NOTHING.mark());
+        if (moving.equals(UP.mark())) {
+            addMap(WRONG.mark(), NOTHING.mark());
         }
-        if (moving.equals(MoveMark.DOWN.mark())) {
-            addMap(MapMark.NOTHING.mark(), MapMark.WRONG.mark());
+        if (moving.equals(DOWN.mark())) {
+            addMap(NOTHING.mark(), WRONG.mark());
         }
     }
 
