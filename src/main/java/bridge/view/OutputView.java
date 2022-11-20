@@ -35,6 +35,7 @@ public class OutputView {
         List<String> downBridge = exchangeBridge(BridgeCommand.DOWN.getCommand(), user);
         printOneLineMap(upBridge);
         printOneLineMap(downBridge);
+        System.out.println();
     }
 
     /**
