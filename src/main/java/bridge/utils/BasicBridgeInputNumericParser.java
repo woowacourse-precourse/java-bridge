@@ -12,18 +12,29 @@ public class BasicBridgeInputNumericParser {
     }
 
     public static BridgeLength parseBridgeLengthAmount(final String input) {
-        return parseWithCheckingEmpty(input, BridgeLength::from);
+        return parseNumericCheckingEmpty(input, BridgeLength::from);
     }
 
-    private static <T> T parseWithCheckingEmpty(final String input, final IntFunction<T> creationFunction) {
+    private static <T> T parseNumericCheckingEmpty(final String input, final IntFunction<T> creationFunction) {
         EmptyChecker.check(input);
-        return parse(input , creationFunction);
+
+        return parserWithCheckingOnlyNumeric(input , creationFunction);
+    }
+
+    private static <T> T parserWithCheckingOnlyNumeric(final String input, final IntFunction<T> creationFunction) {
+        String tmpCheck = input.trim();
+        for (int i = 0; i < tmpCheck.length(); i++) {
+            if (!"0123456789".contains(tmpCheck.substring(i, i + 1))){
+                throw new IllegalArgumentException("Input is not numeric");
+            }
+        }
+        return parse(input, creationFunction);
     }
 
     private static <T> T parse(final String input, final IntFunction<T> creationFunction) {
         return Stream.of(input)
             .map(String::trim)
-            .map(Integer::parseInt)             //이거는 고치자.
+            .map(Integer::parseInt)
             .map(creationFunction::apply)
             .findFirst()
             .orElseThrow(IllegalArgumentException::new);
