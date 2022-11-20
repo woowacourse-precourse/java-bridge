@@ -17,7 +17,11 @@ public class User {
         setTryCount(this.tryCount + 1);
     }
 
-    public void setSuccess() {
+    public void gameWin(){
+        setSuccess();
+    }
+
+    private void setSuccess() {
         isSuccess = true;
     }
 
