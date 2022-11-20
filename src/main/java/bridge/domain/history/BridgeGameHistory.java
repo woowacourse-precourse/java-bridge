@@ -1,7 +1,6 @@
-package bridge.domain.game;
+package bridge.domain.history;
 
-import bridge.BridgeMove;
-import bridge.domain.BridgeMoveHistory;
+import bridge.domain.bridge.BridgeMove;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

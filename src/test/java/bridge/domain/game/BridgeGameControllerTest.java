@@ -1,15 +1,12 @@
-package bridge.game;
+package bridge.domain.game;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.BridgeMove;
-import bridge.BridgeNumberGenerator;
-import bridge.OutputView;
+import bridge.domain.bridge.BridgeMove;
+import bridge.view.OutputView;
 import bridge.TestInputView;
-import bridge.domain.TestNumberGenerator;
-import bridge.domain.game.BridgeGameCommand;
-import bridge.domain.game.BridgeGameController;
+import bridge.TestNumberGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;

@@ -1,7 +1,8 @@
-package bridge;
+package bridge.domain.bridge;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.domain.bridge.BridgeMove;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

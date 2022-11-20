@@ -1,4 +1,4 @@
-package bridge.game;
+package bridge.domain.game;
 
 import static org.assertj.core.api.Assertions.*;
 

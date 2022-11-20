@@ -1,10 +1,10 @@
-package bridge.game;
+package bridge.domain.history;
 
 import static org.assertj.core.api.Assertions.*;
 
-import bridge.BridgeMove;
-import bridge.domain.BridgeMoveHistory;
-import bridge.domain.game.BridgeGameHistory;
+import bridge.domain.bridge.BridgeMove;
+import bridge.domain.history.BridgeMoveHistory;
+import bridge.domain.history.BridgeGameHistory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

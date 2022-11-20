@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.bridge.BridgeMove;
 import bridge.domain.game.BridgeGameCommand;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Supplier;

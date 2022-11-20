@@ -1,6 +1,8 @@
 package bridge;
 
+import bridge.domain.bridge.BridgeMove;
 import bridge.domain.game.BridgeGameCommand;
+import bridge.view.InputView;
 import java.util.List;
 
 public class TestInputView extends InputView {

@@ -4,8 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeMaker;
-import bridge.BridgeMove;
-import bridge.domain.TestNumberGenerator;
+import bridge.TestNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

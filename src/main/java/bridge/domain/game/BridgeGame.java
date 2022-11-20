@@ -1,8 +1,9 @@
 package bridge.domain.game;
 
-import bridge.BridgeMove;
-import bridge.domain.BridgeMoveHistory;
+import bridge.domain.bridge.BridgeMove;
+import bridge.domain.history.BridgeMoveHistory;
 import bridge.domain.bridge.Bridge;
+import bridge.domain.history.BridgeGameHistory;
 
 public class BridgeGame {
     

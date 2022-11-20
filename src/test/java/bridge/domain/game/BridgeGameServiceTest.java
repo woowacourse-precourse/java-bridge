@@ -1,11 +1,11 @@
-package bridge.game;
+package bridge.domain.game;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeMaker;
-import bridge.BridgeMove;
-import bridge.domain.TestNumberGenerator;
+import bridge.domain.bridge.BridgeMove;
+import bridge.TestNumberGenerator;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeGameService;

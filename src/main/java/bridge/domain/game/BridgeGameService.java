@@ -1,6 +1,6 @@
 package bridge.domain.game;
 
-import bridge.BridgeMove;
+import bridge.domain.bridge.BridgeMove;
 
 public class BridgeGameService {
     

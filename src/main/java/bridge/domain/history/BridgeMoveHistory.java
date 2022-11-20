@@ -1,6 +1,6 @@
-package bridge.domain;
+package bridge.domain.history;
 
-import bridge.BridgeMove;
+import bridge.domain.bridge.BridgeMove;
 
 public class BridgeMoveHistory {
     private final BridgeMove bridgeMove;

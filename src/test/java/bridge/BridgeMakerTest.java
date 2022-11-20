@@ -3,7 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.domain.TestNumberGenerator;
+import bridge.domain.bridge.BridgeMove;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

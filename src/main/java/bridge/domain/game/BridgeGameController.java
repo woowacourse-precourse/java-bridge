@@ -1,10 +1,10 @@
 package bridge.domain.game;
 
 import bridge.BridgeMaker;
-import bridge.BridgeMove;
+import bridge.domain.bridge.BridgeMove;
 import bridge.BridgeNumberGenerator;
-import bridge.InputView;
-import bridge.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import bridge.domain.bridge.Bridge;
 
 public class BridgeGameController {
