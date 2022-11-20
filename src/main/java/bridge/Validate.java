@@ -31,6 +31,12 @@ public class Validate {
             throw new IllegalArgumentException("[ERROR] U 또는 D만 가능합니다.(소문자도 가능)");
         }
     }
+    public static void isROrQ(String upOrDown) {
+        String pattern = "^[rRqQ]$";
+        if(!Pattern.matches(pattern, upOrDown)) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q만 가능합니다.(소문자도 가능)");
+        }
+    }
 
     /**
      * DO DX UO UX 이런식으로 들어온다.
