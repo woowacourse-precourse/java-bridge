@@ -1,15 +1,30 @@
 package bridge;
+import bridge.exception.ValidException;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private final ValidException validException;
+
+    InputView(ValidException exception){
+        this.validException = exception;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        return validBridgeSize(Console.readLine());
+    }
+
+    private int validBridgeSize(String bridgeLengthOfString) {
+        validException.validInteger(bridgeLengthOfString);
+        validException.validIntegerRange(Integer.parseInt(bridgeLengthOfString));
+
+        return Integer.parseInt(bridgeLengthOfString);
     }
 
     /**
