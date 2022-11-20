@@ -30,20 +30,7 @@ public class Result {
         this.location=0;
     }
 
-    public List<String> toStrings() {
-        String upSide = buildBridge(Direction.UPSIDE.getShortcut());
-        String downSide = buildBridge(Direction.DOWNSIDE.getShortcut());
-
-        return List.of(upSide, downSide);
-    }
-
-    private String buildBridge(String direction) {
-        StringBuilder bridgeBuilder = new StringBuilder();
-
-        for (MoveStatus moveStatus : status) {
-            bridgeBuilder.append(moveStatus.generateMark(direction));
-        }
-
-        return bridgeBuilder.toString();
+    public List<MoveStatus> getStatus() {
+        return this.status;
     }
 }

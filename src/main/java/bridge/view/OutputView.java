@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.domain.Direction;
+import bridge.domain.Result;
+import bridge.util.OutputConverter;
 import java.util.List;
 
 /**
@@ -26,9 +29,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(final List<String> bridges) {
-        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(0)) + MAP_SUFFIX);
-        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(1)) + MAP_SUFFIX);
+    public void printMap(final Result result) {
+        List<String> bridges = OutputConverter.resultToStrings(result);
+
+        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.UPSIDE.getValue())) + MAP_SUFFIX);
+        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.DOWNSIDE.getValue())) + MAP_SUFFIX);
         System.out.println();
     }
 
@@ -41,9 +46,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(final List<String> bridges, final int playCount, final boolean isSuccess) {
+    public void printResult(final Result result, final int playCount, final boolean isSuccess) {
         printResultHeader();
-        printMap(bridges);
+        printMap(result);
         printSuccessState(isSuccess);
         printPlayCount(playCount);
     }

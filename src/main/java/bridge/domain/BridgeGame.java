@@ -39,8 +39,8 @@ public class BridgeGame {
         return result.isSuccess(bridge);
     }
 
-    public List<String> resultOfMoving() {
-        return result.toStrings();
+    public Result resultOfMoving() {
+        return this.result;
     }
 
     /**
