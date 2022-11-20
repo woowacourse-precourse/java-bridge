@@ -47,4 +47,23 @@ class BridgeGameResultTest {
 
         assertThat(bridgeGameResult.getResult()).isEmpty();
     }
+
+    @Test
+    void isPassed_메서드는_결과중_FAIL이_존재하지_않는경우_Victory_VICTORY를_반환한다() {
+        BridgeGameResult bridgeGameResult = new BridgeGameResult();
+        bridgeGameResult.addResult(Round.valueOf(1), SUCCESS, UP);
+        bridgeGameResult.addResult(Round.valueOf(2), SUCCESS, UP);
+
+        assertThat(bridgeGameResult.isPassed()).isEqualTo(Victory.VICTORY);
+    }
+
+    @Test
+    void isPassed_메서드는_결과중_FAIL이_존재하는_경우_Victory_DEFEAT를_반환한다() {
+        BridgeGameResult bridgeGameResult = new BridgeGameResult();
+        bridgeGameResult.addResult(Round.valueOf(1), SUCCESS, UP);
+        bridgeGameResult.addResult(Round.valueOf(2), SUCCESS, UP);
+        bridgeGameResult.addResult(Round.valueOf(3), FAIL, UP);
+
+        assertThat(bridgeGameResult.isPassed()).isEqualTo(Victory.DEFEAT);
+    }
 }
