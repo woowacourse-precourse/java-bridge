@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.utils.Constant.ERROR;
+import static bridge.utils.Constant.SPACE;
 import static bridge.utils.Constant.START_MESSAGE;
 
 /**
@@ -25,5 +27,9 @@ public class OutputView {
 
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(ERROR + SPACE + errorMessage);
     }
 }

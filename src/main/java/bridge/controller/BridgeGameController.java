@@ -24,6 +24,7 @@ public class BridgeGameController {
             String bridgeSize = inputView.readBridgeSize();
             new BridgeSize(bridgeSize);
         } catch (IllegalArgumentException ie) {
+            OutputView.printErrorMessage(ie.getMessage());
             insertBridgeSize();
         }
     }
