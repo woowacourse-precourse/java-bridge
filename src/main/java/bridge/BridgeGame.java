@@ -70,8 +70,7 @@ public class BridgeGame {
      *
      * @return 승리했다면 "성공", 실패했다면 "실패"
      */
-    @Override
-    public String toString() {
+    public String getGameResultToString() {
         if (isSuccess()) {
             return "성공";
         }
