@@ -28,11 +28,21 @@ public class OutputView {
     private String makeBridgeFormat(List<String> bridgeResult) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(BEGINING_BRIDGE);
-        for (String element : bridgeResult) {
-            stringBuilder.append(element);
+//        int i = 0;
+//        while(i < bridgeResult.size() - 1) {
+//            stringBuilder.append(bridgeResult.get(i));
+//            stringBuilder.append(BLOCK_SEPERATOR);
+//            i++;
+//        }
+//        stringBuilder.append(END_BRIDGE);
+        for (int i = 0; i < bridgeResult.size(); i++) {
+            stringBuilder.append(bridgeResult.get(i));
+            if (i == bridgeResult.size() - 1) {
+                stringBuilder.append(END_BRIDGE);
+                break;
+            }
             stringBuilder.append(BLOCK_SEPERATOR);
         }
-        stringBuilder.append(END_BRIDGE);
         return stringBuilder.toString();
     }
 

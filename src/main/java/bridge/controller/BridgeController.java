@@ -26,16 +26,16 @@ public class BridgeController {
         outputView.printStart();
         Bridge bridge = new Bridge(getBridge(getBridgeSize()));
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        System.out.println(bridgeGame.getAnswerBridge().getBridge());
         while(true) {
             String direction = getMoveDirection();
-            bridgeGame.move(direction);
+            boolean canGo = bridgeGame.move(direction);
             outputView.printMap(bridgeGame);
-            if (!bridgeGame.canCrossBridge(direction)) {
+            if (!canGo) {
                 getGameRetryOrQuit();
-
+                break; // TODO: 추가 구현
             }
         }
-
     }
 
     private int getBridgeSize() {
