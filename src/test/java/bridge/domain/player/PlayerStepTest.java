@@ -12,8 +12,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 class PlayerStepTest {
 
     @Nested
-    @DisplayName("getMoveResultLog 메소드는")
-    class DescribeGetMoveResultLogMethodTest {
+    @DisplayName("getMovableLog 메소드는")
+    class DescribeGetMovableLogMethodTest {
 
         @Nested
         @DisplayName("만약 BridgeTile이 주어지면")
@@ -32,7 +32,7 @@ class PlayerStepTest {
             void it_returns_moveHistory(boolean result, BridgeTile bridgeTile, String expected) {
                 PlayerStep playerStep = new PlayerStep(BridgeTile.UP, result);
 
-                String actual = playerStep.getMoveResultLog(bridgeTile);
+                String actual = playerStep.getMovableLog(bridgeTile);
 
                 assertThat(actual).isEqualTo(expected);
             }
@@ -40,8 +40,8 @@ class PlayerStepTest {
     }
 
     @Nested
-    @DisplayName("isMoving 메소드는")
-    class DescribeIsMovingMethodTest {
+    @DisplayName("isMovable 메소드는")
+    class DescribeIsMovableMethodTest {
 
         @Nested
         @DisplayName("만약 호출되면")
@@ -53,7 +53,7 @@ class PlayerStepTest {
             void it_returns_movable(boolean expected) {
                 PlayerStep playerStep = new PlayerStep(BridgeTile.UP, expected);
 
-                boolean actual = playerStep.isMoving();
+                boolean actual = playerStep.isMovable();
 
                 assertThat(actual).isSameAs(expected);
             }

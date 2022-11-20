@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 
 public class Bridge {
 
-    private final List<BridgeTile> bridge;
+    private final List<BridgeTile> bridgeTiles;
 
     public Bridge(int size, BridgeNumberGenerator generator) {
         validateBridgeSize(size);
 
         List<String> bridgeCommand = makeBridgeCommand(size, generator);
 
-        this.bridge = bridgeCommand
+        this.bridgeTiles = bridgeCommand
                 .stream()
                 .map(BridgeTile::findTile)
                 .collect(Collectors.toList());
@@ -39,10 +39,10 @@ public class Bridge {
     }
 
     public boolean calculatePlayerMoving(BridgeTile playerStep, int playerPosition) {
-        return bridge.get(playerPosition) == playerStep;
+        return bridgeTiles.get(playerPosition) == playerStep;
     }
 
     public boolean isEnd(int playerPosition) {
-        return bridge.size() == playerPosition;
+        return bridgeTiles.size() == playerPosition;
     }
 }

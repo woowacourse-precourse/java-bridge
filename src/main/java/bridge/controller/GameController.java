@@ -23,14 +23,14 @@ import java.util.function.Supplier;
 
 public class GameController {
 
-    private final IOViewManager IOViewManager;
+    private final IOViewManager ioViewManager;
     private final Map<GameStatus, Supplier<GameStatus>> gameStatusMappings;
     private BridgeGame bridgeGame;
 
     public GameController() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        IOViewManager = new IOViewManager(inputView, outputView);
+        ioViewManager = new IOViewManager(inputView, outputView);
         gameStatusMappings = new EnumMap<>(GameStatus.class);
 
         initGameStatusMappings();
@@ -48,10 +48,10 @@ public class GameController {
         try {
             return gameStatusMappings.get(gameStatus).get();
         } catch (IllegalArgumentException e) {
-            IOViewManager.printException(new PrintExceptionDto(e));
+            ioViewManager.printException(new PrintExceptionDto(e));
             return gameStatus;
         } catch (WrongGeneratorException e) {
-            IOViewManager.printException(new PrintExceptionDto(e));
+            ioViewManager.printException(new PrintExceptionDto(e));
             return GameStatus.APPLICATION_EXIT;
         }
     }
@@ -62,7 +62,7 @@ public class GameController {
     }
 
     private GameStatus makeBridge() {
-        ReadBridgeSizeDto readBridgeSizeDto = IOViewManager.readBridgeSize();
+        ReadBridgeSizeDto readBridgeSizeDto = ioViewManager.readBridgeSize();
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         bridgeGame = new BridgeGame(readBridgeSizeDto.getSize(), generator);
 
@@ -70,15 +70,15 @@ public class GameController {
     }
 
     private GameStatus gamePlay() {
-        ReadMovingDto readMovingDto = IOViewManager.readMoving();
+        ReadMovingDto readMovingDto = ioViewManager.readMoving();
         MoveDto moveDto = bridgeGame.move(readMovingDto);
 
-        IOViewManager.printMap(new PrintMapDto(moveDto.getPlayer()));
+        ioViewManager.printMap(new PrintMapDto(moveDto.getPlayer()));
         return moveDto.getNextGameStatus();
     }
 
     private GameStatus gameOver() {
-        ReadGameCommandDto readGameCommandDto = IOViewManager.readGameCommand();
+        ReadGameCommandDto readGameCommandDto = ioViewManager.readGameCommand();
         RetryDto retryDto = bridgeGame.retry(readGameCommandDto);
 
         return retryDto.getNextGameStatus();
@@ -88,7 +88,7 @@ public class GameController {
         ExitDto exitDto = bridgeGame.exit();
 
         GuideView.printGameResult();
-        IOViewManager.printResult(new PrintResultDto(exitDto));
+        ioViewManager.printResult(new PrintResultDto(exitDto));
         return GameStatus.APPLICATION_EXIT;
     }
 }

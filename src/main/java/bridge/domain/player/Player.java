@@ -47,7 +47,7 @@ public class Player {
     }
 
     private String changeLogFromHistory(PlayerStep playerStep, BridgeTile targetTile) {
-        return playerStep.getMoveResultLog(targetTile);
+        return playerStep.getMovableLog(targetTile);
     }
 
     public boolean isSuccessful(Bridge bridge) {
@@ -59,7 +59,7 @@ public class Player {
 
     private boolean lastPlayerStepMovable(Bridge bridge) {
         return bridge.isEnd(playerStepHistory.size())
-                && playerStepHistory.get(playerStepHistory.size() - 1).isMoving();
+                && playerStepHistory.get(playerStepHistory.size() - 1).isMovable();
     }
 
     public void preparedNextPlay() {

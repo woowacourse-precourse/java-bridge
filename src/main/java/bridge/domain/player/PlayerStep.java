@@ -9,24 +9,24 @@ public class PlayerStep {
     private static final String NOT_MOVE = " ";
 
     private final BridgeTile playerMoving;
-    private final boolean result;
+    private final boolean movable;
 
-    public PlayerStep(BridgeTile playerMoving, boolean result) {
+    public PlayerStep(BridgeTile playerMoving, boolean movable) {
         this.playerMoving = playerMoving;
-        this.result = result;
+        this.movable = movable;
     }
 
-    public String getMoveResultLog(BridgeTile bridgeTile) {
+    public String getMovableLog(BridgeTile bridgeTile) {
         if (bridgeTile != playerMoving) {
             return NOT_MOVE;
         }
-        if (result) {
+        if (movable) {
             return CORRECT_MOVE;
         }
         return WRONG_MOVE;
     }
 
-    public boolean isMoving() {
-        return result;
+    public boolean isMovable() {
+        return movable;
     }
 }

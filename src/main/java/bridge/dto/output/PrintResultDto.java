@@ -1,6 +1,5 @@
 package bridge.dto.output;
 
-import bridge.domain.game.Bridge;
 import bridge.domain.player.Player;
 import bridge.dto.controller.ExitDto;
 

@@ -1,8 +1,6 @@
 package bridge.domain.game;
 
 import bridge.BridgeNumberGenerator;
-import bridge.domain.game.Bridge;
-import bridge.domain.game.BridgeTile;
 import bridge.domain.player.Player;
 import bridge.dto.controller.ExitDto;
 import bridge.dto.controller.MoveDto;

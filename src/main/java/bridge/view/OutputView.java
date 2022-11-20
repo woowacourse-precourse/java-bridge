@@ -58,7 +58,7 @@ public class OutputView {
         GAME_RESULT("게임 성공 여부: %s"),
         GAME_TRY_COUNT("총 시도한 횟수: %d");
 
-        private String baseFormat;
+        private final String baseFormat;
 
         OutputViewMessage(String baseFormat) {
             this.baseFormat = baseFormat;
