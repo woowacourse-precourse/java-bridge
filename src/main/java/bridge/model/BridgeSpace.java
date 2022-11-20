@@ -24,7 +24,7 @@ public class BridgeSpace {
     }
 
     public Moved checkMoving(String userMove) {
-        if (Objects.equals(userMove, upOrDown)) {
+        if (userMove.equals(upOrDown)) {
             return Moved.CAN;
         }
         return Moved.CANT;

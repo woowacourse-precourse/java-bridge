@@ -14,6 +14,6 @@ public class UserMoveValidator {
     }
 
     private static boolean isNotUorD(String userMove) {
-        return !(Objects.equals(userMove, "U") || Objects.equals(userMove, "D"));
+        return !(userMove.equals("U") || userMove.equals("D"));
     }
 }

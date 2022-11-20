@@ -52,7 +52,7 @@ public class GameController {
 
     private boolean askRetry() {
         String retryFlag = inputView.readGameCommand();
-        return Objects.equals(retryFlag, "R");
+        return retryFlag.equals("R");
     }
 
     private void buildBridge() {

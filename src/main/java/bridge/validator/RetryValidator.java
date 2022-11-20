@@ -13,6 +13,6 @@ public class RetryValidator {
     }
 
     private static boolean isNotRorQ(String retryFlag) {
-        return !(Objects.equals(retryFlag, "R") || Objects.equals(retryFlag, "Q"));
+        return !(retryFlag.equals("R") || retryFlag.equals("Q"));
     }
 }

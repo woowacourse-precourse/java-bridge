@@ -13,23 +13,28 @@ import java.util.List;
 public class OutputView {
     List<String> upList;
     List<String> downList;
+
+    public void printStartGame() {
+        System.out.println(OutputMessage.START_GAME);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Bridge bridge) {
-        makeUpNdownList(bridge);
+        makeUpDownList(bridge);
         System.out.println(String.join("",upList)); // 위 다리
         System.out.println(String.join("",downList)); // 아래 다리
         System.out.println();
     }
 
-    private void makeUpNdownList(Bridge bridge) {
+    private void makeUpDownList(Bridge bridge) {
         upList = new ArrayList<>();
         downList = new ArrayList<>();
         addSign("[ ");
-        appendBridgeInfo(bridge.getBridgeSpaces().get(0));
+        appendBridgeInfo(bridge.getBridgeSpaces().get(0)); // 처음꺼는 무조건 필요 !
         for (int idx= 1; idx < bridge.getBridgeSpaces().size(); idx++) {
             if (bridge.getBridgeSpaces().get(idx).getMyMoved() == Moved.NOTYET) break;
             addSign(" | ");
@@ -44,10 +49,8 @@ public class OutputView {
     }
 
     private void appendBridgeInfo(BridgeSpace bridgeSpace) {
-        if ((bridgeSpace.getUpOrDown() == "U"
-                && bridgeSpace.getMyMoved() == Moved.CAN)
-                || (bridgeSpace.getUpOrDown() == "D"
-                && bridgeSpace.getMyMoved() == Moved.CANT) ) {
+        if ((bridgeSpace.getUpOrDown().equals("U") && bridgeSpace.getMyMoved() == Moved.CAN)
+                || (bridgeSpace.getUpOrDown().equals("D") && bridgeSpace.getMyMoved() == Moved.CANT) ) {
             upList.add(bridgeSpace.getMyMoved().getoOrX());
             downList.add(" ");
             return;
@@ -73,11 +76,7 @@ public class OutputView {
         }
         System.out.println("게임 성공 여부: 실패");
         System.out.println("총 시도한 횟수: "+tryCount);
-
     }
 
 
-    public void printStartGame() {
-        System.out.println(OutputMessage.START_GAME);
-    }
 }
