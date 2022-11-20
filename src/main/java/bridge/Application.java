@@ -16,23 +16,23 @@ public class Application {
 
     public static void main(String[] args) {
         Bridge bridge = bridgeGame.getBridge(inputView.readBridgeSize());
-        GameResult gameResult = play(bridge);
+        GameResult gameResult = playBridgeGame(bridge);
         outputView.printResult(bridge,gameResult);
     }
 
-    private static GameResult play(Bridge bridge) {
-        MoveResult moveResult = moveToBridge(bridge);
+    private static GameResult playBridgeGame(Bridge bridge) {
+        MoveResult moveResult = moveToSelectedBlock(bridge);
         if (!moveResult.isSuccess()) {
             return selectWhetherToRetry(bridge, moveResult);
         }
 
         if (!bridgeGame.isGameClear()) {
-            return play(bridge);
+            return playBridgeGame(bridge);
         }
         return bridgeGame.closeGame(moveResult);
     }
 
-    private static MoveResult moveToBridge(Bridge bridge) {
+    private static MoveResult moveToSelectedBlock(Bridge bridge) {
         MoveResult moveResult = bridgeGame.move(bridge, inputView.readMoving());
         outputView.printMap(bridge,moveResult);
         return moveResult;
@@ -40,7 +40,7 @@ public class Application {
 
     private static GameResult selectWhetherToRetry(Bridge bridge, MoveResult moveResult) {
         if (bridgeGame.retry(inputView.readGameCommand())) {
-            return play(bridge);
+            return playBridgeGame(bridge);
         }
         return bridgeGame.closeGame(moveResult);
     }
