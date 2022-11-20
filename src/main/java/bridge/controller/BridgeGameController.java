@@ -43,10 +43,22 @@ public class BridgeGameController {
             GameStatus gameStatus = bridgeGame.move(choiceBridge());
             outputView.printMap(bridgeGame.getBridgeMoveLog());
 
-            if ((gameStatus == GameStatus.FAIL && isGiveUp(bridgeGame)) || gameStatus == GameStatus.SUCCESS) {
+            if (isGameOver(bridgeGame, gameStatus)) {
                 return gameStatus;
             }
         }
+    }
+
+    private boolean isGameOver(BridgeGame bridgeGame, GameStatus gameStatus) {
+        if (gameStatus == GameStatus.SUCCESS) {
+            return true;
+        }
+
+        if (gameStatus == GameStatus.FAIL) {
+            return isGiveUp(bridgeGame);
+        }
+
+        return false;
     }
 
     private BridgeType choiceBridge() {
