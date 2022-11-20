@@ -54,7 +54,7 @@ public class BridgeGameManager {
 
             return bridgeGame.retry(input);
         }
-        return true;
+        return false;
     }
 
     public void exceptionalGameEnd(String errorMessage) {
