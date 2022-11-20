@@ -22,7 +22,7 @@ public class BridgeGameController {
         try {
             int bridgeSize = inputView.readBridgeSize();
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

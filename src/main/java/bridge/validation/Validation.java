@@ -16,15 +16,15 @@ public class Validation {
     }
 
     private static void verifyUserInputIsNumber(String input) {
-        if(!input.matches(IS_NUMBER)) throw new IllegalArgumentException("숫자가 아닙니다.");
+        if(!input.matches(IS_NUMBER)) throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
     }
 
     private static void verifyUserInputIsInScope(int input) {
-        if(!(input >= 3 && input <= 20)) throw new IllegalArgumentException("범위를 넘어섰습니다.");
+        if(!(input >= 3 && input <= 20)) throw new IllegalArgumentException("[ERROR]범위를 넘어섰습니다.");
     }
 
     private static void verifyUserInputIsEmpty(int length) {
-        if(length == 0) throw new IllegalArgumentException("입력이 없습니다.");
+        if(length == 0) throw new IllegalArgumentException("[ERROR] 입력이 없습니다.");
     }
 
     // 사용자 입력이 올바른지 확인 - 문자 하나
@@ -40,13 +40,13 @@ public class Validation {
 
     private static void verifyUpOrDown(String input, Mode mode) {
         if(!(mode == Mode.UpOrDown && (input.equals(UP) || input.equals(DOWN)))){
-            throw new IllegalArgumentException("올바른 문자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 올바른 문자를 입력해주세요.");
         }
     }
 
     private static void verifyRetryOrQuit(String input, Mode mode) {
         if(!(mode == Mode.RetryOrQuit && (input.equals(RETRY) || input.equals(QUIT)))){
-            throw new IllegalArgumentException("올바른 문자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 올바른 문자를 입력해주세요.");
         }
     }
 }
