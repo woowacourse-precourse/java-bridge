@@ -19,8 +19,7 @@ public class Validator {
 
     public static int validateBridgeSize(String input) {
         int bridgeSize = validateIntegerType(input);
-        validateRange(bridgeSize);
-        return bridgeSize;
+        return validateRange(bridgeSize);
     }
 
     private static int validateIntegerType(String input) {
