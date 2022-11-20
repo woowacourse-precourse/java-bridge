@@ -80,19 +80,20 @@ public class BridgeGame {
         return "실패";
     }
 
+
+    /**
+     * 새로운 브릿지 맵을 생성하는 메서드
+     * @param size 브릿지 맵 크기
+     */
+    public void generateBridge(int size) {
+        bridge = new Bridge(size, player);
+    }
+
     public int getTryCount() {
         return tryCount;
     }
 
-    public void setBridge(Bridge newBridge) {
-        bridge = newBridge;
-    }
-
     public Bridge getBridge() {
         return bridge;
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 }

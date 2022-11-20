@@ -11,10 +11,10 @@ public class Bridge {
     private static final String INCORRECT_CELL = " X ";
     private static final String SEPERATOR = "|";
 
-    public Bridge(Player newPlayer, int size) {
+    public Bridge(int size, Player player) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
-        player = newPlayer;
+        this.player = player;
     }
 
     /**
