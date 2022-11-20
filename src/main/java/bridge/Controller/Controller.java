@@ -45,7 +45,17 @@ public class Controller {
             }
             else{
                 //실패
+                //printMap
+
                 String gameCommand = inputView.readGameCommand();
+
+                if(gameCommand.equals("R")){
+                    gameTryCount += 1;
+                    mySelectBridge = new ArrayList<>();
+                }
+                else{
+                    break;
+                }
             }
         }
 
