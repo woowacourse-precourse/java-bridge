@@ -10,6 +10,7 @@ public class Constant {
     public static final String FIRST_ROUND_CORRECT = " O ";
     public static final String FIRST_ROUND_WRONG = " X ";
     public static final String OTHER_ROUND_CORRECT = "| O ]";
+    public static final String OTHER_ROUND_WRONG = "| X ]";
     public static final String MAP_END = "]";
     public static final String FIRST_ROUND_END = "  ]";
     public static final String OTHER_ROUND_END = "|   ]";
