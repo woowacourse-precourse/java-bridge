@@ -6,10 +6,14 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    Status status;
+    private Status status;
 
     public BridgeGame() {
         status = Status.PROCEEDING;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
