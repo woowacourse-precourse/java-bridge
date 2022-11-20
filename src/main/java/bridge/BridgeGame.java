@@ -33,14 +33,6 @@ public class BridgeGame {
     }
 
     /**
-     * 사용자가 게임을 시작할 때 사용하는 메서드
-     */
-    public void makeBridgeGame(int size){
-        setSize(size);
-        bridgeList = bridgeMaker.makeBridge(this.size);
-    }
-
-    /**
      * 사용자가 다리를 다 건너는 데 성공한 상태인지 확인 시 사용하는 메서드
      */
     public boolean isDone(){
@@ -55,6 +47,14 @@ public class BridgeGame {
      */
     public boolean isOver(){
         return flag;
+    }
+
+    /**
+     * 사용자가 게임을 시작할 때 사용하는 메서드
+     */
+    public void makeBridgeGame(int size){
+        setSize(size);
+        bridgeList = bridgeMaker.makeBridge(this.size);
     }
 
     /**
