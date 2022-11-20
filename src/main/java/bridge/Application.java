@@ -6,12 +6,16 @@ public class Application {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
+        OutputView ouputView =new OutputView();
         BridgeNumberGenerator BridgeNumberGenerator = null;
         BridgeMaker BridgeMaker = new BridgeMaker(BridgeNumberGenerator);
-        List<String> Bridge = BridgeMaker.makeBridge(inputView.readBridgeSize());
-        /*for (int i = 0; i <Bridge.size() ; i++) {
-            System.out.print(Bridge.get(i));
+        int size = inputView.readBridgeSize();
+        List<String> upBridge = BridgeMaker.makeBridge(size);
+        List<String> downBridge = BridgeMaker.makeBridge(size);
+        /*for (int i = 0; i <upBridge.size() ; i++) {
+            System.out.print(upBridge.get(i));
         }*/
-       System.out.println( inputView.readMoving());
+       ;
+       ouputView.printMap(inputView.readMoving(), upBridge, downBridge);
     }
 }
