@@ -107,7 +107,7 @@ D
 ### readBridgeSizeOfNoNumberException
 - [x] brideSizeRegularExpression에 숫자가 한자리에서 두자리까지의 숫자에 대한 정규표현식을 저장
 - [x] 매개변수가 brideSizeRegularExpression에 들어맞는지, 확인
-- [ ] false이면, 예외 던짐
+- [x] false이면, 예외 던짐
 
 ### readScopeOfBridgeSizeOfNumberException
 - [ ] scopeOfbrideSizeRegularExpression에 숫자가 3이상 20이하의 숫자에 대한 정규표현식을 저장
