@@ -18,7 +18,13 @@ public class Application {
 
     private static BridgeGame initializeBridgeGame(InputView inputView, OutputView outputView) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        outputView.printBridgeSizeInputMessage();
-        return new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        do {
+            outputView.printBridgeSizeInputMessage();
+            try {
+                return new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
     }
 }
