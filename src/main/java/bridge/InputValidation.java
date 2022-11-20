@@ -11,8 +11,10 @@ public class InputValidation {
         }
     }
 
-    public String readMovingValidation(String move) {
-        return null;
+    public void readMovingValidation(String move) {
+        if (!(move.equals("U") || move.equals("D"))) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String readGameCommandValidation(String command) {
