@@ -48,4 +48,9 @@ public class OutputView {
         System.out.printf(ViewConstants.SUCCESS_OR_FAILURE, result);
         System.out.println();
     }
+
+    public void printAttemptTimes(int attemptTimes) {
+        System.out.printf(ViewConstants.ATTEMPT_TIMES, attemptTimes);
+        System.out.println();
+    }
 }
