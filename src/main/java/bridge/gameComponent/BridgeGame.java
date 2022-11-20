@@ -70,7 +70,7 @@ public class BridgeGame {
         return false;
     }
 
-    public char[][] recordMap(MoveResult moveResult) {
+    public char[][] getBridgeToCurrentPosition(MoveResult moveResult) {
         String userMove = inferUserMove(moveResult);
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);

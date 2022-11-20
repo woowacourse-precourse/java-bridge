@@ -5,7 +5,6 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.gameComponent.Bridge;
 import bridge.gameComponent.BridgeGame;
-import bridge.util.Converter;
 import bridge.util.MoveResult;
 import bridge.validator.InputValidator;
 import bridge.viewer.InputView;
@@ -54,10 +53,10 @@ public class GameManager {
         String move = inputView.readMoving();
         MoveResult moveResult = bridgeGame.isCorrectMove(move);
         if(moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) bridgeGame.move();
-        char[][] mapRecord = bridgeGame.recordMap(moveResult);
+        char[][] bridgeToCurrentPosition = bridgeGame.getBridgeToCurrentPosition(moveResult);
         int indexToPrint = bridgeGame.getCurrentStep();
         if(moveResult.equals(MoveResult.WRONG)) indexToPrint++;
-        outputView.printMap(mapRecord, indexToPrint);
+        outputView.printMap(bridgeToCurrentPosition, indexToPrint);
         return moveResult;
     }
     // 게임 종료

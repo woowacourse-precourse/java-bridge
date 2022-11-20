@@ -121,8 +121,8 @@ public class BridgeGameTest {
         MoveResult moveResult2 = MoveResult.WRONG;
         //when
         bridgeGame.move();
-        bridgeGame.recordMap(moveResult1);
-        char[][] map = bridgeGame.recordMap(moveResult2);
+        bridgeGame.getBridgeToCurrentPosition(moveResult1);
+        char[][] map = bridgeGame.getBridgeToCurrentPosition(moveResult2);
         //then
         assertThat(map)
                 .contains(new char[] {'O','X','\u0000'}, Index.atIndex(0))
@@ -135,7 +135,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveResult moveResult = MoveResult.WRONG;
         //when
-        char[][] map = bridgeGame.recordMap(moveResult);
+        char[][] map = bridgeGame.getBridgeToCurrentPosition(moveResult);
 
         //then
         assertThat(map)
