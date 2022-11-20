@@ -34,7 +34,7 @@ public class BridgeGameController {
     private PlayerMap playBridgeGame(BridgeGame bridgeGame) {
         PlayerMap playerMap = movePlayer(bridgeGame);
         if (!bridgeGame.isMove()) {
-            playerMap = bridgeGame.retry(inputGameCommand().toString());
+            playerMap = bridgeGame.retry(inputGameCommand());
         }
         if (bridgeGame.isEnd()) {
             return playerMap;

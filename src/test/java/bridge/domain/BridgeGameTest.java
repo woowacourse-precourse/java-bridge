@@ -3,6 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.vo.BridgeMap;
+import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
 import bridge.domain.vo.PlayerMap;
 import java.util.List;
@@ -29,7 +30,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
         PlayerMap playerMap = bridgeGame.move(new Moving("U"));
         playerMap = bridgeGame.move(new Moving("D"));
-        playerMap = bridgeGame.retry("R");
+        playerMap = bridgeGame.retry(new GameCommand("R"));
         assertThat(playerMap.getSize()).isEqualTo(0);
     }
 
@@ -38,7 +39,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
         PlayerMap playerMap = bridgeGame.move(new Moving("U"));
         playerMap = bridgeGame.move(new Moving("D"));
-        playerMap = bridgeGame.retry("Q");
+        playerMap = bridgeGame.retry(new GameCommand("Q"));
         List<List> estimatedResult = List.of(List.of("O", " "), List.of(" ", "X"));
         assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
     }

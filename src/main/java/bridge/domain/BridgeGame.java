@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.vo.BridgeMap;
+import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
 import bridge.domain.vo.PlayerMap;
 
@@ -37,8 +38,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public PlayerMap retry(String command) {
-        if (command.equals("R")) {
+    public PlayerMap retry(GameCommand gameCommand) {
+        if (gameCommand.equals("R")) {
             playerMap = new PlayerMap();
             isMove = true;
             count++;
