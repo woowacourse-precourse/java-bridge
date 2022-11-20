@@ -7,7 +7,6 @@ import bridge.domain.vo.BridgeMap;
 import bridge.domain.vo.BridgeSize;
 import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
-import bridge.domain.vo.PlayerMap;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;

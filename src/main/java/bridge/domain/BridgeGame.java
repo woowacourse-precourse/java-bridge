@@ -13,8 +13,8 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeMap bridgeMap;
-    private PlayerMap playerMap;
     boolean isMove;
+    private PlayerMap playerMap;
     private int count;
 
     public BridgeGame(BridgeMap bridgeMap) {
