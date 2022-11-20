@@ -6,6 +6,7 @@ public class Application {
 
     private static int bridgeSize;
     private static List<String> bridge;
+    private static InputView inputView = new InputView();
 
     public static void main(String[] args) {
         start();
@@ -18,11 +19,10 @@ public class Application {
     }
 
     public static void enterBridgeSize() {
-        InputView inputView = new InputView();
         try {
-            String userInput = inputView.readBridgeSize();
-            Validator.validateNumber(userInput);
-            int tempBridgeSize = Converter.convertToNumber(userInput);
+            String userBridgeSize = inputView.readBridgeSize();
+            Validator.validateNumber(userBridgeSize);
+            int tempBridgeSize = Converter.convertToNumber(userBridgeSize);
             Validator.validateRange(tempBridgeSize);
             bridgeSize = tempBridgeSize;
         } catch (IllegalArgumentException e) {
