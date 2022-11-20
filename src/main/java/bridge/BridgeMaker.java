@@ -20,12 +20,19 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        Converter converter = new Converter();
         for(int i = 0; i < size; i++){
             int number = bridgeNumberGenerator.generate();
-            String upAndDown = converter.convertNumberToUpAndDown(number);
+            String upAndDown = convertNumberToUpAndDown(number);
             bridge.add(upAndDown);
         }
         return bridge;
+    }
+    String convertNumberToUpAndDown(int number){
+        for(UpAndDown upAndDown : UpAndDown.values()){
+            if(upAndDown.convertNumberToUpAndDown(number) != null){
+                return upAndDown.convertNumberToUpAndDown(number);
+            }
+        }
+        return null;
     }
 }
