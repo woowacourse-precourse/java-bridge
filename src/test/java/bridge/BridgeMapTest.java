@@ -27,4 +27,11 @@ public class BridgeMapTest {
                 .isEqualTo(expected);
 
     }
+
+    @Test
+    void getStatusTest() {
+        RouteMap expected = new RouteMap(List.of("O"), List.of(" "));
+        assertThat(successMap.getStatusAt(1))
+                .isEqualTo(expected);
+    }
 }

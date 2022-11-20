@@ -15,4 +15,12 @@ public class BridgeMap extends RouteMap {
 
         return new RouteMap(slicedUpSide, slicedDownSide);
     }
+
+    public RouteMap getStatusAt(int distance) {
+        List<String> upSideStatus = List.of(upSide.get(distance - 1));
+        List<String> downSideStatus = List.of(downSide.get(distance - 1));
+
+        return new RouteMap(upSideStatus, downSideStatus);
+    }
+
 }
