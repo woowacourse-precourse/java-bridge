@@ -16,7 +16,7 @@ public class OutputView {
     private static final String NOTIFY_INPUT_RETRY_OR_NOT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public void printGameStartNotification() {
-        System.out.println(NOTIFY_GAME_START);
+        System.out.println(NOTIFY_GAME_START + "\n");
     }
 
     public void printInputBridgeLengthNotification() {
