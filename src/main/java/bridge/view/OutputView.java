@@ -13,7 +13,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeState bridgeState) {
-        bridgeState.printBridge();
+        List<String> upBridge = bridgeState.getUpBridge();
+        List<String> downBridge = bridgeState.getDownBridge();
+
+        String up = "[ " + String.join(" | ", upBridge) + " ]";
+        String down = "[ " + String.join(" | ", downBridge) + " ]";
+
+        System.out.println(up);
+        System.out.println(down);
     }
 
     /**
@@ -22,19 +29,66 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeState bridgeState, int count, boolean success) {
-        SystemConsole systemConsole = new SystemConsole();
-        bridgeState.endPrintBridge();
+        List<String> upBridge = bridgeState.getUpBridge();
+        List<String> downBridge = bridgeState.getDownBridge();
 
-        gameSuccess(success, systemConsole);
-        systemConsole.allTryCount(count);
+        String up = "[ " + String.join(" | ", upBridge) + " ]";
+        String down = "[ " + String.join(" | ", downBridge) + " ]";
+
+        printLastGameResult();
+
+        System.out.println(up);
+        System.out.println(down);
+
+        gameSuccess(success);
+        printAllTryCount(count);
     }
 
-    private void gameSuccess(boolean success, SystemConsole systemConsole) {
+    private void gameSuccess(boolean success) {
         if (success) {
-            systemConsole.gameSuccess();
+            printGameSuccess();
             return;
         }
-        systemConsole.gameFailure();
+        printGameFailure();
+    }
+
+    public void printNextLine() {
+        System.out.println();
+    }
+
+    public void printGameStartMessage() {
+        System.out.println(SystemMessage.BRIDGE_GAME_START);
+        System.out.println();
+    }
+
+    public void printInputBridgeLength() {
+        System.out.println(SystemMessage.BRIDGE_LENGTH_INPUT);
+    }
+
+    public void printMovementInput() {
+        System.out.println(SystemMessage.MOVEMENT_INPUT);
+    }
+
+    public void printGameRestartEnd() {
+        System.out.println(SystemMessage.GAME_RESTART_END);
+    }
+
+    public void printLastGameResult() {
+        System.out.println(SystemMessage.LAST_GAME_RESULT);
+    }
+
+    public void printGameSuccess() {
+        System.out.println();
+        System.out.println(SystemMessage.GAME_SUCCESS);
+    }
+
+    public void printGameFailure() {
+        System.out.println();
+        System.out.println(SystemMessage.GAME_FAILURE);
+    }
+
+    public void printAllTryCount(int count) {
+        System.out.println(SystemMessage.TOTAL_TRY_COUNT + count);
     }
 }
 
