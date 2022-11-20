@@ -1,9 +1,25 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final InputManager inputManager = new InputManager();
+
+    List<String> bridge;
+    public void gameStart() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
+        int bridgeSize = inputManager.getBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
