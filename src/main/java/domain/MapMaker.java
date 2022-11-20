@@ -19,6 +19,13 @@ public class MapMaker {
 		
 	}
 	
+	private void firstCheck(int index) {
+		if (index != 0) {
+			upperBridge.append("|");
+			lowerBridge.append("|");
+		}
+	}
+	
 	private boolean conditionCheck(String rightCondition, String move) {
 		String condition = BridgeCondition.WRONG.getCondition();
 		
