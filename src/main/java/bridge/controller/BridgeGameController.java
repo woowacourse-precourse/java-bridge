@@ -61,6 +61,10 @@ public class BridgeGameController {
                 bridgeGame.exit();
             }
         }
+
+        outputView.printResult(
+                bridgeResult.toDto(),
+                bridgeGame.getRetryCount());
     }
 
     private void isExitSetGameStatus(Command command) {

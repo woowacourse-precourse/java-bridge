@@ -11,18 +11,20 @@ public class BridgeResult {
 
     private final List<SquareResult> bridgeResult;
 
+    private SquareResult squareResult;
+
     public BridgeResult() {
         bridgeResult = new ArrayList<>();
     }
 
     public void updateResult(Square square, boolean result) {
-        SquareResult squareResult = new SquareResult(square, MoveResult.of(result));
+        squareResult = new SquareResult(square, MoveResult.of(result));
         bridgeResult.add(squareResult);
         bridgeResult.add(squareResult.getReversed());
     }
 
     public BridgeResultDto toDto() {
-        return BridgeResultDto.of(getResult());
+        return BridgeResultDto.of(getResult(), squareResult.getSuccess());
     }
 
     public Map<Square, List<String>> getResult() {

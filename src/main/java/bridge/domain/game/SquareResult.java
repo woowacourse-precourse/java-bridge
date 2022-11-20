@@ -18,11 +18,15 @@ public class SquareResult {
         return new SquareResult(square.getReverse(), MoveResult.NOTHING);
     }
 
-    public Square getSquare() {
-        return square;
+    public String getSuccess() {
+        return moveResult.value();
     }
 
     public String getMoveResult() {
         return moveResult.symbol();
+    }
+
+    public Square getSquare() {
+        return square;
     }
 }
