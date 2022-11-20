@@ -17,6 +17,20 @@ public class MapMaker {
 		upperBridge = new StringBuilder();
 		lowerBridge = new StringBuilder();
 		
+		makeMap();
+	}
+	
+	private void makeMap() {
+		for (int i = 0; i < bridge.size(); i++) {
+			out.printGameMessage("MOVING");
+			String move = in.readMoving();
+
+			firstCheck(i);
+			
+			if (!bridgeCheck(bridge.get(i), move)) {
+				return;
+			}
+		}
 	}
 	
 	private boolean bridgeCheck(String rightCondition, String move) {
