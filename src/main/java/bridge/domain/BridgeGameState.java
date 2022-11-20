@@ -1,21 +1,23 @@
 package bridge.domain;
 
 public enum BridgeGameState {
-    START,
-    CONTINUE,
-    WIN,
-    LOSE;
+    START("시작"),
+    CONTINUE("진행중"),
+    SUCCESS("성공"),
+    FAIL("실패");
 
-    public boolean isContinue() {
-        return this == CONTINUE;
+    private final String type;
+
+    BridgeGameState(String type) {
+        this.type = type;
     }
 
-    public boolean isWin() {
-        return this == WIN;
+    public String getType() {
+        return type;
     }
 
-    public boolean isLose() {
-        return this == LOSE;
+    public boolean isSuccess() {
+        return this == SUCCESS;
     }
 
     public boolean isBridgeGameContinue() {
@@ -23,6 +25,6 @@ public enum BridgeGameState {
     }
 
     public boolean isBridgeGameEnd() {
-        return this == WIN || this == LOSE;
+        return this == SUCCESS || this == FAIL;
     }
 }
