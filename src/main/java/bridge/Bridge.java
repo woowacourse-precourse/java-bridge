@@ -17,6 +17,10 @@ public class Bridge {
         player = newPlayer;
     }
 
+    /**
+     * 플레이어와 브릿지 게임의 맵을 비교하여 결과를 스트링으로 반환하는 메서드
+     * @return String으로 표현된 맵 (플레이어 상태에 따른)
+     */
     @Override
     public String toString() {
         StringBuilder top = new StringBuilder("[");
