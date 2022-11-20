@@ -43,6 +43,9 @@
 - [x] 움직일 칸 입력 기능
 - [x] 게임 재시작 입력 기능
 
+[BridgeConverter.java](../src/main/java/bridge/domain/bridgebuilder/BridgeConverter.java)
+
+- [x] 난수로 생성된 숫자를 담은 List<Integer>를 List<String>으로 바꾸는 기능
 - [ ] 다리 생성 기능
 - [ ] 사용자 입력과 다리 내용물 비교 기능
 - [ ] 출력 기능
