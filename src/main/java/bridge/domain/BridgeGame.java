@@ -58,6 +58,10 @@ public class BridgeGame {
         return bridgeGameRetry.retry(gameCommand);
     }
 
+    public void increaseGameCount() {
+        bridgeGameResult.increaseCount();
+    }
+
     public BridgeGameResult getBridgeGameResult() {
         return bridgeGameResult;
     }
