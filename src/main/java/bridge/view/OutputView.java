@@ -50,19 +50,21 @@ public class OutputView {
         for (int i = 0; i < playedBridge.size(); i++) {
             List<String> bridge = playedBridge.get(i);
             StringBuilder stringBuilder = new StringBuilder();
-
-            stringBuilder.append(OPEN_PARENTHESIS);
-            String body = makeBridgeResult(bridge);
-            stringBuilder.append(body);
-            stringBuilder.append(CLOSE_PARENTHESIS);
+            makeBridgeResult(bridge, stringBuilder);
             System.out.println(stringBuilder);
         }
         System.out.println();
     }
 
-    private String makeBridgeResult(List<String> bridge) {
+    private void makeBridgeResult(List<String> bridge, StringBuilder stringBuilder) {
+        stringBuilder.append(OPEN_PARENTHESIS);
+        makeBridgeBody(bridge, stringBuilder);
+        stringBuilder.append(CLOSE_PARENTHESIS);
+    }
+
+    private void makeBridgeBody(List<String> bridge, StringBuilder stringBuilder) {
         String body = String.join(MIDDLE_PARENTHESIS, bridge);
-        return body;
+        stringBuilder.append(body);
     }
 
     /**

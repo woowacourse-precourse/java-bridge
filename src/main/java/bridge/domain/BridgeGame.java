@@ -40,14 +40,11 @@ public class BridgeGame {
     public String move(String movingCommand) {
         int nowBridgeIndex = gameRound.getBridgeIndex();
         String correctResult = checkBridge(movingCommand, bridge.get(nowBridgeIndex));
-
         gameRound.recordResult(movingCommand, bridge.get(nowBridgeIndex));
-
         if(correctResult.equals("O")) {
             gameRound.setBridgeIndex(gameRound.getBridgeIndex() + 1);
         }
         checkGameWin();
-
         return correctResult;
     }
 
