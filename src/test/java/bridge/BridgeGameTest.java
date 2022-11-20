@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.support.BridgeGameReferee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,33 +17,35 @@ class BridgeGameTest {
         bridge = new Bridge(List.of("U", "D", "U"));
     }
 
-    @DisplayName("사용자의 index번째에 입력한 이동할 칸 값과 index번째 다리의 정답이 일치할때 참을 반환하는지 테스트")
+    @DisplayName("사용자의 index번째에 입력한 이동할 칸 값과 index번째 다리의 정답이 일치할때 결과에 참이 반영 되는지 테스트")
     @Test
     void moveTrue() {
         //given
+        Result result = new Result(1);
         MoveDirection direction = new MoveDirection("U");
-        int index = 2;
+        int index = 0;
 
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
         //when
-        boolean isMove = bridgeGame.move(direction, index);
+        bridgeGame.move(result, direction, index);
         //then
-        assertThat(isMove)
-                .isTrue();
+        assertThat(result.getIsAnswers()
+                         .get(0)).isTrue();
     }
 
-    @DisplayName("사용자의 index번째에 입력한 이동할 칸 값과 index번째 다리의 정답이 일치하지 않을 때 거짓을 반환하는지 테스트")
+    @DisplayName("사용자의 index번째에 입력한 이동할 칸 값과 index번째 다리의 정답이 일치하지 않을 때 결과에 거짓이 반영되는지 테스트")
     @Test
     void moveFalse() {
         //given
+        Result result = new Result(1);
         MoveDirection direction = new MoveDirection("D");
-        int index = 2;
+        int index = 0;
 
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
         //when
-        boolean isMove = bridgeGame.move(direction, index);
+        bridgeGame.move(result, direction, index);
         //then
-        assertThat(isMove)
-                .isFalse();
+        assertThat(result.getIsAnswers()
+                         .get(0)).isFalse();
     }
 }
