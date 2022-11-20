@@ -14,33 +14,28 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(List<String> up_bridge, List<String> down_bridge) {
+    public String move(String moving, List<String> up_bridge, List<String> down_bridge) {
         // 사용자가 이동할 칸 moving, 다리 index
         InputView input = new InputView();
-        String moving = input.readMoving();
+
         String result = "";
 
         if (moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index))){
             if (moving.equals("U")){
-                up_bridge.add(" O ");
-                down_bridge.add("   ");
+                result = "U";
             }
             if (moving.equals("D")){
-                up_bridge.add("   ");
-                down_bridge.add(" O ");
+                result = "D";
             }
-            result = "O";
+
         }
         if (!(moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index)))){
             if (moving.equals("U")){
-                up_bridge.add(" X ");
-                down_bridge.add("   ");
+                result = "UX";
             }
             if (moving.equals("D")){
-                up_bridge.add("   ");
-                down_bridge.add(" X ");
+                result = "DX";
             }
-            result = "X";
         }
         return result;
     }
@@ -50,8 +45,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(List<String> up_bridge, List<String> down_bridge) {
         BridgeMaker.bridge_index = 0;
         try_count++;
+        up_bridge.clear();
+        down_bridge.clear();
+
     }
 }
