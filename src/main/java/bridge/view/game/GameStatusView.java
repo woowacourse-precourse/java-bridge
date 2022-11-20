@@ -1,6 +1,7 @@
 package bridge.view.game;
 
-import static bridge.view.bridge.BridgeLineView.makeGameStatusLineView;
+import static bridge.view.bridge.BridgeLineView.makeBridgeLineView;
+import static bridge.view.bridge.BridgeResultLineView.makeBridgeResultLineView;
 
 import bridge.domain.bridge.BridgeAndPasser;
 import bridge.value.BridgeCharacter;
@@ -12,11 +13,6 @@ import java.util.stream.Collectors;
 public class GameStatusView {
 
     private final List<BridgeLineView> lineViews;
-    /*
-     * endLocation에 따라 마지막 글자가 뭔지는 알 수 있다.
-     * 근데, 어느 경우에 마지막문자도 출력할건지 결정해야 한다.
-     * 상속으로 처리?
-     * */
 
     public GameStatusView(List<BridgeLineView> lineViews) {
         this.lineViews = lineViews;
@@ -24,14 +20,14 @@ public class GameStatusView {
 
     public static GameStatusView makeGameStatusView(BridgeAndPasser bridgeAndPasser) {
         List<BridgeLineView> lineViews = Arrays.stream(BridgeCharacter.values())
-                .map((bridgeCharacter -> makeGameStatusLineView(bridgeAndPasser, bridgeCharacter))).collect(
+                .map((bridgeCharacter -> makeBridgeLineView(bridgeAndPasser, bridgeCharacter))).collect(
                         Collectors.toList());
         return new GameStatusView(lineViews);
     }
 
     public static GameStatusView makeGameResultStatusView(BridgeAndPasser bridgeAndPasser) {
         List<BridgeLineView> lineViews = Arrays.stream(BridgeCharacter.values())
-                .map((bridgeCharacter -> makeGameStatusLineView(bridgeAndPasser, bridgeCharacter))).collect(
+                .map((bridgeCharacter -> makeBridgeResultLineView(bridgeAndPasser, bridgeCharacter))).collect(
                         Collectors.toList());
         return new GameStatusView(lineViews);
     }

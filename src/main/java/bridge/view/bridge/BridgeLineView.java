@@ -58,7 +58,7 @@ public class BridgeLineView {
         renderBuffer.append(BRIDGE_SEPARATOR.getCharacter());
     }
     protected void addEndCharacter() {
-        renderBuffer.append(END_LINE);
+        renderBuffer.append(END_LINE.getCharacter());
     }
 
     protected void addStartCharacter() {

@@ -13,6 +13,18 @@ public class GameResult {
     private final GameSuccessStatus gameSuccessStatus;
     private final GameRecord gameRecord;
 
+    public BridgeAndPasser getBridgeAndPasser() {
+        return bridgeAndPasser;
+    }
+
+    public GameSuccessStatus getGameSuccessStatus() {
+        return gameSuccessStatus;
+    }
+
+    public GameRecord getGameRecord() {
+        return gameRecord;
+    }
+
     public GameResult(BridgeAndPasser bridgeAndPasser, GameSuccessStatus gameSuccessStatus, GameRecord gameRecord) {
         this.bridgeAndPasser = bridgeAndPasser;
         this.gameSuccessStatus = gameSuccessStatus;
