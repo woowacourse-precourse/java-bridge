@@ -18,14 +18,12 @@ public class GameController {
         this.outputView = new OutputView();
     }
 
-    public boolean inputGameCommand() {
+    public boolean commandTheGame() {
         try {
-            outputView.printInputGameCommand();
-            Command command = inputView.readGameCommand();
-            return determineGameStatus(command);
+            return inputGameCommand();
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
-            return inputGameCommand();
+            return commandTheGame();
         }
     }
 
@@ -36,5 +34,11 @@ public class GameController {
     private boolean determineGameStatus(Command command) {
         GameCommand gameCommand = GameCommand.findGameCommand(command.getCommand());
         return gameCommand.equals(RESTART);
+    }
+
+    private boolean inputGameCommand() {
+        outputView.printInputGameCommand();
+        Command command = inputView.readGameCommand();
+        return determineGameStatus(command);
     }
 }

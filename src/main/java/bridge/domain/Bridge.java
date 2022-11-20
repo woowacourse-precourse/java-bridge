@@ -35,14 +35,13 @@ public class Bridge {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Bridge bridge = (Bridge) o;
-        return squares.equals(bridge.squares);
+        return squares.equals(((Bridge) obj).squares);
     }
 }

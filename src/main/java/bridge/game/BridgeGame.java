@@ -22,7 +22,7 @@ public class BridgeGame {
     }
 
     public void start() {
-        bridgeController.inputBridgeSize();
+        bridgeController.makeBridge();
         Result lastResult = playGame();
         gameController.endGame(lastResult, gameCount);
     }
@@ -37,7 +37,7 @@ public class BridgeGame {
         Result result = Result.getEmptyResult();
         bridgeController.restartGame();
         while (moving) {
-            result = bridgeController.inputPlayerMove();
+            result = bridgeController.toMove();
             moving = !result.getGameStatus().isStopGame();
         }
         return result;
@@ -52,7 +52,7 @@ public class BridgeGame {
         if (result.getGameStatus() == SUCCESS) {
             return false;
         }
-        return gameController.inputGameCommand();
+        return gameController.commandTheGame();
     }
 
     private Result playGame() {

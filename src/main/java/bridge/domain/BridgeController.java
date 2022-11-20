@@ -18,35 +18,38 @@ public class BridgeController {
         this.outputView = new OutputView();
     }
 
-    public void inputBridgeSize() {
+    public void makeBridge() {
         outputView.printStartGame();
         try {
-            outputView.printInputBridgeSizeMessage();
-            Size size = inputView.readBridgeSize();
-            bridgeService.generateBridge(size.getSize());
+            bridgeService.generateBridge(inputBridgeSize());
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
-            inputBridgeSize();
+            makeBridge();
         }
     }
 
-    public Result inputPlayerMove() {
+    public Result toMove() {
         try {
-            outputView.printInputMoveMessage();
-            Result result = bridgeService.insertMove(inputView.readMoving());
-            outputView.printMap(result);
-            return result;
+            return inputPlayerMove();
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
-            return inputPlayerMove();
+            return toMove();
         }
     }
-
-
 
     public void restartGame() {
         bridgeService.clearPlayerBridge();
     }
 
+    private Size inputBridgeSize() {
+        outputView.printInputBridgeSizeMessage();
+        return inputView.readBridgeSize();
+    }
 
+    private Result inputPlayerMove() {
+        outputView.printInputMoveMessage();
+        Result result = bridgeService.insertMove(inputView.readMoving());
+        outputView.printMap(result);
+        return result;
+    }
 }
