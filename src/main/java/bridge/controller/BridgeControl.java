@@ -31,7 +31,7 @@ public class BridgeControl {
 
         BridgeLength bridgeLength = generateLength();
         BridgeAnswer bridgeAnswer = generateAnswer(bridgeLength);
-        bridgeAnswer.printAnswerInBeginForTest(); //check function
+        bridgeAnswer.printAnswerInBeginForTest();
         userInputCircle(bridgeAnswer);
     }
 
@@ -39,7 +39,7 @@ public class BridgeControl {
         try {
             String userInput = inputView.readBridgeSize();
             return BasicBridgeInputNumericParser.parseBridgeLengthAmount(userInput);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return BridgeControl.generateLength();
         }
@@ -49,42 +49,60 @@ public class BridgeControl {
         return BridgeAnswer.using(new BridgeRandomNumberGenerator(), bridgeLength);
     }
 
-    private int userInputCircle(BridgeAnswer bridgeAnswer) {
+    private void userInputCircle(BridgeAnswer bridgeAnswer) {
         BridgeGame userGenerateGame = generateGameActionUpDown(UP_DOWN_MODE);
         int compareResult = userGenerateGame.move(bridgeAnswer);
-        if (compareResult == 1) {
+        reachAnswerCase(bridgeAnswer, compareResult);
+        upDownInputCase(bridgeAnswer, compareResult);
+        wrongInputCase(bridgeAnswer, compareResult);
+    }
 
-            latestOutput = bridgeAnswer.printAnswer(1);
-            outputView.printResult(bridgeAnswer.printFinalResult(latestOutput, tryCount, SUCCESS));
-            return 0;
-        } else if (compareResult == 2) {
-            outputView.printMap(bridgeAnswer.printAnswer(2));
-            latestOutput = bridgeAnswer.printAnswer(2);
-            userInputCircle(bridgeAnswer);
-        } else if (compareResult == 3) {
+    private void wrongInputCase(BridgeAnswer bridgeAnswer, int compareResult) {
+        if (compareResult == 3) {
             outputView.printMap(bridgeAnswer.printAnswer(3));
             latestOutput = bridgeAnswer.printAnswer(3);
             retryCircle(bridgeAnswer);
-            return 0;
         }
-        return 0;
+    }
+
+    private void upDownInputCase(BridgeAnswer bridgeAnswer, int compareResult) {
+        if (compareResult == 2) {
+            outputView.printMap(bridgeAnswer.printAnswer(2));
+            latestOutput = bridgeAnswer.printAnswer(2);
+            userInputCircle(bridgeAnswer);
+        }
+    }
+
+    private static void reachAnswerCase(BridgeAnswer bridgeAnswer, int compareResult) {
+        if (compareResult == 1) {
+            latestOutput = bridgeAnswer.printAnswer(1);
+            outputView.printResult(bridgeAnswer.printFinalResult(latestOutput, tryCount, SUCCESS));
+        }
     }
 
     private void retryCircle(BridgeAnswer bridgeAnswer) {
         BridgeGame userGenerate = generateGameActionReplay(RETRY_MODE);
-        if (userGenerate.retry(bridgeAnswer) == true) {
+        wantToRetryCase(bridgeAnswer, userGenerate);
+        wantToEndCase(bridgeAnswer, userGenerate);
+    }
+
+    private static void wantToEndCase(BridgeAnswer bridgeAnswer, BridgeGame userGenerate) {
+        if (!userGenerate.retry(bridgeAnswer)) {
+            outputView.printResult(bridgeAnswer.printFinalResult(latestOutput, tryCount, FAILURE));
+        }
+    }
+
+    private void wantToRetryCase(BridgeAnswer bridgeAnswer, BridgeGame userGenerate) {
+        if (userGenerate.retry(bridgeAnswer)) {
             tryCount++;
             userInputCircle(bridgeAnswer);
-        } else if (userGenerate.retry(bridgeAnswer) == false) {
-            outputView.printResult(bridgeAnswer.printFinalResult(latestOutput, tryCount, FAILURE));
         }
     }
 
     public static BridgeGame generateGameActionUpDown(int mode) {
         BridgeGame bridgeGame;
         try {
-            String userInput = inputView.readMoving();
-            bridgeGame = BasicBridgeInputAlphabetParser.parseBridgeGameInput(userInput, mode);
+            bridgeGame = BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readMoving(), mode);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return BridgeControl.generateGameActionUpDown(mode);
@@ -95,8 +113,7 @@ public class BridgeControl {
     public static BridgeGame generateGameActionReplay(int mode) {
         BridgeGame bridgeGame;
         try {
-            String userInput = inputView.readRetry();
-            bridgeGame = BasicBridgeInputAlphabetParser.parseBridgeGameInput(userInput, mode);
+            bridgeGame = BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readRetry(), mode);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return BridgeControl.generateGameActionReplay(mode);
