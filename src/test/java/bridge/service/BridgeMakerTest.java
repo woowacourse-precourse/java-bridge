@@ -29,11 +29,12 @@ public class BridgeMakerTest {
     @DisplayName("getDirection 테스트")
     public void getDirectionTest() {
         // given
-        int number = 0;
+        int numberOfZero = 0;
+        int numberOfOne = 1;
 
         // when
-        String result1 = bridgeMaker.getDirection(0);
-        String result2 = bridgeMaker.getDirection(1);
+        String result1 = bridgeMaker.getDirection(numberOfZero);
+        String result2 = bridgeMaker.getDirection(numberOfOne);
 
         // then
         assertThat(result1).isEqualTo("D");
