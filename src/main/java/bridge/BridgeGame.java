@@ -27,4 +27,10 @@ public class BridgeGame {
         runBridgeGame(bridge, tryCount+1);
     }
 
+    // 다리를 전부 건넜는지 확인하는 기능
+    public static boolean isArrivedDestination(List<String> bridge, List<String> moved) {
+        int idx = moved.size() - 1;
+        return (bridge.size() == moved.size()) && (moved.get(idx).equals(bridge.get(idx)));
+    }
+
 }
