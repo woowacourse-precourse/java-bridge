@@ -12,11 +12,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Bridge> bridgeList) {
-        for(Bridge bridge : bridgeList){
+    public void printMap(List<Bridge> bridgeList, int bridgeCount) {
+        System.out.println(bridgeCount);
+        for (Bridge bridge : bridgeList) {
             System.out.print("[");
-            for(String bridgeByte : bridge.getBridge()){
-                System.out.print(bridgeByte);
+            for (int i = 0; i < bridgeCount; i++) {
+                System.out.print(bridge.getBridge().get(i));
             }
             System.out.println("]");
         }
