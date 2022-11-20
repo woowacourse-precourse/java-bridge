@@ -12,13 +12,13 @@ public enum BridgeCharacter {
     public static BridgeCharacter makeBridgeCharacter(int value) {
         return Arrays.stream(BridgeCharacter.values())
                 .filter(bridgeCharacter -> bridgeCharacter.value == value)
-                .findAny().orElseThrow(() -> new IllegalArgumentException("입력한 값에 해당하는 글자가 존재하지 않습니다."));
+                .findAny().orElseThrow(() -> new IllegalArgumentException("입력한 값에 해당하는 위치 문자가 존재하지 않습니다."));
     }
 
     public static BridgeCharacter makeBridgeCharacter(String character) {
         return Arrays.stream(BridgeCharacter.values())
                 .filter(bridgeCharacter -> bridgeCharacter.character.equals(character))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("입력한 문자가 존재하지 않습니다."));
+                .findAny().orElseThrow(() -> new IllegalArgumentException("입력한 위치 문자가 존재하지 않습니다."));
     }
 
     BridgeCharacter(int value, String character) {
