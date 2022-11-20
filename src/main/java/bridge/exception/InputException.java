@@ -3,7 +3,6 @@ package bridge.exception;
 import bridge.command.GameCommand;
 import bridge.command.MovingCommand;
 import bridge.exception.phrases.ExceptionPhrases;
-import bridge.view.InputView;
 
 public class InputException {
     public static void validateBridgeSize(int size) {
