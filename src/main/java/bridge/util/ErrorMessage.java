@@ -15,10 +15,10 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return prefex() + message;
+        return getPrefix() + message;
     }
 
-    public String prefex() {
+    private String getPrefix() {
         return "[ERROR]";
     }
 }
