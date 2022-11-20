@@ -9,8 +9,8 @@ public class Message {
     public static final String REGAME = "R";
     public static final String QUIT = "Q";
 
-    public static final String BRIDGE_BEGIN = "[";
-    public static final String BRIDGE_END = "]";
+    public static final String BRIDGE_BEGIN = "[ ";
+    public static final String BRIDGE_END = " ]";
     public static final String BRIDGE_DIVIDING_LINE = " | ";
 
     public static final String CORRECT = "O";
@@ -24,4 +24,6 @@ public class Message {
     public static final String PRINT_GAME_RESULT = "최종 게임 결과";
     public static final String PRINT_WHETHER_SUCCESS_OR_NOT = "게임 성공 여부: 성공";
     public static final String TOTAL_NUMBERS_OF_ATTEMPTS = "총 시도한 횟수: %d";
-}
+    public static final String NEWLINE = "\n";
+
+    }
