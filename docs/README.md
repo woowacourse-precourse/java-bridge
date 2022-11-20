@@ -61,5 +61,4 @@
 
 - [x] 이동 경로 형식 클래스 추가
 
-- [ ] BridgeGame의 move 메서드 구현
-- [ ] BridgeGame의 retry 메서드 구현
+- [x] 다리 지도 생성 클래스 추가
