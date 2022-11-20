@@ -33,6 +33,12 @@ public class InputView {
         return moveTO;
     }
 
+    public boolean readRestart() {
+        String restart = Console.readLine();
+        validateOfRestart(restart);
+        return restart.equals("R");
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
@@ -49,6 +55,13 @@ public class InputView {
 
     private void validateOfMoveTo(String moveTo) {
         if ((!moveTo.equals("U")) && (!moveTo.equals("D"))) {
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateOfRestart(String restart) {
+        if ((!restart.equals("R")) && (!restart.equals("Q"))) {
             System.out.println("[ERROR]");
             throw new IllegalArgumentException();
         }

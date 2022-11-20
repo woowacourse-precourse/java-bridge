@@ -11,17 +11,25 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> bridgeNow) {
+    public static void printMap(List<String> bridgeNow, boolean flag) {
         StringBuilder UpStep = new StringBuilder("[ ");
         StringBuilder DownStep = new StringBuilder("[ ");
         for (String s : bridgeNow) {
-            if (s.equals("1")) {
+            if ((s.equals("1")) && (flag)) {
                 UpStep.append("O | ");
                 DownStep.append("  | ");
             }
-            if (s.equals("0")) {
+            if ((s.equals("0")) && (flag)) {
                 UpStep.append("  | ");
                 DownStep.append("O | ");
+            }
+            if ((s.equals("1")) && (!flag)) {
+                UpStep.append("X | ");
+                DownStep.append("  | ");
+            }
+            if ((s.equals("0")) && (!flag)) {
+                UpStep.append("  | ");
+                DownStep.append("X | ");
             }
         }
         UpStep.deleteCharAt(UpStep.length() - 1);
@@ -39,6 +47,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult() {
+        System.out.println("최종 게임 결과");
     }
 
     public static void messageGameStart() {
@@ -51,5 +60,9 @@ public class OutputView {
 
     public static void messageInputMove() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public static void messageRestart() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }

@@ -23,12 +23,11 @@ public class Bridge {
             bridgeNow.add("0");
         }
         if(!checkSucces()) {
+            OutputView.printMap(bridgeNow, false);
             return false;
         }
-        OutputView.printMap(bridgeNow);
-//        System.out.println("======");
-//        System.out.println(bridgeWin);
-//        System.out.println(bridgeNow);
+        OutputView.printMap(bridgeNow, true);
+
         return true;
 
     }
