@@ -18,24 +18,20 @@ public class BridgeGame {
      */
     private Bridge bridge;
     private PlayerSteps steps;
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private int numberOfAttempts;
+    private boolean end;
 
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-
-    public boolean survived() {
-        // TODO
-        return false;
-    }
-
-    public boolean isEnd() {
-        // TODO
-        return false;
-    }
-
-    public void init(int bridgeSize) {
+    public BridgeGame(int bridgeSize) {
         List<String> bridgePositions = bridgeMaker.makeBridge(bridgeSize);
         bridge = Bridge.of(bridgePositions);
         steps = new PlayerSteps(bridgeSize);
+        numberOfAttempts = 1;
+        end = false;
+    }
+
+    public boolean isEnd() {
+        return end;
     }
 
     /**
@@ -48,12 +44,11 @@ public class BridgeGame {
     }
 
     public boolean lastStepMismatch() {
-        // TODO
-        return false;
+        return steps.isLastStepSameWithBridge(bridge);
     }
 
     public void quit() {
-        // TODO
+        end = true;
     }
 
     /**
@@ -62,9 +57,19 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        numberOfAttempts++;
+        // TODO 사용자 입력 하나 지우기
     }
 
-    public List<String> makeResult() {
+    public List<String> makeMap() {
         return MapMaker.make(bridge, steps);
+    }
+
+    private boolean succeed() {
+        return steps.size() == bridge.size() && steps.isLastStepSameWithBridge(bridge);
+    }
+
+    public GameResult makeResult() {
+        return new GameResult(makeMap(), succeed(), numberOfAttempts);
     }
 }

@@ -17,6 +17,10 @@ public class PlayerSteps {
         steps.add(node);
     }
 
+    public int size() {
+        return steps.size();
+    }
+
     public boolean isLastStepSameWithBridge(Bridge bridge) {
         int compareIndex = steps.size() - 1;
         Node lastStep = steps.get(compareIndex);
