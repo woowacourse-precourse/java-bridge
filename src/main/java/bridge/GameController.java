@@ -16,24 +16,16 @@ public class GameController {
         this.inputView = inputView;
         this.bridgeMaker = bridgeMaker;
     }
-    public void GameStart() {
-        outputView.printStartGame();
-        int bridgeSize = createBridgeSize(inputView);
-        bridgeSize = createBridgeSize(inputView);
-        Validation.isInRange(bridgeSize);
-
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        List<String> userPath = new ArrayList<String>();
+    public void startGame(BridgeGame bridgeGame, List<String> userPath) {
         boolean clear = false;
         int tryCount = 1;
         int bridgePosition = 0;
         while(true) {
             String userSelect = inputView.readMoving();
-            System.out.println(bridge);
+
             userPath.add(userSelect);
             boolean canMove = bridgeGame.move(userSelect, bridgePosition);
-            System.out.println(userPath);
+
             outputView.printMap(bridge, userPath);
 
             if (bridgeGame.checkArriveDestination(canMove, bridgePosition)) {
@@ -61,16 +53,22 @@ public class GameController {
         outputView.printTotalTry(tryCount);
     }
 
-    public int createBridgeSize(InputView inputView) {
+    public int createBridgeSize() {
         try {
-            return Validation.isPositiveInteger(inputView.readBridgeSize());
+            int bridgeSize = isPositiveInteger(inputView.readBridgeSize());
+            isInRange(bridgeSize);
+            return bridgeSize;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return createBridgeSize(inputView);
+            return createBridgeSize();
         }
     }
-    private void readyForGame() {
-
+    public void readyForGame() {
+        outputView.printStartGame();
+        List<String> bridge = bridgeMaker.makeBridge(createBridgeSize());
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        List<String> userPath = new ArrayList<String>();
+        startGame(bridgeGame, userPath);
     }
 
 }
