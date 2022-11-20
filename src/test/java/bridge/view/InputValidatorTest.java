@@ -55,4 +55,28 @@ class InputValidatorTest {
             assertThat(inputValidator.validateNumber(text)).isEqualTo(Integer.parseInt(text));
         }
     }
+
+    @DisplayName("플레이어가 이동할 칸 입력 테스트")
+    @Nested
+    class ValidateInputMoving {
+        @ParameterizedTest(name = "U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있다.")
+        @ValueSource(strings = {"U", "D"})
+        void inputMoving() {
+            assertDoesNotThrow(() -> inputValidator.validateInputMoving("U"));
+        }
+
+        @ParameterizedTest(name = "U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며 Null또는 공백이면 예외 처리한다.")
+        @NullAndEmptySource
+        void inputMovingNullOrEmpty(String moving) {
+            assertThatThrownBy(() -> inputValidator.validateInputMoving(moving))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @ParameterizedTest(name = "U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.")
+        @ValueSource(strings = {"u", "d", "UD", "DU", " ", "abc"})
+        void inputMovingException(String moving) {
+            assertThatThrownBy(() -> inputValidator.validateInputMoving(moving))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }
