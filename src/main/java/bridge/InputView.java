@@ -1,20 +1,29 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String ASK_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String ASK_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = strToInt(readLine());
-
-        validateBridgeSize(bridgeSize);
-        return bridgeSize;
+        while (true) {
+            System.out.println("\n" + ASK_BRIDGE_SIZE_MESSAGE);
+            try {
+                int bridgeSize = strToInt(Console.readLine());
+                validateBridgeSize(bridgeSize);
+                return bridgeSize;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
 
     private static void validateBridgeSize(int bridgeSize) {
@@ -27,10 +36,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String line = readLine();
-
-        validateMovingCommand(line);
-        return line;
+        while (true) {
+            System.out.println("\n" + ASK_MOVING_MESSAGE);
+            try {
+                String line = Console.readLine();
+                validateMovingCommand(line);
+                return line;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
 
     private static void validateMovingCommand(String line) {
@@ -44,10 +59,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String line = readLine();
-
-        validateGameCommand(line);
-        return line;
+        while (true) {
+            System.out.println("\n" + ASK_RETRY_MESSAGE);
+            try {
+                String line = Console.readLine();
+                validateGameCommand(line);
+                return line;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
 
     private static void validateGameCommand(String line) {
@@ -55,14 +76,6 @@ public class InputView {
             return;
         }
         throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 게임 명령어 입니다."));
-    }
-
-    private static String readLine() {
-        try {
-            return (Console.readLine());
-        } catch (NoSuchElementException ex) {
-            throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 입력 값 입니다."));
-        }
     }
 
     private static int strToInt(String number) {
