@@ -85,6 +85,7 @@ class ApplicationTest extends NsTest {
     }
     //endregion
 
+    //region 다리생성 단위 테스트 케이스
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
@@ -92,6 +93,21 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
+
+    @Test
+    void 다리_생성_테스트_길이30() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(
+                1, 0, 0, 1, 1, 1, 0, 0, 1, 0,
+                1, 0, 0, 1, 1, 1, 0, 0, 1, 0,
+                1, 0, 0, 1, 1, 1, 0, 0, 1, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(30);
+        assertThat(bridge).containsExactly(
+                "U", "D", "D", "U", "U", "U", "D", "D", "U", "D",
+                "U", "D", "D", "U", "U", "U", "D", "D", "U", "D",
+                "U", "D", "D", "U", "U", "U", "D", "D", "U", "D");
+    }
+    //endregion
 
     @Test
     void 기능_테스트() {
