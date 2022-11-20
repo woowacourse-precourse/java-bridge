@@ -12,11 +12,13 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println("\n다리의 길이를 입력해주세요.");
-        int length = Integer.parseInt(Console.readLine());
-        // TODO: 다리의 길이 체크
-        validateBridgeLength(length);
+
+        String input = Console.readLine();
+        int length = validateBridgeLength(input);
+
+        System.out.println(length);
 
         return length;
     }
@@ -24,11 +26,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+
         String input = Console.readLine();
-        // TODO: input 체크
         validateMovingCommand(input);
+
+        System.out.println(input);
 
         return input;
     }
@@ -36,19 +40,33 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
         String input = Console.readLine();
-        // TODO: input 체크
         validateGameCommand(input);
+
+        System.out.println(input);
 
         return input;
     }
 
-    private static void validateBridgeLength(int length) {
+    public static int convertToInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_CODE + " 입력된 값이 숫자가 아닙니다.");
+        }
+    }
+
+    private static int validateBridgeLength(String input) {
+        int length = convertToInteger(input);
+
         if(length < 3 || length > 20) {
             throw new IllegalArgumentException(ERROR_CODE + " 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
+
+        return length;
     }
 
     private static void validateMovingCommand(String input) {
