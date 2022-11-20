@@ -1,34 +1,29 @@
 package bridge.Domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class History {
-    private List<String> choices;
+    private UserBridge upperBridge;
+    private UserBridge lowerBridge;
     private boolean success;
     private int tries;
 
     public History() {
-        this.choices = new ArrayList<>();
+        this.upperBridge = new UserBridge();
+        this.lowerBridge = new UserBridge();
         this.success = false;
         this.tries = 0;
     }
 
-    @Override public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        for (String space : choices) {
-            result.append(space);
-        }
-        return result.toString();
+    public UserBridge getUpperBridge() {
+        return upperBridge;
     }
 
-    public void move(String moveTo) {
-        choices.add(moveTo);
+    public UserBridge getLowerBridge() {
+        return lowerBridge;
     }
 
-    public String getSpaceByLocation(int location) {
-        return choices.get(location);
+    public void move(String upperMove, String lowerMove) {
+        upperBridge.saveSpaceResult(upperMove);
+        lowerBridge.saveSpaceResult(lowerMove);
     }
 
     public void gameSuccess() {
@@ -48,6 +43,7 @@ public class History {
     }
 
     public void reset() {
-        choices = new ArrayList<>();
+        upperBridge = new UserBridge();
+        lowerBridge = new UserBridge();
     }
 }
