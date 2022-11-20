@@ -15,7 +15,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generatedValue = bridgeNumberGenerator.generate();
-            bridge.add(String.valueOf(generatedValue));
+            bridge.add(BridgeConverter.convert(generatedValue));
         }
         return bridge;
     }
