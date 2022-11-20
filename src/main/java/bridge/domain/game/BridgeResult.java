@@ -9,16 +9,16 @@ import java.util.stream.Collectors;
 
 public class BridgeResult {
 
-    private final List<GameResult> bridgeResult;
+    private final List<SquareResult> bridgeResult;
 
     public BridgeResult() {
         bridgeResult = new ArrayList<>();
     }
 
     public void updateResult(Square square, boolean result) {
-        GameResult gameResult = new GameResult(square, MoveResult.of(result));
-        bridgeResult.add(gameResult);
-        bridgeResult.add(gameResult.getReversed());
+        SquareResult squareResult = new SquareResult(square, MoveResult.of(result));
+        bridgeResult.add(squareResult);
+        bridgeResult.add(squareResult.getReversed());
     }
 
     public BridgeResultDto toDto() {
@@ -28,7 +28,7 @@ public class BridgeResult {
     public Map<Square, List<String>> getResult() {
         return bridgeResult.stream()
                 .collect(Collectors.groupingBy(
-                        GameResult::getSquare,
-                        Collectors.mapping(GameResult::getMoveResult, Collectors.toList())));
+                        SquareResult::getSquare,
+                        Collectors.mapping(SquareResult::getMoveResult, Collectors.toList())));
     }
 }
