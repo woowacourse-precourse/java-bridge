@@ -2,6 +2,9 @@ package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
+import bridge.model.Player;
+
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,6 +13,8 @@ public class BridgeGame {
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
     private Bridge bridge;
+    private Player player;
+    private int crossCount = 0;
 
     public BridgeGame() {
     }
@@ -17,6 +22,10 @@ public class BridgeGame {
     public void gameStart() {
         System.out.println(GAME_START_MESSAGE);
         makeBridge();
+        player = new Player();
+        while(bridge.isToCross(player.move(), crossCount)) {
+            move();
+        }
     }
 
     /**
