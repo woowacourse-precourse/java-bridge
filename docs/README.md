@@ -110,7 +110,7 @@ public class BridgeMaker {
 >- [x] 0 또는 1을 랜덤으로 골라 반환하는 기능 ( generate )
 
 **BridgeMaker**
->- [ ] size를 토대로 다리를 만드는 기능 ( makeBridge )
+>- [x] size를 토대로 다리를 만드는 기능 ( makeBridge )
 
 **BridgeGameService**
 >- [ ] User 기록과 Bridge의 값으로 출력 값을 만드는 기능  ( setMergeBridge )
