@@ -9,6 +9,9 @@ import bridge.model.Player;
  */
 public class BridgeGame {
 
+    public static int GAME_STATUS_DIE = -1;
+    public static int GAME_STATUS_NORMAL = 0;
+    public static int GAME_STATUS_CLEAR = 1;
     private Bridge bridge;
     private Player player;
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -21,6 +24,7 @@ public class BridgeGame {
     public BridgeGame(BridgeSize size, Player player) {
         bridge = new Bridge(bridgeMaker.makeBridge(size.getBridgeSize()));
         this.player = player;
+        gameStatus = GAME_STATUS_NORMAL;
     }
 
     /**
@@ -29,6 +33,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moveCommand) {
+
         player.move(moveCommand);
     }
 
@@ -37,7 +42,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String retryCommand) {
+        if (retryCommand.equals("R")) {
+            gameStatus = GAME_STATUS_NORMAL;
+        } else if (retryCommand.equals("Q")) {
+            gameStatus = GAME_STATUS_DIE;
+        }
+    }
+
+
+    public int getGameStatus() {
+        return gameStatus;
     }
 
     public Player getPlayer() {
