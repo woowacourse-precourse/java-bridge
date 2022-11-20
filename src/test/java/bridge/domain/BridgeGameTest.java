@@ -14,7 +14,9 @@ import static bridge.domain.BridgeUnit.UP;
 import static bridge.domain.GameStatus.FAILED;
 import static bridge.domain.GameStatus.PLAYING;
 import static bridge.domain.GameStatus.SUCCESS;
+import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
     BridgeGame bridgeGame;
@@ -86,6 +88,19 @@ class BridgeGameTest {
             assertThat(status).isEqualTo(PLAYING);
             assertThat(bridgeGame.getAttempt()).isEqualTo(2);
             assertThat(bridgeGame.getGameProgress()).isEqualTo(new ArrayList<MapUnit>());
+        }
+
+        @Test
+        void 너무_많은_시도를_하면_예외가_발생한다() {
+            //given
+            for (int i = 0; i < Integer.MAX_VALUE - 1; i++) {
+                bridgeGame.retry();
+            }
+
+            //when then
+            assertThatThrownBy(() -> bridgeGame.retry())
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(TOO_MANY_ATTEMPTS);
         }
     }
 }

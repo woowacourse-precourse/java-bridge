@@ -1,6 +1,7 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
@@ -33,7 +34,20 @@ class ApplicationExceptionTest extends NsTest {
     @Test
     void 재시작_여부_입력_시_R_또는_Q_이외의_값이_들어오는_경우_예외가_발생한다() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D", "T");
+            run("3", "U", "D", "D", "T", "Q");
+            assertThat(output()).contains(ERROR_MESSAGE + " " + INVALID_COMMAND_ERROR);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    @Disabled("메모리 초과로 테스트 안 됨")
+    void 시도_횟수가_int_범위를_넘어갈_경우_예외가_발생한다() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < (Integer.MAX_VALUE - 1) / 2 + 1; i++) {
+            sb.append("D,").append("R,");
+        }
+        assertRandomNumberInRangeTest(() -> {
+            run(sb.toString().split(","));
             assertThat(output()).contains(ERROR_MESSAGE + " " + INVALID_COMMAND_ERROR);
         }, 1, 0, 1);
     }
