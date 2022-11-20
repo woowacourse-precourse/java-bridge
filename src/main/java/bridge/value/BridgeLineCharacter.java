@@ -22,7 +22,7 @@ public enum BridgeLineCharacter {
     }
 
     public static BridgeLineCharacter resultCharacterFor(BridgeCharacter endCharacter, BridgeCharacter lineCharacter) {
-        if (endCharacter == lineCharacter) {
+        if (endCharacter != lineCharacter) {
             return IMMOVABLE_SQUARE;
         }
         return EMPTY_SQUARE;
