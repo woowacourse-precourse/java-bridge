@@ -39,13 +39,15 @@
 ---
 
 ### 브릿지 게임 진행 - ClassName : BridgeGame
-- [ ] 이동하기 - `#move()`
+- [x] 이동하기 - `#move()`
 - [ ] 게임을 재시도하는 경우 - `#retry()`
 
 ---
 
 ### 다리 정보를 저장하는 일급 컬랙션 - ClassName : Bridge
 - [x] 이동할 수 있는지 없는지 확인 - `#isMovableBlock()`
+- 예외사항
+  - U/D 이외의 문자가 포함된 경우
 
 ---
 
