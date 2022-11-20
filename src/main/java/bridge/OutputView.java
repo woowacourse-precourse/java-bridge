@@ -10,8 +10,9 @@ public class OutputView {
     private static final String startOfBridge = "[";
     private static final String endOfBridge = "]";
     private static final String divisionOfBridge = "|";
-    private static final String resultOfGame = "게임 성공 여부: ";
-    private static final String totalNumberOfAttempt = "총 시도한 횟수";
+    private static final String resultOfGame = "최종 게임 결과";
+    private static final String success = "게임 성공 여부: ";
+    private static final String totalOfAttempt = "총 시도한 횟수";
 
     public static void outputInitialAnnouncement() {
         System.out.println(startAnnouncement);
@@ -28,14 +29,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String map) {
+        String output = startOfBridge + map + endOfBridge;
+        System.out.println(output);
     }
-
+    private String checkSuccess(boolean isSuccess){
+        if (isSuccess){
+            return success + "성공";
+        }
+        return success + "실패";
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        User user = bridgeGame.getUser();
+        System.out.println(resultOfGame);
+        printMap(user.getPathOfUpperBridge());
+        printMap(user.getPathOfLowerBridge());
+        System.out.println();
+        System.out.println(checkSuccess(bridgeGame.isSuccess()));
+        System.out.println(totalOfAttempt + bridgeGame.getAttempt());
     }
 }
