@@ -1,12 +1,13 @@
 package bridge;
 
 public class Application {
+    InputView inputView = new InputView();
 
     public void run(){
         // output view
         System.out.println("다리 건너기 게임을 시작합니다.");
-
         // 자동으로 생성할 다리 길이를 입력 받는다. --> input view
+        int bridgeSize = inputView.readBridgeSize();
 
         // 다리를 생성합니다. --> bridge maker
 
