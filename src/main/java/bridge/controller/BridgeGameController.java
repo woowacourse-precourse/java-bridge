@@ -29,6 +29,10 @@ public class BridgeGameController {
         while(movingIndex < bridgeSize) {
             String movingResult = move(bridgeGame, movingIndex);
             boolean isMove = bridgeGame.isMove(movingResult);
+            movingIndex = updateMovingIndex(isMove, movingIndex);
+            if (!isContinue(bridgeGame, isMove)) {
+                break;
+            }
         }
         return bridgeGame.getBridgeGameResult();
     }
@@ -38,5 +42,28 @@ public class BridgeGameController {
          String movingResult = bridgeGame.move(moving, movingIndex);
          outputView.printMap(bridgeGame.getBridgeGameResult());
          return movingResult;
+    }
+
+    private int updateMovingIndex(boolean isMove, int movingIndex) {
+        if (isMove) {
+            return movingIndex + 1;
+        }
+        return 0;
+    }
+
+    private boolean isContinue(BridgeGame bridgeGame, boolean isMove) {
+        if (isMove) {
+            return true;
+        }
+        return isRetry(bridgeGame);
+    }
+
+    private boolean isRetry(BridgeGame bridgeGame) {
+        String gameCommand = inputView.readGameCommand();
+        if (bridgeGame.isRetry(gameCommand)) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
     }
 }
