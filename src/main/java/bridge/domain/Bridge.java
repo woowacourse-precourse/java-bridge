@@ -21,6 +21,19 @@ public class Bridge {
         if (bridge.size() != length) {
             throw new IllegalArgumentException("[ERROR] bridge size mismatch");
         }
+        for (String b : bridge) {
+            Move.fromString(b);
+        }
+    }
+
+    public void addBlock(String upDown) {
+        bridge.add(upDown);
+        addLength();
+        validate(length, bridge);
+    }
+
+    private void addLength() {
+        length++;
     }
 
     @Override
