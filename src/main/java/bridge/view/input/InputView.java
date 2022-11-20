@@ -2,8 +2,7 @@ package bridge.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.domain.Constants.BRIDGE_ARROW_VALUE_LENGTH;
-import static bridge.domain.Constants.BRIDGE_GAME_COMMAND_LENGTH;
+import static bridge.domain.Constants.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
