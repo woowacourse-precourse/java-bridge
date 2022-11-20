@@ -1,5 +1,7 @@
 package bridge;
 
+import static message.PrintMessage.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -7,6 +9,9 @@ package bridge;
 // TODO BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 
 public class BridgeGame {
+    private final int BRIDGE_MIN = 3;
+    private final int BRIDGE_MAX = 20;
+
     private String gameCommand;
     private String retryCommand;
     private int size;
@@ -27,17 +32,21 @@ public class BridgeGame {
 
 
     public void move(String gameCommand) {
-        if (!(gameCommand.equals("U") || gameCommand.equals("D"))) throw new IllegalArgumentException();
+        if (!(gameCommand.equals(MOVE_U_COMMAND.getStatus()) || gameCommand.equals(MOVE_D_COMMAND.getStatus()))) {
+            throw new IllegalArgumentException();
+        }
     }
 
 
     public void retry(String retryCommand) {
-        if (!(retryCommand.equals("Q") || retryCommand.equals("R"))) throw new IllegalArgumentException();
+        if (!(retryCommand.equals(RETRY_Q_COMMAND.getStatus()) || retryCommand.equals(RETRY_R_COMMAND.getStatus()))) {
+            throw new IllegalArgumentException();
+        }
     }
 
 
     public void checkBridgeSize(int size) {
-        if (!(size >= 3 && size <= 20)) throw new IllegalArgumentException();
+        if (!(size >= BRIDGE_MIN && size <= BRIDGE_MAX)) throw new IllegalArgumentException();
     }
 
 

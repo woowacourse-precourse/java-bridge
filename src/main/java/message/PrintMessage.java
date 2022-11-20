@@ -6,6 +6,8 @@ public enum PrintMessage {
 
     MOVE_U_COMMAND("U"),
     MOVE_D_COMMAND("D"),
+    RETRY_R_COMMAND("R"),
+    RETRY_Q_COMMAND("Q"),
 
     CORRECT_ANSWER("O"),
     WRONG_ANSWER("X"),

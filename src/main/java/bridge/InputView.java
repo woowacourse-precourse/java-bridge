@@ -3,6 +3,8 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import static message.ErrorMessage.*;
+import static message.PrintMessage.MOVE_D_COMMAND;
+import static message.PrintMessage.RETRY_R_COMMAND;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -24,7 +26,7 @@ public class InputView {
 
     public String readMoving() {
         try {
-            this.bridgeGame = new BridgeGame(Console.readLine(),"R");
+            this.bridgeGame = new BridgeGame(Console.readLine(),RETRY_R_COMMAND.getStatus());
         } catch (IllegalArgumentException e) {
             System.out.println(MOVE_COMMAND_ERROR.getStatus());
             this.readMoving();
@@ -35,7 +37,7 @@ public class InputView {
 
     public String readGameCommand() {
         try {
-            this.bridgeGame = new BridgeGame("D", Console.readLine());
+            this.bridgeGame = new BridgeGame(MOVE_D_COMMAND.getStatus(), Console.readLine());
         } catch (IllegalArgumentException e) {
             System.out.println(RETRY_COMMAND_ERROR.getStatus());
             this.readGameCommand();

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static message.GameMessage.*;
+import static message.PrintMessage.RETRY_Q_COMMAND;
+import static message.PrintMessage.RETRY_R_COMMAND;
 
 
 public class BridgeController {
@@ -68,21 +70,18 @@ public class BridgeController {
 
 
     private List<String> getBridge() {
-        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        return bridge;
+        return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
 
     private String moveCommand() {
         System.out.println(MOVE_COMMAND.getStatus());
-        String command = inputView.readMoving();
-        return command;
+        return inputView.readMoving();
     }
 
 
     private String retryCommand() {
         System.out.println(RETRY_COMMAND.getStatus());
-        String command = inputView.readGameCommand();
-        return command;
+        return inputView.readGameCommand();
     }
 }

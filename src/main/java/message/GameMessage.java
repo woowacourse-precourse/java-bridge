@@ -9,8 +9,6 @@ public enum GameMessage {
     SUCCESS_MESSAGE("성공"),
     FAIL_MESSAGE("실패"),
 
-    RETRY_R_COMMAND("R"),
-    RETRY_Q_COMMAND("Q"),
 
     FINAL_RESULT("최종 게임 결과"),
     GAME_RESULT("게임 성공 여부: "),
