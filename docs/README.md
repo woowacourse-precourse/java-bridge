@@ -78,5 +78,8 @@
 - List가 0과 1의 값만 갖는지 테스트
 - List<Integer>의 0과 1이 알맞은 List<String> U와 D로 변환되는지 테스트
 
+### BridgeRandomNumberGenerator
+- 0과 1 사이의 값만 반환하는지 Test
+
 ### Bridge
 - 다리가 사용자의 입력값과 현재위치와 비교하여, 알맞은 반환 값을 반환하는지 테스트
