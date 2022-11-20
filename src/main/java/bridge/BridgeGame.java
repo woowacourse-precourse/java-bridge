@@ -36,10 +36,28 @@ public class BridgeGame {
     /**
      * 유저가 다리를 건넜는지 체크한다.
      * @param bridge
-     * @return
      */
     public boolean checkCrossingBridge(List<String> bridge) {
         return current_position == bridge.size();
+    }
+
+    /**
+     * 게임 한 라운드가 끝난 뒤 game clear 체크 및 game retry를 한다.
+     * @param userRoute
+     * @param bridge
+     * @return 재시작 여부
+     */
+    public boolean gameover(List<String> userRoute, List<String> bridge) {
+        if(gameClear(userRoute, bridge)) {
+            return false;
+        }
+
+        if(inputView.readGameCommand()) {
+            retry();
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -47,15 +65,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    private void retry() {
+
     }
 
-    public boolean gameover() {
-
-        return true;
-    }
-
-    public boolean gameClear(int size, int bridgeSize) {
+    private boolean gameClear(List<String> userRoute, List<String> bridge) {
         return true;
     }
 }
