@@ -9,10 +9,10 @@ import bridge.view.OutputView;
 public class BridgeController {
 
 
-    private InputView inputView;
-    private OutputView outputView;
-    private BridgeGame bridgeGame;
-    private ValidateInput validate;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeGame bridgeGame;
+    private final ValidateInput validate;
     private int totalCount;
     BridgeController(){
         inputView = new InputView();
