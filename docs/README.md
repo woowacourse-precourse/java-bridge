@@ -17,10 +17,9 @@
   - [x] 이동 결과를 출력하는 기능 - OutputView#printMap
 
   - [x] 다리를 끝까지 건너면 게임이 종료된다
-  - [ ] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry
-    - [ ] 재시도 여부 묻는 기능
-      - [x] 재시도 여부 입력받기 - InputView#readGameCommand
-      - [ ] 예외처리 (R 또는 Q중 하나가 아닐 때) - InputView#validateGameCommand
+  - [x] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry
+    - [x] 재시도 여부 입력받기 - InputView#readGameCommand
+    - [ ] 예외처리 (R 또는 Q중 하나가 아닐 때) - InputView#validateGameCommand
   
 - [ ] 게임 종료 문구 출력 기능 - OutputView#printResult
   - [ ] 최종 게임 결과 출력 
