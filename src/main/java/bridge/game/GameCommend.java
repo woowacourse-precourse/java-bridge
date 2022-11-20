@@ -36,4 +36,10 @@ public enum GameCommend {
                 .orElseThrow(() -> new IllegalArgumentException(WARM_RESTART_CHOICE));
     }
 
+    public static boolean isRestart(GameCommend gameCommend) {
+        if (gameCommend.equals(GameCommend.RESTART)) {
+            return true;
+        }
+        return false;
+    }
 }
