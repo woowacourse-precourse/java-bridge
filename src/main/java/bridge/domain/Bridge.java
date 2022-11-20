@@ -21,11 +21,19 @@ public class Bridge {
 	}
 
 	public boolean canWalkUp(int position) {
+		validatePosition(position);
 		int index = position - 1;
 		return value.get(index).equals(Constants.UP);
 	}
 
+	public void validatePosition(int position) {
+		if (position < 1 || position > value.size()) {
+			throw new IllegalArgumentException();
+		}
+	}
+
 	public boolean canWalkDown(int position) {
+		validatePosition(position);
 		int index = position - 1;
 		return value.get(index).equals(Constants.DOWN);
 	}
