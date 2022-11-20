@@ -12,11 +12,16 @@ public class BridgeController {
 
     public void run() {
         createBridge();
+        move();
     }
 
     private void createBridge() {
         int bridgeSize = inputView.readBridgeSize();
         bridgeService.createBridge(bridgeSize);
+    }
+
+    private void move() {
+        String bridgeType = inputView.readMoving();
     }
 
 }
