@@ -30,7 +30,7 @@
 - [X] 다리 길이가 입력되지 않은 경우 IllegalArgumentException
 - [X] 다리 길이가 숫자가 아닌 경우 IllegalArgumentException
 - [X] 다리 길이가 3보다 작거나, 20보다 큰 경우 IllegalArgumentException
-- [ ] 플레이어가 이동할 칸이 입력되지 않은 경우 IllegalArgumentException
+- [X] 플레이어가 이동할 칸이 입력되지 않은 경우 IllegalArgumentException
 - [ ] 플레이어가 이동할 칸이 U, D가 아닌 경우 IllegalArgumentException
 - [ ] 게임 재시작/종료 여부가 입력되지 않은 경우 IllegalArgumentException
 - [ ] 게임 재시작/종료 여부가 R, Q가 아닌 경우 IllegalArgumentException
