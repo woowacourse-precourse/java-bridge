@@ -29,8 +29,8 @@ public class Application {
         return guessResult;
     }
 
-    public static void makeMove() {
-        outputView.printEnterMove();
+    public static void makeMove(int trial) {
+        outputView.printEnterMove(trial);
         String direction = inputView.readMoving();
         bridgeGame.move(direction);
     }
@@ -38,7 +38,8 @@ public class Application {
     public static boolean runGuessLoop(Bridge bridge) {
         boolean currentGuess = true;
         for (int currentPosition = 0; currentPosition < bridge.size() && currentGuess; currentPosition++) {
-            makeMove();
+            BridgeGameDto bridgeGameDto = bridgeGame.sendDto();
+            makeMove(bridgeGameDto.totalTrial);
             currentGuess = judgeMove(bridge);
             outputView.printMap(bridge.sendDto(), totalResult.sendDto());
         }
