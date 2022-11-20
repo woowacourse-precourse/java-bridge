@@ -7,19 +7,19 @@ public enum Crossing {
     private int number;
     private String string;
 
-    private Crossing(int number, String string){
+    private Crossing(int number, String string) {
         this.number = number;
         this.string = string;
     }
 
-    public static String toString(int number){
-        if(Crossing.UP.number == number){
+    public static String toString(int number) {
+        if (Crossing.UP.number == number) {
             return Crossing.UP.string;
         }
         return Crossing.DOWN.string;
     }
 
-    public String getString(){
+    public String getString() {
         return string;
     }
 }

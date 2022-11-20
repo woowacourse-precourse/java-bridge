@@ -7,20 +7,20 @@ import java.util.List;
 public class Bridge {
     List<String> bridge;
 
-    public Bridge(List<String> bridge){
+    public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public CrossResult cross(UserChoice userChoice, int position){
+    public CrossResult cross(UserChoice userChoice, int position) {
         String crossableBridge = bridge.get(position);
 
-        if(userChoice.equals(crossableBridge)){
+        if (userChoice.equals(crossableBridge)) {
             return CrossResult.SUCCESS;
         }
         return CrossResult.FAIL;
     }
 
-    public int length(){
+    public int length() {
         return bridge.size();
     }
 }

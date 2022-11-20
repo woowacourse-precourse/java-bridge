@@ -8,11 +8,11 @@ import java.util.List;
 public class CrossResults {
     List<CrossResult> crossResults;
 
-    public CrossResults(){
+    public CrossResults() {
         this.crossResults = new ArrayList<>();
     }
 
-    public int position(){
+    public int position() {
         return crossResults.size();
     }
 
@@ -20,11 +20,11 @@ public class CrossResults {
         crossResults.add(crossResult);
     }
 
-    public boolean contain(CrossResult crossResult){
+    public boolean contain(CrossResult crossResult) {
         return crossResults.contains(crossResult);
     }
 
-    public CrossResult get(int position){
+    public CrossResult get(int position) {
         return crossResults.get(position);
     }
 }

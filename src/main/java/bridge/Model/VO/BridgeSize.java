@@ -6,19 +6,19 @@ public class BridgeSize {
 
     private int size;
 
-    public BridgeSize(int size){
+    public BridgeSize(int size) {
         validData(size);
         this.size = size;
     }
 
-    private void validData(int data) throws IllegalArgumentException{
-        if(data >= MIN_SIZE && data <= MAX_SIZE){
+    private void validData(int data) throws IllegalArgumentException {
+        if (data >= MIN_SIZE && data <= MAX_SIZE) {
             return;
         }
         throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 }

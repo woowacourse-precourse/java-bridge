@@ -7,12 +7,12 @@ public enum CrossResult {
     private final boolean bool;
     private final String string;
 
-    private CrossResult(boolean bool, String string){
+    private CrossResult(boolean bool, String string) {
         this.bool = bool;
         this.string = string;
     }
 
-    public String getString(){
+    public String getString() {
         return string;
     }
 }

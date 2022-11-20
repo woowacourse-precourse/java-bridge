@@ -7,11 +7,11 @@ public enum GameStatus {
 
     private String status;
 
-    private GameStatus(String status){
+    private GameStatus(String status) {
         this.status = status;
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 }
