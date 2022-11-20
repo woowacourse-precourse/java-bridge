@@ -24,7 +24,7 @@ public class BridgeController {
         outputView.printStart();
 
         List<String> bridge = bridgeGame.setBridge(inputBridgeSize().getBridgeSize());
-        startRound(bridge);
+        startPlay(bridge);
     }
 
     public BridgeSize inputBridgeSize() {
@@ -34,6 +34,12 @@ public class BridgeController {
             outputView.printError(e.getMessage());
             return inputBridgeSize();
         }
+    }
+
+    private void startPlay(List<String> bridge) {
+        do {
+            startRound(bridge);
+        } while (askRestart());
     }
 
     private void startRound(List<String> bridge) {
@@ -61,9 +67,9 @@ public class BridgeController {
         return user.equals(answer);
     }
 
-    private void askRestart() {
+    private boolean askRestart() {
         String command = inputCommand().getCommand();
-
+        return bridgeGame.retry(command);
     }
 
     private Command inputCommand() {
