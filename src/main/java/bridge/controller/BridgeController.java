@@ -34,7 +34,7 @@ public class BridgeController {
     private void play() {
         do {
             takeTurn();
-        } while (bridgeGame.isAlive());
+        } while (bridgeGame.isOngoing());
     }
 
     private void takeTurn() {
