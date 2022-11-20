@@ -34,7 +34,7 @@ public enum Direction {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public String getDirectionInitial() {
+    private String getDirectionInitial() {
         return directionInitial;
     }
 }

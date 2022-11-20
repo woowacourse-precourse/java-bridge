@@ -22,7 +22,7 @@ public enum Range {
         throw new InvalidRangeNumberException();
     }
 
-    public Integer getRange() {
+    private Integer getRange() {
         return range;
     }
 }
