@@ -11,12 +11,14 @@ import java.util.List;
 
 public class BridgeGameController {
     BridgeGame bridgeGame;
+    int gameCount;
     boolean play;
 
     public BridgeGameController() {
         Bridge gameBridge = makeGameBridge();
         System.out.println(gameBridge.getBridge());
         this.bridgeGame = new BridgeGame(gameBridge);
+        this.gameCount = 1;
         this.play = true;
     }
 
@@ -29,6 +31,7 @@ public class BridgeGameController {
                 askRetry();
             }
         }
+        showResult(bridgeGame.getGameMap(), bridgeGame.isLife(), this.gameCount);
     }
 
     private Bridge makeGameBridge() {
@@ -47,8 +50,13 @@ public class BridgeGameController {
         String status = InputView.readGameCommand();
         if ("R".equals(status)) {
             bridgeGame.retry();
+            this.gameCount++;
             return;
         }
         this.play = false;
+    }
+
+    private void showResult(List<List<String>> gameMap, boolean life, int gameCount) {
+        OutputView.printResult(gameMap, life, gameCount);
     }
 }
