@@ -4,6 +4,7 @@ import static bridge.domain.BridgeSize.MAX_SIZE;
 import static bridge.domain.BridgeSize.MIN_SIZE;
 import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
 import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -48,6 +49,39 @@ class BridgeTest {
                     .isThrownBy(() -> new Bridge(createBlocks(rightSize)));
         }
 
+    }
+
+    @DisplayName("특정한 라운드의 값과")
+    @Nested
+    class IsMoveSuccessMethod {
+
+        @DisplayName("일치하면 true를 반환한다")
+        @ValueSource(ints = {MIN_SIZE})
+        @ParameterizedTest
+        void test1(int rightSize) {
+            List<String> blocks = createBlocks(rightSize);
+            Bridge bridge = new Bridge(blocks);
+
+            assertThat(bridge.isMoveSuccess(1, blocks.get(0))).isTrue();
+        }
+
+        @DisplayName("일치하지않으면 false를 반환한다")
+        @ValueSource(ints = {MIN_SIZE})
+        @ParameterizedTest
+        void test2(int rightSize) {
+            List<String> blocks = createBlocks(rightSize);
+            Bridge bridge = new Bridge(blocks);
+            String falseValue = getFalseValue(blocks.get(0));
+
+            assertThat(bridge.isMoveSuccess(1, falseValue)).isFalse();
+        }
+
+        private String getFalseValue(String rightValue) {
+            if (rightValue.equals(MOVE_TO_UPPER_BLOCK)) {
+                return MOVE_TO_LOWER_BLOCK;
+            }
+            return MOVE_TO_UPPER_BLOCK;
+        }
     }
 
     private List<String> createBlocks(int size) {
