@@ -7,6 +7,9 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
 
     private final InputView inputView;
@@ -25,7 +28,7 @@ public class Controller {
         int bridgeSize = inputView.readBridgeSize();
         Bridge bridge = makeBridge(bridgeSize);
         bridgeGame = new BridgeGame(bridge);
-        move();
+        play();
     }
 
     private void printGameStartMsg(){
@@ -38,23 +41,30 @@ public class Controller {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private void move(){
-        int flag = 0;
-        int step = 0;
+    private void play(){
+        List<Integer> result = move(0, 0);
+        int flag = result.get(0);
+        int step = result.get(1);
+        quit(flag, step);
+        retry(flag);
+    }
+
+    private List<Integer> move(int flag, int step){
         while(step != bridgeGame.getBridgeSize()){
-            inputView.getInputMoveUpOrDownMsg();
-            bridgeGame.setUserMoving(inputView.readMoving());
-            boolean isEqual = bridgeGame.move(step);
-            outputView.printMap(bridgeGame);
-            if (!isEqual){
+            settingMoving();
+            if (!bridgeGame.move(step++)){
+                outputView.printMap(bridgeGame);
                 flag = compareBridgeAndUserThink();
                 break;
             }
-            step++;
+            outputView.printMap(bridgeGame);
         }
+        return List.of(flag, step);
+    }
 
-        quit(flag, step);
-        retry(flag);
+    private void settingMoving(){
+        inputView.getInputMoveUpOrDownMsg();
+        bridgeGame.setUserMoving(inputView.readMoving());
     }
 
     private int compareBridgeAndUserThink(){
@@ -80,7 +90,7 @@ public class Controller {
         if (flag == 1){
             bridgeGame.retry();
             userTry++;
-            move();
+            play();
         }
     }
 
