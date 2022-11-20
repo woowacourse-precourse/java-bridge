@@ -31,4 +31,20 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public int getPlayerLocationIndex() {
+        return playerLocationIndex;
+    }
+
+    public Boolean getAskRetryMarker() {
+        return askRetryMarker;
+    }
+
+    public List<String> getUpMap() {
+        return upMap;
+    }
+
+    public List<String> getDownMap() {
+        return downMap;
+    }
 }
