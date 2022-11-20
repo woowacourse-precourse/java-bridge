@@ -13,7 +13,7 @@
 
 ## 출력 OutputView
 - [x] 게임 시작 메시지 InputView#printStart()
-- [ ] 다리 그리기 OutputView#printMap(char[][] map, int index)
+- [x] 다리 그리기 OutputView#printMap(char[][] map, int index)
 - [ ] 종료 메시지 출력 OutputView#printEndMessage()
 - [ ] 결과 출력 OutputView#printResult()
 
