@@ -7,7 +7,7 @@ import bridge.model.Bridge;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -26,7 +26,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private String converStage(int stageStatus) {
+    private static String converStage(int stageStatus) {
         if (stageStatus == 0) {
             return "D";
         }

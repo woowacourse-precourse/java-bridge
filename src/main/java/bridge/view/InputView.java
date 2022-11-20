@@ -33,7 +33,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(MESSAGE_INPUT_MOVING);
         String input = readLine();
         try {

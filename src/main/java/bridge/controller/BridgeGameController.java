@@ -1,16 +1,17 @@
 package bridge.controller;
 
 import bridge.model.Bridge;
+import bridge.model.BridgeGame;
 import bridge.util.BridgeMaker;
 import bridge.view.InputView;
-import java.util.List;
 
 public class BridgeGameController {
     Bridge gameBridge;
-    List<String> playerChoise;
+    BridgeGame bridgeGame;
 
     public BridgeGameController() {
         this.gameBridge = makeGameBridge();
+        this.bridgeGame = new BridgeGame(gameBridge);
     }
 
     private Bridge makeGameBridge() {

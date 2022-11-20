@@ -13,8 +13,4 @@ public class Bridge {
     public List<String> getBridge() {
         return this.bridge;
     }
-
-    public void addBridge(String stage) {
-        this.bridge.add(stage);
-    }
 }
