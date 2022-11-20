@@ -1,6 +1,7 @@
-package bridge;
+package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import static bridge.NumberValidator.validateNonNumeric;
 import static bridge.NumberValidator.validateRange;
 import static bridge.validator.TextValidator.validateMoveWay;
@@ -51,6 +52,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        OutputView.printAskRetryMessage();
+        String retry = Console.readLine();
+        return retry;
     }
 }
