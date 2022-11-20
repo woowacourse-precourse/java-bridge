@@ -4,6 +4,7 @@ import bridge.exception.BridgeLengthOutOfRange;
 import bridge.exception.NotNumeric;
 
 import static bridge.Utility.ERROR_MESSAGE;
+import static bridge.Utility.minBridgeLength;
 
 public class Check {
     public static boolean checkNumeric(String input){
@@ -19,7 +20,7 @@ public class Check {
     }
 
     public static boolean checkBridgeLengthOutOfRange(int bridgeLength){
-        if(!(bridgeLength>=3 && bridgeLength<=20)){
+        if(!(bridgeLength>=minBridgeLength && bridgeLength<=minBridgeLength)){
             IllegalArgumentException exception = new BridgeLengthOutOfRange(ERROR_MESSAGE);
             System.out.println(exception);
             return false;
