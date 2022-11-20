@@ -66,6 +66,12 @@ public class OutputView {
         Map_Down.add("|");
     }
 
+    public void Delete_Bridge(){
+        Map_Up.remove(Map_Up.size()-1);
+        Map_Up.remove(Map_Up.size()-1);
+        Map_Down.remove(Map_Down.size()-1);
+        Map_Down.remove(Map_Down.size()-1);
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
