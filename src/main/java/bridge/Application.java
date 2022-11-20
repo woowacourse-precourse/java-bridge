@@ -10,12 +10,13 @@ public class Application {
     public static int totalTrial = 1;
     public static UpSide upSide = new UpSide();
     public static DownSide downSide = new DownSide();
-
+    public static boolean success;
 
     public static void main(String[] args) {
         Initialization.init();
         while (StartGame.startGame()) {
             if (movingTurn == size) {
+                success = true;
                 break;
             }
         }

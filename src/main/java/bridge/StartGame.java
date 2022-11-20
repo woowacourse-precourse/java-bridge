@@ -23,6 +23,7 @@ public class StartGame {
             BridgeGame.retry();
             return true;
         }
+        Application.success = false;
         return false;
     }
 
