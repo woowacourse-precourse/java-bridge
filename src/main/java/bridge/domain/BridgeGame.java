@@ -63,7 +63,7 @@ public class BridgeGame {
      */
     public boolean retry(String input) {
         inputRetryValidate(input);
-        if (input.equals("Y")) {
+        if (input.equals("R")) {
             return true;
         }
         return false;
