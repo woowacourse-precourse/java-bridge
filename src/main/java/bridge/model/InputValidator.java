@@ -21,7 +21,7 @@ public class InputValidator {
     }
 
     public void GameCommand(String input) {
-        if (!input.equals(GAME_COMMAND_RETRY.get()) && !input.equals(GAME_COMMAND_RETRY.get())) {
+        if (!input.equals(GAME_COMMAND_RETRY.get()) && !input.equals(GAME_COMMAND_QUIT.get())) {
             throw new IllegalArgumentException(ERROR_PREFIX.get() + ERROR_GAME_COMMAND_IS_NOT_R_OR_Q.get());
         }
     }
