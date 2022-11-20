@@ -9,4 +9,5 @@ public abstract class BridgeConstant {
     public static final String BRIDGE_SEPERATOR = " | ";
     public static final int BRIDGE_SIZE_MIN = 3;
     public static final int BRIDGE_SIZE_MAX = 20;
+    public static final int INITIAL_COUNT = 1;
 }

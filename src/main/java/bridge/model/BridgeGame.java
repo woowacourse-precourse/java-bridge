@@ -16,7 +16,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge.addAll(bridge);
-        this.countOfAttempts = 1;
+        this.countOfAttempts = BridgeConstant.INITIAL_COUNT;
         this.needsRetry = false;
         this.success = false;
     }
