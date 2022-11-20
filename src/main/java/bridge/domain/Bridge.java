@@ -9,4 +9,8 @@ public class Bridge {
     public Bridge(List<String> bridge){
         this.bridge = new ArrayList<>(bridge);
    }
+
+   public boolean isCorrect(int index, String bridgeType){
+        return bridge.get(index).equals(bridgeType);
+   }
 }
