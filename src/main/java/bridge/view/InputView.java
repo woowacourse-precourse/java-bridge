@@ -14,11 +14,17 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    public static final String ERROR_INVALID_INPUT_BRIDGE_NUMBER = "[ERROR] 다리의 길이는 숫자만 입력 가능합니다.";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (RuntimeException e) {
+            throw new IllegalArgumentException(ERROR_INVALID_INPUT_BRIDGE_NUMBER);
+        }
     }
 
     /**
