@@ -57,11 +57,11 @@ public class BridgeGame {
         gameRecord.addRetryCount();
     }
 
-    public BridgeAndPasser bridgeAndPasser() {
+    public BridgeAndPasser status() {
         return compress(bridge, bridgePasser);
     }
 
-    public GameResult gameResult() {
+    public GameResult result() {
         return makeGameResult(bridge, bridgePasser, gameRecord);
     }
 }
