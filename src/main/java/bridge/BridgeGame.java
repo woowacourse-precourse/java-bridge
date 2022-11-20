@@ -30,7 +30,7 @@ public class BridgeGame {
     public void retry() {
         index = 0;
         gameCount += 1;
-
+        System.out.println("hi");
 
     }
 }
