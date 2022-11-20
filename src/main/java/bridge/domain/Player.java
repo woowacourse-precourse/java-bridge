@@ -34,6 +34,10 @@ public class Player {
         return bridgeGameResult.getResult();
     }
 
+    public Integer getGamePlayCount() {
+        return gamePlayCount.getCount();
+    }
+
     public Victory checkGamePassed() {
         return bridgeGameResult.checkPassed();
     }

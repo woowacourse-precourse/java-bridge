@@ -53,6 +53,16 @@ class PlayerTest {
     }
 
     @Test
+    void getGamePlayCount_메서드는_GamePlayCount의_getCount를_호출한다() {
+        GamePlayCount gamePlayCount = mock(GamePlayCount.class);
+        Player player = new Player(gamePlayCount, Round.firstRound(), new BridgeGameResult());
+
+        player.getGamePlayCount();
+
+        verify(gamePlayCount, only()).getCount();
+    }
+
+    @Test
     void checkGamePassed_메서드는_BridgeGameResult의_checkPassed를_호출한다() {
         BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
         Player player = new Player(GamePlayCount.firstGame(), Round.firstRound(), bridgeGameResult);
