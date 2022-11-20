@@ -20,13 +20,7 @@ public class InputView {
     public static int readBridgeSize() {
         final String input = messageBox(ENTER_BRIDGE_SIZE);
         System.out.println();
-        try {
-            InputValidator.bridgeSize(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readBridgeSize();
-        }
-        return Integer.parseInt(input);
+        return toNumericValue(input);
     }
 
     /**
@@ -60,5 +54,15 @@ public class InputView {
     private static String messageBox(String message) {
         System.out.println(message);
         return Console.readLine();
+    }
+
+    private static int toNumericValue(String input) {
+        try {
+            InputValidator.bridgeSize(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+        return Integer.parseInt(input);
     }
 }
