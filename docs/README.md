@@ -166,7 +166,7 @@ D
   - [x] readMoving함수를 실행 후, 반환값을 userRemoveCommand에 저장
   - [x] move함수에 매개변수로 userRemoveCommand를 넣고, 반환값을 gameChecked에 저장
   - [x] bridgeGame의 upBridge를 printMap함수에 매개변수로 전달하여 출력
-  - [ ] bridgeGame의 downBridge를 printMap함수에 매개변수로 전달하여 출력
+  - [x] bridgeGame의 downBridge를 printMap함수에 매개변수로 전달하여 출력
   - [ ] gameChecked의 값이 R인지 비교
     - [ ] retry함수를 실행
   - [ ] break문 사용
