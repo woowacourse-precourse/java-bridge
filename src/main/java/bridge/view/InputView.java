@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.util.ConstantMessage;
-import bridge.util.Exceptions;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,13 +11,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        String readLine = null;
+        String readLine;
         while (true) {
-            readLine = Exceptions.validateBridgeLength(Console.readLine());
-            if (!readLine.equals(ConstantMessage.BRIDGE_LENGTH_ERROR_MESSAGE)) {
+            readLine = Console.readLine();
+            if (readLine.equals(OutputView.printBridgeLengthInputErrorMessage(readLine))) {
                 break;
             }
-            System.out.println(readLine);
         }
         return Integer.parseInt(readLine);
     }
@@ -31,7 +28,7 @@ public class InputView {
         String readLine;
         while (true) {
             readLine = Console.readLine();
-            if (readLine.equals(OutputView.printBridgeLengthErrorMessage(readLine))) {
+            if (readLine.equals(OutputView.printMovingBlockInputErrorMessage(readLine))) {
                 break;
             }
         }
