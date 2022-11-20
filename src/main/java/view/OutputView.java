@@ -13,7 +13,7 @@ public class OutputView {
         return outputView;
     }
 
-    public void printStart() {
+    public static void printStart() {
         System.out.println(View.START_GAME.message());
         insertLineBreak();
     }
@@ -47,13 +47,13 @@ public class OutputView {
         System.out.println(View.FINAL_RESULT.message());
     }
 
-    public void printMap(List<String> upSide, List<String> downSide) {
+    public void printMap(List<List<String>> bothSide) {
         printStartSquareBracket();
-        printSide(upSide);
+        printSide(bothSide.get(1));
         printEndSquareBracket();
 
         printStartSquareBracket();
-        printSide(downSide);
+        printSide(bothSide.get(0));
         printEndSquareBracket();
 
         insertLineBreak();
@@ -68,15 +68,15 @@ public class OutputView {
         }
     }
 
-    public void printResult(List<String> upSide, List<String> downSide, int countTryNumber) {
+    public void printResult(List<List<String>> bothSide, int tryNumber) {
         printFinalResult();
-        printMap(upSide, downSide);
+        printMap(bothSide);
 
-        if (isWin(upSide, downSide)) {
-            printWin(countTryNumber);
+        if (isWin(bothSide)) {
+            printWin(tryNumber);
         }
-        if (isFail(upSide, downSide)) {
-            printFail(countTryNumber);
+        if (isFail(bothSide)) {
+            printFail(tryNumber);
         }
     }
 
@@ -96,37 +96,37 @@ public class OutputView {
         System.out.println(StringConstant.END_SQUARE_BRACKET.getConstant());
     }
 
-    public boolean isWin(List<String> upSide, List<String> downSide) {
-        return !upSide.contains(StringConstant.WRONG_PATH.getConstant())
-                && !downSide.contains(StringConstant.WRONG_PATH.getConstant());
+    public boolean isWin(List<List<String>> bothSide) {
+        return !bothSide.get(0).contains(StringConstant.WRONG_PATH.getConstant())
+                && !bothSide.get(1).contains(StringConstant.WRONG_PATH.getConstant());
     }
 
-    public boolean isFail(List<String> upSide, List<String> downSide) {
-        return upSide.contains(StringConstant.WRONG_PATH.getConstant())
-                || downSide.contains(StringConstant.WRONG_PATH.getConstant());
+    public boolean isFail(List<List<String>> bothSide) {
+        return bothSide.get(0).contains(StringConstant.WRONG_PATH.getConstant())
+                || bothSide.get(1).contains(StringConstant.WRONG_PATH.getConstant());
     }
 
-    public void printWin(int countTryNumber) {
+    public void printWin(int tryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
         System.out.println(StringConstant.WIN.getConstant());
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
-        System.out.println(countTryNumber);
+        System.out.println(tryNumber);
     }
 
-    public void printFail(int countTryNumber) {
+    public void printFail(int tryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
         System.out.println(StringConstant.FAIL.getConstant());
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
-        System.out.println(countTryNumber);
+        System.out.println(tryNumber);
     }
 
-    public void insertLineBreak() {
+    public static void insertLineBreak() {
         System.out.println();
     }
 }
