@@ -2,19 +2,12 @@ package bridge.domain;
 
 public class BridgeGameResult {
 
-    private static final int FIRST_COUNT = 1;
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
 
     private int tryCount;
-    private String gameResult;
-    private BridgeMoveState moveState;
-
-    public BridgeGameResult() {
-        tryCount = FIRST_COUNT;
-        gameResult = FAIL;
-        moveState = new BridgeMoveState();
-    }
+    private String gameResult = FAIL;
+    private BridgeMoveState moveState = new BridgeMoveState();
 
     public int increaseTryCount() {
         return ++tryCount;
