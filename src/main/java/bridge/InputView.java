@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Scanner;
 
+import static bridge.InputEnum.*;
+
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -15,7 +17,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        System.out.println("다리 길이를 입력해 주세요.");
+        INPUT_SIZE.getMessage();
         String bridgeSize = Console.readLine();
         try{
             Validate.isInputBridgeSizeValid(bridgeSize);
@@ -31,7 +33,7 @@ public class InputView {
      */
     public static String readMoving() {
         while(true) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            INPUT_MOVING.getMessage();
             String upOrDown = Console.readLine();
             try{
                 Validate.isUOrD(upOrDown);
@@ -47,7 +49,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         while(true) {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            INPUT_RETRY.getMessage();
             String retryOrQuit = Console.readLine();
             try{
                 Validate.isROrQ(retryOrQuit);
