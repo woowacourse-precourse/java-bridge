@@ -24,7 +24,6 @@ public class BridgeMaker {
         for(int i=0; i<size; i++){
             bridge.add(BRIDGE_ROUTE.getValue(bridgeNumberGenerator.generate()));
         }
-        System.out.println(bridge);
         return bridge;
     }
 }
