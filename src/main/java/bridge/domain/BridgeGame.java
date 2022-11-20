@@ -67,6 +67,13 @@ public class BridgeGame {
         return BridgeConstants.SPACE;
     }
 
+    public String calculateResult() {
+        if (path.size() == bridge.size() && path.get(path.size() - 1).equals(bridge.get(bridge.size() - 1))) {
+            return BridgeConstants.WIN;
+        }
+        return BridgeConstants.LOSE;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
