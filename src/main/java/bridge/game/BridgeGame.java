@@ -80,4 +80,16 @@ public class BridgeGame {
         status = BridgeGameStatus.RUNNING;
         tryCount += 1;
     }
+
+    public BridgeGameStatus status(){
+        return this.status;
+    }
+
+    public List<List<String>> progress(){
+        return List.of(bridgeUpper, bridgeLower);
+    }
+
+    public int tryTimes(){
+        return this.tryCount;
+    }
 }
