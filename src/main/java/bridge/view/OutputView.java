@@ -33,6 +33,11 @@ public class OutputView {
         System.out.print(message);
     }
 
+    public void printError(String error) {
+
+        System.out.print(error);
+    }
+
     public void printStart() {
 
         printlnMessage(GAME_START_MESSAGE);
@@ -114,4 +119,6 @@ public class OutputView {
         printPlayerCleared(bridgeGameResult.getCleared());
         printPlayerTried(bridgeGameResult.getTried());
     }
+
+
 }
