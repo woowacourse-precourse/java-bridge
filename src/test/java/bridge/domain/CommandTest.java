@@ -36,7 +36,7 @@ class CommandTest {
     }
 
     @Test
-    void from_R_또는_Q_이외의_값이_들어오는_경우_예와가_발생한다() {
+    void from_R_또는_Q_이외의_값이_들어오는_경우_예외가_발생한다() {
         //given
         String code = "G";
 
@@ -45,5 +45,4 @@ class CommandTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_COMMAND_ERROR);
     }
-
 }
