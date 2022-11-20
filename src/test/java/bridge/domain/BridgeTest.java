@@ -29,4 +29,16 @@ public class BridgeTest {
 			assertThat(bridge).isNotNull();
 		}
 	}
+
+	@DisplayName("위치 당 위, 아래 중 하나만 건널 수 있다. 샘플 : 'UDU'")
+	@ParameterizedTest(name = "위치 : {0} , 예상 : {1}")
+	@CsvSource({"1, true", "2, false", "3, true"})
+	void bridge_plate_test(int position, boolean expected) {
+		//given
+		Bridge bridge = new Bridge(List.of("U", "D", "U"));
+		//when
+		boolean actual = bridge.canWalkUp(position);
+		//then
+		assertThat(actual).isEqualTo(expected);
+	}
 }
