@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.Player;
 import bridge.service.BridgeGame;
 import bridge.validation.BridgeSizeValidation;
+import bridge.validation.GameCommandValidation;
 import bridge.validation.MovingValidation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -22,6 +23,7 @@ public class BridgeGameController {
         List<String> movingChoices = game.createMovingChoices(getMoving());
         String move = game.move(new Player(movingChoices), bridge);
         printMap(new Player(movingChoices), bridge, move);
+        String gameCommand = getGameCommand();
     }
 
     public int getBridgeSize() {
@@ -46,7 +48,12 @@ public class BridgeGameController {
         outputView.printMap(player, bridge, move);
     }
 
-    public void getGameCommand() {
+    public String getGameCommand() {
+        PrintGuideMessage.printCommandGuide();
+        String input = new InputView().readGameCommand();
+        GameCommandValidation validation = new GameCommandValidation();
+        validation.isValidate(input);
+        return input;
     }
 
     public void printResult() {

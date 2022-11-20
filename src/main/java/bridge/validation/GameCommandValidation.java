@@ -11,6 +11,12 @@ public class GameCommandValidation {
     public GameCommandValidation() {
     }
 
+    public void isValidate(String gameCommand) {
+        isNull(gameCommand);
+        isBlank(gameCommand);
+        isUpperCaseRQ(gameCommand);
+    }
+
     public void throwError(String message) {
         throw new IllegalArgumentException(message);
     }

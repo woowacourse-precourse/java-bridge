@@ -14,4 +14,8 @@ public class PrintGuideMessage {
     public static void printMovingGuide() {
         System.out.println(GuideMessage.MOVING_INPUT_MESSAGE.getMessage());
     }
+
+    public static void printCommandGuide() {
+        System.out.println(GuideMessage.COMMAND_INPUT_MESSAGE.getMessage());
+    }
 }
