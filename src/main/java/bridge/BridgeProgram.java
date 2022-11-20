@@ -21,10 +21,10 @@ public class BridgeProgram {
     }
 
     public void start(){
-        BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
+        BridgeGame bridgeGame = inputBridgeSize();
         StepResponseDto stepResponseDto = null;
         do {
-            stepResponseDto = bridgeGame.move(inputView.readMoving());
+            stepResponseDto = inputMoving(bridgeGame);
             outputView.printMap(stepResponseDto);
         } while (checkWhetherRetry(bridgeGame, stepResponseDto));
         outputView.printResult(stepResponseDto);
@@ -32,8 +32,40 @@ public class BridgeProgram {
 
     private boolean checkWhetherRetry(BridgeGame bridgeGame, StepResponseDto stepResponseDto) {
         if (!stepResponseDto.isSuccess()) {
-            return bridgeGame.retry(inputView.readGameCommand());
+            return inputGameCommand(bridgeGame);
         }
         return !stepResponseDto.isFinal();
     }
+
+    private BridgeGame inputBridgeSize(){
+        while (true) {
+            try {
+                return new BridgeGame(inputView.readBridgeSize());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+            }
+        }
+    }
+
+    private StepResponseDto inputMoving(BridgeGame bridgeGame) {
+        while (true) {
+            try {
+                return bridgeGame.move(inputView.readMoving());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+            }
+        }
+    }
+
+    private boolean inputGameCommand(BridgeGame bridgeGame) {
+        while (true) {
+            try {
+                return bridgeGame.retry(inputView.readGameCommand());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+            }
+        }
+    }
+
+
 }
