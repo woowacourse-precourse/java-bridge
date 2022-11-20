@@ -2,22 +2,21 @@ package bridge.dto;
 
 import bridge.domain.bridgegame.BridgeGame;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class BridgeGameDto {
-    private final List<String> upperBridgeMap;
-    private final List<String> lowerBridgeMap;
+    private final HashMap<String, List<String>> gameMap;
 
-    private BridgeGameDto(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
-        this.upperBridgeMap = upperBridgeMap;
-        this.lowerBridgeMap = lowerBridgeMap;
+    private BridgeGameDto(HashMap<String, List<String>> gameMap) {
+        this.gameMap = gameMap;
     }
 
-    public static BridgeGameDto from(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
-        return new BridgeGameDto(upperBridgeMap, lowerBridgeMap);
+    public static BridgeGameDto from(HashMap<String, List<String>> gameMap) {
+        return new BridgeGameDto(gameMap);
     }
 
     public BridgeGame toEntity() {
-        return BridgeGame.from(upperBridgeMap, lowerBridgeMap);
+        return BridgeGame.from(gameMap);
     }
 }
