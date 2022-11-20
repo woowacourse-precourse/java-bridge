@@ -15,7 +15,7 @@ public class OutputView {
         return "다리의 길이를 입력해주세요.";
     }
 
-    public static String printBridgeLengthErrorMessage(String readLine) {
+    public static String printBridgeLengthInputErrorMessage(String readLine) {
         String result;
         result = Exceptions.validateBridgeLength(readLine);
         if (!result.equals(ConstantMessage.BRIDGE_LENGTH_ERROR_MESSAGE)) {
@@ -27,6 +27,16 @@ public class OutputView {
 
     public static String printMovindBlockInputPhrase() {
         return "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    }
+
+    public static String printMovingBlockInputErrorMessage(String readLine) {
+        String result;
+        result = Exceptions.validateMovingBlock(readLine);
+        if (!result.equals(ConstantMessage.MOVING_BLOCK_ERROR_MESSAGE)) {
+            return result;
+        }
+        System.out.println(result);
+        return result;
     }
 
     /**
