@@ -27,7 +27,7 @@ public class GameController {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         crossBridge(bridge, user);
     }
-    public boolean crossBridge(List<String> bridge, User user) {
+    public void crossBridge(List<String> bridge, User user) {
         int currentIndex = 0;
         while (true) {
             String direction = inputView.readMoving();
