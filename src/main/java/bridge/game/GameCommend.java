@@ -27,4 +27,13 @@ public enum GameCommend {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(WARM_RESTART_CHOICE));
     }
+
+    public static GameCommend generate(String stringIdentifier) {
+        return Arrays.stream(GameCommend.values())
+                .filter(gameCommend -> gameCommend.getStringIdentifier()
+                        .equals(stringIdentifier))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(WARM_RESTART_CHOICE));
+    }
+
 }
