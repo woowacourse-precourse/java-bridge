@@ -48,7 +48,7 @@ public class OutputView {
 
     private String toPrintFormat(BridgeGame bridgeGame, BridgeUnit bridgeUnit) {
         List<String> results = new ArrayList<>();
-        bridgeGame.getGameMap().stream()
+        bridgeGame.getGameProgress().stream()
                 .map(mapUnit -> getFormat(mapUnit, bridgeUnit))
                 .forEach(results::add);
         return String.join(BRIDGE_UNIT_DELIMITER, results);

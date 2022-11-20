@@ -13,12 +13,12 @@ import static bridge.domain.GameStatus.SUCCESS;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private final List<MapUnit> gameMap;
+    private final List<MapUnit> gameProgress;
     private int attempt;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.gameMap = new ArrayList<>();
+        this.gameProgress = new ArrayList<>();
         this.attempt = 1;
     }
 
@@ -29,18 +29,18 @@ public class BridgeGame {
      */
     public GameStatus move(BridgeUnit nextUnit) {
         if (!canMove(nextUnit)) {
-            gameMap.add(new MapUnit(nextUnit, false));
+            gameProgress.add(new MapUnit(nextUnit, false));
             return FAILED;
         }
-        gameMap.add(new MapUnit(nextUnit, true));
-        if (gameMap.size() == bridge.getSize()) {
+        gameProgress.add(new MapUnit(nextUnit, true));
+        if (gameProgress.size() == bridge.getSize()) {
             return SUCCESS;
         }
         return PLAYING;
     }
 
     private boolean canMove(BridgeUnit nextUnit) {
-        int position = gameMap.size();
+        int position = gameProgress.size();
         return bridge.getUnit(position).equals(nextUnit);
     }
 
@@ -53,12 +53,12 @@ public class BridgeGame {
         //TODO
         //int 초과할 떄
         attempt++;
-        gameMap.clear();
+        gameProgress.clear();
         return PLAYING;
     }
 
-    public List<MapUnit> getGameMap() {
-        return gameMap;
+    public List<MapUnit> getGameProgress() {
+        return gameProgress;
     }
 
     public int getAttempt() {

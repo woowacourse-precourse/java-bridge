@@ -15,7 +15,6 @@ import static bridge.domain.GameStatus.FAILED;
 import static bridge.domain.GameStatus.PLAYING;
 import static bridge.domain.GameStatus.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     BridgeGame bridgeGame;
@@ -86,7 +85,7 @@ class BridgeGameTest {
             //then
             assertThat(status).isEqualTo(PLAYING);
             assertThat(bridgeGame.getAttempt()).isEqualTo(2);
-            assertThat(bridgeGame.getGameMap()).isEqualTo(new ArrayList<MapUnit>());
+            assertThat(bridgeGame.getGameProgress()).isEqualTo(new ArrayList<MapUnit>());
         }
     }
 }
