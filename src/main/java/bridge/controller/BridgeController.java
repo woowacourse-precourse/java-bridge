@@ -4,7 +4,6 @@ import bridge.config.ClassConfig;
 import dto.Result;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static bridge.constant.GameResult.FAILURE;
 import static bridge.constant.GameResult.SUCCESS;
@@ -25,6 +24,7 @@ public class BridgeController {
         int size = printAndInputBridgeSize();
         List<String> bridges = classConfig.bridgeMaker().makeBridge(size);
         playGame(bridges);
+        printSuccessGameResult();
     }
 
     private int printAndInputBridgeSize() {
@@ -33,41 +33,54 @@ public class BridgeController {
     }
 
     private void playGame(List<String> bridges) {
-        IntStream.range(0, bridges.size()).forEach(index -> {
-            String movement = printAndInputMovement();
-            correctBridge = classConfig.bridgeGame().move(movement, bridges, index);
-            classConfig.outputView().printMap(correctBridge, movement);
-            if (isCorrectBridge(bridges)) {
+        for (int index = 0; index < bridges.size(); index++) {
+            distinguishBridgeAndPrintMap(bridges, index);
+            isCorrectBridge();
+            if (retryGame(bridges)) {
+                break;
+            }
+            if (endGame()) {
                 return;
             }
-            PrintSuccessGameResult(bridges, index);
-        });
-    }
-
-    private void PrintSuccessGameResult(List<String> bridges, int index) {
-        if (index == bridges.size() - 1) {
-            classConfig.outputView().printResult(new Result(SUCCESS, count));
         }
     }
 
-    private boolean isCorrectBridge(List<String> bridges) {
+    private void distinguishBridgeAndPrintMap(List<String> bridges, int index) {
+        String movement = printAndInputMovement();
+        correctBridge = classConfig.bridgeGame().move(movement, bridges, index);
+        classConfig.outputView().printMap(correctBridge, movement);
+    }
+
+    private String printAndInputMovement() {
+        classConfig.outputView().printSelectMovement();
+        return classConfig.inputView().readMoving();
+    }
+
+    private void isCorrectBridge() {
         if (!correctBridge) {
             classConfig.outputView().printRestartOrQuit();
             String gameCommand = classConfig.inputView().readGameCommand();
             restart = classConfig.bridgeGame().retry(gameCommand);
-            if (isRestart(bridges)) {
-                return true;
-            }
+        }
+    }
+
+    private boolean retryGame(List<String> bridges) {
+        if (!correctBridge && restart) {
+            setInitialBridge(bridges);
+            return true;
         }
         return false;
     }
 
-    private boolean isRestart(List<String> bridges) {
-        if (restart) {
-            retryGame(bridges);
-            return true;
-        }
-        if (!restart) {
+    private void setInitialBridge(List<String> bridges) {
+        count++;
+        classConfig.outputView().setUpBridge();
+        classConfig.outputView().setDownBridge();
+        playGame(bridges);
+    }
+
+    private boolean endGame() {
+        if (!correctBridge && !restart) {
             printFailureGameResult();
             return true;
         }
@@ -78,15 +91,9 @@ public class BridgeController {
         classConfig.outputView().printResult(new Result(FAILURE, count));
     }
 
-    private void retryGame(List<String> bridges) {
-        count++;
-        classConfig.outputView().setUpBridge();
-        classConfig.outputView().setDownBridge();
-        playGame(bridges);
-    }
-
-    private String printAndInputMovement() {
-        classConfig.outputView().printSelectMovement();
-        return classConfig.inputView().readMoving();
+    private void printSuccessGameResult() {
+        if (correctBridge) {
+            classConfig.outputView().printResult(new Result(SUCCESS, count));
+        }
     }
 }
