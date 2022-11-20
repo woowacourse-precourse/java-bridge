@@ -84,7 +84,7 @@ public class BridgeGame {
         return this.bridge;
     }
 
-    public Map getProgress() {
+    public Map<String, List<String>> getProgress() {
         return this.progress;
     }
 }

@@ -1,7 +1,10 @@
 package bridge.enums;
 
 public enum OutputMsg {
-    MSG_OUTPUT_START_GAME("다리 건너기 게임을 시작합니다.");
+    MSG_OUTPUT_START_GAME("다리 건너기 게임을 시작합니다."),
+    OPEN_BRACKET("[ "),
+    PARTITION(" | "),
+    CLOSE_BRACKET(" ]");
 
     private final String message;
 
