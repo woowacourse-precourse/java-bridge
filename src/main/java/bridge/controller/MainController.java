@@ -13,7 +13,9 @@ public class MainController {
         OutputView.printWelcome();
         BridgeSize bridgeSize = getBridgeSize();
         BridgeGame bridgeGame = makeBridgeGame(bridgeSize.get());
-        processBridgeGame(bridgeGame);
+        boolean isSuccess = processBridgeGame(bridgeGame);
+        OutputView.printResult(
+                bridgeGame.getBridgeMap().get(), isSuccess, bridgeGame.getTries());
     }
 
     private static BridgeSize getBridgeSize() {
@@ -33,19 +35,26 @@ public class MainController {
         return new BridgeGame(bridge);
     }
 
-    private static void processBridgeGame(BridgeGame bridgeGame) {
+    /**
+     * 브릿지 게임을 진행하는 메소드
+     * output: 승패 여부 (boolean)
+     */
+    private static boolean processBridgeGame(BridgeGame bridgeGame) {
         do {
             if (!processTurn(bridgeGame)) {
-                break;
+                return false;
             }
         } while (!bridgeGame.checkEnd());
+        return true;
     }
 
+    /**
+     * 브릿지 게임의 한 턴을 진행하는 메소드
+     * output: 답을 맞췄는지 여부 (boolean)
+     */
     private static boolean processTurn(BridgeGame bridgeGame) {
-        moveBridge(bridgeGame);
-        if (!bridgeGame.getLastState()) {
-            if(!askRetry()) {
-                bridgeGame.end();
+        if (!moveBridge(bridgeGame)) {
+            if(!askRetry().getIsRetry()) {
                 return false;
             }
             bridgeGame.retry();
@@ -53,31 +62,44 @@ public class MainController {
         return true;
     }
 
-    private static String getDirection() {
-        while (true) {
-            try {
-                String direction = new BridgeMove(InputView.readMoving()).get();
-                return direction;
-            } catch (IllegalArgumentException E) {
-                System.out.printf(E.getMessage());
-            }
-        }
-    }
-
-    private static void moveBridge(BridgeGame bridgeGame) {
-        String direction = getDirection();
-        bridgeGame.move(direction);
+    /**
+     * 이동 방향을 입력받아 다리를 한 칸 전진하는 메소드
+     * output: 답을 맞췄는지 여부 (boolean)
+     */
+    private static boolean moveBridge(BridgeGame bridgeGame) {
+        String direction = getMove().getDirection();
+        boolean isCorrect = bridgeGame.move(direction);
         OutputView.printMap(bridgeGame.getBridgeMap().get());
+        return isCorrect;
     }
 
-    private static boolean askRetry() {
+    /**
+     * 실패 시 다시 시도할지 명령어를 얻는 메소드
+     * output: BridgeCommand Object
+     */
+    private static BridgeCommand askRetry() {
         while (true) {
             try {
                 BridgeCommand bridgeCommand = new BridgeCommand(InputView.readGameCommand());
-                return bridgeCommand.getIsRetry();
+                return bridgeCommand;
             } catch (IllegalArgumentException E) {
                 System.out.printf(E.getMessage());
             }
         }
     }
+
+    /**
+     * 이동을 위한 이동 방향을 묻는 메소드
+     * output: BridgeMove Object
+     */
+    private static BridgeMove getMove() {
+        while (true) {
+            try {
+                return new BridgeMove(InputView.readMoving());
+            } catch (IllegalArgumentException E) {
+                System.out.printf(E.getMessage());
+            }
+        }
+    }
+
 }

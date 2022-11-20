@@ -17,8 +17,7 @@ public class BridgeCommand {
 
     private void validate(String s) {
         if (!(s.equals("R") || s.equals("Q"))) {
-            System.out.printf(Message.ERROR_COMMAND_OUT_OF_RANGE.get());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.ERROR_COMMAND_OUT_OF_RANGE.get());
         }
     }
 }

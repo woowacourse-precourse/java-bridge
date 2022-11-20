@@ -9,7 +9,7 @@ public class BridgeMove {
         validate(s);
         this.move = s;
     }
-    public String get() {
+    public String getDirection() {
         return move;
     }
 

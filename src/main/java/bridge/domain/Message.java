@@ -1,7 +1,11 @@
 package bridge.domain;
 
 public enum Message {
-    START_GAME("다리 건너기 게임을 시작합니다.\n"),
+    // OUTPUT MESSAGES ------------------------------------------------------------
+    OUTPUT_START_GAME("다리 건너기 게임을 시작합니다.\n"),
+    OUTPUT_END_GAME("최종 게임 결과\n"),
+    OUTPUT_STATUS("\n게임 성공 여부: %s\n총 시도한 횟수: %d\n"),
+
     // INPUT MESSAGES -------------------------------------------------------------
     INPUT_BRIDGE_SIZE("\n다리의 길이를 입력해주세요.\n"),
     INPUT_DIRECTION("\n이동할 칸을 선택해주세요.\n"),
