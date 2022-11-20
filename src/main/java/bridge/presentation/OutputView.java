@@ -13,5 +13,10 @@ public class OutputView {
     public void printInputBridge() {
         System.out.println(GameMessage.INPUT_BRIDGE_SIZE.getMessage());
     }
+
+    public void printBridgeSize(int bridgeSize) {
+        System.out.println(bridgeSize);
+        System.out.println();
+    }
 }
 
