@@ -5,7 +5,6 @@ import constant.NumberConstant;
 import constant.StringConstant;
 
 public class MovingValidator {
-
     public static void isValid(String moving) {
         isOneLetter(moving);
         isEqualsUOrD(moving);
