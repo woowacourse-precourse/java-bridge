@@ -126,4 +126,52 @@ class InputViewTest {
         Assertions.assertThat(byteArrayOutputStream.toString())
                 .contains("[ERROR]");
     }
+
+    @Test
+    void 게임을_다시_시도할지의_입력이_R인_경우() {
+        String normalInput = "R";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readGameCommand();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .doesNotContain("[ERROR]");
+    }
+
+    @Test
+    void 게임을_다시_시도할지의_입력이_Q인_경우() {
+        String normalInput = "Q";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readGameCommand();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .doesNotContain("[ERROR]");
+    }
+
+    @Test
+    void 게임을_다시_시도할지의_입력이_공백인_경우() {
+        String wrongInput = "\n\nQ";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readGameCommand();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .contains("[ERROR]");
+    }
+
+    @Test
+    void 게임을_다시_시도할지의_입력이_R_또는_Q가_아닌_경우() {
+        String wrongInput = "RR\nQ";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
+        System.setIn(byteArrayInputStream);
+
+        inputView.readGameCommand();
+
+        Assertions.assertThat(byteArrayOutputStream.toString())
+                .contains("[ERROR]");
+    }
 }

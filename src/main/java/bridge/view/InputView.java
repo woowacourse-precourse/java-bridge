@@ -95,5 +95,4 @@ public class InputView {
         }
         return false;
     }
-
 }
