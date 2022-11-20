@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +13,30 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> firstLayer, List<String> secondLayer) {
+        List<String> bridgeFirstLayer = makeTotalBridge(firstLayer);
+        List<String> bridgeSecondLayer = makeTotalBridge(secondLayer);
+
+        for (int i=0; i<bridgeFirstLayer.size(); i++) {
+            System.out.print(bridgeFirstLayer.get(i));
+        }
+
+        System.out.println();
+        for (int i=0; i<bridgeSecondLayer.size(); i++) {
+            System.out.print(bridgeSecondLayer.get(i));
+        }
+    }
+
+    public List<String> makeTotalBridge(List<String> layer) {
+        List<String> output = new ArrayList<>();
+        output.add(outputMessage.OUTPUT_BRIDGE_HEAD.get());
+        for (int i=0; i<layer.size()-1; i++) {
+            output.add(layer.get(i) + outputMessage.OUTPUT_BRIDGE_MIDDLE.get());
+        }
+        output.add(layer.get(layer.size()-1));
+        output.add(outputMessage.OUTPUT_BRIDGE_TAIL.get());
+
+        return output;
     }
 
     /**
@@ -24,13 +50,9 @@ public class OutputView {
 
 enum outputMessage {
 
-    OUTPUT_BRIDGE_HEAD("[\n["),
-    OUTPUT_BRIDGE_TAIL("]\n]"),
-    OUTPUT_BRIDGE_MIDDLE("|\n|"),
-
-    OUTPUT_MOVING_CORRECT(" O "),
-    OUTPUT_MOVING_INCORRECT(" X "),
-    OUTPUT_WITHOUT_MOVING("   "),
+    OUTPUT_BRIDGE_HEAD("["),
+    OUTPUT_BRIDGE_TAIL("]"),
+    OUTPUT_BRIDGE_MIDDLE("|"),
 
     OUTPUT_SUCCESS("성공"),
     OUTPUT_FAILURE("실패"),
