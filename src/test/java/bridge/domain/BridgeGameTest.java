@@ -49,4 +49,13 @@ public class BridgeGameTest {
                     .hasMessageContaining(ERROR_MESSAGE);
         }
     }
+
+    @DisplayName("안 떨어지고 끝까지 도착하면 잘 종료된다")
+    @Test
+    void moveEnd() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isFinished()).isTrue();
+    }
 }
