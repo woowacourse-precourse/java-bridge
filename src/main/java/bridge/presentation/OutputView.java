@@ -23,6 +23,10 @@ public class OutputView {
         System.out.println(GameMessage.INPUT_MOVE.getMessage());
     }
 
+    public void printMove(String move) {
+        System.out.println(move);
+    }
+
     public void printInputRetryCommand() {
         System.out.println(GameMessage.INPUT_RETRY_COMMAND.getMessage());
     }
