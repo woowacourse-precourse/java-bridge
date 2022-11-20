@@ -68,18 +68,19 @@ class BridgeGameServiceTest {
     @CsvSource({"R, true", "Q, false"})
     void retry_메서드는_command를_입력받아_게임을_재시작_설정을_한다(String command, boolean result) {
         bridgeGameService.initializeBridgeGame(3);
-        bridgeGameService.play(new Player(), "U");
+        Player player = new Player();
+        bridgeGameService.play(player, "U");
 
-        bridgeGameService.retry(command);
+        bridgeGameService.retry(player, command);
 
         assertThat(bridgeGameService.isPlayable()).isEqualTo(result);
     }
 
     @Test
-    void retry_메서드는_다리가_준비되지_않은경우_IllegalStateException을_던진다() {
-        assertThatThrownBy(() -> bridgeGameService.retry("R"))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("다리 건너기 게임을 진행할 수 없습니다.");
+    void retry_메서드는_다리가_초기화되지_않은_경우_게임을_재시작하지_않고_그대로_반환한다() {
+        bridgeGameService.retry(new Player(), "R");
+
+        assertThat(bridgeGameService.isPlayable()).isFalse();
     }
 
     static class TestBridgeNumberGenerator implements BridgeNumberGenerator {

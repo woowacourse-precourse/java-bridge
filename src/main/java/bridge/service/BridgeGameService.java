@@ -35,21 +35,27 @@ public class BridgeGameService {
         return player.getBridgeGameResult();
     }
 
+    public void retry(Player player, String command) {
+        if (isNotInitialized() || isNotContinuous(command)) {
+            return;
+        }
+        bridgeGame.retry();
+        player.reset();
+    }
+
     public boolean isPlayable() {
-        if (!isInitialized()) {
+        if (isNotInitialized()) {
             return false;
         }
         return bridgeGame.isPlayable();
     }
 
-    private boolean isInitialized() {
-        return !Objects.isNull(bridgeGame);
+    private boolean isNotInitialized() {
+        return Objects.isNull(bridgeGame);
     }
 
-    public void retry(String command) {
-        if (!isInitialized()) {
-            throw new IllegalStateException(INVALID_GAME_STATE_MESSAGE);
-        }
-        bridgeGame.retry(BridgeGameStatus.getEnum(command));
+    private boolean isNotContinuous(String command) {
+        BridgeGameStatus bridgeGameStatus = BridgeGameStatus.getEnum(command);
+        return bridgeGameStatus.isNotPlayable();
     }
 }
