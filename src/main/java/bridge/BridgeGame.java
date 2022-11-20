@@ -9,6 +9,7 @@ import java.util.Stack;
  */
 public class BridgeGame {
     public int idx;
+    public int runCount=0;
 
     public BridgeGame() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
@@ -22,8 +23,13 @@ public class BridgeGame {
         this.idx = 0;
         do {
             move();
+            // 이곳에 중간 상태 메시지 작성
+            // 모델의 정보를 먼저 수정해준 뒤 뷰를 호출하여 출력하여야 한다.
+            new VisualizeController();
+            new OutputView().printMap();
         } while (runCondition(Model.user, Model.bridge));
-        if (idx == Model.size) { // 다리를 다 지나간 상태라면
+        runCount++;
+        if (idx == Model.size) { // 다리를 다 올바르게 지나간 상태라면
             new OutputView().printResult(); // 결과 출력
             return;
         }
@@ -37,24 +43,16 @@ public class BridgeGame {
     public boolean runCondition(Stack<String> user, List<String> bridge) {
         if (user.peek().equals(bridge.get(idx))) {
             this.idx++;
-            // 다리 크기 만큼 다 지나갔다면
             return idx < Model.size;
         }
         return false;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-        if(new InputView().readGameCommand().equals("Q")){
+    public void retry() { // 인스턴스 변수들을 다시 초기화 시켜주어야 한다.
+        if (new InputView().readGameCommand().equals("Q")) {
             new OutputView().printResult();
             return;
         }
         run();
     }
-
-
 }
