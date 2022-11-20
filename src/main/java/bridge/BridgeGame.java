@@ -11,6 +11,7 @@ public class BridgeGame {
     private static final String GAME_WIN = "성공";
     private static final String GAME_LOSE = "실패";
     private static final String RESTART_COMMAND = "R";
+    private static final String WORD_FAIL = "X";
     private static final InputController inputController = new InputController();
     private static final OutputController outputController = new OutputController();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -39,7 +40,7 @@ public class BridgeGame {
     }
 
     private boolean isMoveFail(Bridge moveResult) {
-        return moveResult.getUpShape().equals("X") || moveResult.getDownShape().equals("X");
+        return moveResult.getUpShape().equals(WORD_FAIL) || moveResult.getDownShape().equals(WORD_FAIL);
     }
 
     private boolean isGameOver(Bridge moveResult) {
