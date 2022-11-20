@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static bridge.constant.GameStatus.END;
 import static bridge.constant.GameStatus.FAIL;
 import static bridge.constant.GameStatus.ON_WAY;
 
@@ -48,5 +49,9 @@ public class BridgeGame {
 
     public boolean isFail() {
         return this.gameStatus.equals(FAIL);
+    }
+
+    public boolean isEnd() {
+        return this.gameStatus.equals(END);
     }
 }
