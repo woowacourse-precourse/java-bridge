@@ -1,15 +1,22 @@
 package bridge.domainTest;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeRecord;
 import bridge.domain.BridgeStage;
 import bridge.domain.StageResult;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class BridgeGameTest {
+    @BeforeEach
+    void reset() {
+        BridgeRecord.resetRecord();
+        BridgeStage.resetStage();
+    }
 
     @Test
     @DisplayName("해당 라운드의 사용자의 입력이 정답이면 PASS 반환")
@@ -53,7 +60,7 @@ public class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("move()를 실행한 뒤 사용자의 입력이 history에 남는지 확인")
+    @DisplayName("move()를 실행한 뒤 사용자의 입력이 record에 남는지 확인")
     void moveTestFirst() {
         List<String> bridge = List.of("U","D","D","U");
         List<String> input = List.of("U","D","D", "U");
@@ -64,13 +71,13 @@ public class BridgeGameTest {
             bridgeGame.move(input.get(round));
         }
 
-        List<String> history = bridgeGame.getHistory();
+        List<String> record = BridgeRecord.getRecord();
 
-        Assertions.assertThat(history).containsExactly("U","D","D","U");
+        Assertions.assertThat(record).containsExactly("U","D","D","U");
     }
 
     @Test
-    @DisplayName("move()를 실행한 뒤 사용자의 입력이 중간에 틀려도 history에 남는지 확인")
+    @DisplayName("move()를 실행한 뒤 사용자의 입력이 중간에 틀려도 record에 남는지 확인")
     void moveTestSecond() {
         List<String> bridge = List.of("U","D","D","U");
         List<String> input = List.of("U","D");
@@ -81,9 +88,9 @@ public class BridgeGameTest {
             bridgeGame.move(input.get(round));
         }
 
-        List<String> history = bridgeGame.getHistory();
+        List<String> record = BridgeRecord.getRecord();
 
-        Assertions.assertThat(history).containsExactly("U","D");
+        Assertions.assertThat(record).containsExactly("U","D");
     }
 
     @Test

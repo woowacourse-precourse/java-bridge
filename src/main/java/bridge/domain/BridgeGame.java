@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private final List<String> history = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -26,7 +25,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String userInput) {
-        history.add(userInput);
+        BridgeRecord.addUserInput(userInput);
     }
 
     public StageResult compareInputWithBridge(String userInput) {
@@ -60,10 +59,6 @@ public class BridgeGame {
      */
     public void retry() {
         BridgeStage.resetStage();
-        history.clear();
-    }
-
-    public List<String> getHistory() {
-        return history;
+        BridgeRecord.resetRecord();
     }
 }

@@ -11,6 +11,10 @@ public class BridgeRecord {
     }
 
     public static void resetRecord() {
+        record.clear();
+    }
 
+    public static List<String> getRecord() {
+        return record;
     }
 }
