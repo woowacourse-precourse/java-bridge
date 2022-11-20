@@ -16,7 +16,7 @@ public class Application {
             output.printMap(newGame.bridge, newGame.moveResult);
             if (!playing) {
                 output.printAskRetry();
-                newGame.retry(input.readGameCommand());
+                playing = newGame.retry(input.readGameCommand());
             }
         }
     }
