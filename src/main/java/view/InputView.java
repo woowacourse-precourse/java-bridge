@@ -13,10 +13,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = Integer.parseInt(Console.readLine());
+        String bridgeSize = Console.readLine();
+        validationUtil.validateBridgeSizeNullInput(bridgeSize);
+        validationUtil.validateBridgeSizeDigitInput(bridgeSize);
         validationUtil.validateBridgeSizeInput(bridgeSize);
 
-        return bridgeSize;
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
