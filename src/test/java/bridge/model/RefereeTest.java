@@ -16,6 +16,7 @@ class RefereeTest {
 
     Referee recordFirst;
     Referee recordSecond;
+    Referee recordFinal;
     Bridge bridge;
 
     @BeforeEach
@@ -23,6 +24,7 @@ class RefereeTest {
         bridge = new Bridge(List.of("U", "D", "U"));
         recordFirst = new Referee(bridge, 1);
         recordSecond = new Referee(bridge, 2);
+        recordFinal = new Referee(bridge, 3);
     }
 
     @AfterEach
@@ -30,6 +32,7 @@ class RefereeTest {
         bridge = null;
         recordFirst = null;
         recordSecond = null;
+        recordFinal = null;
     }
 
     @DisplayName("이동의 성공/실패 여부를 반환한다.")
@@ -50,5 +53,15 @@ class RefereeTest {
 
         assertThat(isRecordFirstFail).isTrue();
         assertThat(isRecordSecondFail).isFalse();
+    }
+
+    @DisplayName("다리의 마지막 라운드가 통과했는지 확인한다.")
+    @Test
+    void isFinalRoundPassTest() {
+        Boolean finalPass = recordFinal.isFinalRoundPass("U");
+        Boolean finalFail = recordFinal.isFinalRoundPass("D");
+
+        assertThat(finalPass).isEqualTo(true);
+        assertThat(finalFail).isEqualTo(false);
     }
 }
