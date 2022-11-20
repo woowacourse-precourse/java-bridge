@@ -16,7 +16,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
 
-        if (exceptionMsg(input,"[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요",1)){
+        if (isWrongValue(input,"[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요",1)){
             return readBridgeSize();
         }
         return Integer.parseInt(input);
@@ -29,7 +29,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String selectedDir = Console.readLine().toUpperCase();
-        if (exceptionMsg(selectedDir,"[ERROR] 위: U, 아래: D로 입력해야 합니다.",2)){
+        if (isWrongValue(selectedDir,"[ERROR] 위: U, 아래: D로 입력해야 합니다.",2)){
             return readMoving();
         }
         return selectedDir;
@@ -41,7 +41,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요 (재시도: R,종료: Q)");
         String selectedResult = Console.readLine().toUpperCase();
-        if (exceptionMsg(selectedResult,"[ERROR] 재시도: R,종료: Q로 입력해야 합니다.",3)){
+        if (isWrongValue(selectedResult,"[ERROR] 재시도: R,종료: Q로 입력해야 합니다.",3)){
             return readGameCommand();
         }
         return selectedResult;
@@ -51,7 +51,7 @@ public class InputView {
      *
      * 유효값 검사 후 예외처리
      */
-    public boolean exceptionMsg (String input, String msg, int num) {
+    public boolean isWrongValue (String input, String msg, int num) {
         try {
             Validate.check(input,num);
         } catch (IllegalArgumentException e) {
