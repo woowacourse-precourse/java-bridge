@@ -19,28 +19,19 @@ public class BridgeGameMachine {
 
     public void play() {
         try {
-            outputView.printStartGame();
-            outputView.println();
+            printStartGame();
 
-            outputView.printEnterBridgeSize();
-            int bridgeSize = inputView.readBridgeSize();
-            outputView.println();
-
+            int bridgeSize = inputBridgeSize();
             BridgeGame bridgeGame = createNewGame(bridgeSize);
 
             while (true) {
-                outputView.printEnterMoving();
-                String moving = inputView.readMoving();
+                String moving = inputMoving();
                 bridgeGame.move(moving);
-
-                MovingMap movingMap = bridgeGame.getMovingMap();
-                outputView.printMap(movingMap);
-                outputView.println();
+                printMovingMap(bridgeGame);
 
                 if (!bridgeGame.canContinue()) {
                     if (!bridgeGame.isLatestMovingSuccess()) {
-                        outputView.printEnterGameCommand();
-                        String gameCommand = inputView.readGameCommand();
+                        String gameCommand = inputGameCommand();
 
                         if ("R".equals(gameCommand)) {
                             bridgeGame.retry();
@@ -52,13 +43,45 @@ public class BridgeGameMachine {
                 }
             }
 
-            MovingMap movingMap = bridgeGame.getMovingMap();
-            boolean isClear = bridgeGame.isClear();
-            int tryCount = bridgeGame.getTryCount();
-            outputView.printResult(movingMap, isClear, tryCount);
+            printResult(bridgeGame);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
+    }
+
+    private void printResult(BridgeGame bridgeGame) {
+        MovingMap movingMap = bridgeGame.getMovingMap();
+        boolean isClear = bridgeGame.isClear();
+        int tryCount = bridgeGame.getTryCount();
+        outputView.printResult(movingMap, isClear, tryCount);
+    }
+
+    private String inputGameCommand() {
+        outputView.printEnterGameCommand();
+        return inputView.readGameCommand();
+    }
+
+    private void printMovingMap(BridgeGame bridgeGame) {
+        MovingMap movingMap = bridgeGame.getMovingMap();
+        outputView.printMap(movingMap);
+        outputView.println();
+    }
+
+    private String inputMoving() {
+        outputView.printEnterMoving();
+        return inputView.readMoving();
+    }
+
+    private int inputBridgeSize() {
+        outputView.printEnterBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
+        outputView.println();
+        return bridgeSize;
+    }
+
+    private void printStartGame() {
+        outputView.printStartGame();
+        outputView.println();
     }
 
     private BridgeGame createNewGame(int bridgeSize) {
