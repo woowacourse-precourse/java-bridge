@@ -1,5 +1,8 @@
 package bridge.result;
 
+import static bridge.result.GameStatus.UNKNOWN;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Result {
@@ -17,5 +20,9 @@ public class Result {
 
     public GameStatus getGameStatus() {
         return gameStatus;
+    }
+
+    public static Result getEmptyResult() {
+        return new Result(Collections.emptyList(), UNKNOWN);
     }
 }
