@@ -127,7 +127,7 @@ D
 - [x] gameCount라는 인스턴스 변수 생성
 
 ### BridgeGame
-- [ ] upBridge를 초기화
+- [x] upBridge를 초기화
 - [ ] downBridge를 초기화
 - [ ] moveCount를 0으로 초기화
 - [ ] gameCount를 0으로 초기화
