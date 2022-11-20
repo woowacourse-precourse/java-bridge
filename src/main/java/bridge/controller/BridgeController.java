@@ -17,7 +17,10 @@ public class BridgeController {
         int size = inputView.readBridgeSize();
         bridgeGame.setBridge(size);
     }
-    public void moveController() {}
+    public void moveController() {
+        String move = inputView.readMoving();
+        bridgeGame.move(move);
+    }
     public void retryController() {}
     public void startController() {
         outputView.printStart();

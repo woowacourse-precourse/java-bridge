@@ -9,6 +9,7 @@ public class Application {
         try {
             bridgeController.startController();
             bridgeController.setBridgeController();
+            bridgeController.moveController();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
