@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validate(size);
+        List<Integer> binaryBridge = generateRandomBinary(size);
         return null;
     }
 
@@ -26,5 +28,13 @@ public class BridgeMaker {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3이상 20이하여야 합니다.");
         }
+    }
+
+    private List<Integer> generateRandomBinary(int size) {
+        List<Integer> binaryBridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            binaryBridge.add(this.bridgeNumberGenerator.generate());
+        }
+        return binaryBridge;
     }
 }
