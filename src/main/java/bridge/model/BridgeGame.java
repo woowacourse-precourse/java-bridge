@@ -36,13 +36,14 @@ public class BridgeGame {
      */
     public void retry() {
         this.playerMove = new ArrayList<>();
+        this.life = true;
     }
 
     public List<List<String>> getGameMap() {
         List<String> upMap = new ArrayList<>();
         List<String> downMap = new ArrayList<>();
         for (int index = 0; index < playerMove.size(); index++) {
-            if (answerMove.get(index).equals("U")) {
+            if (playerMove.get(index).equals("U")) {
                 downMap.add(" ");
                 if (answerMove.get(index).equals(playerMove.get(index))) {
                     upMap.add("O");

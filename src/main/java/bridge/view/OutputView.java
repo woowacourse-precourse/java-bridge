@@ -23,7 +23,7 @@ public class OutputView {
         }
     }
 
-    private String toBridgeFormat(List<String> bridge) {
+    private static String toBridgeFormat(List<String> bridge) {
         StringJoiner stringJoiner = new StringJoiner(FORMAT_MAP_DIVISION, FORMAT_MAP_START, FORMAT_MAP_END);
         for (String step : bridge) {
             stringJoiner.add(step);
@@ -37,5 +37,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public static void printNowBridge(List<List<String>> gameMap) {
+        for (List<String> gameBridge : gameMap) {
+            System.out.println(toBridgeFormat(gameBridge));
+        }
+
     }
 }
