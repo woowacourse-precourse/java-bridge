@@ -1,5 +1,5 @@
 ## ⭐️ 기능 목록
-- [ ] 게임 시작 문구 출력 기능 - BridgeGame
+- [x] 게임 시작 문구 출력 기능 - BridgeGame
 
 - [ ] 다리의 길이를 입력받는 기능 (3 이상 20이하의 숫자) - InputView
   - [x] 다리 길이 입력받기 - InputView#readBridgeSize
