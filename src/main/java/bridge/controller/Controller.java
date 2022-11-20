@@ -61,4 +61,14 @@ public class Controller {
         } while (!bridgeGame.isFinish());
         outputView.printResult(player, result, "성공");
     }
+    public void compareDecision(String decision) {
+        if(decision.equals("R")) {
+            result = new Result();
+            bridgeGame.initialize(result);
+            start();
+        }
+        if(decision.equals("Q")) {
+            outputView.printResult(player, result, "실패");
+        }
+    }
 }
