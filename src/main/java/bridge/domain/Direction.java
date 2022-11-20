@@ -27,7 +27,7 @@ public enum Direction {
         throw new InvalidDirectionFormatException();
     }
 
-    private String getDirectionInitial() {
+    public String getDirectionInitial() {
         return directionInitial;
     }
 
