@@ -21,17 +21,17 @@ public class OutputView {
         printMapDown(bridge);
     }
 
-    private static void printMapDown(List<String> bridge) {
-        List<String> downBridge = bridge.stream()
-                .map(Validate::isDown)
-                .collect(Collectors.toList());
-        System.out.println(START_BRIDGE + String.join(MIDDLE_BRIDGE, downBridge) + END_BRIDGE);
-    }
     private static void printMapUp(List<String> bridge) {
         List<String> upBridge = bridge.stream()
                 .map(Validate::isUp)
                 .collect(Collectors.toList());
         System.out.println(START_BRIDGE + String.join(MIDDLE_BRIDGE, upBridge) + END_BRIDGE);
+    }
+    private static void printMapDown(List<String> bridge) {
+        List<String> downBridge = bridge.stream()
+                .map(Validate::isDown)
+                .collect(Collectors.toList());
+        System.out.println(START_BRIDGE + String.join(MIDDLE_BRIDGE, downBridge) + END_BRIDGE);
     }
 
     /**
