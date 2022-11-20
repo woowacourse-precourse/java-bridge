@@ -28,6 +28,7 @@ public class BridgeMaker {
     }
 
     private String makeOne() {
-        return Selector.getSelectorFromNumber(bridgeNumberGenerator.generate()).name();
+        String generated = Integer.toString(bridgeNumberGenerator.generate());
+        return Direction.valueOf(generated).name();
     }
 }
