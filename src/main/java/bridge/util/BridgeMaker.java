@@ -27,6 +27,9 @@ public class BridgeMaker {
 
     }
 
+    private String constructBridgeAtPoint(){
+        return changeValueToCommand(chooseSideOfBridge());
+    }
 
     private String changeValueToCommand(int value){
         if(value == UPPER.getValue()) return UPPER.getCommand();
