@@ -20,11 +20,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input = Console.readLine();
-        Validator.isOneString(input);
-        Validator.isUppercase(input);
-        Validator.isUpOrDown(input);
-        return input;
+        String moving = Console.readLine();
+        Validator.isOneStringMoving(moving);
+        Validator.isUppercaseMoving(moving);
+        Validator.isUpOrDown(moving);
+        return moving;
     }
 
     /**

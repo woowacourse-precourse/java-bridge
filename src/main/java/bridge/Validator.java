@@ -37,8 +37,8 @@ public class Validator {
     /**
      * 입력값이 한 문자가 아니라면 예외를 반환한다.
      * */
-    public static void isOneString(String input) {
-        if (input.length() != 1) {
+    public static void isOneStringMoving(String moving) {
+        if (moving.length() != 1) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 한 문자여야 합니다.");
         }
     }
@@ -46,8 +46,8 @@ public class Validator {
     /**
     * 입력값이 대문자가 아니라면 예외를 반환한다.
     * */
-    public static void isUppercase(String input) {
-        if (!Character.isUpperCase(input.charAt(0))) {
+    public static void isUppercaseMoving(String moving) {
+        if (!Character.isUpperCase(moving.charAt(0))) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 대문자여야 합니다.");
         }
     }
