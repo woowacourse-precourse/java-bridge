@@ -15,29 +15,49 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String moving, List<String> up_bridge, List<String> down_bridge) {
-        // 사용자가 이동할 칸 moving, 다리 index
-        InputView input = new InputView();
-
-        String result = "";
-
-        if (moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index))){
-            if (moving.equals("U")){
-                result = "U";
-            }
-            if (moving.equals("D")){
-                result = "D";
-            }
-
+        if (isPossible(moving)){
+            checkMovingPossibleCase(moving, up_bridge, down_bridge);
+            return "O";
         }
-        if (!(moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index)))){
-            if (moving.equals("U")){
-                result = "UX";
-            }
-            if (moving.equals("D")){
-                result = "DX";
-            }
+        if (!isPossible(moving)){
+            checkMovingImpossibleCase(moving, up_bridge, down_bridge);
+            return "X";
         }
-        return result;
+        return "";
+    }
+
+    private static boolean isPossible(String moving) {
+        return moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index));
+    }
+
+    private static void checkMovingImpossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
+        if (moving.equals("U")){
+           changeUpBridge("X", up_bridge, down_bridge);
+        }
+        if (moving.equals("D")){
+            changeDownBridge("X", up_bridge, down_bridge);
+        }
+    }
+
+    private static void checkMovingPossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
+        if (moving.equals("U")){
+            changeUpBridge("O", up_bridge, down_bridge);
+        }
+        if (moving.equals("D")){
+            changeDownBridge("O", up_bridge, down_bridge);
+        }
+    }
+
+    private static void changeDownBridge(String possible, List<String> up_bridge, List<String> down_bridge) {
+        up_bridge.add(" ");
+        down_bridge.add(possible);
+        BridgeMaker.bridge_index++;
+    }
+
+    private static void changeUpBridge(String possible, List<String> up_bridge, List<String> down_bridge) {
+        up_bridge.add(possible);
+        down_bridge.add(" ");
+        BridgeMaker.bridge_index++;
     }
 
     /**
