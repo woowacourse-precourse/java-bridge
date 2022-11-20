@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeUnit;
+import bridge.domain.bridge.BridgeUnit;
 import bridge.domain.GameStatus;
 import bridge.domain.MapUnit;
 

@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.bridge.BridgeMaker;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -11,7 +12,6 @@ import java.util.List;
 import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BridgeMakerTest {

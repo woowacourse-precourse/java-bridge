@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.domain.bridge.BridgeUnit;
+
 public class MapUnit {
     private final BridgeUnit bridgeUnit;
     private final boolean success;

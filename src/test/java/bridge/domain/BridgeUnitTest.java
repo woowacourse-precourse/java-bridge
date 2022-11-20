@@ -1,13 +1,13 @@
 package bridge.domain;
 
+import bridge.domain.bridge.BridgeUnit;
 import org.junit.jupiter.api.Test;
 
-import static bridge.domain.BridgeUnit.DOWN;
-import static bridge.domain.BridgeUnit.UP;
+import static bridge.domain.bridge.BridgeUnit.DOWN;
+import static bridge.domain.bridge.BridgeUnit.UP;
 import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeUnitTest {
 

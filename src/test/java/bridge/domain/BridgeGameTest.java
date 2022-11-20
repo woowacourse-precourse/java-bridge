@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeMaker;
+import bridge.domain.bridge.BridgeUnit;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,8 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.BridgeUnit.DOWN;
-import static bridge.domain.BridgeUnit.UP;
+import static bridge.domain.bridge.BridgeUnit.DOWN;
+import static bridge.domain.bridge.BridgeUnit.UP;
 import static bridge.domain.GameStatus.FAILED;
 import static bridge.domain.GameStatus.PLAYING;
 import static bridge.domain.GameStatus.SUCCESS;

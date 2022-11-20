@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeUnit;
+
 import java.util.ArrayList;
 import java.util.List;
 

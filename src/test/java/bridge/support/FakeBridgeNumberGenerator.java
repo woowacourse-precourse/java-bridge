@@ -1,6 +1,6 @@
 package bridge.support;
 
-import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.bridge.BridgeNumberGenerator;
 
 public class FakeBridgeNumberGenerator implements BridgeNumberGenerator {
 

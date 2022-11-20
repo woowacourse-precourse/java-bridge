@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameGenerator;
-import bridge.domain.BridgeUnit;
+import bridge.domain.bridge.BridgeUnit;
 import bridge.domain.Command;
 import bridge.domain.GameStatus;
 import bridge.view.InputView;
