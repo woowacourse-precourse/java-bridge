@@ -1,18 +1,19 @@
 package view;
 
-import bridge.BridgeState;
+import bridge.BridgeFigureBuilder;
 import constants.Message;
 
 public class OutputView {
 
-    public void printMap(BridgeState bridgeState) {
-        System.out.println(bridgeState);
+    public void printMap(BridgeFigureBuilder bridgeFigure) {
+        System.out.println(bridgeFigure);
     }
 
-    public void printResult(BridgeState bridgeState, int gameTryCount, boolean successOrNot) {
+    public void printResult(
+            BridgeFigureBuilder bridgeFigure, int gameTryCount, boolean successOrNot) {
         System.out.println(Message.FINAL_GAME_RESULT_GUIDE_MESSAGE);
 
-        System.out.println(bridgeState);
+        System.out.println(bridgeFigure);
 
         String gameResultMessage = Message.FAIL;
         if (successOrNot) {

@@ -4,8 +4,15 @@ import constants.BridgeConstants;
 
 public class BridgeGame {
 
-    private final BridgeState bridgeState = new BridgeState();
-    private int gameTryCount = 1;
+    private final BridgeState bridgeState;
+    private final BridgeFigureBuilder bridgeFigureBuilder;
+    private int gameTryCount;
+
+    public BridgeGame() {
+        this.bridgeState = new BridgeState();
+        this.bridgeFigureBuilder = new BridgeFigureBuilder(bridgeState);
+        this.gameTryCount = 1;
+    }
 
     public boolean move(Bridge bridge, String moving, int round) {
         String resultOfMoving = bridge.isCorrectMoving(moving, round);
@@ -27,8 +34,8 @@ public class BridgeGame {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public BridgeState getStateOfBridge() {
-        return bridgeState;
+    public BridgeFigureBuilder getBridgeFigureBuilder() {
+        return bridgeFigureBuilder;
     }
 
     public int getGameTryCount() {

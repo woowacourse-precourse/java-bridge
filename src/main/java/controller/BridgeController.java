@@ -43,14 +43,17 @@ public class BridgeController {
                 return;
             }
         }
-        outputView.printResult(bridgeGame.getStateOfBridge(), bridgeGame.getGameTryCount(), isSuccessiveMove);
+        outputView.printResult(
+                bridgeGame.getBridgeFigureBuilder(),
+                bridgeGame.getGameTryCount(),
+                isSuccessiveMove);
     }
 
     private boolean isSuccessiveMove(Bridge bridge, int bridgeSize, boolean isSuccessiveMove) {
         for (int round = 0; isSuccessiveMove && round < bridgeSize; round++) {
             outputView.printMovingInputMessage();
             isSuccessiveMove = bridgeGame.move(bridge, inputView.readMoving(), round);
-            outputView.printMap(bridgeGame.getStateOfBridge());
+            outputView.printMap(bridgeGame.getBridgeFigureBuilder());
         }
         return isSuccessiveMove;
     }
