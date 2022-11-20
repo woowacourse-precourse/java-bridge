@@ -37,6 +37,16 @@ public class BridgeGame {
     public void retry() {
     }
 
+    public boolean isEnd() {
+        if (this.bridge.size() <= this.userSelect.size())
+            return true;
+
+        if (isFailed())
+            return true;
+
+        return false;
+    }
+
     public boolean isFailed() {
         for (int i = 0; i < this.userSelect.size(); i++) {
             if (!this.bridge.get(i).equals(this.userSelect.get(i)))
