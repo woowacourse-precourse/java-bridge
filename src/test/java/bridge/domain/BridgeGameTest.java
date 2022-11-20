@@ -1,9 +1,11 @@
 package bridge.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -17,7 +19,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void setUp() {
-        this.bridgeGame = new BridgeGame();
+        this.bridgeGame = new BridgeGame(new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP)));
     }
 
     @DisplayName("플레이어 이동 테스트")
@@ -38,5 +40,18 @@ class BridgeGameTest {
                     () -> assertDoesNotThrow(() -> bridgeGame.move("D"))
             );
         }
+    }
+
+    @DisplayName("이동 결과를 반환한다.")
+    @Test
+    void result() {
+        Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+
+        assertThat(bridgeGame.result()).isEqualTo(new BridgeGameResult(bridge, List.of(true, true, true, false)));
     }
 }

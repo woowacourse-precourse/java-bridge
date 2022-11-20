@@ -1,9 +1,11 @@
 package bridge.domain;
 
+import bridge.exception.domain.AttemptsCountException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Bridge {
     private final List<BridgeShape> bridgeShapes;
@@ -24,6 +26,21 @@ public class Bridge {
 
     public void connect(String bridgeShapeValue) {
         bridgeShapes.add(BridgeShape.of(bridgeShapeValue));
+    }
+
+    public BridgeGameResult compare(Bridge compareBridge) {
+        validateAttemptsCount(compareBridge);
+
+        List<Boolean> booleans = IntStream.range(0, compareBridge.bridgeShapes.size())
+                .mapToObj(index -> compareBridge.bridgeShapes.get(index) == this.bridgeShapes.get(index))
+                .collect(Collectors.toList());
+        return new BridgeGameResult(this, booleans);
+    }
+
+    private void validateAttemptsCount(Bridge compareBridge) {
+        if (compareBridge.bridgeShapes.size() > this.bridgeShapes.size()) {
+            throw new AttemptsCountException();
+        }
     }
 
     @Override
