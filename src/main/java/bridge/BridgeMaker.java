@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.BlockConverter;
+import bridge.domain.GameMoving;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            String bridgeMessage = BlockConverter.getMessageFromNumber(bridgeNumber);
+            String bridgeMessage = GameMoving.getMovingFromNumber(bridgeNumber);
             bridge.add(bridgeMessage);
         }
         return bridge;

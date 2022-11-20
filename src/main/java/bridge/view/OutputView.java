@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.GameFlag;
+import bridge.domain.GameMoving;
 import bridge.domain.GameStatus;
 
 import java.util.ArrayList;
@@ -37,11 +38,11 @@ public class OutputView {
 
     private void setLines(String gameHistory, List<String> upperLine, List<String> lowerLine) {
         for (int i = 0; i < gameHistory.length(); i++) {
-            if (gameHistory.charAt(i) == 'U') {
+            if (GameMoving.isUp(gameHistory.substring(i, i+1))) {
                 upperLine.add("O");
                 lowerLine.add(" ");
             }
-            if (gameHistory.charAt(i) == 'D') {
+            if (GameMoving.isDown(gameHistory.substring(i, i+1))) {
                 upperLine.add(" ");
                 lowerLine.add("O");
             }
