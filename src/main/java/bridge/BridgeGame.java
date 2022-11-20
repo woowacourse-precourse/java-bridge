@@ -70,6 +70,15 @@ public class BridgeGame {
         return isCorrect;
     }
 
+    public boolean checkFail() {
+        int index = answerPath.size() - 1;
+        if (!bridge.get(index).equals(answerPath.get(index))) {
+            return true;
+        }
+        return false;
+    }
+
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
