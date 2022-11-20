@@ -49,8 +49,7 @@ public class BridgeGame {
     }
 
     public boolean retry() {
-        System.out.println(RESTART_OF_END.getValue());
-        if (getExitOrRestart().equals("R")) {
+        if (reGetExitOrRestart().equals("R")) {
             move.clearMoving();
             return isTrue = true;
         }
