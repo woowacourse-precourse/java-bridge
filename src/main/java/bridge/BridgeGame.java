@@ -40,19 +40,19 @@ public class BridgeGame {
     }
 
     private void mapIfCorrect(String moving) {
-        if (moving.equals("U")) {
+        if (moving.equals(MoveMark.UP.mark())) {
             addMap(MapMark.CORRECT.mark(), MapMark.NOTHING.mark());
         }
-        if (moving.equals("D")) {
+        if (moving.equals(MoveMark.DOWN.mark())) {
             addMap(MapMark.NOTHING.mark(), MapMark.CORRECT.mark());
         }
     }
 
     private void mapIfWrong(String moving) {
-        if (moving.equals("U")) {
+        if (moving.equals(MoveMark.UP.mark())) {
             addMap(MapMark.WRONG.mark(), MapMark.NOTHING.mark());
         }
-        if (moving.equals("D")) {
+        if (moving.equals(MoveMark.DOWN.mark())) {
             addMap(MapMark.NOTHING.mark(), MapMark.WRONG.mark());
         }
     }

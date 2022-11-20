@@ -8,12 +8,17 @@ public class Constants {
 
         private final String letter;
 
-        MapMark(String letter) {
-            this.letter = letter;
-        }
+        MapMark(String letter) { this.letter = letter; }
+        public String mark() { return letter; }
+    }
 
-        public String mark() {
-            return letter;
-        }
+    public enum MoveMark {
+        UP("U"),
+        DOWN("D");
+
+        private final String letter;
+
+        MoveMark(String letter) { this.letter = letter; }
+        public String mark() { return letter; }
     }
 }
