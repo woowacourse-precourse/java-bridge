@@ -21,7 +21,7 @@ public class Bridge {
     }
 
     public List<String> getCrossedBridge(int position) {
-        return movableBlocks.subList(0, position);
+        return movableBlocks.subList(0, position + 1);
     }
 
     private void validate(List<String> movableBlocks) {
