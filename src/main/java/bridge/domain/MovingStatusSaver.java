@@ -43,6 +43,10 @@ public class MovingStatusSaver {
         return this.movingStatus.size();
     }
 
+    public int getRandomBridgeSize(){
+        return this.randomBridge.size();
+    }
+
     public boolean isStopCondition() {
         if (movingStatus.contains(MovingStatus.UP.sideFail())
                 || movingStatus.contains(MovingStatus.DOWN.sideFail())) {
