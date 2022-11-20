@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BridgeGameStateTest {
 
     @ParameterizedTest(name = "[{index}] gameState = {0}")
-    @MethodSource("gameStateStratOrContinueDummy")
+    @MethodSource("gameStateStartOrContinueDummy")
     @DisplayName("다리 게임이 계속 진행되는지 확인했을 때 진행 성공 테스트")
     void whenCheckBridgeGameContinueThenSuccessTest(BridgeGameState gameState) {
         // given & when
@@ -45,7 +45,18 @@ class BridgeGameStateTest {
         assertThat(isBridgeGameEnd).isTrue();
     }
 
-    static Stream<Arguments> gameStateStratOrContinueDummy() {
+    @ParameterizedTest(name = "[{index}] gameState = {0}")
+    @MethodSource("gameStateStartOrContinueDummy")
+    @DisplayName("다리 게임이 종료됐는지 확인했을 때 종료 실패 테스트")
+    void whenCheckBridgeGameEndThenFailTest(BridgeGameState gameState) {
+        // given & when
+        boolean isBridgeGameEnd = gameState.isBridgeGameEnd();
+
+        // then
+        assertThat(isBridgeGameEnd).isFalse();
+    }
+
+    static Stream<Arguments> gameStateStartOrContinueDummy() {
         return Stream.of(
                 Arguments.arguments(START),
                 Arguments.arguments(CONTINUE)
