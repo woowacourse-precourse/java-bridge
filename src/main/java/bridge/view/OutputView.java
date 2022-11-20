@@ -28,7 +28,6 @@ public class OutputView {
     public void printGameStartAlert() {
         System.out.println(GAME_START_ALERT);
     }
-
     public void printBridgeLengthInputAlert() {
         System.out.println(BRIDGE_LENGTH_INPUT_ALERT);
     }
@@ -38,7 +37,6 @@ public class OutputView {
     public void printRetryInputAlert() {
         System.out.println(RETRY_INPUT_ALERT);
     }
-
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -83,9 +81,8 @@ public class OutputView {
         StringBuilder oneLineOnBridge = new StringBuilder("[");
         for(int i = 1; i <= bridgeGameResult.getLastMovementCount(); i++) {
             oneLineOnBridge.append(getSpotText(bridge, bridgeGameResult, i, line));
-            if(i != bridgeGameResult.getLastMovementCount() - 1) {
+            if(i != bridgeGameResult.getLastMovementCount()) {
                 oneLineOnBridge.append("|");
-                break;
             }
         }
         oneLineOnBridge.append("]");
