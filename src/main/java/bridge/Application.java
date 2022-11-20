@@ -11,6 +11,16 @@ public class Application {
         game = createGame();
     }
 
+    public static boolean run() {
+        while (!game.isEnd()) {
+            game.move(getMove());
+        }
+
+        if (game.isFailed() && getRetry())
+            return true;
+        return false;
+    }
+
     private static BridgeGame createGame() {
         output.printRequestInputBridgeSize();
         while (true) {
