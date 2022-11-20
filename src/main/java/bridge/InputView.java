@@ -21,9 +21,13 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input;
-        int size;
+        int size = -1;
         do{
-            while(!isDigit(input=Console.readLine())){}
+            System.out.println(BRIDGE_SIZE_INPUT.getText());
+            input=Console.readLine();
+            if(!isDigit(input)){
+                continue;
+            }
             size = Integer.parseInt(input);
         }while(!isValidRange(size));
 
@@ -35,7 +39,11 @@ public class InputView {
      */
     public String readMoving() {
         String input;
-        while(!isValidChoice(input=Console.readLine() , MOVE_CHOICE));
+        do{
+            System.out.println(BRIDGE_MOVE_INPUT.getText());
+            input = Console.readLine();
+        }
+        while(!isValidChoice(input, MOVE_CHOICE));
         return input;
     }
 
@@ -44,7 +52,10 @@ public class InputView {
      */
     public String readGameCommand() {
         String input;
-        while(!isValidChoice(input=Console.readLine() , GAME_RESTART));
+        do{
+            System.out.println(RESTART_INPUT.getText());
+            input = Console.readLine();
+        }while(!isValidChoice(input , GAME_RESTART));
         return input;
     }
 
