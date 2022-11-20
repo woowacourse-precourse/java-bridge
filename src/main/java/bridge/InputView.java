@@ -14,9 +14,19 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(ConsoleMessage.GAME_START);
-        System.out.println(ConsoleMessage.REQUEST_INPUT_BRIDGE_LENGTH);
-        String input = Console.readLine();
-        inputValidator.validateInputBridgeSize(input);
+        String input;
+        while (true) {
+            try {
+                System.out.println(ConsoleMessage.REQUEST_INPUT_BRIDGE_LENGTH);
+                input = Console.readLine();
+                System.out.println(); // 빈 줄 출력
+                inputValidator.validateInputBridgeSize(input);
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
 
         return Integer.parseInt(input);
     }
@@ -25,9 +35,18 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public InputType readMoving() {
-        System.out.println(ConsoleMessage.REQUEST_INPUT_MOVE);
-        String input = Console.readLine();
-        inputValidator.validateInputMove(input);
+        String input;
+        while (true) {
+            try {
+                System.out.println(ConsoleMessage.REQUEST_INPUT_MOVE);
+                input = Console.readLine();
+                inputValidator.validateInputMove(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
 
         return getInputType(input);
     }
@@ -36,9 +55,19 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public InputType readGameCommand() {
-        System.out.println(ConsoleMessage.REQUEST_INPUT_RETRY);
-        String input = Console.readLine();
-        inputValidator.validateInputRetry(input);
+
+        String input;
+        while (true) {
+            try {
+                System.out.println(ConsoleMessage.REQUEST_INPUT_RETRY);
+                input = Console.readLine();
+                inputValidator.validateInputRetry(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
 
         return getInputType(input);
     }
