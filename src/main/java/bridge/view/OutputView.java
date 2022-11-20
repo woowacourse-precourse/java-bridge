@@ -22,27 +22,24 @@ public class OutputView {
 	}
 
 	public void printMap(List<String[]> boards) {
-		String upMap = OPEN_BRIDGE_FORMAT;
-		String downMap = OPEN_BRIDGE_FORMAT;
+		StringBuilder upMap = new StringBuilder(OPEN_BRIDGE_FORMAT);
+		StringBuilder downMap = new StringBuilder(OPEN_BRIDGE_FORMAT);
 
 		for (String[] board : boards) {
-			String[] map = makeMap(board, upMap, downMap);
-			upMap = map[0];
-			downMap = map[1];
+			makeMap(board, upMap, downMap);
 		}
 		System.out.println(upMap.substring(0, upMap.length() - 1) + CLOSE_BRIDGE_FORMAT);
 		System.out.println(downMap.substring(0, downMap.length() - 1) + CLOSE_BRIDGE_FORMAT);
 	}
 
-	private String[] makeMap(String[] board, String upMap, String downMap) {
+	private void makeMap(String[] board, StringBuilder upMap, StringBuilder downMap) {
 		if (board[0].equals(GameRule.UP_BOARD)) {
-			upMap += String.format(BRIDGE_DIVISION_FORMAT, board[1]);
-			downMap += String.format(BRIDGE_DIVISION_FORMAT, " ");
+			upMap.append(String.format(BRIDGE_DIVISION_FORMAT, board[1]));
+			downMap.append(String.format(BRIDGE_DIVISION_FORMAT, " "));
 		} else if (board[0].equals(GameRule.DOWN_BOARD)) {
-			downMap += String.format(BRIDGE_DIVISION_FORMAT, board[1]);
-			upMap += String.format(BRIDGE_DIVISION_FORMAT, " ");
+			downMap.append(String.format(BRIDGE_DIVISION_FORMAT, board[1]));
+			upMap.append(String.format(BRIDGE_DIVISION_FORMAT, " "));
 		}
-		return new String[] {upMap, downMap};
 	}
 
 	public void printResult(BridgeRecord bridgeRecord, boolean isSuccess) {
