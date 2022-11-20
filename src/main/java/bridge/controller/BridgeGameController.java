@@ -1,6 +1,7 @@
 package bridge.controller;
 
-import bridge.domain.*;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -13,21 +14,29 @@ public class BridgeGameController {
         this.outputView = new OutputView();
     }
 
-    public void play() {
+    public void GameRun() {
         outputView.printGameStart();
         int bridgeSize = inputView.readBridgeSize();
-        BridgeGenerator bridgeGenerator = new BridgeGenerator(bridgeSize);
-        Bridge bridge = new Bridge(bridgeGenerator.generate());
+        BridgeGameResult bridgeGameResult = play(bridgeSize);
+        outputView.printResult(bridgeGameResult);
+    }
 
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+    private BridgeGameResult play(int bridgeSize) {
+        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+        int movingIndex = 0;
+        bridgeGame.increaseGameCount();
 
-        while (true) {
-            BridgeGameResult bridgeGameResult = new BridgeGameResult();
-            for (int movingIndex = 0; movingIndex < bridgeSize; movingIndex++) {
-                String moving = inputView.readMoving();
-                String result = bridgeGame.move(moving, movingIndex);
-                bridgeGameResult.putResult(moving, result);
-            }
+        while(movingIndex < bridgeSize) {
+            String movingResult = move(bridgeGame, movingIndex);
+            boolean isMove = bridgeGame.isMove(movingResult);
         }
+        return bridgeGame.getBridgeGameResult();
+    }
+
+    private String move(BridgeGame bridgeGame, int movingIndex) {
+         String moving = inputView.readMoving();
+         String movingResult = bridgeGame.move(moving, movingIndex);
+         outputView.printMap(bridgeGame.getBridgeGameResult());
+         return movingResult;
     }
 }
