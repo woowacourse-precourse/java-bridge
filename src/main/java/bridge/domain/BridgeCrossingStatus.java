@@ -10,4 +10,8 @@ public enum BridgeCrossingStatus {
     BridgeCrossingStatus(String status) {
         this.status = status;
     }
+
+    public String getStatus() {
+        return status;
+    }
 }

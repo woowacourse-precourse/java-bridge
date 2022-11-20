@@ -56,13 +56,13 @@
 - [x] 문자열 다리 반환하기
 - Bridge
 - [x] 문자열 다리 생성하기
-- [ ] 입력값에 맞는 횡단여부 반환하기
+- [x] 입력값에 맞는 횡단여부 반환하기
 - BridgeGame
 - [x] 게임 시도 횟수 늘리기
 - [x] 게임 성공 여부 체크하기
 - [ ] 이동한 칸과 위치 저장하기
 - [ ] FootPrint 초기화하기
-- [ ] BridgeCrossingDTO 반환하기
+- [x] BridgeCrossingDTO 반환하기
 - BridgeCrossingStatus
 - [x] 횡단 상태 메시지 정리 
 
