@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class OutputView {
 
-    public static final String BRIDGE_START = "[";
-    public static final String BRIDGE_END = "]";
+    public static final String BRIDGE_START = "[ ";
+    public static final String BRIDGE_END = " ]";
     public static final int STARTING_POINT = 0;
     public static final String BRIDGE_SEPARATOR = " | ";
 

@@ -2,7 +2,6 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MovingHistory {
 
@@ -21,24 +20,36 @@ public class MovingHistory {
     }
 
     public List<String> getUpSide() {
-        return history.stream()
-                .filter(MovingResult::isUpSide)
-                .map(movingResult -> getSideResult(movingResult))
-                .collect(Collectors.toList());
+        ArrayList<String> upSideHistory = new ArrayList<>();
+        for (MovingResult movingResult : history) {
+            upSideHistory.add(getUpSideResult(movingResult));
+        }
+        return upSideHistory;
     }
 
     public List<String> getDownSide() {
-        return history.stream()
-                .filter(MovingResult::isDownSide)
-                .map(movingResult -> getSideResult(movingResult))
-                .collect(Collectors.toList());
+        ArrayList<String> downSideHistory = new ArrayList<>();
+        for (MovingResult movingResult : history) {
+            downSideHistory.add(getDownSideResult(movingResult));
+        }
+        return downSideHistory;
     }
 
-    private String getSideResult(MovingResult movingResult) {
-        if (movingResult.isSuccess()) {
-            return SUCCESS;
+    private String getUpSideResult(MovingResult movingResult) {
+        if (movingResult.isUpSide()) {
+            if (movingResult.isSuccess()) {
+                return SUCCESS;
+            }
+            return FAIL;
         }
-        if (movingResult.isFail()) {
+        return BLANK;
+    }
+
+    private String getDownSideResult(MovingResult movingResult) {
+        if (movingResult.isDownSide()) {
+            if (movingResult.isSuccess()) {
+                return SUCCESS;
+            }
             return FAIL;
         }
         return BLANK;
