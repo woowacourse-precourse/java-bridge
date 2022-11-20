@@ -77,7 +77,7 @@ public class Validator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_INPUT_LOWERCASE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
         }
     }
 
@@ -111,7 +111,7 @@ public class Validator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_INPUT_LOWERCASE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_RESTART_INPUT_LOWERCASE.getErrorMessage());
         }
     }
 
