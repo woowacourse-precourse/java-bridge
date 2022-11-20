@@ -17,8 +17,8 @@ public class BridgeGame {
 
     private void initBridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.bridgeGameResult = new BridgeGameResult();
-        this.currentPosition = -1;
+        bridgeGameResult = new BridgeGameResult();
+        currentPosition = -1;
     }
 
     public Bridge getBridge() {

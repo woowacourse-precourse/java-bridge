@@ -16,7 +16,7 @@ public class BridgeGameController {
     boolean isGameOver;
 
     public BridgeGameController() {
-        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         isGameOver = false;
     }
 
