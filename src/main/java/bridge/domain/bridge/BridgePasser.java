@@ -41,4 +41,7 @@ public class BridgePasser {
         this.bridgeLocation = initBridgeLocation();
     }
 
+    public BridgeLocation getLocation() {
+        return bridgeLocation;
+    }
 }
