@@ -22,7 +22,7 @@
 ## UI
 ### InputView
 - [x] 다리 길이 입력
-- [ ] 이동할 방향(moving) 입력
+- [x] 이동할 방향(moving) 입력
 - [ ] 게임 재시작 여부(game command) 입력
 
 ### OutputView
