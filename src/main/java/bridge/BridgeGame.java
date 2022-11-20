@@ -47,4 +47,8 @@ public class BridgeGame {
         return !isReachedEndOfBridge()
                 && (this.currentPosition == -1 || this.moveHistory.get(this.currentPosition).isMoveSucess());
     }
+
+    public List<History> getMoveHistory() {
+        return moveHistory;
+    }
 }
