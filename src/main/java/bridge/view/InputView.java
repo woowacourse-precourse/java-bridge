@@ -14,7 +14,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(MSG_INPUT_BRIDGE_SIZE.get());
+        System.out.println(LINE_BREAK.get() + MSG_INPUT_BRIDGE_SIZE.get());
         return convertStringIntoInt(Console.readLine());
     }
 
@@ -22,7 +22,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(LINE_BREAK.get() + MSG_INPUT_MOVING_CELL.get());
+        return Console.readLine();
     }
 
     /**

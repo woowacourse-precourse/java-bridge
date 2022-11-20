@@ -34,7 +34,7 @@
 
 1. InputView
     - [x] 다리 길이 입력 기능 → readBridgeSize
-    - [ ] 이동할 칸 입력 기능 → readMoving
+    - [x] 이동할 칸 입력 기능 → readMoving
     - [ ] 게임 재시작 입력 기능 →readGameCommand
 2. OutputView
     - [x] 게임 시작 출력 기능 → printStart

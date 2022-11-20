@@ -8,7 +8,7 @@ import static bridge.enums.OutputMsg.*;
 public class OutputView {
 
     public void printStart() {
-        System.out.println(MSG_OUTPUT_START_GAME.get() + "\n");
+        System.out.println(MSG_OUTPUT_START_GAME.get());
     }
 
     /**

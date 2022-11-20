@@ -3,8 +3,6 @@ package bridge.controller;
 import bridge.model.InputValidator;
 import bridge.view.InputView;
 
-import static bridge.enums.InputMsg.*;
-
 public class InputController {
 
     InputView inputView = new InputView();
@@ -16,7 +14,7 @@ public class InputController {
             inputValidator.BridgeSize(bridgeSize);
             return bridgeSize;
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage() + LINE_BREAK.get());
+            System.out.println(exception.getMessage());
             return inputBridgeSize();
         }
     }
