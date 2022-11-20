@@ -33,7 +33,7 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame, GameStatus status) {
         System.out.println("최종 게임 결과");
-        System.out.println(bridgeGame.getFootPrintsLog());
+        printMap(bridgeGame.getFootPrintsLog());
         System.out.printf("게임 성공 여부: %s\n", status.getStatus());
         System.out.printf("총 시도한 횟수: %d\n", bridgeGame.getTryCount());
     }
