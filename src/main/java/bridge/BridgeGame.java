@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> upBridge;
-    private List<String> downBridge;
+    public List<String> upBridge;
+    public List<String> downBridge;
     private int moveCount;
     private int gameCount;
 
