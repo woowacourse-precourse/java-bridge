@@ -27,8 +27,7 @@ class BridgeGameTest {
     @Test
     public void retry_R_0() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
-        PlayerMap playerMap;
-        playerMap = bridgeGame.move(new GameMoving("U").toString());
+        PlayerMap playerMap = bridgeGame.move(new GameMoving("U").toString());
         playerMap = bridgeGame.move(new GameMoving("D").toString());
         playerMap = bridgeGame.retry("R");
         assertThat(playerMap.getSize()).isEqualTo(0);
@@ -37,8 +36,7 @@ class BridgeGameTest {
     @Test
     public void retry_Q_Test() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
-        PlayerMap playerMap;
-        playerMap = bridgeGame.move(new GameMoving("U").toString());
+        PlayerMap playerMap = bridgeGame.move(new GameMoving("U").toString());
         playerMap = bridgeGame.move(new GameMoving("D").toString());
         playerMap = bridgeGame.retry("Q");
         List<List> estimatedResult = List.of(List.of("O", " "), List.of(" ", "X"));
@@ -47,11 +45,19 @@ class BridgeGameTest {
 
     @ParameterizedTest(name = "[{index}] input {0} {1} \"{2}\"")
     @CsvSource(value = {"U, U, true", "U, D, true"})
-    public void isEnd_testisEnd_test(String bridgeValue, String playerValue, boolean value) {
-        PlayerMap playerMap;
+    public void isEnd_test(String bridgeValue, String playerValue, boolean value) {
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
         bridgeGame.move(new GameMoving(playerValue).toString());
         assertThat(bridgeGame.isEnd()).isEqualTo(value);
+    }
+
+    @ParameterizedTest(name = "[{index}] input {0} {1} \"{2}\"")
+    @CsvSource(value = {"U, U, true", "U, D, false"})
+    public void isMove_test(String bridgeValue, String playerValue, boolean value) {
+        BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
+        BridgeGame bridgeGame = new BridgeGame(bridgeMap);
+        bridgeGame.move(new GameMoving(playerValue).toString());
+        assertThat(bridgeGame.isMove()).isEqualTo(value);
     }
 }

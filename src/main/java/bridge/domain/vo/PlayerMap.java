@@ -33,10 +33,6 @@ public class PlayerMap {
         }
     }
 
-    public boolean checkContainsX() {
-        return !firstLine.contains("X") == secondLine.contains("X");
-    }
-
     private String getStatus(boolean value) {
         if (value) {
             return "O";

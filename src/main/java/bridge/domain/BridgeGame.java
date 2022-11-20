@@ -10,12 +10,12 @@ public class BridgeGame {
 
     private final BridgeMap bridgeMap;
     private PlayerMap playerMap;
-    private String status;
+    boolean isMove;
     private int count;
 
     public BridgeGame(BridgeMap bridgeMap) {
         this.bridgeMap = bridgeMap;
-        this.status = "성공";
+        this.isMove = true;
         this.playerMap = new PlayerMap();
         this.count = 1;
     }
@@ -26,9 +26,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public PlayerMap move(String place) {
-        this.playerMap.addResult(place,
-                bridgeMap.checkMapWithIndex(this.playerMap.getSize(), place));
-        return this.playerMap;
+        isMove = bridgeMap.checkMapWithIndex(playerMap.getSize(), place);
+        playerMap.addResult(place, isMove);
+        return playerMap;
     }
 
     /**
@@ -37,12 +37,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public PlayerMap retry(String command) {
-        if (command.equals("Q")) {
-            status = "실패";
+        if (command.equals("R")) {
+            playerMap = new PlayerMap();
+            isMove = true;
+            count++;
             return playerMap;
         }
-        playerMap = new PlayerMap();
-        count++;
         return playerMap;
     }
 
@@ -51,11 +51,18 @@ public class BridgeGame {
     }
 
     public String getStatus() {
-        return status;
+        if (isMove) {
+            return "성공";
+        }
+        return "실패";
+    }
+
+    public boolean isMove() {
+        return isMove;
     }
 
     public boolean isEnd() {
-        return status.equals("실패") || getBridgeMapSize() == playerMap.getSize();
+        return !isMove || getBridgeMapSize() == playerMap.getSize();
     }
 
     private int getBridgeMapSize() {

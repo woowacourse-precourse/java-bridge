@@ -32,15 +32,20 @@ public class BridgeGameController {
     }
 
     private PlayerMap playBridgeGame(BridgeGame bridgeGame) {
-        PlayerMap playerMap = bridgeGame.move(inputMoving().toString());
-        outputView.printMap(playerMap);
-        if (playerMap.checkContainsX()) {
+        PlayerMap playerMap = movePlayer(bridgeGame);
+        if (!bridgeGame.isMove()) {
             playerMap = bridgeGame.retry(inputGameCommand().toString());
         }
         if (bridgeGame.isEnd()) {
             return playerMap;
         }
         return playBridgeGame(bridgeGame);
+    }
+
+    private PlayerMap movePlayer(BridgeGame bridgeGame) {
+        PlayerMap playerMap = bridgeGame.move(inputMoving().toString());
+        outputView.printMap(playerMap);
+        return playerMap;
     }
 
     private BridgeSize inputBridgeSize() {

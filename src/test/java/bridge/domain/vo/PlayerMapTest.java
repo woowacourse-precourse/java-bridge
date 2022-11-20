@@ -16,13 +16,4 @@ class PlayerMapTest {
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
         Assertions.assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
     }
-
-    @ParameterizedTest(name = "[{index}] input {0} {1}")
-    @CsvSource(value = {"U, false", "D, false"})
-    void checkContainsX_Test(String place, boolean value) {
-        PlayerMap playerMap = new PlayerMap();
-        playerMap.addResult(place, value);
-
-        Assertions.assertThat(playerMap.checkContainsX()).isEqualTo(true);
-    }
 }
