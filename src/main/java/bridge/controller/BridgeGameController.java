@@ -28,6 +28,7 @@ public class BridgeGameController {
         BridgeMap bridgeMap = makeBridgeMap(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
         PlayerMap playerMap = playBridgeGame(bridgeGame);
+        outputView.printResult(playerMap, bridgeGame);
     }
 
     private PlayerMap playBridgeGame(BridgeGame bridgeGame) {
