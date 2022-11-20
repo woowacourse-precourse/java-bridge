@@ -6,6 +6,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
     private final BridgeOfComputer computerMap;
     private BridgeOfUser userMap;
     private int stage;
@@ -39,7 +40,8 @@ public class BridgeGame {
     }
 
     private void checkSuccess() {
-        if (userMap.equalsWithComputerMapLength(computerMap.getLength())) {
+        int computerMapLength = computerMap.getLength();
+        if (userMap.equalsWithComputerMapLength(computerMapLength)) {
             done = true;
         }
     }
@@ -70,7 +72,7 @@ public class BridgeGame {
     public boolean isFail() {
         return fail;
     }
-    public String failOrSuccess() {
+    public String calculateDoneResult() {
         if (fail) {
             return "실패";
         }

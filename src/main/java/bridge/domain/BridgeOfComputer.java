@@ -3,6 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 public class BridgeOfComputer {
+
     private List<String> map;
 
     public BridgeOfComputer(List<String> map) {

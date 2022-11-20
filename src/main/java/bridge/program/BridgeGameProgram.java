@@ -8,6 +8,7 @@ import bridge.domain.BridgeGame;
 import java.util.List;
 
 public class BridgeGameProgram {
+
     private final ConsoleView consoleView;
     private final BridgeMaker bridgeMaker;
 
@@ -50,7 +51,7 @@ public class BridgeGameProgram {
 
     private void showBridgeGameResults(BridgeGame bridgeGame) {
         BridgeOfUser bridgeOfUser = bridgeGame.nowUserMapState();
-        String failOrSuccess = bridgeGame.failOrSuccess();
+        String failOrSuccess = bridgeGame.calculateDoneResult();
         int tryCount = bridgeGame.getTryCount();
         consoleView.showResult(bridgeOfUser,failOrSuccess,tryCount);
     }

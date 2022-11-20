@@ -1,6 +1,7 @@
 package bridge.domain;
 
 public enum Side {
+
     UP(1,"U"),
     DOWN(0,"D"),
     ;

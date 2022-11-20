@@ -1,9 +1,9 @@
 package bridge.view;
 
 import bridge.domain.BridgeOfUser;
-import java.rmi.server.ExportException;
 
 public class ConsoleView {
+
     private final InputView inputView;
     private final OutputView outputView;
 
