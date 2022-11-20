@@ -2,9 +2,9 @@
 
 ---
 ## 입력 InputView
-- [ ] 다리 길이 입력 받기 InputView#readBridgeSize()
-- [ ] 이동할 칸 입력 받기 InputView#readMoving()
-- [ ] 다시 시도 여부 입력 받기 InputView#readRetry()
+- [x] 다리 길이 입력 받기 InputView#readBridgeSize()
+- [x] 이동할 칸 입력 받기 InputView#readMoving()
+- [x] 다시 시도 여부 입력 받기 InputView#readRetry()
 
 ## 입력 유효성 검사 InputValidator
 - [x] 다리 크기 유효성 검사 InputValidator#validateBridgeSize(int size)
