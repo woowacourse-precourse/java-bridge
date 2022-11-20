@@ -50,9 +50,9 @@ public class Bridge {
         return Setting.KEY_NOT_MATCH;
     }
 
-    // 입력한 키 리스트 반환
-    public List<String> getUserKeyList() {
-        return this.userKeyList;
+    // 입력한 키 리스트의 index 값 반환
+    public String getUserKeyListIndex(int index) {
+        return this.userKeyList.get(index);
     }
 
     // 입력한 키가 정답인지 아닌지 boolean 반환 기능
