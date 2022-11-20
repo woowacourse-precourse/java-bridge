@@ -10,11 +10,7 @@ public class BridgeMakerValidation {
     }
 
     public void validateCorrespondingBoxAddedToBridge(int generatedNum, List<String> bridge) {
-        if (generatedNum == 0) {
-            if (! bridge.get(bridge.size() - 1).equals("D")) {
-                throw new IllegalArgumentException("[ERROR] 랜덤값이 0일 경우, 다리에 아래 칸이 추가되어야 합니다.");
-            }
-        }
+        validateGeneratedNumZeroAndLastBoxLower(generatedNum, bridge);
 
         if (generatedNum == 1) {
             if (! bridge.get(bridge.size() - 1).equals("U")) {
@@ -22,4 +18,15 @@ public class BridgeMakerValidation {
             }
         }
     }
+
+    public void validateGeneratedNumZeroAndLastBoxLower(int generatedNum, List<String> bridge) {
+        int lastIdx = bridge.size() - 1;
+
+        if (generatedNum == 0) {
+            if (! bridge.get(lastIdx).equals("D")) {
+                throw new IllegalArgumentException("[ERROR] 랜덤값이 0일 경우, 다리에 아래 칸이 추가되어야 합니다.");
+            }
+        }
+    }
+
 }
