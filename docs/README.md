@@ -5,7 +5,8 @@
 - constant
     - ErrorMessage.java (에러 메세지 상수)
     - PrintMessage.java (출력문 상수)
-    - Updown.java (UP과 DOWN을 의미하는 상수 String U와 D를 저장하는 enum 클래스
+    - Updown.java (UP과 DOWN을 의미하는 상수 String U와 D를 저장하는 enum 클래스)
+    - SuccessFail.java (SUCCESS와 FAIL을 의미하는 상수 String "성공"과 "실패"를 저장하는 enum 클래스)
 - validation
     - Validation.java (사용자의 입력에 대한 유효성 검사)
 - view
@@ -75,5 +76,8 @@
 * [x] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 
 ## OutputView
-* [X] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-* [ ]게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+* [x] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+* [x] 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+  * [x] 이동한 다리 상태 출력
+  * [x] 게임 성공 여부 출력
+  * [x] 총 시도한 횟수 출력

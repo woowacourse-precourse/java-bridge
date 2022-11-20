@@ -5,8 +5,13 @@ package bridge.view;
 // 메서드의 인자와 반환 타입은 필요에 따라 추가하거나 변경 가능
 // 값 출력을 위해 필요한 메서드 추가 가능
 
+import bridge.constant.SuccessFail;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.constant.SuccessFail.FAIL;
+import static bridge.constant.SuccessFail.SUCCESS;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -66,6 +71,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> bridge, List<String> player, int attempts) {
+
+        System.out.println("최종 게임 결과");
+        printMap(bridge, player);
+        System.out.print("게임 성공 여부: " + isSuccess(bridge, player).getKorean());
+        System.out.println("총 시도한 횟수: " + attempts);
+    }
+
+    public SuccessFail isSuccess(List<String> bridge, List<String> player) {
+        if (bridge.equals(player))
+            return SUCCESS;
+        return FAIL;
     }
 }
