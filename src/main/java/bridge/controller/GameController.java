@@ -36,12 +36,12 @@ public class GameController {
 			outputView.printRequestMove();
 			String moveInput = inputView.readMoving();
 			BridgeStatus bridgeStatus = bridgeGame.move(moveInput);
-			bridgeResult.crossBridge(bridgeStatus, moveInput);
-			crossOneBridge(bridgeResult, bridgeStatus);
+			bridgeResult.crossOneBridge(bridgeStatus, moveInput);
+			oneBridgeResult(bridgeResult, bridgeStatus);
 		} while (bridgeGame.checkEnd() == BridgeStatus.PASS);
 	}
 
-	private void crossOneBridge(BridgeResult bridgeResult, BridgeStatus bridgeStatus) {
+	private void oneBridgeResult(BridgeResult bridgeResult, BridgeStatus bridgeStatus) {
 		outputView.printMap(bridgeResult);
 		bridgeGame.checkGameEnd(bridgeResult);
 		checkRetry(bridgeStatus, bridgeResult);

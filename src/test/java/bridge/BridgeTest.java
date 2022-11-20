@@ -37,9 +37,9 @@ public class BridgeTest extends NsTest {
 	@DisplayName("다리 이동시 이동 가능한지 테스트")
 	void 다리_이동가능_테스트() {
 		Bridge bridge = new Bridge(List.of("U", "D", "D"));
-		BridgeStatus bridgeStatus = bridge.isBridge("U", 0);
-		BridgeStatus bridgeStatus2 = bridge.isBridge("U", 1);
-		BridgeStatus bridgeStatus3 = bridge.isBridge("D", 2);
+		BridgeStatus bridgeStatus = bridge.isBridgeStatus("U", 0);
+		BridgeStatus bridgeStatus2 = bridge.isBridgeStatus("U", 1);
+		BridgeStatus bridgeStatus3 = bridge.isBridgeStatus("D", 2);
 
 		assertThat(bridgeStatus).isEqualTo(BridgeStatus.SUCCESS);
 		assertThat(bridgeStatus2).isEqualTo(BridgeStatus.FAIL);
@@ -52,10 +52,10 @@ public class BridgeTest extends NsTest {
 	void 다리_이동출력_테스트() {
 		BridgeResult bridgeResult = new BridgeResult();
 
-		bridgeResult.crossBridge(BridgeStatus.SUCCESS, "U");
-		bridgeResult.crossBridge(BridgeStatus.SUCCESS, "D");
-		bridgeResult.crossBridge(BridgeStatus.SUCCESS, "U");
-		bridgeResult.crossBridge(BridgeStatus.FAIL, "D");
+		bridgeResult.crossOneBridge(BridgeStatus.SUCCESS, "U");
+		bridgeResult.crossOneBridge(BridgeStatus.SUCCESS, "D");
+		bridgeResult.crossOneBridge(BridgeStatus.SUCCESS, "U");
+		bridgeResult.crossOneBridge(BridgeStatus.FAIL, "D");
 
 		System.out.println(bridgeResult);
 

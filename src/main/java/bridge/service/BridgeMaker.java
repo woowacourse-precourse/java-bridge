@@ -26,12 +26,12 @@ public class BridgeMaker {
 		List<String> bridge = new ArrayList<>();
 		validateRange(size);
 		for (int bridgeNumber = 0; bridgeNumber < size; bridgeNumber++) {
-			bridge.add(isUpAndDown(bridgeNumberGenerator.generate()));
+			bridge.add(makeUpAndDown(bridgeNumberGenerator.generate()));
 		}
 		return bridge;
 	}
 
-	private String isUpAndDown(int bridgeNumber) {
+	private String makeUpAndDown(int bridgeNumber) {
 		if (bridgeNumber == UP_NUMBER) {
 			return UP_STRING;
 		}

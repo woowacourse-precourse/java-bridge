@@ -17,7 +17,7 @@ public class BridgeResult {
 		downBridge = new ArrayList<>();
 	}
 
-	public void crossBridge(BridgeStatus bridgeStatus, String move) {
+	public void crossOneBridge(BridgeStatus bridgeStatus, String move) {
 		boolean moveFlag = checkMove(move);
 		if (moveFlag) {
 			upBridge.add(bridgeStatus.getMessage());

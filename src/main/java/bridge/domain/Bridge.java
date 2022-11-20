@@ -9,11 +9,11 @@ public class Bridge {
 		this.bridge = bridge;
 	}
 
-	public BridgeStatus isBridge(String input, int bridgeNumber) {
+	public BridgeStatus isBridgeStatus(String input, int bridgeNumber) {
 		return BridgeStatus.findByBridgeStatus(checkBridge(bridge.get(bridgeNumber), input));
 	}
 
-	public long checkBridge(String currentBridge, String input) {
+	private long checkBridge(String currentBridge, String input) {
 		return currentBridge.chars().filter(bridge -> bridge == input.charAt(0)).count();
 	}
 
