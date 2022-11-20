@@ -35,10 +35,10 @@ public class BridgeGame {
 
 		for (String rightCondition : bridge) {
 			if (!failCheck(rightCondition)) {
-				break;
+				return;
 			}
 		}
-		
+
 		ending(true);
 	}
 
@@ -50,7 +50,7 @@ public class BridgeGame {
 
 		return true;
 	}
-	
+
 	public void retry() {
 		out.printGameMessage("COMMAND");
 		String command = in.readGameCommand();
@@ -63,7 +63,7 @@ public class BridgeGame {
 		ending(false);
 		return;
 	}
-	
+
 	public void ending(boolean gameResult) {
 		String result = "성공";
 
