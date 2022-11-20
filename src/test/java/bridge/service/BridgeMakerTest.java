@@ -3,14 +3,14 @@ package bridge.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.interfaceForTest.BridgeNumberGeneratorTest;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BridgeMakerTest {
-    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private final BridgeNumberGeneratorTest bridgeNumberGeneratorTest = new BridgeNumberGeneratorTest();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGeneratorTest);
 
     @Test
     @DisplayName("다리 생성 테스트")
@@ -23,6 +23,7 @@ public class BridgeMakerTest {
 
         // then
         assertThat(bridge.size()).isEqualTo(size);
+        assertThat(bridge.contains(List.of("U", "U", "U")));
     }
 
     @Test
@@ -39,6 +40,5 @@ public class BridgeMakerTest {
         // then
         assertThat(result1).isEqualTo("D");
         assertThat(result2).isEqualTo("U");
-
     }
 }
