@@ -19,7 +19,7 @@ public enum BlockStatus {
         this.crossableSymbol = crossableSymbol;
     }
 
-    public static List<BlockStatus> convertToBlockStatues(List<String> symbolBlocks) {
+    public static List<BlockStatus> convertToBlockStatues(final List<String> symbolBlocks) {
         return symbolBlocks.stream()
                 .map(BlockStatus::findByCrossableSymbol)
                 .collect(Collectors.toList());

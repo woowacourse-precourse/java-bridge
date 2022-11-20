@@ -5,11 +5,11 @@ import bridge.domain.enums.CrossStatus;
 import java.util.List;
 
 public class Bridge {
-    private final List<BlockStatus> blocks;
-    private final List<CrossStatus> crossStatuses;
+    private final Blocks blocks;
+    private final CrossStatuses crossStatuses;
 
     public Bridge(final List<BlockStatus> blocks) {
-        this.blocks = blocks;
+        this.blocks = new Blocks(blocks);
         this.crossStatuses = CrossStatus.createInitializationStatuses(blocks.size());
     }
 }
