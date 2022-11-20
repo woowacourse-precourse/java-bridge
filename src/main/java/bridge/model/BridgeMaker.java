@@ -28,10 +28,18 @@ public class BridgeMaker {
         }
     }
 
-    public void validateBridgeNumber() {
-        int number = bridgeNumberGenerator.generate();
+    public void validateRandomNumber(int number) {
         if (number != 0 || number != 1) {
             throw new IllegalArgumentException();
         }
+    }
+    public int generateNumber(){
+        return bridgeNumberGenerator.generate();
+    }
+    public String judgeRow(int row){
+        if(row == 0){
+            return "D";
+        }
+        return "U";
     }
 }
