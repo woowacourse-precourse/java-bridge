@@ -6,18 +6,18 @@ import java.util.List;
 public class MoveResult {
 
     private List<String> history;
-    private MoveStatus moveStatus;
+    private GameStatus gameStatus;
 
-    public MoveResult(List<String> history, MoveStatus moveStatus) {
+    public MoveResult(List<String> history, GameStatus gameStatus) {
         this.history = history;
-        this.moveStatus = moveStatus;
+        this.gameStatus = gameStatus;
     }
 
     public List<String> getHistory() {
         return new ArrayList<>(this.history);
     }
 
-    public MoveStatus getMoveStatus() {
-        return moveStatus;
+    public GameStatus getMoveStatus() {
+        return gameStatus;
     }
 }

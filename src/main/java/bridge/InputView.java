@@ -63,19 +63,19 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public char readRestartCommand() {
+    public char readRetryCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
         String alphabeticInput = Console.readLine();
         validateAlphabeticInputLen(alphabeticInput);
 
         char restartCommand = alphabeticInput.charAt(0);
-        validateRestartCommandFormat(restartCommand);
+        validateRetryCommandFormat(restartCommand);
 
         return restartCommand;
     }
 
-    private void validateRestartCommandFormat(char gameCommand) {
+    private void validateRetryCommandFormat(char gameCommand) {
         if (gameCommand != 'R' && gameCommand != 'Q')
             throw new IllegalArgumentException("게임 재시도 여부는 R 혹은 Q를 입력하여야 합니다.");
     }

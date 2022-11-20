@@ -19,10 +19,10 @@ public class OutputView {
         List<Character> upper = new ArrayList<>();
         List<Character> lower = new ArrayList<>();
 
-        MoveStatus moveStatus = moveResult.getMoveStatus();
+        GameStatus gameStatus = moveResult.getMoveStatus();
         List<String> history = moveResult.getHistory();
 
-        if (moveStatus == MoveStatus.CORRECT || moveStatus == MoveStatus.CONTINUE) {
+        if (gameStatus == GameStatus.CORRECT || gameStatus == GameStatus.CONTINUE) {
             for (String h : history) {
                 char c = h.charAt(0);
                 if (c == 'U') {
@@ -37,7 +37,7 @@ public class OutputView {
             }
         }
 
-        if (moveStatus == MoveStatus.FAIL) {
+        if (gameStatus == GameStatus.FAIL) {
             for (int i = 0; i < history.size() - 1; i++) {
                 char c = history.get(i).charAt(0);
                 if (c == 'U') {

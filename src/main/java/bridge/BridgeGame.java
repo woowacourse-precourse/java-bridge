@@ -43,14 +43,14 @@ public class BridgeGame {
 
         //UDDU  CORRECT
         if (history.equals(bridge))
-            return new MoveResult(history, MoveStatus.CORRECT);
+            return new MoveResult(history, GameStatus.CORRECT);
 
         //UD    CONTINUE
         if (history.get(idx).equals(bridge.get(idx)))
-            return new MoveResult(history, MoveStatus.CONTINUE);
+            return new MoveResult(history, GameStatus.CONTINUE);
 
         //UU    FAIL
-        return new MoveResult(history, MoveStatus.FAIL);
+        return new MoveResult(history, GameStatus.FAIL);
     }
 
     /**

@@ -1,5 +1,5 @@
 package bridge;
 
-public enum MoveStatus {
+public enum GameStatus {
     CONTINUE, FAIL, CORRECT
 }
