@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
+    private BridgeStage stage = new BridgeStage();
     private final List<String> history = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
@@ -48,5 +49,9 @@ public class BridgeGame {
      */
     public void retry() {
         return;
+    }
+
+    public List<String> getHistory() {
+        return history;
     }
 }
