@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 import static bridge.config.CharacterConfiguration.ENTER;
 import static bridge.domain.BridgeMoveType.*;
 import static bridge.config.BridgeConfiguration.*;
+import static bridge.view.OutputViewMessage.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -38,7 +39,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeHistory bridgeHistory) {
+        System.out.print(FINAL_GAME_RESULT.getMessage());
+        printMap(bridgeHistory);
+        System.out.print(MessageFormat.format(GAME_WIN_RESULT.getMessage(), bridgeHistory.getGameResult().getType()));
+        System.out.print(MessageFormat.format(TOTAL_ROUND.getMessage(), bridgeHistory.getBridgeGameRound()));
     }
 
     private String createBridgeHistory(List<BridgeMoveType> playerMoveHistory,

@@ -34,4 +34,8 @@ public enum BridgeMoveType {
     public boolean isSame(BridgeMoveType bridgeMoveType) {
         return this == bridgeMoveType;
     }
+
+    public boolean isNotSame(BridgeMoveType answerMoveType) {
+        return this != answerMoveType;
+    }
 }
