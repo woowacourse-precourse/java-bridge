@@ -14,10 +14,6 @@ public enum Move {
         this.number = number;
     }
 
-    public String getDirection() {
-        return direction;
-    }
-
     public static Move other(Move move) {
         return Arrays.stream(values())
                 .filter(other -> other != move)
