@@ -1,4 +1,6 @@
-package bridge.domain;
+package bridge.domain.result;
+
+import bridge.domain.bridge.BridgeBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,14 @@ public class BridgeResult {
     private final List<String> upperLine = new ArrayList<>();
     private final List<String> lowerLine = new ArrayList<>();
 
-    public void addResult(MovingResult movingResult) {
-        if(movingResult.getBridgeBlock().equals(BridgeBlock.U)) {
-            upperLine.add(movingResult.getState());
+    public void addResult(MovingResult moveResult) {
+        if(moveResult.getBridgeBlock().equals(BridgeBlock.U)) {
+            upperLine.add(moveResult.getState());
             lowerLine.add(BLANK);
         }
-        if(movingResult.getBridgeBlock().equals(BridgeBlock.D)) {
+        if(moveResult.getBridgeBlock().equals(BridgeBlock.D)) {
             upperLine.add(BLANK);
-            lowerLine.add(movingResult.getState());
+            lowerLine.add(moveResult.getState());
         }
     }
 

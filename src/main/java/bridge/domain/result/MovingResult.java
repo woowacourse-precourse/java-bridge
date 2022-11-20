@@ -1,4 +1,6 @@
-package bridge.domain;
+package bridge.domain.result;
+
+import bridge.domain.bridge.BridgeBlock;
 
 public class MovingResult {
     BridgeBlock bridgeBlock;
