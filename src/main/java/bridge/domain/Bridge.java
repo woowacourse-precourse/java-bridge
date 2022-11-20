@@ -6,6 +6,8 @@ import static bridge.domain.vo.BridgeSize.MIN_SIZE;
 import static bridge.domain.vo.MoveCommand.MOVE_TO_LOWER_BLOCK;
 import static bridge.domain.vo.MoveCommand.MOVE_TO_UPPER_BLOCK;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
@@ -16,7 +18,7 @@ public class Bridge {
 
     public Bridge(List<String> blocks) {
         validate(blocks);
-        this.blocks = blocks;
+        this.blocks = new ArrayList<>(blocks);
     }
 
     public boolean isMoveSuccess(int round, String message) {
@@ -24,7 +26,7 @@ public class Bridge {
     }
 
     public List<String> getBlocks() {
-        return blocks;
+        return Collections.unmodifiableList(blocks);
     }
 
     private void validate(List<String> blocks) {
