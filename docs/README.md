@@ -79,8 +79,11 @@ D
     - [ ] 일치, 불일치 맵 추가 `[` `O` `X` `|` `]`
 
 2. retry
-   - [ ] `"R"`, `"Q"` 문자 확인 Boolean 반환
-   - [ ] Player의 대답을 "R" -> 해당 대답으로 변환
+
+   1. 문자열 확인 "Q", "R" 인지 확인
+    "Q"일 때 게임 player.answer = "Q"로 변경하기
+    "R"일 때
+   2. BridgeMap, upMap, downMap, index 초기화
 3. create Map
     - [x] `List<String>` 맵 생성하기
     - [ ] `List<String>` 형 맵 생성
