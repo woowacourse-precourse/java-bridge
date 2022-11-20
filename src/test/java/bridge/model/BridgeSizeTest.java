@@ -14,27 +14,9 @@ class BridgeSizeTest {
     class DescribeConstructValidate {
 
         @ParameterizedTest
-        @ValueSource(strings = {"111", "aaaaaa"})
-        @DisplayName("인자가 2자리수를 넘는 문자열일 경우 IllegalArgumentException 반환")
-        void receiveLongSizeString(String userInputSize) {
-            //then
-            Assertions.assertThatThrownBy(() -> new BridgeSize(userInputSize))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"1a", "a", "ab"})
-        @DisplayName("인자가 숫자가 아닌 문자일 경우 IllegalArgumentException 반환")
-        void receiveNotDigitString(String userInputSize) {
-            //then
-            Assertions.assertThatThrownBy(() -> new BridgeSize(userInputSize))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"2", "21"})
+        @ValueSource(ints = {2, 21})
         @DisplayName("인자가 3보다 작거나 20보다 클경우 IllegalArgumentException 반환")
-        void receiveOutRangeSize(String userInputSize) {
+        void receiveOutRangeSize(int userInputSize) {
             //then
             Assertions.assertThatThrownBy(() -> new BridgeSize(userInputSize))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -44,7 +26,7 @@ class BridgeSizeTest {
         @DisplayName("3 ~ 20 사이의 숫자 문자열을 인자로 받을 경우 정상적인 객체 반환")
         void receiveValidString() {
             //given
-            String validString = "5";
+            int validString = 5;
 
             //when
             BridgeSize actual = new BridgeSize(validString);
