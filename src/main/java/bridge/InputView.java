@@ -3,6 +3,8 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.Application.ERROR_PREFIX;
+import static bridge.DIRECTION.DOWN;
+import static bridge.DIRECTION.UP;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -25,7 +27,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.printf("\n이동할 칸을 선택해주세요. (위: %s, 아래: %s)\n", UP.getValue(), DOWN.getValue());
+        return Console.readLine();
     }
 
     /**
