@@ -1,13 +1,12 @@
 package bridge.controller;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.constants.Command;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import bridge.view.SystemConsole;
 import java.util.List;
 
 public class BridgeGameMachine {
@@ -19,13 +18,10 @@ public class BridgeGameMachine {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final SystemConsole systemConsole;
 
-    public BridgeGameMachine(InputView inputView, OutputView outputView,
-            SystemConsole systemConsole) {
+    public BridgeGameMachine(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.systemConsole = systemConsole;
     }
 
     //TODO: 메서드 길이제한, (get() 가져오는것들 확인)
@@ -41,7 +37,7 @@ public class BridgeGameMachine {
         BridgeMaker bridgeMaker = new BridgeMaker(randomGenerator);
         List<String> designBridge = bridgeMaker.makeBridge(bridgeLength);
 
-        BridgeState bridgeState = new BridgeState(systemConsole);
+        BridgeState bridgeState = new BridgeState();
         BridgeGame bridgeGame = new BridgeGame(bridgeState);
 
         String playerRetry = EMPTY_VALUE;
@@ -55,7 +51,7 @@ public class BridgeGameMachine {
 
             for (int bridgeIndex = START_BRIDGE; bridgeIndex < bridgeLength; bridgeIndex++) {
 
-                systemConsole.movementInput();
+                outputView.printMovementInput();
                 String playerMoving = inputView.readMoving();
 
                 String bridgeJudgment = bridgeGame.judgment(playerMoving, designBridge.get(bridgeIndex));
@@ -65,7 +61,7 @@ public class BridgeGameMachine {
                 bridgePlace = bridgeGame.bridgeConnection(bridgeLength, bridgeJudgment, bridgeIndex);
 
                 outputView.printMap(bridgePlace);
-                systemConsole.nextLine();
+                outputView.printNextLine();
 
                 if (bridgeJudgment.equals(FAILURE)) {
 
