@@ -30,6 +30,9 @@ public class BridgeGame {
         userCorrectUp = new ArrayList<>();
         userCorrectDown = new ArrayList<>();
     }
+    private boolean isUp(String input){
+        return input.equals("U");
+    }
 
     private boolean isQuit(String input) {
         return (input.equals("q") || input.equals("Q"));
@@ -37,5 +40,17 @@ public class BridgeGame {
 
     private boolean isRetry(String input) {
         return (input.equals("r") || input.equals("R"));
+    }
+
+    public int userTry() {
+        return userTry;
+    }
+
+    public boolean isCorrect() {
+        return gameCorrect;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 }
