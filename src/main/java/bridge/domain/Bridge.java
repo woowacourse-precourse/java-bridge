@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 public class Bridge {
     private final List<BridgeShape> bridgeShapes;
 
+    public Bridge() {
+        this.bridgeShapes = new ArrayList<>();
+    }
+
     public Bridge(List<BridgeShape> bridgeShapeValues) {
         this.bridgeShapes = new ArrayList<>(bridgeShapeValues);
     }
@@ -16,6 +20,10 @@ public class Bridge {
         return new Bridge(bridgeShapeValues.stream()
                 .map(BridgeShape::of)
                 .collect(Collectors.toList()));
+    }
+
+    public void connect(String bridgeShapeValue) {
+        bridgeShapes.add(BridgeShape.of(bridgeShapeValue));
     }
 
     @Override
