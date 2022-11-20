@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     ValidateUserInput validateUserInput = new ValidateUserInput();
+    DtoClass dtoClass = new DtoClass();
     private String bridgeSize;
     private String movingCommand;
     private String restartCommand;
@@ -14,23 +15,26 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public void readBridgeSize() {
         getBrideSize();
-        return Integer.parseInt(bridgeSize);
+        dtoClass.sizeValue(Integer.parseInt(bridgeSize));
+//        return Integer.parseInt(bridgeSize);
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public void readMoving() {
         getReadMoving();
-        return movingCommand;
+        dtoClass.movingValue(movingCommand);
+//        return movingCommand;
     }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(){
+    public void readGameCommand(){
         getReadCommand();
-        return restartCommand;
+        dtoClass.restartValue(restartCommand);
+//        return restartCommand;
     }
     public void getBrideSize() {
         try {
