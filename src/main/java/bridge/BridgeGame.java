@@ -10,12 +10,12 @@ public class BridgeGame {
     private int tryNumber;
     private User user = new User();
     private List<String> bridge;
+    private boolean successOrFail;
 
     public void run() {
         startGame();
         makeBridge();
         move();
-        retry();
     }
 
     private void startGame() {
@@ -40,18 +40,38 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        boolean moveSuccess = true;
-        while (moveSuccess) {
-            String moving = getMoving();
-            List<String> userMoving = user.recordUserMoving(moving);
-            moveSuccess = OutputView.printMap(userMoving, bridge);
+        boolean continueGame = true;
+        List<String> userMoving = new ArrayList<>();
+
+        keepMoving(continueGame, userMoving);
+
+        retry();
+    }
+
+    private boolean completeCrossBridge(List<String> userMoving) {
+        if (userMoving.size() == bridge.size()) {
+            successOrFail = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void keepMoving(boolean continueGame, List<String> userMoving) {
+        while (continueGame) {
+            if(completeCrossBridge(userMoving)) {
+                break;
+            }
+            continueGame = getMoving(userMoving);
         }
     }
 
-    private String getMoving() {
+    private boolean getMoving(List<String> userMoving) {
         ViewMessage.printMovingInputRequest();
 
-        return InputView.readMoving();
+        String moving = InputView.readMoving();
+        userMoving = user.recordUserMoving(moving);
+        return OutputView.printMap(userMoving, bridge);
     }
 
     /**
@@ -62,10 +82,14 @@ public class BridgeGame {
     private void retry() {
         ViewMessage.printGameCommandInputRequest();
         String gameCommand = InputView.readGameCommand();
+
         if (gameCommand.equals("R")) {
             user.resetUserMoving();
             tryNumber++;
             move();
+        }
+        if (gameCommand.equals("Q")) {
+            successOrFail = false;
         }
     }
 }

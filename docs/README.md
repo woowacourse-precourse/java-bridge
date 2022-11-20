@@ -28,10 +28,10 @@
     - [x] 재시작 여부를 입력 받는다. (InputView # readGameCommand)
     - [x] 입력받은 재시작 여부에 대한 유효성 검사를 한다. (InputView # validateGameCommand)
     - [x] 'R'을 입력 받으면 시도 횟수 +1을 하고, '2.게임 진행하기' 로 돌아간다. (BridgeGame # retry)
-    - [ ] 'Q'를 입력 받으면 게임을 종료한다. (BridgeGame # quitGame)
+    - [x] 'Q'를 입력 받으면 게임을 종료한다. (BridgeGame # quitGame)
         - [ ] 게임 성공 여부 실패를 출력한다. (OutputView # printResult)
         - [ ] 시도 횟수를 출력한다. (OutputView # printResult)
-- [ ] 유저가 끝까지 이동하면 게임을 종료한다. (BridgeGame # quitGame)
+- [x] 유저가 끝까지 이동하면 게임을 종료한다. (BridgeGame # quitGame)
     - [ ] 게임 성공 여부 성공을 출력한다. (OutputView # printResult)
     - [ ] 시도 횟수를 출력한다. (OutputView # printResult)
 ## 예외 처리
