@@ -127,7 +127,7 @@ public class BridgeMaker {
 >- [x] Game을 재시작하는 기능 ( retry )
 >- [x] Game을 종료하는 기능 ( endGame )
 >- [x] 만들어진 User의 Map을 가져오는 기능 ( getMergeBrdige )
->- [ ] Bridge요소와 User요소가 같은지 가져오는 기능 ( getMatchCorrect )
+>- [x] Bridge요소와 User요소가 같은지 가져오는 기능 ( getMatchCorrect )
 
 *****
 ### 🟧 view package

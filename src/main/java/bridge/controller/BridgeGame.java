@@ -53,4 +53,8 @@ public class BridgeGame {
         bridgeGameService.setEndMessage();
         return bridgeGameService.getEndMessage();
     }
+
+    public boolean getMatchCorrect(){
+        return gameStatus.getMatchCorrect();
+    }
 }
