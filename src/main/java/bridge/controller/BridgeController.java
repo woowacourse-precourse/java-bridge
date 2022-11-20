@@ -53,4 +53,15 @@ public class BridgeController {
             }
         }
     }
+
+    private void restartOrQuit() {
+        while (true) {
+            try {
+                bridgeGame.retry(inputView.readGameCommand());
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
