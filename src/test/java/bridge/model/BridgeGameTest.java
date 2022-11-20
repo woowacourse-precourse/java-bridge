@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -39,12 +41,13 @@ class BridgeGameTest {
         Assertions.assertThat(passingSpace).isEqualTo(result);
     }
 
-    @Test
-    void judgeSuccessMoving() {
-    }
+    @DisplayName("사용자가 재시작을 선택한다.")
+    @ParameterizedTest
+    @CsvSource({"R, true", "Q, false"})
+    void selectRetrying(String selectRetrying, boolean result) {
+        boolean isRetrying = bridgeGame.retry(selectRetrying);
 
-    @Test
-    void retry() {
+        Assertions.assertThat(isRetrying).isEqualTo(result);
     }
 
     @Test
