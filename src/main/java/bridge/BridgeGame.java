@@ -8,14 +8,14 @@ public class BridgeGame {
     static OutputView outputView = new OutputView();
     static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    static String falseOrTure ="성공";
+    static String falseOrTure = "성공";
     static int count = 1;
     static List<String> randomBridges;
 
     public static void move() {
         randomBridges = bridgeMaker.makeBridge(inputView.bridgeLength);   //랜덤다리 생성
         for (String randomBridge : randomBridges) {
-            movingCheck(randomBridge, inputView.readMoving());            //값 비교 후 알맞은 값 삽입
+            movingCheck(randomBridge, inputView.readMoving());            //값 비교
             if (falseOrTure.equals("실패")) {
                 break;
             }
@@ -44,15 +44,14 @@ public class BridgeGame {
     public static void retry() {
         String retry = inputView.readGameCommand();
         if(retry.equals("R")){
-            clearAndRetry();    //재시도시 초기화 및 count 증가 후 재시도
+            clearAndRetry();    //재시도시 초기화 및 시도횟수 증가 후 재시도
         }
         if(retry.equals("Q")){
             outputView.printResult(falseOrTure, count);
         }
     }
     public static void  clearAndRetry(){
-        outputView.upByPrintMap.clear();
-        outputView.downByPrintMap.clear();
+        outputView.init();
         randomBridges.clear();
         falseOrTure = "성공";
         count++;
