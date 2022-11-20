@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * 다리 건너기 결과를 관리하는 클래스
- */
 public class BridgeMoveState {
 
     private static final String UP = "U";
@@ -23,18 +20,12 @@ public class BridgeMoveState {
         this.downState = new ArrayList<>();
     }
 
-    /**
-     * @param moving  이동할 칸
-     * @param canMove 이동 가능여부
-     */
     public void update(String moving, boolean canMove) {
         String state = makeState(canMove);
-
         if (moving.equals(UP)) {
             upState.add(state);
             downState.add(BLANK);
         }
-
         if (moving.equals(DOWN)) {
             downState.add(state);
             upState.add(BLANK);
