@@ -27,16 +27,16 @@ public class BridgeGame {
 
     public String getMoveUPStatus(int position, String userInput) {
         if (userInput == bridgeShape.get(position)) {
-            return moveStatus.UP_CORRECT.get();
+            return MoveStatus.UP_CORRECT.get();
         }
-        return moveStatus.UP_INCORRECT.get();
+        return MoveStatus.UP_INCORRECT.get();
     }
 
     public String getMoveDownStatus(int position, String userInput) {
         if (userInput == bridgeShape.get(position)) {
-            return moveStatus.DOWN_CORRECT.get();
+            return MoveStatus.DOWN_CORRECT.get();
         }
-        return moveStatus.DOWN_INCORRECT.get();
+        return MoveStatus.DOWN_INCORRECT.get();
     }
 
     /**
@@ -52,7 +52,7 @@ public class BridgeGame {
     }
 }
 
-enum moveStatus {
+enum MoveStatus {
     UP_CORRECT("UC"),
     UP_INCORRECT("UIn"),
     DOWN_CORRECT("DC"),
@@ -60,7 +60,7 @@ enum moveStatus {
 
     private String status;
 
-    moveStatus(String status) {
+    MoveStatus(String status) {
         this.status = status;
     }
 
