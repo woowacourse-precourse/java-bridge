@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -40,5 +42,26 @@ public class BridgeTest {
 		boolean actual = bridge.canWalkUp(position);
 		//then
 		assertThat(actual).isEqualTo(expected);
+	}
+
+	@Nested
+	@DisplayName("다리가 'UDU' 일 때")
+	class Describe_canWalk {
+		Bridge bridge = new Bridge(List.of("U", "D", "U"));
+
+		@Nested
+		@DisplayName("다리의 위치가 유효할 경우")
+		class Context_Validate_Position {
+
+			@DisplayName("해당 위치의 다리가 U라면 true 반환")
+			@ParameterizedTest(name = "위치 : {0} , 예상 반환 : {1}")
+			@CsvSource({"1, true", "2, false", "3, true"})
+			void it_returns_boolean(int position, boolean expected) {
+				//when
+				boolean actual = bridge.canWalkUp(position);
+				//then
+				assertThat(actual).isEqualTo(expected);
+			}
+		}
 	}
 }
