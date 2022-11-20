@@ -19,6 +19,6 @@ public class Bridge {
     }
 
     public List<String> getBridges(){
-        return new ArrayList<>();
+        return bridges;
     }
 }
