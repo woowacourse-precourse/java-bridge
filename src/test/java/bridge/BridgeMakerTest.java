@@ -1,6 +1,7 @@
 package bridge;
 
 import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +15,18 @@ class BridgeMakerTest {
 
     public static final int GENERATED_NUMBER = 0;
 
+    BridgeNumberGenerator numberGenerator;
+    BridgeMaker bridgeMaker;
+
+    @BeforeEach
+    void setUp() {
+        numberGenerator = new BridgeTestNumberGenerator(Lists.newArrayList(0, 1, 1));
+        bridgeMaker = new BridgeMaker(numberGenerator);
+    }
+
     @DisplayName("다리 생성 테스트")
     @Test
     void createBridgeTest() {
-        BridgeNumberGenerator numberGenerator = new BridgeTestNumberGenerator(Lists.newArrayList(0, 1, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
 
         assertThat(bridge).containsExactly("D", "U", "U");
@@ -28,9 +36,6 @@ class BridgeMakerTest {
     @ParameterizedTest
     @ValueSource(ints = {2, 21})
     void createBridgeSizeError(int bridgeSize) {
-        BridgeNumberGenerator numberGenerator = new BridgeTestNumberGenerator(Lists.newArrayList(0, 1, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> bridgeMaker.makeBridge(bridgeSize))
                 .withMessage(ErrorMessage.INVALID_BRIDGE_SIZE_RANGE);
