@@ -2,12 +2,13 @@ package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
 
-    Bridge(int size) {
+    public Bridge(int size) {
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
@@ -20,6 +21,6 @@ public class Bridge {
     }
 
     public List<String> getBridge() {
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 }
