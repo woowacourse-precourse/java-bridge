@@ -25,9 +25,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String answerBrige, String userCommand) {
+    public boolean move(List<String> answerBrige, String userCommand) {
         moveCount++;
-        if(userCommand.equals(answerBrige)){
+        if(userCommand.equals(answerBrige.get(moveCount))){
             if(userCommand.equals("U")){
                 upBridge.add("O");
                 downBridge.add(" ");
