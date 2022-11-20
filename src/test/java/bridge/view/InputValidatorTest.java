@@ -36,15 +36,9 @@ class InputValidatorTest {
         }
 
         @ParameterizedTest(name = "숫자가 아닌 문자면 예외 처리한다.")
+        @NullAndEmptySource
         @ValueSource(strings = {" ", "abc", ",./", "가나다", "@#%^&"})
         void validateNumberNotDigit(String text) {
-            assertThatThrownBy(() -> inputValidator.validateNumber(text))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @ParameterizedTest(name = "숫자가 공백 또는 Null 이면 예외 처리한다.")
-        @NullAndEmptySource
-        void validateNumberNull(String text) {
             assertThatThrownBy(() -> inputValidator.validateNumber(text))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -65,14 +59,8 @@ class InputValidatorTest {
             assertDoesNotThrow(() -> inputValidator.validateInputMoving("U"));
         }
 
-        @ParameterizedTest(name = "U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며 Null또는 공백이면 예외 처리한다.")
-        @NullAndEmptySource
-        void inputMovingNullOrEmpty(String moving) {
-            assertThatThrownBy(() -> inputValidator.validateInputMoving(moving))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
         @ParameterizedTest(name = "U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.")
+        @NullAndEmptySource
         @ValueSource(strings = {"u", "d", "UD", "DU", " ", "abc"})
         void inputMovingException(String moving) {
             assertThatThrownBy(() -> inputValidator.validateInputMoving(moving))
