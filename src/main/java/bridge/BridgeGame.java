@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class BridgeGame {
 
     private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
     private final Bridges gameBridges;
     private int gameTryCount;
 
@@ -22,6 +24,7 @@ public class BridgeGame {
         ++gameTryCount;
         while (!this.isCleared()) {
             boolean isMoveSuccess = move();
+            outputView.printMap(gameBridges);
             if (!isMoveSuccess) {
                 return;
             }
@@ -57,5 +60,9 @@ public class BridgeGame {
 
     public int getTryCount() {
         return this.gameTryCount;
+    }
+
+    public Bridges getGameBridges() {
+        return this.gameBridges;
     }
 }
