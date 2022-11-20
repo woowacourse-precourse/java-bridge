@@ -14,8 +14,8 @@
 ## 출력 OutputView
 - [x] 게임 시작 메시지 InputView#printStart()
 - [x] 다리 그리기 OutputView#printMap(char[][] map, int index)
-- [ ] 종료 메시지 출력 OutputView#printEndMessage()
-- [ ] 결과 출력 OutputView#printResult()
+- [x] 종료 메시지 출력 OutputView#printEndMessage()
+- [x] 결과 출력 OutputView#printResult(boolean isSuccess, int numberOfTrials)
 
 ---
 ## 다리 생성 BrideMaker
