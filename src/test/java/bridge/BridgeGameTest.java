@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameTest {
 
@@ -44,5 +45,26 @@ public class BridgeGameTest {
         bridgeGame.retry();
         assertThat(bridgeGame.getGameCount())
                 .isEqualTo(3);
+    }
+
+    @DisplayName("범위를 벗어난 다리 길이를 입력한 경우 예외 발생")
+    @Test()
+    public void bridgeSizeByInvalidInput() {
+        assertThatThrownBy(() -> Validation.validateBridgeSizeInput("30"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리 건너기를 할 때 잘못된 입력값을 입력한 경우 예외 발생")
+    @Test()
+    public void moveByInvalidInput() {
+        assertThatThrownBy(() -> Validation.validateMovingInput("UD"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시도 물음에 잘못된 입력값을 입력한 경우 예외 발생")
+    @Test()
+    public void retryCommandByInvalidInput() {
+        assertThatThrownBy(() -> Validation.validateCommandInput("RQ"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
