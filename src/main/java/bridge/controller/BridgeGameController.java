@@ -49,14 +49,16 @@ public class BridgeGameController {
     }
 
     public boolean isFinished(){
+        if(isSuccess()) return true;
+        if(isPaused() && wannaQuit()) return true;
         return false;
     }
 
-    private boolean isSuccess(){
+    public boolean isSuccess(){
         return player.isGameFinished(bridge);
     }
 
-    private boolean isQuit(){
+    private boolean wannaQuit(){
         return inputView.readGameCommand().equals(QUIT.getCommand());
     }
 }
