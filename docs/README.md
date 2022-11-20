@@ -31,13 +31,25 @@
 
 ## 기능 명세
 - --
+### Setting 클래스
+#### : 프로그램 세팅
+  - ```MIN_BRIDGE_SIZE``` : 최소 다리 길이
+  - ```MAX_BRIDGE_SIZE``` : 최대 다리 길이
+  - ```GAME_EXIT``` : 게임 종료 코드(Q)
+  - ```GAME_RE_START``` : 게임 재시작 코드(R)
+  - ```PLAYER_MOVE_UP``` : 다리 이동 코드(U)
+  - ```PLAYER_MOVE_DOWN``` : 다리 이동 코드(D)
+
 
 ### OutputView 클래스
+#### : 사용자에게 게임 진행 상황과 결과를 출력
   - ```printGameStart``` : 게임 시작 문구 출력
   - ```printMap``` : 이동한 다리 상태 출력
   - ```printResult``` : 게임 최종 결과 출력 
 
+
 ### InputView 클래스
+#### : 사용자로부터 입력을 받음
   - ```readBridgeSize``` : 다리 길이 문구 출력 및 입력
   - ```readMoving``` :  이동 문구 출력 및 입력
   - ```readGameCommand``` : 게임 재시작 혹은 종료 문구 출력 및 입력
