@@ -31,7 +31,7 @@ public class BridgeGame {
         outputView.printStartGame();
         int bridgeSize=setBridgeSize();
         System.out.println(bridge.getBridge());
-        finalResult(move(bridgeSize));
+        move(bridgeSize);
     }
     public int setBridgeSize(){
         String bridgeSize=inputView.readBridgeSize();
@@ -49,7 +49,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int bridgeSize) {
+    public void move(int bridgeSize) {
         tryCount++;
         boolean success=true;
         for(int i=0; i<bridgeSize; i++) {
@@ -58,13 +58,14 @@ public class BridgeGame {
                 break;
             }
         }
-        return success;
+        finalResult(success, tryCount);
     }
-    public void finalResult(boolean success){
+    public void finalResult(boolean success, int tryCount){
         boolean quit=true;
         if(!success) quit=isQuit();
         if(quit || success)
-            outputView.printResult(result.getPlayResult(),success);
+            outputView.printResult(result.getPlayResult(),success, tryCount);
+        if(!quit) retry();
     }
     public String moveOne(int index){
         String moving=inputView.readMoving();
@@ -86,5 +87,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        result=new Result();
+        move(bridge.getBridgeSize());
     }
 }

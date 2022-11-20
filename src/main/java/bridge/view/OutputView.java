@@ -39,13 +39,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> result, boolean success) {
+    public void printResult(List<List<String>> result, boolean success, int tryCount) {
         System.out.println(SystemMessage.FINAL_RESULT.print());
         for(int i=0; i<result.size(); i++){
             printUpOrDownMap(result.get(i));
         }
         System.out.printf(SystemMessage.OUTPUT_GAME_SUCCESS_OR_NOT.print(), printSuccessOrNot(success));
-        System.out.printf(SystemMessage.OUTPUT_TOTAL_ATTEMPT_COUNT.print(), 1);;
+        System.out.printf(SystemMessage.OUTPUT_TOTAL_ATTEMPT_COUNT.print(), tryCount);;
     }
     public String printSuccessOrNot(boolean success){
         if(success) return Constants.SUCCESS;
