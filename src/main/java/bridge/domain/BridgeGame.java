@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static bridge.constant.GameCommand.QUIT;
 import static bridge.constant.GameCommand.RETRY;
 import static bridge.constant.GameStatus.END;
 import static bridge.constant.GameStatus.FAIL;
@@ -44,7 +45,11 @@ public class BridgeGame {
     public void retry(String gameCommand) {
         if (gameCommand.equals(RETRY)) {
             this.gameStatus = ON_WAY;
+            this.tryCount += 1;
             this.bridgeMonitor.turnBackOnce();
+        }
+        if (gameCommand.equals(QUIT)) {
+            this.gameStatus = END;
         }
     }
 
