@@ -19,7 +19,7 @@ public class InputView {
         String readLine = Console.readLine();
         validateRange(readLine);
         validateType(readLine);
-        return Integer.parseInt(Console.readLine());
+        return Integer.parseInt(readLine);
     }
 
     private void validateRange(String readLine){
