@@ -31,4 +31,11 @@ public class BridgeGameTest {
         assertThat(List.of("X")).isEqualTo(topBridge);
         assertThat(List.of(" ")).isEqualTo(bottomBridge);
     }
+
+    @Test
+    void retryTest() {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        assertThat(true).isEqualTo(bridgeGame.retry("R"));
+    }
 }
