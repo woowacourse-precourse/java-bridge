@@ -1,0 +1,41 @@
+package bridge.view;
+
+import bridge.domain.GameResult;
+import bridge.domain.MovingResult;
+import java.util.Map;
+
+public class View {
+
+    private InputView inputView;
+    private OutputView outputView;
+
+    public View(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
+    public void printStartGame() {
+        System.out.println("다리 건너기 게임을 시작합니다." + System.lineSeparator());
+    }
+
+    public int readBridgeSize() {
+        return inputView.readBridgeSize();
+    }
+
+    public String readMoving() {
+        return inputView.readMoving();
+    }
+
+    public String readGameCommand() {
+        return inputView.readGameCommand();
+    }
+
+    public void printMap(Map<String, StringBuilder> map, MovingResult moveResult) {
+        outputView.printMap(map, moveResult);
+    }
+
+    public void printResult(Map<String, StringBuilder> map, GameResult gameResult) {
+        outputView.printResult(map, gameResult);
+    }
+
+}
