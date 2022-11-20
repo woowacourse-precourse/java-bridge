@@ -33,4 +33,14 @@ class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 문자가 포함되어 있습니다.");
     }
+
+    @DisplayName("현재까지 건너온 다리 기록 조회 테스트")
+    @Test
+    void getCrossedBridgeTest() {
+        List<String> inputs = List.of("U", "D", "U");
+        Bridge bridge = new Bridge(inputs);
+
+        List<String> crossedBridge = bridge.getCrossedBridge(1);
+        Assertions.assertThat(crossedBridge).contains("U", "D");
+    }
 }
