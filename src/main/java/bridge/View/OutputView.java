@@ -45,7 +45,7 @@ public class OutputView {
         printPostBracket();
     }
 
-    public void setUpandDownSide(String userMove, String answer) {
+    public void setUpAndDownSide(String userMove, String answer) {
         if (userMove.equals("U")) {
             setUpSide(userMove, answer);
         }
