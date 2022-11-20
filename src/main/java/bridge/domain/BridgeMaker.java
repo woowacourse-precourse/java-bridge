@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import static bridge.domain.GameBridge.makeUpDown;
+import static bridge.domain.BridgeElememt.makeUpDown;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.constants.InputMessage;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.User;
+import bridge.service.BridgeGame;
 import bridge.service.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -13,17 +15,37 @@ public class GameController {
     private final OutputView outputView = new OutputView();
     private final InputMessage inputMessage = new InputMessage();
     private final Validator validator = new Validator();
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void startGame() {
+        User user = new User();
         inputView.printMessage(inputMessage.START_GAME);
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        String direction = inputView.readMoving();
-        setDirection(direction);
+
     }
+    public boolean crossBridge(List<String> bridge, User user) {
+        int currentIndex = 0;
+        while (true) {
+            String direction = inputView.readMoving();
+            setDirection(direction);
+            boolean isUp = direction.equals(bridge.get(currentIndex));
+            String result = bridgeGame.move(direction, bridge.get(currentIndex));
+            addResultBridge(isUp, result, user);
+            //다리 출력
+        }
+    }
+    public void addResultBridge(boolean isUp, String result, User user) {
+        if(isUp) {
+            user.addUpperBridge(result);
+            return;
+        }
+        user.addLowerBridge(result);
+    }
+
     public void setDirection(String direction) {
         try {
             validator.validateDirection(direction);
