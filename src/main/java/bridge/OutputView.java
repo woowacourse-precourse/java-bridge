@@ -35,18 +35,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> userResultMap) {
+    public void printResult(List<String> upBridge, List<String> downBridge,int gameCount,boolean gameStatus) {
         System.out.println("최종 게임 결과");
-        StringBuilder printUserMap = new StringBuilder();
-        printUserMap.append("[ ");
-        for(int userMapIndex = 0; userMapIndex < userResultMap.size(); userMapIndex++){
-            printUserMap.append(userResultMap.get(userMapIndex));
-            if(userMapIndex == userResultMap.size()-1){
-                printUserMap.append(" ]");
-                break;
-            }
-            printUserMap.append(" | ");
-        }
-        System.out.println(printUserMap.toString());
+        printMap(upBridge);
+        printMap(downBridge);
     }
 }
