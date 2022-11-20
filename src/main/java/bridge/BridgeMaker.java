@@ -33,27 +33,11 @@ public class BridgeMaker {
         return result;
     }
 
-    public String OXjudge(String search, int number, String Line){
-        char[] charInput = Line.toCharArray();
-        if(search.equals("O")){
-            charInput[number * 4 + 2] ='O';
-        }
-        if(search.equals("X")){
-            charInput[number * 4 + 2] = 'X';
-        }
-        return String.valueOf(charInput);
-    }
 
-    public List<String> makeFormBridge(String Search, int number, String Line){
-        char[] charInput = Line.toCharArray();
-        List<String> makeResult = new ArrayList<>();
-        if(!Search.equals("[") && Search.equals("]") && Search.equals("|").contains(String.valueOf(charInput[number * 4 + 2]))){
-            makeResult.add(Search);
-        }
-            return mekeResult;
-        }
+
+
     }
 
 
 
-}
+

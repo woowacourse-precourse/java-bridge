@@ -6,6 +6,63 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private StringBuffer sb1 = new StringBuffer();
+    private StringBuffer sb2 = new StringBuffer();
+
+    public StringBuffer getSb1(){return sb1;}
+    public StringBuffer getSb2(){return sb2;}
+
+    public void spliceMoveStart(int size){
+        if(size == 0){
+            sb1.append("[");
+            sb2.append("[");
+        }
+    }
+
+    public void spliceMoverEnd(int size, List<String> bridge){
+        if(bridge.size() - 1 == size){
+            sb1.append("]");
+            sb2.append("]");
+        }
+    }
+
+    public void spliceMiddle(int size, List<String> bridge){
+        if(bridge.size() - 1 != size)
+            sb1.append("|");
+            sb2.append("|");
+    }
+
+    public void directionUp(int size, List<String> bridge, String search){
+        String Oxjudge = OXjudge(size, bridge, search);
+        if(bridge.get(size).equals("U")){
+            if(Oxjudge.equals("X")){
+                sb1.append(Oxjudge);
+                sb2.append("   ");
+            }
+        }
+    }
+
+    public void directionDown(int size, List<String> bridge, String search){
+        String Oxjudge = OXjudge(size, bridge, search);
+        if(bridge.get(size).equals("D")){
+            if(Oxjudge.equals("X")){
+                sb1.append("   ");
+                sb2.append(Oxjudge);
+            }
+        }
+    }
+
+    public String OXjudge(int size, List<String> bridge, String search){
+        String result = "";
+        if(bridge.get(size).equals(search)){    //search는 검색하고자하는 한곳을 String으로 파악하는 기능
+            result = " O ";
+        }
+        if(!bridge.get(size).equals(search)){
+            result = " X ";
+        }
+        return result;
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
