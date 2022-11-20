@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.message.InputViewMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,7 +12,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static String readBridgeSize() {
-        OutputView.printBridgeLengthRequest();
+        System.out.println();
+        System.out.println(InputViewMessage.BRIDGE_LENGTH_REQUEST);
         return Console.readLine().trim();
     }
 
@@ -19,7 +21,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        OutputView.printMovingRequest();
+        System.out.println(InputViewMessage.MOVING_REQUEST);
         return Console.readLine().trim();
     }
 
@@ -27,7 +29,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        OutputView.printRetryRequest();
+        System.out.println(InputViewMessage.RETRY_REQUEST);
         return Console.readLine().trim();
     }
 }
