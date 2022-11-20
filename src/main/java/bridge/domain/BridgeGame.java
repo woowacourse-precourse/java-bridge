@@ -2,19 +2,16 @@ package bridge.domain;
 
 public class BridgeGame {
 
-    private Bridge bridge;
-    private CurrentRoute currentRoute;
-    private GameProgress gameProgress;
+    public static final String RESTART = "R";
 
-    public void setBridge(int bridgeSize) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-    }
+    private final Bridge bridge;
+    private final CurrentRoute currentRoute;
+    private final GameProgress gameProgress;
 
-    public void setGameState() {
-        currentRoute = new CurrentRoute();
-        gameProgress = new GameProgress();
+    public BridgeGame(Bridge bridge, CurrentRoute currentRoute, GameProgress gameProgress) {
+        this.bridge = bridge;
+        this.currentRoute = currentRoute;
+        this.gameProgress = gameProgress;
     }
 
     public void move(String input) {

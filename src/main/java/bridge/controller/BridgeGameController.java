@@ -1,21 +1,13 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
-import bridge.domain.MapConverter;
+import bridge.domain.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private static final String RESTART = "R";
-
-    private final BridgeGame bridgeGame;
-    private final MapConverter mapConverter;
-
-    public BridgeGameController() {
-        this.bridgeGame = new BridgeGame();
-        this.mapConverter = new MapConverter();
-    }
+    private BridgeGame bridgeGame;
+    private MapConverter mapConverter;
 
     public void process() {
         try {
@@ -29,15 +21,22 @@ public class BridgeGameController {
 
     private void initializeGame() {
         OutputView.printStartMessage();
-        setBridgeSize();
-        bridgeGame.setGameState();
+        int bridgeSize = getBridgeSize();
+        bridgeGame = new BridgeGame(getBridge(bridgeSize), new CurrentRoute(), new GameProgress());
+        mapConverter = new MapConverter();
     }
 
-    private void setBridgeSize() {
+    private int getBridgeSize() {
         OutputView.printBridgeSizeInputMessage();
         int bridgeSize = InputView.readBridgeSize();
         OutputView.printBlankLine();
-        bridgeGame.setBridge(bridgeSize);
+        return bridgeSize;
+    }
+
+    private Bridge getBridge(int bridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     private void playGame() {
@@ -89,7 +88,7 @@ public class BridgeGameController {
     private boolean isRestart() {
         OutputView.printRestartMessage();
         String gameCommand = InputView.readGameCommand();
-        return gameCommand.equals(RESTART);
+        return gameCommand.equals(BridgeGame.RESTART);
     }
 
     private void finishGame() {

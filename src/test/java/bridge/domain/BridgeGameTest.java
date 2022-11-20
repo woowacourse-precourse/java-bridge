@@ -23,7 +23,7 @@ public class BridgeGameTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("칸 위치의 초기화가 정상적으로 이루어지는지 확인")
+    @DisplayName("현재 위치와 게임 상태의 초기화가 정상적으로 이루어지는지 확인")
     @Test
     void checkSettingLocationSuccess() {
         assertThatCode(() -> bridgeGame.setGameState())
