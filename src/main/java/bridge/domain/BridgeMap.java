@@ -1,29 +1,25 @@
 package bridge.domain;
 
+import bridge.constant.BridgeMapConstants;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMap {
+
     private final List<String> upSide;
     private final List<String> downSide;
-    private final String SUCCESSFUL_MOVE_FORMAT = " O ";
-    private final String FAILED_MOVE_MARK = " X ";
-    private final String NEVER_STEPPED_MARK = "   ";
 
     public BridgeMap() {
         this.upSide = new ArrayList<>();
         this.downSide = new ArrayList<>();
     }
 
-    public List<String> getUpSide() {
-        return upSide;
+    public String getPrintFormat() {
+        return "[" + String.join("|", upSide) + "]\n"
+                + "[" + String.join("|", downSide) + "]\n";
     }
 
-    public List<String> getDownSide() {
-        return downSide;
-    }
-
-    void update(String direction, boolean gameOver) {
+    public void update(String direction, boolean gameOver) {
         if (gameOver) {
             markFailedMove(direction);
             return;
@@ -38,21 +34,21 @@ public class BridgeMap {
 
     private void markFailedMove(String direction) {
         if (direction.equals(Moving.UP.getValue())) {
-            upSide.add(FAILED_MOVE_MARK);
-            downSide.add(NEVER_STEPPED_MARK);
+            upSide.add(BridgeMapConstants.FAILED_MOVE_MARK);
+            downSide.add(BridgeMapConstants.NEVER_STEPPED_MARK);
             return;
         }
-        upSide.add(NEVER_STEPPED_MARK);
-        downSide.add(FAILED_MOVE_MARK);
+        upSide.add(BridgeMapConstants.NEVER_STEPPED_MARK);
+        downSide.add(BridgeMapConstants.FAILED_MOVE_MARK);
     }
 
     private void markSuccessfulMove(String direction) {
         if (direction.equals(Moving.UP.getValue())) {
-            upSide.add(SUCCESSFUL_MOVE_FORMAT);
-            downSide.add(NEVER_STEPPED_MARK);
+            upSide.add(BridgeMapConstants.SUCCESSFUL_MOVE_FORMAT);
+            downSide.add(BridgeMapConstants.NEVER_STEPPED_MARK);
             return;
         }
-        upSide.add(NEVER_STEPPED_MARK);
-        downSide.add(SUCCESSFUL_MOVE_FORMAT);
+        upSide.add(BridgeMapConstants.NEVER_STEPPED_MARK);
+        downSide.add(BridgeMapConstants.SUCCESSFUL_MOVE_FORMAT);
     }
 }
