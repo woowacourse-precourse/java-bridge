@@ -39,16 +39,16 @@
 - 게임 재시작 / 종료 입력
 
 #### OUTPUTVIEW
-- 게임 시작 문구 
-- 다리 길이 입력 문구
-- 다리 선택 문구 
+- 게임 시작 문구 @ printGameStart
+- 다리 길이 입력 문구 @ printBridgeSizeInput
+- 다리 선택 문구 @ printMovingInput
 - 다리 이동 표시 문구
-- 게임 재시작/종료 선택 문구
+- 게임 재시작/종료 선택 문구 @ printGameOver
 - 최종 게임 결과 문구
-- 게임 성공 여부 문구
-- 게임 시도 횟수 문구
-- 이동 불가능 칸 표시
-- 이동 가능 칸 표시
+- 게임 성공 여부 문구 @ printSuccess
+- 게임 시도 횟수 문구 @ printTrialAmount
+- 이동 불가능 칸 표시 @ printNotMovable
+- 이동 가능 칸 표시 @ printMovable
 
 #### BRIDGEGAME
 - 시도 (다리 생성) 횟수 / 총 시도 횟수
