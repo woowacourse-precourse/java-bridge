@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.GameStatus;
+import bridge.domain.User;
 import bridge.service.BridgeGameService;
 import bridge.service.BridgeMaker;
 import bridge.service.BridgeRandomNumberGenerator;
@@ -15,12 +16,12 @@ public class BridgeGame {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private GameStatus gameStatus = new GameStatus();
-    private List<String> bridgeLoad;
+    private User user = new User();
     private Bridge bridge = new Bridge();
 
     public void startGame(int size){
         bridge.setBridgeSize(size);
-        this.bridgeLoad = bridgeMaker.makeBridge(size);
+        bridge.setBridgeLoad(bridgeMaker.makeBridge(size));
         gameStatus.addGameCount();
     }
     /**
@@ -28,12 +29,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-
+    public void move(String moving) {
+        user.addNext(moving);
     }
 
     public String getMergeBridge(){
         BridgeGameService bridgeGameService = new BridgeGameService();
+        bridgeGameService.setMergeBridge();
         return bridgeGameService.getMergeBridge();
     }
     /**
