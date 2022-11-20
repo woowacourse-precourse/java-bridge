@@ -1,6 +1,9 @@
 package bridge.view;
 
+import bridge.Check;
 import camp.nextstep.edu.missionutils.Console;
+
+import static bridge.Utility.convertStringToInt;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -16,7 +19,19 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String input;
+        boolean check1, check2;
+        while(true) {
+            input = readInput();
+            check2 = false;
+            check1 = Check.checkNumeric(input);
+            if(check1) {
+                check2 = Check.checkBridgeLengthOutOfRange(Integer.parseInt(input));
+            }
+            if (check1 && check2) break;
+        }
+        int bridgeSize = convertStringToInt(input);
+        return bridgeSize;
     }
 
     /**
