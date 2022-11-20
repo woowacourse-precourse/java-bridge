@@ -15,7 +15,7 @@ public class InputView {
         System.out.println("\n다리의 길이를 입력해주세요.");
         try {
             bridge_size = Integer.parseInt(Console.readLine());
-            checkBridgeSizeException();
+            checkBridgeSizeException(bridge_size);
         } catch(NumberFormatException e) {
             changeExceptionType();
         }
@@ -25,7 +25,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException{
+    public String readMoving() throws IllegalArgumentException {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving = Console.readLine();
         checkMovingException(moving);
@@ -45,17 +45,17 @@ public class InputView {
         return game_command;
     }
 
-    private static void checkBridgeSizeException() {
+    private static void checkBridgeSizeException(int bridge_size) throws IllegalArgumentException{
         if (bridge_size < 3 || bridge_size > 20){
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }
-    private static void changeExceptionType() {
+    private static void changeExceptionType() throws IllegalArgumentException{
         System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         throw new IllegalArgumentException();
     }
-    private static void checkMovingException(String moving) {
+    private static void checkMovingException(String moving) throws IllegalArgumentException{
         if (!(moving.equals("U")) && !(moving.equals("D"))){
             System.out.println("[ERROR] 이동할 칸은 U/D 중 하나를 입력해야 합니다.");
             throw new IllegalArgumentException();
