@@ -13,13 +13,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = 0;
+        int bridgeSize;
         try {
             bridgeSize = convertToInt(Console.readLine());
         }
         catch (IllegalArgumentException e) {
             e.getMessage();
-            bridgeSize = readBridgeSize();
+            bridgeSize = convertToInt(Console.readLine());
         }
         return bridgeSize;
     }
@@ -30,7 +30,6 @@ public class InputView {
             number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 정수가 아닙니다.");
-
         }
         return number;
     }
@@ -40,22 +39,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String moveCommand = Console.readLine();
-        try {
-            isVaildMove(moveCommand);
-        } catch (IllegalArgumentException e) {
-            e.getMessage();
-            moveCommand = readMoving();
-        }
-        return moveCommand;
+        return Console.readLine();
     }
 
-    public boolean isVaildMove(String moveCommand) {
-        if(!(moveCommand == "U" || moveCommand == "D")) {
-            throw new IllegalArgumentException("[ERROR] 알맞은 이동 명령이 아닙니다.");
-        }
-        return true;
-    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
