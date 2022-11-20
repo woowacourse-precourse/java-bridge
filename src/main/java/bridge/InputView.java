@@ -1,5 +1,9 @@
 package bridge;
 
+import static bridge.constant.InputViewConstant.READ_BRIDGE;
+import static bridge.constant.InputViewConstant.READ_GAME_COMMAND;
+import static bridge.constant.InputViewConstant.READ_MOVING;
+
 import bridge.constant.BridgeMove;
 import bridge.constant.GameCommand;
 import bridge.util.TypeConversion;
@@ -17,7 +21,7 @@ public class InputView {
     public int readBridgeSize() {
         int conversionInput = Integer.MIN_VALUE;
         do {
-            System.out.println("다리의 길이를 입력해주세요.");
+            System.out.println(READ_BRIDGE.getMessage());
             String input = Console.readLine();
             System.out.println();
             conversionInput = getConversionInput(conversionInput, input);
@@ -43,7 +47,7 @@ public class InputView {
     public String readMoving() {
         BridgeMove bridgeMove;
         do {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            System.out.println(READ_MOVING.getMessage());
             String input = Console.readLine();
             bridgeMove = getBridgeMoveByString(input);
         } while (bridgeMove.isMiss());
@@ -67,7 +71,7 @@ public class InputView {
     public GameCommand readGameCommand() {
         GameCommand gameCommand;
         do {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            System.out.println(READ_GAME_COMMAND.getMessage());
             String input = Console.readLine();
             gameCommand = getGameCommand(input);
         } while (gameCommand.isMiss());
