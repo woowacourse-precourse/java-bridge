@@ -20,6 +20,6 @@ public class Player {
     }
 
     public boolean isGameFinished(Bridge bridge){
-        return false;
+        return bridges.equals(bridge.getBridges());
     }
 }
