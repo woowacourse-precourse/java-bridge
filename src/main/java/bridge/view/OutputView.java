@@ -17,37 +17,6 @@ public class OutputView {
     private static final String GAME_SUCCESS = "게임 성공 여부: ";
     private static final String GAME_TRY_COUNT = "총 시도한 횟수: ";
 
-    public void printMap(BridgeGameResult gameResult) {
-        BridgeMoveState moveState = gameResult.getMoveState();
-        System.out.println(format(moveState.getUpState()));
-        System.out.println(format(moveState.getDownState()));
-    }
-
-    private String format(List<String> state) {
-        StringBuilder result = new StringBuilder();
-
-        result.append(BRIDGE_START);
-        addState(state, result);
-        result.append(BRIDGE_END);
-
-        return result.toString();
-    }
-
-    private static void addState(List<String> state, StringBuilder result) {
-        for (int moveCount = 0; moveCount < state.size(); moveCount++) {
-            if (moveCount != 0) {
-                result.append(BRIDGE_DIVIDE);
-            }
-            result.append(state.get(moveCount));
-        }
-    }
-
-    public void printResult(BridgeGameResult gameResult) {
-        System.out.println(separateLine() + GAME_RESULT);
-        printMap(gameResult);
-        System.out.println(separateLine() + GAME_SUCCESS + gameResult.getResult());
-        System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
-    }
 
     public void printGameStartMsg() {
         System.out.println(GAME_START);
@@ -67,6 +36,36 @@ public class OutputView {
 
     public void print(String msg) {
         System.out.println(msg);
+    }
+
+    public void printResult(BridgeGameResult gameResult) {
+        System.out.println(separateLine() + GAME_RESULT);
+        printMap(gameResult);
+        System.out.println(separateLine() + GAME_SUCCESS + gameResult.getResult());
+        System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
+    }
+
+    public void printMap(BridgeGameResult gameResult) {
+        BridgeMoveState moveState = gameResult.getMoveState();
+        System.out.println(format(moveState.getUpState()));
+        System.out.println(format(moveState.getDownState()));
+    }
+
+    private String format(List<String> state) {
+        StringBuilder result = new StringBuilder();
+        result.append(BRIDGE_START);
+        addState(state, result);
+        result.append(BRIDGE_END);
+        return result.toString();
+    }
+
+    private static void addState(List<String> state, StringBuilder result) {
+        for (int moveCount = 0; moveCount < state.size(); moveCount++) {
+            if (moveCount != 0) {
+                result.append(BRIDGE_DIVIDE);
+            }
+            result.append(state.get(moveCount));
+        }
     }
 
     private String separateLine() {
