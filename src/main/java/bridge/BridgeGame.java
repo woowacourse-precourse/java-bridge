@@ -40,24 +40,43 @@ public class BridgeGame {
 
     public void playGame() {
         outputView.printGameStart();
-        setAnswerBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        List<String> bridge = getAnswerBridge();
+        List<String> bridge = makeAnswerBridge();
+        pickMovingDirection(bridge);
+        outputView.printResult(upperBridge, lowerBridge);
+    }
+
+    private void pickMovingDirection(List<String> bridge) {
         while (bridgeIndex < bridge.size()) {
             if (move(inputView.readMoving()) == false) {
                 outputView.printMap(upperBridge, lowerBridge);
                 String retryFlag = inputView.readGameCommand();
-                if (retryFlag.equals("Q")) {
-                    break;
-                }
-                if (retryFlag.equals("R")) {
-                    retry();
-                    continue;
-                }
-            }
+                if (isQuit(retryFlag)) break;
+                if (isRetry(retryFlag)) continue;
+             }
             outputView.printMap(upperBridge, lowerBridge);
             bridgeIndex++;
         }
-        outputView.printResult(upperBridge, lowerBridge);
+    }
+
+    private List<String> makeAnswerBridge() {
+        setAnswerBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        List<String> bridge = getAnswerBridge();
+        return bridge;
+    }
+
+    private boolean isRetry(String retryFlag) {
+        if (retryFlag.equals("R")) {
+            retry();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isQuit(String retryFlag) {
+        if (retryFlag.equals("Q")) {
+            return true;
+        }
+        return false;
     }
 
     /**
