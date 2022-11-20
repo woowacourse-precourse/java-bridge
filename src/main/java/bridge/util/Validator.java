@@ -9,4 +9,11 @@ public class Validator {
         }
         return true;
     }
+    public static boolean checkRange(String input){
+        int size=Integer.parseInt(input);
+        if(size<Constants.MIN_BRIDGE_SIZE || size>Constants.MAX_BRIDGE_SIZE){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_BRIGE_SIZE_RANGE.print());
+        }
+        return true;
+    }
 }
