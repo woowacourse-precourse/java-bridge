@@ -23,6 +23,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int tries, List<String> userMoves, List<Boolean> results) {
+        System.out.println("\n최종 게임 결과");
+        printMap(userMoves, results);
+        String result = "실패";
+        if (results.get(results.size() - 1)) {
+            result = "성공";
+        }
+        System.out.printf("게임 성공 여부: %s\n", result);
+        System.out.printf("총 시도한 횟수: %d\n", tries);
     }
 }
