@@ -16,10 +16,12 @@ public class BridgeGame {
         startGame();
         makeBridge();
         move();
+        endGame();
     }
 
     private void startGame() {
         tryNumber = 1;
+        successOrFail = false;
         ViewMessage.printGameStartMessage();
         user.resetUserMoving();
     }
@@ -41,16 +43,16 @@ public class BridgeGame {
      */
     public void move() {
         boolean continueGame = true;
-        List<String> userMoving = new ArrayList<>();
 
-        keepMoving(continueGame, userMoving);
+        keepMoving(continueGame, user.getUserMovingRecord());
 
-        retry();
+        if (!successOrFail) {
+            retry();
+        }
     }
 
     private boolean completeCrossBridge(List<String> userMoving) {
         if (userMoving.size() == bridge.size()) {
-            successOrFail = true;
             return true;
         }
 
@@ -59,7 +61,8 @@ public class BridgeGame {
 
     private void keepMoving(boolean continueGame, List<String> userMoving) {
         while (continueGame) {
-            if(completeCrossBridge(userMoving)) {
+            if (completeCrossBridge(userMoving)) {
+                successOrFail = true;
                 break;
             }
             continueGame = getMoving(userMoving);
@@ -91,5 +94,20 @@ public class BridgeGame {
         if (gameCommand.equals("Q")) {
             successOrFail = false;
         }
+    }
+
+    public void endGame() {
+        if (successOrFail) {
+            printGameResult();
+        }
+        if (!successOrFail) {
+            printGameResult();
+        }
+    }
+
+    private void printGameResult() {
+        ViewMessage.printEndGameMessage();
+        OutputView.printMap(user.getUserMovingRecord(), bridge);
+        OutputView.printResult(tryNumber, successOrFail);
     }
 }

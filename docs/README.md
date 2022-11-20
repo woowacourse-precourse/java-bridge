@@ -29,13 +29,13 @@
     - [x] 입력받은 재시작 여부에 대한 유효성 검사를 한다. (InputView # validateGameCommand)
     - [x] 'R'을 입력 받으면 시도 횟수 +1을 하고, '2.게임 진행하기' 로 돌아간다. (BridgeGame # retry)
     - [x] 'Q'를 입력 받으면 게임을 종료한다. (BridgeGame # quitGame)
-        - [ ] 최종 게임 결과를 출력한다 (OutputView # printResult)
-        - [ ] 게임 성공 여부 실패를 출력한다. (OutputView # printResult)
-        - [ ] 시도 횟수를 출력한다. (OutputView # printResult)
+        - [x] 최종 게임 결과를 출력한다 (OutputView # printResult)
+        - [x] 게임 성공 여부 실패를 출력한다. (OutputView # printResult)
+        - [x] 시도 횟수를 출력한다. (OutputView # printResult)
 - [x] 유저가 끝까지 이동하면 게임을 종료한다. (BridgeGame # quitGame)
-    - [ ] 최종 게임 결과를 출력한다 (OutputView # printResult)
-    - [ ] 게임 성공 여부 성공을 출력한다. (OutputView # printResult)
-    - [ ] 시도 횟수를 출력한다. (OutputView # printResult)
+    - [x] 최종 게임 결과를 출력한다 (OutputView # printResult)
+    - [x] 게임 성공 여부 성공을 출력한다. (OutputView # printResult)
+    - [x] 시도 횟수를 출력한다. (OutputView # printResult)
 ## 예외 처리
 - [ ] 아래에 해당하는 예외가 발생할 시 IllegalArgumentException를 일으키고 [ERROR]로 시작하는 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 ### 1. 다리 길이 입력 예외 처리
@@ -44,4 +44,4 @@
 ### 2. 라운드마다 플레이어가 이동할 칸 입력 예외 처리
 - [x] 'U' 와 'D' 가 아닌 문자일 경우 예외 처리한다. (InputView # isNotUD)
 ### 3. 게임 재시작/종료 여부 입력 예외 처리
-- [ ] 'R' 와 'Q' 가 아닌 문자일 경우 예외 처리한다. (InputView # isNotRQ)
+- [x] 'R' 와 'Q' 가 아닌 문자일 경우 예외 처리한다. (InputView # isNotRQ)

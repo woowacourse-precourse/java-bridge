@@ -15,4 +15,8 @@ public class User {
 
         return userMovingRecord;
     }
+
+    public List<String> getUserMovingRecord() {
+        return userMovingRecord;
+    }
 }

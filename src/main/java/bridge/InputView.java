@@ -65,7 +65,7 @@ public class InputView {
     }
 
     private static void validateGameCommand(String gameCommand) {
-        if(isNotRQ(gameCommand)){
+        if (isNotRQ(gameCommand)) {
             throw new IllegalArgumentException("[ERROR] 게임 재시작/종료 여부에 대한 입력은 'R' 또는 'Q'여야 합니다.");
         }
     }
