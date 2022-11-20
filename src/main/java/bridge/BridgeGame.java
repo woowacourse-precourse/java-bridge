@@ -39,4 +39,8 @@ public class BridgeGame {
         return !moved.get(idx).equals(bridge.get(idx));
     }
 
+    // 게임이 끝났는지 확인하는 기능
+    public static boolean isFinished(List<String> bridge, List<String> moved) {
+        return isArrivedDestination(bridge, moved) || isFailed(bridge, moved);
+    }
 }
