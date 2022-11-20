@@ -57,4 +57,8 @@ public class BridgeGame {
         totalGameAttempts++;
         bridgeState.initBridgeState();
     }
+
+    public int getTotalGameAttempts() {
+        return totalGameAttempts;
+    }
 }

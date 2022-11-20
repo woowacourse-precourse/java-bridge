@@ -36,7 +36,7 @@
     - [X] 게임 총 도전 횟수 카운트
     - [X] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()
 - [ ] 게임 성공 여부 값 반환 - BridgeGame#isWon()
-- [ ] 게임 총 도전 횟수 값 반환 - BridgeGame#getTotalGameAttemps()
+- [X] 게임 총 도전 횟수 값 반환 - BridgeGame#getTotalGameAttempts()
 ***
 - [ ] 다리 상태 표시 - BridgeState#mark()
     - [ ] 현재 위, 아래 다리 모두 비어있는지 확인 - BridgeState#isEmpty()
