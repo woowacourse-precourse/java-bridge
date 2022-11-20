@@ -20,4 +20,13 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    /**
+     * 게임 시작을 알리는 내용과 다리의 길이를 입력하도록 지시하는 내용을 출력한다.
+     */
+    public void printStart() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("\n다리의 길이를 입력해주세요.");
+    }
+
 }
