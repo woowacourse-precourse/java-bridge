@@ -15,12 +15,14 @@ public class BridgeGame {
     private int tryCount;
     private Player player;
 
+    /**
+     * 생성자
+     */
     public BridgeGame() {
         player = new Player();
         bridge = null;
         tryCount = 1;
     }
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -42,6 +44,11 @@ public class BridgeGame {
         tryCount++;
     }
 
+    /**
+     * 플레이어가 생존했는지 죽었는지 확인하는 메서드
+     *
+     * @return 플레이어가 생존했다면 true 죽었다면 false
+     */
     public boolean isPlayerAlive() {
         if (player.getPosition() > 0 && !bridge.get(player.getPosition() - 1).equals(player.getCommand())) {
             return false;
@@ -49,6 +56,11 @@ public class BridgeGame {
         return true;
     }
 
+    /**
+     * 플레이어가 해당 게임을 승리했는지 확인하는 메서드
+     *
+     * @return 플레이어가 승리했다면 true 아니라면 false
+     */
     public boolean isSuccess() {
         if (bridge.size() == player.getPosition()) {
             return true;
@@ -56,6 +68,11 @@ public class BridgeGame {
         return false;
     }
 
+    /**
+     * 플레이어의 게임 결과에 맞는 스트링을 반환
+     *
+     * @return 승리했다면 "성공", 실패했다면 "실패"
+     */
     @Override
     public String toString() {
         if (isSuccess()) {
