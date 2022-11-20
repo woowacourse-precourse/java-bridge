@@ -1,16 +1,15 @@
 package bridge;
 
-import bridge.service.BridgeGame;
-import bridge.service.BridgeGameConsole;
+import bridge.controller.BridgeGameController;
+import bridge.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGameConsole console = new BridgeGameConsole();
-        console.gameStartMessage();
+        BridgeGameController gameController = new BridgeGameController();
 
-        BridgeGame game = new BridgeGame();
-        game.start();
-        game.end();
+        OutputView.printStartMessage();
+        gameController.start();
+        gameController.end();
     }
 }

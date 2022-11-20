@@ -1,13 +1,15 @@
 package bridge.service;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
 import bridge.domain.GameBoard;
+import bridge.domain.GameResult;
 
 import java.util.ArrayList;
 
 import static bridge.constant.Constants.BridgeSign.*;
+import static bridge.view.InputView.readMoving;
+import static bridge.view.OutputView.printInputDirectionMessage;
+import static bridge.view.OutputView.printMap;
 
 
 /**
@@ -22,36 +24,10 @@ import static bridge.constant.Constants.BridgeSign.*;
  * ★ BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
  */
 public class BridgeGame {
-    BridgeGameConsole console = new BridgeGameConsole();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     GameBoard topGameBoard, bottomGameBoard;
-    Bridge bridge = new Bridge(new ArrayList<>());
     boolean isGameLose = false;
-    int tryCount = 1;
+    int tryCount = 0;
 
-
-    public void start() {
-        bridgeExistCheck();
-        resetGame();
-        startMove(bridge);
-
-        if (isGameLose) {
-            if (checkRetry()) {
-                retry();
-            }
-        }
-    }
-
-    private void bridgeExistCheck() {
-        if (bridge.isEmpty()) {
-            bridge = generateBridge(bridgeMaker);
-        }
-    }
-
-    public void end() {
-        console.gameResult(topGameBoard, bottomGameBoard);
-        console.gameStatistics(isGameLose, tryCount);
-    }
 
     /**
      * [제공된 메서드]
@@ -59,27 +35,41 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String nowBridge) {
+    private void move(String nowBridge) {
         String movingDirection = inputMovingDirection();
         String movingResult = getMovingResult(nowBridge, movingDirection);
 
         checkDirection(movingDirection, movingResult);
-        console.map(topGameBoard, bottomGameBoard);
 
         if (movingResult.equals(FAIL)) {
             isGameLose = true;
         }
     }
 
-    private void startMove(Bridge bridge) {
+    public void startMove(Bridge bridge) {
         for (String nowBridge : bridge.getBridge()) {
             move(nowBridge);
+            printMap(topGameBoard, bottomGameBoard);
 
             if (isGameLose) {
                 break;
             }
         }
     }
+
+    private String inputMovingDirection() {
+        printInputDirectionMessage();
+        String movingDirection;
+
+        try {
+            movingDirection = readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            movingDirection = inputMovingDirection();
+        }
+        return movingDirection;
+    }
+
 
     private String getMovingResult(String bridgeDirection, String direction) {
         if (direction.equals(bridgeDirection)) {
@@ -98,43 +88,6 @@ public class BridgeGame {
         }
     }
 
-    private boolean checkRetry() {
-        boolean isRetry;
-
-        try {
-            isRetry = console.askRetry();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            isRetry = checkRetry();
-        }
-        return isRetry;
-    }
-
-    private String inputMovingDirection() {
-        console.movementDirectionInputRequestMessage();
-        String movingDirection;
-
-        try {
-            movingDirection = console.moveForward();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            movingDirection = inputMovingDirection();
-        }
-        return movingDirection;
-    }
-
-    private Bridge generateBridge(BridgeMaker bridgeMaker) {
-        console.bridgeSizeInputRequestMessage();
-        Bridge bridge;
-
-        try {
-            bridge = new Bridge(bridgeMaker.makeBridge(console.inputBridgeSize()));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            bridge = generateBridge(bridgeMaker);
-        }
-        return bridge;
-    }
 
     /**
      * [제공된 메서드]
@@ -142,15 +95,22 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void retry() {
-        resetGame();
+    public void resetGame() {
+        resetGameValue();
         tryCount++;
-        start();
     }
 
-    private void resetGame() {
+    private void resetGameValue() {
         isGameLose = false;
         topGameBoard = new GameBoard(new ArrayList<>());
         bottomGameBoard = new GameBoard(new ArrayList<>());
+    }
+
+    public boolean checkIsGameLose() {
+        return isGameLose;
+    }
+
+    public GameResult getFinalGameResult() {
+        return new GameResult(topGameBoard, bottomGameBoard, isGameLose, tryCount);
     }
 }
