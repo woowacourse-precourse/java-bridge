@@ -8,10 +8,11 @@ import java.util.Objects;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    final InputView inputView = new InputView();
+    final static InputView inputView = new InputView();
     final OutputView outputView = new OutputView();
-    static int now_size = 0;
     static List<String> bridge_answer = new ArrayList<>();
+
+    static int play_count = 1;
 
 
 
@@ -42,9 +43,11 @@ public class BridgeGame {
             }
             if (!checkAnswer(bridge_answer.get(i), user_answer.get(i))) {
                 addWrongAnswer(bridge_answer.get(i), i);
+                outputView.printResult();
+                InputView.readGameCommand();
             }
         }
-        now_size++;
+        OutputView.now_size++;
         outputView.printResult();
     }
 
@@ -68,7 +71,7 @@ public class BridgeGame {
             OutputView.upBridge.append("  ");
             OutputView.downBridge.append("O ");
         }
-        addAndOr(now_size, i);
+        addAndOr(OutputView.now_size, i);
     }
 
     public static void addWrongAnswer(String a, int i) {
@@ -80,7 +83,7 @@ public class BridgeGame {
             OutputView.upBridge.append("  ");
             OutputView.downBridge.append("X ");
         }
-        addAndOr(now_size, i);
+        addAndOr(OutputView.now_size, i);
     }
 
     public static void addAndOr(int a, int b) {
