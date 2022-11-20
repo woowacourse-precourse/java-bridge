@@ -129,3 +129,5 @@ D
 - [x] 같으면 true, 틀리면 false를 리턴
 
 ### retry
+- [ ] upBridge변수의 요소 제거
+- [ ] downBridge변수의 요소 제거
