@@ -75,7 +75,7 @@
  
 - [ ] 다리 리스트(List<String>) 일급 컬렉션으로 제작
 - [ ] 다리 요소(String) 래핑
-- [ ] Application에서 불필요한 예외 검증 제거
+- [X] Application에서 불필요한 예외 검증 제거
 - [ ] InputType -> Command로 이름 변경
 - [X] GamePlayer.play() 메서드 추출
 - [ ] gamePlayer에서 bridgeMap new 연산자 사용하는 대신 리셋 기능 구현
