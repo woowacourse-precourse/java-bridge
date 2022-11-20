@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
+import bridge.service.BridgeGameService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,8 +16,16 @@ import static org.assertj.core.api.Assertions.*;
 
 public class BridgeGameControllerTest {
 
-    private static final BridgeMaker bridgeMaker= new BridgeMaker(new BridgeRandomNumberGenerator());
-    private static final BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(10));
+    private static BridgeMaker bridgeMaker;
+    private static BridgeGame bridgeGame;
+    private static BridgeGameService bridgeGameService;
+
+    @BeforeEach
+    void beforeEach() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(10));
+        bridgeGameService = new BridgeGameService(bridgeGame);
+    }
 
     @ValueSource(ints = {3,10,18})
     @ParameterizedTest
@@ -29,7 +39,7 @@ public class BridgeGameControllerTest {
     @Test
     void 다리가_U_D_로만_이루어져_있는지_테스트(){
         //given
-        List<String> bridge = bridgeGame.getBridge();
+        List<String> bridge = bridgeGameService.getBridge();
         //when
         List<String> collect = bridge.stream().filter(mark -> mark.equals("U") || mark.equals("D"))
                 .collect(Collectors.toList());
@@ -41,13 +51,23 @@ public class BridgeGameControllerTest {
     @ParameterizedTest
     void 플레이어가_이동한_칸이_건널_수_있는지_확인하는_기능_테스트(int index){
         //given
-        List<String> bridge = bridgeGame.getBridge();
+        List<String> bridge = bridgeGameService.getBridge();
         //when
         String mark = bridge.get(index);
-        bridgeGame.move(mark);
+        bridgeGameService.startOneRound(mark);
         //then
-        assertThat(bridgeGame.success());
+        assertThat(bridgeGameService.success());
     }
 
-
+    @Test
+    void 다리를_끝까지_건너면_게임_성공인지_확인하는_테스트() {
+        //given
+        List<String> bridge = bridgeGameService.getBridge();
+        //when
+        for (String command : bridge) {
+            bridgeGameService.startOneRound(command);
+        }
+        //then
+        assertThat(bridgeGameService.isComplete());
+    }
 }
