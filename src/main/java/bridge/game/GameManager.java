@@ -1,7 +1,12 @@
 package bridge.game;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.user.User;
+import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.List;
 
 /**
  * 게임을 진행하는 역할 (사용자와 다리 건너기 게임을 연결하는 클래스)
@@ -15,17 +20,37 @@ public class GameManager {
     private static User player;
     private static BridgeGame bridgeGame;
 
-    // 사용자, 유저 생성
+    /**
+     * 사용자, 유저 생성
+     */
     public GameManager() {
         bridgeGame = new BridgeGame();
         player = new User(true, false, 1);
     }
 
+    /**
+     * 게임 초기화
+     */
     public void startBridgeGame() {
         OutputView.printGameStartMessage();
-        generateBridgeAnswer();
+        int bridgeSize = askBridgeSize();
+        generateBridge(bridgeSize);
     }
 
+    private int askBridgeSize() {
+        OutputView.askBridgeSize();
+        return InputView.readBridgeSize();
+    }
+
+    private void generateBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridgeAnswer = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame.setBridgeAnswer(bridgeAnswer);
+    }
+
+    /**
+     * 게임 진행
+     */
     public void playBridgeGame() {
         while (player.isPlayingGame()) {
             moveUser();
@@ -34,9 +59,6 @@ public class GameManager {
             askRestartGame();
         }
         printGameResult();
-    }
-
-    private void generateBridgeAnswer() {
     }
 
     private void moveUser() {
