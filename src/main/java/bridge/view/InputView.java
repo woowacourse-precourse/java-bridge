@@ -5,28 +5,42 @@ import bridge.validator.RetryInputValidator;
 import bridge.validator.SpaceToMoveValidator;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     public int readBridgeSize() {
-        String input = Console.readLine();
-        BridgeLengthValidator.validateNaturalNumber(input);
-        BridgeLengthValidator.validateRange(input);
-
-        return Integer.parseInt(input);
+        while (true) {
+            try {
+                String input = Console.readLine();
+                BridgeLengthValidator.validateNaturalNumber(input);
+                BridgeLengthValidator.validateRange(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public String readMoving() {
-        String input = Console.readLine();
-        SpaceToMoveValidator.validateSpaceToMove(input);
-        return input;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                SpaceToMoveValidator.validateSpaceToMove(input);
+                return input;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public String readGameCommand() {
-        String input = Console.readLine();
-        RetryInputValidator.validateRetryInput(input);
-        return input;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                RetryInputValidator.validateRetryInput(input);
+                return input;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }
