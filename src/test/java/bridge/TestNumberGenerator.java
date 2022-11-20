@@ -5,7 +5,7 @@ import java.util.List;
 public class TestNumberGenerator implements BridgeNumberGenerator {
     private final List<Integer> numbers;
 
-    TestNumberGenerator(List<Integer> numbers) {
+    public TestNumberGenerator(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
