@@ -1,11 +1,16 @@
 package bridge.model;
 
+import bridge.controller.BridgeGame;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Referee {
     private List<String> upSideBridgeResult = new ArrayList<>();
     private List<String> downSideBridgeResult = new ArrayList<>();
+    public static boolean succeed = true;
+
+    private int progressCount = 1;
 
     public void addPlayerChoiceResult(List<String> bridge, String choice, int index){
         isBridgeAnswerMatch(bridge, choice, index);
@@ -15,11 +20,13 @@ public class Referee {
     private boolean isBridgeAnswerMatch(List<String> bridge, String choice, int index) {
         if (choice.equals("U") && bridge.get(index).equals(choice)){
             addAnswer("O", " ");
+            succeed = true;
             return true;
         }
 
         if (choice.equals("D") && bridge.get(index).equals(choice)){
             addAnswer(" ", "O");
+            succeed = true;
             return true;
         }
         return false;
@@ -28,21 +35,25 @@ public class Referee {
     private  boolean isBridgeNotMatch(List<String> bridge, String choice, int index) {
         if (choice.equals("U") && !bridge.get(index).equals(choice)){
             addAnswer("X", " ");
+            succeed = false;
             return false;
         }
 
         if (choice.equals("D") && !bridge.get(index).equals(choice)){
             addAnswer(" ", "X");
+            succeed = false;
             return false;
         }
         return true;
     }
 
-
-
     private void addAnswer(String first, String second) {
         upSideBridgeResult.add(first);
         downSideBridgeResult.add(second);
+    }
+
+    public boolean isClear(){
+        return BridgeGame.BRIDGE_LENGTH == progressCount && succeed;
     }
 
     public List<String> getUpSideBridgeResult() {
@@ -51,5 +62,13 @@ public class Referee {
 
     public List<String> getDownSideBridgeResult() {
         return downSideBridgeResult;
+    }
+
+    public int getProgressCount() {
+        return progressCount;
+    }
+
+    public void addProgressCount() {
+        progressCount++;
     }
 }

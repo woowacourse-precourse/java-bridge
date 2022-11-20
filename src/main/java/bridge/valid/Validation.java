@@ -22,4 +22,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
         }
     }
+
+    public static void inputResumeCommandValid(String command){
+        if (!(command.equals("R") || command.equals("Q"))){
+            throw new IllegalArgumentException(ErrorType.INPUT_RESUME_COMMAND_ERROR_TYPE.getText());
+        }
+    }
 }
