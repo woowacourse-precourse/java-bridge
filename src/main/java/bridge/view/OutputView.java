@@ -38,7 +38,7 @@ public class OutputView {
 
     private void printUpperPart(BridgeGame bridgeGame) {
         int playerLocation = bridgeGame.getPlayerLocation();
-        List<String> upperBridge = bridgeGame.getBridge().subList(1, playerLocation + 1);
+        List<String> upperBridge = bridgeGame.getMovableSpaces().subList(1, playerLocation + 1);
 
         String upperPart = String.join("|", upperBridge);
         // 만약 실패했고 실패한 지점의 정답이 D였다면 사망표시
@@ -55,7 +55,7 @@ public class OutputView {
 
     private void printLowerPart(BridgeGame bridgeGame) {
         int playerLocation = bridgeGame.getPlayerLocation();
-        List<String> lowerBridge = bridgeGame.getBridge().subList(1, playerLocation + 1);
+        List<String> lowerBridge = bridgeGame.getMovableSpaces().subList(1, playerLocation + 1);
 
         String lowerPart = String.join("|", lowerBridge);
         // 만약 실패했고 실패한 지점의 정답이 U였다면 사망표시

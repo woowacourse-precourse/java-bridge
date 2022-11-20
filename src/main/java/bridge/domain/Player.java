@@ -11,7 +11,7 @@ public class Player {
         alive = true;
     }
 
-    public void move(List<String> bridge, String spaceToMove) {
+    public void move(Bridge bridge, String spaceToMove) {
         if (isDead()) {
             throw new IllegalStateException("[ERROR] 유효하지 않은 상태에서 move가 호출됐습니다");
         }
@@ -30,7 +30,7 @@ public class Player {
         return !alive;
     }
 
-    public boolean isArrived(List<String> bridge) {
+    public boolean isArrived(Bridge bridge) {
         return currentSpaceIndex == bridge.size() - 1;
     }
 

@@ -10,11 +10,11 @@ import java.util.List;
  * InputView, OutputView 사용 불가
  */
 public class BridgeGame {
-    private final List<String> bridge;
+    private final Bridge bridge;
     private final Player player;
     private int tryCount;
 
-    public BridgeGame(List<String> bridge, Player player) {
+    public BridgeGame(Bridge bridge, Player player) {
         this.bridge = bridge;
         this.player = player;
         this.tryCount = 1;
@@ -60,8 +60,8 @@ public class BridgeGame {
         tryCount += 1;
     }
 
-    public List<String> getBridge() {
-        return bridge;
+    public List<String> getMovableSpaces() {
+        return bridge.getMovableSpaces();
     }
 
     public int getPlayerLocation() {
