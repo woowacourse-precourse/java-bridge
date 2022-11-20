@@ -26,6 +26,9 @@ public class BridgeController {
         while (isMovableStatus) {
             MoveResultDto moveResultDto = moveOneBridge();
             isMovableStatus = moveResultDto.isMovableStatus();
+            if (!moveResultDto.isRightLastBridgePick()) {
+                String gameCommand = inputView.readGameCommand();
+            }
         }
     }
 
