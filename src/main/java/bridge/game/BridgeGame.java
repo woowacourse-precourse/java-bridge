@@ -16,7 +16,7 @@ public class BridgeGame {
     private List<String> route;
     private int countOfTry = 1;
 
-    BridgeGame(int length) {
+    public BridgeGame(int length) {
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(length);
         route = new ArrayList<>();
     }
@@ -44,6 +44,9 @@ public class BridgeGame {
     public boolean isContinue() {
         if (route.size() == 0) {
             return true;
+        }
+        if (route.size() >= bridge.size()) {
+            return false;
         }
 
         return IntStream.range(0, route.size())

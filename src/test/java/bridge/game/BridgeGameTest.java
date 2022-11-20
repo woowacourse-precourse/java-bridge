@@ -82,7 +82,8 @@ public class BridgeGameTest {
                     Arguments.of(List.of("U","U","D","D"), List.of("U"), true),
                     Arguments.of(List.of("U","U","D","D","D"),  List.of("D"), false),
                     Arguments.of(List.of("U","U","D","D"), List.of("U","U"), true),
-                    Arguments.of(List.of("U","U","D","D","D"),  List.of("U","U","D","U"), false)
+                    Arguments.of(List.of("U","U","D","D","D"),  List.of("U","U","D","U"), false),
+                    Arguments.of(List.of("U","U","D","D","D"),  List.of("U","U","D","D","D"), false)
             );
         }
     }
