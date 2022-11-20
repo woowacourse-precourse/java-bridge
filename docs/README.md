@@ -7,14 +7,14 @@
  - [x] 다리를 생성한다
  - [x] 0과 1중 무작위 값을 생성한다
  - [x] 0을 "D"로 1을 "U"로 변경한다
- - [x]입력받은 크기만큼 위의 작업을 수행하며 bridge를 만든다
+ - [x] 입력받은 크기만큼 위의 작업을 수행하며 bridge를 만든다
 
 ### BridgeGame
  - [x] 위, 아래중 입력을 받아 해당 입력을 record에 저장 - move()
  - [x] 사용자의 입력과 해당 입력이 다리의 정답과 맞는지 비교하여 PASS, FAIL, SUCCESS 반환 - compareInputWithBridge()
  - [x] move()와 compareInputWithBridge()를 조합하여 한 단계를 진행 한 후 결과 반환- processStage()
  - [x] 결과가 PASS이면 Stage단계를 증가한다
- - [ ] 사용자가 게임에 실패하고 재도전을하면 stage와 record를 초기화 한다
+ - [x] 사용자가 게임에 실패하고 재도전을하면 stage와 record를 초기화 한다
  
 
 ### BridgeStage
@@ -23,9 +23,9 @@
  - [x] 단계를 초기화 한다
 
 ### BridgeRecord
- - [ ] 현재 사용자의 입력이 저장된 record 반환
- - [ ] 사용자의 입력을 record에 저장
- - [ ] 현재 사용자의 입력이 저장된 record 초기화
+ - [x] 현재 사용자의 입력이 저장된 record 반환
+ - [x] 사용자의 입력을 record에 저장
+ - [x] 현재 사용자의 입력이 저장된 record 초기화
 
 ### BridgeController
  - [x] 다리 크기를 입력받아 다리를 생성한다 - initBridge()
