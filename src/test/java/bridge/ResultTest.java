@@ -13,7 +13,7 @@ class ResultTest {
     private Result result;
     @BeforeEach
     void setUp() {
-        result = new Result();
+        result = new Result(1);
     }
 
     @DisplayName("정답 여부가 결과에 입력되었을 때, 정답 여부 리스트와 시도 횟수가 잘 저장되는지 테스트")
