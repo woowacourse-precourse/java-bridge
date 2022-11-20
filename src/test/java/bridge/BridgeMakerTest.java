@@ -31,7 +31,6 @@ class BridgeMakerTest {
         bridgeNumberGenerator = new TestBridgeNumberGenerator(DOWN_NUM);
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-
         List<String> output = bridgeMaker.makeBridge(size);
         assertThat(output).hasSize(size)
                 .contains(DOWN)
@@ -52,7 +51,7 @@ class BridgeMakerTest {
     }
 
     @DisplayName("다리 길이 성공 테스트")
-    @ValueSource(ints = {3,4, 10, 15, 20})
+    @ValueSource(ints = {3, 4, 10, 15, 20})
     @ParameterizedTest
     void validSizeTest(int input) {
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
