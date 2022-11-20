@@ -7,6 +7,8 @@ import java.util.List;
 
 import static bridge.enums.Constant_BridgeGame.UP_SIDE_PROGRESS;
 import static bridge.enums.Constant_BridgeGame.DOWN_SIDE_PROGRESS;
+import static bridge.enums.Constant_BridgeGame.GAME_COMMAND_RETRY;
+import static bridge.enums.Constant_BridgeGame.GAME_COMMAND_QUIT;
 
 public class GameController {
 
@@ -38,11 +40,22 @@ public class GameController {
             retryGame();
         }
 
-        endGame();
+        if (!bridgeGame.isFallBridge()) {
+            endGame();
+        }
     }
 
     public void retryGame() {
-        inputController.inputGameCommand();
+        String gameCommand = inputController.inputGameCommand();
+
+        if (gameCommand.equals(GAME_COMMAND_RETRY.get())) {
+            bridgeGame.retry();
+            startGame();
+        }
+
+        if (gameCommand.equals(GAME_COMMAND_QUIT.get())) {
+            endGame();
+        }
     }
 
     public void endGame() {
