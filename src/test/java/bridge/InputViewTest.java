@@ -3,10 +3,12 @@ package bridge;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
 
+    @DisplayName("3~20 사이의 bridgeSize 를 입력받아 int 값으로 리턴한다.")
     @Test
     void readBridgeSize() {
         //given
@@ -29,6 +31,7 @@ class InputViewTest {
 
     }
 
+    @DisplayName("U 를 입력받아 검증후 리턴한다.")
     @Test
     void readMovingIsU() {
         //given
@@ -45,6 +48,7 @@ class InputViewTest {
         Assertions.assertThat(readMoving).isEqualTo(input);
     }
 
+    @DisplayName("D 를 입력받아 검증후 리턴한다.")
     @Test
     void readMovingIsD() {
         //given
@@ -61,6 +65,7 @@ class InputViewTest {
         Assertions.assertThat(readMoving).isEqualTo(input);
     }
 
+    @DisplayName("R 을 입력받아 검증후 이를 리턴한다.")
     @Test
     void readGameCommandIsR() {
         //given
@@ -77,6 +82,7 @@ class InputViewTest {
         Assertions.assertThat(gameCommand).isEqualTo(input);
     }
 
+    @DisplayName("Q 를 입력받아 검증후 이를 리턴한다.")
     @Test
     void readGameCommandIsQ() {
         //given

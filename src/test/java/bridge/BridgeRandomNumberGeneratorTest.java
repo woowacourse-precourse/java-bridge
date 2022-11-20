@@ -1,13 +1,13 @@
 package bridge;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 
 class BridgeRandomNumberGeneratorTest {
 
-    @Test
+    @DisplayName("1 또는 0 둘중의 랜덤값을 리턴한다.")
+    @RepeatedTest(20)
     void generate() {
         //given
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();

@@ -3,10 +3,12 @@ package bridge;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
 
+    @DisplayName("숫자가 아닌 값을 입력하면 IllegalArgumentException 이 발생한다.")
     @Test
     void validIsNum() {
         //given
@@ -22,6 +24,7 @@ class ValidatorTest {
         Assertions.assertThat(exception.getMessage()).isEqualTo(ErrorMessage.IS_NOT_NUMBER.getMessage());
     }
 
+    @DisplayName("3~20 이외의 숫자 값을 입력하면 IllegalArgumentException 이 발생한다.")
     @Test
     void validRange() {
         //given
@@ -43,6 +46,7 @@ class ValidatorTest {
         Assertions.assertThat(exception2.getMessage()).isEqualTo(ErrorMessage.IS_NOT_IN_RANGE.getMessage());
     }
 
+    @DisplayName("MovingInput 값에 U 또는 D 외의 값을 입력하면 IllegalArgumentException 이 발생한다.")
     @Test
     void validMovingInput() {
         //given
@@ -64,6 +68,7 @@ class ValidatorTest {
         Assertions.assertThat(exception2.getMessage()).isEqualTo(ErrorMessage.IS_NOT_PERMIT_MOVING_INPUT.getMessage());
     }
 
+    @DisplayName("R 또는 Q 이외의 값을 입력하면 IllegalArgumentException 이 발생한다.")
     @Test
     void validGameCommandInput() {
         //given
