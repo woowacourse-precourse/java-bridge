@@ -36,8 +36,12 @@ public class BridgeGame {
         outputController.printResult(movedBridge, GAME_WIN, tryCount);
     }
 
+    private boolean isMoveFail(Bridge moveResult) {
+        return moveResult.getUpShape().equals("X") || moveResult.getDownShape().equals("X");
+    }
+
     private boolean isGameOver(Bridge moveResult) {
-        if (moveResult.getUpShape().equals("X") || moveResult.getDownShape().equals("X")) {
+        if (isMoveFail(moveResult)) {
             boolean retryResult = retry();
             if (!retryResult) {
                 outputController.printResult(movedBridge, GAME_LOSE, tryCount);
