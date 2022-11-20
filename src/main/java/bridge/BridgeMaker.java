@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.validation.BridgeMakerValidation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +36,13 @@ public class BridgeMaker {
     }
 
     private void generateNumAndAddBoxToBridge() {
+        BridgeMakerValidation bridgeMakerValidation = new BridgeMakerValidation();
+
         int generatedNum = bridgeNumberGenerator.generate();
+        bridgeMakerValidation.validateGeneratedNumValue(generatedNum);
 
         if (generatedNum == RANDOM_NUM_LOWER) bridge.add(LOWER_BOX);
         if (generatedNum == RANDOM_NUM_UPPER) bridge.add(UPPER_BOX);
+        bridgeMakerValidation.validateCorrespondingBoxAddedToBridge(generatedNum, bridge);
     }
 }
