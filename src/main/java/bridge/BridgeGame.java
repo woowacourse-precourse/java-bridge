@@ -4,27 +4,25 @@ import dto.BridgeGameDto;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스 BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다. BridgeGame의 패키지는 변경할 수 있다. BridgeGame 클래스에서 InputView,
- * OutputView 를 사용하지 않는다. BridgeGame의 메서드의 이름은 변경할 수 없다.
- */
 public class BridgeGame {
-
-    public static final List<String> candidate = Arrays.asList("U", "D", "R", "Q");
     private static int currentPosition = -1;
     private static int totalTrial = 1;
     private static String direction = null;
+    public static final List<String> moveCandidate = Arrays.asList("U", "D");
+
+    public static final List<String> decisionCandidate = Arrays.asList("R", "Q");
     public static final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
     public static final String QUIT = "Q";
 
+
     public void move(String direction) {
-        checkValidity(direction);
+        checkMoveValidity(direction);
         currentPosition++;
         BridgeGame.direction = direction;
     }
 
-    private void checkValidity(String word) {
-        if (!candidate.contains(word)) {
+    private void checkMoveValidity(String word) {
+        if (!moveCandidate.contains(word)) {
             throw new IllegalArgumentException(ERROR_INVALID_INPUT);
         }
     }
@@ -39,7 +37,7 @@ public class BridgeGame {
     }
 
     public void retry(Bridge bridge, String command) {
-        checkValidity(command);
+        checkDecisionValidity(command);
         if (command.equals(QUIT)) {
             Application.endGame(bridge, false);
             return;
@@ -47,5 +45,11 @@ public class BridgeGame {
         totalTrial++;
         Application.totalResult = new Result();
         Application.launchGame(bridge);
+    }
+
+    private void checkDecisionValidity(String word) {
+        if (!decisionCandidate.contains(word)) {
+            throw new IllegalArgumentException(ERROR_INVALID_INPUT);
+        }
     }
 }
