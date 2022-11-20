@@ -17,6 +17,7 @@ public class Application {
         do {
             String userRemoveCommand = inputView.readMoving();
             boolean gameCheck = bridgeGame.move(answerBridge,userRemoveCommand);
+            outputView.printMap(bridgeGame.upBridge);
         }while (!bridgeGame.compareMoveCount(brideSize));
     }
 }
