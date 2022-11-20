@@ -49,7 +49,13 @@ public class InputView {
      * 입력받은 다리의 길이 값이 잘못되었는지 판단한다.
      */
     private boolean checkBridgeSize(String input){
+        // 입력받은 문자열이 정수로 표현되지 않는 경우
         if (!input.matches("-?\\d+")){
+            System.out.println(new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다. "));
+            return false;
+        }
+        // 입력받은 문자열이 3 ~ 20 사이의 숫자가 아닌 경우
+        if (Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20){
             System.out.println(new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다. "));
             return false;
         }
