@@ -1,8 +1,8 @@
 package bridge.Domain;
 
 import static bridge.Utils.Constant.MatchResult.BLANK;
-import static bridge.Utils.Constants.DOWN;
-import static bridge.Utils.Constants.UP;
+import static bridge.Utils.Constant.Moving.DOWN;
+import static bridge.Utils.Constant.Moving.UP;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +22,11 @@ public class BridgeMap {
     }
 
     public void add(String upOrDown, String isCorrect) {
-        if (upOrDown.equals(UP)) {
+        if (upOrDown.equals(UP.toString())) {
             upMap.add(isCorrect);
             downMap.add(BLANK.toString());
         }
-        if (upOrDown.equals(DOWN)) {
+        if (upOrDown.equals(DOWN.toString())) {
             upMap.add(BLANK.toString());
             downMap.add(isCorrect);
         }

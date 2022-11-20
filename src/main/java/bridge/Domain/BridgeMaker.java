@@ -1,7 +1,7 @@
 package bridge.Domain;
 
-import static bridge.Utils.Constants.DOWN;
-import static bridge.Utils.Constants.UP;
+import static bridge.Utils.Constant.Moving.DOWN;
+import static bridge.Utils.Constant.Moving.UP;
 
 import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
@@ -35,8 +35,8 @@ public class BridgeMaker {
         int number = bridgeNumberGenerator.generate();
 
         if(number == 0) {
-            return DOWN;
+            return DOWN.toString();
         }
-        return UP;
+        return UP.toString();
     }
 }
