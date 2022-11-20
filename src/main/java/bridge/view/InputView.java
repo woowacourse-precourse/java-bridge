@@ -1,7 +1,11 @@
 package bridge.view;
 
+import bridge.constant.Constant;
+import bridge.constant.ErrorMessage;
 import bridge.constant.Message;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -16,7 +20,26 @@ public class InputView {
         System.out.println(Message.REQUEST_BRIDGE_SIZE);
         String bridgeSize = Console.readLine();
         System.out.println();
+
+        boolean isThrowError = tryCatch(this::validateBridgeSize, bridgeSize);
+        if (isThrowError) {
+            return readBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
+    }
+
+    private void validateBridgeSize(String bridgeSize) {
+        if (!Pattern.matches(Constant.BRIDGE_SIZE_REGEX, bridgeSize)) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER);
+        }
+
+        if (isInvalidBridgeSize(Integer.parseInt(bridgeSize))) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_BRIDGE_SIZE);
+        }
+    }
+
+    private boolean isInvalidBridgeSize(int bridgeSize) {
+        return bridgeSize < Constant.BRIDGE_SIZE_MIN || bridgeSize > Constant.BRIDGE_SIZE_MAX;
     }
 
     /**
@@ -31,6 +54,16 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public boolean tryCatch(Consumer<String> validateFunction, String input) {
+        try {
+            validateFunction.accept(input);
+        } catch (IllegalArgumentException e) {
+            System.out.printf(ErrorMessage.ERROR_MESSAGE_FORM, e.getMessage());
+            return true;
+        }
+        return false;
     }
 
 }
