@@ -1,5 +1,6 @@
 package bridge.view.output;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeState;
 
 import static bridge.domain.Constants.*;
@@ -47,5 +48,9 @@ public class OutputView {
      */
     public void printResult(BridgeState bridgeState) {
         printMap(bridgeState);
+    }
+
+    public void printTotalGameAttempts(BridgeGame bridgeGame) {
+        System.out.println(bridgeGame.getTotalGameAttempts());
     }
 }
