@@ -11,7 +11,6 @@ public class ValidException {
     private static final String INPUT_VALID_RANGE = " 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String INPUT_NEXT_POSITION = " 이동할 칸의 입력은 U 또는 D 입니다.";
     private static final String INPUT_NEXT_GAME_MODE = " 다음 게임을 위한 입력은 Q 또는 R 입니다.";
-
     public void validInteger(String inputString){
         try{
             Integer.parseInt(inputString);
