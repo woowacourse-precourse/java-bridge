@@ -37,9 +37,9 @@ public class OutputView {
 
     }
 
-    public void printWhetherUserDecisionIsCorrect(int userPosition, String moving, List<String> bridge){
-        if(bridge.get(userPosition) == moving){
-            System.out.print(" O ");
+    public void printWhetherUserDecisionIsCorrect(String userDecision, boolean checkDirection){
+        if(userDecision.equals("U")){
+            printWhetherCheckDirectionIsCorrect(checkDirection);
             return;
         }
         System.out.print("   ");
