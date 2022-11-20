@@ -1,7 +1,10 @@
 package bridge.identifiers;
 
+import bridge.exceptions.CustomIllegalStateException;
+import bridge.exceptions.CustomInternalOperationError;
+
 public enum Direction {
-    ERR(-1, "!"), DOWN(0, "D"), UP(1, "U");
+    DOWN(0, "D"), UP(1, "U");
 
     private int asInt;
     private String asString;
@@ -24,14 +27,18 @@ public enum Direction {
             return DOWN;
         if (directionValue == UP.asString)
             return UP;
-        return ERR;
+        throw new CustomIllegalStateException(
+                "비정상적인 값"
+        );
     }
 
-    public static Direction parseDirection(int directionValue){
+    public static Direction parseDirection(int directionValue) {
         if (directionValue == DOWN.asInt)
             return DOWN;
         if (directionValue == UP.asInt)
             return UP;
-        return ERR;
+        throw new CustomIllegalStateException(
+                "비정상적인 값"
+        );
     }
 }

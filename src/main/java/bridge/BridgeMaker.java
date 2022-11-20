@@ -29,8 +29,6 @@ public class BridgeMaker {
         while(size-- != 0) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             Direction direction = Direction.parseDirection(bridgeNumber);
-            if(direction == Direction.ERR)
-                return null;
             securePath.add(direction.getAsString());
         }
         return securePath;
