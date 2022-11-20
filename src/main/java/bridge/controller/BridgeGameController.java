@@ -12,11 +12,13 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
 
     public void start() {
-        BridgeGame bridgeGame = createGame();
-
-        createGameProgress(bridgeGame);
-
-        outputView.printResult(bridgeGame.toString(), !bridgeGame.isFail(), bridgeGame.getTryNumber());
+        try {
+            BridgeGame bridgeGame = createGame();
+            createGameProgress(bridgeGame);
+            outputView.printResult(bridgeGame.toString(), !bridgeGame.isFail(), bridgeGame.getTryNumber());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMsg(e.getMessage());
+        }
     }
 
     private void createGameProgress(BridgeGame bridgeGame) {
