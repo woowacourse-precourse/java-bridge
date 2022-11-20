@@ -7,6 +7,9 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    private static final String NUMBER_NOT_ZERO_ONE = "[ERROR] 전달받은 숫자가 0 혹은 1이 아닙니다.";
+    private static final String DOWN_BRIDGE = "D";
+    private static final String UP_BRIDGE = "U";
     private static final int DOWN = 0;
     private static final int UP = 1;
 
@@ -33,10 +36,10 @@ public class BridgeMaker {
     }
     private String generateUpDown(int number) {
         if (number == DOWN)
-            return "D";
+            return DOWN_BRIDGE;
         if (number == UP )
-            return "U";
+            return UP_BRIDGE;
 
-        throw new IllegalArgumentException("0 혹은 1이 아닙니다.");
+        throw new IllegalArgumentException(NUMBER_NOT_ZERO_ONE);
     }
 }
