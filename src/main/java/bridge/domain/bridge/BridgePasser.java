@@ -30,4 +30,8 @@ public class BridgePasser {
         this.location += 1;
     }
 
+    public boolean isBridgeEnd() {
+        return !bridge.isRange(location + 1);
+    }
+
 }
