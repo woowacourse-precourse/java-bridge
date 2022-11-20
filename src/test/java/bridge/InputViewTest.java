@@ -1,14 +1,9 @@
 package bridge;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest extends NsTest {
@@ -36,6 +31,14 @@ public class InputViewTest extends NsTest {
     @ParameterizedTest
     void 위아래_테스트(String input) {
         assertThatThrownBy(() -> InputView.upOrDownCheck(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 인풋이 R 혹은 Q가 아닐 경우 Exception 발생")
+    @ValueSource(strings = {"B", "q", "r", "@", "-100"})
+    @ParameterizedTest
+    void 재시작_종료_테스트(String input) {
+        assertThatThrownBy(() -> InputView.redoOrQuitCheck(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
