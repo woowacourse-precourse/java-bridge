@@ -15,28 +15,28 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private int size;
     private int index = 0;
     private int count = 1;
     private int tried = 1;
     String gameResult = "성공";
+    List<String> madeBridge;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void start() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         System.out.println("다리의 길이를 입력해주세요.");
-        int size = InputView.getInstance.readBridgeSize(Console.readLine());
+        size = InputView.getInstance.readBridgeSize(Console.readLine());
 
-        // 다리 생성
-        List<String> madeBridge = bridgeMaker.makeBridge(size);
-        index = 0;
-        count = 1;
-
+        madeBridge = bridgeMaker.makeBridge(size);
+    }
+    public void move() {
         while (count <= size) {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String userDirection = InputView.getInstance.readMoving(Console.readLine());
@@ -50,11 +50,7 @@ public class BridgeGame {
             }
         }
 
-        System.out.println("최종 게임 결과");
-        OutputView.getInstance.printResult();
 
-        System.out.println("\n게임 성공 여부: " + gameResult);
-        System.out.println("총 시도한 횟수: " + tried);
     }
 
     /**
@@ -67,9 +63,7 @@ public class BridgeGame {
             System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             String cont = InputView.getInstance.readGameCommand(Console.readLine());
             if (cont.equals("R")) {
-                this.init();
-                Bridge.bridge.init();
-                OutputView.getInstance.init();
+                this.allInit();
                 this.tried++;
                 return true;
             }
@@ -81,8 +75,22 @@ public class BridgeGame {
         return true;
     }
 
+    public void end() {
+        System.out.println("최종 게임 결과");
+        OutputView.getInstance.printResult();
+
+        System.out.println("\n게임 성공 여부: " + gameResult);
+        System.out.println("총 시도한 횟수: " + tried);
+    }
+
     private void init() {
         index = 0;
         count = 1;
+    }
+
+    private void allInit() {
+        this.init();
+        Bridge.bridge.init();
+        OutputView.getInstance.init();
     }
 }
