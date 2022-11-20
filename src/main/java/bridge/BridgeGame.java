@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,13 +10,17 @@ import java.util.List;
  * BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다.
  */
 public class BridgeGame {
+    private static final int START_POINT = 0;
+
     private final List<String> bridge;
-    private List<String> userPath;
+    private String userPath;
+    private int userPosition;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
-        this.userPath = new ArrayList<>();
+        this.userPath = null;
+        this.userPosition = START_POINT;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -25,7 +28,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String input) {
-        this.userPath.add(input);
+        this.userPath = input;
+        this.userPosition += 1;
     }
 
     /**
@@ -34,17 +38,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        this.userPath = new ArrayList<>();
+        this.userPosition = START_POINT;
     }
 
     public boolean isCorrectPath() {
-        int userPosition = this.userPath.size() - 1;
-
-        return this.userPath.get(userPosition)
-                .equals(this.bridge.get(userPosition));
-    }
-
-    public List<String> getUserPath() {
-        return this.userPath;
+        return this.userPath.equals(this.bridge.get(userPosition));
     }
 }
