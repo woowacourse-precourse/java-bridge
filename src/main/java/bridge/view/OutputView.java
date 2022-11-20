@@ -36,15 +36,15 @@ public class OutputView {
     }
 
     private void addEachResultForTop(String result, StringBuilder top) {
-        if (result.equals("UO")) {
-            top.append("O");
+        if (result.equals(MapType.UP_CORRECT.getSign())) {
+            top.append(MapType.CORRECT.getSign());
             return;
         }
-        if (result.equals("UX")) {
-            top.append("X");
+        if (result.equals(MapType.UP_WRONG.getSign())) {
+            top.append(MapType.WRONG.getSign());
             return;
         }
-        top.append(" ");
+        top.append(MapType.BLANK.getSign());
     }
 
     private void makeBottomResultMap(StringBuilder bottom, List<String> resultMap) {
@@ -57,19 +57,18 @@ public class OutputView {
             }
         }
         bottom.append(MapType.END.getSign());
-
     }
 
     private void addEachResultForBottom(String result, StringBuilder bottom) {
-        if (result.equals("DO")) {
-            bottom.append("O");
+        if (result.equals(MapType.DOWN_CORRECT.getSign())) {
+            bottom.append(MapType.CORRECT.getSign());
             return;
         }
-        if (result.equals("DX")) {
-            bottom.append("X");
+        if (result.equals(MapType.DOWN_WRONG.getSign())) {
+            bottom.append(MapType.WRONG.getSign());
             return;
         }
-        bottom.append(" ");
+        bottom.append(MapType.BLANK.getSign());
     }
 
 
@@ -87,18 +86,18 @@ public class OutputView {
 
     private void makeBottomDirection(String answer, List<String> resultMap) {
         if (answer.equals(Direction.DOWN.getLetter())) {
-            resultMap.add("DO");
+            resultMap.add(MapType.DOWN_CORRECT.getSign());
             return;
         }
-        resultMap.add("DX");
+        resultMap.add(MapType.DOWN_WRONG.getSign());
     }
 
     private void makeUpDirection(String answer, List<String> resultMap) {
         if (answer.equals(Direction.UP.getLetter())) {
-            resultMap.add("UO");
+            resultMap.add(MapType.UP_CORRECT.getSign());
             return;
         }
-        resultMap.add("UX");
+        resultMap.add(MapType.UP_WRONG.getSign());
     }
 
     public void printResult(ResultDto resultDto) {

@@ -3,16 +3,22 @@ package bridge.type;
 public enum MapType {
 
     START("[ "),
-
     END(" ]"),
+    SEPARATOR(" | "),
+
+    BLANK(" "),
 
     CORRECT("O"),
 
     WRONG("X"),
 
-    BLANK(" "),
+    UP_CORRECT("UO"),
 
-    SEPARATOR(" | ");
+    UP_WRONG("UX"),
+
+    DOWN_CORRECT("DO"),
+
+    DOWN_WRONG("DX");
 
     private final String sign;
 
