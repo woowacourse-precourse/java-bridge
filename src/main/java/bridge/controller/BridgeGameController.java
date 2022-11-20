@@ -6,5 +6,6 @@ public class BridgeGameController {
     public void start(){
         OutputView.printGameStart();
 
+
     }
 }
