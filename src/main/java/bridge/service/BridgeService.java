@@ -62,7 +62,7 @@ public class BridgeService {
 	private void setMoveCommand() {
 		try {
 			moveCommand = inputView.readMoving();
-			filter.checkMoveCommand(moveCommand);
+			filter.bindingMoveCommand(moveCommand);
 		} catch (IllegalArgumentException exception) {
 			outputView.printErrorMessage(exception);
 			setMoveCommand();

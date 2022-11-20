@@ -17,9 +17,10 @@ public class UserInputFilter {
 		return result;
 	}
 
-	public void checkMoveCommand(String userInput) {
+	public String bindingMoveCommand(String userInput) {
 		checkUserInput(userInput);
 		checkCommand(userInput);
+		return userInput;
 	}
 
 	public String bindingRestartOrExitCommand(String userInput) {
