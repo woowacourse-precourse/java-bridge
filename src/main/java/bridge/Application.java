@@ -14,7 +14,7 @@ public class Application {
             Bridge bridge = bridgeController.generate();
             gameController.run(bridge);
         } catch (IllegalArgumentException e) {
-            System.err.print(e.getMessage());
+            System.out.print(e.getMessage());
         }
     }
 }
