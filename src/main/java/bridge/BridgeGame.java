@@ -34,8 +34,9 @@ public class BridgeGame {
 
     private void makeBridgeFailState(String nextBridge) {
         if (checkUpperBridge(nextBridge)) {
-
+            upperBridge.add(0);
         }
+        bottomBridge.add(2);
     }
 
     private Boolean checkUpperBridge(String nextBridge) {
