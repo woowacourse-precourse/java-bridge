@@ -1,49 +1,49 @@
 package bridge;
 
-import java.util.List;
+import bridge.model.service.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Application {
+    private static InputView inputView;
+    private static OutputView outputView;
+    private static BridgeGame bridgeGame;
+
     public static void main(String[] args) {
-        InputView inputView = InputView.getInstance();
-        OutputView outputView = OutputView.getInstance();
+        inputView = InputView.getInstance();
+        outputView = OutputView.getInstance();
+        bridgeGame = BridgeGame.getInstance();
 
+        int bridgeSize = initGame();
+        startGame(bridgeSize);
+        printResult();
+    }
+
+    private static int initGame() {
         outputView.printStartMessage();
-
         int bridgeSize = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame();
-        boolean isSuccess = false;
-        int tryCount = 1;
+        bridgeGame.init(bridgeSize);
+        return bridgeSize;
+    }
 
-        while (true) {
-            int bridgeIdx = 0;
+    private static void startGame(int bridgeSize) {
+        do {
+            startRound(bridgeSize);
+        } while (!bridgeGame.isSuccess() && bridgeGame.retry(inputView.readGameCommand()));
+    }
 
-            while (bridgeIdx < bridgeSize) {
-                boolean isMoved =
-                        bridgeGame.move(inputView.readMoving(), bridge.get(bridgeIdx));
-                outputView.printMap(bridgeGame.bridgeMapToString());
+    private static void startRound(int bridgeSize) {
+        for (int i = 0; i < bridgeSize; i++) {
+            boolean isMove = bridgeGame.move(inputView.readMoving(), i);
+            outputView.printMap(bridgeGame.bridgeMapToString());
 
-                if (!isMoved) {
-                    break;
-                }
-
-                bridgeIdx++;
+            if (!isMove) {
+                break;
             }
-
-            if (bridgeIdx != bridgeSize &&
-                    bridgeGame.retry(inputView.readGameCommand())) {
-                tryCount++;
-                continue;
-            }
-
-            if (bridgeIdx == bridgeSize) {
-                isSuccess = true;
-            }
-
-            break;
         }
+    }
 
-        outputView.printResult(bridgeGame.gameResultToString(isSuccess, tryCount));
+    private static void printResult() {
+        outputView.printResult(bridgeGame.gameResultToString());
     }
 }

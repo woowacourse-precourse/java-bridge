@@ -1,4 +1,7 @@
-package bridge;
+package bridge.model.service;
+
+import bridge.model.domain.BridgeMap;
+import bridge.model.domain.RandomBridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -12,11 +15,26 @@ public class BridgeGame {
 
     private static final String UP = "U";
     private static final String QUIT = "Q";
+    private static final BridgeGame INSTANCE = new BridgeGame();
 
+    private RandomBridge randomBridge;
     private BridgeMap bridgeMap;
+    private int tryCount;
 
-    public BridgeGame() {
+    private boolean isSuccess;
+
+    private BridgeGame() {
+    }
+
+    public static BridgeGame getInstance() {
+        return INSTANCE;
+    }
+
+    public void init(int size) {
+        this.randomBridge = new RandomBridge(size);
         this.bridgeMap = new BridgeMap();
+        this.tryCount = 1;
+        this.isSuccess = false;
     }
 
     /**
@@ -24,11 +42,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving, String bridgeBlock) {
+    public boolean move(String moving, int bridgeIndex) {
         boolean isUpSide = moving.equals(UP);
-        boolean isRight = moving.equals(bridgeBlock);
+        boolean isRight = this.randomBridge.isRight(moving, bridgeIndex);
 
         this.bridgeMap.add(isUpSide, isRight);
+
+        if (isRight && this.randomBridge.isEndIndex(bridgeIndex)) {
+            this.isSuccess = true;
+        }
 
         return isRight;
     }
@@ -44,22 +66,28 @@ public class BridgeGame {
         }
 
         this.bridgeMap = new BridgeMap();
+        this.tryCount += 1;
+        this.isSuccess = false;
         return true;
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
     }
 
     public String bridgeMapToString() {
         return bridgeMap.toString();
     }
 
-    public String gameResultToString(boolean isSuccess, int tryCount) {
+    public String gameResultToString() {
         return "최종 게임 결과\n" + bridgeMap.toString() +
                 "\n" +
-                successOrNotToString(isSuccess) +
+                successOrNotToString() +
                 "총 시도한 횟수: " +
                 tryCount;
     }
 
-    private String successOrNotToString(boolean isSuccess) {
+    private String successOrNotToString() {
         if (isSuccess) {
             return "\n게임 성공 여부: 성공\n";
         }
