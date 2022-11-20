@@ -16,7 +16,14 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(size);
         cursor = 0;
     }
-
+    
+    // Compare input direction and cursor direction
+    private boolean canMove(String direction) {
+        if (bridge.get(cursor) == direction){
+            return true;
+        }
+        return false;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
