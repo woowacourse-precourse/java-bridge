@@ -32,15 +32,20 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public GameStatus move(BridgeUnit nextUnit) {
-        if (!canMove(nextUnit)) {
-            gameProgress.add(new GameProgress(nextUnit, false));
-            return FAILED;
+        GameStatus status = moveAndGetStatus(nextUnit);
+        if (isSuccess(status)) {
+            status = SUCCESS;
         }
-        gameProgress.add(new GameProgress(nextUnit, true));
-        if (isSuccess()) {
-            return SUCCESS;
+        return status;
+    }
+
+    private GameStatus moveAndGetStatus(BridgeUnit nextUnit) {
+        if (canMove(nextUnit)) {
+            gameProgress.add(new GameProgress(nextUnit, true));
+            return PLAYING;
         }
-        return PLAYING;
+        gameProgress.add(new GameProgress(nextUnit, false));
+        return FAILED;
     }
 
     private boolean canMove(BridgeUnit nextUnit) {
@@ -48,8 +53,8 @@ public class BridgeGame {
         return bridge.getUnit(position).equals(nextUnit);
     }
 
-    private boolean isSuccess() {
-        return gameProgress.size() == bridge.getSize();
+    private boolean isSuccess(GameStatus status) {
+        return (gameProgress.size() == bridge.getSize()) && PLAYING.equals(status);
     }
 
     /**
