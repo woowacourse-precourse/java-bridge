@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.model.Bridge;
 import java.util.List;
 
 /**
