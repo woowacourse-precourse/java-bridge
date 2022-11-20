@@ -17,13 +17,13 @@ public class Validator {
         return true;
     }
     public static boolean checkMoving(String input){
-        if(input!=Constants.MOVE_UP && input!=Constants.MOVE_DOWN){
+        if(!input.equals(Constants.MOVE_UP) && !input.equals(Constants.MOVE_DOWN)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_MOVING.print());
         }
         return true;
     }
     public static boolean checkRetryOrQuit(String input){
-        if(input!=Constants.RETRY && input!=Constants.QUIT){
+        if(!input.equals(Constants.RETRY) && !input.equals(Constants.QUIT)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_RETRY_OR_QUIT.print());
         }
         return true;
