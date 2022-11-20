@@ -19,4 +19,8 @@ public enum Direction {
     }
     throw new InvalidDirectionException();
   }
+
+  public String getDirection(){
+    return dir;
+  }
 }

@@ -30,4 +30,8 @@ public class User {
   public boolean isArriveFinishLine(int bridgeLength) {
     return bridgeLength == moveStatus.size();
   }
+
+  public List<String> getMoveStatus() {
+    return this.moveStatus;
+  }
 }
