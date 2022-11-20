@@ -1,7 +1,10 @@
 package bridge.view;
 
+import bridge.constant.Directions;
 import bridge.view.constant.BridgeStyle;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -16,8 +19,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, int order, boolean isCorrect) {
-
+    public void printMap(List<String> bridge, int order, boolean isUserChoiceWrong) {
+        List<List<String>> bridgeLines = new ArrayList<>();
+        Arrays.stream(Directions.values())
+                .forEach(direction -> bridgeLines.add(collectPanelsOfLine(bridge, order, direction.getSymbol())));
+        if (isUserChoiceWrong) {
+            putFailureElement(bridgeLines, order);
+        }
+        bridgeLines.stream().map(this::styleBridgeLine)
+                .forEach(System.out::println);
     }
 
     private List<String> collectPanelsOfLine (List<String> bridge, int order, String line) {
