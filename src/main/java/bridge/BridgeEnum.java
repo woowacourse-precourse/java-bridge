@@ -13,5 +13,15 @@ public enum BridgeEnum {
         this.bridgeStringType = stringType;
     }
 
+    public static BridgeEnum createBridgeType(int bridgeNumberType) {
+        return Arrays.stream(values())
+                .filter(pointValue -> pointValue.bridgeNumberType == bridgeNumberType)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 정보입니다."));
+    }
+
+    public String getStringType() {
+        return bridgeStringType;
+    }
 
 }
