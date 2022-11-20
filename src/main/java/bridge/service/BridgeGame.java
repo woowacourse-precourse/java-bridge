@@ -4,7 +4,6 @@ import java.util.List;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeSize;
 import bridge.model.ExitOption;
 import bridge.model.FootPrint;
 import bridge.model.GameResult;
@@ -15,15 +14,22 @@ import bridge.model.Stairs;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-	public List<String> setUpGame(int userInput) {
-		BridgeSize bridgeSize = new BridgeSize(userInput);
-		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		return bridgeMaker.makeBridge(bridgeSize.getSize());
+	private final Map map;
+	private final GameResult result;
+
+	public BridgeGame() {
+		this.map = new Map();
+		this.result = new GameResult();
 	}
 
-	public void setUpRound(GameResult gameResult, Map map) {
-		gameResult.changeResultToSuccess();
-		gameResult.addNumberOfAttempts();
+	public List<String> makeBridge(int userInput) {
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		return bridgeMaker.makeBridge(userInput);
+	}
+
+	public void setUpRound() {
+		result.changeResultToSuccess();
+		result.addNumberOfAttempts();
 		map.resetMap();
 	}
 
@@ -32,10 +38,9 @@ public class BridgeGame {
 	 * <p>
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public List<String> move(Stairs stairs, String square) {
-		int stairsNumber = stairs.getNumber();
-		boolean isEqual = stairs.isEquals(square);
-		return FootPrint.makeFootPrints(stairsNumber, isEqual);
+	public void move(Stairs stairs, boolean isEquals) {
+		List<String> footPrints = FootPrint.makeFootPrints(stairs.getNumber(), isEquals);
+		map.drawMap(footPrints);
 	}
 
 	/**
@@ -47,4 +52,19 @@ public class BridgeGame {
 		return exitOption.isReplay();
 	}
 
+	public void changeResultToFail() {
+		result.changeResultToFail();
+	}
+
+	public boolean isLose() {
+		return result.isGameLose();
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public GameResult getResult() {
+		return result;
+	}
 }
