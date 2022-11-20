@@ -1,9 +1,12 @@
 package bridge;
 
+import bridge.constant.SuccessFail;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static bridge.constant.SuccessFail.FAIL;
+import static bridge.constant.SuccessFail.SUCCESS;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class BridgeGameTest {
@@ -24,5 +27,23 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.retry();
         assertThat(bridgeGame.player).isEqualTo(List.of());
+    }
+
+    @Test
+    void isSuccessTest_SUCCESS() {
+        List<String> bridge = List.of("U", "D", "U");
+        List<String> player = List.of("U", "D", "U");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        SuccessFail isSuccess = bridgeGame.isSuccess(bridge, player);
+        assertThat(isSuccess).isEqualTo(SUCCESS);
+    }
+
+    @Test
+    void isSuccessTest_FAIL() {
+        List<String> bridge = List.of("U", "D", "U");
+        List<String> player = List.of("U", "D", "D");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        SuccessFail isSuccess = bridgeGame.isSuccess(bridge, player);
+        assertThat(isSuccess).isEqualTo(FAIL);
     }
 }
