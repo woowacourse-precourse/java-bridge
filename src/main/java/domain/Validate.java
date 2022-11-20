@@ -16,4 +16,11 @@ public class Validate {
 			throw new IllegalArgumentException(errorMessage);
 		}
 	}
+	
+	public void validateGameCommand(String gameCommand) {
+		if(!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+			errorMessage = ErrorMessage.WRONG_COMMAND.getErrorMessage();
+			throw new IllegalArgumentException(errorMessage);
+		}
+	}
 }
