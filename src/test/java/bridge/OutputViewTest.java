@@ -184,4 +184,28 @@ public class OutputViewTest {
 		// then
 		assertThat(actualPrint).isEqualTo(expectedPrint);
 	}
+
+	@DisplayName("총 시도한 게임 횟수 출력 확인")
+	@Test
+	void printTotalGameCount() {
+		// given
+		BridgeStatus bridgeStatus = BridgeStatus.getInstance();
+		String userSelectedCell = "U";
+		String bridgeLetter = "U";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "D";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "U";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		String expectedPrint = "총 시도한 게임 횟수: 3";
+
+		// when
+		int totalGameCount = new OutputView().printTotalGameCount();
+		String actualPrint = "총 시도한 게임 횟수: " + totalGameCount;
+
+		// then
+		assertThat(actualPrint).isEqualTo(expectedPrint);
+	}
 }

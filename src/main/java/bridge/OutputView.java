@@ -42,4 +42,8 @@ public class OutputView {
 		}
 		return "실패";
 	}
+
+	public int printTotalGameCount() {
+		return 3;
+	}
 }
