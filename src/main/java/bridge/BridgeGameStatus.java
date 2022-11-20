@@ -10,4 +10,8 @@ public class BridgeGameStatus {
     public boolean isRunning() {
         return isRunning;
     }
+
+    public void changeToGameOver() {
+        this.isRunning = !isRunning;
+    }
 }
