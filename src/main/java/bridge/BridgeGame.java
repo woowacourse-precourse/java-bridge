@@ -12,17 +12,19 @@ public class BridgeGame {
     private final List<String> bridge;
     private final InputView inputView;
 
+    private int attempts;
+
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.user = new ArrayList<>();
         this.bridge = createBridge(bridgeMaker);
         this.inputView = new InputView();
     }
 
-    public List<String> createBridge(BridgeMaker bridgeMaker){
+    public List<String> createBridge(BridgeMaker bridgeMaker) {
         try {
             int bridgeSize = inputView.readBridgeSize();
             return bridgeMaker.makeBridge(bridgeSize);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return createBridge(bridgeMaker);
         }
@@ -35,8 +37,7 @@ public class BridgeGame {
      */
     public void move() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String moving = inputView.readMoving();
-        user.add(moving);
+        user.add(inputView.readMoving());
     }
 
     /**
@@ -44,6 +45,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        if (inputView.readGameCommand().equals("R")) {
+            resetGame();
+            return true;
+        }
+        return false;
+    }
+
+    public void resetGame() {
+        attempts++;
+        user.clear();
     }
 }
