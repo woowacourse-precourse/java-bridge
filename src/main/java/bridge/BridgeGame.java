@@ -15,14 +15,6 @@ public class BridgeGame {
      */
     public String move(InputView inputView, List<String> bridge, int next) {
         String moving =  inputView.readMoving();
-
-        try {
-            InputValidator.validateMoving(moving);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            move(inputView, bridge, next);
-        }
-
         return moveBridge(bridge.get(next), moving);
     }
 
