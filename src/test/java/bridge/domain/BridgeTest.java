@@ -62,4 +62,21 @@ class BridgeTest {
         //then
         assertThat(bridge.getLocation()).isEqualTo(0);
     }
+
+    @DisplayName("위치 비교가 잘되는지 테스트")
+    @Test
+    public void isPassTest() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        String moveUp = "U";
+        String moveDown = "D";
+
+        //when
+        boolean pass = bridge.isPass(moveUp);
+        boolean fail = bridge.isPass(moveDown);
+
+        //then
+        assertThat(pass).isEqualTo(true);
+        assertThat(fail).isEqualTo(false);
+    }
 }
