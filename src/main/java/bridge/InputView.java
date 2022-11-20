@@ -39,6 +39,9 @@ public class InputView {
     public String readGameCommand() {
         String input;
         input = Console.readLine();
+        while (!checkGameCommand(input)){
+            input = Console.readLine();
+        }
         return input;
     }
 
@@ -61,6 +64,18 @@ public class InputView {
         if (!(input.equals("U") || input.equals("D"))){
             IllegalArgumentException e = new IllegalArgumentException();
             System.out.println("[ERROR] 위쪽 선택을 원하면 U, 아래쪽 선택을 원하면 D를 입력해야 합니다. " + e.toString());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 입력받은 게임 재시작 여부 값이 잘못되었는지 판단한다.
+     */
+    private boolean checkGameCommand(String input){
+        if (!(input.equals("R") || input.equals("Q"))){
+            IllegalArgumentException e = new IllegalArgumentException();
+            System.out.println("[ERROR] 재시작을 원하면 R, 종료를 원하면 Q를 입력해야 합니다. " + e.toString());
             return false;
         }
         return true;
