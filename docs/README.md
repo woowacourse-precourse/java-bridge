@@ -21,6 +21,14 @@
 
 ## 데이터 처리 관련 (Model)
 
+### PlayerPath (Entity-Repository)
+- 사용자의 이동 경로를 저장하는 기능
+
+### Bridge (Entity-Repository)
+- 다리의 안전경로를 유효하게 캡슐화하는 기능
+  - 유효성: 다리 길이와 방향 리스트의 길이는 동일
+- 다리의 안전경로와 사용자의 이동경로의 일치 여부를 확인하는 기능
+
 ### BridgeMaker (Random)
 
 - 주어진 다리 길이만큼 안전경로를 만드는 기능
