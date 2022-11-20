@@ -179,4 +179,39 @@ class BridgeGameTest {
         // then
         assertThat(bridgePicture).isEqualTo("[ O |   | O ]" + "\n" + "[   | O |   ]");
     }
+
+    @DisplayName("시도 횟수를 반환한다.")
+    @Nested
+    class GetTryCount {
+
+        @DisplayName("시도 횟수가 1번인 경우")
+        @Test
+        void should_Be1_When_NotFail() {
+            // given
+            bridgeGame.move(UPPER_SIDE);
+            bridgeGame.move(LOWER_SIDE);
+            bridgeGame.move(UPPER_SIDE);
+            // when
+            int tryCount = bridgeGame.getTryCount();
+            // then
+            assertThat(tryCount).isEqualTo(1);
+        }
+
+        @DisplayName("시도 횟수가 3번인 경우")
+        @Test
+        void should_Be3_When_Try3Times() {
+            // given
+            bridgeGame.move(LOWER_SIDE);
+            bridgeGame.retry(RETRY);
+            bridgeGame.move(LOWER_SIDE);
+            bridgeGame.retry(RETRY);
+            bridgeGame.move(UPPER_SIDE);
+            bridgeGame.move(LOWER_SIDE);
+            bridgeGame.move(UPPER_SIDE);
+            // when
+            int tryCount = bridgeGame.getTryCount();
+            // then
+            assertThat(tryCount).isEqualTo(3);
+        }
+    }
 }
