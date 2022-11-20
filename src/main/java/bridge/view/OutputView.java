@@ -18,12 +18,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<Integer> bridgeMap, boolean isRightLastBridgePick) {
-        printBridge(bridgeMap, isRightLastBridgePick, Constant.UPPER_BRIDGE);
-        printBridge(bridgeMap, isRightLastBridgePick, Constant.LOWER_BRIDGE);
+        printOneSideBridge(bridgeMap, isRightLastBridgePick, Constant.UPPER_BRIDGE);
+        printOneSideBridge(bridgeMap, isRightLastBridgePick, Constant.LOWER_BRIDGE);
         System.out.println();
     }
 
-    private void printBridge(List<Integer> bridgeMap, boolean isRightLastBridgePick, int bridgeTypeToPrint) {
+    private void printOneSideBridge(List<Integer> bridgeMap, boolean isRightLastBridgePick, int bridgeTypeToPrint) {
         List<String> bridgesSign = collectSign(bridgeMap, isRightLastBridgePick, bridgeTypeToPrint);
         String bridgeToPrint = String.join(Message.BRIDGE_JOINING_DELIMITER, bridgesSign);
         System.out.printf(Message.BRIDGE_MAP_FORM, bridgeToPrint);
