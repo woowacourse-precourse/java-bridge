@@ -13,7 +13,6 @@ public class BridgeGameMachine {
     private static final int GAME_INITIAL_VALUE = 1;
     private static final int START_BRIDGE = 0;
     private static final String FAILURE = "X";
-    private static final String LAST_CHARACTER = "]";
     private static final String EMPTY_VALUE = "";
 
     private final InputView inputView;
@@ -47,8 +46,6 @@ public class BridgeGameMachine {
         Loop1:
         while (!(playerRetry.equals(Command.END.getCommand()))) {
 
-            bridgeState.initBridgeState();
-
             for (int bridgeIndex = START_BRIDGE; bridgeIndex < bridgeLength; bridgeIndex++) {
 
                 outputView.printMovementInput();
@@ -57,8 +54,6 @@ public class BridgeGameMachine {
                 String bridgeJudgment = bridgeGame.judgment(playerMoving, designBridge.get(bridgeIndex));
 
                 BridgeState bridgePlace = bridgeGame.move(playerMoving, bridgeJudgment);
-
-                bridgePlace = bridgeGame.bridgeConnection(bridgeLength, bridgeJudgment, bridgeIndex);
 
                 outputView.printMap(bridgePlace);
                 outputView.printNextLine();
@@ -82,7 +77,7 @@ public class BridgeGameMachine {
                     }
                 }
 
-                if (bridgeState.findLastValue().contains(LAST_CHARACTER)) {
+                if (bridgeIndex == bridgeLength -1) {
                     outputView.printResult(bridgeState, gameCount, gameSuccess);
                     playerRetry = Command.END.getCommand();
                     break;
