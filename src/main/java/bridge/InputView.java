@@ -27,7 +27,7 @@ public class InputView {
         try {
             return getBridgeLength();
         } catch (IllegalArgumentException illegalArgumentException) {
-            illegalArgumentException.getMessage();
+            System.out.println(illegalArgumentException.getMessage());
             return reGetBridgeLength();
         }
     }
@@ -45,7 +45,7 @@ public class InputView {
         try {
             return getMoveString();
         } catch (IllegalArgumentException illegalArgumentException) {
-            illegalArgumentException.getMessage();
+            System.out.println(illegalArgumentException.getMessage());
             return reGetMoveString();
         }
     }
