@@ -59,7 +59,7 @@ public class BridgeGame {
             return GameState.END;
 
         String input = inputView.readGameCommand();
-        if (input.equals(GameState.RETRY)) {
+        if (input.equals(GameState.RETRY.getState())) {
             user.initialize();
             return GameState.START;
         }
