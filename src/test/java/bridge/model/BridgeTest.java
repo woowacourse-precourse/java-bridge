@@ -29,4 +29,17 @@ public class BridgeTest {
         //then
         assertThat(result).isEqualTo(List.of(0, 3));
     }
+
+    @Test
+    @DisplayName("알맞은 도착 지점을 반환한다.")
+    void isReturnRightDestinationIndex() {
+        //given
+        int compareResult = path.size() - 1;
+
+        //when
+        int result = bridge.getDestinationIndex();
+
+        //then
+        assertThat(result).isEqualTo(compareResult);
+    }
 }
