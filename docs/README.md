@@ -23,8 +23,8 @@
       1. [x] 다리 길이에 대한 검증.
       2. [x] 이동할 칸 입력에 대한 검증.
       3. [x] 다시 시도할지 여부에 대한 입력 검증.
-   2. [ ] inputView의 메서드 같은 경우는 static으로 만드는 것이 좋을 것 같다. 
-   3. [ ] input 받은 값의 return 타입은 enum에 저장되어 있는 값으로 하는 것이 좋을 것 같다.
+   2. [x] inputView의 메서드 같은 경우는 static으로 만드는 것이 좋을 것 같다. 
+   3. [x] input 받은 값의 return 타입은 enum에 저장되어 있는 값으로 하는 것이 좋을 것 같다.
 2. [ ] outputView 구현
    1. [ ] printMap 메서드의 경우 생성한 bridge의 값과 index를 파라미터로 받아서 출력한다.
    2. [ ] printResult 메서드의 경우 printing하는 메서드를 제사용해서 작성한다. 
