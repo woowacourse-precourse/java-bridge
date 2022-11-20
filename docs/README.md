@@ -1,5 +1,7 @@
 ## 세부 진행 흐름
+
 - initStatus
+
 ```mermaid
 flowchart LR 
 InitStatus --> GameStartStatus
@@ -28,20 +30,23 @@ flowchart LR
 UserMoveStatus -- select bridge command position U Or D --> inputView -- bridgePosition --> UserMoveStatus 
 UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStatus
 ```
+
 # 상태별 요구사항
+
 - BridgeGameLauncher
-  -  다리 건너기 게임 런처로 게임의 전반적인 실행 흐름을 제어 합니다.
+    - 다리 건너기 게임 런처로 게임의 전반적인 실행 흐름을 제어 합니다.
 - BridgeGameContext
-  -  다리 건너기 게임의 데이터의 제어를 담당합니다.
+    - 다리 건너기 게임의 데이터의 제어를 담당합니다.
 - View
-  - inputView, ouputView에 대한 전달할 책임을 가집니다.
+    - inputView, ouputView에 대한 전달할 책임을 가집니다.
 - BridgeGameStatus
-  - 다리 건너기 게임의 실행 순서를 제어하는 인터페이스 입니다.
-    - InitStatus
-      - 게임의 준비 상태입니다.
-      - [ ] 게임의 준비 상태로 next를 호출하면 다음 단계로 넘어갑니다.
-      - 
- 
+    - 다리 건너기 게임의 실행 순서를 제어하는 인터페이스 입니다.
+        - InitStatus
+            - 게임의 준비 상태입니다.
+            - [ ] 게임의 준비 상태로 next를 호출하면 다음 단계로 넘어갑니다.
+        - GameStartStatus
+            - 게임의 시작을 알리는 상태입니다.
+            - [ ] 게임의 시작 메시지를 출력합니다.
 
 ## 도메인 요구사항
 
@@ -73,4 +78,5 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - [ ] 정수를 입력받으면 해당 다리의 위치를 반환합니다.
 - BridgeMaker
     - [ ] 다리는 3과 20사이의 길이로 이루어집니다.
+
 #
