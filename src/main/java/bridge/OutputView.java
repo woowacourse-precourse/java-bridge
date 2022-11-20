@@ -25,7 +25,8 @@ public class OutputView {
             if(number == locationChk){BridgeAdd(downBridge, 1);BridgeAddElse(upBridge);}
             else{BridgeAdd(downBridge, 0);BridgeAddElse(upBridge);}
         }
-        
+        printResult(upBridge);
+        printResult(downBridge);
     }
     public List<String> BridgeAdd(List<String> Bridge, int chk) {
         if(chk == 1){
@@ -56,7 +57,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    
+    public void printResult(List<String> Bridge) {
+        System.out.print("[");
+        for (int i = 0; i <Bridge.size() ; i++) {
+            if(i == Bridge.size() -1){
+                continue;
+            }
+            System.out.print(Bridge.get(i));
+        }
+        System.out.print("]");
+        System.out.println("");
     }
-
 }
