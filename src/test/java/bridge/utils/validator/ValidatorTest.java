@@ -24,4 +24,12 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1","r","q","A","a","ㄱ","@"})
+    void InputGameCommand(String input) {
+        assertThatThrownBy(() -> GameValidator.validGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
 }
