@@ -53,6 +53,17 @@ class BridgeGameTest {
         assertThat(bridgeGame.result()).isEqualTo(new BridgeGameResult(bridge, List.of(true, true, true, false)));
     }
 
+    @DisplayName("게임을 재시작한다.")
+    @Test
+    void retry() {
+        Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move(BridgeShape.UP);
+        bridgeGame.move(BridgeShape.DOWN);
+
+        assertThat(bridgeGame.retry()).isEqualTo(new BridgeGame(bridge));
+    }
+
     @DisplayName("게임이 안끝났는지 반환한다.")
     @Nested
     class isNotEnd {

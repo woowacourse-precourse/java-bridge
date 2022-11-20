@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.Objects;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -26,7 +28,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public BridgeGame retry() {
+        return new BridgeGame(bridge);
     }
 
     public BridgeGameResult result() {
@@ -35,5 +38,22 @@ public class BridgeGame {
 
     public boolean isNotEnd() {
         return !bridge.sizeEqual(attempts);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        BridgeGame that = (BridgeGame) o;
+        return Objects.equals(bridge, that.bridge) && Objects.equals(attempts, that.attempts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bridge, attempts);
     }
 }
