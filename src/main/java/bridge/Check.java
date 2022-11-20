@@ -36,4 +36,13 @@ public class Check {
         }
         return true;
     }
+
+    public static boolean checkReGameOrNotValid(String input){
+        if(!(input.equals(REGAME) || input.equals(QUIT))){
+            IllegalArgumentException exception = new MoveValid(ERROR_MESSAGE);
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
 }
