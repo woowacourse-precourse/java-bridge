@@ -23,10 +23,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public void readMoving() {
+    public boolean readMoving() {
         System.out.println(MOVE_MESSAGE);
         String moving = Console.readLine();
         bridgeGame.move(moving);
+        return bridgeGame.getMatchCorrect();
     }
 
     /**
