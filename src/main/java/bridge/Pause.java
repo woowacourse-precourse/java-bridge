@@ -1,7 +1,7 @@
 package bridge;
 
 public class Pause {
-	public static boolean paused = false;
+	private static boolean paused = false;
 
 	public static void setPause() {
 		if (whenNotPaused()) {
@@ -20,6 +20,10 @@ public class Pause {
 	}
 
 	private static boolean whenPaused() {
+		return paused;
+	}
+
+	public static boolean isPaused() {
 		return paused;
 	}
 }

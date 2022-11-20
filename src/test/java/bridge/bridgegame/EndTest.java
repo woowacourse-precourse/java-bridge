@@ -24,14 +24,14 @@ public class EndTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (Pause.paused) {
+		if (Pause.isPaused()) {
 			bridgeGame.end();
 		}
 
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isEnd()).isTrue(),
-			() -> assertThat(Pause.paused).isFalse()
+			() -> assertThat(Pause.isPaused()).isFalse()
 		);
 	}
 
@@ -51,14 +51,14 @@ public class EndTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (Pause.paused) {
+		if (Pause.isPaused()) {
 			bridgeGame.end();
 		}
 
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isEnd()).isTrue(),
-			() -> assertThat(Pause.paused).isFalse()
+			() -> assertThat(Pause.isPaused()).isFalse()
 		);
 	}
 }

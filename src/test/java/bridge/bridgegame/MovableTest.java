@@ -43,7 +43,7 @@ public class MovableTest {
 		// then
 		assertAll(
 			() -> assertThat(isMovable).isFalse(),
-			() -> assertThat(Pause.paused).isTrue()
+			() -> assertThat(Pause.isPaused()).isTrue()
 		);
 	}
 }

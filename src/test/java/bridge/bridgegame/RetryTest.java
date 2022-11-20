@@ -24,7 +24,7 @@ public class RetryTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (Pause.paused) {
+		if (Pause.isPaused()) {
 			bridgeGame.retry();
 		}
 		String nextUserSelectedCell = "U";
@@ -32,7 +32,7 @@ public class RetryTest {
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isMovable(bridgeLetters, nextUserSelectedCell)).isTrue(),
-			() -> assertThat(Pause.paused).isFalse()
+			() -> assertThat(Pause.isPaused()).isFalse()
 		);
 	}
 }
