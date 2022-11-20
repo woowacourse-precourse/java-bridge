@@ -20,7 +20,7 @@ public class OutputView {
 
     private void printGameStatus(String result){
         System.out.println(TOTAL_RESULT+SKIP_LINE+result+SKIP_LINE);
-
+        System.out.println(SUCCESS_RESULT + makeResultStatement(result));
     }
 
     private String makeResultStatement(String result){
@@ -28,7 +28,7 @@ public class OutputView {
         return SUCCESS;
     }
 
-    private void printTrialCounts(){
-
+    private void printTrialCounts(int trialCount){
+        System.out.println(TOTAL_TRIAL + trialCount);
     }
 }
