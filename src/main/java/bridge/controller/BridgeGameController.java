@@ -12,6 +12,8 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
+    private final String RETRY = "R";
+    private final String QUIT = "Q";
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private final OutputView outputView = new OutputView();
@@ -49,16 +51,16 @@ public class BridgeGameController {
         }
         if (!pass) {
             String gameCommand = inputViewService.inputGameCommand();
-            runFailCase(bridge, user,gameCommand);
+            runFailCase(bridge, user, gameCommand);
         }
     }
 
-    public void runFailCase(Bridge bridge, User user,String gameCommand) {
-        if (gameCommand.equals("R")) {
+    public void runFailCase(Bridge bridge, User user, String gameCommand) {
+        if (gameCommand.equals(RETRY)) {
             outputView.clearMap();
             bridgeGame.retry(bridge, user);
         }
-        if (gameCommand.equals("Q")) {
+        if (gameCommand.equals(QUIT)) {
             user.finishGame();
         }
     }
