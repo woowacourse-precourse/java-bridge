@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import static bridge.NumberValidator.validateNonNumeric;
 import static bridge.NumberValidator.validateRange;
 import static bridge.validator.TextValidator.validateMoveWay;
+import static bridge.validator.TextValidator.validateRetry;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -54,6 +55,8 @@ public class InputView {
     public String readGameCommand() {
         OutputView.printAskRetryMessage();
         String retry = Console.readLine();
+
+        validateRetry(retry);
         return retry;
     }
 }
