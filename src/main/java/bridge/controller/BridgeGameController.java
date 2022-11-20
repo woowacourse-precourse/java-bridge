@@ -14,9 +14,22 @@ public class BridgeGameController {
 
     public void run() {
         OutputView.start();
-        OutputView.askLength();
-        bridgeGame.create();
+        boolean created;
+        do {
+            created = create();
+        } while (!created);
         play();
+    }
+
+    private boolean create() {
+        try {
+            OutputView.askLength();
+            bridgeGame.create();
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     private void play() {

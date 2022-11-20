@@ -21,10 +21,6 @@ public class BridgeGame {
         bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
-    public void tryGame() {
-        player.retry();
-    }
-
     public boolean move() {
         String nextLocation = player.inputMove();
         player.addWay(nextLocation);
