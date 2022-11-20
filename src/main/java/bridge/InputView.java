@@ -7,8 +7,10 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String BRIDGE_SIZE_GUIDE = "다리의 길이를 입력해주세요.";
+    private static final String MOVING_GUIDE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String BRIDGE_SIZE_NOT_INTEGER_ERROR = "[ERROR] 다리 길이는 정수입니다.";
     private static final String BRIDGE_SIZE_RANGE_ERROR = "[ERROR] 다리 길이의 범위는 3 이상 20 이하입니다.";
+    private static final String MOVING_ERROR = "[ERROR] 이동 가능한 칸은 'U'(위) 또는 'D'(아래) 입니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -35,7 +37,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = getInput(MOVING_GUIDE);
+        validateMoving(input);
+        return input;
+    }
+
+    private void validateMoving(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException(MOVING_ERROR);
+        }
     }
 
     /**
