@@ -32,4 +32,24 @@ public class BridgeGame {
         return cnt;
     }
 
+    public static String canGo(boolean equals) {
+        if (equals) {
+            return "O";
+        }
+        return "X";
+    }
+
+    public static boolean upperOrLower(String userChoice) {
+        if (userChoice.equals("U")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static String isBlank(boolean isUpper, String s) {
+        if (isUpper) {
+            return s;
+        }
+        return " ";
+    }
 }
