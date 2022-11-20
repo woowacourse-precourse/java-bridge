@@ -39,26 +39,25 @@
 #### < Model >
 
 - 다리
-    - 필드
-        - 다리 리스트 (static)
-    - 모델에서 다리를 생성하는 것이 아닌, 생성자에서 파라미터로 다리를 전달받아 저장만 함.
-    - 칸 별로 건널 수 있는지 여부 boolean 타입 반환
+  - 필드
+    - 다리 리스트 (static)
+  - 모델에서 다리를 생성하는 것이 아닌, 생성자에서 파라미터로 다리를 전달받아 저장만 함.
+  - 칸 별로 건널 수 있는지 여부 boolean 타입 반환
 - 다리를 건넌 기록
-    - 필드
-        - 건넌 기록 (static)
-    - 건넌 기록 추가하는 기능 포함
+  - 필드
+    - 건넌 기록 (static)
+  - 건넌 기록 추가하는 기능 포함
 - 게임 결과 정보
-    - 필드
-        - 게임 성공 여부
-        - 총 시도한 횟수
+  - 필드
+    - 게임 성공 여부
+    - 총 시도한 횟수
 
 #### < View >
 
 - InputView
-    - 다리 길이 입력 기능
-    - 이동할 칸 입력 기능
-    - 게임 재시작 여부 입력 기능
-
+  - 다리 길이 입력 기능
+  - 이동할 칸 입력 기능
+  - 게임 재시작 여부 입력 기능
 - OutputView
   - 다리 건너기 게임 시작 안내문 출력 기능
   - 다리 길이 입력 안내문 출력 기능
@@ -71,13 +70,12 @@
 #### < Controller >
 
 - BridgeGame
-    - 입력된 값으로 이동하고 결과를 반환하는 기능 : move()
-    - 게임 재시작 시 동작(다리 상태 초기화, 시도 횟수 증가 등) 기능 : retry()
-
+  - 입력된 값으로 이동하고 결과를 반환하는 기능 : move()
+  - 게임 재시작 시 동작(다리 상태 초기화, 시도 횟수 증가 등) 기능 : retry()
 - BridgeGameOperator
-    - 게임 운영 기능
-    - 시도한 횟수를 세어 게임 결과에 반영하는 기능
-    - 성공 여부에 따라 게임 결과에 반영하는 기능
+  - 게임 운영 기능
+  - 시도한 횟수를 세어 게임 결과에 반영하는 기능
+  - 성공 여부에 따라 게임 결과에 반영하는 기능
 
 #### < Constants >
 
@@ -183,21 +181,40 @@ Q
 
 **예외 발생 시, `IllegalArgumentException` 발생 및 "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.**
 
+##### < 예시 >
+
+```java
+        String a = "";
+        while (true) {
+        try {
+        a = Console.readLine();
+        handleException(a);
+        break;
+        } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        }
+        }
+
+        System.out.println(methodTwo());
+```
+
+
+
 - 사용자 입력 관련 예외
-    - 공통 예외
-        - 사용자 입력이 비어있는 경우 예외 처리
-        - 사용자 입력이 하나의 숫자, 혹은 U, D, R, Q가 아닌 경우 예외 처리
-    - 다리 길이 입력
-        - 숫자가 아닌 경우 예외 처리
-    - 이동할 칸 및 게임 재시작 여부 입력
-        - 숫자인 경우 예외 처리
+  - 공통 예외
+    - 사용자 입력이 비어있는 경우 예외 처리
+    - 사용자 입력이 하나의 숫자, 혹은 U, D, R, Q가 아닌 경우 예외 처리
+  - 다리 길이 입력
+    - 숫자가 아닌 경우 예외 처리
+  - 이동할 칸 및 게임 재시작 여부 입력
+    - 숫자인 경우 예외 처리
 - 로직 내 예외
-    - 다리 길이
-        - `3 <= 다리 길이 <= 20` 의 범위를 벗어난 경우 예외 처리
-    - 이동할 칸
-        - `U`, `D`가 아닌 경우 예외 처리
-    - 게임 재시작 여부
-        - `R`, `Q`가 아닌 경우 예외 처리
+  - 다리 길이
+    - `3 <= 다리 길이 <= 20` 의 범위를 벗어난 경우 예외 처리
+  - 이동할 칸
+    - `U`, `D`가 아닌 경우 예외 처리
+  - 게임 재시작 여부
+    - `R`, `Q`가 아닌 경우 예외 처리
 
 
 
@@ -212,11 +229,11 @@ Q
 7. (View) 이동할 칸 입력 기능
 8. (View) 그려진 다리 출력 기능
 9. (Controller) `게임 시작 ~ 이동한 다리 출력`까지의 게임 운영 기능
-10. (Controller) 시도한 횟수를 세어 게임 결과에 반영하는 기능
-11. (View) 게임 재시작 여부 안내문 출력 기능
-12. (Controller) 게임 재시작 시 동작 기능
-13. (View) 게임 재시작 여부 입력 기능
-14. (Controller) 성공 여부에 따라 게임 결과에 반영하는 기능
+10. (View) 게임 재시작 여부 안내문 출력 기능
+11. (Controller) 게임 재시작 시 동작 기능
+12. (View) 게임 재시작 여부 입력 기능
+13. (Controller) 성공 여부에 따라 게임 결과에 반영하는 기능
+14. (Controller) 시도한 횟수를 세어 게임 결과에 반영하는 기능
 15. (Controller) `게임 시작 ~ 재시작 여부에 따른 동작`까지의 게임 운영 기능
 16. (View) 게임 성공 여부 출력 기능
 17. (View) 총 시도 횟수 출력 기능
@@ -231,80 +248,83 @@ Q
 
 - ##### 기본 요구 사항
 
-    - JDK 11
-    - 시작점 : Application.main()
-    - build.gradle 수정 금지, 외부 라이브러리 사용 금지
-    - **JAVA 코드 컨벤션 적용**
-    - System.exit() 금지
-    - **ApplicationTest 모두 성공**
-    - 파일, 패키지 이름 수정 or 이동 금지
-    - 3항 연산자 금지
-    - **함수 최대한 작게**
-    - **JUnit, AssertJ 활용 테스트 코드 작성**
-    - **indent depth 3 이상 금지, 2까지만 허용**
-    - **else 금지**
-    - **도메인 로직에 단위 테스트 구현. UI 로직은 제외**
-    - **핵심 로직과 UI 담당 로직을 분리**
+  - JDK 11
+  - 시작점 : Application.main()
+  - build.gradle 수정 금지, 외부 라이브러리 사용 금지
+  - **JAVA 코드 컨벤션 적용**
+  - System.exit() 금지
+  - **ApplicationTest 모두 성공**
+  - 파일, 패키지 이름 수정 or 이동 금지
+  - 3항 연산자 금지
+  - **함수 최대한 작게**
+  - **JUnit, AssertJ 활용 테스트 코드 작성**
+  - **indent depth 3 이상 금지, 2까지만 허용**
+  - **else 금지**
+  - **도메인 로직에 단위 테스트 구현. UI 로직은 제외**
+  - **핵심 로직과 UI 담당 로직을 분리**
 
 - ##### 추가 요구 사항
 
-    - **함수 길이 10라인 이상 금지 + 한 가지 일만 잘 하도록**
-    - 메서드 파라미터 개수 최대 3개까지만 허용
-    - 주어진 클래스 활용
-        - `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator`
+  - **함수 길이 10라인 이상 금지 + 한 가지 일만 잘 하도록**
+  - 메서드 파라미터 개수 최대 3개까지만 허용
+  - 주어진 클래스 활용
+    - `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator`
 
 - ##### 라이브러리 관련 요구 사항
 
-    - **`camp.nextstep.edu.missionutils.Console.readLine` 활용**
+  - **`camp.nextstep.edu.missionutils.Console.readLine` 활용**
 
 - ##### Class 관련 요구 사항
 
   ##### < 공통 >
 
-    - InputView에서만 Console.readLine() 사용 가능
-    - 랜덤 수 뽑을 때는 BridgeRandomNumberGenerator의 generate() 함수 활용.
-        - 해당 클래스와 BridgeNumberGenerator 인터페이스는 수정 금지
-      ```java
-      int number = bridgeNumberGenerator.generate();
-      ```
+  - InputView에서만 Console.readLine() 사용 가능
+
+  - 랜덤 수 뽑을 때는 BridgeRandomNumberGenerator의 generate() 함수 활용.
+
+    - 해당 클래스와 BridgeNumberGenerator 인터페이스는 수정 금지
+
+    ```java
+    int number = bridgeNumberGenerator.generate();
+    ```
 
 
 
 ##### < InputView >
 
 - 가능한 사항
-    - 패키지 변경
-    - 메서드 시그니처(인자, 이름) 변경
-    - 반환 타입 변경
-    - 메서드 추가
+  - 패키지 변경
+  - 메서드 시그니처(인자, 이름) 변경
+  - 반환 타입 변경
+  - 메서드 추가
 
 ##### < OutputView >
 
 - 가능한 사항
-    - 패키지 변경
-    - 메서드 인자와 반환 타입 추가 or 변경
-    - 메서드 추가
+  - 패키지 변경
+  - 메서드 인자와 반환 타입 추가 or 변경
+  - 메서드 추가
 - 불가능한 사항
-    - 메서드 이름 변경
+  - 메서드 이름 변경
 
 ##### < BridgeGame >
 
 - 가능한 사항
-    - 필드(인스턴스 변수) 추가
-    - 패키지 변경
-    - 인자와 반환 타입 추가 or 변경
-    - 메서드 추가
+  - 필드(인스턴스 변수) 추가
+  - 패키지 변경
+  - 인자와 반환 타입 추가 or 변경
+  - 메서드 추가
 - 불가능한 사항
-    - 메서드 이름 변경
-    - InputView 사용
-    - OutputView 사용
+  - 메서드 이름 변경
+  - InputView 사용
+  - OutputView 사용
 
 ##### < BridgeMaker >
 
 - 불가능한 사항
-    - 필드(인스턴스 변수) 변경
-    - 메서드의 시그니처(인자, 이름) 변경
-    - 반환 타입 변경
+  - 필드(인스턴스 변수) 변경
+  - 메서드의 시그니처(인자, 이름) 변경
+  - 반환 타입 변경
 
 ##### < BridgeRandomNumberGenerator >
 
