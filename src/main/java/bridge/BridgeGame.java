@@ -1,8 +1,10 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -21,16 +23,16 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public void startGame() {
+    public List<String> startGame() {
         Map<String, String> result = new HashMap<>();
         int count = 0;
 
         do {
-            count++;
-            giveResult(result);
+            giveResult(result,++count);
         } while (endGame(result.get("success")));
 
-        outputView.printResult(result.get("output"), result.get("success"), count);
+        return result.values().stream().sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -40,10 +42,10 @@ public class BridgeGame {
      */
     public boolean move(StringBuilder up, StringBuilder down) {
         for (String now : bridge) {
-            boolean tf = addUpAndDown(up, down, now);
-            outputView.printMap(castMap(up, down));
+            boolean same = checkUpAndDown(up, down, now);
+            outputView.printMap(up, down);
 
-            if (!tf) return false;
+            if (!same) return false;
         }
 
         return true;
@@ -60,39 +62,31 @@ public class BridgeGame {
         return command.equals("R");
     }
 
-    private void giveResult(Map<String, String> result) {
-        StringBuilder up = new StringBuilder();
-        StringBuilder down = new StringBuilder();
-
-        result.put("success", castSuccess(move(up, down)));
-        result.put("output", castMap(up, down));
-    }
-
-    private String castSuccess(boolean endPoint) {
-        if (endPoint) return "성공";
-        return "실패";
-    }
-
-    private String castMap(StringBuilder up, StringBuilder down) {
-        return "[" + up + "]" + "\n"
-                + "[" + down + "]";
-    }
-
     private boolean endGame(String success) {
         if (success.equals("성공")) return false;
         return retry();
     }
 
-    private boolean addUpAndDown(StringBuilder up, StringBuilder down, String now) {
+    private void giveResult(Map<String, String> result, int count) {
+        StringBuilder up = new StringBuilder();
+        StringBuilder down = new StringBuilder();
+
+        result.put("success", outputView.castSuccess(move(up, down)));
+        result.put("output", outputView.castMap(up, down));
+        result.put("count", String.valueOf(count));
+    }
+
+
+    private boolean checkUpAndDown(StringBuilder up, StringBuilder down, String now) {
         String move = inputView.readMoving();
-        boolean tf = move.equals(now);
+        boolean same = move.equals(now);
 
         addSideBar(up, down);
 
-        up.append(addOX("U", move, tf));
-        down.append(addOX("D", move, tf));
+        up.append(addOX("U", move, same));
+        down.append(addOX("D", move, same));
 
-        return tf;
+        return same;
     }
 
     private void addSideBar(StringBuilder up, StringBuilder down) {
@@ -100,9 +94,9 @@ public class BridgeGame {
         if (down.length() != 0) down.append("|");
     }
 
-    private String addOX(String position, String move, boolean tf) {
+    private String addOX(String position, String move, boolean same) {
         if (!position.equals(move)) return "   ";
-        if (!tf) return " X ";
+        if (!same) return " X ";
         return " O ";
     }
 
