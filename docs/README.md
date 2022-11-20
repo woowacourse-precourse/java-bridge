@@ -3,11 +3,11 @@
 ### 🖥 UI
 *** 
 #### 📥 입력  
-- [ ] 다리 길이 입력 
-    - [ ] 입력 값 예외처리(수로 변환될 수 있는 값인지 검증)  
-- [ ] 이동할 칸 입력 (위: U, 아래: D)
+- [X] 다리 길이 입력 - InputView#readBridgeSize()
+    - [X] 입력 값 예외처리(수로 변환될 수 있는 값인지 검증)  
+- [ ] 이동할 칸 입력 (위: U, 아래: D) - InputView#readMoving()
     - [ ] 입력 값 예외처리(길이 1의 문자를 입력했는지 검증)
-- [ ] 게임 재시도 여부 입력 (재시도: R, 종료: Q)
+- [ ] 게임 재시도 여부 입력 (재시도: R, 종료: Q) - InputView#readGameCommand()
 ***
 #### 📤 출력
 - [X] 게임 시작 안내 메시지 출력 - OutputView#printGameStartNotification()
