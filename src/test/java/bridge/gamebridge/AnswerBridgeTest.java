@@ -1,4 +1,4 @@
-package bridge.gmaebridge;
+package bridge.gamebridge;
 
 import static bridge.result.GameStatus.FAIL;
 import static bridge.result.GameStatus.PROGRESS;
@@ -6,7 +6,6 @@ import static bridge.result.GameStatus.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Bridge;
-import bridge.gamebridge.AnswerBridge;
 import bridge.result.Result;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

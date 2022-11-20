@@ -1,4 +1,4 @@
-package bridge.gmaebridge;
+package bridge.gamebridge;
 
 import static bridge.command.util.MoveTestUtils.convertStringListToMoveList;
 import static bridge.result.GameStatus.FAIL;
@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.Bridge;
-import bridge.gamebridge.BridgeContainer;
 import bridge.command.Move;
 import bridge.result.Result;
 import java.util.List;
