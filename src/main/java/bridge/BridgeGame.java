@@ -8,7 +8,7 @@ public class BridgeGame {
     private final Player player;
     private final Bridge bridge;
 
-    BridgeGame(Bridge bridge, Player player) {
+    public BridgeGame(Bridge bridge, Player player) {
         this.player = player;
         this.bridge = bridge;
     }
@@ -33,11 +33,17 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean ifUserReachedToEndOfTheBridgeReturnFalse(int bridgeSize) {
-        if (player.getCurrentLocation()+1 == bridgeSize) {
-            return false;
+    private void validateUserInputIsOnlyROrQ(String userInputToGameRestartOrEnd) throws IllegalArgumentException{
+        if (!userInputToGameRestartOrEnd.equals("R") && !userInputToGameRestartOrEnd.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] R과 Q만 입력할 수 있습니다.");
         }
-        return true;
+    }
+
+    public boolean ifUserReachedToEndOfTheBridge(int bridgeSize) {
+        if (player.getCurrentLocation()+1 == bridgeSize) {
+            return true;
+        }
+        return false;
     }
 
     public int getCountOfTry() {
@@ -55,11 +61,5 @@ public class BridgeGame {
      */
     private void move() {
         player.move();
-    }
-
-    private void validateUserInputIsOnlyROrQ(String userInputToGameRestartOrEnd) {
-        if (!userInputToGameRestartOrEnd.equals("R") && !userInputToGameRestartOrEnd.equals("Q")) {
-            throw new IllegalArgumentException("[ERROR] R과 Q만 입력할 수 있습니다.");
-        }
     }
 }

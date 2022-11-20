@@ -35,10 +35,19 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridge);
         System.out.println();
+        isGameSuccess(player, bridge);
+        System.out.println(String.format("총 시도한 횟수: %d", player.getCountOfTry()));
+    }
+
+    private void isGameSuccess(Player player, Bridge bridge) {
         if (bridge.getSize() != player.getCurrentLocation()+1) {
             System.out.println("게임 성공 여부: 실패");
+            return;
         }
         System.out.println("게임 성공 여부: 성공");
-        System.out.println(String.format("총 시도한 횟수: %d", player.getCountOfTry()));
+    }
+
+    public void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 }

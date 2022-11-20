@@ -19,13 +19,18 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String userInput = Console.readLine();
+        int bridgeSize = 0;
+        try {
+            bridgeSize = readStringAndConvertToInt();
+        } catch (NoSuchElementException e) {
+            return readBridgeSize();
+        }
         System.out.println();
-        int bridgeSize = convertStringToInt(userInput);
         return bridgeSize;
     }
 
-    private int convertStringToInt(String userInput) {
+    private int readStringAndConvertToInt() throws NoSuchElementException{
+        String userInput = Console.readLine();
         try{
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {

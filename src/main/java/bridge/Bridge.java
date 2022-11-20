@@ -9,7 +9,7 @@ public class Bridge {
 
     private final int bridgeSize;
 
-    Bridge(List<String> bridge) {
+    public Bridge(List<String> bridge) {
         this.bridgeSize = bridge.size();
         this.bridge = new ArrayList<>(bridge);
         for (int idx = 0; idx < 2; idx++) {
@@ -27,6 +27,12 @@ public class Bridge {
             isUserGetTheRightAnswer = caseWhenUserInputIsD(idx);
         }
         return isUserGetTheRightAnswer;
+    }
+
+    private void validateInputIsUOrD(String userInput) throws IllegalArgumentException {
+        if (!userInput.equals("U") && !userInput.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U와 D만 입력할 수 있습니다.");
+        }
     }
 
     private boolean caseWhenUserInputIsU(int idx) {
@@ -58,12 +64,6 @@ public class Bridge {
     public void retry() {
         bridgeShape.get(0).clear();
         bridgeShape.get(1).clear();
-    }
-
-    private void validateInputIsUOrD(String userInput) {
-        if (!userInput.equals("U") && !userInput.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] U와 D만 입력할 수 있습니다.");
-        }
     }
 
     public List<String> getBridgeUpperSide() {

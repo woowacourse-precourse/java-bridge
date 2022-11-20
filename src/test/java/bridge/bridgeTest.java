@@ -127,7 +127,7 @@ public class bridgeTest {
         }
 
         @Test
-        void 플레이어가_정답을_모두_맞췄을_때_false가_반환되는지_테스트() {
+        void 플레이어가_정답을_모두_맞췄을_때_true가_반환되는지_테스트() {
             String correctPosition = "U";
             bridgeGame.playGame(correctPosition);
             String correctPosition2 = "D";
@@ -136,7 +136,7 @@ public class bridgeTest {
             bridgeGame.playGame(correctPosition3);
             String correctPosition4 = "D";
             bridgeGame.playGame(correctPosition4);
-            assertThat(bridgeGame.ifUserReachedToEndOfTheBridgeReturnFalse(4)).isEqualTo(false);
+            assertThat(bridgeGame.ifUserReachedToEndOfTheBridge(4)).isEqualTo(true);
         }
     }
 

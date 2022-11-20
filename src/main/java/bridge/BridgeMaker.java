@@ -20,20 +20,21 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateNumberSize(size);
-        List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            int randomNumberOneOrZero = bridgeNumberGenerator.generate();
-            addDownOrUp(bridge, randomNumberOneOrZero);
-        }
-        return bridge;
+
+        return generateBridge(size);
     }
 
-    private void addDownOrUp(List<String> bridge, int randomNumber) {
-        if (randomNumber == 0) {
-            bridge.add("D");
-            return;
+    private List<String> generateBridge(int size) {
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            if (bridgeNumberGenerator.generate() == 0) {
+                bridge.add("D");
+                continue;
+            }
+            bridge.add("U");
         }
-        bridge.add("U");
+
+        return bridge;
     }
 
     private void validateNumberSize(int size) throws IllegalArgumentException {
