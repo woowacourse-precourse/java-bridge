@@ -1,10 +1,12 @@
 package bridge.type;
 
+import bridge.Env;
+
 import java.util.Arrays;
 
 public enum SlabType {
-    DOWN(0, "D"),
-    UP(1, "U"),
+    DOWN(0, Env.CODE_OF_DOWN),
+    UP(1, Env.CODE_OF_UP),
     UNKNOWN(-1, "N");
 
     private final int id;
@@ -26,6 +28,13 @@ public enum SlabType {
     public static SlabType build(int id) {
         return Arrays.stream(SlabType.values())
                 .filter(type -> type.id == purifyId(id))
+                .findFirst()
+                .orElse(SlabType.UNKNOWN);
+    }
+
+    public static SlabType build(String typeName) {
+        return Arrays.stream(SlabType.values())
+                .filter(type -> type.typeName.equals(typeName))
                 .findFirst()
                 .orElse(SlabType.UNKNOWN);
     }

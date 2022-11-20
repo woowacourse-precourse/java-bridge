@@ -1,7 +1,14 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.model.SlabDTO;
+import bridge.model.Slabs;
+import bridge.type.SlabType;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,9 +22,29 @@ public class BridgeGame {
     }
 
     public void create() {
-        this.inputView.readBridgeSize();
+        List<String> safeRoute = this.makeRoute();
 
+        for (String step: safeRoute) {
+            int index = safeRoute.indexOf(step);
+            List<SlabDTO> slabs = this.buildSlabs(index, SlabType.build(step));
 
+            Slabs.getInstance().insertAll(slabs);
+        }
+    }
+
+    private List<String> makeRoute() {
+        int size = this.inputView.readBridgeSize();
+
+        return BridgeMaker.getInstance().makeBridge(size);
+    }
+
+    private List<SlabDTO> buildSlabs(int index, SlabType safeSlab) {
+        SlabType unsafeSlab = SlabType.build(safeSlab.getId() ^ 1);
+
+        return List.of(
+                new SlabDTO(index, safeSlab, true),
+                new SlabDTO(index, unsafeSlab, false)
+        );
     }
 
     /**

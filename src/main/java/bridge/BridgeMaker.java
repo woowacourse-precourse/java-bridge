@@ -43,4 +43,10 @@ public class BridgeMaker {
             throw new RuntimeException(Lang.get(Lang.SLAB_TYPE_IS_UNKNOWN));
         }
     }
+
+    public static BridgeMaker getInstance() {
+        BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
+
+        return new BridgeMaker(generator);
+    }
 }

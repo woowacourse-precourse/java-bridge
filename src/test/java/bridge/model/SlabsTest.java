@@ -16,6 +16,14 @@ class SlabsTest {
     }
 
     @Test
+    void 단일_삽입() {
+        Slabs slabs = Slabs.getInstance();
+        SlabDTO dto = new SlabDTO(0, SlabType.DOWN, true);
+
+        assertThat(slabs.insert(dto)).isTrue();
+    }
+
+    @Test
     void 모두_삽입() {
         Slabs slabs = Slabs.getInstance();
         List<SlabDTO> dto = this.slabs();

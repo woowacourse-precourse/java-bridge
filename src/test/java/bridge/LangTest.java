@@ -1,4 +1,4 @@
-package bridge.type;
+package bridge;
 
 import bridge.Lang;
 import org.junit.jupiter.api.Test;

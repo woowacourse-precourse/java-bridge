@@ -24,6 +24,10 @@ public class Slabs {
         return this.database.addAll(data);
     }
 
+    public boolean insert(SlabDTO data) {
+        return this.database.add(data);
+    }
+
     public List<SlabDTO> getAll() {
         return Collections.unmodifiableList(this.database);
     }
