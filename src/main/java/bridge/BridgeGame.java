@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.controller.RetryController;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -12,16 +14,17 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @return
      */
-    public void move(List<Integer> bridge, String moving, boolean isWrong) {
-        BridgeController controller = new BridgeController();
-        if (isWrong) {
-           moving = controller.setWrongMoving(moving);
-        }
+    public List<Integer> move(String moving) {
+        List<Integer> userMoving = new ArrayList<>();
         Bridge solution = Bridge.findTop(moving);
 
-        bridge.add(solution.getTop());
-        bridge.add(solution.getBottom());
+        userMoving.add(solution.getTop());
+        userMoving.add(solution.getBottom());
+
+        return userMoving;
     }
 
     /**
@@ -29,17 +32,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<String> bridge) {
-        BridgeController controller = new BridgeController();
-        String result;
-        int count = 0;
+    public boolean retry(String result) {
+        RetryController retryController = new RetryController();
 
-        do {
-            result = controller.run(bridge);
-            count++;
-        } while (!controller.isNotFinish(result));
-
-        controller.stop(count, result);
+        return retryController.isNotFinish(result);
     }
 
 }
