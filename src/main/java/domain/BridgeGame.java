@@ -52,6 +52,16 @@ public class BridgeGame {
 	}
 	
 	public void retry() {
+		out.printGameMessage("COMMAND");
+		String command = in.readGameCommand();
+
+		if(command.equals("R")) {
+			mapMaker = new MapMaker();
+			move(bridge);
+		}
+
+		ending(false);
+		return;
 	}
 	
 	public void ending(boolean gameResult) {
