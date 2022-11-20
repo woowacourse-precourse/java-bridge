@@ -1,5 +1,9 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +14,32 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(ArrayList<String> moveResult, List<String> bridge) {
+        ArrayList<String> upMap = new ArrayList<>();
+        ArrayList<String> downMap = new ArrayList<>();
+
+        for(int i=0;i<moveResult.size();i++){
+            String move =moveResult.get(i);
+            String log = bridge.get(i);
+            if(move.equals("success") && log.equals("U")){
+                upMap.add(" O ");
+                downMap.add("   ");
+            }
+            if(move.equals("success") && log.equals("D")){
+                upMap.add("   ");
+                downMap.add(" O ");
+            }
+            if(move.equals("fail")&& log.equals("U")){
+                upMap.add("   ");
+                downMap.add(" X ");
+            }
+            if(move.equals("fail")&& log.equals("D")){
+                upMap.add(" X ");
+                downMap.add("   ");
+            }
+        }
+        System.out.println(upMap.toString().replaceAll(", ", "|"));
+        System.out.println(downMap.toString().replaceAll(", ", "|"));
     }
 
     /**
