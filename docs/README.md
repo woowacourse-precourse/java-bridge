@@ -45,6 +45,18 @@ String answer = readLine();
     1. printGameStart()
         게임 시작 문구 출력
 -------------------
+###### Application
+    1. settingGame()
+        게임 준비(인사, 다리 출력)
+    2. runningGame()
+        게임 실행
+        2-1. moving()
+            다리를 이동함
+        2-2. playAgain()
+            다시 플레이하는 기능
+    3. closingGame()
+        게임 종료
+-------------------
 ### 1. 다리 생성하기
 
 #### 추가한 기능 목록
