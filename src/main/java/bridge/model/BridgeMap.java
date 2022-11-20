@@ -21,6 +21,7 @@ public class BridgeMap {
     public List<String> getBridgeDownMap(){
         return bridgeDownMap;
     }
+
     public void makeBridgeMap(int location,String moving,String expression){
         if(moving.equals("U")){
             makeBridgeUpMap(location,expression);

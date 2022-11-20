@@ -2,7 +2,7 @@ package bridge.model;
 
 public class BridgeRetry {
 
-    private String retry;
+    private final String retry;
 
     public BridgeRetry(String retry){
         validateRetry(retry);

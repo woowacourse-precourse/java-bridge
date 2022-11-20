@@ -2,7 +2,7 @@ package bridge.model;
 
 public class BridgeMoving {
 
-    private String moving;
+    private final String moving;
 
     public BridgeMoving(String moving){
         validateBridgeMoving(moving);
