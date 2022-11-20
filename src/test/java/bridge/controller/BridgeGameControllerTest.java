@@ -48,4 +48,6 @@ public class BridgeGameControllerTest {
         //then
         assertThat(bridgeGame.success());
     }
+
+
 }

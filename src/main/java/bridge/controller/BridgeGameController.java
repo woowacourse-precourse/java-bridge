@@ -35,8 +35,8 @@ public class BridgeGameController {
         }
     }
 
-    private void moveAndPrint(int i) {
-        bridgeGame.move(i, InputException.validateMovingValue(InputView.readMoving()));
+    private void moveAndPrint(int index) {
+        bridgeGame.move(index, InputException.validateMovingValue(InputView.readMoving()));
         OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getResult());
     }
 
