@@ -57,15 +57,6 @@ public class BridgeGame {
         return true;
     }
 
-    public List<String> move(final Bridge b, final String uOrD) {
-        if(!b.matchBridge(uOrD)) {
-            bridgeState.add(uOrD + "X");
-        } else{
-            bridgeState.add(uOrD + "O");
-        }
-        return bridgeState;
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
