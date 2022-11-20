@@ -24,6 +24,11 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printAnswer(List<List<String>> bridge) {
+        System.out.println("최종 게임 결과");
+        printMap(bridge);
+    }
+
     private void printRow(List<String> bridgeRow) {
         StringBuilder output = new StringBuilder("[");
 
