@@ -18,6 +18,7 @@ public class Application {
         startGame();
         setBridge();
         playGame();
+        finishGame();
 
     }
 
@@ -49,6 +50,9 @@ public class Application {
         bridgeGame = new BridgeGame();
         BridgeGame.setCountAttempt();
     }
+    private static void finishGame() {
+        outputView.printResult(bridgeGame);
+    }
 
     private static void playGame() {
         while(true){
@@ -59,20 +63,18 @@ public class Application {
                 outputView.printInputMoveDirection();
                 String direction = getDirection();
 
-                boolean isCorrect = bridgeGame.move(direction);
+                boolean isCorrectDirection = bridgeGame.move(direction);
                 outputView.printMap(bridgeGame);
-                if(!isCorrect) {
+                if(!isCorrectDirection) {
                     outputView.printInputRetryCommand();
                     String command = getRetryCommand();
-                    if(command.equals(Command.QUIT)){
-                        outputView.printResult(bridgeGame);
+                    boolean isRetry = bridgeGame.retry(command);
+                    if(!isRetry){
                         return;
                     }
                     break;
                 }
-                if(bridgeGame.isFinish()) {
-                    BridgeGame.RESULT = "성공";
-                    outputView.printResult(bridgeGame);
+                if(bridgeGame.isSuccessFinish()) {
                     return;
                 }
             }

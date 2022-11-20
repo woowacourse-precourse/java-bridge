@@ -18,9 +18,12 @@ public class BridgeGame {
     private List<String> downLine;
     private int bridgeIndex;
 
+    public static final String FAIL = "실패";
+    public static final String SUCCESS = "성공";
+    public String result = "실패";
     private static List<String> bridge;
     private static int countAttempt = 0;
-    public static String RESULT = "실패";
+//    public static String RESULT = "실패";
 
     BridgeGame() {
         this.upLine = new ArrayList<String>();
@@ -28,10 +31,12 @@ public class BridgeGame {
         this.bridgeIndex = 0;
     }
 
-    public boolean isFinish() {
+    public boolean isSuccessFinish() {
         if (BridgeGame.bridge.size() == this.bridgeIndex) {
+            this.result = SUCCESS;
             return true;
         }
+        this.result = FAIL;
         return false;
     }
 
@@ -129,6 +134,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String command) {
+        if(command.equals(Command.QUIT)){
+            return false;
+        }
+        return true;
     }
 }
