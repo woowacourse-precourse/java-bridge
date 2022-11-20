@@ -9,7 +9,16 @@ public class InputView {
 
     public static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     public static final String INPUT_MOVING_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static InputView instance;
 
+    private InputView() {}
+
+    public static InputView getInstance() {
+        if (instance == null) {
+            instance = new InputView();
+        }
+        return instance;
+    }
     /**
      * 다리의 길이를 입력받는다.
      */

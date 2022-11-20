@@ -14,7 +14,16 @@ public class OutputView {
     public static final String MAP_HEAD = "[ ";
     public static final String MAP_TAIL = " ]";
     public static final String MOVING_DELIMITER = " | ";
+    private static OutputView instance;
 
+    private OutputView() {}
+
+    public static OutputView getInstance() {
+        if (instance == null) {
+            instance = new OutputView();
+        }
+        return instance;
+    }
     public void printInit() {
         System.out.println(INIT_MESSAGE);
     }
@@ -65,5 +74,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
