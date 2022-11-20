@@ -43,6 +43,12 @@ public class GameRun {
     }
 
     private static boolean gameContinue() {
-        return inputView.readGameCommand().equals("R");
+        while (true) {
+            try {
+                return inputView.readGameCommand().equals("R");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
