@@ -58,4 +58,24 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> InputValidator.checkBridgeSize(block))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("게임 재시작 여부 입력할 때 1이 아니라면 예외 처리")
+    @ValueSource(strings = {"AG", "FDSFK", "231231", ",,.#@"})
+    @ParameterizedTest
+    void oneLengthRetry(String retry) {
+        assertThatThrownBy(() -> InputValidator.checkGameRetry(retry))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게임 재시작 여부를 입력할 때 형식(R 또는 Q)에 맞지 않다면 예외 처리")
+    @ValueSource(strings = {
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N",
+            "O", "P", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+            "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"})
+    @ParameterizedTest
+    void notFormatRetry(String retry) {
+        assertThatThrownBy(() -> InputValidator.checkBridgeSize(retry))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
