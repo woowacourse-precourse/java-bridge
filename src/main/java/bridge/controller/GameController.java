@@ -36,7 +36,6 @@ public class GameController {
         bridgeGame = generateRandomBridgeGame();
     }
 
-
     private BridgeGame generateRandomBridgeGame() {
         return ValidateReader.readUntilValidate(() -> {
             int bridgeSize = inputView.readBridgeSize();

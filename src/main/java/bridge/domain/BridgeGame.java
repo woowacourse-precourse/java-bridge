@@ -43,7 +43,7 @@ public class BridgeGame {
     }
 
     /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * 사용자가 게임을 다시 시도
      *
      * @param player 게임을 재시도 할 player 입력
      */
