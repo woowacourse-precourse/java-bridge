@@ -28,7 +28,7 @@ class BridgeGameTest {
     void testProgressAtConstruct() {
         BridgeGame game = new BridgeGame(List.of("U", "D", "D"));
 
-        assertThat(game.progress()).isEqualTo(List.of(List.of(), List.of()));
+        assertThat(game.progressMap()).isEqualTo(List.of(List.of(), List.of()));
     }
 
     //status()

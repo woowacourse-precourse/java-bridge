@@ -3,9 +3,6 @@ package bridge.game;
 import static bridge.game.BridgeGameStatus.FINISH;
 import static bridge.game.BridgeGameStatus.RUNNING;
 import static bridge.game.BridgeGameStatus.STOP;
-import static bridge.game.BridgeMoveResult.CORRECT;
-import static bridge.game.BridgeMoveResult.NONE;
-import static bridge.game.BridgeMoveResult.WRONG;
 
 import java.util.List;
 
@@ -14,13 +11,13 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final Bridge bridgeAnswer;
+    private final Bridge answerBridge;
     private final Bridge currentBridge;
     private BridgeGameStatus status;
     private int tryCount;
 
-    public BridgeGame(List<String> bridgeAnswer) {
-        this.bridgeAnswer = new Bridge(bridgeAnswer);
+    public BridgeGame(List<String> answerBridge) {
+        this.answerBridge = new Bridge(answerBridge);
         this.currentBridge = new Bridge();
         status = RUNNING;
         tryCount = 1;
@@ -34,7 +31,7 @@ public class BridgeGame {
     public void move(String direction) {
         validateMove(direction);
         int currentIndex = currentBridge.size();
-        String answer = bridgeAnswer.getDirectionAt(currentIndex);
+        String answer = answerBridge.getDirectionAt(currentIndex);
 
         matchBridge(answer, direction);
     }
@@ -75,7 +72,7 @@ public class BridgeGame {
                 .get(currentBridge.size() - 1);
 
         if ((lastUpper.equals("O") || lastLower.equals("O"))
-                && currentBridge.size() == bridgeAnswer.size()) {
+                && currentBridge.size() == answerBridge.size()) {
             this.status = FINISH;
         }
 
@@ -105,8 +102,12 @@ public class BridgeGame {
      *
      * @return - size 2 * n 의 List<List<String>>,<br/> .get(0) 상단 정보, .get(1) 하단 정보
      */
-    public List<List<String>> progress() {
+    public List<List<String>> progressMap() {
         return List.of(currentBridge.getUpper(), currentBridge.getLower());
+    }
+
+    public List<List<String>> answerMap() {
+        return List.of(answerBridge.getUpper(), answerBridge.getLower());
     }
 
     public int tryTimes() {
