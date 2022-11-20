@@ -23,11 +23,11 @@ public class BridgeGame {
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public int move(String moving) {
-		if (alreadyReachBridgeEnd()) {
-			return MOVING_FAIL_ALREADY_END;
-		}
 		if (canGoNextStep(moving)) {
 			currentPos += ONE_STEP_FORWARD;
+			if (currentPos == bridge.size() - USELESS_SPACE_OF_BRIDGE) {
+				return MOVING_SUCCESS_GAME_END;
+			}
 			return MOVING_SUCCESS;
 		}
 		return MOVING_FAIL_WRONG_MOVING;
@@ -42,14 +42,6 @@ public class BridgeGame {
 			return false;
 		}
 		return true;
-	}
-
-	private boolean alreadyReachBridgeEnd() {
-		int bridgeLastPosition = bridge.size() - USELESS_SPACE_OF_BRIDGE;
-		if (currentPos == bridgeLastPosition) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
