@@ -10,6 +10,8 @@ public class BridgeViewConstructor {
     private static final String BLANK_BRIDGE = "  ";
     private static final String WRONG_BRIDGE = " X";
     private static final String BRIDGE_CONNECTOR = " |";
+    private static final String BRACKET_STARTED = "[";
+    private static final String BRACKET_FINISHER = "]";
 
     private StringBuilder upperBridge = new StringBuilder();
     private StringBuilder lowerBridge = new StringBuilder();
@@ -59,7 +61,9 @@ public class BridgeViewConstructor {
         bridge.append(RIGHT_BRIDGE).append(BRIDGE_CONNECTOR);
     }
 
-    private void makeBracket(){
-
+    private String makeBracket(){
+        String upper = BRACKET_STARTED + upperBridge.toString() + BRACKET_FINISHER;
+        String lower = BRACKET_STARTED + lowerBridge.toString() + BRACKET_FINISHER;
+        return upper + "\n" + lower;
     }
 }
