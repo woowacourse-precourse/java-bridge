@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameSimulator {
@@ -35,7 +36,14 @@ public class GameSimulator {
     }
 
     private List<String> startGame(List<String> bridge) {
-        return null;
+        List<String> userRoute = new ArrayList<>();
+
+        String moving;
+        while ((moving = bridgeGame.move(bridge)) != null) {
+            userRoute.add(moving);
+        }
+
+        return userRoute;
     }
 
     private void quitGame(int bridgeSize, int trial, List<String> userRoute) {
