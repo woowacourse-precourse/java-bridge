@@ -17,7 +17,7 @@ public class OutputView {
         List<String> check = new ArrayList<>();
         check.add("U");
         check.add("D");
-        System.out.println("pos : " + position);
+
         for(int i=0; i<2; i++){
             String standard = check.get(i);
             System.out.print("[");
@@ -48,6 +48,7 @@ public class OutputView {
             }
             System.out.println("]");
         }
+        System.out.println();
     }
 
     /**
@@ -56,7 +57,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean gameSuccess, int gameTryCount) {
-        System.out.println("최종 게임 결과");
         if(gameSuccess)
             System.out.println("게임 성공 여부: 성공");
         else

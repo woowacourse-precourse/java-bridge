@@ -40,15 +40,17 @@ public class Controller {
 
             if(mySelectBridge.get(position).equals(bridge.get(position))){
                 //성공
-                outputView.printMap(bridge, gameSuccess, position);
                 if(position == bridgeLen - 1){
                     gameSuccess = true;
+                    System.out.println("최종 게임 결과");
+                    outputView.printMap(bridge, true, position);
                     break;
                 }
+                outputView.printMap(bridge, true, position);
             }
             else{
                 //실패
-                outputView.printMap(bridge, gameSuccess, position);
+                outputView.printMap(bridge, false, position);
                 String gameCommand = inputView.readGameCommand();
 
                 if(gameCommand.equals("R")){
