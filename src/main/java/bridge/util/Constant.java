@@ -9,8 +9,10 @@ public class Constant {
     public static final String BLANK = " ";
     public static final String FIRST_ROUND_CORRECT = " O ";
     public static final String FIRST_ROUND_WRONG = " X ";
+    public static final String OTHER_ROUND_CORRECT = "| O ]";
     public static final String MAP_END = "]";
     public static final String FIRST_ROUND_END = "  ]";
+    public static final String OTHER_ROUND_END = "|   ]";
 
     public static final String ERROR_MESSAGE_BRIDGE_LENGTH_CONSIST_OF_NUM = "[ERROR] 다리 길이 입력값은 숫자여야 합니다.";
     public static final String ERROR_MESSAGE_BRIDGE_LENGTH_RANGE_3_TO_20 = "[ERROR] 다리의 길이는 3이상 20이하여야 합니다.";

@@ -16,6 +16,17 @@ public class Result {
         this.round = round;
     }
 
+    // 첫 라운드 이후에 사용자가 맞춘 경우
+    public void convertCorrectResultAfterFirstRound(String userInput) {
+        if (userInput.equals(Up.getDirection())) {
+            map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, OTHER_ROUND_CORRECT));
+            map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, OTHER_ROUND_END));
+        } else if (userInput.equals(Down.getDirection())) {
+            map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, OTHER_ROUND_END));
+            map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, OTHER_ROUND_CORRECT));
+        }
+    }
+
     // 첫 라운드에 사용자가 맞춘 경우
     public void convertCorrectResultFirstRound(String userInput) {
         if (userInput.equals(Up.getDirection())) {
