@@ -14,9 +14,10 @@ public class Application {
         // output view
         System.out.println("다리 건너기 게임을 시작합니다.");
         // 자동으로 생성할 다리 길이를 입력 받는다. --> input view
-        System.out.println("다리의 길이를 입력해주세요.");
-        int bridgeSize = inputView.readBridgeSize();
-
+        int bridgeSize = 0;
+        while (bridgeSize == 0) {
+            bridgeSize = inputView.readBridgeSize();
+        }
         // 다리를 생성합니다. --> bridge maker
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
