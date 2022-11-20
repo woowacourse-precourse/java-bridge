@@ -48,4 +48,19 @@ class BridgeComparatorTest {
         //then
         Assertions.assertEquals(expectedResult, result);
     }
+
+    @DisplayName("해당 다리 결과 위치에 X 표시가 있으면 true 반환 테스트")
+    @Test
+    void generateBridgeMapX(){
+        //given
+        List<String> bridgeUpMap = new ArrayList<>(List.of("O","X"));
+        List<String> bridgeDownMap = new ArrayList<>(List.of("",""));
+        int location=1;
+
+        //when
+        boolean result = bridgeComparator.isExpressionX(1, bridgeUpMap, bridgeDownMap);
+
+        //then
+        Assertions.assertEquals(true,result);
+    }
 }
