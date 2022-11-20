@@ -32,7 +32,7 @@ public class GameController {
             bridgeGame.move(rightBridgeWay, inputMoveValue);
             printMap(bridgeGame.upperBridge, bridgeGame.lowerBridge);
 
-            if (bridgeGame.upperBridge.contains("X") || bridgeGame.lowerBridge.contains("X")) {
+            if (bridgeGame.upperBridge.contains(OutputView.LOSE_SYMBOL) || bridgeGame.lowerBridge.contains(OutputView.LOSE_SYMBOL)) {
                 keepGoing = retryGame(bridgeGame);
             }
         }
@@ -47,8 +47,8 @@ public class GameController {
     }
 
     private boolean retryGame(BridgeGame bridgeGame) {
-        String inputReGame = InputView.readGameCommand();
-        return bridgeGame.retry(inputReGame);
+        String reGame = InputView.readGameCommand();
+        return bridgeGame.retry(reGame);
     }
 
     private void printResult(BridgeGame bridgeGame) {

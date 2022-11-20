@@ -28,12 +28,13 @@ public class BridgeMaker {
     }
 
     public String changeNumber(int randomNumber) {
-        String rightWay = "";
-        if (randomNumber == 0) {
-            rightWay = "D";
+
+        String rightWay = null;
+        if (randomNumber == Direction.UP.getNumber()) {
+            rightWay = Direction.UP.getWord();
         }
-        if (randomNumber == 1) {
-            rightWay = "U";
+        if (randomNumber == Direction.DOWN.getNumber()) {
+            rightWay = Direction.DOWN.getWord();
         }
         return rightWay;
     }

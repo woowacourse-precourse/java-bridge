@@ -8,14 +8,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public final String correct = "O";
-    public final String difference = " ";
-
-    static int attempt = 1;
-    static int bridgeIndex = 0;
-
     public List<String> upperBridge;
     public List<String> lowerBridge;
+    public int attempt = 1;
+    public int bridgeIndex = 0;
+
+    private final String BLANK = " ";
+    private final String RIGHT_WAY = "O";
+    private final String WRONG_WAY = "X";
+    private final String REGAME = "R";
+
 
     BridgeGame() {
         upperBridge = new ArrayList<>();
@@ -40,8 +42,8 @@ public class BridgeGame {
     }
 
     public List<String> makeUpperBridge(String answer, String inputMoveValue) {
-        if (inputMoveValue.equals("D")) {
-            upperBridge.add(" ");
+        if (inputMoveValue.equals(InputView.DOWNWARD_DIRECTION)) {
+            upperBridge.add(BLANK);
             return upperBridge;
         }
         upperBridge.add(compareValue(answer, inputMoveValue));
@@ -50,8 +52,8 @@ public class BridgeGame {
     }
 
     public List<String> makeLowerBridge(String answer, String inputMoveValue) {
-        if (inputMoveValue.equals("U")) {
-            lowerBridge.add(" ");
+        if (inputMoveValue.equals(InputView.UPWARD_DIRECTION)) {
+            lowerBridge.add(BLANK);
             return lowerBridge;
         }
         lowerBridge.add(compareValue(answer, inputMoveValue));
@@ -59,11 +61,11 @@ public class BridgeGame {
         return lowerBridge;
     }
 
-    public String compareValue(String answer, String movingValue) {
-        if (answer.equals(movingValue)) {
-            return "O";
+    public String compareValue(String answer, String inputMoveValue) {
+        if (answer.equals(inputMoveValue)) {
+            return RIGHT_WAY;
         }
-        return "X";
+        return WRONG_WAY;
     }
 
     /**
@@ -71,13 +73,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String inputReGame) {
-        if (inputReGame.equals("R")) {
+    public boolean retry(String reGame) {
+        if (reGame.equals(REGAME)) {
             bridgeIndex = 0;
             upperBridge = new ArrayList<>();
             lowerBridge = new ArrayList<>();
             attempt++;
-
             return true;
         }
         return false;
