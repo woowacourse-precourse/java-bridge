@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.stream.Stream;
+
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,9 +13,19 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private final String CHOOSE_UP = "U";
+    private final String CHOOSE_DOWN = "D";
+    private final String CHOOSE_RESTART = "R";
+    private final String CHOOSE_END = "Q";
+    private final int MAX_BRIDGE_SIZE = 20;
+    private final int MIN_BRIDGE_SIZE = 3;
+
+
 
     private final String OPENING_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private final String ASK_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private final String ASK_UP_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String ASK_RESTART_NOT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -29,13 +41,44 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(ASK_UP_DOWN);
+        String moveChoice = Console.readLine();
+        validateInputMoving(moveChoice);
+        return moveChoice;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(ASK_RESTART_NOT);
+        String gameCommandChoice = Console.readLine();
+        validateInputGameCommand(gameCommandChoice);
+        return gameCommandChoice;
     }
+
+    private void validateBridgeSize(int bridgeSize) {
+        if( bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBridgeSizeDataType(int bridgeSize) {
+        if( bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateInputMoving(String moveChoice) {
+        if(!moveChoice.equals(CHOOSE_UP) || !moveChoice.equals(CHOOSE_DOWN)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateInputGameCommand(String gameCommandChoice) {
+        if(!gameCommandChoice.equals(CHOOSE_RESTART) || !gameCommandChoice.equals(CHOOSE_END)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
