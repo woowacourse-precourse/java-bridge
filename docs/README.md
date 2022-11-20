@@ -3,7 +3,7 @@
 ### Bridge
 1. 생성자 : Bridgemaker.makeBridge를 입력해 생성한다.
 2. isPlayerRightBridge : 플레이어를 입력받아 플레이어의 길이까지 다리가 같으면 참을 반환
-3. makeResultBridge : 플레이어를 입력받아 플레이어까지의 다리를 구조에 맞게 반환한다.
+3. getBridge : 다리를 반환해준다. 
 
 ### Player
 1. 생성자 : 전역변수 List<String>을 생성한다. 
