@@ -11,6 +11,7 @@ public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private List<String> bridge;
     private List<String> userSelect = new ArrayList<>();
+    private int attempt = 1;
 
     public BridgeGame(BridgeNumberGenerator numberGenerator,int size) {
         this.bridgeMaker = new BridgeMaker(numberGenerator);
@@ -60,5 +61,9 @@ public class BridgeGame {
 
     public List<String> getUserSelect() {
         return this.userSelect;
+    }
+
+    public int getTryCount() {
+        return this.attempt;
     }
 }
