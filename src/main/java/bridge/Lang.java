@@ -1,6 +1,6 @@
-package bridge.type;
+package bridge;
 
-public enum LangType {
+public enum Lang {
     HELLO_WORLD("안녕 세계 %s"),
     WRONG_COMMAND("잘못된 명령어를 입력했어요. 사용 가능한 명령어는 다음과 같아요.\n%s"),
     INPUT_NUMBER("숫자를 입력해 주세요."),
@@ -9,7 +9,7 @@ public enum LangType {
 
     private final String message;
 
-    LangType(String message) {
+    Lang(String message) {
         this.message = message;
     }
 
@@ -18,11 +18,11 @@ public enum LangType {
         return this.message;
     }
 
-    public static String format(LangType lang, Object ...args) {
+    public static String format(Lang lang, Object ...args) {
         return String.format(lang.message, args);
     }
 
-    public static String get(LangType lang) {
+    public static String get(Lang lang) {
         return lang.toString();
     }
 }

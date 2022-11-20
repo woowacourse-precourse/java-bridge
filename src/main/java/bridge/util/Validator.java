@@ -1,14 +1,13 @@
-package bridge;
+package bridge.util;
 
-import bridge.type.LangType;
-import bridge.util.Parser;
+import bridge.Lang;
 
 import java.util.List;
 
 public class Validator {
     public static void checkConsoleCommandIsCorrect(List<String> allowCommands, String command) {
         if (!allowCommands.contains(command)) {
-            String message = LangType.format(LangType.WRONG_COMMAND, joinCommands(allowCommands));
+            String message = Lang.format(Lang.WRONG_COMMAND, joinCommands(allowCommands));
             throw new IllegalArgumentException(message);
         }
     }
@@ -23,7 +22,7 @@ public class Validator {
         int max = Integer.max(range.get(0), range.get(1));
 
         if (number < min || number > max) {
-            throw new IllegalArgumentException(LangType.format(LangType.INPUT_NUMBER_IN_RANGE, min, max));
+            throw new IllegalArgumentException(Lang.format(Lang.INPUT_NUMBER_IN_RANGE, min, max));
         }
     }
 }

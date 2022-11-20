@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.type.SlabType;
-import bridge.type.LangType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class BridgeMaker {
 
     private void checkBridgeTypeIsUnknown(String bridgeTypeName) {
         if (bridgeTypeName.equals(SlabType.UNKNOWN.getTypeName())) {
-            throw new RuntimeException(LangType.get(LangType.SLAB_TYPE_IS_UNKNOWN));
+            throw new RuntimeException(Lang.get(Lang.SLAB_TYPE_IS_UNKNOWN));
         }
     }
 }

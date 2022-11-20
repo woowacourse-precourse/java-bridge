@@ -1,8 +1,5 @@
 package bridge.model;
 
-import bridge.type.LangType;
-import bridge.type.SlabType;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
