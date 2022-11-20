@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+
 import java.util.List;
 
 /**
@@ -10,14 +11,18 @@ public class BridgeGame {
 
     private static final InputView inputView = new InputView();
     private final Bridges gameBridges;
+    private int gameTryCount;
 
     public BridgeGame(List<String> bridges) {
         this.gameBridges = new Bridges(bridges);
+        this.gameTryCount = 0;
     }
 
     public void play() {
+        ++gameTryCount;
         while (!this.isCleared()) {
-            if (!move()) {
+            boolean isMoveSuccess = move();
+            if (!isMoveSuccess) {
                 return;
             }
         }
@@ -33,7 +38,6 @@ public class BridgeGame {
             return false;
         }
         String moving = inputView.readMoving();
-
         return gameBridges.tryPass(moving);
     }
 
@@ -49,5 +53,9 @@ public class BridgeGame {
 
     public boolean isCleared() {
         return gameBridges.isAllPassed();
+    }
+
+    public int getTryCount() {
+        return this.gameTryCount;
     }
 }
