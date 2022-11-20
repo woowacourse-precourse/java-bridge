@@ -7,7 +7,6 @@ public class Program {
     private static InputView inputView = new InputView();
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
     private static BridgeGame bridgeGame;
 
     public static void init() {
@@ -27,12 +26,6 @@ public class Program {
         int bridgeSize = getBridgeSize();
         createBridge(bridgeSize);
     }
-    private static void createBridge(int bridgeSize) {
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame.setBridge(bridge);
-    }
-
-
 
     private static int getBridgeSize() {
         while (true) {
@@ -44,32 +37,24 @@ public class Program {
         }
     }
 
+    private static void createBridge(int bridgeSize) {
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame.setBridge(bridge);
+    }
 
+    private static void playGame() {
+        while (true) {
+            setupGame();
+            boolean isCompleted = proceedGame();
+            if (isCompleted) {
+                break;
+            }
+        }
+    }
 
     private static void setupGame() {
         bridgeGame = new BridgeGame();
         BridgeGame.setCountAttempt();
-    }
-
-    private static void finishGame() {
-        outputView.printResult(bridgeGame);
-    }
-
-
-    private static boolean askToQuitGame() {
-        outputView.printInputRetryCommand();
-        String command = getRetryCommand();
-        return !bridgeGame.retry(command);
-    }
-
-    private static boolean generateMovement() {
-        outputView.printInputMoveDirection();
-        String direction = getDirection();
-
-        boolean isSuccess = bridgeGame.move(direction);
-        outputView.printMap(bridgeGame);
-
-        return isSuccess;
     }
 
     private static boolean proceedGame() {
@@ -84,14 +69,14 @@ public class Program {
         }
     }
 
-    private static void playGame() {
-        while (true) {
-            setupGame();
-            boolean isCompleted = proceedGame();
-            if (isCompleted) {
-                break;
-            }
-        }
+    private static boolean generateMovement() {
+        outputView.printInputMoveDirection();
+        String direction = getDirection();
+
+        boolean isSuccess = bridgeGame.move(direction);
+        outputView.printMap(bridgeGame);
+
+        return isSuccess;
     }
 
     private static String getDirection() {
@@ -104,6 +89,12 @@ public class Program {
         }
     }
 
+    private static boolean askToQuitGame() {
+        outputView.printInputRetryCommand();
+        String command = getRetryCommand();
+        return !bridgeGame.retry(command);
+    }
+
     private static String getRetryCommand() {
         while (true) {
             try {
@@ -112,5 +103,9 @@ public class Program {
                 outputView.printErrorState(e);
             }
         }
+    }
+
+    private static void finishGame() {
+        outputView.printResult(bridgeGame);
     }
 }

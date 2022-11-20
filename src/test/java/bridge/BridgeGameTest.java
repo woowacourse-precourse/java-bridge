@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
+import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,19 @@ public class BridgeGameTest {
         // bridge => "UDD"
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame.setBridge(bridge);
+    }
+
+    @DisplayName("이동한 위치에 대한 결과를 저장한다")
+    @Test
+    void addMovementTest() {
+//        bridgeGame.addMovement(
+//                Arrays.asList(bridgeGame.getUpLineForm().split("|")),
+//                Arrays.asList(bridgeGame.getUpLineForm().split("|")),
+//                true
+//        );
+
+        assertThat(bridgeGame.getUpLineForm()).isEqualTo(" O ");
+        assertThat(bridgeGame.getDownLineForm()).isEqualTo("   ");
     }
 
     @DisplayName("입력한 방향과 해당 지점이 같으면 true를 다르면 false를 리턴한다")
