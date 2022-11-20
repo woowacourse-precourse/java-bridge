@@ -23,11 +23,15 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-
-            if (bridgeNumber == 0) bridge.add("D");
-            if (bridgeNumber == 1) bridge.add("U");
+            bridge.add(decideDirection(bridgeNumber));
         }
 
         return bridge;
+    }
+
+    private String decideDirection(int bridgeNumber) {
+        if (bridgeNumber == 0)
+            return "D";
+        return "U";
     }
 }
