@@ -78,7 +78,7 @@ BUILD SUCCESSFUL in 0s
     - [x] public List<String> makeBridge(int size)
 - [ ] **CLASS3. BridgeGame**
   - **Class Variables**
-    - [x] private List<String> bridge
+    - [x] private final List<String> bridge
     - [x] private int currentUserPosition
     - [x] private boolean gameWinStatus
     - [x] private int totalTryCount
