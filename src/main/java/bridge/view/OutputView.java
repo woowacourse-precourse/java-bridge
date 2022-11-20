@@ -16,6 +16,7 @@ public class OutputView {
     private static final String INPUT_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String START_GAME_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String MAP_START = "[ ";
     private static final String MAP_END = " ]";
     private static final String MAP_WALL = " | ";
@@ -25,6 +26,11 @@ public class OutputView {
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
     private static final String SUCCESS_OR_NOT_MESSAGE = "게임 성공 여부: ";
     private static final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
+
+
+    public void printStartGame() {
+        System.out.println(START_GAME_MESSAGE);
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -137,11 +143,11 @@ public class OutputView {
     private void printLastLowerBridgeSquare(String LastSquare, GameStatus gameStatus) {
         if (LastSquare.equals(U.toString())) {
             printEmptySquare();
-            System.out.println(MAP_END);
+            System.out.println(MAP_END + "\n");
             return;
         }
         printWrongSquare(gameStatus);
         printCorrectSquare(gameStatus);
-        System.out.println(MAP_END);
+        System.out.println(MAP_END + "\n");
     }
 }

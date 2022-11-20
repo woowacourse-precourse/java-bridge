@@ -20,6 +20,7 @@ public class BridgeController {
     }
 
     public void inputBridgeSize() {
+        outputView.printStartGame();
         try {
             outputView.printInputBridgeSizeMessage();
             BridgeSize bridgeSize = inputView.readBridgeSize();
