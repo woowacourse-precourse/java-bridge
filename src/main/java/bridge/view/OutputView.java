@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.util.BridgeGameConstant.GAME_STATUS_MESSAGE;
+import static bridge.util.BridgeGameConstant.PATH_RESULT_MESSAGE;
 import static bridge.util.BridgeGameConstant.TRY_COUNT_MESSAGE;
 
 import bridge.model.BridgeGame;
@@ -34,9 +35,18 @@ public class OutputView {
      */
 
     public void printResult(BridgeGame bridgeGame) {
+        System.out.println(PATH_RESULT_MESSAGE);
+        printMap(bridgeGame);
+
+        printEmptyLine();
+
         Map<String, String> result = bridgeGame.getResultToString();
 
         System.out.println(GAME_STATUS_MESSAGE + ": " + result.get(GAME_STATUS_MESSAGE));
         System.out.println(TRY_COUNT_MESSAGE + ": " + result.get(TRY_COUNT_MESSAGE));
+    }
+
+    private void printEmptyLine() {
+        System.out.println();
     }
 }
