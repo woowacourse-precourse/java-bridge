@@ -18,6 +18,9 @@ public enum BridgeDirection{
     private static boolean isSameBridgeState(BridgeDirection bridgeDirection, int numberBridgeState){
         return bridgeDirection.numberBridgeState==numberBridgeState;
     }
+    private static boolean isSameBridgeState(BridgeDirection bridgeDirection, String wordBridgeState){
+        return bridgeDirection.wordBridgeState.equals(wordBridgeState);
+    }
 
     public static BridgeDirection findByNumberBridgeDirection(int numberBridgeState){
         return Arrays.stream(BridgeDirection.values())
@@ -25,7 +28,12 @@ public enum BridgeDirection{
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
     }
-
+    public static BridgeDirection findByWordBridgeDirection(String wordBridgeState){
+        return Arrays.stream(BridgeDirection.values())
+                .filter(bridgeDirection -> isSameBridgeState(bridgeDirection,wordBridgeState))
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+    }
     public static String transformToWordDirection(int numberBridgeState){
         BridgeDirection bridgeDirection = findByNumberBridgeDirection(numberBridgeState);
         if(Objects.isNull(bridgeDirection)){
