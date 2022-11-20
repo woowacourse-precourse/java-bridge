@@ -3,9 +3,11 @@ package bridge.domain;
 public class Player {
 
 	private PlayerStatus playerStatus;
+	private int location;
 
 	public Player() {
 		playerStatus = PlayerStatus.ALIVE;
+		location = 0;
 	}
 
 	public void die() {
@@ -20,4 +22,11 @@ public class Player {
 		return playerStatus == PlayerStatus.DEAD;
 	}
 
+	public int getCurrentLocation() {
+		return location;
+	}
+
+	public void move() {
+		location++;
+	}
 }
