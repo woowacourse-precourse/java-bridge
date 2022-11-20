@@ -54,7 +54,8 @@ public class InputView {
             checkNotDigit(str);
             checkOutOfBound(Integer.parseInt(str));
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
+            return true;
         }
         return false;
     }
@@ -69,7 +70,8 @@ public class InputView {
         try {
             checkMovingInput(str);
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
+            return true;
         }
         return false;
     }
@@ -84,7 +86,8 @@ public class InputView {
         try {
             checkGameCommandInput(str);
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
+            return true;
         }
         return false;
     }
