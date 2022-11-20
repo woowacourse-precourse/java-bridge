@@ -2,6 +2,7 @@ package bridge.model;
 
 import bridge.view.InputView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,5 +36,28 @@ public class BridgeGame {
      */
     public void retry() {
         this.playerMove = new ArrayList<>();
+    }
+
+    public List<List<String>> getGameMap() {
+        List<String> upMap = new ArrayList<>();
+        List<String> downMap = new ArrayList<>();
+        for (int index = 0; index < playerMove.size(); index++) {
+            if (answerMove.get(index).equals("U")) {
+                downMap.add(" ");
+                if (answerMove.get(index).equals(playerMove.get(index))) {
+                    upMap.add("O");
+                } else {
+                    upMap.add("X");
+                }
+            } else {
+                upMap.add(" ");
+                if (answerMove.get(index).equals(playerMove.get(index))) {
+                    downMap.add("O");
+                } else {
+                    downMap.add("X");
+                }
+            }
+        }
+        return new ArrayList<>(Arrays.asList(upMap, downMap));
     }
 }
