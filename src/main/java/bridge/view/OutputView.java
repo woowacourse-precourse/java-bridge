@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.BridgeBlock;
 import bridge.util.InformationMessage;
 
 import java.util.List;
@@ -33,11 +34,15 @@ public class OutputView {
     }
 
     private void printUpBridgeMap(List<String> movementsInUpBridge) {
-        System.out.println("[" + String.join("|", movementsInUpBridge) + "]");
+        System.out.println(BridgeBlock.BRIDGE_START.getBlock()
+                + String.join(BridgeBlock.BLOCK_DIVISOR.getBlock(), movementsInUpBridge)
+                + BridgeBlock.BRIDGE_END.getBlock());
     }
 
     private void printDownBridgeMap(List<String> movementsInDownBridge) {
-        System.out.println("[" + String.join("|", movementsInDownBridge) + "]");
+        System.out.println(BridgeBlock.BRIDGE_START.getBlock()
+                + String.join(BridgeBlock.BLOCK_DIVISOR.getBlock(), movementsInDownBridge)
+                + BridgeBlock.BRIDGE_END.getBlock());
     }
 
     public void printStartMessage() {

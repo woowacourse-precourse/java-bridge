@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.util.BridgeBlock;
 import bridge.util.BridgePosition;
 import bridge.util.GameCommand;
 
@@ -81,13 +82,13 @@ public class BridgeGame {
         if (bridgePosition.isEqualToBridgePosition(movements.get(index))) {
             return getMovedResult(movements.get(index), index);
         }
-        return "   ";
+        return BridgeBlock.NOT_MOVED.getBlock();
     }
 
     private String getMovedResult(String movingPosition, int index) {
         if (bridge.isMovable(movingPosition, index)) {
-            return " O ";
+            return BridgeBlock.SUCCESS_MOVED.getBlock();
         }
-        return " X ";
+        return BridgeBlock.FAIL_MOVED.getBlock();
     }
 }
