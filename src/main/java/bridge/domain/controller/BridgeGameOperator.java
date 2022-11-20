@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.constants.Direction;
 import bridge.constants.MovingPossibility;
 import bridge.domain.model.Bridge;
+import bridge.domain.model.GameResultInformation;
 import bridge.domain.view.InputView;
 import bridge.domain.view.OutputView;
 import java.util.List;
@@ -25,16 +26,20 @@ public class BridgeGameOperator {
 
     public void playBridgeGame() {
         final String RESTART = "R";
-        final String QUIT = "Q";
 
+        GameResultInformation.increaseCountOfTry();
         printStartGuideAndSetBridge();
 
-//        String retryInput = RESTART;
-//        while (retryInput.equals(RESTART)) {
-        tryOneGame();
+        String retryInput = RESTART;
+        while (retryInput.equals(RESTART)) {
+            tryOneGame();
 
-//        }
-
+            outputView.printRetryGuide();
+            retryInput = inputView.readGameCommand();
+            if (retryInput.equals(RESTART)) {
+                bridgeGame.retry();
+            }
+        }
     }
 
     private void printStartGuideAndSetBridge() {
