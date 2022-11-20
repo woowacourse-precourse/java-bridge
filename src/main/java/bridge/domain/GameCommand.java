@@ -1,25 +1,29 @@
 package bridge.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum GameCommand {
-	moveUp("U"),
-	moveDown("D"),
-	restartGame("R"),
-	quitGame("Q");
+	moveCommand(Arrays.asList("U", "D")),
+	continueGameCommand(Arrays.asList("R", "Q"));
 
-	private final String value;
+	private final List<String> gameCommand;
 
-	GameCommand(String value) {
-		this.value = value;
+	GameCommand(List<String> gameCommand) {
+		this.gameCommand = gameCommand;
 	}
 
-	public GameCommand findCommand(String inputCommand) {
-		return Arrays.stream(GameCommand.values()).filter(command -> command.value.equals(inputCommand))
-			.findFirst().orElseThrow(() -> new IllegalArgumentException("올바른 커맨드를 입력해주세요."));
+	public static String findMoveCommand(String inputCommand) {
+		return findCommand(moveCommand.gameCommand, inputCommand);
 	}
 
-	public String getValue() {
-		return value;
+	public static boolean isContinueGame(String inputCommand) {
+		String result = findCommand(continueGameCommand.gameCommand, inputCommand);
+		return result.equals(continueGameCommand.gameCommand.get(0));
+	}
+
+	private static String findCommand(List<String> gameCommand, String inputCommand) {
+		return gameCommand.stream().filter(command -> command.equals(inputCommand))
+			.findFirst().orElseThrow(() -> new IllegalArgumentException("[ERROR] 안내문을 참고해 올바른 커맨드를 입력해주세요."));
 	}
 }
