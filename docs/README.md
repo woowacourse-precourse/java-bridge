@@ -7,9 +7,10 @@
 5. BridgeMaker의 makeBridge 메서드로 Bridge 생성하도록 구현
     - 0, 1 이외의 숫자로 BridgeSpace를 선택할 경우에만 정상 동작
 6. 출력문으로 사용할 문자열들 모아둘 상수 클래스 추가
-7. OutputView 클래스에 출력 관련 메서드들 구현
-8. InputView 클래스에 입력 관련 메서드들 구현
-9. BridgeGame 클래스에 게임 관련 메서드들 구현
-10. 게임을 진행을 호출하기 위한 BridgeGameController 추가
-11. BridgeGameController에 게임 진행 관련 메서드들 구현
-12. main 함수에서 BridgeGameController의 게임 시작 메서드 호출
+7. 에러 출력문으로 사용할 문자열들 모아둘 상수 클래스 추가
+8. OutputView 클래스에 출력 관련 메서드들 구현
+9. InputView 클래스에 입력 관련 메서드들 구현
+10. BridgeGame 클래스에 게임 관련 메서드들 구현
+11. 게임을 진행을 호출하기 위한 BridgeGameController 추가
+12. BridgeGameController에 게임 진행 관련 메서드들 구현
+13. main 함수에서 BridgeGameController의 게임 시작 메서드 호출
