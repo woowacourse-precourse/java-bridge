@@ -1,2 +1,4 @@
-package view;public class InputMessage {
+package view;
+
+public class InputMessage {
 }
