@@ -103,4 +103,127 @@ class BridgeGameTest {
         //then
         Assertions.assertThat(byteArrayOutputStream.toString().trim()).isEqualTo(GameMessage.GAME_FAIL_MESSAGE.getMessage());
     }
+
+    @Test
+    public void isStart() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        int level = 0;
+
+        //when
+        bridgeGame.isStart(level);
+
+        //then
+        Assertions.assertThat(bridgeGame.getSb1().toString()).isEqualTo("[");
+        Assertions.assertThat(bridgeGame.getSb2().toString()).isEqualTo("[");
+    }
+
+    @Test
+    public void isUp1() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("U", "U", "U");
+        int level = 0;
+        String moving = "U";
+
+        //when
+        bridgeGame.isUp(bridge,moving,level);
+
+        //then
+        Assertions.assertThat(bridgeGame.getSb1().toString()).isEqualTo(" O ");
+        Assertions.assertThat(bridgeGame.getSb2().toString()).isEqualTo("   ");
+    }
+
+    @Test
+    public void isUp2() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("U", "U", "U");
+        int level = 0;
+        String moving = "D";
+
+        //when
+        bridgeGame.isUp(bridge,moving,level);
+
+        //then
+        Assertions.assertThat(bridgeGame.getSb1().toString()).isEqualTo("   ");
+        Assertions.assertThat(bridgeGame.getSb2().toString()).isEqualTo(" X ");
+    }
+
+    @Test
+    public void isDown1() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("D", "D", "U");
+        int level = 0;
+        String moving = "D";
+
+        //when
+        bridgeGame.isDown(bridge,moving,level);
+
+        //then
+        Assertions.assertThat(bridgeGame.getSb1().toString()).isEqualTo("   ");
+        Assertions.assertThat(bridgeGame.getSb2().toString()).isEqualTo(" O ");
+    }
+
+    @Test
+    public void isDown2() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("D", "D", "U");
+        int level = 0;
+        String moving = "U";
+
+        //when
+        bridgeGame.isDown(bridge,moving,level);
+
+        //then
+        Assertions.assertThat(bridgeGame.getSb1().toString()).isEqualTo(" X ");
+        Assertions.assertThat(bridgeGame.getSb2().toString()).isEqualTo("   ");
+    }
+
+    @Test
+    public void isLastNo() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("D", "D", "U");
+        int level = 0;
+
+        //when
+        bridgeGame.isLast(bridge,level);
+
+        //then
+        Assertions.assertThat(bridgeGame.getSb1().toString()).isEqualTo("|");
+        Assertions.assertThat(bridgeGame.getSb2().toString()).isEqualTo("|");
+    }
+
+    @Test
+    public void isLastOK() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("D", "D", "U");
+        int level = 2;
+
+        //when
+        bridgeGame.isLast(bridge,level);
+
+        //then
+        Assertions.assertThat(bridgeGame.getSb1().toString()).isEqualTo("]");
+        Assertions.assertThat(bridgeGame.getSb2().toString()).isEqualTo("]");
+    }
+
+    @Test
+    public void compareBridgeAndMoving() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("D", "D", "U");
+
+        //when
+        String result1 = bridgeGame.compareBridgeAndMoving(bridge, "D", 0);
+        String result2 = bridgeGame.compareBridgeAndMoving(bridge, "U", 0);
+
+        //then
+        Assertions.assertThat(result1).isEqualTo(" O ");
+        Assertions.assertThat(result2).isEqualTo(" X ");
+    }
 }
