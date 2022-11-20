@@ -25,29 +25,29 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         int bridgeLengthIndex = 0, gameAttempts = 1;
+        String rOrQ = "";
         boolean success = true;
         while (bridgeLengthIndex < bridge.size()) {
             outputView.printMap(bridgeLengthIndex, inputView.readMoving(), bridge);
-            if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X")) {
-                String rOrQ = inputView.readGameCommand();
-                if (bridgeGame.quit(rOrQ)) {
-                    success = false;
-                    outputView.printResult(false, gameAttempts);
-                    break;
-                }
+            bridgeLengthIndex += 1;
+            if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X"))
+                rOrQ = inputView.readGameCommand();
 
-                if (bridgeGame.retry(rOrQ)) {
-                    gameAttempts += 1;
-                    bridgeLengthIndex = 0;
-                    outputView.upOutputBoard.clear();
-                    outputView.downOutputBoard.clear();
-                    continue;
-                }
+            if (bridgeGame.quit(rOrQ)) {
+                success = false;
+                rOrQ = "";
+                break;
             }
 
-            bridgeLengthIndex += 1;
+            if (bridgeGame.retry(rOrQ)) {
+                gameAttempts += 1;
+                bridgeLengthIndex = 0;
+                outputView.upOutputBoard.clear();
+                outputView.downOutputBoard.clear();
+                rOrQ = "";
+            }
         }
-
         if (success) outputView.printResult(true, gameAttempts);
+        if (!success) outputView.printResult(false, gameAttempts);
     }
 }
