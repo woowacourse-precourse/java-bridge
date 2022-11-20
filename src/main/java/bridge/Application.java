@@ -44,7 +44,13 @@ public class Application {
     public static void startBridgeGame() {
         outputView.printGameStart();
         setBridgeGame();
-        playBridgeGame();
+        do {
+            number++;
+            playBridgeGame();
+            if (passFail) {
+                break;
+            }
+        } while (replayBridgeGame());
     }
 
     public static void setBridgeGame() {
