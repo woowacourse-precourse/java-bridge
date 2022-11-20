@@ -44,9 +44,11 @@ public class Application {
     static void moveBridge(List<String> bridge) {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
+        HandleException handleException = new HandleException();
 
         outputView.printChoiceMove();
         String move = inputView.readMoving();
+        String check_finish_move = handleException.checkMove(move);
     }
 
     public static void main(String[] args) {
