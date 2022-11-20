@@ -81,6 +81,6 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - [ ] 생성자를 통해서 문자열로 이루어진 다리가 만들어집니다.
     - [ ] 정수를 입력받으면 해당 다리의 위치를 반환합니다.
 - BridgeMaker
-    - [ ] 다리는 3과 20사이의 길이로 이루어집니다.
+    - [X] 1과 0이 입력되면 U와 D로 변경합니다.
 
 #
