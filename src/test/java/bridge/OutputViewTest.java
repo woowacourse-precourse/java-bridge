@@ -15,12 +15,15 @@ class OutputViewTest {
     OutputView outputView= new OutputView();
     List<String> answer=List.of("U","D","U","D");
     List<String> input=List.of("U","D","D","D");
-    
+
     @DisplayName("한 줄이 잘 출력 되는지 테스트")
     @Test
     void printLineTest() {
         String check=outputView.printLine(answer,answer, "U");
         assertThat(check).isEqualTo("[ O |   | O |   ]");
+
+        check=outputView.printLine(answer,answer, "D");
+        assertThat(check).isEqualTo("[   | O |   | O ]");
     }
 
     @DisplayName("다리의 해당 위치가 U인지 D인지 테스트")
