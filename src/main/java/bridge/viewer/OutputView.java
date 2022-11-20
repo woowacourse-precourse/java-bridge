@@ -43,11 +43,11 @@ public class OutputView {
     public void printResult(boolean isSuccess, int numberOfTrials) {
         if(isSuccess) {
             System.out.println(successMessage);
-            System.out.println(numberOfTrials);
+            System.out.println(numberOfTrialMessage + numberOfTrials);
             return;
         }
         System.out.println(failureMessage);
-        System.out.println(numberOfTrials);
+        System.out.println(numberOfTrialMessage + numberOfTrials);
     }
 
     public void printEndMessage() {
