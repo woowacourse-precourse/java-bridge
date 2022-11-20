@@ -34,5 +34,8 @@ public class RandomBridge {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
+    public List<String> getBridge(){
+        return bridge;
+    }
 
 }
