@@ -1,12 +1,12 @@
 ## 기능 목록
 
 ### 입력 - ClassName : InputView
-- [ ] 다리의 길이를 입력받는다. - `#readBridgeSize()`
+- [x] 다리의 길이를 입력받는다. - `#readBridgeSize()`
   - 예외사항
     - 숫자가 아닌경우
     - 숫자가 3~20 내의 범위 외의 숫자인 경우
     
-- [ ] 사용자가 이동할 칸을 입력받는다. - `#readMoving()`
+- [x] 사용자가 이동할 칸을 입력받는다. - `#readMoving()`
   - 예외사항
     - U/D 외의 문자가 입력된 경우
 
@@ -18,10 +18,6 @@
 
 ### 출력 - ClassName : OutputView
 - [ ] 현재까지 이동한 다리의 상태를 출력 - `#printMap()`
-    - 예외사항
-        - 숫자가 아닌경우
-        - 숫자가 3~20 내의 범위 외의 숫자인 경우
-
 - [ ] 최종 결과 출력 - `#printResult()`
     - [ ] 게임 성공 여부 출력 -`#printIsSuccess()`
     - [ ] 총 시도 횟수 출력 - `#printTotalTry()`
