@@ -34,4 +34,12 @@ class BridgeGameTest {
         boolean actual = bridgeGame.hasBridgeToMove(moveCount);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("게임 명령이 재시작이면 true, 종료면 false 확인")
+    @CsvSource(value = {"R, true", "Q, false"})
+    @ParameterizedTest
+    void checkRetry(String command, boolean expected) {
+        boolean actual = bridgeGame.doesRetry(command);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
