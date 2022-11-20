@@ -23,4 +23,12 @@ public class BridgeGameTest {
         assertThat(bridgeGame.move(input)).isEqualTo(List.of("O"));
     }
 
+    @DisplayName("위쪽 다리 결과를 만든다.")
+    @Test
+    void makeUpBridgeResult(){
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.makeBridgeCrossingResultEntry("U")).isEqualTo(List.of("O"," ","X"));
+    }
 }
