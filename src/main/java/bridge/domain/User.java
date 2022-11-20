@@ -19,6 +19,10 @@ public class User {
         trial++;
     }
 
+    public boolean isArrived(Bridge bridge) {
+        return position == bridge.getSize();
+    }
+
     public int getPosition() {
         return position;
     }
