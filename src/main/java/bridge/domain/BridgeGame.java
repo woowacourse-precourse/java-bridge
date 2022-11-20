@@ -55,6 +55,10 @@ public class BridgeGame {
         }
     }
 
+    public boolean isGameEnd() {
+        return gameFailed || matchingStatus.size() == bridge.getBridgeSize();
+    }
+
     public List<String> getMatchingStatus() {
         return Collections.unmodifiableList(matchingStatus);
     }
