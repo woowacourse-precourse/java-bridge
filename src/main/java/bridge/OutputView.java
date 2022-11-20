@@ -6,11 +6,19 @@ package bridge;
 public class OutputView {
 
     private static final String START_PHRASES = "다리 건너기 게임을 시작합니다.";
+    private static final String CHOICE_PHRASES = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     /**
      * 게임이 시작할 때의 문구를 출력한다.
      */
     public void printStartPhrases() {
         System.out.println(START_PHRASES);
+    }
+
+    /**
+     * 칸 선택을 받기 위한 문구를 출력한다.
+     */
+    public void printChoicePhrases() {
+        System.out.println(CHOICE_PHRASES);
     }
 
     /**

@@ -17,6 +17,15 @@ class OutputViewTest extends NsTest {
 
         assertThat(output()).isEqualTo("다리 건너기 게임을 시작합니다.");
     }
+    @DisplayName("칸 선택시 표시할 문구를 출력한다.")
+    @Test
+    void printChoice() {
+        OutputView outputView = new OutputView();
+
+        outputView.printChoicePhrases();
+
+        assertThat(output()).isEqualTo("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
 
     @Override
     protected void runMain() {
