@@ -12,14 +12,14 @@ public class InputView {
         scanner = new Scanner(System.in);
     }
 
-    public int readBridgeSize() throws IllegalArgumentException {
+    public int readBridgeSize() {
         String size = Console.readLine();
         validateBridgeSize(size);
 
         return Integer.parseInt(size);
     }
 
-    private void validateBridgeSize(String size) throws IllegalArgumentException {
+    private void validateBridgeSize(String size) {
         int isize;
         for(int i = 0 ; i < size.length() ; i++) {
             if(!Character.isDigit(size.charAt(i))) {
@@ -35,22 +35,27 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException {
+    public String readMoving() {
         String move = Console.readLine();
         validateMoving(move);
         return move;
     }
 
-    private void validateMoving(String move) throws IllegalArgumentException {
+    private void validateMoving(String move) {
         if(!(move.equals("U") || move.equals("D"))) {
             throw new IllegalArgumentException();
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        validateCommand(command);
+        return command;
+    }
+
+    private void validateCommand(String command) {
+        if(!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException();
+        }
     }
 }
