@@ -4,9 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static bridge.domain.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,5 +48,35 @@ class BridgeGameTest {
         bridgeGame.retry();
         assertThat(bridgeState.getUpBridgeState().length()).isEqualTo(0);
         assertThat(bridgeState.getDownBridgeState().length()).isEqualTo(0);
+    }
+
+    @DisplayName("첫 라운드 다리 건너고 나서 위 다리 상태 값 확인")
+    @ParameterizedTest
+    @MethodSource("firstRoundUpBridgeState")
+    void confirmFirstRoundUpBridgeState(String arrow, String upBridgeState) {
+        bridgeGame.move(arrow);
+        assertThat(bridgeState.getUpBridgeState()).isEqualTo(upBridgeState);
+    }
+
+    private static Stream<Arguments> firstRoundUpBridgeState() {
+        return Stream.of(
+            Arguments.of("U", " O "),
+            Arguments.of("D", "   ")
+        );
+    }
+
+    @DisplayName("첫 라운드 다리 건너고 나서 아래 다리 상태 값 확인")
+    @ParameterizedTest
+    @MethodSource("firstRoundDownBridgeState")
+    void confirmFirstRoundDownBridgeState(String arrow, String downBridgeState) {
+        bridgeGame.move(arrow);
+        assertThat(bridgeState.getDownBridgeState()).isEqualTo(downBridgeState);
+    }
+
+    private static Stream<Arguments> firstRoundDownBridgeState() {
+        return Stream.of(
+                Arguments.of("U", "   "),
+                Arguments.of("D", " X ")
+        );
     }
 }
