@@ -4,20 +4,21 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Enum.CrossResult;
 import bridge.Enum.GameStatus;
-import bridge.Model.VO.Bridge;
-import bridge.Model.VO.BridgeSize;
-import bridge.Model.VO.UserChoice;
-import bridge.Model.VO.CrossResults;
+import bridge.Model.VO.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    UserChoices userChoices;
     CrossResults crossResults;
     Bridge bridge;
 
     public BridgeGame(BridgeSize bridgeSize){
+        userChoices = new UserChoices();
         crossResults = new CrossResults();
         bridge = new Bridge(makeBridge(bridgeSize));
     }
@@ -29,6 +30,7 @@ public class BridgeGame {
     }
     public void move(UserChoice userChoice) {
         CrossResult crossResult = bridge.cross(userChoice, crossResults.position());
+        userChoices.add(userChoice);
         crossResults.appendResult(crossResult);
     }
 
