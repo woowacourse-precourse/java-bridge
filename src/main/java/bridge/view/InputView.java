@@ -14,7 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException {
+    public int readBridgeSize() {
         String input = Console.readLine();
         isNaturalNumber(input);
         return Integer.parseInt(input);
