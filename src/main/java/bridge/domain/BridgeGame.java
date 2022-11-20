@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -11,8 +13,8 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public static BridgeGame from(Bridge bridge) {
-        return new BridgeGame(bridge);
+    public static BridgeGame from(List<String> bridgeDirections) {
+        return new BridgeGame(Bridge.from(bridgeDirections));
     }
 
     /**

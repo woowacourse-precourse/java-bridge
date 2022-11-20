@@ -17,7 +17,7 @@ class BridgeGameTest {
 
     @BeforeEach
     private void setUp() {
-        bridgeGame = BridgeGame.from(Bridge.from(List.of("U", "D", "D", "U", "D", "D", "U", "D")));
+        bridgeGame = BridgeGame.from(List.of("U", "D", "D", "U", "D", "D", "U", "D"));
         player = new Player();
     }
 
