@@ -18,6 +18,10 @@ public class Command {
         }
     }
 
+    public boolean isToEndGame() {
+        return this.command.equals(GAME_END);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
