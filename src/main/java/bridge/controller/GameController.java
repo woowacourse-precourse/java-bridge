@@ -11,6 +11,7 @@ import java.util.List;
 public class GameController {
 
     private static final String RESTART = "R";
+    private static final String QUIT = "Q";
     private static final boolean CLEAR = true;
     private static final boolean FAILED = false;
     BridgeGame bridgeGame;
@@ -56,6 +57,8 @@ public class GameController {
             restartGame();
             return;
         }
-        outputView.printResult(FAILED, bridgeGame.getPlayTime());
+        if (restart.equals(QUIT)) {
+            outputView.printResult(FAILED, bridgeGame.getPlayTime());
+        }
     }
 }
