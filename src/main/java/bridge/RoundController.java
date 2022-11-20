@@ -24,10 +24,11 @@ public class RoundController {
         this.stateView = new StateView();
     }
 
-    public void makeBridgeWithSize() {
+    public int makeBridgeWithSize() {
         int size = inputView.readBridgeSize();
         this.bridgeShape = bridgeMaker.makeBridge(size);
         this.bridgeGame = new BridgeGame(bridgeShape);
+        return size;
     }
 
     public boolean moveToStatus() {
