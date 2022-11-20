@@ -11,5 +11,6 @@ public class BridgeGameController {
     public void start() {
         int bridgeSize = inputView.printStartMessage();
         bridgeGameService.makeBridge(bridgeSize);
+        String move = inputView.printMoveMessage();
     }
 }

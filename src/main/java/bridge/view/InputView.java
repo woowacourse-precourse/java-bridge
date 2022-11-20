@@ -42,11 +42,29 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
+    public String printMoveMessage() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        return readMoving();
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while (true) {
+            try {
+                return getMoveCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static String getMoveCommand() {
+        String move = readLine();
+        ValidationUtils.validateMove(move);
+
+        return move;
     }
 
     /**

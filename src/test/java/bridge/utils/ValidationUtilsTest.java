@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("사용자의 입력을 검증한다.")
@@ -35,6 +36,40 @@ class ValidationUtilsTest {
         void throwExceptionWhenInputCharacter(String input) {
             assertThatThrownBy(() -> ValidationUtils.validateBridgeSize(input))
                     .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("3 ~ 20사이의 숫자가 입력되면 통과된다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"3", "4", "5", "10", "18", "19", "20"})
+        void passWhenInputThreeToTwenty(String input) {
+            assertThatNoException().isThrownBy(() -> ValidationUtils.validateBridgeSize(input));
+        }
+    }
+
+    @Nested
+    @DisplayName("입력되는 이동 명령의 값을 검증한다.")
+    class inputMoveCommandTest {
+        @DisplayName("아무것도 입력이 안되면 오류가 발생된다.")
+        @ParameterizedTest
+        @ValueSource(strings = {" ", ""})
+        void throwExceptionWhenInputNoting(String command) {
+            assertThatThrownBy(() -> ValidationUtils.validateMove(command))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("U나 D이외의 값이 입력이 되면 오류가 발생한다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"A", "B", "S", "C", "z", "u", "d", "0", "*"})
+        void throwExceptionWhenInputNotRightCommand(String command) {
+            assertThatThrownBy(() -> ValidationUtils.validateMove(command))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("U나 D를 입력하면 검증이 통과된다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"U", "D"})
+        void passWhenInputUOrD(String command) {
+            assertThatNoException().isThrownBy(() -> ValidationUtils.validateMove(command));
         }
     }
 }
