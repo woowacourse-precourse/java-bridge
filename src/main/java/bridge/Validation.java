@@ -2,6 +2,13 @@ package bridge;
 
 public class Validation {
 
+    // 다리의 길이를 검증하는 기능
+    public static void validateBridgeSize(String enteredBridgeSize) {
+        isDigit(enteredBridgeSize);
+        int bridgeSize = Integer.parseInt(enteredBridgeSize);
+        isInRange(bridgeSize);
+    }
+
     // 입력받은 값이 숫자인지 검증하는 기능
     public static void isDigit(String bridgeSize) {
         for (char c : bridgeSize.toCharArray()) {
