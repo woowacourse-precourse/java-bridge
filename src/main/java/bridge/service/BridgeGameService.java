@@ -1,8 +1,8 @@
 package bridge.service;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.GameCommand;
 import bridge.domain.ProgressMap;
 
