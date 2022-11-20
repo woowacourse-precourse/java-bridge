@@ -21,6 +21,8 @@
         
         재시도 회수 저장
     - [x] 생성한 다리 저장 → BridgeGame 생성자로 해결
+    - [ ] 게임 종료 → end
+        - 잘못된 칸으로 이동하거나 다리를 건널 경우 호출되는 메서드 
 2. BridgeMaker
     - [x] 다리 생성 → makeBridge
 3. InputValidator
