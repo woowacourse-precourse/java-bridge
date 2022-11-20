@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.GameBoard;
+
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -23,20 +25,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> topGameBoard, List<String> bottomGameBoard) {
-        System.out.println(createMap(topGameBoard));
-        System.out.println(createMap(bottomGameBoard));
+    public static void printMap(GameBoard topGameBoard, GameBoard bottomGameBoard) {
+        System.out.println(topGameBoard.createMap());
+        System.out.println(bottomGameBoard.createMap());
         printEnter();
     }
 
-    private static StringJoiner createMap(List<String> gameBoard) {
-        StringJoiner map = new StringJoiner(BRIDGE_SEPARATOR, BRIDGE_START, BRIDGE_FINISH);
-
-        for (String value : gameBoard) {
-            map.add(value);
-        }
-        return map;
-    }
+//    private static StringJoiner createMap(List<String> gameBoard) {
+//        StringJoiner map = new StringJoiner(BRIDGE_SEPARATOR, BRIDGE_START, BRIDGE_FINISH);
+//
+//        for (String value : gameBoard) {
+//            map.add(value);
+//        }
+//        return map;
+//    }
 
     /**
      * [제공된 메서드]
@@ -44,7 +46,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> topGameBoard, List<String> bottomGameBoard) {
+    public static void printResult(GameBoard topGameBoard, GameBoard bottomGameBoard) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(topGameBoard, bottomGameBoard);
     }

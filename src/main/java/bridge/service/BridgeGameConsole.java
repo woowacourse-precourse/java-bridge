@@ -1,5 +1,7 @@
 package bridge.service;
 
+import bridge.domain.GameBoard;
+
 import java.util.List;
 
 import static bridge.view.InputView.*;
@@ -21,7 +23,7 @@ public class BridgeGameConsole {
     }
 
     // Util
-    public void gameResult(List<String> topGameBoard, List<String> bottomGameBoard) {
+    public void gameResult(GameBoard topGameBoard, GameBoard bottomGameBoard) {
         printResult(topGameBoard, bottomGameBoard);
     }
 
@@ -29,7 +31,7 @@ public class BridgeGameConsole {
         printGameStatistics(gameResult, tryCnt);
     }
 
-    public void map(List<String> topGameBoard, List<String> bottomGameBoard) {
+    public void map(GameBoard topGameBoard, GameBoard bottomGameBoard) {
         printMap(topGameBoard, bottomGameBoard);
     }
 

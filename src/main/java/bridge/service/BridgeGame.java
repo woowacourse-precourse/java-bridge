@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeMaker;
+import bridge.domain.GameBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import static bridge.constant.Constants.BridgeSign.*;
 public class BridgeGame {
     BridgeGameConsole console = new BridgeGameConsole();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    List<String> topGameBoard, bottomGameBoard;
+    GameBoard topGameBoard, bottomGameBoard;
     List<String> bridge = new ArrayList<>();
     boolean isGameLose = false;
     int tryCount = 1;
@@ -89,11 +90,11 @@ public class BridgeGame {
 
     private void checkDirection(String movingDirection, String movingResult) {
         if (movingDirection.equals(UP)) {
-            topGameBoard.add(movingResult);
-            bottomGameBoard.add(EMPTY);
+            topGameBoard.addMovingResult(movingResult);
+            bottomGameBoard.addMovingResult(EMPTY);
         } else if (movingDirection.equals(DOWN)) {
-            bottomGameBoard.add(movingResult);
-            topGameBoard.add(EMPTY);
+            bottomGameBoard.addMovingResult(movingResult);
+            topGameBoard.addMovingResult(EMPTY);
         }
     }
 
@@ -149,7 +150,7 @@ public class BridgeGame {
 
     private void resetGame() {
         isGameLose = false;
-        topGameBoard = new ArrayList<>();
-        bottomGameBoard = new ArrayList<>();
+        topGameBoard = new GameBoard(new ArrayList<>());
+        bottomGameBoard = new GameBoard(new ArrayList<>());
     }
 }

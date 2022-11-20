@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.GameBoard;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -15,8 +16,8 @@ class OutputViewTest {
 
     @Test
     void printMapTest() {
-        List<String> topGameBoard = new ArrayList<>(List.of(PASS,EMPTY,PASS));
-        List<String> bottomGameBoard = new ArrayList<>(List.of(EMPTY,PASS,EMPTY));
+        GameBoard topGameBoard = new GameBoard(List.of(PASS,EMPTY,PASS));
+        GameBoard bottomGameBoard = new GameBoard(List.of(EMPTY,PASS,EMPTY));
         String newLine = System.lineSeparator();
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
