@@ -43,6 +43,7 @@ public class BridgeGameOperator {
                 GameResultInformation.setGameResult(GameResult.FAIL);
             }
         }
+        outputView.printResult();
     }
 
     private void printStartGuideAndSetBridge() {
