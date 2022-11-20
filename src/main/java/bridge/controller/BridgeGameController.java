@@ -1,9 +1,9 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
 import bridge.domain.enums.Direction;
 import bridge.domain.enums.GameCommand;
 import bridge.domain.enums.GameStatus;
