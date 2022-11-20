@@ -10,7 +10,7 @@ public class Player {
 		location = 0;
 	}
 
-	public void move() {
+	void move() {
 		validateAlive();
 		location++;
 	}
@@ -21,19 +21,19 @@ public class Player {
 		}
 	}
 
-	public boolean isDead() {
+	boolean isDead() {
 		return playerStatus.equals(PlayerStatus.DEAD);
 	}
 
-	public boolean isAlive() {
+	boolean isAlive() {
 		return playerStatus.equals(PlayerStatus.ALIVE);
 	}
 
-	public int getCurrentLocation() {
+	int getCurrentLocation() {
 		return location;
 	}
 
-	public void die() {
+	void die() {
 		playerStatus = PlayerStatus.DEAD;
 	}
 }
