@@ -17,6 +17,8 @@ public class OutputView {
 
         printSameOneLine(result, bridge, user);
         printDiffOneLine(result, bridge, user);
+
+        System.out.println();
     }
 
     public void printSameOneLine(List<String> result, Bridge bridge, Bridge user) {
@@ -27,7 +29,7 @@ public class OutputView {
                 printResult.append(String.format(" %s |", result.get(i)));
                 continue;
             }
-            printResult.append("  |");
+            printResult.append("   |");
         }
         printResult.setLength(printResult.length() - 1);
         printResult.append("]");
@@ -35,14 +37,14 @@ public class OutputView {
     }
 
     public void printDiffOneLine(List<String> result, Bridge bridge, Bridge user){
-        StringBuilder printResult = new StringBuilder("[ ");
+        StringBuilder printResult = new StringBuilder("[");
 
         for(int i = 0; i < result.size(); i++){
             if(!bridge.get(i).equals(user.get(i))){
-                printResult.append(String.format("%s |", result.get(i)));
+                printResult.append(String.format(" %s |", result.get(i)));
                 continue;
             }
-            printResult.append("  |");
+            printResult.append("   |");
         }
         printResult.setLength(printResult.length() - 1);
         printResult.append("]");
@@ -62,7 +64,7 @@ public class OutputView {
         if(gameSuccess){
             System.out.println("성공");
         }
-        else if(gameSuccess){
+        else if(!gameSuccess){
             System.out.println("실패");
         }
         System.out.printf("총 시도한 횟수: %d\n",  countGame);

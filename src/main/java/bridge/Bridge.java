@@ -5,10 +5,14 @@ import java.util.List;
 
 public class Bridge {
     private List<String> bridge = new ArrayList<>();
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     Bridge(int size){
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
+    }
+
+    Bridge(){
+
     }
 
     public void addBridge(String input){
