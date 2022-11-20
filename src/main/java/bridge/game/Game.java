@@ -20,4 +20,8 @@ public class Game {
         this.bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     }
 
+    public void start() {
+        this.outputView.printStart();
+        System.out.println();
+    }
 }
