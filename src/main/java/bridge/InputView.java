@@ -9,17 +9,13 @@ public class InputView {
 
     public static final String UPWARD_DIRECTION = "U";
     public static final String DOWNWARD_DIRECTION = "D";
-
     public static final String LINE_SPACE = "";
     private static final int MIN_SIZE = 3;
-    private static final int MAM_SIZE = 20;
-
-
+    private static final int MAX_SIZE = 20;
 
     private static final String INPUT_BRIDGE_LENGTH_INTRO = "다리의 길이를 입력해주세요.";
     private static final String INPUT_BRIDGE_MOVE_INTRO = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GAME_RETRY_INTRO = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
     private static final String NOT_NUMBER_ERROR = "[ERROR] 값은 숫자로만 입력해주세요.";
     private static final String NUMBER_RANGE_ERROR = "[ERROR] 값은 3 이상 20 이하 숫자만 가능합니다.";
     private static final String MOVE_VALUE_ERROR = "[ERROR] 값은 D 혹은 U로만 입력이 가능합니다.";
@@ -36,8 +32,7 @@ public class InputView {
         String input = Console.readLine();
 
         int convertedNumber = convertToNumber(input);
-        validRange(convertedNumber);
-        return convertedNumber;
+        return validRange(convertedNumber);
     }
 
     public static int convertToNumber(String input) {
@@ -49,9 +44,15 @@ public class InputView {
         }
     }
 
-    public static void validRange(int convertedNumber) {
-        if (convertedNumber < MIN_SIZE || convertedNumber > MAM_SIZE) {
-            throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
+    public static int validRange(int convertedNumber) {
+        try {
+            if (convertedNumber < MIN_SIZE || convertedNumber > MAX_SIZE) {
+                throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
+            }
+            return convertedNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(NUMBER_RANGE_ERROR);
+            return readBridgeSize();
         }
     }
 
@@ -95,7 +96,7 @@ public class InputView {
             return continueGame;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readMoving();
+            return readGameCommand();
         }
     }
 
