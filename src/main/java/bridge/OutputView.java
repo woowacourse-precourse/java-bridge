@@ -37,7 +37,7 @@ public class OutputView {
         printMap(bridgeValues);
         System.out.println();
 
-        System.out.println("게임 성공 여부: " + gameStatus.isGameWon());
+        System.out.println("게임 성공 여부: " + gameStatus.getGameEndFlag());
         System.out.println("총 시도한 횟수: " + gameStatus.getTryCount());
     }
 

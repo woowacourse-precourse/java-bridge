@@ -30,14 +30,18 @@ public class GameStatus {
         this.gameEnd = gameEnd;
     }
 
-    public String isGameWon() {
-        if (gameWon) {
-            return "성공";
-        }
-        return "실패";
+    public Boolean isGameWon() {
+        return gameWon;
     }
 
     public void setGameWon(boolean gameWon) {
         this.gameWon = gameWon;
+    }
+
+    public String getGameEndFlag() {
+        if (gameWon) {
+            return "성공";
+        }
+        return "실패";
     }
 }
