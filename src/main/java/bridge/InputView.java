@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-public class InputView{
+public class InputView {
 
     static final String OPEN_STATEMENT = "다리 건너기 게임을 시작합니다.";
     static final String ENTER_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
@@ -47,21 +47,22 @@ public class InputView{
      */
     public String readGameCommand() {
         System.out.println(RETRY);
-        String redoOrQuit= "";
-        try{
+        String redoOrQuit = "";
+        try {
             redoOrQuit = Console.readLine();
             redoOrQuitCheck(redoOrQuit);
-        } catch(IllegalArgumentException err){
+        } catch (IllegalArgumentException err) {
             System.out.println(err.getMessage());
-            readGameCommand();
+            return readGameCommand();
         }
         return redoOrQuit;
     }
 
     public static int catchException() {
+        String read = Console.readLine();
         int input;
         try {
-            input = isNumeric();
+            input = isNumeric(read);
             rangeCheck(input);
         } catch (IllegalArgumentException argException) {
             System.out.println(argException.getMessage());
@@ -71,29 +72,29 @@ public class InputView{
     }
 
     public static void rangeCheck(int number) {
-        if ((number < LOWER_BOUND || number > UPPER_BOUND)){
+        if ((number < LOWER_BOUND || number > UPPER_BOUND)) {
             throw new IllegalArgumentException(ERROR_NUMBER);
         }
     }
 
-    public static int isNumeric() {
-        String input;
+    public static int isNumeric(String input) {
         int convertInt;
-        try{
-            input = Console.readLine();
+        try {
             convertInt = Integer.parseInt(input);
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_STRING);
         }
         return convertInt;
     }
 
     public static void upOrDownCheck(String move) {
-        if (!(move.equals(OutputView.UP) || move.equals(OutputView.DOWN))) throw new IllegalArgumentException(ERROR_UP_DOWN);
+        if (!(move.equals(OutputView.UP) || move.equals(OutputView.DOWN)))
+            throw new IllegalArgumentException(ERROR_UP_DOWN);
     }
 
     public static void redoOrQuitCheck(String move) {
-        if (!(move.equals(BridgeGame.REDO) || move.equals(BridgeGame.QUIT))) throw new IllegalArgumentException(ERROR_RETRY);
+        if (!(move.equals(BridgeGame.REDO) || move.equals(BridgeGame.QUIT)))
+            throw new IllegalArgumentException(ERROR_RETRY);
     }
 
 }

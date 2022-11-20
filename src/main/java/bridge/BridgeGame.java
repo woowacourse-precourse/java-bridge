@@ -23,7 +23,6 @@ public class BridgeGame {
     public String move() {
         String userInput = iv.readMoving();
         totalCount++;
-//        attempt++;
         return lastUserInput = userInput;
     }
 
@@ -39,7 +38,7 @@ public class BridgeGame {
             return isComplete = true;
         }
         if (retryOrQuit.equals(QUIT)) isComplete = false;
-        if (!retryOrQuit.equals(QUIT)) throw new IllegalArgumentException();
+        if (!retryOrQuit.equals(QUIT)) throw new IllegalArgumentException(InputView.ERROR_RETRY);
         return false;
     }
 }

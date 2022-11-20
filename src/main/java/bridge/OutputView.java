@@ -6,7 +6,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    enum ladder{
+    enum ladder {
         START("[ "),
         SPACE(" "),
         END(" ]"),
@@ -15,10 +15,12 @@ public class OutputView {
         WRONG("X");
 
         final String sign;
-        ladder(String sign){
+
+        ladder(String sign) {
             this.sign = sign;
         }
-        public String getSign(){
+
+        public String getSign() {
             return this.sign;
         }
     }
@@ -50,6 +52,7 @@ public class OutputView {
         }
         return false;
     }
+
     public boolean startLadder(int index, List<String> upOrDown, String userInput) {
         System.out.print(ladder.START.getSign());
         boolean isFirstRowTrue = firstRow(index, upOrDown, userInput);
@@ -80,7 +83,7 @@ public class OutputView {
         }
     }
 
-    public static void previousIndexRows(List<String> upOrDown, int index, String firstOrSecond){
+    public static void previousIndexRows(List<String> upOrDown, int index, String firstOrSecond) {
         if (firstOrSecond.equals(FIRST)) {
             if (upOrDown.get(index).equals(UP)) System.out.print(ladder.CORRECT.getSign());
             if (upOrDown.get(index).equals(DOWN)) System.out.print(ladder.SPACE.getSign());
@@ -99,13 +102,14 @@ public class OutputView {
             return true;
         }
         if (!(current.equals(userInput)) && current.equals(invert(direction))) System.out.print(ladder.SPACE.getSign());
-        if (current.equals(userInput) && userInput.equals(invert(direction))) System.out.print(ladder.CORRECT.getSign());
+        if (current.equals(userInput) && userInput.equals(invert(direction)))
+            System.out.print(ladder.CORRECT.getSign());
         if (current.equals(userInput) && userInput.equals(direction)) System.out.print(ladder.SPACE.getSign());
         return false;
     }
 
-    public static String invert(String invert){
-        if(invert.equals(UP)) return DOWN;
+    public static String invert(String invert) {
+        if (invert.equals(UP)) return DOWN;
         return UP;
     }
 
