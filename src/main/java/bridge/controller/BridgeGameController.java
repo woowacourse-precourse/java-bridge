@@ -79,11 +79,4 @@ public class BridgeGameController {
 			return askRetry();
 		}
 	}
-
-	private boolean failBridgeMove(BridgeGame bridgeGame) {
-		if (askRetry()) {
-			return true;
-		}
-		return false;
-	}
 }
