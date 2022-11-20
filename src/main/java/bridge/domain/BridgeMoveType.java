@@ -5,8 +5,8 @@ import java.util.Arrays;
 import static bridge.exception.BridgeTypeExceptionMessage.READ_WRONG_TYPE_EXCEPTION;
 
 public enum BridgeMoveType {
-    DOWN("U", 0),
-    UP("D", 1);
+    UP("U", 0),
+    DOWN("D", 1);
 
     private final String type;
     private final int code;
