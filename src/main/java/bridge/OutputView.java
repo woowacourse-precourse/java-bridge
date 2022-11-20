@@ -29,7 +29,7 @@ public class OutputView {
         if (bridge.get(countOfMove) == "U" && !isMove) {
             mark = "X";
         }
-        message = " " + mark + " ";
+        message += " " + mark + " ";
         System.out.println("[" + message + "]");
 
         message = "";
@@ -47,7 +47,7 @@ public class OutputView {
         if (bridge.get(countOfMove) == "D" && !isMove) {
             mark = "X";
         }
-        message = " " + mark + " ";
+        message += " " + mark + " ";
         System.out.println("[" + message + "]");
     }
 
