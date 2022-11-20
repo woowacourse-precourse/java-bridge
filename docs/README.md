@@ -10,6 +10,7 @@
 2. addNewBridgeInput : 입력 문자열을 리스트에 저장한다. 
 3. getBridge : 문자열 리스트를 반환한다.
 4. isGameFinished : Bridge를 입력받아 리스트가 서로 같으면 참을 반환
+5. clearBridge : 리스트를 초기화시켜준다. 
 
 ## enum
 ### BridgeType
