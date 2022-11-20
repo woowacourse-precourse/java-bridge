@@ -12,11 +12,13 @@ class OutputViewTest {
 
     @Test
     void printMap() {
-        List<List<String>> list = List.of(List.of("O","X","O"),List.of("X","O","X"));
+        List<List<String>> list = List.of(List.of("O"," ","O"),List.of(" ","O"," "));
         outputView.printMap(list);
     }
 
     @Test
     void printResult() {
+        List<List<String>> list = List.of(List.of("O"," ","O"),List.of(" ","O"," "));
+        outputView.printResult(true, list, 3);
     }
 }
