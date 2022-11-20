@@ -1,53 +1,45 @@
 package bridge.model;
 
 import static global.advice.InputValidator.RETRY_SIGNAL;
-import static global.advice.InputValidator.checkMoving;
 import static global.advice.InputValidator.checkRetryWhether;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Score {
 
-    private List<String> userStep;
-    private int retryCount;
+    private UserStep userStep;
+    private Repetition repetition;
+
 
     public Score() {
-        this.userStep = new ArrayList<>();
-        this.retryCount = 1;
+        this.userStep = new UserStep();
+        this.repetition = new Repetition();
     }
 
-    public Score(List<String> userStep) {
-        this.userStep = userStep;
-        this.retryCount = 1;
+    public List<String> getUserStep() {
+        return userStep.getUserStep();
+    }
+
+    public int getRepetition() {
+        return repetition.getRepetition();
     }
 
     public boolean goOneStep(Bridge bridge, String moving) {
-        checkMoving(moving);
-        this.userStep.add(moving);
-        return bridge.canGoOrNot(this.userStep, moving);
+        return userStep.goOneStep(bridge, moving);
     }
 
     public boolean isCrossing(Bridge bridge) {
-        return bridge.isCrossing(this.userStep.size());
+        return this.userStep.isCrossing(bridge);
     }
 
     public String judgeRetry(String retry) {
         checkRetryWhether(retry);
         if (RETRY_SIGNAL.equals(retry)) {
-            this.userStep = new ArrayList<>();
-            this.retryCount += 1;
+            this.userStep = this.userStep.setInit();
+            this.repetition = this.repetition.increaseCount();
         }
         return retry;
-    }
-
-    public List<String> getUserStep() {
-        return userStep;
-    }
-
-    public int getRetryCount() {
-        return retryCount;
     }
 
     @Override
@@ -59,11 +51,11 @@ public class Score {
             return false;
         }
         Score score = (Score) o;
-        return retryCount == score.retryCount && Objects.equals(userStep, score.userStep);
+        return Objects.equals(userStep, score.userStep) && Objects.equals(repetition, score.repetition);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userStep, retryCount);
+        return Objects.hash(userStep, repetition);
     }
 }
