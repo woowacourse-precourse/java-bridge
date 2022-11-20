@@ -31,4 +31,11 @@ public class Player {
         alive = false;
         return location;
     }
+
+    public boolean isSuccess() {
+        if (!movable() && alive) {
+            return true;
+        }
+        return false;
+    }
 }
