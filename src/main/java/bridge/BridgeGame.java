@@ -73,7 +73,7 @@ public class BridgeGame {
             move();
             outputView.printMap(user, bridge);
             if ((!isCorrect() && !retry()) || user.equals(bridge)) {
-                outputView.printResult();
+                outputView.printResult(attempts, user, bridge);
                 break;
             }
         }
