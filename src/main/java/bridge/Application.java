@@ -1,12 +1,16 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     private static int bridgeSize;
+    private static List<String> bridge;
 
     public static void main(String[] args) {
         start();
         enterBridgeSize();
+        makeBridge();
     }
 
     public static void start() {
@@ -25,5 +29,11 @@ public class Application {
             System.out.println(e.getMessage());
             enterBridgeSize();
         }
+    }
+
+    public static void makeBridge() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 }
