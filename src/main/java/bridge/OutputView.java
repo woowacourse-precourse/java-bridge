@@ -19,6 +19,10 @@ public class OutputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
+    public static void printIsGameRetry() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -27,27 +31,34 @@ public class OutputView {
     public static void printMap(BridgeGame game, String last) {
         printMapOneLine(game, last, "U", "D");
         printMapOneLine(game, last, "D", "U");
+        System.out.println();
     }
 
     public static void printMapOneLine(BridgeGame game, String last, String line, String otherLine) {
         List<String> bridge = game.getBridge();
-        System.out.print("[");
+        System.out.print("[ ");
         for (int i = 0; i < game.getPlayerPosition(); i++) {
             if (bridge.get(i).equals(line)) {
-                System.out.print(" O |");
+                System.out.print("O | ");
+            }
+            if(bridge.get(i).equals(otherLine)){
+                System.out.print("  | ");
             }
         }
         printLastOne(game, last, line, otherLine);
-        System.out.println("]");
+        System.out.println(" ]");
     }
 
     public static void printLastOne(BridgeGame game, String last, String line, String otherLine) {
         List<String> bridge = game.getBridge();
         if (last.equals(line)) {
             if (bridge.get(game.getPlayerPosition()).equals(line))
-                System.out.println(" O ");
+                System.out.print("O");
             if (bridge.get(game.getPlayerPosition()).equals(otherLine))
-                System.out.println(" X ");
+                System.out.print("X");
+        }
+        if(last.equals(otherLine)){
+            System.out.print(" ");
         }
     }
 
@@ -58,14 +69,14 @@ public class OutputView {
      */
     public static void printResult(BridgeGame game, String last) {
         System.out.println("최종 게임 결과");
-        printMap(game,last);
+        printMap(game, last);
 
         System.out.println("게임 성공 여부: " + printIsGameWin(game, last));
         System.out.println("총 시도한 횟수: " + game.getPlayerTryCount());
     }
 
-    public static String printIsGameWin(BridgeGame game, String last){
-        if(game.isGameWin(last))
+    public static String printIsGameWin(BridgeGame game, String last) {
+        if (game.isGameWin(last))
             return "성공";
         return "실패";
     }

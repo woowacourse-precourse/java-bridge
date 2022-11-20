@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private int playerTryCount = 0;
+    private int playerTryCount = 1;
     private int playerPosition = -1;
     private List<String> bridge;
 
@@ -20,15 +20,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(int number) {
+    public void move() {
         playerPosition++;
-        if (number == 1) {
-            return "U";
-        }
-        return "D";
     }
 
     public String judge(String forward) {
+        move();
         if (bridge.get(playerPosition).equals(forward)) {
             return "O";
         }
@@ -45,23 +42,23 @@ public class BridgeGame {
         playerTryCount += 1;
     }
 
-    public boolean isGameWin(String last){
-        if(bridge.size()==playerPosition+1){
-            if(last.equals(bridge.get(bridge.size())))
+    public boolean isGameWin(String last) {
+        if (bridge.size() == playerPosition + 1) {
+            if (last.equals(bridge.get(bridge.size() - 1)))
                 return true;
         }
         return false;
     }
 
-    public int getPlayerTryCount(){
+    public int getPlayerTryCount() {
         return playerTryCount;
     }
 
-    public int getPlayerPosition(){
+    public int getPlayerPosition() {
         return playerPosition;
     }
 
-    public List<String> getBridge(){
+    public List<String> getBridge() {
         return bridge;
     }
 }
