@@ -18,11 +18,25 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int position, String userInput) {
-        if (bridgeShape.get(position) != userInput) {
-            return false;
+    public String move(int position, String userInput) {
+        if (userInput == NumberToShape.UP.getShape()) {
+            return getMoveUPStatus(position, userInput);
         }
-        return true;
+        return getMoveDownStatus(position, userInput);
+    }
+
+    public String getMoveUPStatus(int position, String userInput) {
+        if (userInput == bridgeShape.get(position)) {
+            return moveStatus.UP_CORRECT.get();
+        }
+        return moveStatus.UP_INCORRECT.get();
+    }
+
+    public String getMoveDownStatus(int position, String userInput) {
+        if (userInput == bridgeShape.get(position)) {
+            return moveStatus.DOWN_CORRECT.get();
+        }
+        return moveStatus.DOWN_INCORRECT.get();
     }
 
     /**
@@ -31,10 +45,27 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String userInput) {
-        if (userInput == Retry.QUIT.getCondition()) {
+        if (userInput == Retry.QUIT.get()) {
             return false;
         }
         return true;
+    }
+}
+
+enum moveStatus {
+    UP_CORRECT("UC"),
+    UP_INCORRECT("UIn"),
+    DOWN_CORRECT("DC"),
+    DOWN_INCORRECT("DIn");
+
+    private String status;
+
+    moveStatus(String status) {
+        this.status = status;
+    }
+
+    public String get() {
+        return status;
     }
 }
 
@@ -48,7 +79,7 @@ enum Retry {
         this.condition = condition;
     }
 
-    public String getCondition() {
+    public String get() {
         return condition;
     }
 }
