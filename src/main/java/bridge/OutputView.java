@@ -11,6 +11,7 @@ import java.util.Map;
 public class OutputView {
 
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
@@ -56,6 +57,12 @@ public class OutputView {
     public void printRetryMessage() {
         System.out.println(RETRY_MESSAGE);
     }
+
+    public void printLengthMessage() {
+        System.out.println(LENGTH_MESSAGE);
+    }
+
+
 
     private String formatMoveStatus(List<String> statusList) {
         StringBuilder result = new StringBuilder();
