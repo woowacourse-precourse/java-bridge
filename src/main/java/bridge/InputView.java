@@ -24,15 +24,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-            String answer = Console.readLine();
-            Error.validateBridgeAnswer(answer);
+        String answer = Console.readLine();
+        if(answer.equals("u")) {answer = "U";}
+        if(answer.equals("D")) {answer = "D";}
+        Error.validateBridgeAnswer(answer);
         return answer;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        String answer = Console.readLine();
+        if(answer.equals("r")) {answer="R";}
+        if(answer.equals("q")) {answer="Q";}
+        Error.validateCommend(answer);
+        return answer;
     }
 }
