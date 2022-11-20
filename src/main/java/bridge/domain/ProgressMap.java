@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProgressMap {
-	private static final String MOVE_FAILED_VALUE = " X ";
-	private static final String MOVE_SUCCESS_VALUE = " O ";
-	private static final String NO_MOVE_VALUE = "   ";
+	private static final String MOVE_FAILED_VALUE = "X";
+	private static final String MOVE_SUCCESS_VALUE = "O";
+	private static final String NO_MOVE_VALUE = " ";
 	private static final String MOVE_UP_VALUE = "U";
 	private static final String MOVE_DOWN_VALUE = "D";
 	private final List<List<String>> progressMap;

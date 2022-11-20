@@ -6,9 +6,9 @@ import bridge.domain.BridgeGame;
 import bridge.domain.ProgressMap;
 
 public class OutputView {
-	private static final String PRINT_MAP_FIRST_LETTER = "[";
-	private static final String PRINT_MAP_LAST_LETTER = "]";
-	private static final String PRINT_MAP_DELIMITER = "|";
+	private static final String PRINT_MAP_FIRST_LETTER = "[ ";
+	private static final String PRINT_MAP_LAST_LETTER = " ]";
+	private static final String PRINT_MAP_DELIMITER = " | ";
 
 	private OutputView() {}
 
@@ -20,13 +20,10 @@ public class OutputView {
 		System.out.println(downBridge+ "\n");
 	}
 
-	private static String createBridgeMap(List<String> map) {
-		StringBuilder stringBuilder = new StringBuilder().append(PRINT_MAP_FIRST_LETTER);
-		for (String point : map) {
-			stringBuilder.append(point).append(PRINT_MAP_DELIMITER);
-		}
-		stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-		return stringBuilder.append(PRINT_MAP_LAST_LETTER).toString();
+	private static String createBridgeMap(List<String> progress) {
+		return PRINT_MAP_FIRST_LETTER
+			+ String.join(PRINT_MAP_DELIMITER, progress)
+			+ PRINT_MAP_LAST_LETTER;
 	}
 
 	public static void printResult(ProgressMap result, BridgeGame bridgeGame) {
