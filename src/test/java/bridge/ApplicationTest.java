@@ -41,6 +41,16 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+
+    @Test
+    void 재시작_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "R", "U", "U", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "총 시도한 횟수: 3"
+            );
+        }, 1, 0, 1);
+    }
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
