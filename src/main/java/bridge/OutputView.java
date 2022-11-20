@@ -45,5 +45,8 @@ public class OutputView {
         Message.gameFail();
     }
 
-
+    public void printTryCount(){
+        Message.tryCount();
+        System.out.println(application.getTryCount());
+    }
 }
