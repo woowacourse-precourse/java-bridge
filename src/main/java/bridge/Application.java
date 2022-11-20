@@ -47,6 +47,7 @@ public class Application {
     }
 
     public static void setBridgeGame() {
+        outputView.printBridgeSizeInputBox();
         size = inputView.readBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
