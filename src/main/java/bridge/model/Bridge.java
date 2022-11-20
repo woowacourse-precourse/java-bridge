@@ -6,6 +6,7 @@ import java.util.List;
 public class Bridge {
 
     private List<String> bridge;
+    private int currentRoundNumber = 0;
 
     public Bridge (List<String> bridge) {
         this.bridge = bridge;
@@ -13,5 +14,17 @@ public class Bridge {
 
     public List<String> getBridge () {
         return Collections.unmodifiableList(bridge);
+    }
+
+    public void addCurrentRoundNumber() {
+        currentRoundNumber +=1 ;
+    }
+
+    public void resetCurrentRoundNumber() {
+        currentRoundNumber = 0;
+    }
+
+    public int getCurrentRoundNumber() {
+        return currentRoundNumber;
     }
 }
