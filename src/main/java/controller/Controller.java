@@ -1,9 +1,6 @@
 package controller;
 
-import bridge.Bridge;
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.*;
 import view.InputView;
 import view.OutputView;
 
@@ -13,6 +10,7 @@ public class Controller {
 
     public void run() {
         Bridge bridge = createBridge();
+        String movingPlace = inputView.readMoving();
     }
 
     private Bridge createBridge() {
@@ -23,4 +21,5 @@ public class Controller {
 
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
+
 }
