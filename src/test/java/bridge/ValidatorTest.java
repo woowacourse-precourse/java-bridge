@@ -24,7 +24,7 @@ public class ValidatorTest {
     @DisplayName("R 또는 Q 문자를 입력하지 않으면 예외가 발생한다")
     @Test
     void retryCommandValidation(){
-        assertThatThrownBy(() -> Validator.direction("I"))
+        assertThatThrownBy(() -> Validator.retryCommand("I"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
