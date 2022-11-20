@@ -37,14 +37,18 @@ public class OutputView {
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      */
     public void printResult(List<String> path, List<String> bridge, int numberOfTry) {
+        printNewLine();
         printMessage("최종 게임 결과");
         printMap(path, bridge);
         String passOrFail = getPassOrFail(path.equals(bridge));
+        printNewLine();
         printMessage("게임 성공 여부: " + passOrFail);
         printMessage(String.format("총 시도한 횟수: %d", numberOfTry));
     }
 
     public void printMessage(String message) { System.out.println(message); }
+
+    public void printNewLine() { System.out.println(""); }
 
     /**
      * 게임 시작 문구 출력
@@ -66,7 +70,10 @@ public class OutputView {
      */
     public void guideRetry() { guide(Guide.RETRY); }
 
-    private void guide(Guide guide) { System.out.println(guide.message); }
+    private void guide(Guide guide) {
+        printNewLine();
+        System.out.println(guide.message);
+    }
 
     private String getSign(String pathAtIndex, String bridgeAtIndex, Level level) {
         if (!pathAtIndex.equals(level.id)) return " ";

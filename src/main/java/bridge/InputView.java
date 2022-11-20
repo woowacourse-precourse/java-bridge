@@ -35,6 +35,7 @@ public class InputView {
             new Validation(lineInput, inputType);
             return lineInput;
         } catch(IllegalArgumentException e) {
+            outputView.printNewLine();
             outputView.printMessage(e.getMessage());
         }
         return readInput(inputType);
