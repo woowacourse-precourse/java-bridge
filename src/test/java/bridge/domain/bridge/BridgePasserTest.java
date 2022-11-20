@@ -47,4 +47,16 @@ class BridgePasserTest {
             bridgePasser.canMove(BridgeCharacter.DOWN);
         }).isInstanceOf(IllegalStateException.class);
     }
+
+    @Test
+    void 이동_불가능_위치_이동_테스트() {
+        bridgePasser.move();
+        bridgePasser.move();
+        bridgePasser.move();
+        bridgePasser.move();
+
+        assertThatThrownBy(() -> {
+            bridgePasser.move();
+        }).isInstanceOf(IllegalStateException.class);
+    }
 }
