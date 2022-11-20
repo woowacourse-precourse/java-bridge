@@ -23,7 +23,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        validateForUpAndDown(input);
+        return input;
     }
 
     /**
@@ -44,6 +46,13 @@ public class InputView {
         int num = Integer.parseInt(text);
         if (num < SystemValue.MIN_RANGE_BRIDGE_SIZE || num > SystemValue.MAX_RANGE_BRIDGE_SIZE) {
             throw new IllegalArgumentException("[ERROR] 다리 길이 입력 값이 3이상 20이하의 숫자가 아닙니다.");
+        }
+    }
+
+    private void validateForUpAndDown(String text){
+        Pattern pattern = Pattern.compile(SystemValue.REGEX_CONSIST_UD);
+        if (!pattern.matcher(text).matches()){
+            throw new IllegalArgumentException("[ERROR] 다리 선택 입력 값이 정해진 U, D 값이 아닙니다.");
         }
     }
 }
