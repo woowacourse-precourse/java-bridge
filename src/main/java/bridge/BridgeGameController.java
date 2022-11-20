@@ -32,7 +32,7 @@ public class BridgeGameController {
         boolean inProgress = IN_PROGRESS;
         while (inProgress) {
             MovingResult movingResult = move(bridge, bridgeGame, movingHistory);
-            inProgress = updateGameStatus(bridgeGame, movingResult);
+            inProgress = updateGameStatus(bridgeGame, movingResult, movingHistory);
         }
     }
 
@@ -69,11 +69,26 @@ public class BridgeGameController {
         return bridgeSize;
     }
 
-    private boolean updateGameStatus(BridgeGame bridgeGame, MovingResult movingResult) {
-        if (movingResult.isFail() || bridgeGame.getGameResult().isSuccess()) {
+    private boolean updateGameStatus(BridgeGame bridgeGame, MovingResult movingResult, MovingHistory movingHistory) {
+        if (movingResult.isFail()) {
+            return askRestart(bridgeGame, movingHistory);
+        }
+        if (bridgeGame.getGameResult().isSuccess()) {
             return GAME_OVER;
         }
         return IN_PROGRESS;
+    }
+
+    private boolean askRestart(BridgeGame bridgeGame, MovingHistory movingHistory) {
+        String command = inputView.readGameCommand();
+        GameCommand gameCommand = GameCommand.of(command);
+
+        if (gameCommand.isRestart()) {
+            bridgeGame.retry();
+            movingHistory.reset();
+            return IN_PROGRESS;
+        }
+        return GAME_OVER;
     }
 
     private List<String> makeBridge(int bridgeSize) {

@@ -37,4 +37,8 @@ public enum GameCommand {
     private boolean isSameWith(String command) {
         return this.command.equals(command);
     }
+
+    public boolean isRestart() {
+        return this == RESTART;
+    }
 }

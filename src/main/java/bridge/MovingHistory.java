@@ -54,4 +54,8 @@ public class MovingHistory {
         }
         return BLANK;
     }
+
+    public void reset() {
+        history = new ArrayList<>();
+    }
 }
