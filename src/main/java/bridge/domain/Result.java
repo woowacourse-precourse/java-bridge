@@ -12,4 +12,9 @@ public class Result {
         this.upStairs = new ArrayList<>();
         this.downsStairs = new ArrayList<>();
     }
+
+    public void addUpstairs() {
+        upStairs.add(" O ");
+        downsStairs.add("   ");
+    }
 }
