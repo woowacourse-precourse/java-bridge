@@ -29,11 +29,12 @@ class BridgeMakerTest {
     public void convertUpOrDown() {
         //given
         int size = 10;
+        List<String> list = List.of("U", "D");
 
         //when
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         //then
-        assertThat(bridge.stream().allMatch(i -> (i.equals("U") || i.equals("D")))).isEqualTo(true);
+        bridge.stream().map(i -> assertThat(list.contains(i)).isEqualTo(true));
     }
 }
