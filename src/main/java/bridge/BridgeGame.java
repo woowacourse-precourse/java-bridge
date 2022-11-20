@@ -17,6 +17,14 @@ public class BridgeGame {
         this.attempts = 1;
     }
 
+    /**
+     * 게임을 시작할 때 사용하는 메서드
+     * @param size 게임에 사용할 bridge 크기
+     */
+    public void start(int size) {
+        this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+        this.answerPath = new ArrayList<>();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
