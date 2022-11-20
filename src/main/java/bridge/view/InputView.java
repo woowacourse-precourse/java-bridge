@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.SafeBridge;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,7 +12,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-
+    private static final String ENTER_DIRECTION = String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", "U", "D");
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -31,8 +32,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        System.out.println(ENTER_DIRECTION);
+        final String input = Console.readLine();
+        return input.toUpperCase();
     }
 
     /**
