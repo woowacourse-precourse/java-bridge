@@ -27,12 +27,11 @@ public class GameManager {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         boolean activation = true;
         int round = 0;
-        int tried = 0;
+        int tried = 1;
         List<String> upResult = new ArrayList<>();
         List<String> downResult = new ArrayList<>();
 
         while (activation) {
-            tried++;
             String moving = inputView.readMoving();
             List<List<String>> result = bridgeGame.move(round, moving);
             upResult = result.get(0);
@@ -45,6 +44,7 @@ public class GameManager {
                 activation = isRetried();
                 bridgeGame.retry();
                 round = 0;
+                tried++;
             }
 
             if (round == bridgeSize) {
