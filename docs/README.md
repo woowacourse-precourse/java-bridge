@@ -75,7 +75,7 @@
 
 ### BridgeMaker
 - List가 입력한 길이만큼의 size를 갖는지 테스트
-- List가 0과 1의 값만 갖는지 테스트
+- List가 U와 D의 값만 갖는지 테스트
 - List<Integer>의 0과 1이 알맞은 List<String> U와 D로 변환되는지 테스트
 
 ### Bridge
