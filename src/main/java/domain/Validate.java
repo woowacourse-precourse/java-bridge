@@ -9,4 +9,11 @@ public class Validate {
 			throw new IllegalArgumentException(errorMessage);
 		}
 	}
+	
+	public void validateMove(String move) {
+		if(!move.equals("U") && !move.equals("D")) {
+			errorMessage = ErrorMessage.WRONG_MOVING.getErrorMessage();
+			throw new IllegalArgumentException(errorMessage);
+		}
+	}
 }
