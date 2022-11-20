@@ -1,7 +1,7 @@
 package bridge.domain.model;
 
 import bridge.constants.BridgeDrawer;
-import bridge.constants.MovingDirection;
+import bridge.constants.Direction;
 import bridge.constants.MovingPossibility;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,13 +10,13 @@ import java.util.Map;
 
 public class CrossRecord {
 
-    private static Map<MovingDirection, List<String>> crossedBridge = initCrossedBridge();
+    private static Map<Direction, List<String>> crossedBridge = initCrossedBridge();
     private static boolean isFirst = true;
 
-    private static Map<MovingDirection, List<String>> initCrossedBridge() {
-        Map<MovingDirection, List<String>> emptyBridge = new HashMap<>();
-        emptyBridge.put(MovingDirection.UP, makeEmptyBridge());
-        emptyBridge.put(MovingDirection.DOWN, makeEmptyBridge());
+    private static Map<Direction, List<String>> initCrossedBridge() {
+        Map<Direction, List<String>> emptyBridge = new HashMap<>();
+        emptyBridge.put(Direction.UP, makeEmptyBridge());
+        emptyBridge.put(Direction.DOWN, makeEmptyBridge());
 
         return emptyBridge;
     }
@@ -29,7 +29,7 @@ public class CrossRecord {
         return emptyBridge;
     }
 
-    public static void recordCrossedBridge(MovingDirection MOVE_TO,
+    public static void recordCrossedBridge(Direction MOVE_TO,
             MovingPossibility MOVING_POSSIBILITY) {
         if (isFirst) {
             recordFirstTime(MOVE_TO, MOVING_POSSIBILITY);
@@ -39,9 +39,9 @@ public class CrossRecord {
         recordAfterFirstTime(MOVE_TO, MOVING_POSSIBILITY);
     }
 
-    private static void recordFirstTime(MovingDirection MOVE_TO, MovingPossibility MOVING_POSSIBILITY) {
+    private static void recordFirstTime(Direction MOVE_TO, MovingPossibility MOVING_POSSIBILITY) {
         isFirst = false;
-        for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
+        for (Direction BRIDGE_DIRECTION : Direction.values()) {
             if (BRIDGE_DIRECTION == MOVE_TO) {
                 recordOOrX(BRIDGE_DIRECTION, MOVING_POSSIBILITY);
                 continue;
@@ -50,9 +50,9 @@ public class CrossRecord {
         }
     }
 
-    private static void recordAfterFirstTime(MovingDirection MOVE_TO,
+    private static void recordAfterFirstTime(Direction MOVE_TO,
             MovingPossibility MOVING_POSSIBILITY) {
-        for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
+        for (Direction BRIDGE_DIRECTION : Direction.values()) {
             recordDivideSpace(BRIDGE_DIRECTION);
             if (BRIDGE_DIRECTION == MOVE_TO) {
                 recordOOrX(BRIDGE_DIRECTION, MOVING_POSSIBILITY);
@@ -62,7 +62,7 @@ public class CrossRecord {
         }
     }
 
-    private static void recordOOrX(MovingDirection BRIDGE_DIRECTION,
+    private static void recordOOrX(Direction BRIDGE_DIRECTION,
             MovingPossibility MOVING_POSSIBILITY) {
         int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
         crossedBridge
@@ -70,14 +70,14 @@ public class CrossRecord {
                 .add(insertIndex, MOVING_POSSIBILITY.getCharacter());
     }
 
-    private static void recordEmptySpace(MovingDirection BRIDGE_DIRECTION) {
+    private static void recordEmptySpace(Direction BRIDGE_DIRECTION) {
         int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
         crossedBridge
                 .get(BRIDGE_DIRECTION)
                 .add(insertIndex, BridgeDrawer.EMPTY_SPACE.getCharacter());
     }
 
-    private static void recordDivideSpace(MovingDirection BRIDGE_DIRECTION) {
+    private static void recordDivideSpace(Direction BRIDGE_DIRECTION) {
         int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
         crossedBridge
                 .get(BRIDGE_DIRECTION)
@@ -89,10 +89,10 @@ public class CrossRecord {
         crossedBridge = initCrossedBridge();
     }
 
-    public static Map<MovingDirection, String> getCrossedBridge() {
-        Map<MovingDirection, String> crossedBridgeForReturn = new HashMap<>();
+    public static Map<Direction, String> getCrossedBridge() {
+        Map<Direction, String> crossedBridgeForReturn = new HashMap<>();
 
-        for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
+        for (Direction BRIDGE_DIRECTION : Direction.values()) {
             crossedBridgeForReturn.put(BRIDGE_DIRECTION,
                     String.join("", crossedBridge.get(BRIDGE_DIRECTION)));
         }

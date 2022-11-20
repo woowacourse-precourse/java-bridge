@@ -3,7 +3,7 @@ package bridge.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.constants.MovingDirection;
+import bridge.constants.Direction;
 import bridge.constants.MovingPossibility;
 import bridge.domain.model.Bridge;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class BridgeTest {
     @Order(3)
     void canCrossNotInitializedExceptionTest(int space) {
         assertThatThrownBy(() -> {
-            Bridge.checkMovingPossibility(space, MovingDirection.UP);
+            Bridge.checkMovingPossibility(space, Direction.UP);
         })
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("[ERROR]");
@@ -68,7 +68,7 @@ public class BridgeTest {
     void canMovePossibleTest(int space) {
         initializeBridge();
 
-        assertThat(Bridge.checkMovingPossibility(space, MovingDirection.UP)).isEqualTo(
+        assertThat(Bridge.checkMovingPossibility(space, Direction.UP)).isEqualTo(
                 MovingPossibility.CAN_MOVE);
     }
 
@@ -79,7 +79,7 @@ public class BridgeTest {
     void canMoveImpossibleTest(int space, String direction) {
         initializeBridge();
 
-        assertThat(Bridge.checkMovingPossibility(space, MovingDirection.UP)).isEqualTo(
+        assertThat(Bridge.checkMovingPossibility(space, Direction.UP)).isEqualTo(
                 MovingPossibility.CAN_NOT_MOVE);
     }
 }

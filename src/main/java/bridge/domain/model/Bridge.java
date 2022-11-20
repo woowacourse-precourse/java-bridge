@@ -1,6 +1,6 @@
 package bridge.domain.model;
 
-import bridge.constants.MovingDirection;
+import bridge.constants.Direction;
 import bridge.constants.MovingPossibility;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Bridge {
         return false;
     }
 
-    public static MovingPossibility checkMovingPossibility(int space, MovingDirection DIRECTION) {
+    public static MovingPossibility checkMovingPossibility(int space, Direction DIRECTION) {
         if (!Bridge.bridgeCreated) {
             throw new IllegalStateException("[ERROR] 다리가 생성되지 않았습니다.");
         }

@@ -2,7 +2,7 @@ package bridge.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.constants.MovingDirection;
+import bridge.constants.Direction;
 import bridge.constants.MovingPossibility;
 import bridge.domain.controller.BridgeGame;
 import bridge.domain.model.Bridge;
@@ -36,14 +36,14 @@ public class BridgeGameTest {
     @DisplayName("이동 기능 - 이동 가능할 경우 CAN_MOVE를 반환한다.")
     @Test
     void returnCanMoveTest() {
-        assertThat(bridgeGame.move(MOVE_SPACE, MovingDirection.UP)).isEqualTo(
+        assertThat(bridgeGame.move(MOVE_SPACE, Direction.UP)).isEqualTo(
                 MovingPossibility.CAN_MOVE);
     }
 
     @DisplayName("이동 기능 - 이동 불가능할 경우 CAN_NOT_MOVE를 반환한다.")
     @Test
     void returnCanNotMoveTest() {
-        assertThat(bridgeGame.move(MOVE_SPACE, MovingDirection.DOWN)).isEqualTo(
+        assertThat(bridgeGame.move(MOVE_SPACE, Direction.DOWN)).isEqualTo(
                 MovingPossibility.CAN_NOT_MOVE);
     }
 
@@ -52,9 +52,9 @@ public class BridgeGameTest {
     void reflectCanMoveToCrossRecordTest() {
         final String UP_BRIDGE = "[ O ]";
         final String DOWN_BRIDGE = "[   ]";
-        Map<MovingDirection, String> expectedBridge = makeBridgeRecord(UP_BRIDGE, DOWN_BRIDGE);
+        Map<Direction, String> expectedBridge = makeBridgeRecord(UP_BRIDGE, DOWN_BRIDGE);
 
-        bridgeGame.move(MOVE_SPACE, MovingDirection.UP);
+        bridgeGame.move(MOVE_SPACE, Direction.UP);
 
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
@@ -64,17 +64,17 @@ public class BridgeGameTest {
     void reflectCanNotMoveToCrossRecordTest() {
         final String UP_BRIDGE = "[   ]";
         final String DOWN_BRIDGE = "[ X ]";
-        Map<MovingDirection, String> expectedBridge = makeBridgeRecord(UP_BRIDGE, DOWN_BRIDGE);
+        Map<Direction, String> expectedBridge = makeBridgeRecord(UP_BRIDGE, DOWN_BRIDGE);
 
-        bridgeGame.move(MOVE_SPACE, MovingDirection.DOWN);
+        bridgeGame.move(MOVE_SPACE, Direction.DOWN);
 
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
 
-    Map<MovingDirection, String> makeBridgeRecord(String upBridge, String downBridge) {
-        Map<MovingDirection, String> bridgeRecord = new HashMap<>();
-        bridgeRecord.put(MovingDirection.UP, upBridge);
-        bridgeRecord.put(MovingDirection.DOWN, downBridge);
+    Map<Direction, String> makeBridgeRecord(String upBridge, String downBridge) {
+        Map<Direction, String> bridgeRecord = new HashMap<>();
+        bridgeRecord.put(Direction.UP, upBridge);
+        bridgeRecord.put(Direction.DOWN, downBridge);
         return bridgeRecord;
     }
 }

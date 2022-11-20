@@ -2,7 +2,7 @@ package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.constants.MovingDirection;
+import bridge.constants.Direction;
 import bridge.constants.MovingPossibility;
 import bridge.domain.model.CrossRecord;
 import java.util.HashMap;
@@ -25,9 +25,9 @@ public class CrossRecordTest {
     @DisplayName("반환 기능 - 다리 기록을 반환한다.")
     @Test
     void getCrossedBridgeTest() {
-        Map<MovingDirection, String> expectedBridge = new HashMap<>();
-        expectedBridge.put(MovingDirection.UP, EMPTY_BRIDGE);
-        expectedBridge.put(MovingDirection.DOWN, EMPTY_BRIDGE);
+        Map<Direction, String> expectedBridge = new HashMap<>();
+        expectedBridge.put(Direction.UP, EMPTY_BRIDGE);
+        expectedBridge.put(Direction.DOWN, EMPTY_BRIDGE);
 
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
@@ -39,10 +39,10 @@ public class CrossRecordTest {
         final String UP_BRIDGE = "[ O |   ]";
         final String DOWN_BRIDGE = "[   | O ]";
 
-        Map<MovingDirection, String> expectedBridge = setExpectedBridge(UP_BRIDGE, DOWN_BRIDGE);
+        Map<Direction, String> expectedBridge = setExpectedBridge(UP_BRIDGE, DOWN_BRIDGE);
 
-        CrossRecord.recordCrossedBridge(MovingDirection.UP, MOVING_POSSIBILITY);
-        CrossRecord.recordCrossedBridge(MovingDirection.DOWN, MOVING_POSSIBILITY);
+        CrossRecord.recordCrossedBridge(Direction.UP, MOVING_POSSIBILITY);
+        CrossRecord.recordCrossedBridge(Direction.DOWN, MOVING_POSSIBILITY);
 
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
@@ -54,18 +54,18 @@ public class CrossRecordTest {
         final String UP_BRIDGE = "[ X |   ]";
         final String DOWN_BRIDGE = "[   | X ]";
 
-        Map<MovingDirection, String> expectedBridge = setExpectedBridge(UP_BRIDGE, DOWN_BRIDGE);
+        Map<Direction, String> expectedBridge = setExpectedBridge(UP_BRIDGE, DOWN_BRIDGE);
 
-        CrossRecord.recordCrossedBridge(MovingDirection.UP, MOVING_POSSIBILITY);
-        CrossRecord.recordCrossedBridge(MovingDirection.DOWN, MOVING_POSSIBILITY);
+        CrossRecord.recordCrossedBridge(Direction.UP, MOVING_POSSIBILITY);
+        CrossRecord.recordCrossedBridge(Direction.DOWN, MOVING_POSSIBILITY);
 
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
 
-    Map<MovingDirection, String> setExpectedBridge(String upBridge, String downBridge) {
-        Map<MovingDirection, String> expectedBridge = new HashMap<>();
-        expectedBridge.put(MovingDirection.UP, upBridge);
-        expectedBridge.put(MovingDirection.DOWN, downBridge);
+    Map<Direction, String> setExpectedBridge(String upBridge, String downBridge) {
+        Map<Direction, String> expectedBridge = new HashMap<>();
+        expectedBridge.put(Direction.UP, upBridge);
+        expectedBridge.put(Direction.DOWN, downBridge);
 
         return expectedBridge;
     }
@@ -73,11 +73,11 @@ public class CrossRecordTest {
     @DisplayName("초기화 기능 - 지금까지 기록된 다리 문자열을 초기화 한다.")
     @Test
     void resetCrossedBridgeTest() {
-        Map<MovingDirection, String> expectedEmptyBridge = new HashMap<>();
-        expectedEmptyBridge.put(MovingDirection.UP, EMPTY_BRIDGE);
-        expectedEmptyBridge.put(MovingDirection.DOWN, EMPTY_BRIDGE);
+        Map<Direction, String> expectedEmptyBridge = new HashMap<>();
+        expectedEmptyBridge.put(Direction.UP, EMPTY_BRIDGE);
+        expectedEmptyBridge.put(Direction.DOWN, EMPTY_BRIDGE);
 
-        CrossRecord.recordCrossedBridge(MovingDirection.UP, MovingPossibility.CAN_MOVE);
+        CrossRecord.recordCrossedBridge(Direction.UP, MovingPossibility.CAN_MOVE);
         assertThat(CrossRecord.getCrossedBridge()).isNotEqualTo(expectedEmptyBridge);
 
         CrossRecord.resetCrossedBridge();

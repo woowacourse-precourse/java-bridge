@@ -1,12 +1,12 @@
 package bridge.constants;
 
-public enum MovingDirection {
+public enum Direction {
     UP("U"),
     DOWN("D");
 
     private final String direction;
 
-    MovingDirection(String direction) {
+    Direction(String direction) {
         this.direction = direction;
     }
 
