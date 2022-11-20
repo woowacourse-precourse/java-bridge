@@ -46,6 +46,12 @@ public class OutputView {
         System.out.println(GuidanceMessage.GAME_OUTRO);
         printMap(movingHistory);
         printGameResult(bridgeGame, movingResult);
+        printTrialCount(bridgeGame);
+    }
+
+    private static void printTrialCount(BridgeGame bridgeGame) {
+        System.out.print(GuidanceMessage.INFORM_TRIAL_COUNT);
+        System.out.println(bridgeGame.getTrialCount());
     }
 
     private void printGameResult(BridgeGame bridgeGame, MovingResult movingResult) {
