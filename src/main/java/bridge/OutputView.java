@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,47 +12,35 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int index, String crossResult,boolean printUpDown) {
-        if(printUpDown){
-            printCrossRight(crossResult,index);
-            printOnlyBridge();
-        }
-
-        if(!printUpDown){
-            printOnlyBridge();
-            printCrossRight(crossResult,index);
-        }
+    public void printMap(List<String> currentUpState,List<String> currentDownState, String upDown) {
+        printUpState(currentUpState);
+        printDownState(currentDownState);
+    }
+    public void printUpState(List<String> currentUpState){
+        printStartBridge();
+        printCrossState(currentUpState);
+        printEndBridge();
 
     }
-    public void printCrossRight(String crossResult,int index){
+
+    public void printDownState(List<String> currentDownState){
         printStartBridge();
-        printCrossState(crossResult);
-        printDivider(index);
+        printCrossState(currentDownState);
         printEndBridge();
     }
-
-    public void printOnlyBridge(){
-        printStartBridge();
-        printEndBridge();
+    public void printCrossState(List<String> currentUpState){
+        String printCurrentState = "";
+       for(int i=0;i<currentUpState.size();i++){
+           printCurrentState += currentUpState.get(i) + " | ";
+       }
+        printCurrentState = printCurrentState.substring(0,printCurrentState.length()-2);
+       System.out.print(printCurrentState);
     }
-
-
     public void printStartBridge(){
         System.out.print("[ ");
     }
-
-    public void printCrossState(String crossResult){
-        System.out.print(crossResult);
-    }
-
-    public void printDivider(int index){
-        for(int i=0;i<index;i++){
-            System.out.print(" | ");
-        }
-    }
-
     public void printEndBridge(){
-        System.out.println(" ]");
+        System.out.println("]");
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

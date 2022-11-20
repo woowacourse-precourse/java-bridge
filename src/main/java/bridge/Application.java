@@ -5,22 +5,30 @@ import java.util.List;
 
 public class Application {
     static String printGameStart = "다리 건너기 게임을 시작합니다.";
-    static BridgeNumberGenerator bridgeNumberGenerator;
     static List<String> bridge = new ArrayList<>();
-    static String moveBridge = "";
-    static boolean printUpDown = false;
+    static List<String> currentUpState = new ArrayList<>();
+    static List<String> currentDownState = new ArrayList<>();
+    static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     public static void main(String[] args) {
         System.out.println(printGameStart);
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         BridgeGame bridgeGame = new BridgeGame();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
 
         for(int i=0;i<bridge.size();i++){
-            printUpDown = bridgeGame.moveUpDown(inputView.readMoving());
-            outputView.printMap(i,bridgeGame.move(bridge,i,inputView.readMoving()),printUpDown);
-
+            String upDown = inputView.readMoving();
+            if(upDown.equals("U")){
+                currentUpState.add(bridgeGame.move(bridge,i,upDown));
+                currentDownState.add(" ");
+            }
+            if(upDown.equals("D")){
+                currentUpState.add(" ");
+                currentDownState.add(bridgeGame.move(bridge,i,upDown));
+            }
+            outputView.printMap(currentUpState,currentDownState,upDown);
         }
 
 
