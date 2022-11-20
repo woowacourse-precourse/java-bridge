@@ -59,6 +59,10 @@ public class BridgeGame {
         return false;
     }
 
+    public List<String> getMap() {
+        return this.bridge;
+    }
+
     public List<String> getUserSelect() {
         return this.userSelect;
     }
