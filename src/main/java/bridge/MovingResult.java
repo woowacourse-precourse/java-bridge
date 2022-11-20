@@ -1,14 +1,27 @@
 package bridge;
 
+import java.util.Arrays;
+
 public enum MovingResult {
     POSSIBLE("O", true),
     IMPOSSIBLE("X", false);
 
-    private final String side;
-    private final boolean possibility;
+    private final String sign;
+    private final boolean comparison;
 
-    MovingResult(String side, boolean possibility) {
-        this.side = side;
-        this.possibility = possibility;
+    MovingResult(String sign, boolean comparison) {
+        this.sign = sign;
+        this.comparison = comparison;
+    }
+
+    public static MovingResult fromComparison(boolean comparison) {
+        return Arrays.stream(MovingResult.values())
+                .filter(movingResult -> movingResult.comparison == comparison)
+                .findAny()
+                .get();
+    }
+
+    public String getSign() {
+        return sign;
     }
 }

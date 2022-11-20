@@ -22,8 +22,8 @@ class BridgeTest {
         List<String> input2 = Arrays.asList("D", "U", "D");
         List<String> input3 = Arrays.asList("U");
 
-        assertThat(bridge.compare(input)).isTrue();
-        assertThat(bridge.compare(input2)).isFalse();
-        assertThat(bridge.compare(input3)).isFalse();
+        assertThat(bridge.compare(input)).isEqualTo("O");
+        assertThat(bridge.compare(input2)).isEqualTo("X");
+        assertThat(bridge.compare(input3)).isEqualTo("X");
     }
 }

@@ -9,7 +9,14 @@ public class Bridge {
         this.bridgePosition = bridgePosition;
     }
 
-    public boolean compare(List<String> move) {
-        return move.get(move.size() - 1).equals(bridgePosition.get(move.size() - 1));
+    public String compare(List<String> move) {
+//        return move.get(move.size() - 1).equals(bridgePosition.get(move.size() - 1));
+        boolean comparison = move.get(move.size() - 1).equals(bridgePosition.get(move.size() - 1));
+        return getSign(comparison);
+    }
+
+    public String getSign(boolean comparison) {
+        return MovingResult.fromComparison(comparison)
+                .getSign();
     }
 }
