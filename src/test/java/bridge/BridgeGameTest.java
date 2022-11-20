@@ -65,4 +65,53 @@ public class BridgeGameTest {
 			() -> assertThat(Pause.paused).isFalse()
 		);
 	}
+
+	@DisplayName("게임 진행 중 게임 종료 여부 확인")
+	@Test
+	void isEnd() {
+		// given
+		Bridge bridgeLetters = new Bridge(List.of("U", "D", "U", "D", "U"));
+		BridgeGame bridgeGame = new BridgeGame(bridgeLetters, 5);
+		String userSelectedCell = "D";
+		bridgeGame.move(userSelectedCell);
+
+		// when
+		if (Pause.paused) {
+			bridgeGame.end();
+		}
+
+		// then
+		assertAll(
+			() -> assertThat(bridgeGame.isEnd()).isTrue(),
+			() -> assertThat(Pause.paused).isFalse()
+		);
+	}
+
+	@DisplayName("다리 완주 후 게임 종료 여부 확인")
+	@Test
+	void isEnd2() {
+		// given
+		Bridge bridgeLetters = new Bridge(List.of("U", "D", "U", "D", "U"));
+		BridgeGame bridgeGame = new BridgeGame(bridgeLetters, 5);
+		String userSelectedCell = "U";
+		bridgeGame.move(userSelectedCell);
+		userSelectedCell = "D";
+		bridgeGame.move(userSelectedCell);
+		userSelectedCell = "U";
+		bridgeGame.move(userSelectedCell);
+		userSelectedCell = "D";
+		bridgeGame.move(userSelectedCell);
+		userSelectedCell = "U";
+
+		// when
+		if (Pause.paused) {
+			bridgeGame.end();
+		}
+
+		// then
+		assertAll(
+			() -> assertThat(bridgeGame.isEnd()).isTrue(),
+			() -> assertThat(Pause.paused).isFalse()
+		);
+	}
 }

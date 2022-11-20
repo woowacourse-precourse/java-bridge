@@ -36,6 +36,10 @@ public class BridgeGame {
 		}
 	}
 
+	public boolean isMovable(Bridge bridge, String userSelectedCell) {
+		return bridge.isEquals(userSelectedCell, currentPhase);
+	}
+
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
 	 * <p>
@@ -46,7 +50,9 @@ public class BridgeGame {
 		Pause.unsetPause();
 	}
 
-	public boolean isMovable(Bridge bridge, String userSelectedCell) {
-		return bridge.isEquals(userSelectedCell, currentPhase);
+	public void end() {
+	}
+	public boolean isEnd() {
+		return true;
 	}
 }
