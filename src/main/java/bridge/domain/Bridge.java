@@ -5,7 +5,16 @@ import java.util.List;
 public class Bridge {
     private final List<String> movableSpaces;
     public Bridge(List<String> movableSpaces) {
+        validate(movableSpaces);
         this.movableSpaces = movableSpaces;
+    }
+
+    private void validate(List<String> movableSpaces) {
+        for (String space : movableSpaces) {
+            if (!space.equals("U") && !space.equals("D")) {
+                throw new IllegalStateException("[ERROR] 생성된 다리가 유효하지 않습니다");
+            }
+        }
     }
 
     public List<String> getMovableSpaces() {
