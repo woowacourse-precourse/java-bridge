@@ -61,7 +61,7 @@ class BridgeGameTest {
         bridgeGame.move(BridgeShape.UP);
         bridgeGame.move(BridgeShape.DOWN);
 
-        assertThat(bridgeGame.retry()).isEqualTo(new BridgeGame(bridge));
+        assertThat(bridgeGame.retry()).isEqualTo(new BridgeGame(bridge, new TryCount(2)));
     }
 
     @DisplayName("게임이 안끝났는지 반환한다.")
