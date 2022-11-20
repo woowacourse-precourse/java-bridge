@@ -13,14 +13,14 @@ public class InputTest {
     @DisplayName("다리 길이를 빈 값을 입력시 에러 발생")
     void 다리길이_빈값_테스트(){
         assertThatThrownBy(() -> {
-            new InputView().readBridgeSize(2);
+            new InputView().readBridgeSize("");
         }).hasMessageContaining(ERROR_MESSAGE);
     }
     @Test
     @DisplayName("다리 길이를 숫자가 아닌 값을 입력시 에러 발생")
     void 다리길이_숫자_테스트() {
         assertThatThrownBy(() -> {
-            new InputView().readBridgeSize(Integer.parseInt("U"));
+            new InputView().readBridgeSize("U");
         }).hasMessageContaining(ERROR_MESSAGE);
     }
     @Test
