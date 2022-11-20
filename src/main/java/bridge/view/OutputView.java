@@ -6,9 +6,14 @@ package bridge.view;
 public class OutputView {
 
     private static final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String MOVE_COMMAND_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     public void printInputBridgeSize() {
         System.out.println(BRIDGE_SIZE_MESSAGE);
+    }
+
+    public void printMoveCommand() {
+        System.out.println(MOVE_COMMAND_MESSAGE);
     }
 
     /**
