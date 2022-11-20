@@ -8,6 +8,7 @@ public class BridgeMakerController {
     private BridgeMakerService bridgeMakerService;
     private InputView inputView;
     private OutputView outputView;
+    private int bridgeSize;
 
     public BridgeMakerController(BridgeMakerService bridgeMakerService, InputView inputView, OutputView outputView) {
         this.bridgeMakerService = bridgeMakerService;
@@ -17,9 +18,19 @@ public class BridgeMakerController {
 
     public void makeBridge() {
         outputView.printStart();
-        outputView.printBridgeSize();
-
-        int bridgeSize = inputView.readBridgeSize();
+        getBridgeSize();
         bridgeMakerService.setBridge(bridgeSize);
+    }
+
+    private void getBridgeSize() {
+        while (true) {
+            try {
+                outputView.printBridgeSize();
+                bridgeSize = inputView.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+            }
+        }
     }
 }

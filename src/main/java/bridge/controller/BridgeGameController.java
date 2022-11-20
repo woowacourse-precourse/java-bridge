@@ -8,6 +8,8 @@ public class BridgeGameController {
     private BridgeGameService bridgeGameService;
     private InputView inputView;
     private OutputView outputView;
+    private String retry;
+    private String moving;
 
     public BridgeGameController(BridgeGameService bridgeGameService, InputView inputView, OutputView outputView) {
         this.bridgeGameService = bridgeGameService;
@@ -18,42 +20,61 @@ public class BridgeGameController {
     public void playGame() {
         while (bridgeGameService.play()) {
             String moving = playMove();
-
             if (playFail(moving)) {
                 break;
             }
             bridgeGameService.increaseStep();
         }
-
         playEnd();
-    }
-
-    private String playMove() {
-        outputView.printMove();
-        String moving = inputView.readMoving();
-        bridgeGameService.move(moving);
-        outputView.printBridge(bridgeGameService.getUserBridge());
-        return moving;
     }
 
     private boolean playFail(String moving) {
         if (bridgeGameService.fail(moving)) {
-            outputView.printRetry();
-            String retry = inputView.readGameCommand();
-
-            if (playQuit(retry)) {
+            getGameCommand();
+            if (playQuit()) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean playQuit(String retry) {
+    private void getGameCommand() {
+        while (true) {
+            try {
+                outputView.printRetry();
+                retry = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+            }
+        }
+    }
+
+    private boolean playQuit() {
         if (bridgeGameService.isQuit(retry)) {
             outputView.printFailResult(bridgeGameService);
             return true;
         }
         return false;
+    }
+
+    private String playMove() {
+        getMoving();
+        bridgeGameService.move(moving);
+        outputView.printBridge(bridgeGameService.getUserBridge());
+        return moving;
+    }
+
+    private void getMoving() {
+        while (true) {
+            try {
+                outputView.printMove();
+                moving = inputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+            }
+        }
     }
 
     private void playEnd() {
