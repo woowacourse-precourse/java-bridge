@@ -2,6 +2,7 @@ package bridge.controller;
 
 import static bridge.constant.Message.ENTER_BRIDGE_LENGTH;
 import static bridge.constant.Message.ENTER_MOVE_DIRECTION;
+import static bridge.constant.Message.ENTER_RETRY_OR_QUIT;
 
 import bridge.Bridge;
 import bridge.BridgeGame;
@@ -30,9 +31,9 @@ public class BridgeController {
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame);
             if (!bridgeGame.canCrossBridge(direction)) {
-                // TODO 재시작/종료 입력받고 재실행 혹은 종료
-            }
+                getGameRetryOrQuit();
 
+            }
         }
 
     }
@@ -64,5 +65,16 @@ public class BridgeController {
             getMoveDirection();
         }
         return direction;
+    }
+
+    private String getGameRetryOrQuit() {
+        try {
+            outputView.printMessage(ENTER_RETRY_OR_QUIT.toString());
+            inputView.readGameCommand();
+        } catch (IllegalArgumentException ex) {
+            outputView.printMessage(ex.getMessage());
+            getGameRetryOrQuit();
+        }
+        return null;
     }
 }
