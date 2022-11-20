@@ -9,15 +9,13 @@ import bridge.EnumCollections.BridgeType;
 public class BridgeGame {
     private int gameStartCount;
     private Player player;
-    private Bridge bridge;
     private GameResult gameResult;
     private GameResultGenerator gameResultGenerator;
 
-    public BridgeGame(Bridge bridge) {
+    public BridgeGame(Player player , GameResultGenerator gameResultGenerator) {
         this.gameStartCount = 1;
-        this.player = new Player(bridge);
-        this.bridge = bridge;
-        this.gameResultGenerator = new GameResultGenerator();
+        this.player = player;
+        this.gameResultGenerator = gameResultGenerator;
     }
 
     /**
@@ -51,14 +49,6 @@ public class BridgeGame {
 
     public String getBridgeStatusAfterMove() {
         return gameResultGenerator.getBridgeStatus(gameResult);
-    }
-
-    public String getBridgeResult() {
-        return gameResultGenerator.getGameResultOutput();
-    }
-
-    public boolean isBridgeFinished() {
-        return player.isPlayerInEndOfBridge();
     }
 
     public boolean isMoveSuccess() {

@@ -3,13 +3,15 @@ package bridge.Controller;
 import bridge.Controller.Service.BridgeGameService;
 import bridge.Controller.Service.EndGameService;
 import bridge.Controller.Service.StartGameService;
+import bridge.Domain.Bridge;
 import bridge.Domain.BridgeGame;
+import bridge.Domain.GameResultGenerator;
+import bridge.Domain.Player;
 
 public class GameController {
     private StartGameService startGameService;
     private BridgeGameService bridgeGameService;
     private EndGameService endGameService;
-    private BridgeGame bridgeGame;
 
     public GameController() {
         this.startGameService = new StartGameService();
@@ -27,9 +29,12 @@ public class GameController {
     }
 
     public void beginBridgeGame() throws IllegalArgumentException {
-        this.bridgeGame = startGameService.startGame();
-        this.bridgeGameService = new BridgeGameService(bridgeGame);
-        this.endGameService = new EndGameService(bridgeGame);
+        Bridge bridge = startGameService.startGame();
+        Player player = new Player(bridge);
+        GameResultGenerator gameResultGenerator = new GameResultGenerator();
+        BridgeGame bridgeGame = new BridgeGame(player, gameResultGenerator);
+        this.bridgeGameService = new BridgeGameService(bridgeGame, player);
+        this.endGameService = new EndGameService(bridgeGame, gameResultGenerator);
     }
 
 

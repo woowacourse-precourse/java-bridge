@@ -2,14 +2,17 @@ package bridge.Controller.Service;
 
 import Utils.ValidateUtils;
 import bridge.Domain.BridgeGame;
+import bridge.Domain.Player;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
 public class BridgeGameService {
     private BridgeGame bridgeGame;
+    private Player player;
 
-    public BridgeGameService(BridgeGame bridgeGame) {
+    public BridgeGameService(BridgeGame bridgeGame, Player player) {
         this.bridgeGame = bridgeGame;
+        this.player = player;
     }
 
     public void onePhaseBridgeGame() throws IllegalArgumentException {
@@ -23,8 +26,7 @@ public class BridgeGameService {
     public boolean severalPhaseBridgeGame() throws IllegalArgumentException {
         while (true) {
             onePhaseBridgeGame();
-
-            if (bridgeGame.isMoveSuccess() && bridgeGame.isBridgeFinished()) {
+            if (bridgeGame.isMoveSuccess() && player.isPlayerInEndOfBridge()) {
                 return true;
             }
             if (!bridgeGame.isMoveSuccess()) {
