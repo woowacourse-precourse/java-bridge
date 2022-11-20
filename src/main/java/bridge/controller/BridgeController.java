@@ -16,7 +16,7 @@ public class BridgeController {
 
     private void createBridge() {
         int bridgeSize = inputView.readBridgeSize();
-
+        bridgeService.createBridge(bridgeSize);
     }
 
 }
