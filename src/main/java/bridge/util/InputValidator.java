@@ -57,7 +57,7 @@ public class InputValidator {
     }
 
     private static void validateCommandOrder(String userInput) {
-        if (RetryCommand.contains(userInput)) {
+        if (!RetryCommand.contains(userInput)) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND_INPUT_MSG);
         }
     }

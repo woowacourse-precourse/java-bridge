@@ -11,7 +11,7 @@ public enum RetryCommand {
     }
 
     public static boolean contains(String userInput) {
-        return !RETRY.shortcut.equals(userInput) && !QUIT.shortcut.equals(userInput);
+        return RETRY.shortcut.equals(userInput) || QUIT.shortcut.equals(userInput);
     }
 
     public static boolean canRetry(String userInput) {
