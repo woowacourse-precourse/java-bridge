@@ -66,6 +66,7 @@ BUILD SUCCESSFUL in 0s
   - **Class Variables**
     - [ ] RETRY("R")
     - [ ] QUIT("Q")
+    - [ ] private final String retrySelector
   - **CLASS Methods**
     - [ ] public RetrySelector(String retrySelector)
     - [ ] public String getRetrySelect()
