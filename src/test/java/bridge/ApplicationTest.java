@@ -76,7 +76,7 @@ class ApplicationTest extends NsTest {
                     "[ O |   | O ]",
                     "[   | O |   ]",
                     "게임 성공 여부: 성공",
-                    "총 시도한 횟수: 1"
+                    "총 시도한 횟수: 2"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
