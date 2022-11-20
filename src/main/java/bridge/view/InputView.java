@@ -32,7 +32,13 @@ public class InputView {
      */
     public static String readMoving() {
         String movingMark = Console.readLine();
-        BridgeMark.validateInput(movingMark);
+        try {
+            BridgeMark.validateInput(movingMark);
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e);
+            OutputView.printMove();
+            return readMoving();
+        }
         return movingMark;
     }
 

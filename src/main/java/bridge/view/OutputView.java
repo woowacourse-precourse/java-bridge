@@ -75,4 +75,8 @@ public class OutputView {
     public static void printBlank() {
         System.out.println();
     }
+
+    public static void printExceptionMessage(RuntimeException e) {
+        System.out.println(e.getMessage());
+    }
 }
