@@ -96,6 +96,28 @@ class InputViewTest {
                 assertThat(result).isEqualTo(Node.DOWN);
             }
         }
+
+        @Nested
+        @DisplayName("잘못된 입력을 넣으면")
+        class InvalidInputTest extends NsTest {
+            @ParameterizedTest
+            @ValueSource(strings = {"s", "u", "d", "1", " ", " :"})
+            @DisplayName("예외메시지를 출력한다.")
+            public void printExceptionMessage(String arg) {
+                String exceptionMessage = "다리의 위치는" + Node.UP.position + " 또는 " + Node.DOWN.position + "이어야 합니다.";
+                assertSimpleTest(() -> {
+                    run(arg, "U");
+                    assertThat(
+                            output().contains(exceptionMessage)
+                    );
+                });
+            }
+
+            @Override
+            protected void runMain() {
+                inputView.readMoving();
+            }
+        }
     }
 
     @Nested
