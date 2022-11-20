@@ -13,7 +13,7 @@
 6. 이동 칸 입력 → `InputView`
     1. 예외 처리 → `Validator`
 7. 다리 이동 결과 출력 → `OutputView`
-8. 게임 상태 변경 → `GameResult`
+8. 게임 상태 변경 → `Status`
     1. 성공, 끝 도달 X → 5로 이동
     2. 성공, 끝 도달 O
         1. “최종 게임 결과” 출력 → `OutputView`
@@ -24,7 +24,7 @@
 9. 게임 추가 여부 입력문 출력 → `OutputView`
 10. 게임 추가 여부 입력 → `InputView`
     1. 예외 처리 → `Validator`
-11. 게임 상태 변경 → `GameResult`
+11. 게임 상태 변경 → `Status`
     1. 재시도 → 5로 이동
     2. 종료
         1. “최종 게임 결과” 출력 → `OutputView`
@@ -56,10 +56,10 @@
 - **`util/InputView`**
     - 역할 : 입력 처리
     - `readBridgeSize()`, `readMoving()`, `readGameCommand()`
-- **`domain/GameResult`**
+- **`domain/Status`**
     - 역할 : 게임의 상태 관리
-    - `PROCEEDING` `DONE` `SUCCESS` `FAIL`
-        - 게임 진행 중, 다리 건너기 완료, 1개 건너기 성공, 1개 건너기 실패
+    - `PROCEEDING` `SUCCESS` `FAIL`
+        - 게임 진행 중, 다리 건너기 완료, 건너기 실패
 - **`domain/Bridge`**
     - 역할 : 다리 관리
     - `List<String> originalBridge`, `List<String> copyBridge`
