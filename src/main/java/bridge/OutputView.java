@@ -5,7 +5,7 @@ package bridge;
  */
 public class OutputView {
     BridgeMaker bridgeMaker = BridgeMaker.getInstance();
-    String[] answer = new String[]{"[ ]", "[O]", "[X]"};
+    String[] answer = new String[]{" O ", " X "};
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -13,54 +13,63 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(int count, boolean dingdong) {
+        System.out.print("[");
         for (int i = 0; i <= count; i++) {
             if (i == count) {
                 updingdong(dingdong, count);
                 break;
             }
             if (bridgeMaker.bridge.get(i).equals("U")) {
-                System.out.print(answer[1]);
-            }
-            if (bridgeMaker.bridge.get(i).equals("D")) {
                 System.out.print(answer[0]);
             }
+            if (bridgeMaker.bridge.get(i).equals("D")) {
+                System.out.print("   ");
+            }
+            if (i <= count -1) {
+                System.out.print("|");
+            }
         }
-        System.out.println();
+        System.out.print("]\n");
+        System.out.print("[");
         for (int i = 0; i <= count; i++) {
             if (i == count) {
                 downdingdong(dingdong, count);
                 break;
             }
             if (bridgeMaker.bridge.get(i).equals("D")) {
-                System.out.print(answer[1]);
-            }
-            if (bridgeMaker.bridge.get(i).equals("U")) {
                 System.out.print(answer[0]);
             }
+            if (bridgeMaker.bridge.get(i).equals("U")) {
+                System.out.print("   ");
+            }
+            if (i <= count -1) {
+                System.out.print("|");
+            }
         }
+        System.out.print("]\n");
     }
 
     private void downdingdong(boolean dingdong, int count) {
         if (dingdong && bridgeMaker.bridge.get(count).equals("D")) {
-            System.out.print(answer[1]);
+            System.out.print(answer[0]);
         }
         if (!dingdong && bridgeMaker.bridge.get(count).equals("D")) {
-            System.out.print(answer[2]);
+            System.out.print(answer[1]);
         }
         if (bridgeMaker.bridge.get(count).equals("U")) {
-            System.out.print(answer[0]);
+            System.out.print("   ");
         }
     }
 
     private void updingdong(boolean dingdong, int count) {
         if (dingdong && bridgeMaker.bridge.get(count).equals("U")) {
-            System.out.print(answer[1]);
+            System.out.print(answer[0]);
         }
         if (!dingdong && bridgeMaker.bridge.get(count).equals("U")) {
-            System.out.print(answer[2]);
+            System.out.print(answer[1]);
         }
         if (bridgeMaker.bridge.get(count).equals("D")) {
-            System.out.print(answer[0]);
+            System.out.print("   ");
         }
     }
 
@@ -69,6 +78,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String flag, int count) {
+        System.out.println("최종 게임 결과");
+        System.out.println("게임 성공 여부: " + flag);
+        System.out.println("총 시도한 횟수: " + count);
     }
 }

@@ -38,7 +38,7 @@ public class BridgeGame {
             return "retry";
         }
         if (result.equals("Q")) {
-            return "fail";
+            return "실패";
         }
         return str;
     }
