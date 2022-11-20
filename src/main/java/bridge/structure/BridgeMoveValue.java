@@ -43,4 +43,12 @@ public enum BridgeMoveValue {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(WARM_CHOICE_AGAIN));
     }
+
+    public static void validateInput(String input) {
+        Arrays.stream(BridgeMoveValue.values())
+                .filter(bridgeMoveValue -> bridgeMoveValue.getStringIdentifier()
+                        .equals(input))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(WARM_CHOICE_AGAIN));
+    }
 }
