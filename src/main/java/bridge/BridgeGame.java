@@ -1,6 +1,5 @@
 package bridge;
 
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class BridgeGame {
     }
 
     private List<List<String>> addDownMapper(Mark mark) {
-        downMapper.add(mark.toString());
+        downMapper.add(mark.getMark());
         upMapper.add(" ");
         return List.of(upMapper, downMapper);
     }

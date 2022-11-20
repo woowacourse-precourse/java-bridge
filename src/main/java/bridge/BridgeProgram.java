@@ -26,10 +26,10 @@ public class BridgeProgram {
 
         boolean isRunning = true;
         while (isRunning) {
-            String inputDirection = getInputDirection();
+            Mark mark = bridge.matchRoute(getInputDirection(), movingCount++);
+            List<List<String>> route = bridgeGame.move(mark);
 
-            Mark mark = bridge.matchRoute(inputDirection, movingCount++);
-            List<List<String>> route =  bridgeGame.move(mark);
+            output.printMap(route);
 
             //if(direction 틀림) 게임 종료여부 물어보기
             //종료선택 시 결과출력 + isRunning = false;

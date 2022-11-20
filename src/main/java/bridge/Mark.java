@@ -33,7 +33,7 @@ public enum Mark {
     public static Mark toMark(String inputDirection, boolean result) {
         return Stream.of(Mark.values())
                 .filter(m -> m.getDirection().equals(inputDirection))
-                .filter(i->i.isRight()==result)
+                .filter(i -> i.isRight() == result)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
