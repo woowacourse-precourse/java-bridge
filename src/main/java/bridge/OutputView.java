@@ -9,7 +9,7 @@ public class OutputView {
 
     enum Guide {
         START("다리 건너기 게임을 시작합니다."),
-        BRIDGESIZEINPUT("다리의 길이를 입력해주세요."),
+        BRIDGESIZEINPUT("다리의 길이를 입력해주세요. (3 이상 20 이하)"),
         MOVECOMMANDINPUT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
         RETRY("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     * 현재까지 이동한 경로를 정해진 형식에 맞춰 출력한다.
      */
     public void printMap(List<String> path, List<String> bridge) {
         for (Level level : Level.values())
@@ -41,17 +41,29 @@ public class OutputView {
         printMap(path, bridge);
         String passOrFail = getPassOrFail(path.equals(bridge));
         printMessage("게임 성공 여부: " + passOrFail);
-        printMessage("총 시도한 횟수: " + String.valueOf(numberOfTry));
+        printMessage(String.format("총 시도한 횟수: %d", numberOfTry));
     }
 
     public void printMessage(String message) { System.out.println(message); }
 
+    /**
+     * 게임 시작 문구 출력
+     */
     public void guideStart() { guide(Guide.START); }
 
+    /**
+     * 다리 길이 입력 안내 출력
+     */
     public void guideBridgeSizeInput() { guide(Guide.BRIDGESIZEINPUT); }
 
+    /**
+     * 이동할 칸 입력 안내 출력
+     */
     public void guideMovingCommandInput() { guide(Guide.MOVECOMMANDINPUT); }
 
+    /**
+     * 게임 재시작/종료 코드 입력 안내 출력
+     */
     public void guideRetry() { guide(Guide.RETRY); }
 
     private void guide(Guide guide) { System.out.println(guide.message); }
