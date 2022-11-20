@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,6 +28,7 @@ public class BridgeMaker {
             }
             bridge.add("D");
         }
+        //TODO : 최종 확인 시 32라인 삭제
         System.out.println(bridge);
         return bridge;
     }

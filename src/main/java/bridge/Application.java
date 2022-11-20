@@ -9,6 +9,7 @@ public class Application {
         bridgeGame.setting();
         bridgeGame.make();
         bridgeGame.move();
+        bridgeGame.check();
 
     }
 }
