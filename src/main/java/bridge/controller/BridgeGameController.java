@@ -1,5 +1,13 @@
-package bridge;
+package bridge.controller;
 
+import bridge.model.BridgeGame;
+import bridge.model.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.Bridgelocation;
+import bridge.model.MoveBox;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.Utility;
 import java.util.List;
 
 public class BridgeGameController {
@@ -40,10 +48,10 @@ public class BridgeGameController {
 
     public Boolean Bridgemove(List<String> bridges, BridgeGame bridgeGame) {
         for (String bridge : bridges) {
-            String userinput = inputView.readMoving();
-            bridgeGame.move(userinput, bridge);
+            MoveBox userinput = new MoveBox(inputView.readMoving());
+            bridgeGame.move(userinput.getMovebox(), bridge);
             outputView.printMap(bridgeGame.getResult());
-            if (!Utility.StringEquals(userinput, bridge)) {
+            if (!Utility.StringEquals(userinput.getMovebox(), bridge)) {
                 return bridgeGame.retry(inputView.readGameCommand());
             }
         }
