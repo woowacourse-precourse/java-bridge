@@ -21,44 +21,65 @@ public class OutputView {
         for (int i = 0; i < currentIdx; i++) {
             appendStatus(bridge.get(i), up, down);
         }
-        List<String> last = appendLast(bridge.get(currentIdx).equals(guess), guess);
-        up.append(last.get(0));
-        down.append(last.get(1));
+        if (currentIdx < bridge.size()) {
+            appendLast(List.of(bridge.get(currentIdx), guess), up, down);
+        }
         System.out.println(up);
         System.out.println(down);
     }
 
     private static void appendStatus(DIRECTION bridge, StringBuffer up, StringBuffer down) {
-        String success = " O |";
-        String fail = "   |";
+        String yes = " O |";
+        String no = "   |";
         if (bridge.equals(UP)) {
-            up.append(success);
-            down.append(fail);
+            up.append(yes);
+            down.append(no);
         }
         if (bridge.equals(DOWN)) {
-            up.append(fail);
-            down.append(success);
+            up.append(no);
+            down.append(yes);
         }
     }
 
-    private static List<String> appendLast(boolean success, DIRECTION guess) {
+    private static void appendLast(List<DIRECTION> bridgeGuess, StringBuffer up, StringBuffer down) {
         String guessResult = " X ]";
-        String empty = "   ]";
-        if (success) {
+        if (bridgeGuess.get(0).equals(bridgeGuess.get(1))) {
             guessResult = " O ]";
         }
-        if (guess.equals(UP)) {
-            return List.of(guessResult, empty);
+        if (bridgeGuess.get(1).equals(UP)) {
+            upSelect(up, down, guessResult);
+            return;
         }
-        return List.of(empty, guessResult);
+        downSelect(up, down, guessResult);
+    }
+
+    private static void downSelect(StringBuffer up, StringBuffer down, String guessResult) {
+        up.append("   ]");
+        down.append(guessResult);
+    }
+
+    private static void upSelect(StringBuffer up, StringBuffer down, String guessResult) {
+        up.append(guessResult);
+        down.append("   ]");
     }
 
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * 최종 게임 결과, 성공 여부, 총 시도 횟수 출력
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame game) {
+        System.out.println("\n최종 게임 결과");
+        printMap(game.getBridge(), game.getCurrentIdx(), game.getGuess());
+        System.out.print("\n게임 성공 여부: ");
+        if (game.isComplete()) {
+            System.out.println("성공");
+        }
+        if (!game.isComplete()) {
+            System.out.println("실패");
+        }
+        System.out.println("총 시도한 횟수: " + game.getTryCount());
     }
 }
