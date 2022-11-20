@@ -40,8 +40,8 @@ public class OutputView {
     public void printMap(final List<MoveStatus> moveStatuses) {
         List<String> bridges = OutputConverter.resultToStrings(moveStatuses);
 
-        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.UPSIDE.getValue())) + MAP_SUFFIX);
-        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.DOWNSIDE.getValue())) + MAP_SUFFIX);
+        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.UPSIDE.ordinal())) + MAP_SUFFIX);
+        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(Direction.DOWNSIDE.ordinal())) + MAP_SUFFIX);
         System.out.println();
     }
 

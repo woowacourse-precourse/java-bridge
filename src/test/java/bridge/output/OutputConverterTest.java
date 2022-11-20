@@ -47,8 +47,8 @@ public class OutputConverterTest {
         Result result = new Result();
         List<String> bridgeDirection = List.of("U", "U", "U", "D", "D", "D");
         Bridge bridge = Bridge.from(bridgeDirection);
-        int UPSIDE_VALUE = Direction.UPSIDE.getValue();
-        int DOWNSIDE_VALUE = Direction.DOWNSIDE.getValue();
+        int UPSIDE_VALUE = Direction.UPSIDE.ordinal();
+        int DOWNSIDE_VALUE = Direction.DOWNSIDE.ordinal();
 
         //when
         for (Direction playerDirection : toDirectionList(playerDirections)) {
