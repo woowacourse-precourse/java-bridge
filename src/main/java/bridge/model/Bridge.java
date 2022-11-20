@@ -14,8 +14,8 @@ public class Bridge {
 
     public boolean isMovable(int nowPosition,String nextMove)
     {
-        if(nowPosition < 0) throw new IndexOutOfBoundsException(Message.ILLEGAL_PLAYER_POSITION_ERROR_MESSAGE);
-        if(isFinish(nowPosition)) throw new IndexOutOfBoundsException(Message.ALREADY_FINISH_PLAYER_ERROR_MESSAGE);
+        if(nowPosition < 0) throw new IllegalStateException(Message.ILLEGAL_PLAYER_POSITION_ERROR_MESSAGE);
+        if(isFinish(nowPosition)) throw new IllegalStateException(Message.ALREADY_FINISH_PLAYER_ERROR_MESSAGE);
 
         String correctNextMove = bridge.get(nowPosition);
 
