@@ -12,7 +12,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> bridgeStatus) {
+        String bridgeUpStatus = "[ ", bridgeDownStatus = "[ ";
+        List<String> currentStatus;
+        for (int i = 0; i < bridgeStatus.size(); i++){
+            currentStatus = getbridgeStatus(bridgeStatus, i);
+            bridgeUpStatus += currentStatus.get(0) + "| ";
+            bridgeDownStatus += currentStatus.get(1) + "| ";
+        }
+        bridgeUpStatus.replaceAll("| $", "]");
+        bridgeDownStatus.replaceAll("| $", "]");
+        System.out.printf(bridgeUpStatus + "\n" + bridgeDownStatus + "\n");
     }
 
     /**
