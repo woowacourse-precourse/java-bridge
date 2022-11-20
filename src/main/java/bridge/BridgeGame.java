@@ -7,8 +7,8 @@ public class BridgeGame {
 
     private final List<String> correctBridge;
     // upper,bottom bridge 상태에서 1은 O, 0은 X, 2는 가지 않음을 의미한다
-    private List<Integer> upperBridge;
-    private List<Integer> bottomBridge;
+    List<Integer> upperBridge;
+    List<Integer> bottomBridge;
     public static Integer tryCount = 1;
 
     public BridgeGame(List<String> correctBridge) {
@@ -18,7 +18,7 @@ public class BridgeGame {
     }
 
     public Boolean move(String inputMoving, String nextBridge) {
-        if (nextBridge.equals(inputMoving)) {
+        if (correctBridge.get(tryCount).equals(inputMoving)) {
             makeBridgeSuccessState(nextBridge);
             return true;
         }
@@ -56,5 +56,9 @@ public class BridgeGame {
     private void clearFailStage() {
         upperBridge.remove(upperBridge.size() - 1);
         bottomBridge.remove(bottomBridge.size() - 1);
+    }
+
+    public List<String> getCorrectBridge() {
+        return correctBridge;
     }
 }
