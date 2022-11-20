@@ -1,20 +1,85 @@
 package bridge.domain;
 
+import bridge.domain.vo.BridgeGameResult;
+import bridge.domain.vo.Moving;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static bridge.domain.vo.BridgeGameResult.createBridgeGameResult;
+import static bridge.domain.vo.Moving.createMoving;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
+    private BridgeGame bridgeGame;
 
-    @Test
-    void move() {
+    @BeforeEach
+    void beforeEach() {
+        bridgeGame = new BridgeGame();
     }
 
-    @Test
-    void retry() {
+    @DisplayName("유저가 입력한 값에 따라서 생성된 bridge와의 일치 여부 결정된다.")
+    @ParameterizedTest
+    @MethodSource("moveTestData")
+    void moveTest(String movingInput, String bridgeRoom, boolean answer) {
+        Moving moving = createMoving(movingInput);
+
+        assertThat(bridgeGame.computeGameResult(moving, bridgeRoom).getIsMatched())
+                .isEqualTo(answer);
     }
 
-    @Test
-    void isContinue() {
+    @DisplayName("BridgeGameResult가 총 다리의 길이만큼 들어있으며, 마지막 BridgeGameResult의 isMatched가 true이면 true을, 그 외에는 false를 return한다.")
+    @ParameterizedTest
+    @MethodSource("isSuccessTestData")
+    void isSuccessTest(List<BridgeGameResult> bridgeGameResults, int bridgeSize, boolean answer) {
+
+        assertThat(bridgeGame.isSuccess(bridgeGameResults, bridgeSize))
+                .isEqualTo(answer);
+    }
+
+    @DisplayName("bridgeIndex와 bridgeSize가 같으면 false를, 그 외에는 bridgeGameResult의 isMatched를 return한다.")
+    @ParameterizedTest
+    @MethodSource("isContinueTestData")
+    void isContinueTest(BridgeGameResult bridgeGameResult, List<Integer> bridgeIndexInfo, boolean answer) {
+        int bridgeIndex = bridgeIndexInfo.get(0);
+        int bridgeSize = bridgeIndexInfo.get(1);
+
+        assertThat(bridgeGame.isContinue(bridgeGameResult, bridgeIndex, bridgeSize))
+                .isEqualTo(answer);
+    }
+
+    static Stream<Arguments> moveTestData() {
+        return Stream.of(
+                Arguments.of("D", "D", true),
+                Arguments.of("U", "D", false),
+                Arguments.of("U", "U", true),
+                Arguments.of("D", "U", false),
+                Arguments.of("D", "D", true)
+        );
+    }
+
+    static Stream<Arguments> isSuccessTestData() {
+        List<BridgeGameResult> successCase = List.of(createBridgeGameResult(true, "U"), createBridgeGameResult(true, "U"), createBridgeGameResult(true, "D"));
+        List<BridgeGameResult> failCaseOne = List.of(createBridgeGameResult(true, "D"), createBridgeGameResult(false, "U"));
+        List<BridgeGameResult> failCaseTwo = List.of(createBridgeGameResult(true, "D"), createBridgeGameResult(true, "U"), createBridgeGameResult(false, "U"));
+        return Stream.of(
+                Arguments.of(successCase, 3, true),
+                Arguments.of(failCaseOne, 3, false),
+                Arguments.of(failCaseTwo, 3, false)
+        );
+    }
+
+    static Stream<Arguments> isContinueTestData() {
+        return Stream.of(
+                Arguments.of(createBridgeGameResult(true, "U"), List.of(3,4), true),
+                Arguments.of(createBridgeGameResult(true, "U"), List.of(3,3), false),
+                Arguments.of(createBridgeGameResult(false, "U"), List.of(3,3), false)
+        );
     }
 }
