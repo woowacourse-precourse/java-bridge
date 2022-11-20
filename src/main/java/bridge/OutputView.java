@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println(enterLengthOfBridge);
     }
 
-    public static void outputChoiceMove(){
+    public static void outputChoiceMove() {
         System.out.println(choiceMove);
     }
 
@@ -33,12 +33,14 @@ public class OutputView {
         String output = startOfBridge + map + endOfBridge;
         System.out.println(output);
     }
-    private String checkSuccess(boolean isSuccess){
-        if (isSuccess){
+
+    private String checkSuccess(boolean isSuccess) {
+        if (isSuccess) {
             return success + "성공";
         }
         return success + "실패";
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
