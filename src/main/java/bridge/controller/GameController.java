@@ -17,17 +17,20 @@ public class GameController {
     private final Validator validator = new Validator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final BridgeGame bridgeGame = new BridgeGame();
+    private boolean gameFlag = true;
 
     public void startGame() {
         User user = new User();
         inputView.printMessage(inputMessage.START_GAME);
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
-
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        crossBridge(bridge, user);
+        while (gameFlag) {
+            crossBridge(bridge, user);
+        }
     }
     public void crossBridge(List<String> bridge, User user) {
+        int tryCount = user.getRetryCount();
         int currentIndex = 0;
         while (true) {
             String direction = inputView.readMoving();
@@ -35,15 +38,18 @@ public class GameController {
             boolean isUp = direction.equals(bridge.get(currentIndex));
             String result = bridgeGame.move(direction, bridge.get(currentIndex));
             addResultBridge(isUp, result, user);
-            outputView.printMessage(user.toString());
+            outputView.printMap(user.toString());
             if(result.equals("X")) {
-                askRestartOrEnd();
+                askRestartOrEnd(user.toString(), tryCount, user);
                 return;
             }
         }
     }
-    public void askRestartOrEnd() {
+    public void askRestartOrEnd(String userBridge, int tryCount, User user) {
         String retryOrQuit  = inputView.readGameCommand();
+        setRetryOrQuit(retryOrQuit);
+        outputView.printResult(userBridge, true, tryCount);
+        gameFlag = false;
     }
 
     private void setRetryOrQuit(String retryOrQuit) {
@@ -59,6 +65,7 @@ public class GameController {
     public void addResultBridge(boolean isUp, String result, User user) {
         if(isUp) {
             user.addUpperBridge(result);
+            System.out.println("U");
             return;
         }
         user.addLowerBridge(result);

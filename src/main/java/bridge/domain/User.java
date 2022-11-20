@@ -11,15 +11,19 @@ public class User {
 
     public void addUpperBridge(String resultBlock) {
         bridge.addupperBridge(resultBlock);
-        bridge.addLowerBridge(" ");
+        bridge.addLowerBridge("");
     }
 
     public void addLowerBridge(String resultBlock) {
-        bridge.addupperBridge(" ");
+        bridge.addupperBridge("");
         bridge.addLowerBridge(resultBlock);
     }
     public void plusRetryCount () {
         retryCount++;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
     }
 
     @Override
