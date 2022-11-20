@@ -16,7 +16,7 @@ public class GameController {
         this.inputView = inputView;
         this.bridgeMaker = bridgeMaker;
     }
-    public void manageGame(BridgeGame bridgeGame, UserPath userPath) {
+    public void manageGame(BridgeGame bridgeGame, Bridge bridge) {
         int tryCount = 1;
         while(true) {
             boolean canMove = startGame(bridgeGame, userPath);
@@ -44,31 +44,29 @@ public class GameController {
     }
     public void readyForGame() {
         outputView.printStartGame();
-        List<String> bridge = bridgeMaker.makeBridge(createBridgeSize());
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        UserPath userPath = new UserPath();
-        manageGame(bridgeGame, userPath);
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(createBridgeSize()));
+        BridgeGame bridgeGame = new BridgeGame();
+        manageGame(bridgeGame, bridge);
     }
 
-    public boolean activateUserTurn(BridgeGame bridgeGame, UserPath userPath) {
+    public void activateUserTurn(BridgeGame bridgeGame, Bridge bridge) {
         while(true) {
             String userSelect = inputView.readMoving();
-            userPath.addPath(userSelect);
-            boolean canMove = bridgeGame.move(userSelect, userPath.getBridgePosition()); // 건널 다리의 위치는 userPath의 길이와 동일하다
-            outputView.printMap(bridgeGame.getBridge(), userPath.getUserPath());
+            bridgeGame.move(userSelect);
+            boolean canMove = bridge.moveCheck(userSelect, bridgeGame.getBridgePosition());  // 건널 다리의 위치는 userPath의 길이와 동일하다
+            outputView.printMap(bridge.getBridge(), bridgeGame.getUserPath());
             if(!canMove) {
                 break;
             }
         }
     }
 
-    public void startGame(BridgeGame bridgeGame, UserPath userPath) {
-
+    public void startGame(BridgeGame bridgeGame, Bridge bridge) {
         try {
-            return activateUserTurn(bridgeGame, userPath);
+            activateUserTurn(bridgeGame, bridge);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return activateUserTurn(bridgeGame, userPath);
+            startGame(bridgeGame, bridge);
         }
     }
 
