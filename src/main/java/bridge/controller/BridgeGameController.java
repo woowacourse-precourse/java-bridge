@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.model.MapMaker;
 import bridge.util.Converter;
 import bridge.util.Validator;
 import bridge.ui.InputView;
@@ -14,6 +15,9 @@ import java.util.List;
 import static bridge.util.ErrorCode.*;
 
 public class BridgeGameController {
+    private static final String UPSIDE = "U";
+    private static final String DOWNSIDE = "D";
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final Validator validator = new Validator();
@@ -32,8 +36,16 @@ public class BridgeGameController {
     }
 
     private void playGame(BridgeGame bridgeGame, String moving) {
-        int nowIndex = 0;
-        boolean success = bridgeGame.move(moving, nowIndex);
+        boolean moveSuccess = bridgeGame.move(moving);
+
+        bridgeGame.updateRecords(moving, moveSuccess);
+        List<String> uRecords = bridgeGame.getRecords(UPSIDE);
+        List<String> dRecords = bridgeGame.getRecords(DOWNSIDE);
+
+        MapMaker mapMaker = new MapMaker(uRecords, dRecords);
+        String upsideMap = mapMaker.makeUpsideMap();
+        String downsideMap = mapMaker.makeDownsideMap();
+        outputView.printMap(upsideMap, downsideMap);
     }
 
     private void getBridgeSizeInputAndStartGame() {
