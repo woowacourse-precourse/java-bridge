@@ -35,6 +35,7 @@ public class OutputView {
     final static String FAIL = "실패";
     final static String ATTEMPT = "\n총 시도한 횟수: ";
     static BridgeGame bm = new BridgeGame();
+    static InputView iv = new InputView();
 
 
     /**
@@ -47,7 +48,7 @@ public class OutputView {
             String userInput = bm.move();
             boolean canMove = startLadder(i, upOrDown, userInput);
             if (!canMove) {
-                return bm.retry();
+                return bm.retry(iv.readGameCommand());
             }
         }
         return false;
@@ -123,5 +124,9 @@ public class OutputView {
         startLadder(BridgeGame.totalCount - 1, bridgeMaker, BridgeGame.lastUserInput);
         if (!BridgeGame.isComplete) System.out.println(SUCCEEDED + FAIL + ATTEMPT + BridgeGame.attempt);
         if (BridgeGame.isComplete) System.out.println(SUCCEEDED + SUCCESS + ATTEMPT + BridgeGame.attempt);
+    }
+
+    public static void main(String[] args) {
+
     }
 }

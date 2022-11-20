@@ -4,11 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest extends NsTest {
-
-    static final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("입력된 숫자가 3-20 범위 안에 있는지 확인 하는 테스트")
     @ValueSource(ints = {1, 21, -10})
@@ -41,6 +41,7 @@ public class InputViewTest extends NsTest {
         assertThatThrownBy(() -> InputView.redoOrQuitCheck(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
 
     @Override
     protected void runMain() {}
