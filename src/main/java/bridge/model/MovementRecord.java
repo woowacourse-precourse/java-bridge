@@ -21,4 +21,8 @@ public class MovementRecord {
     public void addMovementRecord(SpotInfo spotInfo) {
         movementMap.add(spotInfo);
     }
+
+    public void clearMovementRecord() {
+        movementMap.clear();
+    }
 }
