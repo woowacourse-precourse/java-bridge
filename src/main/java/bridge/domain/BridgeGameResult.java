@@ -2,8 +2,8 @@ package bridge.domain;
 
 public class BridgeGameResult {
 
-    private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
+    private static final String SUCCESS = "성공";
 
     private int tryCount;
     private String gameResult = FAIL;
