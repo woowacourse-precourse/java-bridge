@@ -10,6 +10,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final Bridge userThinkBridge;
+    private String userMoving;
 
     public BridgeGame(Bridge bridge) {
         this.userThinkBridge = new Bridge(new ArrayList<>());
@@ -28,13 +29,21 @@ public class BridgeGame {
         return userThinkBridge.getBridge();
     }
 
+    public void setUserMoving(String userMoving) {
+        this.userMoving = userMoving;
+    }
+
+    public String getUserMoving() {
+        return userMoving;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving, int step) {
-        boolean isEqual = compareBridgeAndUserThink(moving, step);
+    public boolean move(int step) {
+        boolean isEqual = compareBridgeAndUserThink(step);
         addUserThinkBridge(isEqual);
         return isEqual;
     }
@@ -48,8 +57,8 @@ public class BridgeGame {
         userThinkBridge.clearAll();
     }
 
-    private boolean compareBridgeAndUserThink(String moving, int step){
-        return moving.equals(bridge.getBridge().get(step));
+    private boolean compareBridgeAndUserThink(int step){
+        return userMoving.equals(bridge.getBridge().get(step));
     }
 
     private void addUserThinkBridge(boolean isEqual){
