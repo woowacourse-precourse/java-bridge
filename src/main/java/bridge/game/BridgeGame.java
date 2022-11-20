@@ -62,6 +62,7 @@ public class BridgeGame {
      * 1. 다리를 끝까지 건넜을 경우
      * 2. 마지막까지 이동할 수 있는 칸을 선택했을 경우
      *
+     * @param userNumberOfMoves 사용자의 이동 횟수
      * @return 성공 시 true 반환 / 실패 시 false 반환
      */
     public boolean checkIfGameIsSucceed(int userNumberOfMoves) {
@@ -69,6 +70,20 @@ public class BridgeGame {
             return bridge_userMove.equals(bridge_answer);
         }
         return false;
+    }
+
+    /**
+     * 게임 실패 여부 확인
+     * 실패 조건: 이동할 수 없는 칸을 선택한 경우
+     *
+     * @param userNumberOfMoves 사용자의 이동 횟수
+     * @return 실패 시 true 반환 / 실패가 아닐 시 false 반환
+     */
+    public boolean checkIfGameIsFailed(int userNumberOfMoves) {
+        int currentPositionIndex = userNumberOfMoves - 1;
+        String userCurrentPosition = bridge_userMove.get(currentPositionIndex);
+        String answerCurrentPosition = bridge_answer.get(currentPositionIndex);
+        return userCurrentPosition.compareTo(answerCurrentPosition) != 0;
     }
 
     /**

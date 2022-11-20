@@ -56,7 +56,7 @@ public class GameManager {
             moveUser();
             printBridge_userPredict();
             if (isGameSucceed()) break;
-            askRestartGame();
+            if (isGameFailed()) askRestartGame();
         }
         printGameResult();
     }
@@ -86,6 +86,12 @@ public class GameManager {
             player.setGameSucceed();
         }
         return isGameSucceed;
+    }
+
+    // 실패 여부 확인
+    private boolean isGameFailed() {
+        int userNumberOfMoves = player.getNumberOfMoves();
+        return bridgeGame.checkIfGameIsFailed(userNumberOfMoves);
     }
 
     private void askRestartGame() {
