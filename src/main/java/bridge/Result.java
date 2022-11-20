@@ -11,8 +11,7 @@ public class Result {
     private final List<MoveDirection> directions;
     private final List<Boolean> isAnswers;
 
-    public Result(int tryCount) {
-        this.tryCount = tryCount;
+    public Result() {
         directions = new ArrayList<>();
         isAnswers = new ArrayList<>();
     }
