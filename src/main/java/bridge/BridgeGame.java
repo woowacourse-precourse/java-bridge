@@ -79,12 +79,12 @@ public class BridgeGame {
 
 
     /**
-     * 새로운 브릿지 맵을 생성하는 메서드
-     *
-     * @param size 브릿지 맵 크기
+     * 브릿지 맵을 설정하고 초기화 하는 메서드
+     * @param bridge 브릿지 맵
      */
-    public void generateBridge(int size) {
-        bridge = new Bridge(size, player);
+    public void initBridge(Bridge bridge) {
+        this.bridge = bridge;
+        this.bridge.setPlayer(player);
     }
 
     public int getTryCount() {

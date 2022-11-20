@@ -18,10 +18,10 @@ public class Bridge {
     /*
     생성자
      */
-    public Bridge(int size, Player player) {
+    public Bridge(int size) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
-        this.player = player;
+        player = null;
     }
 
     /**
@@ -84,5 +84,9 @@ public class Bridge {
 
     public int size() {
         return bridge.size();
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

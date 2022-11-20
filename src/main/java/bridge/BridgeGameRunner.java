@@ -19,7 +19,7 @@ public class BridgeGameRunner {
      */
     public void run() {
         output.printStartMessage();
-        game.generateBridge(input.readBridgeSize());
+        game.initBridge(new Bridge(input.readBridgeSize()));
         while (true) {
             repeatMove();
             if (game.isSuccess() || !askRetry()) {
