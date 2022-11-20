@@ -6,5 +6,6 @@ public class Exceptions {
 
     public void executeException(String comment){
         System.out.println(ERROR_COMMENT + comment);
+        throw new IllegalArgumentException();
     }
 }
