@@ -8,6 +8,7 @@ import java.util.List;
 public class BridgeGame {
     private StringBuffer sb1 = new StringBuffer();
     private StringBuffer sb2 = new StringBuffer();
+    Application api = new Application();
 
     public StringBuffer getSb1(){return sb1;}
     public StringBuffer getSb2(){return sb2;}
@@ -92,7 +93,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(int size) {
+        if(size == 0){
+            sb1.delete(0, sb1.length());
+            sb2.delete(0, sb2.length());
+        }
+        if(size != 0 ){
+            sb1.delete(0, sb1.length());
+            sb2.delete(0, sb2.length());
+
+        }
+
     }
 
 
