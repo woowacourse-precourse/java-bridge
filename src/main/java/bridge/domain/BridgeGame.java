@@ -4,7 +4,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.dto.BridgeSize;
 import bridge.domain.dto.GameCommand;
 import bridge.domain.dto.Moving;
-import bridge.domain.dto.MovingResult;
 import bridge.utils.Input;
 import bridge.view.View;
 import java.util.List;
@@ -15,15 +14,18 @@ import java.util.List;
 public class BridgeGame {
 	private final String RETRY = "R";
 	private final String QUIT = "Q";
-	private final int CURRENT_LOCATION_RESET = 0;
-	private final int TRY_NUMBER_RESET = 0;
 	private final boolean GAME_SUCCESS = true;
 	private final boolean GAME_FAIL = false;
-	private int tryNumber = TRY_NUMBER_RESET;
+	private int tryNumber = 0;
 
 	public void start() {
-		Bridge bridge = createBridge();
-		play(bridge);
+		try {
+			Bridge bridge = createBridge();
+			play(bridge);
+		} catch (IllegalArgumentException error) {
+			System.out.println(error);
+			return;
+		}
 	}
 
 	private Bridge createBridge() {
@@ -31,33 +33,22 @@ public class BridgeGame {
 		BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
-		return new Bridge(bridge, bridgeSize.getSize());
+		return new Bridge(bridge);
 	}
 
 	private void play(Bridge bridge) {
-		addTryNumber();
+		tryNumber++;
 		BridgeMap bridgeMap = new BridgeMap();
-		result(bridge, bridgeMap);
+		boolean gameResult = isGameSuccess(bridge, bridgeMap);
+		gameOverOrRetry(gameResult, bridge, bridgeMap);
 	}
 
-	private void addTryNumber() {
-		this.tryNumber++;
-	}
-
-	private void result(Bridge bridge, BridgeMap bridgeMap) {
-		boolean isGameSuccess = playOneGame(bridge, bridgeMap);
-		gameSuccess(isGameSuccess, bridgeMap);
-		gameFail(isGameSuccess, bridgeMap, bridge);
-	}
-
-	private boolean playOneGame(Bridge bridge, BridgeMap bridgeMap) {
-		int currentLocation = CURRENT_LOCATION_RESET;
-		while (currentLocation < bridge.getSize()) {
-			move(bridge, bridgeMap, currentLocation);
-			if (!bridgeMap.isMovingSuccess(currentLocation)) {
+	private boolean isGameSuccess(Bridge bridge, BridgeMap bridgeMap) {
+		while (!bridge.isMovingEnd()) {
+			boolean moveResult = move(bridge, bridgeMap);
+			if (!moveResult) {
 				return false;
 			}
-			currentLocation++;
 		}
 		return true;
 	}
@@ -67,28 +58,37 @@ public class BridgeGame {
 	 * <p>
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void move(Bridge bridge, BridgeMap bridgeMap, int currentLocation) {
-		View view = new View();
+	public boolean move(Bridge bridge, BridgeMap bridgeMap) {
+		User user = inputMoving();
+		MovingResult movingResult = user.selectMoving(bridge);
+		bridgeMap.addMovingResult(movingResult);
+		printBridgeMap(bridgeMap);
+		return movingResult.isMovingSuccess();
+	}
+
+	private User inputMoving() {
 		Moving moving = Input.moving();
-		User user = new User(moving.getMoving());
-		MovingResult movingResult = user.selectMoving(currentLocation, bridge);
-		bridgeMap.addResult(movingResult);
+		return new User(moving.getMoving());
+	}
+
+	private void printBridgeMap(BridgeMap bridgeMap) {
+		View view = new View();
 		view.printBridgeMap(bridgeMap);
 	}
 
-	private void gameSuccess(boolean isGameSuccess, BridgeMap bridgeMap) {
-		if (isGameSuccess) {
-			View view = new View();
-			view.printGameResult(tryNumber, bridgeMap, GAME_SUCCESS);
+	private void gameOverOrRetry(boolean gameResult, Bridge bridge, BridgeMap bridgeMap) {
+		if (gameResult) {
+			gameOver(bridgeMap);
 		}
-	}
-
-	private void gameFail(boolean isGameSuccess, BridgeMap bridgeMap, Bridge bridge) {
-		if (!isGameSuccess) {
+		if (!gameResult) {
 			retry(bridge, bridgeMap);
 		}
 	}
 
+	private void gameOver(BridgeMap bridgeMap) {
+		View view = new View();
+		view.printGameResult(tryNumber, bridgeMap, GAME_SUCCESS);
+	}
 
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -104,6 +104,7 @@ public class BridgeGame {
 
 	private void retryGame(String command, Bridge bridge) {
 		if (command.equals(RETRY)) {
+			bridge.resetCurrentLocation();
 			play(bridge);
 		}
 	}
