@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.controller.BridgeGame;
+import bridge.dto.MapDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -29,6 +30,16 @@ public class BridgeProgram {
                 return;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
+            }
+        }
+    }
+
+    private MapDto getMap() {
+        while (true) {
+            try {
+                return bridgeGame.move(inputView.readMoving());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
