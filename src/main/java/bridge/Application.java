@@ -6,9 +6,8 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
-        while (bridgeGame.move(inputView.readMoving()) ||
-                bridgeGame.retry(inputView.readGameCommand())) {
-            outputView.printResult(bridgeGame.upperBridge, bridgeGame.bottomBridge);
+        while (bridgeGame.move(inputView.readMoving()) || bridgeGame.retry(inputView.readGameCommand())) {
+            outputView.printMap(bridgeGame.upperBridge, bridgeGame.bottomBridge);
         }
         outputView.printResult(bridgeGame.upperBridge, bridgeGame.bottomBridge);
     }
