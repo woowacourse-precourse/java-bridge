@@ -34,5 +34,15 @@ public class OutputView {
     public void printFinalResult() {
         System.out.println(GameMessage.GAME_FINAL_RESULT.getMessage());
     }
+
+    private void printColumnMap(int row, PlayerMap playerMap, int position) {
+        for (int j = 0; j < position; j++) {
+            if (j > 0) {
+                System.out.print(BLANK.getMark() + VERTICAL_BAR.getMark());
+            }
+            System.out.print(BLANK.getMark() + playerMap.getMark(row, j));
+        }
+        System.out.println(BLANK.getMark() + BRAKETS_RIGHT.getMark());
+    }
 }
 
