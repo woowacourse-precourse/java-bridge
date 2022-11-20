@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +11,20 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String size = Console.readLine();
+        if (!isNumber(size)) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        }
+        return Integer.parseInt(size);
+    }
+
+    private boolean isNumber(String str) {
+        for (char ch : str.toCharArray()) {
+            if (!Character.isDigit(ch)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
