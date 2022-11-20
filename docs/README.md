@@ -146,3 +146,15 @@ D
 - [x] downBridge변수의 요소 제거
 - [x] moveCount변수를 0으로 초기화
 - [x] gameCount에 1를 더함
+
+## Application
+### main
+- [ ] printGameStartMessage함수를 실행
+- [ ] readBridgeSize함수를 실행 후, 반환값을 bridgeSize에 저장
+- [ ] makeBridge함수에 bridgeSize를 매개변수로 넣고, 반환값을 answerBridge에 저장 
+- [ ] bridgeSize의 횟수만큼 반복하는 do-while문 생성
+  - [ ] readMoving함수를 실행 후, 반환값을 userRemoveCommand에 저장
+  - [ ] move함수에 매개변수로 userRemoveCommand를 넣고, 반환값을 gameChecked에 저장
+  - [ ] gameChecked의 값이 R인지 비교
+    - [ ] retry함수를 실행
+  - [ ] break문 사용
