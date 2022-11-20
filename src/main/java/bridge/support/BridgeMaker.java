@@ -1,5 +1,6 @@
 package bridge.support;
 
+import bridge.utils.BridgeStatus;
 import bridge.utils.MoveCommand;
 
 import java.util.ArrayList;
@@ -11,8 +12,6 @@ import static bridge.utils.ErrorMessage.BRIDGE_OUT_OF_RANGE;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private static final int MIN_BRIDGE_SIZE = 3;
-    private static final int MAX_BRIDGE_SIZE = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -36,12 +35,9 @@ public class BridgeMaker {
     }
 
     private void validateBridgeSize(int size) {
-        if (isOutOfRange(size)) {
+        if (BridgeStatus.isOutOfRange(size)) {
             throw new IllegalArgumentException(BRIDGE_OUT_OF_RANGE.getMessage());
         }
     }
 
-    private boolean isOutOfRange(int size) {
-        return (size < MIN_BRIDGE_SIZE) || (size > MAX_BRIDGE_SIZE);
-    }
 }

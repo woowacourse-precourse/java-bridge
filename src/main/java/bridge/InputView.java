@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.utils.BridgeStatus;
 import bridge.utils.GameCommand;
 import bridge.utils.MoveCommand;
 import camp.nextstep.edu.missionutils.Console;
@@ -14,9 +15,8 @@ import static bridge.utils.GameMessage.*;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
     private static final String REGEX_NOT_NUMBER = "\\D";
-    private static final long MIN_BRIDGE_SIZE = 3;
-    private static final long MAX_BRIDGE_SIZE = 20;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -33,14 +33,10 @@ public class InputView {
             throw new IllegalArgumentException(INVALID_INPUT_VALUE.getMessage());
         }
 
-        if (isOutOfRange(input)) {
+        int parsedInput = Integer.parseInt(input);
+        if (BridgeStatus.isOutOfRange(parsedInput)) {
             throw new IllegalArgumentException(BRIDGE_OUT_OF_RANGE.getMessage());
         }
-    }
-
-    private boolean isOutOfRange(String input) {
-        long size = Long.parseLong(input);
-        return (size < MIN_BRIDGE_SIZE) || (size > MAX_BRIDGE_SIZE);
     }
 
     private boolean isNotNumber(String input) {
