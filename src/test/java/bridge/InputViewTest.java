@@ -111,7 +111,7 @@ class InputViewTest extends NsTest {
             System.out.println(e.getMessage());
         }
 
-        assertThat(output().trim()).contains(ErrorPhrases.NOT_COMMAND_STRING.toString());
+        assertThat(output().trim()).contains(ErrorPhrases.NOT_MOVING_STRING.toString());
     }
 
     @Override

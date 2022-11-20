@@ -24,7 +24,7 @@ public class BridgeExceptionChecker {
 
     static void raiseExceptionIfIsNotCommand(String str) {
         if (!isCommand(str)) {
-            throw new IllegalArgumentException(ErrorPhrases.NOT_COMMAND_STRING.toString());
+            throw new IllegalArgumentException(ErrorPhrases.NOT_MOVING_STRING.toString());
         }
     }
 

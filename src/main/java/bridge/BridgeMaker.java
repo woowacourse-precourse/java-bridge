@@ -21,7 +21,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; ++i) {
             int generatedValue = bridgeNumberGenerator.generate();
-            String upOrDown = generatedNumberToUpDown(generatedValue);
+            String upOrDown = generatedNumberToMoving(generatedValue);
             bridge.add(upOrDown);
         }
         return List.copyOf(bridge);
@@ -31,7 +31,7 @@ public class BridgeMaker {
      * @param number 생성된 1 또는 0인 숫자
      * @return 1인지 0인지를 확인하여 "U" 또는 "D"를 반환한다.
      */
-    private String generatedNumberToUpDown(int number) {
+    private String generatedNumberToMoving(int number) {
         if (VerticalPositionValue.DOWN.getNumber().equals(number))
             return VerticalPositionValue.DOWN.getSign();
         return VerticalPositionValue.UP.getSign();
