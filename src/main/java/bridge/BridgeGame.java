@@ -11,8 +11,6 @@ public class BridgeGame {
     private final String RESTART = "R";
     private final String QUIT = "Q";
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
     List<String> visited = new ArrayList<>();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     Validate validate = new Validate();
@@ -20,8 +18,7 @@ public class BridgeGame {
     private int tryNum = 1;
     private boolean isSuccess=true;
 
-    public void init(){
-        String input = inputView.readBridgeSize();
+    public void init(String input){
         validate.validateNumberRange(input, MINBRIDGELEN, MAXBRIDGELEN);
         int bridgeLen = Integer.parseInt(input);
         List<String> answerBridge = bridgeMaker.makeBridge(bridgeLen);
@@ -30,37 +27,19 @@ public class BridgeGame {
     /**
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move() {
-        String direction = inputView.readMoving();
+    public List<String> move(String direction) {
         validate.validateContainWord(direction,UP,DOWN);
         visited.add(direction);
-        printUpBridge();
-        printDownBridge();
-        int idx = visited.size()-1;
+        return visited;
+
+    }
+
+    public boolean isRightDirection(int idx, String direction) {
         return bridge.isRightDirection(idx, direction);
     }
 
-    private void printDownBridge() {
-        List<String> downString = new ArrayList<>();
-        for(int i=0; i<visited.size(); i++){
-            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = getResult(i,DOWN, rightDirection);
-            downString.add(result);
-        }
-        outputView.printMap(downString);
-    }
 
-    private void printUpBridge() {
-        List<String> upString = new ArrayList<>();
-        for(int i=0; i<visited.size(); i++){
-            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = getResult(i,UP, rightDirection);
-            upString.add(result);
-        }
-        outputView.printMap(upString);
-    }
-
-    private String getResult(int i, String direction, boolean rightDirection) {
+    public String getResult(int i, String direction, boolean rightDirection) {
         String result = "O";
         if(!rightDirection){
             isSuccess = false;
@@ -83,8 +62,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        String select = inputView.readGameCommand();
+    public boolean retry(String select) {
         validate.validateContainWord(select,RESTART,QUIT);
         if(select.equals("R")){
             reStartInit();
@@ -99,15 +77,16 @@ public class BridgeGame {
         isSuccess= true;
     }
 
-    public void printGameResult(){
-        outputView.printEnding();
-        printUpBridge();
-        printDownBridge();
+    public int getTryNum(){
+        return tryNum;
+    }
+    public String getGameResult(){
         String result = "실패";
         if(isGameCompleted()){
             result = "성공";
         }
-        outputView.printResult(result,tryNum);
+        return result;
     }
 
 }
+
