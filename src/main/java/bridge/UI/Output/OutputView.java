@@ -22,13 +22,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int currentLocation, String move) {
-        if(move.equals("U")) compareTop(currentLocation);
+    public boolean printMap(int currentLocation, String move) {
+        boolean flag = true;
+        if(move.equals("U")){
+            flag = compareTop(currentLocation);
+        }
 
-        if(move.equals("D")) compareBottom(currentLocation);
+        if(move.equals("D")) {
+            flag = compareBottom(currentLocation);
+        }
 
         System.out.println(top.toString());
         System.out.println(bottom.toString());
+
+        return flag;
     }
 
     /**
@@ -66,5 +73,10 @@ public class OutputView {
         bottom.append('X');
         top.append(' ');
         return false;
+    }
+
+    public void clear() {
+        this.top = new StringBuilder();
+        this.bottom = new StringBuilder();
     }
 }
