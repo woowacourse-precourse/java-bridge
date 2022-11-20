@@ -1,10 +1,10 @@
 package bridge.game;
 
-public class Progress {
+public class Move {
     String destination;
     boolean success;
 
-    public Progress(String destination, boolean isSuccess) {
+    public Move(String destination, boolean isSuccess) {
         this.destination = destination;
         this.success = isSuccess;
     }

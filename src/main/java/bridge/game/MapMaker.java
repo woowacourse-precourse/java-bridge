@@ -10,33 +10,33 @@ public class MapMaker {
     private final String END = "]";
     private final String NEW_LINE = "\n";
 
-    public String makeMap(List<Progress> progresses) {
+    public String makeMap(List<Move> moves) {
         StringBuilder map = new StringBuilder();
-        map.append(getUpperBridgeMap(progresses));
-        map.append(getLowerBridge(progresses));
+        map.append(getUpperBridgeMap(moves));
+        map.append(getLowerBridge(moves));
         return map.toString();
     }
 
-    public String getUpperBridgeMap(List<Progress> progresses) {
-        List<Result> upperBridgeResult = makeUpperBridgeResult(progresses);
+    public String getUpperBridgeMap(List<Move> moves) {
+        List<Result> upperBridgeResult = makeUpperBridgeResult(moves);
         String upperBridgeMap = changeResultToString(upperBridgeResult);
         return START + upperBridgeMap + END + NEW_LINE;
     }
 
-    public List<Result> makeUpperBridgeResult(List<Progress> progresses) {
+    public List<Result> makeUpperBridgeResult(List<Move> moves) {
         List<Result> result = new ArrayList<>();
-        for (Progress progress : progresses) {
-            saveUpperMapResult(progress, result);
+        for (Move move : moves) {
+            saveUpperMapResult(move, result);
         }
         return result;
     }
 
-    public void saveUpperMapResult(Progress progress, List<Result> results) {
-        if (progress.getDestination().equals(AreaStatus.DOWN.symbol)) {
+    public void saveUpperMapResult(Move move, List<Result> results) {
+        if (move.getDestination().equals(AreaStatus.DOWN.symbol)) {
             results.add(Result.NONE);
             return;
         }
-        if (progress.isSuccess()) {
+        if (move.isSuccess()) {
             results.add(Result.SUCCESS);
             return;
         }
@@ -56,26 +56,26 @@ public class MapMaker {
         return results.get(lastIndex);
     }
 
-    public String getLowerBridge(List<Progress> progresses) {
-        List<Result> lowerBridgeResult = makeLowerBridgeResult(progresses);
+    public String getLowerBridge(List<Move> moves) {
+        List<Result> lowerBridgeResult = makeLowerBridgeResult(moves);
         String lowerBridgeMap = changeResultToString(lowerBridgeResult);
         return START + lowerBridgeMap + END + NEW_LINE;
     }
 
-    public List<Result> makeLowerBridgeResult(List<Progress> progresses) {
+    public List<Result> makeLowerBridgeResult(List<Move> moves) {
         List<Result> result = new ArrayList<>();
-        for (Progress progress : progresses) {
-            saveLowerMapResult(progress, result);
+        for (Move move : moves) {
+            saveLowerMapResult(move, result);
         }
         return result;
     }
 
-    public void saveLowerMapResult(Progress progress, List<Result> results) {
-        if (progress.getDestination().equals(AreaStatus.UP.symbol)) {
+    public void saveLowerMapResult(Move move, List<Result> results) {
+        if (move.getDestination().equals(AreaStatus.UP.symbol)) {
             results.add(Result.NONE);
             return;
         }
-        if (progress.isSuccess()) {
+        if (move.isSuccess()) {
             results.add(Result.SUCCESS);
             return;
         }

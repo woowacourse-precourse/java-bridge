@@ -18,13 +18,13 @@ public class MapMakerTest {
     @Test
     void makeMap() {
         //given
-        Progress upTrue = new Progress("U", true);
-        Progress upFalse = new Progress("U", false);
-        Progress downTrue = new Progress("D", true);
-        Progress downFalse = new Progress("D", false);
-        List<Progress> progresses = List.of(upTrue, upFalse, downTrue, downFalse);
+        Move upTrue = new Move("U", true);
+        Move upFalse = new Move("U", false);
+        Move downTrue = new Move("D", true);
+        Move downFalse = new Move("D", false);
+        List<Move> moves = List.of(upTrue, upFalse, downTrue, downFalse);
         //when
-        String map = mapMaker.makeMap(progresses);
+        String map = mapMaker.makeMap(moves);
         //then
         assertThat(map).isEqualTo("[ O | X |   |   ]\n" + "[   |   | O | X ]\n");
     }
@@ -33,17 +33,17 @@ public class MapMakerTest {
     @Test
     void makeResults() {
         //given
-        Progress upTrue = new Progress("U", true);
-        Progress upFalse = new Progress("U", false);
-        Progress downTrue = new Progress("D", true);
-        Progress downFalse = new Progress("D", false);
-        List<Progress> progresses = List.of(upTrue, upFalse, downTrue, downFalse);
+        Move upTrue = new Move("U", true);
+        Move upFalse = new Move("U", false);
+        Move downTrue = new Move("D", true);
+        Move downFalse = new Move("D", false);
+        List<Move> moves = List.of(upTrue, upFalse, downTrue, downFalse);
         //when
-        List<Result> upperBridgeResult = mapMaker.makeUpperBridgeResult(progresses);
-        List<Result> lowerBridgeResult = mapMaker.makeLowerBridgeResult(progresses);
+        List<Result> upperBridgeResult = mapMaker.makeUpperBridgeResult(moves);
+        List<Result> lowerBridgeResult = mapMaker.makeLowerBridgeResult(moves);
         //then
-        assertThat(upperBridgeResult.size()).isEqualTo(progresses.size());
-        assertThat(lowerBridgeResult.size()).isEqualTo(progresses.size());
+        assertThat(upperBridgeResult.size()).isEqualTo(moves.size());
+        assertThat(lowerBridgeResult.size()).isEqualTo(moves.size());
         assertThat(upperBridgeResult).containsExactly(Result.SUCCESS, Result.FAIL, Result.NONE, Result.NONE);
         assertThat(lowerBridgeResult).containsExactly(Result.NONE, Result.NONE, Result.SUCCESS, Result.FAIL);
     }
@@ -53,10 +53,10 @@ public class MapMakerTest {
     @ParameterizedTest
     void saveUpperMapResult(String area) {
         //given
-        Progress progress = new Progress(area, true);
+        Move move = new Move(area, true);
         List<Result> results = new ArrayList<>();
         //when
-        mapMaker.saveUpperMapResult(progress, results);
+        mapMaker.saveUpperMapResult(move, results);
         //then
         assertThat(results.size()).isEqualTo(1);
         if (area.equals(AreaStatus.UP.symbol)) {
@@ -71,10 +71,10 @@ public class MapMakerTest {
     @ParameterizedTest
     void saveLowerMapResult(String area) {
         //given
-        Progress progress = new Progress(area, true);
+        Move move = new Move(area, true);
         List<Result> results = new ArrayList<>();
         //when
-        mapMaker.saveLowerMapResult(progress, results);
+        mapMaker.saveLowerMapResult(move, results);
         //then
         assertThat(results.size()).isEqualTo(1);
         if (area.equals(AreaStatus.DOWN.symbol)) {

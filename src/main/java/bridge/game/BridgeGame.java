@@ -12,14 +12,14 @@ public class BridgeGame {
 
     private int totalTry = 0;
     private boolean success = false;
-    private List<Progress> moves = new ArrayList<>();
+    private List<Move> moves = new ArrayList<>();
 
     public BridgeGame(GameCharacter character, int bridgeSize) {
         this.character = character;
         this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
     }
 
-    public void move(String destination) {
+    public void moveCycle(String destination) {
         character.setNextMove(destination);
         saveNextMove();
         character.move();
@@ -27,8 +27,8 @@ public class BridgeGame {
 
     public void saveNextMove() {
         String destination = character.showNextDestination();
-        Progress progress = makeMove(destination, isAbleToMove());
-        moves.add(progress);
+        Move move = makeMove(destination, isAbleToMove());
+        moves.add(move);
     }
 
     public boolean isAbleToMove() {
@@ -37,12 +37,16 @@ public class BridgeGame {
         return showRightDestinationInArea(nextArea).equals(nextMove);
     }
 
-    public String showRightDestinationInArea(int area) {
-        return bridge.get(area);
+    public List<String> showBridge() {
+        return bridge;
     }
 
-    public Progress makeMove(String destination, boolean result) {
-        return new Progress(destination, result);
+    public String showRightDestinationInArea(int area) {
+        return showBridge().get(area);
+    }
+
+    public Move makeMove(String destination, boolean result) {
+        return new Move(destination, result);
     }
 
     public Result moveResult() {
@@ -65,7 +69,7 @@ public class BridgeGame {
         character.reset();
     }
 
-    public List<Progress> showCurrentResult() {
+    public List<Move> showCurrentResult() {
         return new ArrayList<>(moves);
     }
 

@@ -40,7 +40,7 @@ public class BridgeGameMachine {
 
     public Result moveOnce() {
         totalView.out().enterMove();
-        bridgeGame.move(totalView.in().reReadMovingWhenError());
+        bridgeGame.moveCycle(totalView.in().reReadMovingWhenError());
         totalView.out().printMap(bridgeGame.showCurrentResult());
         return bridgeGame.moveResult();
     }

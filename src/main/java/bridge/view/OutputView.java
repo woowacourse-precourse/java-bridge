@@ -2,13 +2,13 @@ package bridge.view;
 
 import bridge.game.BridgeGame;
 import bridge.game.MapMaker;
-import bridge.game.Progress;
+import bridge.game.Move;
 import java.util.List;
 
 public class OutputView {
-    public void printMap(List<Progress> progresses) {
+    public void printMap(List<Move> moves) {
         MapMaker mapMaker = new MapMaker();
-        String map = mapMaker.makeMap(progresses);
+        String map = mapMaker.makeMap(moves);
         System.out.println(map);
     }
 
