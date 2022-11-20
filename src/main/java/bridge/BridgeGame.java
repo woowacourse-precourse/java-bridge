@@ -2,9 +2,9 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static bridge.utils.constant.Constant.*;
+import static bridge.utils.constant.ExceptionPhrase.INVALID_INPUT_NOT_Q_OR_R;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -12,15 +12,11 @@ import static bridge.utils.constant.Constant.*;
 public class BridgeGame {
 
     public List<List<String>> bridges;
-    public List<String> bridgeUp;
-    public List<String> bridgeDown;
+//    public List<String> bridgeUp;
+//    public List<String> bridgeDown;
 
     public BridgeGame() {
-        this.bridges = new ArrayList<>();
-        this.bridgeUp = new ArrayList<>();
-        this.bridgeDown = new ArrayList<>();
-        bridges.add(bridgeUp);
-        bridges.add(bridgeDown);
+        this.bridges = List.of(new ArrayList<>(), new ArrayList<>());
     }
 
     /**
@@ -30,13 +26,15 @@ public class BridgeGame {
      */
     public void move(String direction, String answer) {
         String result = addOorX(direction, answer);
+        List<String> bridgeUp = bridges.get(0);
+        List<String> bridgeDown = bridges.get(1);
         if(direction.equals(UP.getValue())) {
             bridgeUp.add(result);
             bridgeDown.add(BLANK.getValue());
             return;
         }
-        bridgeUp.add(BLANK.getValue());
-        bridgeDown.add(result);
+        bridges.get(0).add(BLANK.getValue());
+        bridges.get(1).add(result);
     }
 
     public String addOorX(String direction, String answer) {
@@ -59,7 +57,7 @@ public class BridgeGame {
         if(quit.equals(QUIT.getValue())) {
             return attempt;
         }
-        throw new IllegalArgumentException("Q나 R을 입력해라");
+        throw new IllegalArgumentException(INVALID_INPUT_NOT_Q_OR_R.getPhrase());
     }
 
     public List<List<String>> getBridges() {
