@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputValidatorTest {
+
     @DisplayName("문자에서 숫자로 바뀌는지 확인")
     @Test
     void checkConvertInputToInt() {
