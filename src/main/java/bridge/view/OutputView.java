@@ -23,7 +23,7 @@ public class OutputView {
 
     private static final String continueGuide = String.join(", ", new ArrayList<>() {{
         for (ContinueType continueType : ContinueType.values()) {
-            add(String.format("%s: %s", continueType.getDescription(), continueType.getText()));
+            add(String.format("%s: %s", continueType.getDescription(), continueType.getCommand()));
         }
     }});
 

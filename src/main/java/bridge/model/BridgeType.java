@@ -28,7 +28,7 @@ public enum BridgeType {
                 .command;
     }
 
-    public static BridgeType searchBridgeToCommand(String command) {
+    public static BridgeType searchBridgeByCommand(String command) {
         return Arrays.stream(BridgeType.values())
                 .filter(bridgeType -> bridgeType.isEqualCommand(command))
                 .findFirst()

@@ -30,7 +30,7 @@ public class InputView {
      */
     public BridgeType readMoving() {
         String input = Console.readLine();
-        return BridgeType.searchBridgeToCommand(input);
+        return BridgeType.searchBridgeByCommand(input);
     }
 
     /**
@@ -38,6 +38,6 @@ public class InputView {
      */
     public ContinueType readGameCommand() {
         String input = Console.readLine();
-        return ContinueType.searchContinueTypeToText(input);
+        return ContinueType.searchContinueTypeByCommand(input);
     }
 }
