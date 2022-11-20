@@ -10,7 +10,18 @@ public class OutputView {
         bottomBridgeMap(bottomBridge);
     }
 
-    public void printResult() {
+    public void printResult(List<Integer> upperBridge, List<Integer> bottomBridge) {
+        System.out.println("최종 게임 결과\n");
+        printMap(upperBridge, bottomBridge);
+        System.out.println("\n 게임 성공 여부:");
+    }
+
+    private void checkFinalResult(List<Integer> upperBridge, List<Integer> bottomBridge) {
+        if (!(upperBridge.contains(0)) && !(bottomBridge.contains(0))) {
+            System.out.println("성공");
+            return;
+        }
+        System.out.println("실패");
     }
 
     private void upperBridgeMap(List<Integer> upperBridge) {
