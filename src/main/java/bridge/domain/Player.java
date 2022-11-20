@@ -14,4 +14,12 @@ public class Player {
     public void movePlayer(String moving) {
         playerMoving.add(moving);
     }
+
+    public void clearPlayerMoving() {
+        playerMoving.clear();
+    }
+
+    public List<String> getPlayerMoving() {
+        return playerMoving;
+    }
 }
