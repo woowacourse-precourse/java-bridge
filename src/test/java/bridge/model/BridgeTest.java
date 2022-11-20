@@ -27,6 +27,6 @@ class BridgeTest {
 
     @Test
     void 최종_성공_테스트() {
-        Assertions.assertTrue(bridge.survivedToTheLast(2));
+        Assertions.assertTrue(bridge.survivedToTheLast(3));
     }
 }
