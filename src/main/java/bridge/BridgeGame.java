@@ -1,17 +1,22 @@
 package bridge;
 
+import bridge.model.BridgeMaker;
+import bridge.model.BridgeMoving;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
     private int location;
-
     private int retryCount;
+    private BridgeMaker bridgeMaker;
 
-    public BridgeGame(){
+    public BridgeGame(int size){
         this.location=-1;
         this.retryCount=1;
+        bridgeMaker =new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeMaker.makeBridge(size);
     }
 
     /**
