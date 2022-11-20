@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 
 import static bridge.utils.GameStatus.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -72,6 +73,38 @@ class BridgeGameTest {
         }
         assertEquals(bridgeGame.getTryCount(), result);
     }
+
+    @Nested
+    @DisplayName("진행과정을 반환한다.")
+    class resultMapTest {
+        BridgeGame game = new BridgeGame(
+                List.of("U", "D", "U")
+        );
+
+        @Test
+        @DisplayName("U D U 일때 출력형태")
+        void testOnUDU() {
+            game.move("U");
+            game.move("D");
+            game.move("U");
+
+            String resultMap = bridgeGame.getResultMap();
+            assertThat(resultMap).contains("[ O |  | O ]");
+            assertThat(resultMap).contains("[   | O |   ]");
+        }
+
+        @Test
+        @DisplayName("U U U 일때 출력형태")
+        void testUU() {
+            game.move("U");
+            game.move("U");
+
+            String resultMap = bridgeGame.getResultMap();
+            assertThat(resultMap).contains("[ O |  ]");
+            assertThat(resultMap).contains("[   | X ]");
+        }
+    }
+
 
     @Nested
     @DisplayName("예외 테스트")
