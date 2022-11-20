@@ -9,7 +9,6 @@ import bridge.dto.input.ReadBridgeSizeDto;
 import bridge.dto.input.ReadGameCommandDto;
 import bridge.dto.input.ReadMovingDto;
 import bridge.dto.output.PrintExceptionDto;
-import bridge.dto.output.PrintMapDto;
 import bridge.dto.output.PrintResultDto;
 import bridge.exception.domain.WrongGeneratorException;
 import bridge.utils.game.GameStatus;
@@ -80,7 +79,7 @@ public class GameController {
         ReadMovingDto readMovingDto = ioViewManager.readMoving();
         MoveDto moveDto = bridgeGame.move(readMovingDto);
 
-        ioViewManager.printMap(new PrintMapDto(moveDto.getPlayer()));
+        ioViewManager.printMap(moveDto.getPrintMapDto());
         return moveDto.getNextGameStatus();
     }
 

@@ -7,6 +7,7 @@ import bridge.dto.controller.MoveDto;
 import bridge.dto.controller.RetryDto;
 import bridge.dto.input.ReadGameCommandDto;
 import bridge.dto.input.ReadMovingDto;
+import bridge.dto.output.PrintMapDto;
 import bridge.utils.game.GameCommand;
 import bridge.utils.game.GameStatus;
 
@@ -24,8 +25,9 @@ public class BridgeGame {
         BridgeTile playerStep = BridgeTile.findTile(readMovingDto.getMovingCommand());
         boolean movable = player.move(bridge, playerStep);
         boolean success = player.isSuccessful(bridge);
+        PrintMapDto printMapDto = new PrintMapDto(bridge, player);
 
-        return new MoveDto(GameStatus.findNextGamePlay(success, movable), player);
+        return new MoveDto(GameStatus.findNextGamePlay(success, movable), printMapDto);
     }
 
     public RetryDto retry(final ReadGameCommandDto readGameCommandDto) {

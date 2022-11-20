@@ -7,12 +7,13 @@ import bridge.utils.message.ExceptionMessageUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Player {
 
     private static final String HISTORY_SEPARATOR = " | ";
 
-    private final List<PlayerStep> playerStepHistory;
+    private final List<BridgeTile> playerStepHistory;
     private long tryCount;
 
     public Player(int size) {
@@ -33,21 +34,17 @@ public class Player {
     }
 
     public boolean move(final Bridge bridge, final BridgeTile playerStep) {
-        boolean moving = bridge.calculatePlayerMoving(playerStep, playerStepHistory.size());
-        playerStepHistory.add(new PlayerStep(playerStep, moving));
+        int playerPosition = playerStepHistory.size();
 
-        return moving;
+        playerStepHistory.add(playerStep);
+        return bridge.calculatePlayerMoving(playerStep, playerPosition);
     }
 
-    public String getPlayerTargetTileHistory(final BridgeTile targetTile) {
-        return playerStepHistory
-                .stream()
-                .map(playerAnswer -> changeLogFromHistory(playerAnswer, targetTile))
-                .collect(Collectors.joining(HISTORY_SEPARATOR));
-    }
-
-    private String changeLogFromHistory(final PlayerStep playerStep, final BridgeTile targetTile) {
-        return playerStep.getMovableLog(targetTile);
+    public String getPlayerTargetTileHistory(final Bridge bridge, final BridgeTile targetTile) {
+        return IntStream.range(0, playerStepHistory.size())
+            .mapToObj(position -> playerStepHistory.get(position)
+                    .getBridgeTileLog(bridge, targetTile, position))
+            .collect(Collectors.joining(HISTORY_SEPARATOR));
     }
 
     public boolean isSuccessful(final Bridge bridge) {
@@ -58,8 +55,9 @@ public class Player {
     }
 
     private boolean lastPlayerStepMovable(final Bridge bridge) {
-        return bridge.isEnd(playerStepHistory.size())
-                && playerStepHistory.get(playerStepHistory.size() - 1).isMovable();
+        int playerSteps = playerStepHistory.size() - 1;
+
+        return bridge.calculatePassingBridge(playerSteps, playerStepHistory.get(playerSteps));
     }
 
     public void preparedNextPlay() {
