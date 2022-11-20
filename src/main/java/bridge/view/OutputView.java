@@ -11,11 +11,9 @@ import java.util.List;
 public class OutputView {
 
     private static final String startGame = "다리 건너기 게임을 시작합니다.";
-    private static final String resultOfGame = "최종 게임 결과";
-    private static final String successOfNot = "게임 성공 여부: ";
+    private static final String gameResult = "최종 게임 결과";
+    private static final String successOrNot = "게임 성공 여부: ";
     private static final String countOfTry = "총 시도한 횟수: ";
-    private static final String successMark = "O";
-    private static final String failMark = "X";
 
     public void gameStart() {
         System.out.println(startGame);
@@ -26,10 +24,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> successFlags) {
-        List<String[]> map = makeBridgeSections(bridge, successFlags);
+    public List<String[]> printMap(List<String> bridge, List<String> marks) {
+        List<String[]> map = makeBridgeSections(bridge, marks);
         printLayer(map, Course.TOP.getNumber());
         printLayer(map, Course.BOTTOM.getNumber());
+        return map;
     }
 
     private void printLayer(List<String[]> map, int course) {
@@ -43,16 +42,16 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    private List<String[]> makeBridgeSections(List<String> bridge, List<String> successFlags) {
+    private List<String[]> makeBridgeSections(List<String> bridge, List<String> marks) {
         List<String[]> temp = new ArrayList<>();
-        for (int i = 0; i < successFlags.size(); i++) {
-            String[] bridgeSection = makeBridgeSection(successFlags.get(i), bridge.get(i));
+        for (int i = 0; i < marks.size(); i++) {
+            String[] bridgeSection = makeBridgeSection(bridge.get(i), marks.get(i));
             temp.add(bridgeSection);
         }
         return temp;
     }
 
-    private String[] makeBridgeSection(String mark, String course) { //"O", "U"
+    private String[] makeBridgeSection(String course, String mark) { // "U", "O"
         String[] section = {" ", " "};
         int pos = selectPosition(course);
         section[pos] = mark;
@@ -71,6 +70,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String[]> curMap, String resultOfGame, int gameCount) {
+        System.out.println(gameResult);
+        printLayer(curMap, Course.TOP.getNumber());
+        printLayer(curMap, Course.BOTTOM.getNumber());
+        System.out.print(successOrNot);
+        System.out.println(resultOfGame);
+        System.out.print(countOfTry);
+        System.out.println(gameCount);
     }
 }
