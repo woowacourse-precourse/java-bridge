@@ -3,13 +3,14 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.command.GameCommand;
+import bridge.domain.BridgeGame;
 import bridge.exception.InputException;
+import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-    private BridgeGame bridgeGame;
-    private int numberOfAttempts = 0;
+    private BridgeGameService bridgeGameService;
 
     public void start() {
         OutputView.printStart();
@@ -22,7 +23,7 @@ public class BridgeGameController {
         try {
             int size = getSize();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
+            bridgeGameService = new BridgeGameService(new BridgeGame(bridgeMaker.makeBridge(size)));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             set();
@@ -36,24 +37,20 @@ public class BridgeGameController {
     }
 
     private void progress() {
-        numberOfAttempts++;
-        for(int i=0; i<bridgeGame.getBridgeSize(); i++) {
-            moveAndPrint(i);
-            if(!bridgeGame.success()) {
-                retry();
-                break;
-            }
+        while(bridgeGameService.success() && !bridgeGameService.isComplete()) {
+            moveAndPrint();
         }
+        if(!bridgeGameService.isComplete()) retry();
     }
 
-    private void moveAndPrint(int index) {
+    private void moveAndPrint() {
         try {
             String command = getMovingCommand();
-            bridgeGame.move(index, command);
-            OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getResult());
+            bridgeGameService.startOneRound(command);
+            OutputView.printMap(bridgeGameService.getBridge(), bridgeGameService.getResult());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            moveAndPrint(index);
+            moveAndPrint();
         }
     }
 
@@ -64,7 +61,7 @@ public class BridgeGameController {
     }
 
     private void end() {
-        OutputView.printResult(bridgeGame, numberOfAttempts);
+        OutputView.printResult(bridgeGameService, bridgeGameService.getNumberOfAttempts());
     }
 
     private void retry() {
@@ -78,7 +75,7 @@ public class BridgeGameController {
     }
 
     private void executeRetry() {
-        bridgeGame.retry();
+        bridgeGameService.restart();
         progress();
     }
 

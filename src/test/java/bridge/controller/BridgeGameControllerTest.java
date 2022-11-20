@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.OutputView;
+import bridge.domain.BridgeGame;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -44,7 +44,7 @@ public class BridgeGameControllerTest {
         List<String> bridge = bridgeGame.getBridge();
         //when
         String mark = bridge.get(index);
-        bridgeGame.move(index, mark);
+        bridgeGame.move(mark);
         //then
         assertThat(bridgeGame.success());
     }

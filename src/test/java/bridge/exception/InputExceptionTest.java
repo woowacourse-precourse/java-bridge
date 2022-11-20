@@ -1,7 +1,5 @@
 package bridge.exception;
 
-import bridge.controller.BridgeGame;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
