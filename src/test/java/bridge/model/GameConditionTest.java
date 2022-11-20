@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class GameConditionTest {
 
@@ -49,11 +51,9 @@ class GameConditionTest {
     }
 
     @DisplayName("존재하지 않는 조건이면 예외가 발생한다.")
-    @Test
-    void getConditionWithException() {
-        //given
-        String input = "@";
-
+    @ValueSource(strings = {"1", "@", " ", "u", "가"})
+    @ParameterizedTest
+    void getConditionWithException(String input) {
         //then
         assertThatThrownBy(() -> GameCondition.from(input)).isInstanceOf(
                 IllegalArgumentException.class);

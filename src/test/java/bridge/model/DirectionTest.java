@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class DirectionTest {
 
@@ -75,11 +77,9 @@ class DirectionTest {
     }
 
     @DisplayName("존재하지 않는 방향이면 예외가 발생한다.")
-    @Test
-    void getDirectionWithException() {
-        //given
-        String input = "@";
-
+    @ValueSource(strings = {"1", "@", " ", "u", "가"})
+    @ParameterizedTest
+    void getDirectionWithException(String input) {
         //then
         assertThatThrownBy(() -> Direction.from(input)).isInstanceOf(
                 IllegalArgumentException.class);
@@ -100,11 +100,9 @@ class DirectionTest {
     }
 
     @DisplayName("존재하지 않는 생성 코드면 예외가 발생한다.")
-    @Test
-    void getDirectionByCodeWithException() {
-        //given
-        int generateCode = -1;
-
+    @ValueSource(strings = {"-1", "999"})
+    @ParameterizedTest
+    void getDirectionByCodeWithException(int generateCode) {
         //then
         assertThatThrownBy(() -> Direction.numberToDirection(generateCode)).isInstanceOf(
                 IllegalStateException.class);
