@@ -2,9 +2,9 @@ package bridge;
 
 import java.util.List;
 
-public class BridgeGameController {
-  private InputView inputView;
-  private OutputView outputView;
+public class Controller {
+  InputView inputView = new InputView();
+  OutputView outputView = new OutputView();
 
   public int inputViewSize() {
     return inputView.readBridgeSize();

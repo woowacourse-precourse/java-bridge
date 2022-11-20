@@ -1,7 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +7,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    Controller controller = new Controller();
     List<String> upBridge;
     List<String> downBridge;
     int gameTryCount = 1;
@@ -58,8 +55,7 @@ public class BridgeGame {
 
 
     public void failResult(List<String> upperBridge, List<String> lowerBridge, List<String> answer) {
-        outputView.printMap(upperBridge);
-        outputView.printMap(lowerBridge);
+        controller.outputViewResult(upperBridge, lowerBridge);
         retry(upperBridge, lowerBridge, answer);
     }
     /**
@@ -68,12 +64,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(List<String> up, List<String> down, List<String> answer) {
-        InputView inputView = new InputView();
         Message.requestContinueMessage();
-        String userCommand = inputView.readGameCommand();
+        String userCommand = controller.inputViewCommand();
         if (userCommand.equals("R")) {
             gameTryCount += 1;
-            System.out.println("R");
             test(answer);
             return ;
         }
@@ -82,8 +76,7 @@ public class BridgeGame {
 
     public void resultMessage(List<String> up, List<String> down) {
         Message.gameResultMesaage();
-        outputView.printMap(up);
-        outputView.printMap(down);
+        controller.outputViewResult(up, down);
 
         Message.result();
 
@@ -95,8 +88,7 @@ public class BridgeGame {
     }
     public void result(int gameTryCount) {
         Message.gameResultMesaage();
-        outputView.printMap(upBridge);
-        outputView.printMap(downBridge);
+        controller.outputViewResult(upBridge, downBridge);
         Message.result();
         Message.success();
         Message.tryCount(gameTryCount);
@@ -107,26 +99,24 @@ public class BridgeGame {
 
         Message.startMessage();
         Message.requestBridgeSizeMessage();
-        int size = inputView.readBridgeSize();
-        System.out.println("size : " + size);
+        int size = controller.inputViewSize();
         List<String> answer = bridgeMaker.makeBridge(size); // 정답
         test(answer);
     }
     public void test (List<String> answer) {
-        Message.requestMovingMessage();
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
 
         System.out.println("answer = " + answer);
 
         for (int i = 0; i < answer.size(); i++) {
-            String userMovingValue = inputView.readMoving();
+            Message.requestMovingMessage();
+            String userMovingValue = controller.inputViewMoving();
             if(!move(answer,userMovingValue)) { // 정답을 맞추면 현재 다리에 O를 추가한다
                 failMove(answer, userMovingValue, i);
                 return ;
             }
-            outputView.printMap(upBridge); // 추가된 다리만큼만 출력한다
-            outputView.printMap(downBridge);
+            controller.outputViewResult(upBridge, downBridge);
         }
         result(gameTryCount);
     }
