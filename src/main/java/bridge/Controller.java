@@ -1,14 +1,12 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Controller {
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private static BridgeMaker bridgeMaker;
-    private static InputException inputException;
+    private static BridgeSizeInputException bridgeSizeInputException;
 
     public Controller() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();

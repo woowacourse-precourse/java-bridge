@@ -16,7 +16,7 @@ public class InputView {
             String bridgeSize = Console.readLine();
 
             /* 예외 처리에 대한 내용 */
-            InputException.validate(bridgeSize);
+            BridgeSizeInputException.validate(bridgeSize);
             return Integer.parseInt(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

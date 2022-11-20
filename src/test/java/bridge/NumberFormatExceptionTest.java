@@ -26,7 +26,7 @@ public class NumberFormatExceptionTest extends NsTest {
         String inputSize = "ff";
 
         assertThatThrownBy(() -> {
-            InputException.validate(inputSize);
+            BridgeSizeInputException.validate(inputSize);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE + " 숫자만 입력해주세요.");
     }
@@ -37,7 +37,7 @@ public class NumberFormatExceptionTest extends NsTest {
         String inputSize = "5";
 
         assertThatCode(() -> {
-            InputException.validate(inputSize);
+            BridgeSizeInputException.validate(inputSize);
         }).doesNotThrowAnyException();
     }
     

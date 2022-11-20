@@ -1,27 +1,25 @@
 package bridge;
 
-import java.text.ParseException;
-
-public class InputException {
+public class BridgeSizeInputException {
 
     public static void validate(String bridgeSize) {
         checkParsingError(bridgeSize);
-//        isNumber(bridgeSize);
+        isNumber(bridgeSize);
     }
 
     private static void checkParsingError(String number) {
         try {
             Integer.parseInt(number);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NumberFormatExceptionMessage.NUMBER_FORMAT_EXCEPTION_MESSAGE.getNumberFormatExceptionMessage());
+            throw new IllegalArgumentException(BridgeSizeInputExceptionMessage.NUMBER_FORMAT_EXCEPTION_MESSAGE.getBridgeSizeInputExceptionMessage());
         }
     }
 
     // 에러 메세지 생성해야 됨
-    private void isNumber(String bridgeSize) {
+    private static void isNumber(String bridgeSize) {
         int bridgeSizeCheck = Integer.parseInt(bridgeSize);
         if (!(3 <= bridgeSizeCheck && bridgeSizeCheck <= 20)) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(BridgeSizeInputExceptionMessage.NUMBER_RANGE_EXCEPTION_MESSAGE.getBridgeSizeInputExceptionMessage());
         }
     }
 }
