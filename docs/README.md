@@ -55,7 +55,7 @@
 - retry
   - 사용자의 재시작 입력 여부 호출
   - R이면 init 호출하여 모든 변수 초기화
-  - Q이면 init()으로초기화
+  - Q이면 Status 변경
 - init
   - 현재 상태(List<String>,현재 위치)를 재시작을 위해 초기화
 - checkCrossBridge
@@ -67,16 +67,16 @@
 
 ## TEST
 
-### InputViewValidationTEST
+### InputViewValidationTest
 - 숫자가 아닌 수를 정확히 예외처리 하는지 테스트
 - 숫자가 3에서 20사이의 범위를 지키지 못했을 때 예외처리 테스트
 - 'U' 혹은 'D'인지 확인하는 예외 처리 테스트
 - 'R' 혹은 'Q'인지 확인하는 예외 처리 테스트
 
-### BridgeMaker
+### BridgeMakerTest
 - List가 입력한 길이만큼의 size를 갖는지 테스트
 - List가 U와 D의 값만 갖는지 테스트
 - List<Integer>의 0과 1이 알맞은 List<String> U와 D로 변환되는지 테스트
 
-### Bridge
+### BridgeTest
 - 다리가 사용자의 입력값과 현재위치와 비교하여, 알맞은 반환 값을 반환하는지 테스트
