@@ -33,6 +33,10 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         System.out.println("다리 건너기 게임을 시작합니다.\n");
+        bridgeNumberAsk();
+        madeBridge = bridgeMaker.makeBridge(size);
+    }
+    private int bridgeNumberAsk() {
         while (true) {
             System.out.println("다리의 길이를 입력해주세요.");
             try {
@@ -43,7 +47,7 @@ public class BridgeGame {
             }
             break;
         }
-        madeBridge = bridgeMaker.makeBridge(size);
+        return size;
     }
     public void move() {
         while (count <= size) {
