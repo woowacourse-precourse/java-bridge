@@ -18,7 +18,12 @@ public class BridgeGame {
         position = 0;
     }
 
-    public void move() {
+    public void move(String move, List<String> bridge, PlayerMap playerMap) {
+        String mark = createMark(move, bridge);
+        Direction direction = createDirection(move);
+
+        playerMap.move(direction, position, mark);
+        position++;
     }
 
     public void retry() {
