@@ -31,6 +31,13 @@ public enum Direction {
         return this.token;
     }
 
+    /**
+     * 코드 값으로 방향 상수 불러오는 함수
+     * 0 -> DOWN, 1 -> UP 반환
+     * @param code 0 또는 1의 상수 값
+     * @return DOWN / UP
+     * @throws IllegalArgumentException 0, 1을 제외한 숫자 입력 시 예외 발생
+     */
     public static Direction of(final int code) throws IllegalArgumentException {
         String name = DIR_MAP.get(code);
         if (name == null) {
