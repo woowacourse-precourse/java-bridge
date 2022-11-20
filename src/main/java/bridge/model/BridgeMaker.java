@@ -24,21 +24,21 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generatedNumber = bridgeNumberGenerator.generate();
-            makeUp(generatedNumber,bridge);
-            makeDown(generatedNumber,bridge);
+            makeUp(generatedNumber, bridge);
+            makeDown(generatedNumber, bridge);
         }
         return bridge;
     }
 
 
-    public void makeDown(int generatedNumber,List<String> bridge) {
-        if(!isNumberOne(generatedNumber)){
+    public void makeDown(int generatedNumber, List<String> bridge) {
+        if (!isNumberOne(generatedNumber)) {
             bridge.add("D");
         }
     }
 
-    public void makeUp(int generatedNumber,List<String> bridge) {
-        if(isNumberOne(generatedNumber)){
+    public void makeUp(int generatedNumber, List<String> bridge) {
+        if (isNumberOne(generatedNumber)) {
             bridge.add("U");
         }
     }

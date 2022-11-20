@@ -9,40 +9,41 @@ public class BridgeMap {
     private List<String> bridgeDownMap;
 
 
-    public BridgeMap(int size){
+    public BridgeMap(int size) {
         bridgeUpMap = new ArrayList<>();
         bridgeDownMap = new ArrayList<>();
         initBridgeMap(size);
     }
 
-    public List<String> getBridgeUpMap(){
+    public List<String> getBridgeUpMap() {
         return bridgeUpMap;
     }
-    public List<String> getBridgeDownMap(){
+
+    public List<String> getBridgeDownMap() {
         return bridgeDownMap;
     }
 
-    public void makeBridgeMap(int location,String moving,String expression){
-        if(moving.equals("U")){
-            makeBridgeUpMap(location,expression);
+    public void makeBridgeMap(int location, String moving, String expression) {
+        if (moving.equals("U")) {
+            makeBridgeUpMap(location, expression);
         }
-        if(moving.equals("D")){
-            makeBridgeDownMap(location,expression);
+        if (moving.equals("D")) {
+            makeBridgeDownMap(location, expression);
         }
     }
 
-    public void makeBridgeUpMap(int location,String expression){
+    public void makeBridgeUpMap(int location, String expression) {
         bridgeUpMap.set(location, expression);
     }
 
 
-    public void makeBridgeDownMap(int location,String expression){
+    public void makeBridgeDownMap(int location, String expression) {
         bridgeDownMap.set(location, expression);
     }
 
 
-    public void initBridgeMap(int size){
-        for(int i=0;i<size;i++){
+    public void initBridgeMap(int size) {
+        for (int i = 0; i < size; i++) {
             bridgeUpMap.add(" ");
             bridgeDownMap.add(" ");
         }

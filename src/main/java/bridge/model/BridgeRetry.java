@@ -4,18 +4,18 @@ public class BridgeRetry {
 
     private final String retry;
 
-    public BridgeRetry(String retry){
+    public BridgeRetry(String retry) {
         validateRetry(retry);
         this.retry = retry;
     }
 
-    public String getRetry(){
+    public String getRetry() {
         return retry;
     }
 
 
-    public void validateRetry(String retry){
-        if(isRetryFormatCorrect(retry)){
+    public void validateRetry(String retry) {
+        if (isRetryFormatCorrect(retry)) {
             return;
         }
         throw new IllegalArgumentException("ERROR 재시도 문자는 R,Q 이어야만 가능합니다.");

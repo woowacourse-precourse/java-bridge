@@ -16,29 +16,31 @@ public class BridgeGame {
     private int location;
     private int retryCount;
 
-    public int getRetryCount(){
+    public int getRetryCount() {
         return retryCount;
     }
 
-    public int getLocation(){
+    public int getLocation() {
         return location;
     }
 
-    public List<String> getUpBridge(){
+    public List<String> getUpBridge() {
         return bridgeMap.getBridgeUpMap();
     }
-    public List<String> getDownBridge(){
+
+    public List<String> getDownBridge() {
         return bridgeMap.getBridgeDownMap();
     }
-    public List<String> getBridge(){
+
+    public List<String> getBridge() {
         return bridge;
     }
 
-    public BridgeGame(int size){
-        this.location=-1;
-        this.retryCount=1;
-        BridgeMaker bridgeMaker =new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge=bridgeMaker.makeBridge(size);
+    public BridgeGame(int size) {
+        this.location = -1;
+        this.retryCount = 1;
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = bridgeMaker.makeBridge(size);
         bridgeComparator = new BridgeComparator();
         bridgeMap = new BridgeMap(size);
     }
@@ -51,16 +53,16 @@ public class BridgeGame {
     public void move(String moving) {
         countLocation();
         String expression = bridgeComparator.compareBridge(bridge, moving, location);
-        bridgeMap.makeBridgeMap(location,moving,expression);
+        bridgeMap.makeBridgeMap(location, moving, expression);
     }
 
     private void countLocation() {
-        location+=1;
+        location += 1;
     }
 
 
-    public boolean checkEndPoint(){
-        if(bridge.size()==location+1) {
+    public boolean checkEndPoint() {
+        if (bridge.size() == location + 1) {
             return true;
         }
         return false;
@@ -74,19 +76,19 @@ public class BridgeGame {
     public void retry(int size) {
         countRetry();
         initLocation();
-        bridgeMap=new BridgeMap(size);
+        bridgeMap = new BridgeMap(size);
     }
 
     private void initLocation() {
-        location=-1;
+        location = -1;
     }
 
     public boolean isClosed() {
         return bridgeComparator.isExpressionX(location, bridgeMap.getBridgeUpMap(), bridgeMap.getBridgeDownMap());
     }
 
-    public void countRetry(){
-        retryCount+=1;
+    public void countRetry() {
+        retryCount += 1;
     }
 
 }
