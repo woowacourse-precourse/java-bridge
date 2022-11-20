@@ -1,9 +1,4 @@
 package bridge.domain.bridge;
-
-import bridge.domain.Correct;
-import bridge.domain.Direction;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,12 +7,11 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private int turn;
-    private final BridgeMap bridgeMap;
+
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.turn = 0;
-        this.bridgeMap = new BridgeMap();
     }
 
     /**
@@ -27,21 +21,16 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         boolean isCorrect = checkValue(direction);
-        bridgeMap.addMap(direction, isCorrect);
         this.turn ++;
-        if (isTurnOutOfRange() || !isCorrect) {
-            return false;
-        }
-        return true;
+        return isCorrect;
     }
 
-    private boolean isTurnOutOfRange() {
+    public boolean checkEnd() {
         return this.turn == this.bridge.size();
     }
 
-    private boolean checkValue(String direction) {
+    public boolean checkValue(String direction) {
         String answer = this.bridge.get(this.turn);
-        System.out.println(direction + "" + answer);
         return direction.equals(answer);
     }
 
@@ -50,9 +39,6 @@ public class BridgeGame {
         return this.turn == (this.bridge.size() - 1);
     }
 
-    public BridgeMap getBridgeMap() {
-        return this.bridgeMap;
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
