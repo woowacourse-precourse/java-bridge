@@ -23,8 +23,8 @@ public class BridgeMap {
         int otherIndex = getOtherIndex(index);
         String symbol = Status.getByStatus(isCorrect).getSymbol();
 
-        bridgeMap.get(index).add(symbol);
-        bridgeMap.get(otherIndex).add(" ");
+        bridgeMap.get(otherIndex).add(symbol);
+        bridgeMap.get(index).add(" ");
     }
 
     private int getOtherIndex(int index) {
