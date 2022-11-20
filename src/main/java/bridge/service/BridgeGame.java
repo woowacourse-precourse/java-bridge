@@ -20,8 +20,8 @@ public class BridgeGame {
 
     private void isComplete(Bridge bridge, User user) {
         if (bridge.getLocation() == bridge.getBridge().size()) {
-            user.gameWin();
-            user.gameOver();
+            user.winGame();
+            user.finishGame();
         }
     }
 
