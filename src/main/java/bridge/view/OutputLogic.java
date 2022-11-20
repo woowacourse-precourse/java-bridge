@@ -4,12 +4,12 @@ package bridge.view;
 import java.util.List;
 
 public class OutputLogic {
-    private static final String START = "[";
-    private static final String END = "]";
-    private static final String WALL = "|";
-    private static final String CORRECT = " O ";
-    private static final String SPACE = "   ";
-    private static final String WRONG = " X ";
+    private final String START = "[";
+    private final String END = "]";
+    private final String WALL = "|";
+    private final String CORRECT = " O ";
+    private final String SPACE = "   ";
+    private final String WRONG = " X ";
     private String side;
 
     private String input;

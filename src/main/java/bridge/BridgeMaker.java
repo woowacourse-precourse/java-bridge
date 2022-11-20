@@ -2,14 +2,11 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import static bridge.option.Option.*;
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private final String UPPER = "U";
-    private final String LOWER = "D";
-    private final Integer UPPER_INCLUSIVE = 1;
     private final BridgeNumberGenerator bridgeNumberGenerator;
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;

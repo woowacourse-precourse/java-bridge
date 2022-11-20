@@ -1,13 +1,9 @@
 package bridge.exeption;
 
 import static bridge.exeption.ExceptionMessage.*;
+import static bridge.option.Option.*;
 
 public class Exception {
-    private static final String UPPER = "U";
-    private static final String LOWER = "D";
-    private static final String RETRY = "R";
-    private static final String QUIT = "Q";
-    private static final String ZERO = "0";
     private static void throwException(Boolean bool,String error){
         if(bool) throw new IllegalArgumentException(error);
     }
@@ -21,6 +17,7 @@ public class Exception {
         throwException(!input.equals(RETRY)&!input.equals(QUIT), RETRY_INPUT_ERROR.getError());
     }
     public static void catchZeroInputException(String input){
-        throwException(input.equals(ZERO),ZERO_INPUT_ERROR.getError());
+        int inputInt = Integer.parseInt(input);
+        throwException(inputInt<MIN|MAX<inputInt,ZERO_INPUT_ERROR.getError());
     }
 }

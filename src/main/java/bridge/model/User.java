@@ -1,10 +1,6 @@
 package bridge.model;
-
+import static bridge.option.Option.*;
 public class User {
-    private static final Integer START_POSITION = 0;
-    private static final Integer START_COUNT = 1;
-    private static final Boolean SUCCESS = Boolean.TRUE;
-    private static final Boolean FAIL = Boolean.FALSE;
     private Integer position;
     private Integer count;
     private Boolean result;

@@ -6,5 +6,4 @@ public class Application {
         GameLogic gameLogic =new GameLogic();
         gameLogic.start();
     }
-
 }

@@ -7,12 +7,12 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String SUCCESS = "성공";
-    private static final String FAIL = "실패";
-    private static final String UPPER ="U";
-    private static final String LOWER ="D";
-    private static OutputLogic outputLogic;
-    private static Integer bridgeSize;
+    private final String SUCCESS = "성공";
+    private final String FAIL = "실패";
+    private final String UPPER ="U";
+    private final String LOWER ="D";
+    private OutputLogic outputLogic;
+    private Integer bridgeSize;
     public OutputView(List<String> bridgeList){
         this.outputLogic = new OutputLogic(bridgeList);
         this.bridgeSize = bridgeList.size();
