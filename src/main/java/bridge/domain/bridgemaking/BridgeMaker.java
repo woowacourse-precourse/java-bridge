@@ -27,16 +27,16 @@ public class BridgeMaker {
         List<String> answerBridge = new ArrayList<>();
 
         for (int count = 0; count < size; count++) {
-            int crossableSpace = bridgeNumberGenerator.generate();
-            addToStringList(crossableSpace, answerBridge);
+            int answerSpace = bridgeNumberGenerator.generate();
+            addToStringList(answerSpace, answerBridge);
         }
         return answerBridge;
     }
 
-    private void addToStringList(int crossableSpace, List<String> answerBridge) {
-        if (crossableSpace == DOWN.getIndex()) {
+    private void addToStringList(int answerSpace, List<String> answerBridge) {
+        if (answerSpace == DOWN.getIndex()) {
             answerBridge.add(InputValue.DOWN.getValue());
-        } else if (crossableSpace == UP.getIndex()) {
+        } else if (answerSpace == UP.getIndex()) {
             answerBridge.add(InputValue.UP.getValue());
         }
     }
