@@ -13,10 +13,14 @@ public class BridgeGame {
     private PlayersMove playersMove;
     private int moveCount;
 
+    // 여기다가 GameContext 집어넣겠음..
+    private GameContext gameContext;
+
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         playersMove = new PlayersMove();
         moveCount = 0;
+        gameContext = new GameContext();
     }
 
     /**
@@ -62,10 +66,23 @@ public class BridgeGame {
      */
     public void retry() {
         refreshGameContext();
+        gameContext.increaseRetry();
     }
 
     private void refreshGameContext() {
         playersMove.initialize();
         moveCount = 0;
+    }
+
+    public void quit() {
+        gameContext.transition();
+    }
+
+    public boolean onPlay(){
+        return gameContext.isPlaying();
+    }
+
+    public GameContext getContextInfo(){
+        return gameContext;
     }
 }

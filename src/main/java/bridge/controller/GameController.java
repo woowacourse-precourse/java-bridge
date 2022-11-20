@@ -14,21 +14,19 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
-    private final GameContext context;
+    // private final GameContext context;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
-        context = GameContext.getInstance();
+        // context = GameContext.getInstance();
     }
 
     public void executeGame() {
         outputView.printOpening();
         bridgeGame = new BridgeGame(makeBridge());
         crossToOtherSide();
-        if (!context.hasQuit()){
-            printFinalResult();
-        }
+        printFinalResult();
     }
 
     private Bridge makeBridge() {
@@ -45,7 +43,7 @@ public class GameController {
     }
 
     private void crossToOtherSide() {
-        while (!bridgeGame.playerHasCrossed() && !context.hasQuit()) {
+        while (!bridgeGame.playerHasCrossed() && bridgeGame.onPlay()) {
             outputView.printUserChoiceOpening();
             try {
                 String choice = inputView.readMoving(inputView.userInput());
@@ -55,7 +53,6 @@ public class GameController {
                 outputView.printErrorMessage(exception.getMessage());
             }
         }
-        context.transition();
     }
 
     private void moveNextStep(String choice) {
@@ -68,30 +65,26 @@ public class GameController {
             outputView.printGameContinueOpening();
             try {
                 String cmd = inputView.readGameCommand(inputView.userInput());
-                decideAction(cmd);
+                transition(cmd);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
                 retryOrQuitIfFailed(success);
             }
-
         }
     }
 
-    private void decideAction(String cmd) {
+    private void transition(String cmd) {
         if (cmd.equals(RETRY)) {
-            context.increaseTryCount();
             bridgeGame.retry();
-            crossToOtherSide();
         }
         if (cmd.equals(QUIT)) {
-            context.quit();
-            printFinalResult();
+            bridgeGame.quit();
         }
     }
 
     private void printFinalResult() {
         outputView.printResultOpening();
         outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
-        outputView.printResult(context.getTryCount(), context.isSuccess());
+        outputView.printResult(bridgeGame.getContextInfo());
     }
 }

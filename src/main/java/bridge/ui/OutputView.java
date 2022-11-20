@@ -8,6 +8,7 @@ import static bridge.ui.MessageUtil.FINAL_RESULT_INTRO;
 import static bridge.ui.MessageUtil.POSITION_CHOICE_INPUT;
 import static bridge.ui.MessageUtil.START_GAME_INTRO;
 
+import bridge.GameContext;
 import java.util.List;
 import java.util.Map;
 
@@ -87,9 +88,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int tryCount, boolean success) {
-        System.out.printf("%s: %s\n", GAME_SUCCESS, sucessMapper(success));
-        System.out.printf("%s: %d", TOTAL_TRY, tryCount);
+    public void printResult(GameContext context) {
+        System.out.printf("%s: %s\n", GAME_SUCCESS, sucessMapper(context.isPlaying()));
+        System.out.printf("%s: %d", TOTAL_TRY, context.getRetryCnt());
     }
 
     private String sucessMapper(boolean success){

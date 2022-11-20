@@ -1,37 +1,31 @@
 package bridge;
 
 public class GameContext {
-    private static final GameContext gameContext = new GameContext();
+    // to refactor...
+    private static final int QUIT = 1;
+    private static final int PLAYING = 2;
 
-    private int tryCount = 1;
-    private boolean success = false;
-    private boolean quit = false;
+    private int retryCnt;
+    private int state;
 
-    public static GameContext getInstance() {
-        return gameContext;
+    public GameContext(){
+        retryCnt = 1;
+        state = PLAYING;
     }
 
-    public void increaseTryCount(){
-        tryCount++;
+    public void increaseRetry(){
+        retryCnt++;
     }
 
     public void transition(){
-        success = true;
+        state = QUIT;
     }
 
-    public void quit(){
-        quit = true;
+    public int getRetryCnt() {
+        return retryCnt;
     }
 
-    public int getTryCount() {
-        return tryCount;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public boolean hasQuit() {
-        return quit;
+    public boolean isPlaying() {
+        return state == PLAYING;
     }
 }
