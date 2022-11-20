@@ -12,10 +12,6 @@ public class BridgeData {
         this.bridge = bridge;
     }
 
-    public void setBridgeDesignByUser(String bridgeDesignByUser) {
-        this.bridgeDesignByUser.add(bridgeDesignByUser);
-    }
-
     public List<String> getBridge() {
         return this.bridge;
     }
@@ -23,6 +19,7 @@ public class BridgeData {
     public List<String> getBridgeDesignByUser() {
         return this.bridgeDesignByUser;
     }
+
     public int getTotalAttempt() {
         return this.totalAttempt;
     }
@@ -33,5 +30,9 @@ public class BridgeData {
 
     public void initializeTotalAttempt() {
         this.totalAttempt = 0;
+    }
+
+    public void updateBridgeDesignByUser(String bridgeDesignByUser) {
+        this.bridgeDesignByUser.add(bridgeDesignByUser);
     }
 }
