@@ -72,4 +72,8 @@ public class BridgeGame {
     public String getPicture() {
         return this.bridgeMonitor.getPicture();
     }
+
+    public int getTryCount() {
+        return this.tryCount;
+    }
 }

@@ -46,7 +46,7 @@ public class BridgeController {
     private void announceFinalResult() {
         boolean isSuccess = this.bridgeGame.isSuccess();
         String bridgePicture = this.bridgeGame.getPicture();
-//        int tryCount = this.bridgeGame.getTryCount();
+        int tryCount = this.bridgeGame.getTryCount();
 //        this.outputView.announceEndGame(isSuccess, bridgePicture, tryCount);
     }
 }
