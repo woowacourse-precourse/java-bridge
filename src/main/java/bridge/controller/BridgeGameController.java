@@ -10,16 +10,14 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker;
-    private BridgeGame bridgeGame;
 
+    private BridgeGame bridgeGame;
     private boolean play;
 
     public BridgeGameController(BridgeNumberGenerator generator) {
-        inputView = new InputView();
-        outputView = new OutputView();
         bridgeMaker = new BridgeMaker(generator);
     }
 
