@@ -1,10 +1,14 @@
-package bridge;
+package bridge.domain;
 
+import bridge.exception.BridgeIllegalArgumentException;
+import bridge.service.BridgeNumberGenerator;
+import bridge.setting.BridgeMakerEnum;
+import bridge.setting.Setting;
+import bridge.view.InputView;
+
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -13,11 +17,56 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            bridge.add(String.valueOf(judgeRandomNumber(bridgeNumberGenerator.generate())));
+        }
+
+        return bridge;
+    }
+
+    public char judgeRandomNumber(int randomNumber) {
+        return BridgeMakerEnum.valuesOfBridge(randomNumber);
+    }
+
+    public int inputBridgeSize() {
+        InputView inputView = new InputView();
+        String input = new String();
+
+        while (!isValidateInputBridgeSize(input)) {
+            input = inputView.readBridgeSize();
+        }
+
+        return Integer.parseInt(input);
+    }
+
+    public boolean isValidateInputBridgeSize(String bridgeSize) {
+        try{
+            checkIsNumber(bridgeSize);
+            checkIsRightRange(Integer.parseInt(bridgeSize));
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public void checkIsNumber(String bridgeSize) {
+        try {
+            Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            throw new BridgeIllegalArgumentException("다리 길이는 숫자여야 합니다.");
+        }
+    }
+
+    public void checkIsRightRange(int bridgeSize) {
+        if (bridgeSize < Setting.MIN_BRIDGE_SIZE) {
+            throw new BridgeIllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+        if (bridgeSize > Setting.MAX_BRIDGE_SIZE) {
+            throw new BridgeIllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 }
