@@ -51,7 +51,7 @@ public class InputView {
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] : R, Q 입력 요구");
-            return readMoving();
+            return readGameCommand();
         }
     }
 }
