@@ -57,7 +57,7 @@
 
 ---
 
-### OutputView.lass
+### OutputView.class
 
 * [ ] printMap
   * 현재 플레이어의 움직임에 따른 다리 현황을 출력
@@ -65,3 +65,19 @@
 * [ ] printResult
   * 게임이 끝났을 경우 결과에 따른 다리 현황을 출력
   * 게임 성공 여부와 시도한 횟수 출력
+
+---
+
+### Validator.class
+
+* [ ] validateBridgeSize
+  * 입력값이 다리의 길이로 유효한지 검증
+
+* [ ] validateMove
+  * 입력값이 이동값으로 유효한지 검증
+
+* [ ] validateGameCommand
+  * 입력값이 게임 재시작/종료 명령어로 유효한지 검증 
+
+* [ ] validateDecimal
+  * 입력값이 정수로써 ParseInt 가 가능한지 검증 
