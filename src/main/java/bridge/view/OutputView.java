@@ -44,48 +44,33 @@ public class OutputView {
     public void printResult(BridgeGameResult bridgeGameResult, TryCount tryCount) {
         StringBuilder result = new StringBuilder();
         result.append(PRINT_RESULT_GUIDE).append(NEW_LINE);
-        result.append(printMapFormat(bridgeGameResult)).append(NEW_LINE).append(NEW_LINE);
+        result.append(printMapFormat(bridgeGameResult)).append(NEW_LINE);
         result.append(printGameSuccessFormat(bridgeGameResult)).append(NEW_LINE);
         result.append(printTryCountFormat(tryCount));
         System.out.println(result);
     }
 
     public String printMapFormat(BridgeGameResult result) {
+        String upSide = sideFormat(result, BridgeShape.UP);
+        String downSide = sideFormat(result, BridgeShape.DOWN);
+        return upSide + NEW_LINE + downSide + NEW_LINE;
+    }
+
+    private String sideFormat(BridgeGameResult result, BridgeShape bridgeShape) {
         Bridge bridge = result.bridge();
         List<BridgeShape> bridgeShapes = bridge.bridgeShapes();
-        List<Boolean> booleans = result.attemptsResult();
-        return String.join(NEW_LINE, upSideFormat(bridgeShapes, booleans), downSideFormat(bridgeShapes, booleans));
-    }
-
-    private String upSideFormat(List<BridgeShape> bridgeShapes, List<Boolean> booleans) {
-        List<String> upSidesTexts = IntStream.range(0, booleans.size())
-                .mapToObj(index -> moveUpSideFormat(booleans.get(index), bridgeShapes.get(index)))
+        List<Boolean> attemptsResult = result.attemptsResult();
+        List<String> sidesTexts = IntStream.range(0, attemptsResult.size())
+                .mapToObj(index -> moveFormat(attemptsResult.get(index), bridgeShapes.get(index), bridgeShape))
                 .collect(Collectors.toList());
-        return bridgeFormat(upSidesTexts);
+        return bridgeFormat(sidesTexts);
     }
 
-    private String moveUpSideFormat(boolean move, BridgeShape bridgeShape) {
-        if (move && bridgeShape == BridgeShape.UP) {
+    private String moveFormat(boolean move, BridgeShape bridgeShape, BridgeShape compareBridgeShape) {
+        if (move && bridgeShape == compareBridgeShape) {
             return MOVE_SUCCESS;
         }
-        if (!move && bridgeShape == BridgeShape.DOWN) {
-            return MOVE_FAIL;
-        }
-        return MOVE_NOT_SELECT;
-    }
-
-    private String downSideFormat(List<BridgeShape> bridgeShapes, List<Boolean> booleans) {
-        List<String> downSideTexts = IntStream.range(0, booleans.size())
-                .mapToObj(index -> moveDownSideFormat(booleans.get(index), bridgeShapes.get(index)))
-                .collect(Collectors.toList());
-        return bridgeFormat(downSideTexts);
-    }
-
-    private String moveDownSideFormat(boolean move, BridgeShape bridgeShape) {
-        if (move && bridgeShape == BridgeShape.DOWN) {
-            return MOVE_SUCCESS;
-        }
-        if (!move && bridgeShape == BridgeShape.UP) {
+        if (!move && bridgeShape != compareBridgeShape) {
             return MOVE_FAIL;
         }
         return MOVE_NOT_SELECT;
