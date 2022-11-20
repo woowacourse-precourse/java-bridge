@@ -13,4 +13,11 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public String validateNumber(int number) {
+        if (number == 0) {
+            return "D";
+        }
+        return "U";
+    }
 }
