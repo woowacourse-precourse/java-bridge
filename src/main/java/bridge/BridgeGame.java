@@ -49,4 +49,9 @@ public class BridgeGame {
         }
         return GameMark.X.getMark();
     }
+
+    public void resetPrev(PlayerMap playerMap) {
+        position--;
+        playerMap.resetPrev(position);
+    }
 }
