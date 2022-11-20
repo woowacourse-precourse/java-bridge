@@ -52,6 +52,57 @@ BUILD SUCCESSFUL in 0s
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
+### 🔥 구현 기능 목록
+
+- [ ] **CLASS1. enum BridgeBlock**
+  - **Class Variables**
+    - [ ] UPPER_BLOCK("U")
+    - [ ] LOWER_BLOCK("D")
+    - [ ] private final String bridgeBlock
+  - **Class Methods**
+    - [ ] public BridgeBlock(String bridgeBlock)
+    - [ ] public String getBridgeBlock()
+- [ ] **CLASS2. enum RetrySelector**
+  - **Class Variables**
+    - [ ] RETRY("R")
+    - [ ] QUIT("Q")
+  - **CLASS Methods**
+    - [ ] public RetrySelector(String retrySelector)
+    - [ ] public String getRetrySelect()
+- [ ] **CLASS2. BridgeMaker**
+  - **Class Variables**
+    - [ ] private final BridgeNumberGenerator bridgeNumberGenerator
+  - **Class Methods**
+    - [ ] public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator)
+    - [ ] public List<String> makeBridge(int size)
+- [ ] **CLASS3. BridgeGame**
+  - **Class Variables**
+    - [ ] private List<String> bridge
+    - [ ] private int currentUserPosition
+    - [ ] private boolean gameWinStatus
+    - [ ] private int totalTryCount
+  - **Class Methods**
+    - [ ] public BridgeGame(BridgeMaker bridgeMaker)
+    - [ ] public boolean move(BridgeBlock block)
+    - [ ] public boolean retry(RetrySelector retrySelector)
+    - [ ] public List<String> getBridge()
+    - [ ] public int getCurrentUserPosition()
+    - [ ] public boolean getGameWinStatus()
+    - [ ] public int getTotalTryCount()
+- [ ] **CLASS4. InputView**
+  - **Class Methods**
+    - [ ] public int readBridgeSize()
+    - [ ] public String readMoving()
+    - [ ] public String readGameCommand()
+- [ ] **CLASS5. OutputView**
+  - **Class Methods**
+    - [ ] public void printMap(List<String> bridge, int currentUserPosition)
+    - [ ] public void printResult(List<String> bridge, int currentUserPosition, boolean getGameWinStatus)
+    - [ ] public void printGameStartMessage()
+    - [ ] public void printReadBridgeSizeMessage()
+    - [ ] public void printReadMovingMessage()
+    - [ ] public void printReadGameCommandMessage()
+
 ### 입출력 요구 사항
 
 #### 입력
