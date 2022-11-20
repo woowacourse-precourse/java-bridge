@@ -3,6 +3,7 @@ package bridge.domain.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constants.Direction;
+import bridge.constants.GameResult;
 import bridge.constants.MovingPossibility;
 import bridge.domain.model.Bridge;
 import bridge.domain.model.GameResultInformation;
@@ -33,10 +34,14 @@ public class BridgeGameOperator {
         boolean gameStart = true;
         while (gameStart) {
             if (tryOneGame() == MovingPossibility.CAN_MOVE) {
+                GameResultInformation.setGameResult(GameResult.SUCCESS);
                 break;
             }
 
-            gameStart = selectRetryOrNot();
+            if (!selectRetryOrNot()) {
+                gameStart = false;
+                GameResultInformation.setGameResult(GameResult.FAIL);
+            }
         }
     }
 
