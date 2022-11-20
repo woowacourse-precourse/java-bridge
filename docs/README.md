@@ -154,7 +154,7 @@ D
 ### compareMoveCount
 - [x] 매개변수와 moveCount 비교
 - [x] true이면 true 반환
-  - [ ] gameStatus를 true로 저장
+  - [x] gameStatus를 true로 저장
 - [x] false리면 false 반환
 
 ## Application
