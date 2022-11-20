@@ -29,12 +29,14 @@ public class OutputView {
     public void printMap(List<List<Integer>> map) {
         printOneLine(map.get(0));
         printOneLine(map.get(1));
+        System.out.println();
     }
-    private void printOneLine(List<Integer> line){
+
+    private void printOneLine(List<Integer> line) {
         System.out.print(BLOCK_START);
-        for(int i = 0; i < line.size(); i++){
+        for (int i = 0; i < line.size(); i++) {
             printBlock(line.get(i));
-            if(i != line.size()-1){
+            if (i != line.size() - 1) {
                 System.out.print(BLOCK_SEP);
             }
         }
@@ -47,7 +49,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(final boolean result) {
-        System.out.println(GAME_RESULT.get(result));
+        System.out.println(GAME_SUCCESS_RESULT + GAME_RESULT.get(result));
     }
 
     private void printBlock(final int index) {
@@ -70,11 +72,7 @@ public class OutputView {
         System.out.println(GAME_RESTART_OR_END);
     }
 
-    public void printGameSuccessResultMessage() {
-        System.out.println(GAME_SUCCESS_RESULT);
-    }
-
-    public void printGameTryResultMessage() {
-        System.out.println(GAME_TRY);
+    public void printGameTryResultMessage(int userTry) {
+        System.out.println(GAME_TRY + userTry);
     }
 }
