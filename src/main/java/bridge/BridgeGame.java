@@ -63,6 +63,19 @@ public class BridgeGame {
         return result;
     }
 
+    public String displayBridge(int size, List<String> bridge, String search){
+        String result1 = sb1.substring(0,sb1.length()-1) + "]";
+        String result2 = sb2.substring(0, sb2.length()-1) + "]";
+
+        spliceMoveStart(size);
+        spliceMoverEnd(size, bridge);
+        spliceMiddle(size, bridge);
+        directionUp(size, bridge, search);
+        directionDown(size, bridge, search);
+
+        return result1 + System.getProperty("line.separator")+result2;
+
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
