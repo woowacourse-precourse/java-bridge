@@ -4,8 +4,7 @@ import java.util.Arrays;
 
 public enum Bridge {
     LOWER_BRIDGE("D", 0),
-    UPPER_BRIDGE("U", 1),
-    NOTHING(null, -1);
+    UPPER_BRIDGE("U", 1);
 
     private final String sign;
     private final int bridgeType;
@@ -27,7 +26,7 @@ public enum Bridge {
         return Arrays.stream(Bridge.values())
                 .filter(bridge -> bridge.sign.equals(sign))
                 .findFirst()
-                .orElse(NOTHING);
+                .orElse(null);
     }
 
     public int getBridgeType() {
