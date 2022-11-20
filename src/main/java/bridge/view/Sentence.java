@@ -14,9 +14,9 @@ public enum Sentence {
     RETRY_CHUNK("R"),
     QUIT_CHUNK("Q"),
 
-    LENGTH_NOT_IN_RANGE("[ERROR] Input is not in range"),
-    INPUT_NOT_U_OR_D("[ERROR] Input is not U or D"),
-    INPUT_NOT_R_OR_Q("[ERROR] Input is not Q or R");
+    LENGTH_NOT_IN_RANGE("Input is not in range"),
+    INPUT_NOT_U_OR_D("Input is not U or D"),
+    INPUT_NOT_R_OR_Q("Input is not Q or R");
 
     private final String s;
 
