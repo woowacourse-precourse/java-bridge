@@ -11,6 +11,6 @@ public class Utility {
 
     public static String ERROR_MESSAGE = "[ERROR]";
 
-    public static int minBridgeLength = 3;
-    public static int maxBridgeLength = 20;
+    public static int MIN_BRIDGE_LENGTH = 3;
+    public static int MAX_BRIDGE_LENGTH = 20;
 }
