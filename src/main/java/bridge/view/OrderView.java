@@ -12,4 +12,20 @@ public class OrderView {
     public void lineSkip(){
         System.out.println();
     }
+    public void correctUp() {
+        System.out.println("[ O ]");
+        System.out.println("[   ]");
+    }
+    public void correctDown() {
+        System.out.println("[   ]");
+        System.out.println("[ O ]");
+    }
+    public void wrongUp() {
+        System.out.println("[ X ]");
+        System.out.println("[   ]");
+    }
+    public void wrongDown() {
+        System.out.println("[   ]");
+        System.out.println("[ X ]");
+    }
 }
