@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,17 +53,6 @@ public class BridgeGame {
         userPaths = new ArrayList<>();
     }
 
-    public List<String> getPassedPaths() {
-        return userPaths;
-    }
-    public int getBridgeLength() {
-        return this.bridge.size();
-    }
-
-    public int getTryCount() {
-        return tryCount;
-    }
-
     public boolean doesCrossedBridge() {
         if (userLocation == bridge.size()) {
             return true;
@@ -72,5 +60,17 @@ public class BridgeGame {
 
         return false;
         //return userLocatoion >= bridge.size() 가능
+    }
+
+    public List<String> getPassedPaths() {
+        return userPaths;
+    }
+
+    public int getBridgeSize() {
+        return this.bridge.size();
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }

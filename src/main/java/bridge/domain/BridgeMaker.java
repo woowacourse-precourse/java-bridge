@@ -1,5 +1,7 @@
-package bridge;
+package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
+import bridge.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class BridgeMaker {
             int randomNumber = bridgeNumberGenerator.generate();
             bridge.add(Path.getPath(randomNumber));
         }
-        //예시 다리 모양: ["U", "D", "D", "U", "U"]
+
         return bridge;
     }
 }
