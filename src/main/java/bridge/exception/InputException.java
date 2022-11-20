@@ -1,8 +1,6 @@
 package bridge.exception;
 
-import static bridge.exception.ExceptionMessage.*;
-import static bridge.service.PlayerCommend.MOVE_LOWER;
-import static bridge.service.PlayerCommend.MOVE_UPPER;
+import static bridge.service.PlayerCommend.*;
 
 public class InputException extends IllegalArgumentException {
     private static final int MAX_SIZE = 20;
@@ -18,18 +16,28 @@ public class InputException extends IllegalArgumentException {
 
     public void validateMoveCommend(String commend) {
         if (commend.length() != ONE_WORD) {
-            throw new IllegalArgumentException(NOT_LENGTH.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.NOT_LENGTH.getMessage());
         }
         if (commend.equals(MOVE_LOWER.getCommend()) || commend.equals(MOVE_UPPER.getCommend())) {
             return;
         }
-        throw new IllegalArgumentException(NOT_MOVE_COMMEND.getMessage());
+        throw new IllegalArgumentException(ExceptionMessage.NOT_MOVE_COMMEND.getMessage());
+    }
+
+    public void validateGameCommend(String commend) {
+        if (commend.length() != ONE_WORD) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_LENGTH.getMessage());
+        }
+        if (commend.equals(RESTART.getCommend()) || commend.equals(QUIT.getCommend())) {
+            return;
+        }
+        throw new IllegalArgumentException(ExceptionMessage.NOT_GAME_COMMEND.getMessage());
     }
 
     private void notDigit(String readLine) {
         for (char readOne : readLine.toCharArray()) {
             if (!Character.isDigit(readOne)) {
-                throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+                throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER.getMessage());
             }
         }
     }
@@ -37,13 +45,13 @@ public class InputException extends IllegalArgumentException {
     private void outOfRange(String readLine) {
         int size = Integer.parseInt(readLine);
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException(NOT_RANGE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.NOT_RANGE.getMessage());
         }
     }
 
     private void validateInputLength(String readLine) {
         if (readLine.length() > TWO_WORD || readLine.length() < ONE_WORD) {
-            throw new IllegalArgumentException(NOT_LENGTH.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.NOT_LENGTH.getMessage());
         }
     }
 }
