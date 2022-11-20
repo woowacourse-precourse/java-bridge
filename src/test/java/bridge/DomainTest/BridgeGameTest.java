@@ -1,19 +1,15 @@
 package bridge.DomainTest;
 
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.Database.BridgeData;
 import bridge.Domain.BridgeGame;
-import bridge.Domain.BridgeMaker;
-import bridge.UI.InputView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,4 +46,56 @@ public class BridgeGameTest {
             assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(0);
         }
     }
+
+    @Nested
+    @DisplayName("다리 이동 테스트")
+    class moveTest {
+
+        @DisplayName("건널수 있는 칸으로 갈 때 이동한 칸을 저장하고 진행한다.")
+        @Test
+        void moveToPossibleZone() {
+            bridgeData.setBridge(Arrays.asList("U", "D", "D"));
+
+            String nextStep = "U";
+            InputStream in = new ByteArrayInputStream(nextStep.getBytes());
+            System.setIn(in);
+
+            bridgeGame.move();
+            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(nextStep);
+        }
+
+        @DisplayName("건널수 없는 칸으로 갈 때 이동한 칸을 저장하고 실패를 선언한다.")
+        @Test
+        void moveToImpossibleZone() {
+            bridgeData.setBridge(Arrays.asList("U","D","D"));
+
+            String nextStep = "D";
+            InputStream in = new ByteArrayInputStream(nextStep.getBytes());
+            System.setIn(in);
+
+            bridgeGame.move();
+            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(nextStep);
+            assertThat(bridgeGame.isGameSucceed()).isFalse();
+        }
+
+        @DisplayName("다 건넜을 경우 성공을 선언한다.")
+        @Test
+        void finishCrossingBridgeTest() {
+            bridgeData.setBridge(Arrays.asList("U","D","D"));
+            List<String> nextSteps = new ArrayList<>(Arrays.asList("U","D","D"));
+
+            for (String nextStep : nextSteps) {
+                InputStream in = new ByteArrayInputStream(nextStep.getBytes());
+                System.setIn(in);
+                bridgeGame.move();
+            }
+
+            System.out.println(bridgeData.getBridge());
+            System.out.println(bridgeData.getBridgeDesignByUser());
+
+            assertThat(bridgeGame.isGameSucceed()).isTrue();
+        }
+    }
+
+
 }
