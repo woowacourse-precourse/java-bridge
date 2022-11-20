@@ -10,7 +10,6 @@ public class Application {
 
         int bridgeSize = inputView.readBridgeSize();
 
-        
     }
 
     public static void printStart() {
