@@ -25,4 +25,8 @@ public class BridgeHistory {
     public int getBridgeGameRound() {
         return bridgeGameRound.checkRound();
     }
+
+    public BridgeGameState getGameResult() {
+        return bridgeAnswer.compareWith(playerBridgeHistory);
+    }
 }
