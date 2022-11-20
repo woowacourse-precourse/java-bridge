@@ -8,22 +8,22 @@ public class Result {
     private static final String DOWN_SIGN = "D";
 
     private int tryCount;
-    private List<MoveDirection> directions;
-    private List<Boolean> isAnswers;
+    private final List<MoveDirection> directions;
+    private final List<Boolean> isAnswers;
 
-    public Result() {
+    public Result(int tryCount) {
+        this.tryCount = tryCount;
         directions = new ArrayList<>();
         isAnswers = new ArrayList<>();
     }
 
-    private void increaseTryCount() {
+    public void increaseTryCount() {
         tryCount++;
     }
 
     public void updateIsAnswers(MoveDirection direction, boolean isAnswer) {
         directions.add(direction);
         isAnswers.add(isAnswer);
-        increaseTryCount();
     }
 
     public int getTryCount() {
@@ -56,5 +56,9 @@ public class Result {
 
     public boolean hasWrong() {
         return isAnswers.contains(false);
+    }
+
+    public boolean isHitAllAnswers() {
+        return !isAnswers.contains(false);
     }
 }
