@@ -12,7 +12,10 @@ public class Bridge {
     }
 
     public boolean isPlayerRightBridge(Player player){
-        return false;
+        for(int index = 0; index < player.getBridges().size(); index++){
+            if(!player.getBridges().get(index).equals(bridges.get(index))) return false;
+        }
+        return true;
     }
 
     public List<String> getBridges(){
