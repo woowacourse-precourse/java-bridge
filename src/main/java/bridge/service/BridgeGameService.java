@@ -1,18 +1,29 @@
 package bridge.service;
 
+import bridge.domain.bridgegame.BridgeGame;
 import bridge.dto.BridgeGameDto;
 import bridge.repository.BridgeGameRepository;
-import bridge.repository.BridgeRepository;
 
 public class BridgeGameService {
     private final static BridgeGameRepository bridgeGameRepository = BridgeGameRepository.getInstance();
-    private final static BridgeRepository bridgeRepository = BridgeRepository.getInstance();
+
     public void initBridgeGame(BridgeGameDto bridgeGameDto) {
         bridgeGameRepository.update(bridgeGameDto.toEntity());
     }
 
-    public boolean isPassable(int distance, String movingDirection) {
-        String passableDirection = bridgeRepository.getPassableDirectionAt(distance);
-        return movingDirection.equals(passableDirection);
+    public void crossBridge(String movingDirection, boolean movingSuccess) {
+        BridgeGame bridgeGame = bridgeGameRepository.get();
+        BridgeGame movedBridgeGame = bridgeGame.move(movingDirection, movingSuccess);
+        bridgeGameRepository.update(movedBridgeGame);
+    }
+
+    public String getGameMap() {
+        BridgeGame bridgeGame = bridgeGameRepository.get();
+        return bridgeGame.getGameMap();
+    }
+
+    public void retryGame() {
+        BridgeGame bridgeGame = bridgeGameRepository.get();
+        bridgeGameRepository.update(bridgeGame.retry());
     }
 }
