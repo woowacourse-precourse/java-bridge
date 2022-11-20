@@ -26,7 +26,7 @@ public class InputView {
     private boolean validateReadBridgeSize(String bridgeSize) {
         try {
             Validation.isInputIncludeCharacter(bridgeSize);
-            Validation.isInputBetween3And20(Integer.parseInt(bridgeSize));
+            Validation.isInputBetweenMinAndMax(Integer.parseInt(bridgeSize));
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             return false;

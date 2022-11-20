@@ -17,9 +17,9 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_INCLUDE_CHARACTER.getMessage());
     }
 
-    public static void isInputBetween3And20(int input) {
+    public static void isInputBetweenMinAndMax(int input) {
         if (input < NUMBER_MIN || input > NUMBER_MAX)
-            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_NOT_BETWEEN_3_AND_20.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_NOT_BETWEEN_MIN_AND_MAX.getMessage());
     }
 
     public static void isInputUpOrDown(String input) {
