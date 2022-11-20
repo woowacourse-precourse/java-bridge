@@ -8,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BridgeSizeValidatorTest {
+
+    private final BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
+
     @Test
     @DisplayName("정수가 아닌 입력값에 대하여 알맞은 예외를 반환한다.")
     void isReturnRightExceptionWithInvalidTypeInput() {
@@ -15,7 +18,7 @@ public class BridgeSizeValidatorTest {
         String invalidTypeInput = "p";
 
         //when, then
-        Assertions.assertThatThrownBy(() -> BridgeSizeValidator.validate(invalidTypeInput))
+        Assertions.assertThatThrownBy(() -> bridgeSizeValidator.validate(invalidTypeInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BRIDGE_SIZE_TYPE_ERROR.getMessage());
     }
@@ -27,7 +30,7 @@ public class BridgeSizeValidatorTest {
         String invalidRangeInput = "30";
 
         //when, then
-        Assertions.assertThatThrownBy(() -> BridgeSizeValidator.validate(invalidRangeInput))
+        Assertions.assertThatThrownBy(() -> bridgeSizeValidator.validate(invalidRangeInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BRIDGE_SIZE_RANGE_ERROR.getMessage());
     }
@@ -39,6 +42,6 @@ public class BridgeSizeValidatorTest {
         String validInput = "3";
 
         //when, then
-        Assertions.assertThatNoException().isThrownBy(() -> BridgeSizeValidator.validate(validInput));
+        Assertions.assertThatNoException().isThrownBy(() -> bridgeSizeValidator.validate(validInput));
     }
 }

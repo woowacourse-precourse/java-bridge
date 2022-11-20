@@ -8,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class DirectionValidatorTest {
+
+    private final DirectionValidator directionValidator = new DirectionValidator();
+
     @Test
     @DisplayName("문자열이 아닌 입력값에 대하여 예외를 반환한다.")
     void isReturnExceptionWithInvalidTypeInput() {
@@ -15,7 +18,7 @@ public class DirectionValidatorTest {
         String invalidTypeInput = "3";
 
         //when, then
-        assertThatThrownBy(() -> DirectionValidator.validate(invalidTypeInput))
+        assertThatThrownBy(() -> directionValidator.validate(invalidTypeInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DIRECTION_SIGN_ERROR.getMessage());
 
@@ -28,12 +31,11 @@ public class DirectionValidatorTest {
         String invalidSignInput = "F";
 
         //when, then
-        assertThatThrownBy(() -> DirectionValidator.validate(invalidSignInput))
+        assertThatThrownBy(() -> directionValidator.validate(invalidSignInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DIRECTION_SIGN_ERROR.getMessage());
 
     }
-
 
     @Test
     @DisplayName("유효한 입력값에 대하여 아무런 예외가 발생하지 않고 유효성 검사가 통과한다.")
@@ -42,7 +44,7 @@ public class DirectionValidatorTest {
         String validInput = "D";
 
         //when, then
-        Assertions.assertThatNoException().isThrownBy(() -> DirectionValidator.validate(validInput));
+        Assertions.assertThatNoException().isThrownBy(() -> directionValidator.validate(validInput));
 
     }
 }

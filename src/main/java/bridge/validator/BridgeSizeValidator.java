@@ -6,7 +6,11 @@ import static bridge.validator.ErrorStatus.BRIDGE_SIZE_RANGE_ERROR;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_TYPE_ERROR;
 
 public class BridgeSizeValidator {
-    public static void validate(String bridgeSize) {
+
+    public BridgeSizeValidator() {
+    }
+
+    public void validate(String bridgeSize) {
         if (!hasValidType(bridgeSize)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_TYPE_ERROR.getMessage());
         }
@@ -16,11 +20,11 @@ public class BridgeSizeValidator {
         }
     }
 
-    private static boolean hasValidType(String bridgeSize) {
+    private boolean hasValidType(String bridgeSize) {
         return bridgeSize.chars().allMatch(Character::isDigit);
     }
 
-    private static boolean hasValidRange(int bridgeSize) {
+    private boolean hasValidRange(int bridgeSize) {
         return bridgeSize >= VALID_MIN_RANGE && bridgeSize <= VALID_MAX_RANGE;
     }
 }
