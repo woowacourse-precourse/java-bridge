@@ -16,6 +16,7 @@ class BridgeTest {
     @ValueSource(ints = {-1, 1, 3})
     void checkPassableBlock(Integer currentPosition) {
         Bridge bridge = new Bridge(List.of("U", "D", "U", "D", "U"));
-        assertThat(bridge.checkPassableBlock(currentPosition, "U")).isTrue();
+        String selectBlock = new String("U"); // 플레이어가 입력한 inputString
+        assertThat(bridge.checkPassableBlock(currentPosition, selectBlock)).isTrue();
     }
 }
