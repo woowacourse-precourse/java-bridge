@@ -22,7 +22,18 @@ public class BridgeController {
     }
 
     private void move() {
+        boolean isMovableStatus = true;
+        while (isMovableStatus) {
+            MoveResultDto moveResultDto = moveOneBridge();
+            isMovableStatus = moveResultDto.isMovableStatus();
+        }
+    }
+
+    private MoveResultDto moveOneBridge() {
         String bridgeType = inputView.readMoving();
+        MoveResultDto moveResultDto = bridgeService.move(bridgeType);
+        outputView.printMap(moveResultDto.getBridgeMap(), moveResultDto.isRightLastBridgePick());
+        return moveResultDto;
     }
 
 }
