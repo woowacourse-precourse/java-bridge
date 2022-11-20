@@ -19,7 +19,7 @@ public class InputView {
             InputValidator.validateBridgeSize(size);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readBridgeSize();
+            return readBridgeSize();
         }
 
         return size;
@@ -36,7 +36,7 @@ public class InputView {
             InputValidator.validateMoving(moving);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readMoving();
+            return readMoving();
         }
 
         return moving;
@@ -53,7 +53,7 @@ public class InputView {
             InputValidator.validateGameCommand(gameCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readGameCommand();
+            return readGameCommand();
         }
 
         return gameCommand;
