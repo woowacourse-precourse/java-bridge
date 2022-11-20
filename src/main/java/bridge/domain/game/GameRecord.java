@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.game;
 
 public class GameRecord {
     private int retryCount;
