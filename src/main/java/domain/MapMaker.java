@@ -18,4 +18,11 @@ public class MapMaker {
 		lowerBridge = new StringBuilder();
 		
 	}
+	
+	public String getMap() {
+		String bridgeMap = "[" + upperBridge.toString()	+ "]\n"
+				+ "[" + lowerBridge.toString() + "]";
+		
+		return bridgeMap;
+	}
 }
