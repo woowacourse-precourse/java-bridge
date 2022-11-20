@@ -31,12 +31,12 @@ public class BridgeGameController {
             } while (retryGame(size) && !bridgeGame.checkEndPoint());
             end();
         }catch (Exception e){
-            outputView.exceptionPrint(e.getMessage());
+            outputView.printException(e.getMessage());
         }
     }
 
     private int start() {
-        outputView.initPrint();
+        outputView.printInit();
         String size = inputView.readBridgeSize();
         bridgeLength = new BridgeLength(size);
         bridgeGame = new BridgeGame(bridgeLength.getLength());

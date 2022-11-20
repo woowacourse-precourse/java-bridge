@@ -5,6 +5,7 @@ import bridge.model.BridgeComparator;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeMap;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,15 +27,15 @@ public class BridgeGame {
     }
 
     public List<String> getUpBridge() {
-        return bridgeMap.getBridgeUpMap();
+        return Collections.unmodifiableList(bridgeMap.getBridgeUpMap());
     }
 
     public List<String> getDownBridge() {
-        return bridgeMap.getBridgeDownMap();
+        return Collections.unmodifiableList(bridgeMap.getBridgeDownMap());
     }
 
     public List<String> getBridge() {
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 
     public BridgeGame(int size) {
