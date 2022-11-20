@@ -78,15 +78,6 @@ public class BridgeController {
         }
 
         // 최종 결과를 출력한다
-        System.out.println("최종 게임 결과");
-
-        // 게임 성공 여부와 시도한 횟수를 출력한다
-        System.out.print("게임 성공 여부: ");
-        if (gameHistory.isSuccess())
-            System.out.println("성공");
-        else
-            System.out.println("실패");
-
-        System.out.print("총 시도한 횟수: " + gameHistory.getTries());
+        OutputView.printResult(gameHistory, bridgeSize);
     }
 }
