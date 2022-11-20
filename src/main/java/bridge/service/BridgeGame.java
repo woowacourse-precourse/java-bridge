@@ -1,13 +1,20 @@
 package bridge.service;
 
 import bridge.domain.BridgeMaker;
+import bridge.domain.Player;
 import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.dto.Bridge;
+import bridge.repository.PlayerRepository;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final PlayerRepository playerRepository;
+
+    public BridgeGame() {
+        playerRepository = new PlayerRepository();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -29,5 +36,9 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         return bridge;
+    }
+
+    public Long generatePlayer() {
+        return playerRepository.insert(new Player());
     }
 }

@@ -21,6 +21,8 @@ public class Controller {
 
         Bridge bridge = generateBridge();
 
+        Long playerId = bridgeGame.generatePlayer();
+
     }
 
     private Bridge generateBridge() {
