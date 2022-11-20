@@ -18,7 +18,7 @@ public class BridgeSize {
         }
     }
 
-    public int getSize() {
+    public int get() {
         return size;
     }
 }

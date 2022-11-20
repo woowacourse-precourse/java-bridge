@@ -19,9 +19,9 @@ class BridgeResultTest {
     @BeforeEach
     void init() {
         bridgeResult = new BridgeResult();
-        bridgeResult.updateResult(new Square(MoveType.UP), true);
-        bridgeResult.updateResult(new Square(MoveType.UP), true);
-        bridgeResult.updateResult(new Square(MoveType.DOWN), false);
+        bridgeResult.updateResult(new SquareResult(new Square(MoveType.UP), MoveResult.SUCCESS));
+        bridgeResult.updateResult(new SquareResult(new Square(MoveType.UP), MoveResult.SUCCESS));
+        bridgeResult.updateResult(new SquareResult(new Square(MoveType.DOWN), MoveResult.FAIL));
 
     }
 

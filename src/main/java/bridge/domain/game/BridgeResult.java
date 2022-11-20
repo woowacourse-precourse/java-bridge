@@ -1,10 +1,11 @@
 package bridge.domain.game;
 
 import bridge.domain.bridge.Square;
-import bridge.domain.move.MoveResult;
 import bridge.dto.BridgeResultDto;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class BridgeResult {
@@ -17,10 +18,10 @@ public class BridgeResult {
         bridgeResult = new ArrayList<>();
     }
 
-    public void updateResult(Square square, boolean result) {
-        squareResult = new SquareResult(square, MoveResult.of(result));
-        bridgeResult.add(squareResult);
-        bridgeResult.add(squareResult.getReversed());
+    public void updateResult(SquareResult result) {
+        squareResult = result;
+        bridgeResult.add(result);
+        bridgeResult.add(result.getReversed());
     }
 
     public BridgeResultDto toDto() {

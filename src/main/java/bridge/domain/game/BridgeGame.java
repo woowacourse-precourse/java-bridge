@@ -36,11 +36,11 @@ public class BridgeGame {
         retryCount++;
     }
 
-    public boolean inProgress() {
+    public boolean isGameInProgress() {
         return gameStatus.equals(GameStatus.PROGRESS);
     }
 
-    public void exit() {
+    public void exitGame() {
         gameStatus = GameStatus.EXIT;
     }
 
