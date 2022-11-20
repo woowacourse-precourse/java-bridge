@@ -31,7 +31,7 @@ public class MainController {
         outputView.printResult(bridgeGame.getUserChoices(), bridgeGame.getCrossResults(), gameStatus, bridgeGame.getTryCount());
     }
 
-    private GameStatus checkKeepRunning(GameStatus gameStatus){
+    private GameStatus checkKeepRunning(GameStatus gameStatus) {
         if (gameStatus.equals(GameStatus.FAIL)) {
             UserCommand userCommand = inputView.readGameCommand();
             if (userCommand.isQuit()) {

@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println(downLine);
     }
 
-    private List<String> createLineString(UserChoices userChoices, CrossResults crossResults){
+    private List<String> createLineString(UserChoices userChoices, CrossResults crossResults) {
         List<String> line = new ArrayList<>(Arrays.asList("[", "["));
         int length = userChoices.length();
         for (int position = 0; position < userChoices.length(); position++) {
@@ -36,7 +36,7 @@ public class OutputView {
         return line;
     }
 
-    private List<String> concatCrossResult(List<String> line, UserChoice userChoice, CrossResult crossResult){
+    private List<String> concatCrossResult(List<String> line, UserChoice userChoice, CrossResult crossResult) {
         String upLine = line.get(UP_LINE);
         String downLine = line.get(DOWN_LINE);
         if (userChoice.compare(Crossing.UP)) {
@@ -49,7 +49,7 @@ public class OutputView {
         return line;
     }
 
-    private List<String> concatDivisionLine(List<String> line, int position, int length){
+    private List<String> concatDivisionLine(List<String> line, int position, int length) {
         String upLine = line.get(UP_LINE);
         String downLine = line.get(DOWN_LINE);
         if (position < length - 1) {
@@ -64,7 +64,7 @@ public class OutputView {
 
 
     public void printResult(UserChoices userChoices, CrossResults crossResults, GameStatus gameStatus, int tryCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println("최종 게임 결과\n");
         printMap(userChoices, crossResults);
         System.out.println("게임 성공 여부: " + gameStatus.getStatus());
         System.out.println("총 시도한 횟수: " + tryCount);
