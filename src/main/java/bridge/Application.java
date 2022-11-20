@@ -21,10 +21,10 @@ public class Application {
             outputView.printMap(bridgeGame.downBridge);
             if(!gameChecked){
                 String userGameCommand = inputView.readGameCommand();
-                if (userGameCommand.equals("R")){
-                    bridgeGame.retry();
+                if (userGameCommand.equals("Q")){
+                    break;
                 }
-                break;
+                bridgeGame.retry();
             }
         }while (!bridgeGame.compareMoveCount(brideSize));
         outputView.printResult(bridgeGame.upBridge,bridgeGame.downBridge,
