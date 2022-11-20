@@ -18,8 +18,6 @@ public class BridgeGame {
         int bridgeSize = getBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         success = false;
-
-        System.out.println(bridge);
     }
 
     public static int getBridgeSize() {
@@ -84,5 +82,9 @@ public class BridgeGame {
 
     public boolean getSuccess() {
         return success;
+    }
+
+    public void quit(int tryCount) {
+        outputView.printResult(success, tryCount);
     }
 }
