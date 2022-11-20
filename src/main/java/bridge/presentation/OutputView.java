@@ -76,5 +76,9 @@ public class OutputView {
         printSuccessOrNot(isWon);
         printTryCount(tryCount);
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
 
