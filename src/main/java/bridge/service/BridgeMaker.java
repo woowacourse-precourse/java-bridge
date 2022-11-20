@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.service;
 
 import bridge.exception.BridgeIllegalArgumentException;
 import bridge.service.BridgeNumberGenerator;
