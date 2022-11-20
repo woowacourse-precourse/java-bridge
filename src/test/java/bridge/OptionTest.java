@@ -3,7 +3,7 @@ package bridge;
 import static bridge.config.ExceptionMessage.ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.option.GameCommand;
+import bridge.option.Command;
 import bridge.option.Move;
 import bridge.option.Option;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +34,7 @@ public class OptionTest {
     @ValueSource(strings = {"A", "B"})
     @ParameterizedTest
     void inputNotGameCommand(String input) {
-        assertThatThrownBy(() -> new GameCommand(input))
+        assertThatThrownBy(() -> new Command(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }

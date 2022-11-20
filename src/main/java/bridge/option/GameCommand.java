@@ -1,30 +1,31 @@
 package bridge.option;
 
-import static bridge.config.ExceptionMessage.WRONG_GAME_OPTION;
+import java.util.Arrays;
 
-public class GameCommand {
-    private static final String RESTART = "R";
-    private static final String END = "Q";
+public enum GameCommand {
+    RESTART("R"),
+    END("E"),
+    UNKNOWN("");
 
-    private final String gameCommand;
+    private final String keyValue;
 
-    public GameCommand(String gameCommand) {
-        Option.validate(gameCommand);
-        validate(gameCommand);
-        this.gameCommand = gameCommand;
+    GameCommand(String keyValue) {
+        this.keyValue = keyValue;
     }
 
-    private void validate(String gameCommand) {
-        validateOptionAvailable(gameCommand);
+    public String getKeyValue() {
+        return keyValue;
     }
 
-    private void validateOptionAvailable(String gameCommand) {
-        if (!gameCommand.equals(RESTART) && !gameCommand.equals(END)) {
-            throw new IllegalArgumentException(WRONG_GAME_OPTION.toString());
-        }
+    public static boolean isInGameCommand(String input) {
+        return Arrays.stream(values())
+            .anyMatch(gameCommand -> gameCommand.keyValue.equals(input));
     }
 
-    public String getGameCommand() {
-        return gameCommand;
+    public static GameCommand findGameCommand(String input) {
+        return Arrays.stream(values())
+            .filter(gameCommand -> gameCommand.keyValue.equals(input))
+            .findAny()
+            .orElse(UNKNOWN);
     }
 }
