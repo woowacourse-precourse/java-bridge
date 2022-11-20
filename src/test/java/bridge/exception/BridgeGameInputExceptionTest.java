@@ -7,16 +7,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameInputExceptionTest {
-     private final BridgeGameInputException bridgeGameInputException = new BridgeGameInputException();
+    private final BridgeGameInputException bridgeGameInputException = new BridgeGameInputException();
 
     @DisplayName("다리의 길이가 3~20인지 아니라면 예외가 발생한다.")
     @Test
     public void validateWrongBridgeSize() {
         //given
-        int size = 1;
+        String size = "1";
 
         //when,then
-        assertThatThrownBy(() ->bridgeGameInputException.validateBridgeSize(size))
+        assertThatThrownBy(() -> bridgeGameInputException.validateBridgeSize(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,7 +27,7 @@ class BridgeGameInputExceptionTest {
         String move = "a";
 
         //when,then
-        assertThatThrownBy(() ->bridgeGameInputException.validateMovingChoice(move))
+        assertThatThrownBy(() -> bridgeGameInputException.validateMovingChoice(move))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,7 +38,7 @@ class BridgeGameInputExceptionTest {
         String gameCommand = "b";
 
         //when,then
-        assertThatThrownBy(() ->bridgeGameInputException.validateGameCommand(gameCommand))
+        assertThatThrownBy(() -> bridgeGameInputException.validateGameCommand(gameCommand))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
