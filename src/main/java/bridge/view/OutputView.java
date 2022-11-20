@@ -44,7 +44,7 @@ public class OutputView {
         System.out.println(OutputViewConstants.MOVING_REQUEST);
     }
 
-    static void printRestryRequest() {
+    static void printRetryRequest() {
         System.out.println(OutputViewConstants.RETRY_REQUEST);
     }
 }
