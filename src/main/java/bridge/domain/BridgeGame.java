@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.vo.BridgeMap;
+import bridge.domain.vo.Moving;
 import bridge.domain.vo.PlayerMap;
 
 /**
@@ -25,9 +26,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public PlayerMap move(String place) {
-        isMove = bridgeMap.checkMapWithIndex(playerMap.getSize(), place);
-        playerMap.addResult(place, isMove);
+    public PlayerMap move(Moving moving) {
+        isMove = bridgeMap.isEqualWithIndex(playerMap.getSize(), moving);
+        playerMap.addResult(moving, isMove);
         return playerMap;
     }
 

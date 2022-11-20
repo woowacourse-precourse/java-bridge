@@ -9,8 +9,8 @@ public class BridgeMap {
         this.bridgeMap = bridgeMap;
     }
 
-    public boolean checkMapWithIndex(int index, String moving) {
-        return bridgeMap.get(index).equals(moving);
+    public boolean isEqualWithIndex(int index, Moving moving) {
+        return moving.equals(bridgeMap.get(index));
     }
 
     public int getSize() {

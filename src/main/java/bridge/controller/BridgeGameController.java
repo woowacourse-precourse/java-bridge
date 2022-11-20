@@ -6,7 +6,7 @@ import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.vo.BridgeMap;
 import bridge.domain.vo.BridgeSize;
 import bridge.domain.vo.GameCommand;
-import bridge.domain.vo.GameMoving;
+import bridge.domain.vo.Moving;
 import bridge.domain.vo.PlayerMap;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -43,7 +43,7 @@ public class BridgeGameController {
     }
 
     private PlayerMap movePlayer(BridgeGame bridgeGame) {
-        PlayerMap playerMap = bridgeGame.move(inputMoving().toString());
+        PlayerMap playerMap = bridgeGame.move(inputMoving());
         outputView.printMap(playerMap);
         return playerMap;
     }
@@ -65,9 +65,9 @@ public class BridgeGameController {
         return new BridgeMap(test);
     }
 
-    private GameMoving inputMoving() {
+    private Moving inputMoving() {
         try {
-            return new GameMoving(inputView.readMoving());
+            return new Moving(inputView.readMoving());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }

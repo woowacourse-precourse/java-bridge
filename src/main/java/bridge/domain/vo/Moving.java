@@ -3,11 +3,11 @@ package bridge.domain.vo;
 import bridge.domain.constants.BridgeConstants;
 import bridge.domain.constants.ErrorCode;
 
-public class GameMoving {
+public class Moving {
 
     private final String input;
 
-    public GameMoving(String input) {
+    public Moving(String input) {
         validateInput(input);
         this.input = input;
     }
@@ -22,5 +22,9 @@ public class GameMoving {
     @Override
     public String toString() {
         return input;
+    }
+
+    public boolean equals(String input) {
+        return this.input.equals(input);
     }
 }

@@ -12,7 +12,7 @@ class PlayerMapTest {
     @CsvSource(value = {"U, true, O,' '", "D, true,' ',O", "U, false,X,' '", "D, false,' ',X"})
     void Normal_Test(String place, boolean value, String firstResult, String secondResult) {
         PlayerMap playerMap = new PlayerMap();
-        playerMap.addResult(place, value);
+        playerMap.addResult(new Moving(place), value);
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
         Assertions.assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
     }

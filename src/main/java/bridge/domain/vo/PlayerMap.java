@@ -22,12 +22,12 @@ public class PlayerMap {
         return firstLine.size();
     }
 
-    public void addResult(String place, boolean value) {
-        if (place.equals("U")) {
+    public void addResult(Moving moving, boolean value) {
+        if (moving.equals("U")) {
             firstLine.add(getStatus(value));
             secondLine.add(" ");
         }
-        if (place.equals("D")) {
+        if (moving.equals("D")) {
             firstLine.add(" ");
             secondLine.add(getStatus(value));
         }

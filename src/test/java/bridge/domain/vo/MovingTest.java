@@ -9,12 +9,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class GameMovingTest {
+class MovingTest {
 
     @ParameterizedTest(name = "[{index}] input {0} ")
     @ValueSource(strings = {"U", "D"})
     void Normal_Test(String input) {
-        Assertions.assertThat(new GameMoving(input).toString()).isEqualTo(input);
+        Assertions.assertThat(new Moving(input).toString()).isEqualTo(input);
     }
 
     @DisplayName("Unvalidated GameMoving")
@@ -22,7 +22,7 @@ class GameMovingTest {
     @ValueSource(strings = {"a", "1", "u", "r", "d", "@"})
     void Unvalidated_GameMoving_exception(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-            new GameMoving(input);
+            new Moving(input);
         });
         assertEquals(ErrorCode.MOVING_NOT_U_D.getException().getMessage(),
                 exception.getMessage());
