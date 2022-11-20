@@ -47,13 +47,11 @@ public class BridgeGame {
     }
     public void move() {
         while (count <= size) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-            try {
-                userDirection = InputView.getInstance.readMoving(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            userDirection = moveAsk();
+            if(userDirection.equals("")) {
                 continue;
             }
+
             BridgeJudge.getInstance.judgeInput(userDirection, madeBridge.get(index), Bridge.bridge);
             OutputView.getInstance.printMap(Bridge.bridge, count);
             index++;
@@ -63,8 +61,16 @@ public class BridgeGame {
                 break;
             }
         }
+    }
 
-
+    private String moveAsk() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        try {
+            userDirection = InputView.getInstance.readMoving(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return userDirection;
     }
 
     /**
@@ -74,8 +80,7 @@ public class BridgeGame {
      */
     public boolean retry() {
         if(!Bridge.bridge.isRightAnswer()) {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-            String cont = InputView.getInstance.readGameCommand(Console.readLine());
+            String cont = retryAsk();
             if (cont.equals("R")) {
                 this.retryInit();
                 return true;
@@ -83,6 +88,7 @@ public class BridgeGame {
             gameResult = "실패";
             return false;
         }
+
         return true;
     }
 
@@ -92,6 +98,20 @@ public class BridgeGame {
 
         System.out.println("\n게임 성공 여부: " + gameResult);
         System.out.println("총 시도한 횟수: " + tried);
+    }
+
+    private String retryAsk() {
+        String cont = "";
+        while (true) {
+            try {
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                cont = InputView.getInstance.readGameCommand(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return cont;
+        }
     }
 
     private void retryInit() {
