@@ -4,7 +4,7 @@
 
 ### Model
 
-### BridgeGame
+#### BridgeGame
 - [ ] 다리를 생성하는 함수 setBridge()
 - [ ] 사용자 위치를 이동시키는 함수 move()
 - [ ] 사용자의 이동이 가능한지 체크하는 함수 checkMove()
