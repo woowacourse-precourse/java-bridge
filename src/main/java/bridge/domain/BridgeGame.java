@@ -70,4 +70,8 @@ public class BridgeGame {
     public boolean isGameFailed() {
         return gameFailed;
     }
+
+    public List<String> getUserMoved() {
+        return user.getUserMoved();
+    }
 }
