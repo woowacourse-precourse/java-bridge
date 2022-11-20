@@ -8,11 +8,11 @@ import bridge.constant.Direction;
 
 public class Bridge {
 
-    private final List<Deck> decks;
+    private final List<Direction> directions;
 
     public Bridge(List<String> capitalLetters) {
-        this.decks = capitalLetters.stream()
-                .map(Deck::new)
+        this.directions = capitalLetters.stream()
+                .map(Direction::from)
                 .collect(Collectors.toList());
     }
 
@@ -20,18 +20,11 @@ public class Bridge {
         if (isArrived(position)) {
             return false;
         }
-        Deck deck = decks.get(position.getPosition());
-        return isDeckMovable(deck, direction);
-    }
-
-    private boolean isDeckMovable(Deck deck, Direction direction) {
-        if (Objects.nonNull(deck)) {
-            return deck.isMovable(direction);
-        }
-        return false;
+        Direction directionOfPosition = directions.get(position.getPosition());
+        return Objects.equals(direction, directionOfPosition);
     }
 
     public boolean isArrived(Position position) {
-        return position.isGreaterOrEqualThan(decks.size());
+        return position.isGreaterOrEqualThan(directions.size());
     }
 }
