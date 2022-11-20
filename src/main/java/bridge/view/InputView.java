@@ -30,8 +30,16 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        printReadMovingMessage();
+        String input = Console.readLine();
+        if(input != "U" && input != "D")
+            throw new IllegalArgumentException("[ERROR] 위 칸(U) 또는 아래 칸(D)으로만 이동 가능합니다.");
+        return input;
+    }
+
+    private static void printReadMovingMessage() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
     /**
