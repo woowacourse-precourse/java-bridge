@@ -5,5 +5,5 @@ package bridge;
  */
 public class Constant {
     public static final String MOVING_UP = "U";
-    public static final String MOVING_DOWN = "DOWN";
+    public static final String MOVING_DOWN = "D";
 }
