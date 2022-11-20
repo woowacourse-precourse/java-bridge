@@ -8,9 +8,8 @@ public class BridgeMakerTest {
 
     @Test
     void canPassTest() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        String DorU = bridgeMaker.canPass(1);
+        BridgeUtils bridgeUtils = new BridgeUtils();
+        String DorU = bridgeUtils.canPass(1);
 
         assertThat(DorU).isEqualTo("U");
     }
