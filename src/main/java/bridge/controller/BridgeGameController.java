@@ -12,40 +12,41 @@ import java.util.List;
 public class BridgeGameController {
     private List<String> bridge = new ArrayList<>();
     BridgeGame bridgeGame;
+    MapMaker mapMaker;
     private int count = 0;
     private boolean gameResult = true;
 
-    public BridgeGameController(){
+    public BridgeGameController() {
         try {
-            OutputView.showStartMessage();
+            OutputView.showStartMessage(); // 1. 게임 시작 메세지 출력 완료
             createBridge();
+            moveBridge();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            System.out.println(exception.getMessage()); // 수정 필요
         }
     }
 
-    private void bridgeGameSet(){
+    private void bridgeGameSet() {
         bridgeGame = new BridgeGame(bridge);
     }
 
-    private void createBridge(){
+    private void createBridge() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-        OutputView.showInputBridgeLength();
-        bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
+        OutputView.showInputBridgeLength(); // 2. 다리 길이 입력해주세요까지 출력
+        bridge = bridgeMaker.makeBridge(InputView.readBridgeSize()); // 3. 길이 입력받고 종료함...
+        System.out.println();
     }
 
-    private void moveBridge(){
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        MapMaker mapMaker = new MapMaker();
+    private void moveBridge() {
+        mapMaker = new MapMaker();
 
-        int move = 0;
-        while(move < bridge.size()){
+        while (count < bridge.size()) {
             OutputView.showInputMove(); // 이동할 칸 선택
             mapMaker.printMap(); // 맵을 보여준다
-            move = move + 1; // 움직인다
+            count++; // 움직인다
+
         }
     }
-
 }
