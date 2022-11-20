@@ -30,7 +30,7 @@ public class OutputView {
 
 	private String combineGameStateUpMapAndDownMap() {
 		StringBuilder sb = new StringBuilder();
-		String currentGameStateMap = sb.append(currentGameStateUpMap).append("\r\n").append(currentGameStarteDownMap)
+		String currentGameStateMap = sb.append(currentGameStateUpMap).append(NEW_LINE).append(currentGameStarteDownMap)
 				.toString();
 		return currentGameStateMap;
 	}

@@ -11,7 +11,9 @@ public class OutputViewConstants {
 	public static final String OUTPUT_TEXT_GAME_SUCCESS = "게임 성공 여부: 성공";
 	public static final String OUTPUT_TEXT_GAME_FAIL = "게임 성공 여부: 실패";
 	public static final String OUTPUT_TEXT_TOTAL_GAME_ROUND = "총 시도한 횟수: ";
-	
+
+	public static final String NEW_LINE = "\r\n";
+
 	private OutputViewConstants() {
 	}
 }
