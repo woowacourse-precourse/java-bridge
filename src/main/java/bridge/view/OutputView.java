@@ -52,6 +52,7 @@ public class OutputView {
 
         resultBuilder.append("게임 성공 여부: ").append(gameResult.getResult()).append(LINE_SEPARATOR);
         resultBuilder.append("총 시도한 횟수: ").append(gameResult.getTotalTry()).append(LINE_SEPARATOR);
+        System.out.println(resultBuilder);
     }
 
     public void initMap() {
