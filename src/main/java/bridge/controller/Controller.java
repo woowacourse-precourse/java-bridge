@@ -52,4 +52,13 @@ public class Controller {
         this.player = new Player();
         setUpBridge(size);
     }
+    public void play(Player player) throws IllegalArgumentException {
+        player.tryGame();
+        do {
+            outputView.printMap(result);
+            outputView.printSelectDirectionMessage();
+            bridgeGame.move(inputDirection());
+        } while (!bridgeGame.isFinish());
+        outputView.printResult(player, result, "성공");
+    }
 }
