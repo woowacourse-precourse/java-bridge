@@ -21,7 +21,7 @@ class BridgeMakerTest {
     }
 
     @ParameterizedTest
-    @DisplayName("다리의 길이를 입력받을 때 길이가 3 미만, 20 초과이면 예외가 발생한다.")
+    @DisplayName("다리의 길이를 입력받을 때 길이가 3 미만, 20 초과이면 예외가 발생해야 한다.")
     @ValueSource(ints = {2, 21})
     void makeBridgeByUnder3OrOver20Size(int size) {
         //expect
@@ -30,7 +30,7 @@ class BridgeMakerTest {
     }
 
     @Test
-    @DisplayName("다리의 길이를 입력받을 때 정상적으로 생성되야한다.")
+    @DisplayName("다리의 길이를 입력받을 때 정상적으로 생성되어야 한다.")
     void makeBridge() {
         // given
         int size = 3;

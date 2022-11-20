@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class UpDownFlagTest {
     @ParameterizedTest
-    @DisplayName("UpDownFlag를 생성할 때 U 또는 D 외의 입력이 들어오면 예외가 발생한다.")
+    @DisplayName("UpDownFlag를 생성할 때 U 또는 D 외의 입력이 들어오면 예외가 발생해야 한다.")
     @ValueSource(strings = {"0", "1", "R", "Q"})
     void createUpDownFlagByOtherString(String input) {
         // expect
@@ -18,7 +18,7 @@ class UpDownFlagTest {
     }
 
     @ParameterizedTest
-    @DisplayName("UpDownFlag를 생성할 때 U 또는 D 입력이 들어오면 정상적으로 생성되야한다.")
+    @DisplayName("UpDownFlag를 생성할 때 U 또는 D 입력이 들어오면 정상적으로 생성되어야 한다.")
     @ValueSource(strings = {"U", "D"})
     void createUpDownFlagBy_U_Or_D_String(String input) {
         // expect
@@ -27,7 +27,7 @@ class UpDownFlagTest {
     }
 
     @ParameterizedTest
-    @DisplayName("UpDownFlag를 생성할 때 U 또는 D 외의 입력이 들어오면 예외가 발생한다.")
+    @DisplayName("UpDownFlag를 생성할 때 U 또는 D 외의 입력이 들어오면 예외가 발생해야 한다.")
     @ValueSource(ints = {2, 3, 4, 5})
     void createUpDownFlagByOtherCode(int input) {
         // expect
@@ -36,7 +36,7 @@ class UpDownFlagTest {
     }
 
     @Test
-    @DisplayName("0이 입력으로 들어오면 D가 반환돼야한다.")
+    @DisplayName("0이 입력으로 들어오면 D가 반환되어야 한다.")
     void create_D_StringBy_0() {
         // expect
         assertThat(UpDownFlag.codeToFlag(0))
@@ -44,7 +44,7 @@ class UpDownFlagTest {
     }
 
     @Test
-    @DisplayName("1이 입력으로 들어오면 U가 반환돼야한다.")
+    @DisplayName("1이 입력으로 들어오면 U가 반환되어야 한다.")
     void create_U_StringBy_1() {
         // expect
         assertThat(UpDownFlag.codeToFlag(1))

@@ -22,7 +22,7 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("사용자가 다리를 모두 건너면 Success를 반환한다")
+    @DisplayName("사용자가 다리를 건너면 Success를 반환해야 한다.")
     void bridgeCrossOverSuccess() {
         // given
         bridgeGame.move(UpDownFlag.DOWN);
@@ -34,7 +34,7 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("사용자가 다리를 아직 건너지 못하면 Nothing을 반환한다")
+    @DisplayName("사용자가 아직 다리를 건너지 못하면 Nothing을 반환해야 한다.")
     void bridgeCrossOverNothing() {
         // given
         bridgeGame.move(UpDownFlag.DOWN);
@@ -45,7 +45,7 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("사용자가 다리를 아직 건너는데 실패하면 Fail을 반환한다.")
+    @DisplayName("사용자가 다리를 건너는데 실패하면 Fail을 반환해야 한다.")
     void bridgeCrossOverFail() {
         // given
         bridgeGame.move(UpDownFlag.DOWN);
@@ -57,7 +57,7 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("사용자가 중간에 잘못된 다리를 건너면 Fail을 반환한다.")
+    @DisplayName("사용자가 중간에 잘못된 다리를 건넌게 있으면 Fail을 반환해야 한다.")
     void bridgeCrossOverFail2() {
         // given
         bridgeGame.move(UpDownFlag.DOWN);
@@ -69,7 +69,7 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("사용자가 건넌 길이가 다리보다 길면 예외를 던진다.")
+    @DisplayName("사용자가 건넌 길이가 다리보다 길면 예외가 발생해야 한다.")
     void bridgeCrossOverByUserLengthOver() {
         // given
         bridgeGame.move(UpDownFlag.DOWN);

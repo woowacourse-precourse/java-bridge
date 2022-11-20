@@ -13,7 +13,7 @@ class InputViewTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    @DisplayName("입력을 받을 때 입력의 길이가 9자리를 초과하면 예외가 발생한다")
+    @DisplayName("입력을 받을 때 입력의 길이가 9자리를 초과하면 예외가 발생해야 한다.")
     void receiveInputByOver9Length() {
         assertSimpleTest(() -> {
             runException("123456789");
@@ -22,7 +22,7 @@ class InputViewTest extends NsTest {
     }
 
     @Test
-    @DisplayName("다리의 길이를 입력받을 때 숫자가 아니면 예외가 발생한다.")
+    @DisplayName("다리의 길이를 입력받을 때 숫자가 아니면 예외가 발생해야 한다.")
     void receiveBridgeLengthByNotNumber() {
         assertSimpleTest(() -> {
             runException("a");
@@ -31,7 +31,7 @@ class InputViewTest extends NsTest {
     }
 
     @Test
-    @DisplayName("이동할 칸을 입력받을 때 U 또는 D가 아니면 예외가 발생한다.")
+    @DisplayName("이동할 칸을 입력받을 때 U 또는 D가 아니면 예외가 발생해야 한다.")
     void receiveMovingByNotUorD() {
         assertSimpleTest(() -> {
             runException("3", "Z");

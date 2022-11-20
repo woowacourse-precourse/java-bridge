@@ -21,7 +21,7 @@ class MapTest {
     }
 
     @Test
-    @DisplayName("맵을 그릴 때 사용자의 길이가 다리의 길이보다 길면 예외가 발생한다.")
+    @DisplayName("맵을 그릴 때 사용자의 길이가 다리의 길이보다 길면 예외가 발생해야 한다.")
     void drawMapByUserLengthOverBridgeLength() {
         // given
         user.move(UpDownFlag.UP);
@@ -34,7 +34,7 @@ class MapTest {
     }
 
     @Test
-    @DisplayName("맵을 그릴 때 사용자가 잘못된 다리를 밟으면 해당 위치에 X가 있어야한다.")
+    @DisplayName("맵을 그릴 때 사용자가 잘못된 다리를 밟으면 해당 위치에 X가 있어야 한다.")
     void drawMapByUserWrongLocationShouldBeX() {
         // given
         user.move(UpDownFlag.UP);
@@ -50,7 +50,7 @@ class MapTest {
     }
 
     @Test
-    @DisplayName("맵을 그릴 때 사용자가 다리를 밟으면 해당 위치에 O가 있어야한다.")
+    @DisplayName("맵을 그릴 때 사용자가 다리를 밟으면 해당 위치에 O가 있어야 한다.")
     void drawMapByUserLocationShouldBeO() {
         // given
         user.move(UpDownFlag.UP);
@@ -66,7 +66,7 @@ class MapTest {
     }
 
     @Test
-    @DisplayName("맵을 그릴 때 사용자가 다리를 밟지 않으면 아무것도 그리지 않는다.")
+    @DisplayName("맵을 그릴 때 사용자가 다리를 밟지 않으면 아무것도 없어야 한다.")
     void drawMapByUserNoCrossing() {
         // given
 

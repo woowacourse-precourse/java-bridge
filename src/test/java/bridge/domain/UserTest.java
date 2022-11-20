@@ -17,7 +17,7 @@ class UserTest {
     }
 
     @ParameterizedTest
-    @DisplayName("인덱스의 범위를 초과하면 예외가 발생한다.")
+    @DisplayName("인덱스의 범위를 초과하면 예외가 발생해야 한다.")
     @ValueSource(ints = {-1, 3})
     void getIndexOfByIllegalIndex(int index) {
         // given
@@ -30,7 +30,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("인덱스가 들어오면 정상적으로 UpDownFlag를 반환한다.")
+    @DisplayName("인덱스가 들어오면 정상적으로 UpDownFlag를 반환해야 한다.")
     void getIndexOfUpDownFlag() {
         // given
         user.move(UpDownFlag.UP);
