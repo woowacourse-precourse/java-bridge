@@ -17,11 +17,10 @@ public class InputValidator {
     }
 
     public static int checkBridgeSize(String size) {
-        validateOnlyNumber(size);
-        validateMinSize(Integer.parseInt(size));
-        validateMaxSize(Integer.parseInt(size));
-        System.out.println();
-        return Integer.parseInt(size);
+        int bridgeSize = validateOnlyNumber(size);
+        validateMinSize(bridgeSize);
+        validateMaxSize(bridgeSize);
+        return bridgeSize;
     }
 
     public static String checkBlock(String block) {
@@ -36,10 +35,11 @@ public class InputValidator {
         return input;
     }
 
-    private static void validateOnlyNumber(String input) {
+    private static int validateOnlyNumber(String input) {
         if (!ONLY_NUMBER_REGEX.matcher(input).matches()) {
             printNotOnlyNumberException();
         }
+        return Integer.parseInt(input);
     }
 
     private static void validateMinSize(int size) {
