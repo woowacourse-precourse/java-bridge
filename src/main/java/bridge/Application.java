@@ -17,7 +17,7 @@ public class Application {
 
     private static OutputView outputView = new OutputView();
 
-    private  static BridgeGame bridgeGame = new BridgeGame();
+    private static BridgeGame bridgeGame = new BridgeGame();
 
     private static List<String> bridgeShape = new ArrayList<>();
 
