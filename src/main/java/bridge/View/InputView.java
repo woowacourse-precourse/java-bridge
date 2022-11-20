@@ -2,6 +2,7 @@ package bridge.View;
 
 import bridge.Model.VO.BridgeSize;
 import bridge.Model.VO.UserChoice;
+import bridge.Model.VO.UserCommand;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -39,7 +40,10 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public UserCommand readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String command = readLine();
+
+        return new UserCommand(command);
     }
 }
