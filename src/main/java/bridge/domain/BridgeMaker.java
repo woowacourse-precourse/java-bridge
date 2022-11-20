@@ -12,6 +12,8 @@ import static bridge.domain.enumeration.BridgeStatus.UP;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static final int MIN_RANGE = 3;
+    private static final int MAX_RANGE = 20;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -22,6 +24,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        checkValid(size);
         List<String> bridge = new ArrayList<>();
         for (int idx = 0; idx < size; idx++) {
             int randNumber = bridgeNumberGenerator.generate();
@@ -29,6 +32,11 @@ public class BridgeMaker {
             addBridge(bridge, randNumber);
         }
         return bridge;
+    }
+
+    private void checkValid(int size) {
+        if (size < MIN_RANGE || size > MAX_RANGE)
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
     private void addBridge(List<String> bridge, int randNumber) {
