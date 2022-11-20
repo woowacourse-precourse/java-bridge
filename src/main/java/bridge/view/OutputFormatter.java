@@ -11,8 +11,6 @@ import java.util.StringJoiner;
 public class OutputFormatter {
 
     public static String formatMovingMap(MovingMap movingMap) {
-
-
         String upLine = formatMovingMapLine(movingMap, UP_BRIDGE);
         String downLine = formatMovingMapLine(movingMap, DOWN_BRIDGE);
 
