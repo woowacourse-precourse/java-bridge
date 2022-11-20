@@ -11,7 +11,7 @@ public class BridgeGame {
     public List<String> upBridge;
     public List<String> downBridge;
     private int moveCount;
-    private int gameCount;
+    public int gameCount;
 
     BridgeGame(){
         upBridge = new ArrayList<>();
