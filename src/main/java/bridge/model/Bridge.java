@@ -12,6 +12,12 @@ public class Bridge {
     private List<String> upperBridge = new ArrayList<>();
     private List<String> lowerBridge = new ArrayList<>();
 
+    public Bridge(List<String> bridgeString) {
+        validBridgeString(bridgeString);
+        this.bridgeString = bridgeString;
+        makeBridge();
+    }
+
     public void makeBridge() {
         for (int i = 0; i < bridgeString.size(); i++) {
             if (bridgeString.get(i).equals(UPPER_BRIDGE_STRING)) {
@@ -24,10 +30,14 @@ public class Bridge {
         }
     }
 
-    public Bridge(List<String> bridgeString) {
-        this.bridgeString = bridgeString;
-        makeBridge();
+    public void validBridgeString(List<String> bridgeString) {
+        for (String answerBridge : bridgeString) {
+            if (!(answerBridge.equals(UPPER_BRIDGE_STRING) || answerBridge.equals(LOWER_BRIDGE_STRING))) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
+
 
     public List<String> getBridgeString() {
 
