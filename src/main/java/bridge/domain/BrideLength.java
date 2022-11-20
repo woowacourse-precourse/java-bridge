@@ -10,6 +10,10 @@ public enum BrideLength {
         this.size = size;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(size);
