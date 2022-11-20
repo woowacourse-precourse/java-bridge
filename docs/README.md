@@ -66,4 +66,5 @@
 - [x] BridgeGameTest 수정
 
 - [x] BridgeGame 클래스에 다리 길이 반환 메서드 추가
-- [ ] 게임 컨트롤러 객체 추가
+- [x] 게임 컨트롤러 클래스 추가
+- [ ] Application 구현
