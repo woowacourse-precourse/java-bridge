@@ -14,4 +14,6 @@ public class Constants {
     public static final String X = " X ";
     public static final String SPACE = "   ";
     public static final String DELIMITER = "|";
+    public static final String OPEN_SQUARE_BRACKETS = "[";
+    public static final String CLOSE_SQUARE_BRACKETS = "]";
 }
