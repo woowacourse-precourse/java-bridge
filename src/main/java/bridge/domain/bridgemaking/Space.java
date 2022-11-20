@@ -1,22 +1,16 @@
 package bridge.domain.bridgemaking;
 
 public enum Space {
-    DOWN(0, "D"), UP(1, "U");
+    DOWN(0), UP(1);
 
     private final int index;
-    private final String represented;
 
-    Space(int index, String represented) {
+    Space(int index) {
         this.index = index;
-        this.represented = represented;
     }
 
     public int getIndex() {
         return index;
-    }
-
-    public String getRepresented() {
-        return represented;
     }
 
     public static int getOtherSpaceIndex(int index) {
@@ -27,7 +21,7 @@ public enum Space {
     }
 
     public static int getIndexByRepresented(String represented) {
-        if (represented.equals(DOWN.getRepresented())) {
+        if (represented.equals("D")) {
             return DOWN.getIndex();
         }
         return UP.getIndex();

@@ -1,6 +1,7 @@
 package bridge.domain.bridgemaking;
 
 import bridge.BridgeNumberGenerator;
+import bridge.ui.InputValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +35,9 @@ public class BridgeMaker {
 
     private void addToStringList(int crossableSpace, List<String> answerBridge) {
         if (crossableSpace == DOWN.getIndex()) {
-            answerBridge.add(DOWN.getRepresented());
+            answerBridge.add(InputValue.DOWN.getValue());
         } else if (crossableSpace == UP.getIndex()) {
-            answerBridge.add(UP.getRepresented());
+            answerBridge.add(InputValue.UP.getValue());
         }
     }
 }
