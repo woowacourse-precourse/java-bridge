@@ -27,4 +27,9 @@ public class BridgeMover {
         }
         return ON_WAY;
     }
+
+    public boolean isCrossCompletely() {
+        int bridgeSize = this.bridge.size();
+        return bridgeSize == location;
+    }
 }

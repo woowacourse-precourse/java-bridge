@@ -80,7 +80,7 @@ class BridgeMoverTest {
 
         @DisplayName("현재 위치가 다리의 길이보다 작을 때")
         @Test
-        void should_BeTrue_When_CrossBridgeCompletely() {
+        void should_BeFalse_When_CrossingYet() {
             // given
             bridgeMover.go(UPPER_SIDE);
             bridgeMover.go(LOWER_SIDE);

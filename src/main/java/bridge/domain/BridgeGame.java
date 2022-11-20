@@ -15,13 +15,13 @@ import java.util.List;
 public class BridgeGame {
     private GameStatus gameStatus;
     private int tryCount;
-    private BridgeMover bridgeCalculator;
+    private BridgeMover bridgeMover;
     private BridgeMonitor bridgeMonitor;
 
     public BridgeGame(List<String> bridge) {
         this.gameStatus = ON_WAY;
         this.tryCount = 1;
-        this.bridgeCalculator = new BridgeMover(bridge);
+        this.bridgeMover = new BridgeMover(bridge);
         this.bridgeMonitor = new BridgeMonitor();
     }
 
@@ -31,7 +31,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String moving) {
-        GameStatus gameStatusAfterMoving = this.bridgeCalculator.go(moving);
+        GameStatus gameStatusAfterMoving = this.bridgeMover.go(moving);
         this.gameStatus = gameStatusAfterMoving;
         this.bridgeMonitor.record(moving, gameStatusAfterMoving);
         return this.bridgeMonitor.getPicture();
@@ -63,5 +63,9 @@ public class BridgeGame {
 
     public boolean isEnd() {
         return this.gameStatus.equals(END);
+    }
+
+    public boolean isSuccess() {
+        return this.bridgeMover.isCrossCompletely();
     }
 }
