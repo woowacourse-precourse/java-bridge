@@ -99,4 +99,8 @@ public class BridgeGame {
         this.attempts += 1;
         return true;
     }
+
+    public int getAttempts() {
+        return attempts;
+    }
 }
