@@ -4,6 +4,7 @@ import bridge.common.ErrorMessage;
 import bridge.inputView.exception.IllegalReadBridgeSizeException;
 import bridge.inputView.exception.IllegalReadGameCommandException;
 import bridge.inputView.exception.IllegalReadMovingException;
+import bridge.outputView.OutputView;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.function.Supplier;
@@ -23,10 +24,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         try {
-            System.out.println("다리의 길이를 입력해주세요.");
+            OutputView.println("다리의 길이를 입력해주세요.");
             return InputEngine.readBridgeSize();
         } catch (NumberFormatException | IllegalReadBridgeSizeException e) {
-            System.out.println(ErrorMessage.ILLEGAL_READ_BRIDGE_SIZE.getTagMessage());
+            OutputView.println(ErrorMessage.ILLEGAL_READ_BRIDGE_SIZE.getTagMessage());
             return readBridgeSize();
         }
     }
@@ -36,10 +37,10 @@ public class InputView {
      */
     public String readMoving() {
         try {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            OutputView.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             return InputEngine.readMoving();
         } catch (IllegalReadMovingException e) {
-            System.out.println(e.getMessage());
+            OutputView.println(e.getMessage());
             return readMoving();
         }
     }
@@ -49,10 +50,10 @@ public class InputView {
      */
     public String readGameCommand() {
         try {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            OutputView.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             return InputEngine.readGameCommand();
         } catch (IllegalReadGameCommandException e) {
-            System.out.println(e.getMessage());
+            OutputView.println(e.getMessage());
             return readGameCommand();
         }
     }
