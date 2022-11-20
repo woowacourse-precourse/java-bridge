@@ -15,11 +15,15 @@ public enum SlabType {
         this.typeName = typeName;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public int getId() {
+        return this.id;
     }
 
-    public static SlabType create(int id) {
+    public String getTypeName() {
+        return this.typeName;
+    }
+
+    public static SlabType build(int id) {
         return Arrays.stream(SlabType.values())
                 .filter(type -> type.id == purifyId(id))
                 .findFirst()

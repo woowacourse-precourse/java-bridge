@@ -12,7 +12,7 @@ class SlabTypeTest {
     @ParameterizedTest(name = "타입 생성 테스트")
     @MethodSource("타입_생성_데이터")
     void 타입_생성(int id, SlabType result) {
-        assertThat(SlabType.create(id)).isEqualTo(result);
+        assertThat(SlabType.build(id)).isEqualTo(result);
     }
 
     static Stream<Arguments> 타입_생성_데이터() {
@@ -36,6 +36,20 @@ class SlabTypeTest {
                 Arguments.of(SlabType.UNKNOWN, "N"),
                 Arguments.of(SlabType.DOWN, "D"),
                 Arguments.of(SlabType.UP, "U")
+        );
+    }
+
+    @ParameterizedTest(name = "타입 아이디 가져오기")
+    @MethodSource("타입_아이디_가져오기_데이터")
+    void 타입_아이디_가져오기(SlabType slabType, int result) {
+        assertThat(slabType.getId()).isEqualTo(result);
+    }
+
+    static Stream<Arguments> 타입_아이디_가져오기_데이터() {
+        return Stream.of(
+                Arguments.of(SlabType.UNKNOWN, -1),
+                Arguments.of(SlabType.DOWN, 0),
+                Arguments.of(SlabType.UP, 1)
         );
     }
 }
