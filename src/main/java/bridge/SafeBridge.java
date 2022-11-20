@@ -18,4 +18,12 @@ public enum SafeBridge {
         }
         return SafeBridge.DOWN.letter;
     }
+
+    public static boolean isUp(String input) {
+        return input.equals(SafeBridge.UP.letter);
+    }
+
+    public static boolean isDown(String input) {
+        return input.equals(SafeBridge.DOWN.letter);
+    }
 }

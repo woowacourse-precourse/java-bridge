@@ -1,6 +1,13 @@
 package bridge.view;
 
+import static bridge.util.Constants.BRIDGE_SIZE_FORMAT;
+import static bridge.util.Constants.EMPTY_INPUT;
+import static bridge.util.Constants.ERROR_TITLE;
+import static bridge.util.Constants.MAXIMUM_BRIDGE_SIZE;
+import static bridge.util.Constants.MINIMUM_BRIDGE_SIZE;
+
 import bridge.SafeBridge;
+import bridge.util.CapitalLetter;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -20,35 +27,23 @@ public class InputView {
     public static int readBridgeSize() {
         final String input = messageBox(ENTER_BRIDGE_SIZE);
         System.out.println();
-        return toNumericValue(input);
+        return toBridgeSizeValue(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
+    public static CapitalLetter readMoving() {
         final String input = messageBox(ENTER_DIRECTION);
-        try {
-            InputValidator.moving(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readMoving();
-        }
-        return input.toUpperCase();
+        return toMovingValue(input);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
+    public static CapitalLetter readGameCommand() {
         final String input = messageBox(ENTER_RETRY_OR_QUIT);
-        try {
-            InputValidator.gameCommand(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readGameCommand();
-        }
-        return input.toUpperCase();
+        return toGameCommandValue(input);
     }
 
     private static String messageBox(String message) {
@@ -56,7 +51,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    private static int toNumericValue(String input) {
+    private static int toBridgeSizeValue(String input) {
         try {
             InputValidator.bridgeSize(input);
         } catch (IllegalArgumentException e) {
@@ -64,5 +59,29 @@ public class InputView {
             return readBridgeSize();
         }
         return Integer.parseInt(input);
+    }
+
+    private static CapitalLetter toMovingValue(String input) {
+        final CapitalLetter letter;
+        try {
+            letter = new CapitalLetter(input);
+            InputValidator.moving(letter);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+        return letter;
+    }
+
+    private static CapitalLetter toGameCommandValue(String input) {
+        final CapitalLetter letter;
+        try {
+            letter = new CapitalLetter(input);
+            InputValidator.gameCommand(letter);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
+        return letter;
     }
 }

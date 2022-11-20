@@ -2,29 +2,32 @@ package bridge.view;
 
 import static bridge.util.Constants.*;
 
+import bridge.SafeBridge;
+import bridge.util.CapitalLetter;
 import java.util.Arrays;
 
 public class InputValidator {
     private static final String NO_SPACE = "";
     private static final String NON_DIGIT_CHARACTER = "[^0-9]";
-    private static final String NON_ALPHABETIC_CHARACTER = "[^a-zA-Z]";
 
     public static void bridgeSize(String input) {
-        validateBlank(input);
         validateNumericType(input);
         validateRange(Integer.parseInt(input));
-    }
-
-    private static void validateBlank(String input) {
-        if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_TITLE + EMPTY_INPUT);
-        }
     }
 
     private static void validateNumericType(String input) {
         if (isNotNumeric(input)) {
             throw new IllegalArgumentException(ERROR_TITLE + NON_NUMERIC_CHARACTER_FOUND);
         }
+    }
+
+    private static boolean isNotNumeric(String input) {
+        final String[] splitted = input.split(NO_SPACE);
+
+        return Arrays.stream(splitted)
+                .anyMatch(element ->
+                        element.matches(NON_DIGIT_CHARACTER)
+                );
     }
 
     private static void validateRange(int size) {
@@ -38,69 +41,32 @@ public class InputValidator {
         }
     }
 
-    private static boolean isNotNumeric(String input) {
-        final String[] splitted = input.split(NO_SPACE);
-
-        return Arrays.stream(splitted)
-                .anyMatch(element ->
-                        element.matches(NON_DIGIT_CHARACTER)
-                );
-    }
-
-    public static void gameCommand(String input) {
-        validateBlank(input);
-        validateAlphabeticType(input);
-        validateAnswerToRetry(input.toUpperCase());
-    }
-
-    private static void validateAnswerToRetry(String input) {
-        if (!isRetry(input) && !isQuit(input)) {
-            throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
-        }
-    }
-
-    private static boolean isRetry(String input) {
-        // 템플릿 메소드(hasSameMeaning)로 분리 & 각 상수는 enum으로 관리해서 이름 명시
-        return input.equals("R");
-    }
-
-    private static boolean isQuit(String input) {
-        return input.equals("Q");
-    }
-
-    public static void moving(String input) {
-        validateBlank(input);
-        validateAlphabeticType(input);
-        validateDirection(input.toUpperCase());
-    }
-
-    private static void validateAlphabeticType(String input) {
-        if (isNotAlphabetic(input)) {
-            throw new IllegalArgumentException(ERROR_TITLE + NON_ALPHABETIC_CHARACTER_FOUND);
-        }
-    }
-
-    private static boolean isNotAlphabetic(String input) {
-        final String[] splitted = input.split(NO_SPACE);
-
-        return Arrays.stream(splitted)
-                .anyMatch(element ->
-                        element.matches(NON_ALPHABETIC_CHARACTER)
-                );
-    }
-
-    private static void validateDirection(String input) {
-        if (!isUp(input) && !isDown(input)) {
+    public static void moving(CapitalLetter letter) {
+        if (!isUp(letter) && !isDown(letter)) {
             throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
         }
     }
 
-    private static boolean isUp(String input) {
-        return input.equals("U");
+    private static boolean isUp(CapitalLetter letter) {
+        return letter.isUp();
     }
 
-    private static boolean isDown(String input) {
-        return input.equals("D");
+    private static boolean isDown(CapitalLetter letter) {
+        return letter.isDown();
     }
 
+    public static void gameCommand(CapitalLetter letter) {
+        if (!isRetry(letter) && !isQuit(letter)) {
+            throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
+        }
+    }
+
+    private static boolean isRetry(CapitalLetter letter) {
+        // 템플릿 메소드(hasSameMeaning)로 분리 & 각 상수는 enum으로 관리해서 이름 명시
+        return letter.isRetry();
+    }
+
+    private static boolean isQuit(CapitalLetter letter) {
+        return letter.isQuit();
+    }
 }

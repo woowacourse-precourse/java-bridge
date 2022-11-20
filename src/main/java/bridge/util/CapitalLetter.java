@@ -4,7 +4,6 @@ import static bridge.util.Constants.ERROR_TITLE;
 import static bridge.util.Constants.NON_ALPHABETIC_CHARACTER_FOUND;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class CapitalLetter {
     private static final String NO_SPACE = "";
@@ -14,11 +13,23 @@ public class CapitalLetter {
 
     public CapitalLetter(String alphabet) {
         validateAlphabeticType(alphabet);
-        this.alphabet = alphabet;
+        this.alphabet = alphabet.toUpperCase();
     }
 
-    public String capitalize() {
-        return alphabet.toUpperCase();
+    public boolean isUp() {
+        return Command.isSame(Command.UP, alphabet);
+    }
+
+    public boolean isDown() {
+        return Command.isSame(Command.DOWN, alphabet);
+    }
+
+    public boolean isRetry() {
+        return Command.isSame(Command.RETRY, alphabet);
+    }
+
+    public boolean isQuit() {
+        return Command.isSame(Command.QUIT, alphabet);
     }
 
     private static void validateAlphabeticType(String input) {
@@ -50,5 +61,22 @@ public class CapitalLetter {
     @Override
     public int hashCode() {
         return alphabet.hashCode();
+    }
+
+    private enum Command {
+        UP("U"),
+        DOWN("D"),
+        RETRY("R"),
+        QUIT("Q");
+
+        private final String letter;
+
+        Command(String letter) {
+            this.letter = letter;
+        }
+
+        private static boolean isSame(Command command, String input) {
+            return input.equals(command.letter);
+        }
     }
 }
