@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import dto.GameResult;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import model.enums.GameStatus;
 import model.enums.MoveChoice;
 import model.enums.MoveResult;
@@ -71,8 +72,8 @@ public class BridgeGameTest extends NsTest {
         @DisplayName("getGameResult는 이동 기록만을 담아 반환한다.")
         void onlyContainsMoveResult() {
             GameResult gameResult = bridgeGame.getGameResult();
-            assertThatThrownBy(() -> gameResult.getTryCount()).isInstanceOf(NullPointerException.class);
-            assertThatThrownBy(() -> gameResult.getStatus()).isInstanceOf(NullPointerException.class);
+            assertThatThrownBy(() -> gameResult.getTryCount()).isInstanceOf(NoSuchElementException.class);
+            assertThatThrownBy(() -> gameResult.getStatus()).isInstanceOf(NoSuchElementException.class);
             List<List<MoveResult>> dummy = List.of(new ArrayList<>(),new ArrayList<>());
             assertThat(gameResult.getMoveResult()).isEqualTo(dummy);
         }
