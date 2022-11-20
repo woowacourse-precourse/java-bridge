@@ -17,7 +17,7 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(bridgeLength);
     }
 
-    private boolean checkGameCompletion(Player player) {
+    public boolean checkGameCompletion(Player player) {
         return bridge.size() == player.getPosition();
     }
 
