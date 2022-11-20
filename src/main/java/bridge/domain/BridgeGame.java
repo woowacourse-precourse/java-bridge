@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.BridgeConstants;
 import bridge.constant.ExceptionConstants;
 
@@ -18,14 +17,7 @@ public class BridgeGame {
     private int attemptTimes = 1;
 
     public BridgeGame(int size) {
-        isCorrectRange(size);
         bridge = new Bridge(size);
-    }
-
-    private void isCorrectRange(int size) {
-        if (size < BridgeConstants.MINIMUM_LENGTH || BridgeConstants.MAXIMUM_LENGTH < size) {
-            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
-        }
     }
 
     /**
