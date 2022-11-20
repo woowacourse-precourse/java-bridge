@@ -12,7 +12,6 @@ public class BridgeGame {
     private static final String MAP_O_CHARACTER = "O";
     private static final String MAP_X_CHARACTER = "X";
     private static final String RETRY_COMMAND_CHARACTER = "R";
-    private static final String QUIT_COMMAND_CHARACTER = "Q";
 
     private OutputView outputView;
     private BridgeNumberGenerator bridgeNumberGenerator;
@@ -24,44 +23,39 @@ public class BridgeGame {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
-    public void startGame() {
+    public void runGame() {
         try {
-            System.out.println(GAME_START_MESSAGE);
-            InputController inputController = new InputController();
-            int bridgeSize = inputController.getBridgeSize(InputView.readBridgeSize());
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-            int gameCount = 0;
-            while (true) {
-                boolean flag = false;
-                boolean success = true;
-                gameCount = countGame(gameCount);
-                List<String> upperBridge = new ArrayList<>();
-                List<String> downBridge = new ArrayList<>();
-                for (int i = 0; i < bridge.size(); i++) {
-                    String moving = inputController.getMoving(InputView.readMoving());
-                    if (move(moving, bridge.get(i))) {
-                        outputView.makeMap(moving, MAP_O_CHARACTER, upperBridge, downBridge);
-                        outputView.printMap(upperBridge, downBridge);
-                    } else if (!move(moving, bridge.get(i))) {
-                        success = false;
-                        outputView.makeMap(moving, MAP_X_CHARACTER, upperBridge, downBridge);
-                        outputView.printMap(upperBridge, downBridge);
-                        String gameCommand = inputController.getGameCommand(InputView.readGameCommand());
-                        if (retry(gameCommand)) {
-                            flag = true;
-                        }
-                        break;
-                    }
-                }
-                outputView.printResult(upperBridge, downBridge, success, gameCount);
-                if (!flag) {
+            startGame();
+        } catch (RuntimeException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    public void startGame() {
+        System.out.println(GAME_START_MESSAGE);
+        InputController inputController = new InputController();
+        int bridgeSize = inputController.getBridgeSize(InputView.readBridgeSize());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        int gameCount = 0;
+        while (true) {
+            boolean flag = false;
+            boolean success = true;
+            gameCount = countGame(gameCount);
+            List<List<String>> bridgeMap = new ArrayList<>();
+            for (String bridgeBlock : bridge) {
+                String moving = inputController.getMoving(InputView.readMoving());
+                if (!move(moving, bridgeBlock, bridgeMap)) {
+                    success = false;
+                    String gameCommand = inputController.getGameCommand(InputView.readGameCommand());
+                    flag = retry(gameCommand);
                     break;
                 }
             }
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception);
+            outputView.printResult(bridgeMap, success, gameCount);
+            if (!flag) {
+                break;
+            }
         }
-
     }
 
     /**
@@ -69,8 +63,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving, String bridgeBlock) {
-        return moving.equals(bridgeBlock);
+    public boolean move(String moving, String bridgeBlock, List<List<String>> bridgeMap) {
+        if (moving.equals(bridgeBlock)) {
+            outputView.makeMap(moving, MAP_O_CHARACTER, bridgeMap);
+            outputView.printMap(bridgeMap);
+            return true;
+        }
+        outputView.makeMap(moving, MAP_X_CHARACTER, bridgeMap);
+        outputView.printMap(bridgeMap);
+        return false;
     }
 
     /**
@@ -79,12 +80,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommand) {
-        if (gameCommand.equals(RETRY_COMMAND_CHARACTER)) {
-            return true;
-        } else if (gameCommand.equals(QUIT_COMMAND_CHARACTER)) {
-            return false;
-        }
-        return false;
+        return gameCommand.equals(RETRY_COMMAND_CHARACTER);
     }
 
     public int countGame(int gameCount) {

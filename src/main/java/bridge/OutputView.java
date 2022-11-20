@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,13 +19,11 @@ public class OutputView {
     private static final String GAME_FAILURE_MESSAGE = "게임 성공 여부: 실패";
     private static final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
 
-    public void makeMap(String moving, String str, List<String> upperBridge, List<String> downBridge) {
+    public void makeMap(String moving, String str, List<List<String>> bridgeMap) {
         if (moving.equals(UP_MOVING_CHARACTER)) {
-            upperBridge.add(str);
-            downBridge.add(BLANK);
+            bridgeMap.add(List.of(BLANK, str));
         } else if (moving.equals(DOWN_MOVING_CHARACTER)) {
-            downBridge.add(str);
-            upperBridge.add(BLANK);
+            bridgeMap.add(List.of(str, BLANK));
         }
     }
 
@@ -33,7 +32,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> upperBridge, List<String> downBridge) {
+    public void printMap(List<List<String>> bridgeMap) {
+        List<String> downBridge = new ArrayList<>();
+        List<String> upperBridge = new ArrayList<>();
+        for (List<String> map : bridgeMap) {
+            downBridge.add(map.get(0));
+            upperBridge.add(map.get(1));
+        }
+
         System.out.print(LEFT_SQUARE_BRACKET);
         System.out.print(String.join(DELIMITER, upperBridge));
         System.out.print(RIGHT_SQUARE_BRACKET);
@@ -51,9 +57,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> upperBridge, List<String> downBridge, boolean success, int gameCount) {
+    public void printResult(List<List<String>> bridgeMap, boolean success, int gameCount) {
         System.out.println(GAME_RESULT_MESSAGE);
-        printMap(upperBridge, downBridge);
+        printMap(bridgeMap);
         printSuccess(success);
         printGameCount(gameCount);
     }
