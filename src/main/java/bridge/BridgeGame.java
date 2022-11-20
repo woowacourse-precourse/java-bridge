@@ -4,11 +4,13 @@ import static bridge.configuration.AppConfig.bridgeMaker;
 import static bridge.domain.bridge.Bridge.convert;
 import static bridge.domain.bridge.BridgeAndPasser.compress;
 import static bridge.domain.bridge.BridgePasser.makeBridgePasser;
+import static bridge.domain.game.GameResult.makeGameResult;
 
 import bridge.domain.game.GameRecord;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeAndPasser;
 import bridge.domain.bridge.BridgePasser;
+import bridge.domain.game.GameResult;
 import bridge.value.BridgeCharacter;
 
 /**
@@ -52,5 +54,13 @@ public class BridgeGame {
     public void retry() {
         bridgePasser.clear();
         gameRecord.addRetryCount();
+    }
+
+    public BridgeAndPasser bridgeAndPasser() {
+        return compress(bridge, bridgePasser);
+    }
+
+    public GameResult gameResult() {
+        return makeGameResult(bridge, bridgePasser, gameRecord);
     }
 }
