@@ -1,7 +1,6 @@
 package bridge.view;
 
 import static bridge.util.BridgeGameConstant.GAME_STATUS_MESSAGE;
-import static bridge.util.BridgeGameConstant.PATH_RESULT_MESSAGE;
 import static bridge.util.BridgeGameConstant.TRY_COUNT_MESSAGE;
 
 import bridge.model.BridgeGame;
@@ -35,7 +34,7 @@ public class OutputView {
      */
 
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println(PATH_RESULT_MESSAGE);
+        System.out.println("최종 게임 결과");
         printMap(bridgeGame);
 
         printEmptyLine();
