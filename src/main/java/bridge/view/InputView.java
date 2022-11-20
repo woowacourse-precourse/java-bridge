@@ -37,6 +37,7 @@ public class InputView {
     public String readMoving() {
         GuideOutputView.printUpAndDown();
         String movement = Console.readLine();
+        validationException.checkValidMovement(movement);
 
         return movement;
     }
@@ -47,6 +48,7 @@ public class InputView {
     public String readGameCommand() {
         GuideOutputView.printRetry();
         String retry = Console.readLine();
+        validationException.checkValidCommand(retry);
 
         return retry;
     }
