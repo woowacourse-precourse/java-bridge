@@ -6,6 +6,7 @@ package bridge;
 public class OutputView {
     public static String upstairs = "";
     public static String downstairs = "";
+    private final String ERROR = "[ERROR] ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -46,5 +47,9 @@ public class OutputView {
         System.out.println();
         System.out.println("게임 성공 여부: " + strResult[result]);
         System.out.println("총 시도한 횟수: " + BridgeGame.gameCount);
+    }
+
+    public void printErrorMessage(String e){
+        System.out.println(ERROR + e);
     }
 }

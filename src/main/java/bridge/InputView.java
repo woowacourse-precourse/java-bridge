@@ -27,7 +27,7 @@ public class InputView {
      */
     public String readMoving(String input) {
         if (!input.equals("U") && !input.equals("D")){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력값은 U 혹은 D 여야 합니다.");
         }
         return (input);
     }
@@ -37,7 +37,7 @@ public class InputView {
      */
     public String readGameCommand(String input) {
         if (!input.equals("R") && !input.equals("Q")){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력값은 R 또는 Q 여야 합니다.");
         }
         return (input);
     }
