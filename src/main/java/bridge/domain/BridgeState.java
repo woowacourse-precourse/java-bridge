@@ -8,7 +8,7 @@ public class BridgeState {
     private StringBuilder downBridge = new StringBuilder();
 
     public void mark(BridgeStatus bridgeStatus) {
-        if (bridgeStatus.getStatus().equals(UP)) {
+        if (bridgeStatus.getArrow().equals(UP)) {
             if (isEmpty()) {
                 upBridge.append(bridgeStatus.getStatus());
                 downBridge.append(SPACE);
@@ -19,7 +19,7 @@ public class BridgeState {
             return;
         }
 
-        if (bridgeStatus.getStatus().equals(DOWN)) {
+        if (bridgeStatus.getArrow().equals(DOWN)) {
             if (isEmpty()) {
                 upBridge.append(SPACE);
                 downBridge.append(bridgeStatus.getStatus());
