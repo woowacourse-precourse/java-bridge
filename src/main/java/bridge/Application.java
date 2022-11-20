@@ -44,9 +44,9 @@ public class Application {
         		currentStateBridge = outputView.getAndPrintCurrentStateBridge(bridgeGame.getUpDownBridgeList()); // 재시도나 quit종료를 하기 전에 현재 다리 상태 저장
         		return bridgeGame.retry(inputView.getRestartOrQuit());                   // 재시도할 경우 return true. 게임 종료의 경우 return false.
         	}
-        	successBridgeState(bridgeGame);
         	outputView.printCurrentStateBridge(bridgeGame.getUpDownBridgeList());  // 현재 다리의 상태를 출력해줌
         }
+    	successBridgeState(bridgeGame);
     	return false;   // 다리를 다 건넜을 때 return false.
     }
     
