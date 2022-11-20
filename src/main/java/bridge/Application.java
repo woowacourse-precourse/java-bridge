@@ -9,6 +9,7 @@ public class Application {
     static List<String> currentUpState = new ArrayList<>();
     static List<String> currentDownState = new ArrayList<>();
     static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    static String gameCommand = "";
     public static void main(String[] args) {
         System.out.println(printGameStart);
         InputView inputView = new InputView();
@@ -20,6 +21,7 @@ public class Application {
 
         for(int i=0;i<bridge.size();i++){
             String upDown = inputView.readMoving();
+
             if(upDown.equals("U")){
                 currentUpState.add(bridgeGame.move(bridge,i,upDown));
                 currentDownState.add(" ");
@@ -28,7 +30,24 @@ public class Application {
                 currentUpState.add(" ");
                 currentDownState.add(bridgeGame.move(bridge,i,upDown));
             }
-            outputView.printMap(currentUpState,currentDownState,upDown);
+            outputView.printMap(currentUpState,currentDownState);
+
+            if(bridgeGame.move(bridge,i,upDown).equals("X")){
+                gameCommand = inputView.readGameCommand();
+            }
+
+            if(gameCommand.equals("R")){
+                currentUpState.clear();
+                currentDownState.clear();
+                i=-1;
+            }
+
+            if(gameCommand.equals("Q")){
+                outputView.printResult(currentUpState,currentDownState,bridge.size());
+            }
+
+
+
         }
 
 

@@ -22,7 +22,6 @@ public class InputView {
         String moveBridge = "";
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         moveBridge = Console.readLine();
-        System.out.println(moveBridge);
         return moveBridge;
     }
 
@@ -33,7 +32,6 @@ public class InputView {
         String gameCommand = "";
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         gameCommand = Console.readLine();
-        System.out.println(gameCommand);
         return gameCommand;
     }
 }
