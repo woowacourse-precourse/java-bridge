@@ -12,13 +12,27 @@ public class Application {
 
     private static BridgeGame bridgeGame;
 
+    public static void main(String[] args) {
+        // TODO: 프로그램 구현
+        // 게임을 시작하는 문구 출력
+        startGame();
+        setBridge();
+        playGame();
+
+    }
+
     private static void startGame(){
         outputView.printStartGame();
     }
 
+    private static void setBridge() {
+        outputView.printInputBridgeLength();
+
+        int bridgeSize = getBridgeSize();
+        createBridge(bridgeSize);
+    }
+
     private static int getBridgeSize() {
-        int bridgeSize;
-        // 다리길이 입력받기 + 예외 시 추가적으로 계속 입력
         while (true) {
             try {
                 return inputView.readBridgeSize();
@@ -31,17 +45,40 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame.setBridge(bridge);
     }
-    private static void settingBridge() {
-        // 다리 길이 입력 받는 안내 문구 출력
-        outputView.printInputBridgeLength();
-        int bridgeSize = getBridgeSize();
-        // 다리 생성
-        createBridge(bridgeSize);
-    }
     private static void setGame(){
         bridgeGame = new BridgeGame();
         BridgeGame.setCountAttempt();
     }
+
+    private static void playGame() {
+        while(true){
+            setGame();
+            // 이동이 성공했을 시에 계속 입력 받기
+            while(true) {
+                // 이동할 칸 입력 받기
+                outputView.printInputMoveDirection();
+                String direction = getDirection();
+
+                boolean isCorrect = bridgeGame.move(direction);
+                outputView.printMap(bridgeGame);
+                if(!isCorrect) {
+                    outputView.printInputRetryCommand();
+                    String command = getRetryCommand();
+                    if(command.equals(Command.QUIT)){
+                        outputView.printResult(bridgeGame);
+                        return;
+                    }
+                    break;
+                }
+                if(bridgeGame.isFinish()) {
+                    BridgeGame.RESULT = "성공";
+                    outputView.printResult(bridgeGame);
+                    return;
+                }
+            }
+        }
+    }
+
     private static String getDirection() {
         while(true) {
             try {
@@ -51,48 +88,12 @@ public class Application {
             }
         }
     }
-
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        // 게임을 시작하는 문구 출력
-        startGame();
-        settingBridge();
-
-        while(true){
-            setGame();
-            // 이동이 성공했을 시에 계속 입력 받기
-            while(true) {
-                outputView.printInputMoveDirection();
-                // 이동할 칸 입력 받기
-                String direction = getDirection();
-
-                boolean isCorrect = bridgeGame.move(direction);
-                outputView.printMap(bridgeGame);
-                if(!isCorrect) {
-                    String command;
-                    while(true) {
-                        try {
-                            outputView.printInputRetryCommand();
-                            command = inputView.readGameCommand();
-                            break;
-                        } catch (IllegalArgumentException e) {
-                            outputView.printErrorState(e);
-                        }
-                    }
-                    if(command.equals(Command.QUIT)){
-                        outputView.printResult(bridgeGame);
-                        return;
-                    }
-
-                    break;
-                }
-
-                if(bridgeGame.isFinish()) {
-                    BridgeGame.RESULT = "성공";
-                    outputView.printResult(bridgeGame);
-                    return;
-                }
-
+    private static String getRetryCommand() {
+        while(true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorState(e);
             }
         }
     }
