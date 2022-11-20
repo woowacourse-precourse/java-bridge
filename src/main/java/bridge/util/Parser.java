@@ -17,4 +17,11 @@ public class Parser {
         }
         return moving;
     }
+
+    public String parsingGameCommand(String gameCommand) {
+        if (IllegalArgument.isIncorrectGameCommand(gameCommand)) {
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_GAME_COMMAND_ERROR);
+        }
+        return gameCommand;
+    }
 }

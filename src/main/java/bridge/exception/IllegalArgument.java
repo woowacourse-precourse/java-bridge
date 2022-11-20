@@ -22,4 +22,11 @@ public class IllegalArgument {
         }
         return true;
     }
+
+    public static boolean isIncorrectGameCommand(String gameCommand) {
+        if (gameCommand.equals("R") || gameCommand.equals("Q")) {
+            return false;
+        }
+        return true;
+    }
 }
