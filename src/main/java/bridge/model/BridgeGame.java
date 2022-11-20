@@ -22,7 +22,7 @@ public class BridgeGame {
      */
     public void move(Diagram diagram) {
         for (int index = 0; index < bridge.getBridgeSize(); index++) {
-            String position = getUserSelection();
+            Position position = getUserSelection();
             if (!bridge.isSamePosition(index, position)) {
                 diagram.updateDiagrams(position, Status.DIE);
                 break;

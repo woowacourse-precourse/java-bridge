@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.model.Position.getAbbreviationByNumber;
+import static bridge.model.Position.findAbbreviationByNumber;
 import static bridge.util.Constants.BRIDGE_SIZE_REGEX;
 import static bridge.util.Constants.MAX_BRIDGE_SIZE;
 import static bridge.util.Constants.MIN_BRIDGE_SIZE;
@@ -26,7 +26,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridge.add(getAbbreviationByNumber(bridgeNumberGenerator.generate()));
+            bridge.add(findAbbreviationByNumber(bridgeNumberGenerator.generate()));
         }
         return Collections.unmodifiableList(bridge);
     }

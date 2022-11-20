@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.model.Position.isSame;
+
 import java.util.List;
 
 public class Bridge {
@@ -10,8 +12,8 @@ public class Bridge {
         System.out.println(bridge);
     }
 
-    public boolean isSamePosition(int index, String userSelection) {
-        return bridge.get(index).equals(userSelection);
+    public boolean isSamePosition(int index, Position position) {
+        return isSame(bridge.get(index), position);
     }
 
     public int getBridgeSize() {

@@ -18,14 +18,24 @@ public enum Position {
         this.generatedNumber = generatedNumber;
     }
 
-    public static String getAbbreviationByNumber(int generatedNumber) {
-        return findPosition(generatedNumber).abbreviation;
+    public static String findAbbreviationByNumber(int generatedNumber) {
+        return findPositionByNumber(generatedNumber).abbreviation;
     }
 
-    private static Position findPosition(int generatedNumber) {
+    private static Position findPositionByNumber(int generatedNumber) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.generatedNumber == generatedNumber)
                 .findFirst().orElseThrow(() -> new IllegalArgumentException());
+    }
+
+    public static Position findPositionByAbbreviation(String abbreviation) {
+        return Arrays.stream(Position.values())
+                .filter(position -> position.abbreviation.equals(abbreviation))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException());
+    }
+
+    public static boolean isSame(String string, Position position) {
+        return string.equals(position.abbreviation);
     }
 
     public static void validateMovingInput(String input) {

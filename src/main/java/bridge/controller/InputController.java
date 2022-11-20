@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import static bridge.model.Position.findPositionByAbbreviation;
+
+import bridge.model.Position;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,10 +20,10 @@ public class InputController {
         }
     }
 
-    public static String getUserSelection() {
+    public static Position getUserSelection() {
         try {
             outputView.printMoveInput();
-            return inputView.readMoving();
+            return findPositionByAbbreviation(inputView.readMoving());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
             return getUserSelection();

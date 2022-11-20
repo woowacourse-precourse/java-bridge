@@ -16,8 +16,8 @@ class BridgeTest {
 
     @Test
     void 사용자_이동방향과_비교() {
-        Assertions.assertTrue(bridge.isSamePosition(1, "D"));
-        Assertions.assertFalse(bridge.isSamePosition(1, "U"));
+        Assertions.assertTrue(bridge.isSamePosition(1, Position.UP));
+        Assertions.assertFalse(bridge.isSamePosition(1, Position.UP));
     }
 
     @Test

@@ -8,8 +8,8 @@ public class Diagram {
     private List<String> downDiagram = new ArrayList<>();
 
 
-    public void updateDiagrams(String position, Status status) {
-        if (position.equals("U")) {
+    public void updateDiagrams(Position position, Status status) {
+        if (position == Position.UP) {
             if (status == Status.SURVIVE) {
                 upDiagram.add("O");
                 downDiagram.add(" ");
@@ -21,7 +21,7 @@ public class Diagram {
             printDiagrams();
             return;
         }
-        if (position.equals("D")) {
+        if (position == Position.DOWN) {
             if (status == Status.SURVIVE) {
                 upDiagram.add(" ");
                 downDiagram.add("O");
