@@ -1,5 +1,6 @@
 package bridge;
 
+import Model.Moving;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -13,9 +14,9 @@ public class BridgeMaker {
 
     public void addNumber(List<String> crossable, int addNumber) {
         if (addNumber == 0) {
-            crossable.add("D");
+            crossable.add(Moving.Down.getMoving());
         } else if (addNumber == 1) {
-            crossable.add("U");
+            crossable.add(Moving.Up.getMoving());
         }
     }
 
