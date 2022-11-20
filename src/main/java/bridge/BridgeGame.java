@@ -17,7 +17,6 @@ public class BridgeGame {
         this.bridgeController = new BridgeController(new BridgeRandomNumberGenerator());
         this.gameCount = 0;
     }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -44,5 +43,16 @@ public class BridgeGame {
             return false;
         }
         return bridgeController.inputGameCommand();
+    }
+
+    private Result playGame() {
+        boolean gameStatus = true;
+        Result result = Result.getEmptyResult();
+        while (gameStatus) {
+            gameCount++;
+            result = move();
+            gameStatus = retry(result);
+        }
+        return result;
     }
 }
