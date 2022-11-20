@@ -23,15 +23,10 @@ public class BridgeGame {
     private static final String RETRY_COMMAND = "R";
     private static final String END_COMMAND = "Q";
 
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private GeneratedBridge generatedBridge;
     private final PlayerBridge playerBridge = new PlayerBridge();
     private final PrintBridge printBridge = new PrintBridge();
-    private final InputBridgeSizeValidator inputBridgeSizeValidator = new InputBridgeSizeValidator();
-    private final InputNextStepValidator inputNextStepValidator = new InputNextStepValidator();
-    private final GameRetryOrEndCommandValidator gameRetryOrEndCommandValidator = new GameRetryOrEndCommandValidator();
 
     private String bridgeSize;
     private boolean canMove;
