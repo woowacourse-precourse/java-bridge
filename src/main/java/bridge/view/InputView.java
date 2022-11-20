@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 2자리의 숫자로 입력해주세요.";
     private static final String WRONG_MOVING_MARK_INPUT_ERROR = "[ERROR] U 혹은 D를 입력해주세요.";
-    private static final String WRONG_RETRY_INPUT_ERROR = "[ERROR] U 혹은 D를 입력해주세요.";
+    private static final String WRONG_RETRY_INPUT_ERROR = "[ERROR] R 혹은 Q를 입력해주세요.";
 
     public int readBridgeSize() {
         String bridgeSizeInput = input();
