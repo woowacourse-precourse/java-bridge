@@ -34,7 +34,17 @@ public class BridgeGame {
         return bridge.isAvailableSquare(currentLocationIndex, currentLocation);
     }
 
-    public boolean isLastSquare() {
+    public void setResult() {
+        if (isLastSquare() && isMovementSuccess()) {
+            gameProgress.victoryGame();
+        }
+    }
+
+    public boolean isVictory() {
+        return gameProgress.isSuccess();
+    }
+
+    private boolean isLastSquare() {
         int currentLocationIndex = currentRoute.getCurrentLocationIndex();
         return bridge.isLastIndex(currentLocationIndex);
     }

@@ -39,7 +39,7 @@ public class BridgeGameController {
 
     private void playGame() {
         takeTrial();
-        if (isFinish()) {
+        if (isVictory()) {
             return;
         }
         retryGame();
@@ -50,7 +50,7 @@ public class BridgeGameController {
             bridgeGame.retry();
             mapConverter.initialize();
             takeTrial();
-            if (isFinish()) {
+            if (isVictory()) {
                 return;
             }
         }
@@ -58,7 +58,7 @@ public class BridgeGameController {
 
     private void takeTrial() {
         do {
-            if (isFinish()) {
+            if (isVictory()) {
                 return;
             }
             takeTurn();
@@ -69,11 +69,12 @@ public class BridgeGameController {
         OutputView.printNextMovementInputMessage();
         String nextMovement = InputView.readMoving();
         bridgeGame.move(nextMovement);
+        bridgeGame.setResult();
         setMap(nextMovement);
     }
 
-    private boolean isFinish() {
-        return bridgeGame.isLastSquare();
+    private boolean isVictory() {
+        return bridgeGame.isVictory();
     }
 
     private void setMap(String nextMovement) {
