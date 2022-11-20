@@ -6,6 +6,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringBufferInputStream;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -62,6 +66,17 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         if (!bridge.contains("D")){assertThat(bridge).contains("U");}
         if (!bridge.contains("U")){assertThat(bridge).contains("D");}
+    }
+
+    @Test
+    void move_메소드_test() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame game = new BridgeGame();
+        System.setIn(new StringBufferInputStream("D"));
+        assertThat(game.move(0,bridge).retry).isEqualTo(Boolean.FALSE);
+
     }
 
 
