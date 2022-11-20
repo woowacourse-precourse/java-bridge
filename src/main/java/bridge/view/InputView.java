@@ -38,6 +38,7 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println(GameConstants.RESTART_GAME_OPTION);
         String gameCommand = Console.readLine();
+        GameValidator.validGameCommand(gameCommand);
         return gameCommand;
     }
 }
