@@ -15,7 +15,7 @@ public class GameStatus {
         return this.isCorrect;
     }
 
-    public void addGameCount(boolean gameCount){
+    public void addGameCount(){
         this.gameCount += 1;
     }
 

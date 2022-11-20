@@ -122,7 +122,7 @@ public class BridgeMaker {
 *****
 ### 🟧 controller package
 **BridgeGame**
->- [ ] Game을 시작하는 기능 ( startGame )
+>- [x] Game을 시작하는 기능 ( startGame )
 >- [ ] 움직이는 기능 ( move )
 >- [ ] Game을 재시작하는 기능 ( retry )
 >- [ ] Game을 종료하는 기능 ( endGame )

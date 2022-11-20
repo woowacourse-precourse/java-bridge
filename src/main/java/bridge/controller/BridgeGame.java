@@ -1,10 +1,27 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
+import bridge.domain.GameStatus;
+import bridge.service.BridgeMaker;
+import bridge.service.BridgeRandomNumberGenerator;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private GameStatus gameStatus = new GameStatus();
+    private List<String> bridgeLoad;
+    private Bridge bridge = new Bridge();
 
+    public void startGame(int size){
+        bridge.setBridgeSize(size);
+        this.bridgeLoad = bridgeMaker.makeBridge(size);
+        gameStatus.addGameCount();
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
