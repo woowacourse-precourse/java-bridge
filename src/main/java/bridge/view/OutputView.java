@@ -50,6 +50,7 @@ public class OutputView {
      */
     public void printMap(List<List<String>> bridge) {
         bridge.forEach(this::printRow);
+        System.out.println();
     }
 
     private void printRow(List<String> row) {
