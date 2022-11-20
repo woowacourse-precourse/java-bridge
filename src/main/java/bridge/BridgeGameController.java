@@ -20,7 +20,7 @@ public class BridgeGameController {
     public void playGame(List<String> bridge) {
         while (bridgeGame.getLevel() < bridge.size()) {
             bridgeGame.printRequestMovingMessage();
-            String moving = inputView.readMoving();
+            String moving = getMoving();
             String move = bridgeGame.move(bridge, moving, bridgeGame.getLevel());
             outputView.printMap(move);
 
@@ -29,6 +29,11 @@ public class BridgeGameController {
             }
             bridgeGame.nextLevel();
         }
+    }
+
+    private String getMoving() {
+        String moving = inputView.readMoving();
+        return moving;
     }
 
     private boolean wantFinish(String move) {
