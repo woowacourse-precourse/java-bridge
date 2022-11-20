@@ -9,4 +9,8 @@ public enum RetrySelector {
     RetrySelector(String retrySelector) {
         this.retrySelector = retrySelector;
     }
+
+    public String getRetrySelector() {
+        return retrySelector;
+    }
 }
