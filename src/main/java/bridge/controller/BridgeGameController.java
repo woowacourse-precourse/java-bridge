@@ -21,10 +21,10 @@ public class BridgeGameController {
     public void gameStart() {
         while (!this.complete) {
             move();
-            // TODO: 2022/11/20 printMap 구현 후 추가
+            this.output.printMap(this.bridge.getBridge(), this.bridgeGame.getMap());
             checkBridgeGameStatus();
         }
-        // TODO: 2022/11/20 printResult 구현 후 추가
+        this.output.printResult(this.bridge.getBridge(), this.bridgeGame.getMap(), this.bridgeGame);
     }
 
     private void move() {
