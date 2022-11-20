@@ -3,17 +3,17 @@ package bridge.dto;
 import java.util.List;
 
 public class Bridge {
-    private List<String> locations;
+    private List<String> positions;
 
-    public Bridge(List<String> locations) {
-        this.locations = locations;
+    public Bridge(List<String> positions) {
+        this.positions = positions;
     }
 
-    public List<String> getLocations() {
-        return locations;
+    public List<String> getPositions() {
+        return positions;
     }
 
-    public void setLocations(List<String> locations) {
-        this.locations = locations;
+    public void setPositions(List<String> positions) {
+        this.positions = positions;
     }
 }
