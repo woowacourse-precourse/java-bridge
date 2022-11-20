@@ -17,6 +17,7 @@ public class RetryTest {
 	Bridge bridgeLetters = new Bridge(List.of(UP, DOWN, UP, DOWN, UP));
 	int bridgeLength = 5;
 	BridgeGame bridgeGame = new BridgeGame(bridgeLetters, bridgeLength);
+	Pause pause = new Pause();
 
 	@DisplayName("게임 재시작 여부 확인")
 	@Test
@@ -26,7 +27,7 @@ public class RetryTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (Pause.isPaused()) {
+		if (pause.isPaused()) {
 			bridgeGame.retry();
 		}
 		String nextUserSelectedCell = UP;
@@ -34,7 +35,7 @@ public class RetryTest {
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isMovable(bridgeLetters, nextUserSelectedCell)).isTrue(),
-			() -> assertThat(Pause.isPaused()).isFalse()
+			() -> assertThat(pause.isPaused()).isFalse()
 		);
 	}
 }

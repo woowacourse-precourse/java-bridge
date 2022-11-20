@@ -17,6 +17,7 @@ public class MovableTest {
 	Bridge bridgeLetters = new Bridge(List.of(UP, DOWN, UP, DOWN, UP));
 	int bridgeLength = 5;
 	BridgeGame bridgeGame = new BridgeGame(bridgeLetters, bridgeLength);
+	Pause pause = new Pause();
 
 	@DisplayName("선택한 칸이 이동 가능한 칸인지 확인")
 	@Test
@@ -45,7 +46,7 @@ public class MovableTest {
 		// then
 		assertAll(
 			() -> assertThat(isMovable).isFalse(),
-			() -> assertThat(Pause.isPaused()).isTrue()
+			() -> assertThat(pause.isPaused()).isTrue()
 		);
 	}
 }
