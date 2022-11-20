@@ -31,4 +31,16 @@ public class OutputView {
         lower += OutputMessage.JUMP_BAR.getOutputMsg();
         upper += OutputMessage.WRONG.getOutputMsg();
     }
+
+    public void upperFix() {
+        upper = upper.replace(OutputMessage.END.getOutputMsg(),OutputMessage.BAR.getOutputMsg());
+        upper = upper.substring(0,upper.length()-1);
+        upper += OutputMessage.END.getOutputMsg();
+    }
+
+    public void lowerFix() {
+        lower = lower.replace(OutputMessage.END.getOutputMsg(),OutputMessage.BAR.getOutputMsg());
+        lower = lower.substring(0,lower.length()-1);
+        lower += OutputMessage.END.getOutputMsg();
+    }
 }
