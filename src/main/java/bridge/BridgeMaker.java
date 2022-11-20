@@ -20,10 +20,17 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridgeShape = new ArrayList<>();
-        return null;
+        for (int i = 0; i < size; i++) {
+            if (checkUpperBridge(bridgeNumberGenerator.generate())) {
+                bridgeShape.add("U");
+                continue;
+            }
+            bridgeShape.add("D");
+        }
+        return bridgeShape;
     }
 
     private Boolean checkUpperBridge(int bridgeNumber) {
-        return bridgeNumberGenerator.generate() == 1;
+        return bridgeNumber == 1;
     }
 }
