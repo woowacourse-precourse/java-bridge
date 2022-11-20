@@ -6,7 +6,9 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeSize;
 import bridge.domain.Move;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
@@ -18,6 +20,7 @@ public class BridgeController {
     BridgeGame bridgeGame = new BridgeGame();
 
     public void start() {
+        OutputView.printGameStart();
         String size = inputView.readBridgeSize();
         bridge.isNumber(size);
         bridge.isRangeNumber(size);
@@ -29,11 +32,27 @@ public class BridgeController {
             mm.isProper(move);
 
             bridgeGame.move(bridge.get(i), move);
-            bridgeGame.toString();
+            String result = bridgeGame.toString();
+            OutputView.printMap(result);
 
+
+            if(result.contains("X")) {
+                //new BridgeGame();
+                //bridges = new ArrayList<>();
+                reset();
+                //System.out.println();
+                break;
+            }
         }
+        InputView.readGameCommand();
 
 
     }
+
+    public void reset() {
+        bridgeGame.reset();
+    }
+
+
 
 }

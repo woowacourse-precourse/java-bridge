@@ -13,4 +13,8 @@ public class ExceptionMessage {
     public static String isProperMsg() {
         return "U 또는 D를 입력해주세요";
     }
+
+    public static String isReplyMsg() {
+        return "R 또는 Q를 입력해주세요";
+    }
 }

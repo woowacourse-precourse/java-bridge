@@ -13,7 +13,7 @@ public class BridgeGame {
     private static List<String> bridgeDown = new ArrayList<>();
 
     public BridgeGame() {
-        this.bridges = List.of(bridgeUp, bridgeDown);
+        this.bridges = List.of(new ArrayList<>(), new ArrayList<>());
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -36,13 +36,16 @@ public class BridgeGame {
     }
 
     private void resultAdd(String choice,String result){
+        this.bridgeUp = this.bridges.get(0);
+        this.bridgeDown = this.bridges.get(1);
+
         if(choice.equals("U")){
-            bridgeUp.add(result);
-            bridgeDown.add(" ");
+            this.bridgeUp.add(result);
+            this.bridgeDown.add(" ");
         }
         if(choice.equals("D")){
-            bridgeDown.add(result);
-            bridgeUp.add(" ");
+            this.bridgeDown.add(result);
+            this.bridgeUp.add(" ");
         }
     }
 
@@ -74,5 +77,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public void reset() {
+        this.bridges = List.of(new ArrayList<>(), new ArrayList<>());
     }
 }
