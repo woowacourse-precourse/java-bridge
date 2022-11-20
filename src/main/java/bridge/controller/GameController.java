@@ -18,7 +18,6 @@ public class GameController {
 			gameStart();
 			crossingBridge();
 			outputView.printResult(bridgeGame);
-			System.out.println(bridgeGame);
 		} catch (IllegalArgumentException e) {
 			Logger.error(e.getMessage());
 		}
