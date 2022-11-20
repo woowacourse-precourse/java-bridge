@@ -8,9 +8,11 @@ import java.util.List;
 public class BridgeGame {
     private final static List<String> POSSIBLE_DIRECTION = List.of("U", "D");
     private List<String> bridge;
+    private GameStatus gameStatus;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.gameStatus = GameStatus.ONGOING;
     }
 
     /**
