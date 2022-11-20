@@ -39,16 +39,25 @@ public class Application {
     }
 
     /**
-     * 다리를 이동하는 메서드
+     * 사용자가 이동할 칸을 입력받는 메서드
      */
-    static void moveBridge(List<String> bridge) {
+    static String inputMove() {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
         HandleException handleException = new HandleException();
 
         outputView.printChoiceMove();
         String move = inputView.readMoving();
-        String check_finish_move = handleException.checkMove(move);
+        String checkMove = handleException.checkMove(move);
+
+        return checkMove;
+    }
+
+    /**
+     * 다리를 이동하는 메서드
+     */
+    static void moveBridge(List<String> bridge) {
+        String checkMove = Application.inputMove();
     }
 
     public static void main(String[] args) {
