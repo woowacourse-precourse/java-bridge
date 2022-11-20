@@ -2,24 +2,26 @@ package bridge.view;
 
 import dto.Result;
 
-import static bridge.constant.Output.*;
+import static bridge.constant.GameResult.FAILURE;
+import static bridge.constant.GameResult.SUCCESS;
 import static bridge.constant.Movement.DOWN;
 import static bridge.constant.Movement.UP;
+import static bridge.constant.Output.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    private static String upBridge = "[]";
-    private static String downBridge = "[]";
+    private static String upBridge = INITIAL_SETTING;
+    private static String downBridge = INITIAL_SETTING;
 
     public void setUpBridge() {
-        upBridge = "[]";
+        upBridge = INITIAL_SETTING;
     }
 
     public void setDownBridge() {
-        downBridge = "[]";
+        downBridge = INITIAL_SETTING;
     }
 
     public void printStart() {
@@ -59,16 +61,16 @@ public class OutputView {
 
     private void succeedDownMovement(String movement) {
         if (isD(movement)) {
-            upBridge = upBridge.replace("]", "|   ]");
-            downBridge = downBridge.replace("]", "| O ]");
+            upBridge = upBridge.replace(END_POINT, EMPTY);
+            downBridge = downBridge.replace(END_POINT, SUCCESS.getNowCondition());
             printUpAndDownBridge();
         }
     }
 
     private void succeedUpMovement(String movement) {
         if (isU(movement)) {
-            upBridge = upBridge.replace("]", "| O ]");
-            downBridge = downBridge.replace("]", "|   ]");
+            upBridge = upBridge.replace(END_POINT, SUCCESS.getNowCondition());
+            downBridge = downBridge.replace(END_POINT, EMPTY);
             printUpAndDownBridge();
         }
     }
@@ -80,23 +82,23 @@ public class OutputView {
 
     private void failDownMovement(String movement) {
         if (isD(movement)) {
-            upBridge = upBridge.replace("]", "|   ]");
-            downBridge = downBridge.replace("]", "| X ]");
+            upBridge = upBridge.replace(END_POINT, EMPTY);
+            downBridge = downBridge.replace(END_POINT, SUCCESS.getNowCondition());
             printUpAndDownBridge();
         }
     }
 
     private void failUpMovement(String movement) {
         if (isU(movement)) {
-            upBridge = upBridge.replace("]", "| X ]");
-            downBridge = downBridge.replace("]", "|   ]");
+            upBridge = upBridge.replace(END_POINT, FAILURE.getNowCondition());
+            downBridge = downBridge.replace(END_POINT, EMPTY);
             printUpAndDownBridge();
         }
     }
 
     private void printUpAndDownBridge() {
-        upBridge = upBridge.replace("[|", "[");
-        downBridge = downBridge.replace("[|", "[");
+        upBridge = upBridge.replace(CHANGE_POINT, FIRST_POINT);
+        downBridge = downBridge.replace(CHANGE_POINT, FIRST_POINT);
         System.out.println(upBridge);
         System.out.println(downBridge);
     }
