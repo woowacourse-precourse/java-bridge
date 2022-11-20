@@ -13,6 +13,7 @@ public class BridgeGame {
     private Bridge bridge;
     private int gameTryCount;
     private CurrentBridgeStatusMaker currentBridgeStatusMaker = new CurrentBridgeStatusMaker();
+
     public BridgeGame(int length) {
         gameTryCount = 1;
         userStatus = new UserStatus();
@@ -49,7 +50,7 @@ public class BridgeGame {
 
     public void checkGameTryCountOverIntegerMaxValue() {
         if(gameTryCount == Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("[ERROR] 너무 많은 게임 시도는 건강에 해롭습니다. 게임을 종료합니다.");
+            throw new IllegalArgumentException(ErrorMessage.GAME_TRY_COUNT_OVER_MESSAGE.toString());
         }
     }
 

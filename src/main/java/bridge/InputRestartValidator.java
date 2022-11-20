@@ -4,7 +4,7 @@ public class InputRestartValidator {
 
     public static void validate(String input) {
         if(inputIsNotRAndIsNotQ(input)) {
-            throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_R_AND_NOT_Q_MESSAGE.toString());
         }
     }
 

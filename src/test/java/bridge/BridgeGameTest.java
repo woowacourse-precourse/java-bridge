@@ -28,7 +28,7 @@ public class BridgeGameTest {
 
         assertThatThrownBy(() -> iterateGameTry(bridgeGame, Integer.MAX_VALUE))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 너무 많은 게임 시도는 건강에 해롭습니다. 게임을 종료합니다.");
+                .hasMessage(ErrorMessage.GAME_TRY_COUNT_OVER_MESSAGE.toString());
     }
 
     public void iterateGameTry(BridgeGame bridgeGame, int targetTryCount) {

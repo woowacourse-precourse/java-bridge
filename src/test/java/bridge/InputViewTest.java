@@ -34,7 +34,7 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                .hasMessage(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString());
     }
 
     @DisplayName("U 또는 D의 입력 방향을 입력했을 때, 정상적으로 값을 읽어들여야 한다.")
@@ -59,7 +59,7 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readMoving())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] U 또는 D만 입력 가능합니다.");
+                .hasMessage(ErrorMessage.INPUT_NOT_U_AND_NOT_D_MESSAGE.toString());
     }
 
     @DisplayName("게임 재시작 여부에 대한 입력 값이 R 또는 Q일 때, 정상적으로 값을 읽어들여야 한다.")
@@ -84,6 +84,6 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readGameCommand())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] R 또는 Q만 입력 가능합니다.");
+                .hasMessage(ErrorMessage.INPUT_NOT_R_AND_NOT_Q_MESSAGE.toString());
     }
 }

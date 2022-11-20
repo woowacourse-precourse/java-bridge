@@ -23,13 +23,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<StringBuilder> currentBridge, long count, String endResult) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GameProgressMessage.FINAL_RESULT_MESSAGE);
         printMap(currentBridge);
-        System.out.println("게임 성공 여부: "+ endResult);
-        System.out.println("총 시도한 횟수: " + count);
+        System.out.println(GameProgressMessage.SUCCESS_OR_NOT_MESSAGE + endResult);
+        System.out.println(GameProgressMessage.TOTAL_TRY_COUNT_MESSAGE + String.valueOf(count));
     }
 
-    public void printMessage(String message) {
-        System.out.println(message);
+    public void printGameProgressMessage(GameProgressMessage gameProgressMessage) {
+        System.out.println(gameProgressMessage);
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

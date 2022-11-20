@@ -17,15 +17,16 @@ public class BridgeGameManager {
     }
 
     public void setUpGame() {
-        outputView.printMessage("다리 건너기 게임을 시작합니다.\n");
-        outputView.printMessage("다리의 길이를 입력해주세요.");
+        outputView.printGameProgressMessage(GameProgressMessage.GAME_START_INPUT_LENGTH_MESSAGE);
+
         int length = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(length);
     }
 
     public void move() {
         while (!bridgeGame.isUserDead() && !bridgeGame.isEnd()) {
-            outputView.printMessage("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            outputView.printGameProgressMessage(GameProgressMessage.MOVE_MESSAGE);
+
             String direct = inputView.readMoving();
             currentBridgeStatus = bridgeGame.move(direct);
             outputView.printMap(currentBridgeStatus);
@@ -48,7 +49,7 @@ public class BridgeGameManager {
     }
     public boolean isGameEnd() {
         if(!bridgeGame.isEnd()) {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            System.out.println(GameProgressMessage.GAME_RETRY_MESSAGE);
             String input = Console.readLine();
 
             return bridgeGame.retry(input);
@@ -57,6 +58,6 @@ public class BridgeGameManager {
     }
 
     public void exceptionalGameEnd(String errorMessage) {
-        outputView.printMessage(errorMessage);
+        outputView.printErrorMessage(errorMessage);
     }
 }

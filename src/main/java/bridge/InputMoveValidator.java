@@ -3,9 +3,8 @@ package bridge;
 public class InputMoveValidator {
 
     public static void validate(String input) {
-
         if(isNotUAndIsNotB(input)) {
-            throw new IllegalArgumentException("[ERROR] U 또는 D만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_U_AND_NOT_D_MESSAGE.toString());
         }
     }
 
