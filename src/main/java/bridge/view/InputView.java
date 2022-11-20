@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.utils.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -22,11 +23,11 @@ public class InputView {
 
     private void validateBridgeSizeInput(String bridgeSize) {
         if (!bridgeSize.matches(REGEX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이 입력은 3~20 사이의 숫자만 가능합니다!");
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
         }
         int bridgeSizeNumber = Integer.parseInt(bridgeSize);
         if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이 입력은 3~20 사이의 숫자만 가능합니다!");
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
         }
     }
 
@@ -41,7 +42,7 @@ public class InputView {
 
     private void validateMoving(String moving) {
         if (!moving.matches(REGEX_MOVING)) {
-            throw new IllegalArgumentException("[ERROR] 사용자가 이동할 칸은 'D', 'U' 중 하나를 선택해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MOVING);
         }
     }
 
@@ -56,7 +57,7 @@ public class InputView {
 
     private void validateGameCommand(String gameCommand) {
         if (!gameCommand.matches(REGEX_GAME_COMMAND)) {
-            throw new IllegalArgumentException("[ERROR] 게임 재시작 여부는 'R', 'Q' 중 하나를 선택해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.GAME_COMMAND);
         }
     }
 }
