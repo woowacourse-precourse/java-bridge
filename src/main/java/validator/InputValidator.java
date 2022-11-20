@@ -1,11 +1,13 @@
 package validator;
 
-import static model.BridgeGameExceptions.*;
+import static model.BridgeGameExceptions.NOT_A_MOVE_CHOICE;
+import static model.BridgeGameExceptions.NOT_A_RETRY_INTENTION;
+import static model.BridgeGameExceptions.OUT_OF_RANGE;
 
 import java.util.Arrays;
 import model.Bridge;
-import model.BridgeGameExceptions;
 import model.MoveChoice;
+import model.RetryIntention;
 
 public class InputValidator {
 
@@ -23,6 +25,11 @@ public class InputValidator {
         throw new IllegalArgumentException(NOT_A_MOVE_CHOICE);
     }
 
-    void validateRetryIntention(String intention) {
+    void validateRetryIntention(String userIntention) {
+        if (Arrays.stream(RetryIntention.values()).anyMatch((intention) -> intention.intention.equals(userIntention))) {
+            return;
+        }
+
+        throw new IllegalArgumentException(NOT_A_RETRY_INTENTION);
     }
 }
