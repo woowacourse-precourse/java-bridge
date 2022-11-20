@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.domain.BridgeSize;
-import bridge.domain.command.MoveCommand;
-import bridge.domain.command.RetryCommand;
+import bridge.domain.vo.BridgeSize;
+import bridge.domain.vo.MoveCommand;
+import bridge.domain.vo.RetryCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {

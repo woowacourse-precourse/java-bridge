@@ -1,7 +1,7 @@
-package bridge.domain.command;
+package bridge.domain.vo;
 
-import static bridge.domain.command.RetryCommand.QUIT;
-import static bridge.domain.command.RetryCommand.RETRY;
+import static bridge.domain.vo.RetryCommand.QUIT;
+import static bridge.domain.vo.RetryCommand.RETRY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

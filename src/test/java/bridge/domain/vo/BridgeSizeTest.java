@@ -1,8 +1,7 @@
-package bridge.domain;
+package bridge.domain.vo;
 
-import static java.text.MessageFormat.format;
-import static bridge.domain.BridgeSize.MAX_SIZE;
-import static bridge.domain.BridgeSize.MIN_SIZE;
+import static bridge.domain.vo.BridgeSize.MAX_SIZE;
+import static bridge.domain.vo.BridgeSize.MIN_SIZE;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

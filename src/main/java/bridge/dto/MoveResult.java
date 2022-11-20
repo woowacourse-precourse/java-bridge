@@ -1,6 +1,6 @@
 package bridge.dto;
 
-import bridge.domain.command.Command;
+import bridge.domain.vo.Command;
 
 public class MoveResult {
 

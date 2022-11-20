@@ -1,9 +1,10 @@
 package bridge.domain;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.command.MoveCommand;
-import bridge.domain.command.RetryCommand;
+import bridge.domain.generator.BridgeMaker;
+import bridge.domain.generator.BridgeRandomNumberGenerator;
+import bridge.domain.vo.BridgeSize;
+import bridge.domain.vo.MoveCommand;
+import bridge.domain.vo.RetryCommand;
 import bridge.dto.GameResult;
 import bridge.dto.MoveResult;
 import java.util.List;

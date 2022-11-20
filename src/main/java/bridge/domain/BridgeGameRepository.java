@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.vo.BridgeSize;
 import java.util.HashMap;
 import java.util.Map;
 

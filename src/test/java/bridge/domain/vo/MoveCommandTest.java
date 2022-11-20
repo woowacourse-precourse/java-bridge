@@ -1,7 +1,7 @@
-package bridge.domain.command;
+package bridge.domain.vo;
 
-import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
-import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
+import static bridge.domain.vo.MoveCommand.MOVE_TO_LOWER_BLOCK;
+import static bridge.domain.vo.MoveCommand.MOVE_TO_UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
