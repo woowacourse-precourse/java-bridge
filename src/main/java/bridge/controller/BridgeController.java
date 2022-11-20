@@ -38,7 +38,7 @@ public class BridgeController {
 
         while (true) {
             result = playEachRound(length, passingPositions, result);
-            if (length.isSameLength(result.getDistance())) {
+            if (result.isSameDistanceAndLength(length)) {
                 break;
             }
             GameCommand gameCommand = createGameCommandLoop();

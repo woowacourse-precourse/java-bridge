@@ -11,17 +11,15 @@ public class Result {
 
     public Result(List<String> upDirections, List<String> downDirections, int distance) {
         this.distance = distance + 1;
-
         upDirections.remove(0);
         downDirections.remove(0);
         resultsGroup.add(upDirections);
         resultsGroup.add(downDirections);
     }
 
-    public int getDistance() {
-        return distance;
+    public boolean isSameDistanceAndLength(Length length) {
+        return length.isSameLength(distance);
     }
-
 
     public void rollbackDistance() {
         distance -= 1;
