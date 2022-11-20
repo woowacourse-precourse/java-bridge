@@ -23,4 +23,8 @@ public enum Move {
         }
         throw new IllegalArgumentException();
     }
+
+    public String getDirection() {
+        return direction;
+    }
 }
