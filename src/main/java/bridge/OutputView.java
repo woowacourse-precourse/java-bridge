@@ -23,25 +23,33 @@ public class OutputView {
 
     public String printLine(List<String> userBridge, List<String> answerBridge,String location){
         String line="[ ";
-        for(int index=0;index<userBridge.size();index++){
-            line+=printOneLine(userBridge,answerBridge,index,location);
-            line+="| ";
-        }
+        line+=printOneLine(userBridge,answerBridge,location);
         line+="]";
         return line;
     }
 
-    public String printOneLine(List<String> userBridge, List<String> answerBridge, int index, String location){
+    public String printOneLine(List<String> userBridge, List<String> answerBridge, String location){
+        String oneLine="";
+        for(int index=0;index<userBridge.size();index++){
+            if(!checkSameLocation(userBridge,index, location)){
+                oneLine+="  ";
+            }
+            if(checkSameLocation(userBridge,index, location)&&checkSameMove(userBridge, answerBridge, index)){
+                oneLine+="O ";
+            }
+            if(checkSameLocation(userBridge,index, location)&&!checkSameMove(userBridge, answerBridge, index)){
+                oneLine+="X ";
+            }
+            oneLine+="| ";
+        }
+        return oneLine;
+    }
+
+    public boolean checkSameLocation(List<String> userBridge, int index, String location){
         if(!userBridge.get(index).equals(location)){
-            return "  ";
+            return false;
         }
-        if(userBridge.get(index).equals(location)&&checkSameMove(userBridge, answerBridge, index)){
-            return "O ";
-        }
-        if(userBridge.get(index).equals(location)&&!checkSameMove(userBridge, answerBridge, index)){
-            return "X ";
-        }
-        return "";
+        return true;
     }
 
     public boolean checkSameMove(List<String> userBridge, List<String> answerBridge, int index){
