@@ -3,6 +3,7 @@ package bridge;
 import model.Bridge;
 import model.BridgeMaps;
 import model.BridgeType;
+import model.GameResult;
 import model.MoveMark;
 import model.TryCount;
 
@@ -12,14 +13,14 @@ import model.TryCount;
 public class BridgeGame {
     private final Bridge bridge;
     private final BridgeMaps maps;
-    private boolean status;
     private final TryCount count;
+    private final GameResult result;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.maps = new BridgeMaps();
-        this.status = true;
         this.count = new TryCount();
+        this.result = new GameResult();
     }
 
     public BridgeMaps getMaps() {
@@ -30,14 +31,19 @@ public class BridgeGame {
         return count;
     }
 
+    public GameResult getResult() {
+        return result;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(MoveMark mark) {
-        status = bridge.canMove(getStage(), mark);
-        updateBridgeMaps(mark, status);
+        boolean move = bridge.canMove(getStage(), mark);
+        updateBridgeMaps(mark, move);
+        updateGameResult(move);
     }
 
     private int getStage() {
@@ -49,12 +55,16 @@ public class BridgeGame {
         maps.updateMaps(type, move);
     }
 
+    private void updateGameResult(boolean move) {
+        result.update(move);
+    }
+
     public boolean isContinue() {
         return !bridge.isLast(getStage()) && isSuccess();
     }
 
     public boolean isSuccess() {
-        return status;
+        return result.isRun();
     }
 
     /**
@@ -64,7 +74,7 @@ public class BridgeGame {
      */
     public void retry() {
         maps.reset();
-        status = true;
+        result.reset();
         count.increase();
     }
 }
