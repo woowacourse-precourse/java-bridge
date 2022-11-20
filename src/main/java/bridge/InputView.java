@@ -29,7 +29,7 @@ public class InputView {
         try {
             number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER.toString());
         }
         return number;
     }

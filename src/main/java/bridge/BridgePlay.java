@@ -14,7 +14,7 @@ public class BridgePlay {
     }
     public boolean isValidMove(String moveCommand) {
         if(!(moveCommand.equals("U") || moveCommand.equals("D"))) {
-            throw new IllegalArgumentException("[ERROR] 알맞은 이동 명령이 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_MOVE_COMMAND.toString());
         }
         return true;
     }
@@ -31,7 +31,7 @@ public class BridgePlay {
     }
     public boolean isValidRetry(String retryCommand) {
         if(!(retryCommand.equals("Q") || retryCommand.equals("R"))) {
-            throw new IllegalArgumentException("[ERROR] 알맞은 재시작/종료 입력이 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_RETRY_COMMAND.toString());
         }
         return true;
     }

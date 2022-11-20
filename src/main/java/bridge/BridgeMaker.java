@@ -28,7 +28,7 @@ public class BridgeMaker {
     }
     public boolean isValid(int number) {
         if(!(3<=number && number <= 20)) {
-            throw new IllegalArgumentException("[ERROR] 유효한 범위의 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_RANGE.toString());
         }
         return true;
     }
