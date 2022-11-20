@@ -3,14 +3,14 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constants.Constants.MOVED_DOWN;
+import static constants.Constants.MOVED_UP;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private static final int UP = 1;
-    private static final int DOWN = 0;
-
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -31,8 +31,8 @@ public class BridgeMaker {
     }
 
     public String settingValue(int random) {
-        if (random == UP) return "U";
-        if (random == DOWN) return "D";
+        if (random == MOVED_UP) return "U";
+        if (random == MOVED_DOWN) return "D";
         throw new IllegalArgumentException("[ERROR] 랜덤 숫자 오류");
     }
 }
