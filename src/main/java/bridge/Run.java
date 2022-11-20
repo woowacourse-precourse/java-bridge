@@ -20,6 +20,10 @@ public class Run {
         play(bridgeGame);
     }
 
+    public Run(BridgeGame bridgeGame) {
+        play(bridgeGame);
+    }
+
     private void play(BridgeGame bridgeGame) {
         playOneSet(bridgeGame);
         SuccessFail isSuccess = bridgeGame.isSuccess(bridgeGame.bridge, bridgeGame.player);
@@ -29,7 +33,6 @@ public class Run {
             if (gameCommand.equals("R")) {
                 attempts++;
                 bridgeGame.retry();
-                play(bridgeGame);
             }
         }
 
@@ -41,7 +44,7 @@ public class Run {
         do {
             String moving = new InputView().readMoving();
             bridgeGame.move(moving);
-            new OutputView().printMap(bridgeGame.bridge, bridgeGame.player);    // 작성 필요
+            new OutputView().printMap(bridgeGame.bridge, bridgeGame.player);
             isFinish = bridgeGame.isFinish();
         } while(!isFinish);
     }

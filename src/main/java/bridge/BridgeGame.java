@@ -67,5 +67,6 @@ public class BridgeGame {
      */
     public void retry() {
         player = new ArrayList<>();
+        new Run(this);
     }
 }
