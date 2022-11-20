@@ -47,6 +47,7 @@ public class BridgeGame {
     public void move() {
         String moving=inputView.readMoving();
         result.addResult(moving, bridge.getMoveResult(moving));
+        outputView.printMap(result.getPlayResult());
     }
 
     /**
