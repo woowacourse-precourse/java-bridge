@@ -3,7 +3,6 @@ package controller;
 import bridge.*;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 public class BridgeController {
 
@@ -15,14 +14,35 @@ public class BridgeController {
     List<String> bridge;
 
     public void startGame(){
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < bridge.size(); i++){
             String move = inputView.readMoving();
             if(bridgeGame.checkAnswer(bridge.get(i),move)){
-                System.out.println("정답");
+                bridgeGame.move(move);
+                outputView.printMap();
             }
-            outputView.printMap();
+            if(!bridgeGame.checkAnswer(bridge.get(i),move)){
+                bridgeGame.moveFailed(move);
+                outputView.printMap();
+                askRetryGame();
+                break;
+            }
+        }
+    }
+
+    public void makeBridge(){
+        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        System.out.println("확인용 : " + bridge);
+    }
+
+    public void askRetryGame(){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        boolean retry = bridgeGame.retry(inputView.readGameCommand());
+
+        if(retry){
+            startGame();
+        }
+        if(!retry){
+            outputView.printResult();
         }
     }
 }
