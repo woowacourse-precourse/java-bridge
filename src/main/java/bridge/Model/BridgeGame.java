@@ -4,7 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Enum.CrossResult;
 import bridge.Enum.GameStatus;
-import bridge.Model.VO.*;
+import bridge.Model.WrappingType.*;
 
 import java.util.List;
 

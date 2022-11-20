@@ -1,5 +1,7 @@
 package bridge.Enum;
 
+/* 다리의 방향(UP/DOWN)을 나타내는 상수입니다 */
+
 public enum Crossing {
     UP(1, "U"),
     DOWN(0, "D");

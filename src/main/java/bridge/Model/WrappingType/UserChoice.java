@@ -1,4 +1,4 @@
-package bridge.Model.VO;
+package bridge.Model.WrappingType;
 
 import bridge.Enum.Crossing;
 

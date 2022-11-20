@@ -3,9 +3,9 @@ package bridge.View;
 import bridge.Enum.CrossResult;
 import bridge.Enum.Crossing;
 import bridge.Enum.GameStatus;
-import bridge.Model.VO.CrossResults;
-import bridge.Model.VO.UserChoice;
-import bridge.Model.VO.UserChoices;
+import bridge.Model.WrappingType.CrossResults;
+import bridge.Model.WrappingType.UserChoice;
+import bridge.Model.WrappingType.UserChoices;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,8 +1,8 @@
 package bridge.View;
 
-import bridge.Model.VO.BridgeSize;
-import bridge.Model.VO.UserChoice;
-import bridge.Model.VO.UserCommand;
+import bridge.Model.WrappingType.BridgeSize;
+import bridge.Model.WrappingType.UserChoice;
+import bridge.Model.WrappingType.UserCommand;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 

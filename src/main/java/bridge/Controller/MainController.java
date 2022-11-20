@@ -2,9 +2,9 @@ package bridge.Controller;
 
 import bridge.Enum.GameStatus;
 import bridge.Model.BridgeGame;
-import bridge.Model.VO.BridgeSize;
-import bridge.Model.VO.UserChoice;
-import bridge.Model.VO.UserCommand;
+import bridge.Model.WrappingType.BridgeSize;
+import bridge.Model.WrappingType.UserChoice;
+import bridge.Model.WrappingType.UserCommand;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 

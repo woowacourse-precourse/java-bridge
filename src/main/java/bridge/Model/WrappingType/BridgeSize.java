@@ -1,4 +1,4 @@
-package bridge.Model.VO;
+package bridge.Model.WrappingType;
 
 public class BridgeSize {
     private final static int MIN_SIZE = 3;

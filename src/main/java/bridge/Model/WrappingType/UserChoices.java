@@ -1,4 +1,4 @@
-package bridge.Model.VO;
+package bridge.Model.WrappingType;
 
 import java.util.ArrayList;
 import java.util.List;

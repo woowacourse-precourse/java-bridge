@@ -1,4 +1,4 @@
-package bridge.Model.VO;
+package bridge.Model.WrappingType;
 
 public class UserCommand {
     private static final String QUIT = "Q";
