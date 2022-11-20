@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.domain;
 
 public enum InputExceptionMessage {
     WRONG_BRIDGE_SIZE("[ERROR] 다리 길이는 3과 20 사이의 숫자여야 합니다."),

@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.domain;
 
 public class Checker {
     private static final Checker checker = new Checker();
