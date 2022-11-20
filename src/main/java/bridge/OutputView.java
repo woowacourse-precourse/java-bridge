@@ -29,4 +29,11 @@ public class OutputView {
         System.out.println("\n다리의 길이를 입력해주세요.");
     }
 
+    /**
+     * 이동할 칸을 선택하도록 지시하는 내용을 출력한다.
+     */
+    public void printMoving() {
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
 }
