@@ -10,11 +10,13 @@ public class BridgeGame {
     private int endIndex; //마지막 칸
     private int numberOfTries;
     private char[][] mapRecord; //현재까지 움직인 다리 기록
+    private Bridge bridge;
 
     public BridgeGame(Bridge bridge) {
         if (bridge == null) {
             throw new IllegalArgumentException(ExceptionMessage.NULL_INPUT.getMessage());
         }
+        this.bridge = bridge;
         this.index = -1;
         this.endIndex = bridge.getBridge().size() - 1;
         this.numberOfTries = 1;
@@ -68,7 +70,7 @@ public class BridgeGame {
     public char[][] recordMap(String userMove, boolean isPossibleMove) {
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);
-        if(isPossibleMove) {
+        if (isPossibleMove) {
             this.mapRecord[userMoveAsInt][index] = 'O';
             this.mapRecord[userNotMoveAsInt][index] = ' ';
             return this.mapRecord;
@@ -77,13 +79,16 @@ public class BridgeGame {
         this.mapRecord[userNotMoveAsInt][index + 1] = ' ';
         return this.mapRecord;
     }
-
+    public boolean isPossibleMove(String move) {
+        return this.bridge.isPossibleMove(this.index + 1, move);
+    }
     private int moveToInt(String move) {
-        if(move.equals("U")) return 0;
+        if (move.equals("U")) return 0;
         return 1;
     }
+
     private int notMoveToInt(String move) {
-        if(move.equals("U")) return 1;
+        if (move.equals("U")) return 1;
         return 0;
     }
 }

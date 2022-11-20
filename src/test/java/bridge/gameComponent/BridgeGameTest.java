@@ -144,4 +144,28 @@ public class BridgeGameTest {
                 .contains(new char[] {'X','\u0000','\u0000'}, Index.atIndex(0))
                 .contains(new char[] {' ', '\u0000', '\u0000'}, Index.atIndex(1));
     }
+    @Test
+    void isPossibleMoveTest_불가능한_경우() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        String userMove = "D";
+        //when
+        boolean isPossibleMove = bridgeGame.isPossibleMove(userMove);
+        //then
+        assertThat(isPossibleMove)
+                .isFalse();
+    }
+    @Test
+    void isPossibleMoveTest_가능한_경우() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        String userMove = "U";
+        //when
+        boolean isPossibleMove = bridgeGame.isPossibleMove(userMove);
+        //then
+        assertThat(isPossibleMove)
+                .isTrue();
+    }
 }
