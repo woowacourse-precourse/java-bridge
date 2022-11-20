@@ -1,10 +1,7 @@
-package bridge.model;
-
+package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,5 +22,4 @@ class BridgeMakerTest {
     void makeBridgeByValidatedSize(int size) {
         assertThat(bridgeMaker.makeBridge(size).size()).isEqualTo(size);
     }
-
 }
