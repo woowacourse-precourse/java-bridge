@@ -12,7 +12,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void 객체_생성() {
-        bridgeGame = new BridgeGame(new Player());
+        bridgeGame = new BridgeGame();
     }
 
     @Test

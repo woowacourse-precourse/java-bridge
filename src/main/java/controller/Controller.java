@@ -36,7 +36,7 @@ public class Controller {
                     break;
                 }
 
-                if (ROrQ.equals("R")) {
+                if (bridgeGame.retry("R")) {
                     gameAttempts += 1;
                     bridgeLengthIndex = 0;
                     outputView.upOutputBoard.clear();
@@ -44,6 +44,7 @@ public class Controller {
                     continue;
                 }
             }
+
             bridgeLengthIndex += 1;
         }
 
