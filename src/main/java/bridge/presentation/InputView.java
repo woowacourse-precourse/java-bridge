@@ -9,12 +9,7 @@ import java.util.NoSuchElementException;
 public class InputView {
 
     public int readBridgeSize() {
-        String input;
-        try {
-            input = Console.readLine();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
-        }
+        String input = checkNullInput();
 
         ExceptionHandler.checkNullInput(input);
         ExceptionHandler.checkIsNumber(input);
@@ -25,13 +20,19 @@ public class InputView {
         return bridgeSize;
     }
 
-    public String readMoving() {
-        String move;
+    private String checkNullInput() throws IllegalArgumentException {
+        String input;
         try {
-            move = Console.readLine();
+            input = Console.readLine();
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
         }
+
+        return input;
+    }
+
+    public String readMoving() {
+        String move = checkNullInput();
 
         ExceptionHandler.checkNullInput(move);
         ExceptionHandler.checkIsCharacter(move);
@@ -41,12 +42,7 @@ public class InputView {
     }
 
     public String readGameCommand() throws IllegalArgumentException {
-        String retryCommand;
-        try {
-            retryCommand = Console.readLine();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
-        }
+        String retryCommand = checkNullInput();
 
         ExceptionHandler.checkNullInput(retryCommand);
         ExceptionHandler.checkIsCharacter(retryCommand);
