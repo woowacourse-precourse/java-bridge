@@ -8,6 +8,7 @@ public class Application {
     static BridgeNumberGenerator bridgeNumberGenerator;
     static List<String> bridge = new ArrayList<>();
     static String moveBridge = "";
+    static boolean printUpDown = false;
     public static void main(String[] args) {
         System.out.println(printGameStart);
         InputView inputView = new InputView();
@@ -17,7 +18,8 @@ public class Application {
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
 
         for(int i=0;i<bridge.size();i++){
-            outputView.printMap(i,bridgeGame.move(bridge,i,inputView.readMoving()));
+            printUpDown = bridgeGame.moveUpDown(inputView.readMoving());
+            outputView.printMap(i,bridgeGame.move(bridge,i,inputView.readMoving()),printUpDown);
 
         }
 
