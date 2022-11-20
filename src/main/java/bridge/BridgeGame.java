@@ -11,6 +11,8 @@ public class BridgeGame {
     private static List<String> bridgeList = new ArrayList<>();
     private final BridgeRandomNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    
+    private List<String> bridgeStatus = new ArrayList<>();
 
     public BridgeGame(int size){
         bridgeList = bridgeMaker.makeBridge(size);
@@ -21,7 +23,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<String> move(String input, int index) {
+        String status = input;
+        if (input.equals(bridgeList.get(index))){
+            status += "O";
+            bridgeStatus.add(status);
+            return bridgeStatus;
+        }
+        status += "X";
+        bridgeStatus.add(status);
+        return bridgeStatus;
     }
 
     /**
