@@ -12,7 +12,7 @@ public class BridgeGame {
         put("U", 0);
         put("D", 1);
     }};
-    private static List<List<String>> footPrint = new ArrayList<>();
+    private List<List<String>> footPrint = new ArrayList<>();
 
     private final Bridge bridge;
     private int tryCount;
