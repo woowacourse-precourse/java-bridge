@@ -56,8 +56,14 @@ public class InputView {
     }
 
     private void ValidateMove(String input) {
-        if(!input.equals("U") && !input.equals("D"))
-            throw new IllegalArgumentException("이동 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력하셔야 합니다.");
+        try {
+            if (!input.equals("U") && !input.equals("D"))
+                throw new IllegalArgumentException("이동 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력하셔야 합니다.");
+        }
+        catch (IllegalArgumentException ex){
+            System.out.println("[ERROR]" + ex.getMessage());
+            readMoving();
+        }
     }
 
     /**
