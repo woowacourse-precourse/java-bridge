@@ -33,7 +33,7 @@ public class BridgeGameTest {
 
     public void iterateGameTry(BridgeGame bridgeGame, int targetTryCount) {
         for (int count = 0; count < targetTryCount; count++) {
-            bridgeGame.retry();
+            bridgeGame.retry("R");
         }
     }
 }

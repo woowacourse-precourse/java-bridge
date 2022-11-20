@@ -10,28 +10,33 @@ public class CurrentBridgeStatusMaker {
     private List<StringBuilder> currentBridgeStatus;
 
     public List<StringBuilder> convertCurrentBridgeStatus(List<String> currentPlayerBridge, List<String> createdBridge) {
+        makeStartPartBridge();
+        for (int length = 0; length < currentPlayerBridge.size(); length++) {
+            compare(currentPlayerBridge.get(length), createdBridge.get(length));
+        }
+        makeEndPartBridge();
 
+        return currentBridgeStatus;
+    }
+
+    private void makeStartPartBridge() {
         currentBridgeStatus = new ArrayList<>();
         currentBridgeStatus.add(new StringBuilder("["));
         currentBridgeStatus.add(new StringBuilder("["));
+    }
 
-        for (int length = 0; length < currentPlayerBridge.size(); length++) {
-            String currentPlayerPosition = currentPlayerBridge.get(length);
-            String playerEqualPosition = createdBridge.get(length);
-
-            if(currentPlayerPosition.equals(playerEqualPosition)) {
-                markBridge(currentPlayerPosition, "O");
-                continue;
-            }
-
-            markBridge(currentPlayerPosition, "X");
+    private void compare(String currentPlayerPosition, String playerEqualPosition) {
+        if(currentPlayerPosition.equals(playerEqualPosition)) {
+            markBridge(currentPlayerPosition, "O");
+            return;
         }
 
+        markBridge(currentPlayerPosition, "X");
+    }
 
+    private void makeEndPartBridge() {
         updateUpBridge("]");
         updateDownBridge("]");
-
-        return currentBridgeStatus;
     }
 
     private void updateUpBridge(String add) {

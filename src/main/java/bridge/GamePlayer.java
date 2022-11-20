@@ -8,14 +8,18 @@ public class GamePlayer {
         try {
             bridgeGameManager = new BridgeGameManager();
             bridgeGameManager.setUpGame();
-            do {
-                bridgeGameManager.move();
-            } while (bridgeGameManager.isGameEnd());
+            move();
         } catch (IllegalArgumentException illegalArgumentException) {
             bridgeGameManager.exceptionalGameEnd(illegalArgumentException.getMessage());
             return;
         }
         bridgeGameManager.printResult();
+    }
+
+    public void move() {
+        do {
+            bridgeGameManager.move();
+        } while (bridgeGameManager.isGameEnd());
     }
 
 }
