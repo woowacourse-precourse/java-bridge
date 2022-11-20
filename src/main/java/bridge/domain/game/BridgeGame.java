@@ -32,7 +32,7 @@ public class BridgeGame {
 
 		do {
 			crossingTrial(bridge);
-		} while (isTrialContinue(retryOrQuit()));
+		} while (isTrialContinue());
 	}
 
 	private void crossingTrial(Bridge bridge) {
@@ -42,21 +42,15 @@ public class BridgeGame {
 		crossFailOrSuccess = crossingBridge.isCrossComplete();
 	}
 
-	private boolean isTrialContinue(String commandChoice) {
-		return !(crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(commandChoice));
-	}
-
-	private String retryOrQuit() {
-		String commandChoice = "";
-
+	private boolean isTrialContinue() {
 		if (crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(requestRetry().getGameCommand())) {
-			commandChoice = GameProceedCommand.QUIT;
-			return commandChoice;
+			return false;
 		}
 
 		BridgeMap.clearBridgeDescription();
-		return commandChoice;
+		return true;
 	}
+
 
 	private GameProceedCommand requestRetry() {
 		OutputView.withContentOf(REQUEST_RETRY, true, false).ConsoleMessage();
