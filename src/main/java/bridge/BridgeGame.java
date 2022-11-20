@@ -100,6 +100,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     //TODO 브릿지 그리는 부분 분리하기
+    public boolean isCorrectMovement(List<String> mainLine, List<String> oppositeLine, String direction) {
+        if (isCorrectDirection(direction)) {
+            addMovement(mainLine, oppositeLine, true);
+            return true;
+        }
+        addMovement(mainLine, oppositeLine, false);
+        return false;
+    }
     public boolean move(String direction) {
         List<String> mainLine = this.upLine;
         List<String> oppositeLine = this.downLine;
@@ -107,12 +115,8 @@ public class BridgeGame {
             mainLine = this.downLine;
             oppositeLine = this.upLine;
         }
-        if (isCorrectDirection(direction)) {
-            addMovement(mainLine, oppositeLine, true);
-            return true;
-        }
-        addMovement(mainLine, oppositeLine, false);
-        return false;
+        return isCorrectMovement(mainLine, oppositeLine, direction);
+
 //        if(direction.equals(Command.UP)) {
 //            if(isCorrectDirection(Command.UP)) {
 //                addMoving(mainLine, oppositeLine, true);
