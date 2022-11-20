@@ -12,30 +12,39 @@ public class BridgeController {
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
+    private ValidateInput validate;
+    private int totalCount;
     BridgeController(){
         inputView = new InputView();
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
+        validate = new ValidateInput();
+        totalCount = 1;
     }
     public void startGame(){
-        int size = validateNumeric(inputView.readBridgeSize());
+        int size = validate.numeric(inputView.readBridgeSize());
         bridgeGame.start(size);
+        moveGame(size);
     }
 
-    int validateNumeric(String input){
-        if(!input.matches("^[0-9]")){
-            throw new IllegalArgumentException();
+    private int moveGame(int size){
+        for(int step = 0; step < size; step++){
+            if(bridgeGame.move(step,validate.letter(inputView.readMoving()))){
+                continue;
+            }
+            return judgeGameEnd(step,size);
         }
-        return Integer.parseInt(input);
+        return 0;
     }
-    void validateLetter(String input){
-        if(!Row.isValidateLetter(input)){
-            throw new IllegalArgumentException();
+    private int judgeGameEnd(int step, int size){
+        if(step == size-1){
+            //게임 끝
         }
+        // 게임 다시 시도
+        // 출력
+        return moveGame(size);
     }
-    void validateEndLetter(String input){
-        if(!input.equals(GameMessage.RETRY) || !input.equals(GameMessage.CLOSE)){
-            throw new IllegalArgumentException();
-        }
-    }
+
+
+
 }
