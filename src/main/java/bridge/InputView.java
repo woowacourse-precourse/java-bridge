@@ -14,15 +14,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        handleCheckLengthValidate(input);
-        return 0;
+        return handleCheckLengthValidate(input);
     }
 
     private int checkLengthValidate(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE_LENGTH_STRING);
         }
     }
 
