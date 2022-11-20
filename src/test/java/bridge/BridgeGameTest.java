@@ -1,28 +1,24 @@
 package bridge;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
 
-  private final BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
-  @Test
-  void 맵_초기화_테스트() {
-    char[][] maps = bridgeGame.initialMap(3);
-    for(char[] map : maps) {
-      for(char m : map) {
-        assertThat(m).isEqualTo( ' ');
-      }
-    }
-  }
+  private final BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView(), new ArrayList<>());
 
   @Test
   void 맵_그리기_테스트() {
-    char[][] maps = bridgeGame.initialMap(3);
-    bridgeGame.makeX(maps, "U", 0);
-    assertThat(maps[0][0]).isEqualTo('X');
-    assertThat(maps[1][0]).isEqualTo(' ');
-    bridgeGame.makeX(maps, "D", 0);
-    assertThat(maps[1][0]).isEqualTo('X');
+    List<List<String>> maps = bridgeGame.initialMap();
+    bridgeGame.makeX(maps, "U");
+    assertThat(maps.get(0).get(0)).isEqualTo("X");
+    assertThat(maps.get(1).get(0)).isEqualTo(" ");
+    bridgeGame.makeO(maps, "D");
+    assertThat(maps.get(1).get(1)).isEqualTo("O");
+    assertThat(maps.get(0).get(1)).isEqualTo(" ");
   }
 }

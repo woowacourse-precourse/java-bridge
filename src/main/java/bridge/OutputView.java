@@ -13,11 +13,11 @@ public class OutputView implements OutputMaker{
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     @Override
-    public void printMap(char[][] maps, int end) {
-        for(char[] map : maps) {
+    public void printMap(List<List<String>> maps) {
+        for(List<String> map : maps) {
             String output = "[";
-            for(int i = 0; i <= end; i++) {
-                output += " " + map[i] + " " + "|";
+            for(String mark : map) {
+                output += " " + mark + " " + "|";
             }
             System.out.println(output.substring(0, output.length() - 1) + "]");
         }
@@ -29,9 +29,9 @@ public class OutputView implements OutputMaker{
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     @Override
-    public void printResult(char[][] maps, int end, boolean success, int cnt) {
+    public void printResult(List<List<String>> maps, boolean success, int cnt) {
         System.out.println("최종 게임 결과");
-        printMap(maps, end);
+        printMap(maps);
         System.out.print("게임 성공 여부: ");
         printStatus(success);
         System.out.println("총 시도한 횟수: " + cnt);

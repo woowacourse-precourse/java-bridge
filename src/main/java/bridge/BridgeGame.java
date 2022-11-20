@@ -11,62 +11,67 @@ public class BridgeGame {
 
     private final InputMaker inputMaker;
     private final OutputMaker outputMaker;
+    private final List<String> bridge;
 
-    public BridgeGame(InputMaker inputMaker, OutputMaker outputMaker) {
+    public BridgeGame(InputMaker inputMaker, OutputMaker outputMaker, List<String> bridge) {
       this.inputMaker = inputMaker;
       this.outputMaker = outputMaker;
+      this.bridge = bridge;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(List<String> bridge, int cnt) {
-      char[][] maps = initialMap(bridge.size());
+    public boolean move(int cnt) {
+      List<List<String>> maps = initialMap();
       for(int idx = 0; idx < bridge.size(); idx++) {
-        makeMaps(maps, idx, bridge.get(idx));
-        if(maps[0][idx] == 'X' || maps[1][idx] == 'X') {
-          return retry(bridge, maps, idx, cnt);
+        makeMaps(maps, bridge.get(idx));
+        if(maps.get(0).get(idx).equals("X") || maps.get(1).get(idx).equals("X")) {
+          return retry(maps, cnt);
         }
       }
-      outputMaker.printResult(maps, bridge.size() - 1, true, cnt);
+      outputMaker.printResult(maps, true, cnt);
       return true;
     }
 
-    public char[][] initialMap(int size) {
-      char[][] maps = new char[2][size];
+    public List<List<String>> initialMap() {
+      List<List<String>> maps = new ArrayList<>();
 
-      for(int idx = 0; idx < 2; idx++) {
-        Arrays.fill(maps[idx], ' ');
-      }
+      maps.add(new ArrayList<>());
+      maps.add(new ArrayList<>());
       return maps;
     }
 
-    public void makeMaps(char[][] maps, int idx, String ch) {
+    public void makeMaps(List<List<String>> maps, String ch) {
       String input = inputMaker.readMove();
       if(ch.equals(input)) {
-        makeO(maps, input, idx);
+        makeO(maps, input);
       }
       if(!ch.equals(input)) {
-        makeX(maps, input, idx);
+        makeX(maps, input);
       }
-      outputMaker.printMap(maps, idx);
+      outputMaker.printMap(maps);
     }
 
-    public void makeX(char[][] maps, String input, int idx) {
+    public void makeX(List<List<String>> maps, String input) {
       if(input.equals("U")) {
-        maps[0][idx] = 'X';
+        maps.get(0).add("X");
+        maps.get(1).add(" ");
         return;
       }
-      maps[1][idx] = 'X';
+      maps.get(1).add("X");
+      maps.get(0).add(" ");
     }
 
-    public void makeO(char[][] maps, String input, int idx) {
+    public void makeO(List<List<String>> maps, String input) {
       if(input.equals("U")) {
-        maps[0][idx] = 'O';
+        maps.get(0).add("O");
+        maps.get(1).add(" ");
         return;
       }
-      maps[1][idx] = 'O';
+      maps.get(1).add("O");
+      maps.get(0).add(" ");
     }
 
   /**
@@ -74,12 +79,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(List<String> bridge, char[][] maps, int idx, int cnt) {
+    public boolean retry(List<List<String>> maps, int cnt) {
       String comm = inputMaker.readRetry();
       if(comm.equals("R")) {
-        return move(bridge, cnt + 1);
+        return move(cnt + 1);
       }
-      outputMaker.printResult(maps, idx, false, cnt);
+      outputMaker.printResult(maps, false, cnt);
       return false;
     }
 }

@@ -1,7 +1,9 @@
 package bridge;
 
+import java.util.List;
+
 public interface OutputMaker {
-  void printMap(char[][] maps, int end);
-  void printResult(char[][] maps, int end, boolean success, int cnt);
+  void printMap(List<List<String>> maps);
+  void printResult(List<List<String>> maps, boolean success, int cnt);
   void printStatus(boolean success);
 }
