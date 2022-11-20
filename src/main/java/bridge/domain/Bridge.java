@@ -14,7 +14,9 @@ public class Bridge {
     }
 
     public MoveResult crossBridge(int distance, Move moveTo) {
-        return MoveResult.move(Move.from(bridges.get(distance)), moveTo);
+        Move destination = Move.from(bridges.get(distance));
+
+        return MoveResult.decide(destination, moveTo);
     }
 
     @Override

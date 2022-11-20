@@ -22,7 +22,7 @@ class MoveTest {
     public void moveBadInputTest(String input) {
         assertThatThrownBy(() -> Move.from(input)).isInstanceOf(IllegalArgumentException.class);
     }
-    
+
     @DisplayName("other()는 다른 Move를 반환한다.")
     @Test
     public void otherMoveTest() {

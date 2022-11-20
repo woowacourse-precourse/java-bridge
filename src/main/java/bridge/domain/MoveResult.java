@@ -13,7 +13,7 @@ public enum MoveResult {
         this.canMove = canMove;
     }
 
-    public static MoveResult move(Move destination, Move moveTo) {
+    public static MoveResult decide(Move destination, Move moveTo) {
         if (destination == moveTo) {
             return SUCCESS;
         }
