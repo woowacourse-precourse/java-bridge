@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class BridgeRetryTest {
+class BridgeRetryTest {
 
     @DisplayName("재시도 문자가 R,Q 이 아닌 경우 예외처리")
     @ParameterizedTest

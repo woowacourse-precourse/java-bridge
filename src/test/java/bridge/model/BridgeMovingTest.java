@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class BridgeMovingTest {
+class BridgeMovingTest {
 
     @DisplayName("이동할 칸 문자가 U,D 이 아닌 경우 예외처리")
     @ParameterizedTest

@@ -11,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BridgeMapTest {
+class BridgeMapTest {
 
     private BridgeMap bridgeMap;
 
