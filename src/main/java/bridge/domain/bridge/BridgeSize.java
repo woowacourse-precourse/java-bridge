@@ -19,7 +19,7 @@ public class BridgeSize {
     }
 
     public Integer size() {
-        return this.size();
+        return this.size;
     }
 
     private void validateSizeLessThanMaxSize(int size) {
