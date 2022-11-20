@@ -12,11 +12,17 @@ public class BridgeGame {
     private final Set<String> MOVING_KEY;
     private final Set<String> RETRY_KEY;
 
+    private List<String> bridge;
+
     public BridgeGame(int minLengthSize, int maxLengthSize, Set<String> movingKey, Set<String> retryKey) {
         this.MIN_LENGTH_SIZE = minLengthSize;
         this.MAX_LENGTH_SIZE = maxLengthSize;
         this.MOVING_KEY = movingKey;
         this.RETRY_KEY = retryKey;
+    }
+
+    public void setBridge(List<String> bridge){
+        this.bridge = bridge;
     }
 
 
