@@ -39,7 +39,8 @@ public class BridgeGame {
       String input = new InputView().readMove();
       if(ch.equals(input)) {
         makeO(maps, input, idx);
-      } else {
+      }
+      if(!ch.equals(input)) {
         makeX(maps, input, idx);
       }
       new OutputView().printMap(maps, idx);
@@ -48,17 +49,17 @@ public class BridgeGame {
     public void makeX(char[][] maps, String input, int idx) {
       if(input.equals("U")) {
         maps[0][idx] = 'X';
-      } else {
-        maps[1][idx] = 'X';
+        return;
       }
+      maps[1][idx] = 'X';
     }
 
     public void makeO(char[][] maps, String input, int idx) {
       if(input.equals("U")) {
         maps[0][idx] = 'O';
-      } else {
-        maps[1][idx] = 'O';
+        return;
       }
+      maps[1][idx] = 'O';
     }
 
   /**
@@ -70,9 +71,8 @@ public class BridgeGame {
       String comm = new InputView().readRetry();
       if(comm.equals("R")) {
         return move(bridge, cnt + 1);
-      } else {
-        new OutputView().printResult(maps, idx, false, cnt);
-        return false;
       }
+      new OutputView().printResult(maps, idx, false, cnt);
+      return false;
     }
 }

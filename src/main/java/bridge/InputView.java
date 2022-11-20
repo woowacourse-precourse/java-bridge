@@ -22,7 +22,9 @@ public class InputView {
 
     public int validateSize(int parseInt) {
         int input = parseInt;
-        if(input < 3 || input > 20) { throw new NumberFormatException(); }
+        if(input < 3 || input > 20) {
+            throw new NumberFormatException();
+        }
         return input;
     }
 

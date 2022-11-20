@@ -31,8 +31,15 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(maps, end);
         System.out.print("게임 성공 여부: ");
-        if(success) System.out.println("성공");
-        else System.out.println("실패");
+        printStatus(success);
         System.out.println("총 시도한 횟수: " + cnt);
+    }
+
+    public void printStatus(boolean success) {
+        if(success) {
+            System.out.println("성공");
+            return;
+        }
+        System.out.println("실패");
     }
 }
