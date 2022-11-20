@@ -436,7 +436,8 @@ int number=bridgeNumberGenerator.generate();
                     1. 사용자가 게임을 진행하는지 확인 (User.isPlayingGame() 호출)
                     2. moveUser - 사용자 이동
                     3. printBridge_userPredict - 현재까지 건넌 다리 출력 (OutputView.printMap() 호출)
-                    4. isGameSucceed - 성공, 실패 여부 확인
+                    4. isGameSucceed - 게임 성공 여부 확인
+                    4. isGameFailed - 게임 실패 여부 확인
                     5. askRestartGame - 재시작 여부 확인
                     6. printGameResult - 게임 종료 문구 출력
         *
@@ -451,6 +452,7 @@ int number=bridgeNumberGenerator.generate();
                 * setBridgeAnswer - 정답 다리 값 저장
                 * move - 사용자의 다리 칸 이동
                 * checkIfGameIsSucceed - 게임 성공 여부 확인
+                * checkIfGameIsFailed - 게임 실패 여부 확인
                 * retry - 게임을 다시 시도
     *
 
