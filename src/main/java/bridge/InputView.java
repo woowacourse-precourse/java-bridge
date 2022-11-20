@@ -39,7 +39,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        try {
+            return validateGameCommand(readLine());
+        } catch (IllegalArgumentException e) {
+            OutputView output = new OutputView();
+            output.printError(e);
+            return readGameCommand();
+        }
     }
 
 
@@ -60,6 +66,13 @@ public class InputView {
     private String validateMovement(String answer) {
         if (!(answer.equals("U") || answer.equals("D"))) {
             throw new IllegalArgumentException("이동할 칸은 'U' 또는 'D' 만 입력 가능합니다.");
+        }
+        return answer;
+    }
+
+    private String validateGameCommand(String answer) {
+        if (!(answer.equals("R") || answer.equals("Q"))) {
+            throw new IllegalArgumentException("커맨드는 'R' 또는 'Q' 만 입력 가능합니다.");
         }
         return answer;
     }
