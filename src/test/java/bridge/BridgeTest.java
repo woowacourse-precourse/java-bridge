@@ -50,4 +50,17 @@ class BridgeTest {
         assertThat(answer)
                 .isTrue();
     }
+
+    @DisplayName("사용자가 오답에 해당하는 이동 방향을 입력했을 때 거짓을 반환하는지 테스트")
+    @Test
+    void isWrongAnswer() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        MoveDirection direction = new MoveDirection("D");
+        int index = 0;
+        //when
+        boolean isAnswer = bridge.isAnswer(direction, index);
+        //then
+        assertThat(isAnswer).isFalse();
+    }
 }
