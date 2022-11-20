@@ -5,6 +5,10 @@ import java.util.List;
 
 public class FootPrint {
 
+    private static final String O = "O";
+    private static final String X = "X";
+    private static final String BLANK = " ";
+
     private final List<String> footPrint;
 
     public FootPrint() {
@@ -12,15 +16,15 @@ public class FootPrint {
     }
 
     public void addBlank() {
-        footPrint.add(" ");
+        footPrint.add(BLANK);
     }
 
     public void addStep(int status) {
         if (status == User.LIVE) {
-            footPrint.add("O");
+            footPrint.add(O);
             return;
         }
-        footPrint.add("X");
+        footPrint.add(X);
     }
 
     public void clear() {
