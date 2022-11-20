@@ -13,6 +13,7 @@ public class BridgeGame {
     private BridgeState bridgeState;
     private int round = BRIDGE_GAME_ROUND_INIT;
     private int totalGameAttempts = BRIDGE_GAME_ATTEMPTS_INIT;
+    private boolean gameResult = BRIDGE_GAME_RESULT_INIT;
 
     public BridgeGame(List<String> bridge, BridgeState bridgeState) {
         this.bridge = bridge;
@@ -60,5 +61,9 @@ public class BridgeGame {
 
     public int getTotalGameAttempts() {
         return totalGameAttempts;
+    }
+
+    public boolean isWon() {
+        return gameResult;
     }
 }
