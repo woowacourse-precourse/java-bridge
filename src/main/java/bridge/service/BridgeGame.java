@@ -45,6 +45,10 @@ public class BridgeGame {
         bridgeState.clear();
     }
 
+    public boolean canContinue() {
+        return !user.isArrived(bridge);
+    }
+
     public BridgeState getBridgeState() {
         return bridgeState;
     }
