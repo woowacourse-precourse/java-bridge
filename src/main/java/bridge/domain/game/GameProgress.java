@@ -2,11 +2,11 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.BridgeUnit;
 
-public class MapUnit {
+public class GameProgress {
     private final BridgeUnit bridgeUnit;
     private final boolean success;
 
-    public MapUnit(BridgeUnit bridgeUnit, boolean success) {
+    public GameProgress(BridgeUnit bridgeUnit, boolean success) {
         this.bridgeUnit = bridgeUnit;
         this.success = success;
     }

@@ -3,7 +3,7 @@ package bridge.view;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.bridge.BridgeUnit;
 import bridge.domain.game.GameStatus;
-import bridge.domain.game.MapUnit;
+import bridge.domain.game.GameProgress;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,12 +49,12 @@ public class OutputView {
     private String toPrintFormat(BridgeGame bridgeGame, BridgeUnit bridgeUnit) {
         List<String> results = new ArrayList<>();
         bridgeGame.getGameProgress().stream()
-                .map(mapUnit -> getFormat(mapUnit, bridgeUnit))
+                .map(gameProgress -> getFormat(gameProgress, bridgeUnit))
                 .forEach(results::add);
         return String.join(BRIDGE_UNIT_DELIMITER, results);
     }
 
-    private String getFormat(MapUnit unit, BridgeUnit bridgeUnit) {
+    private String getFormat(GameProgress unit, BridgeUnit bridgeUnit) {
         if (bridgeUnit.equals(unit.getBridgeUnit())) {
             return String.format(SYMBOL, getSymbol(unit.isSuccess()));
         }

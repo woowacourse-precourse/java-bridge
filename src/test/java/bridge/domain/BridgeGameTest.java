@@ -5,7 +5,7 @@ import bridge.domain.bridge.BridgeMaker;
 import bridge.domain.bridge.BridgeUnit;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameStatus;
-import bridge.domain.game.MapUnit;
+import bridge.domain.game.GameProgress;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -93,7 +93,7 @@ class BridgeGameTest {
             //then
             assertThat(status).isEqualTo(PLAYING);
             assertThat(bridgeGame.getAttempt()).isEqualTo(2);
-            assertThat(bridgeGame.getGameProgress()).isEqualTo(new ArrayList<MapUnit>());
+            assertThat(bridgeGame.getGameProgress()).isEqualTo(new ArrayList<GameProgress>());
         }
 
         @Test

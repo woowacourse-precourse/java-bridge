@@ -17,7 +17,7 @@ import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private final List<MapUnit> gameProgress;
+    private final List<GameProgress> gameProgress;
     private int attempt;
 
     public BridgeGame(Bridge bridge) {
@@ -33,10 +33,10 @@ public class BridgeGame {
      */
     public GameStatus move(BridgeUnit nextUnit) {
         if (!canMove(nextUnit)) {
-            gameProgress.add(new MapUnit(nextUnit, false));
+            gameProgress.add(new GameProgress(nextUnit, false));
             return FAILED;
         }
-        gameProgress.add(new MapUnit(nextUnit, true));
+        gameProgress.add(new GameProgress(nextUnit, true));
         if (isSuccess()) {
             return SUCCESS;
         }
@@ -70,7 +70,7 @@ public class BridgeGame {
         }
     }
 
-    public List<MapUnit> getGameProgress() {
+    public List<GameProgress> getGameProgress() {
         return gameProgress;
     }
 
