@@ -35,4 +35,14 @@ public class BridgeGameTest {
         assertThat(bridgeGame.move(0, "D"))
                 .isFalse();
     }
+
+    @DisplayName("재시도 시 게임 시도 횟수가 1 증가하는지 테스트")
+    @Test()
+    public void countGameByRetry() {
+        BridgeGame bridgeGame = new BridgeGame(3);
+        bridgeGame.retry();
+        bridgeGame.retry();
+        assertThat(bridgeGame.getGameCount())
+                .isEqualTo(3);
+    }
 }
