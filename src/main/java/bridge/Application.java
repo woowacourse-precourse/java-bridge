@@ -64,7 +64,6 @@ public class Application {
                         System.out.println(exception.getMessage());
                     }
                 }
-                System.out.println(command);
             }
 
             // 종료를 원하는 경우 최종 결과 출력
