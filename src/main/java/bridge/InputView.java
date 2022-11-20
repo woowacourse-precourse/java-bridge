@@ -35,7 +35,17 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(inputMessage.INPUT_MOVE.get());
-        String moving = Console.readLine();
+        String moving = validateMoving(Console.readLine());
+        return moving;
+    }
+
+    public String validateMoving(String moving) {
+        moving = moving.toUpperCase();
+
+        if (!moving.equals(Command.UP.get()) || moving.equals(Command.DOWN.get())) {
+            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_MOVING_COMMAND.get());
+        }
+
         return moving;
     }
 
@@ -46,6 +56,16 @@ public class InputView {
         System.out.println(inputMessage.INPUT_RETRY.get());
         String retryCommand = Console.readLine();
         return retryCommand;
+    }
+
+    public String validateRetry(String retry) {
+        retry = retry.toUpperCase();
+
+        if (!retry.equals(Command.RETRY.get()) || retry.equals(Command.QUIT.get())) {
+            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_RETRY_COMMAND.get());
+        }
+
+        return retry;
     }
 }
 
