@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.GameResult;
 import bridge.domain.MovingResult;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -9,27 +10,26 @@ import java.util.Map;
  */
 public class OutputView {
 
+    private static final String INIT_MAP = "[  ]";
+
+    private static Map<String, StringBuilder> map;
+
+    static {
+        map = new LinkedHashMap<>();
+        map.put("U", new StringBuilder(INIT_MAP));
+        map.put("D", new StringBuilder(INIT_MAP));
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Map<String, StringBuilder> map, MovingResult moveResult) {
-        String moving = moveResult.getMoving();
-        String result = "| " + moveResult.getResult() + " ";
-
+    public void printMap(MovingResult moveResult, int next) {
         for (String part : map.keySet()) {
             StringBuilder printer = map.get(part);
-            int insertIndex = printer.lastIndexOf(" ");
-
-            if (part.equals(moving)) {
-                printer.insert(insertIndex, result);
-                System.out.println(printer.toString());
-                continue;
-            }
-
-            printer.insert(insertIndex, "|   ");
-            System.out.println(printer.toString());
+            insertSeparator(printer, next);
+            printPart(part, printer, moveResult);
         }
 
         System.out.println();
@@ -40,7 +40,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Map<String, StringBuilder> map, GameResult gameResult) {
+    public void printResult(GameResult gameResult) {
         System.out.println("최종 게임 결과");
         for (StringBuilder printer : map.values()) {
             System.out.println(printer.toString());
@@ -50,4 +50,31 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + gameResult.getResult());
         System.out.println("총 시도한 횟수: " + gameResult.getTotalTry());
     }
+
+    public void initMap() {
+        for (String part : map.keySet()) {
+            map.put(part, new StringBuilder(INIT_MAP));
+        }
+    }
+
+    private void insertSeparator(StringBuilder printer, int next) {
+        if (next != 0) {
+            int lastSpaceIndex = printer.lastIndexOf(" ");
+            printer.insert(lastSpaceIndex, " | ");
+        }
+    }
+
+    private void printPart(String part, StringBuilder printer, MovingResult movingResult) {
+        int insertIndex = printer.lastIndexOf(" ");
+
+        if (part.equals(movingResult.getMoving())) {
+            printer.insert(insertIndex, movingResult.getResult());
+            System.out.println(printer);
+            return;
+        }
+
+        printer.insert(insertIndex, " ");
+        System.out.println(printer);
+    }
+
 }
