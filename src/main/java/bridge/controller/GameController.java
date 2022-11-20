@@ -26,6 +26,7 @@ public class GameController {
         outputView.printStartGame();
         // 다리 길이 입력받음, 다리 생성
         generateBridge();
+        System.out.println();
         // 게임 종료할 때 까지의 사이클
         do {
             // U, D 입력 받으며 다리 위 이동

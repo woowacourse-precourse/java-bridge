@@ -24,6 +24,7 @@ public class OutputView {
 
     public void printStartGame() {
         System.out.println(START_GAME_MESSAGE);
+        System.out.println();
     }
 
     public void printInputBridgeSize() {
@@ -56,6 +57,7 @@ public class OutputView {
             stringBuilder.append(CLOSE_PARENTHESIS);
             System.out.println(stringBuilder);
         }
+        System.out.println();
     }
 
     private String makeBridgeResult(List<String> bridge) {
