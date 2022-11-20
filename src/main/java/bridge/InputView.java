@@ -39,7 +39,8 @@ public class InputView {
     }
 
     private boolean isInRange(String input, int from, int to) {
-        return true;
+        int number = Integer.parseInt(input);
+        return from <= number && number <= to;
     }
 
     /**
