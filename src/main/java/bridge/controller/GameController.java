@@ -9,13 +9,14 @@ public class GameController {
 	private final BridgeGame game;
 	private final InputView inputView;
 	private final OutputView outputView;
+
 	public GameController() {
 		game = new BridgeGame();
 		inputView = new InputView();
 		outputView = new OutputView();
 	}
 
-	public void play(){
+	public void play() {
 		outputView.printStart();
 		game.start(inputView.readBridgeSize());
 
@@ -26,14 +27,14 @@ public class GameController {
 
 	private boolean tryMove() {
 		boolean isEnd = false;
-		boolean success=game.move(inputView.readMoving());
+		boolean success = game.move(inputView.readMoving());
 
-		if(success) {
+		if (success) {
 			outputView.printMap(game.getRecord().getBoards());
-			isEnd=game.isFinish();
+			isEnd = game.isFinish();
 		} else if (!success) {
 			outputView.printMap(game.getRecord().getBoards());
-			isEnd=game.retry(inputView.readGameCommand());
+			isEnd = game.retry(inputView.readGameCommand());
 		}
 
 		return isEnd;
