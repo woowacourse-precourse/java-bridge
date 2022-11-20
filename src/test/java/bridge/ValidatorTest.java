@@ -45,9 +45,11 @@ public class ValidatorTest {
     }
 
     @DisplayName("U, D를 소문자로 입력 시 예외 발생")
-    @Test
-    void InputDirectionLowerCaseTest() {
-
+    @ValueSource(strings = {"u", "d"})
+    @ParameterizedTest
+    void InputDirectionLowerCaseTest(String input) {
+        assertThatThrownBy(() -> validateInputDirectionException(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("이동 입력 값이 Null이면 예외 발생")
