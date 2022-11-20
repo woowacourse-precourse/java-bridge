@@ -18,4 +18,8 @@ public class User {
         int lastIndex = getMoveCount() -1;
         return userMoves.get(lastIndex);
     }
+
+    public void clearUserMove() {
+        userMoves = new ArrayList<>();
+    }
 }
