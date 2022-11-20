@@ -52,4 +52,42 @@ class BridgeTypeTest {
             return result.getEngNotation();
         }
     }
+
+    @Nested
+    @DisplayName("BridgeType에 포함된 옵션인지 확인하는 로직 검증")
+    class ContainOption{
+
+        @Test
+        @DisplayName("선택지에 없는 옵션은 false값 리턴")
+        void 선택지에_없는_옵션(){
+            // given
+            String bridgeType = "X";
+            // when
+            boolean result = BridgeType.isContains(bridgeType);
+            // then
+            assertThat(result).isFalse();
+        }
+
+        @Test
+        @DisplayName("U 옵션은 true 값 리턴")
+        void 선택지에_있는_U_옵션(){
+            // given
+            String bridgeType = "U";
+            // when
+            boolean result = BridgeType.isContains(bridgeType);
+            // then
+            assertThat(result).isTrue();
+        }
+
+        @Test
+        @DisplayName("D 옵션은 true 값 리턴")
+        void 선택지에_있는_D_옵션(){
+            // given
+            String bridgeType = "D";
+            // when
+            boolean result = BridgeType.isContains(bridgeType);
+            // then
+            assertThat(result).isTrue();
+        }
+    }
 }
