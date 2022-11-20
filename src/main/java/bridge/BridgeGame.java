@@ -3,8 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.Validator.validate;
-import static bridge.Validator.validateCommand;
+import static bridge.Validator.*;
 
 
 /**
@@ -22,7 +21,7 @@ public class BridgeGame {
     }
 
     public boolean move(String moving) {
-        validate(moving);
+        validateMoving(moving);
         userBridgeHistroy.add(moving);
         if (bridge.get(movingCount).equals(moving)) {
             movingCount++;
