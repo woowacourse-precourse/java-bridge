@@ -37,4 +37,8 @@ public class InputView {
         String userCommand = readLine();
         return userCommand;
     }
+
+    public void readBridgeSizeOfNoNumberException(String bridgeSize){
+        String brideSizeRegularExpression = "^\\d{1,2}$";
+    }
 }
