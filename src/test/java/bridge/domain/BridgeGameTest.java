@@ -17,31 +17,30 @@ class BridgeGameTest {
     @CsvSource(value = {"U, U, O,' '", "U, D,' ',X", "D, U,X,' '", "D, D,' ',O"})
     public void move_test(String bridgeValue, String playerValue, String firstResult,
             String secondResult) {
-        PlayerMap playerMap;
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
-        playerMap = bridgeGame.move(new Moving(playerValue));
+        bridgeGame.move(new Moving(playerValue));
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
-        assertThat(playerMap.getDetail()).isEqualTo(estimatedResult);
+        assertThat(bridgeGame.getPlayerMap()).isEqualTo(estimatedResult);
     }
 
     @Test
     public void retry_R_0() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
-        PlayerMap playerMap = bridgeGame.move(new Moving("U"));
-        playerMap = bridgeGame.move(new Moving("D"));
-        playerMap = bridgeGame.retry(new GameCommand("R"));
-        assertThat(playerMap.getSize()).isEqualTo(0);
+        bridgeGame.move(new Moving("U"));
+        bridgeGame.move(new Moving("D"));
+        bridgeGame.retry(new GameCommand("R"));
+        assertThat(bridgeGame.getCount()).isEqualTo(2);
     }
 
     @Test
     public void retry_Q_Test() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
-        PlayerMap playerMap = bridgeGame.move(new Moving("U"));
-        playerMap = bridgeGame.move(new Moving("D"));
-        playerMap = bridgeGame.retry(new GameCommand("Q"));
+        bridgeGame.move(new Moving("U"));
+        bridgeGame.move(new Moving("D"));
+        bridgeGame.retry(new GameCommand("Q"));
         List<List> estimatedResult = List.of(List.of("O", " "), List.of(" ", "X"));
-        assertThat(playerMap.getDetail()).isEqualTo(estimatedResult);
+        assertThat(bridgeGame.getPlayerMap()).isEqualTo(estimatedResult);
     }
 
     @ParameterizedTest(name = "[{index}] input {0} {1} \"{2}\"")
@@ -58,7 +57,6 @@ class BridgeGameTest {
     public void isMove_test(String bridgeValue, String playerValue, boolean value) {
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
-        bridgeGame.move(new Moving(playerValue));
-        assertThat(bridgeGame.isMoveSuccess()).isEqualTo(value);
+        assertThat(bridgeGame.move(new Moving(playerValue))).isEqualTo(value);
     }
 }

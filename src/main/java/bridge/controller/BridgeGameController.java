@@ -32,8 +32,7 @@ public class BridgeGameController {
     }
 
     private void playBridgeGame(BridgeGame bridgeGame) {
-        movePlayer(bridgeGame);
-        if (!bridgeGame.isMoveSuccess()) {
+        if (!movePlayer(bridgeGame)) {
             bridgeGame.retry(inputGameCommand());
         }
         if (bridgeGame.isEnd()) {
@@ -42,9 +41,10 @@ public class BridgeGameController {
         playBridgeGame(bridgeGame);
     }
 
-    private void movePlayer(BridgeGame bridgeGame) {
-        bridgeGame.move(inputMoving());
+    private boolean movePlayer(BridgeGame bridgeGame) {
+        boolean isMove = bridgeGame.move(inputMoving());
         outputView.printMap(bridgeGame);
+        return isMove;
     }
 
     private BridgeSize inputBridgeSize() {

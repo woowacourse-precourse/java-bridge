@@ -13,14 +13,14 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeMap bridgeMap;
-    boolean isMove;
     private PlayerMap playerMap;
+    private boolean isMoveSuccess;
     private int count;
 
     public BridgeGame(BridgeMap bridgeMap) {
         this.bridgeMap = bridgeMap;
-        this.isMove = true;
         this.playerMap = new PlayerMap();
+        this.isMoveSuccess = true;
         this.count = 1;
     }
 
@@ -29,10 +29,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public PlayerMap move(Moving moving) {
-        isMove = bridgeMap.isMove(playerMap, moving);
-        playerMap.move(moving, isMove);
-        return playerMap;
+    public boolean move(Moving moving) {
+        isMoveSuccess = bridgeMap.isMove(playerMap, moving);
+        playerMap.move(moving, isMoveSuccess);
+        return isMoveSuccess;
     }
 
     /**
@@ -40,14 +40,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public PlayerMap retry(GameCommand gameCommand) {
+    public void retry(GameCommand gameCommand) {
         if (gameCommand.equals(BridgeConstants.BRIDGE_GAME_COMMAND_RETRY)) {
             playerMap = new PlayerMap();
-            isMove = true;
+            isMoveSuccess = true;
             count++;
-            return playerMap;
         }
-        return playerMap;
     }
 
     public int getCount() {
@@ -55,7 +53,7 @@ public class BridgeGame {
     }
 
     public String getStatus() {
-        if (isMove) {
+        if (isMoveSuccess) {
             return BridgeConstants.BRIDGE_GAME_SUCCESS;
         }
         return BridgeConstants.BRIDGE_GAME_FAIL;
@@ -65,12 +63,8 @@ public class BridgeGame {
         return playerMap.getDetail();
     }
 
-    public boolean isMoveSuccess() {
-        return isMove;
-    }
-
     public boolean isEnd() {
-        return !isMove || getBridgeMapSize() == playerMap.getSize();
+        return getBridgeMapSize() == playerMap.getSize();
     }
 
     private int getBridgeMapSize() {
