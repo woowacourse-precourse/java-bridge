@@ -10,7 +10,8 @@ import java.util.stream.DoubleStream;
 
 public class BridgeGame {
 
-    private int bridgeCount = 0;
+    Application application = new Application();
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -50,30 +51,26 @@ public class BridgeGame {
     }
 
     public List<Bridge> successBridgeUp(List<Bridge> bridge) {
-        String bridgeUp = bridge.get(0).getBridge().get(bridgeCount).replace("   ", " O ");
-        bridge.get(0).getBridge().set(bridgeCount, bridgeUp);
-        bridgeCount++;
+        String bridgeUp = bridge.get(0).getBridge().get(application.getBridgeCount()).replace("   ", " O ");
+        bridge.get(0).getBridge().set(application.getBridgeCount(), bridgeUp);
         return bridge;
     }
 
     public List<Bridge> successBridgeDown(List<Bridge> bridge) {
-        String bridgeUp = bridge.get(1).getBridge().get(bridgeCount).replace("   ", " O ");
-        bridge.get(1).getBridge().set(bridgeCount, bridgeUp);
-        bridgeCount++;
+        String bridgeUp = bridge.get(1).getBridge().get(application.getBridgeCount()).replace("   ", " O ");
+        bridge.get(1).getBridge().set(application.getBridgeCount(), bridgeUp);
         return bridge;
     }
 
     public List<Bridge> failBridgeUp(List<Bridge> bridge) {
-        String bridgeUp = bridge.get(0).getBridge().get(bridgeCount).replace("   ", " X ");
-        bridge.get(0).getBridge().set(bridgeCount, bridgeUp);
-        bridgeCount++;
+        String bridgeUp = bridge.get(0).getBridge().get(application.getBridgeCount()).replace("   ", " X ");
+        bridge.get(0).getBridge().set(application.getBridgeCount(), bridgeUp);
         return bridge;
     }
 
     public List<Bridge> failBridgeDown(List<Bridge> bridge) {
-        String bridgeDown = bridge.get(1).getBridge().get(bridgeCount).replace("   ", " X ");
-        bridge.get(1).getBridge().set(bridgeCount, bridgeDown);
-        bridgeCount++;
+        String bridgeDown = bridge.get(1).getBridge().get(application.getBridgeCount()).replace("   ", " X ");
+        bridge.get(1).getBridge().set(application.getBridgeCount(), bridgeDown);
         return bridge;
     }
 
