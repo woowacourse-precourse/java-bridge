@@ -12,7 +12,7 @@ public class OutputView {
     private final String LAST_MOVEMENT_RESULT_LABEL = "최종 게임 결과";
 
     private final String IF_IS_SUCCESS_PREFIX = "게임 성공 여부: ";
-    private final String TRY_COUNT_PREFIX = " 총 시도한 횟수: ";
+    private final String TRY_COUNT_PREFIX = "총 시도한 횟수: ";
     private final String ERROR_PREFIX = "[ERROR] ";
 
     private final String SUCCESS_TEXT = "성공";
