@@ -6,16 +6,16 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public Error error;
+    public Error error = new Error();
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String answer = Console.readLine();
 
-        error.isNumber(answer);
-        error.isRightNumberRange(3, 20, Integer.parseInt(answer));
+        Error.isNumber(answer);
+        Error.isRightNumberRange(3, 20, Integer.parseInt(answer));
 
         return Integer.parseInt(answer);
     }
