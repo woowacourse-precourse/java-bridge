@@ -19,9 +19,12 @@ public class Application {
             while(run) {
                 String status = "성공";
                 int size = readBridgeSize();
-                List<String> bridge = BridgeMaker.makeBridge(size);
+                BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
+                BridgeMaker maker = new BridgeMaker(generator);
+                List<String> bridge = maker.makeBridge(size);
 
                 BridgeGame game = new BridgeGame();
+                game.clear();
 
                 int idx = 0;
                 while(idx < size) {
