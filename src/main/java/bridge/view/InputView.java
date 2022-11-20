@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.MoveDirection;
+import bridge.domain.MoveDirection;
 import bridge.support.validator.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 

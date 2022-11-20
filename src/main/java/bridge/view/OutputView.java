@@ -1,11 +1,11 @@
 package bridge.view;
 
-import bridge.Result;
-import bridge.ResultSignResolver;
+import bridge.domain.Result;
+import bridge.support.ResultSignResolver;
 import bridge.view.sign.FirstBridgeSignStrategy;
 import bridge.view.sign.SecondBridgeSignStrategy;
 
-import static bridge.support.ResultSign.*;
+import static bridge.view.sign.ResultSign.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

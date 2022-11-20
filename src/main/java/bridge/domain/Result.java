@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.domain.MoveDirection;
 
 import java.util.ArrayList;
 import java.util.Collections;

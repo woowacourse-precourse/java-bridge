@@ -1,10 +1,10 @@
-package bridge;
+package bridge.support;
 
+import bridge.domain.MoveDirection;
+import bridge.domain.Result;
 import bridge.view.sign.SignStrategy;
 
 import java.util.List;
-
-import static bridge.support.ResultSign.*;
 
 public class ResultSignResolver {
 

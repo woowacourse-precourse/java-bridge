@@ -1,10 +1,9 @@
 package bridge.view.sign;
 
-import bridge.MoveDirection;
-import bridge.Result;
-import bridge.view.sign.SignStrategy;
+import bridge.domain.MoveDirection;
+import bridge.domain.Result;
 
-import static bridge.support.ResultSign.*;
+import static bridge.view.sign.ResultSign.*;
 
 public class FirstBridgeSignStrategy implements SignStrategy {
 

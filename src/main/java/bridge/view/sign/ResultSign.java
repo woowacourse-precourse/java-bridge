@@ -1,4 +1,4 @@
-package bridge.support;
+package bridge.view.sign;
 
 public enum ResultSign {
     OPEN_BRACKET("[ "),

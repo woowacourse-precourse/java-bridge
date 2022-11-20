@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public class BridgeGameStatus {
     private static final String RETRY_COMMAND = "R";
