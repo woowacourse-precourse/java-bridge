@@ -31,12 +31,22 @@ public class Checker {
         }
     }
 
+    void validateGameCommand(String gameCommand) {
+        if (!checkGameCommandValue(gameCommand)) {
+            throw new IllegalArgumentException(InputExceptionMessage.WRONG_GAME_COMMAND.getMessage());
+        }
+    }
+
     private boolean checkBridgeSizeRange(int bridgeSize) {
         return MINIMUM_BRIDGE_SIZE <= bridgeSize && bridgeSize <= MAXIMUM_BRIDGE_SIZE;
     }
 
     private boolean checkMovingValue(String moving) {
         return moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN);
+    }
+
+    private boolean checkGameCommandValue(String gameCommand) {
+        return gameCommand.equals(GAME_RESTART) || gameCommand.equals(GAME_QUIT);
     }
 
 
