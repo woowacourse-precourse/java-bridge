@@ -12,11 +12,7 @@ public class BridgeGame {
 
     private boolean gameSet = false;
 
-    public boolean getGameSet() {
-        return gameSet;
-    }
 
-    int count = 0;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -31,10 +27,15 @@ public class BridgeGame {
         return bridgeList;
     }
 
-    public void move(String result) {
-        String input = inputView.readMoving();
-        this.gameSet = outputView.makeResult(result,input,gameSet);
-        outputView.printMap();
+    public void move(List<String> bridgeList) {
+        for (String bridge : bridgeList){
+            String input = inputView.readMoving();
+            this.gameSet = outputView.makeResult(bridge,input,gameSet);
+            outputView.printMap();
+            if (this.gameSet){
+                break;
+            }
+        }
     }
 
 

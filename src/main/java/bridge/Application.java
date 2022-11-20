@@ -8,11 +8,7 @@ public class Application {
         // TODO: 프로그램 구현
         BridgeGame bridgeGame = new BridgeGame();
         List<String> bridgeList = bridgeGame.start();
-        for (String bridge : bridgeList){
-            bridgeGame.move(bridge);
-            if (bridgeGame.getGameSet()){
-                break;
-            }
-        }
+        bridgeGame.move(bridgeList);
+
     }
 }
