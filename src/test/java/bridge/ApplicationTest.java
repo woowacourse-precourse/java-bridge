@@ -47,6 +47,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 다리_사이즈_생성() {
+        assertSimpleTest(() -> {
+            runException("21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
