@@ -32,7 +32,7 @@ public class BridgeGameController {
 
         boolean willRetry = true;
         do {
-            SpotInfo nextMove = getAndProcessNextMovementInput();
+            BridgeLane nextMove = getAndProcessNextMovementInput();
             bridgeGame.move(nextMove);
             printBridgeMap();
 
@@ -65,7 +65,7 @@ public class BridgeGameController {
         outputView.printMap(bridgeGame);
     }
 
-    private SpotInfo getAndProcessNextMovementInput() {
+    private BridgeLane getAndProcessNextMovementInput() {
         outputView.printNextMovementInputAlert();
         return inputView.readMoving();
     }
@@ -75,7 +75,7 @@ public class BridgeGameController {
     }
 
     private int getAndProcessBridgeLengthInput() {
-        outputView.printBridgeLengthInputAlert();
+        outputView.printBridgeSizeInputAlert();
         return inputView.readBridgeSize();
     }
 

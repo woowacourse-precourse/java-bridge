@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.model.RestartInfo;
-import bridge.model.SpotInfo;
+import bridge.model.BridgeLane;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -19,9 +19,9 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public SpotInfo readMoving() {
+    public BridgeLane readMoving() {
         String inputText = Console.readLine();
-        return SpotInfo.makeSpotInfo(inputText);
+        return BridgeLane.makeBridgeLane(inputText);
     }
 
     /**

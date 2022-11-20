@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovementRecord {
-    private final List<SpotInfo> movementMap;
+    private final List<BridgeLane> movementMap;
 
     public MovementRecord() {
         movementMap = new ArrayList<>();
@@ -14,7 +14,7 @@ public class MovementRecord {
         movementMap = new ArrayList<>(oth.movementMap);
     }
 
-    public SpotInfo getMovementRecord(int index) {
+    public BridgeLane getMovementRecord(int index) {
         return movementMap.get(index - 1);
     }
 
@@ -22,7 +22,7 @@ public class MovementRecord {
         return movementMap.size();
     }
 
-    public void addMovementRecord(SpotInfo spotInfo) {
+    public void addMovementRecord(BridgeLane spotInfo) {
         movementMap.add(spotInfo);
     }
 

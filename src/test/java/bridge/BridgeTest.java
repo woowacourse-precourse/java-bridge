@@ -30,7 +30,7 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 0, 1, 0, 0));
 
             int expectedBridgeLength = 5;
-            assertThat(bridge.getBridgeLength()).isEqualTo(expectedBridgeLength);
+            assertThat(bridge.getBridgeSize()).isEqualTo(expectedBridgeLength);
         }
 
         @Test
@@ -39,7 +39,7 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 0, 0, 1, 1));
 
             boolean expectedSafety = true;
-            assertThat(bridge.isSafeSpot(3, SpotInfo.DOWN)).isEqualTo(expectedSafety);
+            assertThat(bridge.isSafeSpot(3, BridgeLane.DOWN)).isEqualTo(expectedSafety);
         }
     }
 
@@ -50,10 +50,10 @@ public class BridgeTest {
         void movementCountTest() {
             MovementRecord movementRecord = new MovementRecord();
 
-            movementRecord.addMovementRecord(SpotInfo.UP);
-            movementRecord.addMovementRecord(SpotInfo.UP);
-            movementRecord.addMovementRecord(SpotInfo.UP);
-            movementRecord.addMovementRecord(SpotInfo.UP);
+            movementRecord.addMovementRecord(BridgeLane.UP);
+            movementRecord.addMovementRecord(BridgeLane.UP);
+            movementRecord.addMovementRecord(BridgeLane.UP);
+            movementRecord.addMovementRecord(BridgeLane.UP);
 
             int expectedCount = 4;
             assertThat(movementRecord.getMovementCount()).isEqualTo(expectedCount);
@@ -64,12 +64,12 @@ public class BridgeTest {
         void movementRecordTest() {
             MovementRecord movementRecord = new MovementRecord();
 
-            movementRecord.addMovementRecord(SpotInfo.UP);
-            movementRecord.addMovementRecord(SpotInfo.DOWN);
-            movementRecord.addMovementRecord(SpotInfo.DOWN);
-            movementRecord.addMovementRecord(SpotInfo.UP);
+            movementRecord.addMovementRecord(BridgeLane.UP);
+            movementRecord.addMovementRecord(BridgeLane.DOWN);
+            movementRecord.addMovementRecord(BridgeLane.DOWN);
+            movementRecord.addMovementRecord(BridgeLane.UP);
 
-            SpotInfo expectedCount = SpotInfo.DOWN;
+            BridgeLane expectedCount = BridgeLane.DOWN;
             assertThat(movementRecord.getMovementRecord(3)).isEqualTo(expectedCount);
         }
     }
@@ -82,11 +82,11 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.UP);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.UP);
 
             boolean expectedOutput = true;
-            assertThat(game.move(SpotInfo.DOWN)).isEqualTo(expectedOutput);
+            assertThat(game.move(BridgeLane.DOWN)).isEqualTo(expectedOutput);
         }
 
         @Test
@@ -95,12 +95,12 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.DOWN);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.DOWN);
 
             boolean expectedOutput = false;
-            assertThat(game.move(SpotInfo.DOWN)).isEqualTo(expectedOutput);
+            assertThat(game.move(BridgeLane.DOWN)).isEqualTo(expectedOutput);
         }
 
         @Test
@@ -109,12 +109,12 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.UP);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.UP);
             game.retry();
 
             boolean expectedOutput = false;
-            assertThat(game.move(SpotInfo.DOWN)).isEqualTo(expectedOutput);
+            assertThat(game.move(BridgeLane.DOWN)).isEqualTo(expectedOutput);
         }
 
         @Test
@@ -123,9 +123,9 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
+            game.move(BridgeLane.DOWN);
             game.retry();
-            game.move(SpotInfo.UP);
+            game.move(BridgeLane.UP);
 
             int expectedTryCount = 2;
             assertThat(game.getResult().getTryCount()).isEqualTo(expectedTryCount);
@@ -137,9 +137,9 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0, 1, 0, 0, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.DOWN);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.DOWN);
 
             boolean expectedSuccess = false;
             assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
@@ -151,9 +151,9 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1, 0));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.UP);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.UP);
 
             boolean expectedSuccess = false;
             assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
@@ -165,8 +165,8 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1, 1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.UP);
-            game.move(SpotInfo.UP);
+            game.move(BridgeLane.UP);
+            game.move(BridgeLane.UP);
 
             boolean expectedSuccess = true;
             assertThat(game.getResult().isSuccess()).isEqualTo(expectedSuccess);
@@ -178,11 +178,11 @@ public class BridgeTest {
             Bridge bridge = makeBridge(newArrayList(1));
             BridgeGame game = new BridgeGame(bridge);
 
-            game.move(SpotInfo.DOWN);
+            game.move(BridgeLane.DOWN);
             game.retry();
-            game.move(SpotInfo.UP);
+            game.move(BridgeLane.UP);
 
-            SpotInfo expectedSpotInfo = SpotInfo.UP;
+            BridgeLane expectedSpotInfo = BridgeLane.UP;
             assertThat(game.getResult().getLastMovementRecord(1)).isEqualTo(expectedSpotInfo);
         }
     }

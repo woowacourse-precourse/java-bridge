@@ -6,12 +6,12 @@ package bridge.model;
 public class BridgeGame {
     private final Bridge bridge;
     private final BridgeGameResult result;
-    private int currentSpot;
+    private int currentPosition;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = new Bridge(bridge);
         result = new BridgeGameResult();
-        currentSpot = 0;
+        currentPosition = 0;
     }
 
     /**
@@ -19,15 +19,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(SpotInfo spotInfo) {
-        boolean isOnSafeSpot = bridge.isSafeSpot(++currentSpot, spotInfo);
+    public boolean move(BridgeLane spotInfo) {
+        boolean isOnSafeSpot = bridge.isSafeSpot(++currentPosition, spotInfo);
         result.addMovementOnLastMovementRecord(spotInfo);
 
         if(!isOnSafeSpot) {
             result.makeResultFail();
         }
 
-        if(isOnSafeSpot && currentSpot == bridge.getBridgeLength()) {
+        if(isOnSafeSpot && currentPosition == bridge.getBridgeSize()) {
             result.makeResultSuccess();
         }
         return isOnSafeSpot;
@@ -39,7 +39,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        currentSpot = 0;
+        currentPosition = 0;
         result.resetFlag();
         result.addTryCount();
         result.clearLastMovementRecord();

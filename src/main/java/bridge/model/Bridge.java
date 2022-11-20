@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private final List<SpotInfo> bridgeMap;
+    private final List<BridgeLane> safeLaneMap;
 
-    public Bridge(List<String> bridgeInfo) {
-        bridgeMap = new ArrayList<>();
-        for(String spotInfoText : bridgeInfo) {
-            bridgeMap.add(SpotInfo.makeSpotInfo(spotInfoText));
+    public Bridge(List<String> safeLaneInfo) {
+        safeLaneMap = new ArrayList<>();
+        for(String spotInfoText : safeLaneInfo) {
+            safeLaneMap.add(BridgeLane.makeBridgeLane(spotInfoText));
         }
     }
 
     public Bridge(Bridge oth) {
-        bridgeMap = new ArrayList<>(oth.bridgeMap);
+        safeLaneMap = new ArrayList<>(oth.safeLaneMap);
     }
 
-    public int getBridgeLength() {
-        return bridgeMap.size();
+    public int getBridgeSize() {
+        return safeLaneMap.size();
     }
 
-    public boolean isSafeSpot(int index, SpotInfo spotInfo) {
-        SpotInfo spotInfoOnIndex = bridgeMap.get(index - 1);
-        return spotInfoOnIndex.equals(spotInfo);
+    public boolean isSafeSpot(int position, BridgeLane bridgeLane) {
+        BridgeLane safeLaneAtPosition = safeLaneMap.get(position - 1);
+        return safeLaneAtPosition.equals(bridgeLane);
     }
 }

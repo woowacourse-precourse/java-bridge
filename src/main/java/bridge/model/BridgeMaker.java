@@ -24,12 +24,12 @@ public class BridgeMaker {
         List<String> output = new ArrayList<>();
         for(int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            output.add(getBridgeInfoText(bridgeNumber));
+            output.add(getBridgeLaneText(bridgeNumber));
         }
         return output;
     }
 
-    private String getBridgeInfoText(int number) {
+    private String getBridgeLaneText(int number) {
         if(number == 0) {
             return "D";
         }

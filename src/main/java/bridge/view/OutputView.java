@@ -28,7 +28,7 @@ public class OutputView {
     public void printGameStartAlert() {
         System.out.println(GAME_START_ALERT);
     }
-    public void printBridgeLengthInputAlert() {
+    public void printBridgeSizeInputAlert() {
         System.out.println(BRIDGE_LENGTH_INPUT_ALERT);
     }
     public void printNextMovementInputAlert() {
@@ -69,15 +69,15 @@ public class OutputView {
 
     private String getBridgeMovementText(Bridge bridge, BridgeGameResult bridgeGameResult) {
         StringBuilder output = new StringBuilder();
-        SpotInfo[] lineSpots = SpotInfo.values();
-        for (SpotInfo lineSpot : lineSpots) {
-            output.append(getOneLineTextOnBridgeMovement(bridge, bridgeGameResult, lineSpot));
+        BridgeLane[] lineSpots = BridgeLane.values();
+        for (BridgeLane lineSpot : lineSpots) {
+            output.append(getOneLaneTextOnBridgeMovement(bridge, bridgeGameResult, lineSpot));
             output.append("\n");
         }
         return output.toString();
     }
 
-    private String getOneLineTextOnBridgeMovement(Bridge bridge, BridgeGameResult bridgeGameResult, SpotInfo line) {
+    private String getOneLaneTextOnBridgeMovement(Bridge bridge, BridgeGameResult bridgeGameResult, BridgeLane line) {
         StringBuilder oneLineOnBridge = new StringBuilder("[");
         for(int i = 1; i <= bridgeGameResult.getLastMovementCount(); i++) {
             oneLineOnBridge.append(getSpotText(bridge, bridgeGameResult, i, line));
@@ -100,15 +100,15 @@ public class OutputView {
         return TRY_COUNT_PREFIX + bridgeGameResult.getTryCount();
     }
 
-    private String getSpotText(Bridge bridge, BridgeGameResult bridgeGameResult, int index, SpotInfo spotInfo) {
-        SpotInfo targetMovement = bridgeGameResult.getLastMovementRecord(index);
+    private String getSpotText(Bridge bridge, BridgeGameResult bridgeGameResult, int index, BridgeLane spotInfo) {
+        BridgeLane targetMovement = bridgeGameResult.getLastMovementRecord(index);
         if(targetMovement == spotInfo) {
             return BLANK + getSafetySymbol(bridge, index, spotInfo) + BLANK;
         }
         return BLANK + BLANK + BLANK;
     }
 
-    private String getSafetySymbol(Bridge bridge, int index, SpotInfo spotInfo) {
+    private String getSafetySymbol(Bridge bridge, int index, BridgeLane spotInfo) {
         if(bridge.isSafeSpot(index, spotInfo)) {
             return SAFE_SYMBOL;
         }

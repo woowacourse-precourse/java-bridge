@@ -41,7 +41,7 @@ public class BridgeGameResult {
         lastMovementRecord.clearMovementRecord();
     }
 
-    public void addMovementOnLastMovementRecord(SpotInfo spotInfo) {
+    public void addMovementOnLastMovementRecord(BridgeLane spotInfo) {
         lastMovementRecord.addMovementRecord(spotInfo);
     }
 
@@ -61,7 +61,7 @@ public class BridgeGameResult {
         return lastMovementRecord.getMovementCount();
     }
 
-    public SpotInfo getLastMovementRecord(int index) {
+    public BridgeLane getLastMovementRecord(int index) {
         return lastMovementRecord.getMovementRecord(index);
     }
 }
