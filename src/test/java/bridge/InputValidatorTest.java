@@ -13,7 +13,8 @@ public class InputValidatorTest {
         InputValidator inputValidator = new InputValidator();
 
         assertThatThrownBy(() -> inputValidator.validateNumberType("a123"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_NUMBER_TYPE.getMessage());
     }
 
     @DisplayName("다리 개수 입력에 숫자가 들어가면 예외가 발생하지 않는다")
@@ -32,9 +33,11 @@ public class InputValidatorTest {
 
 
         assertThatThrownBy(() -> inputValidator.validateZeroPrefix("0123"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_NUMBER_PREFIX.getMessage());
         assertThatThrownBy(() -> inputValidator.validateZeroPrefix("0"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_NUMBER_PREFIX.getMessage());
     }
 
     @DisplayName("숫자 앞에 0이 들어가 있지 않으면 예외가 발생하지 않는다")
@@ -53,9 +56,11 @@ public class InputValidatorTest {
         InputValidator inputValidator = new InputValidator();
 
         assertThatThrownBy(() -> inputValidator.validateBridgeSize(2))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage());
         assertThatThrownBy(() -> inputValidator.validateBridgeSize(21))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage());
     }
 
     @DisplayName("숫자의 범위가 3이상 20이하면 예외가 발생하지 않는다")
@@ -75,7 +80,8 @@ public class InputValidatorTest {
         InputValidator inputValidator = new InputValidator();
 
         assertThatThrownBy(() -> inputValidator.validateMovingPosition("L"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_MOVING_POSITION.getMessage());
     }
 
     @DisplayName("이동할 칸이 U나 D이면 예외가 발생하지 않는다")
@@ -95,7 +101,8 @@ public class InputValidatorTest {
         InputValidator inputValidator = new InputValidator();
 
         assertThatThrownBy(() -> inputValidator.validateGameCommand("A"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_GAME_COMMAND.getMessage());
     }
 
     @DisplayName("재시작 여부 입력이 R이나 Q가 이면 예외가 발생하지 않는다")
