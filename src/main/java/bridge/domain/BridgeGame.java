@@ -68,10 +68,15 @@ public class BridgeGame {
     }
 
     public String calculateResult() {
-        if (path.size() == bridge.size() && path.get(path.size() - 1).equals(bridge.get(bridge.size() - 1))) {
+        if (path.size() == bridge.size() && isAlive()) {
             return BridgeConstants.WIN;
         }
         return BridgeConstants.LOSE;
+    }
+
+    public boolean isAlive() {
+        int pathLastIndex = path.size() - 1;
+        return path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
     }
 
     /**
