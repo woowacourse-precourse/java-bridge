@@ -22,6 +22,8 @@ public class BridgePlayer {
     }
 
     public boolean isAllMoveTypeSameAs(List<BridgeMoveType> bridgeMoveTypes) {
+        validateBridgeSize(playerBridge);
+        validateBridgeSize(bridgeMoveTypes);
         if (playerBridge.size() != bridgeMoveTypes.size()) {
             return false;
         }
