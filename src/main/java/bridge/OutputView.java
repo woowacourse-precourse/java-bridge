@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     private static void printUpMap(List<String> upMap) {
-        for (int index = 0 ; index < upMap.size(); index++) {
+        for (int index = 0; index < upMap.size(); index++) {
             if (index == 0) {
                 System.out.print("[ ");
             } else if (index > 0) {
@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     private static void printDownMap(List<String> downMap) {
-        for (int index = 0 ; index < downMap.size(); index++) {
+        for (int index = 0; index < downMap.size(); index++) {
             if (index == 0) {
                 System.out.print("[ ");
             } else if (index > 0) {
@@ -38,8 +38,9 @@ public class OutputView {
             }
             System.out.print(downMap.get(index));
         }
-        System.out.print(" ]\n");
+        System.out.print(" ]\n\n");
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -47,13 +48,13 @@ public class OutputView {
      */
     public static void printResult(BridgeGame bridgeGame) {
         String gameResult = "성공";
-        
+
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getUpMap(), bridgeGame.getDownMap());
         if (bridgeGame.getAskRetryMarker()) {
             gameResult = "실패";
         }
-        System.out.println("\n게임 성공 여부: " + gameResult + "\n총 시도한 횟수: " + bridgeGame.getTryCount());
+        System.out.println("게임 성공 여부: " + gameResult + "\n총 시도한 횟수: " + bridgeGame.getTryCount());
     }
 
     public static void printStartMessage() {
