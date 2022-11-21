@@ -48,4 +48,8 @@ public class BridgeGame {
     public boolean isSuccess() {
         return bridge.isEqual(playerMovement.getMovement());
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
