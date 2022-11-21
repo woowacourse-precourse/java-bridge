@@ -28,22 +28,24 @@ public class GameMachine {
     }
 
     public void run() {
-        RetryCommand retry = RetryCommand.RETRY;
-        while (retry == RetryCommand.RETRY) {
-            bridgeGame.retry();
+        RetryCommand respond;
+        do {
             MoveResult gameResult = play();
-            retry = gameAfter(gameResult);
-        }
+            respond = askRetryByResult(gameResult);
+        } while (respond == RetryCommand.RETRY);
         end();
     }
 
-    private RetryCommand gameAfter(MoveResult gameResult) {
+    private RetryCommand askRetryByResult(MoveResult gameResult) {
+        RetryCommand respond = RetryCommand.QUIT;
+
         if (gameResult == MoveResult.FAIL) {
             view.printRestartRequest();
             counter++;
-            return RetryCommand.of(ui.readGameCommand());
+            respond = RetryCommand.of(ui.readGameCommand());
         }
-        return RetryCommand.QUIT;
+
+        return respond;
     }
 
     private void end() {
