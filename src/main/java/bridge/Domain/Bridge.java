@@ -22,7 +22,7 @@ public class Bridge {
         user.add(oneStep);
     }
 
-    public boolean isMatchAboutThisMoving() {
+    public boolean isMatchAboutLastMoving() {
         int index = user.size() - 1;
         String answerMoving = answer.get(index);
         String myMoving = user.get(index);

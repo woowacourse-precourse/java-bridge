@@ -49,7 +49,7 @@ public class BridgeGame {
      */
     public void move() {
         user.addMoving(view.getMoving());
-        if (user.isMatchAboutThisMoving()) {
+        if (user.isMatchAboutLastMoving()) {
             view.printResult(user.getResult());
             if (user.isFinish()) {
                 quit(true);
