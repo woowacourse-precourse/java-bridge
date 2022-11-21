@@ -6,8 +6,8 @@ import bridge.domain.Player;
 import java.util.List;
 import java.util.Map;
 
-import static bridge.util.constants.MovableSpace.UP_SPACE;
-import static bridge.util.constants.MovableSpace.DOWN_SPACE;
+import static bridge.util.constants.MovableSpace.UPPER_SPACE;
+import static bridge.util.constants.MovableSpace.LOWER_SPACE;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -47,7 +47,7 @@ public class BridgeGame {
     }
 
     private void validate(String spaceToMove) {
-        if (!spaceToMove.equals(UP_SPACE.getValue()) && !spaceToMove.equals(DOWN_SPACE.getValue())) {
+        if (!spaceToMove.equals(UPPER_SPACE.getValue()) && !spaceToMove.equals(LOWER_SPACE.getValue())) {
             throw new IllegalArgumentException("[ERROR] 입력된 값이 U나 D가 아닙니다");
         }
     }

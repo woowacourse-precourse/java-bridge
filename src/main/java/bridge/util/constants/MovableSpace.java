@@ -1,8 +1,8 @@
 package bridge.util.constants;
 
 public enum MovableSpace {
-    UP_SPACE("U"),
-    DOWN_SPACE("D");
+    UPPER_SPACE("U"),
+    LOWER_SPACE("D");
 
     private String value;
 

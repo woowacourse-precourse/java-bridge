@@ -3,8 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.util.constants.MovableSpace.UP_SPACE;
-import static bridge.util.constants.MovableSpace.DOWN_SPACE;
+import static bridge.util.constants.MovableSpace.UPPER_SPACE;
+import static bridge.util.constants.MovableSpace.LOWER_SPACE;
 import static bridge.util.constants.BridgeConstant.MIN_BRIDGE_SIZE;
 import static bridge.util.constants.BridgeConstant.MAX_BRIDGE_SIZE;
 import static bridge.util.constants.BridgeConstant.UPPER_BRIDGE_NUMBER;
@@ -45,10 +45,10 @@ public class BridgeMaker {
     public void addMovableSpace(List<String> bridge, int bridgeNumber) {
         validateBridgeNumber(bridgeNumber);
         if (bridgeNumber == UPPER_BRIDGE_NUMBER.getValue()) {
-            bridge.add(UP_SPACE.getValue());
+            bridge.add(UPPER_SPACE.getValue());
             return;
         }
-        bridge.add(DOWN_SPACE.getValue());
+        bridge.add(LOWER_SPACE.getValue());
     }
 
     public void validateBridgeNumber(int bridgeNumber) {

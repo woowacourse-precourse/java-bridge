@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static bridge.util.constants.MovableSpace.UP_SPACE;
+import static bridge.util.constants.MovableSpace.UPPER_SPACE;
 
 public class GameRecord {
     private final List<String> upperCrossedRecord;
@@ -19,7 +19,7 @@ public class GameRecord {
 
     public void recordMove(String spaceToMove, boolean isDead) {
         String marker = isDead ? " X " : " O ";
-        if (spaceToMove.equals(UP_SPACE.getValue())) {
+        if (spaceToMove.equals(UPPER_SPACE.getValue())) {
             upperCrossedRecord.add(marker);
             lowerCrossedRecord.add("   ");
             return;
