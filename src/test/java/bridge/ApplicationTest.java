@@ -25,7 +25,6 @@ class ApplicationTest extends NsTest {
         assertThat(bridge).containsExactly("U", "D", "D");
     }
 
-    @Disabled("기능 구현이 끝나면 활성화 시킬 것")
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
