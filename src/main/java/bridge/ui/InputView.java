@@ -18,9 +18,8 @@ public class InputView {
             System.out.println();
             return bridgeSize;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(
-                    ErrorMessage.INPUT_ONLY_NUMBER_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE
-            ));
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.INPUT_ONLY_NUMBER_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE));
         }
     }
 

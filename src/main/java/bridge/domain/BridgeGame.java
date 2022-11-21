@@ -72,17 +72,15 @@ public class BridgeGame {
         if (moving.equals(UPPER_SIDE) || moving.equals(LOWER_SIDE)) {
             return;
         }
-        throw new IllegalArgumentException(String.format(
-                ErrorMessage.WRONG_MOVING_FORMAT.getValue(), UPPER_SIDE, LOWER_SIDE
-        ));
+        throw new IllegalArgumentException(
+                String.format(ErrorMessage.WRONG_MOVING_FORMAT.getValue(), UPPER_SIDE, LOWER_SIDE));
     }
 
     private void validateGameCommand(String gameCommand) {
         if (gameCommand.equals(RETRY) || gameCommand.equals(QUIT)) {
             return;
         }
-        throw new IllegalArgumentException(String.format(
-                ErrorMessage.WRONG_GAME_COMMAND_FORMAT.getValue(), RETRY, QUIT
-        ));
+        throw new IllegalArgumentException(
+                String.format(ErrorMessage.WRONG_GAME_COMMAND_FORMAT.getValue(), RETRY, QUIT));
     }
 }

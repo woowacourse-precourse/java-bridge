@@ -39,8 +39,7 @@ public class BridgeMaker {
         if (MINIMUM_SIZE <= size && size <= MAXIMUM_SIZE) {
             return;
         }
-        throw new IllegalArgumentException(String.format(
-                ErrorMessage.WRONG_BRIDGE_SIZE_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE
-        ));
+        throw new IllegalArgumentException(
+                String.format(ErrorMessage.WRONG_BRIDGE_SIZE_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE));
     }
 }
