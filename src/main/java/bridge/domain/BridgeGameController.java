@@ -22,6 +22,7 @@ public class BridgeGameController {
     }
 
     public void play() {
+        outputView.printStartMessage();
         setBridgeSize();
         playing();
         quit();

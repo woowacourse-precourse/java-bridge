@@ -35,4 +35,9 @@ public class OutputView {
     public void printErrorMessage(String message) {
         System.out.println(Message.createErrorMessage(message));
     }
+
+    public void printStartMessage() {
+        System.out.println(Message.START_GAME);
+        System.out.println();
+    }
 }
