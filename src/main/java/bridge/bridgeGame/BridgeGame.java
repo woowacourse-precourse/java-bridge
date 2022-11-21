@@ -1,10 +1,12 @@
 package bridge.bridgeGame;
 
+import bridge.Validation;
 import bridge.enums.GameStatus;
 import bridge.enums.UpDown;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,8 +17,9 @@ public class BridgeGame {
     private List<StepStatus> gradingBoard;
     private final List<String> answerBridge;
 
-    public BridgeGame(List<String> answerBridge) {
+    public BridgeGame(List<String> answerBridge) throws NullPointerException {
         this.totalAttemptNum = 1;
+        Validation.validateObjectNull(answerBridge);
         this.answerBridge = answerBridge;
         this.gradingBoard = new ArrayList<>();
     }
