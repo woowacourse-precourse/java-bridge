@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BridgeGame {
     private final Bridge bridge;
-    private final BridgeMap bridgeMap = new BridgeMap();
+    private BridgeMap bridgeMap = new BridgeMap();
     private Movement movement = new Movement();
     private int tryCount = Constant.INITIAL_COUNT;
 
@@ -31,7 +31,7 @@ public class BridgeGame {
 
     private void clearGame() {
         movement = new Movement();
-        bridgeMap.clearMap();
+        bridgeMap = new BridgeMap();
     }
 
     public boolean canMove() {

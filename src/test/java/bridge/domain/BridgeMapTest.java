@@ -36,16 +36,4 @@ class BridgeMapTest {
 
         Assertions.assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
     }
-
-    @DisplayName("clearMap메서드를 호출하면 출력 리스트는 빈 리스트가 된다.")
-    @Test
-    void clearMap() {
-        BridgeMap bridgeMap = new BridgeMap();
-        bridgeMap.addMap(new Moving("U"),true);
-        bridgeMap.clearMap();
-        List<String> topExpected = Collections.emptyList();
-        List<String> bottomExpected = Collections.emptyList();
-
-        Assertions.assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
-    }
 }

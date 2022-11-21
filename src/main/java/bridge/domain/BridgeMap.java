@@ -30,11 +30,6 @@ public class BridgeMap {
         return Constant.WRONG_MARK;
     }
 
-    public void clearMap() {
-        topMap = new ArrayList<>();
-        bottomMap = new ArrayList<>();
-    }
-
     public List<List<String>> getMap() {
         return Arrays.asList(topMap, bottomMap);
     }
