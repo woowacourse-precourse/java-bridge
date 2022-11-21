@@ -10,26 +10,18 @@ public class Application {
     static BridgeMaker bm = new BridgeMaker(bng);
     static BridgeGame bg = new BridgeGame();
 
+    private static int progress = 0, numTrial = 0;
+    private static boolean retry = true, correct = true;
+
     public static void main(String[] args) {
         output.printStart();
         List<String> bridge = bm.makeBridge(input.readBridgeSize());
+        List<String> moves = new ArrayList<>();
         System.out.println(bridge);
-        List<String> moves = new ArrayList<>();;
-        int progress = 0;
-        int numTrial = 0;
-        boolean retry = true, correct = true;
         while (retry && progress < bridge.size()) {
-            progress = 0;
-            moves = new ArrayList<>();
-            while (correct && progress < bridge.size()) {
-                String move = input.readMoving();
-                moves.add(move);
-                output.printMap(output.makeMap(bridge, moves));
-                correct = bg.move(bridge.get(progress),move);
-                progress++;
-            }
+            moves = runTrial(bridge, moves);
             numTrial++;
-            retry = correct = runRetry(correct);
+            retry = runRetry(correct);
         }
         output.printResult(correct, numTrial, output.makeMap(bridge, moves));
     }
@@ -38,5 +30,18 @@ public class Application {
             return bg.retry(input.readGameCommand());
         }
         return false;
+    }
+    public static List<String> runTrial(List<String> bridge, List<String> moves) {
+        correct = true;
+        progress = 0;
+        moves = new ArrayList<>();
+        while (correct && progress < bridge.size()) {
+            String move = input.readMoving();
+            moves.add(move);
+            output.printMap(output.makeMap(bridge, moves));
+            correct = bg.move(bridge.get(progress),move);
+            progress++;
+        }
+        return moves;
     }
 }
