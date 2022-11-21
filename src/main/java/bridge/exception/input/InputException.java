@@ -9,8 +9,14 @@ public class InputException {
 
     private static final String BLANK="";
 
-    public static boolean isNotProperInput(String userInput, String pattern){
+    private static boolean isNotProperInput(String userInput, String pattern){
         return !userInput.replaceAll(pattern, BLANK).equals(BLANK);
+    }
+
+    public static void validateProperBridgeLength(String userInput){
+        if(isNotProperInput(userInput, NUMERIC_PATTERN)){
+            throw new IllegalArgumentException("not proper letter");
+        }
     }
     
 }
