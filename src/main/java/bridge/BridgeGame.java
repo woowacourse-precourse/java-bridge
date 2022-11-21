@@ -41,14 +41,14 @@ public class BridgeGame {
 
     public void makeUserInputList (String userInput, boolean state) {
         if (userInput.equals("U")) {
-            inputUP(state);
+            inputUp(state);
         }
         if (userInput.equals("D")) {
             inputDown(state);
         }
     }
 
-    public void inputUP (boolean state) {
+    public void inputUp (boolean state) {
         if (state) {
             bridgeLineOne.add("O");
         }
