@@ -10,5 +10,6 @@ public class Application {
 
         inputView.readBridgeSize();
         inputView.readMoving();
+        inputView.readGameCommand();
     }
 }
