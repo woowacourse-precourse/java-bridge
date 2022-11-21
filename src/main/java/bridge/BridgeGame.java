@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.Constant.START_BRIDGE_GAME;
+
 //import static bridge.BridgeMaker.bridge;
 
 /**
@@ -15,7 +17,7 @@ public class BridgeGame {
     public static int count = 0;
 
     public void gameStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(START_BRIDGE_GAME);
         //User user = new User();
         int bridgeLength = User.BridgeSize();
 
@@ -70,7 +72,6 @@ public class BridgeGame {
         }
         return true;
     }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

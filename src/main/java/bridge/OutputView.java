@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static bridge.BridgeGame.count;
+import static bridge.Constant.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -102,16 +103,16 @@ public class OutputView {
     }
 
     public static void printResult(List<String> Result, boolean success) {
-        System.out.println("\n최종 게임 결과");
+        System.out.println(TOTAL_GAME_RESULT);
         System.out.println(Result.get(0));
         System.out.println(Result.get(1));
-        System.out.println("게임 성공 여부 : " + SuccessFail(success));
-        System.out.println("총 시도한 횟수 : " + count);
+        System.out.println(SUCCESS_FAIL + SuccessFail(success));
+        System.out.println(TOTAL_COUNT + count);
     }
     public static String SuccessFail(boolean success){
         if (success){
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 }
