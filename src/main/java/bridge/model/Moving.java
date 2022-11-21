@@ -6,11 +6,11 @@ public enum Moving {
 
     private String description;
 
-    Moving(String description){
+    Moving(String description) {
         this.description = description;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 

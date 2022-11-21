@@ -6,18 +6,18 @@ import java.util.List;
 
 public class BridgeMap {
 
-    private static final String BLANK=" ";
+    private static final String BLANK = " ";
     private static List<String> bridgeUpMap;
     private static List<String> bridgeDownMap;
 
     private static BridgeMap bridgeMap = null;
 
     private BridgeMap(int size) {
-        bridgeUpMap = new ArrayList<>(Collections.nCopies(size,BLANK));
-        bridgeDownMap = new ArrayList<>(Collections.nCopies(size,BLANK));
+        bridgeUpMap = new ArrayList<>(Collections.nCopies(size, BLANK));
+        bridgeDownMap = new ArrayList<>(Collections.nCopies(size, BLANK));
     }
 
-    public static BridgeMap createBridgeMap(int size){
+    public static BridgeMap createBridgeMap(int size) {
         return new BridgeMap(size);
     }
 

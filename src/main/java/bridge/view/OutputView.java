@@ -1,20 +1,13 @@
 package bridge.view;
 
+import bridge.model.OutputViewMessage;
+
 import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
-    private static final String BAR = "|";
-    private static final String LEFT_BOARDER = "[";
-    private static final String RIGHT_BOARDER = "]";
-    private static final String FINAL_GAME_RESULT_MESSAGE = "최종 게임 결과";
-    private static final String RETRY_SUM_MESSAGE = "총 시도한 횟수: ";
-    private static final String SUCCESS_MESSAGE = "게임 성공 여부: 성공";
-    private static final String FAIL_MESSAGE = "게임 성공 여부: 실패";
-    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -42,15 +35,15 @@ public class OutputView {
 
 
     private static void printMapBar() {
-        System.out.print(" | ");
+        System.out.print(OutputViewMessage.BAR.getMessage());
     }
 
     private static void printMapBoarderLeft() {
-        System.out.print("[ ");
+        System.out.print(OutputViewMessage.LEFT_BOARDER.getMessage());
     }
 
     private static void printMapBoarderRight() {
-        System.out.print(" ]");
+        System.out.print(OutputViewMessage.RIGHT_BOARDER.getMessage());
     }
 
     /**
@@ -65,32 +58,32 @@ public class OutputView {
     }
 
     public void printFinalMap(List<String> bridgeUpMap, List<String> bridgeDownMap, int location) {
-        System.out.println("최종 게임 결과");
+        System.out.println(OutputViewMessage.FINAL_GAME_RESULT_MESSAGE.getMessage());
         printMap(bridgeUpMap, bridgeDownMap, location);
     }
 
     private static void printRetryCount(int retryCount) {
-        System.out.println("총 시도한 횟수: " + retryCount);
+        System.out.println(OutputViewMessage.RETRY_SUM_MESSAGE.getMessage() + retryCount);
     }
 
     private static void printSuccess(boolean success) {
         if (success == true) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(OutputViewMessage.SUCCESS_MESSAGE.getMessage());
         }
     }
 
     private static void printFail(boolean success) {
         if (success != true) {
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(OutputViewMessage.FAIL_MESSAGE.getMessage());
         }
     }
 
-    public void printInit(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
+    public void printInit() {
+        System.out.println(OutputViewMessage.START_MESSAGE.getMessage());
         System.out.println();
     }
 
-    public void printException(String message){
+    public void printException(String message) {
         System.out.println(message);
     }
 }

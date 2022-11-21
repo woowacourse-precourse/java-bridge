@@ -6,11 +6,11 @@ public enum Command {
 
     private String description;
 
-    Command(String description){
+    Command(String description) {
         this.description = description;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 }

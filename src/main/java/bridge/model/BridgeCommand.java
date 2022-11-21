@@ -9,11 +9,11 @@ public class BridgeCommand {
         this.command = command;
     }
 
-    public static BridgeCommand createBridgeCommand(String command){
+    public static BridgeCommand createBridgeCommand(String command) {
         return new BridgeCommand(command);
     }
 
-    public boolean getCommand(){
+    public boolean getCommand() {
         return command.equals(Command.RETRY.getDescription());
     }
 

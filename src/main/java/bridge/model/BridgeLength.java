@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class BridgeLength {
 
     private static final Pattern pattern = Pattern.compile("^[1-2]?[1-9]$");
-    private static final int MIN_LENGTH=3;
-    private static final int MAX_LENGTH=20;
+    private static final int MIN_LENGTH = 3;
+    private static final int MAX_LENGTH = 20;
     private final int length;
 
     private BridgeLength(String length) {
@@ -15,7 +15,7 @@ public class BridgeLength {
         this.length = Integer.parseInt(length);
     }
 
-    public static BridgeLength createBridgeLength(String length){
+    public static BridgeLength createBridgeLength(String length) {
         return new BridgeLength(length);
     }
 

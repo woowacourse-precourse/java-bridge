@@ -9,7 +9,7 @@ public class BridgeMoving {
         this.moving = moving;
     }
 
-    public static BridgeMoving createBridgeMoving(String moving){
+    public static BridgeMoving createBridgeMoving(String moving) {
         return new BridgeMoving(moving);
     }
 
