@@ -29,26 +29,28 @@ public class BridgeGame {
         this.user = new User();
     }
 
+    public BridgeGame(int test){};
+
     public void makeBridge(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int result = bridgeInputCheckLogic("");
+        int result = bridgeInputCheckLogic();
         answerBridge = new ArrayList<>(bridgeMaker.makeBridge(result));
     }
 
-    public int bridgeInputCheckLogic(String userInputValue){
+    public int bridgeInputCheckLogic(){
         while(true){
             try{
-                userInputValue = inputView.readBridgeSize();
-                return bridgeValidation(userInputValue);
+                String bridgeSize = inputView.readBridgeSize();
+                return bridgeValidation(bridgeSize);
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public int bridgeValidation(String userInputValue){
+    public int bridgeValidation(String bridgeSize){
         try{
-            int result = Integer.parseInt(userInputValue);
+            int result = Integer.parseInt(bridgeSize);
             if(result < 3 || result > 20){
                 throw new IllegalArgumentException(BRIDGE_LENGTH_ERR_MSG.getValue());
             }
@@ -56,7 +58,6 @@ public class BridgeGame {
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(BRIDGE_LENGTH_ERR_MSG.getValue());
         }
-
     }
 
     // Processing Part
@@ -72,21 +73,19 @@ public class BridgeGame {
     // move Part
 
     public void move() {
-        String userInputValue = inputCheckLogic("");
+        String userInputValue = inputCheckLogic();
         user.getUserBridge().add(makeField(userInputValue));
     }
 
-    public String inputCheckLogic(String userInputValue){
+    public String inputCheckLogic(){
         while(true) {
             try {
-                userInputValue = inputView.readMoving();
-                fieldValueValidation(userInputValue);
-                break;
+                String userInputValue = inputView.readMoving();
+                return fieldValueValidation(userInputValue);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return  userInputValue;
     }
 
     private Field makeField(String userInputValue){
@@ -96,9 +95,9 @@ public class BridgeGame {
          return new Field(userInputValue, false);
     }
 
-    public void fieldValueValidation(String userInputValue){
+    public String fieldValueValidation(String userInputValue){
         if (userInputValue.equals(UPSIDE.getValue()) || userInputValue.equals(DOWNSIDE.getValue())) {
-            return;
+            return userInputValue;
         }
         throw new IllegalArgumentException(FIELD_INPUTVALUE_ERR_MSG.getValue());
     }
@@ -134,6 +133,13 @@ public class BridgeGame {
         return retryInput;
     }
 
+    public void retryValueValidation(String userInputValue) {
+        if(userInputValue.equals(RETRY.getValue()) || userInputValue.equals(QUIT.getValue())){
+            return;
+        }
+        throw new IllegalArgumentException(RETRY_INPUTVALUE_ERR_MSG.getValue());
+    }
+
     private void retryLogic(String retryInput){
         if (retryInput.equals(QUIT.getValue())) {
             gameSuccess = false;
@@ -160,12 +166,7 @@ public class BridgeGame {
         gameTryNumber +=1;
     }
 
-    public void retryValueValidation(String userInputValue) {
-        if(userInputValue.equals(RETRY.getValue()) || userInputValue.equals(QUIT.getValue())){
-            return;
-        }
-        throw new IllegalArgumentException(RETRY_INPUTVALUE_ERR_MSG.getValue());
-    }
+
 
     public ArrayList<Field> getUserBridge(){
         return user.getUserBridge();
