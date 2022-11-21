@@ -2,6 +2,11 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static bridge.domain.BridgePair.DOWN;
+import static bridge.domain.BridgePair.UP;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -23,11 +28,12 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++){
             int randomNumber = bridgeNumberGenerator.generate();
             if (randomNumber == 0){
-                map.add("D");
-            } else if (randomNumber == 1) {
-                map.add("U");
+                map.add(DOWN.getValue());
+                continue;
             }
+            map.add(UP.getValue());
         }
         return map;
     }
+
 }
