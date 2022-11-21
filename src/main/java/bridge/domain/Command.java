@@ -15,8 +15,15 @@ public class Command {
     }
 
     public static Command createCommand(String command) {
+        validateNullInput(command);
         validateCommand(command);
         return new Command(command);
+    }
+
+    private static void validateNullInput(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ExceptionMessage.NULL_INPUT);
+        }
     }
 
     private static void validateCommand(String command) {
