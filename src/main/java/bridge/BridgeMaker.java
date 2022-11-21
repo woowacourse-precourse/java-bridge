@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,4 +21,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    public String parseUpOrDownByNumber(int number) {
+        return null;
+    }
+
 }
