@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Round {
-    public static final int LOWER_BOUND = 1;
-    public static final int UPPER_BOUND = 20;
+    public static final int ROUND_LOWER_BOUND = 1;
+    public static final int ROUND_UPPER_BOUND = 20;
     private static final Map<Integer, Round> CACHE = new HashMap<>();
 
     static {
-        for (int i = LOWER_BOUND; i <= UPPER_BOUND; i++) {
+        for (int i = ROUND_LOWER_BOUND; i <= ROUND_UPPER_BOUND; i++) {
             CACHE.put(i, new Round(i));
         }
     }
@@ -31,13 +31,13 @@ public class Round {
     }
 
     private static void validate(final int number) {
-        if (number < LOWER_BOUND || number > UPPER_BOUND) {
+        if (number < ROUND_LOWER_BOUND || number > ROUND_UPPER_BOUND) {
             throw new IllegalArgumentException(ErrorMessage.isInvalidRoundRange());
         }
     }
 
     public static List<Round> getRoundsOrderByOrderAsc() {
-        return IntStream.rangeClosed(LOWER_BOUND, UPPER_BOUND)
+        return IntStream.rangeClosed(ROUND_LOWER_BOUND, ROUND_UPPER_BOUND)
                 .mapToObj(CACHE::get)
                 .collect(Collectors.toList());
     }
