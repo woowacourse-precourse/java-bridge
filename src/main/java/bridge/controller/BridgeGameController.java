@@ -5,9 +5,6 @@ import bridge.util.Constants;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.List;
 
 public class BridgeGameController {
     private final OutputView outputView;
@@ -45,7 +42,7 @@ public class BridgeGameController {
                 break;
             }
         }
-        finalResult(success, bridgeGame.getTryCount());
+        isSuccess(success);
     }
     public String moveOne(int index){
         String movingResult=bridgeGame.move(index, inputMoveOne(index));
@@ -62,10 +59,8 @@ public class BridgeGameController {
             return inputMoveOne(index);
         }
     }
-    public boolean isQuit(){
-        String retryOrQuit=inputRetryOrQuit();
-        if(retryOrQuit.equals(Constants.QUIT)) return true;
-        return false;
+    public void finalResult(boolean success){
+        outputView.printResult(bridgeGame.getResult(), success, bridgeGame.getTryCount());
     }
     public String inputRetryOrQuit(){
         try{
@@ -77,14 +72,23 @@ public class BridgeGameController {
             return inputRetryOrQuit();
         }
     }
-    public void finalResult(boolean success, int tryCount){
-        boolean quit=true;
-        if(!success) quit=isQuit();
-        if(quit || success)
-            outputView.printResult(bridgeGame.getResult(), success, tryCount);
-        if(!quit) {
-            bridgeGame.retry();
-            move(bridgeGame.getBridgeSize());
+    public void isSuccess(boolean success){
+        if(success){
+            finalResult(success);
+            return;
         }
+        isQuit(success);
+    }
+    public void isQuit(boolean success){
+        String retryOrQuit=inputRetryOrQuit();
+        if(retryOrQuit.equals(Constants.QUIT)) {
+            finalResult(success);
+            return;
+        }
+        retry();
+    }
+    public void retry(){
+        bridgeGame.retry();
+        move(bridgeGame.getBridgeSize());
     }
 }
