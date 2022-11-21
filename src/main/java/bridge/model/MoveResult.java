@@ -1,4 +1,4 @@
-package bridge.config;
+package bridge.model;
 
 public enum MoveResult {
     SUCCESS, FAIL

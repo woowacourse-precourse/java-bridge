@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.config.Direction;
 import bridge.domain.BridgePrinter;
-import bridge.domain.PieceMove;
+import bridge.model.PieceMove;
 
 import java.util.Stack;
 

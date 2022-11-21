@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.model.PieceMove;
+
 import java.util.Stack;
 
 @FunctionalInterface

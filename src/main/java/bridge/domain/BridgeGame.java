@@ -1,8 +1,9 @@
 package bridge.domain;
 
 import bridge.config.Direction;
-import bridge.config.GameStatus;
+import bridge.model.GameStatus;
 import bridge.config.InvalidMoveException;
+import bridge.model.PieceMove;
 
 import java.util.Stack;
 
