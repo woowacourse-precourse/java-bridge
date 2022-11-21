@@ -7,6 +7,7 @@ public class BridgeInform {
     private final int size;
     private String exit;
     private List<String> directions = new ArrayList<>();
+    private int directionsize = 0;
 
     BridgeInform(int size) {
         validateRange(size);
@@ -17,19 +18,28 @@ public class BridgeInform {
         return size;
     }
 
+    public int getDirectionsize() {
+        return directionsize;
+    }
+
     public void setDirection(String direction) {
         validateCorrectDirection(direction);
+        this.directionsize++;
         directions.add(direction);
     }
 
     public String getLastDirection() {
-        String lastdirection = directions.get(directions.size());
+        String lastdirection = directions.get(directions.size()-1);
         return lastdirection;
     }
 
     public String getIndexDirection(int index) {
         String indexdirection = directions.get(index);
         return indexdirection;
+    }
+
+    public List<String> getDirection() {
+        return directions;
     }
 
     public void setExit(String exit) {
