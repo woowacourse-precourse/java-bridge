@@ -141,5 +141,24 @@ class ApplicationTest extends NsTest {
 
             assertThat(bridgeGame.checkGameCompletion(player)).isTrue();
         }
+
+        @ParameterizedTest
+        @DisplayName("이동 테스트")
+        @CsvSource({"1, 1, 0, 1, U, U, D, U", "0, 0, 1, 0, D, D, U, D"})
+        void moveTest(int zero, int one, int two, int three, String first, String second, String third, String fourth) {
+            BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(zero, one, two, three));
+            BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker, 4);
+
+            String[] inputs = {first, second, third, fourth};
+            int[] generatedNumbers = {zero, one, two, three};
+            String[] converter = {"D", "U"};
+
+            for (int step = 0; step < 4; step ++) {
+                boolean nextStep = bridgeGame.move(inputs[step], player);
+                String expected = converter[generatedNumbers[step]];
+                assertThat(nextStep).isEqualTo(expected.equals(inputs[step]));
+            }
+        }
     }
 }
