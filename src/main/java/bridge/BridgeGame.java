@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private Bridge bridge;
+    private BridgeGameResult bridgeGameResult;
     private List<String> user;
     private int tryCount;
 
@@ -15,6 +16,7 @@ public class BridgeGame {
         user = new ArrayList<>();
         tryCount = 1;
         bridge = new Bridge(bridgeMaker.makeBridge(size));
+        bridgeGameResult = new BridgeGameResult();
     }
 
     public int getTryCount() {
@@ -29,5 +31,6 @@ public class BridgeGame {
     public void retry() {
         user.clear();
         tryCount++;
+        bridgeGameResult.clear();
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.XMLFormatter;
 
 public class BridgeGameResult {
     private Map<String, List<String>> resultMap;
@@ -46,5 +45,11 @@ public class BridgeGameResult {
     public boolean getComparison(String sign) {
         return MovingResult.fromSign(sign)
                 .getComparison();
+    }
+
+    public void clear() {
+        upBridge.clear();
+        downBridge.clear();
+        Success = true;
     }
 }
