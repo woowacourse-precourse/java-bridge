@@ -26,10 +26,10 @@ public class BridgePasser {
     public void move() {
         validateBridgeMovable(bridge.isRange(bridgeLocation.next()));
 
-        addLocation();
+        incrementLocation();
     }
 
-    private void addLocation() {
+    private void incrementLocation() {
         this.bridgeLocation = bridgeLocation.next();
     }
 
