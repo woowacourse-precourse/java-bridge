@@ -11,7 +11,11 @@ public class Player {
     private int playerPosition;
 
     public Player() {
-        this.movementStatus = new HashMap<>() {{
+        reset();
+    }
+
+    public void reset() {
+        movementStatus = new HashMap<>() {{
             put(Movement.U, new ArrayList<>());
             put(Movement.D, new ArrayList<>());
         }};
@@ -43,5 +47,6 @@ public class Player {
         }
         return "X";
     }
+
 
 }

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.controller.BridgeController;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,7 +11,13 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 
-        BridgeGame bridgeGame = new BridgeGame(inputView, outputView, bridgeNumberGenerator);
-        bridgeGame.run();
+        BridgeController bridgeController = new BridgeController(inputView, outputView, bridgeNumberGenerator);
+
+        try {
+            bridgeController.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

@@ -4,87 +4,53 @@ import bridge.domain.Bridge;
 import bridge.domain.Command;
 import bridge.domain.GameStatus;
 import bridge.domain.Movement;
-import bridge.service.BridgeService;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.domain.Player;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
-    private BridgeService bridgeService;
-    private GameStatus gameStatus;
+    private final Player player;
+    private Bridge bridge;
+    private int numberOfAttempts;
 
-    public BridgeGame(InputView inputView, OutputView outputView, BridgeNumberGenerator bridgeNumberGenerator) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        gameStatus = GameStatus.ONGOING;
+        player = new Player();
+        numberOfAttempts = 1;
     }
 
-    public void run() {
-        setUp();
-
-        while (gameStatus == GameStatus.ONGOING) {
-            play();
-        }
-
-        end();
+    public void createBridge(int bridgeSize) {
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private void setUp() {
-        outputView.printGameStart();
-        Bridge bridge = createBridge();
-        bridgeService = new BridgeService(bridge);
+    public int getNumberOfAttempts() {
+        return numberOfAttempts;
     }
 
-    private Bridge createBridge() {
-        outputView.inputBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
-        outputView.printNewline();
-        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    public Map<Movement, List<String>> getResultCrossOver() {
+        return player.getMovementStatus();
     }
 
-    private void play() {
-        move();
-        if(gameStatus == GameStatus.FAILED) {
-            retry();
-        }
+
+    public GameStatus move(Movement playerMove) {
+        boolean playerCrossable = bridge.isCrossable(playerMove, player.getPlayerPosition());
+        player.crossOverBridge(playerMove, playerCrossable);
+        boolean isReachedBridge = bridge.isReachedTheEnd(player.getPlayerPosition());
+        return GameStatus.findByStatus(playerCrossable, isReachedBridge);
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    private void move() {
-        outputView.inputPlayerMove();
-        Movement playerMove = inputView.readMoving();
-        gameStatus = bridgeService.movePlayer(playerMove);
-        outputView.printMap(bridgeService.getResultCrossOver());
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    private void retry() {
-        outputView.inputPlayerCommand();
-        Command command = inputView.readGameCommand();
+    public GameStatus retry(Command command) {
         if(command == Command.RETRY) {
-            bridgeService.init();
-            gameStatus = GameStatus.ONGOING;
+            player.reset();
+            numberOfAttempts += 1;
+            return GameStatus.ONGOING;
         }
+        return GameStatus.FAILED;
     }
 
-    private void end() {
-        outputView.printGameOver();
-        outputView.printMap(bridgeService.getResultCrossOver());
-        outputView.printResult(gameStatus, bridgeService.getNumberOfAttempts());
-    }
+
 }
