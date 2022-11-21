@@ -1,28 +1,26 @@
 package bridge;
 
-import bridge.controller.BridgeGame;
+import bridge.controller.BridgeGameController;
 import bridge.model.SuccessOrFail;
-import bridge.util.Message;
-import bridge.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.createBridge();
+        BridgeGameController bridgeGameController = new BridgeGameController();
+        bridgeGameController.createBridge();
         int count = 0;
         boolean complete = false;
         do {
             int position = 0;
             count++;
-            while (!bridgeGame.complete(position) && bridgeGame.move(position)) {
+            while (!bridgeGameController.complete(position) && bridgeGameController.moveControl(position)) {
                 position++;
             }
-            if (bridgeGame.complete(position)) {
+            if (bridgeGameController.complete(position)) {
                 complete = true;
                 break;
             }
-        } while (bridgeGame.retry());
-        bridgeGame.gameExit(SuccessOrFail.getSuccessOrFailMessage(complete), count);
+        } while (bridgeGameController.retryControl());
+        bridgeGameController.gameExit(SuccessOrFail.getSuccessOrFailMessage(complete), count);
     }
 }

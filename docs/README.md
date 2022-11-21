@@ -87,7 +87,7 @@
 - [ ] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현
 - [x] 메서드의 파라미터 개수는 최대 3개까지만 허용
 - [x] `InputView` 클래스에서만 `readLine()` 메서드 이용 가능
-- [ ] `BridgeGame` 클래스에서 `InputView`, `OutputView`를 사용하지 않음
+- [x] `BridgeGame` 클래스에서 `InputView`, `OutputView`를 사용하지 않음
 
 ## 제공된 클래스를 활용하여 구현
 1. `InputView` 클래스
