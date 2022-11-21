@@ -53,6 +53,6 @@ public class OutputView {
         System.out.println(OutputState.GAME_RESULT);
         printMap(bridgeGame);
         System.out.println(bridgeGame.resultToString());
-        System.out.println(OutputState.TOTAL_ATTEMPT + BridgeGame.getAttemptCount());
+        System.out.println(BridgeGame.attemptCountToString());
     }
 }

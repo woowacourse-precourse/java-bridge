@@ -29,8 +29,8 @@ public class BridgeGame {
         this.bridgeIndex = 0;
     }
 
-    public static int getAttemptCount() {
-        return BridgeGame.attemptCount;
+    public static String attemptCountToString() {
+        return OutputState.TOTAL_ATTEMPT + BridgeGame.attemptCount;
     }
 
     public static void increaseAttemptCount() {
@@ -40,6 +40,8 @@ public class BridgeGame {
     public String resultToString() {
         return OutputState.SUCCESS_OR_NOT + result;
     }
+
+
 
 
     public static void setBridge(List<String> bridge) {
