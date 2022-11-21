@@ -24,9 +24,15 @@ public enum StringEnum {
     StringEnum(String s) {
         this.str = s;
     }
-    public String gameResult(boolean isSuccess){
-        if(isSuccess) return GAME_RESULT_SUCCESS.getStr();
-        return GAME_RESULT_FAIL.getStr();
+    public void gameResult(boolean isSuccess){
+        if(isSuccess) {
+            System.out.printf(GAME_RESULT_SUCCESS.getStr());
+        }
+        System.out.println(GAME_RESULT_FAIL.getStr());
+    }
+    public void printGameResult(String printUp, String printDown){
+        System.out.println(printUp+SQUAREBRACKET_RIGTH.getStr());
+        System.out.println(printDown+SQUAREBRACKET_RIGTH.getStr());
     }
 
     public String getStr() {

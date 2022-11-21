@@ -17,12 +17,15 @@ public class Application {
             while (index < movalbeBridge.size()){
                 String user = inputView.readMoving();           // 이동할 칸을 입력
                 boolean isRight = startgame.move(user,index);   // 이동할 칸과 무작위 값이 같은지 비교해
-                outputView.printMap(user,isRight,index++);        // 이동한 칸 찍어줘
-                if(isRight) continue;
-                String retryOrNot = inputView.readGameCommand();
-                if(!startgame.retry(retryOrNot)) break;
-                index =0;
-                outputView.removePrintMap();
+                outputView.printMap(user,isRight,index);        // 이동한 칸 찍어줘
+                if(!isRight){
+                    String retryOrNot = inputView.readGameCommand();
+                    if(!startgame.retry(retryOrNot)) break;
+                    index =0;
+                    outputView.removePrintMap();
+                    continue;
+                }
+                index++;
                 // 만약에 같으면 conitnue로 게임종료 여부 물어보지마 그리고 while한번 돌아라
                 // 게임 종료 여부
             }

@@ -18,7 +18,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(StringEnum.INPUT_MOVIECHOICE);
+        System.out.println(StringEnum.INPUT_MOVIECHOICE.getStr());
         String inputMoving = Console.readLine();
         validateMove(inputMoving);
         return inputMoving;
@@ -28,7 +28,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(StringEnum.INPUT_RETRYORQUITE);
+        System.out.println(StringEnum.INPUT_RETRYORQUITE.getStr());
         String inputGameCommand = Console.readLine();
         return inputGameCommand;
     }

@@ -21,8 +21,7 @@ public class OutputView {
         printDown.append(printFirstMap(index));
         printUp.append(printUpMap(user,isDraw));
         printDown.append(printDownMap(user,isDraw));
-        System.out.println(printUp.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
-        System.out.println(printDown.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
+        StringEnum.SQUAREBRACKET_RIGTH.printGameResult(printUp.toString(),printDown.toString());
     }
     public String printUpMap(String user, boolean isDraw){
         if(!user.equals(StringEnum.UP.getStr())) return StringEnum.BLANK.getStr();
@@ -53,13 +52,11 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(StringEnum.GAME_RESULT_FINAL.getStr());
-        System.out.println(printUp.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
-        System.out.println(printDown.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
+        StringEnum.SQUAREBRACKET_RIGTH.printGameResult(printUp.toString(),printDown.toString());
     }
     public void printSuccessOrFailure(boolean bridgeGameResult, int attempts) {
         System.out.print(StringEnum.GAME_RESULT.getStr());
-        System.out.println(StringEnum.GAME_RESULT.gameResult(bridgeGameResult));
+        StringEnum.GAME_RESULT.gameResult(bridgeGameResult);
         System.out.print(StringEnum.GAME_RESUTL_ATTEMPTS.getStr()+attempts);
-
     }
 }
