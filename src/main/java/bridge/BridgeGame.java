@@ -4,9 +4,9 @@ package bridge;
 import java.util.List;
 
 public class BridgeGame {
-    private int totalGameTrials;
-    private int bridgeMovingTrials;
-    private int endOfBridges;
+    private static int totalGameTrials;
+    private static int bridgeMovingTrials;
+    private static int endOfBridges;
 
     public BridgeGame(List<String> crossableBridges){
         this.totalGameTrials=0;
@@ -24,6 +24,9 @@ public class BridgeGame {
         return "fail";
     }
 
+    public static int getTotalGameTrials(){
+        return totalGameTrials;
+    }
     private void move() {
         bridgeMovingTrials+=bridgeMovingTrials;
     }

@@ -44,7 +44,13 @@ public class BridgeGameController {
                 if(inputView.readGameCommand()=="R"){
                     i=1;
                 }
-
+                if(inputView.readGameCommand()=="Q"){
+                    outputView.printStatements(NormalStatements.DECLARE_RESULT.getNormalStatement());
+                    outputView.printFailedMap(i, crossableBridges.size(), crossableBridges.get(i));
+                    outputView.printStatements(NormalStatements.RESULT_FAIL.getNormalStatement());
+                    outputView.printStatements(NormalStatements.SHOW_GAME_TRIALS.getNormalStatement()
+                            +BridgeGame.getTotalGameTrials());
+                }
                 }
                 outputView.printMap(i, crossableBridges.size(), crossableBridges.get(i));
             }
