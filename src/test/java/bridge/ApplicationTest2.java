@@ -19,8 +19,46 @@ public class ApplicationTest2 extends NsTest {
                 "게임 성공 여부: 성공",
                 "총 시도한 횟수: 1"
             );
-
+            
         }, 1, 0, 1, 1);
+    	
+    	assertRandomNumberInRangeTest(() -> {
+            run("6", "U", "D", "D", "D", "R", "U", "D", "D", "U", "D", "R", "U", "D", "D", "U", "U", "U", "Q");
+            assertThat(output()).contains(
+            	"최종 게임 결과",
+                "[ O |   |   | O | O | X ]",
+                "[   | O | O |   |   |   ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 3"
+            );
+
+        }, 1, 0, 0, 1, 1, 0);
+        
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "D", "D", "R", "D", "U", "R", "D", "D", "U");
+            assertThat(output()).contains(
+            	"최종 게임 결과",
+                "[   |   | O ]",
+                "[ O | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 3"
+            );
+
+        }, 0, 0, 1);
+        
+        assertRandomNumberInRangeTest(() -> {
+            run("20", "D", "D", "U", "D", "D", "U", "D", "U", "U", "D", 
+            			"U", "U", "U", "D", "D", "D", "D", "U", "U", "D");
+            assertThat(output()).contains(
+            	"최종 게임 결과",
+                "[   |   | O |   |   | O |   | O | O |   | O | O | O |   |   |   |   | O | O |   ]",
+                "[ O | O |   | O | O |   | O |   |   | O |   |   |   | O | O | O | O |   |   | O ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 1"
+            );
+
+        }, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0);
+        
     }
 
     @Override

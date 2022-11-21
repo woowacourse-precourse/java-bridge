@@ -17,7 +17,7 @@ public class Application {
 	static String restartOrQuit = "";
 	static boolean retrycheck = false;
 	static String currentStateBridge = "";
-	static InputView inputView = new InputView();
+	static InputView inputView;
 	static OutputView outputView = new OutputView();
     static BridgeGame bridgeGame;
     static BridgeNumberGenerator bridgeNumberGenerator;
@@ -26,7 +26,7 @@ public class Application {
     	int tryCount = 0;   	
     	makeBridgeFirst();
     	do {
-    		bridgeGame = new BridgeGame(bridgeSize);
+    		bridgeGame = new BridgeGame(bridgeSize);  // retry할 때마다 bridgeGame을 다시 시작함(객체 다시 생성)
     		retrycheck = inputBridgeState(bridgeGame);
     		tryCount++;
     	} while(retrycheck);
@@ -36,6 +36,7 @@ public class Application {
     public static void makeBridgeFirst() {
     	System.out.println("\n\n다리 건너기 게임을 시작합니다.");
     	bridgeSize = 0;
+    	inputView = new InputView();
         bridgeSize = inputView.readBridgeSize();
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
      	BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -52,7 +53,7 @@ public class Application {
         	outputView.printCurrentStateBridge(bridgeGame.getUpDownBridgeList());  // 현재 다리의 상태를 출력해줌
         }
     	successBridgeState(bridgeGame);
-    	return false;   // 다리를 다 건넜을 때 return false.
+    	return false;   // 다리를 다 건넜을 때 성공이므로(재시도가 아니므로) return false.
     }
     
     public static String checkSuccessOrFailure(BridgeGame bridgeGame) {
@@ -63,6 +64,6 @@ public class Application {
     
     public static void successBridgeState(BridgeGame bridgeGame) {
     	currentStateBridge = outputView.getCurrentStateBridge(bridgeGame.getUpDownBridgeList());  // 다릐를 모두 건넜을 때 현재 다리 상태 저장
-    	checkSuccessOrFailure(bridgeGame);  // 
+    	checkSuccessOrFailure(bridgeGame);  // 다리를 성공적으로 건넜을 때 성공여부는 성공임.
     }
 }
