@@ -11,12 +11,20 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        while(true) {
+            try {
+                return getBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         try {
             int bridgeSize = Integer.parseInt(Console.readLine());
-
             validateBridgeRange(bridgeSize);
-
             return bridgeSize;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NotNumberFormat.getMessage());
@@ -27,6 +35,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        while(true) {
+            try {
+                return getMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
 
         String userMovement = Console.readLine();
@@ -40,6 +58,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        while(true) {
+            try {
+                return getCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
         String userCommand = Console.readLine();
@@ -63,7 +91,7 @@ public class InputView {
 
     private void validateUserCommand(String userCommand) {
         if(! (userCommand.equals(Command.RETRY.getValue()) || userCommand.equals(Command.QUIT.getValue()))) {
-            throw new IllegalArgumentException(ErrorMessage.NotValidUserMovement.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NotValidUserCommand.getMessage());
         }
     }
 }
