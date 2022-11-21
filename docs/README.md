@@ -58,7 +58,7 @@
 • `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 ### Bridge
-- [ ] 생성된 다리를 저장한다.
+- [x] 생성된 다리를 저장한다.
 
 ### 재시도 횟수 객체
 
