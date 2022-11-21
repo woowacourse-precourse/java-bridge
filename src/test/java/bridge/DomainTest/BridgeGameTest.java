@@ -3,10 +3,12 @@ package bridge.DomainTest;
 import bridge.Database.BridgeData;
 import bridge.Domain.BridgeGame;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -69,13 +71,7 @@ public class BridgeGameTest {
         @Test
         void finishCrossingBridgeTest() {
             bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
-            List<String> nextSteps = new ArrayList<>(Arrays.asList("U", "D", "D"));
-
-            for (String nextStep : nextSteps) {
-                InputStream in = new ByteArrayInputStream(nextStep.getBytes());
-                System.setIn(in);
-                bridgeGame.move();
-            }
+            bridgeGame.bridgeData.updateBridgeDesignByUser(Arrays.asList("U", "D", "D"));
 
             assertThat(bridgeGame.getIsGameSucceed()).isTrue();
         }
