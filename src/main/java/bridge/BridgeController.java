@@ -41,7 +41,7 @@ public class BridgeController {
         }
     }
 
-    public void printResult() {
+    private void printResult() {
         bridgeView.printGameResult(bridgeGame.printLines(), bridgeGame.getResultSymbol(), bridgeGame.getGameTryCount());
     }
 }
