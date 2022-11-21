@@ -55,8 +55,8 @@ public class BridgeGame {
 
         int bridgeSize = getBridgeSize();
         Bridge realBridges = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        Bridge selectedBridges = playGame(gameStatus, realBridges);
-        outputView.printResult(gameStatus, realBridges, selectedBridges);
+        Result result = playGame(gameStatus, realBridges);
+        outputView.printResult(gameStatus, result);
     }
 
     private int getBridgeSize() {
@@ -68,25 +68,25 @@ public class BridgeGame {
         }
     }
 
-    private Bridge playGame(GameStatus gameStatus, Bridge realBridges) {
-        Bridge selectBridges = playOneTry(gameStatus, realBridges);
+    private Result playGame(GameStatus gameStatus, Bridge realBridges) {
+        Result result = playOneTry(gameStatus, realBridges);
         while (!gameStatus.isEnd() && retry()) {
-            selectBridges = playOneTry(gameStatus, realBridges);
+            result = playOneTry(gameStatus, realBridges);
             gameStatus.addTryCount();
         }
-        return selectBridges;
+        return result;
     }
 
-    public Bridge playOneTry(GameStatus gameStatus, Bridge realBridges) {
+    public Result playOneTry(GameStatus gameStatus, Bridge realBridges) {
         Bridge selectedBridges = new Bridge();
         for (int index = 0; index < realBridges.getSize(); index++) {
             addNewSelectedBridge(selectedBridges);
             Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
-            outputView.printMap(realBridges, selectedBridges);
-            if (!result.isSuccess()) return selectedBridges;
+            outputView.printMap(result);
+            if (!result.isSuccess()) return result;
         }
         gameStatus.setSuccess(true);
-        return selectedBridges;
+        return Result.success(selectedBridges);
     }
 
     private void addNewSelectedBridge(Bridge selectedBridges) {
