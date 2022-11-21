@@ -21,6 +21,9 @@ public class BridgeGame {
         if (move.equals("U") && bridge.equals("U")) {
             return true;
         }
+        if (move.equals("D") && bridge.equals("D")) {
+            return true;
+        }
         return false;
     }
 
