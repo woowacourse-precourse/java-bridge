@@ -89,7 +89,8 @@
   + [ ] 다리의 길이 입력
     + [ ] OutputView) 입력 요청 메시지 출력
     + [ ] InputView) 입력을 받음
-    + [ ] 입력을 BridgeGame으로 건넴
+    + [ ] BridgeMaker) 입력 받은 길이의 다리를 만듦.
+    + [ ] 만들어진 다리를 BridgeGame으로 건넴
   + [ ] 이동할 칸 선택
     + [ ] OutputView) 입력 요청 메시지 출력
     + [ ] InputView) 입력 받음
