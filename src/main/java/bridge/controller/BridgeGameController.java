@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.Record;
 import bridge.util.Constant;
+import bridge.util.ExceptionMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -23,12 +24,32 @@ public class BridgeGameController {
         this.bridgeGame = new BridgeGame();
     }
 
-    public void start(Record record) throws IllegalArgumentException {
-        int size = inputController.getBridgeSize();
-        List<String> bridge = getBridge(size);
+    public void start(String sizeInput, Record record) throws IllegalArgumentException {
+        List<String> bridge;
+        int size = convertToNumber(sizeInput);
+        isValidBridgeSize(size);
 
+        bridge = getBridge(size);
         bridgeGame.initialize(record);
         play(record, bridge);
+    }
+
+    private int convertToNumber(String sizeInput) {
+        int result;
+        try {
+            result = Integer.parseInt(sizeInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
+                    + ExceptionMessage.CANNOT_CONVERT_TO_NUMBER);
+        }
+        return result;
+    }
+
+    private void isValidBridgeSize(int size) throws IllegalArgumentException {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
+                    + ExceptionMessage.BRIDGE_SIZE_OUT_OF_RANGE);
+        }
     }
 
     private List<String> getBridge(int size) throws IllegalArgumentException {
