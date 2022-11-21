@@ -11,25 +11,16 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridgeWin = bridge;
         this.bridgeNow = new ArrayList<>();
-//        System.out.println(bridgeWin);
     }
 
     public boolean applyMove(String moveTo) {
-        if (moveTo.equals("U")) {
-//            bridgeNow.add("1");
-            bridgeNow.add("U");
-        }
-        if (moveTo.equals("D")) {
-//            bridgeNow.add("0");
-            bridgeNow.add("D");
-        }
+        bridgeNow.add(moveTo);
         if(!checkSucces()) {
             OutputView.printMap(bridgeNow, false, moveTo);
             return false;
         }
         OutputView.printMap(bridgeNow, true, moveTo);
         return true;
-
     }
 
     private void increaseCount() {
