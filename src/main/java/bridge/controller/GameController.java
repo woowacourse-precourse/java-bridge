@@ -71,11 +71,10 @@ public class GameController {
     private void startWalk(BridgeGame bridgeGame, List<String> bridge, TryNumber tryNumber) {
         while (!bridgeGame.isSuccess()) {
             walk(bridgeGame, bridge);
-            if (isRetry(bridgeGame)) {
-                bridgeGame.retry(tryNumber);
-                continue;
+            if (!isRetry(bridgeGame)) {
+                break;
             }
-            break;
+            bridgeGame.retry(tryNumber);
         }
         finalGameResult(bridgeGame, tryNumber);
     }
