@@ -55,11 +55,12 @@ public class RoundController {
 
     public boolean retryProgress() {
         if (!statusResult()) {
-            if (inputView.readGameCommand().equals(Retry.QUIT.get())) {
+            if (inputView.readGameCommand().equals(Command.QUIT.get())) {
                 return false;
             }
-            bridgeFirstLayer.remove(bridgeFirstLayer.size() - 1);
-            bridgeSecondLayer.remove(bridgeSecondLayer.size() - 1);
+            bridgeFirstLayer.clear();
+            bridgeSecondLayer.clear();
+            position = 0;
             trial += 1;
         }
         return true;
