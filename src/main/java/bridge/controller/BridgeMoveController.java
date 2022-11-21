@@ -17,23 +17,29 @@ public class BridgeMoveController {
     }
 
     public List<String>[] run() {
-        int location = 0;
-        while (location < bridge.size()) {
-            checkCorrectAndBuildBridge(location++);
-        }
+        runBuildBridgeMove();
         List<String>[] bridgeMove = new ArrayList[2];
         bridgeMove[0] = upperBridgeMove;
         bridgeMove[1] = lowerBridgeMove;
         return bridgeMove;
     }
 
-    private void checkCorrectAndBuildBridge(int location) {
+    private void runBuildBridgeMove() {
+        int location = 0;
+        String correct = "O";
+        while (location < bridge.size() && correct.equals("O")) {
+            correct = checkCorrectAndBuildBridge(location++);
+        }
+    }
+
+    private String checkCorrectAndBuildBridge(int location) {
         String upDown = readMoving().getMove();
         String correct = "X";
         if (checkMove(location, upDown)) {
             correct = "O";
         }
         addBridgeAndPrintMap(location, upDown, correct);
+        return correct;
     }
 
     private void addBridgeAndPrintMap(int location, String upDown, String correct) {

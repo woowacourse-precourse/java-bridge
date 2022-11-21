@@ -14,10 +14,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> upperBridgeMove, List<String> lowerBridgeMove) {
-        String upperMap = addMap(upperBridgeMove);
-        String lowerMap = addMap(lowerBridgeMove);
-        System.out.println(upperMap);
-        System.out.println(lowerMap);
+        System.out.println(addMap(upperBridgeMove));
+        System.out.println(addMap(lowerBridgeMove));
         System.out.println();
     }
 
@@ -36,6 +34,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String>[] bridgeMove, String successful, int count) {
+        System.out.println("최종 게임 결과");
+        System.out.println(addMap(bridgeMove[0]));
+        System.out.println(addMap(bridgeMove[1]));
+        System.out.println("\n게임 성공 여부: " + successful);
+        System.out.println("총 시도한 횟수: " + count);
     }
 }
