@@ -24,6 +24,27 @@ public class BridgeGame {
         movement.add(input);
     }
 
+    public String[] getMapLines() {
+        String upLine = makeLineOfMap("U");
+        String downLine = makeLineOfMap("D");
+
+        return new String[]{upLine, downLine};
+    }
+
+    private String makeLineOfMap(String UorD) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i=0; i<movement.size(); i++) {
+            if (!movement.get(i).equals( bridge.get(i) )) { // 일치하지 않으면 마지막 move
+                sb.append(" X |");
+                break;
+            }
+            if (movement.get(i).equals(UorD)) sb.append(" O ");
+            if (!movement.get(i).equals(UorD)) sb.append("   "); // else 사용하면 더 깔끔함
+            sb.append("|");
+        }
+        return sb.substring(0, sb.length()-1) + "]";
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
