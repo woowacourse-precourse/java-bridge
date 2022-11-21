@@ -28,6 +28,14 @@ class LogicUnitTest extends NsTest {
         });
     }
 
+    @Test
+    void 이동_UorD아니면_예외처리() {
+        assertSimpleTest(() -> {
+            runException("3", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
