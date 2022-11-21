@@ -1,14 +1,15 @@
 package bridge.domain;
 
-import bridge.Validator;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private static final String INVALID_MOVEMENT_ERROR = "[ERROR] U(위 칸)와 D(아래 칸) 중 하나의 문자만 입력해야 합니다.";
+    private static final String INVALID_GAME_COMMAND_ERROR = "[ERROR] R(재시작)과 Q(종료) 중 하나의 문자만 입력해야 합니다.";
+
     private final Bridge bridge;
     private PlayerData playerData = new PlayerData();
 
@@ -18,10 +19,10 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = new Bridge(bridge);
-    }
+    }                                                   // 삭제
 
     public boolean move(String movement) {
-        Validator.validateMoving(movement);
+        validateMovement(movement);
         playerData.recordMovement(movement);
         if (bridge.contain(playerData.getIndexOfMovement(), movement)) {
             return true;
@@ -30,7 +31,7 @@ public class BridgeGame {
     }
 
     public boolean retry(String gameCommand) {
-        Validator.validateGameCommand(gameCommand);
+        validateGameCommand(gameCommand);
         if (gameCommand.equals("R")) {
             playerData.resetMovementHistroy();
             playerData.increaseCountOfTry();
@@ -48,6 +49,18 @@ public class BridgeGame {
 
     public PlayerData getPlayerData() {
         return playerData;
+    }
+
+    private void validateMovement(String movement) {
+        if (!movement.equals(Direction.Code.UP.getName()) && !movement.equals(Direction.Code.DOWN.getName())) {
+            throw new IllegalArgumentException(INVALID_MOVEMENT_ERROR);
+        }
+    }
+
+    private void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            throw new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR);
+        }
     }
 }
 
