@@ -38,7 +38,7 @@ class MoveTest {
     }
 
     @Test
-    void from_0_또는_1_이외의_값이_들어오는_경우_예와가_발생한다() {
+    void from_0_또는_1_이외의_값이_들어오는_경우_예외가_발생한다() {
         //given
         int number = 3;
 
