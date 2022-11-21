@@ -12,16 +12,16 @@ public enum BridgeStatus {
     DOWN_O(DOWN, O),
     DOWN_X(DOWN, X);
 
-    private final String arrow;
+    private final String moving;
     private final String status;
 
-    BridgeStatus(String arrow, String status) {
-        this.arrow = arrow;
+    BridgeStatus(String moving, String status) {
+        this.moving = moving;
         this.status = status;
     }
 
-    public String getArrow() {
-        return arrow;
+    public String getMoving() {
+        return moving;
     }
 
     public String getStatus() {
@@ -30,7 +30,7 @@ public enum BridgeStatus {
 
     public static BridgeStatus valueOfArrowAndMark(String arrow, String mark) {
         return Arrays.stream(values())
-                .filter(value -> value.arrow.equals(arrow) && value.status.equals(mark))
+                .filter(value -> value.moving.equals(arrow) && value.status.equals(mark))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException(ERROR_BRIDGE_STATUS));
     }

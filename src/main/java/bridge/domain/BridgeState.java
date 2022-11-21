@@ -8,7 +8,7 @@ public class BridgeState {
     private StringBuilder downBridge = new StringBuilder();
 
     public void mark(BridgeStatus bridgeStatus) {
-        if (bridgeStatus.getArrow().equals(UP)) {
+        if (bridgeStatus.getMoving().equals(UP)) {
             markUpBridge(bridgeStatus);
             return;
         }

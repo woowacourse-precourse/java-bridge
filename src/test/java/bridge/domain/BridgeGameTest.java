@@ -43,8 +43,8 @@ class BridgeGameTest {
     @DisplayName("첫 라운드 다리 건너고 나서 위 다리 상태 값 확인")
     @ParameterizedTest
     @MethodSource("firstRoundUpBridgeState")
-    void confirmFirstRoundUpBridgeState(String arrow, String upBridgeState) {
-        bridgeGame.move(arrow);
+    void confirmFirstRoundUpBridgeState(String moving, String upBridgeState) {
+        bridgeGame.move(moving);
         assertThat(bridgeState.getUpBridgeState()).isEqualTo(upBridgeState);
     }
 
@@ -58,8 +58,8 @@ class BridgeGameTest {
     @DisplayName("첫 라운드 다리 건너고 나서 아래 다리 상태 값 확인")
     @ParameterizedTest
     @MethodSource("firstRoundDownBridgeState")
-    void confirmFirstRoundDownBridgeState(String arrow, String downBridgeState) {
-        bridgeGame.move(arrow);
+    void confirmFirstRoundDownBridgeState(String moving, String downBridgeState) {
+        bridgeGame.move(moving);
         assertThat(bridgeState.getDownBridgeState()).isEqualTo(downBridgeState);
     }
 
@@ -73,9 +73,9 @@ class BridgeGameTest {
     @DisplayName("두번째 라운드 다리 건너고 나서 위 다리 상태 값 확인")
     @ParameterizedTest
     @MethodSource("secondRoundUpBridgeState")
-    void confirmSecondRoundUpBridgeState(String arrow1, String arrow2, String upBridgeState) {
-        bridgeGame.move(arrow1);
-        bridgeGame.move(arrow2);
+    void confirmSecondRoundUpBridgeState(String moving1, String moving2, String upBridgeState) {
+        bridgeGame.move(moving1);
+        bridgeGame.move(moving2);
         assertThat(bridgeState.getUpBridgeState()).isEqualTo(upBridgeState);
     }
 
@@ -91,9 +91,9 @@ class BridgeGameTest {
     @DisplayName("두번째 라운드 다리 건너고 나서 아래 다리 상태 값 확인")
     @ParameterizedTest
     @MethodSource("secondRoundDownBridgeState")
-    void confirmSecondRoundDownBridgeState(String arrow1, String arrow2, String downBridgeState) {
-        bridgeGame.move(arrow1);
-        bridgeGame.move(arrow2);
+    void confirmSecondRoundDownBridgeState(String moving1, String moving2, String downBridgeState) {
+        bridgeGame.move(moving1);
+        bridgeGame.move(moving2);
         assertThat(bridgeState.getDownBridgeState()).isEqualTo(downBridgeState);
     }
 

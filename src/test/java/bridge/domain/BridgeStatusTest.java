@@ -15,8 +15,8 @@ class BridgeStatusTest {
     @DisplayName("방향 키 + 다리 건널 수 있는지 여부 값으로 BridgeStatus 상수 참조 불가능 시 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("illegalBridgeStatusValues")
-    void validateReferabilityBridgeStatus(String arrow, String mark) {
-        assertThatThrownBy(() -> BridgeStatus.valueOfArrowAndMark(arrow, mark))
+    void validateReferabilityBridgeStatus(String moving, String mark) {
+        assertThatThrownBy(() -> BridgeStatus.valueOfArrowAndMark(moving, mark))
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -32,8 +32,8 @@ class BridgeStatusTest {
     @DisplayName("방향 키 + 다리 건널 수 있는지 여부 값을 통해 BridgeStatus 상수 참조")
     @ParameterizedTest
     @MethodSource("bridgeStatusValues")
-    void referBridgeStatus(String arrow, String mark, BridgeStatus bridgeStatus) {
-        assertThat(BridgeStatus.valueOfArrowAndMark(arrow, mark)).isEqualTo(bridgeStatus);
+    void referBridgeStatus(String moving, String mark, BridgeStatus bridgeStatus) {
+        assertThat(BridgeStatus.valueOfArrowAndMark(moving, mark)).isEqualTo(bridgeStatus);
     }
 
     private static Stream<Arguments> bridgeStatusValues() {

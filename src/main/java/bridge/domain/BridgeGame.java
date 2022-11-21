@@ -25,29 +25,29 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String arrow) {
-        bridgeState.mark(makeBridgeStatus(arrow));
-        updateGameResult(arrow);
+    public void move(String moving) {
+        bridgeState.mark(makeBridgeStatus(moving));
+        updateGameResult(moving);
         round++;
     }
 
-    private void updateGameResult(String arrow) {
-        if (!isCrossable(arrow)) {
+    private void updateGameResult(String moving) {
+        if (!isCrossable(moving)) {
             gameResult = false;
             return;
         }
         gameResult = true;
     }
 
-    private boolean isCrossable(String arrow) {
-        return arrow.equals(bridge.get(round));
+    private boolean isCrossable(String moving) {
+        return moving.equals(bridge.get(round));
     }
 
-    private BridgeStatus makeBridgeStatus(String arrow) {
-        if (isCrossable(arrow)) {
-            return BridgeStatus.valueOfArrowAndMark(arrow, O);
+    private BridgeStatus makeBridgeStatus(String moving) {
+        if (isCrossable(moving)) {
+            return BridgeStatus.valueOfArrowAndMark(moving, O);
         }
-        return BridgeStatus.valueOfArrowAndMark(arrow, X);
+        return BridgeStatus.valueOfArrowAndMark(moving, X);
     }
 
     /**
