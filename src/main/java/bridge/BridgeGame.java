@@ -16,7 +16,7 @@ public class BridgeGame {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         move = new ArrayList<>();
-        tryNum = 0;
+        tryNum = 1;
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
@@ -63,5 +63,9 @@ public class BridgeGame {
 
     public List<String> getBridge(){
         return bridge;
+    }
+
+    public int getTryNum(){
+        return tryNum;
     }
 }

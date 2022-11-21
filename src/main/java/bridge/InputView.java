@@ -39,6 +39,7 @@ public class InputView {
     public String readGameCommand() {
         String input;
         do {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             input = Console.readLine();
         } while (!checkGameCommand(input));
         return input;
@@ -71,7 +72,7 @@ public class InputView {
 
     public boolean checkGameCommand(String input){
         try{
-            if(!input.equals("R") || !input.equals("Q")){
+            if(!input.equals("R") && !input.equals("Q")){
                 throw new IllegalArgumentException();
             }
             return true;

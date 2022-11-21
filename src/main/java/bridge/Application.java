@@ -12,19 +12,24 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
         List<String> bridge = bridgeGame.getBridge();
+
         for(String str : bridge)
             System.out.print(str);
 
-        String move;
-        boolean canMove;
         do {
-            move = inputView.readMoving();
-            canMove = bridgeGame.canMove(move);
-            outputView.printMap(bridgeGame.getMove(), canMove);
-        } while (canMove && !bridgeGame.success());
+            String move;
+            boolean canMove;
+            do {
+                move = inputView.readMoving();
+                canMove = bridgeGame.canMove(move);
+                outputView.printMap(bridgeGame.getMove(), canMove);
+            } while (canMove && !bridgeGame.success());
+            if(bridgeGame.success()){
+                break;
+            }
+        } while (bridgeGame.retry(inputView.readGameCommand()));
 
-
-
+        outputView.printResult(bridgeGame.getMove(), bridgeGame.success(), bridgeGame.getTryNum());
     }
 }
 
