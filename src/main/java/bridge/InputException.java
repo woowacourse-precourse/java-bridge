@@ -22,6 +22,16 @@ public class InputException {
         }
     }
 
+    public void validateReadGameCommand(String inputCommand) {
+        if (!isLengthOne(inputCommand)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 값을 입력했습니다. 프로그램을 종료합니다.");
+        }
+
+        if (!isInputCommandRight(inputCommand)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 값을 입력했습니다. 프로그램을 종료합니다.");
+        }
+    }
+
     public boolean isNumber(String inputNumber) {
         for (char number : inputNumber.toCharArray()) {
             if (!Character.isDigit(number)) {
@@ -48,6 +58,13 @@ public class InputException {
 
     public boolean isInputPositionRight(String inputPosition) {
         if (inputPosition.equals("U") || inputPosition.equals("D")) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isInputCommandRight(String inputCommand) {
+        if (inputCommand.equals("R") || inputCommand.equals("Q")) {
             return true;
         }
         return false;
