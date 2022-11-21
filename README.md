@@ -5,7 +5,7 @@
 # 미션 - 다리 건너기
 
 ###### `우아한테크코스 4주차 미션을 진행한 저장소 입니다.`
-<img src="./docs/image/java-birdge.gif" width="800">
+<img src="./docs/image/java-bridge.gif" width="800">
 
 ###### `WARNING 메세지는 무시하셔도 됩니다.`
 
