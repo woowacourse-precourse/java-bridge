@@ -62,7 +62,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String userCommand) {
+        if(userCommand.equals("R")) {
+            init(tryCount + 1);
+        }
+    }
 
     public void init(int tryCount) {
         this.bridgeIndex = INIT_BRIDGE_INDEX;
@@ -70,5 +74,7 @@ public class BridgeGame {
         this.bridgeMap = new BridgeMap();
         this.gameStatus = GameStatus.PLAYING;
     }
+    public boolean isFail() {
+        return gameStatus == GameStatus.FAIL;
     }
 }

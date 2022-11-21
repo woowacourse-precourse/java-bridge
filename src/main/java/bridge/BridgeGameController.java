@@ -28,6 +28,10 @@ public class BridgeGameController {
 
     public void run() {
             moveBridge();
+            if (bridgeGame.isFail()) {
+                String userCommand = inputView.readGameCommand();
+                bridgeGame.retry(userCommand);
+            }
     private void moveBridge() {
         String readMoving = inputView.readMoving();
         BridgeMap bridgeMap = bridgeGame.move(readMoving);
