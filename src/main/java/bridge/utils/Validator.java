@@ -16,18 +16,11 @@ public class Validator {
 
     public static void isPossibleNumber(String number){
         isNumber(number);
-        isZero(number);
         checkRange(number);
     }
 
-    public static void isZero(String number){
-        if (Integer.valueOf(number) == 0){
-            throw new IllegalArgumentException(ZERO_ERROR);
-        }
-    }
-
     public static void checkRange(String number){
-        if (Long.valueOf(number) > 2000000000 || Long.valueOf(number) <1){
+        if (Long.valueOf(number) > 20 || Long.valueOf(number) <3){
             throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
