@@ -39,7 +39,7 @@ class BridgeGameTest {
 		userBridgeRepository.clear();
 	}
 
-	@ParameterizedTest
+	@ParameterizedTest(name = "bridgeGame 의 move 메서드 - 사용자 입력을 정답값과 비교해서 확인하는 테스트")
 	@CsvSource(value = {"U, 0, true", "U, 1, false"})
 	void move(String userMove, Integer index, boolean valid) {
 		List<String> bridgeTest = List.of(GameConst.MOVING_UP, GameConst.MOVING_DOWN);
@@ -50,7 +50,7 @@ class BridgeGameTest {
 		Assertions.assertThat(move).isEqualTo(valid);
 	}
 
-	@ParameterizedTest
+	@ParameterizedTest(name = "bridgeGame 의 retry 메서드 - 재시도 요청에서 사용자 입력값에 따라 boolean 이 잘 나오는지 확인하는 테스트")
 	@CsvSource(value = {"Q, false", "R, true"})
 	void retry(String userCommand, boolean retry) {
 		boolean retryTest = bridgeGame.retry(userCommand);
