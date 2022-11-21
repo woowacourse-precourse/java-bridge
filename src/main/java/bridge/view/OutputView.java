@@ -19,11 +19,11 @@ public class OutputView {
     }
 
     public void AskNextMove() {
-        System.out.println(ASK_NEXT_MOVE_MESSAGE);
+        System.out.println(System.lineSeparator() + ASK_NEXT_MOVE_MESSAGE);
     }
 
     public void AskRetry() {
-        System.out.println(ASK_RETRY_MESSAGE);
+        System.out.println(System.lineSeparator() + ASK_RETRY_MESSAGE);
     }
 
     /**
@@ -33,7 +33,7 @@ public class OutputView {
      */
     public void printMap(String map) {
         this.map = map;
-        System.out.println(map + System.lineSeparator());
+        System.out.println(map);
     }
 
     /**

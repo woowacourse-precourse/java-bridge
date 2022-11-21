@@ -8,8 +8,8 @@ public class MapElement {
     public static final String FAIL = " X ";
     public static final String SPACE = "   ";
 
-    private StringBuilder upperBuilder;
-    private StringBuilder lowerBuilder;
+    private final StringBuilder upperBuilder;
+    private final StringBuilder lowerBuilder;
 
     public MapElement() {
         this.upperBuilder = new StringBuilder(START);
@@ -20,10 +20,12 @@ public class MapElement {
         upperBuilder.append(SEPARATOR);
         lowerBuilder.append(SEPARATOR);
     }
+
     public void appendEnd() {
         upperBuilder.append(END);
         lowerBuilder.append(END);
     }
+
     public void appendCross(Direction direction) {
         if (direction == Direction.U) {
             upperBuilder.append(CROSS);
@@ -34,6 +36,7 @@ public class MapElement {
             lowerBuilder.append(CROSS);
         }
     }
+
     public void appendFail(Direction direction) {
         if (direction == Direction.U) {
             upperBuilder.append(FAIL);

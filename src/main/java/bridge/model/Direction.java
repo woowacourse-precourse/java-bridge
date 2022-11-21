@@ -5,6 +5,7 @@ public enum Direction {
     D(0);
 
     private final int number;
+
     Direction(int number) {
         this.number = number;
     }

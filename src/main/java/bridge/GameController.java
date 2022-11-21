@@ -47,9 +47,7 @@ public class GameController {
     private boolean failToMove() {
         if (bridgeGame.failToMove()) {
             outputView.AskRetry();
-            if (isGameOver(inputView.readGameCommand())) {
-                return true;
-            }
+            return isGameOver(inputView.readGameCommand());
         }
         return false;
     }
@@ -59,10 +57,7 @@ public class GameController {
             doRetry();
             tryCount.add();
         }
-        if (gameCommand.equals("Q")) {
-            return true;
-        }
-        return false;
+        return gameCommand.equals("Q");
     }
 
     public void doRetry() {

@@ -54,10 +54,7 @@ public class BridgeGame {
     }
 
     public boolean failToMove() {
-        if (bridge.canMove(movement)) {
-            return false;
-        }
-        return true;
+        return !bridge.canMove(movement);
     }
 
     public boolean isEndOfBridge() {
