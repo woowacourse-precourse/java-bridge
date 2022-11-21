@@ -9,7 +9,10 @@
 <br/>
 
 ## :bulb: 클래스 설명
-### :file_folder: domain 패키지
+
+<br/>
+
+### :file_folder: domain
 #### BridgeNumberGenerator
 - int를 반환하는 함수형 인터페이스
 #### BridgeRandomNumberGenerator
@@ -28,19 +31,46 @@
 
 <br/>
 
-### :file_folder: service 패키지
+### :file_folder: service
 #### BridgeGame
 - BridgeController의 비즈니스 로직 관련 요청을 담당하여 처리하는 역할
 - 도메인 관련 데이터를 DTO 형태로 변환하여 Controller에 넘겨준다.
 
 <br/>
 
-### :file_folder: controller 패키지
+### :file_folder: controller
 #### BridgeController
 - InputView를 통해 사용자 입력 값을 받는다.
 - Validator를 통하여 사용자 입력 값을 검증한다.
 - 검증된 데이터를 BridgeGame에 넘겨 비즈니스 로직을 처리한다.
-- BridgeGame으로 부터 Dto형식의 데이터를 전달받아 OutputView를 통해 출력한다.
+- BridgeGame으로 부터 DTO형식의 데이터를 전달받아 OutputView를 통해 출력한다.
+
+<br/>
+
+### :file_folder: validation
+#### Validator
+- InputView를 통해 전달받은 입력 값에 대한 검증 역할
+- 검증에 통과하지 못하면 예외를 발생시킨다.
+
+<br/>
+
+### :file_folder: view
+#### InputView
+- 입력과 관련된 안내 문구를 출력하고 입력 값을 BridgeController에 전달하는 역할
+#### OutputView
+- 도메인 관련 정보를 담고 있는 DTO를 활용하여 각 상황에 맞는 결과값을 출력하는 역할
+
+<br/>
+
+### :file_folder: dto
+#### BridgeRouteDto
+- 매 이동마다 결과와 관련된 Map을 출력하기 위해 Bridge와 MoveHistory관련 정보를 지니고 있다.
+#### ResultDto
+- 사용자가 다리 건너기에 성공하거나 재시도를 포기 할 시 출력에 필요한 정보를 담고 있다.
+- player의 시도 횟수, 성공 여부, BridgeRouteDto관련 정보를 지니고 있다.
+
+
+
 
 
 
