@@ -427,22 +427,21 @@ int number=bridgeNumberGenerator.generate();
             * fields
                 * User 객체
                 * BridgeGame 객체
-                * enum GameStatus - gameCommands 값("R", "Q") 저장
             * methods
                 * startBridgeGame - 게임 초기화
-                    1. 게임 시작 문구 출력 (OutputView.printGameStartMessage() 호출)
-                    2. askBridgeSize - 사용자가 입력한 다리의 길이 반환
-                    3. generateBridge - 다리 생성
+                    1. setBridgeSize - 사용자가 입력한 다리의 길이 값 반환
+                    2. makeBridge - 다리 생성
                 * playBridgeGame - 게임 진행
-                    1. 사용자가 게임을 진행하는지 확인 (User.isPlayingGame() 호출)
-                    2. moveUser - 사용자 이동
-                    3. printBridge_userPredict - 현재까지 건넌 다리 출력 (OutputView.printMap() 호출)
-                    4. isGameSucceed - 게임 성공 여부 확인
-                    5. isGameFailed - 게임 실패 여부 확인
-                    6. isQuitGame - 게임 종료 여부 확인
-                        * askGameCommand - 사용자가 입력한 gameCommand 반환
-                    7. retryGame - 게임 재시작을 위해 상태값 변경
-                    8. printGameResult - 게임 종료 문구 출력
+                    1. moveUser - 사용자 칸 이동
+                        * setUserMoveDirection - 사용자가 입력한 이동할 칸 값 반환
+                    2. printBridge_userMove - 현재까지 건넌 다리 출력 (OutputView.printMap() 호출)
+                    3. isEndOfTheGame - 게임 종료 여부 확인
+                        * isGameSucceed - 게임 성공 여부 확인
+                        * isGameFailed - 게임 실패 여부 확인
+                        * isQuitOfTheGame - 사용자가 게임 종료를 입력하였는지 여부 확인
+                            * setGameCommand - 사용자가 입력한 gameCommand 반환
+                    4. retryGame - 게임 재시작을 위한 상태값 변경
+                    5. printGameResult - 게임 종료 문구 출력
         *
         * class: **BridgeGame** - 다리 건너기 게임을 관리
             * fields
@@ -450,9 +449,11 @@ int number=bridgeNumberGenerator.generate();
                 * bridge_userMove - 사용자가 다리 상에서 이동한 위치를 저장 (List)
                 * enum BridgeShape - 다리 모양의 숫자 값(0, 1), 문자 값("U", "D") 저장
             * methods
-                * getBridge_answer - 정답 다리 List 반환
-                * getBridge_userMove - 사용자의 다리 상 이동 위치 List 반환
-                * setBridgeAnswer - 정답 다리 값 저장
+                * getter
+                    * getBridge_answer - 정답 다리 List 반환
+                    * getBridge_userMove - 사용자의 다리 상 이동 위치 List 반환
+                * setter
+                    * setBridgeAnswer - 정답 다리 값 저장
                 * move - 사용자의 다리 칸 이동
                 * checkIfGameIsSucceed - 게임 성공 여부 확인
                 * checkIfGameIsFailed - 게임 실패 여부 확인
@@ -462,40 +463,55 @@ int number=bridgeNumberGenerator.generate();
     * package: `user`
         * class: **User** - 사용자의 상태를 관리
             * fields
-                1. isPlayingGame - 게임 진행 여부
-                2. isGameSucceed - 게임 성공 여부
-                3. numberOfGameTrials - 게임 총 시도 횟수
-                4. numberOfMoves - 게임 중 이동한 횟수
+                * userGameStatus - 게임 진행 상태 (enum GameStatus의 값을 저장)
+                * numberOfMoves - 게임 중 이동한 횟수
+                * numberOfGameTrials - 게임 총 시도 횟수
+                * enum GameStatus - 게임 진행 상태값(PLAYING - 0, SUCCEED - 1, FAILED - 2) 저장
+                * enum GameCommand - gameCommands 값(RETRY - R, QUIT - Q) 저장
             * methods
-                * isPlayingGame - 게임 진행 여부 반환
-                * isGameSucceed - 게임 성공 여부 반환
-                * getNumberOfMoves - 게임 중 이동한 횟수 반환
-                * getNumberOfGameTrials - 게임 총 시도 횟수 반환
-                * setNotPlayingGame - 게임을 진행하지 않는 것으로 상태 변경
-                * setGameSucceed - 게임 성공으로 상태 변경
-                * resetNumberOfMoves - 게임 중 이동한 횟수 초기화
-                * increaseNumberOfGameTrials - 총 시도 횟수 1회 증가
+                * getter
+                    * getUserGameStatus
+                    * getNumberOfMoves
+                    * getNumberOfGameTrials
+                * setter
+                    * setUserGameStatus_succeed - 게임 진행 상태를 성공으로 변경
+                    * setUserGameStatus_failed - 게임 진행 상태를 실패로 변경
                 * increaseNumberOfMoves - 게임 중 이동한 횟수 1회 증가
+                * increaseNumberOfGameTrials - 게임 총 시도 횟수 1회 증가
+                * resetNumberOfMoves - 게임 중 이동한 횟수 초기화
     *
 
     * package: `view` - console I/O
         * class: **InputView** - 사용자로부터 입력을 받는 역할, 입력 예외처리
             * methods
                 * readBridgeSize - 다리의 길이 입력받기
-                    * checkBridgeSize_regex - 정규식 확인 (숫자 입력)
-                    * checkBridgeSize_value - 입력값 범위 확인
+                    * checkBridgeSize_regex - 정규식에 부합하는지 확인 (숫자 입력)
+                    * checkBridgeSize_value - 입력값 범위 확인 (3 ~ 20)
                 * readMoving - 사용자가 이동할 칸 입력받기
-                    * checkUserMoveDirection_regex - 정규식 확인 (D 또는 U 입력)
+                    * checkUserMoveDirection_regex - 정규식에 부합하는지 확인 (D 또는 U 입력)
                 * readGameCommand - 게임을 다시 시도할지 종료할지 여부 입력받기
+                    * checkUserGameCommand_regex - 정규식에 부합하는지 확인 (R 또는 Q 입력)
         *
         * class: **OutputView** - 사용자에게 게임 진행 상황과 결과를 출력하는 역할
             * methods
+                1. 평문
+                    * printGameStartMessage
+                2. 질문
+                    * askBridgeSize
+                    * askUserMoveDirection
+                    * askGameCommand
+                3. 에러 메세지
+                    * printErrorMessage_bridgeSize
+                    * printErrorMessage_userMoveDirection
+                    * printErrorMessage_gameCommand
+
                 * printMap - 현재까지 이동한 다리의 상태 출력
-                    * getUserFootprint - 사용자의 이동 발자취 반환
+                    * setUserFootprint - 사용자의 이동 발자취 반환
                         * footprint_userMovedToAble - 사용자가 이동할 수 있는 칸을 선택한 경우의 발자취 반환
                         * footprint_userMovedToDisable - 사용자가 이동할 수 있는 칸을 선택한 경우의 발자취 반환
+                    * setBridgeBoundary - 현재 보는 칸이 다리의 마지막 칸일 경우 끝(])을 명시 / 아닐 경우 구분선(|)을 명시
                 * printResult - 게임의 최종 결과 출력
-                    * getGameStatusMessage - 게임 성공 여부에 따른 String 반환
+                    * setGameStatusMessage - 게임 성공 또는 실패 여부에 따른 String 반환
 
 ---
 
