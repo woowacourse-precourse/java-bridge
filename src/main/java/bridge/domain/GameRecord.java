@@ -12,9 +12,13 @@ public class GameRecord {
 	private int tryAttempts;
 
 	public GameRecord() {
+		initLog();
+		tryAttempts = 1;
+	}
+
+	private void initLog() {
 		upLog = new ArrayList<>();
 		downLog = new ArrayList<>();
-		tryAttempts = 1;
 	}
 
 	void recordSuccess(String direction) {
@@ -43,6 +47,15 @@ public class GameRecord {
 			return;
 		}
 		recordDownLog(FAIL);
+	}
+
+	void retry() {
+		initLog();
+		tryAttempts++;
+	}
+
+	int getTryAttempts() {
+		return tryAttempts;
 	}
 
 	@Override
