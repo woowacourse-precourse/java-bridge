@@ -45,6 +45,15 @@ public class BridgeGame {
         return sb.substring(0, sb.length()-1) + "]";
     }
 
+    public boolean roundOver() {
+        int index = movement.size()-1;
+        if (movement.get(index).equals( bridge.get(index) )) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
