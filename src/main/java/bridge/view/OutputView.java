@@ -13,14 +13,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeState bridgeState) {
-        List<String> upBridge = bridgeState.getUpBridge();
-        List<String> downBridge = bridgeState.getDownBridge();
+        String upBridge = bridgeState.upBridgeGenerate();
+        String downBridge = bridgeState.downBridgeGenerate();
 
-        String up = "[ " + String.join(" | ", upBridge) + " ]";
-        String down = "[ " + String.join(" | ", downBridge) + " ]";
-
-        System.out.println(up);
-        System.out.println(down);
+        System.out.println(upBridge);
+        System.out.println(downBridge);
     }
 
     /**
@@ -29,16 +26,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeState bridgeState, int count, boolean success) {
-        List<String> upBridge = bridgeState.getUpBridge();
-        List<String> downBridge = bridgeState.getDownBridge();
-
-        String up = "[ " + String.join(" | ", upBridge) + " ]";
-        String down = "[ " + String.join(" | ", downBridge) + " ]";
+        String upBridge = bridgeState.upBridgeGenerate();
+        String downBridge = bridgeState.downBridgeGenerate();
 
         printLastGameResult();
 
-        System.out.println(up);
-        System.out.println(down);
+        System.out.println(upBridge);
+        System.out.println(downBridge);
 
         gameSuccess(success);
         printAllTryCount(count);

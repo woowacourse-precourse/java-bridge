@@ -1,14 +1,14 @@
 package bridge.domain;
 
+import bridge.constants.Command;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeState {
+    private static final String SPACE = " ";
 
     private final List<String> upBridge = new ArrayList<>();
     private final List<String> downBridge = new ArrayList<>();
-
-    //TODO: enum 변경, 상수화,
 
     public void addBridge(String playerMoving, String bridgeJudgment) {
         if (playerMoving.equals("U") && bridgeJudgment.equals("O")) {
@@ -32,14 +32,12 @@ public class BridgeState {
         }
     }
 
-    //TODO: 너무 겟터 스럽게 작성을 금지 다시 수정하기.
-    public List<String> getUpBridge() {
-        return upBridge;
+    public String upBridgeGenerate() {
+        return "[ " + String.join(" | ", upBridge) + " ]";
     }
 
-    //TODO: 너무 겟터 스럽게 작성을 금지 다시 수정하기.
-    public List<String> getDownBridge() {
-        return downBridge;
+    public String downBridgeGenerate() {
+        return "[ " + String.join(" | ", downBridge) + " ]";
     }
 
     public void reset() {
