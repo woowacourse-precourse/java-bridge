@@ -14,9 +14,8 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException {
+    public int readBridgeSize(String line) throws IllegalArgumentException {
         try {
-            String line = Console.readLine();
             int bridgeSize = Integer.parseInt(line);
             validBridgeSize(bridgeSize);
             return bridgeSize;
@@ -28,9 +27,8 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException {
+    public String readMoving(String line) throws IllegalArgumentException {
         try {
-            String line = Console.readLine();
             validReadMoving(line);
             return line;
         } catch (NoSuchElementException e) {
