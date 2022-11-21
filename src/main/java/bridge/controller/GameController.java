@@ -14,7 +14,7 @@ public class GameController {
     public void run() {
         initializeGame();
         GameStatus finalGameStatus = getFinalGameResult();
-        outputView.printResult(finalGameStatus, finalGameStatus.getCount());
+        outputView.printResult(finalGameStatus);
     }
 
     private GameStatus getFinalGameResult() {

@@ -13,11 +13,11 @@ public class OutputView {
     private final String WHETHER_GAME_SUCCESS_MESSAGE = "게임 성공 여부: ";
     private final String TOTAL_TRY = "총 시도한 횟수: ";
 
-    public void printResult(GameStatus gameStatus, int count) {
+    public void printResult(GameStatus gameStatus) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(gameStatus);
         System.out.println(WHETHER_GAME_SUCCESS_MESSAGE + gameStatus.getMessage());
-        System.out.println(TOTAL_TRY + count);
+        System.out.println(TOTAL_TRY + gameStatus.getCount());
     }
 
     public void printMap(GameStatus gameStatus) {
