@@ -12,6 +12,7 @@ public class BridgeMarkerTest {
 	void generate() {
 		BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
 		int number = generator.generate();
+
 		assertThat(number).isIn(0, 1);
 	}
 

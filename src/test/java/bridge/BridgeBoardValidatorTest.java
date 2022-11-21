@@ -31,11 +31,10 @@ public class BridgeBoardValidatorTest {
 		@Test
 		void invalidInput() {
 			String board = "r";
-			assertThatThrownBy(()->BridgeBoardValidator.validate(board))
+			assertThatThrownBy(() -> BridgeBoardValidator.validate(board))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(ErrorMessage.BRIDGE_BOARD_ERROR.getMessage());
 		}
 	}
-
 
 }
