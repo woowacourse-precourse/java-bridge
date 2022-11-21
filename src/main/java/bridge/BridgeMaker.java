@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.View.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,5 +29,29 @@ public class BridgeMaker {
             bridgeAnswer.add(movingStatus);
         }
         return bridgeAnswer;
+    }
+
+    public boolean validateBridgeSize(String inputSize) {
+        try {
+            validateIsNumeric(inputSize);
+            validateIsRightRange(inputSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    void validateIsNumeric(String inputSize) throws IllegalArgumentException {
+        if (!inputSize.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException(ExceptionMessage.NUMERIC_EXCEPTION_MESSAGE.getExceptionMessage());
+        }
+    }
+
+    void validateIsRightRange(String inputSize) throws IllegalArgumentException {
+        int bridgeSize = Integer.parseInt(inputSize);
+        if (bridgeSize < 3 | bridgeSize > 20) {
+            throw new IllegalArgumentException(ExceptionMessage.RANGE_EXCEPTION_MESSAGE.getExceptionMessage());
+        }
     }
 }

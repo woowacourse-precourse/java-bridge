@@ -26,9 +26,14 @@ public class Controller {
     }
 
     Bridge createBridge() {
-        int bridgeSize = inputView.readBridgeSize();
+        String inputSize = inputView.readBridgeSize();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+        if(!bridgeMaker.validateBridgeSize(inputSize)){
+            return createBridge();
+        }
+        int bridgeSize = Integer.parseInt(inputSize);
         List<String> bridgeAnswer = bridgeMaker.makeBridge(bridgeSize);
         return new Bridge(bridgeAnswer);
     }

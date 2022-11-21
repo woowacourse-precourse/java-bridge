@@ -12,7 +12,7 @@ public enum ExceptionMessage {
         this.exceptionMessage = exceptionMessage;
     }
 
-    String getExceptionMessage() {
+    public String getExceptionMessage() {
         return this.exceptionMessage;
     }
 }

@@ -11,14 +11,10 @@ public class InputView {
         validator = new Validator();
     }
 
-    public int readBridgeSize() {
+    public String readBridgeSize() {
         System.out.println(Message.START_GAME_MESSAGE.getMessage());
         System.out.println(Message.INPUT_BRIDGE_SIZE_MESSAGE.getMessage());
-        String inputSize = Console.readLine();
-        if(!validator.validateBridgeSize(inputSize)){
-            return readBridgeSize();
-        }
-        return Integer.parseInt(inputSize);
+        return Console.readLine();
     }
 
     public String readMoving() {
