@@ -1,10 +1,10 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeResultTest {
     @Test
@@ -16,7 +16,8 @@ class BridgeResultTest {
         bridgeResult.saveCorrectStep("U");
 
         //then
-        assertThat(bridgeResult.getResult(0)).isEqualTo("O ");
+        assertThat(bridgeResult.getUpperResult()).isEqualTo(List.of("O"));
+        assertThat(bridgeResult.getLowerResult()).isEqualTo(List.of(" "));
     }
 
     @Test
@@ -29,8 +30,8 @@ class BridgeResultTest {
         bridgeResult.saveCorrectStep("D");
 
         //then
-        assertThat(bridgeResult.getResult(0)).isEqualTo("O ");
-        assertThat(bridgeResult.getResult(1)).isEqualTo(" O");
+        assertThat(bridgeResult.getUpperResult()).isEqualTo(List.of("O", " "));
+        assertThat(bridgeResult.getLowerResult()).isEqualTo(List.of(" ", "O"));
     }
 
     @Test
@@ -42,7 +43,8 @@ class BridgeResultTest {
         bridgeResult.saveWrongStep("U");
 
         //then
-        assertThat(bridgeResult.getResult(0)).isEqualTo("X ");
+        assertThat(bridgeResult.getUpperResult()).isEqualTo(List.of("X"));
+        assertThat(bridgeResult.getLowerResult()).isEqualTo(List.of(" "));
     }
 
     @Test
@@ -55,7 +57,7 @@ class BridgeResultTest {
         bridgeResult.saveWrongStep("D");
 
         //then
-        assertThat(bridgeResult.getResult(0)).isEqualTo("O ");
-        assertThat(bridgeResult.getResult(1)).isEqualTo(" X");
+        assertThat(bridgeResult.getUpperResult()).isEqualTo(List.of("O", " "));
+        assertThat(bridgeResult.getLowerResult()).isEqualTo(List.of(" ", "X"));
     }
 }

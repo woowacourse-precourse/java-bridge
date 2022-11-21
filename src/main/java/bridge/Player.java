@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -35,7 +34,7 @@ public class Player {
 
         bridgeResult.saveWrongStep(step);
         alive = false;
-        return ++location;
+        return location;
     }
 
     public boolean isSuccess() {
@@ -45,12 +44,11 @@ public class Player {
         return false;
     }
 
-    public List<String> getFootPrint() {
-        List<String> footPrint = new ArrayList<>();
-        for (int prevLocation = 0; prevLocation <= location; prevLocation++) {
-            footPrint.add(bridgeResult.getResult(prevLocation));
-        }
+    public List<String> getUpperFootPrint() {
+        return bridgeResult.getUpperResult();
+    }
 
-        return footPrint;
+    public List<String> getLowerFootPrint() {
+        return bridgeResult.getLowerResult();
     }
 }

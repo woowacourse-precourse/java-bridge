@@ -31,9 +31,11 @@ public class BridgeResult {
         }
     }
 
-    public String getResult(int resultIndex) {
-        return String.join("",
-                List.of(upperResult.get(resultIndex), lowerResult.get(resultIndex))
-        );
+    public List<String> getUpperResult() {
+        return upperResult;
+    }
+
+    public List<String> getLowerResult() {
+        return lowerResult;
     }
 }

@@ -56,6 +56,7 @@ class PlayerTest {
 
         player.move("U");
         player.move("U");
+
         assertThat(player.move("U")).isEqualTo(1);
     }
 
@@ -105,7 +106,8 @@ class PlayerTest {
         Player player = new Player(new Bridge(List.of("U", "U")));
         player.startRound();
 
-        assertThat(player.getFootPrint()).isEqualTo(Collections.EMPTY_LIST);
+        assertThat(player.getUpperFootPrint()).isEqualTo(Collections.EMPTY_LIST);
+        assertThat(player.getLowerFootPrint()).isEqualTo(Collections.EMPTY_LIST);
     }
 
     @Test
@@ -115,7 +117,8 @@ class PlayerTest {
 
         player.move("U");
 
-        assertThat(player.getFootPrint()).isEqualTo(List.of("O "));
+        assertThat(player.getUpperFootPrint()).isEqualTo(List.of("O"));
+        assertThat(player.getLowerFootPrint()).isEqualTo(List.of(" "));
     }
 
     @Test
@@ -127,7 +130,8 @@ class PlayerTest {
         player.move("U");
         player.move("D");
 
-        assertThat(player.getFootPrint()).isEqualTo(List.of("O ","O "," O"));
+        assertThat(player.getUpperFootPrint()).isEqualTo(List.of("O","O"," "));
+        assertThat(player.getLowerFootPrint()).isEqualTo(List.of(" "," ","O"));
     }
 
     @Test
@@ -138,6 +142,7 @@ class PlayerTest {
         player.move("U");
         player.move("D");
 
-        assertThat(player.getFootPrint()).isEqualTo(List.of("O "," X"));
+        assertThat(player.getUpperFootPrint()).isEqualTo(List.of("O"," "));
+        assertThat(player.getLowerFootPrint()).isEqualTo(List.of(" ","X"));
     }
 }
