@@ -31,7 +31,7 @@ public class Bridge {
     }
 
     public boolean isCross(int index, UpOrDown upOrDown) {
-        if (Objects.isNull(upOrDown)) {
+        if (Objects.isNull(upOrDown) || index < 0 || index > bridge.size()) {
             throw new IllegalArgumentException(Error.SYSTEM_ERROR.getMessage());
         }
 
