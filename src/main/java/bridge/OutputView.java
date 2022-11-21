@@ -63,11 +63,11 @@ public class OutputView {
 	}
 
 	public static void printTotalTryCountMessage() {
-		System.out.println(OUTPUT_TOTAL_TRY_COUNT + printTotalGameCount());
+		System.out.println(OUTPUT_TOTAL_TRY_COUNT + printTotalAttemptCount());
 	}
 
-	public static int printTotalGameCount() {
-		return bridgeStatus.getTotalGameCount();
+	public static int printTotalAttemptCount() {
+		return Pause.getAttemptCount();
 	}
 
 	public static void printErrorMessage(String message) {

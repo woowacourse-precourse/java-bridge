@@ -2,6 +2,7 @@ package bridge;
 
 public class Pause {
 	private static boolean paused = false;
+	private static int unPauseCount = 0;
 
 	public static void setPause() {
 		if (whenNotPaused()) {
@@ -12,6 +13,7 @@ public class Pause {
 	public static void unsetPause() {
 		if (whenPaused()) {
 			paused = false;
+			unPauseCount++;
 		}
 	}
 
@@ -25,5 +27,13 @@ public class Pause {
 
 	public static boolean isPaused() {
 		return paused;
+	}
+
+	public static int getAttemptCount() {
+		return getUnPauseCount() + 1;
+	}
+
+	private static int getUnPauseCount() {
+		return unPauseCount;
 	}
 }

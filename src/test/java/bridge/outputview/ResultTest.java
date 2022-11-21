@@ -101,10 +101,10 @@ public class ResultTest {
 		bridgeLetter = DOWN;
 		move(userSelectedCell, bridgeLetter);
 
-		String expectedPrint = OUTPUT_TOTAL_TRY_COUNT + "3";
+		String expectedPrint = OUTPUT_TOTAL_TRY_COUNT + "1";
 
 		// when
-		int totalGameCount = new OutputView().printTotalGameCount();
+		int totalGameCount = new OutputView().printTotalAttemptCount();
 		String actualPrint = OUTPUT_TOTAL_TRY_COUNT + totalGameCount;
 
 		// then

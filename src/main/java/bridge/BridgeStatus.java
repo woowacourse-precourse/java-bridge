@@ -147,14 +147,6 @@ public class BridgeStatus {
 		return !isFailUpperCell && !isFailLowerCell;
 	}
 
-	public int getTotalGameCount() {
-		int totalGameCount = 0;
-		if (phase > 0) {
-			totalGameCount = phase;
-		}
-		return totalGameCount;
-	}
-
 	public void reset() {
 		phase = 0;
 		upperCellBuilder.setLength(0);
