@@ -3,6 +3,7 @@ package bridge.ui;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeShapeMatcher;
 import bridge.domain.Player;
+import bridge.domain.SuccessFail;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class OutputView {
         List<BridgeShapeMatcher> playerBridge = player.getBridgeShapeMatcher();
         System.out.println(printUpFloor(playerBridge));
         System.out.println(printDownFloor(playerBridge));
+        System.out.println();
     }
 
     /**
@@ -50,6 +52,14 @@ public class OutputView {
         }
         result.replace(result.length()-2,result.length(),"]");
         return result.toString();
+    }
+
+    public void printFinalResult(Player player){
+        System.out.println("최종 게임 결과");
+        printMap(player);
+        SuccessFail successFail = SuccessFail.findSuccessFail(player.isSuccess());
+        System.out.print("게임 성공 여부: " + successFail.getMessage()+"\n");
+        System.out.println("총 시도한 횟수: "+player.getTryNumber());
     }
 
 }
