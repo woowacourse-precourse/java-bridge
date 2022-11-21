@@ -33,7 +33,7 @@ public class InputView {
         int translatedBridgeSize = Integer.parseInt(bridgeSize);
 
         if (translatedBridgeSize < 3 || translatedBridgeSize > 20) {
-            new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+            throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
         }
     }
 
@@ -41,7 +41,7 @@ public class InputView {
 
         for (char argument : bridgeSize.toCharArray()) {
             if (argument < '0' || argument > '9') {
-                new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+                throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
             }
         }
     }
@@ -51,7 +51,7 @@ public class InputView {
         int stringLength = bridgeSize.length();
 
         if (stringLength < 1 || stringLength > 2) {
-            new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+            throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
         }
     }
 
