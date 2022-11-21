@@ -9,4 +9,10 @@ public abstract class UserException {
             throw new IllegalArgumentException(ExceptionCode.IS_EMPTY.getMessage());
         }
     }
+
+    void isBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ExceptionCode.IS_BLANK.getMessage());
+        }
+    }
 }
