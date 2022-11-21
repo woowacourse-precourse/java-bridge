@@ -85,8 +85,8 @@ class BridgeMapTest {
 
         // then
         assertThat(map.getTopLine().size())
-                .isEqualTo(1); // Start Symbol 포함
+                .isEqualTo(2); // Start Symbol, End Symbol 포함
         assertThat(map.getBottomLine().size())
-                .isEqualTo(1); // Start Symbol 포함
+                .isEqualTo(2);
     }
 }

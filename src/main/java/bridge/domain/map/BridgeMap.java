@@ -32,11 +32,15 @@ public class BridgeMap {
     }
 
     public List<MapSymbol> getTopLine() {
-        return Collections.unmodifiableList(topLine);
+        ArrayList<MapSymbol> top = new ArrayList<>(topLine);
+        top.add(END);
+        return unmodifiableList(top);
     }
 
     public List<MapSymbol> getBottomLine() {
-        return Collections.unmodifiableList(bottomLine);
+        ArrayList<MapSymbol> bottom = new ArrayList<>(bottomLine);
+        bottom.add(END);
+        return unmodifiableList(bottom);
     }
 
     public void addPath(final Direction direction,
