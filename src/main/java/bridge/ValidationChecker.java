@@ -19,7 +19,9 @@ public class ValidationChecker {
     /**
      * 입력 값이 숫자로 이루어져 있는지 확인한다.
      */
-    public void checkInputIsInteger(String target){return;}
+    public void checkInputIsInteger(String target) throws NumberFormatException{
+        Integer.parseInt(target);
+    }
 
      /**
      * 입력 값이 특정 문자로 이루어져 있는지 확인한다.
