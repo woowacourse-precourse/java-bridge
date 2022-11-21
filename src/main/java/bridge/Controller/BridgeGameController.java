@@ -51,4 +51,9 @@ public class BridgeGameController {
             quitGame();
         }
     }
+
+    public void restartGame(int lengthOfBridge) {
+        bridgeGame.retry();
+        selectMoving(lengthOfBridge);
+    }
 }
