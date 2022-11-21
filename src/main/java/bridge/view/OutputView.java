@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.constant.message.OutputViewMessage;
-import bridge.constant.utils.MessageFormatUtil;
+import bridge.constant.Message;
+import bridge.constant.Message.OutputViewMessage;
 import java.util.List;
 
 /**
@@ -16,9 +16,9 @@ public class OutputView {
      */
     public static void printMap(List<List<String>> bridgeMap) {
         for (List<String> side : bridgeMap) {
-            String format = MessageFormatUtil.START_BRACKET
-                    + String.join(MessageFormatUtil.VERTICAL_BAR, side)
-                            + MessageFormatUtil.END_BRACKET;
+            String format = Message.START_BRACKET
+                    + String.join(Message.VERTICAL_BAR, side)
+                            + Message.END_BRACKET;
             System.out.println(format);
         }
         System.out.println();

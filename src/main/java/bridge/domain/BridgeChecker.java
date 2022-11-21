@@ -1,17 +1,16 @@
 package bridge.domain;
 
-import bridge.constant.BridgeGameConstants;
 import bridge.constant.enums.Moving;
-import bridge.constant.message.InputExceptionMessage;
+import bridge.constant.Message.InputExceptionMessage;
+import bridge.constant.Bridge.GameConstants;
+import bridge.constant.Bridge.Checker;
 
-public class Checker {
-    private static final Checker checker = new Checker();
-    private static final int MAXIMUM_BRIDGE_SIZE = 20;
-    private static final int MINIMUM_BRIDGE_SIZE = 3;
+public class BridgeChecker {
+    private static final BridgeChecker checker = new BridgeChecker();
 
-    private Checker() {}
+    private BridgeChecker() {}
 
-    public static Checker getInstance() {
+    public static BridgeChecker getInstance() {
         return checker;
     }
 
@@ -38,7 +37,7 @@ public class Checker {
     }
 
     private boolean checkBridgeSizeRange(int bridgeSize) {
-        return MINIMUM_BRIDGE_SIZE <= bridgeSize && bridgeSize <= MAXIMUM_BRIDGE_SIZE;
+        return Checker.MINIMUM_BRIDGE_SIZE <= bridgeSize && bridgeSize <= Checker.MAXIMUM_BRIDGE_SIZE;
     }
 
     private boolean checkMovingValue(String moving) {
@@ -46,7 +45,7 @@ public class Checker {
     }
 
     private boolean checkGameCommandValue(String gameCommand) {
-        return gameCommand.equals(BridgeGameConstants.GAME_RETRY)
-                || gameCommand.equals(BridgeGameConstants.GAME_QUIT);
+        return gameCommand.equals(GameConstants.GAME_RETRY)
+                || gameCommand.equals(GameConstants.GAME_QUIT);
     }
 }

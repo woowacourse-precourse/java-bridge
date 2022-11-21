@@ -1,21 +1,21 @@
 package bridge.domain;
 
-import bridge.constant.BridgeGameConstants;
 import bridge.view.InputView;
+import bridge.constant.Bridge.GameConstants;
 
 public class BridgeServices {
 
-    private final Checker checker;
+    private final BridgeChecker bridgeChecker;
 
     public BridgeServices() {
-        checker = Checker.getInstance();
+        bridgeChecker = BridgeChecker.getInstance();
     }
 
     public boolean retry() {
         try {
             String retryOrNot = InputView.readGameCommand();
-            checker.validateGameCommand(retryOrNot);
-            return retryOrNot.equals(BridgeGameConstants.GAME_RETRY);
+            bridgeChecker.validateGameCommand(retryOrNot);
+            return retryOrNot.equals(GameConstants.GAME_RETRY);
         } catch (IllegalArgumentException e) {
             return handlingGameCommandException(e);
         }
@@ -24,7 +24,7 @@ public class BridgeServices {
     public String decideDirection() {
         try {
             String direction = InputView.readMoving();
-            checker.validateMoving(direction);
+            bridgeChecker.validateMoving(direction);
             return direction;
         } catch (IllegalArgumentException e) {
             return handlingMovingException(e);
@@ -34,7 +34,7 @@ public class BridgeServices {
     public int takeSize() { //
         try {
             String bridgeSize = InputView.readBridgeSize();
-            checker.validateBridgeSize(bridgeSize);
+            bridgeChecker.validateBridgeSize(bridgeSize);
             return Integer.parseInt(bridgeSize);
         } catch (IllegalArgumentException e) {
             return handlingBridgeSizeException(e);
