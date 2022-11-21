@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-
     private static final int MIN_BRIDGE_SIZE =3;
     private static final int MAX_BRIDGE_SIZE =20;
     private int bridgeSize;
@@ -41,5 +40,11 @@ public class Bridge {
             throw new IllegalArgumentException(ErrorResource.ERROR_START+ErrorResource.BRIDGE_SIZE_FRONT+
                     ErrorResource.NOT_NUMBER);
         }
+    }
+    public boolean ableToCross(int index,int userChoice){
+        if(crossAble.get(index)==userChoice){
+            return true;
+        }
+        return false;
     }
 }
