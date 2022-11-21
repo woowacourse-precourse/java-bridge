@@ -18,18 +18,17 @@ public class BridgeGameRun {
 
     public void run() {
         outputView.printGameStart();
-        String bridgeSize = inputView.readBridgeSize();
-        int size = getBridgeSizeByValidation(bridgeSize);
+        int size = getBridgeSizeByValidation();
 
         bridgeGameGenerate(size);
         bridgeGameStart();
         bridgeGameEnd();
     }
 
-    private int getBridgeSizeByValidation(String bridgeSize) {
+    private int getBridgeSizeByValidation() {
         while (true) {
             try {
-                int size = getNumberToBridgeSize(bridgeSize);
+                int size = getNumberToBridgeSize(inputView.readBridgeSize());
                 inputValidation.readBridgeSizeValidation(size);
                 return size;
             } catch (IllegalArgumentException e) {
