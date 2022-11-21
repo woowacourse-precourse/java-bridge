@@ -33,7 +33,12 @@ public class InputView {
     public String readMoving() {
         System.out.println(readMovingMessage);
         String userAnswer = readLine();
-        return userAnswer;
+        try{
+            readMovingCommandCheck(userAnswer);
+        }catch (IllegalArgumentException e){
+            userAnswer = readMoving();
+        }
+        return userAnswer.toUpperCase();
     }
 
     /**
