@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.config.ErrorMessageConstant;
-import bridge.model.Direction;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,23 +23,10 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸은 "U", 아래 칸은 "D"로 표현된다.
      * @throws IllegalArgumentException 크기가 1 미만인 다리 생성 시 예외 처리
      */
-    public List<String> makeBridge(int size) throws IllegalArgumentException {
-        bridgeSizeValidation(size);
+    public List<String> makeBridge(int size) {
         return Stream.generate(() -> convertBridge(bridgeNumberGenerator.generate()))
                 .limit(size)
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * 다리 길이의 범위 검증
-     * <p>
-     * 다리 길이는 3이상, 20 이하만 가능하다.
-     * @param size 다리 길이
-     */
-    private void bridgeSizeValidation(int size) {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException(ErrorMessageConstant.INVALID_BRIDGE_SIZE);
-        }
     }
 
     /**
