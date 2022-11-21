@@ -8,6 +8,9 @@ import java.util.List;
 public class BridgeController {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private List<String> moveResult;
+    private List<String> bridge;
+    private int blockCount;
+    private int gameCount = 1;
     private BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
 
@@ -19,36 +22,64 @@ public class BridgeController {
     public void makeBridgeController() {
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         int size = new InputView().readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        int blockCount = bridge.size();
-        moveController(bridge, blockCount);
+        bridge = bridgeMaker.makeBridge(size);
+        blockCount = bridge.size();
+        moveController();
     }
 
-    public void moveController(List<String> bridge, int blockCount) {
+    public void moveController() {
         bridgeGame = new BridgeGame();
         for (int i = 0; i < blockCount; i++) {
             String sideToMove = new InputView().readMoving();
             moveResult = bridgeGame.moveResult(bridge, i, sideToMove);
             new OutputView().printMap(moveResult);
-            int resultSize = moveResult.size();
-            if (moveResult.get(resultSize - 1).contains("X")
-                    || moveResult.get(resultSize - 2).contains("X")) {
-                String gameCommand = new InputView().readGameCommand();
-                if (gameCommand.equals("R")) {
-                    moveResult.clear();
-                    new BridgeGame().retry(bridge, blockCount);
-                    i = blockCount;
-                }
-                if (gameCommand.equals("Q")) {
-                    new OutputView().printResult(moveResult);
-                    new OutputView().printFailedResult(1);
-                    break;
-                }
-            }
-            if (i == blockCount - 1) {
-                new OutputView().printResult(moveResult);
-                new OutputView().printSuccessResult(1);
-            }
+            i = gameFailed(i);
+            gameEnd(i);
         }
+    }
+
+    public int gameFailed(int i) {
+        if (bridgeGame.isFailed(moveResult)) {
+            String retryCommand = new InputView().readGameCommand();
+            i = failedCase(i, retryCommand);
+            return i;
+        }
+        return i;
+    }
+
+    public int failedCase(int i, String retryCommand) {
+        if (retryCommand.equals("R")) {
+            commandR(retryCommand);
+            return -1;
+        }
+        if (retryCommand.equals("Q")) {
+            commandQ(retryCommand);
+            return blockCount;
+        }
+        return i;
+    }
+
+    public void commandR(String retryCommand) {
+        gameCount++;
+        retryController(retryCommand, gameCount);
+    }
+
+    public void commandQ(String retryCommand) {
+        retryController(retryCommand, gameCount);
+    }
+
+    public void gameEnd(int i) {
+        if (i == blockCount - 1) {
+            new OutputView().printSuccessResult(moveResult, gameCount);
+        }
+    }
+
+    public void retryController(String retryCommand, int gameCount) {
+        bridgeGame = new BridgeGame();
+        bridgeGame.retry(retryCommand, moveResult, gameCount);
+    }
+
+    public void resultController(List<String> moveResult, int gameCount) {
+        new OutputView().printFailedResult(moveResult, gameCount);
     }
 }

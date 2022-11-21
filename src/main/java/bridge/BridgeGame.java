@@ -11,6 +11,7 @@ public class BridgeGame {
     private StringBuilder initialUpBridge = new StringBuilder("[ ]");
     private StringBuilder initialDownBridge = new StringBuilder("[ ]");
     private List<String> moveResult = new ArrayList<>();
+    private BridgeController bridgeController;
 
     public List<String> moveResult(List<String> bridge, int tryCount, String sideToMove) {
         move(bridge, tryCount, sideToMove);
@@ -79,7 +80,22 @@ public class BridgeGame {
         }
     }
 
-    public void retry(List<String> bridge, int tryCount) {
-        new BridgeController().moveController(bridge, tryCount);
+    public void retry(String retryCommand, List<String> moveResult, int gameCount) {
+        bridgeController = new BridgeController();
+        if (retryCommand.equals("R")) {
+            bridgeController.moveController();
+        }
+        if (retryCommand.equals("Q")) {
+            bridgeController.resultController(moveResult, gameCount);
+        }
+    }
+
+    public boolean isFailed(List<String> moveResult) {
+        int lastIndex = moveResult.size() - 1;
+        if (moveResult.get(lastIndex).contains(UNMOVABLE) ||
+                moveResult.get(lastIndex - 1).contains(UNMOVABLE)) { // 게임실패
+            return true;
+        }
+        return false;
     }
 }
