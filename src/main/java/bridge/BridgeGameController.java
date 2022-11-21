@@ -5,12 +5,12 @@ import Statements.NormalStatements;
 import java.util.List;
 
 public class BridgeGameController {
-    private static List<String> crossableBridge;
+    private static List<String> crossableBridges;
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
 
-    public BridgeGameController(List<String> crossableBridge){
-        this.crossableBridge = crossableBridge;
+    public BridgeGameController(List<String> crossableBridges){
+        this.crossableBridges = crossableBridges;
     }
 
     public static BridgeMaker startGame() {
@@ -30,12 +30,18 @@ public class BridgeGameController {
     private static List<String> setBridgeGame(BridgeMaker bridgeMaker) {
             outputView.printStatements(NormalStatements.ASK_BRIDGE_LENGTH.getNormalStatement());
             int bridgeLength = new InputView().readBridgeSize();
-            return crossableBridge = bridgeMaker.makeBridge(bridgeLength);
+            return crossableBridges = bridgeMaker.makeBridge(bridgeLength);
     }
 
-    public static BridgeGame chooseToMoveOn(List<String> crossableBridge){
+    public static BridgeGame chooseToMoveOn(BridgeGame bridgeGame, List<String> crossableBridges){
             outputView.printStatements(NormalStatements.ASK_BRIDGE_TO_MOVE_ON.getNormalStatement());
-            inputView.readMoving();
+            for(int i=0; i<crossableBridges.size(); i++) {
+                bridgeGame.checkWinOrFail(crossableBridges.get(i), inputView.readMoving());
+                if(bridgeGame.checkWinOrFail(crossableBridges.get(i), inputView.readMoving())==true){
+                    break;
+                }
+                outputView.printMap(i, crossableBridges.size(), crossableBridges.get(i));
+            }
 
     }
 }

@@ -5,6 +5,7 @@ import bridge.BridgeGame;
 
 public enum BridgeShapes {
     FIRST_O_BRIDGE("[ O ]"),
+    FIRST_EMPTY_BRIDGE("[   ]"),
     FIRST_X_BRIDGE("[ X ]"),
     FIRST_O_BRIDGE_OPENED("[ O |"),
     FIRST_EMPTY_BRIDGE_OPENED("[   |"),
@@ -19,7 +20,7 @@ public enum BridgeShapes {
     BridgeShapes(String shapes){
         this.shapes = shapes;
     }
-    public String buildBridgeShapes(String shapes){
+    public String build(){
         return shapes;
     }
 
