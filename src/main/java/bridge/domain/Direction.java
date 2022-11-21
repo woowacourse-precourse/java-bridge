@@ -1,7 +1,7 @@
-package bridge;
+package bridge.domain;
 
 public class Direction {
-     enum Code {
+     public enum Code {
         UP(1, "U"), DOWN(0, "D");
         private final int number;
         private final String name;

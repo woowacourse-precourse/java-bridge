@@ -1,10 +1,9 @@
-package bridge;
+package bridge.domain;
+
+import bridge.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static bridge.Validator.*;
-
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -21,7 +20,7 @@ public class BridgeGame {
     }
 
     public boolean move(String moving) {
-        validateMoving(moving);
+        Validator.validateMoving(moving);
         userBridgeHistroy.add(moving);
         if (bridge.get(movingCount).equals(moving)) {
             movingCount++;
@@ -30,9 +29,9 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean retry(String command) {
-        validateCommand(command);
-        if (command.equals("R")) {
+    public boolean retry(String gameCommand) {
+        Validator.validateGameCommand(gameCommand);
+        if (gameCommand.equals("R")) {
             movingCount = 0;
             userBridgeHistroy.clear();
             tryCount++;

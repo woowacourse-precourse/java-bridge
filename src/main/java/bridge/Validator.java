@@ -1,7 +1,8 @@
 package bridge;
 
-public class Validator {
+import bridge.domain.Direction;
 
+public class Validator {
     private static final int BRIDGE_SIZE_LOWER_INCLUSIVE = 3;
     private static final int BRIDGE_SIZE_UPPER_INCLUSIVE = 20;
     private static final String BRIDGE_SIZE_OUT_OF_RANGE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
