@@ -7,10 +7,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final String UP = "U";
-    private final String DOWN = "D";
-    private final String RESTART = "R";
-    private final String QUIT = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -43,14 +39,17 @@ public class InputView {
         String input = Console.readLine();
         validateRestartInput(input);
 
-        return input.equals(RESTART);
+        return GameCommand.RESTART.equals(input);
     }
 
+    /**
+     * 입력 값 검증 메서드
+     */
     private void validateRestartInput(String input) {
         if(input.length()!=1)
             throw new IllegalArgumentException(InputError.INVALID_INPUT_SIZE.getMessage());
 
-        if(!input.equals(RESTART) && !input.equals(QUIT))
+        if(!GameCommand.RESTART.equals(input) && !GameCommand.QUIT.equals(input))
             throw new IllegalArgumentException(InputError.INVALID_MOVING.getMessage());
     }
 
@@ -58,7 +57,7 @@ public class InputView {
         if(input.length()!=1)
             throw new IllegalArgumentException(InputError.INVALID_INPUT_SIZE.getMessage());
 
-        if(!input.equals(UP) && !input.equals(DOWN))
+        if(!GameCommand.UP.equals(input) && !GameCommand.DOWN.equals(input))
             throw new IllegalArgumentException(InputError.INVALID_MOVING.getMessage());
     }
 
