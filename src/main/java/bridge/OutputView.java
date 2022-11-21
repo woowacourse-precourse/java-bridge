@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -14,7 +15,23 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> tempBridge) {
+    public void printMap(List<List<String>> userBridge) {
+        System.out.println("최종 게임 결과");
+        for (List<String> list : userBridge) {
+            printWard(list.iterator());
+        }
+    }
+
+    private void printWard(Iterator<String> ward) {
+        System.out.print("[");
+        while (ward.hasNext()) {
+            String next = ward.next();
+            System.out.print(" " + next + " ");
+            if (ward.hasNext()) {
+                System.out.print("|");
+            }
+        }
+        System.out.println("]");
     }
 
     /**
