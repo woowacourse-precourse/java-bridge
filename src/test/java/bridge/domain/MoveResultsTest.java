@@ -1,5 +1,7 @@
-package bridge;
+package bridge.domain;
 
+import bridge.domain.MoveResult;
+import bridge.domain.MoveResults;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

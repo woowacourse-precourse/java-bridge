@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.Objects;
 
@@ -10,6 +10,7 @@ public class MoveResult {
         this.controlKey = controlKey;
         this.matchResult = matchResult;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -23,12 +24,13 @@ public class MoveResult {
         return Objects.hash(controlKey, matchResult);
     }
 
+    public boolean isMatchResult() {
+        return matchResult;
+    }
+
     public String getControlKey() {
         return controlKey;
     }
 
-    public boolean isMatchResult() {
-        return matchResult;
-    }
 
 }

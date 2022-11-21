@@ -1,18 +1,14 @@
 package bridge.domain;
 
-import bridge.MoveResults;
-import bridge.domain.Bridge;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final Bridge bridge;
-    private final MoveResults moveResults;
+    private final MoveResults moveResults = new MoveResults();
 
-    public BridgeGame(Bridge bridge, MoveResults moveResults) {
-        this.bridge = bridge;
-        this.moveResults = moveResults;
+    public BridgeGame(BridgeMaker bridgeMaker, int size) {
+        this.bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
     public void move(String controlKey) {
@@ -23,9 +19,16 @@ public class BridgeGame {
         return moveResults;
     }
 
-    public void retry(String controlKey) {
+    public void retry() {
         moveResults.removeFailure();
-        move(controlKey);
+    }
+
+    public boolean isSuccess() {
+        return moveResults.success();
+    }
+
+    public int bridgeSize() {
+        return bridge.size();
     }
 
 }

@@ -1,8 +1,7 @@
-package bridge;
+package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
+import bridge.UpNumberGenerator;
+import bridge.domain.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +16,7 @@ class BridgeGameTest {
         int size = 3;
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
         MoveResults moveResults = new MoveResults();
-        BridgeGame bridgeGame = new BridgeGame(bridge, moveResults);
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker, size);
         MoveResult success = new MoveResult("U", true);
         MoveResult failure = new MoveResult("D", false);
 
@@ -35,13 +34,12 @@ class BridgeGameTest {
         UpNumberGenerator upNumberGenerator = new UpNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(upNumberGenerator);
         int size = 3;
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
-        MoveResults moveResults = new MoveResults();
-        BridgeGame bridgeGame = new BridgeGame(bridge, moveResults);
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker,size);
         MoveResult success = new MoveResult("U", true);
 
         bridgeGame.move("D");
-        bridgeGame.retry("U");
+        bridgeGame.retry();
+        bridgeGame.move("U");
         MoveResults retryResult = bridgeGame.moveResults();
 
         assertAll(() -> assertThat(retryResult.size()).isEqualTo(1),

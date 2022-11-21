@@ -1,5 +1,6 @@
-package bridge;
+package bridge.domain;
 
+import bridge.domain.MoveResult;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
