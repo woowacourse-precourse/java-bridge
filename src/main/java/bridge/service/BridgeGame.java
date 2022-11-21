@@ -6,6 +6,7 @@ import bridge.domain.User;
 public class BridgeGame {
     private static final String RESTART_GAME = "R";
     private static final String QUIT_GAME = "Q";
+    private static final String RESET_GAME = "R";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -26,7 +27,18 @@ public class BridgeGame {
         return false;
     }
 
-    public void doFailCase(Bridge bridge, User user, String gameStatus) {
+    public boolean isUserAnswerCorrect(String moveDirection, Bridge bridge) {
+        return bridge.isCorrectMoveDirection(moveDirection);
+    }
+
+    public boolean isResetCase(String gameStatus) {
+        if (gameStatus.equals(RESET_GAME)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void handleFailCaseCommand(Bridge bridge, User user, String gameStatus) {
         if (gameStatus.equals(RESTART_GAME)) {
             retry(bridge, user);
         }
