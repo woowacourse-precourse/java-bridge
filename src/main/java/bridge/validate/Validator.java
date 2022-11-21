@@ -1,7 +1,8 @@
 package bridge.validate;
 
 import bridge.input.GameCommand;
-import bridge.generator.AreaStatus;
+import bridge.generator.Answer;
+import bridge.input.UserMove;
 import bridge.message.ErrorMessage;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class Validator {
     }
 
     public static void isMove(String move) {
-        final List<String> properMoves = List.of(AreaStatus.UP.getSymbol(), AreaStatus.DOWN.getSymbol());
+        final List<String> properMoves = List.of(UserMove.UP.getInput(), UserMove.DOWN.getInput());
         if (!properMoves.contains(move)) {
             String errorMessage = ErrorMessage.ERROR.toString() + ErrorMessage.NOT_PROPER_MOVE;
             throw new IllegalArgumentException(errorMessage);

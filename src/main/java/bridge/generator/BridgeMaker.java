@@ -13,9 +13,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int status = bridgeNumberGenerator.generate();
-            AreaStatus areaStatus = AreaStatus.getAreaStatus(status);
-            bridge.add(areaStatus.getSymbol());
+            int answerNumber = bridgeNumberGenerator.generate();
+            Answer answer = Answer.getAnswerByNumber(answerNumber);
+            bridge.add(answer.getLetter());
         }
         return bridge;
     }

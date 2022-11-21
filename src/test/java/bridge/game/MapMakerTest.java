@@ -2,7 +2,7 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.generator.AreaStatus;
+import bridge.generator.Answer;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -135,10 +135,10 @@ public class MapMakerTest {
         mapMaker.saveUpperMapResult(move, results);
         //then
         assertThat(results.size()).isEqualTo(1);
-        if (area.equals(AreaStatus.UP.getSymbol())) {
+        if (area.equals(Answer.UP.getLetter())) {
             assertThat(results).contains(Result.SUCCESS);
         }
-        if (area.equals(AreaStatus.DOWN.getSymbol())) {
+        if (area.equals(Answer.DOWN.getLetter())) {
             assertThat(results).contains(Result.NONE);
         }
     }
@@ -154,10 +154,10 @@ public class MapMakerTest {
         mapMaker.saveLowerMapResult(move, results);
         //then
         assertThat(results.size()).isEqualTo(1);
-        if (area.equals(AreaStatus.UP.getSymbol())) {
+        if (area.equals(Answer.UP.getLetter())) {
             assertThat(results).contains(Result.NONE);
         }
-        if (area.equals(AreaStatus.DOWN.getSymbol())) {
+        if (area.equals(Answer.DOWN.getLetter())) {
             assertThat(results).contains(Result.SUCCESS);
         }
     }

@@ -1,6 +1,6 @@
 package bridge.game;
 
-import bridge.generator.AreaStatus;
+import bridge.generator.Answer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class MapMaker {
     }
 
     public void saveUpperMapResult(Move move, List<Result> results) {
-        if (move.getDestination().equals(AreaStatus.DOWN.getSymbol())) {
+        if (move.getDestination().equals(Answer.DOWN.getLetter())) {
             results.add(Result.NONE);
             return;
         }
@@ -71,7 +71,7 @@ public class MapMaker {
     }
 
     public void saveLowerMapResult(Move move, List<Result> results) {
-        if (move.getDestination().equals(AreaStatus.UP.getSymbol())) {
+        if (move.getDestination().equals(Answer.UP.getLetter())) {
             results.add(Result.NONE);
             return;
         }
