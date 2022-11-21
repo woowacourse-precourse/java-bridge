@@ -2,11 +2,21 @@ package bridge.utils;
 
 import bridge.domain.Bridge;
 
+import java.util.regex.Pattern;
+
 public class Validator {
     private static final String RANGE_ERROR = "[ERROR] 다리 길이는 "
             + Bridge.MIN + "부터 " + Bridge.MAX + " 사이의 숫자여야 합니다.";
     private static final String DIRECTION_ERROR = "[ERROR] 방향이 올바르지 않습니다.";
     private static final String COMMAND_ERROR = "[ERROR] 명령어가 올바르지 않습니다.";
+    private static final String NUMBER_ERROR = "[ERROR] 숫자만 입력해주세요.";
+    private static final Pattern NUMBER = Pattern.compile("^([0-9])+");
+
+    public static void isNumber(String inputString) {
+        if (!NUMBER.matcher(inputString).matches()) {
+            throw new IllegalArgumentException(NUMBER_ERROR);
+        }
+    }
 
     public static void checkSizeRange(int size) {
         if (isUnderMin(size) || isOverMax(size)) {
