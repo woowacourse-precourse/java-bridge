@@ -72,4 +72,8 @@ public class BridgeGame {
     public List<String> getAnswer() {
         return answer;
     }
+
+    public List<String> getUserBridge() {
+        return user.getUserBridge();
+    }
 }
