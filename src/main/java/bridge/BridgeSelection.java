@@ -8,21 +8,12 @@ public class BridgeSelection {
     private int size;
     private List<List<String>> selections;
 
-    public BridgeSelection(int size) {
-        this.size = size;
+    public BridgeSelection() {
         selections = new ArrayList<>();
         ArrayList<String> upSelection = new ArrayList<>();
         ArrayList<String> downSelection = new ArrayList<>();
         selections.add(upSelection);
         selections.add(downSelection);
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public List<List<String>> getSelections() {

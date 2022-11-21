@@ -7,42 +7,85 @@ import java.util.List;
 public class GameController {
     private BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
+    private Bridge bridge;
     private BridgeSelection bridgeSelection;
+    private
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    public void setUpGame() {
+        bridgeGame = new BridgeGame();
+        bridgeSelection = new BridgeSelection();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = bridgeMaker.makeBridge(setBridgeSize());
+    }
+
     public void startGame() {
+        inputView.printStartGame();
+        setUpGame();
+        progressMoving();
+
+    }
+
+    public int setBridgeSize() {
         try {
-            inputView.printStartGame();
-            List<String> bridge = setBridgeSize();
-            System.out.println(bridge);
-            checkMoving(bridge);
+            String input = inputView.readBridgeSize();
+            int size = Validator.convertNumeric(input);
+            Validator.validateBridgeSize(size);
+            return size;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-        }//7
+        }
+        return 0;
     }
 
-    public List<String> setBridgeSize() throws IllegalArgumentException {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        String input = inputView.readBridgeSize();
-        int size = Validator.convertNumeric(input);
-        Validator.validateBridgeSize(size);
-        bridgeSelection = new BridgeSelection(size);
-        return bridgeMaker.makeBridge(size);
-    }
-
-    public String setMoving() throws IllegalArgumentException {
+    public String setMoving() {
+        try {
             String input = inputView.readMoving();
             Validator.checkUpOrDown(input);
-        return input;
+            return input;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return null;
     }
 
-    public void checkMoving(List<String> bridge) {
-        bridgeGame = new BridgeGame();
-        for (int index=0; index < bridgeSelection.getSize(); index++) {
+    public String setRetryOrQuit() {
+        try {
+            String input = inputView.readGameCommand();
+            Validator.checkRetryOrQuit(input);
+            return input;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception);
+        }
+        return null;
+    }
+
+
+    public void progressMoving() {
+        for (int index=0; index < bridge.getSize(); index++) {
             String selection = setMoving();
-            String result = bridgeGame.move(selection, bridge.get(index));
-            bridgeSelection.setSelections(bridgeSelection.insertBridgeSelection(result, selection));
-            outputView.printMap(bridgeSelection.getSelections());
+            boolean matchMark = bridge.compare(index, selection);
+            checkMoving(matchMark, selection);
+            if (!matchMark) {
+
+                break;
+            }
+        } //9
+    }
+
+    public void checkMoving(boolean matchMark, String selection) {
+        List<List<String>> selections = bridgeSelection.insertBridgeSelection(bridgeGame.move(matchMark), selection);
+        bridgeSelection.setSelections(selections);
+        outputView.printMap(bridgeSelection.getSelections());
+    }
+
+    public void selectRetryOrQuit() {
+        String decision = setRetryOrQuit();
+        if (decision.equals("R")) {
+            bridgeSelection = new BridgeSelection();
+        }
+        if (decision.equals("Q")) {
+
         }
     }
 }
