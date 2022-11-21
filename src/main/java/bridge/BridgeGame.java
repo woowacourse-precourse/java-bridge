@@ -30,7 +30,6 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         if (gameCommand.equals(Constant.RESTART)) {
             totalTry++;
-            initMap();
             return true;
         }
         return false;
