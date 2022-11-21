@@ -54,4 +54,17 @@ public class BridgeMaker {
         OutputView outputView = new OutputView();
         outputView.printMoveDirectionSelectMessage();
     }
+
+    public String getDirectionFromInput(){
+        InputView inputView = new InputView();
+        InputValidation inputValidation = new InputValidation();
+        while(true) {
+            try {
+                String input = inputView.readMoving();
+                return inputValidation.getDirections(input);
+            } catch (IllegalArgumentException exception) {
+                new OutputView().printErrorMessage(exception.getMessage());
+            }
+        }
+    }
 }
