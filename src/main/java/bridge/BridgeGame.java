@@ -87,20 +87,20 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private boolean isCorrectMovement(List<String> mainLine, List<String> oppositeLine, String direction) {
+    private boolean isCorrectMovement(List<String> selectedLine, List<String> unselectedLine, String direction) {
         boolean isCorerct = isCorrectDirection(direction);
-        addMovement(mainLine, oppositeLine, isCorerct);
+        addMovement(selectedLine, unselectedLine, isCorerct);
         return isCorerct;
     }
 
     public boolean move(String direction) {
-        List<String> mainLine = this.upline;
-        List<String> oppositeLine = this.downline;
+        List<String> selectedLine = this.upline;
+        List<String> unselectedLine = this.downline;
         if (direction.equals(Command.DOWN)) {
-            mainLine = this.downline;
-            oppositeLine = this.upline;
+            selectedLine = this.downline;
+            unselectedLine = this.upline;
         }
-        return isCorrectMovement(mainLine, oppositeLine, direction);
+        return isCorrectMovement(selectedLine, unselectedLine, direction);
     }
 
     /**
