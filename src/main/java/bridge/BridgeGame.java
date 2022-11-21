@@ -11,27 +11,30 @@ public class BridgeGame {
     private int stepCount;
     private PrintManager printManager;
     private int tryCount;
+    private boolean gameResult;
     BridgeGame(){
         stepCount = 0;
         bridge = new Bridge();
         printManager = new PrintManager(bridge);
         tryCount = 1;
+        gameResult=false;
     }
 
     public void startGame(){
         boolean repeat = true;
-        boolean gameResult = false;
         do{
             gameResult = move();
             if(gameResult==FAIL.getCond()){
                 repeat = retry();
             }
         }while(!bridge.isArrive() && repeat);
-        printManager.putResult(gameResult,tryCount);
-        printManager.printResult();
+        printResult();
         //결과 출력
     }
-
+    public void printResult(){
+        printManager.putResult(gameResult,tryCount);
+        printManager.printResult();
+    }
 
 
 

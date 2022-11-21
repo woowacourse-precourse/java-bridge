@@ -57,7 +57,6 @@ public class Bridge {
         return false;
     }
     public void drawStep(String direction){
-        HashMap<String,Integer> moveHash = BRIDGE_ROUTE.getHash();
         String targetShape;
         if(safeMemory.get(currentPosition)) {
             targetShape = "O";
@@ -65,7 +64,7 @@ public class Bridge {
             targetShape = "X";
         }
         for(int i=0; i<BRIDGE_ROUTE.getBranchNum(); i++){
-            if(i == moveHash.get(direction)){
+            if(i == BRIDGE_ROUTE.getHash().get(direction)){
                 stepMemory.get(i).add(targetShape);
                 continue;
             }
@@ -82,7 +81,6 @@ public class Bridge {
             for(List<String > step : stepMemory){
                 step.clear();
             }
-
             safeMemory = new ArrayList<>();
         }
         return choice;
