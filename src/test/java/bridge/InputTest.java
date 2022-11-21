@@ -1,11 +1,9 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import domain.AllBridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
+import view.InputView;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -33,18 +31,20 @@ public class InputTest extends NsTest {
 
     @Test
     void 잘못된_이동할칸_입력() {
-        assertRandomNumberInRangeTest(() -> {
-            run("3", "A", "D", "U");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        }, 1, 0, 1);
+        assertSimpleTest(
+                () -> {
+                    runException("4", "A");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
     }
 
     @Test
     void 잘못된_재시작_입력() {
-        assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "U", "U");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        }, 1, 0, 1);
+        InputView inputView = new InputView();
+        String command = "A";
+        assertThatThrownBy(() -> inputView.checkReadMoving(command))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override
