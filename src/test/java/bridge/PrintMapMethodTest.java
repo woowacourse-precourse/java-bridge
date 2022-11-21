@@ -14,7 +14,7 @@ class PrintMapMethodTest extends NsTest {
 
     private static final OutputView outputView = new OutputView();
 
-    @DisplayName("printMapMethod 테스트: 완성되지 않은 패스가 맞은 경우")
+    @DisplayName("완성되지 않은 패스가 맞은 경우")
     @Test
     void printMapMethodTest1() {
         List<String> path = new ArrayList<>(List.of("U", "D"));
@@ -31,7 +31,7 @@ class PrintMapMethodTest extends NsTest {
         assertThat(upSideIndex).isLessThan(downSideIndex);
     }
 
-    @DisplayName("printMapMethod 테스트: path가 틀린 경우")
+    @DisplayName("path가 틀린 경우")
     @Test
     void printMapMethodTest2() {
         List<String> path = new ArrayList<>(List.of("U"));
@@ -48,7 +48,7 @@ class PrintMapMethodTest extends NsTest {
         assertThat(upSideIndex).isLessThan(downSideIndex);
     }
 
-    @DisplayName("printMapMethod 테스트: bridge 끝에 도달하지 못했으나 path가 틀린 경우")
+    @DisplayName("bridge 끝에 도달하지 못했으나 path가 틀린 경우")
     @Test
     void printMapMethodTest3() {
         List<String> path = new ArrayList<>(List.of("U", "D", "U"));
@@ -65,7 +65,7 @@ class PrintMapMethodTest extends NsTest {
         assertThat(upSideIndex).isLessThan(downSideIndex);
     }
 
-    @DisplayName("printMapMethod 테스트: path와 bridge가 완전히 일치하는 경우")
+    @DisplayName("path와 bridge가 완전히 일치하는 경우")
     @Test
     void printMapMethodTest4() {
         List<String> path = new ArrayList<>(List.of("U", "D", "U"));
@@ -82,7 +82,7 @@ class PrintMapMethodTest extends NsTest {
         assertThat(upSideIndex).isLessThan(downSideIndex);
     }
 
-    @DisplayName("printMapMethod 테스트: 복합 테스트")
+    @DisplayName("복합 테스트")
     @Test
     void printMapMethodTest5() {
         List<String> path = new ArrayList<>(List.of("U", "D", "U", "D", "D", "U", "D"));
