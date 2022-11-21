@@ -79,7 +79,7 @@ public class BridgeGameController {
     }
 
     private String getSpaceToMove() {
-        outputView.printMovingInputRequest();
+        outputView.printMovingSpaceInputRequest();
         String spaceToMove = inputView.readMoving();
         return spaceToMove;
     }

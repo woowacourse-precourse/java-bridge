@@ -6,6 +6,18 @@ import java.util.Map;
 
 import static bridge.util.constants.RecordKey.UPPER_RECORD_KEY;
 import static bridge.util.constants.RecordKey.LOWER_RECORD_KEY;
+import static bridge.view.Message.GAME_START_MESSAGE;
+import static bridge.view.Message.BRIDGE_SIZE_INPUT_REQUEST_MESSAGE;
+import static bridge.view.Message.MOVING_SPACE_INPUT_REQUEST_MESSAGE;
+import static bridge.view.Message.SPACE_DELIMITER;
+import static bridge.view.Message.ENTRANCE_OF_BRIDGE;
+import static bridge.view.Message.EXIT_OF_BRIDGE;
+import static bridge.view.Message.GAME_COMMAND_INPUT_REQUEST_MESSAGE;
+import static bridge.view.Message.FINAL_GAME_RESULT_MESSAGE;
+import static bridge.view.Message.SUCCESS;
+import static bridge.view.Message.FAIL;
+import static bridge.view.Message.GAME_SUCCESS_OR_NOT_MESSAGE;
+import static bridge.view.Message.TOTAL_TRY_COUNT_MESSAGE;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -14,19 +26,19 @@ import static bridge.util.constants.RecordKey.LOWER_RECORD_KEY;
  */
 public class OutputView {
     public void printGameStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(GAME_START_MESSAGE.getMessage());
     }
 
     public void printBridgeSizeInputRequest() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(BRIDGE_SIZE_INPUT_REQUEST_MESSAGE.getMessage());
     }
 
     public void printError(Exception exception) {
         System.out.println(exception.getMessage());
     }
 
-    public void printMovingInputRequest() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    public void printMovingSpaceInputRequest() {
+        System.out.println(MOVING_SPACE_INPUT_REQUEST_MESSAGE.getMessage());
     }
 
     /**
@@ -41,17 +53,17 @@ public class OutputView {
     }
 
     private void printUpperPart(List<String> upperCrossedRecord) {
-        String upperPart = String.join("|", upperCrossedRecord);
-        System.out.println("[" + upperPart + "]");
+        String upperPart = String.join(SPACE_DELIMITER.getMessage(), upperCrossedRecord);
+        System.out.println(ENTRANCE_OF_BRIDGE.getMessage() + upperPart + EXIT_OF_BRIDGE.getMessage());
     }
 
     private void printLowerPart(List<String> lowerCrossedRecord) {
-        String lowerPart = String.join("|", lowerCrossedRecord);
-        System.out.println("[" + lowerPart + "]");
+        String lowerPart = String.join(SPACE_DELIMITER.getMessage(), lowerCrossedRecord);
+        System.out.println(ENTRANCE_OF_BRIDGE.getMessage() + lowerPart + EXIT_OF_BRIDGE.getMessage());
     }
 
     public void printGameCommandInputRequest() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(GAME_COMMAND_INPUT_REQUEST_MESSAGE.getMessage());
     }
 
     /**
@@ -60,7 +72,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_GAME_RESULT_MESSAGE.getMessage());
         printMap(bridgeGame);
         printSuccessOrFail(bridgeGame.isFailed());
         printTryCount(bridgeGame);
@@ -69,15 +81,15 @@ public class OutputView {
     private void printSuccessOrFail(boolean fail) {
         String result;
         if (fail) {
-            result = "실패";
+            result = FAIL.getMessage();
         } else {
-            result = "성공";
+            result = SUCCESS.getMessage();
         }
-        System.out.println("게임 성공 여부: " + result);
+        System.out.println(GAME_SUCCESS_OR_NOT_MESSAGE.getMessage() + result);
     }
 
     private void printTryCount(BridgeGame bridgeGame) {
         int tryCount = bridgeGame.getTryCount();
-        System.out.println("총 시도한 횟수: " + tryCount);
+        System.out.println(TOTAL_TRY_COUNT_MESSAGE.getMessage() + tryCount);
     }
 }
