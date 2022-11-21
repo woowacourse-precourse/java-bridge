@@ -30,10 +30,12 @@ public class Controller {
 
     private void crossBridgePlayer(Long playerId, Bridge bridge, String position) {
         MoveResult moveResult = bridgeGame.move(playerId, bridge, position);
+        outputView.printMap(bridgeGame.getPathTravel(playerId));
 
         if(moveResult.isGameOver()){
             return;
         }
+
         crossBridgePlayer(playerId, bridge, getPlayerMoving());
     }
 

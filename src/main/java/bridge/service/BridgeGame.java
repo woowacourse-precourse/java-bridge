@@ -5,6 +5,7 @@ import bridge.domain.Player;
 import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.dto.Bridge;
 import bridge.dto.MoveResult;
+import bridge.dto.PathTravel;
 import bridge.repository.PlayerRepository;
 
 /**
@@ -46,4 +47,10 @@ public class BridgeGame {
     public Long generatePlayer() {
         return playerRepository.insert(new Player());
     }
+
+    public PathTravel getPathTravel(Long playerId) {
+        Player player = playerRepository.findById(playerId);
+        return new PathTravel(player.getUpperBridge(), player.getLowerBridge());
+    }
+
 }
