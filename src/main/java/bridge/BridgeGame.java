@@ -12,6 +12,7 @@ import java.util.List;
 public class BridgeGame {
     private static final int START_POINT = -1;
     private static final int TRY_COUNT = 1;
+    private static final int MOVE = 1;
 
     private final List<String> bridge;
     private String userPath;
@@ -32,7 +33,7 @@ public class BridgeGame {
      */
     public void move(String input) {
         this.userPath = input;
-        this.userPosition += 1;
+        this.userPosition += MOVE;
     }
 
     /**
