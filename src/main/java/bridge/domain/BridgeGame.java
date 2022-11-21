@@ -36,7 +36,21 @@ public class BridgeGame {
         isPlayerMoveSuccess = false;
     }
 
-
+    public List<StringBuilder> makePrintResult(){
+        initializeBuilder();
+        playerMoveWhetherAnswer();
+        printPlayerMoveUp.append("[");
+        printPlayerMoveDown.append("[");
+        for (; bridgeIdx < playerMoveRecord.size() ; bridgeIdx++) {
+            makePrintResultIfUp(bridgeIdx);
+            makePrintResultIfDown(bridgeIdx);
+        }
+        printPlayerMoveUp.append("]");
+        printPlayerMoveDown.append("]");
+        printPlayerMove.add(printPlayerMoveUp);
+        printPlayerMove.add(printPlayerMoveDown);
+        return printPlayerMove;
+    }
 
     public void makePrintResultIfUp(int bridgeIdx){
         if(bridgeIdx == 0) {
