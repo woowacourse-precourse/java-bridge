@@ -16,6 +16,21 @@ public class RealTimeBridge {
         return realTimeBridge;
     }
 
+    public void makeCorrectMap(String userMove) {
+        String realTimeBlock = MovingResult.CORRECT.getValue();
+        makeRealTimeBridge(userMove, realTimeBlock);
+    }
+
+    public void makeWrongMap(String userMove) {
+        String realTimeBlock = MovingResult.WRONG.getValue();
+        makeRealTimeBridge(userMove, realTimeBlock);
+    }
+
+    public void initialize() {
+        realTimeBridge[0][1] = BLANK;
+        realTimeBridge[1][1] = BLANK;
+    }
+
     private void makeRealTimeBridge(String userMove, String moveResult) {
         if (userMove.equals(Moving.UP.getValue())) {
             moveUpper(moveResult);
@@ -42,20 +57,5 @@ public class RealTimeBridge {
         }
         realTimeBridge[0][1] += DIVIDE + moveResult;
         realTimeBridge[1][1] += DIVIDE + SPACE;
-    }
-
-    public void initialize() {
-        realTimeBridge[0][1] = BLANK;
-        realTimeBridge[1][1] = BLANK;
-    }
-
-    public void makeCorrectMap(String userMove) {
-        String realTimeBlock = MovingResult.CORRECT.getValue();
-        makeRealTimeBridge(userMove, realTimeBlock);
-    }
-
-    public void makeWrongMap(String userMove) {
-        String realTimeBlock = MovingResult.WRONG.getValue();
-        makeRealTimeBridge(userMove, realTimeBlock);
     }
 }

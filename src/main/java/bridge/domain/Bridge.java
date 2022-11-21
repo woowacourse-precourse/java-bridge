@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Bridge {
 
-    List<String>bridge;
+    List<String> bridge;
 
-    public Bridge(int size){
+    public Bridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
