@@ -3,9 +3,9 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
-    private List<String> elementOfBridge;
+    private List<String> elementsOfBridge;
 
-    public List<String> getElementOfBridge() {
-        return elementOfBridge;
+    public List<String> getElementsOfBridge() {
+        return elementsOfBridge;
     }
 }
