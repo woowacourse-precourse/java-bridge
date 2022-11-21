@@ -17,13 +17,15 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> newBridge = new ArrayList<>();
+        addNewStep(newBridge, size);
+        return newBridge;
+    }
 
+    private void addNewStep(List<String> newBridge, int size){
         for (int i = 0; i < size; i++){
             int randomNumber = bridgeNumberGenerator.generate();
             newBridge.add(expressUpAndDown(randomNumber));
         }
-
-        return newBridge;
     }
 
     private String expressUpAndDown(int number){
