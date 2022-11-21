@@ -68,4 +68,17 @@ class BridgeGameTest {
         bridgeGame.move(resultBridge, compareBridge, "D");
         assertThat(bridgeGame.move(resultBridge, compareBridge, input)).isEqualTo(AfterMovingStatusConstant.SUCCESS);
     }
+
+    @DisplayName("Bridge moving 후 출력")
+    @ValueSource(strings = {"UDU"})
+    @ParameterizedTest
+    void validBridgeMovingString(String input) {
+        Bridge resultBridge = new Bridge(List.of("U", "D", "D"));
+        Bridge compareBridge = new Bridge();
+        for (int i = 0; i < input.length(); i++) {
+            bridgeGame.move(resultBridge, compareBridge, String.valueOf(input.charAt(i)));
+        }
+        String bridge = compareBridge.toString(resultBridge);
+        Assertions.assertThat(bridge).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
+    }
 }

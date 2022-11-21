@@ -11,18 +11,30 @@ public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
     private final BridgeGame bridgeGame = BridgeGame.getBridgeGame();
+    private static int gameCount = 0;
     public void start() {
         final List<String> bridge = bridgeGame.createBridge(bridgeLengthInputView());
         Bridge randomCreateBridge = new Bridge(bridge);
         while (true) {
-            Bridge thisTurnBridge = new Bridge();
+            Bridge thisTurnBridge = createThisTurnBridge();
             while (true) {
-                AfterMovingStatusConstant afterMovingStatusConstant = movingProcedure(randomCreateBridge,
+                AfterMovingStatusConstant afterMovingStatusConstant = movingBridgeWithReturnStatusWithView(randomCreateBridge,
                         thisTurnBridge);
-                String bridgeStatus = thisTurnBridge.toString(randomCreateBridge);
             }
         }
 
+    }
+
+    private static Bridge createThisTurnBridge() {
+        gameCount += 1;
+        return new Bridge();
+    }
+
+    private AfterMovingStatusConstant movingBridgeWithReturnStatusWithView(Bridge randomCreateBridge, Bridge thisTurnBridge) {
+        AfterMovingStatusConstant afterMovingStatusConstant = movingProcedure(randomCreateBridge,
+                thisTurnBridge);
+        outputView.printMap(thisTurnBridge.toString(randomCreateBridge));
+        return afterMovingStatusConstant;
     }
 
     private AfterMovingStatusConstant movingProcedure(Bridge randomCreateBridge, Bridge thisTurnBridge) {
