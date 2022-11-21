@@ -36,7 +36,8 @@ public class InputView {
         }
     }
 
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        String userInput = getUserInput(REQUEST_RETRY_COMMAND_MESSAGE.getGuideMessage());
+        return userInput;
     }
 }
