@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.domain;
 
 import bridge.domain.Bridge;
 import bridge.domain.Position;

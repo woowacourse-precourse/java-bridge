@@ -24,8 +24,7 @@
 - KEEP : 사용자가 입력한 값이 정답이고 게임이 진행중일 때
 - LOSE : 사용자가 입력한 값이 정답이 아닐 때
 - WIN : 사용자가 입력한 값이 정답이고 게임이 끝났을 때
-## Controller
-1. BridgeGame
+7. BridgeGame
 - tryNumber : 시도 횟수
 - bridge, userPosition
 - start(Bridge bridge, userPosition)
@@ -55,3 +54,5 @@
   - 마지막이 " O "라면 " X "로 변경한다.
 3. InputMessage
 4. OutputMessage
+
+## Controller
