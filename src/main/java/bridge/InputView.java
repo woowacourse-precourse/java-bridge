@@ -48,5 +48,25 @@ public class InputView {
         return command;
     }
 
+    // 숫자 형식, 3-20 범위 확인
+    private boolean InvalidSizeCheck(String size) {
+        if (!size.matches("[3-9]|1[0-9]|2[0]")) {
+            return true;
+        }
+        return false;
+    }
 
+    private boolean checkInvalidDirection(String direction) {
+        if (direction.equals("U") || direction.equals("D")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkInvalidCommand(String command) {
+        if (command.equals("R") || command.equals("Q")) {
+            return false;
+        }
+        return true;
+    }
 }
