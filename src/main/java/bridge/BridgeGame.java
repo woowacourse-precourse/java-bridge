@@ -47,6 +47,7 @@ public class BridgeGame {
 
     public boolean isClear() {
         if (user.size() == bridgeLength) {
+            new OutputView().printResult(answer, user, tryCount);
             return true;
         }
         return false;
