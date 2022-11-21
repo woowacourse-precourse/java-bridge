@@ -34,7 +34,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = readLine();
+        try{
+            String command = checkCommand(input);
+            return command;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            return "null";
+        }
     }
 
     public int checkBridgeSize(String input) {
@@ -52,6 +60,13 @@ public class InputView {
     public String checkMoving(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] U 혹은 D만 입력이 가능합니다.");
+        }
+        return input;
+    }
+
+    public String checkCommand(String input){
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] R 혹은 Q만 입력이 가능합니다.");
         }
         return input;
     }

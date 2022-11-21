@@ -10,19 +10,52 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printMap(int idx, List<String> bridge, boolean isMoved) {
+        String firstBridge = "[";
+        String secondBridge = "[";
+        for (int i=0; i<idx; i++) {
+            if (bridge.get(i).equals("U")) {
+                firstBridge += " O |";
+                secondBridge += "   |";
+            }
+            if (bridge.get(i).equals("D")) {
+                firstBridge += "   |";
+                secondBridge += " O |";
+            }
+        }
+        if (isMoved) {
+            if (bridge.get(idx).equals("U")) {
+                firstBridge += " O ]";
+                secondBridge += "   ]";
+            }
+            if (bridge.get(idx).equals("D")){
+                secondBridge += " O ]";
+                firstBridge += "   ]";
+            }
+        }
+        if (!isMoved) {
+            if (bridge.get(idx).equals("U")) {
+                firstBridge += "   ]";
+                secondBridge += " X ]";
+            }
+            if (bridge.get(idx).equals("D")) {
+                secondBridge += "   ]";
+                firstBridge += " X ]";
+            }
+        }
+        System.out.println(firstBridge);
+        System.out.println(secondBridge);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printResult(int count, int idx, List<String> bridge, boolean result) {
+        System.out.println("최종 게임 결과");
+        printMap(idx, bridge, result);
+        String strResult = "실패";
+        if (result) {
+            strResult = "성공";
+        }
+        System.out.println("게임 성공 여부: "+strResult);
+        System.out.println("총 시도한 횟수: "+count);
+
     }
 }
