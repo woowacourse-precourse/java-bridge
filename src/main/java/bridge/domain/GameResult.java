@@ -27,8 +27,8 @@ public class GameResult {
         return success;
     }
 
-    public int getAttemptNumber() {
-        return attemptNumber;
+    public String getAttemptNumber() {
+        return Integer.toString(attemptNumber);
     }
 
 }

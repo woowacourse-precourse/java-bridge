@@ -80,7 +80,7 @@ public class BridgeGame {
         return map.getAllMap();
     }
 
-    public GameResult getResult() {
-        return result;
+    public List<String> getResult() {
+        return List.of(result.getSuccess(), result.getAttemptNumber());
     }
 }

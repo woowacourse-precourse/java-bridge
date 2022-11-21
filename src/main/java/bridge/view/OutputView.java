@@ -34,14 +34,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> maps, GameResult result) {
+    public void printResult(List<String> maps, List<String> result) {
         System.out.println(RESULT_MESSAGE);
         for (String map : maps) {
             System.out.println(map);
         }
         System.out.println();
-        System.out.println(SUCCESS_OR_FAIL_MESSAGE + result.getSuccess());
-        System.out.println(ATTEMPT_MESSAGE + result.getAttemptNumber());
+        System.out.println(SUCCESS_OR_FAIL_MESSAGE + result.get(0));
+        System.out.println(ATTEMPT_MESSAGE + result.get(1));
     }
 
     public void printError(String message) {
