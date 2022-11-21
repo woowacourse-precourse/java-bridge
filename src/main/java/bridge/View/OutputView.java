@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OutputView {
     static final String BRIDGE_START = "[";
-    static final String BRIDGE_END = "[";
+    static final String BRIDGE_END = "]";
 
 
     public void printMap(List<String> bridge, boolean success, int position) {
