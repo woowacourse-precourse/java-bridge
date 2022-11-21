@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.domain.MoveResult;
+import java.util.StringJoiner;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -11,6 +14,28 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
+        System.out.println(createUpMap());
+        System.out.println(createDownMap());
+    }
+
+    private StringJoiner createUpMap(){
+        StringJoiner stringjoiner = new StringJoiner("|", "[", "]");
+        for (String history : MoveResult.history) {
+            if (history == "U"){
+                stringjoiner.add("O");
+            }
+        }
+        return stringjoiner;
+    }
+
+    private StringJoiner createDownMap(){
+        StringJoiner stringjoiner = new StringJoiner("|", "[", "]");
+        for (String history : MoveResult.history) {
+            if (history == "D"){
+                stringjoiner.add("X");
+            }
+        }
+        return stringjoiner;
     }
 
     /**
