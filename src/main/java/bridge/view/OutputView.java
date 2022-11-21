@@ -14,11 +14,15 @@ public class OutputView {
     private static final String BRIDGE_INIT = "[ ";
     private static final String BRIDGE_END = " ]";
     private static final String BRIDGE_MIDDLE= " | ";
+    private static final String GAME_INIT = "다리 건너기 게임을 시작합니다.";
+    private static final String FINAL_RESULT = "최종 게임 결과";
+    private static final String GAME_SUCCESS = "게임 성공 여부: %s";
+    private static final String RETRY_COUNT = "총 시도한 횟수: %d";
 
     private static final StringBuilder builder = new StringBuilder();
 
     public void printInit() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(GAME_INIT);
     }
 
     /**
@@ -37,7 +41,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(GameResultDto gameResult) {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_RESULT);
         printMap(gameResult.getBridgeResultDto());
         printGameSuccess(gameResult.getSuccess());
         printTotalRetryCount(gameResult.getRetryCount());
@@ -54,9 +58,9 @@ public class OutputView {
 
     private void formatElements(List<String> bridge) {
         Iterator<String> bridgeList = bridge.iterator();
+
         while (bridgeList.hasNext()) {
             builder.append(bridgeList.next());
-
             if (bridgeList.hasNext()) {
                 builder.append(BRIDGE_MIDDLE);
             }
@@ -64,12 +68,12 @@ public class OutputView {
     }
 
     private void printGameSuccess(String success) {
-        String result = String.format("게임 성공 여부: %s", success);
+        String result = String.format(GAME_SUCCESS, success);
         System.out.println(result);
     }
 
     private void printTotalRetryCount(int retryCount) {
-        String result = String.format("총 시도한 횟수: %d", retryCount);
+        String result = String.format(RETRY_COUNT, retryCount);
         System.out.println(result);
     }
 }
