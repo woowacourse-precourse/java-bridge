@@ -58,4 +58,23 @@ public class InputViewTest {
         Assertions.assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    @DisplayName("게임 재시도를 위한 입력값이 정상일 때 문자열을 반환하는지 확인한다.")
+    void readGameCommand(String input) {
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
+        Assertions.assertThat(inputView.readGameCommand()).isEqualTo(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D", " "})
+    @DisplayName("게임 재시도를 위한 입력값이 비정상일 때 예외가 발생하는지 확인한다.")
+    void readGameCommandByInvalidString(String input) {
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
+        Assertions.assertThatThrownBy(inputView::readGameCommand)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
