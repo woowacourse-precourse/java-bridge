@@ -12,6 +12,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
+        validateBridgeSize(input);
         return Integer.parseInt(input);
     }
 
@@ -32,5 +33,10 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public void validateBridgeSize(String input) {
+        Validator.validateNumeric(input);
+        Validator.validateNumericSize(3, 20, input);
     }
 }
