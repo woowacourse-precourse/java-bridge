@@ -13,11 +13,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         String tempBridgeSize = "";
-        try {
-            tempBridgeSize = readLine();
-            bridgeValidate(tempBridgeSize);
-        } catch(IllegalArgumentException e){
-            e.printStackTrace();
+        while(true) {
+            try {
+                tempBridgeSize = readLine();
+                bridgeValidate(tempBridgeSize);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                continue;
+            }
+            break;
         }
         int bridgeSize = Integer.parseInt(tempBridgeSize);
         return bridgeSize;
@@ -28,11 +32,15 @@ public class InputView {
      */
     public String readMoving() {
         String move = "";
-        try {
-            move = readLine();
-            movingValidate(move);
-        } catch(IllegalArgumentException e){
-            e.printStackTrace();
+        while(true) {
+            try {
+                move = readLine();
+                movingValidate(move);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                continue;
+            }
+            break;
         }
         return move;
     }
@@ -42,11 +50,15 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = "";
-        try {
-            command = readLine();
-            commandValidate(command);
-        } catch (IllegalArgumentException e){
-            e.printStackTrace();
+        while(true) {
+            try {
+                command = readLine();
+                commandValidate(command);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                continue;
+            }
+            break;
         }
         return command;
     }
