@@ -18,17 +18,8 @@ public class SquareResult {
         return new SquareResult(square.getReverse(), MoveResult.NOTHING);
     }
 
-    public boolean isSuccess() {
+    public boolean isMoveSuccess() {
         return moveResult.equals(MoveResult.SUCCESS);
-    }
-
-    public boolean isFail() {
-        return moveResult.equals(MoveResult.FAIL);
-    }
-
-
-    public String getSuccess() {
-        return moveResult.value();
     }
 
     public String getMoveResult() {

@@ -12,20 +12,17 @@ public class BridgeResult {
 
     private final List<SquareResult> bridgeResult;
 
-    private SquareResult squareResult;
-
     public BridgeResult() {
         bridgeResult = new ArrayList<>();
     }
 
     public void updateResult(SquareResult result) {
-        squareResult = result;
         bridgeResult.add(result);
         bridgeResult.add(result.getReversed());
     }
 
     public BridgeResultDto toDto() {
-        return BridgeResultDto.of(getResult(), squareResult.getSuccess());
+        return BridgeResultDto.of(getResult());
     }
 
     public Map<Square, List<String>> getResult() {
@@ -33,5 +30,11 @@ public class BridgeResult {
                 .collect(Collectors.groupingBy(
                         SquareResult::getSquare,
                         Collectors.mapping(SquareResult::getMoveResult, Collectors.toList())));
+    }
+
+    public String getMoveSuccessResult() {
+        return bridgeResult
+                .get(bridgeResult.size() - 1)
+                .getMoveResult();
     }
 }

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.dto.BridgeResultDto;
+import bridge.dto.GameResultDto;
 
 import java.util.Iterator;
 import java.util.List;
@@ -35,11 +36,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeResultDto resultDto, int retryCount) {
+    public void printResult(GameResultDto gameResult) {
         System.out.println("최종 게임 결과");
-        printMap(resultDto);
-        printGameSuccess(resultDto.getSuccess());
-        printTotalRetryCount(retryCount);
+        printMap(gameResult.getBridgeResultDto());
+        printGameSuccess(gameResult.getSuccess());
+        printTotalRetryCount(gameResult.getRetryCount());
     }
 
     private void printBridgeFormat(List<String> bridge) {
