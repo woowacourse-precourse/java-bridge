@@ -32,21 +32,21 @@ public class InputView {
             validateRange(readLine);
             validateType(readLine);
             return Integer.parseInt(readLine);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR]");
         }
     }
 
-    private void validateRange(String readLine){
-        int readLength= Integer.parseInt(readLine);
-        if(readLength > MAX_BRIDGE_SIZE || readLength < MIN_BRIDGE_SIZE ){
+    private void validateRange(String readLine) {
+        int readLength = Integer.parseInt(readLine);
+        if (readLength > MAX_BRIDGE_SIZE || readLength < MIN_BRIDGE_SIZE) {
             System.out.println(RANGE_ERROR);
             throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
 
-    private void validateType(String readLine){
-        if(!readLine.matches(ONLY_CONTAINS_NUMBER_REGEX)){
+    private void validateType(String readLine) {
+        if (!readLine.matches(ONLY_CONTAINS_NUMBER_REGEX)) {
             System.out.println(NUMBER_ERROR);
             throw new IllegalArgumentException(NUMBER_ERROR);
         }
@@ -79,7 +79,7 @@ public class InputView {
         try {
             System.out.println(INPUT_GAME_COMMAND);
             return isGameCommand(Console.readLine());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }

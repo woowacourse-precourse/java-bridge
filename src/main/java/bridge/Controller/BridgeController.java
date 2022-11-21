@@ -12,26 +12,26 @@ public class BridgeController {
     private static final OutputView outputView = new OutputView();
 
 
-    public void start(){
+    public void start() {
         GameStartMessage();
         GameTest();
     }
 
-    public void GameStartMessage(){
+    public void GameStartMessage() {
         OutputView.printGameStart();
     }
 
-    public void GameTest(){
+    public void GameTest() {
         boolean gameRunningCheck = true;
         boolean gameEndCheck = false;
         BridgeGame bridgeGame = createBridgeGame(inputView);
-        while(gameRunningCheck){
-            gameRunningCheck = inputMoving(inputView,outputView,bridgeGame);
-            if(gameRunningCheck==false){
+        while (gameRunningCheck) {
+            gameRunningCheck = inputMoving(inputView, outputView, bridgeGame);
+            if (gameRunningCheck == false) {
                 gameRunningCheck = bridgeGame.retry(inputView.readGameCommand());
             }
 
-            if(bridgeGame.endGame()){
+            if (bridgeGame.endGame()) {
                 gameRunningCheck = false;
                 gameEndCheck = true;
             }
@@ -42,6 +42,7 @@ public class BridgeController {
 
         outputView.printGameTotalTry(bridgeGame.getNumberOfTry());
     }
+
     private static BridgeGame createBridgeGame(InputView inputView) {
         return new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())
                 .makeBridge(inputView.readBridgeSize()));

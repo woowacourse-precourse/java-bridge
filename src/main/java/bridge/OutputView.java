@@ -20,9 +20,11 @@ public class OutputView {
 
     public static final String GAME_SUCCESS_CHECK = "\n게임 성공 여부: %s";
     public static final String GAME_TOTAL_TRY = "총 시도한 횟수: %d";
-    public static void printGameStart(){
+
+    public static void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
     }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -39,7 +41,7 @@ public class OutputView {
         bridgeLocations.stream()
                 .map(bridgeLocation -> bridgeLocation.getStateLocation(location))
                 .forEach(bridge::add);
-        return String.format(JOIN_LIST_FORMAT,bridge);
+        return String.format(JOIN_LIST_FORMAT, bridge);
     }
 
     /**
@@ -51,15 +53,15 @@ public class OutputView {
         System.out.println(GAME_FINAL_RESULT);
     }
 
-    public String printSuccessCheck(boolean check1){
-        if(check1 ==true ){
-            return String.format(GAME_SUCCESS_CHECK,GAME_SUCCESS);
+    public String printSuccessCheck(boolean check1) {
+        if (check1 == true) {
+            return String.format(GAME_SUCCESS_CHECK, GAME_SUCCESS);
         }
-        return String.format(GAME_SUCCESS_CHECK,GAME_FAIL);
+        return String.format(GAME_SUCCESS_CHECK, GAME_FAIL);
     }
 
-    public void printGameTotalTry(int count){
-       String gameTotalTry = String.format(GAME_TOTAL_TRY,count);
-       System.out.println(gameTotalTry);
+    public void printGameTotalTry(int count) {
+        String gameTotalTry = String.format(GAME_TOTAL_TRY, count);
+        System.out.println(gameTotalTry);
     }
 }

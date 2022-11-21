@@ -3,10 +3,10 @@ package bridge;
 import java.util.Arrays;
 
 public enum BridgeEnum {
-    UP_TRUE("U",1,true,"O"),
-    UP_FALSE("U",1,false,"X"),
-    DOWN_TRUE("D",0,true,"O"),
-    DOWN_FALSE("D",0,false,"X");
+    UP_TRUE("U", 1, true, "O"),
+    UP_FALSE("U", 1, false, "X"),
+    DOWN_TRUE("D", 0, true, "O"),
+    DOWN_FALSE("D", 0, false, "X");
 
     private final String bridgeStringType;
     private final int bridgeNumberType;
@@ -14,7 +14,7 @@ public enum BridgeEnum {
     private final String checkLocation;
 
 
-    BridgeEnum(String stringType,int numberType,boolean correctLocation,String checkLocation) {
+    BridgeEnum(String stringType, int numberType, boolean correctLocation, String checkLocation) {
         this.bridgeStringType = stringType;
         this.bridgeNumberType = numberType;
         this.correctLocation = correctLocation;
@@ -31,7 +31,7 @@ public enum BridgeEnum {
 
     public static BridgeEnum createBridgeNumberType(int locationNumber) {
         return Arrays.stream(values())
-                .filter(pointValue -> pointValue.isLocationNumber(pointValue,locationNumber))
+                .filter(pointValue -> pointValue.isLocationNumber(pointValue, locationNumber))
                 .findFirst()
                 .orElseThrow();
     }
@@ -52,6 +52,7 @@ public enum BridgeEnum {
     public String getStringType() {
         return bridgeStringType;
     }
+
     public boolean getCorrectLocation() {
         return correctLocation;
     }

@@ -34,7 +34,8 @@ public class BridgeGame {
     public List<BridgeEnum> currentBridge() {
         AtomicInteger startBridge = new AtomicInteger();
         return userAnswer.stream()
-                .map(location -> BridgeEnum.createBridgeStringType(location, bridge.get(startBridge.getAndIncrement()).equals(location)))
+                .map(location -> BridgeEnum.createBridgeStringType(location,
+                        bridge.get(startBridge.getAndIncrement()).equals(location)))
                 .collect(Collectors.toList());
     }
 
@@ -54,7 +55,6 @@ public class BridgeGame {
         }
         return retry;
     }
-
 
 
     public int getNumberOfTry() {
