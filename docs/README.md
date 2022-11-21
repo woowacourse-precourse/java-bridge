@@ -7,7 +7,7 @@
       - [ ] 기존 다리가 없으면 만든다. - BridgeMaker.makeBridge()
         - [ ] 다리 길이를 입력 받는다. - InputView.readBridgeSize()
           - [ ] 올바른 값인지 검사한다. - CustomException.checkBridgeSize()
-            - [ ] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
+            - [x] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
       - [ ] 다리가 있으면 이동한다. - BridgeGame.move()
         - [ ] 이동할 칸을 입력 받는다. - InputView.readMoving()
           - [ ] 올바른 값인지 검사한다. - CustomException.checkMove()
@@ -22,8 +22,8 @@
   - [ ] 게임을 종료한다. - BridgeGame.finish()
     - [ ] 최종 게임 결과를 출력한다. - OutputView.printFinish()
       - [ ] 시도 횟수를 출력한다. - OutputView.printResult()
-- [x] 메시지를 출력한다. - OutputView.printMessage()
-- [ ] 각 예외 메시지를 구분한다. - ExceptionMessage
+- [ ] 메시지를 출력한다. - OutputView.printMessage()
+- [x] 각 예외 메시지를 구분한다. - ExceptionMessage
 
 ## 🚀 기능 요구 사항
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
