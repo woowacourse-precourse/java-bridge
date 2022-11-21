@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,5 +22,17 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    /**
+     * 위, 아래의 정보를 가진 다리를 생성하기
+     */
+    public List<Integer> generateUpDownInformation(final int size) {
+        List<Integer> bridgeUpDownInformation = new ArrayList<>();
+
+        for (int currentSize = 0; currentSize < size; ++currentSize) {
+            bridgeUpDownInformation.add(bridgeNumberGenerator.generate());
+        }
+        return bridgeUpDownInformation;
     }
 }
