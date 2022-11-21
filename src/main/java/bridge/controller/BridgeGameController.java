@@ -41,6 +41,7 @@ public class BridgeGameController {
         String retryCommand =inputView.readGameCommand();
         if(retryCommand.equals(BridgeConstant.RETRY.getString())){
             game.retry();
+            outputView.reset();
             return true;
         }
         return false;

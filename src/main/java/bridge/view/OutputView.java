@@ -27,7 +27,7 @@ public class OutputView {
         packBraceLine.append("]");
         return packBraceLine;
     }
-    private void reset(){
+    public void reset(){
         firstLine = new StringBuilder();
         secondLine = new StringBuilder();
     }
@@ -42,9 +42,6 @@ public class OutputView {
         checkDirection(pass,Direction);
         System.out.println(packBrace(firstLine));
         System.out.println(packBrace(secondLine)+"\n");
-        if(!pass){
-            reset();
-        }
     }
     public void printResult(int tryNumber, String result) {
         System.out.println("최종 게임 결과");
