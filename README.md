@@ -1,5 +1,22 @@
 # 미션 - 다리 건너기
 
+## 게임 플로우차트
+
+```mermaid
+graph TD
+A[Application#main] --> B[Gamecontroller#play]
+B --> C(createBridge)
+C --> D(attempt)
+D --> E{moving}
+E-->O{moveOnce}
+O-->|survive/success|E 
+E-->|success|Y
+O-->|die=fail|X{retry VS quit}
+X-->|retry|F[bridgeGame#retry]
+F-->|initialize Diagram & add attempts|D
+X-->|quit|Y(printResult)
+```
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
