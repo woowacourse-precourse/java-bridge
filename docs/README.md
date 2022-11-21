@@ -32,13 +32,13 @@
     - [ ] 게임 재시도 여부 입력, 검증
       - 검증 실패 시 IllegalArgumentException
 
-- [ ] InputValidator : 사용자 입력을 검증하는 클래스
+- [x] InputValidator : 사용자 입력을 검증하는 클래스
     - [x] 생성자 추가
     - [x] 다리 길이 검증
         - 검증 실패 시 IllegalArgumentException
     - [x] 이동할 칸 검증
         - 검증 실패 시 IllegalArgumentException
-    - [ ] 게임 재시도 여부 검증
+    - [x] 게임 재시도 여부 검증
         - 검증 실패 시 IllegalArgumentException
 
 - [x] InputValidationError : Input 검증 에러를 정의한 Enum

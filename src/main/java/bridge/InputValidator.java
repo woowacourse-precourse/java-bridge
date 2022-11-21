@@ -10,7 +10,10 @@ public class InputValidator {
             "U",
             "D"
     );
-
+    private static final List<String> COMMAND_RETRY_LIST = List.of(
+            "R",
+            "Q"
+    );
 
     public InputValidator() {
 
@@ -28,7 +31,9 @@ public class InputValidator {
         }
     }
 
-    public void validateGameCommand() throws IllegalArgumentException {
-
+    public void validateGameCommand(String cmd) throws IllegalArgumentException {
+        if(!COMMAND_MOVE_LIST.contains(cmd)){
+            throw InputValidationError.ERROR_GAME_COMMAND.exception;
+        }
     }
 }
