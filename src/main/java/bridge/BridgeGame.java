@@ -38,7 +38,10 @@ public class BridgeGame {
         if (retry.equals(Input.RETRY.toString())) {
             return true;
         }
-        return false;
+        if (retry.equals(Input.QUIT.toString())) {
+            return false;
+        }
+        throw new IllegalArgumentException(Error.R_OR_Q.toString());
     }
 
     public int getSize() {
