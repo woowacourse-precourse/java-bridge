@@ -28,6 +28,8 @@ class BridgeMapTest {
 
 		assertThat(actual1).isEqualTo(expected1);
 		assertThat(actual2).isEqualTo(expected2);
+
+		BridgeMap.clearBridgeDescription();
 	}
 
 	@DisplayName("BridgeMap의 리스트 구조를 검증한다 : 첫회, 틀린 경우")
@@ -47,6 +49,8 @@ class BridgeMapTest {
 
 		assertThat(actual1).isEqualTo(expected1);
 		assertThat(actual2).isEqualTo(expected2);
+
+		BridgeMap.clearBridgeDescription();
 	}
 
 	@DisplayName("BridgeMap의 리스트 구조를 검증한다 : 2회 이상, 맞는 경우")
@@ -67,6 +71,8 @@ class BridgeMapTest {
 
 		assertThat(actual1).isEqualTo(expected1);
 		assertThat(actual2).isEqualTo(expected2);
+
+		BridgeMap.clearBridgeDescription();
 	}
 
 	@DisplayName("BridgeMap의 리스트 구조를 검증한다 : 2회 이상, 틀린 경우")
@@ -87,6 +93,8 @@ class BridgeMapTest {
 
 		assertThat(actual1).isEqualTo(expected1);
 		assertThat(actual2).isEqualTo(expected2);
+
+		BridgeMap.clearBridgeDescription();
 	}
 }
 
