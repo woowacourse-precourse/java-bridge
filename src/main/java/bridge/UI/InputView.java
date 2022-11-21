@@ -10,10 +10,16 @@ import java.util.Objects;
 public class InputView {
 
     public int readBridgeLength() {
-        System.out.println(FrontMan.INPUT_BRIDGE_LENGTH);
-        String userInput = readLine();
-        validateBridgeLength(userInput);
-        return Integer.parseInt(userInput);
+        while (true) {
+            try {
+                System.out.println(FrontMan.INPUT_BRIDGE_LENGTH);
+                String userInput = readLine();
+                validateBridgeLength(userInput);
+                return Integer.parseInt(userInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void validateBridgeLength(String userInput) {
@@ -28,10 +34,16 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.println(FrontMan.CHOOSE_NEXT_STEP);
-        String userInput = readLine();
-        validateNextStep(userInput);
-        return userInput;
+        while (true) {
+            try {
+                System.out.println(FrontMan.CHOOSE_NEXT_STEP);
+                String userInput = readLine();
+                validateNextStep(userInput);
+                return userInput;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void validateNextStep(String userInput) {
@@ -41,10 +53,16 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        System.out.println(FrontMan.INPUT_RETRY_OR_QUIT);
-        String userInput = readLine();
-        validateGameCommand(userInput);
-        return userInput;
+        while (true) {
+            try {
+                System.out.println(FrontMan.INPUT_RETRY_OR_QUIT);
+                String userInput = readLine();
+                validateGameCommand(userInput);
+                return userInput;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void validateGameCommand(String userInput) {
