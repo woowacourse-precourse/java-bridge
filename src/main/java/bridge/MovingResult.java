@@ -3,15 +3,17 @@ package bridge;
 import java.util.Arrays;
 
 public enum MovingResult {
-    POSSIBLE("O", true),
-    IMPOSSIBLE("X", false);
+    POSSIBLE("O", true, "성공"),
+    IMPOSSIBLE("X", false, "실패");
 
     private final String sign;
     private final boolean comparison;
+    private final String phrase;
 
-    MovingResult(String sign, boolean comparison) {
+    MovingResult(String sign, boolean comparison, String phrase) {
         this.sign = sign;
         this.comparison = comparison;
+        this.phrase = phrase;
     }
 
     public static MovingResult fromComparison(boolean comparison) {
@@ -34,5 +36,9 @@ public enum MovingResult {
 
     public boolean getComparison() {
         return comparison;
+    }
+
+    public String getPhrase() {
+        return phrase;
     }
 }

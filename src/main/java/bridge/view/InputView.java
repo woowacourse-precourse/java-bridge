@@ -41,7 +41,7 @@ public class InputView {
 
     public void isNumber(String number) {
         if (!number.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("다리 길이는 숫자를 입력해야 합니다.");
         }
     }
 
