@@ -33,6 +33,7 @@ public class Run {
             if (gameCommand.equals("R")) {
                 attempts++;
                 bridgeGame.retry();
+                play(bridgeGame);
             }
         }
 
