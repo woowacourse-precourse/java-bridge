@@ -53,4 +53,8 @@ public class PositionTable {
     public int size() {
         return positionTable.size();
     }
+
+    public void clear() {
+        positionTable.clear();
+    }
 }

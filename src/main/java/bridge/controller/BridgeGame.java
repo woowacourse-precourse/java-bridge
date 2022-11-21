@@ -4,7 +4,6 @@ import bridge.domain.Bridge;
 import bridge.domain.GameResult;
 import bridge.domain.PositionTable;
 import bridge.domain.TryNumber;
-
 import java.util.stream.Stream;
 
 public class BridgeGame {
@@ -38,6 +37,7 @@ public class BridgeGame {
         return tryNumber.getTryNumber();
     }
     public GameResult retry(GameResult gameResult) {
+        userTable.clear();
         while (gameResult.isKeep()) {
             gameResult = startGame();
         }
