@@ -21,6 +21,7 @@ public class BridgeGameController {
     private GameStatus gameStatus;
     private Bridge bridge;
     private Bridge copyBridge;
+    private boolean isFinish;
 
     public BridgeGameController() {
         inputView = new InputView();
@@ -28,6 +29,7 @@ public class BridgeGameController {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame();
         gameStatus = new GameStatus();
+        isFinish = false;
     }
 
     public void start() {
@@ -49,11 +51,15 @@ public class BridgeGameController {
             }
 
             if (retry.equals("Q")) {
-                break;
+                isFinish = true;
             }
 
             if (copyBridge.getBridge().size() == 0) {
                 gameStatus.gameResult = "성공";
+                isFinish = true;
+            }
+
+            if (isFinish) {
                 break;
             }
         }
