@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BridgeTest {
     private final BridgeDTO bridgeDTO = new BridgeDTO();
     private final BridgeGame bridgeGame = new BridgeGame();
+
     @DisplayName("무브값이 제대로 1씩 늘어나는지 테스트")
     @Test
     void moveTest() {

@@ -2,6 +2,8 @@ package bridge.View;
 
 import bridge.Model.BridgeDTO;
 
+import java.util.List;
+
 public class OutputView {
     private final String BRIDGESIZE = "다리의 길이를 입력해주세요.";
     private final String STARTGAME = "다리 건너기 게임을 시작합니다.";
@@ -21,29 +23,20 @@ public class OutputView {
     private final String TOTALTRY = "총 시도한 횟수: ";
 
     public void printMap(BridgeDTO bridgeDTO) {
-        printFirstLine(bridgeDTO);
-        printSecondLine(bridgeDTO);
+        printLine(bridgeDTO.getSaveFirstLine());
+        printLine(bridgeDTO.getSaveSecondLine());
+        System.out.println();
     }
 
-    public void printFirstLine(BridgeDTO bridgeDTO) {
+    public void printLine(List<String> saveLine) {
         System.out.print(OPENMAP);
-        for (int i=0;i<bridgeDTO.getMovePoint();i++) {
-            System.out.print(bridgeDTO.getSaveFirstLine().get(i));
-            if (i < bridgeDTO.getMovePoint() - 1) {
+        for (int i=0;i<saveLine.size();i++) {
+            System.out.print(saveLine.get(i));
+            if (i < saveLine.size() - 1) {
                 System.out.print(DIVISION);
             }
         }
         System.out.println(CLOSEMAP);
-    }
-    public void printSecondLine(BridgeDTO bridgeDTO) {
-        System.out.print(OPENMAP);
-        for (int i=0;i<bridgeDTO.getMovePoint();i++) {
-            System.out.print(bridgeDTO.getSaveSecondLine().get(i));
-            if (i < bridgeDTO.getMovePoint() - 1) {
-                System.out.print(DIVISION);
-            }
-        }
-        System.out.println(CLOSEMAP + "\n");
     }
 
     public void printResult() {

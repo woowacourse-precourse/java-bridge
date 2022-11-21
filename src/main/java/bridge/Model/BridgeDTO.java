@@ -19,7 +19,7 @@ public class BridgeDTO {
         this.bridge = bridge;
     }
 
-    public int getSize(){
+    public int getSize() {
         return this.size;
     }
 

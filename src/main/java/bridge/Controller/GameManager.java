@@ -63,12 +63,6 @@ public class GameManager {
         }
         return false;
     }
-
-    public void plusLine(String first, String second) {
-        bridgeDTO.getSaveFirstLine().add(first);
-        bridgeDTO.getSaveSecondLine().add(second);
-    }
-
     public void missMatch(String wordUpDown, BridgeDTO bridgeDTO, int i) {
         if (wordUpDown.equals("U") && bridgeDTO.getBridge().get(i).equals("D")) {
             plusLine(outputView.FAIL, outputView.BLANK);
@@ -78,7 +72,10 @@ public class GameManager {
             plusLine(outputView.BLANK, outputView.FAIL);
         }
     }
-
+    public void plusLine(String first, String second) {
+        bridgeDTO.getSaveFirstLine().add(first);
+        bridgeDTO.getSaveSecondLine().add(second);
+    }
     public boolean runResult(boolean checkSame) {
         boolean flag = true;
         if (!checkSame) {
@@ -86,8 +83,7 @@ public class GameManager {
             flag = false;
         }
         if (checkSame) {
-            outputView.printResult();
-            outputView.printMap(bridgeDTO);
+            resultMap();
         }
         return flag;
     }
@@ -102,10 +98,14 @@ public class GameManager {
             return ;
         }
         if (retryWord.equals("Q")) {
-            outputView.printResult();
-            outputView.printMap(bridgeDTO);
+            resultMap();
             totalResult(false);
         }
+    }
+
+    public void resultMap() {
+        outputView.printResult();
+        outputView.printMap(bridgeDTO);
     }
     public void totalResult(boolean sameWord) {
         if (!sameWord) {
