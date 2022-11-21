@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     private void isGameSuccess(Player player, Bridge bridge) {
-        if (bridge.getSize() != player.getCurrentLocation()+1) {
+        if (bridge.getSize() != player.getCurrentLocation()) {
             System.out.println("게임 성공 여부: 실패");
             return;
         }

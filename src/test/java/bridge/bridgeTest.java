@@ -112,7 +112,7 @@ public class bridgeTest {
         void playGame에서_Player의_위치가_정상적으로_변하는지_테스트() {
             String correctPosition = "U";
             bridgeGame.playGame(correctPosition);
-            assertThat(bridgeGame.getCurrentLocation()).isEqualTo(0);
+            assertThat(bridgeGame.getCurrentLocation()).isEqualTo(1);
         }
 
         @Test
