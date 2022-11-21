@@ -26,23 +26,23 @@ public class BridgeGameController {
     private void play(BridgeGame bridgeGame) {
         while (true) {
             String userMove = inputView.readMoving();
-            ResultType resultType = bridgeGame.move(userMove);
+            ResultType crossBridgeResult = bridgeGame.move(userMove);
             outputView.printMap(bridgeGame.getMoveLog());
-            if (isGameFinshed(bridgeGame, resultType)) {
+            if (isGameFinshed(bridgeGame, crossBridgeResult)) {
                 break;
             }
         }
     }
 
-    private boolean isGameFinshed(BridgeGame bridgeGame, ResultType resultType) {
+    private boolean isGameFinshed(BridgeGame bridgeGame, ResultType crossBridgeResult) {
         if (bridgeGame.getIndex() == bridgeGame.getBridgeSize()) {
-            outputView.printResult(bridgeGame, resultType);
+            outputView.printResult(bridgeGame, crossBridgeResult);
             return true;
         }
-        if (resultType.getState().equals(ResultType.FAIL.getState())) {
+        if (crossBridgeResult.getState().equals(ResultType.FAIL.getState())) {
             String reGame = inputView.readGameCommand();
             if (reGame.equals(CommandType.QUIT.getCommands())) {
-                outputView.printResult(bridgeGame, resultType);
+                outputView.printResult(bridgeGame, crossBridgeResult);
                 return true;
             }
             bridgeGame.retry();
