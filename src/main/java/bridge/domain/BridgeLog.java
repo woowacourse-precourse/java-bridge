@@ -19,7 +19,7 @@ public class BridgeLog {
         map.get(UP_INDEX).add(" ");
         map.get(DOWN_INDEX).add(" ");
 
-        replace(bridge, userCross);
+        changeResultOfMove(bridge, userCross);
     }
 
     public void clear() {
@@ -27,22 +27,22 @@ public class BridgeLog {
         map.get(DOWN_INDEX).clear();
     }
 
-    private void replace(String bridge, String userCross) {
-        int wentUserPlace = wentUserPlace(userCross);
-        String moveResult = moveResult(bridge, userCross);
+    private void changeResultOfMove(String bridge, String userCross) {
+        int index = indexOfUserMove(userCross);
+        String result = resultOfMove(bridge, userCross);
 
-        map.get(wentUserPlace).set(map.get(UP_INDEX).size() - 1, moveResult);
+        map.get(index).set(map.get(UP_INDEX).size() - 1, result);
     }
 
-    private String moveResult(String str1, String str2) {
-        if (str1.equals(str2)) {
+    private String resultOfMove(String generatreBridgeFoothold, String userMoveBridgeFoothold) {
+        if (generatreBridgeFoothold.equals(userMoveBridgeFoothold)) {
             return "O";
         }
         return "X";
     }
 
-    private int wentUserPlace(String moveKey) {
-        if (moveKey.equals(GameKeySet.UP.getKeySet())) {
+    private int indexOfUserMove(String userMove) {
+        if (userMove.equals(GameKeySet.UP.getKeySet())) {
             return UP_INDEX;
         }
         return DOWN_INDEX;
