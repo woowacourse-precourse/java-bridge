@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.dto.GameResult;
 import bridge.model.enums.MoveChoice;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,17 +52,17 @@ public class BridgeGame {
     }
 
     public boolean inProcess() {
-        return !succeed() && !failed();
+        return !succeed() && !gameOver();
     }
 
     public boolean succeed() {
-        if (failed() || bridge.size() != bridgeMoveInformation.size()) {
+        if (gameOver() || bridge.size() != bridgeMoveInformation.size()) {
             return false;
         }
         return true;
     }
 
-    public boolean failed() {
+    public boolean gameOver() {
         int lastIndex = bridgeMoveInformation.size() - 1;
         if (lastIndex < 0) {
             return false;

@@ -18,7 +18,7 @@ public enum OutputMessage {
     ERROR_FORMAT("[ERROR] %s");
     private final String message;
 
-    public String toString(){
+    public String getValue(){
         return message;
     }
     OutputMessage(String message) {

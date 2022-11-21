@@ -1,4 +1,4 @@
-package bridge.dto;
+package bridge.model;
 
 import bridge.model.MoveInformation;
 import java.util.List;

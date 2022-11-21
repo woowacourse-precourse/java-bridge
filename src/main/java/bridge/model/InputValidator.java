@@ -14,14 +14,14 @@ public class InputValidator {
         if (BridgeGame.MINIMUM_BRIDGE_SIZE <= bridgeLength && bridgeLength <= BridgeGame.MAXIMUM_BRIDGE_SIZE) {
             return;
         }
-        throw new IllegalArgumentException(OUT_OF_RANGE.get());
+        throw new IllegalArgumentException(OUT_OF_RANGE.getValue());
     }
 
     public void validateMoveChoice(String moving) {
         if (Arrays.stream(MoveChoice.values()).anyMatch((choice) -> choice.moving.equals(moving))) {
             return;
         }
-        throw new IllegalArgumentException(NOT_A_MOVE_CHOICE.get());
+        throw new IllegalArgumentException(NOT_A_MOVE_CHOICE.getValue());
     }
 
     public void validateRetryIntention(String userIntention) {
@@ -29,6 +29,6 @@ public class InputValidator {
             return;
         }
 
-        throw new IllegalArgumentException(NOT_A_RETRY_INTENTION.get());
+        throw new IllegalArgumentException(NOT_A_RETRY_INTENTION.getValue());
     }
 }

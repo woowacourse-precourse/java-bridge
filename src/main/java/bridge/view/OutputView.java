@@ -13,24 +13,26 @@ import static bridge.message.OutputMessage.SUCCESS_FORMAT;
 import static bridge.message.OutputMessage.SYMBOL_PARSER;
 import static bridge.message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
 
-import bridge.dto.GameResult;
+import bridge.model.GameResult;
+import bridge.model.MoveInformation;
+import bridge.model.enums.MoveChoice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import bridge.model.MoveInformation;
-import bridge.model.enums.MoveChoice;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    private final Map<Boolean, String> gameSuccessMapper = Map.of(false, GAME_FAIL_COMMENT.toString(), true, GAME_SUCCESS_COMMENT.toString());
-    private final Map<Boolean, String> moveSuccessMapper = Map.of(false, MOVE_FAIL_SYMBOL.toString(), true, MOVE_SUCCESS_SYMBOL.toString());
+    private final Map<Boolean, String> gameSuccessMapper = Map.of(false, "" + GAME_FAIL_COMMENT, true,
+            GAME_SUCCESS_COMMENT.getValue());
+    private final Map<Boolean, String> moveSuccessMapper = Map.of(false, MOVE_FAIL_SYMBOL.getValue(), true,
+            MOVE_SUCCESS_SYMBOL.getValue());
 
 
     public void printInitComment() {
-        System.out.println(GAME_INIT_COMMENT);
+        System.out.println(GAME_INIT_COMMENT.getValue());
     }
 
     /**
@@ -54,6 +56,7 @@ public class OutputView {
         }
         return formattedMap;
     }
+
     private String getFormattedRow(int row, List<MoveInformation> bridgeMoveInformation) {
         List<String> formattedRow = new ArrayList<>();
 
@@ -62,9 +65,9 @@ public class OutputView {
                 formattedRow.add(moveSuccessMapper.get(bridgeMoveInformation.get(i).moveSucceed()));
                 continue;
             }
-            formattedRow.add(BLANK_SYMBOL.toString());
+            formattedRow.add(BLANK_SYMBOL.getValue());
         }
-        return String.format(ROW_MOVE_RESULT_FORMAT.toString(),String.join(SYMBOL_PARSER.toString(), formattedRow));
+        return String.format(ROW_MOVE_RESULT_FORMAT.getValue(), String.join(SYMBOL_PARSER.getValue(), formattedRow));
     }
 
     /**
@@ -73,14 +76,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(GameResult gameResult) {
-        System.out.println(FINAL_RESULT_COMMENT);
+        System.out.println(FINAL_RESULT_COMMENT.getValue());
         printMap(gameResult);
 
-        System.out.println(String.format(SUCCESS_FORMAT.toString(), gameSuccessMapper.get(gameResult.succeed())));
-        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT.toString(), gameResult.tryCount()));
+        System.out.println(String.format(SUCCESS_FORMAT.getValue(), gameSuccessMapper.get(gameResult.succeed())));
+        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT.getValue(), gameResult.tryCount()));
     }
 
     public void printError(String message) {
-        System.out.println(String.format(ERROR_FORMAT.toString(), message));
+        System.out.println(String.format(ERROR_FORMAT.getValue(), message));
     }
 }
