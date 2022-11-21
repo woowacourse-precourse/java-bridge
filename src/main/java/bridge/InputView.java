@@ -78,4 +78,19 @@ public class InputView {
         String retryQuit = readLine();
         return retryQuit;
     }
+
+    private void validateGameCommand(String retryQuit){
+        try {
+            checkGameCommand(retryQuit);
+        }catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] ");
+            readGameCommand();
+        }
+    }
+
+    private void checkGameCommand(String retryQuit) {
+        if (retryQuit != "R" && retryQuit != "Q") {
+            throw new IllegalArgumentException();
+        }
+    }
 }
