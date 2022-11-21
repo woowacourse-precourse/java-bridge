@@ -11,6 +11,8 @@ public class BridgeGame {
     private int stage;
     private int totalTryCount;
     private Bridge bridge;
+    private boolean isEnd = false;
+    private boolean isSuccess = false;
 
     public BridgeGame(int size) {
         this.stage = 0;
@@ -37,6 +39,7 @@ public class BridgeGame {
         boolean canUserMove = canMove(userInput);
         List<BridgeState> subBridge = bridge.makeSubBridge(stage);
         MoveResult moveResult = MoveResult.makeMoveResult(canUserMove);
+        checkGameEnd(userInput);
         return new GameResult(moveResult, subBridge);
     }
 
@@ -47,15 +50,15 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isGameEnd(String userInput) {
+    public void checkGameEnd(String userInput) {
         if (!canMove(userInput) || isGameSuccess(userInput)) {
-            return true;
+            isEnd = true;
         }
-        return false;
     }
 
     public boolean isGameSuccess(String userInput) {
         if (canMove(userInput) && bridge.isLastTile(stage)) {
+            isSuccess = true;
             return true;
         }
         return false;
@@ -69,5 +72,14 @@ public class BridgeGame {
     public void retry() {
         this.totalTryCount++;
         this.stage = 0;
+        this.isEnd = false;
+    }
+
+    public boolean isEnd() {
+        return isEnd;
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
     }
 }
