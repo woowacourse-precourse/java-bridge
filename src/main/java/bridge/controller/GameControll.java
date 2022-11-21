@@ -10,7 +10,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 
-public class Game {
+public class GameControll {
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -19,7 +19,7 @@ public class Game {
     private final static BridgeShape bridgeShape = new BridgeShape();
     private final static Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
 
-    public Game(InputView inputView, OutputView outputView){
+    public GameControll(InputView inputView, OutputView outputView){
         this.inputView = inputView;
         this.outputView = outputView;
     }
