@@ -7,6 +7,7 @@ public class BridgeGame {
     List<String> bridge;
     Boolean isMovable;
     Integer bridgeIndex = -1;
+    Integer tryNumber = 1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -27,6 +28,13 @@ public class BridgeGame {
     }
 
     public void retry() {
+        bridgeIndex--;
+        isMovable = true;
+        tryNumber++;
+    }
+
+    public boolean getIsMovable() {
+        return isMovable;
     }
 
     public int getBridgeIndex(){
@@ -35,5 +43,9 @@ public class BridgeGame {
 
     public String getBridgePosition() {
         return bridge.get(bridgeIndex);
+    }
+
+    public int getTryNumber() {
+        return tryNumber;
     }
 }
