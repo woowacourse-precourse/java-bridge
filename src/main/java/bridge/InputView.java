@@ -21,8 +21,7 @@ public class InputView {
     public int readBridgeSize() {
         output.printGetLength();
         String lenString = Console.readLine();
-        int len = validator.isInt(lenString);
-        return validator.isValidLength(len);
+        return validator.isValidLength(validator.isInt(lenString));
     }
 
     /**
