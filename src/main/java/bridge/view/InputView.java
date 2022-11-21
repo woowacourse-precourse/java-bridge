@@ -39,7 +39,7 @@ public class InputView {
             inputMoveCommand = Console.readLine();
             validMoveCommand = isValidMoveCommand(inputMoveCommand);
         }
-        
+
         return inputMoveCommand;
     }
 
@@ -77,7 +77,7 @@ public class InputView {
     private boolean isValidMoveCommand(String moveCommand) {
         try {
             validateOneWord(moveCommand);
-            validateFormat(moveCommand);
+            validateMoveFormat(moveCommand);
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -91,7 +91,7 @@ public class InputView {
         }
     }
 
-    private void validateFormat(String moveCommand) {
+    private void validateMoveFormat(String moveCommand) {
         if (!moveCommand.equals(MOVE_COMMAND_UP) && !moveCommand.equals(MOVE_COMMAND_DOWN)) {
             throw new IllegalArgumentException();
         }
