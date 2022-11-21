@@ -1,7 +1,10 @@
 package bridge;
 
+import bridge.domain.BridgeLength;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
+import bridge.domain.MovingCommand;
+import bridge.domain.RetryCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -36,15 +39,14 @@ public class BridgeController {
     }
 
     private void create() {
-        outputView.printEmptyLine();
-        int size = inputView.readBridgeSize();
+        BridgeLength size = inputView.readBridgeSize();
         bridgeGame.createBridge(size);
         outputView.printEmptyLine();
     }
 
     private BridgeStatus move() {
-        String moving = inputView.readMoving();
-        BridgeStatus bridgeStatus = bridgeGame.move(moving);
+        MovingCommand movingCommand = inputView.readMoving();
+        BridgeStatus bridgeStatus = bridgeGame.move(movingCommand);
         outputView.printMap(bridgeStatus);
         outputView.printEmptyLine();
         return bridgeStatus;
@@ -52,8 +54,8 @@ public class BridgeController {
 
     private boolean retry(GameStatus gameStatus) {
         if (gameStatus.needCallRetry()) {
-            String gameCommand = inputView.readGameCommand();
-            return bridgeGame.retry(gameCommand);
+            RetryCommand retryCommand = inputView.readGameCommand();
+            return bridgeGame.retry(retryCommand);
         }
         return true;
     }
