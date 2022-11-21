@@ -12,5 +12,8 @@ public class Application {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         bridgeMaker.makeBridge(bridgeSize);
+
+        String selectMove = InputView.readMoving();
+
     }
 }
