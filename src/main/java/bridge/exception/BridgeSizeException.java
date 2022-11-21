@@ -19,7 +19,7 @@ public class BridgeSizeException {
         }
     }
 
-    private void isBridgeSizeConsistOfNumber(String input) {
+    public void isBridgeSizeConsistOfNumber(String input) {
         for (int i = 0; i < input.length(); i++) {
             if (!isUserInputContainsOnlyNumber(input)) {
                 throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자로 이루어져야 합니다");
@@ -27,7 +27,7 @@ public class BridgeSizeException {
         }
     }
 
-    private void isBridgeSizeInRange(Integer input) {
+    public void isBridgeSizeInRange(Integer input) {
         if (input < BRIDGE_SIZE_MIN || input > BRIDGE_SIZE_MAX) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
