@@ -1,45 +1,44 @@
 package bridge.model.ScreenGenerator;
 
+import bridge.view.Sentence;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class WrongCaseGenerator implements ScreenGenerator{
+public class WrongCaseGenerator implements ScreenGenerator {
 
-    List<String> firstRowAnswer;
-    List<String> secondRowAnswer;
+    private List<String> firstRowAnswer;
+    private List<String> secondRowAnswer;
 
     @Override
     public void generatedTable(List<String> answer, int current) {
-        BridgeEachRowGenerator bridgeEachRowGenerator = new BridgeEachRowGenerator(answer, current-1);
-        firstRowAppender(answer, current, bridgeEachRowGenerator);
-        secondRowAppender(answer, current, bridgeEachRowGenerator);
-        //return (firstRow + "\n" + secondRow);
+        BridgeEachRowGenerator bridgeEachRowGenerator = new BridgeEachRowGenerator(answer, current - 1);
+        rowAppender(answer, current, bridgeEachRowGenerator);
     }
 
-    public void firstRowAppender(List<String> answer, int current, BridgeEachRowGenerator bridgeEachRowGenerator) {
+    private void rowAppender(List<String> answer, int current, BridgeEachRowGenerator bridgeEachRowGenerator) {
         firstRowAnswer = bridgeEachRowGenerator.generateRowInList(1);
-        if (answer.get(current).equals("U")) {
-            firstRowAnswer.add("   ");
-        } else if (answer.get(current).equals("D")) {
-            firstRowAnswer.add(" X ");
+        secondRowAnswer = bridgeEachRowGenerator.generateRowInList(0);
+        inputIsU(answer, current);
+        inputIsD(answer, current);
+    }
+
+    private void inputIsU(List<String> answer, int current) {
+        if (answer.get(current).equals(Sentence.UP_CHUNK.getValue())) {
+            firstRowAnswer.add(Sentence.THREE_SIZE_BLANK.getValue());
+            secondRowAnswer.add(Sentence.THREE_SIZE_X.getValue());
         }
     }
 
-    public void secondRowAppender(List<String> answer, int current, BridgeEachRowGenerator bridgeEachRowGenerator) {
-        secondRowAnswer = bridgeEachRowGenerator.generateRowInList(0);
-        if (answer.get(current).equals("U")) {
-            secondRowAnswer.add(" X ");
-        } else if (answer.get(current).equals("D")) {
-            secondRowAnswer.add("   ");
+    private void inputIsD(List<String> answer, int current) {
+        if (answer.get(current).equals(Sentence.DOWN_CHUNK.getValue())) {
+            firstRowAnswer.add(Sentence.THREE_SIZE_X.getValue());
+            secondRowAnswer.add(Sentence.THREE_SIZE_BLANK.getValue());
         }
     }
 
     @Override
     public String toString() {
-        return firstRowAnswer.stream().collect(Collectors.joining("|", "[", "]"))
-            + "\n"+ secondRowAnswer.stream().collect(Collectors.joining("|", "[", "]"));
+        return firstRowAnswer.stream().collect(Collectors.joining("|", "[", "]")) +
+                "\n" + secondRowAnswer.stream().collect(Collectors.joining("|", "[", "]"));
     }
-
-
 }
