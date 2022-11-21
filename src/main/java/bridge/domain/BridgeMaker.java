@@ -11,9 +11,9 @@ import java.util.List;
 public class BridgeMaker {
 
     private static final String UP_BRIDGE = "U";
-    private static final int BI_UP_BRIDGE = 0;
+    private static final int BI_UP_BRIDGE = 1;
     private static final String DOWN_BRIDGE = "D";
-    private static final int BI_DOWN_BRIDGE = 1;
+    private static final int BI_DOWN_BRIDGE = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
