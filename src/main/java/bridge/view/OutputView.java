@@ -34,6 +34,12 @@ public class OutputView {
     // Bridge 맵 한줄 생성 기능
     private StringBuilder createSingleLineMap(Bridge bridge, String key) {
         StringBuilder row = new StringBuilder(Setting.BRIDGE_FIRST_LETTER);
+        addMapToAnswerLetter(row, bridge, key);
+        return row.append(Setting.BRIDGE_LAST_LETTER);
+    }
+
+    // Bridge 맵 한줄에 그릴 정답유무 문자 생성 기능
+    private void addMapToAnswerLetter(StringBuilder row, Bridge bridge, String key) {
         for (int index = 0; index < bridge.getBridgeMap().length; index++) {
             addDelimiter(row, index);
             if (bridge.getUserKeyListIndex(index).equals(key)) {
@@ -42,8 +48,6 @@ public class OutputView {
             }
             row.append(Setting.WRONG_ANSWER_LETTER);
         }
-        row.append(Setting.BRIDGE_LAST_LETTER);
-        return row;
     }
 
     // 구분자 더하기
