@@ -39,4 +39,28 @@ public class Bridge {
         }
         return gameStatus.CONTINUE;
     }
+
+    public List<String> getUserRoute() {
+        return this.userRoute;
+    }
+
+    /**
+     * @param direction 이동 경로를 출력할 다리. U 또는 D의 값을 가진다.
+     */
+    // TODO: indent, 메서드 길이 개선 필요
+    public List<String> getEachBridgeRouteInfo (String direction) {
+        List<String> eachBridgeRouteInfo = new ArrayList<>();
+        for (int round=0; round<userRoute.size(); round++) {
+            if (direction.equals(userRoute.get(round)) == false) { // 해당 다리를 선택하지 않았으면
+                eachBridgeRouteInfo.add(" ");
+            } if (direction.equals(userRoute.get(round)) == true) { // 해당 다리를 선택했다면
+                if (bridge.get(round).equals(userRoute.get(round)) == true) { // 해당 방향이 갈 수 있는 방향일 경우
+                    eachBridgeRouteInfo.add("O");
+                } if (bridge.get(round).equals(userRoute.get(round)) == false) { // 해당 방향으로 갈 수 없는 경우
+                    eachBridgeRouteInfo.add("X");
+                }
+            }
+        }
+        return eachBridgeRouteInfo;
+    }
 }
