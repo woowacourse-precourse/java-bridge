@@ -1,10 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.GameResult;
+import bridge.domain.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -19,37 +16,36 @@ public class GameController {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        GameResult gameResult = new GameResult(bridgeGame);
 
-        play(bridgeGame, gameResult);
-        result(gameResult);
+        play(bridgeGame);
+        result(bridgeGame);
     }
 
-    public void play(BridgeGame bridgeGame, GameResult gameResult) {
-        move(bridgeGame, gameResult);
-        retry(bridgeGame, gameResult);
+    public void play(BridgeGame bridgeGame) {
+        move(bridgeGame);
+        retry(bridgeGame);
     }
 
-    public void move(BridgeGame bridgeGame, GameResult gameResult) {
+    public void move(BridgeGame bridgeGame) {
         for (int idx = 0; idx < bridgeGame.getBridgeSize(); idx++) {
-            boolean pass = bridgeGame.move(idx, inputView.readMoving());
-            outputView.printMap(gameResult);
+            boolean pass = bridgeGame.move(idx, Direction.get(inputView.readMoving()));
+            outputView.printMap(bridgeGame);
             if (!pass) {
                 return;
             }
         }
     }
 
-    public void retry(BridgeGame bridgeGame, GameResult gameResult) {
-        if (bridgeGame.isClear()) {
+    public void retry(BridgeGame bridgeGame) {
+        if (bridgeGame.isClear().equals(GameResult.SUCCESS)) {
             return;
         }
-        if (bridgeGame.retry(inputView.readGameCommand())) {
-            play(bridgeGame, gameResult);
+        if (bridgeGame.retry(Command.get(inputView.readGameCommand()))) {
+            play(bridgeGame);
         }
     }
 
-    public void result(GameResult gameResult) {
-        outputView.printResult(gameResult);
+    public void result(BridgeGame bridgeGame) {
+        outputView.printResult(bridgeGame);
     }
 }
