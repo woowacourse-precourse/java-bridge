@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.service.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
@@ -29,21 +29,17 @@ public class BridgeGameController {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame();
         gameStatus = new GameStatus();
-        isFinish = false;
+        isFinish = true;
     }
 
     public void start() {
         makeBridge(getBridgeLength());
         outputView.printStart();
-        while (true) {
+        while (isFinish) {
             boolean check = crossTheBridge();
             outputView.printMap(gameStatus);
             askWhetherRetry(check);
             ifGoThroughTheBridge();
-
-            if (isFinish) {
-                break;
-            }
         }
         outputView.printResult(gameStatus);
     }
@@ -51,7 +47,7 @@ public class BridgeGameController {
     private void ifGoThroughTheBridge() {
         if (copyBridge.getBridge().size() == 0) {
             gameStatus.gameResult = "성공";
-            isFinish = true;
+            isFinish = false;
         }
     }
 
@@ -67,7 +63,7 @@ public class BridgeGameController {
         }
 
         if (retry.equals("Q")) {
-            isFinish = true;
+            isFinish = false;
         }
     }
 
