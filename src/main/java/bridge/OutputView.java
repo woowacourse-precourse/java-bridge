@@ -27,71 +27,11 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printMapStart(){
-        sbUp.append("[");
-        sbDo.append("[");
-    }
-
-    public void printMapEnd(){
-        sbUp.append("]");
-        sbDo.append("]");
-    }
-
-    public void printMapBetween(){
-        sbUp.append("|");
-        sbDo.append("|");
-    }
-
     public void printRequestUpDownMessage(){
         System.out.println("이동할 칸을 입력해주세요 (위: U, 아래: D)");
         System.out.println("");
     }
 
-    public String printMoveUpDown(List<String> bridge, String input, int step){
-        if(bridge.get(step).equals(input)){
-            return " O ";
-        }
-        return " X ";
-    }
-
-    public void printGoUp(List<String> bridge, String input, int step){
-        String result = printMoveUpDown(bridge, input, step);
-
-        if(bridge.get(step).equals("U")) {
-            if (result.equals(" O ")) {
-                sbUp.append(result);
-                sbDo.append("   ");
-            }
-            if (result.equals(" X ")) {
-                sbUp.append("   ");
-                sbDo.append(result);
-            }
-        }
-    }
-
-    public void printGoDown(List<String> bridge, String input, int step){
-        String result = printMoveUpDown(bridge, input, step);
-
-        if(bridge.get(step).equals("D")) {
-            if (result.equals(" O ")) {
-                sbUp.append("   ");
-                sbDo.append(result);
-            }
-            if (result.equals(" X ")) {
-                sbUp.append(result);
-                sbDo.append("   ");
-            }
-        }
-    }
-
-    public void printEnd(List<String> bridge, int step){
-        if(bridge.size() - 1  != step){
-            printMapBetween();
-        }
-        if(bridge.size() - 1 == step){
-            printMapEnd();
-        }
-    }
 
     public void printSuccess(List<String> bridge, int step){
         if(bridge.size() == step){

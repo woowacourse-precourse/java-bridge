@@ -17,7 +17,5 @@ public class Application {
             System.out.printf(str + " ");
         }
 
-        OutputView outputView = new OutputView();
-        outputView.printGoDown(bridge, "U", 0);
     }
 }

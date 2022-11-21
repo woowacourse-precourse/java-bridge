@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private StringBuilder sbUp = new StringBuilder();
+    private StringBuilder sbDo = new StringBuilder();
     private int size = 0;
 
     InputView inputView = new InputView();
@@ -43,10 +45,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(List<String> bridge, String input, int step) {
-        outputView.printMapStart();
-        outputView.printGoUp(bridge, input, step);
-        outputView.printGoDown(bridge, input, step);
-        outputView.printEnd(bridge, step);
+        printMapStart();
+        printGoUp(bridge, input, step);
+        printGoDown(bridge, input, step);
+        printEnd(bridge, step);
     }
 
     /**
@@ -55,5 +57,66 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public void printMapStart(){
+        sbUp.append("[");
+        sbDo.append("[");
+    }
+
+    public void printMapEnd(){
+        sbUp.append("]");
+        sbDo.append("]");
+    }
+
+    public void printMapBetween(){
+        sbUp.append("|");
+        sbDo.append("|");
+    }
+
+    public String printMoveUpDown(List<String> bridge, String input, int step){
+        if(bridge.get(step).equals(input)){
+            return " O ";
+        }
+        return " X ";
+    }
+
+    public void printGoUp(List<String> bridge, String input, int step){
+        String result = printMoveUpDown(bridge, input, step);
+
+        if(bridge.get(step).equals("U")) {
+            if (result.equals(" O ")) {
+                sbUp.append(result);
+                sbDo.append("   ");
+            }
+            if (result.equals(" X ")) {
+                sbUp.append("   ");
+                sbDo.append(result);
+            }
+        }
+    }
+
+    public void printGoDown(List<String> bridge, String input, int step){
+        String result = printMoveUpDown(bridge, input, step);
+
+        if(bridge.get(step).equals("D")) {
+            if (result.equals(" O ")) {
+                sbUp.append("   ");
+                sbDo.append(result);
+            }
+            if (result.equals(" X ")) {
+                sbUp.append(result);
+                sbDo.append("   ");
+            }
+        }
+    }
+
+    public void printEnd(List<String> bridge, int step){
+        if(bridge.size() - 1  != step){
+            printMapBetween();
+        }
+        if(bridge.size() - 1 == step){
+            printMapEnd();
+        }
     }
 }
