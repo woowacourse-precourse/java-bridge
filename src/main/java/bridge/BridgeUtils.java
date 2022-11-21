@@ -8,6 +8,13 @@ public class BridgeUtils {
     private OutputView outputView = new OutputView();
     private BridgeGame bridgeGame = new BridgeGame();
 
+    public Bridge startBridgeGame(){
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리의 길이를 입력해주세요.");
+
+        return new Bridge(inputView.readBridgeSize());
+    }
+
     public String canPass(final int bridgeNumber) {
         if (bridgeNumber == 0) {
             return "D";

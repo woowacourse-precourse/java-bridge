@@ -27,10 +27,10 @@ public class OutputView {
 
     public void printUpperMap(final Bridge bridge, final List<String> movings) {
         for (int i = 0; i < movings.size(); i++) {
-            if (bridge.isO(bridge, movings, i)) {
+            if (bridge.isO(i)) {
                 printOorBlankOnUpperMap(movings.get(i));
             }
-            if (!bridge.isO(bridge, movings, i)) {
+            if (!bridge.isO(i)) {
                 System.out.print("X");
             }
             printPartition(movings.size(), i);
@@ -39,10 +39,10 @@ public class OutputView {
 
     public void printLowerMap(final Bridge bridge, final List<String> movings) {
         for (int i = 0; i < movings.size(); i++) {
-            if (bridge.isO(bridge, movings, i)) {
+            if (bridge.isO(i)) {
                 printOorBlankOnLowerMap(movings.get(i));
             }
-            if (!bridge.isO(bridge, movings, i)) {
+            if (!bridge.isO(i)) {
                 System.out.print("X");
             }
             printPartition(movings.size(), i);
@@ -78,6 +78,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Bridge bridge, List<String> movings, String win) {
+        System.out.println("최종 게임 결과");
+        printMap(bridge, movings);
+        System.out.println("\n게임 성공 여부: " + win);
+        System.out.println("총 시도한 횟수: " + bridge.getCounter());
     }
 }

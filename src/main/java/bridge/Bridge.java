@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Bridge {
 
+    static final String ERROR_MESSAGE = "[ERROR]";
+
     private List<String> bridge;
     private List<String> movings;
     private int counter;
@@ -33,15 +35,18 @@ public class Bridge {
         return this.movings;
     }
 
-    public int increaseCounter() {
-        return this.counter++;
+    public int getCounter() {
+        return this.counter;
     }
 
-    public boolean isO(final Bridge bridge, final List<String> movings, int index) {
-        if (bridge.hasUAtIndex(index) & movings.get(index).equals("U")) {
-            return true;
-        }
-        if (!bridge.hasUAtIndex(index) & movings.get(index).equals("D")) {
+    public int increaseCounter() {
+        this.counter++;
+        validateCounter(this.counter);
+        return this.counter;
+    }
+
+    public boolean isO(int index) {
+        if (this.bridge.get(index).equals(movings.get(index))) {
             return true;
         }
         return false;
@@ -49,10 +54,19 @@ public class Bridge {
 
     public boolean isGameOver() {
         for (int i = 0; i < this.movings.size(); i++) {
+            if (i == this.bridge.size() - 1) {
+                return true;
+            }
             if (!this.bridge.get(i).equals(movings.get(i))) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void validateCounter(int counter) {
+        if (counter >= Integer.MAX_VALUE) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "너무 많이 재시도했습니다.");
+        }
     }
 }

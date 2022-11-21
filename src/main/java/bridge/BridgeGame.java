@@ -23,5 +23,6 @@ public class BridgeGame {
      */
     public void retry(Bridge bridge) {
         bridge.increaseCounter();
+        bridge.getMovings().clear();
     }
 }
