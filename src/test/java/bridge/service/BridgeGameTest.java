@@ -31,7 +31,8 @@ public class BridgeGameTest {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         User user = new User();
-        bridge.setNowIndex(2);
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
 
         // when
         bridgeGame.move(bridge, user);
@@ -47,7 +48,7 @@ public class BridgeGameTest {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         User user = new User();
-        bridge.setNowIndex(1);
+        bridge.nowIndexUpdate();
         user.setGameTryCount(10);
         String command = "R";
 
@@ -80,7 +81,10 @@ public class BridgeGameTest {
     public void isUserPassedAllTurnTest() {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D", "D", "U"));
-        bridge.setNowIndex(4);
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
 
         // when
         boolean result = bridgeGame.isUserPassedAllTurn(bridge);
@@ -95,7 +99,9 @@ public class BridgeGameTest {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D", "D", "U"));
         User user = new User();
-        bridge.setNowIndex(3);
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
 
         // when
         bridgeGame.retry(bridge, user);
