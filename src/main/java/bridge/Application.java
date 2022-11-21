@@ -1,7 +1,5 @@
 package bridge;
 
-import constant.Values.MoveCase;
-
 public class Application {
 
     private static InputView inputView = new InputView();
@@ -53,12 +51,11 @@ public class Application {
     private void bridgeGameContinue(BridgeGame bridgeGame) {
         bridgeGame.move(inputMove());
         outputMove(bridgeGame);
-        boolean isContinue=true;
-        isContinue=checker.checkBridgeGameResult(bridgeGame);
-        if(!isContinue){
-            isContinue=inputRetry();
+        boolean isContinue = checker.checkBridgeGameResult(bridgeGame);
+        if (!isContinue) {
+            isContinue = retryGame(bridgeGame);
         }
-        if(isContinue){
+        if (isContinue && !(checker.checkGameSuccess(bridgeGame))) {
             bridgeGameContinue(bridgeGame);
         }
     }
@@ -67,8 +64,25 @@ public class Application {
         outputView.printMap(bridgeGame);
     }
 
-    private boolean inputRetry() {
+    private String inputRetry() {
         outputView.printSelectRetry();
-        return checker.checkRetry(inputView.readGameCommand());
+        String gameCommand = null;
+        while (gameCommand==null) {
+            try {
+                gameCommand = inputView.readGameCommand();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException);
+            }
+        }
+        return gameCommand;
     }
+
+    private boolean retryGame(BridgeGame bridgeGame) {
+        boolean retry = checker.checkRetry(inputRetry());
+        if (retry) {
+            bridgeGame.retry();
+        }
+        return retry;
+    }
+
 }
