@@ -3,34 +3,32 @@ package bridge;
 public class Application {
     public static void main(String[] args) {
         try {
-            InputView inputView = new InputView();
-            OutputView outputView = new OutputView();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(InputView.readBridgeSize()));
             Player player = new Player();
             System.out.println("다리 건너기 게임을 시작합니다.");
             while (!bridgeGame.isSucceeds()) {
-                playGame(bridgeGame, player, inputView, outputView);
+                playGame(bridgeGame, player);
                 if (bridgeGame.isSucceeds()) {
                     break;
                 }
-                if (!bridgeGame.retry(inputView.readGameCommand())) { // 중간에 실패한 경우
+                if (!bridgeGame.retry(InputView.readGameCommand())) { // 중간에 실패한 경우
                     break;
                 }
                 player = new Player();
             }
-            outputView.printResult(player.generateMap(), bridgeGame);
+            OutputView.printResult(player.generateMap(), bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void playGame(BridgeGame bridgeGame, Player player, InputView inputView, OutputView outputView) {
+    private static void playGame(BridgeGame bridgeGame, Player player) {
         int totalRounds = bridgeGame.getTotalRounds();
         for (int round = 0; round < totalRounds; round++) {
-            boolean isAnswer = bridgeGame.move(player, inputView.readMoving());
+            boolean isAnswer = bridgeGame.move(player, InputView.readMoving());
             // moving 결과 출력
-            outputView.printMap(player.generateMap());
+            OutputView.printMap(player.generateMap());
             if (!isAnswer) {
                 return;
             }
