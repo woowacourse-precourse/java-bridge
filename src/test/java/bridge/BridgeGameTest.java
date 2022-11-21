@@ -3,13 +3,17 @@ package bridge;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -32,79 +36,64 @@ class BridgeGameTest {
         System.setOut(standardOut);
     }
 
-    @DisplayName("성공시 결과 확인_1번 시도")
-    @Test
-    public void startGame_result_success_try1() {
+    static Stream<Arguments> generateData() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(castCommand(List.of("U", "U", "D")),
+                                "1", "[ O | O |   ]" + "\n" + "[   |   | O ]", "성공"),
+                        List.of(castCommand(List.of("U", "U", "U", "R", "U", "U", "D")),
+                                "2", "[ O | O |   ]" + "\n" + "[   |   | O ]", "성공"),
+                        List.of(castCommand(List.of("U", "U", "U", "Q")),
+                                "1", "[ O | O | X ]" + "\n" + "[   |   |   ]", "실패"),
+                        List.of(castCommand(List.of("U", "U", "U", "R", "D", "Q")),
+                                "2", "[   ]" + "\n" + "[ X ]", "실패"))
+        );
+    }
+
+    static Stream<Arguments> generateMoves() {
+        return Stream.of(
+                Arguments.of(
+                        List.of("U", "U", "D"),
+                        List.of("u", "u", "d")
+                )
+        );
+    }
+
+    private static String castCommand(List<String> commands) {
+        StringBuilder inputCommand = new StringBuilder();
+
+        for (String command : commands) {
+            if (inputCommand.length() != 0) inputCommand.append("\n");
+            inputCommand.append(command);
+        }
+
+        return inputCommand.toString();
+    }
+
+    @DisplayName("startGame_output 확인")
+    @ParameterizedTest
+    @MethodSource("generateData")
+    public void startGame_result(List<String> expect) {
+        System.out.println(expect);
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
 
-            setInput("U" + "\n" + "U" + "\n" + "D");
+            setInput(expect.get(0));
             List<String> result = bridgeGame.startGame();
 
-            assertThat(result).contains("1",
-                    "[ O | O |   ]" + "\n" + "[   |   | O ]",
-                    "성공");
+            assertThat(result).contains(expect.get(1),
+                    expect.get(2), expect.get(3));
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("성공시 결과 확인_2번 시도")
-    @Test
-    public void startGame_result_success_try2() {
+    @DisplayName("move() 정상 작동")
+    @ParameterizedTest
+    @MethodSource("generateMoves")
+    public void moveBridge_success(List<String> inputMoves) {
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
 
-            setInput("U" + "\n" + "U" + "\n" + "U"
-                    + "\n" + "R"
-                    + "\n" + "U" + "\n" + "U" + "\n" + "D");
-            List<String> result = bridgeGame.startGame();
-
-            assertThat(result).contains("2",
-                    "[ O | O |   ]" + "\n" + "[   |   | O ]",
-                    "성공");
-        }).doesNotThrowAnyException();
-    }
-
-    @DisplayName("종료(실패) 결과 확인_1번 시도")
-    @Test
-    public void startGame_result_fail_try1() {
-        assertThatCode(() -> {
-            bridgeGame.setBridge(List.of("U", "U", "D"));
-
-            setInput("U" + "\n" + "U" + "\n" + "U"
-                    + "\n" + "Q");
-            List<String> result = bridgeGame.startGame();
-
-            assertThat(result).contains("1",
-                    "[ O | O | X ]" + "\n" + "[   |   |   ]",
-                    "실패");
-        }).doesNotThrowAnyException();
-    }
-
-    @DisplayName("종료(실패) 결과 확인_2번 시도")
-    @Test
-    public void startGame_result_fail_try2() {
-        assertThatCode(() -> {
-            bridgeGame.setBridge(List.of("U", "U", "D"));
-
-            setInput("U" + "\n" + "U" + "\n" + "U"
-                    + "\n" + "R"
-                    + "\n" + "D"
-                    + "\n" + "Q");
-            List<String> result = bridgeGame.startGame();
-
-            assertThat(result).contains("2",
-                    "[   ]" + "\n" + "[ X ]",
-                    "실패");
-        }).doesNotThrowAnyException();
-    }
-
-    @DisplayName("정상 작동 - 대문자")
-    @Test
-    public void moveBridge_Upper_success() {
-        assertThatCode(() -> {
-            bridgeGame.setBridge(List.of("U", "U", "D"));
-
-            setInput("U" + "\n" + "U" + "\n" + "D");
+            setInput(castCommand(inputMoves));
             boolean move = bridgeGame.move(new StringBuilder(), new StringBuilder());
 
             assertThat(move).isTrue();
@@ -117,78 +106,45 @@ class BridgeGameTest {
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("정상 작동 - 소문자")
-    @Test
-    public void moveBridge_Lower_success() {
+    @DisplayName("다리 이동 실패")
+    @ParameterizedTest
+    @CsvSource(value = {
+            "D,'[   ]" + "\n" + "[ X ]'",
+            "'U" + "\n" + "D','[ O |   ]" + "\n" + "[   | X ]'"
+    })
+    public void moveBridge_take_fail(String input, String expect) {
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
 
-            setInput("u" + "\n" + "u" + "\n" + "d");
-            boolean move = bridgeGame.move(new StringBuilder(), new StringBuilder());
-
-            assertThat(move).isTrue();
-
-            assertThat(outputStreamCaptor.toString())
-                    .contains(
-                            "[ O ]", "[   ]", "[ O | O ]", "[   |   ]",
-                            "[ O | O |   ]", "[   |   | O ]"
-                    );
-        }).doesNotThrowAnyException();
-    }
-
-    @DisplayName("1번에서 실패")
-    @Test
-    public void moveBridge_take_1() {
-        assertThatCode(() -> {
-            bridgeGame.setBridge(List.of("U", "U", "D"));
-
-            setInput("D");
+            setInput(input);
             boolean move = bridgeGame.move(new StringBuilder(), new StringBuilder());
 
             assertThat(move).isFalse();
 
-            assertThat(outputStreamCaptor.toString())
-                    .contains(
-                            "[   ]", "[ X ]"
-                    );
-        }).doesNotThrowAnyException();
-    }
-
-    @DisplayName("2번에서 실패")
-    @Test
-    public void moveBridge_take_2() {
-        assertThatCode(() -> {
-            bridgeGame.setBridge(List.of("U", "U", "D"));
-
-            setInput("U" + "\n" + "D");
-            bridgeGame.move(new StringBuilder(), new StringBuilder());
-
-            assertThat(outputStreamCaptor.toString())
-                    .contains(
-                            "[ O ]", "[   ]",
-                            "[ O |   ]", "[   | X ]"
-                    );
+            assertThat(outputStreamCaptor.toString()).contains(expect);
         }).doesNotThrowAnyException();
     }
 
     @DisplayName("이동 방향이 U or D가 아닐 경우 예외 처리")
-    @Test
-    public void moveBridge_not_word() {
+    @ParameterizedTest
+    @CsvSource(value = {"R", "r", "1", "C", "uu", "ud", "UU"})
+    public void moveBridge_not_word(String inputMove) {
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
 
-            setInput("K");
+            setInput(inputMove);
             bridgeGame.move(new StringBuilder(), new StringBuilder());
 
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.moveByNotUD.getMessage());
     }
 
-    @DisplayName("재시작 성공_대문자")
-    @Test
-    public void retry_upper_success_R() {
+    @DisplayName("재시작 성공")
+    @ParameterizedTest
+    @CsvSource(value = {"R", "r"})
+    public void retry_R_success(String inputCommand) {
         assertThatCode(() -> {
-            setInput("R");
+            setInput(inputCommand);
             boolean retry = bridgeGame.retry();
 
             assertThat(retry).isTrue();
@@ -196,23 +152,12 @@ class BridgeGameTest {
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("재시작 성공_소문자")
-    @Test
-    public void retry_Lower_success_R() {
+    @DisplayName("종료 성공")
+    @ParameterizedTest
+    @CsvSource(value = {"Q", "q"})
+    public void retry_Q_success(String inputCommand) {
         assertThatCode(() -> {
-            setInput("r");
-            boolean retry = bridgeGame.retry();
-
-            assertThat(retry).isTrue();
-
-        }).doesNotThrowAnyException();
-    }
-
-    @DisplayName("종료 성공_대문자")
-    @Test
-    public void retry_upper_success_Q() {
-        assertThatCode(() -> {
-            setInput("Q");
+            setInput(inputCommand);
             boolean retry = bridgeGame.retry();
 
             assertThat(retry).isFalse();
@@ -220,21 +165,12 @@ class BridgeGameTest {
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("종료 성공_대문자")
-    @Test
-    public void retry_lower_success_Q() {
-        assertThatCode(() -> {
-            setInput("q");
-            bridgeGame.retry();
-
-        }).doesNotThrowAnyException();
-    }
-
     @DisplayName("명령이 R or Q가 아닐 경우 예외처리")
-    @Test
-    public void retry_not_word() {
+    @ParameterizedTest
+    @CsvSource(value = {"a", "10", "e", "W", "rr", "Rr", "qQ", "QQ"})
+    public void retry_not_word(String inputCommand) {
         assertThatCode(() -> {
-            setInput("x");
+            setInput(inputCommand);
             bridgeGame.retry();
 
         }).isInstanceOf(IllegalArgumentException.class)

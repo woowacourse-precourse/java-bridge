@@ -2,6 +2,8 @@ package bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -17,11 +19,12 @@ class BridgeMakerTest {
     }
 
     @DisplayName("다리가 생성된다.")
-    @Test
-    public void makeBridge() {
+    @ParameterizedTest
+    @CsvSource(value = {"5", "10", "15", "20"})
+    public void makeBridge(int inputSize) {
         assertThatCode(() -> {
-            List<String> bridge = bridgeMaker.makeBridge(5);
-            assertThat(bridge.size()).isEqualTo(5);
+            List<String> bridge = bridgeMaker.makeBridge(inputSize);
+            assertThat(bridge.size()).isEqualTo(inputSize);
 
         }).doesNotThrowAnyException();
     }
