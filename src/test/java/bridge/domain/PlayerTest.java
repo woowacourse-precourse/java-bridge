@@ -26,7 +26,7 @@ class PlayerTest {
         player.move(bridgeGame, Direction.UP);
 
         verify(bridgeGame, only()).move(any(Round.class), eq(Direction.UP));
-        verify(bridgeGameResult, only()).addResult(any(Round.class), any(MoveResult.class), any(Direction.class));
+        verify(bridgeGameResult, only()).addResult(any(Round.class), any(PlayerMove.class));
     }
 
     @Test

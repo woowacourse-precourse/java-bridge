@@ -8,15 +8,13 @@ import java.util.Map;
 
 public class BridgeGameResult {
 
-    private final Map<Round, MoveResult> result = new HashMap<>();
-    private final Map<Round, Direction> move = new HashMap<>();
+    private final Map<Round, PlayerMove> result = new HashMap<>();
 
     public BridgeGameResult() {
     }
 
-    public void addResult(Round round, MoveResult moveResult, Direction direction) {
-        result.put(round, moveResult);
-        move.put(round, direction);
+    public void addResult(Round round, PlayerMove playerMove) {
+        result.put(round, playerMove);
     }
 
     public void reset() {
@@ -37,17 +35,17 @@ public class BridgeGameResult {
     }
 
     private MoveResult checkRound(Round round, Direction direction) {
-        Direction moveDirection = move.get(round);
-        if (moveDirection != direction) {
+        PlayerMove playerMove = result.get(round);
+        if (playerMove.isNotSameDirection(direction)) {
             return MoveResult.NOT_MOVE;
         }
-        return result.get(round);
+        return playerMove.getMoveResult();
     }
 
     public Victory checkPassed() {
         long failCount = Round.naturalOrderWithSize(result.size()).stream()
                 .map(result::get)
-                .filter(MoveResult::isFail)
+                .filter(PlayerMove::isFail)
                 .count();
         return Victory.getEnum(failCount);
     }

@@ -20,7 +20,7 @@ public class Player {
 
     public void move(BridgeGame bridgeGame, Direction direction) {
         MoveResult result = bridgeGame.move(round, direction);
-        bridgeGameResult.addResult(round, result, direction);
+        bridgeGameResult.addResult(round, new PlayerMove(result, direction));
         this.round = round.nextRound();
     }
 
