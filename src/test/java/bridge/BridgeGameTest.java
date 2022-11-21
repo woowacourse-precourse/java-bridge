@@ -88,4 +88,28 @@ class BridgeGameTest {
         bridgeGame.move("D");
         assertThat(bridgeGame.isSuccess()).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("게임 다시 시도시 다리가 그대로인지 테스트")
+    void retry_PlayerCommandsClear_KeepAnswerBridge() {
+        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U", "D", "D"));
+        bridgeGame.move("D");
+        bridgeGame.retry();
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isSuccess()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("게임 다시 시도시 시도한 횟수가 그대로 이어지는지 테스트")
+    void retry_PlayerCommandsClear_KeepTryCount() {
+        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U", "D", "D"));
+        bridgeGame.move("D");
+        bridgeGame.retry();
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getTryCount()).isEqualTo(4);
+    }
 }
