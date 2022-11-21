@@ -6,7 +6,6 @@ package bridge.domain;
 public class BridgeGame {
 
     public BridgeGame() {
-        Player.set();
     }
 
     public void start() {

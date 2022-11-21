@@ -82,14 +82,14 @@ public class BridgeGameHost {
     private int decideBridgeSize() {
         while (true) {
             try {
-                return printAndGetBridgeSize();
+                return getBridgeSize();
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception);
             }
         }
     }
 
-    private int printAndGetBridgeSize() {
+    private int getBridgeSize() {
         outputView.printRequestBridgeSize();
         return inputView.readBridgeSize();
     }
@@ -97,7 +97,7 @@ public class BridgeGameHost {
     private void moving() {
         while (true) {
             try {
-                printAndDecideMoving();
+                decideMoving();
                 break;
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception);
@@ -105,7 +105,7 @@ public class BridgeGameHost {
         }
     }
 
-    private void printAndDecideMoving() {
+    private void decideMoving() {
         outputView.printRequestMoving();
         String moving = inputView.readMoving();
         bridgeGame.move(moving);

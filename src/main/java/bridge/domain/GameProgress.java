@@ -6,7 +6,8 @@ public class GameProgress {
 
     public static StringBuilder map() {
         StringBuilder map = new StringBuilder();
-        map.append(stateUpOrDownInBridge(UP)).append("\n").append(stateUpOrDownInBridge(DOWN)).append("\n");
+        map.append(upOrDownStepStateInBridge(UP)).append("\n")
+                .append(upOrDownStepStateInBridge(DOWN)).append("\n");
         return map;
     }
 
@@ -18,15 +19,15 @@ public class GameProgress {
         return result;
     }
 
-    private static StringBuilder stateUpOrDownInBridge(String position) {
+    private static StringBuilder upOrDownStepStateInBridge(String position) {
         StringBuilder printOfMap = new StringBuilder();
-        pastMap(printOfMap, position);
-        nowMap(printOfMap, position);
+        passedStep(printOfMap, position);
+        nowStep(printOfMap, position);
         translateLastLetter(printOfMap);
         return printOfMap;
     }
 
-    private static void pastMap(StringBuilder printOfMap, String position) {
+    private static void passedStep(StringBuilder printOfMap, String position) {
         for (int index = 0; index < Player.getIndex(); index++) {
             if (Player.playerCanGo(index, position)) {
                 printOfMap.append(VERTICAL_BAR).append(O);
@@ -38,17 +39,17 @@ public class GameProgress {
         }
     }
 
-    private static void nowMap(StringBuilder printOfMap, String position) {
+    private static void nowStep(StringBuilder printOfMap, String position) {
         if (Player.getAlive()) { // 플레이어가 살아있을 떄
-            appendNowMapWhenAlive(printOfMap, position);
+            stepStateWhenPlayerIsAlive(printOfMap, position);
         }
 
         if (!Player.getAlive()) { // 플레이어가 죽었을 때
-            appendNowMapWhenNotAlive(printOfMap, position);
+            stepStateWhenPlayerIsNotAlive(printOfMap, position);
         }
     }
 
-    private static void appendNowMapWhenAlive(StringBuilder printOfMap, String position) {
+    private static void stepStateWhenPlayerIsAlive(StringBuilder printOfMap, String position) {
         if (Player.playerCanGo(Player.getIndex(), position)) {
             printOfMap.append(VERTICAL_BAR).append(O);
         }
@@ -58,7 +59,7 @@ public class GameProgress {
         }
     }
 
-    private static void appendNowMapWhenNotAlive(StringBuilder printOfMap, String position) {
+    private static void stepStateWhenPlayerIsNotAlive(StringBuilder printOfMap, String position) {
         if (Player.playerCanGo(Player.getIndex(), position)) {
             printOfMap.append(VERTICAL_BAR).append(BLANK);
         }
