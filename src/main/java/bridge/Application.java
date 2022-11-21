@@ -58,7 +58,18 @@ public class Application {
         }
     }
 
-
+    private static boolean userSingleMove(User user, BridgeGame bg, InputView inputView, OutputView outputView, List<String> answer) {
+        try {
+            String dir = inputView.readMoving();
+            user.saveChoice(dir);
+            List<List<String>> comparedResult = bg.move(answer, user);
+            outputView.printMap(comparedResult);
+            return checkGameOver(comparedResult);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return userSingleMove(user, bg, inputView, outputView, answer);
+        }
+    }
 
 
 }
