@@ -17,7 +17,7 @@ public class MoveInputException {
         }
     }
 
-    private void inputOnlyConsistOfUD(String input) {
+    public void inputOnlyConsistOfUD(String input) {
         if (!input.equals(USER_UP) && !input.equals(USER_DOWN)) {
             throw new IllegalArgumentException("[ERROR] 이동 칸 입력은 U, D중 하나여야 합니다.");
         }
