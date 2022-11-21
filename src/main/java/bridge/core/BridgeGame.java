@@ -29,8 +29,8 @@ public class BridgeGame {
     }
 
     public ProcessCondition move(String selectBlock) {
-        Integer currentPosition = gameStatusOperator.getCurrentPosition();
         gameStatusOperator.changePosition();
+        Integer currentPosition = gameStatusOperator.getCurrentPosition();
         if (bridge.checkPassableBlock(currentPosition, selectBlock)) {
             return PassCondition.PASS;
         }

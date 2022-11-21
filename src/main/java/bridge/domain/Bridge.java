@@ -12,7 +12,7 @@ public class Bridge {
 
     public Boolean checkPassableBlock(Integer currentPosition, String selectBlock) {
         // TODO : 인덱스가 범위를 벗어나는 경우에 대해서 처리해야 함
-        String passableBlock = bridgeMap.get(currentPosition + 1);
+        String passableBlock = bridgeMap.get(currentPosition);
         if (selectBlock.equals(passableBlock)) return true;
         return false;
     }
