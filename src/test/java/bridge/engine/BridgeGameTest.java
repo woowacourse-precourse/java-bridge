@@ -2,6 +2,7 @@ package bridge.engine;
 
 import bridge.model.Crossing;
 import bridge.model.PassOrFail;
+import bridge.model.UpOrDown;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -31,7 +32,7 @@ class BridgeGameTest {
         private Stream<Arguments> provideNullSource() {
             return Stream.of(
                     Arguments.of(null, null),
-                    Arguments.of(null, new PassOrFail(true)),
+                    Arguments.of(null, new PassOrFail(true, new UpOrDown("U"))),
                     Arguments.of(new Crossing(new ArrayList<>()), null)
             );
         }

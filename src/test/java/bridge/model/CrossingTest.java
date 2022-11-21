@@ -32,7 +32,7 @@ class CrossingTest {
         void returnFalseWhenFailCross() {
             //given
             Crossing crossing = new Crossing(new ArrayList<>());
-            PassOrFail passOrFail = new PassOrFail(true);
+            PassOrFail passOrFail = new PassOrFail(true, new UpOrDown("U"));
             int expectedHistorySize = 1;
 
             //when
@@ -52,8 +52,8 @@ class CrossingTest {
         void returnTrueWhenSuccessCross() {
             //given
             Crossing crossing = new Crossing(new ArrayList<>());
-            crossing.savePassOrFail(new PassOrFail(true));
-            crossing.savePassOrFail(new PassOrFail(true));
+            crossing.savePassOrFail(new PassOrFail(true, new UpOrDown("U")));
+            crossing.savePassOrFail(new PassOrFail(true, new UpOrDown("U")));
 
             //when
             boolean expected = true;
@@ -68,8 +68,8 @@ class CrossingTest {
         void returnFalseWhenFailCross() {
             //given
             Crossing crossing = new Crossing(new ArrayList<>());
-            crossing.savePassOrFail(new PassOrFail(true));
-            crossing.savePassOrFail(new PassOrFail(false));
+            crossing.savePassOrFail(new PassOrFail(true, new UpOrDown("U")));
+            crossing.savePassOrFail(new PassOrFail(false, new UpOrDown("U")));
 
             //when
             boolean expected = false;
@@ -89,7 +89,7 @@ class CrossingTest {
         void returnHistorySize() {
             //given
             Crossing crossing = new Crossing(new ArrayList<>());
-            crossing.savePassOrFail(new PassOrFail(true));
+            crossing.savePassOrFail(new PassOrFail(true, new UpOrDown("U")));
             int expected = 1;
 
             //when
@@ -124,8 +124,8 @@ class CrossingTest {
             BridgeSize bridgeSize = new BridgeSize(3);
 
             Crossing crossing = new Crossing(List.of(
-                    new PassOrFail(true),
-                    new PassOrFail(false)
+                    new PassOrFail(true, new UpOrDown("U")),
+                    new PassOrFail(false, new UpOrDown("U"))
             ));
 
             //when
@@ -143,9 +143,9 @@ class CrossingTest {
             BridgeSize bridgeSize = new BridgeSize(3);
 
             Crossing crossing = new Crossing(List.of(
-                    new PassOrFail(true),
-                    new PassOrFail(false),
-                    new PassOrFail(false)
+                    new PassOrFail(true, new UpOrDown("U")),
+                    new PassOrFail(false, new UpOrDown("U")),
+                    new PassOrFail(false, new UpOrDown("U"))
             ));
 
             //when

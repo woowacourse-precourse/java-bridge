@@ -37,7 +37,8 @@ public class BridgeGameEngine {
         }
 
         int nextStep = crossing.getNextStep();
-        PassOrFail passOrFail = new PassOrFail(bridge.isCross(nextStep, upOrDown));
+        boolean crossed = bridge.isToCrossed(nextStep, upOrDown);
+        PassOrFail passOrFail = new PassOrFail(crossed, upOrDown);
 
         bridgeGame.move(crossing, passOrFail);
     }
