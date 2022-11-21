@@ -29,19 +29,22 @@ public class OutputView {
         String normalizedGameHistory = normalize(gameStatus.getGameHistory());
         List<String> upperLine = makeUpperLine(normalizedGameHistory);
         List<String> lowerLine = makeLowerLine(normalizedGameHistory);
-        String formattedResult = formatLine(upperLine) + "\n" + formatLine(lowerLine) + "\n";
 
         if (gameStatus.isFail()) {
-            formattedResult = addFailSymbolAndGetResult(formattedResult);
+            addFailSymbol(upperLine, lowerLine);
         }
-        return formattedResult;
+        return formatLine(upperLine) + "\n" + formatLine(lowerLine) + "\n";
     }
 
-    private String addFailSymbolAndGetResult(String target) {
-        int finalSymbolIndex = target.lastIndexOf("O");
-        StringBuilder forAddSymbol = new StringBuilder(target);
-        forAddSymbol.setCharAt(finalSymbolIndex, 'X');
-        return forAddSymbol.toString();
+    private void addFailSymbol(List<String> upperLine, List<String> lowerLine) {
+        int upperLineFinalSymbolIdx = upperLine.lastIndexOf("O");
+        int lowerLineFinalSymbolIdx = lowerLine.lastIndexOf("O");
+
+        if (upperLineFinalSymbolIdx > lowerLineFinalSymbolIdx) {
+            upperLine.set(upperLineFinalSymbolIdx, "X");
+            return;
+        }
+        lowerLine.set(lowerLineFinalSymbolIdx, "X");
     }
 
     private String normalize(String gameHistory) {
