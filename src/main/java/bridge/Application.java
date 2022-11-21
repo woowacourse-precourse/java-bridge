@@ -6,8 +6,7 @@ import java.util.List;
 public class Application {
     static OutputView output = new OutputView();
     static InputView input = new InputView();
-    static BridgeNumberGenerator bng = new BridgeRandomNumberGenerator();
-    static BridgeMaker bm = new BridgeMaker(bng);
+    static BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
     static BridgeGame bg = new BridgeGame();
 
     private static int progress = 0, numTrial = 0;
