@@ -50,36 +50,12 @@ class OutputViewTest {
     @MethodSource
     private static Stream<Arguments> provideForPrintMapFormat() {
         return Stream.of(
-                Arguments.of(
-                        Bridge.createByBridgeShapeValue(List.of("D", "U", "D")),
-                        List.of(true, true, true),
-                        List.of("[   | O |   ]\n[ O |   | O ]")
-                ),
-                Arguments.of(
-                        Bridge.createByBridgeShapeValue(List.of("D", "U", "D")),
-                        List.of(true, true, false),
-                        List.of("[   | O | X ]\n[ O |   |   ]")
-                ),
-                Arguments.of(
-                        Bridge.createByBridgeShapeValue(List.of("U", "U", "U")),
-                        List.of(true, true, true),
-                        List.of("[ O | O | O ]\n[   |   |   ]")
-                ),
-                Arguments.of(
-                        Bridge.createByBridgeShapeValue(List.of("U", "U", "U")),
-                        List.of(false, false, false),
-                        List.of("[   |   |   ]\n[ X | X | X ]")
-                ),
-                Arguments.of(
-                        Bridge.createByBridgeShapeValue(List.of("D", "D", "D")),
-                        List.of(true, true, true),
-                        List.of("[   |   |   ]\n[ O | O | O ]")
-                ),
-                Arguments.of(
-                        Bridge.createByBridgeShapeValue(List.of("D", "D", "D")),
-                        List.of(false, false, false),
-                        List.of("[ X | X | X ]\n[   |   |   ]")
-                )
+                Arguments.of(Bridge.createByBridgeShapeValue(List.of("D", "U", "D")), List.of(true, true, true),
+                        List.of("[   | O |   ]\n[ O |   | O ]")),
+                Arguments.of(Bridge.createByBridgeShapeValue(List.of("D", "U", "D")), List.of(true, true, false),
+                        List.of("[   | O | X ]\n[ O |   |   ]")),
+                Arguments.of(Bridge.createByBridgeShapeValue(List.of("U", "U", "U")), List.of(false, false, false),
+                        List.of("[   |   |   ]\n[ X | X | X ]"))
         );
     }
 
