@@ -15,7 +15,7 @@ public class OutputView {
 
     public void printInputBridgeSizeNotice() {
         System.out.println(PRINT_INPUT_BRIDGE_SIZE_NOTICE);
-        inputView.inputBridgeSize();
+        inputView.readBridgeSize();
     }
 
     /**

@@ -16,14 +16,10 @@ public class InputView {
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-    public void inputBridgeSize() {
+    public void readBridgeSize() {
         bridgeSize = Integer.parseInt(Console.readLine());
         validateSizeNumber(bridgeSize);
         bridge = bridgeMaker.makeBridge(bridgeSize);
-    }
-
-    public int readBridgeSize() {
-        return 0;
     }
 
     /**
