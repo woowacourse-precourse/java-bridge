@@ -4,7 +4,7 @@ import bridge.utils.Converter;
 import bridge.utils.Validator;
 
 public class BridgeSize {
-    private int bridgeSize;
+    private final int bridgeSize;
 
     public BridgeSize(String userBridgeSize) {
         Validator.validateNumber(userBridgeSize);
