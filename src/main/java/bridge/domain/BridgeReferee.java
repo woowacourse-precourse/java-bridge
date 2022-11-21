@@ -7,16 +7,16 @@ import static bridge.constant.GameStatus.ON_WAY;
 import bridge.constant.GameStatus;
 import java.util.List;
 
-public class BridgeMover {
+public class BridgeReferee {
     private List<String> bridge;
     private int location;
 
-    public BridgeMover(List<String> bridge) {
+    public BridgeReferee(List<String> bridge) {
         this.bridge = bridge;
         this.location = 0;
     }
 
-    public GameStatus go(String moving) {
+    public GameStatus judge(String moving) {
         if (!isCorrect(moving)) {
             return FAIL;
         }

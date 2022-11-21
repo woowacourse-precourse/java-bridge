@@ -15,19 +15,19 @@ import java.util.List;
 public class BridgeGame {
     private GameStatus gameStatus;
     private int tryCount;
-    private BridgeMover bridgeMover;
+    private BridgeReferee bridgeReferee;
     private BridgeDrawer bridgeDrawer;
 
     public BridgeGame(List<String> bridge) {
         this.gameStatus = ON_WAY;
         this.tryCount = 1;
-        this.bridgeMover = new BridgeMover(bridge);
+        this.bridgeReferee = new BridgeReferee(bridge);
         this.bridgeDrawer = new BridgeDrawer();
     }
 
     public String move(String moving) {
         validateMoving(moving);
-        GameStatus gameStatusAfterMoving = bridgeMover.go(moving);
+        GameStatus gameStatusAfterMoving = bridgeReferee.judge(moving);
         gameStatus = gameStatusAfterMoving;
         bridgeDrawer.record(moving, gameStatusAfterMoving);
         return bridgeDrawer.getSketch();
@@ -58,7 +58,7 @@ public class BridgeGame {
     }
 
     public boolean isSuccess() {
-        return bridgeMover.isCrossCompletely();
+        return bridgeReferee.isCrossCompletely();
     }
 
     public String getSketch() {
