@@ -34,4 +34,9 @@ public class BridgeView {
     public void printMoveResult(BridgeResult bridgeResult) {
         outputView.printMap(bridgeResult);
     }
+
+    public void printGameResult(BridgeResult bridgeResult, ResultSymbol resultSymbol, int gameTryCount) {
+        outputView.printResult(bridgeResult, resultSymbol, gameTryCount);
+
+    }
 }

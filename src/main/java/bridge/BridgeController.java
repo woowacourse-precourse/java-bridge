@@ -13,6 +13,7 @@ public class BridgeController {
     public void start() {
         init();
         loop();
+        printResult();
     }
 
     private void init() {
@@ -38,5 +39,9 @@ public class BridgeController {
                 break;
             }
         }
+    }
+
+    public void printResult() {
+        bridgeView.printGameResult(bridgeGame.printLines(), bridgeGame.getResultSymbol(), bridgeGame.getGameTryCount());
     }
 }

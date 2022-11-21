@@ -51,4 +51,8 @@ public class BridgeGame {
     public ResultSymbol getResultSymbol() {
         return resultSymbol;
     }
+
+    public int getGameTryCount() {
+        return gameTryCount;
+    }
 }
