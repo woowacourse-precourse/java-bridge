@@ -46,4 +46,16 @@ class BridgeGameTest {
         Assertions.assertThat(isFail).isFalse();
         Assertions.assertThat(isPass).isTrue();
     }
+
+    @DisplayName("남은 라운드가 있는 지 판단한다.")
+    @Test
+    void isRoundLeftTest() {
+        bridgeGame.getRecordByMove("U");
+        bridgeGame.getRecordByMove("D");
+        bridgeGame.getRecordByMove("U");
+
+        Boolean isRoundLeft = bridgeGame.isRoundLeft();
+
+        Assertions.assertThat(isRoundLeft).isFalse();
+    }
 }
