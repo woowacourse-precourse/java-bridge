@@ -26,7 +26,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Deque<MovementStatusForm> movementResult) {
+    public static void printMap(Deque<MovementStatusForm> movementResult) {
         drawBySite(movementResult, Site.UP);
         drawBySite(movementResult, Site.DOWN);
         System.out.println();
@@ -69,7 +69,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int play_count, boolean isWin, Deque<MovementStatusForm> movementResult) {
+    public static void printResult(int play_count, boolean isWin, Deque<MovementStatusForm> movementResult) {
         System.out.println(FINAL_RESULT_MSG);
         printMap(movementResult);
 
