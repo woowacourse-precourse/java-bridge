@@ -23,10 +23,44 @@ public class BridgeMaker {
 
         return null;
     }
-    public List<String> initialBridge() {
+    private List<String> initialBridge() {
         List<String> initialBridgeState = new ArrayList();
         initialBridgeState.add("[");
         initialBridgeState.add("[");
         return initialBridgeState;
     }
+
+    private List<String> addBridge(List<String> preBridgeState,int randomNumber, int positionNumber){
+        if (preBridgeState.get(0)=="[") {
+            if (randomNumber == 1 && positionNumber == 1) {
+                preBridgeState.set(0, preBridgeState.get(0) + " O ");
+                preBridgeState.set(1, preBridgeState.get(1) + "   ");
+            } else if (randomNumber == 0 && positionNumber == 1) {
+                preBridgeState.set(0, preBridgeState.get(0) + " X ");
+                preBridgeState.set(1, preBridgeState.get(1) + "   ");
+            } else if (randomNumber == 0 && positionNumber == 0) {
+                preBridgeState.set(0, preBridgeState.get(0) + "   ");
+                preBridgeState.set(1, preBridgeState.get(1) + " O ");
+            } else if (randomNumber == 1 && positionNumber == 0) {
+                preBridgeState.set(0, preBridgeState.get(0) + "   ");
+                preBridgeState.set(1, preBridgeState.get(1) + " X ");
+            }
+            return preBridgeState;
+        }
+        if (randomNumber == 1 && positionNumber == 1) {
+            preBridgeState.set(0, preBridgeState.get(0) + "| O ");
+            preBridgeState.set(1, preBridgeState.get(1) + "|   ");
+        } else if (randomNumber == 0 && positionNumber == 1) {
+            preBridgeState.set(0, preBridgeState.get(0) + "| X ");
+            preBridgeState.set(1, preBridgeState.get(1) + "|   ");
+        } else if (randomNumber == 0 && positionNumber == 0) {
+            preBridgeState.set(0, preBridgeState.get(0) + "|   ");
+            preBridgeState.set(1, preBridgeState.get(1) + "| O ");
+        } else if (randomNumber == 1 && positionNumber == 0) {
+            preBridgeState.set(0, preBridgeState.get(0) + "|   ");
+            preBridgeState.set(1, preBridgeState.get(1) + "| X ");
+        }
+        return preBridgeState;
+    }
+
 }
