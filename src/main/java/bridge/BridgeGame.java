@@ -9,45 +9,47 @@ import java.util.List;
 
 public class BridgeGame {
     private final int INITIALIZED_TRIAL = 1;
+    private final Player player = new Player(new ArrayList<>());
+    private final Map map = new Map();
     private Bridge bridge;
-    private Player player;
-    private Map map;
     private int trial;
 
     public BridgeGame() {
-        this.player = new Player(new ArrayList<>());
-        this.map = new Map();
         this.trial = INITIALIZED_TRIAL;
     }
 
-    public void generateBridge(int bridgeSize) {
+    private void addTrial() {
+        this.trial++;
+    }
+
+    public void generateBridge(final int bridgeSize) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void move(String sideToMove) {
+    public void move(final String sideToMove) {
         player.move(sideToMove);
     }
 
     public boolean isPlayerInRightSide() {
-        return bridge.isMovable(
+        return bridge.isMovableSide(
                 player.getLastMoving(),
                 player.getCurrentPosition()
         );
     }
 
-    public GameStatus retry(String gameCommand) {
+    public boolean retry(String gameCommand) {
         if (gameCommand.equals(AvailableInput.get(AvailableInput.RESTART_GAME))) {
             player.initializePosition();
             this.map.initialize();
             addTrial();
-            return GameStatus.CONTINUE;
+            return true;
         }
-        return GameStatus.FAILURE;
+        return false;
     }
 
-    public GameStatus isSuccess() {
+    public GameStatus getGameStatus() {
         if (bridge.isLastPosition(player.getCurrentPosition())) {
             return GameStatus.SUCCESS;
         }
@@ -56,10 +58,6 @@ public class BridgeGame {
 
     public String getTrial() {
         return Integer.toString(this.trial);
-    }
-
-    private void addTrial() {
-        this.trial++;
     }
 
     public void updateMap() {

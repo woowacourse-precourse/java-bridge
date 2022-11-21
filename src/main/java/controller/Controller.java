@@ -1,7 +1,6 @@
 package controller;
 
 import bridge.BridgeGame;
-import bridge.Map;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
 import view.InputView;
@@ -57,12 +56,15 @@ public class Controller {
         if (!moved) {
             return askRestartGame(bridgeGame);
         }
-        return bridgeGame.isSuccess();
+        return bridgeGame.getGameStatus();
     }
 
     private GameStatus askRestartGame(final BridgeGame bridgeGame) {
         outputView.printAskGameCommand();
-        return bridgeGame.retry(inputView.readGameCommand());
+        if (bridgeGame.retry(inputView.readGameCommand())) {
+            return GameStatus.CONTINUE;
+        }
+        return GameStatus.FAILURE;
     }
 
     private void getResult(GameStatus gameResult, BridgeGame bridgeGame, List<List<String>> map) {
