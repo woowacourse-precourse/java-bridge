@@ -26,5 +26,16 @@ public class OutputViewTest {
 
         Assertions.assertThat(outputView.getUpperMap()).isEqualTo("[ O");
     }
+
+    @DisplayName("다리의 상태에 따라 맵에 구분선이 잘 표시되는지 테스트")
+    @Test
+    public void continueMapTest() {
+        List<String> bridgeStatus = List.of("O");
+        int size = 2;
+        int idx = 0;
+        outputView.continueOrFinishMap(bridgeStatus, size, idx);
+
+        Assertions.assertThat(outputView.getUpperMap()).isEqualTo("[ |");
+    }
 }
 
