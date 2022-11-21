@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view.validation;
+
+import bridge.vo.ErrorMessage;
 
 public class BridgeLengthValidator {
 

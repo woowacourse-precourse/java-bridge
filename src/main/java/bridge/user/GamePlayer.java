@@ -1,4 +1,7 @@
-package bridge;
+package bridge.user;
+
+import bridge.config.NumberGeneratorDependencyContainer;
+import bridge.controller.BridgeGameManager;
 
 public class GamePlayer {
 

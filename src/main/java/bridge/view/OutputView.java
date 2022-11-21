@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.vo.GameProgressMessage;
 
 import java.util.List;
 

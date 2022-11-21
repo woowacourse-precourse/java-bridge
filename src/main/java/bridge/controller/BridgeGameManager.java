@@ -1,5 +1,11 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
+import bridge.config.NumberGeneratorDependencyContainer;
+import bridge.service.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.vo.GameProgressMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;

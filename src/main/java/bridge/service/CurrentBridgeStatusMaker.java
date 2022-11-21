@@ -1,4 +1,7 @@
-package bridge;
+package bridge.service;
+
+import bridge.vo.BridgeDrawing;
+import bridge.vo.StepDirectionCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,6 @@ public class CurrentBridgeStatusMaker {
         for (int length = 0; length < currentPlayerBridge.size(); length++) {
             compare(currentPlayerBridge.get(length), createdBridge.get(length));
         }
-        makeEndPartBridge();
 
         return currentBridgeStatus;
     }

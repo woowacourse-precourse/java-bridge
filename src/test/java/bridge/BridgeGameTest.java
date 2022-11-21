@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.service.BridgeGame;
+import bridge.vo.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

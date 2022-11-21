@@ -1,7 +1,8 @@
 package bridge;
 
+import bridge.vo.StepDirectionCommand;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

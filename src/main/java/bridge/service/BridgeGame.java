@@ -1,6 +1,10 @@
-package bridge;
+package bridge.service;
 
-import camp.nextstep.edu.missionutils.Console;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.vo.Bridge;
+import bridge.vo.ErrorMessage;
+import bridge.vo.UserStatus;
 
 import java.util.List;
 

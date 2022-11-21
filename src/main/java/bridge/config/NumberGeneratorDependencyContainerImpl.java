@@ -1,4 +1,7 @@
-package bridge;
+package bridge.config;
+
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 public class NumberGeneratorDependencyContainerImpl implements NumberGeneratorDependencyContainer {
 
