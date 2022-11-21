@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class UDBridge {
 
-    List<String> udBridge;
+    private final List<String> udBridge;
 
     private UDBridge(List<String> UDBridge) {
         this.udBridge = UDBridge;

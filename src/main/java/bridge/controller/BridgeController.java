@@ -16,8 +16,8 @@ public class BridgeController {
     private static final int END_GAME = 21;
     private static final int FIRST_TRY = 1;
 
-    InputView inputView;
-    OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public BridgeController() {
         this.inputView = new InputView();
