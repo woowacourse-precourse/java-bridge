@@ -20,7 +20,7 @@ class BridgeMoverTest {
     @Nested
     class GoIfCorrectAndReturnStatus {
 
-        @DisplayName("방향이 맞고, 아직 갈 길이 남은 경우 - ON_WAY 반환")
+        @DisplayName("방향이 맞고, 아직 갈 길이 남은 경우 -> ON_WAY 반환")
         @Test
         void should_ReturnOnWay_When_InputCorrectMoving() {
             String moving = UPPER_SIDE;
@@ -28,7 +28,7 @@ class BridgeMoverTest {
             assertThat(gameStatusAfterMoving).isEqualTo(ON_WAY);
         }
 
-        @DisplayName("방향이 틀린 경우 - FAIL 반환")
+        @DisplayName("방향이 틀린 경우 -> FAIL 반환")
         @Test
         void should_ReturnFail_When_InputIncorrectMoving() {
             String moving = LOWER_SIDE;
@@ -36,7 +36,7 @@ class BridgeMoverTest {
             assertThat(gameStatusAfterMoving).isEqualTo(FAIL);
         }
 
-        @DisplayName("방향이 맞고, 다리를 끝까지 건넌 경우 - END 반환")
+        @DisplayName("방향이 맞고, 다리를 끝까지 건넌 경우 -> END 반환")
         @Test
         void should_ReturnEnd_When_InputCorrectMovingAndCrossBridgeCompletely() {
             bridgeMover.go(UPPER_SIDE);
@@ -51,7 +51,7 @@ class BridgeMoverTest {
     @Nested
     class CheckIsCrossBridgeCompletely {
 
-        @DisplayName("현재 위치와 다리의 길이가 같을 때")
+        @DisplayName("현재 위치와 다리의 길이가 같을 때 -> True 반환")
         @Test
         void should_ReturnTrue_When_CrossBridgeCompletely() {
             bridgeMover.go(UPPER_SIDE);
@@ -61,7 +61,7 @@ class BridgeMoverTest {
             assertThat(isCrossCompletely).isTrue();
         }
 
-        @DisplayName("현재 위치가 다리의 길이보다 작을 때")
+        @DisplayName("현재 위치가 다리의 길이보다 작을 때 -> False 반환")
         @Test
         void should_ReturnFalse_When_IsCrossingYet() {
             bridgeMover.go(UPPER_SIDE);
