@@ -7,10 +7,10 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    InputView inputView = new InputView();
-
+    private final InputView inputView = new InputView();
+    private final List<String> bridge = bridgeMaker.transmitBridge();
 
 
     /**
@@ -18,17 +18,19 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        List<String> bridge = bridgeMaker.transmitBridge();
-        List<String> moving = receiveMoving(bridge.size());
+    public boolean move() {
+        for (String block : bridge) {
+            if (judgeRoundResult(block)) {
+                continue;
+            }
+            return false;
+            //x 출력
+        }
+        return true;//성공
     }
 
-    public List<String> receiveMoving(int bridgeSize) {
-        List<String> moving = new ArrayList<>();
-        for (int i = 0; i < bridgeSize; i++) {
-            moving.add(inputView.readMoving());
-        }
-        return moving;
+    private boolean judgeRoundResult(String block) {
+        return block.equals(inputView.readMoving());
     }
 
     /**
