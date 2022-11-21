@@ -4,6 +4,7 @@ import static bridge.Utils.Constant.MatchResult.BLANK;
 import static bridge.Utils.Constant.Moving.DOWN;
 import static bridge.Utils.Constant.Moving.UP;
 
+import bridge.Utils.Constant.MatchResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,21 +14,21 @@ public class BridgeMap {
     private static final String MAP_MIDDLE_PART = " | ";
     private static final String MAP_END_PART = " ]";
 
-    List<String> upMap;
-    List<String> downMap;
+    private List<MatchResult> upMap;
+    private List<MatchResult> downMap;
 
     public BridgeMap() {
         upMap = new ArrayList<>();
         downMap = new ArrayList<>();
     }
 
-    public void add(String upOrDown, String isCorrect) {
+    public void add(String upOrDown, MatchResult isCorrect) {
         if (upOrDown.equals(UP.toString())) {
             upMap.add(isCorrect);
-            downMap.add(BLANK.toString());
+            downMap.add(BLANK);
         }
         if (upOrDown.equals(DOWN.toString())) {
-            upMap.add(BLANK.toString());
+            upMap.add(BLANK);
             downMap.add(isCorrect);
         }
     }
@@ -40,7 +41,7 @@ public class BridgeMap {
         return builder.toString();
     }
 
-    private String toStringAboutMap(List<String> map) {
+    private String toStringAboutMap(List<MatchResult> map) {
         StringBuilder builder = new StringBuilder();
         builder.append(MAP_START_PART);
         for (int i = 0; i < map.size() - 1; i++) {

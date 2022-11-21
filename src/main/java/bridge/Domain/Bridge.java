@@ -31,10 +31,10 @@ public class Bridge {
 
     private boolean matching(String myMoving, String answerMoving) {
         if (myMoving.equals(answerMoving)) {
-            result.add(myMoving, CORRECT.toString());
+            result.add(myMoving, CORRECT);
             return true;
         }
-        result.add(myMoving, INCORRECT.toString());
+        result.add(myMoving, INCORRECT);
         return false;
     }
 

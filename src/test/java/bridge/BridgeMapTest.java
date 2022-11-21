@@ -27,7 +27,7 @@ public class BridgeMapTest {
     @DisplayName("한 개의 일치한 결과를 넣었을 때 제대로 출력되는지 확인한다.")
     @Test
     void addMapTestByCorrectMoving() {
-        bridgeMap.add("U", CORRECT.toString());
+        bridgeMap.add("U", CORRECT);
         assertThat(bridgeMap.toString())
                 .contains(
                         "[ O ]",
@@ -38,7 +38,7 @@ public class BridgeMapTest {
     @DisplayName("한 개의 불일치한 결과를 넣었을 때 제대로 출력되는지 확인한다.")
     @Test
     void addMapTestByIncorrectMoving() {
-        bridgeMap.add("D", INCORRECT.toString());
+        bridgeMap.add("D", INCORRECT);
         assertThat(bridgeMap.toString())
                 .contains(
                         "[   ]",
@@ -49,8 +49,8 @@ public class BridgeMapTest {
     @DisplayName("한 개의 일치한 결과와 한 개의 불일치한 결과를 넣었을 때 제대로 출력되는지 확인한다.")
     @Test
     void addMapTestByOneCorrectAndOneIncorrect() {
-        bridgeMap.add("U", CORRECT.toString());
-        bridgeMap.add("D", INCORRECT.toString());
+        bridgeMap.add("U", CORRECT);
+        bridgeMap.add("D", INCORRECT);
         assertThat(bridgeMap.toString())
                 .contains(
                         "[ O |   ]",
@@ -61,10 +61,10 @@ public class BridgeMapTest {
     @DisplayName("여러 개의 일치한 결과를 넣었을 때 제대로 출력되는지 확인한다.")
     @Test
     void addMapTestByManyCorrectMoving() {
-        bridgeMap.add("U", CORRECT.toString());
-        bridgeMap.add("D", CORRECT.toString());
-        bridgeMap.add("D", CORRECT.toString());
-        bridgeMap.add("U", CORRECT.toString());
+        bridgeMap.add("U", CORRECT);
+        bridgeMap.add("D", CORRECT);
+        bridgeMap.add("D", CORRECT);
+        bridgeMap.add("U", CORRECT);
         assertThat(bridgeMap.toString())
                 .contains(
                         "[ O |   |   | O ]",

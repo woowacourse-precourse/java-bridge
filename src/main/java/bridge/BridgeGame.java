@@ -4,8 +4,8 @@ import static bridge.Utils.Constant.GameCommand.QUIT;
 import static bridge.Utils.Constant.GameCommand.RETRY;
 
 import bridge.Controller.BridgeController;
-import bridge.View.TotalView;
 import bridge.Domain.Bridge;
+import bridge.View.TotalView;
 import java.util.List;
 
 /**
@@ -15,10 +15,9 @@ public class BridgeGame {
 
     private final BridgeController bridgeController;
     private final TotalView view;
-    Bridge user;
-    int playCount = 0;
-    boolean isPlaying;
-
+    private Bridge user;
+    private int playCount = 0;
+    private boolean isPlaying;
 
     BridgeGame() {
         bridgeController = new BridgeController();
