@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -13,6 +15,16 @@ public class BridgeGame {
     public void move() {
     }
 
+    public boolean isPossibleMove(List<String> bridge, String moveCommand, int turn) {
+
+        String bridgeInformation = bridge.get(turn);
+
+        if (bridgeInformation.equals(moveCommand)) {
+            return true;
+        }
+
+        return false;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
