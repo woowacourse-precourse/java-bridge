@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.domain.Bridge;
-import bridge.domain.MoveType;
+import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.MoveType;
 import bridge.domain.result.Result;
 import bridge.domain.result.ResultType;
 
