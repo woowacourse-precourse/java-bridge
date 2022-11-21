@@ -10,11 +10,15 @@ public class InputView {
     private static final String BRIDGE_SIZE_ERROR = "3에서 20 사이의 정수 형태로 입력해주세요.";
     private static final String BRIDGE_SPACE_ERROR = "U,D 형태로만 입력받을 수 있습니다.";
     private static final String EXIT_COMMAND_ERROR = "R,Q 형태로만 입력받을 수 있습니다.";
+    private static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String SELECT_STEP_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
         while (true) {
             String bridgeSize = readLine();
             try{
@@ -54,19 +58,20 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(SELECT_STEP_MESSAGE);
         while (true) {
-            String nxtSpace = readLine();
+            String inputSpace = readLine();
             try{
-                checkAvailableSpace(nxtSpace);
-                return nxtSpace;
+                checkAvailableSpace(inputSpace);
+                return inputSpace;
             }catch (IllegalArgumentException e){
-                printErrorMessage(BRIDGE_SIZE_ERROR);
+                printErrorMessage(BRIDGE_SPACE_ERROR);
             }
         }
     }
 
-    private static void checkAvailableSpace(String nxtSpace) {
-        if(!nxtSpace.equals("U") || !nxtSpace.equals("D")){
+    private static void checkAvailableSpace(String inputSpace) {
+        if(!inputSpace.equals("U") && !inputSpace.equals("D")){
             throw new IllegalArgumentException();
         }
     }
@@ -75,6 +80,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        System.out.println(RETRY_MESSAGE);
         while (true) {
             String exitCmd = readLine();
             try{
@@ -87,7 +93,7 @@ public class InputView {
     }
 
     private static void checkAvailableCommand(String exitCmd) {
-        if(!exitCmd.equals("R") || !exitCmd.equals("Q")){
+        if(!exitCmd.equals("R") && !exitCmd.equals("Q")){
             throw new IllegalArgumentException();
         }
     }
