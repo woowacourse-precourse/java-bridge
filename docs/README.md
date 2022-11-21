@@ -24,15 +24,19 @@
 * BridgeGame에서 View 사용 금지
 * InputView
   * 사용자 값 입력 받기
+  * 기존 메서드 시그니처, 반환 타입 변경 가능
+  * 메서드 추가 가능
 * OutputView
   * 출력하기
+  * 기존 메서드 시그니처, 반환 타입 변경 가능
   * 기존 메서드 이름 변경 불가능
+  * 메서드 추가 가능
 * BridgeGame
   * 게임 컨트롤러
   * 필드 추가 가능
+  * 메서드 추가 가능
   * 기존 메서드 이름 변경 불가능
-* BridgeMaker
-  * 필드, 메서드 관련 변경 불가능
-* BridgeRandomNumberGenerator
+  * 기존 메서드 시그니처, 반환 타입 변경 가능
+* BridgeMaker, BridgeRandomNumberGenerator 관련
   * Random 값 추출: generate()
   * 변경 불가능
