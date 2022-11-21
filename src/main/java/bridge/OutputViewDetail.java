@@ -1,6 +1,7 @@
 package bridge;
 
 public enum OutputViewDetail {
+    NEW_LINE("\n"),
     CAN_MOVE(" O "),
     CANNOT_MOVE(" X "),
     NONE("   "),
