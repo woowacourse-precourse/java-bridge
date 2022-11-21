@@ -30,4 +30,8 @@ public class BridgeGame {
     public void retry() {
         attemp++;
     }
+
+    public int getAttemp() {
+        return attemp;
+    }
 }
