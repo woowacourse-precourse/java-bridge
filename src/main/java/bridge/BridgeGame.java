@@ -31,6 +31,7 @@ public class BridgeGame {
     private void play(int bridgeSize, List<String> bridge) {
         for (int i = 0; i < bridgeSize; ++i) {
             String moveDirection = move();
+            outputView.printMap(i, moveDirection, bridge);
         }
     }
 
