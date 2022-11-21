@@ -12,7 +12,7 @@ class InputViewTest {
     @Test
     void isBridgeSizeNumber(){
         InputView inputView = new InputView();
-        assertTrue(inputView.isBridgeSizeNumber("20"));
+        assertTrue(inputView.isBridgeSizeNumber("3"));
     }
     
     @DisplayName("입력 값이 U 또는 D인지 검사하는 메서드")
@@ -20,6 +20,13 @@ class InputViewTest {
     void isReadMoving(){
         InputView inputView = new InputView();
         assertTrue(inputView.isReadMoving("U"));
+    }
+
+    @DisplayName("입력 값이 R 또는 Q인지 검사하는 메서드")
+    @Test
+    void isRetry(){
+        InputView inputView = new InputView();
+        assertTrue(inputView.isRetry("R"));
     }
 
 }
