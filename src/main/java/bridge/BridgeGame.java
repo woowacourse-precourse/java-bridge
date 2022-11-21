@@ -13,6 +13,8 @@ public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private int trial;
+
     private int size;
     private boolean success;
 
@@ -35,16 +37,23 @@ public class BridgeGame {
     }
 
     public void startGame() {
-        int trial = 0;
+        trial = 0;
         outputView.printStartGameMessage();
+
         do {
-            trial++;
-            outputView.printAskSizeMessage();
-            size = inputView.readBridgeSize();
-            success = move(bridgeMaker.makeBridge(size));
+            crossBridge();
         } while(!success && retry());
+
         outputView.printFinalState(savedBridge, savedPos, savedCorrect);
         outputView.printResult(success, trial);
+    }
+
+    private void crossBridge() {
+        trial++;
+        outputView.printAskSizeMessage();
+
+        size = inputView.readBridgeSize();
+        success = move(bridgeMaker.makeBridge(size));
     }
 
     /**
@@ -57,6 +66,7 @@ public class BridgeGame {
         saveBridgeState(bridge);
         for(int pos = 0; pos < size && correct; pos++) {
             outputView.printAskMoveMessage();
+
             correct = inputView.readMoving().equals(bridge.get(pos));
             outputView.printMap(bridge, pos, correct);
             saveState(pos, correct);
