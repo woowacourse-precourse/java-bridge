@@ -1,10 +1,10 @@
 package bridge;
 
 public class BridgeGameStarter {
-    private final InputView inputView;
+    private final OutputView outputView;
 
     public BridgeGameStarter() {
-        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void atGameStart() {
@@ -12,6 +12,6 @@ public class BridgeGameStarter {
     }
 
     private void notifyGameStart() {
-        this.inputView.printGameStart();
+        this.outputView.printGameStart();
     }
 }
