@@ -35,7 +35,8 @@ public class FootPrint {
         return footPrintFromTop.size();
     }
 
-    public void record(FootrestLocation footrestLocation, Boolean isSafe) {
+    public void record(FootrestLocation footrestLocation, boolean isSafe) {
+        validateNullCheck(footrestLocation);
         if (footrestLocation == FootrestLocation.UP) {
             recordMovedStatus(footPrintFromTop, isSafe);
             recordNotStepped(footPrintFromBot);
@@ -45,11 +46,17 @@ public class FootPrint {
         recordNotStepped(footPrintFromTop);
     }
 
+    private void validateNullCheck(FootrestLocation footrestLocation) {
+        if (footrestLocation == null) {
+            throw new IllegalStateException();
+        }
+    }
+
     private void recordNotStepped(List<FootPrintStatus> footPrint) {
         footPrint.add(FootPrintStatus.NOT_PASS);
     }
 
-    private void recordMovedStatus(List<FootPrintStatus> footPrint, Boolean isSafe) {
+    private void recordMovedStatus(List<FootPrintStatus> footPrint, boolean isSafe) {
         if (isSafe) {
             footPrint.add(FootPrintStatus.NOT_BROKEN);
             return;

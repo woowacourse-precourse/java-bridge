@@ -25,6 +25,7 @@ class FootPrintTest {
 
     @Test
     void 예외_null_입력() {
-        Assertions.fail("입력값이 null인 경우 아마 모든 Class 검증을 무시할텐데, 이거 입력값에서 Null 검증이 필요한가?");
+        FootPrint footPrint = new FootPrint();
+        Assertions.assertThatThrownBy(() -> footPrint.record(null, true)).isInstanceOf(IllegalStateException.class);
     }
 }
