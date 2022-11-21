@@ -28,33 +28,39 @@ public class OutputView {
     public void printMap(boolean moveCheck, String userMove, int location) {
 
         String moveResult = changeOX(moveCheck);
-
         if (location == 0) {
-            if (userMove.equals("U")) {
-                upSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
-                downSb.append(START.getMessage() + "   " + END.getMessage());
-            }
-            if (userMove.equals("D")) {
-                upSb.append(START.getMessage() + "   " + END.getMessage());
-                downSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
-            }
-        } else {
-
-            if (userMove.equals("U")) {
-                upSb.deleteCharAt(upSb.length() - 1);
-                upSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
-                downSb.deleteCharAt(downSb.length() - 1);
-                downSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
-            }
-            if (userMove.equals("D")) {
-                upSb.deleteCharAt(upSb.length() - 1);
-                upSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
-                downSb.deleteCharAt(downSb.length() - 1);
-                downSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
-
-            }
+            firstIndex(userMove, moveResult);
+        }
+        if (location != 0) {
+            afterFisrt(userMove, moveResult);
         }
         System.out.println(upSb + "\n" + downSb);
+    }
+
+    public void firstIndex(String userMove, String moveResult) {
+        if (userMove.equals("U")) {
+            upSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
+            downSb.append(START.getMessage() + "   " + END.getMessage());
+        }
+        if (userMove.equals("D")) {
+            upSb.append(START.getMessage() + "   " + END.getMessage());
+            downSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
+        }
+    }
+
+    public void afterFisrt(String userMove, String moveResult) {
+        if (userMove.equals("U")) {
+            upSb.deleteCharAt(upSb.length() - 1);
+            upSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
+            downSb.deleteCharAt(downSb.length() - 1);
+            downSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
+        }
+        if (userMove.equals("D")) {
+            upSb.deleteCharAt(upSb.length() - 1);
+            upSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
+            downSb.deleteCharAt(downSb.length() - 1);
+            downSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
+        }
     }
 
     /**
@@ -80,7 +86,8 @@ public class OutputView {
         START_MESSAGE.printMessage();
         SET_SIZE_BRIDGE_MESSAGE.printMessage();
     }
-    public void restartMessage(){
+
+    public void restartMessage() {
         SELECT_RESTART_OR_QUIT.printMessage();
     }
 
