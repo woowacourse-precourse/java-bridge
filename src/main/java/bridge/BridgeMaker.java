@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Command;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class BridgeMaker {
 
     private String makeStep(int step){
         if(step==0){
-            return "D";
+            return Command.MOVE_DOWN.getValue();
         }
-        return "U";
+        return Command.MOVE_UP.getValue();
     }
 }
