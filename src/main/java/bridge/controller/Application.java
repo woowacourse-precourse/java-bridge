@@ -23,8 +23,8 @@ public class Application {
 
         while(doesRepeat()) {
             move();
-            checkCorrectChoice();
             checkApproachEndPoint();
+            checkCorrectChoice();
         }
 
         finishGame();
@@ -51,6 +51,13 @@ public class Application {
         OutputView.printMap(user.getChoices(), answerBridge.compareTo(user.getChoices()));
     }
 
+    private void checkApproachEndPoint() {
+        boolean isApproachEndPoint = answerBridge.isApproachEndPoint(user.getChoices());
+        if (isApproachEndPoint) {
+            user.doSuccess();
+        }
+    }
+
     private void checkCorrectChoice() {
         if (!isCorrectChoice()) {
             String retryCommand = InputView.readRetryCommand();
@@ -67,23 +74,12 @@ public class Application {
         return answerBridge.isCorrectChoice(user.getStep(), user.getLastChoice());
     }
 
-    private void checkApproachEndPoint() {
-        boolean isApproachEndPoint = answerBridge.isApproachEndPoint(user.getChoices());
-        if (isApproachEndPoint) {
-            user.doSuccess();
-        }
-    }
-
     private void finishGame() {
         OutputView.printResult(user, answerBridge.compareTo(user.getChoices()));
     }
 
     public static void main(String[] args) {
         Application application = new Application();
-        try {
-            application.run();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            OutputView.printError(illegalArgumentException);
-        }
+        application.run();
     }
 }
