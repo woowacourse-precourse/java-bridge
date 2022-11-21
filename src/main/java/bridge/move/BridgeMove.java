@@ -75,4 +75,10 @@ public class BridgeMove {
 		result.delete(0,result.length());
 		result.append(mapUpper).append('\n').append(mapLower);
 	}
+
+	public void viewClean(){
+		mapUpper.setLength(0);
+		mapLower.setLength(0);
+		result.setLength(0);
+	}
 }

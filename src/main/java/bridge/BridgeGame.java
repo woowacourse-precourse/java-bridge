@@ -24,4 +24,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void viewClean(){
+        bridgeMove.viewClean();
+    }
 }

@@ -5,6 +5,7 @@ import bridge.model.GameEnd;
 import bridge.move.CompareMove;
 import bridge.util.InputView;
 import bridge.util.OutputView;
+import bridge.util.ViewClear;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class BridgeController {
 	private final BridgeMaker bridgeMaker=new BridgeMaker(bridgeNumberGenerator);
 	private final ResultController resultController=new ResultController();
 	private final CompareMove compareMove=new CompareMove();
+	private final ViewClear viewClear=new ViewClear();
 
 	private List<String> bridge_list;
 	private final int TRY_COUNT=1;
@@ -45,16 +47,24 @@ public class BridgeController {
 				break;
 			}
 		}
-		retry(resultController.resultControllerByResultCondition(RESULT_CONDITION,
+		retryOrSuccess(resultController.resultControllerByResultCondition(RESULT_CONDITION,
 																inputView, outputView));
 	}
-	private void retry(String user_input_condition){
+	private void retryOrSuccess(String user_input_condition){
 		if (user_input_condition.equals("SUCCESS")){
 			outputView.printResult();
 		}
+		String retry = resultController.retryOrGiveUP(user_input_condition, outputView);
+		if (retry.equals("R")){
+			retry();
+		}
 	}
 
-
+	private void retry(){
+		viewClear.viewClear(outputView);
+		RESULT_CONDITION=GameEnd.SUCCESS.toString();
+		crossingTheBridge();
+	}
 
 	private String bridgeMoveOutputAndInput(){
 		outputView.printMove();

@@ -16,4 +16,12 @@ public class ResultController {
 		return "[ERROR]";
 	}
 
+	public String retryOrGiveUP(String user_input_condition, OutputView outputView){
+		if (user_input_condition.equals("Q")){
+			outputView.printResult();
+			return "Q";
+		}
+		return "R";
+	}
+
 }
