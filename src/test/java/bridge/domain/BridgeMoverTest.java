@@ -18,7 +18,7 @@ class BridgeMoverTest {
 
     @DisplayName("이동 방향이 맞으면 이동하고 아니면 멈춘 후, 현재 게임 상태를 반환한다.")
     @Nested
-    class goIfCorrectAndReturnStatus {
+    class GoIfCorrectAndReturnStatus {
 
         @DisplayName("방향이 맞고, 아직 갈 길이 남은 경우 - ON_WAY 반환")
         @Test
