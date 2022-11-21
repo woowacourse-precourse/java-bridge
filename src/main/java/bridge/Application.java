@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameRepository;
 import bridge.domain.generator.BridgeMaker;
 import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.dto.GameResult;
@@ -13,7 +14,7 @@ import bridge.view.OutputView;
 //TODO 객체 관계 그래프 작성
 public class Application {
 
-    private static final BridgeGame bridgeGame = new BridgeGame();
+    private static final BridgeGame bridgeGame = new BridgeGame(new BridgeGameRepository());
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static final InputView inputView = new InputViewProxy();
     private static final OutputView outputView = new OutputView();

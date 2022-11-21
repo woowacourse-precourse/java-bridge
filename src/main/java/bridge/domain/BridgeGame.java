@@ -11,7 +11,11 @@ import java.util.List;
 
 public class BridgeGame {
 
-    private final BridgeGameRepository bridgeGameRepository = new BridgeGameRepository();
+    private final BridgeGameRepository bridgeGameRepository;
+
+    public BridgeGame(BridgeGameRepository bridgeGameRepository) {
+        this.bridgeGameRepository = bridgeGameRepository;
+    }
 
     public Bridge getBridge(BridgeMaker bridgeMaker,
                             BridgeSize bridgeSize) {
