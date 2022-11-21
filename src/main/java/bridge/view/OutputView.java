@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeMoveType;
-import bridge.domain.BridgeHistory;
+import bridge.domain.BridgeGameHistory;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -23,9 +23,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeHistory bridgeHistory) {
-        List<BridgeMoveType> playerMoveHistory = bridgeHistory.getPlayerBridge();
-        List<BridgeMoveType> bridgeAnswerHistory = bridgeHistory.getBridgeAnswer();
+    public void printMap(BridgeGameHistory bridgeGameHistory) {
+        List<BridgeMoveType> playerMoveHistory = bridgeGameHistory.getPlayerBridge();
+        List<BridgeMoveType> bridgeAnswerHistory = bridgeGameHistory.getBridgeAnswer();
 
         String bridgeUpHistory = createBridgeHistory(playerMoveHistory, bridgeAnswerHistory, UP);
         String bridgeDownHistory = createBridgeHistory(playerMoveHistory, bridgeAnswerHistory, DOWN);
@@ -39,11 +39,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeHistory bridgeHistory) {
+    public void printResult(BridgeGameHistory bridgeGameHistory) {
         System.out.print(FINAL_GAME_RESULT.getMessage());
-        printMap(bridgeHistory);
-        System.out.print(MessageFormat.format(GAME_WIN_RESULT.getMessage(), bridgeHistory.getGameResult().getType()));
-        System.out.print(MessageFormat.format(TOTAL_ROUND.getMessage(), bridgeHistory.getBridgeGameRound()));
+        printMap(bridgeGameHistory);
+        System.out.print(MessageFormat.format(GAME_WIN_RESULT.getMessage(), bridgeGameHistory.getGameResult().getType()));
+        System.out.print(MessageFormat.format(TOTAL_ROUND.getMessage(), bridgeGameHistory.getBridgeGameRound()));
     }
 
     private String createBridgeHistory(List<BridgeMoveType> playerMoveHistory,
