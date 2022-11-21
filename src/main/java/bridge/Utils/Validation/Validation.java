@@ -4,8 +4,8 @@ import bridge.Utils.ExceptionType;
 
 public class Validation {
 
-    private final int BRIDGE_MIN_SIZE = 3;
-    private final int BRIDGE_MAX_SIZE = 20;
+    private static final int BRIDGE_MIN_SIZE = 3;
+    private static final int BRIDGE_MAX_SIZE = 20;
 
     ValidationForOneUpperAlphabet onlyOneUpperAlpha;
 
