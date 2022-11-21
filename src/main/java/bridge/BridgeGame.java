@@ -25,8 +25,8 @@ public class BridgeGame {
      */
     public BridgeGameStstus move(String dir) {
         BridgeGameStstus nextStatus = calcNextStatus(dir);
+        step++;
         if(nextStatus == BridgeGameStstus.PROCEEDING){
-            step++;
             return nextStatus;
         }
         status = nextStatus;
