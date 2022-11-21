@@ -13,7 +13,7 @@ public class Result {
     public Result() {
         up = new ArrayList<>();
         down = new ArrayList<>();
-        numberOfTrial = 0;
+        numberOfTrial = 1;
         isSuccess = false;
     }
 
