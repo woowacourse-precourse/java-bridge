@@ -13,42 +13,37 @@ public class BridgePlay {
 
     private final BridgeMaker bridgeMaker;
 
-    private final ValidationUtil validationUtil;
+    private BridgeGame bridgeGame;
 
     public BridgePlay() {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        validationUtil = new ValidationUtil();
     }
 
     public void play() {
         outputView.printStartMessage();
         int bridgeLength = getBridgeLength();
-        outputView.printPlayerMoveMessage();
-        String playerMove = getPlayerMove();
+        makeBridge(bridgeLength);
+    }
+
+    private void makeBridge(int bridgeLength) {
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
+        bridgeGame = new BridgeGame(bridge);
+    }
+
+    private String getPlayControlNumber() {
+        outputView.printPlayControlMessage();
+        return inputView.readGameCommand();
     }
 
     private int getBridgeLength() {
-        String userInput = inputView.readBridgeLength();
-        int bridgeLength = 0;
-        try {
-            bridgeLength = validationUtil.validateBridgeLength(userInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            getBridgeLength();
-        }
-        return bridgeLength;
+        outputView.printBridgeLengthMessage();
+        return inputView.readBridgeLength();
     }
 
     private String getPlayerMove() {
-        String userInput = inputView.readMoving();
-        try {
-            validationUtil.validatePlayerMoveInput(userInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            getPlayerMove();
-        }
-        return userInput;
+        outputView.printPlayerMoveMessage();
+        return inputView.readMoving();
     }
 }

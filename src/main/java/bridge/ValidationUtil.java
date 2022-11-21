@@ -41,10 +41,11 @@ public class ValidationUtil {
      * 사용자가 입력한 이동할 칸이 U 혹은 D인지 검증한다.
      *
      * @param input 사용자의 입력값
+     * @return 검증된 사용자의 이동 예정 칸
      */
-    public void validatePlayerMoveInput(String input) {
+    public String validatePlayerMoveInput(String input) {
         if (input.equals(UP.getIdentifier()) || input.equals(DOWN.getIdentifier())) {
-            return;
+            return input;
         }
 
         throw new IllegalArgumentException(String.format(PLAYER_MOVE.getMessage(),
@@ -55,10 +56,11 @@ public class ValidationUtil {
      * 사용자가 입력한 재시작/종료 여부가 R 혹은 Q인지 검증한다.
      *
      * @param input 사용자의 입력값
+     * @return 검증된 사용자의 재시작/종료 여부
      */
-    public void validatePlayControlInput(String input) {
+    public String validatePlayControlInput(String input) {
         if (input.equals(RESTART.getIdentifier()) || input.equals(QUIT.getIdentifier())) {
-            return;
+            return input;
         }
 
         throw new IllegalArgumentException(String.format(PLAY_CONTROL.getMessage(),
