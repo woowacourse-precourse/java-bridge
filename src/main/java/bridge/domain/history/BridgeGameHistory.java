@@ -1,9 +1,5 @@
 package bridge.domain.history;
 
-import bridge.domain.bridge.BridgeMove;
-import java.util.List;
-import java.util.Map;
-
 public class BridgeGameHistory implements Comparable<BridgeGameHistory> {
     private final Integer tryCount;
     private final BridgeMoveHistory moveHistory = new BridgeMoveHistory();
@@ -30,19 +26,7 @@ public class BridgeGameHistory implements Comparable<BridgeGameHistory> {
         return  countBySecond - countByFirst;
     }
     
-    public Map<BridgeMove, List<String>> getMoveResultMap() {
-        Map<BridgeMove, List<String>> result = BridgeMove.getInitMoveResultByMoves(moveHistory.size());
-        updateMoveResultMapByMoveHistories(result, moveHistory);
-        
-        return result;
-    }
-    
-    private void updateMoveResultMapByMoveHistories(Map<BridgeMove, List<String>> moveResults,
-            BridgeMoveHistory history) {
-        for (int i = 0; i < history.size(); i++) {
-            BridgeMoveResult moveResult = history.getResults().get(i);
-            List<String> strings = moveResults.get(moveResult.getBridgeMove());
-            strings.set(i, moveResult.getStatus().getOutput());
-        }
+    public BridgeMoveHistoryView getMoveHistoryView() {
+        return new BridgeMoveHistoryView(moveHistory);
     }
 }

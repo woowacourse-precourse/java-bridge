@@ -31,7 +31,7 @@ public class BridgeGameHistoryTest {
         expected.put(BridgeMove.DOWN, List.of(" O ", "   ", "   "));
         expected.put(BridgeMove.UP, List.of("   ", " O ", " O "));
         
-        assertThat(bridgeGameHistory.getMoveResultMap()).isEqualTo(expected);
+        assertThat(bridgeGameHistory.getMoveHistoryView().getResultMap()).isEqualTo(expected);
     }
     
     @DisplayName("getMoveResultMap 메소드는 성공한 실패의 경우 X, 선택되지 않은 경우 공백으로 된 방향별 HashMap을 반환한다.")
@@ -46,6 +46,6 @@ public class BridgeGameHistoryTest {
         expected.put(BridgeMove.DOWN, List.of(" O ", "   ", " X "));
         expected.put(BridgeMove.UP, List.of("   ", " O ", "   "));
         
-        assertThat(bridgeGameHistory.getMoveResultMap()).isEqualTo(expected);
+        assertThat(bridgeGameHistory.getMoveHistoryView().getResultMap()).isEqualTo(expected);
     }
 }
