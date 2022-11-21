@@ -24,30 +24,32 @@ public class Bridge {
         return Arrays.asList(upper, lower);
     }
 
-    public void move(String moving) {
-        addMoving(
-                selectMoving(Moving.UP, moving),
-                selectMoving(Moving.DOWN, moving)
+    public void move(String playerDirection) {
+        saveStep(
+                selectStep(Direction.UP, playerDirection),
+                selectStep(Direction.DOWN, playerDirection)
         );
     }
 
-    private Step selectMoving(Moving direction, String moving) {
-        if (direction.equals(moving)) {
-            if (isMovable(moving)) {
-                return Step.MOVABLE;
-            }
-            return Step.IMMOVABLE;
+    private Step selectStep(Direction bridgeSide, String playerDirection) {
+        if (!bridgeSide.equals(playerDirection)) {
+            return Step.NONE;
         }
-        return Step.EMPTY;
+        if (selectBridgeDirection().equals(playerDirection)) {
+            return Step.MOVABLE;
+        }
+        return Step.IMMOVABLE;
     }
 
-    private boolean isMovable(String moving) {
-        return bridge
-                .get(upper.size())
-                .equals(moving);
+    private String selectBridgeDirection() {
+        return bridge.get(getProgress());
     }
 
-    private void addMoving(Step up, Step down) {
+    private int getProgress() {
+        return upper.size();
+    }
+
+    private void saveStep(Step up, Step down) {
         upper.add(up.value());
         lower.add(down.value());
     }
