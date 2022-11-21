@@ -14,16 +14,35 @@ interface InstanceCollection {
 public class Application implements InstanceCollection {
 
     public static void main(String[] args) {
+        output.printStart();
         try {
             maker.makeBridge(input.readBridgeSize());
-            while (BridgeMaker.bridge_index < InputView.bridge_size) {
-                String result = game.move(input.readMoving(), up_bridge, down_bridge);
-                if (result.equals("O") || result.equals("X")){
-                    output.printMap(up_bridge, down_bridge);
-                    if (isEndingCase(result)) break;
-                }
+            bridgeGameStart();
+        } catch (IllegalArgumentException e){
+        } finally {
+            readyForNextGameUser();
+        }
+    }
+
+    private static void readyForNextGameUser() {
+        BridgeMaker.bridge_info.clear();
+        BridgeMaker.bridge_index = 0;
+        BridgeGame.try_count = 1;
+    }
+
+    private static void bridgeGameStart() {
+        while (BridgeMaker.bridge_index < InputView.bridge_size) {
+            String result = oneMoving();
+            if (isEndingCase(result)) {
+                break;
             }
-        } catch (IllegalArgumentException e){};
+        }
+    }
+
+    private static String oneMoving() {
+        String result = game.move(input.readMoving(), up_bridge, down_bridge);
+        output.printMap(up_bridge, down_bridge);
+        return result;
     }
 
     private static boolean isEndingCase(String result) {
@@ -34,13 +53,15 @@ public class Application implements InstanceCollection {
             }
         }
         if (result.equals("X")) {
-            String command = input.readGameCommand();
-            if (checkQuit(command)) return true;
+            if (checkQuit()) {
+                return true;
+            }
         }
         return false;
     }
 
-    private static boolean checkQuit(String command) {
+    private static boolean checkQuit() {
+        String command = input.readGameCommand();
         if (command.equals("R")) {
             game.retry(up_bridge,down_bridge);
         }
