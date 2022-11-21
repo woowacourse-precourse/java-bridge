@@ -13,26 +13,41 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> result, List<String> bridge) {
-        StringBuilder printUp = new StringBuilder("[");
+        StringBuilder upSide = new StringBuilder("[");
         StringBuilder printDown = new StringBuilder("[");
-        for (int i = 0; i < result.size(); i++) {
-            if (bridge.get(i).equals("U")) {
-                printUp.append(" ".concat(result.get(i)).concat(" "));
-                printDown.append("   ");
-            }else if (bridge.get(i).equals("D")) {
-                printDown.append(" ".concat(result.get(i)).concat(" "));
-                printUp.append("   ");
-            }
-            if (i != result.size() - 1) {
-                printUp.append("|");
-                printDown.append("|");
-            }
-        }
-        printUp.append("]");
+        makeUpSide(result, bridge, upSide);
+        makeDownSide(result, bridge, printDown);
+        upSide.append("]");
         printDown.append("]");
 
-        System.out.println(printUp);
+        System.out.println(upSide);
         System.out.println(printDown);
+    }
+
+    private void makeUpSide(List<String> result, List<String> bridge, StringBuilder upSide) {
+        for (int i = 0; i < result.size(); i++) {
+            if (bridge.get(i).equals("U")) {
+                upSide.append(" ".concat(result.get(i)).concat(" "));
+            } else if (bridge.get(i).equals("D")) {
+                upSide.append("   ");
+            }
+            if (i != result.size() - 1) {
+                upSide.append("|");
+            }
+        }
+    }
+
+    private void makeDownSide(List<String> result, List<String> bridge, StringBuilder downSide) {
+        for (int i = 0; i < result.size(); i++) {
+            if (bridge.get(i).equals("D")) {
+                downSide.append(" ".concat(result.get(i)).concat(" "));
+            } else if (bridge.get(i).equals("U")) {
+                downSide.append("   ");
+            }
+            if (i != result.size() - 1) {
+                downSide.append("|");
+            }
+        }
     }
 
     /**
@@ -45,5 +60,9 @@ public class OutputView {
         this.printMap(result, bridge);
         System.out.printf("게임 성공 여부: %s\n", gameStatus);
         System.out.printf("총 시도한 횟수: %d", cnt);
+    }
+
+    public void printStart() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
     }
 }
