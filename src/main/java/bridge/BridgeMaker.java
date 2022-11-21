@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.BridgeMark;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,11 +16,6 @@ import java.util.stream.IntStream;
 public class BridgeMaker {
 
     public static final int START_INCLUSIVE_ZERO = 0;
-    public static final int UP_VALUE = 1;
-    public static final int DOWN_VALUE = 0;
-    public static final String UP_MARK = "U";
-    public static final String DOWN_MARK = "D";
-    public static final String ERROR_INVALID_BRIDGE_NUMBER = "[ERROR] 다리의 숫자 값은 1 or 0만 가능합니다.";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -32,25 +29,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return IntStream.range(START_INCLUSIVE_ZERO, size)
-                .mapToObj(i -> mapToString(bridgeNumberGenerator.generate()))
+                .mapToObj(i -> BridgeMark.mapToString(bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
-    }
-
-    private String mapToString(int mark) {
-        if (isUp(mark)) {
-            return UP_MARK;
-        }
-        if (isDown(mark)) {
-            return DOWN_MARK;
-        }
-        throw new IllegalArgumentException(ERROR_INVALID_BRIDGE_NUMBER);
-    }
-
-    private boolean isUp(int mark) {
-        return mark == UP_VALUE;
-    }
-
-    private boolean isDown(int mark) {
-        return mark == DOWN_VALUE;
     }
 }
