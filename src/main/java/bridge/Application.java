@@ -9,7 +9,6 @@ public class Application {
 
         Announcement.start();
         size = InputView.readBridgeSize();
-
         start_game(make_bridge(size), size);
         // TODO: 프로그램 구현
     }
@@ -26,11 +25,18 @@ public class Application {
 
         while(re.contains("R")) {
             success = try_cross(bridge, size);
+            if(success_info(size))
+                break;
             re = ask_retry();
             try_count = retry_cross(re, try_count);
         }
 
         print_result(success, try_count);
+    }
+    public static boolean success_info(int size){
+        if(BridgeGame.getUp_bridge().size()==size)
+            return true;
+        return false;
     }
     public static boolean try_cross(List<String> bridge, int size){
         boolean success = true;
