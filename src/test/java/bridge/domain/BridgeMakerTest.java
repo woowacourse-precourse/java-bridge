@@ -1,33 +1,31 @@
 package bridge.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Lists.newArrayList;
 
 public class BridgeMakerTest {
 
-    @DisplayName("다리 생성 성공")
+    private BridgeMaker bridgeMaker;
+
+    @BeforeEach
+    void setUp() {
+        BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    }
+
+    @DisplayName("다리가 정상적으로 생성되는지 확인")
     @Test
     void createBridgeSuccess() {
-        assertThatCode(() -> {
-            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-            bridgeMaker.makeBridge(10);
-        }).doesNotThrowAnyException();
+        assertThat(bridgeMaker.makeBridge(3)).containsExactly("U", "D", "D");
     }
 
     @DisplayName("다리 길이가 정상적인지 확인")
     @Test
     void checkBridgeSize() {
-        int bridgeSize = 10;
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
-        assertThat(bridge.size()).isEqualTo(bridgeSize);
+        assertThat(bridgeMaker.makeBridge(3).size()).isEqualTo(3);
     }
 }
