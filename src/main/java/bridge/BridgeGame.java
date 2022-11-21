@@ -11,12 +11,13 @@ import java.util.Map;
 public class BridgeGame {
     HashMap<String, List<String>> path;
     private List<String> bridge;
-    private int tryCount=1;
+    private int tryCount;
+    private int moveCount;
 
     public BridgeGame(List<String> bridge){
-        List<String> temp = new ArrayList<>(List.of("["));
-        List<String> temp2 = new ArrayList<>(List.of("["));
-        this.path=new HashMap<>(Map.of("U", temp, "D",temp2));
+        this.tryCount=1;
+        this.moveCount=0;
+        this.path=new HashMap<>(Map.of("U", new ArrayList<>(), "D",new ArrayList<>()));
         this.bridge=bridge;
     }
 
@@ -25,10 +26,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> move(String movingCommand) {
-        return null;
+    public void move() {
     }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
