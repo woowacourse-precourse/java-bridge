@@ -1,9 +1,9 @@
 package bridge;
 
-import java.util.List;
-
-import bridgeConstant.Cell;
+import dto.BridgeDto;
+import dto.IndexDto;
 import dto.MapDto;
+import dto.MovingDto;
 
 public class MapRenderer {
 	private static final String ENTRANCE = "[";
@@ -21,34 +21,46 @@ public class MapRenderer {
 
 	String map;
 
-	public MapRenderer(List<String> partOfBridge, boolean isCorrectMoving) {
+	public MapRenderer(BridgeDto bridgeDto, IndexDto indexDto, MovingDto movingDto) {
+		Bridge bridge = new Bridge(bridgeDto.getBridge());
+		int index = indexDto.getIndex();
+		Moving moving = new Moving(movingDto.getMoving());
+
 		init();
 		addEntrance();
-		if (isSizeOne(partOfBridge)) {
-			map = renderWhenSizeIsOne(partOfBridge, isCorrectMoving);
+		render(bridge, index, moving);
+	}
+
+	private void render(Bridge bridge, int index, Moving moving) {
+		boolean isCorrectMoving = isCorrectMoving(bridge, index, moving);
+		if (isFirstCell(index)) {
+			map = renderWhenSizeIsOne(bridge, index, isCorrectMoving);
 		}
-		if (!isSizeOne(partOfBridge)) {
-			map = renderWhenSizeBiggerThanOne(partOfBridge, isCorrectMoving);
+		if (!isFirstCell(index)) {
+			map = renderWhenSizeBiggerThanOne(bridge, index, isCorrectMoving);
 		}
+	}
+
+	private boolean isCorrectMoving(Bridge bridge, int index, Moving moving) {
+		return bridge.isUpPositionAt(index) == moving.isUpPosition();
 	}
 
 	public MapDto toMapDto() {
 		return new MapDto(map);
 	}
 
-	private String renderWhenSizeIsOne(List<String> partOfBridge, boolean isCorrectMoving) {
-		addLastCell(partOfBridge.get(FIRST_INDEX), isCorrectMoving);
+	private String renderWhenSizeIsOne(Bridge bridge, int index, boolean isCorrectMoving) {
+		addLastCell(bridge, index, isCorrectMoving);
 		addExit();
 		return upperRow.toString() + LINE_BREAK_CHARACTER + lowerRow.toString();
 	}
 
-	private String renderWhenSizeBiggerThanOne(List<String> partOfBridge, boolean isCorrectMoving) {
-		int lastIndex = partOfBridge.size() - ONE;
-		partOfBridge.subList(FIRST_INDEX, lastIndex).forEach(cell -> {
-			addCircle(cell);
+	private String renderWhenSizeBiggerThanOne(Bridge bridge, int index, boolean isCorrectMoving) {
+		for (int idx = FIRST_INDEX; idx < index; idx++) {
+			addCircle(bridge, idx);
 			addDivisionLine();
-		});
-		addLastCell(partOfBridge.get(lastIndex), isCorrectMoving);
+		}
+		addLastCell(bridge, index, isCorrectMoving);
 		addExit();
 		return upperRow.toString() + LINE_BREAK_CHARACTER + lowerRow.toString();
 	}
@@ -73,31 +85,31 @@ public class MapRenderer {
 		lowerRow.append(DIVISION_LINE);
 	}
 
-	private void addLastCell(String cell, boolean isCorrectMoving) {
+	private void addLastCell(Bridge bridge, int index, boolean isCorrectMoving) {
 		if (isCorrectMoving) {
-			addCircle(cell);
+			addCircle(bridge, index);
 		}
 		if (!isCorrectMoving) {
-			addCross(cell);
+			addCross(bridge, index);
 		}
 	}
 
-	private boolean isSizeOne(List<String> partOfBridge) {
-		return partOfBridge.size() == 1;
+	private boolean isFirstCell(int index) {
+		return index == FIRST_INDEX;
 	}
 
-	private void addCircle(String cell) {
-		if (cell.equals(Cell.upPosition()))
+	private void addCircle(Bridge bridge, int index) {
+		if (bridge.isUpPositionAt(index))
 			addCircleToUpperRow();
-		if (cell.equals(Cell.downPosition()))
+		if (!bridge.isUpPositionAt(index))
 			addCircleToLowerRow();
 	}
 
-	private void addCross(String cell) {
-		if (cell.equals(Cell.upPosition())) {
+	private void addCross(Bridge bridge, int index) {
+		if (bridge.isUpPositionAt(index)) {
 			addCrossToLowerRow();
 		}
-		if (cell.equals(Cell.downPosition())) {
+		if (!bridge.isUpPositionAt(index)) {
 			addCrossToUpperRow();
 		}
 	}
