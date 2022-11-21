@@ -25,7 +25,7 @@ public class BridgeGame {
         this.result = new ArrayList<>();
         clear = false;
         failure = false;
-        count = 0;
+        count = 1;
     }
 
     /**
