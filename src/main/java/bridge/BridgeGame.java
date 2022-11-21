@@ -64,4 +64,12 @@ public class BridgeGame {
         tryCount++;
         this.user = new User(answer, bridgeLength);
     }
+
+    public int getBridgeLength() {
+        return bridgeLength;
+    }
+
+    public List<String> getAnswer() {
+        return answer;
+    }
 }
