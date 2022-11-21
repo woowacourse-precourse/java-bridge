@@ -75,4 +75,15 @@ public class BridgeTest {
         assertThatThrownBy(() -> validation.validateMove(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동경로 생성 테스트")
+    @Test
+    void createMovingRoute() {
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> movingRoute = bridgeGame.move(List.of("D", "U", "D"), List.of("D", "U", "U"));
+        assertThat(movingRoute).contains(
+                "  | O | X",
+                "O |   |  "
+        );
+    }
 }
