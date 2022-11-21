@@ -34,4 +34,15 @@ public class BridgeGameRun {
 
         } while (!isGameEnd());
     }
+
+    private boolean isRetry() {
+        String command = inputView.readGameCommand();
+        inputValidation.readGameCommandValidation(command);
+
+        if (command.equals("R")) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
+    }
 }
