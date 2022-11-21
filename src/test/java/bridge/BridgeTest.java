@@ -49,6 +49,14 @@ public class BridgeTest extends NsTest {
 		});
 	}
 
+	@Test
+	void 다리크기_범위_예외테스트() {
+		assertSimpleTest(() -> {
+			runException("22");
+			assertThat(output()).contains(ERROR_MESSAGE);
+		});
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
