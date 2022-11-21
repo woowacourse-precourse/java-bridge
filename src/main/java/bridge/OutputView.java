@@ -14,7 +14,7 @@ public class OutputView {
      */
     public static void printMap(List<String> up_bridge, List<String> down_bridge) {
         System.out.println(up_bridge.toString().replaceAll(","," |"));
-        System.out.println(down_bridge.toString().replaceAll(","," |"));
+        System.out.println(down_bridge.toString().replaceAll(","," |")+"\n");
     }
 
     /**
@@ -24,9 +24,9 @@ public class OutputView {
      */
     public static void printResult(boolean success, int try_count) {
         if(success==true)
-            System.out.println("\n게임 성공 여부: 성공");
+            System.out.println("게임 성공 여부: 성공");
         else
-            System.out.println("\n게임 성공 여부: 실패");
+            System.out.println("게임 성공 여부: 실패");
         System.out.println("총 시도한 횟수: " + try_count);
     }
 }

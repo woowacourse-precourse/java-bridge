@@ -10,6 +10,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         String input = Console.readLine();
+        System.out.println("");
         for(int i=0;i<input.length();i++){
             if(!(input.charAt(i)>='0' && input.charAt(i)<='9'))
                 throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR.getErrormessage());
