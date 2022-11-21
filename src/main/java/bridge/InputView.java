@@ -38,7 +38,7 @@ public class InputView {
     public String readGameCommand() {
         String line = Console.readLine();
         if (!(line.equals("R") || line.equals("Q")))
-            throw new IllegalArgumentException("이동할 칸의 입력은 R또는 Q여야 합니다");
+            throw new IllegalArgumentException("게임 커맨드의 입력은 R또는 Q여야 합니다");
         return line;
     }
 
