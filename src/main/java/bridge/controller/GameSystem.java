@@ -24,7 +24,15 @@ public class GameSystem {
         game.saveBridge(make.makeBridge(saveSize));
     }
 
-
+    public void calculate() {
+        while (!state.equals("Q") && count < saveSize) {
+            if( state.equals("R")) {
+                attempt += game.retry();
+            }
+            printBridgeState(game.move(count,choiceMove()));
+            state = updateState();
+        }
+    }
 
     public void result() {
 
@@ -41,6 +49,12 @@ public class GameSystem {
     }
 
     private String updateState() {
+        if (!game.getCorrect()){
+            count = 0;
+            outputView.printContinue();
+            return inputView.readGameCommand();
+        }
+        count++;
         return "C";
     }
 }
