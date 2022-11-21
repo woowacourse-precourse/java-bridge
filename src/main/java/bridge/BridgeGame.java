@@ -21,6 +21,7 @@ public class BridgeGame {
         return false;
     }
 
+    // 다리 건너기의 결과에 따라 O 또는 X를 이용하여 출력할 다리를 생성
     public Bridge moveBridge(String bridgeMove, boolean isMove) {
         if (isMove) {
             successMoveBridge(bridgeMove);
