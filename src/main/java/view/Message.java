@@ -14,8 +14,11 @@ public enum Message {
     FAIL("실패"),
     BRIDGE_SIZE_RANGE_ERROR("[ERROR] 다리의 길이가 범위를 초과합니다 3이상 20 이하의 범위여야 합니다"),
     BRIDGE_SIZE_INPUT_ERROR("[ERROR] 다리 길이의 입력은 숫자만 가능합니다"),
+    BRIDGE_SIZE_INPUT_ZERO_ERROR("[ERROR] 다리 길이의 첫 입력은 0이 될수 없습니다"),
     USER_MOVE_INPUT_ERROR("[ERROR] 사용자가 이동할 칸의 입력은 U,D만 입력 가능합니다"),
-    USER_RETRY_INPUT_ERROR("[ERROR] 재시작 여부의 입력은 R,Q만 입력 가능합니다");
+    USER_MOVE_INPUT_SIZE_ERROR("[ERROR] 사용자가 이동할 칸의 입력은 한번에 하나만 입력 가능합니다"),
+    USER_RETRY_INPUT_RANGE_ERROR("[ERROR] 재시작 여부의 입력은 R,Q만 입력 가능합니다"),
+    USER_RETRY_INPUT_SIZE_ERROR("[ERROR] 재시작 여부의 입력은 하나만 입력 가능합니다");
 
 
     private final String message;
