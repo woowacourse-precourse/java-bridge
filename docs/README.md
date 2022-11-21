@@ -69,7 +69,7 @@
 - [x] 무작위 값이 0일 경우 아래 칸(D), 1인 경우 위 칸(U)을 건널 수 있는 다리를 생성한다. - BridgeMaker#makeBridge
 - [x] 플레이어로부터 이동할 칸을 입력받는다. - InputView#readMoving
     - U(위 칸)나 D(아래 칸)가 아닌 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지 출력 후 입력을 다시 받는다.
-- [ ] 입력받은 값대로 다리를 건넌다. - BridgeGame#move
+- [x] 입력받은 값대로 다리를 건넌다. - BridgeGame#move
 - [ ] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. - OutputView#printMap
 - [ ] 다리를 건너다 실패하면 게임을 다시 시도할지 종료할지 여부를 입력받는다. - InputView#readGameCommand
     - R(재시작)이나 Q(종료)가 아닌 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지 출력 후 입력을 다시 받는다.
