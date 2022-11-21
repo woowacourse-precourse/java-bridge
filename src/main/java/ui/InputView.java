@@ -1,4 +1,5 @@
 package ui;
+
 import camp.nextstep.edu.missionutils.Console;
 import validation.InputValidation;
 
@@ -13,9 +14,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리 길이를 입력해주세요.");
-        String bridgeSize = Console.readLine();
-        validator.validateBridgeSize(bridgeSize);
+        String bridgeSize = "";
+        try {
+            System.out.println("다리 길이를 입력해주세요.");
+            bridgeSize = Console.readLine();
+            validator.validateBridgeSize(bridgeSize);
+
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            this.readBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
     }
 
@@ -23,9 +31,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String move = Console.readLine();
-        validator.validateMoving(move);
+        String move = "";
+        try {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            move = Console.readLine();
+            validator.validateMoving(move);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
         return move;
     }
 
@@ -33,9 +46,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String gameCommand = Console.readLine();
-        validator.validateGameCommand(gameCommand);
+        String gameCommand = "";
+        try {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            gameCommand = Console.readLine();
+            validator.validateGameCommand(gameCommand);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
         return gameCommand;
     }
 }
