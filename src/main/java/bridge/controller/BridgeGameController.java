@@ -10,7 +10,7 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private static final BridgeGame manager = BridgeGame.getInstance();
+    private static final BridgeGame manager = new BridgeGame();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     private static enum Message {

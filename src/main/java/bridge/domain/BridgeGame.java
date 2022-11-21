@@ -7,21 +7,13 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static BridgeGame instance; // BridgeGame 클래스의 인스턴스
     private List<String> bridgeStatus; // 다리의 상태
     private final List<String> movingStatus; // 사용자 이동상태
     private int attemptsCount; // 시도한 횟수
 
-    private BridgeGame() { // for singleton pattern
+    public BridgeGame() { // for singleton pattern
         this.movingStatus = new ArrayList<>();
         this.attemptsCount = 1;
-    }
-
-    public static BridgeGame getInstance() {
-        if (instance == null) {
-            instance = new BridgeGame();
-        }
-        return instance;
     }
 
     /**
