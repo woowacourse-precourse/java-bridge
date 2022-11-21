@@ -19,6 +19,13 @@ public class BridgeVerifier {
         return input;
     }
 
+    public static String validateGameCommand(String input) {
+        if (!(input.equals(GameCommandEnum.R.name()) || input.equals(GameCommandEnum.Q.name()))) {
+            throw new IllegalArgumentException(BridgeError.INVALID_GAME_COMMAND.getMessage());
+        }
+        return input;
+    }
+
     public static boolean isInteger(String input) {
         if (input.matches("[+-]?\\d+")) {
             return true;

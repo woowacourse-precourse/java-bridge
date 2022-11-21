@@ -33,4 +33,17 @@ class BridgeVerifierTest {
     void validBridgeSizeTest(String input, String expected) {
         assertThat(BridgeVerifier.validateMoving(input)).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"A", "RR", "Q2"})
+    void invalidateGameCommandTest(String input) {
+        assertThatThrownBy(() -> BridgeVerifier.validateGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"R:R", "Q:Q"}, delimiter = ':')
+    void validateGameCommandTest(String input, String expected) {
+        assertThat(BridgeVerifier.validateGameCommand(input)).isEqualTo(expected);
+    }
 }
