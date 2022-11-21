@@ -17,4 +17,15 @@ public class BridgeGameTest {
 
         assertThat(bridgeGame.getStatus()).isEqualTo(StatusType.FAIL);
     }
+
+    @DisplayName("틀렸을 때 실패가 되어야 합니다.")
+    @Test
+    void moveTestIfRetry() {
+        List<String> answerBridge = List.of("U","D","U","D");
+        BridgeGame bridgeGame = new BridgeGame(answerBridge);
+        bridgeGame.move("D");
+        bridgeGame.retry();
+
+        assertThat(bridgeGame.getRoute()).isEmpty();
+    }
 }
