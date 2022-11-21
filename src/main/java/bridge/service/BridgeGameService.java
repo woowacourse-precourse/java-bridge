@@ -64,4 +64,16 @@ public class BridgeGameService {
         }
         return false;
     }
+
+    private void selectGameRestart() {
+        output.printEnterGameCommand(); // 게임을 다시 시작할지 입력하세요.
+        String gameCommand = input.readGameCommand(); // 게임 재시도 여부 입력
+
+        if (gameCommand.equals(RESTART_GAME)) { // 재시작
+            bridgeGame.retry();
+            playBridgeGame();
+            return;
+        } // 게임 실패지만 종료
+        output.printResult(GAME_FAIL, bridgeGame.getTotalGame(), bridge.getLastBridge()); // 최종 결과 입력(게임 실패, 게임횟수)
+    }
 }
