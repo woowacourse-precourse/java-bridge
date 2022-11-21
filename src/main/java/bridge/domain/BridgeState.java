@@ -6,12 +6,12 @@ import static bridge.util.Constant.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Result {
+public class BridgeState {
 
     private List<String> map;
     private Round round;
 
-    public Result(Round round) {
+    public BridgeState(Round round) {
         this.map = new ArrayList<>(List.of("[ ]", "[ ]"));
         this.round = round;
     }

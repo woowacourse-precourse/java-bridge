@@ -3,7 +3,7 @@ package bridge.view;
 import static bridge.command.LocationCommand.*;
 import static bridge.util.Constant.*;
 
-import bridge.domain.Result;
+import bridge.domain.BridgeState;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Result result) {
+    public void printMap(BridgeState result) {
         List<String> userProgress = result.getMap();
         System.out.println(userProgress.get(Up.getLocationNumber()));
         System.out.println(userProgress.get(Down.getLocationNumber())+"\n");
