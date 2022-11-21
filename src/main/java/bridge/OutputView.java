@@ -19,13 +19,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> upBoardCheckList, List<String> downBoardCheckList) {
+    public String printMap(List<String> upBoardCheckList, List<String> downBoardCheckList) {
         String upMap = getUpMap(upBoardCheckList);
         String downMap = getDownMap(downBoardCheckList);
         System.out.println(upMap + downMap);
+        return upMap + downMap;
     }
 
-    public String getUpMap(List<String> upBoardCheckList) {
+    private String getUpMap(List<String> upBoardCheckList) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         for (int i = 0; i < upBoardCheckList.size() - 1; i++) {
@@ -37,7 +38,7 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public String getDownMap(List<String> downBoardCheckList) {
+    private String getDownMap(List<String> downBoardCheckList) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         for (int i = 0; i < downBoardCheckList.size() - 1; i++) {
@@ -54,9 +55,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean success, int tryCount, List<String> upBoardCheckList, List<String> downBoardCheckList) {
+    public void printResult(boolean success, int tryCount, String result) {
         System.out.println(GAME_RESULT_SENTENCE);
-        printMap(upBoardCheckList, downBoardCheckList);
+        System.out.println(result);
 
         System.out.print(GAME_SUCCESS_OR_NOT_SENTENCE);
         if (success) System.out.println("성공");
