@@ -101,4 +101,8 @@ public class InputView {
         } while(bridgeException.invalidRetryGame(retryGame));
         return retryGame;
     }
+
+    public OutputView getOutputView() {
+        return outputView;
+    }
 }
