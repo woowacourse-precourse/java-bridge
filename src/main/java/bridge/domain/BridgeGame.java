@@ -59,10 +59,13 @@ public class BridgeGame {
         }
     }
 
-    public boolean isClear() {
-        long topCount = top.stream().filter(t -> t.equals(CROSSABLE)).count();
-        long bottomCount = this.bottom.stream().filter(b -> b.equals(CROSSABLE)).count();
-        return topCount + bottomCount == bridge.size();
+    public GameResult isClear() {
+        long topCount = top.stream().filter(t -> t.equals(PassResult.PASS)).count();
+        long bottomCount = bottom.stream().filter(b -> b.equals(PassResult.PASS)).count();
+        if (topCount + bottomCount == bridge.size()) {
+            return GameResult.SUCCESS;
+        }
+        return GameResult.FAIL;
     }
 
     public int getBridgeSize() {
