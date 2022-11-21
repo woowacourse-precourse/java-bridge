@@ -43,7 +43,7 @@ public class BridgeMaker {
 
     private static void validateSize(int size) {
         if (size < MIN_BRIDGE_LENGTH || size > MAX_BRIDGE_LENGTH)
-            Error.printException(ErrorType.RANGE);
+            throw new Error(ErrorType.RANGE);
     }
 
 }

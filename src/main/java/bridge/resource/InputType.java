@@ -21,18 +21,18 @@ public enum InputType {
 
     public static void validateNumber(String input) {
         if (!input.matches(NUMERIC.command))
-            Error.printException(ErrorType.NUMERIC);
+            throw new Error(ErrorType.NUMERIC);
     }
 
     public static void validateMovingCommand(String input) {
         if (!input.equals(MOVE_UP_COMMAND.command)
                 && !input.equals(MOVE_DOWN_COMMAND.command))
-            Error.printException(ErrorType.MOVING);
+            throw new Error(ErrorType.MOVING);
     }
 
     public static void validateContinuousCommand(String input) {
         if (!input.equals(RESTART_COMMAND.command)
                 && !input.equals(QUIT_COMMAND.command))
-            Error.printException(ErrorType.CONTINUING);
+            throw new Error(ErrorType.CONTINUING);
     }
 }
