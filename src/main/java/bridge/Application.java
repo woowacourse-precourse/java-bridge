@@ -17,6 +17,7 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame bridgeGame = Initialization.init();
         while (StartGame.startGame(bridgeGame)) {
+            movingTurn++;
             if (movingTurn == size) {
                 success = true;
                 break;

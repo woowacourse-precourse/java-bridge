@@ -12,7 +12,6 @@ public class StartGame {
     public static boolean startGame(BridgeGame bridgeGame) {
         requestMove();
         bridgeGame.move();
-        Application.movingTurn++;
         OutputView.printMap(bridgeGame);
         if (isWrongWay()) {
             return chooseWhenWrong(bridgeGame);
