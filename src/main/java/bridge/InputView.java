@@ -23,9 +23,17 @@ public class InputView {
 
     public void checkBridgeSizeValidation(String bridgeSize) {
 
+        checkBridgeSizeNull(bridgeSize);
         checkBridgeSizeLength(bridgeSize);
         checkBridgeSizeInteger(bridgeSize);
         checkBridgeSizeNumber(bridgeSize);
+    }
+
+    private void checkBridgeSizeNull(String bridgeSize) {
+
+        if (bridgeSize == null) {
+            throw new NullPointerException("3 ~ 20 사이의 값을 입력해야 합니다.");
+        }
     }
 
     private void checkBridgeSizeNumber(String bridgeSize) {
