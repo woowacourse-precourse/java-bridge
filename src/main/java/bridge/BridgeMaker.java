@@ -19,9 +19,18 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridgeState = initialBridge();
+        List<String> bridgeState = new ArrayList<>();
+        for (int index=0; index<size;index++) {
+            bridgeState.add(replacePositionState(bridgeNumberGenerator.generate()));
+        }
 
-        return null;
+        return bridgeState;
+    }
+    private String replacePositionState(int number){
+        if(number==1){
+            return "U";
+        }
+        return "D";
     }
 
     private List<String> initialBridge() {
@@ -32,9 +41,9 @@ public class BridgeMaker {
     }
     private List<String> addBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
         if (preBridgeState.get(0)=="["){
-            return firstAddBridge( preBridgeState, randomNumber, positionNumber);
+            return firstAddBridge(preBridgeState, randomNumber, positionNumber);
         }
-        return afterAddBridge( preBridgeState, randomNumber, positionNumber);
+        return afterAddBridge(preBridgeState, randomNumber, positionNumber);
     }
     private List<String> firstAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
         if (randomNumber==positionNumber){
