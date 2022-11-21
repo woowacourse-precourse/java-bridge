@@ -7,7 +7,6 @@ import bridge.constant.UpDownConstant;
 import bridge.domain.Bridge;
 import bridge.repository.BridgeMaker;
 import bridge.validation.Validation;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +40,7 @@ public class BridgeGame {
     public AfterMovingStatusConstant move(String upOrDownInput) {
         validation.bridgeMovingValidation(upOrDownInput);
         thisTurnBridge.addBridge(UpDownConstant.of(upOrDownInput));
-        if (thisTurnBridge.equals(thisGameBridge, thisTurnBridge.length() - 1)) {
+        if (thisTurnBridge.equalsAt(thisGameBridge, thisTurnBridge.length() - 1)) {
             if (thisTurnBridge.equalsLength(thisGameBridge)) {
                 return AfterMovingStatusConstant.SUCCESS;
             }

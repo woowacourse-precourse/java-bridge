@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.constant.AfterMovingStatusConstant;
-import bridge.constant.GameProcedureStringConstant;
 import bridge.constant.UpDownConstant;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ public class Bridge {
         return bridge.size( );
     }
 
-    public boolean equals(Bridge compareBridge, int idx) {
+    public boolean equalsAt(Bridge compareBridge, int idx) {
         return Objects.equals(valueAt(idx), compareBridge.valueAt(idx));
     }
 
@@ -51,7 +49,7 @@ public class Bridge {
         bridgeBuilder.append("[");
         for (int j = 0; j < length(); j++) {
             bridgeBuilder.append(toStringRowCol(compareBridge, row, j));
-            if (hasNextIdx(j)) {
+            if (this.hasNextIdx(j)) {
                 bridgeBuilder.append("|");
             }
         }
@@ -59,8 +57,8 @@ public class Bridge {
     }
 
     private String toStringRowCol(Bridge compareBridge, int row, int col) {
-        if (UpDownConstant.of(valueAt(col)).isSameRow(row)) {
-            if (equals(compareBridge, col)) {
+        if (UpDownConstant.of(this.valueAt(col)).isSameRow(row)) {
+            if (this.equalsAt(compareBridge, col)) {
                 return " O ";
             }
             return " X ";
