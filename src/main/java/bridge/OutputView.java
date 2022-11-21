@@ -30,14 +30,10 @@ public class OutputView {
     }
 
     private String onPath(String line, String cell, boolean correct) {
-        if(correct) {
-            if(line.equals(cell)) {
-                return "O";
-            }
-            return " ";
+        if(correct && line.equals(cell)) {
+            return "O";
         }
-
-        if(!line.equals(cell)) {
+        if(!correct && !line.equals(cell)) {
             return "X";
         }
         return " ";
