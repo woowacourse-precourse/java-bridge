@@ -20,15 +20,7 @@ public class OutputView {
 
 		for (int i=0;i<=idx;i++){
 			checkFirstUpBlock(i,idx,bridge.getBridge().get(0),block);
-
-			if (0<i && i<idx) {
-				if (bridge.getBridge().get(i).equals("U")) {
-					System.out.print("| O ");
-				}
-				if (bridge.getBridge().get(i).equals("D")) {
-					System.out.print("|   ");
-				}
-			}
+			checkSecondToBeforeEndBlocks(i,idx,bridge.getBridge().get(i));
 
 			if (i == idx && idx != 0){
 				if (correct){
@@ -51,6 +43,7 @@ public class OutputView {
 		}
 		System.out.println("]");
 	}
+
 
 
 	public void printDown(Bridge bridge, int idx, String block, boolean correct){
@@ -169,5 +162,15 @@ public class OutputView {
 		}
 	}
 
+	private void checkSecondToBeforeEndBlocks(int i, int idx, String block) {
+		if (0<i && i<idx) {
+			if (block.equals("U")) {
+				System.out.print("| O ");
+			}
+			if (block.equals("D")) {
+				System.out.print("|   ");
+			}
+		}
+	}
 
 }
