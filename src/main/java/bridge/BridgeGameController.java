@@ -56,7 +56,7 @@ public class BridgeGameController {
 
     private TotalResult restartOrNot(TotalResult result) {
         String gameCommand = inputView.readGameCommand();
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(GameCommands.RETRY)) {
             return restart();
         }
         return result;
