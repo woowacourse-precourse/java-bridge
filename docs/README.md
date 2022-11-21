@@ -24,6 +24,16 @@
 - [x] tryCount getter&setter - Bridge
 - [x] isGame getter&setter - Bridge
 
+- [x] 다리 이동에 성공했는지 검사 - BridgeGame#move
+- [x] 다리 이동이 성공했는지에 따라 출력할 객체에 값을 저장 - BridgeGame#moveBridge
+  - [x] 다리 건너기에 성공했을 때 U 또는 D에 따라 outputBridge에 저장하는 값 변경 - BridgeGame#succeeMoveBridge
+    - [x] 0번째 객체에는 " O ", 1번째 객체에는 "   "을 저장 - BridgeGame#successBridgeUp
+    - [x] 0번째 객체에는 "   ", 1번째 객체에는 " O "을 저장 - BridgeGame#successBridgeDown
+  - [x] 다리 건너기에 실패했을 때 U 또는 D에 따라 outputBridge에 저장하는 값 변경 - BridgeGame#filaMoveBridge
+    - [x] 0번째 객체에는 "   ", 1번째 객체에는 " X "을 저장 - BridgeGame#failBridgeUp
+    - [x] 0번째 객체에는 " X ", 1번째 객체에는 "   "을 저장 - BridgeGame#successBridgeDown
+- [x] 매개 값이 R이면 시도 횟수를 증가하고 true를 반환하고 이 외에는 false를 반환 - BridgeGame#retry
+
 - [x] "다리 건너기 게임을 시작합니다."를 출력
 - [x] "다리의 길이를 입력해 주세요."를 출력
 - [x] 다리의 길이를 입력 - InputView#readBridgeSize
