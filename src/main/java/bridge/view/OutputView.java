@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     public void makeMap(List<String> bridge, List<String> bridgeStatus) {
-        int size = bridge.size();
+        int size = bridgeStatus.size();
 
         for (int idx = 0; idx < size; idx++) {
             addOToMap(bridge, bridgeStatus, idx);
