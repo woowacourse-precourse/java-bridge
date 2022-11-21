@@ -6,15 +6,12 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final int BRIDGE_LENGTH_RANGE_START = 3; // 다리길이 범위 시작
-    private final int BRIDGE_LENGTH_RANGE_END = 20; // 다리길이 범위 종료
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize(String message, String end) throws IllegalArgumentException {
         OutputView outputView = new OutputView();
-        outputView.printMessage(message, end);
+        outputView.printMessage(message, end); // 입력받기 전 사용자 유도를 위한 안내 메시지를 출력함
         String userInput = Console.readLine();
         return validateBridgeSize(userInput);
     }
@@ -24,7 +21,7 @@ public class InputView {
      */
     public String readMoving(String message, String end) {
         OutputView outputView = new OutputView();
-        outputView.printMessage(message, end);
+        outputView.printMessage(message, end); // 입력받기 전 사용자 유도를 위한 안내 메시지를 출력함
         String userInput = Console.readLine();
         return validateCommand(userInput, "U", "D");
     }
@@ -34,7 +31,7 @@ public class InputView {
      */
     public String readGameCommand(String message, String end) {
         OutputView outputView = new OutputView();
-        outputView.printMessage(message, end);
+        outputView.printMessage(message, end); // 입력받기 전 사용자 유도를 위한 안내 메시지를 출력함
         String userInput = Console.readLine();
         return validateCommand(userInput, "R", "Q");
     }
@@ -43,7 +40,7 @@ public class InputView {
      * 사용자가 입력한 다리 길이의 유효성을 확인한다.
      * 1. 값이 입력되었는 가?
      * 2. 숫자로 변환할 수 있는 값이 입력되었는 가?
-     * 3. 변환한 숫자가 3 ~ 20 범위에 포함되는 가?
+     * 3. 변환한 숫자가 3이상 20이하의 범위에 포함되는 가?
      */
     public int validateBridgeSize(String userInput) throws IllegalArgumentException {
         lengthIsValid(userInput);
@@ -79,13 +76,11 @@ public class InputView {
     }
 
     private void rangeIsValid(int length) throws IllegalArgumentException {
-        if (length < BRIDGE_LENGTH_RANGE_START || length > BRIDGE_LENGTH_RANGE_END) {
+        if (length < 3 || length > 20) {
             OutputView outputView = new OutputView();
             outputView.printErrorMessage("입력값은 "
-                    + BRIDGE_LENGTH_RANGE_START
-                    + " ~ "
-                    + BRIDGE_LENGTH_RANGE_END
-                    + "사이의 정수이어야 합니다.");
+                    + 3 + " ~ "
+                    + 20 + "사이의 정수이어야 합니다.");
             throw new IllegalArgumentException();
         }
     }
