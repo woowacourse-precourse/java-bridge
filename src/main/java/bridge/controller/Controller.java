@@ -37,7 +37,7 @@ public class Controller {
 
     private int doGame() {
         if (game.isFinished()) {
-            return 0;
+            return 1;
         }
         if (!move().wasSuccessful()) {
             return retryOrExit();
