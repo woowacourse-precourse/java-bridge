@@ -29,8 +29,8 @@ public enum Moving {
                 .orElseThrow(() -> new IllegalArgumentException(ENTER_U_OR_D));
     }
 
-    public boolean immovable(String s) {
-        return !symbol.equals(s);
+    public boolean immovable(String movableDirection) {
+        return !symbol.equals(movableDirection);
     }
 
     public void marking(BridgeMap bridgeMap, String mark) {
