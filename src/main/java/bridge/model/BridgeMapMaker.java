@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.model.utils.BridgeSides;
 import bridge.model.utils.MapStates;
 
 import java.util.List;
@@ -8,9 +9,6 @@ import java.util.stream.Collectors;
 
 public class BridgeMapMaker {
 
-    private static final String UP_SIDE = "U";
-    private static final String DOWN_SIDE = "D";
-
     private final List<String> bridge;
 
     public BridgeMapMaker(List<String> bridge) {
@@ -18,15 +16,15 @@ public class BridgeMapMaker {
     }
 
     public PlayerMap getSuccessBridgeMap() {
-        List<String> upSideMap = convertSideToMovingMap(UP_SIDE, MapStates.MOVE_SUCCESS);
-        List<String> downSideMap = convertSideToMovingMap(DOWN_SIDE, MapStates.MOVE_SUCCESS);
+        List<String> upSideMap = convertSideToMovingMap(BridgeSides.up(), MapStates.moveSuccess());
+        List<String> downSideMap = convertSideToMovingMap(BridgeSides.down(), MapStates.moveSuccess());
 
         return new PlayerMap(upSideMap, downSideMap);
     }
 
     public PlayerMap getFailureBridgeMap() {
-        List<String> upSideMap = convertSideToMovingMap(DOWN_SIDE, MapStates.MOVE_FAILURE);
-        List<String> downSideMap = convertSideToMovingMap(UP_SIDE, MapStates.MOVE_FAILURE);
+        List<String> upSideMap = convertSideToMovingMap(BridgeSides.down(), MapStates.moveFailure());
+        List<String> downSideMap = convertSideToMovingMap(BridgeSides.up(), MapStates.moveFailure());
 
         return new PlayerMap(upSideMap, downSideMap);
     }
@@ -35,7 +33,7 @@ public class BridgeMapMaker {
         Map<String, String> status = Map.of(side, moveStatus);
 
         return bridge.stream()
-                .map(s -> status.getOrDefault(s, MapStates.BLANK))
+                .map(s -> status.getOrDefault(s, MapStates.blank()))
                 .collect(Collectors.toList());
     }
 

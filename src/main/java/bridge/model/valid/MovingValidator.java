@@ -9,7 +9,7 @@ public class MovingValidator implements InputValidator {
 
     @Override
     public void validateInput(String input) throws IllegalArgumentException {
-        List<String> movingOptions = List.of(BridgeSides.UP, BridgeSides.DOWN);
+        List<String> movingOptions = List.of(BridgeSides.up(), BridgeSides.down());
         if(!movingOptions.contains(input)) {
             throw new IllegalArgumentException(MOVING_INPUT_ERROR_MESSAGE);
         }
@@ -17,6 +17,6 @@ public class MovingValidator implements InputValidator {
 
     @Override
     public String toString() {
-        return String.format("< MovingValidator options=%s >", List.of(BridgeSides.UP, BridgeSides.DOWN));
+        return String.format("< MovingValidator options=%s >", List.of(BridgeSides.up(), BridgeSides.down()));
     }
 }

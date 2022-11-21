@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class PlayerMap {
 
     protected final List<String> upSide;
@@ -33,7 +31,7 @@ public class PlayerMap {
     }
 
     public boolean isFailure() {
-        return upSide.contains(MapStates.MOVE_FAILURE) || downSide.contains(MapStates.MOVE_FAILURE);
+        return upSide.contains(MapStates.moveFailure()) || downSide.contains(MapStates.moveFailure());
     }
 
     public PlayerMap subMapBy(int distance) {
@@ -49,6 +47,7 @@ public class PlayerMap {
 
         return new PlayerMap(upSideStatus, downSideStatus);
     }
+
     @Override
     public boolean equals(Object other) {
         if (other instanceof PlayerMap) {

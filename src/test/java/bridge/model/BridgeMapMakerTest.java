@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.model.BridgeMapMaker;
-import bridge.model.PlayerMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -9,7 +9,7 @@ public class GameCommandValidator implements InputValidator {
 
     @Override
     public void validateInput(String input) {
-        List<String> gameCommandOptions = List.of(GameCommands.RETRY, GameCommands.QUIT);
+        List<String> gameCommandOptions = List.of(GameCommands.retry(), GameCommands.quit());
         if(!gameCommandOptions.contains(input)) {
             throw new IllegalArgumentException(GAME_COMMAND_ERROR_MESSAGE);
         }
@@ -17,6 +17,6 @@ public class GameCommandValidator implements InputValidator {
 
     @Override
     public String toString() {
-        return String.format("< GameCommandValidator options=%s >", List.of(GameCommands.RETRY, GameCommands.QUIT));
+        return String.format("< GameCommandValidator options=%s >", List.of(GameCommands.retry(), GameCommands.quit()));
     }
 }

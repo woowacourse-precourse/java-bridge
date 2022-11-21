@@ -1,8 +1,6 @@
 package bridge.model;
 
-import bridge.model.BridgeGame;
-import bridge.model.PlayerMap;
-import bridge.model.TotalResult;
+import bridge.model.utils.BridgeSides;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +20,7 @@ public class BridgeGameTest {
     @ParameterizedTest
     @MethodSource("moveUpSideTestSource")
     void moveUpSideTest(int distance, PlayerMap expected) {
-        TotalResult actual = bridgeGame.move("U", distance);
+        TotalResult actual = bridgeGame.move(BridgeSides.up(), distance);
         assertThat(actual.getPlayerMap()).isEqualTo(expected);
     }
 
@@ -30,7 +28,7 @@ public class BridgeGameTest {
     @ParameterizedTest
     @MethodSource("moveDownSideTestSource")
     void moveDownSideTest(int distance, PlayerMap expected) {
-        TotalResult actual = bridgeGame.move("D", distance);
+        TotalResult actual = bridgeGame.move(BridgeSides.down(), distance);
         assertThat(actual.getPlayerMap()).isEqualTo(expected);
     }
 

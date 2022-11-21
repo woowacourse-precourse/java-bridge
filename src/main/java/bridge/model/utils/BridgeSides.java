@@ -2,9 +2,17 @@ package bridge.model.utils;
 
 public class BridgeSides {
 
-    public static final String UP = "U";
-    public static final String DOWN = "D";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     private BridgeSides() {
+    }
+
+    public static String up() {
+        return UP;
+    }
+
+    public static String down() {
+        return DOWN;
     }
 }

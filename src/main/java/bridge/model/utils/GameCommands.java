@@ -1,9 +1,17 @@
 package bridge.model.utils;
 
 public class GameCommands {
-    public static final String RETRY = "R";
-    public static final String QUIT = "Q";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
 
     private GameCommands() {
+    }
+
+    public static String retry() {
+        return RETRY;
+    }
+
+    public static String quit() {
+        return QUIT;
     }
 }
