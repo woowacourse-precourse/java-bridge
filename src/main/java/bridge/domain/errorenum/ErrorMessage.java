@@ -24,5 +24,4 @@ public enum ErrorMessage {
     public String printMessage() {
         return HEAD.message + message;
     }
-    //열 컨벤션 적용
 }
