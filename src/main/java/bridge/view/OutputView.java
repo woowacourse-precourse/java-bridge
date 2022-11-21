@@ -25,21 +25,23 @@ public class OutputView {
     public void printMap(MovingHistory movingHistory) {
         printMapOfSide(movingHistory.getUpSide());
         printMapOfSide(movingHistory.getDownSide());
+        printNewLine();
+    }
+
+    private void printNewLine() {
+        System.out.println();
     }
 
     private void printMapOfSide(List<String> sideHistory) {
-        StringBuilder sideMap = new StringBuilder();
-        sideMap.append(BRIDGE_START);
+        System.out.print(BRIDGE_START);
 
         for (int position = STARTING_POINT; position < sideHistory.size(); position++) {
             if (position > STARTING_POINT) {
-                sideMap.append(BRIDGE_SEPARATOR);
+                System.out.print(BRIDGE_SEPARATOR);
             }
-            sideMap.append(sideHistory.get(position));
+            System.out.print(sideHistory.get(position));
         }
-        sideMap.append(BRIDGE_END);
-
-        System.out.println(sideMap);
+        System.out.println(BRIDGE_END);
     }
 
     /**
