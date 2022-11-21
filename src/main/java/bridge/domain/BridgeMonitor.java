@@ -16,6 +16,8 @@ public class BridgeMonitor {
     private static final String CORRECT_MOVING = " O ";
     private static final String WRONG_MOVING = " X ";
     private static final String BETWEEN_LINE = "|";
+    private static final int ONE_COLUMN_INCLUDING_BETWEEN_LINE = 4;
+    private static final int ONE_COLUMN_EXCLUDING_BETWEEN_LINE = 3;
 
     public BridgeMonitor() {
         this.upperLine = new StringBuilder(BRACKETS);
@@ -39,14 +41,11 @@ public class BridgeMonitor {
     }
 
     public void turnBackOnce() {
-        int lastIndexOfLine = this.upperLine.length() - 1;
-        if (lastIndexOfLine > 4) {
-            this.upperLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
-            this.lowerLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
+        if (haveAlready2Moving()) {
+            deleteLastMovingIncludingBetweenLine();
             return;
         }
-        this.upperLine.delete(lastIndexOfLine - 3, lastIndexOfLine);
-        this.lowerLine.delete(lastIndexOfLine - 3, lastIndexOfLine);
+        deleteLastMovingExcludingBetweenLine();
     }
 
     private void openBracket() {
@@ -97,5 +96,22 @@ public class BridgeMonitor {
             this.upperLine.append(EMPTY);
             this.lowerLine.append(CORRECT_MOVING);
         }
+    }
+
+    private boolean haveAlready2Moving() {
+        String upperLinePicture = this.upperLine.toString();
+        return upperLinePicture.contains(BETWEEN_LINE);
+    }
+
+    private void deleteLastMovingIncludingBetweenLine() {
+        int lastIndexOfLine = getLastIndexOfLine();
+        this.upperLine.delete(lastIndexOfLine - ONE_COLUMN_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
+        this.lowerLine.delete(lastIndexOfLine - ONE_COLUMN_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
+    }
+
+    private void deleteLastMovingExcludingBetweenLine() {
+        int lastIndexOfLine = getLastIndexOfLine();
+        this.upperLine.delete(lastIndexOfLine - ONE_COLUMN_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
+        this.lowerLine.delete(lastIndexOfLine - ONE_COLUMN_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
     }
 }
