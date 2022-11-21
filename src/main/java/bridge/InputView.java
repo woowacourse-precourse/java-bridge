@@ -13,8 +13,31 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String bridgeSizeInput = Console.readLine();
+        try {
+            isSizeInRange(validateNumeric(bridgeSizeInput));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
 
         return Integer.parseInt(bridgeSizeInput);
+    }
+
+    public int validateNumeric(String bridgeSizeInput) throws IllegalArgumentException{
+        int bridgeSize;
+        try {
+            bridgeSize = Integer.parseInt(bridgeSizeInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+        return bridgeSize;
+    }
+
+    public boolean isSizeInRange(int bridgeSize) throws IllegalArgumentException {
+        if (!(bridgeSize >= 3 && bridgeSize <= 20)) {
+            throw new IllegalArgumentException("[ERROR] 3에서 20 사이의 숫자를 입력해주세요.");
+        }
+        return true;
     }
 
     /**
