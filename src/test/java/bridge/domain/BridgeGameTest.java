@@ -190,7 +190,7 @@ class BridgeGameTest {
 
         @DisplayName("성공한 경우")
         @Test
-        void should_BeTrue_When_SuccessToCrossBridge() {
+        void should_ReturnTrue_When_SuccessToCrossBridge() {
             // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
@@ -203,7 +203,7 @@ class BridgeGameTest {
 
         @DisplayName("실패한 경우")
         @Test
-        void should_BeFalse_When_FailToCrossBridge() {
+        void should_ReturnFalse_When_FailToCrossBridge() {
             // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(UPPER_SIDE);
@@ -234,7 +234,7 @@ class BridgeGameTest {
 
         @DisplayName("시도 횟수가 1번인 경우")
         @Test
-        void should_Be1_When_NotFail() {
+        void should_Be1_When_SuccessToCrossWithNoFail() {
             // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
@@ -247,7 +247,7 @@ class BridgeGameTest {
 
         @DisplayName("시도 횟수가 3번인 경우")
         @Test
-        void should_Be3_When_Try3Times() {
+        void should_Be3_When_SuccessToCrossWith3TimesTry() {
             // given
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.retry(RETRY);
