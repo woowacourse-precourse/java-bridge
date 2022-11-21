@@ -12,6 +12,7 @@ public class OutputView {
     private static final String gameStartMessage = "다리 건너기 게임을 시작합니다.";
     private static final String askBridgeSizeMessage = "다리의 길이를 입력해주세요.\n";
     private static final String askUserMoveDirectionMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
+    private static final String askGameCommandMessage = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
 
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_END = " ]";
@@ -33,6 +34,11 @@ public class OutputView {
     // 이동할 칸 입력 문구 출력
     public static void askUserMoveDirection() {
         System.out.println(askUserMoveDirectionMessage);
+    }
+
+    // 재시작 여부 입력 문구 출력
+    public static void askGameCommand() {
+        System.out.println(askGameCommandMessage);
     }
 
     /**
