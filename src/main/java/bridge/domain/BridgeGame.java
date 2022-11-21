@@ -25,7 +25,7 @@ public class BridgeGame {
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         player = new Player();
         bridgeStatus = new ArrayList<>();
-        attempt = 0;
+        attempt = 1;
         gameStatus = false;
     }
 
