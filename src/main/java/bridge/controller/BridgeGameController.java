@@ -7,19 +7,35 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-
-    private static final InputView inputView = InputView.getInstance();
-    private static final OutputView outputView = OutputView.getInstance();
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
     private static final BridgeGame manager = BridgeGame.getInstance();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
+    private static enum Message {
+        GAME_START("다리 건너기 게임을 시작합니다."),
+        REQUEST_BRIDGE_LENGTH("다리의 길이를 입력해주세요."),
+        REQUEST_MOVING_COMMAND("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
+        REQUEST_GAME_COMMAND("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
+        private final String message;
+
+        Message(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return this.message;
+        }
+    }
+
     public static void run() {
         startBridgeGame();
-        while(!manager.isGameSuccess()) {
+        while (!manager.isGameSuccess()) {
             String movingCommand = getMoving();
             boolean movingSuccess = manager.move(movingCommand);
             outputView.printMap(manager.getMovingStatus(), movingSuccess); // 이동 결과 출력
-            if(!movingSuccess && !doRetry()) {
+            if (!movingSuccess && !doRetry()) {
                 break;
             }
         }
@@ -27,14 +43,14 @@ public class BridgeGameController {
     }
 
     private static void startBridgeGame() {
-        outputView.printMessage("다리 건너기 게임을 시작합니다.", "\n");
+        outputView.printMessage(Message.GAME_START.getMessage(), "\n");
         int length = getBridgeLength();
         manager.setBridgeStatus(bridgeMaker.makeBridge(length));
     }
 
     private static boolean doRetry() {
         String command = getGameCommand();
-        if(command.equals("R")) {
+        if (command.equals("R")) {
             manager.retry();
             return true;
         }
@@ -42,34 +58,31 @@ public class BridgeGameController {
     }
 
     private static int getBridgeLength() {
-        while(true) {
+        while (true) {
             try {
-                int length = inputView.readBridgeSize("다리의 길이를 입력해주세요.", "\n");
+                int length = inputView.readBridgeSize(Message.REQUEST_BRIDGE_LENGTH.getMessage(), "\n");
                 return length;
-            }
-            catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
             }
         }
     }
 
     private static String getMoving() {
-        while(true) {
+        while (true) {
             try {
-                String command = inputView.readMoving("이동할 칸을 선택해주세요. (위: U, 아래: D)", "\n");
+                String command = inputView.readMoving(Message.REQUEST_MOVING_COMMAND.getMessage(), "\n");
                 return command;
-            }
-            catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
             }
         }
     }
 
     private static String getGameCommand() {
-        while(true) {
+        while (true) {
             try {
-                String command = inputView.readGameCommand("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)", "\n");
+                String command = inputView.readGameCommand(Message.REQUEST_GAME_COMMAND.getMessage(), "\n");
                 return command;
-            }
-            catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
             }
         }
     }
