@@ -1,14 +1,13 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import static org.assertj.core.api.Assertions.*;
-
 class RetryTest {
-
     @DisplayName("재시작시 정상적인 데이터를 넣은 경우")
     @ParameterizedTest
     @EnumSource(Retry.class)
