@@ -8,19 +8,15 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
-
-    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
-    }
-
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         List<String> bridge = new ArrayList<>();
-        for (int space = 0; space < size; space++) {
+        while (size != 0) {
+            size--;
             if (bridgeNumberGenerator.generate() == 1) {
                 bridge.add("U");
                 continue;
