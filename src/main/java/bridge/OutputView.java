@@ -76,4 +76,8 @@ public class OutputView {
     public void inputBridgeSize() {
         System.out.println(NEW_LINE.getMessage() + INPUT_BRIDGE_SIZE.getMessage());
     }
+
+    public void inputMoving() {
+        System.out.println(NEW_LINE.getMessage() +  INPUT_MOVING.getMessage());
+    }
 }
