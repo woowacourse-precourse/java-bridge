@@ -26,4 +26,8 @@ public class Bridge {
             );
     }
 
+    public boolean checkCollapse(List<Direction> playerPath){
+        int index = playerPath.size() - 1;
+        return securePath.get(index).equals(playerPath.get(index));
+    }
 }
