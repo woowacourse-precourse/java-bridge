@@ -11,6 +11,5 @@ public class Application {
         BridgeGameController bridgeGameController = new BridgeGameController();
         bridgeGameController.go();
 
-
     }
 }
