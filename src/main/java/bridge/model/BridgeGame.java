@@ -13,11 +13,11 @@ import java.util.Stack;
 public class BridgeGame {
     Bridge bridge;
     Stack<Direction> movement;
-    MakeMap makeMap;
+    MapMaker mapMaker;
 
     public BridgeGame() {
         movement = new Stack<>();
-        makeMap = new MakeMap();
+        mapMaker = new MapMaker();
     }
 
     public void makeBridge(int size, BridgeNumberGenerator bridgeNumberGenerator) {
@@ -36,7 +36,7 @@ public class BridgeGame {
      */
     public String move(Direction direction) {
         movement.push(direction);
-        String message = makeMap.buildMap(movement, bridge);
+        String message = mapMaker.buildMap(movement, bridge);
         return message;
     }
 
@@ -46,7 +46,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() throws IllegalStateException {
-        //TODO: IllegalStatementException
         try {
             movement.pop();
         } catch (EmptyStackException exception) {

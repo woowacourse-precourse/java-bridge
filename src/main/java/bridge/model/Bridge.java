@@ -10,7 +10,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean canMove(Direction direction, int index) {
+    public boolean isMoved(Direction direction, int index) {
         return bridge.get(index) == direction;
     }
 
