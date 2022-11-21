@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import static bridge.constant.BridgeLength.MAX_BRIDGE_LENGTH;
 import static bridge.constant.BridgeLength.MIN_BRIDGE_LENGTH;

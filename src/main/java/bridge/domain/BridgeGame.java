@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.constant.MovingDirection;
 import java.util.List;

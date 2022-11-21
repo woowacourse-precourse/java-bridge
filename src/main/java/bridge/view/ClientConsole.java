@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 @FunctionalInterface
 public interface ClientConsole {

@@ -1,8 +1,10 @@
-package bridge;
+package bridge.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.Arrays;

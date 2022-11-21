@@ -1,7 +1,8 @@
-package bridge;
+package bridge.controller;
 
 import bridge.constant.GameCommand;
 import bridge.constant.MovingDirection;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
