@@ -1,6 +1,6 @@
-package bridge.validator;
+package bridge.input.validator;
 
-import bridge.validator.code.BridgeSizeValidationCode;
+import bridge.input.validator.code.BridgeSizeValidationCode;
 
 public class BridgeSizeValidator {
     private static final int BRIDGE_SIZE_LOWER_BOUND = 3;

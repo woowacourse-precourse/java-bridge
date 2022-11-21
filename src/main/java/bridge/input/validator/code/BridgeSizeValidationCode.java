@@ -1,4 +1,4 @@
-package bridge.validator.code;
+package bridge.input.validator.code;
 
 public enum BridgeSizeValidationCode {
     ILLEGAL_CHARACTER("다리 길이 입력은 3 이상 20 이하의 숫자여야 하며, 숫자 외 다른 문자를 포함해서는 안 됩니다."),

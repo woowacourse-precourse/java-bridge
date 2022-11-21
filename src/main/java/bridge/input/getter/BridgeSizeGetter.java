@@ -1,9 +1,9 @@
-package bridge;
+package bridge.input.getter;
 
 import bridge.console.InputView;
 import bridge.console.OutputView;
-import bridge.validator.code.BridgeSizeValidationCode;
-import bridge.validator.BridgeSizeValidator;
+import bridge.input.validator.code.BridgeSizeValidationCode;
+import bridge.input.validator.BridgeSizeValidator;
 
 public class BridgeSizeGetter {
     private final InputView inputView;
