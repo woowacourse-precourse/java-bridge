@@ -39,11 +39,15 @@ public class BridgeGameController {
         Player player = new Player(movingChoices);
         printMap(game.move(player, bridge));
         if (game.move(player, bridge).contains(false)) {
-            movingChoices.remove(movingChoices.size() - 1);
-            gameCommand = getGameCommand();
-            if (game.retry(gameCommand)) {
-                playing();
-            }
+            rePlaying();
+        }
+    }
+
+    public void rePlaying() {
+        movingChoices.remove(movingChoices.size() - 1);
+        gameCommand = getGameCommand();
+        if (game.retry(gameCommand)) {
+            playing();
         }
     }
 
