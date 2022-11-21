@@ -40,6 +40,7 @@ public class BridgeGame {
             if (answerCount == BridgeService.getInputSize()) {
                 OutputView.printResult(BridgeService.getPresentMoveBridge());
                 OutputView.printGameSuccess(true);
+                OutputView.printTryCount();
                 break;
             }
             dir = BridgeService.getInitMoveRow();

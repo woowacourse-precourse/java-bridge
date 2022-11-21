@@ -21,6 +21,10 @@ public class BridgeService {
 
     private static int tryCount = 1;
 
+    public static int getTryCount(){
+        return tryCount;
+    }
+
     public static List<String>[] getPresentMoveBridge(){
         return presentMoveBridge;
     }
@@ -108,6 +112,7 @@ public class BridgeService {
             else if(input.equals("Q")){
                 OutputView.printResult(presentMoveBridge);
                 OutputView.printGameSuccess(false);
+                OutputView.printTryCount();
             }
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
