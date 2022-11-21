@@ -9,34 +9,51 @@ public class BridgeController {
 
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
+    private Bridge bridge;
+    private BridgeGame bridgeGame;
+
+    public int getBridgeSize() {
+        outputView.printRequestBridgeSize();
+        return inputView.readBridgeSize();
+    }
+
+    public void setGame(int size){
+        bridge = new Bridge(size);
+        bridgeGame = new BridgeGame(bridge);
+    }
+
+    public String requestMovingPoint(){
+        outputView.printRequestMove();
+        return inputView.readMoving();
+    }
+
+    public boolean requestRetry(){
+        outputView.printRequestGameCommand();
+        return inputView.readGameCommand();
+    }
+
+    public boolean bridgeGame(){
+        String movePlace = requestMovingPoint();
+        boolean passable = bridgeGame.move(movePlace, bridge);
+
+        return !bridgeGame.getComplete() && passable;
+    }
 
     public void start() {
         outputView.printIntro();
-        outputView.printRequestBridgeSize();
-        int size = inputView.readBridgeSize();
-        Bridge bridge = new Bridge(size);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean passable = false;
+        int size = getBridgeSize();
+        setGame(size);
+
         do{
             bridgeGame.retry();
 
-
-            do {
-                outputView.printRequestMove();
-                passable = bridgeGame.move(inputView.readMoving(), bridge);
-                outputView.printMap(bridgeGame.getMark(), passable);
-                // 다 건너면 탈출
-                if(bridgeGame.getCurrent() == size  ){
-                    break;
-                }
-            } while (passable);
+            while (bridgeGame()){
+                outputView.printMap(bridgeGame.getMark(), true);
+            };  // O 면 반복
+            outputView.printMap(bridgeGame.getMark(), bridgeGame.getComplete());
             // 다 건너면 탈출
-            if(bridgeGame.getCurrent() == size && passable ){
-                break;
-            }
-            outputView.printRequestGameCommand();
-        }while (inputView.readGameCommand());
 
-        outputView.printResult(bridgeGame ,passable);
+        }while (!bridgeGame.getComplete() && requestRetry());
+        outputView.printResult(bridgeGame ,bridgeGame.getComplete());
     }
 }
