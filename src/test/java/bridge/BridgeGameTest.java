@@ -64,4 +64,16 @@ class BridgeGameTest {
         assertThat(gameResult.getResult()).isEqualTo("실패");
         assertThat(gameResult.getRetryCount()).isEqualTo(1);
     }
+
+    @Test
+    void 게임종료를_입력하면_정상적으로_종료되어야한다() {
+        bridgeGame.move(Direction.D);
+        assertThat(bridgeGame.end()).isTrue();
+
+        bridgeGame.retry(GameCommand.Q, gameMap);
+        GameResult gameResult = bridgeGame.gameResult();
+
+        assertThat(gameResult.getResult()).isEqualTo("실패");
+        assertThat(gameResult.getRetryCount()).isEqualTo(1);
+    }
 }
