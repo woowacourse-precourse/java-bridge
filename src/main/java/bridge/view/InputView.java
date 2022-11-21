@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.ExceptionMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -41,25 +42,25 @@ public class InputView {
 
     public void isNumber(String number) {
         if (!number.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("다리 길이는 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.IS_NUMBER.getMessage());
         }
     }
 
     public void checkScope(String number) {
         if (Integer.parseInt(number) < 3 || Integer.parseInt(number) > 20) {
-            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.SCOPE.getMessage());
         }
     }
 
     public void isMovingCommand(String alphabet) {
         if (!(alphabet.equals("U") || alphabet.equals("D"))) {
-            throw new IllegalArgumentException("윗칸(U)과 아래칸(D) 중 하나를 입력해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.MOVING_COMMAND.getMessage());
         }
     }
 
     public void checkCommand(String command) {
         if (!(command.equals("R") || command.equals("Q"))) {
-            throw new IllegalArgumentException("재시작(R)과 종료(Q) 중 하나를 입력해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.RESTART_COMMAND.getMessage());
         }
     }
 }
