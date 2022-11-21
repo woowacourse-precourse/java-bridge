@@ -5,6 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.GameResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -25,8 +26,11 @@ public class Controller {
         System.out.println(GAME_START);
 
         Bridge answerBridge = makeAnswerBridge(bridgeMaker);
+
         Bridge playerBridge = new Bridge(new ArrayList<>());
-        playerBridge = playingGame(playerBridge, answerBridge);
+        GameResult gameResult = new GameResult(true, 1);
+        playerBridge = playingGame(playerBridge, answerBridge, gameResult);
+
     }
 
     private Bridge makeAnswerBridge(BridgeMaker bridgeMaker) {
@@ -45,36 +49,33 @@ public class Controller {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private Bridge playingGame(Bridge playerBridge, Bridge answerBridge) {
+    private Bridge playingGame(Bridge playerBridge, Bridge answerBridge, GameResult gameResult) {
         try{
-            playerBridge = readPlayerBridge(playerBridge, answerBridge);
+            playerBridge = readPlayerBridge(playerBridge, answerBridge, gameResult);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
-            playerBridge = playingGame(playerBridge, answerBridge);
+            playerBridge = playingGame(playerBridge, answerBridge, gameResult);
         }
         return playerBridge;
     }
 
-    private Bridge readPlayerBridge(Bridge playerBridge, Bridge answerBridge){
+    private Bridge readPlayerBridge(Bridge playerBridge, Bridge answerBridge, GameResult gameResult){
         List<String> playerInput = playerBridge.getBridge();
         int cnt = 0;
         int position;
-        while(playerInput.size() != answerBridge.getBridge().size()) {
-            // 매칭 하는 부분 따로 빼서 리펙토링
+
+        while (playerInput.size() != answerBridge.getBridge().size()) {
             String moveMessage = getMoveMessage();
             playerInput.add(moveMessage);
             position = bridgeGame.move(answerBridge.getBridge(), cnt, moveMessage);
 
             outputView.printMap(answerBridge.getBridge(), playerInput);
-
-            // 재시도 추가
-            if(!checkRetry(cnt, position, answerBridge)) {
-                break;
+            if (cnt == position) {
+                playerBridge = retry(playerBridge, answerBridge, gameResult);
+                return playerBridge;
             }
-
             cnt = position;
         }
-        // 최종시도 횟수과 최종결과만 전송
         return new Bridge(playerInput);
     }
 
@@ -93,27 +94,24 @@ public class Controller {
         return inputView.readMoving();
     }
 
-    private boolean checkRetry(int cnt, int position, Bridge answerBridge) {
-        if (cnt == position) {
-            if (retry().equals(RETRY)) {
-                clearPlayerBridge();
-                readPlayerBridge(clearPlayerBridge(), answerBridge);
-            }
-            return false;
+    private Bridge retry(Bridge playerBridge, Bridge answerBridge, GameResult gameResult) {
+        try {
+            playerBridge = checkRetry(playerBridge, answerBridge, gameResult);
+        } catch (IllegalArgumentException ex) {
+            playerBridge = retry(playerBridge, answerBridge, gameResult);
         }
-        return true;
+        return playerBridge;
     }
 
-    private String retry() {
-        String retryMessage;
-        try {
-            retryMessage = askRetry();
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            retryMessage = retry();
+    private Bridge checkRetry(Bridge playerBridge, Bridge answerBridge, GameResult gameResult) {
+        if (askRetry().equals(RETRY)) {
+            gameResult.plusTryCount();
+            return readPlayerBridge(clearPlayerBridge(), answerBridge, gameResult);
         }
-        return retryMessage;
+        gameResult.setSuccess(false);
+        return playerBridge;
     }
+
     private String askRetry() {
         String retryMessage;
         try {
