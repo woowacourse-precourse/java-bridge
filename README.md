@@ -527,13 +527,19 @@ int number=bridgeNumberGenerator.generate();
     * checkIfGameIsFailed - 게임 실패 여부를 제대로 확인하는가?
         1. 게임 실패 확인
         2. 게임 미실패 확인
-
+    * retry - 게임 재시작 시 초기화 확인
 
 2. BridgeMakerTest
     * makeBridge - 다리 생성 확인
 
 
-3. InputViewTest
+3. UserTest
+    * increaseNumberOfMoves - 이동 횟수 증가 확인
+    * increaseNumberOfGameTrials - 게임 총 시도 횟수 증가 확인
+    * resetNumberOfMoves - 이동 횟수 초기화 확인
+
+
+4. InputViewTest
     * readBridgeSize - 다리의 길이 입력
         1. 정상 입력 (3 ~ 20 숫자)
         2. 예외처리 확인
@@ -545,7 +551,7 @@ int number=bridgeNumberGenerator.generate();
         2. 예외처리 확인
 
 
-4. OutputViewTest
+5. OutputViewTest
     * printMap - 현재까지 이동한 다리의 상태 출력 확인
         1. 이동할 수 있는 칸을 선택한 경우 (O 출력)
         2. 이동할 수 없는 칸을 선택한 경우 (X 출력)
