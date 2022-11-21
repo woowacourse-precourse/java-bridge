@@ -3,15 +3,13 @@ package bridge.domain.command;
 import java.util.Arrays;
 
 public enum BranchCommand {
-	RESTART("R", true),
-	QUIT("Q", false);
+	RESTART("R"),
+	QUIT("Q");
 
 	private final String value;
-	private final boolean result;
 
-	BranchCommand(String value, boolean result) {
+	BranchCommand(String value) {
 		this.value = value;
-		this.result = result;
 	}
 
 	public static BranchCommand findCommand(String inputCommand) {
@@ -19,7 +17,11 @@ public enum BranchCommand {
 			.findFirst().orElseThrow(() -> new IllegalArgumentException("[ERROR] 안내문을 참고해 올바른 커맨드를 입력해주세요."));
 	}
 
-	public boolean isResult() {
-		return result;
+	public static boolean isRestartGame(String inputCommand) {
+		return RESTART.value.equals(inputCommand);
+	}
+
+	public String getValue() {
+		return value;
 	}
 }

@@ -43,6 +43,6 @@ public class BridgeGameService {
 
 	public boolean retryOrEnd(String inputCommand) {
 		BranchCommand branchCommand = BranchCommand.findCommand(inputCommand);
-		return branchCommand.isResult();
+		return BranchCommand.isRestartGame(branchCommand.getValue());
 	}
 }
