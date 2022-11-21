@@ -15,6 +15,10 @@ public class Bridge {
         this.bridgeShapes = new ArrayList<>();
     }
 
+    public Bridge(Bridge bridge) {
+        this(bridge.bridgeShapes);
+    }
+
     public Bridge(List<BridgeShape> bridgeShapeValues) {
         this.bridgeShapes = new ArrayList<>(bridgeShapeValues);
     }
