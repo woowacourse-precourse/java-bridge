@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import net.bytebuddy.build.ToStringPlugin.Enhance.Prefix;
 
 public class BridgeResult {
 
@@ -24,9 +23,7 @@ public class BridgeResult {
 	}
 
 	public void crossOneBridge(BridgeStatus bridgeStatus, String move) {
-		boolean isUp = checkMove(move);
-
-		if (isUp) {
+		if (isUp(move)) {
 			addBridge(bridgeStatus.getMessage(), EMPTY);
 
 			return;
@@ -39,7 +36,7 @@ public class BridgeResult {
 		this.downBridge.add(downBridge);
 	}
 
-	private boolean checkMove(String move) {
+	private boolean isUp(String move) {
 		return Objects.equals(move, UP);
 	}
 

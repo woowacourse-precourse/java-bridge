@@ -9,6 +9,8 @@ import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 import bridge.service.BridgeMaker;
 import bridge.service.BridgeNumberGenerator;
+import bridge.service.BridgeRandomNumberGenerator;
+import bridge.util.Logger;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -25,9 +27,23 @@ public class BridgeTest extends NsTest {
 		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 
 		try {
-			List<String> bridge = bridgeMaker.makeBridge(2);
+			Bridge bridge = new Bridge(bridgeMaker.makeBridge(2));
 		} catch (IllegalArgumentException e) {
-			System.out.println(e);
+			Logger.error(e.getMessage());
+		}
+
+		assertThat(output()).contains(ERROR_MESSAGE);
+	}
+
+	@Test
+	@DisplayName("다리 생성 예외 테스트 3~20인지 확인")
+	void 다리_생성예외_테스트2() {
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+		try {
+			Bridge bridge = new Bridge(bridgeMaker.makeBridge(21));
+		} catch (IllegalArgumentException e) {
+			Logger.error(e.getMessage());
 		}
 
 		assertThat(output()).contains(ERROR_MESSAGE);

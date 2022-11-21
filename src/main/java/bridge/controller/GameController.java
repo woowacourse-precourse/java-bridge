@@ -1,9 +1,8 @@
 package bridge.controller;
 
-import static bridge.view.InputView.RETRY;
-
 import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
+import bridge.domain.GameStatus;
 import bridge.service.BridgeGame;
 import bridge.util.Logger;
 import bridge.view.InputView;
@@ -39,7 +38,7 @@ public class GameController {
 			BridgeStatus bridgeStatus = bridgeGame.move(moveInput);
 			bridgeResult.crossOneBridge(bridgeStatus, moveInput);
 			oneBridgeResult(bridgeResult, bridgeStatus);
-		} while (bridgeGame.checkEnd() == BridgeStatus.PASS);
+		} while (bridgeGame.isClear() == GameStatus.PASS);
 	}
 
 	private String requestMove() {
@@ -51,23 +50,23 @@ public class GameController {
 	private void oneBridgeResult(BridgeResult bridgeResult, BridgeStatus bridgeStatus) {
 		outputView.printMap(bridgeResult);
 		bridgeGame.checkClear(bridgeResult);
-		checkRetry(bridgeStatus, bridgeResult);
+		checkBridgeStatus(bridgeStatus, bridgeResult);
 	}
 
-	private void checkRetry(BridgeStatus bridgeStatus, BridgeResult bridgeResult) {
+	private void checkBridgeStatus(BridgeStatus bridgeStatus, BridgeResult bridgeResult) {
 		if (bridgeStatus == BridgeStatus.FAIL) {
 			outputView.printRequestRetry();
 			askContinue(inputView.readGameCommand(), bridgeResult);
 		}
 	}
 
-	private void askContinue(String Input, BridgeResult bridgeResult) {
-		if (Input.equals(RETRY)) {
-			bridgeGame.retry();
+	private void askContinue(String input, BridgeResult bridgeResult) {
+		if (bridgeGame.retry(input)) {
 			crossingBridge();
 
 			return;
 		}
+
 		bridgeGame.end(bridgeResult);
 	}
 }

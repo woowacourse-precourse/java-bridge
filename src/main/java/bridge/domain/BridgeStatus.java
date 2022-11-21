@@ -3,30 +3,28 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum BridgeStatus {
-	FAIL(0, "X"),
-	SUCCESS(1, "O"),
-	END(2, ""),
-	PASS(3, "");
+	FAIL(false, "X"),
+	SUCCESS(true, "O");
 
-	private final long bridgeStatus;
+	private final boolean bridgeStatus;
 	private final String message;
 
-	BridgeStatus(int bridgeStatus, String message) {
+	BridgeStatus(boolean bridgeStatus, String message) {
 		this.bridgeStatus = bridgeStatus;
 		this.message = message;
 	}
 
-	public static BridgeStatus findByBridgeStatus(long currentStatus) {
+	public static BridgeStatus findByBridgeStatus(boolean currentStatus) {
 		return Arrays.stream(BridgeStatus.values())
 			.filter(status -> status.find(currentStatus))
 			.findAny()
-			.orElse(END);
+			.orElse(FAIL);
 	}
 
 	public String getMessage() {
 		return this.message;
 	}
-	private boolean find(long currentStatus) {
+	private boolean find(boolean currentStatus) {
 		return currentStatus == this.bridgeStatus;
 	}
 }

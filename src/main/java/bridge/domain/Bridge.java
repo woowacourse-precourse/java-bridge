@@ -6,7 +6,7 @@ public class Bridge {
 
 	private final static String ERROR_MESSAGE_RANGE = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 	private final static int MIN_BRIDGE_SIZE = 3;
-	private final static int MAX_BRIDGE_SIZE = 3;
+	private final static int MAX_BRIDGE_SIZE = 20;
 
 	List<String> bridge;
 
@@ -16,11 +16,12 @@ public class Bridge {
 	}
 
 	public BridgeStatus isBridgeStatus(String input, int bridgeNumber) {
-		return BridgeStatus.findByBridgeStatus(checkBridge(bridge.get(bridgeNumber), input));
+		boolean test = checkBridge(bridge.get(bridgeNumber), input);
+		return BridgeStatus.findByBridgeStatus(test);
 	}
 
-	private long checkBridge(String currentBridge, String input) {
-		return currentBridge.chars().filter(bridge -> bridge == input.charAt(0)).count();
+	private boolean checkBridge(String currentBridge, String input) {
+		return currentBridge.chars().allMatch(bridge -> bridge == input.charAt(0));
 	}
 
 	public boolean isEnd(int bridgeNumber) {

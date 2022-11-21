@@ -1,14 +1,18 @@
 package bridge.service;
 
+import static bridge.view.InputView.RETRY;
+
 import bridge.domain.Bridge;
 import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
+import bridge.domain.GameStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+	private static final int RETRY_NUMBER = 0;
 	private final Bridge bridge;
 	private int bridgeNumber = 0;
 	private int tryCount = 0;
@@ -16,31 +20,30 @@ public class BridgeGame {
 	private BridgeResult bridgeResult;
 
 	public BridgeGame(int size) {
-		this.bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size));
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		this.bridge = new Bridge(bridgeMaker.makeBridge(size));
 		this.tryCount++;
 	}
 
-	public BridgeStatus checkEnd() {
+	public GameStatus isClear() {
 		if (bridge.isEnd(bridgeNumber)) {
-			return BridgeStatus.END;
+			return GameStatus.CLEAR;
 		}
 
-		return BridgeStatus.PASS;
+		return GameStatus.PASS;
 	}
 
 	public void checkClear(BridgeResult bridgeResult) {
-		if (checkEnd() == BridgeStatus.END) {
+		if (isClear() == GameStatus.CLEAR) {
 			this.bridgeResult = bridgeResult;
-			this.gameResult = "성공";
+			this.gameResult = GameStatus.CLEAR.getMessage();
 		}
 	}
 
 	public void end(BridgeResult bridgeResult) {
-		while (!bridge.isEnd(bridgeNumber)) {
-			bridgeNumber = bridge.getSize();
-		}
-
+		this.bridgeNumber = bridge.getSize();
 		this.bridgeResult = bridgeResult;
+		this.gameResult = GameStatus.END.getMessage();
 	}
 
 	/**
@@ -57,10 +60,15 @@ public class BridgeGame {
 	 * <p>
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void retry() {
-		this.bridgeNumber = 0;
-		this.gameResult = "실패";
-		this.tryCount++;
+	public boolean retry(String gameCommand) {
+		if (gameCommand.equals(RETRY)) {
+			this.bridgeNumber = RETRY_NUMBER;
+			this.tryCount++;
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override

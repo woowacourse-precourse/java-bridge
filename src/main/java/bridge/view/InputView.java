@@ -16,6 +16,7 @@ public class InputView {
 	private static final String ERROR_READ_GAME_COMMAND = "R or Q를 입력하세요";
 	private static final String ERROR_READ_MOVING = "U or D를 입력하세요";
 	private static final String ERROR_NULL = "입력이 없습니다";
+
 	/**
 	 * 다리의 길이를 입력받는다.
 	 */
@@ -31,9 +32,10 @@ public class InputView {
 	}
 
 	private String validateReadMoving(String moveInput) {
-		if (moveInput.equals(UP) || moveInput.equals(DOWN)) {
+		if (!(moveInput.equals(UP) || moveInput.equals(DOWN))) {
 			throw new IllegalArgumentException(ERROR_READ_MOVING);
 		}
+
 		return validateNull(moveInput);
 	}
 
@@ -48,6 +50,7 @@ public class InputView {
 		if (!(gameCommand.equals(RETRY) || gameCommand.equals(QUIT))) {
 			throw new IllegalArgumentException(ERROR_READ_GAME_COMMAND);
 		}
+
 		return validateNull(gameCommand);
 	}
 
@@ -55,6 +58,7 @@ public class InputView {
 		if (input.equals(NULL)) {
 			throw new NullPointerException(ERROR_NULL);
 		}
+
 		return input;
 	}
 }
