@@ -2,7 +2,12 @@ package bridge.domain;
 
 public enum MessageStorage {
     UP("U"),
-    DOWN("D");
+    DOWN("D"),
+    CORRECT("O"),
+    INCORRECT("X"),
+    RESTART("R"),
+    SUCCESS("성공"),
+    FAIL("실패");
 
     private final String message;
 
