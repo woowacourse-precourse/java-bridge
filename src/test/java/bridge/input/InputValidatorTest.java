@@ -2,6 +2,8 @@ package bridge.input;
 
 
 import bridge.constant.BridgeLength;
+import bridge.constant.Direction;
+import bridge.constant.RetryCommand;
 import bridge.util.InputValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -42,8 +44,7 @@ public class InputValidatorTest {
     @ValueSource(strings = {"0", "1", "2", "21", "30", "100"})
     public void validateRangedInputForBridgeSize(String userInput) throws Exception {
         //given
-        final String INVALID_BRIDGE_SIZE_INPUT =
-                "유효하지 않은 다리 크기입니다. (" + BridgeLength.MIN.getLength() + "이상 " + BridgeLength.MAX.getLength() + "이하)";
+        final String INVALID_BRIDGE_SIZE_INPUT = BridgeLength.INVALID_BRIDGE_SIZE_INPUT_MSG;
         //when
         //then
         Assertions.assertThatThrownBy(() -> InputValidator.validateBridgeSize(userInput))
@@ -56,7 +57,7 @@ public class InputValidatorTest {
     @ValueSource(strings = {"U ", "D ", " U ", " D ", "u", "d"})
     public void validateWrongInputForCrossBridge(String userInput) throws Exception {
         //given
-        final String INVALID_BRIDGE_MOVE_INPUT = "유효하지 않은 다리 이동 명령입니다. (위: U, 아래: D)";
+        final String INVALID_BRIDGE_MOVE_INPUT = Direction.INVALID_BRIDGE_MOVE_INPUT_MSG;
         //when
         //then
         Assertions.assertThatThrownBy(() -> InputValidator.validateBridgeMove(userInput))
@@ -79,7 +80,7 @@ public class InputValidatorTest {
     @ValueSource(strings = {" R", "R ", " R ", " Q", "Q ", " Q ", "q", "r", "123", "abc", "가나다"})
     public void validateWrongInputForRestartGame(String userInput) throws Exception {
         //given
-        final String INVALID_GAME_COMMAND_INPUT_MSG = "유효하지 않은 게임 재시작 명령입니다. (재시도: R, 종료: Q)";
+        final String INVALID_GAME_COMMAND_INPUT_MSG = RetryCommand.INVALID_RETRY_COMMAND_INPUT_MSG;
         //when
         //then
         Assertions.assertThatThrownBy(() -> InputValidator.validateGameCommand(userInput))

@@ -7,6 +7,8 @@ public enum Direction {
     DOWNSIDE(0, "D"),
     UPSIDE(1, "U");
 
+    public static final String INVALID_BRIDGE_MOVE_INPUT_MSG = "유효하지 않은 다리 이동 명령입니다. (위: U, 아래: D)";
+
     private static Map<String, Direction> shortcutKeyStorage = new HashMap<>();
 
     static {
