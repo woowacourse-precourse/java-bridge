@@ -14,6 +14,11 @@ public class OutputView {
     private static final String MOVE_SUCCUESS = "O";
     private static final String MOVE_FAIL = "X";
     private static final String ENTER_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
+    private static final String STATISTICS_GAME_SUCCESS_MESSAGE = "게임 성공 여부: ";
+    private static final String STATISTICS_SUCCESS = "성공";
+    private static final String STATISTICS_FAIL = "실패";
+    private static final String STATISTICS_GAME_TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
 
     public static void startBridgeGame() {
         System.out.println(START_MESSAGE);
@@ -85,13 +90,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
-     * @param playerMovingHistory
-     * @param gameSuccess
-     * @param statistics
      */
     public static void printResult(List<String> playerMovingHistory, boolean gameSuccess,
             int tryCount) {
+        System.out.println(GAME_RESULT_MESSAGE);
         printMap(playerMovingHistory, gameSuccess);
+        printNewLine();
+        System.out.println(STATISTICS_GAME_SUCCESS_MESSAGE + convertGameSuccessToString(gameSuccess));
+        System.out.println(STATISTICS_GAME_TRY_COUNT_MESSAGE + tryCount);
+    }
+
+    private static String convertGameSuccessToString(boolean gameSuccess) {
+        if (gameSuccess) {
+            return STATISTICS_SUCCESS;
+        }
+        return STATISTICS_FAIL;
     }
 
     private static void printNewLine() {
