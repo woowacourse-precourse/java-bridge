@@ -17,6 +17,7 @@ public class Controller {
         printGameStartMessage();
         setGame();
         playGame();
+        finishGame();
     }
 
     private void printGameStartMessage() {
@@ -39,6 +40,13 @@ public class Controller {
         proceedDependsOnResult(playResult);
     }
 
+    private void finishGame() {
+        outputView.printFinalMessage();
+        printMoveResult();
+        List<String> finalResult = service.getFinalResult();
+        outputView.printResult(finalResult);
+    }
+
     private void move() {
         try {
             String moveInput = inputView.readMoving();
@@ -55,20 +63,8 @@ public class Controller {
         outputView.printMap(currentResult);
     }
 
-    private void printFinalResult() {
-        outputView.printFinalMessage();
-        printMoveResult();
-        List<String> finalResult = service.getFinalResult();
-        outputView.printResult(finalResult);
-    }
-
     private void decideRetry() {
         String retryInput = requestRetryInput();
-
-        if (retryInput.equals("Q")) {
-            printFinalResult();
-        }
-
         if (retryInput.equals("R")) {
             retry();
         }
@@ -91,10 +87,6 @@ public class Controller {
     }
 
     private void proceedDependsOnResult(String playResult) {
-        if (GameState.WIN.isEqual(playResult)) {
-            printFinalResult();
-        }
-
         if (GameState.LOOSE.isEqual(playResult)) {
             decideRetry();
         }
