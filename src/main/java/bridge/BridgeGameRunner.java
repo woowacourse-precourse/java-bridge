@@ -93,7 +93,7 @@ public class BridgeGameRunner {
 
     private void validateCommand(String command) {
         if (!CommandType.getNames().contains(command)) {
-            throw new IllegalStateException("유효하지 않은 명령 타입입니다.");
+            throw new IllegalArgumentException("유효하지 않은 명령 타입입니다.");
         }
     }
 
