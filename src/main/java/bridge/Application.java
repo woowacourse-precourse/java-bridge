@@ -10,7 +10,7 @@ public class Application {
             BridgeGameController bridgeGameController = new BridgeGameController(answerBridge);
             List<List<String>> result = bridgeGameController.start();
             bridgeGameController.end(result);
-        }catch (Exception e){
+        }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
