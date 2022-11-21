@@ -5,21 +5,19 @@ import java.util.Objects;
 
 public class MoveResultJudgement {
     List<String> bridge;
-    private int currentDistance = 0;
 
     public MoveResultJudgement(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public boolean movedResult(String moving) {
+    public boolean movedResult(String moving, int currentDistance) {
         if (Objects.equals(moving, bridge.get(currentDistance))) {
-            currentDistance++;
             return true;
         }
         return false;
     }
 
-    public boolean isGameComplete(String moving){
+    public boolean isGameComplete(String moving, int currentDistance) {
         ValidationUtil.movedValidation(moving);
         return bridge.size() - 1 == currentDistance && Objects.equals(moving, bridge.get(currentDistance));
     }

@@ -9,6 +9,7 @@ import java.util.List;
 public class BridgeGame {
     private final int bridgeSize;
     private final MoveResultJudgement moveResultJudgement;
+    private int currentDistance = 0;
     public BridgeGame(int readBridgeSize) {
         try {
             ValidationUtil.bridgeSizeValidation(readBridgeSize);
@@ -28,7 +29,7 @@ public class BridgeGame {
      * @return
      */
     public boolean move(String moving) {
-        return moveResultJudgement.movedResult(moving);
+        return moveResultJudgement.movedResult(moving,currentDistance);
     }
 
     /**
@@ -41,6 +42,6 @@ public class BridgeGame {
     }
 
     public boolean isGameComplete(String moving) {
-        return moveResultJudgement.isGameComplete(moving);
+        return moveResultJudgement.isGameComplete(moving,currentDistance);
     }
 }
