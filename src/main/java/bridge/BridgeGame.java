@@ -83,10 +83,10 @@ public class BridgeGame {
     }
 
     public boolean isFailed() {
-        if (upBridge.contains(X.getValue()) || downBridge.contains(X.getValue())) {
+        if (upBridge.contains(X.getValue())) {
             return true;
         }
-        return false;
+        return downBridge.contains(X.getValue());
     }
 
     /**
