@@ -15,9 +15,19 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        String input = Console.readLine();
-        processingBridgeSize(input);
+        String input;
+
+        while (true) {
+            try {
+                System.out.println("다리의 길이를 입력해주세요.");
+                input = Console.readLine();
+                processingBridgeSize(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
 
         return parseInt(input);
     }
@@ -41,13 +51,8 @@ public class InputView {
     }
 
     private void processingBridgeSize(String input) {
-        try {
-            validateInteger(input);
-            validateRange(parseInt(input));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            readBridgeSize();
-        }
+        validateInteger(input);
+        validateRange(parseInt(input));
     }
 
     private void validateInteger(String size) {
