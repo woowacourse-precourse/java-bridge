@@ -11,7 +11,6 @@ public class InputView {
     public int readBridgeSize() {
         try {
             String temp = camp.nextstep.edu.missionutils.Console.readLine();
-            System.out.println((int) temp.charAt(0));
             if (48 > temp.charAt(0) || 57 < temp.charAt(0)) throw new IllegalArgumentException("[ERROR]");
             int i = Integer.parseInt(temp);
             return i;
@@ -28,7 +27,9 @@ public class InputView {
     public String readMoving() {
         try {
             String temp = camp.nextstep.edu.missionutils.Console.readLine();
-            if ( "D"!=temp|| temp!="U") throw new IllegalArgumentException("[ERROR]");
+            System.out.println(temp.equals("D"));
+            System.out.println(temp.equals("U"));
+            if ( !temp.equals("D") && !temp.equals("U")) throw new IllegalArgumentException("[ERROR]");
             return temp;
 
         } catch (IllegalArgumentException E) {
@@ -43,7 +44,7 @@ public class InputView {
     public String readGameCommand() {
         try {
             String temp = camp.nextstep.edu.missionutils.Console.readLine();
-            if ( "R"!=temp|| temp!="Q") throw new IllegalArgumentException("[ERROR]");
+            if ( !temp.equals("R") && !temp.equals("Q")) throw new IllegalArgumentException("[ERROR]");
             return temp;
 
         } catch (IllegalArgumentException E) {
