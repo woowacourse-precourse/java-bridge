@@ -2,10 +2,10 @@ package model;
 
 import constant.NumberConstant;
 import controller.BridgeController;
-import java.util.ArrayList;
-import java.util.List;
 import util.validator.BridgeGameValidator;
 import util.CleanerUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeGame {
     private static final int FIRST_INDEX = NumberConstant.FIRST_INDEX.getConstant();
