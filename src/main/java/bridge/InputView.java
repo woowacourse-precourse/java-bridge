@@ -12,7 +12,7 @@ public class InputView {
      */
     public int readBridgeSize() {
 
-        System.out.println("다리 건너기 게임을 시작합니다.\n다리의 길이를 입력해주세요.");
+        System.out.println("다리 건너기 게임을 시작합니다.\n\n다리의 길이를 입력해주세요.");
         String bridgeSize = Console.readLine();
         checkValidationOfBridgeSize(bridgeSize);
 
@@ -26,9 +26,9 @@ public class InputView {
             checkInteger(bridgeSize);
             checkNumberOfBridgeSize(bridgeSize);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 3 ~ 20 사이의 값을 입력해야 합니다.");
         } catch (NullPointerException e) {
-            throw new NullPointerException("3 ~ 20 사이의 값을 입력해야 합니다.");
+            throw new NullPointerException("[ERROR] 3 ~ 20 사이의 값을 입력해야 합니다.");
         }
     }
 
@@ -71,7 +71,7 @@ public class InputView {
      */
     public String readMoving() {
 
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String inputMoveCommand = Console.readLine();
         checkValidationOfMoveCommand(inputMoveCommand);
 
@@ -81,12 +81,12 @@ public class InputView {
     public void checkValidationOfMoveCommand(String inputMoveCommand) {
         try {
             checkNull(inputMoveCommand);
-            checkLengthOfMoveCommand(inputMoveCommand);
+            checkLengthOfCommand(inputMoveCommand);
             checkValueOfMoveCommand(inputMoveCommand);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("입력값은 U, D 만 입력 가능합니다. (위: U, 아래: D )");
+            throw new IllegalArgumentException("[ERROR] 입력값은 U, D 만 입력 가능합니다. (위: U, 아래: D )");
         } catch (NullPointerException e) {
-            throw new NullPointerException("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            throw new NullPointerException("[ERROR] 이동할 칸을 선택해주세요. (위: U, 아래: D)");
         }
     }
 
@@ -100,9 +100,9 @@ public class InputView {
         throw new IllegalArgumentException();
     }
 
-    private void checkLengthOfMoveCommand(String inputMoveCommand) throws IllegalArgumentException{
+    private void checkLengthOfCommand(String inputCommand) throws IllegalArgumentException{
 
-        if (inputMoveCommand.length() != 1) {
+        if (inputCommand.length() != 1) {
             throw new IllegalArgumentException();
         }
     }
@@ -111,6 +111,31 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+
+        String inputGameCommand = Console.readLine();
+        checkValidationOfGameCommand(inputGameCommand);
+
+        return inputGameCommand;
+    }
+
+    public void checkValidationOfGameCommand(String inputGameCommand) {
+        try {
+            checkNull(inputGameCommand);
+            checkLengthOfCommand(inputGameCommand);
+            checkValueOfGameCommand(inputGameCommand);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 R, Q 만 입력 가능합니다. (재시도: U, 종료: D )");
+        } catch (NullPointerException e) {
+            throw new NullPointerException("[ERROR] 입력값은 R, Q 만 입력 가능합니다. (재시도: U, 종료: D )");
+        }
+    }
+
+    private void checkValueOfGameCommand(String inputGameCommand) throws IllegalArgumentException{
+        char translatedMoveCommand = inputGameCommand.charAt(0);
+
+        if (translatedMoveCommand == 'R' || translatedMoveCommand == 'Q') {
+            return ;
+        }
+        throw new IllegalArgumentException();
     }
 }
