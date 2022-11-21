@@ -76,6 +76,7 @@ public class OutputView {
             if (i == FIRST_MOVE) {
                 bridgeUpperResult.append(moveResult.get(i));
                 bridgeLowerResult.append(moveResult.get(i + 1));
+                continue;
             }
             addFormat(bridgeUpperResult, bridgeLowerResult, VERTICAL_BAR);
             bridgeUpperResult.append(moveResult.get(i));
