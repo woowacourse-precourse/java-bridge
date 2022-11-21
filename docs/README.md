@@ -90,7 +90,7 @@
     - [x] `rightChoice` boolean 값
     - [x] `result` String 값
 - [x] 게임 결과 입력 및 출력
--
+
 
 ### constant / [Error]
 
