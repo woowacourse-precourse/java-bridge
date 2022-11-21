@@ -26,7 +26,7 @@ public class OutputView {
         for (int r = 0; r < result.size() - 1; r++) {
             System.out.print(result.get(r) + " | ");
         }
-        System.out.println(result.get(result.size() - 1) + " ]\n");
+        System.out.println(result.get(result.size() - 1) + " ]");
     }
 
     public void printContinue() {
@@ -42,7 +42,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(userBridge.getUpBridge());
         printMap(userBridge.getDownBridge());
-        System.out.print("게임 성공 여부: " + challenge) ;
+        System.out.print("\n게임 성공 여부: " + challenge) ;
         System.out.print("총 시도한 횟수: " + attempt);
     }
 }
