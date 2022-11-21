@@ -30,11 +30,11 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         printLastGameResult();
 
-        BridgeState bridgeState = bridgeGame.getBridgeState();
+        BridgeState bridgeState = bridgeGame.currentBridgeState();
         printMap(bridgeState);
 
-        gameSuccess(bridgeGame.getSuccess());
-        printAllTryCount(bridgeGame.getGameCount());
+        gameSuccess(bridgeGame.determiningSuccess());
+        printAllTryCount(bridgeGame.totalGameCount());
     }
 
     private void gameSuccess(boolean success) {
@@ -52,18 +52,6 @@ public class OutputView {
     public void printGameStartMessage() {
         System.out.println(SystemMessage.BRIDGE_GAME_START);
         System.out.println();
-    }
-
-//    public void printInputBridgeLength() {
-//        System.out.println(SystemMessage.BRIDGE_LENGTH_INPUT);
-//    }
-
-//    public void printMovementInput() {
-//       System.out.println(SystemMessage.MOVEMENT_INPUT);
-//    }
-
-    public void printGameRestartEnd() {
-        System.out.println(SystemMessage.GAME_RESTART_END);
     }
 
     public void printLastGameResult() {
@@ -84,5 +72,3 @@ public class OutputView {
         System.out.println(SystemMessage.TOTAL_TRY_COUNT + count);
     }
 }
-
-

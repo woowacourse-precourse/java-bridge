@@ -7,8 +7,8 @@ import java.util.List;
 public class BridgeState {
     private static final String SPACE = " ";
 
-    private final List<String> upBridge = new ArrayList<>();  //
-    private final List<String> downBridge = new ArrayList<>();  //
+    private final List<String> upBridge = new ArrayList<>();
+    private final List<String> downBridge = new ArrayList<>();
 
     public void addBridge(String playerMoving, String bridgeJudgment) {
         if (playerMoving.equals(Command.UP.relevantCommand())) {

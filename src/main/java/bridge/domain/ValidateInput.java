@@ -27,14 +27,14 @@ public class ValidateInput {
         }
     }
 
-    public void ValidateUpAndDownCharacter(String playerMoving) {
+    public void validateUpAndDownCharacter(String playerMoving) {
         if (!(playerMoving.equals(Command.UP.relevantCommand())
                 || playerMoving.equals(Command.DOWN.relevantCommand()))) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_UP_OR_DOWN_CHARACTERS);
         }
     }
 
-    public void ValidateRestartAndEndCharacter(String playerMoving) {
+    public void validateRestartAndEndCharacter(String playerMoving) {
         if (!(playerMoving.equals(Command.RE_START.relevantCommand())
                 || playerMoving.equals(Command.END.relevantCommand()))) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_RESTART_OR_END_CHARACTERS);

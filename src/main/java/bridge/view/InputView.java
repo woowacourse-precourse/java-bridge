@@ -31,7 +31,7 @@ public class InputView {
      */
     public String readMoving() {
         String playerMoving = Console.readLine();
-        validateInput.ValidateUpAndDownCharacter(playerMoving);
+        validateInput.validateUpAndDownCharacter(playerMoving);
         return playerMoving;
     }
 
@@ -40,15 +40,14 @@ public class InputView {
      */
     public String readGameCommand() {
         String restartInput = Console.readLine();
-        validateInput.ValidateRestartAndEndCharacter(restartInput);
+        validateInput.validateRestartAndEndCharacter(restartInput);
         return restartInput;
     }
 
     public int inputBridgeSize() {
         return repeatUntilSuccess(() -> {
             System.out.println("다리의 길이를 입력해주세요.");
-            int bridgeSize = readBridgeSize();
-            return bridgeSize;
+            return readBridgeSize();
         });
     }
 
@@ -67,8 +66,6 @@ public class InputView {
             return readGameCommand();
         });
     }
-
-
 
     private <T> T repeatUntilSuccess(Supplier<T> callback) {
         while (true) {

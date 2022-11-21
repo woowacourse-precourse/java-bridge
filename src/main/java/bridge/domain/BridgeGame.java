@@ -62,7 +62,7 @@ public class BridgeGame {
 
     public void restartOrQuit(String playerRetry) {
         if (playerRetry.equals(Command.RE_START.relevantCommand())) {
-            bridgeIndex = 0;
+            bridgeIndex = START_BRIDGE;
             gameCount++;
             return;
         }
@@ -70,18 +70,19 @@ public class BridgeGame {
     }
 
     public boolean isNotGameEnd(String playerRetry) {
-        return !playerRetry.equals(Command.END.relevantCommand()) && bridgeIndex < designBridge.size();
+        return !playerRetry.equals(Command.END.relevantCommand())
+                && bridgeIndex < designBridge.size();
     }
 
-    public int getGameCount() {
+    public int totalGameCount() {
         return gameCount;
     }
 
-    public BridgeState getBridgeState() {
+    public BridgeState currentBridgeState() {
         return bridgeState;
     }
 
-    public boolean getSuccess() {
+    public boolean determiningSuccess() {
         return gameSuccess;
     }
 }

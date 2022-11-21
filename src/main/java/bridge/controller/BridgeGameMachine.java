@@ -11,7 +11,6 @@ import java.util.List;
 public class BridgeGameMachine {
     private static final String FAILURE = "X";
     private static final String EMPTY_VALUE = "";
-    private static final int BRIDGE_LENGTH_CALCULATION = 1;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -26,46 +25,60 @@ public class BridgeGameMachine {
         List<String> designBridge = randomBridge(bridgeLength);
 
         BridgeGame bridgeGame = new BridgeGame(designBridge);
-        playBridgeGame(bridgeGame);  // void -> BridgeGame (while)
+        playBridgeGame(bridgeGame);
+
         outputView.printResult(bridgeGame);
     }
 
     private void playBridgeGame(BridgeGame bridgeGame) {
         String playerRetry = EMPTY_VALUE;
+
         while (bridgeGame.isNotGameEnd(playerRetry)) {
-            String bridgeJudgment = bridgeProgress(bridgeGame);
-
-            if (bridgeJudgment.equals(FAILURE)) {
-                String gameCommand = bridgeRestartAndEndInput();
-                playerRetry = bridgeGame.retry(gameCommand);  // QUIT
-
-                bridgeGame.restartOrQuit(playerRetry);
-            }
+            String bridgeJudgment = playerBridgeAddAndCurrentStatus(bridgeGame);
+            playerRetry = bridgeFailureCases(bridgeGame, playerRetry, bridgeJudgment);
         }
     }
 
+    private String bridgeFailureCases(BridgeGame bridgeGame,
+            String playerRetry, String bridgeJudgment) {
+
+        if (bridgeJudgment.equals(FAILURE)) {
+            String gameCommand = bridgeRestartAndEndInput();
+            playerRetry = bridgeGame.retry(gameCommand);
+            bridgeGame.restartOrQuit(playerRetry);
+        }
+        return playerRetry;
+    }
+
     private String bridgeRestartAndEndInput() {
-        //outputView.printGameRestartEnd();
         return inputView.inputGameCommand();
     }
 
-    private String bridgeProgress(BridgeGame bridgeGame) {
-        String playerMoving = bridgeMovingInput();  // U / D
+    private String playerBridgeAddAndCurrentStatus(BridgeGame bridgeGame) {
+        String bridgeJudgment = addPlayerBridge(bridgeGame);
+        BridgeState bridgePlace = bridgeGame.currentBridgeState();
 
-        String bridgeJudgment = bridgeGame.judgment(playerMoving);  // "o"/"x"
-        bridgeGame.addJudgment(playerMoving, bridgeJudgment);
-
-        bridgeGame.move();
-        BridgeState bridgePlace = bridgeGame.getBridgeState();
         outputView.printMap(bridgePlace);
         outputView.printNextLine();
+        return bridgeJudgment;
+    }
+
+    private String addPlayerBridge(BridgeGame bridgeGame) {
+        String playerMoving = bridgeMovingInput();
+        String bridgeJudgment = bridgeGame.judgment(playerMoving);
+
+        bridgeGame.addJudgment(playerMoving, bridgeJudgment);
+        bridgeGame.move();
 
         return bridgeJudgment;
     }
 
-    private String bridgeMovingInput() {
-        //outputView.printMovementInput();
-        return inputView.inputMoving();
+    private int bridgeSizeInput() {
+        outputView.printGameStartMessage();
+        int bridgeLength = inputView.inputBridgeSize();
+
+        outputView.printNextLine();
+        return bridgeLength;
     }
 
     private List<String> randomBridge(int bridgeLength) {
@@ -73,13 +86,7 @@ public class BridgeGameMachine {
         return bridgeMaker.makeBridge(bridgeLength);
     }
 
-    private int bridgeSizeInput() {
-        outputView.printGameStartMessage();
-        //outputView.printInputBridgeLength();
-
-        int bridgeLength = inputView.inputBridgeSize();
-
-        outputView.printNextLine();
-        return bridgeLength;
+    private String bridgeMovingInput() {
+        return inputView.inputMoving();
     }
 }

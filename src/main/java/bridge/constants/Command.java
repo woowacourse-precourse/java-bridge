@@ -7,14 +7,14 @@ public enum Command {
     END(3, "Q");
 
     private final int sequence;
-    private final String command;
+    private final String commandWord;
 
     Command(int sequence, String command) {
         this.sequence = sequence;
-        this.command = command;
+        this.commandWord = command;
     }
 
     public String relevantCommand() {
-        return command;
+        return commandWord;
     }
 }
