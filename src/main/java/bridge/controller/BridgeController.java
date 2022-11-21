@@ -1,20 +1,17 @@
 package bridge.controller;
 
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.domain.BridgeGame;
 
 public class BridgeController {
-    private final InputView inputView;
-    private final OutputView outputView;
 
     public BridgeController() {
-        inputView = new InputView();
-        outputView = new OutputView();
     }
 
     public void run() {
         SettingController settingController = new SettingController();
-        settingController.setBridgeGame();
+        BridgeGame bridgeGame = settingController.setBridgeGame();
+        PlayingController playingController = new PlayingController(bridgeGame);
+        playingController.play();
 
     }
 
