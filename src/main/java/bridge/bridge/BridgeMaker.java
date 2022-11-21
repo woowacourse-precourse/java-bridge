@@ -26,7 +26,7 @@ public class BridgeMaker {
 
         while (bridge.size() < size) {
             bridgeNumber = bridgeNumberGenerator.generate();
-            bridge.add(Moving.convert(bridgeNumber));
+            bridge.add(Direction.convert(bridgeNumber));
         }
         return bridge;
     }

@@ -3,7 +3,7 @@ package bridge.bridge;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Moving {
+public enum Direction {
 
     UP(1, "U"),
     DOWN(0, "D"),
@@ -11,7 +11,7 @@ public enum Moving {
 
     private static final Map<Integer, String> MOVING_DIRECTION = new HashMap<>();
     static {
-        for (Moving value : values()) {
+        for (Direction value : values()) {
             MOVING_DIRECTION.put(value.number, value.direction);
         }
     }
@@ -19,13 +19,13 @@ public enum Moving {
     private final int number;
     private final String direction;
 
-    Moving(int number, String direction) {
+    Direction(int number, String direction) {
         this.number = number;
         this.direction = direction;
     }
 
-    public boolean equals(String moving) {
-        return moving.equals(this.direction);
+    public boolean equals(String direction) {
+        return direction.equals(this.direction);
     }
 
     public static String convert(int number) {
