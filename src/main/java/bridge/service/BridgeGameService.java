@@ -12,6 +12,7 @@ import java.util.List;
 
 public class BridgeGameService {
     private final BridgeMaker bridgeMaker;
+    private List<String> userMoving;
 
     public BridgeGameService() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -19,7 +20,7 @@ public class BridgeGameService {
 
     /**
     * 게임을 위한 다리를 생성하는 메서드
-     * @return List<String></String>
+     * @return List<String>
     * */
     public List<String> initializeGame() {
         OutputView.printStart();
@@ -44,7 +45,7 @@ public class BridgeGameService {
      * @return Status
     * */
     public Status proceedGame(List<String> bridge) {
-        List<String> userMoving = new ArrayList<>();
+        userMoving = new ArrayList<>();
         while (bridge.size() >= userMoving.size()) {
             userMoving.add(getMoving());
             OutputView.printMap(bridge, userMoving);
@@ -102,5 +103,12 @@ public class BridgeGameService {
             }
         }
         return command;
+    }
+
+    public void printResult(Status status, List<String> bridge, int attempt) {
+        OutputView.printFinalGameResult();
+        OutputView.printResult(bridge, userMoving);
+        OutputView.printGameStatus(status);
+        OutputView.printAllAttempts(attempt);
     }
 }

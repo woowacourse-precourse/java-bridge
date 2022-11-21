@@ -30,7 +30,12 @@ public class BridgeGame {
      * @return Status
      */
     public Status move() {
+        increaseAttempt();
         return bridgeGameService.proceedGame(bridge);
+    }
+
+    private void increaseAttempt() {
+        this.attempt++;
     }
 
     /**
@@ -40,5 +45,12 @@ public class BridgeGame {
      */
     public Command retry() {
         return bridgeGameService.restartGame();
+    }
+
+    /**
+    * 사용자가 게임을 종료하는 경우 최종 결과를 출력할 때 사용하는 메서드
+    * */
+    public void finish(Status status) {
+        bridgeGameService.printResult(status, bridge, attempt);
     }
 }
