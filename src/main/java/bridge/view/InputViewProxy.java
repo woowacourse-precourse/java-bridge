@@ -9,6 +9,8 @@ import bridge.domain.vo.RetryCommand;
  */
 public class InputViewProxy extends InputView {
 
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+
     @Override
     public BridgeSize readBridgeSize() {
         try {
@@ -39,7 +41,7 @@ public class InputViewProxy extends InputView {
         }
     }
 
-    private void printErrorMessage(IllegalArgumentException e) {
-        System.out.println("[ERROR] " + e.getMessage());
+    private void printErrorMessage(IllegalArgumentException error) {
+        System.out.println(ERROR_MESSAGE_PREFIX + error.getMessage());
     }
 }
