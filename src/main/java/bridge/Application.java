@@ -20,7 +20,7 @@ public class Application {
         System.out.println(bridge);
 //        제출할때 지우기
         Game game = new Game(bridge, bridgeSize);
-        game.Start();
+        game.start();
         }
     }
 

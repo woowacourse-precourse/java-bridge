@@ -33,7 +33,7 @@ public class BridgeGame {
         index = 0;
         gameCount += 1;
         Game reGame = new Game(bridge, bridgeSize);
-        reGame.Start();
+        reGame.start();
     }
 
     public List<String> makeMap(String input, boolean move){
