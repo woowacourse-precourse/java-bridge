@@ -8,10 +8,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class History {
+    private static final String OPEN_BRACKET = "[";
+    private static final String CLOSE_BRACKET = "]";
+    private static final String SURVIVE_STATUS_DELIMITER = "|";
+    private static final String NEW_LINE = "\n";
     private final List<StagedHistory> history;
 
     public History() {
-        this.history = new ArrayList<StagedHistory>();
+        this.history = new ArrayList<>();
     }
 
     public void record(SurviveStatus surviveStatus, BridgePosition bridgePosition) {
@@ -19,15 +23,19 @@ public class History {
     }
 
     public String resultByPositions() {
-        return Arrays.stream(BridgePosition.values()).map(bridgePosition -> {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.append("[");
-            stringBuilder.append(history.stream()
-                    .map(stagedHistory -> stagedHistory.resultSurviveStatusByBridgePosition(bridgePosition))
-                    .collect(Collectors.joining("|")));
-            stringBuilder.append("]");
-            return stringBuilder.toString();
-        }).collect(Collectors.joining("\n"));
+        return Arrays.stream(BridgePosition.values())
+                .map(bridgePosition -> {
+                    var stringBuilder = new StringBuilder();
+                    stringBuilder.append(OPEN_BRACKET);
+                    stringBuilder.append(this.resultByPosition(bridgePosition));
+                    stringBuilder.append(CLOSE_BRACKET);
+                    return stringBuilder.toString();
+                }).collect(Collectors.joining(NEW_LINE));
+    }
 
+    private String resultByPosition(BridgePosition bridgePosition) {
+        return history.stream()
+                .map(stagedHistory -> stagedHistory.resultSurviveStatusByBridgePosition(bridgePosition))
+                .collect(Collectors.joining(SURVIVE_STATUS_DELIMITER));
     }
 }
