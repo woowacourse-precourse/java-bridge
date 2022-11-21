@@ -13,7 +13,7 @@ public class BridgeGameStarter {
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
     private List<String> bridge = new ArrayList<>();
-    private List<String> result = new ArrayList<>();
+    private List<String> movingLog = new ArrayList<>();
     private int tryCount = 1;
 
     public BridgeGameStarter(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
@@ -28,8 +28,8 @@ public class BridgeGameStarter {
         outputView.printInputBridgeSize();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         outputView.printInputMoving();
-        result = bridgeGame.move(inputView.readMoving(), bridge, 0);
-        outputView.printMap(result);
+        movingLog = bridgeGame.move(inputView.readMoving(), bridge, 0);
+        outputView.printMap(movingLog);
     }
 
     public void reInitialize() {
@@ -37,14 +37,14 @@ public class BridgeGameStarter {
         outputView.printInputBridgeSize();
         outputView.printInputMoving();
         bridgeGame.initializeLeftRightMovingLog();
-        result = bridgeGame.move(inputView.readMoving(), bridge, 0);
-        outputView.printMap(result);
+        movingLog = bridgeGame.move(inputView.readMoving(), bridge, 0);
+        outputView.printMap(movingLog);
     }
 
     public int additionalInput(int index) {
         outputView.printInputMoving();
-        result = bridgeGame.move(inputView.readMoving(), bridge, index);
-        outputView.printMap(result);
+        movingLog = bridgeGame.move(inputView.readMoving(), bridge, index);
+        outputView.printMap(movingLog);
         index++;
         return index;
     }
@@ -66,7 +66,7 @@ public class BridgeGameStarter {
 
     public boolean proceed() {
         int index = 1;
-        while (bridgeGame.canMove(result)) {
+        while (bridgeGame.canMove(movingLog)) {
             if (bridgeGame.isGameEnded(bridge, index)) {
                 notifySuccessGame();
                 return true;
@@ -86,7 +86,7 @@ public class BridgeGameStarter {
     }
 
     public void closeGame() {
-        outputView.printFinalMap(result);
+        outputView.printFinalMap(movingLog);
         outputView.printResult(gameStatusFlag.get("successFlag"), tryCount);
     }
 
