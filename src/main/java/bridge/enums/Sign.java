@@ -17,11 +17,11 @@ public enum Sign {
         this.sign = sign;
     }
 
-    public String getSign() {
-        return sign;
-    }
-
     public static String getSign(int index) {
         return Sign.values()[index].sign;
+    }
+
+    public String getSign() {
+        return sign;
     }
 }

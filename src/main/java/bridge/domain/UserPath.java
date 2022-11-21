@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 유저가 이동한 경로를 알려준다.
+ * 유저가 이동한 경로를 위,아래로 분리해서 저장한다.
  */
 public class UserPath {
     private List<String> upperPath, lowerPath;
