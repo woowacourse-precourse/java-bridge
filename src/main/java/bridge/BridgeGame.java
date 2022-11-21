@@ -9,6 +9,8 @@ import java.util.List;
 public class BridgeGame {
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    InputView inputView = new InputView();
+
 
 
     /**
@@ -23,7 +25,6 @@ public class BridgeGame {
 
     public List<String> receiveMoving(int bridgeSize) {
         List<String> moving = new ArrayList<>();
-        InputView inputView = new InputView();
         for (int i = 0; i < bridgeSize; i++) {
             moving.add(inputView.readMoving());
         }
@@ -36,5 +37,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+       String inputForRestart =  inputView.readGameCommand();
     }
 }
