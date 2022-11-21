@@ -12,6 +12,11 @@
 ### model
 
 1. BridgeGame
+    - [x] 생성한 다리 저장 → BridgeGame 생성자로 해결
+    - [x] 게임 결과 반환 → result
+    - [x] 게임 재시작 → retry
+
+      재시도 회수 저장
     - [x] 다리 이동 → move
         
         위 다리와 아래 다리를 map으로 구분하여 저장
@@ -19,10 +24,6 @@
         - [x] 해당 다리에 이동 결과 추가 → addProgress
     - [x] 계속 이동할 수 있는지 확인 → isContinue
     - [x] 다리를 건넜는지 떨어졌는지 확인 → isFallBridge
-    - [x] 게임 재시작 → retry
-        
-        재시도 회수 저장
-    - [x] 생성한 다리 저장 → BridgeGame 생성자로 해결
 2. BridgeMaker
     - [x] 다리 생성 → makeBridge
 3. InputValidator
@@ -66,7 +67,7 @@
     - [x] 이동할 칸 입력 및 검증 → inputMoving
         1. 이동할 칸 입력
         2. 이동할 칸 유효성 검사
-    - [x] 게임 재시작 입력 및 검증 → inputStart
+    - [x] 게임 재시작 입력 및 검증 → inputGameCommand
         1. 게임 재시작 입력
         2. 게임 재시작 유효성 검사
 
@@ -83,7 +84,7 @@
 - [x] 다리 길이는 3~20 사이의 숫자만 입력 가능
 - [x] 플레이어가 이동할 칸은 U와 D만 입력 가능
 - [x] 게임 재시작/종료 여부는 R과 Q만 입력 가능
-- [ ] 예외 처리시 “[ERROR]”로 시작하는 에러 문구 출력
+- [x] 예외 처리시 “[ERROR]”로 시작하는 에러 문구 출력
     - try catch문 사용시 `Exception` 은 사용 금지
 
 ---

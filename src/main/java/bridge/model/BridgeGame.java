@@ -11,7 +11,6 @@ import java.util.Map;
 public class BridgeGame {
 
     private final List<String> bridge;
-    private String gameResult;
     private Map<String, List<String>> progress = new HashMap<>();
     private int tryAttempt;
 
@@ -20,6 +19,14 @@ public class BridgeGame {
         retry();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(size);
+    }
+
+    public String result() {
+        if (isFallBridge()) {
+            return GAME_RESULT_LOSE.get();
+        }
+
+        return GAME_RESULT_WIN.get();
     }
 
     public void retry() {
@@ -77,10 +84,6 @@ public class BridgeGame {
     private void addProgress(String movingResult, String dest, String other) {
         this.progress.get(dest).add(movingResult);
         this.progress.get(other).add(BLANK_CELL.get());
-    }
-
-    public List<String> getBridge() {
-        return this.bridge;
     }
 
     public Map<String, List<String>> getProgress() {
