@@ -2,6 +2,7 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -9,13 +10,19 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
-    public void inputBridgeSize() {
+    Bridge bridge = new Bridge();
+
+    public void inputBridge() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
         int bridgeSize = readBridgeSize(); // 다리 길이 입력
-        bridgeMaker.initBridge(bridgeSize); // 다리 생성
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize); // 다리 생성
+        startGame(bridge); // 반복
     }
+
+
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -44,16 +51,16 @@ public class InputView {
      */
     public String readMoving() {
         Message.inputMoveBridgeMessage();
-        String moving = "";
         while (true) {
-            moving = Console.readLine();
+            String moving = Console.readLine();
             if (isReadMoving(moving)) {
                 return moving;
             } // end if
         } // end while
     }
 
-    public boolean isReadMoving(String moving){
+    // 입력 값이 U 또는 D 인지 검사
+    public boolean isReadMoving(String moving) {
         if (moving.equals("U") || moving.equals("D")) {
             return true;
         }
@@ -61,22 +68,25 @@ public class InputView {
         return false;
     }
 
+
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         Message.inputSelectGameRetry();
         String retry = "";
-        while(true){
+        while (true) {
             retry = Console.readLine();
-            if(isRetry(retry)){
+            if (isRetry(retry)) {
                 return retry;
             } // end if
         } // end while
     }
 
-    public boolean isRetry(String retry){
-        if(retry.equals("R") || retry.equals("Q"))
+    // 입력 값이 R 또는 Q 인지 검사
+    public boolean isRetry(String retry) {
+        if (retry.equals("R") || retry.equals("Q"))
             return true;
         ErrorMessage.inputRetryError();
         return false;
