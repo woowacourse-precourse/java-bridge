@@ -12,20 +12,25 @@ public class BridgeGameController {
 
     public static void startGame() {
         System.out.println(MESSAGE_START_BRIDGE_GAME);
+        makeBridge();
+    }
+
+    private static void makeBridge() {
         try {
-            makeBridge(InputView.readBridgeSize());
+            int bridgeSize = InputView.readBridgeSize();
+            BridgeGame bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(new BridgeRandomNumberGenerator()));
+            playGame(bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            makeBridge(InputView.readBridgeSize());
+            makeBridge();
         }
     }
 
-    private static void makeBridge(int bridgeSize) {
-        BridgeGame bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(new BridgeRandomNumberGenerator()));
+    private static void playGame(BridgeGame bridgeGame) {
         boolean gameContinue = true;
         while (gameContinue && !bridgeGame.gameEnd()) {
             gameContinue = move(bridgeGame);
-            gameContinue = gameNotOver(gameContinue, bridgeGame);
+            gameContinue = determineGameContinues(gameContinue, bridgeGame);
         }
         OutputView.printResult(gameContinue, bridgeGame.getPlayer());
     }
@@ -42,20 +47,20 @@ public class BridgeGameController {
         return gameContinue;
     }
 
-    private static boolean gameNotOver(boolean gameContinue, BridgeGame bridgeGame) {
+    private static boolean determineGameContinues(boolean gameContinue, BridgeGame bridgeGame) {
         if (!gameContinue) {
-            gameContinue = retry(bridgeGame);
+            gameContinue = decideKeepPlay(bridgeGame);
         }
         return gameContinue;
     }
 
-    private static boolean retry(BridgeGame bridgeGame) {
+    private static boolean decideKeepPlay(BridgeGame bridgeGame) {
         try {
             String gameCommand = InputView.readGameCommand();
             return bridgeGame.retry(gameCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return retry(bridgeGame);
+            return decideKeepPlay(bridgeGame);
         }
     }
 }
