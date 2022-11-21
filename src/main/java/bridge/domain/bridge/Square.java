@@ -1,6 +1,7 @@
 package bridge.domain.bridge;
 
 import bridge.domain.move.MoveType;
+import bridge.exception.BridgeError;
 
 import java.util.Objects;
 
@@ -23,13 +24,13 @@ public class Square {
 
     private static void isValidMoveType(String moveType) {
         if (!moveType.matches(REG_XP_MOVE_TYPE)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D 문자만 입력 가능합니다.");
+            throw new IllegalArgumentException(BridgeError.MOVE_FORM.message());
         }
     }
 
     private static void isValidMoveTypeCount(String moveType) {
         if (moveType.length() != MOVE_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D 중에 하나만 입력 가능합니다.");
+            throw new IllegalArgumentException(BridgeError.MOVE_SIZE.message());
         }
     }
 

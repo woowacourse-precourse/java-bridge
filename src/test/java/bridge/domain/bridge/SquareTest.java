@@ -1,5 +1,6 @@
 package bridge.domain.bridge;
 
+import bridge.exception.BridgeError;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -18,7 +19,7 @@ class SquareTest {
         void validateChar(String move) {
             Assertions.assertThatThrownBy(() -> Square.of(move))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 이동할 칸은 U와 D 문자만 입력 가능합니다.");
+                    .hasMessageContaining(BridgeError.MOVE_FORM.message());
         }
 
         @DisplayName("한 개의 입력이 들어오지 않는 경우 예외를 발생시킨다.")
@@ -27,7 +28,7 @@ class SquareTest {
         void validateSize(String move) {
             Assertions.assertThatThrownBy(() -> Square.of(move))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 이동할 칸은 U와 D 중에 하나만 입력 가능합니다.");
+                    .hasMessageContaining(BridgeError.MOVE_SIZE.message());
         }
     }
 }

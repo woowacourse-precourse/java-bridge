@@ -1,5 +1,6 @@
 package bridge.domain.bridge;
 
+import bridge.exception.BridgeError;
 import bridge.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ class BridgeSizeTest {
 
             Assertions.assertThatThrownBy(inputView::readBridgeSize)
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 다리 길이는 숫자만 입력 가능합니다.");
+                    .hasMessageContaining(BridgeError.BRIDGE_FORM.message());
         }
 
         @DisplayName("숫자가 3 - 20 범위가 아니라면 예외를 던진다.")
@@ -41,7 +42,7 @@ class BridgeSizeTest {
         void isValidRange(int size) {
             Assertions.assertThatThrownBy(() -> new BridgeSize(size))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                    .hasMessageContaining(BridgeError.BRIDGE_LENGTH.message());
         }
     }
 

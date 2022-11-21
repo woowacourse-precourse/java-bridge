@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.exception.BridgeError;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -21,7 +22,7 @@ public class InputView {
 
     private void isBridgeSizeDigit(String length) {
         if (!length.matches(REG_XP_DIGIT)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(BridgeError.BRIDGE_FORM.message());
         }
     }
 

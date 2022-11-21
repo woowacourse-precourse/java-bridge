@@ -1,5 +1,6 @@
 package bridge.domain.game;
 
+import bridge.exception.BridgeError;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,7 @@ class CommandTest {
         void validateChar(String command) {
             assertThatThrownBy( () -> new Command(command))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 재시작 여부 명령어는 R와 Q 문자만 입력 가능합니다.");
+                    .hasMessageContaining(BridgeError.COMMAND_FORM.message());
         }
 
         @DisplayName("명령어가 두 개 이상인 경우 예외를 발생시킨다.")
@@ -28,7 +29,7 @@ class CommandTest {
         void validateSize(String command) {
             assertThatThrownBy( () -> new Command(command))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 재시작 여부 명령어는 R와 Q 문자 중 하나만 입력 가능합니다.");
+                    .hasMessageContaining(BridgeError.COMMAND_SIZE.message());
         }
     }
 }

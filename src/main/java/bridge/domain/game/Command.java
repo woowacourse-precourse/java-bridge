@@ -1,5 +1,7 @@
 package bridge.domain.game;
 
+import bridge.exception.BridgeError;
+
 public class Command {
 
     private static final String REG_XP_RETRY_COMMAND = "[RQ]+";
@@ -19,13 +21,13 @@ public class Command {
 
     private void validateCommandForm(String command) {
         if (!command.matches(REG_XP_RETRY_COMMAND)) {
-            throw new IllegalArgumentException("[ERROR] 재시작 여부 명령어는 R와 Q 문자만 입력 가능합니다.");
+            throw new IllegalArgumentException(BridgeError.COMMAND_FORM.message());
         }
     }
 
     private void validateCommandSize(String command) {
         if (command.length() != COMMAND_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 재시작 여부 명령어는 R와 Q 문자 중 하나만 입력 가능합니다.");
+            throw new IllegalArgumentException(BridgeError.COMMAND_SIZE.message());
         }
     }
 
