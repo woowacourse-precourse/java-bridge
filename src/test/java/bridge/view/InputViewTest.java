@@ -9,9 +9,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
     private static InputView inputView;
+
     @BeforeAll
     static void get_inputView_instance() {
-        inputView = InputView.getInstance();
+        inputView = new InputView();
     }
 
     @DisplayName("입력된 값의 길이 자체가 유효하지 않은 경우에 대한 예외처리")
