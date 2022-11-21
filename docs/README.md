@@ -178,7 +178,7 @@ D
 - [x] false리면 false 반환
 
 ### checkUserCommand
-- [ ] 매개 변수의 값이 true/false인지를 확인하여 대입하는 글자 input에 초기화함
+- [x] 매개 변수의 값이 true/false인지를 확인하여 대입하는 글자 input에 초기화함
 - [ ] 또 다른 매개 변수의 값이 "U"인지 아닌지 확인
 - [ ] true이면 upBridge에 input을 추가하고, downBridge에 " "를 추가
 - [ ] false이면 upBridge에 " "을 추가하고, downBridge에 input를 추가
