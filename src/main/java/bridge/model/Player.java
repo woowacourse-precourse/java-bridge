@@ -11,37 +11,37 @@ public class Player {
     }
 
     int move(Position position) {
-        addDirection(position);
-        return passingRout.size();
+        this.addDirection(position);
+        return this.passingRout.size();
     }
 
     private void addDirection(Position position) {
-        passingRout.add(position);
+        this.passingRout.add(position);
     }
 
     boolean isCompletedGame(int size) {
-        return passingRout.size() == size;
+        return this.passingRout.size() == size;
     }
 
     boolean isStartStatus() {
-        return passingRout.isEmpty();
+        return this.passingRout.isEmpty();
     }
 
     String printResult(Boolean success) {
-        return getResultPrinter(success).print();
+        return this.getResultPrinter(success).print();
     }
 
     private ResultPrinter getResultPrinter(Boolean success) {
-        return ResultPrinter.createResultPrinter(success, getPassingRout());
+        return ResultPrinter.createResultPrinter(success, this.getPassingRout());
     }
 
     private List<Position> getPassingRout() {
-        return List.copyOf(passingRout);
+        return List.copyOf(this.passingRout);
     }
 
     public boolean isSuccess(List<Position> bridges) {
-        List<Position> target = bridges.subList(0, passingRout.size());
-        return target.equals(passingRout);
+        List<Position> target = bridges.subList(0, this.passingRout.size());
+        return target.equals(this.passingRout);
     }
 
 
