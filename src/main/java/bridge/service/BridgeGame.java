@@ -4,7 +4,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.repository.BridgeMakerRepository;
 import bridge.repository.CompareBridgeRepository;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +13,6 @@ public class BridgeGame {
     private BridgeMakerRepository bridgeMakerRepository;
     private CompareBridgeRepository compareBridgeRepository;
     private int attempts = 1;
-    private final List<String> movingChoices = new ArrayList<>();
 
     public BridgeGame() {
     }
@@ -24,17 +22,12 @@ public class BridgeGame {
         return bridgeMakerRepository.makeBridge(bridgeSize);
     }
 
-    public List<String> createMovingChoices(String moving) {
-        movingChoices.add(moving);
-        return movingChoices;
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(Player player, List<String> bridge) {
+    public List<Boolean> move(Player player, List<String> bridge) {
         compareBridgeRepository = new CompareBridgeRepository(player, bridge);
         return compareBridgeRepository.stepping(player, bridge);
     }
@@ -47,6 +40,16 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         attempts++;
         return gameCommand.equals("R");
+    }
+
+    public boolean isEnd(String gameCommand, List<String> movingChoices, List<String> bridge) {
+        if (gameCommand.equals("Q")) {
+            return true;
+        }
+        if (movingChoices.size() == bridge.size()) {
+            return true;
+        }
+        return false;
     }
 
     public String getSuccessOrNot(String gameCommand, List<String> movingChoices, List<String> bridge) {

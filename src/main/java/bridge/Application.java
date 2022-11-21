@@ -8,6 +8,6 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame game = new BridgeGame();
         BridgeGameController controller = new BridgeGameController(game);
-        controller.startGame();
+        controller.run();
     }
 }

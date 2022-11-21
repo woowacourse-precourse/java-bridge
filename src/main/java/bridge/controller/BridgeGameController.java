@@ -8,59 +8,89 @@ import bridge.validation.MovingValidation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.PrintGuideMessage;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameController {
+    private static List<String> bridge = new ArrayList<>();
+    private static final List<String> movingChoices = new ArrayList<>();
+    private static String gameCommand = "";
+
     private final BridgeGame game;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public BridgeGameController(BridgeGame game) {
         this.game = game;
     }
 
-    public void startGame() {
+    public void run() {
+        initGame();
         int bridgeSize = getBridgeSize();
-        List<String> bridge = game.createBridge(bridgeSize);
-        do {
-            List<String> movingChoices = game.createMovingChoices(getMoving());
-            printMap(new Player(movingChoices), game.move(new Player(movingChoices), bridge));
-        } while (game.retry(getGameCommand()));
+        bridge = game.createBridge(bridgeSize);
+        while (!game.isEnd(gameCommand, movingChoices, bridge)) {
+            playing();
+        }
+        printResult(gameCommand);
+    }
+
+    public void playing() {
+        movingChoices.add(getMoving());
+        Player player = new Player(movingChoices);
+        printMap(game.move(player, bridge));
+        if (game.move(player, bridge).contains(false)) {
+            movingChoices.remove(movingChoices.size() - 1);
+            gameCommand = getGameCommand();
+            if (game.retry(gameCommand)) {
+                playing();
+            }
+        }
+    }
+
+    public void initGame() {
+        PrintGuideMessage.printStartGuide();
+        PrintGuideMessage.printBridgeSizeGuide();
     }
 
     public int getBridgeSize() {
-        PrintGuideMessage.printStartGuide();
-        PrintGuideMessage.printBridgeSizeGuide();
-        String input = new InputView().readBridgeSize();
+        String bridgeSize = "";
         BridgeSizeValidation validation = new BridgeSizeValidation();
-        validation.isValidate(input);
-        return Integer.parseInt(input);
+        do {
+            bridgeSize = inputView.readBridgeSize();
+        } while (validation.isValidate(bridgeSize));
+        return Integer.parseInt(bridgeSize);
     }
 
     public String getMoving() {
         PrintGuideMessage.printMovingGuide();
-        String input = new InputView().readMoving();
+        String moving = "";
         MovingValidation validation = new MovingValidation();
-        validation.isValidate(input);
-        return input;
+        do {
+            moving = inputView.readMoving();
+        } while (validation.isValidate(moving));
+        return moving;
     }
 
-    public void printMap(Player player, boolean moveResult) {
-        OutputView outputView = new OutputView();
-        outputView.printMap(player, moveResult);
+    public void printMap(List<Boolean> moveResults) {
+        outputView.printMap(movingChoices, moveResults);
     }
 
     public String getGameCommand() {
         PrintGuideMessage.printCommandGuide();
-        String input = new InputView().readGameCommand();
+        String gameCommand = "";
         GameCommandValidation validation = new GameCommandValidation();
-        validation.isValidate(input);
-        return input;
+        do {
+            gameCommand = inputView.readGameCommand();
+
+        } while (validation.isValidate(gameCommand));
+        return gameCommand;
     }
 
-    public void printResult(String gameCommand, List<String> movingChoices, List<String> bridge) {
+    public void printResult(String gameCommand) {
         PrintGuideMessage.printResultGuide();
+        printMap(game.move(new Player(movingChoices), bridge));
         String successOrNot = game.getSuccessOrNot(gameCommand, movingChoices, bridge);
         int attempts = game.getAttempts();
-        OutputView outputView = new OutputView();
         outputView.printResult(successOrNot, attempts);
     }
 }
