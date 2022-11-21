@@ -13,13 +13,16 @@ public class Score {
 
 
     public Score() {
-        this.userStep = new UserStep();
-        this.repetition = new Repetition();
+        this(new UserStep(), new Repetition());
     }
 
     public Score(final UserStep userStep) {
+        this(userStep, new Repetition());
+    }
+
+    public Score(UserStep userStep, Repetition repetition) {
         this.userStep = userStep;
-        this.repetition = new Repetition();
+        this.repetition = repetition;
     }
 
     public List<String> getUserStep() {
