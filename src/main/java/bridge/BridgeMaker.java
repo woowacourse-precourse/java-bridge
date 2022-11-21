@@ -24,15 +24,19 @@ public class BridgeMaker {
         sizeValidation(size);
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int generateRandomBridge = bridgeNumberGenerator.generate();
-            if (generateRandomBridge == MoveCommand.UP.getValue()) {
-                bridge.add(MoveCommand.UP.getCommand());
-            }
-            if (generateRandomBridge == MoveCommand.DOWN.getValue()) {
-                bridge.add(MoveCommand.DOWN.getCommand());
-            }
+            addBridge(bridge);
         }
         return bridge;
+    }
+
+    private void addBridge(List<String> bridge) {
+        int generateRandomBridge = bridgeNumberGenerator.generate();
+        if (generateRandomBridge == MoveCommand.UP.getValue()) {
+            bridge.add(MoveCommand.UP.getCommand());
+        }
+        if (generateRandomBridge == MoveCommand.DOWN.getValue()) {
+            bridge.add(MoveCommand.DOWN.getCommand());
+        }
     }
 
     /**

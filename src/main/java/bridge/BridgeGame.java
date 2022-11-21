@@ -36,7 +36,6 @@ public class BridgeGame {
     public void move(String movePosition) {
         positionValidation(movePosition);
         movingPositions.add(movePosition);
-        comparedBridge();
     }
 
     public void positionValidation(String position) {
@@ -50,16 +49,18 @@ public class BridgeGame {
     public void comparedBridge() {
         String bridgeValue = bridge.getBridge().get(movingPositions.size() - 1);
         String movingPosition = movingPositions.get(movingPositions.size() - 1);
+        addResult(bridgeValue, movingPosition);
+    }
+
+    private void addResult(String bridgeValue, String movingPosition) {
         if (Objects.equals(bridgeValue, movingPosition)) {
             result.add("O");
         }
-
         if (!Objects.equals(bridgeValue, movingPosition)) {
             result.add("X");
             failure = true;
         }
-
-        if (bridge.getBridge().size() == movingPositions.size()) {
+        if (!failure && bridge.getBridge().size() == movingPositions.size()) {
             clear = true;
         }
     }
@@ -72,15 +73,19 @@ public class BridgeGame {
     public void retry(String command) {
         commandValidation(command);
         if (Objects.equals(command, RestartCommand.RESTART.getCommand())) {
-            setMovingPositions(new ArrayList<>());
-            setResult(new ArrayList<>());
-            setFailure(false);
-            setClear(false);
+            init();
             count++;
         }
         if (Objects.equals(command, RestartCommand.QUIT.getCommand())) {
             setClear(true);
         }
+    }
+
+    private void init() {
+        setMovingPositions(new ArrayList<>());
+        setResult(new ArrayList<>());
+        setFailure(false);
+        setClear(false);
     }
 
     private void commandValidation(String command) {
