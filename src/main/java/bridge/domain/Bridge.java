@@ -36,10 +36,10 @@ public class Bridge {
     public BridgeGameResult compare(Bridge compareBridge) {
         validateCompareBridgeSize(compareBridge);
 
-        List<Boolean> booleans = IntStream.range(0, compareBridge.bridgeShapes.size())
+        List<Boolean> playerMoveResult = IntStream.range(0, compareBridge.bridgeShapes.size())
                 .mapToObj(index -> compareBridge.bridgeShapes.get(index) == this.bridgeShapes.get(index))
-                .collect(Collectors.toList());
-        return new BridgeGameResult(new Bridge(this.bridgeShapes), Collections.unmodifiableList(booleans));
+                .collect(Collectors.toUnmodifiableList());
+        return new BridgeGameResult(new Bridge(this.bridgeShapes), playerMoveResult);
     }
 
     private void validateCompareBridgeSize(Bridge compareBridge) {
