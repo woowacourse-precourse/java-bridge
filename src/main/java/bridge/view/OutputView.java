@@ -48,7 +48,7 @@ public class OutputView {
         System.out.println(String.format(TOTAL_ATTEMPT, resultDto.getAttempts()));
     }
 
-    public void printError(String errorMessage) {
+    public static void printError(String errorMessage) {
         System.out.println(String.format(ERROR_FORMAT, errorMessage));
     }
 }

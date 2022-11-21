@@ -32,6 +32,10 @@ public enum BridgeUnit {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_BRIDGE_UNIT_CODE_ERROR));
     }
 
+    public static void validateMoving(String code) {
+        from(code);
+    }
+
     public String getCode() {
         return code;
     }

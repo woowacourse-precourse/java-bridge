@@ -49,6 +49,8 @@ public class BridgeGameService {
         return new ResultDto(status, bridgeGame.getAttempt(), getMapDto());
     }
 
+    //TODO
+    //gapeProgress 래핑하고 메서드 이동
     public MapDto getMapDto() {
         List<GameProgress> gameProgress = bridgeGame.getGameProgress();
         String upSide = toMapSide(gameProgress, BridgeUnit.UP);

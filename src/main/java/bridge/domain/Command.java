@@ -20,4 +20,8 @@ public enum Command {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_COMMAND_ERROR));
     }
+
+    public static void validateGameCommand(String code) {
+        from(code);
+    }
 }
