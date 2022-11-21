@@ -8,22 +8,29 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String UP_BRIDGE = "U";
+    private static final String DOWN_BRIDGE = "D";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "D";
+    private static final String START = "[";
+    private static final String NOT_PASS = "   |";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<Choice> inputs) {
-        printBridge(inputs, "U");
-        printBridge(inputs, "D");
+        printBridge(inputs, UP_BRIDGE);
+        printBridge(inputs, DOWN_BRIDGE);
         System.out.println();
     }
 
     public void printBridge(List<Choice> inputs, String upDown){
-        String result = "[";
+        String result = START;
 
         for (Choice input: inputs){
-            String tmp = "   |";
+            String tmp = NOT_PASS;
             if (input.getInput().equals(upDown)){
                 tmp = " " + input.getIsRight() + " |";
             }
@@ -38,9 +45,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<Choice> inputs, boolean yesNo, int count) {
-        String changed = "성공";
+        String changed = SUCCESS;
 
-        if (!yesNo) changed = "실패";
+        if (!yesNo) changed = FAIL;
 
         System.out.println("최종 게임 결과");
         printMap(inputs);
