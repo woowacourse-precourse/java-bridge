@@ -37,7 +37,7 @@ public class BridgeGameManager {
     }
 
     private void mainProgress(BridgeGame bridgeGame) {
-        while (bridgeSize --> BRIDGE_SIZE_INIT) {
+        while (bridgeSize-- > BRIDGE_SIZE_INIT) {
             moveProgress(bridgeGame);
             outputView.printMap(bridgeState);
             if (!bridgeGame.isWon() && !isRetry(bridgeGame)) {
