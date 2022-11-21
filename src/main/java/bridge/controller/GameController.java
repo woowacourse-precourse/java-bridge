@@ -6,7 +6,6 @@ import bridge.util.GameConst;
 import bridge.view.OutputView;
 
 public class GameController {
-
 	private final BridgeGame bridgeGame;
 	private final OutputView outputView;
 	private final InputController inputController;
@@ -22,16 +21,38 @@ public class GameController {
 
 	public void startApplication() {
 		Integer bridgeSize = getBridgeSize();
+		gameService.makeBridge(bridgeSize);
+		startGame(bridgeSize);
+	}
+
+	private Integer getBridgeSize() {
+		inputController.startGame();
+		Integer bridgeSize = inputController.getBridgeSize();
+		return bridgeSize;
+	}
+
+	private void startGame(Integer bridgeSize) {
 		Integer attemptCount = 0;
 		String userResult;
 		do {
 			attemptCount++;
-			userResult = startGame(bridgeSize);
-		} while (userResult.equals(GameConst.FAIL) && bridgeGame.retry(inputController.getUserRestartCommand()));
+			userResult = startMove(bridgeSize);
+		} while (restartGame(userResult));
 		printResult(attemptCount, userResult);
 	}
 
-	private String startGame(Integer bridgeSize) {
+	private void printResult(Integer attemptCount, String userResult) {
+		outputView.printFinalResultPhrase();
+		outputView.printMap(gameService.getUserBridgeStatus());
+		outputView.printResult(userResult, attemptCount);
+	}
+
+	private boolean restartGame(String userResult) {
+		return userResult.equals(GameConst.FAIL) &&
+			bridgeGame.retry(inputController.getUserRestartCommand());
+	}
+
+	private String startMove(Integer bridgeSize) {
 		Integer currentLocation = 0;
 		do {
 			if (checkIsInvalidUserMove(currentLocation, inputController.getUserMoving()))
@@ -56,19 +77,6 @@ public class GameController {
 
 	private void printWrongUserMap(String userLocation) {
 		outputView.printMap(gameService.saveUserWrongSpace(userLocation));
-	}
-
-	private Integer getBridgeSize() {
-		inputController.startGame();
-		Integer bridgeSize = inputController.getBridgeSize();
-		gameService.makeBridge(bridgeSize);
-		return bridgeSize;
-	}
-
-	private void printResult(Integer attemptCount, String userResult) {
-		outputView.printFinalResultPhrase();
-		outputView.printMap(gameService.getUserBridgeStatus());
-		outputView.printResult(userResult, attemptCount);
 	}
 
 }
