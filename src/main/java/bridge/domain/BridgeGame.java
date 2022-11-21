@@ -38,10 +38,14 @@ public class BridgeGame {
     }
 
     public void start() {
-        bridge = GameUtils.buildBridge();
-        //System.out.println(bridge);
-        trial = 1;
-        position = 0;
+        try {
+            bridge = GameUtils.buildBridge();
+            //System.out.println(bridge);
+            trial = 1;
+            position = 0;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void move() {

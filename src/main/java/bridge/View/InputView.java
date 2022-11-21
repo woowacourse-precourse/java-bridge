@@ -44,7 +44,7 @@ public class InputView {
 
     private String readAndValidateInput(InputValidationType type) {
         String input = readLine();
-        Validation.validate(type, input);
+        Validation.validateInput(type, input);
         return input;
     }
 }
