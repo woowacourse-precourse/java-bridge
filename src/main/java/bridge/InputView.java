@@ -52,7 +52,6 @@ public class InputView {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
-
         return command;
     }
 }
