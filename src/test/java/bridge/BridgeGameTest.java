@@ -21,8 +21,13 @@ class BridgeGameTest {
                         .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void move() {
+    @DisplayName("입력 받은 이동 방향이 \"U\" 와 \"D\" 둘 중 하나가 아니면 오류 ")
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "UU", " ", "UD", "1D"})
+    void moveDirection(String direction) {
+        Assertions.assertThatThrownBy(()->
+                bridgeGame.move(direction))
+                        .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
