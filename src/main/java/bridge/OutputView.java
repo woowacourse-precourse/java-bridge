@@ -17,34 +17,13 @@ public class OutputView {
 
 	public void printUp(Bridge bridge, int idx , String block,boolean correct){
 		System.out.print("[");
-
 		for (int i=0;i<=idx;i++){
 			checkFirstUpBlock(i,idx,bridge.getBridge().get(0),block);
-			checkSecondToBeforeEndBlocks(i,idx,bridge.getBridge().get(i));
-
-			if (i == idx && idx != 0){
-				if (correct){
-					if (block.equals("U")){
-						System.out.print("| O ");
-					}
-					if (block.equals("D")){
-						System.out.print("|   ");
-					}
-				}
-				if (!correct){
-					if (block.equals("U")){
-						System.out.print("| X ");
-					}
-					if (block.equals("D")){
-						System.out.print("|   ");
-					}
-				}
-			}
+			checkSecondToBeforeEndUpBlocks(i,idx,bridge.getBridge().get(i));
+			checkEndBlockUpBlock(i,idx,block,correct);
 		}
 		System.out.println("]");
 	}
-
-
 
 	public void printDown(Bridge bridge, int idx, String block, boolean correct){
 		System.out.print("[");
@@ -162,12 +141,41 @@ public class OutputView {
 		}
 	}
 
-	private void checkSecondToBeforeEndBlocks(int i, int idx, String block) {
+	private void checkSecondToBeforeEndUpBlocks(int i, int idx, String block) {
 		if (0<i && i<idx) {
 			if (block.equals("U")) {
 				System.out.print("| O ");
 			}
 			if (block.equals("D")) {
+				System.out.print("|   ");
+			}
+		}
+	}
+
+	private void checkEndBlockUpBlock(int i, int idx, String block, boolean correct) {
+		if (i == idx && idx != 0){
+			checkEndBlockUpBlockCorrect(block,correct);
+			checkEndBlockUpBlockNotCorrect(block,correct);
+		}
+	}
+
+	private void checkEndBlockUpBlockCorrect(String block, boolean correct) {
+		if (correct){
+			if (block.equals("U")){
+				System.out.print("| O ");
+			}
+			if (block.equals("D")){
+				System.out.print("|   ");
+			}
+		}
+	}
+
+	private void checkEndBlockUpBlockNotCorrect(String block, boolean correct) {
+		if (!correct){
+			if (block.equals("U")){
+				System.out.print("| X ");
+			}
+			if (block.equals("D")){
 				System.out.print("|   ");
 			}
 		}
