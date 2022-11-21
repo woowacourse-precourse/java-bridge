@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameService {
-    private String mergeBride;
-    private String endMessage;
+    private static String mergeBride;
+    private static String endMessage;
     private Bridge bridge = new Bridge();
     private User user = new User();
     private GameStatus gameStatus = new GameStatus();
@@ -26,6 +26,14 @@ public class BridgeGameService {
         return this.mergeBride;
     }
 
+    public boolean checkAllCorrect(){
+        List<String> bridgeLoad = bridge.getBridgeLoad();
+        List<String> userMove = user.getMove();
+        if (bridgeLoad.size() == userMove.size()){
+            return true;
+        }
+        return false;
+    }
     public void setMatch() {
         List<String> bridgeLoad = bridge.getBridgeLoad();
         List<String> userMove = user.getMove();
@@ -122,7 +130,7 @@ public class BridgeGameService {
                 returnMessage += " | ";
             }
         }
-        returnMessage += " ]\n\n";
+        returnMessage += " ]\n";
         return returnMessage;
     }
 

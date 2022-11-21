@@ -1,8 +1,8 @@
 package bridge.domain;
 
 public class GameStatus {
-    private boolean isCorrect;
-    private int gameCount;
+    private static boolean isCorrect;
+    private static int gameCount;
 
 
     public void setMatchCorrect(boolean isCorrect){

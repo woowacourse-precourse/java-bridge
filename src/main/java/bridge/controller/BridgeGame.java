@@ -54,12 +54,16 @@ public class BridgeGame {
         return bridgeGameService.getEndMessage();
     }
 
+    public boolean setMatch(){
+        bridgeGameService.setMatch();
+        return gameStatus.getMatchCorrect();
+    }
+
     public boolean getMatchCorrect(){
         return gameStatus.getMatchCorrect();
     }
 
-    public boolean checkAllCorrect(){
-        bridgeGameService.setMatch();
-        return gameStatus.getMatchCorrect();
+    public boolean checkAllCorrect(){ // 따로 다시 마들기
+        return bridgeGameService.checkAllCorrect();
     }
 }
