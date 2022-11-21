@@ -46,7 +46,46 @@ public class OutputView {
     public void printResult() {
     }
 
+    public static void printMapResult() {
+        System.out.println(upState);
+        System.out.println(downState);
+    }
 
+    public static void printGaming(List<String> userState, int size, boolean continueGame) {
+        for (int i = 0; i < size; i++) {
+            isWord(userState.get(i));
+            isFinish(userState.size(), i, continueGame);
+        }
+    }
+
+    // 괄호를 닫을 지 추가하는 | 를 넣을 지 고미나는 메서드
+    public static void isFinish(int userStateSize, int i, boolean continueGame) {
+        // 게임 끝났는데 게임 진행중 or 실패
+        finishedStatement(userStateSize, i, continueGame);
+        // 게임 진행중인데 게임 실패
+        notFinishedStatement(userStateSize, i, continueGame);
+
+    }
+
+    public static void finishedStatement(int userStateSize, int i, boolean continueGame) {
+        if (userStateSize - 1 == i && continueGame) {
+            isFinished();
+        }
+        // 맨 마지막인데 성공일 때
+        if (userStateSize - 1 == i && !continueGame) {
+            isFinished();
+        }
+    }
+
+    public static void notFinishedStatement(int userStateSize, int i, boolean continueGame) {
+        if (userStateSize - 1 != i && !continueGame) {
+            isNotFinished();
+        }
+        // 게임 진행중에 성공
+        if (userStateSize - 1 != i && continueGame) {
+            isNotFinished();
+        }
+    }
 
     public void initState() {
         upState = "[";
