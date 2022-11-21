@@ -14,7 +14,7 @@ public class BridgeGame {
     private final int bridgeSize;
     private final MoveResultJudgement moveResultJudgement;
     private int currentDistance = 0;
-    private int retry = 1;
+    private int retryCount = 1;
     private boolean isGame = false;
     private BridgeMap bridgeMap = new BridgeMap();
 
@@ -52,7 +52,7 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         ValidationUtil.restartValidation(gameCommand);
         bridgeInitialization();
-        retry++;
+        retryCount++;
         return Objects.equals(gameCommand, Constant.RESTART);
     }
 
@@ -81,7 +81,7 @@ public class BridgeGame {
         return isGame;
     }
 
-    public int getRetry() {
-        return retry;
+    public int getRetryCount() {
+        return retryCount;
     }
 }
