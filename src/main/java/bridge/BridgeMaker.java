@@ -19,13 +19,13 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>();
+        List<String> elementsOfBridge = new ArrayList<>();
         while(size > 0){
             int i = bridgeNumberGenerator.generate();
-            addBridgeString(bridge, i);
+            addBridgeString(elementsOfBridge, i);
             size--;
         }
-        return bridge;
+        return elementsOfBridge;
     }
 
     public void addBridgeString(List<String> bridge, int i){
