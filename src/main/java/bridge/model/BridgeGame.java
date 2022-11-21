@@ -1,8 +1,10 @@
 package bridge.model;
 
-import bridge.standard.GameForm;
+import bridge.standard.BridgeForm;
+import bridge.standard.Rule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BridgeGame {
@@ -18,22 +20,24 @@ public class BridgeGame {
     }
 
     public void move(String userMoving, String bridgeStage, int bridgeSize) {
-        currentPositions.add(Stage.judge(userMoving, bridgeStage));
+        List<String> position = Arrays.asList(" ", " ");
+        Stage stage = Stage.judge(userMoving.equals(bridgeStage));
+        position.set(BridgeForm.transferByCode(userMoving), stage.getMark());
 
-        if (currentPositions.size() == bridgeSize) {
-            outcome = GameForm.SUCCESS_MARK;
-        }
-        if (currentPositions.get(currentPositions.size() - 1).contains(GameForm.WRONG_MARK)) {
-            outcome = GameForm.FAILS_MARK;
+        currentPositions.add(position);
+        outcome = stage.getOutcome();
+
+        if (currentPositions.size() == bridgeSize && !outcome.equals(Rule.STAGE_FAIL)) {
+            outcome = Rule.STAGE_SUCCESS;
         }
     }
 
     public boolean isSuccess() {
-        return outcome.equals(GameForm.SUCCESS_MARK);
+        return outcome.equals(Rule.STAGE_SUCCESS);
     }
 
     public boolean isFail() {
-        return outcome.equals(GameForm.FAILS_MARK);
+        return outcome.equals(Rule.STAGE_FAIL);
     }
 
     public void retry() {
@@ -41,6 +45,7 @@ public class BridgeGame {
         numberOfAttempts++;
         outcome = "";
     }
+
 
     public int nextIndex() {
         return currentPositions.size();

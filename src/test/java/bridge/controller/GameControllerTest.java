@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class GameControllerTest extends NsTest {
     void controllerSuccessByOneTryTest() {
         run("U", "D", "D");
 
-        Assertions.assertThat(output()).contains(
+        assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O |   |   ]",
                 "[   | O | O ]",
@@ -35,7 +35,7 @@ public class GameControllerTest extends NsTest {
     void controllerSuccessByTwoTryTest() {
         run("U", "U", "R", "U", "D", "D");
 
-        Assertions.assertThat(output()).contains(
+        assertThat(output()).contains(
                 "[ O | X ]",
                 "[   |   ]",
                 "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
@@ -52,7 +52,7 @@ public class GameControllerTest extends NsTest {
     void controllerFailByOneTryTest() {
         run("U", "D", "U", "Q");
 
-        Assertions.assertThat(output()).contains(
+        assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O |   | X ]",
                 "[   | O |   ]",
@@ -64,6 +64,5 @@ public class GameControllerTest extends NsTest {
     @Override
     public void runMain() {
         gameController.start();
-
     }
 }

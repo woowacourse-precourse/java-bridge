@@ -1,6 +1,7 @@
 package bridge.controller;
 
-import bridge.standard.GameForm;
+import bridge.standard.Rule;
+
 import bridge.model.BridgeGame;
 
 import bridge.view.InputView;
@@ -49,14 +50,11 @@ public class BridgeGameController {
     private boolean isNotWantRetry() {
         output.guideInputGameCommand();
         String gameCommand = input.readGameCommand();
-        if (gameCommand.equals(GameForm.RESTART_CODE)) {
+        if (gameCommand.equals(Rule.RESTART_CODE)) {
             game.retry();
             return false;
         }
-        if (gameCommand.equals(GameForm.QUIT_CODE)) {
-            return true;
-        }
-        throw new IllegalArgumentException();
+        return true;
     }
 
     private void exitGame() {
