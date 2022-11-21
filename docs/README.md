@@ -4,7 +4,7 @@
 
 - [x] 다리의 길이를 입력받는다.
   - InputView$readBridgeSize()
-- [ ] 입력 받은 다리의 길이 만큼 다리를 생성한다.
+- [x] 입력 받은 다리의 길이 만큼 다리를 생성한다.
   - Bridge$createBridge()
 - [ ] 사용자가 이동할 칸을 입력받는다.
   - InputView$readMoving()
