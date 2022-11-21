@@ -12,8 +12,8 @@ public class BridgeGame {
 
     public List<String> upperBridge;
     public List<String> lowerBridge;
-    public int attempt = 1;
-    public int bridgeIndex = 0;
+    public static int attempt = 1;
+    public static int bridgeIndex = 0;
 
     private final String BLANK = " ";
     private final String RIGHT_WAY = "O";
