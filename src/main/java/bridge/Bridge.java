@@ -1,13 +1,22 @@
 package bridge;
 
+import java.util.List;
+
 public class Bridge {
 
     private static final int MIN_BRIDGE_SIZE =3;
     private static final int MAX_BRIDGE_SIZE =20;
     private int bridgeSize;
-
+    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+    private List<Integer> crossAble;
     public void bridge(String bridgeSize){
         this.bridgeSize = validate(bridgeSize);
+        bridgeInit();
+    }
+    private void bridgeInit(){
+        for(int i=0;i<this.bridgeSize;i++){
+            crossAble.add(bridgeRandomNumberGenerator.generate());
+        }
     }
     private int validate(String bridgeSize){
         int bridgeSizeNumber = stringToNumber(bridgeSize);
