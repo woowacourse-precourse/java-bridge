@@ -10,7 +10,8 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
+        BridgeGame bridgeGame = new BridgeGame(generator);
 
         int location = 0, count = 1;
         boolean tryFlag = true, retryFlag = false;

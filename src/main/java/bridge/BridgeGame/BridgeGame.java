@@ -1,6 +1,7 @@
 package bridge.BridgeGame;
 
 import bridge.BridgeMaker.BridgeMaker;
+import bridge.BridgeMaker.NumberGenerator.BridgeNumberGenerator;
 import bridge.BridgeMaker.NumberGenerator.BridgeRandomNumberGenerator;
 import bridge.UI.Input.InputView;
 import bridge.UI.Output.OutputView;
@@ -11,12 +12,11 @@ import java.util.List;
  */
 public class BridgeGame {
     InputView inputView = new InputView();
-    // To do : Main 메서드에서 주입하는 것으로 수정하기
-    BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(generator);
+    BridgeMaker bridgeMaker;
     List<String> bridge;
     OutputView outputView;
-    public BridgeGame(){
+    public BridgeGame(BridgeNumberGenerator generator){
+        bridgeMaker = new BridgeMaker(generator);
         System.out.println("다리 건너기 게임을 시작 합니다.\n");
         initBridge();
         this.outputView = new OutputView(bridge);
