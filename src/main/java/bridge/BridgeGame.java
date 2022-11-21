@@ -28,6 +28,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(List<String> answerBrige, String userCommand) {
+        boolean isChecked = userCommand.equals(answerBrige.get(moveCount));
         if(userCommand.equals(answerBrige.get(moveCount))){
             if(userCommand.equals("U")){
                 upBridge.add("O");
@@ -36,7 +37,7 @@ public class BridgeGame {
                 upBridge.add(" ");
                 downBridge.add("O");
             }
-            moveCount++;
+
             return true;
         }
         if(userCommand.equals("U")){
@@ -68,5 +69,9 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public void checkUserCommand(boolean isChecked,String userCommand){
+        String input = InputBridgeElement.inputLetterChecked(isChecked);
     }
 }
