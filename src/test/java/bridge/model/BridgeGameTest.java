@@ -58,4 +58,20 @@ class BridgeGameTest {
 
         Assertions.assertThat(isRoundLeft).isFalse();
     }
+
+    @DisplayName("재시작 시, 시도 횟수/라운드 넘버/이동 기록이 업데이트된다.")
+    @Test
+    void retryTest() {
+        bridgeGame.getRecordByMove("U");
+        bridgeGame.getRecordByMove("D");
+        bridgeGame.retry();
+
+        Record record = bridgeGame.getRecord();
+        List<List<String>> bridgeRecord = record.getBridgeRecord();
+        Result result = bridgeGame.getResult();
+
+        Assertions.assertThat(bridgeRecord.get(0)).isEmpty();
+        Assertions.assertThat(bridgeRecord.get(1)).isEmpty();
+        Assertions.assertThat(result.getTryCount()).isEqualTo(2);
+    }
 }
