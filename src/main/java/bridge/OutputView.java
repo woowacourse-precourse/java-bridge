@@ -17,6 +17,7 @@ public class OutputView {
     public void printMap(List<String> bridge, List<String> player) {
         printUpperBridge(bridge, player);
         printLowwerBridge(bridge, player);
+        System.out.println();
     }
     private void printUpperBridge(List<String> bridge, List<String> player) {
         System.out.print("[");
@@ -72,7 +73,6 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getBridge(), bridgeGame.getPlayer());
-        System.out.println();
         printSuccessOrFail(bridgeGame);
         System.out.println("시도 횟수");
     }
