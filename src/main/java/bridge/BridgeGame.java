@@ -53,15 +53,27 @@ public class BridgeGame {
     }
 
     private void addResult(String bridgeValue, String movingPosition) {
-        if (Objects.equals(bridgeValue, movingPosition)) {
-            result.add("O");
+        sameJudgment(bridgeValue, movingPosition);
+        differentJudgment(bridgeValue, movingPosition);
+        successJudgment();
+    }
+
+    private void successJudgment() {
+        if (!failure && bridge.getBridge().size() == movingPositions.size()) {
+            setClear(true);
         }
+    }
+
+    private void differentJudgment(String bridgeValue, String movingPosition) {
         if (!Objects.equals(bridgeValue, movingPosition)) {
             result.add("X");
             setFailure(true);
         }
-        if (!failure && bridge.getBridge().size() == movingPositions.size()) {
-            setClear(true);
+    }
+
+    private void sameJudgment(String bridgeValue, String movingPosition) {
+        if (Objects.equals(bridgeValue, movingPosition)) {
+            result.add("O");
         }
     }
 

@@ -16,14 +16,18 @@ public class BridgeGameController {
     public void gameStart() {
         BridgeGame bridgeGame = getBridgeGame();
         while (!bridgeGame.isClear()) {
-            move(bridgeGame);
-            bridgeGame.comparedBridge();
+            moveAndCompare(bridgeGame);
             OutputView.printMap(bridgeGame);
             if (bridgeGame.isFailure()) {
                 restart(bridgeGame);
             }
         }
         OutputView.printResult(bridgeGame);
+    }
+
+    private void moveAndCompare(BridgeGame bridgeGame) {
+        move(bridgeGame);
+        bridgeGame.comparedBridge();
     }
 
     private BridgeGame getBridgeGame() {
@@ -58,14 +62,18 @@ public class BridgeGameController {
     private Bridge getBridge() {
         while (true) {
             try {
-                int bridgeSize = InputView.readBridgeSize();
-                BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-                return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+                return createSpecificSizeBridge();
             } catch (NumberFormatException exception) {
                 System.out.println(ERROR_MESSAGE + "오직 숫자로만 이루어져 있어야 합니다.");
             } catch (IllegalArgumentException exception) {
                 System.out.println(ERROR_MESSAGE + exception.getMessage());
             }
         }
+    }
+
+    private Bridge createSpecificSizeBridge() {
+        int bridgeSize = InputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 }
