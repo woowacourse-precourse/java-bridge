@@ -3,14 +3,10 @@ package bridge.vo;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.validator.UserInputValidator;
-import bridge.view.OutputView;
-
 public class UserPlayer {
 	private static UserPlayer userPlayer = null;
-	private static final UserInputValidator userInputValidator = new UserInputValidator();
 	private final List<String> moveRecord = new ArrayList<>();
-	private Integer totalAttempt = 0;
+	private int totalAttempt;
 
 	private UserPlayer() {
 	}
@@ -22,24 +18,22 @@ public class UserPlayer {
 		return userPlayer;
 	}
 
-	public boolean inputMovingDirection(String move) {
-		try {
-			userInputValidator.runMoveInputValidator(move);
-		} catch (IllegalArgumentException e) {
-			OutputView.printErrorMessage(e.getMessage());
-			return false;
-		}
-		return true;
+	public void setMovingDirection(String move) {
+		moveRecord.add(move);
 	}
 
-	public boolean isCrossableStep(Bridge bridge) {
-		int index = moveRecord.size() - 1;
+	public boolean isCrossableStep(Bridge bridge, int index) {
 		String bridgePick = bridge.getIndexToCrossValue(index);
 		String playerPick = moveRecord.get(index);
 		return bridgePick.equals(playerPick);
 	}
 
-	public void initMoveRecord() {
+	public void initUserPlayInformation() {
 		moveRecord.clear();
+		totalAttempt += 1;
+	}
+
+	public List<String> showMoveRecord() {
+		return moveRecord;
 	}
 }

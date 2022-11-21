@@ -16,4 +16,8 @@ public class Bridge {
 	public List<String> showBridge() {
 		return bridge;
 	}
+
+	public int getBridgeSize() {
+		return bridge.size();
+	}
 }

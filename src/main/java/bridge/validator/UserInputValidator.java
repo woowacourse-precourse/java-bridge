@@ -8,10 +8,11 @@ public class UserInputValidator {
 	private static final Pattern movePattern = Pattern.compile("[D,U]");
 	private static final Pattern decisionPattern = Pattern.compile("[R,Q]");
 
-	public void runMoveInputValidator(String move) throws IllegalArgumentException {
+	public String runMoveInputValidator(String move) throws IllegalArgumentException {
 		if (isInvalidInput(movePattern, move)) {
 			throw new IllegalArgumentException(MOVE_INPUT.getMessage());
 		}
+		return move;
 	}
 
 	public String runDecisionValidator(String decision) throws IllegalArgumentException {
