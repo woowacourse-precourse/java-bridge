@@ -11,7 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public String readBridgeSize() {
-        System.out.println(GameMessage.BRIDGE_SIZE.getMessage());
+        System.out.println("\n" + GameMessage.BRIDGE_SIZE.getMessage());
         return Console.readLine();
     }
 
@@ -19,7 +19,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(GameMessage.MOVING.getMessage());
+        System.out.println("\n" + GameMessage.MOVING.getMessage());
         return Console.readLine();
     }
 
@@ -27,7 +27,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(GameMessage.REGAME_OR_END.getMessage());
+        System.out.println("\n" +GameMessage.REGAME_OR_END.getMessage());
         return Console.readLine();
     }
 }
