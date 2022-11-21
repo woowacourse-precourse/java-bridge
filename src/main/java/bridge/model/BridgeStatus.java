@@ -2,7 +2,8 @@ package bridge.model;
 
 import bridge.constant.Game;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeStatus {
     private static List<String> upBridgeStatus;

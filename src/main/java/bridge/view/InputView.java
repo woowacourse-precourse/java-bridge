@@ -4,9 +4,6 @@ import bridge.constant.IOMessage;
 import bridge.utils.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     InputValidator inputValidator = new InputValidator();
     public int readBridgeSize() {
