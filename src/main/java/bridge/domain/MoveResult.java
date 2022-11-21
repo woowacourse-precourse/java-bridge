@@ -30,6 +30,10 @@ public class MoveResult {
         lowerBridge.initialize();
     }
 
+    public int getNextMoveIndex() {
+        return upperBridge.getSize();
+    }
+
     private void updateEachBridge(Boolean upperResult, Boolean lowerResult) {
         upperBridge.updateMoveResult(upperResult);
         lowerBridge.updateMoveResult(lowerResult);

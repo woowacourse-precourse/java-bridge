@@ -20,6 +20,10 @@ public class CrossedBridge {
         return Collections.unmodifiableList(crossedBridge);
     }
 
+    public int getSize() {
+        return crossedBridge.size();
+    }
+
     public void initialize() {
         this.crossedBridge.clear();
     }

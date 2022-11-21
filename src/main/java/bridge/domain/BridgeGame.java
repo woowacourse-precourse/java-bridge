@@ -7,7 +7,6 @@ import java.util.List;
 public class BridgeGame {
     private final Bridge bridge;
     private final MoveResult moveResult;
-    private int currentBridgeIndex;
     private boolean isGameOver;
     private boolean isPlaying;
     private int tryCount;
@@ -22,7 +21,7 @@ public class BridgeGame {
 
     public void move(String nextPosition) throws IllegalArgumentException {
         MovePosition.validateNextMove(nextPosition);
-        boolean isSuccess = bridge.checkMoveSuccess(nextPosition, currentBridgeIndex);
+        boolean isSuccess = bridge.checkMoveSuccess(nextPosition, moveResult.getNextMoveIndex());
         updateGameStatus(nextPosition, isSuccess);
     }
 
@@ -56,11 +55,10 @@ public class BridgeGame {
     }
 
     public boolean isGamePass() {
-        return !isGameOver && bridge.hasReachedEnd(currentBridgeIndex);
+        return !isGameOver && bridge.hasReachedEnd(moveResult.getNextMoveIndex());
     }
 
     private void initializeGame() {
-        this.currentBridgeIndex = 0;
         this.isGameOver = false;
         this.tryCount += 1;
         moveResult.clearResult();
@@ -69,15 +67,10 @@ public class BridgeGame {
     private void updateGameStatus(String position, boolean isSuccess) {
         moveResult.updateMoveResult(isSuccess, position);
         updateGameOverStatus(isSuccess);
-        updateBridgeIndex();
     }
 
     private void updateGameOverStatus(boolean isSuccess) {
         isGameOver = !isSuccess;
         isPlaying = isSuccess;
-    }
-
-    private void updateBridgeIndex() {
-        currentBridgeIndex += 1;
     }
 }
