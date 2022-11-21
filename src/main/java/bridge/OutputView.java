@@ -6,8 +6,7 @@ import java.util.List;
 
 public class OutputView {
     public void printMap(List<List<String>> result) {
-        result.stream()
-                .forEach(this::printEachFloor);
+        result.forEach(this::printEachFloor);
         System.out.println();
     }
 
@@ -31,9 +30,9 @@ public class OutputView {
     public void printSuccess(boolean success) {
         if (success) {
             System.out.println(Game.GAME_SUCCESS);
-        } else {
-            System.out.println(Game.GAME_FAILED);
+            return;
         }
+        System.out.println(Game.GAME_FAILED);
     }
 
     public void printAttempts(int attempts) {
