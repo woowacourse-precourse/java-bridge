@@ -23,9 +23,15 @@ public class BridgeMaker {
         validateSize(size);
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
-            bridge.add(Column.judge(generateNumber()));
+            bridge.add(Column.changeNumToLetter(generateNumber()));
         }
         return bridge;
+    }
+
+    public int generateNumber(){
+        int number = bridgeNumberGenerator.generate();
+        validateRandomNumber(number);
+        return number;
     }
 
     public void validateSize(int size) {
@@ -38,11 +44,6 @@ public class BridgeMaker {
         if (number != 0 || number != 1) {
             throw new IllegalArgumentException();
         }
-    }
-    public int generateNumber(){
-        int number = bridgeNumberGenerator.generate();
-        validateRandomNumber(number);
-        return number;
     }
 
 }
