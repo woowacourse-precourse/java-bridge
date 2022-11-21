@@ -16,7 +16,16 @@ public class Validation {
     }
     public static boolean moveDirectionTest(String input){
         try{
-            valueTest( formatTest(input));
+            directionInputValueTest(formatTest(input));
+            return true;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    public static boolean retryTest(String input){
+        try{
+            retryInputValueTest(formatTest(input));
             return true;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -43,11 +52,20 @@ public class Validation {
         }
         return input;
     }
-    private static void valueTest(String input) throws IllegalArgumentException{
+    private static void directionInputValueTest(String input) throws IllegalArgumentException{
         if(input.equals(BridgeConstant.CAN_GO_UP.getString())){
             return;
         }
         if(input.equals(BridgeConstant.CANT_GO_UP.getString())){
+            return;
+        }
+        throw new IllegalArgumentException(ERROR + ErrorMessage.WRONG_FORMAT.getErrorMessage());
+    }
+    private static void retryInputValueTest(String input) throws IllegalArgumentException{
+        if(input.equals(BridgeConstant.RETRY.getString())){
+            return;
+        }
+        if(input.equals(BridgeConstant.END.getString())){
             return;
         }
         throw new IllegalArgumentException(ERROR + ErrorMessage.WRONG_FORMAT.getErrorMessage());
