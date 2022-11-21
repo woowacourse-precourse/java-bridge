@@ -16,4 +16,8 @@ public class Exception {
     public Boolean isUorD(String moving) {
         return moving.equals("U") || moving.equals("D");
     }
+
+    public Boolean isRorQ(String command) {
+        return command.equals("R") || command.equals("Q");
+    }
 }
