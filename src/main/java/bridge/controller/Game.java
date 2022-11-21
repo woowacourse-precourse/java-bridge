@@ -50,7 +50,7 @@ public class Game {
         bridge.setBridge(size);
     }
 
-    public void playBridgeGame() {
+    private void playBridgeGame() {
         while (gameControll.getGamePower()) {
             viewMove();
             checkMoveBridge();
@@ -61,27 +61,27 @@ public class Game {
         }
     }
 
-    public void viewMove() {
+    private void viewMove() {
         outputView.printRequestMove();
         move = inputView.readMoving();
         valification.verifyUorD(move);
     }
 
-    public void checkMoveBridge() {
+    private void checkMoveBridge() {
         bridgeGame.move(move, gameControll.getIdx(), bridge.getBridge());
     }
 
-    public void makeBirdgeShape() {
+    private void makeBirdgeShape() {
         bridgeShape.moveBridge(move, bridgeGame.getCanMove());
     }
 
-    public void showNowBridgeShape() {
+    private void showNowBridgeShape() {
         outputView.printBridge(bridgeShape.getUpBridge(), bridgeShape.getDownBridge());
     }
 
 
     /////
-    public void controllMove() {
+    private void controllMove() {
         if (size == gameControll.getIdx()) {
             gameControll.turnoffGamePower();
             gameControll.sucessGame();
@@ -94,7 +94,7 @@ public class Game {
     }
     ///////
 
-    public void retry() {
+    private void retry() {
         viewRetry();
         checkRetry();
         retryOrFinish();
@@ -110,7 +110,7 @@ public class Game {
         bridgeGame.retry(retryOrQuit);
     }
 
-    public void retryOrFinish() {
+    private void retryOrFinish() {
         if (bridgeGame.getDoRetry()) {
             gameControll.plusCnt();
             resetGameStatus();
@@ -121,13 +121,13 @@ public class Game {
         }
     }
 
-    public void resetGameStatus() {
+    private void resetGameStatus() {
         gameControll.initialize();
         bridgeGame.initialize();
         bridgeShape.initializeBridgeShape();
     }
 
-    public void printGameResult() {
+    private void printGameResult() {
         outputView.printFinalGame();
         showNowBridgeShape();
         outputView.printResult(gameControll.getGameSucess(), gameControll.getCnt());
