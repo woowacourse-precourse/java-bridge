@@ -113,7 +113,7 @@ public class OutputView {
     }
 
     public static void printSuccessFailure(Bridge target, Status preStatus) {
-        System.out.print(BridgeGameInfo.SUCSSES_FAILURE.message);
+        System.out.print(BridgeGameInfo.SUCCESS_FAILURE.message);
         if (!isSameSize(target, preStatus)) {
             printFailure();
             return;
