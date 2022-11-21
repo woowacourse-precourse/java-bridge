@@ -1,16 +1,22 @@
 package bridge;
 
+import view.AnnouncementView;
+import view.InputView;
+import view.OutputView;
+
 import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
-        int size;
-
-        Announcement.start();
-        size = InputView.readBridgeSize();
-        start_game(make_bridge(size), size);
         // TODO: 프로그램 구현
+        try{
+            AnnouncementView.start();
+            int size = InputView.readBridgeSize();
+            start_game(make_bridge(size), size);
+        } catch (IllegalStateException e){
+            System.out.println(e.getMessage());
+        }
     }
     public static List<String> make_bridge(int size){
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -25,15 +31,15 @@ public class Application {
 
         while(re.contains("R")) {
             success = try_cross(bridge, size);
-            if(success_info(size)) break;
+            if(success_info(size, success)) break;
             re = ask_retry();
             try_count = retry_cross(re, try_count);
         }
 
         print_result(success, try_count);
     }
-    public static boolean success_info(int size){
-        if(BridgeGame.getUp_bridge().size()==size)
+    public static boolean success_info(int size, boolean success){
+        if(BridgeGame.getUp_bridge().size()==size && success == true)
             return true;
         return false;
     }
@@ -42,7 +48,7 @@ public class Application {
         String move;
 
         for (int i = 0; i < size; i++) {
-            Announcement.move();
+            AnnouncementView.move();
             move = InputView.readMoving();
             success = BridgeGame.move(bridge, move, i);
             OutputView.printMap(BridgeGame.getUp_bridge(), BridgeGame.getDown_bridge());
@@ -52,7 +58,7 @@ public class Application {
         return success;
     }
     public static String ask_retry(){
-        Announcement.restart();
+        AnnouncementView.restart();
         return InputView.readGameCommand();
     }
     public static int retry_cross(String re, int try_count){
@@ -63,7 +69,7 @@ public class Application {
         return try_count;
     }
     public static void print_result(boolean success, int try_count){
-        Announcement.bridge_result();
+        AnnouncementView.bridge_result();
         OutputView.printMap(BridgeGame.getUp_bridge(), BridgeGame.getDown_bridge());
         OutputView.printResult(success, try_count);
     }

@@ -1,4 +1,4 @@
-package bridge;
+package error;
 
 public class Exception {
     public static int input_error(String input){
