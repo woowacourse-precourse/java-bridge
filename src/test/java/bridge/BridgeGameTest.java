@@ -30,7 +30,12 @@ public class BridgeGameTest {
         assertThat(BridgeGame.getAttemptCount()).isEqualTo(0);
     }
 
-
+    @DisplayName("게임 시도 횟수를 증가시킨다")
+    @Test
+    void increaseAttemptCountTest() {
+        BridgeGame.increaseAttemptCount();
+        assertThat(BridgeGame.getAttemptCount()).isEqualTo(1);
+    }
 
 //    @DisplayName("이동한 위치에 대한 결과를 저장한다")
 //    @Test
