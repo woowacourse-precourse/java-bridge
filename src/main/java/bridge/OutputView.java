@@ -1,23 +1,48 @@
 package bridge;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+import java.util.ArrayList;
+import java.util.List;
 public class OutputView {
-
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    public void printMap(List<String> bridge,String direction, boolean result) {
+        List<List<String>> bridgeMap = bridgeDivision(bridge);
+        bridgeMap=bridgeLastDivision(bridgeMap,direction,result);
+        for (List<String> directions:bridgeMap) {
+            System.out.print("[");
+            printDirection(directions);
+            System.out.println("]");
+        }
     }
+    private void printDirection(List<String> direction){
+        for(int count=0; count<direction.size(); count++) {
+            System.out.print(" "+direction.get(count)+" ");
+            if(count!=direction.size()-1)    System.out.print("|");
+        }
+    }
+    private List<List<String>> bridgeFilter(List<List<String>> bridgeMap,String direction,String mark){
+        if(direction.equals("U")){
+            bridgeMap.get(0).add(mark);
+            bridgeMap.get(1).add(" ");
+        }
+        else if (direction.equals("D")){
+            bridgeMap.get(1).add(mark);
+            bridgeMap.get(0).add(" ");
+        }
+        return bridgeMap;
+    }
+    private List<List<String>> bridgeLastDivision(List<List<String>> bridgeMap,String direction, boolean result){
+        if(result) return bridgeFilter(bridgeMap,direction,"O");
+        return bridgeFilter(bridgeMap,direction,"X");
+    }
+    private List<List<String>> bridgeDivision(List<String> bridge){
+        List<List<String>> bridgeMap =new ArrayList<>();
+        bridgeMap.add(new ArrayList<String>());
+        bridgeMap.add(new ArrayList<String>());
+        for (String direction: bridge) {
+            bridgeMap=bridgeFilter(bridgeMap,direction,"O");
+        }
+        return bridgeMap;
+    }
+    public void printResult(int result,boolean answer) {
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
     }
 }
