@@ -9,30 +9,28 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
+        System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         validateForConsistOfNumber(input);
         validateForRangeOfNumber(input);
         return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
         validateForUpAndDown(input);
         return input;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+        validateForRetryOrQuit(input);
+        return input;
     }
 
     private void validateForConsistOfNumber(String text) {
@@ -53,6 +51,13 @@ public class InputView {
         Pattern pattern = Pattern.compile(SystemValue.REGEX_CONSIST_UD);
         if (!pattern.matcher(text).matches()){
             throw new IllegalArgumentException("[ERROR] 다리 선택 입력 값이 정해진 U, D 값이 아닙니다.");
+        }
+    }
+
+    private void validateForRetryOrQuit(String text){
+        Pattern pattern = Pattern.compile(SystemValue.REGEX_CONSIST_RQ);
+        if (!pattern.matcher(text).matches()){
+            throw new IllegalArgumentException("[ERROR] 재시도 입력 값이 정해진 R, Q 값이 아닙니다.");
         }
     }
 }
