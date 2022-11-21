@@ -3,7 +3,7 @@ package bridge.bridge;
 public enum Step {
     MOVABLE("O"),
     IMMOVABLE("X"),
-    EMPTY(" "),
+    NONE(" "),
     ;
 
     private final String step;
