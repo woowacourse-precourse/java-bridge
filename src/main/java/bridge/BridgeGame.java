@@ -96,32 +96,4 @@ public class BridgeGame {
     public static boolean whetherGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge) {
         return !upstairsBridge.contains(WRONG) && !downstairsBridge.contains(WRONG);
     }
-
 }
-
-
-//    public List<String> move(String direction, List<String> bridge, int numberOfTrying) {
-//        for(int eachBridge = 0; eachBridge<numberOfTrying; eachBridge++) {
-//            if (Objects.equals(direction, bridge.get(eachBridge))) {
-//                answerBridge.add(RIGHT);
-//            }
-//            if (!Objects.equals(direction, bridge.get(eachBridge))) {
-//                answerBridge.add(WRONG);
-//            }
-//        }
-//        return answerBridge;
-//    }
-
-//    public static List<String> move(String direction, List<String> bridge) {
-//        for (String eachBridge : bridge) {
-//            if (Objects.equals(direction, eachBridge)) {
-//                answerBridge.add(RIGHT);
-//                continue;
-//            }
-//            if (!Objects.equals(direction, eachBridge)) {
-//                answerBridge.add(WRONG);
-//                break;
-//            }
-//        }
-//        return answerBridge;
-//    }
