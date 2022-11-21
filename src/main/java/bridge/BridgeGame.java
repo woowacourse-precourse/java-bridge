@@ -61,18 +61,20 @@ public class BridgeGame {
 
     public String createResultMap() {
         List<StringBuilder> sides = new ArrayList<>();
-        makeEmptySides(sides, 2);
+        makeEmptyMap(sides, 2);
 
+        drawOOnMap(sides);
+
+        drawXOnLastStepIfFail(sides, stepNum - 1, playerMove.get(stepNum - 1));
+        StringBuilder result = makeResultMap(sides, 2);
+        return result.toString();
+    }
+
+    private void drawOOnMap(List<StringBuilder> sides) {
         for (int playerfoot = 0; playerfoot < playerMove.size(); playerfoot++) {
             String currentMove = playerMove.get(playerfoot);
             putOOnSides(sides, playerfoot, currentMove);
         }
-
-        putXOnSides(sides, stepNum - 1, playerMove.get(stepNum - 1));
-
-        StringBuilder result = makeResultMap(sides, 2);
-
-        return result.toString();
     }
 
     private StringBuilder makeResultMap(List<StringBuilder> sides, int size) {
@@ -92,7 +94,7 @@ public class BridgeGame {
             putOXInSide(sides.get(1), playerfoot, 'O');
     }
 
-    private void putXOnSides(List<StringBuilder> sides, int playerfoot, String currentMove) {
+    private void drawXOnLastStepIfFail(List<StringBuilder> sides, int playerfoot, String currentMove) {
         if (!checkSucces(currentMove)) {
             if (currentMove.equals("U"))
                 putOXInSide(sides.get(0), playerfoot, 'X');
@@ -101,7 +103,7 @@ public class BridgeGame {
         }
     }
 
-    private void makeEmptySides(List<StringBuilder> sides, int size) {
+    private void makeEmptyMap(List<StringBuilder> sides, int size) {
         StringBuilder emptySide = makeEmptyLine();
         for (int index = 0; index < size; index++) {
             sides.add(new StringBuilder(emptySide));
@@ -126,7 +128,7 @@ public class BridgeGame {
     }
 
     public boolean gameSucces() {
-        if(this.answer.size() == stepNum && answer.get(stepNum - 1).equals(playerMove.get(stepNum - 1)))
+        if (this.answer.size() == stepNum && answer.get(stepNum - 1).equals(playerMove.get(stepNum - 1)))
             return true;
         return false;
     }
