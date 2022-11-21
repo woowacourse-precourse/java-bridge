@@ -36,7 +36,7 @@ public class BridgeGameController {
 
     private void move() {
         bridgeGame.move(new InputView().readMoving());
-        bridgeMovingResult.updatePlayingMap(bridgeGame.getMovingRecord(), bridgeGame.getStageCount());
+        updatePlayingMap();
         printPlayingMap();
         bridgeGame.increaseStageCount();
     }
@@ -71,6 +71,10 @@ public class BridgeGameController {
         if (status.equals(QUIT)) {
             quit();
         }
+    }
+
+    private void updatePlayingMap() {
+        bridgeMovingResult.updatePlayingMap(bridgeGame.getMovingRecord(), bridgeGame.getStageCount());
     }
 
     private void printPlayingMap() {
