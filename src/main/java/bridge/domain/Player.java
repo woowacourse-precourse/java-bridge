@@ -19,10 +19,10 @@ public class Player {
     public String getCommand(){
         return command;
     }
-    private Boolean isCorrectMoving(){
+    private boolean isCorrectMoving(){
         return true;
     }
-    private Boolean isCorrectCommand(){
+    private boolean isCorrectCommand(){
         return true;
     }
 
