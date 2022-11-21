@@ -7,10 +7,10 @@ import java.util.List;
 public class Result {
 
     private static final int PREVIOUS = -1;
-    private final List<List<DirectionType>> resultsGroup = new ArrayList<>();
+    private final List<List<PassingDirectionType>> resultsGroup = new ArrayList<>();
     private int distance;
 
-    public Result(List<DirectionType> upDirections, List<DirectionType> downDirections, int distance) {
+    public Result(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, int distance) {
         this.distance = distance + 1;
         resultsGroup.add(upDirections);
         resultsGroup.add(downDirections);
@@ -24,14 +24,14 @@ public class Result {
         distance += PREVIOUS;
     }
 
-    public List<List<DirectionType>> getResultsGroup() {
+    public List<List<PassingDirectionType>> getResultsGroup() {
         return Collections.unmodifiableList(resultsGroup);
     }
 
     // X 가 포함되어 있는지
     public boolean isContainWrongAnswer() {
-        for (List<DirectionType> results : resultsGroup) {
-            if (DirectionType.isContainX(results)) {
+        for (List<PassingDirectionType> results : resultsGroup) {
+            if (PassingDirectionType.isContainX(results)) {
                 return true;
             }
         }

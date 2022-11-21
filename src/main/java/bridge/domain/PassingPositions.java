@@ -21,13 +21,13 @@ public class PassingPositions {
     }
 
     public Result makeResult(int distance) {
-        List<DirectionType> upDirections = new ArrayList<>();
-        List<DirectionType> downDirections = new ArrayList<>();
+        List<PassingDirectionType> upDirections = new ArrayList<>();
+        List<PassingDirectionType> downDirections = new ArrayList<>();
         moveLoop(upDirections, downDirections);
         return new Result(upDirections, downDirections, distance);
     }
 
-    private void moveLoop(List<DirectionType> upDirections, List<DirectionType> downDirections) {
+    private void moveLoop(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections) {
         passingPositions
                 .forEach(position -> {
                     if (position.getDirection().isSameUp()) {
@@ -39,13 +39,13 @@ public class PassingPositions {
                 });
     }
 
-    private void moveToUp(List<DirectionType> upDirections, List<DirectionType> downDirections, Position position) {
-        upDirections.add(DirectionType.getSelectedDir(position, bridge));
-        downDirections.add(DirectionType.getNotSelectedDir(position));
+    private void moveToUp(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, Position position) {
+        upDirections.add(PassingDirectionType.getSelectedDir(position, bridge));
+        downDirections.add(PassingDirectionType.getNotSelectedDir(position));
     }
 
-    private void moveToDown(List<DirectionType> upDirections, List<DirectionType> downDirections, Position position) {
-        upDirections.add(DirectionType.getNotSelectedDir(position));
-        downDirections.add(DirectionType.getSelectedDir(position, bridge));
+    private void moveToDown(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, Position position) {
+        upDirections.add(PassingDirectionType.getNotSelectedDir(position));
+        downDirections.add(PassingDirectionType.getSelectedDir(position, bridge));
     }
 }
