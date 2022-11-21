@@ -11,6 +11,13 @@ public class BridgeGame {
     private static List<String> upBridge = new ArrayList<>();
     private static List<String> downBridge = new ArrayList<>();
 
+    public List<String> getUpBridge(){
+        return upBridge;
+    }
+
+    public List<String> getDownBridge(){
+        return downBridge;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
