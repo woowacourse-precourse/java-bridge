@@ -41,17 +41,21 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
+    // currentBridge = [true, true, false], bridge = [U, U, D, D]
     public static void printTopMap(List<Boolean> currentBridge, List<String> bridge) {
         int index = -1;
         StringJoiner topLayer = new StringJoiner(" | ", "[ ", " ]");
         for (boolean current : currentBridge) {
             index++;
-            if (current && "U".equals(bridge.get(index))) topLayer.add("O");
-            else if (current && "D".equals(bridge.get(index))) topLayer.add(" ");
-            else if (!current && "D".equals(bridge.get(index))) topLayer.add("X");
-            else if (!current && "U".equals(bridge.get(index))) topLayer.add(" ");
+            topLayer.add(compareToTopBridge(current, bridge, index));
         }
         System.out.println(topLayer.toString());
+    }
+
+    private static String compareToTopBridge(boolean current, List<String> bridge, int index) {
+        if (current && "U".equals(bridge.get(index))) return "O";
+        else if (!current && "D".equals(bridge.get(index))) return "X";
+        return " ";
     }
 
     public static void printBottomMap(List<Boolean> currentBridge, List<String> bridge) {
@@ -59,12 +63,15 @@ public class OutputView {
         StringJoiner bottomLayer = new StringJoiner(" | ", "[ ", " ]");
         for (boolean current : currentBridge) {
             index++;
-            if (current && "U".equals(bridge.get(index))) bottomLayer.add(" ");
-            else if (current && "D".equals(bridge.get(index))) bottomLayer.add("O");
-            else if (!current && "D".equals(bridge.get(index))) bottomLayer.add(" ");
-            else if (!current && "U".equals(bridge.get(index))) bottomLayer.add("X");
+            bottomLayer.add(compareToBottomBridge(current, bridge, index));
         }
         System.out.println(bottomLayer.toString());
+    }
+
+    private static String compareToBottomBridge(boolean current, List<String> bridge, int index) {
+        if (current && "D".equals(bridge.get(index))) return "O";
+        else if (!current && "U".equals(bridge.get(index))) return "X";
+        return " ";
     }
 
     /**
