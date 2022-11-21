@@ -22,17 +22,13 @@ public class BridgeGame {
     public void run() {
         for (int i = 0; i < computer.size(); i++) {
             move();
-            if (!isPass) {
+            if (!isPass)
                 break;
-            }
         }
-        String retryCommand = inputView.readGameCommand();
-        if (retryCommand.equals("Q")) {
+        if (inputView.readGameCommand().equals("Q")) {
             outputView.printResult(total_round, success());
             return;
         }
-        if (retryCommand.equals("R"))
-            throw new IllegalArgumentException();
         retry();
         run();
     }
@@ -43,9 +39,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        outputView.updateMap(check(round, inputView.readMoving()));
+        outputView.updateMap(check(round++, inputView.readMoving()));
         outputView.printMap();
-        round++;
     }
 
     /**
@@ -54,7 +49,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        total_round ++;
+        total_round++;
         round = 0;
         outputView.reMap();
     }
@@ -62,7 +57,7 @@ public class BridgeGame {
     /**
      * 사용자가 입력한 값과 컴퓨터의 값을 비교하는 메서드
      *
-     * @param round 사용자가 움직인 횟수 - 1
+     * @param round 사용자가 이동한 횟수 - 1
      * @param user  사용자가 입력한 이동할 값 : U or D
      * @return {" ","O","X"} - updateMap()에서 각 map에 입력할 정보
      */
