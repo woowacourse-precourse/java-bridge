@@ -2,7 +2,6 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.NumberValidator.validateNonNumeric;
 import static bridge.NumberValidator.validateRange;
 import static bridge.validator.TextValidator.validateMoveWay;
 import static bridge.validator.TextValidator.validateRetry;
@@ -17,18 +16,15 @@ public class InputView {
      */
     public static int readBridgeSize() {
         OutputView.printBridgeSizeInputMessage();
-        String bridgeSize;
-        while (true) {
-            try {
-                bridgeSize = Console.readLine();
-                validateNonNumeric(bridgeSize);
-                validateRange(bridgeSize);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String bridgeSize = Console.readLine();
+            int size = validateRange(bridgeSize);
+            System.out.println(bridgeSize);
+            return size;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
         }
-        return Integer.parseInt(bridgeSize);
     }
 
     /**
@@ -36,17 +32,15 @@ public class InputView {
      */
     public static String readMoving() {
         OutputView.printMoveInputMessage();
-        String moveWay;
-        while (true) {
-            try {
-                moveWay = Console.readLine();
-                validateMoveWay(moveWay);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String moveWay = Console.readLine();
+            validateMoveWay(moveWay);
+            System.out.println(moveWay);
+            return moveWay;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
         }
-        return moveWay;
     }
 
     /**
@@ -57,6 +51,7 @@ public class InputView {
         String retry = Console.readLine();
 
         validateRetry(retry);
+        System.out.println(retry);
         return retry;
     }
 }
