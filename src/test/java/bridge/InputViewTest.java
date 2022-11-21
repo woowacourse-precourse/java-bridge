@@ -37,7 +37,7 @@ class InputViewTest extends NsTest {
     }
 
     @DisplayName("이동값이 U또는 D가 아닐 때의 예외처리")
-    @ValueSource(strings = {"", "UD", "DU", "ABC", "u", "d"})
+    @ValueSource(strings = {"", "UD", "DU", "ABC", "u", "d", "R", "Q"})
     @ParameterizedTest
     void 이동_문자열_테스트(String input) {
         assertSimpleTest(() -> {
@@ -45,6 +45,17 @@ class InputViewTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @DisplayName("재시작 입력값이 R또는 Q가 아닐 때의 예외처리")
+    @ValueSource(strings = {"", "UD", "DU", "ABC", "u", "d", "U", "D", "RA", "RQ"})
+    @ParameterizedTest
+    void 재시작_문자열_테스트(String input) {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> new InputView().validateGameCommand(input)).isInstanceOf(IllegalArgumentException.class);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     protected void runMain() {
