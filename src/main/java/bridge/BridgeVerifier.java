@@ -13,7 +13,7 @@ public class BridgeVerifier {
     }
 
     public static String validateMoving(String input) {
-        if (!(input.equals(BridgeEnum.U.name()) || input.equals(BridgeEnum.D.name()))) {
+        if (!(input.equals(MovingEnum.U.name()) || input.equals(MovingEnum.D.name()))) {
             throw new IllegalArgumentException(BridgeError.INVALID_MOVING.getMessage());
         }
         return input;

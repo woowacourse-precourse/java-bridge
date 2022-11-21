@@ -1,11 +1,11 @@
 package bridge;
 
-public enum BridgeEnum {
+public enum MovingEnum {
     U(1), D(0);
 
     private final int num;
 
-    BridgeEnum(int num) {
+    MovingEnum(int num) {
         this.num = num;
     }
 

@@ -1,9 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,11 +12,11 @@ import java.util.Map;
  */
 public class BridgeGame {
     private int tryCount = 1;
-    private List<Boolean> movingResults;
+    private List<String> movingStack;
     private List<String> bridge;
 
     BridgeGame(List<String> bridge) {
-        movingResults = new ArrayList<>();
+        movingStack = new ArrayList<>();
         this.bridge = bridge;
     }
 
@@ -27,31 +25,26 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String moving) {
-        int nexStep = movingResults.size();
-        if (moving.equals(bridge.get(nexStep))) {
-            movingResults.add(true);
-            return;
+    public boolean move(String moving) {
+        movingStack.add(moving);
+        int index = movingStack.size() - 1;
+        if (moving.equals(bridge.get(index))) {
+            return true;
         }
-        movingResults.add(false);
-    }
-
-    public boolean getLastMovingResult() {
-        int index = movingResults.size() - 1;
-        return movingResults.get(index);
+        return false;
     }
 
     public void retry() {
         tryCount++;
-        movingResults = new ArrayList<>();
+        movingStack = new ArrayList<>();
     }
 
-    public boolean isSucceed() {
-        if (movingResults.size() != bridge.size()) {
+    public boolean isFinished() {
+        if (movingStack.size() != bridge.size()) {
             return false;
         }
-        for (boolean movingResult : movingResults) {
-            if (!movingResult) {
+        for (int i = 0; i < bridge.size(); i++) {
+            if (!movingStack.get(i).equals(bridge.get(i))) {
                 return false;
             }
         }
@@ -59,43 +52,30 @@ public class BridgeGame {
     }
 
     public String getGameResult() {
-        if (isSucceed()) {
+        if (isFinished()) {
             return "성공";
         }
         return "실패";
     }
 
-    public Map<String, List<String>> getMap() {
-        Map<String, List<String>> map = new HashMap<>();
-        List<String> upMap = new ArrayList<>();
-        List<String> downMap = new ArrayList<>();
-
-        for (int i = 0; i < movingResults.size(); i++) {
-            boolean movingResult = movingResults.get(i);
-            String curBridge = bridge.get(i);
-            if (movingResult) {
-                if (curBridge.equals(BridgeEnum.U.name())) {
-                    upMap.add("O");
-                    downMap.add(" ");
-                }
-                if (curBridge.equals(BridgeEnum.D.name())) {
-                    upMap.add(" ");
-                    downMap.add("O");
-                }
+    public List<String> getMap(MovingEnum movingEnum) {
+        List<String> map = new ArrayList<>();
+        for (int i = 0; i < movingStack.size(); i++) {
+            String moving = movingStack.get(i);
+            if (moving.equals(movingEnum.name())) {
+                map.add(compareResult(moving, bridge.get(i)));
                 continue;
             }
-            if (curBridge.equals(BridgeEnum.U.name())) {
-                upMap.add(" ");
-                downMap.add("X");
-            }
-            if (curBridge.equals(BridgeEnum.D.name())) {
-                upMap.add("X");
-                downMap.add(" ");
-            }
+            map.add(" ");
         }
-        map.put("upMap", upMap);
-        map.put("downMap", downMap);
         return map;
+    }
+
+    private String compareResult(String moving, String curBridge) {
+        if (moving.equals(curBridge)) {
+            return "O";
+        }
+        return "X";
     }
 
     public int getTryCount() {

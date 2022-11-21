@@ -24,11 +24,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            if (bridgeNumber == BridgeEnum.U.getNum()) {
-                bridge.add(BridgeEnum.U.name());
+            if (bridgeNumber == MovingEnum.U.getNum()) {
+                bridge.add(MovingEnum.U.name());
             }
             if (bridgeNumber == 0) {
-                bridge.add(BridgeEnum.D.name());
+                bridge.add(MovingEnum.D.name());
             }
         }
         return bridge;
