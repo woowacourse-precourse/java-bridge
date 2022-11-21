@@ -2,11 +2,7 @@ package bridge.game.status;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.bridge.Bridge;
-import bridge.domain.code.BridgePosition;
-import bridge.domain.code.GameStatus;
-import bridge.game.BridgeGame;
-import bridge.game.context.BridgeGameContext;
+import bridge.game.context.FakeContext;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -40,45 +36,5 @@ class RestartGameStatusTest extends NsTest {
 
     }
 
-    class FakeContext implements BridgeGameContext {
-        @Override
-        public void generateBridge(Bridge madeBridge) {
 
-        }
-
-        @Override
-        public BridgeGame getBridgeGame() {
-            return null;
-        }
-
-        @Override
-        public void writeHistory(String resultMap) {
-
-        }
-
-        @Override
-        public String getCachedHistory() {
-            return null;
-        }
-
-        @Override
-        public Integer getRepeatCount() {
-            return null;
-        }
-
-        @Override
-        public void retry() {
-
-        }
-
-        @Override
-        public void movePlayerUnit(BridgePosition movePosition) {
-
-        }
-
-        @Override
-        public GameStatus gameStatus() {
-            return null;
-        }
-    }
 }
