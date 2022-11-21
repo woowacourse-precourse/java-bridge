@@ -31,8 +31,8 @@ class BridgeGameTest {
         game.move(BridgePosition.UP);
         game.move(BridgePosition.DOWN);
 
-        assertThat(game.canPlayerMove()).isFalse();
-        assertThat(game.isClear()).isTrue();
+        var gameStatus = game.getGameStatus();
+        assertThat(gameStatus.getCode()).isEqualTo("성공");
     }
 
     @Test
@@ -47,8 +47,8 @@ class BridgeGameTest {
 
         game.move(BridgePosition.DOWN);
 
-        assertThat(game.canPlayerMove()).isFalse();
-        assertThat(game.isClear()).isFalse();
+        var gameStatus = game.getGameStatus();
+        assertThat(gameStatus.getCode()).isEqualTo("실패");
     }
 
 }
