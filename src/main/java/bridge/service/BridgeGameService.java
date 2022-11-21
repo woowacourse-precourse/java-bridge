@@ -17,6 +17,10 @@ public class BridgeGameService {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
+    /**
+    * 게임을 위한 다리를 생성하는 메서드
+     * @return List<String></String>
+    * */
     public List<String> initializeGame() {
         OutputView.printStart();
         return bridgeMaker.makeBridge(getSize());
@@ -35,6 +39,10 @@ public class BridgeGameService {
         return size;
     }
 
+    /**
+    * 사용자의 입력을 받으면서 다리 건너기 게임을 진행하는 메서드
+     * @return Status
+    * */
     public Status proceedGame(List<String> bridge) {
         List<String> userMoving = new ArrayList<>();
         while (bridge.size() >= userMoving.size()) {
@@ -72,6 +80,10 @@ public class BridgeGameService {
         return true;
     }
 
+    /**
+    * 게임 재시도 여부를 입력받는 메서드
+     * @return Command
+    * */
     public Command restartGame() {
         if (getCommand().equals("R")) {
             return Command.RESTART;
