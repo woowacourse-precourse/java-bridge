@@ -29,13 +29,21 @@ public class BridgeGameSystem {
             outputView.printMap(toCrossBridgeResult(bridge, block));
             flag = isAvailableGame(block);
             if(isSuccess(bridgeSize, index)){
-                --index;
+                return successView(bridge, block);
+            }
+            if(!flag){
                 outputView.printResultMap(toCrossBridgeResult(bridge, block));
-                return true;
             }
         }
         return false;
     }
+
+    public static boolean successView(List<String> bridge, Bridge block){
+        --index;
+        outputView.printResultMap(toCrossBridgeResult(bridge, block));
+        return true;
+    }
+
 
     public static StringBuilder toCrossBridgeResult(List<String> bridge, Bridge block){
         return outputView.makeSide(bridge, block, index);
