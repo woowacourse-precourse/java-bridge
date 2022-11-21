@@ -23,22 +23,22 @@ public class Player {
     }
 
     public boolean isCrossedBridge() {
-        return playerStatus == PlayerStatus.CROSSED;
+        return this.equals(PlayerStatus.CROSSED);
     }
 
     public boolean isMoving() {
-        return playerStatus == PlayerStatus.MOVING;
+        return this.equals(PlayerStatus.MOVING);
     }
 
     public boolean isDead() {
-        return playerStatus == PlayerStatus.DEAD;
-    }
-
-    public List<Moving> getHistory() {
-        return history;
+        return this.equals(PlayerStatus.DEAD);
     }
 
     public PlayerStatus getPlayerStatus() {
         return playerStatus;
+    }
+
+    public List<Moving> getHistory() {
+        return history;
     }
 }
