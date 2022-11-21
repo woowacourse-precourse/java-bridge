@@ -32,12 +32,12 @@ public class BridgeGame {
         gameUser.reset();
     }
 
+    public void move(String moving) {
+        gameUser.move(moving);
+    }
+
     private boolean isGameOver() {
         return gameUser.getOffFrom(answerBridge) ||
                 gameUser.isOnTheFinalBlock(answerBridge);
-    }
-
-    private void move(String moving) {
-        gameUser.move(moving);
     }
 }
