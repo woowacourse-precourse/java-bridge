@@ -16,7 +16,7 @@ public class InputView {
         String bridgeSize = Console.readLine();
         int result = Integer.parseInt(bridgeSize);
         if (result < 3 || result > 20) {
-            throw new IllegalArgumentException("Not Valid");
+            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
         return result;
     }
@@ -30,7 +30,7 @@ public class InputView {
         List<String> validMove = List.of("U", "D");
 
         if (!validMove.contains(moving)) {
-            throw new IllegalArgumentException("Not Valid");
+            throw new IllegalArgumentException("이동할 칸에 대한 입력이 올바르지 않습니다.");
         }
         return moving;
     }
@@ -44,7 +44,7 @@ public class InputView {
         List<String> validCommand = List.of("R", "Q");
 
         if (!validCommand.contains(gameCommand)) {
-            throw new IllegalArgumentException("Not Valid");
+            throw new IllegalArgumentException("게임을 다시 시도할지 여부에 대한 입력이 올바르지 않습니다.");
         }
         return gameCommand;
     }
