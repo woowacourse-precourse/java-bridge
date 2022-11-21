@@ -44,6 +44,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> moves, boolean isFail, int attempts) {
+        System.out.println(OutputMessage.GAME_RESULT.message());
         printMap(moves, isFail);
         printSuccessOrFail(isFail);
         System.out.printf(OutputMessage.ATTEMPT.message(), attempts);
