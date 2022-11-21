@@ -8,10 +8,12 @@ public class GameService {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
-        outputView.printStartString();
-        int size=inputView.readBridgeSize();
+
+        outputView.printStartString();              //시작 멘트 출력
+
+        int size=inputView.readBridgeSize();        //다리 길이 입력
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> strings = bridgeMaker.makeBridge(size);
+        List<String> strings = bridgeMaker.makeBridge(size);    // 다리 "UDU" String 으로 List에 담김
 
 
         while (gameStartOrNot){
