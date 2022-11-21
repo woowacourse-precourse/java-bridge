@@ -17,6 +17,7 @@ public class BridgeGame {
     BridgeMaker bridgeMaker;
     private int position;
     private String resultOfGame;
+    List<String[]> map;
 
     public BridgeGame() {
         this.marks = new ArrayList<>();
@@ -105,5 +106,13 @@ public class BridgeGame {
     }
     public String getResultOfGame() {
         return resultOfGame;
+    }
+
+    public void setMap(List<String[]> map) {
+        this.map = map;
+    }
+
+    public List<String[]> getMap() {
+        return map;
     }
 }
