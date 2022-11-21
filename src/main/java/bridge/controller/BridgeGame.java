@@ -19,10 +19,11 @@ public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     static int bridgeSize;
-     static String userInput;
+    static String userInput;
     public static List<String> bridge;
     public static int round;
     static List<String> mark = new ArrayList<>();
+    static int challenge =1;
 
     public void setting() { //입력값받기
         Print.gameStartMessage();
@@ -40,7 +41,7 @@ public class BridgeGame {
 
     }
 
-    public void make(){ //입력값만큼 다리 만들고 랜덤값 넣기
+    public void make() { //입력값만큼 다리 만들고 랜덤값 넣기
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -71,19 +72,20 @@ public class BridgeGame {
     /**
      * 사용자가 선택한 칸이 건널 수 있는 칸인지 확인하는 메서드
      */
-    public boolean check(){
+    public boolean check() {
         CheckCrossBridge checkCrossBridge = new CheckCrossBridge();
         boolean crossPossible = checkCrossBridge.check(userInput, bridge, round);
-        if (crossPossible == false){
+        if (crossPossible == false) {
             mark.add("X");
         }
-        if(crossPossible == true){
+        if (crossPossible == true) {
             mark.add("O");
         }
-        System.out.println("mark"+ mark);
+        System.out.println("mark" + mark);
         outputView.printMap(bridge, mark, round);
         return crossPossible;
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -103,6 +105,28 @@ public class BridgeGame {
                 retryCheckNumber = 1;
             }
         }
+        tryOrNot(userInput);
+    }
+
+    private void tryOrNot(String userInput) {
+        if(userInput.equals("R")){
+            challenge++;
+            round = 0;
+            mark.clear();
+            OutputView.upSide ="";
+            OutputView.downSide ="";
+            return;
+        }
+        round = bridgeSize;
+    }
+
+    public void challengeCount(){
+        Print.showChallengeCount(challenge);
+    }
+
+    public void successResult(){
 
     }
+
+
 }

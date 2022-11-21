@@ -17,11 +17,13 @@ public class Application {
 
         while(round != BridgeGame.bridge.size()){
             bridgeGame.move();
-            if(!bridgeGame.check()){
-                return;
-                //bridgeGame.retry();
-            }
-        }
 
+            if(!bridgeGame.check()){
+                //return;
+                bridgeGame.retry();
+            }
+
+        }
+        bridgeGame.challengeCount();
     }
 }
