@@ -24,6 +24,10 @@ public class BridgeGame {
         }
     }
 
+    public void giveUp(User user) {
+        user.finishWithFail();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
