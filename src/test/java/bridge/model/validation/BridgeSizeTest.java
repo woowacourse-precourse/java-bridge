@@ -13,8 +13,8 @@ class BridgeSizeTest {
 	@DisplayName("3 에서 20 사이 자연수를 입력하면 해당 숫자를 반환한다")
 	@Test
 	void inRangeTest() {
-		for (int size = BridgeSize.MIN_NUMBER; size <= BridgeSize.MAX_NUMBER; size++) {
-			assertEquals(new BridgeSize(size).getSize(), size);
+		for (int size = BridgeSize.MIN.getSize(); size <= BridgeSize.MAX.getSize(); size++) {
+			assertEquals(BridgeSize.validateRange(size), size);
 		}
 	}
 
@@ -22,7 +22,7 @@ class BridgeSizeTest {
 	@ParameterizedTest
 	@ValueSource(ints = {-1, 0, 1, 2, 21, 10000})
 	void notInRangeTest(int size) {
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> new BridgeSize(size));
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> BridgeSize.validateRange(size));
 		assertEquals(Error.RANGE.getMessage(), exception.getMessage());
 	}
 }
