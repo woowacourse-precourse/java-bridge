@@ -41,6 +41,14 @@ public class BridgeTest extends NsTest {
 		assertThat(true).isEqualTo(bridgeGame.retry("R"));
 	}
 
+	@Test
+	void 다리크기_자연수_예외테스트() {
+		assertSimpleTest(() -> {
+			runException("a");
+			assertThat(output()).contains(ERROR_MESSAGE);
+		});
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
