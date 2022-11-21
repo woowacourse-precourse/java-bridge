@@ -80,3 +80,5 @@
 - [X] GamePlayer.play() 메서드 추출
 - [X] gamePlayer에서 bridgeMap new 연산자 사용하는 대신 리셋 기능 구현
 - [X] GamePlayer 필드들 클래스로 빼기
+- [ ] GameResult 메서드명 변경
+- [ ] GameStatus 메서드명 변경 
