@@ -21,13 +21,13 @@ public class GameController {
         boolean flag = true;
         while (flag) {
             cnt++;
-            boolean b = moveBridge();
-            if (b == true) {
+//            boolean b = moveBridge();
+            if (moveBridge()) {
                 return;
             }
             flag = retryCheck();
         }
-//        outputView.printResult();
+        outputView.printResult(false,cnt);
     }
 
     private void makeBridge() {
@@ -42,7 +42,7 @@ public class GameController {
             moveCheck = bridgeGame.move(userMove, location, builtBridge);
             outputView.printMap(moveCheck, userMove, location);
             if (builtBridge.size() - 1 == location && moveCheck == true) {
-                outputView.printResult(moveCheck, cnt);
+                outputView.printResult(true, cnt);
                 return true;
             }
             ++location;
