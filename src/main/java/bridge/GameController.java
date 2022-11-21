@@ -18,9 +18,9 @@ public class GameController {
         this.outputView = outputView;
     }
 
-    public void start() {
+    public void start(BridgeNumberGenerator bridgeNumberGenerator) {
         outputView.printStart();
-        initBridgeGame();
+        initBridgeGame(bridgeNumberGenerator);
         while (!bridgeGame.isEndOfBridge()) {
             outputView.printMap(crossBridge());
             if (failToMove()) {
@@ -30,10 +30,10 @@ public class GameController {
         outputView.printResult(bridgeGame.isEndOfBridge(), tryCount.toString());
     }
 
-    private void initBridgeGame() {
+    private void initBridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
         outputView.AskBridgeLength();
         int bridgeSize = inputView.readBridgeSize();
-        bridgeGame = new BridgeGame(bridgeSize, new BridgeRandomNumberGenerator());
+        bridgeGame = new BridgeGame(bridgeSize, bridgeNumberGenerator);
     }
 
     private String crossBridge() {
