@@ -61,4 +61,9 @@ public class Bridge {
     public List<String> getBridgeMap(){
         return this.bridgeMap;
     }
+    public void changeBridgeMap(int index,int userChoicePosition,char OorX){
+        char[] bridgeUnit = bridgeMap.get(userChoicePosition).toCharArray();
+        bridgeUnit[index] = OorX;
+        bridgeMap.set(index,String.valueOf(bridgeUnit));
+    }
 }
