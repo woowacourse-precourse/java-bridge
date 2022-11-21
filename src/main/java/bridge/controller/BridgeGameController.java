@@ -12,6 +12,7 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private Bridge bridge;
+    private int tryCount = 1;
 
     public void start() {
         outputView.printStartGame();
@@ -33,5 +34,10 @@ public class BridgeGameController {
 
     public boolean isFinished(Bridge bridge) {
         return bridge.getStatus() == Status.GAME_FINISHED;
+    }
+
+    public void prepareToRetry() {
+        tryCount++;
+        bridge.clearUser();
     }
 }

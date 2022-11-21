@@ -30,4 +30,8 @@ public class Bridge {
         }
         return true;
     }
+
+    public void clearUser() {
+        user = new User();
+    }
 }
