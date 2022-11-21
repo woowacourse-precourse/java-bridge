@@ -4,10 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-class InputViewTest {
+class InputViewReadBridgeSizeTest {
 
     InputView inputView;
 
@@ -44,5 +44,15 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.sizeValidation(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다");
+    }
+
+    @DisplayName("입력 받은 다리 길이가 5인 경우")
+    @Test
+    void movingValidErrorTestU() {
+        String input = "5";
+
+        inputView.sizeValidation(input);
+
+        assertThatNoException();
     }
 }
