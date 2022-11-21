@@ -54,4 +54,12 @@ public class BridgeGame {
     public boolean isContinuing() {
         return gameStatus.isPlay();
     }
+
+    public boolean isPending() {
+        return gameStatus.isPending();
+    }
+
+    public TrialCount getTrialCount() {
+        return trialCount;
+    }
 }

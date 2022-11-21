@@ -13,4 +13,8 @@ public enum GameStatus {
     public boolean isPlay() {
         return this == PLAY;
     }
+
+    public boolean isPending() {
+        return this == PENDING;
+    }
 }
