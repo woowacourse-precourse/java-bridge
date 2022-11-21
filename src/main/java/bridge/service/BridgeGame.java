@@ -14,8 +14,7 @@ public class BridgeGame {
      */
     public void move(Bridge bridge, User user) {
         if (isUserPassedAllTurn(bridge)) {
-            user.gameDoneSuccess();
-            user.gameWin();
+            user.gameDoneWithWin();
         }
         bridge.nowIndexUpdate();
     }
@@ -32,8 +31,7 @@ public class BridgeGame {
             retry(bridge, user);
         }
         if (gameStatus.equals(QUIT_GAME)) {
-            user.gameDoneSuccess();
-            user.gameFail();
+            user.gameDoneWithLose();
         }
     }
 
