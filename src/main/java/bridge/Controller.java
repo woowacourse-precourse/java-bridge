@@ -20,7 +20,6 @@ public class Controller {
      * input Bridge length and create Bridge
      */
     public int start() {
-        oView.printStart();
         int input = iView.readBridgeSize();
         BridgeRandomNumberGenerator rng = new BridgeRandomNumberGenerator();
         this.bridgeGame = new BridgeGame(new BridgeMaker(rng).makeBridge(input));

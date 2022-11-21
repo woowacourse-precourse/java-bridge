@@ -25,6 +25,8 @@ public class Application {
         OutputView outputView = new OutputView();
         Controller controller = new Controller(inputView, outputView);
 
+
+        outputView.printStart();
         inputFunctions(outputView, controller::start);
         boolean flag = true;
         while (flag) {
