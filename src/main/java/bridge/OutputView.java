@@ -25,14 +25,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(HashMap<String, List<String>> presentBridge) {
-        int bridgeSize = presentBridge.get(BRIDGE_LINE.get(0)).size() / 2;
-
         for (int i = 0; i < 2; i++) {
-            System.out.printf("[ ");
-            for (int j = 0; j < bridgeSize - 1; j++) {
-                System.out.printf(presentBridge.get(BRIDGE_LINE.get(i)).get(j) + " | ");
-            }
-            System.out.println(presentBridge.get(bridgeSize - 1) + " ]");
+            String bridge = presentBridge.get(BRIDGE_LINE.get(i)).toString().replaceAll(",", " |")
+                .replaceAll("\\[", "[ ").replaceAll("]", " ]");
+            System.out.println(bridge);
         }
     }
 
@@ -41,7 +37,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(HashMap<String, List<String>> presentBridge, boolean result, int tryCount) {
+    public void printResult(HashMap<String, List<String>> presentBridge, boolean result,
+        int tryCount) {
         System.out.println(RESULT_TEXT);
         printMap(presentBridge);
         if (result) {

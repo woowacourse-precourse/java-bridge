@@ -16,7 +16,7 @@ public class BridgeGame {
     private InputView inputView;
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
-    private BridgeNumberGenerator bridgeNumberGenerator;
+
     private final Map<Boolean, String> MOVE_OX = Map.of(
         true, "O",
         false, "X"
@@ -26,11 +26,16 @@ public class BridgeGame {
         "D", "U"
     );
 
+    public BridgeGame() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
+
     public void initGame() {
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        bridgeMaker.makeBridge(bridgeSize);
+        bridgeMaker.makeBridges(bridgeSize);
         setGameIndex(0);
         setGameResult(true);
     }
@@ -55,12 +60,13 @@ public class BridgeGame {
      */
     public boolean move(int bridgeIndex) {
         String moveCommand = inputView.readMoving();
+        recordBridge(moveCommand, judgeMove(moveCommand, bridgeIndex));
+        outputView.printMap(bridgeMaker.getPresentBridge());
         if (judgeMove(moveCommand, bridgeIndex)) {
-            recordBridge(moveCommand);
+            setGameIndex(getGameIndex() + 1);
             return true;
         }
         setGameResult(false);
-        setGameIndex(getGameIndex() + 1);
         return judgeContinue();
     }
 
@@ -70,18 +76,21 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        initGame();
+        bridgeMaker.initPresentBridge();
+        setGameIndex(0);
+        setGameResult(true);
         setTryCount(getTryCount() + 1);
     }
 
-    public void recordBridge(String moveCommand) {
+    public void recordBridge(String moveCommand, boolean isSuccess) {
         HashMap<String, List<String>> presentBridge = bridgeMaker.getPresentBridge();
-        if (presentBridge.containsKey(moveCommand)) {
-            presentBridge.get(moveCommand).add(MOVE_OX.get(moveCommand));
-        } else {
-            presentBridge.put(moveCommand, List.of(MOVE_OX.get(moveCommand)));
-        }
-        presentBridge.get(REVERSE_MOVE.get(moveCommand)).add(" ");
+        List<String> moveLine = presentBridge.get(moveCommand);
+        moveLine.add(MOVE_OX.get(isSuccess));
+        presentBridge.replace(moveCommand, moveLine);
+        List<String> reverseLine = presentBridge.get(REVERSE_MOVE.get(moveCommand));
+        reverseLine.add(" ");
+        presentBridge.replace(REVERSE_MOVE.get(moveCommand), reverseLine);
+        bridgeMaker.setPresentBridge(presentBridge);
     }
 
     public boolean judgeMove(String moveCommand, int bridgeIndex) {

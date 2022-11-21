@@ -10,14 +10,13 @@ import java.util.List;
 public class BridgeMaker {
 
     private static final int UP_BRIDGE = 1;
-    private static final int DOWN_BRIDGE = 0;
-    private static final int BRIDGE_LINE = 2;
     private List<String> bridge;
     private HashMap<String, List<String>> presentBridge;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+        this.bridge = new ArrayList<>();
     }
 
     public void makeBridges(int size) {
@@ -30,9 +29,9 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        this.bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            if (bridgeNumberGenerator.generate() == UP_BRIDGE) {
+            int  randomNumber = bridgeNumberGenerator.generate();
+            if (randomNumber == UP_BRIDGE) {
                 this.bridge.add("U");
             } else {
                 this.bridge.add("D");
@@ -43,6 +42,8 @@ public class BridgeMaker {
 
     public void initPresentBridge() {
         this.presentBridge = new HashMap<>();
+        this.presentBridge.put("U", new ArrayList<>());
+        this.presentBridge.put("D", new ArrayList<>());
     }
 
     public List<String> getBridge() {
