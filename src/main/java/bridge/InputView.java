@@ -29,7 +29,7 @@ public class InputView {
         System.out.println(readBridgeSizeMs);
         try {
             input = getInput();
-            if (ThisIsNumber(input) || RangeOfNumber(input)) getSize(); //숫자가 아니라면, 또는 3~20 사이의 범위가 아닐경우
+            if (confirmInteger(input) || confirmRange(input)) sizeException(); //숫자가 아니라면, 또는 3~20 사이의 범위가 아닐경우
             size = Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             size = readBridgeSize();
@@ -37,16 +37,16 @@ public class InputView {
         return size;
     }
 
-    private boolean RangeOfNumber(String input) {
+    private boolean confirmRange(String input) {
         return Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20;
     }
 
-    void getSize() {
+    void sizeException() {
         System.out.println(exceptNumber);
         throw new IllegalArgumentException(exceptNumber);
     }
 
-    private boolean ThisIsNumber(String input) {
+    private boolean confirmInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -62,14 +62,14 @@ public class InputView {
         System.out.println(readMovingMs);
         try {
             input = getInput().toUpperCase();
-            if (ThisIsMove()) getMoving();
+            if (confirmMoving()) movingException();
         } catch (IllegalArgumentException e) {
             input = readMoving();
         }
         return input;
     }
 
-    private boolean ThisIsMove() {
+    private boolean confirmMoving() {
         return !Objects.equals(input, "U") && !Objects.equals(input, "D");
     }
 
@@ -80,19 +80,19 @@ public class InputView {
         System.out.println(readGameCommandMs);
         try {
             input = getInput();
-            if (ThisIsRetry()) getRetry();
+            if (confirmRetry()) retryException();
         } catch (IllegalArgumentException e) {
             input = readGameCommand();
         }
         return input;
     }
 
-    private void getRetry() {
+    private void retryException() {
         System.out.println(exceptRetry);
         throw new IllegalArgumentException(exceptRetry);
     }
 
-    private boolean ThisIsRetry() {
+    private boolean confirmRetry() {
         return !Objects.equals(input, "R") && !Objects.equals(input, "Q");
     }
 
@@ -100,7 +100,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    void getMoving() {
+    void movingException() {
         System.out.println(exceptMoving);
         throw new IllegalArgumentException(exceptMoving);
     }
