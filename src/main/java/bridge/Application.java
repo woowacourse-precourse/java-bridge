@@ -26,12 +26,17 @@ public class Application {
     public static void startGame() {
         boolean isWillingToPlay = true;
         while (bridgeGame.isPlaying() && isWillingToPlay) {
-            isCorrect = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.getMap(isCorrect));
-            if (!isCorrect) {
-                isWillingToPlay = wrongAnswerHandling();
-            }
+            isWillingToPlay = playOneTurn();
         }
+    }
+
+    private static boolean playOneTurn() {
+        isCorrect = bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getMap(isCorrect));
+        if (!isCorrect) {
+            return wrongAnswerHandling();
+        }
+        return true;
     }
 
     public static boolean wrongAnswerHandling() {
