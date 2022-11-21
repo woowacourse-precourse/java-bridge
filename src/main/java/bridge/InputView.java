@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.regex.Pattern;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -44,7 +46,7 @@ public class InputView {
 
     private void validForMove(String move) {
         if (!Pattern.matches(Regex.MOVE.getPattern(), move)) {
-            System.err.println("[ERROR] 이동 명령은 U 혹은 D를 입력해야만 합니다.");
+            System.err.println("[ERROR] 이동 명령은 U 혹은 D 중 하나를 입력해야만 합니다.");
             throw new IllegalArgumentException();
         }
     }
