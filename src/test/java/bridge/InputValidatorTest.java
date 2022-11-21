@@ -14,7 +14,7 @@ public class InputValidatorTest {
     @DisplayName("다리 길이 예외 테스트")
     @ParameterizedTest
     @ValueSource(ints = {2, 21})
-    void validateBridgeSizeTestIllegalArgumentException(int size) {
+    void validateBridgeSizeTestIllegal(int size) {
         InputValidator validator = new InputValidator();
         assertThatThrownBy(() -> validator.validateBridgeSize(size)).isEqualTo(
                 InputValidationError.ERROR_BRIDGE_SIZE.exception
