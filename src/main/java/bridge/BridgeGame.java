@@ -10,18 +10,16 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
     public final String STARTGAME = "다리 건너기 게임을 시작합니다.";
 
     public InputView inputView;
     public OutputView outputView;
     public BridgeMaker bridgeMaker;
 
-    public List<String> bridge;
-    public List<String> userInput;
+    public List<String> bridge = new ArrayList<>();
+    public List<String> userInput = new ArrayList<>();
     public int userLocation = 0;
     public int cnt = 1;
-
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -31,11 +29,8 @@ public class BridgeGame {
 
     public void game() {
         System.out.println(STARTGAME + '\n');
-
         int bridgeSize = inputView.readBridgeSize();
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
-        this.userInput = new ArrayList<>();
-
         while (userLocation < bridgeSize) {
             String moving = inputView.readMoving();
             userInput.add(moving);
