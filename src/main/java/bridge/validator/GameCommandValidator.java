@@ -2,7 +2,7 @@ package bridge.validator;
 
 import java.util.List;
 
-public class RestartCommandValidator implements CommandValidator {
+public class GameCommandValidator implements CommandValidator {
     final List<String> commands = List.of("R", "Q");
 
     @Override
