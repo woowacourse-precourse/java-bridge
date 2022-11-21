@@ -1,4 +1,4 @@
-package bridge.validator;
+package bridge.utils;
 
 public class ErrorConstants {
 	private static final String ERROR = "[ERROR] ";
