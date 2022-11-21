@@ -15,7 +15,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge, int position, boolean isMovable) {
+    public void printMap(BridgeGame bridgeGame, boolean isMovable) {
+        int position = bridgeGame.getPosition();
+        Bridge bridge = bridgeGame.getBridge();
         List<String> crossedBridge = bridge.getCrossedBridge(position);
 
         printCrossedUp(crossedBridge, isMovable);
@@ -28,9 +30,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGame bridgeGame, int position, boolean isSuccess) {
+    public void printResult(BridgeGame bridgeGame, boolean isSuccess) {
         System.out.println("최종 게임 결과");
-        printMap(bridgeGame.getBridge(), position, isSuccess);
+        printMap(bridgeGame, isSuccess);
         if (isSuccess) {
             System.out.println("게임 성공 여부: 성공");
             System.out.println("총 시도한 횟수: " + bridgeGame.getAttempts());
@@ -41,71 +43,71 @@ public class OutputView {
     }
 
 
-    private void printCrossedUp(List<String> crossedBridge, boolean isMovable) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
-        for (int i = 0; i < crossedBridge.size() - 1; i++) {
-            saveCrossedUpsideBridge(crossedBridge.get(i), stringBuilder);
-            stringBuilder.append("|");
+    private void printCrossedUp(List<String> crossedUpsideRecords, boolean isMovable) {
+        StringBuilder recordForPrint = new StringBuilder();
+        recordForPrint.append("[");
+        for (int i = 0; i < crossedUpsideRecords.size() - 1; i++) {
+            saveCrossedUpsideBridge(crossedUpsideRecords.get(i), recordForPrint);
+            recordForPrint.append("|");
         }
-        saveLastUpsideMove(crossedBridge, isMovable, stringBuilder);
-        stringBuilder.append("]");
-        System.out.println(stringBuilder);
+        saveLastUpsideMove(crossedUpsideRecords, isMovable, recordForPrint);
+        recordForPrint.append("]");
+        System.out.println(recordForPrint);
     }
 
-    private void saveLastUpsideMove(List<String> crossedBridge, boolean isMovable, StringBuilder stringBuilder) {
+    private void saveLastUpsideMove(List<String> crossedUpsideRecords, boolean isMovable, StringBuilder recordForPrint) {
         if (isMovable) {
-            saveCrossedUpsideBridge(crossedBridge.get(crossedBridge.size() - 1), stringBuilder);
+            saveCrossedUpsideBridge(crossedUpsideRecords.get(crossedUpsideRecords.size() - 1), recordForPrint);
             return;
         }
-        if (crossedBridge.get(crossedBridge.size() - 1).equals(MOVING_UP)) {
-            stringBuilder.append("   ");
+        if (crossedUpsideRecords.get(crossedUpsideRecords.size() - 1).equals(MOVING_UP)) {
+            recordForPrint.append("   ");
         }
-        if (!crossedBridge.get(crossedBridge.size() - 1).equals(MOVING_UP)) {
-            stringBuilder.append(" X ");
+        if (!crossedUpsideRecords.get(crossedUpsideRecords.size() - 1).equals(MOVING_UP)) {
+            recordForPrint.append(" X ");
         }
     }
 
-    private void saveCrossedUpsideBridge(String block, StringBuilder stringBuilder) {
+    private void saveCrossedUpsideBridge(String block, StringBuilder recordForPrint) {
         if (block.equals(MOVING_UP)) {
-            stringBuilder.append(" O ");
+            recordForPrint.append(" O ");
         }
         if (!block.equals(MOVING_UP)) {
-            stringBuilder.append("   ");
+            recordForPrint.append("   ");
         }
     }
 
-    private void printCrossedDown(List<String> brid, boolean isMovable) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
-        for (int i = 0; i < brid.size() - 1; i++) {
-            saveCrossedDownsideBridge(brid.get(i), stringBuilder);
-            stringBuilder.append("|");
+    private void printCrossedDown(List<String> crossedDownsideRecords, boolean isMovable) {
+        StringBuilder recordForPrint = new StringBuilder();
+        recordForPrint.append("[");
+        for (int i = 0; i < crossedDownsideRecords.size() - 1; i++) {
+            saveCrossedDownsideBridge(crossedDownsideRecords.get(i), recordForPrint);
+            recordForPrint.append("|");
         }
-        saveLastDownsideMove(brid, isMovable, stringBuilder);
-        stringBuilder.append("]");
-        System.out.println(stringBuilder);
+        saveLastDownsideMove(crossedDownsideRecords, isMovable, recordForPrint);
+        recordForPrint.append("]");
+        System.out.println(recordForPrint);
     }
 
-    private void saveLastDownsideMove(List<String> brid, boolean isMovable, StringBuilder stringBuilder) {
+    private void saveLastDownsideMove(List<String> crossedDownsideRecords, boolean isMovable, StringBuilder recordForPrint) {
         if (isMovable) {
-            saveCrossedDownsideBridge(brid.get(brid.size() - 1), stringBuilder);
+            saveCrossedDownsideBridge(crossedDownsideRecords.get(crossedDownsideRecords.size() - 1), recordForPrint);
             return;
         }
-        if (brid.get(brid.size() - 1).equals(MOVING_DOWN)) {
-            stringBuilder.append("   ");
+        if (crossedDownsideRecords.get(crossedDownsideRecords.size() - 1).equals(MOVING_DOWN)) {
+            recordForPrint.append("   ");
         }
-        if (!brid.get(brid.size() - 1).equals(MOVING_DOWN)) {
-            stringBuilder.append(" X ");
+        if (!crossedDownsideRecords.get(crossedDownsideRecords.size() - 1).equals(MOVING_DOWN)) {
+            recordForPrint.append(" X ");
         }
     }
 
-    private void saveCrossedDownsideBridge(String block, StringBuilder stringBuilder) {
+    private void saveCrossedDownsideBridge(String block, StringBuilder recordForPrint) {
         if (block.equals(MOVING_DOWN)) {
-            stringBuilder.append(" O ");
+            recordForPrint.append(" O ");
         }
         if (!block.equals(MOVING_DOWN)) {
-            stringBuilder.append("   ");
+            recordForPrint.append("   ");
         }
     }
 }
