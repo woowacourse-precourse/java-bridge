@@ -8,7 +8,7 @@ public class Judgement {
         return movingSuccess.get(movingSuccess.size() - 1) == 0 || movingSuccess.get(movingSuccess.size() - 1) == 2;
     }
 
-    public static boolean checkRestart(String restart) {
-        return Objects.equals(restart, "R");
+    public static boolean checkRestart(String gameCommand) {
+        return Objects.equals(gameCommand, "R");
     }
 }
