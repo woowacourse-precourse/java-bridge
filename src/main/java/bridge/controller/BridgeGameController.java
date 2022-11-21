@@ -52,17 +52,22 @@ public class BridgeGameController {
         while(true){
             OutputView.showInputMove();
             boolean proceeding = bridgeGame.move(InputView.readMoving());
-            mapMaker.addMap(proceeding);
-            OutputView.printMap(mapMaker);
+            addMap(proceeding);
 
             if(!proceeding){ // 여기까진 맞음
                 OutputView.showGameStatus();
                 return bridgeGame.retry(InputView.readGameCommand());
             }
+
             if (bridgeGame.isEscape()){
-                return gameResult = false;
+                return (gameResult = false);
             }
         }
+    }
+
+    private void addMap(boolean result){
+        mapMaker.addMap(result);
+        OutputView.printMap(mapMaker);
     }
 
     private void printResult(){
