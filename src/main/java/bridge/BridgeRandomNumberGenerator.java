@@ -9,6 +9,9 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
 
     @Override
     public int generate() {
+
+
+
         return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
     }
 }
