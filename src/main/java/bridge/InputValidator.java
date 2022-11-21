@@ -1,10 +1,16 @@
 package bridge;
 
 import bridge.constant.InputValidationError;
+import java.util.List;
 
 public class InputValidator {
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
+    private static final List<String> COMMAND_MOVE_LIST = List.of(
+            "U",
+            "D"
+    );
+
 
     public InputValidator() {
 
@@ -16,8 +22,10 @@ public class InputValidator {
         }
     }
 
-    public void validateMove() throws IllegalArgumentException {
-
+    public void validateMove(String dir) throws IllegalArgumentException {
+        if(!COMMAND_MOVE_LIST.contains(dir)){
+            throw InputValidationError.ERROR_MOVE.exception;
+        }
     }
 
     public void validateGameCommand() throws IllegalArgumentException {

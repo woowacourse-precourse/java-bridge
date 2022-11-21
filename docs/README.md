@@ -36,7 +36,7 @@
     - [x] 생성자 추가
     - [x] 다리 길이 검증
         - 검증 실패 시 IllegalArgumentException
-    - [ ] 이동할 칸 검증
+    - [x] 이동할 칸 검증
         - 검증 실패 시 IllegalArgumentException
     - [ ] 게임 재시도 여부 검증
         - 검증 실패 시 IllegalArgumentException
