@@ -36,7 +36,9 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         List<String> direct = List.of("U", "D", "U");
         List<Boolean> result = List.of(true, true, false);
-
+        for (String d : direct) {
+            bridgeGame.move(d);
+        }
         for (int i = 0; i < result.size(); i++) {
             bridgeGame.bridgeMark(direct.get(i), result.get(i));
         }
