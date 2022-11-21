@@ -8,12 +8,12 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public String readMoving() {
+    public InGameCommandType readMoving() {
         return null;
     }
 
     @Override
-    public String readGameCommand() {
+    public FailMenuCommandType readGameCommand() {
         return null;
     }
 }
