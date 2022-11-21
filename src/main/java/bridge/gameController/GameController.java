@@ -31,5 +31,10 @@ public class GameController {
 
 //        outputView.printResult();
     }
+    public void makeBridge() {
+        outputView.startMessage();
+        builtBridge = bridgeGame.makeBridge(inputView.readBridgeSize());
+    }
+
 }
 
