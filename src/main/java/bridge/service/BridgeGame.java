@@ -13,11 +13,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-	private static final int RETRY_NUMBER = 0;
 	private final Bridge bridge;
 	private final Player player;
-	private int bridgeNumber = 0;
 
 	public BridgeGame(List<String> bridge) {
 		this.bridge = new Bridge(bridge);
@@ -25,7 +22,7 @@ public class BridgeGame {
 	}
 
 	public GameStatus isClear() {
-		if (bridge.isEnd(bridgeNumber)) {
+		if (bridge.isEnd(player.getBridgeNumber())) {
 			return GameStatus.CLEAR;
 		}
 
@@ -39,8 +36,7 @@ public class BridgeGame {
 	}
 
 	public void end(BridgeResult bridgeResult) {
-		this.bridgeNumber = bridge.getSize();
-		this.player.gameQuit(bridgeResult);
+		this.player.gameQuit(bridgeResult, bridge.getSize());
 	}
 
 	/**
@@ -49,7 +45,7 @@ public class BridgeGame {
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public BridgeStatus move(String input) {
-		return bridge.isBridgeStatus(input, bridgeNumber++);
+		return bridge.isBridgeStatus(input, player.addBridgeNumber());
 	}
 
 	/**
@@ -59,7 +55,6 @@ public class BridgeGame {
 	 */
 	public boolean retry(String gameCommand) {
 		if (gameCommand.equals(RETRY)) {
-			this.bridgeNumber = RETRY_NUMBER;
 			this.player.addRetry();
 
 			return true;
