@@ -25,7 +25,7 @@ public class GameController {
         while (true) {
             move();//끝까지 성공하거나 중간에 실패하기전까지 이동
             if (userWin()) return;//성공이면 결과출력하고 게임 종료
-            if (!userRetry()) return;//Q 입력하면 결과출력하고 게임 종료, R은 재시작
+            if (!userRetry()) return;//Q 입력하면 결과출력하고 게임 종료, R 입력시 재시작
             trials++;
         }
     }
