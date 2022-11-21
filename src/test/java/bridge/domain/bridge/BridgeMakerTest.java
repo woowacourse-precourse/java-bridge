@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge;
 
 import bridge.domain.bridge.BridgeMaker;
 import bridge.support.FakeBridgeNumberGenerator;
