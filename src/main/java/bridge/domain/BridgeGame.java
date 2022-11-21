@@ -60,19 +60,23 @@ public class BridgeGame {
         return path.get(index).equals(bridge.get(index));
     }
 
+    private boolean equalsAtLastPath() {
+        return equalsAt(path.size() - 1);
+    }
+
     public boolean isOngoing() {
         if (path.isEmpty()) {
             return true;
         }
-        return path.size() != bridge.size() && equalsAt(path.size() - 1);
+        return path.size() != bridge.size() && equalsAtLastPath();
     }
 
     public boolean isWin() {
-        return path.size() == bridge.size() && equalsAt(path.size() - 1);
+        return path.size() == bridge.size() && equalsAtLastPath();
     }
 
     public String calculateResult() {
-        if (equalsAt(path.size() - 1)) {
+        if (isWin()) {
             return BridgeConstants.WIN;
         }
         return BridgeConstants.LOSE;
