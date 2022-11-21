@@ -19,9 +19,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String movingInput = Console.readLine();
+        String inputMoving = Console.readLine();
         try {
-            return BridgeBlock.getBlockName(movingInput);
+            return BridgeBlock.getBlockName(inputMoving);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
@@ -31,7 +31,14 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public boolean readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String inputGameCommand = Console.readLine();
+        try {
+            return GameCommand.willRestart(inputGameCommand);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 }
