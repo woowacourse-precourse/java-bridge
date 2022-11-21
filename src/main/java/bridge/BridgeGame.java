@@ -82,6 +82,7 @@ public class BridgeGame {
     public boolean retry(String type) {
         if(type.equals("R")){
             setTryCnt(1);
+            this.setUserBridge(new ArrayList<>());
             return true;
         }
         return false;
