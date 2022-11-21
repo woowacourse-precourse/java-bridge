@@ -32,7 +32,11 @@ public class BridgeGameServiceImpl implements BridgeGameService {
 
     @Override
     public InGameCommandResponseDto playGame(InGameCommandRequestDto requestDto) {
-        return null;
+        BridgeGame selectedBridgeGame = bridgeGameDao.selectBridgeGame(requestDto.getSessionId());
+        selectedBridgeGame.move(requestDto.getCommand());
+        BridgeGame savedBridgeGame = bridgeGameDao.insertBridgeGame(selectedBridgeGame);
+        return new InGameCommandResponseDto(savedBridgeGame.getBridgeMap(),
+                savedBridgeGame.getMoves());
     }
 
     @Override

@@ -3,9 +3,13 @@ package bridge.data.entity;
 import static bridge.type.CommonConstantType.MAX_BRIDGE_SIZE;
 import static bridge.type.CommonConstantType.MIN_BRIDGE_SIZE;
 import static bridge.type.ErrorMessageDevType.BAD_BRIDGE_SIZE_MESSAGE;
+import static bridge.type.ErrorMessageDevType.BAD_GAME_COMMAND_MESSAGE;
 import static bridge.type.ErrorMessageDevType.BAD_MAP_COMPONENT_MESSAGE;
 
+import bridge.type.FailMenuCommandType;
+import bridge.type.InGameCommandType;
 import bridge.type.MapComponentType;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -17,55 +21,93 @@ public class BridgeGame {
 
     private final String sessionId;
     private final List<String> bridgeMap;
-    private Integer nextColumn;
+    private final List<String> moves;
     private Integer tryCount;
 
     public BridgeGame(List<String> bridgeMap) {
-        validate(bridgeMap);
+        validateMap(bridgeMap);
         this.sessionId = UUID.randomUUID().toString();
         this.bridgeMap = Collections.unmodifiableList(bridgeMap);
-        this.nextColumn = 0;
+        this.moves = new ArrayList<>();
         this.tryCount = 0;
+    }
+
+    private static void validateMap(List<String> bridgeMap) {
+        checkBridgeSize(bridgeMap);
+        checkMapComponents(bridgeMap);
+    }
+
+    private static void checkBridgeSize(List<String> bridgeMap) {
+        if (isBridgeSizeOutOfRange(bridgeMap)) {
+            String exceptionMessage = String.format(BAD_BRIDGE_SIZE_MESSAGE.toString(), bridgeMap.size());
+            throw new IllegalStateException(exceptionMessage);
+        }
+    }
+
+    private static boolean isBridgeSizeOutOfRange(List<String> bridgeMap) {
+        return bridgeMap.size() < MIN_BRIDGE_SIZE || MAX_BRIDGE_SIZE < bridgeMap.size();
+    }
+
+    private static void checkMapComponents(List<String> bridgeMap) {
+        String badMapComponent = findBadMapComponent(bridgeMap);
+        if (isPresent(badMapComponent)) {
+            String exceptionMessage = String.format(BAD_MAP_COMPONENT_MESSAGE.toString(), badMapComponent);
+            throw new IllegalStateException(exceptionMessage);
+        }
+    }
+
+    private static String findBadMapComponent(List<String> bridgeMap) {
+        return bridgeMap.stream().parallel()
+                .filter(MapComponentType::isBadMapComponent)
+                .findAny()
+                .orElse(null);
+    }
+
+    private static boolean isPresent(Object nullable) {
+        return nullable != null;
+    }
+
+    /**
+     * 사용자가 칸을 이동할 때 사용하는 메서드
+     */
+    public void move(InGameCommandType command) {
+        validateMovableState();
+        moves.add(command.getInput());
+    }
+
+    private void validateMovableState() {
+        if (isPlayerAlive()) {
+            return;
+        }
+        throw new IllegalStateException(BAD_GAME_COMMAND_MESSAGE.toString());
+    }
+
+    private boolean isPlayerAlive() {
+        int index = moves.size() - 1;
+        return moves.isEmpty() || moves.get(index).equals(bridgeMap.get(index));
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     */
+    public void retry(FailMenuCommandType command) {
+
     }
 
     public String getSessionId() {
         return sessionId;
     }
 
-    private static void validate(List<String> bridgeMap) {
-        validateBridgeSize(bridgeMap);
-        validateMapComponents(bridgeMap);
+    public List<String> getBridgeMap() {
+        return bridgeMap;
     }
 
-    private static void validateBridgeSize(List<String> bridgeMap) {
-        if (bridgeMap.size() < MIN_BRIDGE_SIZE || MAX_BRIDGE_SIZE < bridgeMap.size()) {
-            String exceptionMessage = String.format(BAD_BRIDGE_SIZE_MESSAGE.toString(), bridgeMap.size());
-            throw new IllegalStateException(exceptionMessage);
-        }
+    public List<String> getMoves() {
+        return moves;
     }
 
-    private static void validateMapComponents(List<String> bridgeMap) {
-        String badMapComponent = bridgeMap.stream().parallel()
-                .filter(MapComponentType::isBadMapComponent)
-                .findAny()
-                .orElse(null);
-        if (badMapComponent != null) {
-            String exceptionMessage = String.format(BAD_MAP_COMPONENT_MESSAGE.toString(), badMapComponent);
-            throw new IllegalStateException(exceptionMessage);
-        }
+    public Integer getTryCount() {
+        return tryCount;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     */
-    public void move() {
-
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     */
-    public void retry() {
-
-    }
 }

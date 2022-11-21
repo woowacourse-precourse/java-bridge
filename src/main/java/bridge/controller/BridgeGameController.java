@@ -4,7 +4,9 @@ import static bridge.type.GameStateType.*;
 import static bridge.type.GameMessageType.*;
 
 import bridge.data.dto.requestDto.GameInitRequestDto;
+import bridge.data.dto.requestDto.InGameCommandRequestDto;
 import bridge.data.dto.responseDto.GameInitResponseDto;
+import bridge.data.dto.responseDto.InGameCommandResponseDto;
 import bridge.service.BridgeGameService;
 import bridge.service.BridgeGameServiceImpl;
 import bridge.type.GameStateType;
@@ -52,7 +54,23 @@ public class BridgeGameController {
     }
 
     private void play() {
-        state = state.getNextState();
+        outputView.printMessage(ASK_IN_GAME_COMMAND_MESSAGE);
+        InGameCommandRequestDto requestDto = new InGameCommandRequestDto(inputView.readMoving());
+        requestDto.setSessionId(sessionId);
+        InGameCommandResponseDto responseDto = gameService.playGame(requestDto);
+        changePlayState(responseDto);
+        outputView.printMap(responseDto);
+    }
+
+    private void changePlayState(InGameCommandResponseDto responseDto) {
+        if (responseDto.isPlayerDead()) {
+            state = STATE_FAIL;
+            return;
+        }
+        if (responseDto.isGameCleared()) {
+            state = STATE_RESULT;
+        }
+
     }
 
     private void fail() {
