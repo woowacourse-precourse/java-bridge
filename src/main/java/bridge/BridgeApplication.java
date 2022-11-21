@@ -35,7 +35,6 @@ public class BridgeApplication {
             if (isCorrectMove()) continue;
             if (isSelectExit()) break;
             idx = -1; // 반복문의 idx 를 -1로 돌려주어 다시 0부터 시작할 수 있게끔 함
-            plusGameCnt();
         }
     }
 
