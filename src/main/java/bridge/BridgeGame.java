@@ -23,6 +23,18 @@ public class BridgeGame {
         return result;
     }
 
+    // 사용자 선택 경로에 O, X 표시
+    private List<String> markResult(List<String> choices, int i, boolean mark) {
+        List<String> temp = new ArrayList<>();
+        String marker = "X";
+        if (mark) {
+            marker = "O";
+        }
+        temp.add(marker);
+        temp.add(choices.get(i));
+        return temp;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
