@@ -69,4 +69,9 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR]: U과 D만 입력");
         }
     }
+    public void isValidateRQ(String value) {
+        if (!value.equals("R") && !value.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR]: R과 Q만 입력");
+        }
+    }
 }
