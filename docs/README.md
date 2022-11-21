@@ -76,3 +76,22 @@
       2. 가져온 기록과 BridgeGameAnswer 에 있는 다리를 비교하여 다리 모양을 가져온다.
    2. BridgeGameStatus 를 통해 게임이 실패 , 성공인지 가져온다.
    3. 시도횟수를 BridgeGameHistory 에서 가져와 출력한다.
+
+# 구조 설명
+- `controller`
+    - `BridgeGameController` : InputView , OutputView 와 BridgeGame 사이에 중간 다리 역할을 하는 클래스
+- `domain`
+    - `BridgeGame` : 실제 비즈니스 로직을 실행하는 클래스  
+    - `BridgeGameAnswer` : 생성된 다리가 저장되어 있고 정답과 비교하여 출력 값을 만들어주는 클래스
+    - `BridgeGameHistory` : 유저가 입력받은 정보( 건넜던 다리 , 다리 길이 )가 저장되어 있는 클래스 
+    - `BridgeGameStatus` : 현재 게임의 상태( 시도횟수 , 진행 상태 )가 저장되어 있는 클래스
+    - `BridgeGameMaker` : 처음 시작시 다리를 생성하는 클래스 
+    - `BridgeGameShape` : 출력되는 다리의 값을 관리하는 enum
+    - `Status` :  게임 진행 상태를 관리하는 enum
+- `util`
+    - `Validator` : 입력값의 유효성을 검사하는 클래스
+- `view`
+    - `InputView` : 입력을 관리하는 클래스
+    - `OutputView` : 출력을 관리하는 클래스
+- `BridgeNumberGenerator` : 랜덤 숫자를 만드는 인터페이스
+- `BridgeRandomNumberGenerator` : 실제 랜덤 숫자를 만드는 구현체 클래스
