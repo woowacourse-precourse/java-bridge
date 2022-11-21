@@ -23,8 +23,8 @@ public class GamePlay {
         while(true){
             String moving = inputView.readMoving();
             results = bridgeGame.move(bridge,moving,count);
-            System.out.println(results);
             count++;
+            outputView.printMap(results);
         }
 
     }
