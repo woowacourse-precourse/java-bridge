@@ -7,15 +7,14 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String MOVE_TO_UP = "U";
-    private static final String MOVE_TO_DOWN = "D";
-    private static final String SPACE = " ";
-    private static final String MOVE_POSSIBLE = "O";
     private static final String MOVE_IMPOSSIBLE = "X";
+    private static final String MOVE_POSSIBLE = "O";
+    private static final String SPACE = " ";
+    private static final String MOVE_TO_DOWN = "D";
+    private static final String MOVE_TO_UP = "U";
     private final List<String> highBridge = new ArrayList<>();
     private final List<String> lowBridge = new ArrayList<>();
     private boolean SUCCESS = false;
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -35,7 +34,7 @@ public class BridgeGame {
      */
     public void retry(TryNumber tryNumber) {
         clearBridge();
-        tryNumber.addAttemptNumber();
+        tryNumber.add();
     }
 
     public List<String> getHighBridge() {

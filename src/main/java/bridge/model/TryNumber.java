@@ -3,7 +3,7 @@ package bridge.model;
 public class TryNumber {
     private Integer tryNumber = 1;
 
-    public void addAttemptNumber() {
+    public void add() {
         tryNumber++;
     }
 

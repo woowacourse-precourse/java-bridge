@@ -28,8 +28,23 @@ public class GameController {
         startWalk(bridgeGame, bridge, tryNumber);
     }
 
+    private BridgeMaker bridgeMaker() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        return new BridgeMaker(bridgeNumberGenerator);
+    }
+
+    private BridgeGame bridgeGame() {
+        return new BridgeGame();
+    }
+
     private TryNumber tryNumber() {
         return new TryNumber();
+    }
+
+    private boolean gameCommand() {
+        String command = inputView.readGameCommand();
+        GameCommand gameCommand = new GameCommand(command);
+        return gameCommand.isRetry();
     }
 
     private BridgeSize readBridgeSize() {
@@ -41,11 +56,6 @@ public class GameController {
                 outputView.printErrorMessage(e);
             }
         }
-    }
-
-    private BridgeMaker bridgeMaker() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        return new BridgeMaker(bridgeNumberGenerator);
     }
 
     private void walk(BridgeGame bridgeGame, List<String> bridge) {
@@ -100,16 +110,6 @@ public class GameController {
                 outputView.printErrorMessage(e);
             }
         }
-    }
-
-    private boolean gameCommand() {
-        String command = inputView.readGameCommand();
-        GameCommand gameCommand = new GameCommand(command);
-        return gameCommand.isRetry();
-    }
-
-    private BridgeGame bridgeGame() {
-        return new BridgeGame();
     }
 
     private boolean isRetry(BridgeGame bridgeGame) {
