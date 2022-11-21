@@ -25,9 +25,16 @@ public class BridgeGameController {
         run();
     }
 
-    public void run() {   // ** refactoring
+    public void run() {
         bridgeInit();
+        move();
+    }
 
+    public void bridgeInit() {
+        bridgeCombinator.bridgeInit();
+    }
+
+    public void move() {
         for (int index = 0; index < bridgeSize; index++) {
             BridgeCase bridgeCase = bridgeGame.move(getBridgeToMove(), index);
             sendBridgeShape(bridgeCase);
@@ -36,10 +43,6 @@ public class BridgeGameController {
             }
         }
         sendResult(ResultState.SUCCESS);
-    }
-
-    public void bridgeInit() {
-        bridgeCombinator.bridgeInit();
     }
 
     public int getBridgeSize() {
