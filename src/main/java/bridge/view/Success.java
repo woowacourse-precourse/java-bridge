@@ -1,13 +1,11 @@
 package bridge.view;
 
 public enum Success {
-    SUCCESS(true, "성공"), FAIL(false, "실패");
+    SUCCESS("성공"), FAIL("실패");
 
-    private final boolean isSuccess;
     private final String message;
 
-    Success(boolean isSuccess, String message) {
-        this.isSuccess = isSuccess;
+    Success(String message) {
         this.message = message;
     }
 
