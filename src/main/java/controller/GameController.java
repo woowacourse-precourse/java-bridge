@@ -66,10 +66,9 @@ public class GameController {
 	}
 
 	private void finish(BridgeDto bridgeDto, MapDto mapDto) {
-		boolean isSuccess = isSuccess(bridgeDto, mapDto);
 		String map = mapDto.getMap();
 
-		outputView.printResult(map, isSuccess, PlayCount.getInstance().getCount());
+		outputView.printResult(map, isSuccess(bridgeDto, mapDto), PlayCount.getInstance().getCount());
 	}
 
 	private boolean isSuccess(BridgeDto bridgeDto, MapDto mapDto) {
