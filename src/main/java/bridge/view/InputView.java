@@ -3,8 +3,8 @@ package bridge.view;
 import static bridge.utils.constants.BridgeConstants.INPUT_BRIDGE_LENGTH;
 import static bridge.utils.constants.BridgeConstants.INPUT_BRIDGE_MOVE_OPTION;
 import static bridge.utils.validator.BridgeValidator.validSize;
-import static bridge.utils.validator.GameValidator.validMovingOption;
 import static bridge.utils.validator.GameValidator.validGameCommand;
+import static bridge.utils.validator.GameValidator.validMovingOption;
 
 import bridge.utils.constants.GameConstants;
 import camp.nextstep.edu.missionutils.Console;

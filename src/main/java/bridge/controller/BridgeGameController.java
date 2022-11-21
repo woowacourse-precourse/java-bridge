@@ -31,7 +31,7 @@ public class BridgeGameController {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public void run(){
+    public void run() {
         if (isPassBridge()) {
             gameResult = GameConstants.SUCCESS;
             end();
@@ -39,27 +39,6 @@ public class BridgeGameController {
         }
         gameResult = GameConstants.FAIL;
         retry();
-    }
-
-    private boolean isPassBridge() {
-        List<Result> results = new ArrayList<>();
-        for (String correctStep : bridge) {
-            if (!oneStepMove(results, correctStep)){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean oneStepMove(List<Result> results, String correctStep) {
-        String moving = InputView.readMoving();
-        boolean isMoveSuccess = bridgeGame.move(correctStep, moving);
-
-        results.add(Result.getResult(moving, isMoveSuccess));
-        bridgeStatus.init(results);
-
-        OutputView.printMap(bridgeStatus.toString());
-        return isMoveSuccess;
     }
 
     public void retry() {
@@ -77,5 +56,26 @@ public class BridgeGameController {
 
     public void end() {
         OutputView.printResult(bridgeStatus.toString(), gameResult, gameCount);
+    }
+
+    private boolean isPassBridge() {
+        List<Result> results = new ArrayList<>();
+        for (String correctStep : bridge) {
+            if (!oneStepMove(results, correctStep)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean oneStepMove(List<Result> results, String correctStep) {
+        String moving = InputView.readMoving();
+        boolean isMoveSuccess = bridgeGame.move(correctStep, moving);
+
+        results.add(Result.getResult(moving, isMoveSuccess));
+        bridgeStatus.init(results);
+
+        OutputView.printMap(bridgeStatus.toString());
+        return isMoveSuccess;
     }
 }

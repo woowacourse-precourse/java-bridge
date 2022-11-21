@@ -2,11 +2,11 @@ package bridge.utils.constants;
 
 public class BridgeConstants {
 
+    public static final int BRIDGE_SIZE_MIN_INCLUSIVE = 3;
+    public static final int BRIDGE_SIZE_MAX_INCLUSIVE = 20;
     public static final String BRIDGE_START_POINT = "[ ";
     public static final String BRIDGE_DIVIDING_POINT = " | ";
     public static final String BRIDGE_END_POINT = " ]";
-    public static final int BRIDGE_SIZE_MIN_INCLUSIVE = 3;
-    public static final int BRIDGE_SIZE_MAX_INCLUSIVE = 20;
     public static final String CORRECT_ANSWER = "O";
     public static final String INCORRECT_ANSWER = "X";
     public static final String UP_CROSS = "U";

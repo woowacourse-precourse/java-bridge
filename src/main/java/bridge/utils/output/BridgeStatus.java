@@ -29,10 +29,14 @@ public class BridgeStatus {
         }
     }
 
-    private void appendIncorrect(Result result) {
-        if (!result.isCorrect()) {
-            appendResult(result.getStep(), BridgeConstants.INCORRECT_ANSWER);
-        }
+    @Override
+    public String toString() {
+        return upBridgeBuilder + "\n" + downBridgeBuilder;
+    }
+
+    private void appendPoint(String bridgeStartPoint) {
+        upBridgeBuilder.append(bridgeStartPoint);
+        downBridgeBuilder.append(bridgeStartPoint);
     }
 
     private void appendCorrect(Result result) {
@@ -41,10 +45,12 @@ public class BridgeStatus {
         }
     }
 
-    @Override
-    public String toString() {
-        return upBridgeBuilder + "\n" + downBridgeBuilder;
+    private void appendIncorrect(Result result) {
+        if (!result.isCorrect()) {
+            appendResult(result.getStep(), BridgeConstants.INCORRECT_ANSWER);
+        }
     }
+
 
     private void appendResult(String step, String correctAnswer) {
         if (step.equals(BridgeConstants.UP_CROSS)) {
@@ -57,8 +63,4 @@ public class BridgeStatus {
         }
     }
 
-    private void appendPoint(String bridgeStartPoint) {
-        upBridgeBuilder.append(bridgeStartPoint);
-        downBridgeBuilder.append(bridgeStartPoint);
-    }
 }
