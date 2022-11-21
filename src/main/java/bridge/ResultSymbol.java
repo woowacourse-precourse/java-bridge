@@ -1,8 +1,8 @@
 package bridge;
 
 public enum ResultSymbol {
-    SUCCESS(" O "),
-    FAIL(" X "),
+    SUCCESS("O"),
+    FAIL("X"),
     NOTHING(" ");
 
     private final String symbol;
