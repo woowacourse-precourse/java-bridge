@@ -14,6 +14,7 @@ public class Application {
         OutputView printer = bridgeGameUI(bridgeGame);
         printer = retryProcess(printer, bridgeGame);
         String result = quitProcess(printer);
+        endUI(result, bridgeGame, printer);
     }
 
     // 다리를 생성
@@ -113,5 +114,12 @@ public class Application {
             result = Constants.Messages.SUCCESS.getMessage();
         }
         return result;
+    }
+
+    private static void endUI(String result, BridgeGame bridgeGame, OutputView printer) {
+        System.out.printf(Constants.Messages.RESULT.getMessage());
+        printer.printResult();
+        System.out.printf(Constants.Messages.SUCCESS_OR_FAIL.getMessage() + result);
+        System.out.printf(Constants.Messages.TRIAL.getMessage() + bridgeGame.getTrial());
     }
 }
