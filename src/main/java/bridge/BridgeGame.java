@@ -1,6 +1,8 @@
 package bridge;
 
 
+import view.Message;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +14,9 @@ public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
     private int tryNumber = 1;
 
-    public void bridgeSize(String bridgeSize) {
+    public boolean bridgeSize(String bridgeSize) {
         this.bridgeSize = bridgeSize;
+        return checkBridgeSize();
     }
 
     public void move(String userMove) {
@@ -27,6 +30,7 @@ public class BridgeGame {
     public void bridge(List<String> bridge) {
         this.bridge = bridge;
     }
+
 
     public int getBridgeSize() {
         return Integer.valueOf(bridgeSize);
@@ -74,5 +78,37 @@ public class BridgeGame {
     public void initializeUserMove() {
         userMove.clear();
     }
+
+
+    public boolean checkBridgeSize() {
+        try {
+            checkBridgeSizeInput();
+            checkBridgeSizeRange();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    public void checkBridgeSizeInput() {
+        for (int i = 0; i < bridgeSize.length(); i++) {
+            if (i == 0 && bridgeSize.charAt(i) == '0') {
+                throw new IllegalArgumentException(Message.BRIDGE_SIZE_INPUT_ZERO_ERROR.getMessage());
+            }
+            if (!(bridgeSize.charAt(i) >= '0' && bridgeSize.charAt(i) <= '9')) {
+                throw new IllegalArgumentException(Message.BRIDGE_SIZE_INPUT_ERROR.getMessage());
+            }
+        }
+    }
+    public void checkBridgeSizeRange() {
+        if (!(getBridgeSize() >= 3 && getBridgeSize() <= 20)) {
+            throw new IllegalArgumentException(Message.BRIDGE_SIZE_RANGE_ERROR.getMessage());
+        }
+    }
+
+
+
+
 
 }
