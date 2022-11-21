@@ -69,7 +69,7 @@ public class InputView {
     public void readGameCommandCheck(String userAnswer){
         String readGameCommandCheck = "^[Q|q|R|r]$";
         if(!userAnswer.matches(readGameCommandCheck)){
-
+            throw new IllegalArgumentException("[ERROR] R와 Q 중에 하나를 입력하세요.");
         }
     }
 }
