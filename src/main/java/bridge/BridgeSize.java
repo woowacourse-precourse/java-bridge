@@ -1,16 +1,16 @@
 package bridge;
 
 public class BridgeSize {
-    private int bridgeSize;
+    private static int bridgeSize;
 
-    public BridgeSize(String userBridgeSize) {
+    public static void validateInput(String userBridgeSize) {
         Validator.validateNumber(userBridgeSize);
         int tempBridgeSize = Converter.convertToNumber(userBridgeSize);
         Validator.validateRange(tempBridgeSize);
         bridgeSize = tempBridgeSize;
     }
 
-    public int getBridgeSize() {
+    public static int getBridgeSize() {
         return bridgeSize;
     }
 }
