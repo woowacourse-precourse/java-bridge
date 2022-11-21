@@ -13,12 +13,12 @@ public class BridgeGameController {
     private String result;
     private List<List<String>> map;
 
+    private final BridgeGame bridgeGame = new BridgeGame();
+
     public void run() {
         // TODO 메서드를 분리하자 / 메서드 길이는 최대 10줄 / else 사용하지 말 것
         OutputView.printStartGame();
-
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.initMap();
+        makeBridge();
 
         for (int i = 0; i < size; i++) {
             String answer = bridge.get(i);
@@ -42,5 +42,10 @@ public class BridgeGameController {
         int size = InputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(size);
+        startGame(bridge);
+    }
+
+    public void startGame(List<String> bridge) {
+        bridgeGame.initMap();
     }
 }
