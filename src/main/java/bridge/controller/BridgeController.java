@@ -8,14 +8,14 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
-    private final InputView inputView;
-    private final OutputView outputView;
+    private InputView inputView;
+    private OutputView outputView;
     private BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
 
-    public BridgeController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void run() {
@@ -37,7 +37,7 @@ public class BridgeController {
         outputView.printMap(bridgeGame.getResult());
     }
     private void gameEnd() {
-        outputView.printResult(bridgeGame.getResult(), bridgeGame.isGameFail(), BridgeGame.tryCount);
+        outputView.printResult(bridgeGame.getResult(), bridgeGame.isGameFail(), bridgeGame.getTryCount());
     }
     private boolean gameFailCheck() {
         if (bridgeGame.isGameFail()) {
