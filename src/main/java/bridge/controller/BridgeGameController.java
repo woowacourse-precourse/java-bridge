@@ -34,23 +34,6 @@ public class BridgeGameController {
         printResult(gameCommand);
     }
 
-    public void playing() {
-        movingChoices.add(getMoving());
-        Player player = new Player(movingChoices);
-        printMap(game.move(player, bridge));
-        if (game.move(player, bridge).contains(false)) {
-            rePlaying();
-        }
-    }
-
-    public void rePlaying() {
-        movingChoices.remove(movingChoices.size() - 1);
-        gameCommand = getGameCommand();
-        if (game.retry(gameCommand)) {
-            playing();
-        }
-    }
-
     public void initGame() {
         PrintGuideMessage.printStartGuide();
         PrintGuideMessage.printBridgeSizeGuide();
@@ -63,6 +46,15 @@ public class BridgeGameController {
             bridgeSize = inputView.readBridgeSize();
         } while (validation.isValidate(bridgeSize));
         return Integer.parseInt(bridgeSize);
+    }
+
+    public void playing() {
+        movingChoices.add(getMoving());
+        Player player = new Player(movingChoices);
+        printMap(game.move(player, bridge));
+        if (game.move(player, bridge).contains(false)) {
+            rePlaying();
+        }
     }
 
     public String getMoving() {
@@ -79,13 +71,20 @@ public class BridgeGameController {
         outputView.printMap(movingChoices, moveResults);
     }
 
+    public void rePlaying() {
+        movingChoices.remove(movingChoices.size() - 1);
+        gameCommand = getGameCommand();
+        if (game.retry(gameCommand)) {
+            playing();
+        }
+    }
+
     public String getGameCommand() {
         PrintGuideMessage.printCommandGuide();
         String gameCommand = "";
         GameCommandValidation validation = new GameCommandValidation();
         do {
             gameCommand = inputView.readGameCommand();
-
         } while (validation.isValidate(gameCommand));
         return gameCommand;
     }
