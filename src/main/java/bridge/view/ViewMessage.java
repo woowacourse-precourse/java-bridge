@@ -7,7 +7,10 @@ public enum ViewMessage {
     INPUT_RESTART_OR_QUIT_MESSAGE("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     RESULT_GAME_MESSAGE("최종 게임 결과"),
     RESULT_GAME_SUCCESS_STATUS_MESSAGE("게임 성공 여부: "),
-    RESULT_GAME_TRY_NUMBER_MESSAGE("총 시도한 횟수: ");
+    RESULT_GAME_TRY_NUMBER_MESSAGE("총 시도한 횟수: "),
+    HEAD_PRINT("["),
+    TAIL_PRINT("]"),
+    WALL_PRINT("|");
 
     private final String ViewMessage;
     ViewMessage(String message){
