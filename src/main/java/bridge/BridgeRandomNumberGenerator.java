@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 import bridge.service.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.Randoms;
