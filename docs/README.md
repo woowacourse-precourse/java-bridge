@@ -11,7 +11,7 @@
 
 ## Validation logic
 - [] InputValidation
-  - [] validateBridgeSize
+  - [x] validateBridgeSize
   - [] validateMoving
   - [] validateGameCommand
 
@@ -30,3 +30,18 @@
 
 - [] UI tool
   - [] bridgeImage
+
+## Test
+- [] Domain logic
+  - [] BridgeGame
+    - [] run
+    - [] move
+    - [] retry
+
+  - [] BridgeMaker
+    - [] makeBridge
+
+- [] Validation logic
+  - [x] validateBridgeSize
+  - [] validateMoving
+  - [] validateGameCommand
