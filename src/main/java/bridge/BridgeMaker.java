@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.Moving;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static final int RANDOM_LOWER_INCLUSIVE = 0;
+    private static final int RANDOM_UPPER_INCLUSIVE = 1;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -23,8 +27,8 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            if (number == 0) bridge.add("D");
-            if (number == 1) bridge.add("U");
+            if (number == RANDOM_LOWER_INCLUSIVE) bridge.add(Moving.DOWN.getValue());
+            if (number == RANDOM_UPPER_INCLUSIVE) bridge.add(Moving.UP.getValue());
         }
         return bridge;
     }

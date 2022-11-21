@@ -32,12 +32,13 @@ public class OutputView implements Output {
     }
 
     private void printLine(List<String> upperOrLower) {
-        String line = "[ ";
+        StringBuilder line = new StringBuilder();
+        line.append(Message.MAP_START);
         for (int i = 0; i < upperOrLower.size(); i++) {
-            if (i != upperOrLower.size() - 1) line += upperOrLower.get(i) + " | ";
-            if (i == upperOrLower.size() - 1) line += upperOrLower.get(i);
+            if (i != upperOrLower.size() - 1) line.append(upperOrLower.get(i)).append(Message.MAP_MIDDLE);
+            if (i == upperOrLower.size() - 1) line.append(upperOrLower.get(i));
         }
-        line += " ]";
+        line.append(Message.MAP_END);
         System.out.println(line);
     }
 

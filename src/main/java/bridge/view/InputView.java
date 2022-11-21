@@ -10,9 +10,6 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView implements Input {
 
-    String moveError = "[ERROR] 이동할 칸은 U나 D로만 입력해주세요.";
-    String gameCommandError = "[ERROR] 이동할 칸은 U나 D로만 입력해주세요.";
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -20,7 +17,7 @@ public class InputView implements Input {
     public BridgeSize readBridgeSize() {
         while (true){
             try {
-                System.out.println("\n다리의 길이를 입력해주세요.");
+                System.out.println(Message.BRIDGE_SIZE_INPUT);
                 return new BridgeSize(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -43,11 +40,11 @@ public class InputView implements Input {
     }
 
     private Moving getMoving() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(Message.MOVE_INPUT);
         String inputMoving = Console.readLine();
         if (Moving.UP.getValue().equals(inputMoving)) return Moving.UP;
         if (Moving.DOWN.getValue().equals(inputMoving)) return Moving.DOWN;
-        throw new IllegalArgumentException(moveError);
+        throw new IllegalArgumentException(Message.ERROR + Message.MOVE_ERROR);
     }
 
 
@@ -65,10 +62,10 @@ public class InputView implements Input {
     }
 
     private GameCommand getGameCommand() {
-        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(Message.GAME_COMMAND_INPUT);
         String inputMoving = Console.readLine();
         if (GameCommand.RE_GAME.getValue().equals(inputMoving)) return GameCommand.RE_GAME;
         if (GameCommand.QUIT.getValue().equals(inputMoving)) return GameCommand.QUIT;
-        throw new IllegalArgumentException(gameCommandError);
+        throw new IllegalArgumentException(Message.ERROR + Message.GAME_COMMAND_ERROR);
     }
 }
