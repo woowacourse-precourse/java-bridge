@@ -59,7 +59,8 @@ public class BridgeGame {
      */
     public void retry() {
         bridgeGameRepository.increaseGameCount();
-
+        bridgeGameRepository.findBridge()
+                .clearCrossStatues();
     }
 
     public int getGameCount() {
