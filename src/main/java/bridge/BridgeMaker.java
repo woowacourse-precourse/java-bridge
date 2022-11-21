@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.enumeration.BridgeMakerComponent;
+import bridge.constant.BridgeMakerComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;

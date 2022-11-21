@@ -1,4 +1,4 @@
-package bridge.enumeration;
+package bridge.constant;
 
 public enum RetryCode {
     RETRY("R"),

@@ -1,7 +1,7 @@
 package bridge.controller;
 
-import bridge.enumeration.Result;
-import bridge.enumeration.RetryCode;
+import bridge.constant.Result;
+import bridge.constant.RetryCode;
 import bridge.model.BridgeGame;
 import view.input.InputView;
 import view.output.OutputView;
