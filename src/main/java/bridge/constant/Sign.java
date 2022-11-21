@@ -1,9 +1,11 @@
 package bridge.constant;
 
 public enum Sign {
-    LEFT_PARENTHESIS("["),
-    RIGHT_PARENTHESIS("]"),
-    MIDDLE_LINE("|");
+    LEFT_PARENTHESIS("[ "),
+    RIGHT_PARENTHESIS("  ]"),
+    RIGHT__PARENTHESIS_STRING("%s ]\n"),
+    MIDDLE_LINE("  | "),
+    MIDDLE_LINE_STRING("%s | ");
 
     private String sign;
 
