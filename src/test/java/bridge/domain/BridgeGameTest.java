@@ -13,7 +13,7 @@ class BridgeGameTest {
     private static BridgeGame bridgeGame;
 
     @BeforeAll
-    static void init() {
+    public static void init() {
         bridgeGame = new BridgeGame();
     }
 
