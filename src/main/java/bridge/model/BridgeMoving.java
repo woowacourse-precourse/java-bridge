@@ -17,7 +17,7 @@ public class BridgeMoving {
     }
 
     private static boolean isMovingFormatCorrect(String moving) {
-        return moving.equals("U") || moving.equals("D");
+        return moving.equals(Moving.DOWN.getDescription()) || moving.equals(Moving.UP.getDescription());
     }
 
 }

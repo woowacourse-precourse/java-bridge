@@ -9,9 +9,9 @@ public class BridgeComparator {
 
     public String compareBridge(List<String> bridge, String moving, int location) {
         if (bridge.get(location).equals(moving)) {
-            return "O";
+            return BRIDGE_CORRECT;
         }
-        return "X";
+        return BRIDGE_FAIL;
     }
 
     public boolean isExpressionX(int location, List<String> bridgeUpMap, List<String> bridgeDownMap) {
@@ -21,7 +21,7 @@ public class BridgeComparator {
     }
 
     private static boolean isBridgeMapLocationContainX(int location, List<String> bridgeUpMap) {
-        if (bridgeUpMap.get(location).equals("X")) {
+        if (bridgeUpMap.get(location).equals(BRIDGE_FAIL)) {
             return true;
         }
         return false;

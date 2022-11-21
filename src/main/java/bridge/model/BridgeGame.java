@@ -13,6 +13,7 @@ public class BridgeGame {
     private static final int INIT_LOCATION=-1;
     private static final int INIT_RETRY_COUNT=1;
     private static final int COUNT_NUM=1;
+    private static final int INDEX_PLUS=1;
     private final List<String> bridge;
     private final BridgeComparator bridgeComparator;
     private BridgeMap bridgeMap;
@@ -67,7 +68,7 @@ public class BridgeGame {
 
 
     public boolean checkEndPoint() {
-        if (bridge.size() == location + 1) {
+        if (bridge.size() == location + INDEX_PLUS) {
             return true;
         }
         return false;

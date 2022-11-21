@@ -6,12 +6,13 @@ import java.util.List;
 
 public class BridgeMap {
 
+    private static final String BLANK=" ";
     private List<String> bridgeUpMap;
     private List<String> bridgeDownMap;
 
     public BridgeMap(int size) {
-        bridgeUpMap = new ArrayList<>(Collections.nCopies(size," "));
-        bridgeDownMap = new ArrayList<>(Collections.nCopies(size," "));
+        bridgeUpMap = new ArrayList<>(Collections.nCopies(size,BLANK));
+        bridgeDownMap = new ArrayList<>(Collections.nCopies(size,BLANK));
     }
 
     public List<String> getBridgeUpMap() {
