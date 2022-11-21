@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private List<BridgeCell> history;
+    private List<Record> history;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -28,11 +28,16 @@ public class BridgeGame {
             return true;
         }
 
+        moveFail(cell);
         return false;
     }
 
     private void moveForward(BridgeCell cell) {
-        history.add(cell);
+        history.add(new Record(cell, true));
+    }
+
+    private void moveFail(BridgeCell cell) {
+        history.add(new Record(cell, false));
     }
 
     }
