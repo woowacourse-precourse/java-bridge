@@ -16,7 +16,7 @@ public class BridgeDrawer {
     private static final String CORRECT_MOVING = " O ";
     private static final String WRONG_MOVING = " X ";
     private static final String BETWEEN_LINE = "|";
-    private static final String PICTURE_FRAME = "%s\n%s";
+    private static final String SKETCH_FRAME = "%s\n%s";
     private static final int ONE_COLUMN_INCLUDING_BETWEEN_LINE = 4;
     private static final int ONE_COLUMN_EXCLUDING_BETWEEN_LINE = 3;
 
@@ -36,11 +36,11 @@ public class BridgeDrawer {
         closeBracket();
     }
 
-    public String getPicture() {
-        String upperLinePicture = this.upperLine.toString();
-        String lowerLinePicture = this.lowerLine.toString();
-        String picture = String.format(PICTURE_FRAME, upperLinePicture, lowerLinePicture);
-        return picture;
+    public String getSketch() {
+        String upperLineSketch = this.upperLine.toString();
+        String lowerLineSketch = this.lowerLine.toString();
+        String sketch = String.format(SKETCH_FRAME, upperLineSketch, lowerLineSketch);
+        return sketch;
     }
 
     public void turnBackOnce() {
@@ -61,8 +61,8 @@ public class BridgeDrawer {
     }
 
     private boolean isEndWithSpace() {
-        String upperLinePicture = this.upperLine.toString();
-        return upperLinePicture.endsWith(SPACE);
+        String upperLineSketch = this.upperLine.toString();
+        return upperLineSketch.endsWith(SPACE);
     }
 
     private int getLastIndexOfLine() {
@@ -102,8 +102,8 @@ public class BridgeDrawer {
     }
 
     private boolean haveAlready2Moving() {
-        String upperLinePicture = this.upperLine.toString();
-        return upperLinePicture.contains(BETWEEN_LINE);
+        String upperLineSketch = this.upperLine.toString();
+        return upperLineSketch.contains(BETWEEN_LINE);
     }
 
     private void deleteLastMovingIncludingBetweenLine() {

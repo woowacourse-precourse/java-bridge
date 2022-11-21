@@ -35,8 +35,8 @@ public class BridgeController {
 
     private void playTurn() {
         String moving = this.inputView.readMoving();
-        String bridgePicture = this.bridgeGame.move(moving);
-        this.outputView.printMap(bridgePicture);
+        String bridgeSketch = this.bridgeGame.move(moving);
+        this.outputView.printMap(bridgeSketch);
         if (this.bridgeGame.isFail()) {
             String gameCommand = this.inputView.readGameCommand();
             this.bridgeGame.retry(gameCommand);
@@ -46,8 +46,8 @@ public class BridgeController {
     private void announceFinalResult() {
         boolean isSuccess = this.bridgeGame.isSuccess();
         this.outputView.announceEndGame();
-        String bridgePicture = this.bridgeGame.getPicture();
-        this.outputView.printMap(bridgePicture);
+        String bridgeSketch = this.bridgeGame.getSketch();
+        this.outputView.printMap(bridgeSketch);
         int tryCount = this.bridgeGame.getTryCount();
         this.outputView.printResult(isSuccess, tryCount);
     }

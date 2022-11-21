@@ -30,7 +30,7 @@ public class BridgeGame {
         GameStatus gameStatusAfterMoving = this.bridgeMover.go(moving);
         this.gameStatus = gameStatusAfterMoving;
         this.bridgeDrawer.record(moving, gameStatusAfterMoving);
-        return this.bridgeDrawer.getPicture();
+        return this.bridgeDrawer.getSketch();
     }
 
     public void retry(String gameCommand) {
@@ -61,8 +61,8 @@ public class BridgeGame {
         return this.bridgeMover.isCrossCompletely();
     }
 
-    public String getPicture() {
-        return this.bridgeDrawer.getPicture();
+    public String getSketch() {
+        return this.bridgeDrawer.getSketch();
     }
 
     public int getTryCount() {

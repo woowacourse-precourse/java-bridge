@@ -29,18 +29,18 @@ class BridgeGameTest {
 
         @DisplayName("이동에 1회 성공한 경우 -> 해당하는 문자열 반환")
         @Test
-        void should_ReturnBridgePicture_When_SuccessToMove() {
+        void should_ReturnBridgeSketch_When_SuccessToMove() {
             String moving = UPPER_SIDE;
-            String bridgePicture = bridgeGame.move(moving);
-            assertThat(bridgePicture).isEqualTo("[ O ]" + "\n" + "[   ]");
+            String bridgeSketch = bridgeGame.move(moving);
+            assertThat(bridgeSketch).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
         @DisplayName("이동에 1회 실패한 경우 -> 해당하는 문자열 반환")
         @Test
-        void should_ReturnBridgePicture_When_FailToMove() {
+        void should_ReturnBridgeSketch_When_FailToMove() {
             String moving = LOWER_SIDE;
-            String bridgePicture = bridgeGame.move(moving);
-            assertThat(bridgePicture).isEqualTo("[   ]" + "\n" + "[ X ]");
+            String bridgeSketch = bridgeGame.move(moving);
+            assertThat(bridgeSketch).isEqualTo("[   ]" + "\n" + "[ X ]");
         }
 
         @DisplayName("올바르지 않은 이동 방향 입력 -> 예외 발생")
@@ -179,12 +179,12 @@ class BridgeGameTest {
 
     @DisplayName("이동 현황을 반환한다.")
     @Test
-    void should_ReturnBridgePicture_When_RequestToGet() {
+    void should_ReturnBridgeSketch_When_RequestToGet() {
         bridgeGame.move(UPPER_SIDE);
         bridgeGame.move(LOWER_SIDE);
         bridgeGame.move(UPPER_SIDE);
-        String bridgePicture = bridgeGame.getPicture();
-        assertThat(bridgePicture).isEqualTo("[ O |   | O ]" + "\n" + "[   | O |   ]");
+        String bridgeSketch = bridgeGame.getSketch();
+        assertThat(bridgeSketch).isEqualTo("[ O |   | O ]" + "\n" + "[   | O |   ]");
     }
 
     @DisplayName("시도 횟수를 반환한다.")

@@ -11,8 +11,8 @@ public class OutputView {
         System.out.println(START_GAME_ANNOUNCEMENT);
     }
 
-    public void printMap(String bridgePicture) {
-        System.out.println(bridgePicture);
+    public void printMap(String bridgeSketch) {
+        System.out.println(bridgeSketch);
         System.out.println();
     }
 
