@@ -25,7 +25,6 @@ class BridgeGameTest {
         assertThat(game.move(BridgeCell.UP)).isTrue();
         assertThat(game.move(BridgeCell.DOWN)).isTrue();
         assertThat(game.move(BridgeCell.UP)).isFalse();
-        assertThat(game.move(BridgeCell.DOWN)).isTrue();
     }
 
     @DisplayName("다리를 넘어서 움직이려하면 예외가 발생한다.")
@@ -33,10 +32,27 @@ class BridgeGameTest {
     void moveOver() {
         assertThat(game.move(BridgeCell.UP)).isTrue();
         assertThat(game.move(BridgeCell.DOWN)).isTrue();
-        assertThat(game.move(BridgeCell.UP)).isFalse();
         assertThat(game.move(BridgeCell.DOWN)).isTrue();
 
         assertThatThrownBy(() -> game.move(BridgeCell.DOWN))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+    }
+
+    @DisplayName("이동 기록을 통해 현재 다리의 상태를 알 수 있다.")
+    @Test
+    void getMap() {
+        // given
+        game.move(BridgeCell.UP);
+        game.move(BridgeCell.DOWN);
+        game.move(BridgeCell.UP);
+
+        // when
+        String map = game.getMap();
+
+        // then
+        assertThat(map).isEqualTo(
+                "[ O |   | X ]\n" +
+                        "[   | O |   ]"
+        );
     }
 }

@@ -40,6 +40,8 @@ public class BridgeGame {
         history.add(new Record(cell, false));
     }
 
+    public String getMap() {
+        return MapGenerator.generateMap(history);
     }
 
     /**

@@ -10,6 +10,12 @@ public class Record {
         this.move = move;
         this.success = success;
     }
+    
+    public boolean sameDirection(BridgeCell direction) {
+        return move.equals(direction);
+    }
 
-
+    public boolean isSuccess() {
+        return success;
+    }
 }
