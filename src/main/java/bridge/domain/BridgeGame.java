@@ -19,7 +19,7 @@ public class BridgeGame {
         String currBox = bridge.get(currPosition);
 
         addOWhenEqual(movingCommand, currBox);
-        bridgeCurrStatus.add("X");
+        addXWhenUnequal(movingCommand, currBox);
 
         return bridgeCurrStatus;
     }
@@ -28,6 +28,12 @@ public class BridgeGame {
         if (movingCommand.equals(currBox)) {
             currPosition++;
             bridgeCurrStatus.add("O");
+        }
+    }
+
+    public void addXWhenUnequal(String movingCommand, String currBox) {
+        if (! movingCommand.equals(currBox)) {
+            bridgeCurrStatus.add("X");
         }
     }
 
