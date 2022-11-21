@@ -54,8 +54,8 @@
 
 ### 구현 목록
 
-- [ ]  입력 받은 길이에 해당되는 다리 모양을 생성해주는 기능 구현 - `BridgeMaker#makeBridge()`
-- [ ]  생성된 다리 모양 검증 테스트 - `makeBridgeTest()`
+- [x]  입력 받은 길이에 해당되는 다리 모양을 생성해주는 기능 구현 - `BridgeMaker#makeBridge()`
+- [x]  생성된 다리 모양 검증 테스트 - `makeBridgeTest()`
 
 ## ****BridgeRandomNumberGenerator 클래스****
 
