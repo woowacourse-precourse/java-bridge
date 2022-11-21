@@ -3,7 +3,11 @@ package bridge.exception;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -41,9 +45,25 @@ public class UserExceptionTest {
         assertThrows(IllegalArgumentException.class, () -> userException.isNotLengthOne("RR"));
     }
 
+    @ParameterizedTest
+    @DisplayName("소문자를 입력하면 예외를 반환한다.")
+    @MethodSource("generateLowerCaseData")
+    void isLowerCaseTest(String input) {
+        assertThrows(IllegalArgumentException.class, () -> userException.isLowerCase(input));
+    }
+
     private static class CustomUserException extends UserException {
         @Override
         public void checkException(String userInput) {
         }
+    }
+
+    public static List<String> generateLowerCaseData() {
+        List<String> data = new ArrayList<>();
+        for (int i = 97; i < 123; i++) {
+            char letter = (char) i;
+            data.add(String.valueOf(letter));
+        }
+        return data;
     }
 }
