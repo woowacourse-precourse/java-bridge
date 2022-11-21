@@ -6,6 +6,10 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
+
+    private static final boolean INPUT_STATUS = true;
+    private static final String RETRY = "R";
+
     OutputView outputView;
     InputView inputView;
     BridgeGame bridgeGame;
@@ -26,7 +30,7 @@ public class BridgeGameController {
     }
 
     public int getBridgeSize() {
-        while (true) {
+        while (INPUT_STATUS) {
             try {
                 return inputView.readBridgeSize();
             } catch (IllegalArgumentException iae) {
@@ -36,7 +40,7 @@ public class BridgeGameController {
     }
 
     public String getMove() {
-        while (true) {
+        while (INPUT_STATUS) {
             try {
                 return inputView.readMoving();
             } catch (IllegalArgumentException iae) {
@@ -62,13 +66,13 @@ public class BridgeGameController {
         if (bridgeGame.canPlay()) {
             return;
         }
-        if (getRetryCommand().equals("R")) {
+        if (getRetryCommand().equals(RETRY)) {
             bridgeGame.retry();
         }
     }
 
     private String getRetryCommand() {
-        while (true) {
+        while (INPUT_STATUS) {
             try {
                 return inputView.readGameCommand();
             } catch (IllegalArgumentException iae) {
