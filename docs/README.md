@@ -11,7 +11,8 @@
 * 입출력 기능
   * 플레이어가 다리 길이를 입력하는 기능 - (InputView.readBridgeSize)
   * 플레이어가 이동할 칸을 입력하는 기능 - (InputView.readMoving)
-  * 이동한 결과를 출력하는 기능
+  * 이동한 결과를 출력하는 기능 - (OutputView.printMap)
+      * 현재까지 이동한 다리의 상태를 맵으로 만드는 기능 - (OutputView.makeMap)
   * 다리를 건너다 실패하면 플레이어가 재시작, 종료 여부를 입력하는 기능
   * 최종 게임 결과 출력하는 기능
   * 게임 성공 여부 출력하는 기능
