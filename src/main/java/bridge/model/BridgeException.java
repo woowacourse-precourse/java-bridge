@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.view.ErrorView;
+import bridge.view.MessageView;
 
 public class BridgeException {
 
@@ -8,8 +9,7 @@ public class BridgeException {
         try {
             if (invalidFormat(bridgeLength)) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_BRIDGE_LENGTH.getMessage());
-            }
-            if (outOfRange(Integer.parseInt(bridgeLength))) {
+            } else if (outOfRange(Integer.parseInt(bridgeLength))) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_BRIDGE_LENGTH.getMessage());
             }
         } catch (IllegalArgumentException e) {
@@ -32,7 +32,7 @@ public class BridgeException {
 
     public boolean invalidMovingInputValue(String moveDirection) {
         try {
-            if (!moveDirection.equals("U") && !moveDirection.equals("D")) {
+            if (!moveDirection.equals(MessageView.UP.getMessage()) && !moveDirection.equals(MessageView.DOWN.getMessage())) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_MOVING_DIRECTION.getMessage());
             }
         } catch (IllegalArgumentException e) {
@@ -43,7 +43,7 @@ public class BridgeException {
 
     public boolean invalidRetryGame(String retryGame) {
         try {
-            if (!retryGame.equals("R") && !retryGame.equals("Q")) {
+            if (!retryGame.equals(MessageView.RETURN_RETRY.getMessage()) && !retryGame.equals(MessageView.RETURN_QUIT.getMessage())) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_RETRY_GAME.getMessage());
             }
         } catch (IllegalArgumentException e) {
