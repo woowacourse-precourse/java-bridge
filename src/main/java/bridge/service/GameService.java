@@ -26,8 +26,8 @@ public class GameService {
 		return bridge;
 	}
 
-	public boolean checkValidSpace(String userSpace, Integer currentSpace) {
-		return bridge.checkValidSpace(userSpace, currentSpace);
+	public String getUserBridgeStatus() {
+		return userBridgeRepository.findUserBridgeStatus();
 	}
 
 	public String saveUserCorrectSpace(String userLocation) {
@@ -39,13 +39,4 @@ public class GameService {
 		userBridgeRepository.saveUserSpace(userLocation, GameConst.USER_WRONG_SPACE);
 		return userBridgeRepository.findUserBridgeStatus();
 	}
-
-	public String getUserBridgeStatus() {
-		return userBridgeRepository.findUserBridgeStatus();
-	}
-
-	public void clearUserBridge() {
-		userBridgeRepository.clear();
-	}
-
 }

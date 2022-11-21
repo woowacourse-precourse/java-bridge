@@ -1,13 +1,13 @@
 package bridge;
 
 import bridge.config.AppConfig;
-import bridge.controller.BridgeGame;
+import bridge.controller.GameController;
 
 public class Application {
 
 	public static void main(String[] args) {
 		// TODO: 프로그램 구현
-		BridgeGame bridgeGame = new AppConfig().config();
-		bridgeGame.startApplication();
+		GameController gameController = new AppConfig().config();
+		gameController.startApplication();
 	}
 }
