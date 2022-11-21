@@ -69,3 +69,7 @@
 - <strong> 시스템 내부 관련 </strong>
 > [예외] 다리가 올바르게 구성되어 있는지 상태를 지속적으로 모니터링하는 기능 <br>
 
+---
+### 최종 클래스 다이어그램
+<br>
+<img src="image/bridge_final.drawio.png">
