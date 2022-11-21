@@ -44,5 +44,14 @@ public class MovingStatusSaverTest {
         assertThat(saver.isWrongBridge()).isTrue();
     }
 
-    // TODO: 이동상태를 저장한 후 길이를 반환하는 테스트 코드 작성
+    @Test
+    @DisplayName("저장된 이동 상태의 사이즈를 반환하는 테스트")
+    void validateMovingStatusSize() {
+        final List<String> movingStatus = List.of("U", "D", "U");
+        final int sizeResult = 3;
+        for (String moving : movingStatus) {
+            saver.saveMovingStatus(moving);
+        }
+        assertThat(saver.getStatusSize()).isEqualTo(sizeResult);
+    }
 }
