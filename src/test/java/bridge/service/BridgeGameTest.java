@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeLength;
+import bridge.service.constant.ChoiceResult;
 import bridge.service.constant.GameStatus;
 import camp.nextstep.edu.missionutils.Randoms;
 import org.junit.jupiter.api.AfterEach;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
+
+import java.util.List;
 
 public class BridgeGameTest {
     private static Bridge bridge;
@@ -107,5 +110,20 @@ public class BridgeGameTest {
         assertThat(game.getPanelOrder())
                 .isEqualTo(panelOrder - 1)
                 .isEqualTo(1);
+    }
+
+    @DisplayName("obtainGameLog 는 다리의 각 칸 별 선택 결과를 라인 별로 리스트로 담아 이중 리스트로 반환한다.")
+    @Test
+    void When_ObtainGameLog_Expect_ShowChoiceResultsOfAllPanelsByLines() {
+        game.move("U");
+        game.move("D");
+        game.move("D");
+
+        List<List<ChoiceResult>> gameLog = List.of(
+                List.of(ChoiceResult.CORRECT, ChoiceResult.NOT_CHOSEN, ChoiceResult.NOT_CHOSEN),
+                List.of(ChoiceResult.NOT_CHOSEN, ChoiceResult.CORRECT, ChoiceResult.WRONG)
+        );
+
+        assertThat(game.obtainGameLog()).isEqualTo(gameLog);
     }
 }
