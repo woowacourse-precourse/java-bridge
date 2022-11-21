@@ -48,7 +48,7 @@ public class InputController {
             try {
                 return readAndParseGameCommandInput();
             } catch (IllegalArgumentException e3) {
-
+                System.out.println(e3.getMessage());
             }
         }
     }
