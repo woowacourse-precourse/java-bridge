@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printMap(List<String> map) {
+    public void printMap(List<List<String>> map) {
     }
 
     public void printResult(String gameClear, int trialCount) {

@@ -17,18 +17,33 @@ public class BridgeGame {
     private Integer trialCount = 1;
     private GameState gameState = GameState.RUNNING;
 
-    private List<String> upperBlock;
-    private List<String> lowerBlock;
+    private List<String> upperBlock = new ArrayList<>();
+    private List<String> lowerBlock = new ArrayList<>();
 
     public void move(String moveCommand) {
         validateMoveCommand(moveCommand);
-        this.bridgeProgress.add(moveCommand);
         if (isMovable(moveCommand)) {
+            if (moveCommand.equals(Command.MOVE_UP.getCommand())){
+                upperBlock.add("O");
+                lowerBlock.add(" ");
+            }
+            if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
+                upperBlock.add(" ");
+                lowerBlock.add("O");
+            }
             currentBlockIndex += 1;
             if (isClear()){
                 gameState = GameState.CLEAR;
             }
             return;
+        }
+        if (moveCommand.equals(Command.MOVE_UP.getCommand())){
+            upperBlock.add("X");
+            lowerBlock.add(" ");
+        }
+        if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
+            upperBlock.add(" ");
+            lowerBlock.add("X");
         }
         gameState = GameState.PAUSE;
     }
@@ -84,6 +99,8 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-
+    public List<String> getBridge() {
+        return bridge;
+    }
 
 }
