@@ -1,10 +1,15 @@
 package bridge.domain;
 
+import bridge.SuccessOrFailureDtoGenerator;
+import bridge.dto.SuccessOrFailureDto;
+
 import java.util.Collections;
 import java.util.List;
 
 public class UserCharacters {
     private List<String> footprints;
+
+    private SuccessOrFailureDtoGenerator successBridgeStringGenerator = new SuccessOrFailureDtoGenerator();
 
     public UserCharacters(List<String> footprints) {
         this.footprints = footprints;
@@ -33,5 +38,13 @@ public class UserCharacters {
 
     public List<String> getFootprints() {
         return Collections.unmodifiableList(footprints);
+    }
+
+    public SuccessOrFailureDto createSuccessDto() {
+        return successBridgeStringGenerator.createSuccessDto(footprints);
+    }
+
+    public SuccessOrFailureDto createFailDto() {
+        return successBridgeStringGenerator.createFailDto(footprints);
     }
 }

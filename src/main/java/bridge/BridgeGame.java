@@ -3,9 +3,6 @@ package bridge;
 import bridge.domain.UserCharacters;
 import bridge.dto.BridgeStatusDto;
 import bridge.dto.SuccessOrFailureDto;
-import bridge.generator.FailBridgeStringGenerator;
-import bridge.generator.SuccessBridgeStringGenerator;
-
 import java.util.List;
 
 /**
@@ -15,12 +12,13 @@ public class BridgeGame {
 
     private final UserCharacters userCharacters;
     private final List<String> bridge;
+    private SuccessReader successReader = new SuccessReader();
 
-    private int count=1;
+    private int count = 1;
 
-    public BridgeGame(List<String> bridge,List<String> footprints) {
+    public BridgeGame(List<String> bridge, List<String> footprints) {
         this.bridge = bridge;
-        this.userCharacters= new UserCharacters(footprints);
+        this.userCharacters = new UserCharacters(footprints);
     }
 
     /**
@@ -32,7 +30,11 @@ public class BridgeGame {
      */
     public BridgeStatusDto move(String direction) {
         userCharacters.move(direction);
-        return makeBridgeStatusDto();
+
+        if (successReader.isUnitSuccess(userCharacters, bridge)) {
+            return makeSuccessBridgeStatusDto();
+        }
+        return makeFailBridgeStatusDto();
     }
 
     /**
@@ -42,45 +44,37 @@ public class BridgeGame {
      */
     public boolean retry(String command) {
         validateCommand(command);
-        if(command.equals("R")){
+
+        if (command.equals("R")) {
             count++;
             return true;
         }
         return false;
     }
 
-    public SuccessOrFailureDto createSuccessOrFailureDto() {
-        List<String> footprints = userCharacters.getFootprints();
-        if (bridge.get(userCharacters.getFootPrintLastIndex()).equals(footprints.get(userCharacters.getFootPrintLastIndex()))) {
-            return new SuccessOrFailureDto(new SuccessBridgeStringGenerator().generate(footprints),"성공");
-        }
-        return new SuccessOrFailureDto(new FailBridgeStringGenerator().generate(footprints),"실패");
+    public BridgeStatusDto makeSuccessBridgeStatusDto() {
+        SuccessOrFailureDto successDto = userCharacters.createSuccessDto();
+        return new BridgeStatusDto(successDto.getBridge(), successDto.getSuccessOrFailure(), count);
     }
 
-    public BridgeStatusDto makeBridgeStatusDto() {
-        SuccessOrFailureDto successOrFailureDto = createSuccessOrFailureDto();
-        return new BridgeStatusDto(successOrFailureDto.getBridge(), successOrFailureDto.getSuccessOrFailure(), count);
-    }
-
-
-    public boolean moveRetry(){
-        if(userCharacters.getFootPrintSize()==bridge.size()) return false;
-        return true;
-    }
-
-    public boolean isOverallSuccess() {
-        return !moveRetry() && makeBridgeStatusDto().getSuccessOrFailure().equals("성공");
+    public BridgeStatusDto makeFailBridgeStatusDto() {
+        SuccessOrFailureDto failDto = userCharacters.createFailDto();
+        return new BridgeStatusDto(failDto.getBridge(), failDto.getSuccessOrFailure(), count);
     }
 
     public boolean isUnitSuccess() {
-        return moveRetry() && makeBridgeStatusDto().getSuccessOrFailure().equals("성공");
+        return successReader.isUnitSuccess(userCharacters, bridge);
     }
-    public void clearFootprints(){
+
+    public boolean isOverallSuccess() {
+        return successReader.isOverallSuccess(userCharacters, bridge);
+    }
+
+    public void clearFootprints() {
         userCharacters.clearFootprints();
     }
 
     private void validateCommand(String command) {
         if (!command.equals("Q") && !command.equals("R")) throw new IllegalArgumentException("U나 D를 입력해주십시오");
     }
-
 }

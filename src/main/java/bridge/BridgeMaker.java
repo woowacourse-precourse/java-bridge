@@ -34,14 +34,14 @@ public class BridgeMaker {
     }
 
     public List<Integer> genRandomNumberList(int size) {
-        List<Integer> integers=new ArrayList<>();
-        for(int i = 0; i< size; i++){
+        List<Integer> integers = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
             integers.add(bridgeNumberGenerator.generate());
         }
         return integers;
     }
 
     private void validate(int size) {
-        if(size <3 || 20< size) throw new IllegalArgumentException("숫자 범위를 잘못 입력하셨습니다.");
+        if (size < 3 || 20 < size) throw new IllegalArgumentException("숫자 범위를 잘못 입력하셨습니다.");
     }
 }

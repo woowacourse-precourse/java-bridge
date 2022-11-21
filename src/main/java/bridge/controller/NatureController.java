@@ -1,22 +1,23 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
-import bridge.BridgeMaker;
 import bridge.dto.BridgeStatusDto;
-import bridge.generator.BridgeRandomNumberGenerator;
 import bridge.view.ViewFaçade;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Function;
 
 public class NatureController implements Controller {
 
     private BridgeGame bridgeGame;
+    private Function<Integer, BridgeGame> function;
+
+    public NatureController(Function<Integer, BridgeGame> function) {
+        this.function = function;
+    }
 
     @Override
     public Runnable generateBridge(ViewFaçade viewFaçade, int size) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size), new ArrayList<>());
+        bridgeGame = function.apply(size);
         return () -> viewFaçade.moveBride();
     }
 
@@ -38,7 +39,8 @@ public class NatureController implements Controller {
             bridgeGame.clearFootprints();
             return () -> viewFaçade.moveBride();
         }
-        BridgeStatusDto bridgeStatusDto = bridgeGame.makeBridgeStatusDto();
+
+        BridgeStatusDto bridgeStatusDto = bridgeGame.makeFailBridgeStatusDto();
         return () -> viewFaçade.end(bridgeStatusDto);
     }
 }
