@@ -1,9 +1,23 @@
 package bridge;
 
+import java.util.regex.Pattern;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String BRIDGE_SIZE_REGEX = "([3-9]|1[0-9]|20)";
+    private static final String ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+
+    public void generateBridge(String bridgeSize) {
+        validateBridgeSize(bridgeSize);
+    }
+
+    private void validateBridgeSize(String bridgeSize) {
+        if (!Pattern.matches(BRIDGE_SIZE_REGEX, bridgeSize)) {
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
+        }
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
