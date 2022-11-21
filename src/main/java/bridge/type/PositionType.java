@@ -4,15 +4,15 @@ import bridge.Env;
 
 import java.util.Arrays;
 
-public enum SlabType {
+public enum PositionType {
     DOWN(0, Env.CODE_OF_DOWN),
     UP(1, Env.CODE_OF_UP),
-    UNKNOWN(-1, "N");
+    UNKNOWN(-1, Env.CODE_OF_UNKNOWN);
 
     private final int id;
     private final String typeName;
 
-    SlabType(int id, String typeName) {
+    PositionType(int id, String typeName) {
         this.id = id;
         this.typeName = typeName;
     }
@@ -25,22 +25,22 @@ public enum SlabType {
         return this.typeName;
     }
 
-    public static SlabType build(int id) {
-        return Arrays.stream(SlabType.values())
+    public static PositionType build(int id) {
+        return Arrays.stream(PositionType.values())
                 .filter(type -> type.id == purifyId(id))
                 .findFirst()
-                .orElse(SlabType.UNKNOWN);
+                .orElse(PositionType.UNKNOWN);
     }
 
-    public static SlabType build(String typeName) {
-        return Arrays.stream(SlabType.values())
+    public static PositionType build(String typeName) {
+        return Arrays.stream(PositionType.values())
                 .filter(type -> type.typeName.equals(typeName))
                 .findFirst()
-                .orElse(SlabType.UNKNOWN);
+                .orElse(PositionType.UNKNOWN);
     }
 
     private static int purifyId(int id) {
-        boolean hasId = Arrays.stream(SlabType.values())
+        boolean hasId = Arrays.stream(PositionType.values())
                 .anyMatch(slabType -> slabType.id == id);
 
         if (!hasId) {

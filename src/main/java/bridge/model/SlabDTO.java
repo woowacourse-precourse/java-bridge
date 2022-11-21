@@ -1,17 +1,18 @@
 package bridge.model;
 
-import bridge.type.SlabType;
+import bridge.type.GlassType;
+import bridge.type.PositionType;
 
 public class SlabDTO {
     private final int step;
-    private final SlabType type;
-    private final boolean safe;
+    private final PositionType position;
+    private final GlassType glass;
     private boolean tread;
 
-    public SlabDTO(int step, SlabType type, boolean safe) {
+    public SlabDTO(int step, PositionType position, GlassType glass) {
         this.step = step;
-        this.type = type;
-        this.safe = safe;
+        this.position = position;
+        this.glass = glass;
         this.tread = false;
     }
 
@@ -19,12 +20,12 @@ public class SlabDTO {
         return this.step;
     }
 
-    public SlabType getSlabType() {
-        return this.type;
+    public PositionType getPosition() {
+        return this.position;
     }
 
-    public boolean isSafe() {
-        return this.safe;
+    public GlassType getGlass() {
+        return this.glass;
     }
 
     public boolean isTread() {

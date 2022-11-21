@@ -1,13 +1,12 @@
 package bridge.model;
 
-import bridge.type.SlabType;
+import bridge.type.GlassType;
+import bridge.type.PositionType;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SlabsTest {
     @Test
@@ -18,7 +17,7 @@ class SlabsTest {
     @Test
     void 단일_삽입() {
         Slabs slabs = Slabs.getInstance();
-        SlabDTO dto = new SlabDTO(0, SlabType.DOWN, true);
+        SlabDTO dto = new SlabDTO(0, PositionType.DOWN, GlassType.TEMPERED);
 
         assertThat(slabs.insert(dto)).isTrue();
     }
@@ -42,12 +41,12 @@ class SlabsTest {
 
     List<SlabDTO> slabs() {
         return List.of(
-                new SlabDTO(0, SlabType.DOWN, true),
-                new SlabDTO(0, SlabType.UP, false),
-                new SlabDTO(1, SlabType.UP, true),
-                new SlabDTO(1, SlabType.DOWN, false),
-                new SlabDTO(2, SlabType.DOWN, true),
-                new SlabDTO(2, SlabType.UP, false)
+                new SlabDTO(0, PositionType.DOWN, GlassType.TEMPERED),
+                new SlabDTO(0, PositionType.UP, GlassType.NORMAL),
+                new SlabDTO(1, PositionType.UP, GlassType.TEMPERED),
+                new SlabDTO(1, PositionType.DOWN, GlassType.NORMAL),
+                new SlabDTO(2, PositionType.DOWN, GlassType.TEMPERED),
+                new SlabDTO(2, PositionType.UP, GlassType.NORMAL)
         );
     }
 }

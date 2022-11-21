@@ -1,11 +1,11 @@
 package bridge.model;
 
-import bridge.type.SlabType;
+import bridge.type.GlassType;
+import bridge.type.PositionType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SlabDTOTest {
     public static SlabDTO dto;
@@ -17,12 +17,12 @@ class SlabDTOTest {
 
     @Test
     void 슬래브의_타입_가져오기() {
-        assertThat(dto.getSlabType()).isEqualTo(SlabType.DOWN);
+        assertThat(dto.getPosition()).isEqualTo(PositionType.DOWN);
     }
 
     @Test
     void 슬래브_밟아도_안전한지_여부_가져오기() {
-        assertThat(dto.isSafe()).isFalse();
+        assertThat(dto.getGlass().isSafe()).isFalse();
     }
 
     @Test
@@ -38,6 +38,6 @@ class SlabDTOTest {
 
     @BeforeAll
     public static void beforeAll() {
-        dto = new SlabDTO(6, SlabType.DOWN, false);
+        dto = new SlabDTO(6, PositionType.DOWN, GlassType.NORMAL);
     }
 }
