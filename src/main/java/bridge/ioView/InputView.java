@@ -1,5 +1,6 @@
 package bridge.ioView;
 
+import bridge.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -67,7 +68,13 @@ public class InputView {
     }
 
     private boolean isUpOrDown(String input) {
-        return input.equals("U") || input.equals("D");
+        for (Direction direction : Direction.values()) {
+            if (direction.equals(input)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

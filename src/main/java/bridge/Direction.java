@@ -14,4 +14,8 @@ public enum Direction {
     public String toString() {
         return string;
     }
+
+    public boolean equals(String input) {
+        return string.equals(input);
+    }
 }
