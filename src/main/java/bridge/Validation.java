@@ -11,10 +11,14 @@ public class Validation {
     }
     public static void isBiggerMove(int userMove, int bridgeSize){
         if(userMove>=bridgeSize)
-            throw new IllegalArgumentException(Constant.ERROR+Constant.ERROR_MESSAGE_LENGTH);
+            throw new IllegalArgumentException(Constant.ERROR+Constant.ERROR_MORE_LENGTH);
     }
     public static void isLengthNumber(String s){
         if(!s.matches("[1-9][1-9][1-9]"))
             throw new IllegalArgumentException(Constant.ERROR+Constant.ERROR_IS_NOT_NUMBER);
+    }
+    public static void isLengthRange(int number){
+        if(!(number<3) || !(number>100))
+            throw new IllegalArgumentException(Constant.ERROR + Constant.ERROR_MESSAGE_LENGTH);
     }
 }

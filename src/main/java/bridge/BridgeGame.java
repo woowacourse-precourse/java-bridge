@@ -27,6 +27,7 @@ public class BridgeGame {
         String tmpBridgeSize=InputView.readBridgeSize();
         Validation.isLengthNumber(tmpBridgeSize);
         user.setUserBridgeSize(Integer.parseInt(tmpBridgeSize));
+        Validation.isLengthRange(user.getUserBridgeSize());
         bridgeMaker.startMakeBridge(user.getUserBridgeSize());
     }
 
@@ -43,11 +44,15 @@ public class BridgeGame {
             }
             user.increaseMoveCount();
         }
-        if (!isSuccess)
+        isMeetBridgeEnd();
+    }
+
+    public void isMeetBridgeEnd(){
+        if(!isSuccess){
             askRetry();
-        if (isSuccess) {
-            meetEnd();
+            return;
         }
+        meetEnd();
     }
 
     public boolean isBridge(String currentUser, String currentBridge) {

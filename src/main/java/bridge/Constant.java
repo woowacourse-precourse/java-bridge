@@ -25,5 +25,6 @@ public class Constant {
     static String ERROR_MESSAGE_UP_DOWN="U 또는 D 문자를 입력해주세요.";
     static String ERROR_MESSAGE_RETRY_QUIT="R 또는 Q 문자를 입력해주세요.";
     static String ERROR_IS_NOT_NUMBER="다리 길이는 숫자입니다.";
+    static String ERROR_MORE_LENGTH="입력한 길이보다 만든 다리 길이가 더 깁니다.";
 
 }
