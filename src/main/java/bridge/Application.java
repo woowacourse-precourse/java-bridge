@@ -36,20 +36,18 @@ public class Application {
             System.out.println(numberOfTriedAnswers = BridgeGame.getAnswerCount(direction));
 
             bridgeGame.move(direction, bridge, numberOfTriedAnswers);
-            System.out.println(upstairsBridge);
-            System.out.println(downstairsBridge);
+            outputView.printMap(upstairsBridge, downstairsBridge);
 
-            if(!upstairsBridge.contains(WRONG) && !downstairsBridge.contains(WRONG) && size == numberOfTriedAnswers) {
-                System.out.println("게임종료");
-            }
             if (upstairsBridge.contains(WRONG) || downstairsBridge.contains(WRONG)) {
                 System.out.println("게임 더할래?");
                 String command = inputView.readGameCommand();
-                BridgeGame.retry(command);
-                System.out.println("n번째시도");
+                bridgeGame.retry(command);
+                System.out.println("게임 성공 여부");
+                System.out.println("총 시도 횟수");
             }
         }
-        while (true);
+        while (upstairsBridge.contains(WRONG) || downstairsBridge.contains(WRONG) ||size > numberOfTriedAnswers);
+        System.out.println("게임종료");
 
     }
 }

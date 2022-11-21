@@ -78,7 +78,7 @@ public class BridgeGame {
         if(Objects.equals(command, "R")) {
             return true;
         }
-        return true;
+        return false;
     }
 
     public static int getAnswerCount(String direction) {
