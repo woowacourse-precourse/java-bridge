@@ -29,6 +29,10 @@ public class User {
         return numberOfMoves;
     }
 
+    public int getNumberOfGameTrials() {
+        return numberOfGameTrials;
+    }
+
     // setter
     public void setNotPlayingGame() {
         isPlayingGame = false;
