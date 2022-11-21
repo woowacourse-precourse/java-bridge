@@ -7,6 +7,11 @@ import data.ExceptionData;
 import data.BridgeData;
 import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
+/*
+리팩토링 예정 1
+validate 메서드 한꺼번에 수행하도록 합칠 것.
+상수로 직접 접근하지 않고 데이터셋으로 받아서 포함 안되는지 체크하도록 하자.
+ */
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -49,9 +54,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String moving = readLine();
-        validateMove(moving);
-        return moving;
+        while(true) {
+            try {
+                String moving = readLine();
+                validateMove(moving);
+                return moving;
+            } catch (IllegalArgumentException e) {
+                // U D만 입력하게 만드는 에러 출력
+            }
+        }
     }
 
     private void validateMove(String moving){
