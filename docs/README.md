@@ -101,3 +101,6 @@
 - [x] 이동한 위치 검증
 - [x] 재시작 후 게임 위치 검증
 - [x] 게임 시도 횟수, 성공 여부 검증
+
+## ● 최종 bridge UML 구조
+![bridgeUML](./bridgeUML.png)
