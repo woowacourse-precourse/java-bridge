@@ -23,15 +23,11 @@ public class BridgeGameController {
         try{
             List<String[]> map;
             bridgeGame.makeBridge(iv.readBridgeSize());
-            System.out.println(bridgeGame.getBridge());
             do {
-                String course = iv.readMoving();
-                bridgeGame.move(course);
+                bridgeGame.move(iv.readMoving());
                 map = ov.printMap(bridgeGame.getBridge(), bridgeGame.getMarks());
                 if(bridgeGame.isDiscord()) {
-                    System.out.println(1);
-                    if(bridgeGame.retry(course)) {
-                        System.out.println(2);
+                    if(bridgeGame.retry(iv.readGameCommand())) {
                         bridgeGame.backToFirstSection();
                         continue;
                     }
