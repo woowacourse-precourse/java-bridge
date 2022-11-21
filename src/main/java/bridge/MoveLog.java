@@ -23,6 +23,12 @@ public class MoveLog {
         bridgeMoveLog.get(chosenBridgeType).add(status);
     }
 
+    public void clearMoveLog() {
+        for (List<String> bridgeMoveLogs : bridgeMoveLog.values()) {
+            bridgeMoveLogs.clear();
+        }
+    }
+
     public Map<BridgeType, List<String>> getBridgeMoveLog() {
         return this.bridgeMoveLog;
     }
