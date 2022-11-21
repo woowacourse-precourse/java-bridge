@@ -57,4 +57,8 @@ public class OutputView {
         }
         System.out.printf("총 시도한 횟수: %d" + System.lineSeparator(), trialCount);
     }
+
+    public void printException(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }
