@@ -19,8 +19,9 @@ public class BridgeGame {
         return checkBridgeSize();
     }
 
-    public void move(String userMove) {
+    public boolean move(String userMove) {
         this.userMove.add(userMove);
+        return checkUserMove();
     }
 
     public void retry(String retry) {
@@ -104,6 +105,33 @@ public class BridgeGame {
     public void checkBridgeSizeRange() {
         if (!(getBridgeSize() >= 3 && getBridgeSize() <= 20)) {
             throw new IllegalArgumentException(Message.BRIDGE_SIZE_RANGE_ERROR.getMessage());
+        }
+    }
+
+    public boolean checkUserMove() {
+        try {
+            checkMoveInputRange();
+            checkMoveInputSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    public void checkMoveInputRange() { // MOVE가 LIST<STRING>기 때문에 오류를 똑바로 못잡는 문제 있음
+        for (int i = 0; i < userMove.size(); i++) {
+            if (!(userMove.contains("U") || userMove.contains("D"))) {
+                throw new IllegalArgumentException(Message.USER_MOVE_INPUT_ERROR.getMessage());
+            }
+        }
+    }
+
+    public void checkMoveInputSize() {
+        for (int i = 0; i < userMove.size(); i++) {
+            if (userMove.size() != 1) {
+                throw new IllegalArgumentException(Message.USER_MOVE_INPUT_SIZE_ERROR.getMessage());
+            }
         }
     }
 
