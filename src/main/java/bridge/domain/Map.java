@@ -15,17 +15,17 @@ public class Map {
     public void update(String direction, String answer) {
         String mark;
         if (direction.equals(answer)) {
-            mark = Mark.PATH.getMark();
+            mark = Mark.PATH.toString();
         } else {
-            mark = Mark.BLOCK.getMark();
+            mark = Mark.BLOCK.toString();
         }
 
         if (direction.equals(Direction.UP.toString())) {
             upperPath.add(mark);
-            lowerPath.add(Mark.UNKNOWN.getMark());
+            lowerPath.add(Mark.UNKNOWN.toString());
         }
         if (direction.equals(Direction.DOWN.toString())) {
-            upperPath.add(Mark.UNKNOWN.getMark());
+            upperPath.add(Mark.UNKNOWN.toString());
             lowerPath.add(mark);
         }
     }
