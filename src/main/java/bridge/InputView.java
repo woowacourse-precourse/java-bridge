@@ -13,7 +13,7 @@ public class InputView {
     public int readBridgeSize() throws IllegalArgumentException {
         String bridgeSizeStr =  Console.readLine();
         if (isBlank(bridgeSizeStr) ){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(" 다리 길이는 숫자여야합니다.");
         }
         return checkBridgeSizeRange(toInts(bridgeSizeStr));
     }
@@ -34,14 +34,18 @@ public class InputView {
     }
 
     public int toInts(String bridgeSize) {
-        return Integer.parseInt(bridgeSize);
+        try{
+            return Integer.parseInt(bridgeSize);
+        }catch(IllegalArgumentException illegalArgumentException){
+            throw new IllegalArgumentException(" 다리 길이는 숫자여야합니다");
+        }
     }
     public boolean isBlank(String text){
         return text == null || text.trim().isEmpty();
     }
     public int checkBridgeSizeRange(int bridgeSize) throws IllegalArgumentException {
         if(bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(" 다리 길이는 3에서 20사이여야합니다.");
         }
         return bridgeSize;
     }
