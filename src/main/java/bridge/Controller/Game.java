@@ -39,7 +39,11 @@ public class Game {
         bridgeMap = new BridgeMap();
         for (int position = ZERO; position < BridgeGame.getBridgeSize(); position++) {
             gameState = isCrossed(position);
+            if (!gameState) {
+                return false;
+            }
         }
+        return true;
     }
 
     private boolean isCrossed(int position) {
