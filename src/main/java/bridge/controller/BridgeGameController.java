@@ -3,54 +3,36 @@ package bridge.controller;
 import static bridge.domain.constants.GameCommands.NOTHING;
 import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
-import bridge.domain.bridge_game.Bridge;
 import bridge.domain.bridge_game.BridgeGame;
-import bridge.domain.bridge_maker.BridgeRandomNumberGenerator;
-import bridge.domain.validation.BridgeSize;
-import bridge.domain.bridge_game.NumberOfChallenges;
-import bridge.domain.bridge_game.Player;
-import bridge.domain.bridge_game.Position;
+import bridge.domain.bridge_game.MoveResults;
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
-import bridge.domain.bridge_maker.BridgeMaker;
-import bridge.domain.bridge_game.MoveResults;
+import bridge.domain.validation.BridgeSize;
+import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private static final int INIT_VALUE_OF_POSITION = 0;
-    private static final int INIT_VALUE_OF_CHALLENGES = 1;
-
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeGameService bridgeGameService;
 
-    public BridgeGameController(final InputView inputView, final OutputView outputView) {
+    public BridgeGameController(final InputView inputView, final OutputView outputView,
+            final BridgeGameService bridgeGameService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.bridgeGameService = bridgeGameService;
     }
 
     public void startBridgeGame() {
         outputView.printStartMessage();
 
         BridgeSize bridgeSize = inputView.bridgeSize();
-        BridgeGame bridgeGame = bridgeGame(bridgeSize);
+        BridgeGame bridgeGame = bridgeGameService.bridgeGame(bridgeSize);
 
         playBridgeGame(bridgeGame);
         outputView.printResult(bridgeGame);
-    }
-
-    private BridgeGame bridgeGame(final BridgeSize bridgeSize) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-        Bridge bridge = new Bridge(
-                bridgeMaker.makeBridge(bridgeSize.bridgeSize()));
-
-        Player player = new Player(
-                Position.of(INIT_VALUE_OF_POSITION),
-                new NumberOfChallenges(INIT_VALUE_OF_CHALLENGES));
-
-        return new BridgeGame(bridge, player);
     }
 
     private void playBridgeGame(final BridgeGame bridgeGame) {
