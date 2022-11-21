@@ -5,8 +5,8 @@ import java.util.List;
 public class OutputView {
 
     public static void printMap(List<String> bridgeNow, boolean success, String moveTo) {
-        StringBuilder UpStep = new StringBuilder("[" + UpstepAdder(bridgeNow));
-        StringBuilder DownStep = new StringBuilder("[" + DownstepAdder(bridgeNow));
+        StringBuilder UpStep = new StringBuilder("[ " + UpstepAdder(bridgeNow));
+        StringBuilder DownStep = new StringBuilder("[ " + DownstepAdder(bridgeNow));
 
         if (success) {
             continueRound(UpStep, DownStep);
