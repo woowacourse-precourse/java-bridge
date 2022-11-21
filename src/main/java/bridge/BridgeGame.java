@@ -72,7 +72,7 @@ public class BridgeGame {
         return result;
     }
     public boolean isGameCompleted() {
-        if(bridge.isCrossedBridge(visited)) {
+        if(bridge.isCrossedBridge(visited) && isSuccess) {
             return true;
         }
         return false;
@@ -104,7 +104,7 @@ public class BridgeGame {
         printDownBridge();
         boolean isCompleted = bridge.isCrossedBridge(visited);
         String result = "실패";
-        if(isSuccess && isCompleted) {
+        if(isGameCompleted()) {
             result = "성공";
         }
         outputView.printResult(result, tryNum);
