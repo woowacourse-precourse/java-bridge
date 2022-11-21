@@ -12,6 +12,9 @@ import bridge.view.OutputView;
 
 public class Controller {
 
+    private static final int INITIAL_TRIAL_COUNT = 1;
+    private static final int RETRY_ADD_COUNT = 1;
+
     private final InputView inputView;
     private final OutputView outputView;
     private final List<TrialResult> trialResults = new ArrayList<>();
@@ -42,12 +45,21 @@ public class Controller {
 
     private int doGame() {
         if (game.isFinished()) {
-            return 1;
+            return INITIAL_TRIAL_COUNT;
         }
         if (!move().wasSuccessful()) {
             return retryOrExit();
         }
         return doGame();
+    }
+
+    private int retryOrExit() {
+        if (askForRetry()) {
+            game.retry();
+            trialResults.clear();
+            return doGame() + RETRY_ADD_COUNT;
+        }
+        return INITIAL_TRIAL_COUNT;
     }
 
     private TrialResult move() {
@@ -61,15 +73,6 @@ public class Controller {
             outputView.printException(exception.getMessage());
             return move();
         }
-    }
-
-    private int retryOrExit() {
-        if (askForRetry()) {
-            game.retry();
-            trialResults.clear();
-            return doGame() + 1;
-        }
-        return 1;
     }
 
     private boolean askForRetry() {
