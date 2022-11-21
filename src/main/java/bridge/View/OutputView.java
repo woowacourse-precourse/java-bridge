@@ -25,30 +25,30 @@ public class OutputView {
 
     public void printBridgeCell(List<Boolean> matchResult, List<String> bridge, String way) {
         for (int i = 0; i < matchResult.size(); i++) {
-            printBridgeCellLoop(matchResult,bridge,way,i);
+            printBridgeCellLoop(matchResult.get(i),bridge.get(i),way);
+            printWall(i,matchResult);
         }
     }
 
-    public void printBridgeCellLoop(List<Boolean> matchResult, List<String> bridge, String way, int i) {
-        printEqual(matchResult,bridge,way,i);
-        printNotEqual(matchResult,bridge,way,i);
-        printWall(i,matchResult);
+    public void printBridgeCellLoop(boolean matchResult, String bridge, String way) {
+        printEqual(matchResult,bridge,way);
+        printNotEqual(matchResult,bridge,way);
     }
 
-    public void printEqual(List<Boolean> matchResult, List<String> bridge, String way, int i) {
-        if (bridge.get(i).equals(way)) {
+    public void printEqual(boolean matchResult, String bridge, String way) {
+        if (bridge.equals(way)) {
             String correct = CORRECT;
-            if (!matchResult.get(i)) {
+            if (!matchResult) {
                 correct = BLANK;
             }
             System.out.print(correct);
         }
     }
 
-    public void printNotEqual(List<Boolean> matchResult, List<String> bridge, String way, int i) {
-        if (!bridge.get(i).equals(way)) {
+    public void printNotEqual(boolean matchResult, String bridge, String way) {
+        if (!bridge.equals(way)) {
             String wrong = WRONG;
-            if (matchResult.get(i)) {
+            if (matchResult) {
                 wrong = BLANK;
             }
             System.out.print(wrong);
