@@ -6,7 +6,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
 
 public class BridgeGameController {
 
@@ -14,7 +13,6 @@ public class BridgeGameController {
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private List<String> bridges;
     private boolean isRunning;
     private int count;
 
@@ -27,8 +25,7 @@ public class BridgeGameController {
     public void run() {
         try {
             int bridgeSize = inputView.readBridgeSize();
-            bridges = bridgeMaker.makeBridge(bridgeSize);
-            bridgeGame.setBridges(bridges);
+            bridgeGame.setBridges(bridgeMaker.makeBridge(bridgeSize));
             gameStart();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -38,18 +35,18 @@ public class BridgeGameController {
     private void gameStart() {
         int index = 0;
         isRunning = true;
-        System.out.println(bridgeGame.getBridges());
         count = 1;
         boolean isSuccess = true;
-        while(index != bridges.size()){
-            isSuccess = bridgeGame.move(bridges.get(index), inputView.readMoving());
+        while(index != bridgeGame.getBridgeSize()){
+            isSuccess = bridgeGame.move(bridgeGame.getBridges().get(index), inputView.readMoving());
             outputView.printMap(bridgeGame.getBridges(), index++, isSuccess);
             if(!isSuccess){ // 움직이는데 실패
                 index = getIndex(index);
             }
             if(!isRunning) break;
         }
-        outputView.printResult(bridgeGame.getBridges(), index, isRunning, count);
+        outputView.printResult(bridgeGame.getBridges(), index, isRunning);
+        outputView.printTotalAttemptsMade(count);
     }
 
     private int getIndex(int index) {
