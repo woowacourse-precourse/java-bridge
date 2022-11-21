@@ -20,11 +20,9 @@ class BridgeGameTest {
     void generateRandomBridge_success(String inputBridgeSize) {
         // given
         BridgeGameRepository bridgeGameRepository = BridgeGameRepository.getInstance();
-
         // when
         Bridge storedBridge = bridgeGame.generateRandomBridge(inputBridgeSize);
         Bridge findBridge = bridgeGameRepository.findBridge();
-
         // then
         assertThat(storedBridge).isEqualTo(findBridge);
 

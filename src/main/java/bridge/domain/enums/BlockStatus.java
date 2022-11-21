@@ -25,14 +25,14 @@ public enum BlockStatus {
                 .collect(Collectors.toList());
     }
 
-    public static BlockStatus findByCrossableSymbol(final String symbolBlock) {
+    private static BlockStatus findByCrossableSymbol(final String symbolBlock) {
         return Arrays.stream(BlockStatus.values())
                 .filter(blockStatus -> blockStatus.hasCrossableSymbol(symbolBlock))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(BLOCK_SYMBOL_ERROR));
     }
 
-    public boolean hasCrossableSymbol(final String symbolBlock) {
+    private boolean hasCrossableSymbol(final String symbolBlock) {
         return this.crossableSymbol
                 .equals(symbolBlock);
     }
@@ -43,7 +43,7 @@ public enum BlockStatus {
                 .collect(Collectors.toList());
     }
 
-    public static String getCrossableSymbol(final int crossableNumber) {
+    private static String getCrossableSymbol(final int crossableNumber) {
         return Arrays.stream(BlockStatus.values())
                 .filter(blockStatus -> blockStatus.hasCrossableNumber(crossableNumber))
                 .findFirst()
@@ -51,7 +51,7 @@ public enum BlockStatus {
                 .crossableSymbol;
     }
 
-    public boolean hasCrossableNumber(final int crossableNumber) {
+    private boolean hasCrossableNumber(final int crossableNumber) {
         return this.crossableNumber == crossableNumber;
     }
 
