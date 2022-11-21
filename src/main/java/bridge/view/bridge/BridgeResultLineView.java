@@ -1,7 +1,6 @@
 package bridge.view.bridge;
 
 import static bridge.domain.BridgeLocation.initBridgeLocation;
-import static bridge.value.BridgeLineCharacter.MOVABLE_SQUARE;
 import static bridge.value.BridgeLineCharacter.resultCharacterFor;
 
 import bridge.domain.BridgeLocation;
@@ -33,7 +32,9 @@ public class BridgeResultLineView extends BridgeLineView {
         fillSquares(currLocation);
         if(!isSuccess()) {
             renderBuffer.append(resultSquareCharacter().getCharacter());
+            return;
         }
+        popLastCharacter(renderBuffer);
     }
 
     private BridgeLineCharacter resultSquareCharacter() {

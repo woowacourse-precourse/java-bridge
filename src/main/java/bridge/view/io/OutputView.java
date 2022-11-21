@@ -21,7 +21,7 @@ public class OutputView {
     public void lineSeparate() {
         println("");
     }
-    private static void println(String content) {
+    public static void println(String content) {
         System.out.println(content);
     }
 
