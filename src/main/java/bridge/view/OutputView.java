@@ -33,7 +33,7 @@ public class OutputView {
         System.out.printf(RETRY_COUNT_FORMAT, retryCount);
     }
 
-    public void printOverMessage() {
+    public void printGameOverMessage() {
         System.out.println(OVER_MESSAGE);
     }
 }
