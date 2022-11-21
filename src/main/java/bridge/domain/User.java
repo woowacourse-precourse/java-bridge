@@ -20,6 +20,10 @@ public class User {
         userMoved.clear();
     }
 
+    public int getLatestLocation() {
+        return userMoved.size() - 1;
+    }
+
     public List<String> getUserMoved() {
         return Collections.unmodifiableList(userMoved);
     }
