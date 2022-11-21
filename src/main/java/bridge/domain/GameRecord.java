@@ -22,10 +22,18 @@ public class GameRecord {
     public void recordMove(String spaceToMove, boolean isDead) {
         String marker = Marker.getMarker(isDead);
         if (spaceToMove.equals(UPPER_SPACE.getValue())) {
-            upperCrossedRecord.add(marker);
-            lowerCrossedRecord.add(NOT_CROSS.getValue());
+            recordCrossedUpper(marker);
             return;
         }
+        recordCrossedLower(marker);
+    }
+
+    private void recordCrossedUpper(String marker) {
+        upperCrossedRecord.add(marker);
+        lowerCrossedRecord.add(NOT_CROSS.getValue());
+    }
+
+    private void recordCrossedLower(String marker) {
         upperCrossedRecord.add(NOT_CROSS.getValue());
         lowerCrossedRecord.add(marker);
     }
