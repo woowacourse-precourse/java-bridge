@@ -1,8 +1,7 @@
 package bridge.view;
 
 import bridge.constant.BridgeLengthRule;
-import bridge.constant.Command;
-import bridge.constant.Bridge;
+import bridge.constant.BridgePattern;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -36,11 +35,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    /*public Bridge readMoving() {
+    public BridgePattern readMoving() {
         String move = readValue();
 
-        return Bridge.searchBridgeType(move);
-    }*/
+        return BridgePattern.searchBridgeType(move);
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
