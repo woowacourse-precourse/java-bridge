@@ -1,20 +1,18 @@
 package bridge.model;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.RetryCode;
 import bridge.combinator.BridgeCase;
 
 import java.util.*;
 
 public class BridgeGame {
-    private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
     private final List<String> bridge;
     private int count;
 
-    public BridgeGame(int bridgeSize) {
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
-        count = 0;
+    public BridgeGame(List<String> bridge, int count) {
+        this.bridge = bridge;
+        this.count = count;
     }
 
     public BridgeCase move(String bridgeToMove, int index) {
