@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeNumberGenerator;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,17 +14,23 @@ public class BridgeMaker {
     private final int maxLength = 20;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public final static List<String> UP_DOWN_SELECTOR = List.of("U", "D");
+    public final static List<String> UP_DOWN_SELECTOR = List.of("D", "U");
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeRandomBridgeProcess(int size){
-        validationBridge(size);
-        return makeBridge(size);
+    public List<String> makeRandomBridgeProcess(String size){
+        validationBridgeInteger(size);
+        validationBridgeRange(Integer.valueOf(size));
+        return makeBridge(Integer.valueOf(size));
     }
-    private void validationBridge(int size){
+    private void validationBridgeInteger(String size){
+        if (!Pattern.matches("[0-9]*", size)){
+            throw new IllegalArgumentException(Errors.ONLY_NUMBER.getMessage());
+        }
+    }
+    private void validationBridgeRange(int size){
         if(size < minLength || size > maxLength){
             throw new IllegalArgumentException(Errors.BRIDGE_LENGTH.getMessage());
         }

@@ -11,14 +11,14 @@ class BridgeMakerTest {
     @Test
     void 랜덤_다리_생성(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int length = 5;
-        assertThat(bridgeMaker.makeRandomBridgeProcess(length)).size().isEqualTo(length);
+        String length = "5";
+        assertThat(bridgeMaker.makeRandomBridgeProcess(length)).size().isEqualTo(Integer.valueOf(length));
     }
 
     @Test
     void 다리_길이가_작을때(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int length = 2;
+        String length = "2";
         assertThatThrownBy(() -> bridgeMaker.makeRandomBridgeProcess(length))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -26,7 +26,7 @@ class BridgeMakerTest {
     @Test
     void 다리_길이가_클때(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int length = 21;
+        String length = "21";
         assertThatThrownBy(() -> bridgeMaker.makeRandomBridgeProcess(length))
                 .isInstanceOf(IllegalArgumentException.class);
     }
