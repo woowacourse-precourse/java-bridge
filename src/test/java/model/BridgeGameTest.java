@@ -7,7 +7,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.model.BridgeGame;
-import bridge.model.GameResult;
+import bridge.model.GameStatus;
 import bridge.model.constant.MoveDirection;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
@@ -35,27 +35,27 @@ public class BridgeGameTest extends NsTest {
 
 
     @Nested
-    @DisplayName("get(Final)GameResult 메서드는 GameResult 객체를 반환하는데,")
-    class describe_getGameResult {
+    @DisplayName("get(Final)GameStatus 메서드는 GameStatus 객체를 반환하는데,")
+    class describe_getGameStatus {
 
         @Test
         @DisplayName("getGameResult는 이동 기록과 마지막 이동의 성공여부만을 담아 반환한다.")
         void onlyContainsMoveResult() {
-            GameResult gameResult = bridgeGame.getSimpleGameResult();
-            assertThatThrownBy(() -> gameResult.tryCount()).isInstanceOf(NoSuchElementException.class);
-            assertThat(gameResult.succeed()).isEqualTo(false);
+            GameStatus gameStatus = bridgeGame.getSimpleGameStatus();
+            assertThatThrownBy(() -> gameStatus.tryCount()).isInstanceOf(NoSuchElementException.class);
+            assertThat(gameStatus.fail()).isEqualTo(false);
             List<MoveDirection> dummy = new ArrayList<>();
-            assertThat(gameResult.getMoveChoices()).isEqualTo(dummy);
+            assertThat(gameStatus.getMoveChoices()).isEqualTo(dummy);
         }
 
         @Test
         @DisplayName("getFinalGameResult는 모든 정보를 담아 반환환다.")
         void containsAllData() {
-            GameResult gameResult = bridgeGame.getGameResult();
-            assertThat(gameResult.tryCount()).isEqualTo(1);
-            assertThat(gameResult.succeed()).isEqualTo(false);
+            GameStatus gameStatus = bridgeGame.getGameStatus();
+            assertThat(gameStatus.tryCount()).isEqualTo(1);
+            assertThat(gameStatus.fail()).isEqualTo(false);
             List<MoveDirection> dummy = new ArrayList<>();
-            assertThat(gameResult.getMoveChoices()).isEqualTo(dummy);
+            assertThat(gameStatus.getMoveChoices()).isEqualTo(dummy);
         }
     }
 
@@ -68,11 +68,11 @@ public class BridgeGameTest extends NsTest {
         void increaseTryCountAndResetMoveHistory() {
             bridgeGame.move(MoveDirection.UP);
             bridgeGame.retry();
-            GameResult gameResult = bridgeGame.getGameResult();
-            assertThat(gameResult.tryCount()).isEqualTo(2);
+            GameStatus gameStatus = bridgeGame.getGameStatus();
+            assertThat(gameStatus.tryCount()).isEqualTo(2);
             assertThat(bridgeGame.inProcess()).isEqualTo(true);
 
-            assertThat(gameResult.getMoveChoices()).isEmpty();
+            assertThat(gameStatus.getMoveChoices()).isEmpty();
 
         }
     }

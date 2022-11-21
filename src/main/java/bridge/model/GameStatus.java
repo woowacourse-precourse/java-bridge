@@ -4,16 +4,16 @@ import bridge.model.constant.MoveDirection;
 import java.util.List;
 import java.util.Optional;
 
-public class GameResult {
+public class GameStatus {
 
     private Optional<Integer> tryCount;
-    private boolean succeed;
+    private boolean fail;
     private List<MoveDirection> moveDirections;
 
-    public GameResult(Optional<Integer> tryCount, boolean succeed,
+    public GameStatus(Optional<Integer> tryCount, boolean fail,
             List<MoveDirection> moveDirections) {
         this.tryCount = tryCount;
-        this.succeed = succeed;
+        this.fail = fail;
         this.moveDirections = moveDirections;
     }
 
@@ -21,8 +21,8 @@ public class GameResult {
         return tryCount.get();
     }
 
-    public boolean succeed() {
-        return succeed;
+    public boolean fail() {
+        return fail;
     }
 
     public List<MoveDirection> getMoveChoices() {

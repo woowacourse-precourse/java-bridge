@@ -13,7 +13,7 @@ import static bridge.message.OutputMessage.SUCCESS_FORMAT;
 import static bridge.message.OutputMessage.SYMBOL_PARSER;
 import static bridge.message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
 
-import bridge.model.GameResult;
+import bridge.model.GameStatus;
 import bridge.model.constant.MoveDirection;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,19 +40,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(GameResult gameResult) {
+    public void printMap(GameStatus gameStatus) {
         for(MoveDirection moveDirection : displayOrder){
-            System.out.println(getFormattedRow(moveDirection, gameResult.getMoveChoices(),gameResult.succeed()));
+            System.out.println(getFormattedRow(moveDirection, gameStatus.getMoveChoices(), gameStatus.fail()));
         }
         System.out.println();
     }
 
-    private String getFormattedRow(MoveDirection userMoveDirection, List<MoveDirection> moveDirections, boolean succeed) {
+    private String getFormattedRow(MoveDirection userMoveDirection, List<MoveDirection> moveDirections, boolean fail) {
         List<String> formattedRow = new ArrayList<>();
 
         for(MoveDirection choice : moveDirections){
             if(userMoveDirection == choice){
-                formattedRow.add(moveSuccessMapper.get(succeed || formattedRow.size() != moveDirections.size() - 1));
+                formattedRow.add(moveSuccessMapper.get(fail != true || formattedRow.size() != moveDirections.size() - 1));
                 continue;
             }
             formattedRow.add(BLANK_SYMBOL.getValue());
@@ -65,12 +65,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameResult gameResult) {
+    public void printResult(GameStatus gameStatus) {
         System.out.println(FINAL_RESULT_COMMENT.getValue());
-        printMap(gameResult);
+        printMap(gameStatus);
 
-        System.out.println(String.format(SUCCESS_FORMAT.getValue(), gameSuccessMapper.get(gameResult.succeed())));
-        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT.getValue(), gameResult.tryCount()));
+        System.out.println(String.format(SUCCESS_FORMAT.getValue(), gameSuccessMapper.get(gameStatus.fail() != true)));
+        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT.getValue(), gameStatus.tryCount()));
     }
 
     public void printError(String message) {

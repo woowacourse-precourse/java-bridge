@@ -44,12 +44,12 @@ public class BridgeGame {
         this.moveDirections = new ArrayList<>();
     }
 
-    public GameResult getGameResult() {
-        return new GameResult(Optional.of(tryCount), succeed(), getMoveChoices());
+    public GameStatus getGameStatus() {
+        return new GameStatus(Optional.of(tryCount), gameOver(), getMoveChoices());
     }
 
-    public GameResult getSimpleGameResult() {
-        return new GameResult(Optional.empty(), succeed(), getMoveChoices());
+    public GameStatus getSimpleGameStatus() {
+        return new GameStatus(Optional.empty(), gameOver(), getMoveChoices());
     }
 
     public boolean inProcess() {
