@@ -12,24 +12,31 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-    BridgeGame bridgeGame = new BridgeGame();
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    private final BridgeMaker bridgeMaker;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public List<String> upSideDownSideMove = new ArrayList<>();
+    private BridgeGame bridgeGame;
+    private List<String> upSideDownSideMove = new ArrayList<>(List.of("", ""));
+
+    public BridgeGameController() {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(numberGenerator);
+        bridgeGame = new BridgeGame(1, true);
+        outputView = new OutputView();
+        inputView = new InputView();
+    }
 
     public void run(int size) {
         List<String> bridge = bridgeMaker.makeBridge(size);
-        do {
+        while (bridgeGame.getGameFlag() && bridgeGame.isFailure(upSideDownSideMove)) {
             upSideDownSideMove = updateUpSideDownSideMove(bridge);
             if (bridgeGame.isFailure(upSideDownSideMove)) {
                 String gameCommand = inputView.readGameCommand();
-                bridgeGame.retry(gameCommand);
+                bridgeGame = bridgeGame.retry(gameCommand);
             }
-        } while (BridgeGame.gameFlag && bridgeGame.isFailure(upSideDownSideMove));
-        outputView.printResult(upSideDownSideMove, BridgeGame.retryCount);
+        }
+        outputView.printResult(upSideDownSideMove, bridgeGame.getRetryCount());
     }
 
     public List<String> updateUpSideDownSideMove(List<String> bridge) {
