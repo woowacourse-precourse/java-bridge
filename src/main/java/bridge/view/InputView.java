@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.valid.BridgeValidUtil;
-import bridge.constant.BridgeMark;
-import bridge.constant.GameCommand;
+import bridge.enums.BridgeMark;
+import bridge.enums.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;

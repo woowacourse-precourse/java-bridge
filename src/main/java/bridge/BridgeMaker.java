@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.constant.BridgeMark;
+import bridge.enums.BridgeMark;
 
 import java.util.List;
 import java.util.stream.Collectors;

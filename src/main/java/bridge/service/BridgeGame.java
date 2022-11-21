@@ -2,9 +2,9 @@ package bridge.service;
 
 import bridge.Bridge;
 import bridge.BridgeMaker;
-import bridge.constant.BridgeMark;
+import bridge.enums.BridgeMark;
 import bridge.BridgeNumberGenerator;
-import bridge.constant.GameStatus;
+import bridge.enums.GameStatus;
 import bridge.Player;
 import bridge.dto.GameResultDto;
 

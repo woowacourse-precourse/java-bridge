@@ -1,7 +1,7 @@
 package bridge.dto;
 
-import bridge.constant.BridgeMark;
-import bridge.constant.GameStatus;
+import bridge.enums.BridgeMark;
+import bridge.enums.GameStatus;
 
 import java.util.List;
 

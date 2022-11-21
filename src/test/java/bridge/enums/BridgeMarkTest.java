@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.enums;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

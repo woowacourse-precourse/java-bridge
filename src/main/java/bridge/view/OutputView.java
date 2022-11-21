@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.constant.GameStatus;
+import bridge.enums.GameStatus;
 import bridge.dto.GameResultDto;
 
 import static bridge.dto.GameResultDto.GameRecordDto;

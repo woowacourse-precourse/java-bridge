@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.constant.BridgeMark;
-import bridge.constant.GameStatus;
+import bridge.enums.BridgeMark;
+import bridge.enums.GameStatus;
 import bridge.valid.BridgeValidUtil;
 
 import java.util.List;

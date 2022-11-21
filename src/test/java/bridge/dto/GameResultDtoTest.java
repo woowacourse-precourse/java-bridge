@@ -1,7 +1,7 @@
 package bridge.dto;
 
-import bridge.constant.BridgeMark;
-import bridge.constant.GameStatus;
+import bridge.enums.BridgeMark;
+import bridge.enums.GameStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
