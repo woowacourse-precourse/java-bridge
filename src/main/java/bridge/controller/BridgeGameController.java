@@ -7,6 +7,8 @@ import bridge.domain.BridgeGame;
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
 
+import java.util.List;
+
 public class BridgeGameController {
     private static final String SUCCESS_RESULT = "성공";
     private static final String FAIL_RESULT = "실패";
@@ -31,7 +33,7 @@ public class BridgeGameController {
                 restartOrQuit();
             }
             if (bridgeGame.isSuccess(moving.getValue())){
-                setQuit();
+                setQuit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), SUCCESS_RESULT, trial);
             }
         }
     }
@@ -89,7 +91,7 @@ public class BridgeGameController {
             setRestart();
         }
         if (isQuitResult()){
-            setQuit();
+            setQuit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), FAIL_RESULT, trial);
         }
     }
 
@@ -118,8 +120,8 @@ public class BridgeGameController {
         trial++;
     }
 
-    private void setQuit(){
+    private void setQuit(List<String> bridgeUpResults, List<String> bridgeDownResults, String gameResult, int trial){
         isRun = false;
-        OutputView.printResult();
+        OutputView.printResult(bridgeUpResults, bridgeDownResults, gameResult, trial);
     }
 }
