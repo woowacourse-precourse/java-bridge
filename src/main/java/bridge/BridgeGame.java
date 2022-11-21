@@ -18,33 +18,30 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moving) {
-        if (moving.equals("U")) {
-            upSideBridge.add("O");
-            downSideBridge.add(" ");
+        if (moving.equals(BridgeGameMark.UP_MARK.getMark())) {
+            upSideBridge.add(BridgeGameMark.ANSWER_MARK.getMark());
+            downSideBridge.add(BridgeGameMark.BLANK_MARK.getMark());
         }
-        if (moving.equals("D")) {
-            downSideBridge.add("O");
-            upSideBridge.add(" ");
+        if (moving.equals(BridgeGameMark.DOWN_MARK.getMark())) {
+            downSideBridge.add(BridgeGameMark.ANSWER_MARK.getMark());
+            upSideBridge.add(BridgeGameMark.BLANK_MARK.getMark());
         }
     }
 
     public void moveFailed(String moving) {
-        if (moving.equals("U")) {
-            upSideBridge.add("X");
-            downSideBridge.add(" ");
+        if (moving.equals(BridgeGameMark.UP_MARK.getMark())) {
+            upSideBridge.add(BridgeGameMark.WRONG_ANSWER_MARK.getMark());
+            downSideBridge.add(BridgeGameMark.BLANK_MARK.getMark());
         }
-        if (moving.equals("D")) {
-            downSideBridge.add("X");
-            upSideBridge.add(" ");
+        if (moving.equals(BridgeGameMark.DOWN_MARK.getMark())) {
+            downSideBridge.add(BridgeGameMark.WRONG_ANSWER_MARK.getMark());
+            upSideBridge.add(BridgeGameMark.BLANK_MARK.getMark());
         }
     }
 
     // 정답 다리와 맞는지 체크하는 기능
     public boolean checkAnswer(String answer, String moving) {
-        if (!answer.equals(moving)) {
-            return false;
-        }
-        return true;
+        return answer.equals(moving);
     }
 
     /**
@@ -53,7 +50,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String doRestart) {
-        if (doRestart.equals("Q")) {
+        if (doRestart.equals(BridgeGameMark.QUIT_MARK.getMark())) {
             return false;
         }
         upSideBridge = new StringJoiner(" | ", "[ ", " ]");

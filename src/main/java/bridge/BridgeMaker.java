@@ -26,8 +26,8 @@ public class BridgeMaker {
             String bridgeNumber = Integer.toString(bridgeNumberGenerator.generate());
             bridge.add(bridgeNumber);
         }
-        Collections.replaceAll(bridge,"1","U");
-        Collections.replaceAll(bridge,"0","D");
+        Collections.replaceAll(bridge,BridgeGameMark.UP_INPUT_MARK.getMark(),BridgeGameMark.UP_MARK.getMark());
+        Collections.replaceAll(bridge,BridgeGameMark.DOWN_INPUT_MARK.getMark(),BridgeGameMark.DOWN_MARK.getMark());
 
         return bridge;
     }
