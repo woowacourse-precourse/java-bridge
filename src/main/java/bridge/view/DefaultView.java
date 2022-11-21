@@ -42,6 +42,7 @@ public class DefaultView implements View {
             outputBridgeMap();
         } while (isMove && !isEnd);
         if (isEnd) {
+            outputResult();
             return;
         }
         inputGameCommand();
@@ -66,5 +67,10 @@ public class DefaultView implements View {
         if (isRetry) {
             playGame();
         }
+    }
+
+    private void outputResult() {
+        String map = controller.createMap();
+        outputView.printResult(map);
     }
 }
