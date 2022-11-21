@@ -33,4 +33,11 @@ public class SquareResult {
     public MoveResult getMoveResult() {
         return moveResult;
     }
+
+    @Override
+    public String toString() {
+        return String.format("이동 타입 : %s, 이동 결과 : %s",
+                square.toString(),
+                moveResult.toString());
+    }
 }
