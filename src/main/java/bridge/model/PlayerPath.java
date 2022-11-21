@@ -23,6 +23,9 @@ public class PlayerPath {
     }
 
     public Plate currentPlate() {
+        if (playerPath.size() == 0) {
+            return null;
+        }
         return playerPath.get(currentPosition());
     }
 }
