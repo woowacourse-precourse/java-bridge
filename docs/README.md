@@ -38,26 +38,21 @@
 - [ o ] 위 요소들 초기화
 - [ o ] cnt, idx 1씩증가하는 메서드
 
-# GameRest (게임에 필요한 요소들 리셋 시켜주는 클래스 (리셋버튼))
-- [  ] idx, canMove, gamePower 리셋 기능
-
 # Bridge (size 값을 던져주면 BridgeMaker를 이용하여 다리를 생성해주고 그 다리를 가지고 있는 클래스)
 
 # Game (게임 전반적으로 컨트롤 하는 클래스)
 
 # TypeChange (입력 받은 값을 형 변환 하는 클래스)
-- [ ] 입력 받은 size를 integer 형으로 변환
+- [ o ] 입력 받은 size를 integer 형으로 변환
 
 # 패키지
 # domain - 비즈니스에 관련된거 - BridgeMaker, ...
+
 - 클래스
 - BridgeGame - 다리를 건널 수 있는지 , 다시 게임 시작할건지 판별해주는 클래스
 - BridgeMaker - 다리를 만들어주는 클래스
 - BridgeNumberGenerator
 - BridgeRandomNumberGenerator
-
-# model 
-- 클래스
 - Bridge
 - BridgeShape
 - GameControll
@@ -66,10 +61,13 @@
 - 클래스
 - InputView
 - OutputView
-- 
+- valification
+- TypeChange
+
+# constants
+(Command, Error, Move)
+
 # controller - view와 model를 이어주는 패키지
 - Game
 
-# service
-- valification
-- constants(Command, Error, Move)
+
