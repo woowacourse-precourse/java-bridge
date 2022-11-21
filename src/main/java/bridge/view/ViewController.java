@@ -4,6 +4,7 @@ import bridge.BridgeSizeConstant;
 import bridge.domain.CommandType;
 import bridge.domain.bridge.MoveType;
 import bridge.domain.result.Map;
+import bridge.domain.result.Result;
 
 public class ViewController {
     private final InputView inputView;
@@ -64,5 +65,9 @@ public class ViewController {
 
     public void printMap(Map map) {
         outputView.printMap(map);
+    }
+
+    public void printResult(Result result) {
+        outputView.printResult(result);
     }
 }
