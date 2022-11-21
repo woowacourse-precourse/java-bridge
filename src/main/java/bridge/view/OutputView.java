@@ -31,10 +31,10 @@ public class OutputView {
      */
     public void printMap(List<List<String>> map) {
         System.out.print(LEFT_BRACKET);
-        map.stream().forEach(OutputView::printFirstLine);
+        map.forEach(OutputView::printFirstLine);
         System.out.println(RIGHT_BRACKET);
         System.out.print(LEFT_BRACKET);
-        map.stream().forEach(OutputView::printSecondLine);
+        map.forEach(OutputView::printSecondLine);
         System.out.println(RIGHT_BRACKET);
         System.out.println();
     }
