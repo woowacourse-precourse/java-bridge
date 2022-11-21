@@ -25,14 +25,14 @@ public class OutputView {
         String row = "[";
 
         for (int index = 0; index < user.size(); index++) {
-            row += rowCompare(UorD, user.get(index), ans.get(index)) + "|";
+            row += getSign(UorD, user.get(index), ans.get(index)) + "|";
         }
 
         row = row.substring(0, row.length() - 1) + "]\n";
         return row;
     }
 
-    private String rowCompare(String UorD, String user, String ans) {
+    private String getSign(String UorD, String user, String ans) {
         if (user.equals(UorD)) {
             if (user.equals(ans))
                 return " O ";
