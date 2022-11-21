@@ -10,6 +10,7 @@ public class Player {
     public void moveForward() {
         currentLocation += 1;
     }
+
     public void initCurrentLocation() {
         currentLocation = -1;
     }
