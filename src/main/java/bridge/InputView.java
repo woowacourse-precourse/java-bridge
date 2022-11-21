@@ -6,9 +6,15 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String WORD_UP = WordCollection.WORD_UP.getWord();
+    private static final String WORD_DOWN = WordCollection.WORD_DOWN.getWord();
+    private static final String WORD_RESTART = WordCollection.WORD_RESTART.getWord();
+    private static final String WORD_QUIT = WordCollection.WORD_QUIT.getWord();
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_SELECT_UP_OR_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String INPUT_RESTART_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String INPUT_SELECT_UP_OR_DOWN =
+            String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", WORD_UP, WORD_DOWN);
+    private static final String INPUT_RESTART_OR_QUIT =
+            String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", WORD_RESTART, WORD_QUIT);
 
     /**
      * 다리의 길이를 입력받는다.
@@ -70,7 +76,7 @@ public class InputView {
         }
     }
 
-    private boolean validateReadGameCommand(String gameCommand){
+    private boolean validateReadGameCommand(String gameCommand) {
         try {
             Validation.isInputRestartOrQuit(gameCommand);
         } catch (IllegalArgumentException e) {

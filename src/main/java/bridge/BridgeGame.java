@@ -10,8 +10,8 @@ public class BridgeGame {
     private static final String BRIDGE_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_WIN = "성공";
     private static final String GAME_LOSE = "실패";
-    private static final String RESTART_COMMAND = "R";
-    private static final String WORD_FAIL = "X";
+    private static final String RESTART_COMMAND = WordCollection.WORD_RESTART.getWord();
+    private static final String WORD_FAIL = WordCollection.WORD_FAIL.getWord();
     private static final InputController inputController = new InputController();
     private static final OutputController outputController = new OutputController();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());

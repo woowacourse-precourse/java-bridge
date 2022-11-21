@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
     private static final int NUMBER_UP = 1;
-    private static final String WORD_UP = "U";
-    private static final String WORD_DOWN = "D";
+    private static final String WORD_UP = WordCollection.WORD_UP.getWord();
+    private static final String WORD_DOWN = WordCollection.WORD_DOWN.getWord();
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 

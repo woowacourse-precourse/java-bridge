@@ -5,10 +5,10 @@ public class Validation {
     private static final int NUMBER_MAX = 20;
     private static final String NUMBER_REMOVE_REGEX = "[0-9]";
     private static final String REGEX_CHANGE_WORD = "";
-    private static final String WORD_UP = "U";
-    private static final String WORD_DOWN = "D";
-    private static final String WORD_RESTART = "R";
-    private static final String WORD_QUIT = "Q";
+    private static final String WORD_UP = WordCollection.WORD_UP.getWord();
+    private static final String WORD_DOWN = WordCollection.WORD_DOWN.getWord();
+    private static final String WORD_RESTART = WordCollection.WORD_RESTART.getWord();
+    private static final String WORD_QUIT = WordCollection.WORD_QUIT.getWord();
 
     public static void isInputIncludeCharacter(String input) {
         String result = input.replaceAll(NUMBER_REMOVE_REGEX, REGEX_CHANGE_WORD);
