@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.InputView;
 import bridge.OutputView;
+import bridge.Result;
 import java.util.List;
 
 public class GameController {
@@ -28,7 +29,8 @@ public class GameController {
     private void move(){
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String direction = inputView.readMoving();
-        boolean isMoveSuccess = bridgeGame.move(direction);
+        List<Result> gameResults = bridgeGame.move(direction);
+        boolean isSuccess = gameResults.get(gameResults.size() - 1).isSuccess();
+        outputView.printMap(gameResults);
     }
-
 }

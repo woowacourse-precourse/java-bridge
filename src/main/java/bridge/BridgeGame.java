@@ -15,10 +15,9 @@ public class BridgeGame {
         this.player = new User();
     }
 
-    public boolean move(String direction) {
+    public List<Result> move(String direction) {
         boolean isMoveSuccess = player.move(bridge, direction);
-        List<Boolean> gameResult = player.makeGameResult();
-        return isMoveSuccess;
+        return player.makeGameResult();
     }
 
 
