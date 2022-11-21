@@ -53,10 +53,10 @@ public class BridgeGame {
 }
 
 enum MoveStatus {
-    UP_CORRECT("UC"),
-    UP_INCORRECT("UIn"),
-    DOWN_CORRECT("DC"),
-    DOWN_INCORRECT("DIn");
+    UP_CORRECT("UpCorrect"),
+    UP_INCORRECT("UpIncorrect"),
+    DOWN_CORRECT("DownCorrect"),
+    DOWN_INCORRECT("DownIncorrect");
 
     private String status;
 
