@@ -1,13 +1,13 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
+import bridge.domain.BridgeGame;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     @Test
@@ -81,5 +81,18 @@ class BridgeGameTest {
         bridgeGame.move("U");
 
         assertThat(bridgeGame.isMovableArea()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("리셋 시, 플레이어가 비워지고 시도 횟수가 올라간다.")
+    void resetTest() {
+        SoftAssertions softAssertions = new SoftAssertions();
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.retry();
+
+        softAssertions.assertThat(bridgeGame.getPlayer()).as("플레이어 비우기").isEqualTo("");
+        softAssertions.assertThat(bridgeGame.getRetryCount()).as("시도 횟수 카운트").isEqualTo(1);
     }
 }
