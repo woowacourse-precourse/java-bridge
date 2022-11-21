@@ -1,6 +1,10 @@
 package bridge.view;
 
+import bridge.util.BridgeMaker;
+import bridge.util.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.List;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -11,28 +15,31 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
-        return Integer.parseInt(input());
-    }
+    public List<String> readBridgeSize() { // TODO: 입력값 유효성 검사를 어디서 할까???
+        String input = input();
+        return maker.makeBridge(Integer.parseInt(input));
+    } // TODO: 입력값 예외처리
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
+    public String readMoving() {
         return input();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
-        return null;
+    public String readGameCommand() {
+        return input();
     }
 
-    public static String input() {
+    public String input() {
         return Console.readLine();
     }
 }
