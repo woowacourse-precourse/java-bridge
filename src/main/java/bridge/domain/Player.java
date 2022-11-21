@@ -18,4 +18,8 @@ public class Player {
     public List<String> getPlayerMoving() {
         return playerMoving;
     }
+
+    public void clearMoving() {
+        playerMoving.clear();
+    }
 }
