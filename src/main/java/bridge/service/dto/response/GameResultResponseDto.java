@@ -2,16 +2,15 @@ package bridge.service.dto.response;
 
 import bridge.domain.BridgeStatus;
 import bridge.domain.Player;
-import bridge.domain.Result;
 
 public class GameResultResponseDto {
     private final BridgeStatus bridgeStatus;
-    private final String gameSuccessOrFail;
+    private final String result;
     private final int totalTryNumber;
 
-    public GameResultResponseDto(Result result, Player player) {
-        this.bridgeStatus = result.getBridgeStatus();
-        this.gameSuccessOrFail = result.getGameOver().getName();
+    public GameResultResponseDto(BridgeStatus bridgeStatus, Player player) {
+        this.bridgeStatus = bridgeStatus;
+        this.result = player.getResult().getName();
         this.totalTryNumber = player.getTotalTryNumber();
     }
 
@@ -20,7 +19,7 @@ public class GameResultResponseDto {
     }
 
     public String getGameSuccessOrFail() {
-        return gameSuccessOrFail;
+        return result;
     }
 
     public int getTotalTryNumber() {

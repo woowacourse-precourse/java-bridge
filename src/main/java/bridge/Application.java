@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 import bridge.domain.Bridge;
-import bridge.domain.Result;
 import bridge.service.BridgeGame;
 
 public class Application {
@@ -14,7 +13,7 @@ public class Application {
     }
 
     private static BridgeGame bridgeGame() {
-        return new BridgeGame(bridgeMaker(), bridge(), result());
+        return new BridgeGame(bridgeMaker(), bridge());
     }
 
     private static BridgeMaker bridgeMaker() {
@@ -27,9 +26,5 @@ public class Application {
 
     private static Bridge bridge() {
         return new Bridge();
-    }
-
-    private static Result result() {
-        return new Result();
     }
 }

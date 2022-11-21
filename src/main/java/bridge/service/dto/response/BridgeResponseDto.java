@@ -1,13 +1,12 @@
 package bridge.service.dto.response;
 
 import bridge.domain.BridgeStatus;
-import bridge.domain.Result;
 
 public class BridgeResponseDto {
     private final BridgeStatus bridgeStatus;
 
-    public BridgeResponseDto(Result result) {
-        this.bridgeStatus = result.getBridgeStatus();
+    public BridgeResponseDto(BridgeStatus bridgeStatus) {
+        this.bridgeStatus = bridgeStatus;
     }
 
     public BridgeStatus getBridgeStatus() {

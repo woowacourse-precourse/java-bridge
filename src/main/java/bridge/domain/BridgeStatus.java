@@ -12,9 +12,9 @@ public class BridgeStatus {
         this.downBlocks = new ArrayList<>();
     }
 
-    public void addStatus(BlockExpression expression) {
-        this.upBlocks.add(expression.getUpBlock());
-        this.downBlocks.add(expression.getDownBlock());
+    public void addStatus(String upBlock, String downBlock) {
+        this.upBlocks.add(upBlock);
+        this.downBlocks.add(downBlock);
     }
 
     public List<String> getUpBlocks() {

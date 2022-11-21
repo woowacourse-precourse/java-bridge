@@ -17,14 +17,14 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Bridge bridge;
-    private final Result result;
-    private Player player;
+    private final Player player;
+    private BridgeStatus bridgeStatus;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Result result) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge) {
         this.bridgeMaker = bridgeMaker;
         this.bridge = bridge;
-        this.result = result;
         this.player = new Player();
+        this.bridgeStatus = new BridgeStatus();
     }
 
     public void create(BridgeSizeRequestDto dto) {
@@ -39,36 +39,42 @@ public class BridgeGame {
      */
     public BridgeResponseDto move(SelectBlockRequestDto dto) {
         int nowPosition = player.nowPosition();
-        boolean canCross = bridge.canCross(nowPosition, dto.getBlock());
-        boolean isUpBlock = bridge.isUpBlock(nowPosition);
-        return moveOrFail(canCross, isUpBlock);
+        String mark = getMarkByMove(nowPosition, dto.getBlock());
+        return response(mark, dto.getBlock());
     }
 
-    private BridgeResponseDto moveOrFail(boolean canCross, boolean isUpBlock) {
-        if (canCross) {
-            result.addBlocks(BlockExpression.getBlockExpressionByMove(isUpBlock));
-            player.move();
-            validateGameSuccess(player.nowPosition());
-            return new BridgeResponseDto(result);
+    private BridgeResponseDto response(String mark, String block) {
+        if(block.equals(GameConstance.UP_BLOCK_EXPRESSION)) {
+            bridgeStatus.addStatus(mark, " ");
+            return new BridgeResponseDto(bridgeStatus);
         }
 
-        result.addBlocks(BlockExpression.getBlockExpressionByNotMove(isUpBlock));
-        result.fail();
-        return new BridgeResponseDto(result);
+        bridgeStatus.addStatus(" ", mark);
+        return new BridgeResponseDto(bridgeStatus);
     }
 
-    private void validateGameSuccess(int position) {
-        if (bridge.isDoneCrossingBridge(position)) {
-            result.success();
+    private String getMarkByMove(int currentPosition, String block) {
+        if (bridge.canCross(currentPosition, block)) {
+            player.move();
+            isDoneCrossingBridge(player.nowPosition());
+            return "O";
+        }
+        player.fail();
+        return "X";
+    }
+
+    private void isDoneCrossingBridge(int currentPosition) {
+        if(bridge.isDoneCrossingBridge(currentPosition)) {
+            player.success();
         }
     }
 
     public boolean playing() {
-        return !result.gameOver();
+        return !player.isGameOver();
     }
 
     public boolean isFail() {
-        return result.isFail();
+        return player.getResult().equals(Player.Result.FAIL);
     }
 
     public void tryGame() {
@@ -82,14 +88,14 @@ public class BridgeGame {
      */
     public boolean retry(GameRetryRequestDto dto) {
         if (dto.getRetry().equals(GameConstance.RETRY)) {
-            this.result.init();
             this.player.init();
+            bridgeStatus = new BridgeStatus();
             return true;
         }
         return false;
     }
 
     public GameResultResponseDto result() {
-        return new GameResultResponseDto(result, player);
+        return new GameResultResponseDto(bridgeStatus, player);
     }
 }
