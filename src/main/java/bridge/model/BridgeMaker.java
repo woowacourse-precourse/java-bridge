@@ -17,10 +17,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridgeInformation = new LinkedList<>();
         for(int i=0; i<size; i++){
-            if(bridgeNumberGenerator.generate() == BridgeConstant.CAN_GO_UP.getInt()){
+            int number =bridgeNumberGenerator.generate();
+            if(number == BridgeConstant.CAN_GO_UP.getInt()){
                 bridgeInformation.add(BridgeConstant.CAN_GO_UP.getString());
             }
-            if(bridgeNumberGenerator.generate() == BridgeConstant.CANT_GO_UP.getInt()){
+            if(number == BridgeConstant.CANT_GO_UP.getInt()){
                 bridgeInformation.add(BridgeConstant.CANT_GO_UP.getString());
             }
         }
