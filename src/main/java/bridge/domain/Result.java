@@ -45,6 +45,10 @@ public class Result {
         down.clear();
     }
 
+    public void updateIsSuccess() {
+        isSuccess = true;
+    }
+
     public boolean getIsSuccess() {
         return this.isSuccess;
     }
