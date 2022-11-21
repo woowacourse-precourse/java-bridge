@@ -82,6 +82,18 @@ public class BridgeGameTest extends NsTest {
         assertThat(false).isEqualTo(bridgeGame.checkIfGameIsFailed(bridgeLength));
     }
 
+    /**
+     * retry - 게임 재시작
+     */
+    @DisplayName("게임 재시작 시 bridge_userMove 초기화 테스트")
+    @Test
+    void retry_테스트() {
+        bridgeGame.move(BridgeGame.BridgeShape.DOWN.getStringValue());
+        bridgeGame.move(BridgeGame.BridgeShape.UP.getStringValue());
+        bridgeGame.retry();
+        assertThat(0).isEqualTo(bridgeGame.getBridge_userMove().size());
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
