@@ -10,7 +10,7 @@ public class GameRecord {
         this.retryCount = RECORD_INIT.getValue();
     }
 
-    public void addRetryCount() {
+    public void incrementRetryCount() {
         this.retryCount += RECORD_INCREMENT.getValue();
     }
 

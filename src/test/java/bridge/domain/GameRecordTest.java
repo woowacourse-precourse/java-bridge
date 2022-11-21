@@ -18,7 +18,7 @@ class GameRecordTest {
     void 횟수_증가_테스트() {
         int expected = gameRecord.getRetryCount() + 1;
 
-        gameRecord.addRetryCount();
+        gameRecord.incrementRetryCount();
         int actual = gameRecord.getRetryCount();
 
         assertThat(actual).isEqualTo(expected);

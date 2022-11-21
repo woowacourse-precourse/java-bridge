@@ -54,7 +54,7 @@ public class BridgeGame {
 
     public void retry() {
         bridgePasser.clear();
-        gameRecord.addRetryCount();
+        gameRecord.incrementRetryCount();
     }
 
     public BridgeAndPasser status() {
