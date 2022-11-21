@@ -36,8 +36,8 @@ class GameStatusTest {
     }
 
     @Nested
-    @DisplayName("isPlayable 메소드는")
-    class DescribeIsPlayableMethodTest {
+    @DisplayName("playable 메소드는")
+    class DescribePlayableMethodTest {
 
         @Nested
         @DisplayName("만약 호출되면")
@@ -57,7 +57,7 @@ class GameStatusTest {
             )
             @DisplayName("게임이 계속 진행되는지에 대한 유무를 반환한다")
             void itReturnsBoolean(GameStatus gameStatus, boolean expected) {
-                boolean actual = gameStatus.isPlayable();
+                boolean actual = gameStatus.playable();
 
                 assertThat(actual).isSameAs(expected);
             }
