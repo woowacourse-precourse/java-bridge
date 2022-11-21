@@ -4,7 +4,8 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        GamePlayer gamePlayer = new GamePlayer();
+        NumberGeneratorDependencyContainer numberGeneratorDependencyContainer = new NumberGeneratorDependencyContainerImpl();
+        GamePlayer gamePlayer = new GamePlayer(numberGeneratorDependencyContainer);
         gamePlayer.playGame();
     }
 

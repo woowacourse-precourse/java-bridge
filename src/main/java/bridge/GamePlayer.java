@@ -4,9 +4,12 @@ public class GamePlayer {
 
     private BridgeGameManager bridgeGameManager;
 
+    public GamePlayer(NumberGeneratorDependencyContainer numberGeneratorDependencyContainer) {
+        bridgeGameManager = new BridgeGameManager(numberGeneratorDependencyContainer);
+    }
+
     public void playGame() {
         try {
-            bridgeGameManager = new BridgeGameManager();
             bridgeGameManager.setUpGame();
             move();
         } catch (IllegalArgumentException illegalArgumentException) {

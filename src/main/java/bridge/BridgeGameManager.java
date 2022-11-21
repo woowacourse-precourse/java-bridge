@@ -10,10 +10,11 @@ public class BridgeGameManager {
     private OutputView outputView;
     private List<StringBuilder> currentBridgeStatus;
     private BridgeGame bridgeGame;
-
-    public BridgeGameManager() {
+    private BridgeNumberGenerator bridgeNumberGenerator;
+    public BridgeGameManager(NumberGeneratorDependencyContainer numberGeneratorDependencyContainer) {
         inputView = new InputView();
         outputView = new OutputView();
+        bridgeNumberGenerator = numberGeneratorDependencyContainer.bridgeNumberGenerator();
     }
 
     public void setUpGame() {
