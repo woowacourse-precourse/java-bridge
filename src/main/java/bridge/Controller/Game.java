@@ -3,6 +3,7 @@ package bridge.Controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Model.BridgeGame;
 import bridge.Model.BridgeMaker;
+import bridge.Model.BridgeMap;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -10,6 +11,7 @@ public class Game {
 
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
+    private BridgeMap bridgeMap;
 
     public void run() {
         OutputView.printInit();
@@ -27,6 +29,12 @@ public class Game {
         boolean isStart = true;
         while(isStart) {
             BridgeGame.plusPlayCount();
+            isStart = crossBridge();
         }
+    }
+
+    private boolean crossBridge() {
+        boolean gameState;
+        bridgeMap = new BridgeMap();
     }
 }
