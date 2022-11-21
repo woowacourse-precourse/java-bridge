@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,11 +14,11 @@ public class BridgeGameResult {
     }
 
     public Bridge bridge() {
-        return this.bridge;
+        return new Bridge(this.bridge);
     }
 
     public List<Boolean> playerMoveResult() {
-        return this.playerMoveResult;
+        return Collections.unmodifiableList(this.playerMoveResult);
     }
 
     public boolean isFail() {
