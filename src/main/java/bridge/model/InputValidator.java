@@ -4,7 +4,7 @@ import static bridge.message.ErrorMessage.NOT_A_MOVE_CHOICE;
 import static bridge.message.ErrorMessage.NOT_A_RETRY_INTENTION;
 import static bridge.message.ErrorMessage.OUT_OF_RANGE;
 
-import bridge.model.constant.MoveChoice;
+import bridge.model.constant.MoveDirection;
 import bridge.model.constant.RetryIntention;
 import java.util.Arrays;
 
@@ -18,7 +18,7 @@ public class InputValidator {
     }
 
     public void validateMoveChoice(String moving) {
-        if (Arrays.stream(MoveChoice.values()).anyMatch((choice) -> choice.getMovingType().equals(moving))) {
+        if (Arrays.stream(MoveDirection.values()).anyMatch((choice) -> choice.getDirectionString().equals(moving))) {
             return;
         }
         throw new IllegalArgumentException(NOT_A_MOVE_CHOICE.getValue());

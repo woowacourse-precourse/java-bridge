@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.model.constant.MoveChoice;
+import bridge.model.constant.MoveDirection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,15 +14,15 @@ public class BridgeGame {
 
     public static final int MINIMUM_BRIDGE_SIZE = 3;
     public static final int MAXIMUM_BRIDGE_SIZE = 20;
-    private List<MoveChoice> moveChoices;
-    private List<MoveChoice> bridge;
+    private List<MoveDirection> moveDirections;
+    private List<MoveDirection> bridge;
     private int tryCount;
 
     public BridgeGame(List<String> bridge) {
-        this.bridge = bridge.stream().map((point) -> MoveChoice.getMatchChoice(point))
+        this.bridge = bridge.stream().map((point) -> MoveDirection.getMatchDirection(point))
                 .collect(Collectors.toUnmodifiableList());
         this.tryCount = 1;
-        this.moveChoices = new ArrayList<>();
+        this.moveDirections = new ArrayList<>();
     }
 
     /**
@@ -30,11 +30,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String movingType) {
-        MoveChoice choice = MoveChoice.getMatchChoice(movingType);
-
-        int targetColumn = moveChoices.size();
-        updateMoveResults(movable(targetColumn, choice), choice);
+    public void move(MoveDirection userMoveDirection) {
+        moveDirections.add(userMoveDirection);
     }
 
     /**
@@ -44,7 +41,7 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
-        this.moveChoices = new ArrayList<>();
+        this.moveDirections = new ArrayList<>();
     }
 
     public GameResult getGameResult() {
@@ -60,29 +57,21 @@ public class BridgeGame {
     }
 
     public boolean succeed() {
-        if (gameOver() || bridge.size() != moveChoices.size()) {
+        if (gameOver() || bridge.size() != moveDirections.size()) {
             return false;
         }
         return true;
     }
 
     public boolean gameOver() {
-        if (moveChoices.isEmpty()) {
+        if (moveDirections.isEmpty()) {
             return false;
         }
-        int lastIndex = moveChoices.size() - 1;
-        return moveChoices.get(lastIndex) != bridge.get(lastIndex);
+        int lastIndex = moveDirections.size() - 1;
+        return moveDirections.get(lastIndex) != bridge.get(lastIndex);
     }
 
-    private void updateMoveResults(boolean succeed, MoveChoice moveChoice) {
-        moveChoices.add(moveChoice);
-    }
-
-    private List<MoveChoice> getMoveChoices() {
-        return Collections.unmodifiableList(moveChoices);
-    }
-
-    private boolean movable(int position, MoveChoice moveChoice) {
-        return this.bridge.get(position) == moveChoice;
+    private List<MoveDirection> getMoveChoices() {
+        return Collections.unmodifiableList(moveDirections);
     }
 }
