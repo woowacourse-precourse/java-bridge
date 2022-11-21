@@ -1,18 +1,16 @@
-package bridge.controller;
-
-import bridge.bridge.Direction;
+package bridge.game;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public enum GameResult {
+public enum Result {
     SUCCESS(true, "성공"),
     FAILURE(false, "실패"),
     ;
 
     private static final Map<Boolean, String> RESULT_VALUE = new HashMap<>();
     static {
-        for (GameResult value : values()) {
+        for (Result value : values()) {
             RESULT_VALUE.put(value.flag, value.result);
         }
     }
@@ -20,7 +18,7 @@ public enum GameResult {
     private final boolean flag;
     private final String result;
 
-    GameResult(boolean flag, String result) {
+    Result(boolean flag, String result) {
         this.flag = flag;
         this.result = result;
     }

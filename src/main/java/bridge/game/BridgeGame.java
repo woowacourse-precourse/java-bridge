@@ -1,10 +1,9 @@
-package bridge.controller;
+package bridge.game;
 
 import bridge.bridge.Bridge;
 import bridge.bridge.BridgeContainer;
 import bridge.view.ViewContainer;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -103,7 +102,7 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
     }
 
     private String getSuccessOrFailure() {
-        return GameResult.convert(bridge.isAllSuccess());
+        return Result.convert(bridge.isAllSuccess());
     }
 
     private String getTrial() {
