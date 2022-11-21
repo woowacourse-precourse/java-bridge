@@ -1,7 +1,14 @@
 package bridge.service;
 
+import bridge.constant.Directions;
 import bridge.domain.Bridge;
+import bridge.service.constant.ChoiceResult;
 import bridge.service.constant.GameStatus;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -62,6 +69,48 @@ public class BridgeGame {
 
     private void decreaseOrder() {
         panelOrder--;
+    }
+
+    public List<List<ChoiceResult>> obtainGameLog() {
+        List<List<ChoiceResult>> gameLog = new ArrayList<>();
+        Arrays.stream(Directions.values())
+                .forEach(direction -> gameLog.add(obtainGameLogOfLine(direction.getSymbol())));
+        if (status == GameStatus.FAIL) {
+            putFailLogElement(gameLog);
+        }
+        return gameLog;
+    }
+
+    private List<ChoiceResult> obtainGameLogOfLine (String line) {
+        return bridge.getBridge().stream()
+                .limit(panelOrder)
+                .map(panel -> createLogElement(panel, line))
+                .collect(Collectors.toList());
+    }
+
+    private ChoiceResult createLogElement (String panel, String line) {
+        if (panel.equals(line)) {
+            return ChoiceResult.CORRECT;
+        }
+        return ChoiceResult.NOT_CHOSEN;
+    }
+
+    private void putFailLogElement(List<List<ChoiceResult>> gameLog) {
+        for (List<ChoiceResult> lineLog : gameLog) {
+            putFailureElementToLine(lineLog);
+        }
+    }
+
+    private void putFailureElementToLine (List<ChoiceResult> lineLog) {
+        int lastPanelIndex = panelOrder - 1;
+        ChoiceResult lastPanel = lineLog.get(lastPanelIndex);
+        if (lastPanel == ChoiceResult.NOT_CHOSEN) {
+            lineLog.set(lastPanelIndex, ChoiceResult.WRONG);
+            return;
+        }
+        if (lastPanel == ChoiceResult.CORRECT) {
+            lineLog.set(lastPanelIndex, ChoiceResult.NOT_CHOSEN);
+        }
     }
 
     public int getAttemptCount() {
