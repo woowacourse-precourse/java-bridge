@@ -17,5 +17,6 @@ public class Application {
                 break;
             }
         }
+        game.finish();
     }
 }

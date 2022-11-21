@@ -16,12 +16,15 @@ public class BridgeGame {
 
     private BridgeMaker bridgeMaker;
     private Bridge bridge;
+    private int attempt;
+    private List<String> user;
 
     /**
      * 게임을 시작할 때 및 전체적인 게임을 진행하는 메서드
      */
     public void start() {
         printStart();
+        attempt = 0;
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = Bridge.make(readBridgeSize());
         System.out.println(bridge);
@@ -33,7 +36,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Result move() {
-        List<String> user = new ArrayList<>();
+        attempt++;
+        user = new ArrayList<>();
         while (bridge.isProceeding(user)) {
             printMoveOptionInput();
             user.add(readMoving());
@@ -53,5 +57,12 @@ public class BridgeGame {
     public Command retry() {
         printRestartOptionInput();
         return readGameCommand();
+    }
+
+    /**
+     * 게임을 종료하고 최종 결과를 출력하는 메서드
+     */
+    public void finish() {
+        printResult(bridge, user, attempt);
     }
 }
