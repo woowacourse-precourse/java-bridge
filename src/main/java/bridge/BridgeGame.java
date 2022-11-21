@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameCommandType;
 import bridge.domain.GameStatus;
 import bridge.domain.Result;
 import bridge.util.BridgeComparator;
@@ -12,7 +13,6 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public static final String RETRY_COMMAND = "R";
     private final BridgeMaker bridgeMaker;
     private final InputView inputView;
     private final OutputView outputView;
@@ -38,7 +38,7 @@ public class BridgeGame {
         Result result = playOneTry(gameStatus);
         while (!result.isSuccess()) {
             String gameCommand = requestGameCommand();
-            if (gameCommand.equals(RETRY_COMMAND)) result = retry(gameStatus);
+            if (gameCommand.equals(GameCommandType.RETRY.getCode())) result = retry(gameStatus);
         }
         return result;
     }
