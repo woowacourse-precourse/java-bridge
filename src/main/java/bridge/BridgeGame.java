@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.type.RetryType;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -30,6 +32,16 @@ public class BridgeGame {
      */
     public boolean move(Player player, Bridge bridge, int start) {
         return positionUtils.compareTo(player, bridge, start);
+    }
+
+    /**
+     * @param isPass 다리를 건넌 결과
+     * @return RetryType
+     * <p>
+     * 다리를 건넌 결과로 RetryType 을 반환한다.
+     */
+    public RetryType retry(boolean isPass) {
+        return positionUtils.toRetryType(isPass);
     }
 
 
