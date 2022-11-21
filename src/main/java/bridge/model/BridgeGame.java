@@ -9,8 +9,13 @@ public class BridgeGame {
 
     private Bridge answerBridge;
     private Bridge currentBridge;
+    private Statistics statistics;
 
-    public void setUp(Bridge answerBridge, Bridge currentBridge){
+    public BridgeGame() {
+        this.statistics = new Statistics();
+    }
+
+    public void setUp(Bridge answerBridge, Bridge currentBridge) {
         this.answerBridge = answerBridge;
         this.currentBridge = currentBridge;
     }
@@ -20,9 +25,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String input) {
+    public void move(String input) {
         currentBridge.forward(input);
-        return false;
     }
 
     /**
@@ -32,13 +36,30 @@ public class BridgeGame {
      */
     public void retry() {
         currentBridge = new Bridge(new ArrayList<>());
+        statistics.countRetry();
     }
 
-    public boolean checkCurrentState(){
+    public boolean checkCurrentState() {
         return currentBridge.matchCurrentState(answerBridge);
     }
 
-    public boolean checkAnswer(){
-        return currentBridge.matchAll(answerBridge);
+    public boolean checkAnswer() {
+        boolean isMatchAll = currentBridge.matchAll(answerBridge);
+        if (isMatchAll) {
+            statistics.gameClear();
+        }
+        return isMatchAll;
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public Bridge getAnswerBridge() {
+        return answerBridge;
+    }
+
+    public Bridge getCurrentBridge() {
+        return currentBridge;
     }
 }
