@@ -7,5 +7,8 @@ public class Application {
         int size = input.readBridgeSize();
         Bridge bridge = new Bridge(size);
         String direction = input.readMoving();
+        BridgeGame game = new BridgeGame();
+
+        game.move(direction);
     }
 }

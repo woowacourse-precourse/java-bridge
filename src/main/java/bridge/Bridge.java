@@ -1,15 +1,22 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
     int size;
     List<String> bridge;
+    List<String> userRoute;
 
     public Bridge(int size) {
         BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(randomNumberGenerator);
         this.size = size;
-        bridge = bridgeMaker.makeBridge(this.size);
+        this.bridge = bridgeMaker.makeBridge(this.size);
+        this.userRoute = new ArrayList<>();
+    }
+
+    public void updateUserRoute(String direction) {
+        userRoute.add(direction);
     }
 }
