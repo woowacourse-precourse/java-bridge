@@ -24,20 +24,8 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return Stream.generate(() -> getDirectionSign(bridgeNumberGenerator.generate()))
+        return Stream.generate(() -> Sign.getSign(bridgeNumberGenerator.generate()))
                 .limit(size)
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * 숫자에 해당하는 방향 사인을 반환한다.
-     * @param number    0 또는 1
-     * @return  0이면 "D", 1이면 "U"
-     */
-    private String getDirectionSign(int number) {
-        if (number == 0) {
-            return Sign.DOWN.getSign();
-        }
-        return Sign.UP.getSign();
     }
 }
