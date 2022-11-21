@@ -7,7 +7,6 @@ public class Application {
             BridgeGameController bridgeGameController = new BridgeGameController();
             bridgeGameController.start();
         } catch (IllegalArgumentException e) {
-//            System.out.println("[ERROR] " + e.getMessage());
             System.out.println(e.getMessage());
         }
     }
