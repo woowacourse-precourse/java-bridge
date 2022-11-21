@@ -18,11 +18,10 @@ public class BridgeGame {
     private int gameTryCount;
     private CurrentBridgeStatusMaker currentBridgeStatusMaker = new CurrentBridgeStatusMaker();
 
-    public BridgeGame(int length) {
+    public BridgeGame(List<String> createdBridge) {
         gameTryCount = 1;
         userStatus = new UserStatus();
-        List<String> createdBridge
-                = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(length);
+
         bridge = new Bridge(createdBridge);
     }
     /**

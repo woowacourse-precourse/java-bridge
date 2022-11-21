@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameTest {
@@ -16,7 +18,7 @@ public class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4})
     public void 게임_시도_횟수_기록(int targetTryCount) {
-        BridgeGame bridgeGame = new BridgeGame(1);
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "D"));
 
         iterateGameTry(bridgeGame, targetTryCount);
 
@@ -26,7 +28,7 @@ public class BridgeGameTest {
     @DisplayName("오버플로우가 발생할 수 있을 정도로 게임을 시도하면, 예외를 발생시킨다.")
     @Test
     public void 게임_시도_횟수_오버플로우_방지() {
-        BridgeGame bridgeGame = new BridgeGame(1);
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "D"));
 
         assertThatThrownBy(() -> iterateGameTry(bridgeGame, Integer.MAX_VALUE))
                 .isInstanceOf(IllegalArgumentException.class)

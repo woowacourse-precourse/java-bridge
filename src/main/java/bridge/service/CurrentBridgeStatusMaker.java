@@ -17,6 +17,7 @@ public class CurrentBridgeStatusMaker {
         for (int length = 0; length < currentPlayerBridge.size(); length++) {
             compare(currentPlayerBridge.get(length), createdBridge.get(length));
         }
+        makeEndPartBridge();
 
         return currentBridgeStatus;
     }

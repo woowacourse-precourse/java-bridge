@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.config.NumberGeneratorDependencyContainer;
 import bridge.service.BridgeGame;
@@ -27,7 +28,11 @@ public class BridgeGameManager {
         outputView.printGameProgressMessage(GameProgressMessage.GAME_START_INPUT_LENGTH_MESSAGE);
 
         int length = inputView.readBridgeSize();
-        bridgeGame = new BridgeGame(length);
+
+        List<String> createdBridge
+                = new BridgeMaker(bridgeNumberGenerator).makeBridge(length);
+
+        bridgeGame = new BridgeGame(createdBridge);
     }
 
     public void move() {
