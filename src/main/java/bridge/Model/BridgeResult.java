@@ -40,8 +40,13 @@ public class BridgeResult {
         currentMap.get(LOWER_BRIDGE).clear();
     }
 
-    public void getLastResult(){
-
+    public String getLastResult(){
+        String upperBridgeLast = currentMap.get(UPPER_BRIDGE).getLast();
+        String lowerBridgeLast = currentMap.get(LOWER_BRIDGE).getLast();
+        if (upperBridgeLast.equals(" ")){
+            return lowerBridgeLast;
+        }
+        return upperBridgeLast;
     }
 
     @Override
