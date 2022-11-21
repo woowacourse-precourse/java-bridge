@@ -62,5 +62,24 @@ class BridgeGameTest {
         assertThat(bridgeGame.getMap()).isEqualTo(expextMap);
     }
 
+    @Test
+    void isSuccess() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isSuccess()).isTrue();
+    }
+
+    @Test
+    void retry() {
+        String input = "R";
+        assertThat(bridgeGame.retry(input)).isTrue();
+    }
+
+    @Test
+    void retryFail() {
+        String input = "Q";
+        assertThat(bridgeGame.retry(input)).isFalse();
+    }
 
 }
