@@ -46,21 +46,27 @@ public class BridgeGame {
     }
 
     private void matchBridge(String answer, String direction) {
+        tryUpdateWithU(answer, direction);
+        tryUpdateWithD(answer, direction);
+        updateStatus();
+    }
+
+    private void tryUpdateWithU(String answer, String direction) {
         if (answer.equals("U") && answer.equals(direction)) {
             currentBridge.updateUpperCorrect();
         }
         if (answer.equals("U") && !answer.equals(direction)) {
             currentBridge.updateUpperWrong();
         }
+    }
 
+    private void tryUpdateWithD(String answer, String direction) {
         if (answer.equals("D") && answer.equals(direction)) {
             currentBridge.updateLowerCorrect();
         }
         if (answer.equals("D") && !answer.equals(direction)) {
             currentBridge.updateLowerWrong();
         }
-
-        updateStatus();
     }
 
     private void updateStatus() {
@@ -70,12 +76,18 @@ public class BridgeGame {
         String lastLower = currentBridge
                 .getLower()
                 .get(currentBridge.size() - 1);
+        checkFinish(lastUpper, lastLower);
+        checkStop(lastUpper, lastLower);
+    }
 
+    private void checkFinish(String lastUpper, String lastLower) {
         if ((lastUpper.equals("O") || lastLower.equals("O"))
                 && currentBridge.size() == answerBridge.size()) {
             this.status = FINISH;
         }
+    }
 
+    private void checkStop(String lastUpper, String lastLower) {
         if (lastUpper.equals("X") || lastLower.equals("X")) {
             this.status = STOP;
         }
