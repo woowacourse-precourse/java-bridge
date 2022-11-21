@@ -1,0 +1,49 @@
+package bridge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BridgeChecker {
+
+    public List<String> checkBridgeMatching(List<String> bridge, List<String> userInput) {
+        List<String> matchingResult = new ArrayList<>();
+
+        for(int i=0; i<userInput.size(); i++) {
+            if(bridge.get(i)==userInput.get(i)) {
+                matchingResult.add(BlockExpression.Same.getMark());
+                continue;
+            }
+            matchingResult.add(BlockExpression.Diff.getMark());
+        }
+
+        return matchingResult;
+    }
+
+    public List<String> checkUpperBlocks(List<String> matchingResult, List<String> bridge) {
+        List<String> upperBlocks = new ArrayList<>();
+
+        for(int i=0; i<matchingResult.size(); i++) {
+            if(bridge.get(i)==MovingDirection.Upper.getDirection()) {
+                upperBlocks.add(matchingResult.get(i));
+            }else if(bridge.get(i)==MovingDirection.Lower.getDirection()) {
+                upperBlocks.add(BlockExpression.Empty.getMark());
+            }
+        }
+
+        return upperBlocks;
+    }
+
+    public List<String> checkLowerBlocks(List<String> matchingResult, List<String> bridge) {
+        List<String> lowerBlocks = new ArrayList<>();
+
+        for(int i=0; i<matchingResult.size(); i++) {
+            if(bridge.get(i)==MovingDirection.Lower.getDirection()) {
+                lowerBlocks.add(matchingResult.get(i));
+            }else if(bridge.get(i)==MovingDirection.Upper.getDirection()) {
+                lowerBlocks.add(BlockExpression.Empty.getMark());
+            }
+        }
+
+        return lowerBlocks;
+    }
+}
