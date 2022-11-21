@@ -1,14 +1,14 @@
-package bridge;
+package bridge.domain;
 
 import java.util.List;
 
 public class GameResult {
 
-    private List<Cell> bridgeStatus;
+    private final List<Cell> bridgeStatus;
 
-    private GameStatus status;
+    private final GameStatus status;
 
-    private int attemptCount;
+    private final int attemptCount;
 
     public GameResult(List<Cell> bridgeStatus, GameStatus status, int attemptCount) {
         this.bridgeStatus = bridgeStatus;

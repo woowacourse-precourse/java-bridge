@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.Cell;
+import bridge.domain.GameResult;
 import java.util.List;
 
 /**

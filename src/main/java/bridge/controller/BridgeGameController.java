@@ -1,6 +1,13 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.GameStatus;
+import bridge.domain.GameResult;
 import bridge.exception.CannotCrossBridgeException;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {

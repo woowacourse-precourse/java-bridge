@@ -1,9 +1,9 @@
-package bridge;
+package bridge.domain;
 
 public class Cell {
 
-    private String status;
-    private String direction;
+    private final String status;
+    private final String direction;
 
     public Cell(String status, String direction) {
         this.status = status;

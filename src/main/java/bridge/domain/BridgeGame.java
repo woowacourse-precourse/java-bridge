@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.exception.CannotCrossBridgeException;
 import java.util.ArrayList;
