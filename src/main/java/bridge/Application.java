@@ -17,9 +17,7 @@ public class Application {
 
         for (int i = 0; i < bridgeSize; i++) {
             String moveAnswer = inputView.readMoving();
-            boolean isWinning = outputView.printMap(bridge, moveAnswer, i);
-
-            if (!isWinning) {
+            if (!outputView.printMap(bridge, moveAnswer, i)) {
                 String retryAnswer = inputView.readGameCommand();
 
                 if (retryAnswer.equals("Q")) {
