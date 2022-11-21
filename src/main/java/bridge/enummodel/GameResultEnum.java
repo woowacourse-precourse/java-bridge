@@ -1,7 +1,8 @@
 package bridge.enummodel;
 
 public enum GameResultEnum {
-    RESULT("성공", "실패");
+    RESULT("성공", "실패"),
+    CHECK("O","X");
 
     private final String win;
     private final String lose;

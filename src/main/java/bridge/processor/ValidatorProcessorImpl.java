@@ -1,13 +1,17 @@
 package bridge.processor;
 
 import bridge.enummodel.CommandEnum;
+import bridge.enummodel.ErrorMessageEnum;
 
 public class ValidatorProcessorImpl implements ValidatorProcessor{
+    private static final int MIN_SIZE_NUMBER = 3;
+    private static final int MAX_SIZE_NUMBER = 20;
+
     @Override
     public Integer validateBridgeSizeInput(String input) {
         int inputInt = Integer.parseInt(input);
-        if (inputInt < 3 || inputInt > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        if (inputInt < MIN_SIZE_NUMBER || inputInt > MAX_SIZE_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessageEnum.NOT_VALIDATE_SIZE.getValue());
         }
         return inputInt;
     }
@@ -16,7 +20,7 @@ public class ValidatorProcessorImpl implements ValidatorProcessor{
     public void validateRetryInput(String input) {
         if (!CommandEnum.RESTART.getValue().equals(input) &&
                 !CommandEnum.QUIT.getValue().equals(input)) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력값 입니다.");
+            throw new IllegalArgumentException(ErrorMessageEnum.NOT_VALIDATE.getValue());
         }
     }
 
@@ -24,7 +28,7 @@ public class ValidatorProcessorImpl implements ValidatorProcessor{
     public void validateCommandInput(String input) {
         if (!CommandEnum.UP.getValue().equals(input) &&
                 !CommandEnum.DOWN.getValue().equals(input)) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력값 입니다.");
+            throw new IllegalArgumentException(ErrorMessageEnum.NOT_VALIDATE.getValue());
         }
     }
 }
