@@ -7,16 +7,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    InputView inputView = new InputView();
     BridgeMaker bridgeMaker = BridgeMaker.getInstance();
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int inputCount) {
+    public boolean move(int inputCount, String readMoving) {
         boolean result = false;
-        String input = inputView.readMoving();
+        String input = readMoving;
         if (bridgeMaker.bridge.get(inputCount).equals(input)) {
             return true;
         }
@@ -31,9 +31,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String retry() {
+    public String retry(String readGameCommand) {
         String str = "";
-        String result = inputView.readGameCommand();
+        String result = readGameCommand;
         if (result.equals("R")) {
             return "retry";
         }

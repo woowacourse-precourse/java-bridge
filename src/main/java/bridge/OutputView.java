@@ -5,68 +5,76 @@ package bridge;
  */
 public class OutputView {
     BridgeMaker bridgeMaker = BridgeMaker.getInstance();
-    String[] answer = new String[]{" O ", " X "};
+    String[] answerPrint = new String[]{" O ", " X "};
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int count, boolean dingdong) {
+    public void printMap(int count, boolean answer) {
         System.out.print("[");
-        for (int i = 0; i <= count; i++) {
-            if (i == count) {
-                updingdong(dingdong, count);
-                break;
-            }
-            if (bridgeMaker.bridge.get(i).equals("U")) {
-                System.out.print(answer[0]);
-            }
-            if (bridgeMaker.bridge.get(i).equals("D")) {
-                System.out.print("   ");
-            }
-            if (i <= count -1) {
-                System.out.print("|");
-            }
-        }
+        upperPrinter(count, answer);
         System.out.print("]\n");
         System.out.print("[");
-        for (int i = 0; i <= count; i++) {
-            if (i == count) {
-                downdingdong(dingdong, count);
-                break;
-            }
-            if (bridgeMaker.bridge.get(i).equals("D")) {
-                System.out.print(answer[0]);
-            }
-            if (bridgeMaker.bridge.get(i).equals("U")) {
-                System.out.print("   ");
-            }
-            if (i <= count -1) {
-                System.out.print("|");
-            }
-        }
+        downPrinter(count, answer);
         System.out.print("]\n");
     }
 
-    private void downdingdong(boolean dingdong, int count) {
-        if (dingdong && bridgeMaker.bridge.get(count).equals("D")) {
-            System.out.print(answer[0]);
+    private void upperPrinter(int count, boolean answer) {
+        for (int i = 0; i <= count; i++) {
+            if (i == count) {
+                upperAnswer(answer, count);
+                break;
+            }
+            if (bridgeMaker.bridge.get(i).equals("U")) {
+                System.out.print(answerPrint[0]);
+            }
+            if (bridgeMaker.bridge.get(i).equals("D")) {
+                System.out.print("   ");
+            }
+            if (i <= count -1) {
+                System.out.print("|");
+            }
         }
-        if (!dingdong && bridgeMaker.bridge.get(count).equals("D")) {
-            System.out.print(answer[1]);
+    }
+
+    private void downPrinter(int count, boolean answer) {
+        for (int i = 0; i <= count; i++) {
+            if (i == count) {
+                downAnswer(answer, count);
+                break;
+            }
+            if (bridgeMaker.bridge.get(i).equals("D")) {
+                System.out.print(answerPrint[0]);
+            }
+            if (bridgeMaker.bridge.get(i).equals("U")) {
+                System.out.print("   ");
+            }
+            if (i <= count -1) {
+                System.out.print("|");
+            }
+        }
+    }
+
+    private void downAnswer(boolean answer, int count) {
+        if (answer && bridgeMaker.bridge.get(count).equals("D")) {
+            System.out.print(answerPrint[0]);
+        }
+        if (!answer && bridgeMaker.bridge.get(count).equals("D")) {
+            System.out.print(answerPrint[1]);
         }
         if (bridgeMaker.bridge.get(count).equals("U")) {
             System.out.print("   ");
         }
     }
 
-    private void updingdong(boolean dingdong, int count) {
-        if (dingdong && bridgeMaker.bridge.get(count).equals("U")) {
-            System.out.print(answer[0]);
+    private void upperAnswer(boolean answer, int count) {
+        if (answer && bridgeMaker.bridge.get(count).equals("U")) {
+            System.out.print(answerPrint[0]);
         }
-        if (!dingdong && bridgeMaker.bridge.get(count).equals("U")) {
-            System.out.print(answer[1]);
+        if (!answer && bridgeMaker.bridge.get(count).equals("U")) {
+            System.out.print(answerPrint[1]);
         }
         if (bridgeMaker.bridge.get(count).equals("D")) {
             System.out.print("   ");
