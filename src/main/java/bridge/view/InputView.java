@@ -8,22 +8,38 @@ public class InputView {
 
     public static int readBridgeSize() {
         OutputView.printInputBridgeSize();
-        String input = readLine();
-        ExceptionHandler.checkBridgeSize(input);
-        return Integer.parseInt(input);
+        while (true) {
+            try {
+                String input = readLine();
+                ExceptionHandler.checkBridgeSize(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                throw illegalArgumentException;
+            }
+        }
     }
 
     public static String readChoice() {
         OutputView.printInputMoving();
-        String input = readLine();
-        ExceptionHandler.checkMoving(input);
-        return input;
+        while (true) {
+            try {
+                String input = readLine();
+                ExceptionHandler.checkMoving(input);
+                return input;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                throw illegalArgumentException;
+            }
+        }
     }
 
     public static String readRetryCommand() {
         OutputView.printInputRetryCommand();
-        String input = readLine();
-        ExceptionHandler.checkRetryCommand(input);
-        return input;
+        try {
+            String input = readLine();
+            ExceptionHandler.checkRetryCommand(input);
+            return input;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            throw illegalArgumentException;
+        }
     }
 }

@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.model.User;
 import bridge.model.constant.Message;
-
 import java.util.List;
 
 public class OutputView {
