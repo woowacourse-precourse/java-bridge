@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.util.SafeBridge;
+import bridge.util.SafeSide;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +30,11 @@ public class BridgeMaker {
     }
 
     private void updateBridge(List<String> bridge) {
-        bridge.add(getDirection());
+        bridge.add(chooseSafeSide());
     }
 
-    private String getDirection() {
+    private String chooseSafeSide() {
         final int randomNumber = bridgeNumberGenerator.generate();
-        return SafeBridge.chooseUpOrDown(randomNumber);
+        return SafeSide.chooseUpOrDown(randomNumber);
     }
 }
