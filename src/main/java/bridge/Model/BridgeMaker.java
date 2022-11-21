@@ -12,7 +12,7 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(int size) {
+    public List<String> makeBridge(final int size) {
         List<String> bridge = new ArrayList<>();
         for (int count = 0; count < size; count++) {
             int number = bridgeNumberGenerator.generate();
@@ -21,9 +21,10 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private String changeValue(int number) {
-        if(number == 1)
+    private String changeValue(final int number) {
+        if (number == 1) {
             return "U";
+        }
         return "D";
     }
 }

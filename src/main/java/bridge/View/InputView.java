@@ -6,27 +6,27 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public static int readBridgeSize() {
-        while(true) {
+        while (true) {
             String size = Console.readLine();
-            if(Verification.isBridgeNum(size)) {
+            if (Verification.isBridgeNum(size)) {
                 return Integer.parseInt(size);
             }
         }
     }
 
     public static String readMoving() {
-        while(true) {
+        while (true) {
             String key = Console.readLine();
-            if(Verification.isMoveKey(key)) {
+            if (Verification.isMoveKey(key)) {
                 return key;
             }
         }
     }
 
     public static String readGameCommand() {
-        while(true) {
+        while (true) {
             String key = Console.readLine();
-            if(Verification.isRestartKey(key)) {
+            if (Verification.isRestartKey(key)) {
                 return key;
             }
         }

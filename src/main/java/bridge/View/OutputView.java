@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public static void printMap(BridgeMap bridgeMap) {
-        System.out.print(bridgeMap+"\n");
+        System.out.print(bridgeMap + "\n");
     }
 
     public static void printStartOrEnd() {
