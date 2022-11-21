@@ -12,6 +12,7 @@ import bridge.Controller.Validator;
 import bridge.Model.BridgeGame;
 import bridge.Model.BridgeResult;
 import bridge.View.InputView;
+import bridge.View.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.io.ByteArrayInputStream;
@@ -30,6 +31,7 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_NON_EXISTENT_COMMAND = "[ERROR] 올바르지 않은 명령입니다.";
     private static InputStream in;
     private static InputView inputView = new InputView();
+    private static OutputView outputView = new OutputView();
     private static Validator validator;
     private static BridgeGame bridgeGame;
     private static BridgeResult bridgeResult;
@@ -180,35 +182,60 @@ class ApplicationTest extends NsTest {
 
     //region 다리이동결과 단위 테스트 케이스
     @Test
-    void 다리이동결과_기능테스트_성공(){
+    void 다리이동결과출력_기능테스트_성공(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U"));
         bridgeResult = new BridgeResult();
         bridgeResult = bridgeGame.move(0, "U", bridgeResult);
-        BridgeResult answer = new BridgeResult(List.of("O"), List.of(" "));
-        assertThat(bridgeResult.toString()).isEqualTo(answer.toString());
+        outputView.printMap(bridgeResult);
+        assertThat(output()).contains(
+                "[ O ]",
+                "[   ]"
+        );
     }
     @Test
-    void 다리이동결과_기능테스트_실패1(){
+    void 다리이동결과출력_기능테스트_실패1(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U"));
         bridgeResult = new BridgeResult(
                 new ArrayList<>(List.of("O")),
                 new ArrayList<>(List.of(" "))
         );
         bridgeResult = bridgeGame.move(1, "U", bridgeResult);
-        BridgeResult answer = new BridgeResult(List.of("O", "X"), List.of(" ", " "));
-        assertThat(bridgeResult.toString()).isEqualTo(answer.toString());
+        outputView.printMap(bridgeResult);
+        assertThat(output()).contains(
+                "[ O | X ]",
+                "[   |   ]"
+        );
     }
 
     @Test
-    void 다리이동결과_기능테스트_실패2(){
+    void 다리이동결과출력_기능테스트_실패2(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U", "U", "D"));
         bridgeResult = new BridgeResult(
                 new ArrayList<>(List.of("O", " ", "O")),
                 new ArrayList<>(List.of(" ", "O", " "))
         );
         bridgeResult = bridgeGame.move(3, "D", bridgeResult);
-        BridgeResult answer = new BridgeResult(List.of("O", " ", "O", " "), List.of(" ", "O", " ", "X"));
-        assertThat(bridgeResult.toString()).isEqualTo(answer.toString());
+        outputView.printMap(bridgeResult);
+        assertThat(output()).contains(
+                "[ O |   | O |   ]",
+                "[   | O |   | X ]"
+        );
+    }
+
+    @Test
+    void 다리이동결과출력_기능테스트_실패3(){
+        bridgeGame = new BridgeGame(List.of("U", "D", "U", "U", "D"));
+        bridgeResult = new BridgeResult(
+                new ArrayList<>(List.of("O", " ")),
+                new ArrayList<>(List.of(" ", "O"))
+        );
+        bridgeResult = bridgeGame.move(2, "U", bridgeResult);
+        bridgeResult = bridgeGame.move(3, "D", bridgeResult);
+        outputView.printMap(bridgeResult);
+        assertThat(output()).contains(
+                "[ O |   | O |   ]",
+                "[   | O |   | X ]"
+        );
     }
     //endregion
 
