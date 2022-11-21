@@ -1,5 +1,7 @@
 package bridge.config;
 
+import java.util.List;
+
 public enum UserInput {
     UP("U"),
     DOWN("D"),
@@ -7,6 +9,7 @@ public enum UserInput {
     QUIT("Q");
 
     private final String value;
+    public static final List<String> intToUpDown = List.of(UserInput.DOWN.getValue(), UserInput.UP.getValue());
 
     UserInput(String value) {
         this.value = value;
