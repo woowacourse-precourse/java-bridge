@@ -23,8 +23,9 @@ public class Bridge {
         return true;
     }
 
-    private void increaseCount() {
-        this.countTotal += 1;
+    public void clearBridgeNow() {
+        bridgeNow.clear();
+        increaseCount();
     }
 
     private boolean checkSucces() {
@@ -36,17 +37,16 @@ public class Bridge {
         return true;
     }
 
-    public void clearBridgeNow() {
-        bridgeNow.clear();
-        increaseCount();
-    }
-
     public boolean checkFinish() {
         return bridgeWin.equals(bridgeNow);
     }
 
     public List<String> getBridgeNow() {
         return bridgeNow;
+    }
+
+    private void increaseCount() {
+        this.countTotal += 1;
     }
 
     int getCountTotal() {
