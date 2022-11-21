@@ -1,6 +1,7 @@
 package bridge.util;
 
 import bridge.exception.IllegalArgument;
+import bridge.util.Constants.ErrorMessage;
 
 public class Parser {
 

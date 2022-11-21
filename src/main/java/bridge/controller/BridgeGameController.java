@@ -6,6 +6,7 @@ import bridge.model.Bridge;
 import bridge.model.SuccessOrFail;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.util.Constants.Constant;
 
 public class BridgeGameController {
 
@@ -59,7 +60,7 @@ public class BridgeGameController {
 
     public boolean retryControl() {
         String gameCommand = validateGameCommand();
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(Constant.RESTART)) {
             bridgeGame.retry(bridge);
             return true;
         }

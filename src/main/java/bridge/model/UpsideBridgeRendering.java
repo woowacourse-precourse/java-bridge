@@ -1,15 +1,14 @@
 package bridge.model;
 
-import bridge.util.Constant;
+import bridge.util.Constants.Constant;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum UpsideBridgeRendering {
-    U_SUCCESS(Constant.SUCCESS, "U", true),
-    U_FAIL(Constant.FAIL, "U", false),
-    D_SUCCESS(Constant.BLANK, "D", true),
-    D_FAIL(Constant.BLANK, "D", false);
+    U_SUCCESS(Constant.SUCCESS, Constant.UPSIDE, true),
+    U_FAIL(Constant.FAIL, Constant.UPSIDE, false),
+    D_SUCCESS(Constant.BLANK, Constant.DOWN, true),
+    D_FAIL(Constant.BLANK, Constant.DOWN, false);
 
     private final String bridgeRendering;
     private final String bridgeShape;

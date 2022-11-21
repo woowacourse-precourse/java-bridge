@@ -2,7 +2,7 @@ package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.util.Constant;
+import bridge.util.Constants.Constant;
 import org.junit.jupiter.api.Test;
 
 public class UpsideBridgeRenderingTest {

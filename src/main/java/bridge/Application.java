@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.model.SuccessOrFail;
 
 public class Application {
 

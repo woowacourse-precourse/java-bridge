@@ -1,7 +1,6 @@
 package bridge.model;
 
-import bridge.util.Constant;
-import bridge.util.Message;
+import bridge.util.Constants.Message;
 
 import java.util.Arrays;
 

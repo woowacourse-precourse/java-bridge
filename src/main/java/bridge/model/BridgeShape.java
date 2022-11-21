@@ -1,10 +1,12 @@
 package bridge.model;
 
+import bridge.util.Constants.Constant;
+
 import java.util.Arrays;
 
 public enum BridgeShape {
-    UP("U", 1),
-    DOWN("D", 0);
+    UP(Constant.UPSIDE, 1),
+    DOWN(Constant.DOWN, 0);
 
     private final String bridgeShape;
     private final int bridgeRandomNumber;
