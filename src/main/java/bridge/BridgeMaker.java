@@ -26,4 +26,16 @@ public class BridgeMaker {
         }
         return answer;
     }
+
+    // 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸.
+    private String saveAnswer(int number) {
+        if (number == 1) {
+            return "U";
+        }
+        if (number == 0) {
+            return "D";
+        }
+        return null;
+    }
+
 }
