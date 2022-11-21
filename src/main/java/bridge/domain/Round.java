@@ -15,6 +15,11 @@ public class Round {
         return round == FIRST_ROUND;
     }
 
+    // 라운드를 증가시키는 기능
+    public void plusRound() {
+        round++;
+    }
+
     public int getRound() {
         return round;
     }
