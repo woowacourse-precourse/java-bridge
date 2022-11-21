@@ -1,17 +1,65 @@
 package bridge.domain;
 
+import bridge.domain.generator.BridgeRandomNumberGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    private List<List<String>> bridgeCorrects;
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private List<String> bridge;
+    private int cnt=1;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<List<String>> move(String user,int i) {
+        for(String str:bridge){
+            System.out.print(str+" ");
+        }
+        System.out.println();
+        List<String> bridgeCorrect = new ArrayList<>();
+        up(bridgeCorrect,bridge.get(i),user);
+        down(bridgeCorrect,bridge.get(i),user);
+        bridgeCorrects.add(bridgeCorrect);
+        return bridgeCorrects;
     }
+
+    public void bridgeMaking(int bridgeSize){
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridgeCorrects = new ArrayList<>();
+    }
+    public void up(List<String> bridgeCorrect,String bridge,String user){
+        if(user.equals(MessageStorage.UP.getMessage())){
+            if(bridge.equals(user)){
+                bridgeCorrect.add(MessageStorage.UP.getMessage());
+                bridgeCorrect.add(MessageStorage.CORRECT.getMessage());
+            }
+            if(!bridge.equals(user)){
+                bridgeCorrect.add(MessageStorage.UP.getMessage());
+                bridgeCorrect.add(MessageStorage.INCORRECT.getMessage());
+            }
+        }
+    }
+
+    public void down(List<String> bridgeCorrect,String bridge,String user){
+        if(user.equals(MessageStorage.DOWN.getMessage())){
+            if(bridge.equals(user)){
+                bridgeCorrect.add(MessageStorage.DOWN.getMessage());
+                bridgeCorrect.add(MessageStorage.CORRECT.getMessage());
+            }
+            if(!bridge.equals(user)){
+                bridgeCorrect.add(MessageStorage.DOWN.getMessage());
+                bridgeCorrect.add(MessageStorage.INCORRECT.getMessage());
+            }
+        }
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -19,5 +67,32 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        bridgeCorrects = new ArrayList<>();
+        cnt++;
     }
+
+    public List<List<String>> returnResult(){
+        return bridgeCorrects;
+    }
+
+    public int totalTryTime(){
+        return cnt;
+    }
+
+    public String isSuccess(int bridgeSize){
+        for(int i=0;i<bridgeSize;i++){
+            if(returnResult().get(i).get(1).equals(MessageStorage.INCORRECT.getMessage())){
+                return MessageStorage.FAIL.getMessage();
+            }
+        }
+        return MessageStorage.SUCCESS.getMessage();
+    }
+
+    public boolean wrongSelect(int i){
+        if(bridgeCorrects.get(i).get(1).equals(MessageStorage.INCORRECT.getMessage())){
+            return false;
+        }
+        return true;
+    }
+
 }
