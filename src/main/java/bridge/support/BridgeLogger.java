@@ -33,7 +33,14 @@ public class BridgeLogger {
     }
 
     private String removeLastDivision(String log) {
+        if (isInit(log)) {
+            return log;
+        }
         return log.substring(0, log.length() - DIVISION.length());
+    }
+
+    private boolean isInit(String log) {
+        return log.length() == PREFIX.length();
     }
 
     public void log(String input, boolean live) {
