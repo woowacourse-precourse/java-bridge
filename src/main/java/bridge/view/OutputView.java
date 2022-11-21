@@ -37,7 +37,7 @@ public class OutputView {
         printEndGame();
         String s = bridgeGame.printFinalBridge(bridge);
         System.out.println(s);
-        printSuccess(bridge, bridgeGame.getSize());
+        printSuccess(bridge, bridgeGame.getSize(), s);
         printTryCount(bridgeGame.getTryCount());
     }
 
@@ -46,12 +46,12 @@ public class OutputView {
     }
 
 
-    public void printSuccess(List<String> bridge, int step){
+    public void printSuccess(List<String> bridge, int step, String str){
         System.out.println("");
-        if(bridge.size() == step){
+        if(bridge.size() == step && !str.contains("X")){
             System.out.println(GameMessage.GAME_SUCCESS_MESSAGE.getMessage());
         }
-        if(bridge.size() != step){
+        if(bridge.size() != step || str.contains("X")){
             System.out.println(GameMessage.GAME_FAIL_MESSAGE.getMessage());
         }
     }
