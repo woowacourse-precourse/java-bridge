@@ -1,20 +1,16 @@
 package bridge;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
-public class InputView {
+import camp.nextstep.edu.missionutils.Console;
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        return 0;
+import java.util.List;
+
+public class InputView {
+    public List<String> readBridgeSize() {
+        String size = Console.readLine();
+        BridgeMaker test = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return test.makeBridge(Integer.parseInt(size));
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         return null;
     }
