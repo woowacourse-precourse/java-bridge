@@ -1,4 +1,4 @@
-package bridge;
+package bridge.views;
 
 import bridge.utils.ValidateUtils;
 import bridge.utils.constants.BridgeMove;
