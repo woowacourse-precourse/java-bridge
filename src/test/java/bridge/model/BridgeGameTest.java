@@ -23,4 +23,19 @@ class BridgeGameTest {
         bridgeGame.move("U", Arrays.asList("D"));
         assertThat(bridgeGame.getUp()).isEqualTo(Arrays.asList(" X "));
     }
+
+    @Test
+    void 진행중_다리_횟수_테스트1() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("U", Arrays.asList("U","U"));
+        assertThat(bridgeGame.getCurrentCount()).isEqualTo(1);
+    }
+
+    @Test
+    void 진행중_다리_횟수_테스트2() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("U", Arrays.asList("U","U"));
+        bridgeGame.move("D", Arrays.asList("U","U"));
+        assertThat(bridgeGame.getCurrentCount()).isEqualTo(2);
+    }
 }
