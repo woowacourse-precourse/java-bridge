@@ -1,10 +1,9 @@
 package bridge;
 
-import bridge.constant.Constant;
+import bridge.model.BridgeGame;
+import bridge.model.Move;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;

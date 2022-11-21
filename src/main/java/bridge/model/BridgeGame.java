@@ -1,5 +1,8 @@
-package bridge;
+package bridge.model;
 
+import bridge.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import bridge.constant.Constant;
 
 import java.util.ArrayList;
