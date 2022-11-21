@@ -29,13 +29,24 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String userInput = Console.readLine();
+        validateLength(userInput);
+        return userInput;
     }
+
+    private void validateLength(String userInput){
+        if (userInput.length() != 1) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        String userInput = Console.readLine();
+        validateLength(userInput);
         return null;
     }
 }
