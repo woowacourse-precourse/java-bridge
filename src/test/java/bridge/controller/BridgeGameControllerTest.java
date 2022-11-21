@@ -8,10 +8,14 @@ import bridge.Application;
 import bridge.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameControllerTest extends NsTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @DisplayName("두번 실행되는지 확인")
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
@@ -30,6 +34,7 @@ class BridgeGameControllerTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @DisplayName("Q하면 최종결과 잘 보여주고 끝내는지 확인")
     @Test
     void 기능_테스트1() {
         assertRandomNumberInRangeTest(() -> {
@@ -45,6 +50,15 @@ class BridgeGameControllerTest extends NsTest {
             int upSideIndex = output().indexOf("[ O | X ]");
             int downSideIndex = output().indexOf("[   |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+    @DisplayName("retry input오류를 잘 발견하는지 확인")
+    @Test
+    void 기능_테스트2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "P");
+            assertThat(output()).contains(ERROR_MESSAGE);
         }, 1, 0, 1);
     }
 

@@ -26,7 +26,7 @@ public class Bridge {
     }
 
     public int length() {
-        return bridge.size( );
+        return bridge.size();
     }
 
     public boolean equalsAt(Bridge compareBridge, int idx) {
