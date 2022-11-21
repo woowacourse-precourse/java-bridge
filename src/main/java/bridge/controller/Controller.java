@@ -38,24 +38,42 @@ public class Controller {
     }
 
     private void inputBridgeLength(){
-        outputView.printBridgeLengthInputRequest();
-        int bridgeLength = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
-        bridgeGame.setBridge(bridge);
+        try {
+            outputView.printBridgeLengthInputRequest();
+            int bridgeLength = inputView.readBridgeSize();
+            List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
+            bridgeGame.setBridge(bridge);
+        }
+        catch (IllegalArgumentException exception){
+            outputView.printErrorMessage(exception.getMessage());
+            inputBridgeLength();
+        }
     }
 
     private void move(){
-        outputView.printMoveInputRequest();
-        String moveCommand = inputView.readMoving();
-        bridgeGame.move(moveCommand);
-        List<String> map = bridgeGame.getBridgeProgress();
-        outputView.printMap(map);
+        try {
+            outputView.printMoveInputRequest();
+            String moveCommand = inputView.readMoving();
+            bridgeGame.move(moveCommand);
+            List<String> map = bridgeGame.getBridgeProgress();
+            outputView.printMap(map);
+        }
+        catch (IllegalArgumentException exception){
+            outputView.printErrorMessage(exception.getMessage());
+            move();
+        }
     }
 
     private void retry(){
-        outputView.printRetryInputRequest();
-        String retrialInput = inputView.readGameCommand();
-        bridgeGame.retry(retrialInput);
+        try {
+            outputView.printRetryInputRequest();
+            String retrialInput = inputView.readGameCommand();
+            bridgeGame.retry(retrialInput);
+        }
+        catch (IllegalArgumentException exception){
+            outputView.printErrorMessage(exception.getMessage());
+            retry();
+        }
     }
 
     private void showResult(){

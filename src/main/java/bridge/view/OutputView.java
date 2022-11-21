@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.view.text.ErrorMessage;
 import bridge.view.text.OutputText;
 
 import java.util.List;
@@ -32,6 +33,10 @@ public class OutputView {
 
     public void printRetryInputRequest(){
         System.out.println(OutputText.RETRY_INPUT_REQUEST.getMessage());
+    }
+
+    public void printErrorMessage(String errorMessage){
+        System.out.println(ErrorMessage.ERROR_HEAD.getMessage() + errorMessage);
     }
 
 }
