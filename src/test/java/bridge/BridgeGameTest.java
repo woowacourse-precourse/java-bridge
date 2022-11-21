@@ -31,7 +31,7 @@ class BridgeGameTest {
     @DisplayName("게임 초기화 테스트")
     @Test
     void initBridgeGame() {
-        BridgeGame bridgeGame = BridgeGame.initBridgeGame(3);
+        BridgeGame bridgeGame = BridgeGame.initBridgeGame("3");
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         GameStatus gameStatus = gameStatusOperator.getGameStatus();
         Integer numberOfTry = gameStatusOperator.getNumberOfTry();
