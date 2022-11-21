@@ -11,10 +11,15 @@ public class BridgeController {
     private final GameService gameService = new GameService();
 
     public void playBridgeGame() {
-        OutputView.printGameStart();
+        try {
+            OutputView.printGameStart();
 
-        Bridge bridge = bridgeService.makeBridge();
-        UserBridges userBridges = bridgeService.makeUserBridges();
-        gameService.gameStart(bridge, userBridges);
+            Bridge bridge = bridgeService.makeBridge();
+            UserBridges userBridges = bridgeService.makeUserBridges();
+            gameService.gameStart(bridge, userBridges);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
