@@ -47,6 +47,11 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(readGameCommandMessage);
         String userCommand = readLine();
+        try{
+            readGameCommandCheck(userCommand);
+        }catch(IllegalArgumentException e){
+            userCommand = readGameCommand();
+        }
         return userCommand;
     }
 
