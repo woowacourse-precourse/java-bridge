@@ -12,13 +12,10 @@ public class BridgeGame {
     private void move() {
         boolean movable = bridge.isNotArrived();
         while (movable) {
-            boolean passable = bridge.passBridge();
-
-            if (!passable) {
+            if (!bridge.passBridge()) {
                 movable = retry();
                 continue;
             }
-
             movable = bridge.isNotArrived();
         }
         endGame();
