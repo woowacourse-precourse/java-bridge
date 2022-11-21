@@ -11,7 +11,7 @@ public class BridgeGame {
     public static final int DOWNWARD = 1;
     private final List<String> bridge;
     private List<List<String>> userInputBridge;
-    private int tryCount = 0;
+    private int tryCount = 1;
     int index;
 
     public BridgeGame(int bridgeSize) {
@@ -74,6 +74,7 @@ public class BridgeGame {
             userInputBridge.get(i).clear();
         }
         tryCount++;
+        index = 0;
     }
 
     public int getTryCount() {
