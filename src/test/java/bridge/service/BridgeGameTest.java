@@ -22,7 +22,7 @@ class BridgeGameTest {
         bridgeGame.createBridge(6, new TestBridgeNumberGenerator(newArrayList(1, 1, 0, 1, 0, 1)));
     }
 
-    @DisplayName("플레이어가 한 라운드 플레이하면 게임 계속 가능 결과 반환")
+    @DisplayName("플레이어가 한 라운드 플레이 후 게임 계속 가능 결과 확인")
     @Test
     void moveResultContinue() {
         GameResultDto gameResultDto = bridgeGame.move(1, "U");
@@ -30,7 +30,7 @@ class BridgeGameTest {
         assertThat(gameStatus.isContinue()).isTrue();
     }
 
-    @DisplayName("플레이어가 한 라운드 플레이하면 게임 실패 결과 반환")
+    @DisplayName("플레이어가 한 라운드 플레이 후 게임 실패 결과 확인")
     @Test
     void moveResultFail() {
         GameResultDto gameResultDto = bridgeGame.move(3, "U");
@@ -38,7 +38,7 @@ class BridgeGameTest {
         assertThat(gameStatus.isFail()).isTrue();
     }
 
-    @DisplayName("플레이어가 마지막 라운드 플레이하면 게임 성공 결과 반환")
+    @DisplayName("플레이어가 마지막 라운드 플레이 후 게임 성공 결과 확인")
     @Test
     void moveResultSuccess() {
         GameResultDto gameResultDto = bridgeGame.move(6, "U");
@@ -46,7 +46,7 @@ class BridgeGameTest {
         assertThat(gameStatus.isSuccess()).isTrue();
     }
 
-    @DisplayName("플레이어가 마지막 라운드 플레이하면 게임 실패 결과 반환")
+    @DisplayName("플레이어가 마지막 라운드 플레이 후 게임 실패 결과 확인")
     @Test
     void moveResultLastFail() {
         GameResultDto gameResultDto = bridgeGame.move(6, "D");
@@ -54,7 +54,7 @@ class BridgeGameTest {
         assertThat(gameStatus.isFail()).isTrue();
     }
 
-    @DisplayName("플레이어가 이동한 위치 기록 반환")
+    @DisplayName("플레이어가 이동한 위치 기록 확인")
     @Test
     void getMoveReport() {
         bridgeGame.move(1, "U");
@@ -68,7 +68,7 @@ class BridgeGameTest {
                 .containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
 
-    @DisplayName("게임 재시작 후 시도 횟수 반환")
+    @DisplayName("게임 재시작 후 시도 횟수 확인")
     @Test
     void getGameAttempt() {
         bridgeGame.retry();
