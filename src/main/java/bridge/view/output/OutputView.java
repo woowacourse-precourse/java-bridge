@@ -9,6 +9,8 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String NEW_LINE = "\n";
+
     public void printStart() {
         Printer.printLine(OutputMessage.START);
     }
@@ -18,8 +20,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<List<String>> bridge) {
-        //TODO
+    public void printMap(List<List<String>> bridgeMap) {
+        bridgeMap
+                .forEach(bridge ->
+                        Printer.printLine(OutputFormatter.format(bridge)));
     }
 
     /**
@@ -27,7 +31,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> result) {
-        //TODO
+    public void printResult(
+            List<List<String>> finalBridgeMap,
+            String successOrFailure,
+            String trial
+    ) {
+        Printer.printLine(OutputMessage.RESULT);
+        printMap(finalBridgeMap);
+
+        Printer.print(NEW_LINE);
+        Printer.printLine(OutputMessage.SUCCESS_OR_FAILURE.format(successOrFailure));
+        Printer.printLine(OutputMessage.TRIAL.format(trial));
     }
 }
