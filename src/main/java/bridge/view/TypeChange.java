@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.view;
 
 public class TypeChange {
 

@@ -1,7 +1,7 @@
-package bridge.service;
+package bridge.view;
 
-import bridge.service.constants.Command;
-import bridge.service.constants.Move;
+import bridge.constants.Command;
+import bridge.constants.Move;
 
 import java.util.Objects;
 

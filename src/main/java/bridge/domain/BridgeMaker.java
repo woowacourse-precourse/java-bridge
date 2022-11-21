@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.service.constants.Move;
+import bridge.constants.Move;
 
 import java.util.ArrayList;
 import java.util.List;

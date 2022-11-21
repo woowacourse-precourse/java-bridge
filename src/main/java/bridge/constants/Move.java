@@ -1,4 +1,4 @@
-package bridge.service.constants;
+package bridge.constants;
 
 public enum Move {
 

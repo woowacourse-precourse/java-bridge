@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.service.TypeChange;
-import bridge.service.Valification;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {

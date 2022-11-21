@@ -3,26 +3,26 @@ package bridge.controller;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.model.Bridge;
-import bridge.model.BridgeShape;
-import bridge.model.GameControll;
-import bridge.service.Valification;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeShape;
+import bridge.domain.GameControll;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import static bridge.service.TypeChange.ChangeStringToInteger;
 
 
 public class Game {
 
-    private final GameControll gameControll = new GameControll();
-    private final OutputView outputView = new OutputView();
-    private final BridgeGame bridgeGame = new BridgeGame();
-    private final BridgeShape bridgeShape = new BridgeShape();
-    private final InputView inputView = new InputView();
-    private final Valification valification = new Valification();
-    private final Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final static GameControll gameControll = new GameControll();
+    private final static BridgeGame bridgeGame = new BridgeGame();
+    private final static BridgeShape bridgeShape = new BridgeShape();
+    private final static Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
 
+    public Game(InputView inputView, OutputView outputView){
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     private int size;
     private String move;
@@ -40,9 +40,7 @@ public class Game {
 
     private void inputBridgeSize() {
         outputView.printRequestBridgeSize();
-        String inputSize = inputView.readBridgeSize();
-        size = ChangeStringToInteger(inputSize);
-        valification.verifyBridgeSize(size);
+        size = inputView.readBridgeSize();
         makeBridge();
     }
 
@@ -77,7 +75,6 @@ public class Game {
             try{
                 outputView.printRequestMove();
                 move = inputView.readMoving();
-                valification.verifyUorD(move);
                 break;
             }catch(IllegalArgumentException exception){
                 outputView.printErrorMessage(exception.getMessage());
@@ -100,7 +97,7 @@ public class Game {
 
     /////
     private void controllMove() {
-        if (size == gameControll.getIdx()) {
+        if (size == gameControll.getIdx() && bridgeGame.getCanMove()) {
             gameControll.turnoffGamePower();
             gameControll.sucessGame();
             printGameResult();
@@ -123,7 +120,6 @@ public class Game {
             try {
                 outputView.printRequestRetry();
                 retryOrQuit = inputView.readGameCommand();
-                valification.verifyQorR(retryOrQuit);
                 break;
             }catch(IllegalArgumentException exception){
                 outputView.printErrorMessage(exception.getMessage());
