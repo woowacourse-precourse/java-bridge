@@ -60,7 +60,7 @@ public class BridgeGameController {
             bridgeGame.retry(bridge, user);
         }
         if (gameCommand.equals(QUIT.getCommand())) {
-            user.finishWithFail();
+            bridgeGame.giveUp(user);
         }
     }
 
