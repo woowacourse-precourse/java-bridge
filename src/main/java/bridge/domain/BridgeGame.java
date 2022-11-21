@@ -6,10 +6,10 @@ import bridge.GameRule;
 
 public class BridgeGame {
 
-	private Bridge bridge;
-	private BridgeRecord record;
+	private final Bridge bridge;
+	private final BridgeRecord record;
 
-	public void start(int size) {
+	public BridgeGame(int size) {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		this.bridge = new Bridge(bridgeMaker.makeBridge(size));
 		this.record = new BridgeRecord();
