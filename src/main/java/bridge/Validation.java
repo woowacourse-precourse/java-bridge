@@ -97,7 +97,7 @@ public class Validation {
      */
     private void checkCommandLengthLimit(String lineInput) {
         if (lineInput.length() == 1) return;
-        throw new IllegalArgumentException("UD");
+        throw new IllegalArgumentException("[ERROR] 한 글자만 입력해주세요.");
     }
 
     /**
