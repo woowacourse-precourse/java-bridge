@@ -57,7 +57,7 @@ public class OutputView {
     }
 
     private String addLastMoving(boolean correction, String history, String line) {
-        if (history.equals(line)) {
+        if (!history.equals(line)) {
             return NON_CHOICED;
         }
 
