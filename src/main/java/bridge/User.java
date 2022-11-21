@@ -19,4 +19,12 @@ public class User {
         this.userBridge.add(direction);
         new OutputView().printMap(answer,userBridge);
     }
+
+    public boolean isSuccess(int tryCount) {
+        if (userBridge.size() == bridgeLength) {
+            new OutputView().printResult(answer, userBridge, tryCount);
+            return true;
+        }
+        return false;
+    }
 }
