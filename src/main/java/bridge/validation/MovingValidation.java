@@ -11,10 +11,16 @@ public class MovingValidation {
     public MovingValidation() {
     }
 
-    public void isValidate(String moving) {
-        isNull(moving);
-        isBlank(moving);
-        isUpperCaseUD(moving);
+    public boolean isValidate(String moving) {
+        try {
+            isNull(moving);
+            isBlank(moving);
+            isUpperCaseUD(moving);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return true;
+        }
+        return false;
     }
 
     public void throwError(String message) {
@@ -24,7 +30,7 @@ public class MovingValidation {
     public void isNull(String moving) {
         if (moving.isEmpty()) {
             message = ErrorMessage.valueOf("MOVING_NULL_EXCEPTION");
-            throw new NullPointerException(message.getMessage());
+            throwError(message.getMessage());
         }
     }
 
