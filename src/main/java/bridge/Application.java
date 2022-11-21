@@ -27,8 +27,8 @@ public class Application {
 
             if (isCorrectChoice) movingIndex++;
 
-            upperBridge.add(BridgeGame.isBlank(isUpper, input));
-            lowerBridge.add(BridgeGame.isBlank(!isUpper, input));
+            upperBridge = BridgeGame.move(upperBridge, isUpper, input);
+            lowerBridge = BridgeGame.move(lowerBridge, !isUpper, input);
 
             OutputView.printMap(upperBridge, bridgeSize, movingIndex - 1);
             OutputView.printMap(lowerBridge, bridgeSize, movingIndex - 1);
