@@ -1,5 +1,10 @@
 package bridge.view;
 
+import bridge.enums.KeyboardCommand;
+import bridge.enums.OutputMessage;
+
+import java.security.Key;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -8,7 +13,7 @@ public class OutputView {
     private String downSideIndex = "";
 
     public void printStartMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(OutputMessage.GAME_START_MESSAGE.getMessage());
     }
 
     /**
@@ -17,10 +22,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(int count, String moving, boolean isPass) {
-        if (moving.equals("U")) {
+        if (moving.equals(KeyboardCommand.UP.getCommand())) {
             setUpSideIndex(count, isPass);
         }
-        if (moving.equals("D")) {
+        if (moving.equals(KeyboardCommand.DOWN.getCommand())) {
             setDownSideIndex(count, isPass);
         }
         System.out.println("[" + upSideIndex + "]");
@@ -29,29 +34,29 @@ public class OutputView {
 
     public void setUpSideIndex(int count, boolean isPass) {
         if (isPass) {
-            upSideIndex += addDelimiter(count) + " O ";
-            downSideIndex += addDelimiter(count) + "   ";
+            upSideIndex += addDelimiter(count) + OutputMessage.SUCCESS.getValue();
+            downSideIndex += addDelimiter(count) + OutputMessage.NOTHING.getValue();
             return;
         }
-        upSideIndex += addDelimiter(count) + " X ";
-        downSideIndex += addDelimiter(count) + "   ";
+        upSideIndex += addDelimiter(count) + OutputMessage.FAILURE.getValue();
+        downSideIndex += addDelimiter(count) + OutputMessage.NOTHING.getValue();
     }
 
     public void setDownSideIndex(int count, boolean isPass) {
         if (isPass) {
-            upSideIndex += addDelimiter(count) + "   ";
-            downSideIndex += addDelimiter(count) + " O ";
+            upSideIndex += addDelimiter(count) + OutputMessage.NOTHING.getValue();
+            downSideIndex += addDelimiter(count) + OutputMessage.SUCCESS.getValue();
             return;
         }
-        upSideIndex += addDelimiter(count) + "   ";
-        downSideIndex += addDelimiter(count) + " X ";
+        upSideIndex += addDelimiter(count) + OutputMessage.NOTHING.getValue();
+        downSideIndex += addDelimiter(count) + OutputMessage.FAILURE.getValue();
     }
 
     public String addDelimiter(int count) {
         if (count > 1) {
-            return "|";
+            return OutputMessage.DELIMITER.getValue();
         }
-        return "";
+        return OutputMessage.NO_DELIMITER.getValue();
     }
 
     /**
@@ -60,12 +65,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean isSuccess, int totalNumberOfAttempts) {
-        System.out.println("최종 게임 결과");
-        String result = "실패";
+        System.out.println(OutputMessage.GAME_RESULT_MESSAGE.getMessage());
+        String result = OutputMessage.FAILURE.getMessage();
         if (isSuccess) {
-            result = "성공";
+            result = OutputMessage.SUCCESS.getMessage();
         }
-        System.out.println("게임 성공 여부: " + result);
-        System.out.println("총 시도한 횟수: " + totalNumberOfAttempts);
+        System.out.println(OutputMessage.GAME_SUCCESS_OR_FAILURE.getMessage() + result);
+        System.out.println(OutputMessage.TOTAL_ATTEMPTS.getMessage() + totalNumberOfAttempts);
     }
 }

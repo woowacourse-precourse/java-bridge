@@ -4,13 +4,17 @@ import bridge.enums.ErrorMessage;
 import bridge.enums.KeyboardCommand;
 
 public class InputException {
+    private final int MINIMUM_BRIDGE_LENGTH = 3;
+    private final int MAXIMUM_BRIDGE_LENGTH = 20;
+
     public void validateBridgeSize(String bridgeSize) {
         try {
             Integer.parseInt(bridgeSize);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getMessage());
         }
-        if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
+        if (Integer.parseInt(bridgeSize) < MINIMUM_BRIDGE_LENGTH
+                || Integer.parseInt(bridgeSize) > MAXIMUM_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
         }
     }
