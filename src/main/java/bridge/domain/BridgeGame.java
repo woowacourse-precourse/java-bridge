@@ -48,7 +48,7 @@ public class BridgeGame {
 
     private String makeSymbol(int index, String position) {
         if (path.get(index).equals(position)) {
-            if (path.get(index).equals(bridge.get(index))) {
+            if (equalsAt(index)) {
                 return BridgeConstants.SUCCESS;
             }
             return BridgeConstants.FAILURE;
@@ -65,17 +65,17 @@ public class BridgeGame {
             return true;
         }
         int pathLastIndex = path.size() - 1;
-        return path.size() != bridge.size() && path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
+        return path.size() != bridge.size() && equalsAt(pathLastIndex);
     }
 
     public boolean isWin() {
         int pathLastIndex = path.size() - 1;
-        return path.size() == bridge.size() && path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
+        return path.size() == bridge.size() && equalsAt(pathLastIndex);
     }
 
     public String calculateResult() {
         int pathLastIndex = path.size() - 1;
-        if (path.get(pathLastIndex).equals(bridge.get(pathLastIndex))) {
+        if (equalsAt(pathLastIndex)) {
             return BridgeConstants.WIN;
         }
         return BridgeConstants.LOSE;
