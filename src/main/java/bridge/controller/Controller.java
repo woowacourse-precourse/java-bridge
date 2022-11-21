@@ -14,12 +14,10 @@ public class Controller {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeMaker bridgeMaker;
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void play() {
@@ -47,6 +45,7 @@ public class Controller {
 
     private BridgeGame makeGame() {
         int bridgeSize = inputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         return BridgeGame.from(bridge);
     }
