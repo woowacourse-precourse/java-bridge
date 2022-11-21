@@ -42,3 +42,10 @@
 ### BridgeGameStatus
 - 게임 진행 여부 Enum 클래스
 - PLAY("R"), QUIT("Q")
+
+### Round
+- nextRound: 다음 라운드로 이동
+- reset: 라운드에 MovingResult Fail 시에 reset
+
+### MovingResult
+- 사용자 이동에 따른 결과를 담는 클래스
