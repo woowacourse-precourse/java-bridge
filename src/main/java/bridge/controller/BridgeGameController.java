@@ -16,7 +16,8 @@ public class BridgeGameController {
 	public void start() {
 		outputView.printIntroMessage();
 		BridgeGame bridgeGame = settingBridgeGame();
-		startBridgeGame(bridgeGame);
+		ProgressMap progressMap = new ProgressMap();
+		startBridgeGame(bridgeGame, progressMap);
 	}
 
 	private BridgeGame settingBridgeGame() {
@@ -30,8 +31,7 @@ public class BridgeGameController {
 		return new BridgeGame(bridge);
 	}
 
-	private void startBridgeGame(BridgeGame bridgeGame) {
-		ProgressMap progressMap = new ProgressMap();
+	private void startBridgeGame(BridgeGame bridgeGame, ProgressMap progressMap) {
 		while (bridgeGame.getState() == PLAY) {
 			moveBridgeOneTime(bridgeGame, progressMap);
 			if (bridgeGame.getState() == MOVE_FAILED) {
