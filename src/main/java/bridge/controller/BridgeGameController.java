@@ -10,8 +10,6 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
-
-    private static final int DEFAULT_TRY_COUNT = 1;
     private static final int DEFAULT_DISTANCE = 1;
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
@@ -22,24 +20,10 @@ public class BridgeGameController {
         this.bridgeGame = bridgeGame;
     }
 
-    public static TotalResult start() {
-        outputView.printGameStartMessage();
-        BridgeGame bridgeGame = initializeBridgeGame();
+    public static void start(BridgeGame bridgeGame) {
         BridgeGameController bridgeGameController = new BridgeGameController(bridgeGame);
-        return bridgeGameController.progressByDistance(DEFAULT_DISTANCE);
-    }
-
-    public static void printResult(TotalResult result) {
+        TotalResult result = bridgeGameController.progressByDistance(DEFAULT_DISTANCE);
         outputView.printResult(result);
-    }
-
-    private static BridgeGame initializeBridgeGame() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        return new BridgeGame(bridge, DEFAULT_TRY_COUNT);
     }
 
     private TotalResult progressByDistance(int distance) {
