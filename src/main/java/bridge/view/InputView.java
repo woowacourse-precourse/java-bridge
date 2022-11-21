@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.exception.BridgeSizeException;
+import bridge.exception.MovingException;
 import bridge.exception.UserException;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -24,7 +25,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        UserException movingException = new MovingException();
+        return checkInput(movingException);
     }
 
     /**
