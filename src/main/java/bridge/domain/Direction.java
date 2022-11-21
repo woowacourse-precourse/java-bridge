@@ -1,8 +1,8 @@
 package bridge.domain;
 
 public enum Direction {
-    U("U", 1),
-    D("D", 0);
+    UP("U", 1),
+    DOWN("D", 0);
     private String direction;
     private int binaryDirection;
 
