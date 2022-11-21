@@ -55,13 +55,13 @@ public class BridgeGame {
         return false;
     }
 
-    private void crossingSuccess() { // 다리 건너기 성공
+    private void crossingSuccess() {
         if (compare()) {
-            drawingBridge(GameConstant.SUCCESS);
+            drawingBridge(GameConstant.GOOD);
         }
     }
 
-    private boolean crossingFailure() { // 다리 건너기 실패
+    private boolean crossingFailure() {
         if (!compare()) {
             drawingBridge(GameConstant.BAD);
             return confirmRetry();
@@ -80,7 +80,7 @@ public class BridgeGame {
         return false;
     }
 
-    private void drawingBridge(String division) { // 이동 경로에 맞게 현재 다리 상황을 그린다.
+    private void drawingBridge(String division) {
         STATUS.drawingBridge(MOVE, division);
         printBridgeStatus();
     }
@@ -121,8 +121,7 @@ public class BridgeGame {
         STATUS.clearMap();
     }
 
-
-    private void printBridgeStatus() { // 현 다리 상태 프린팅
+    private void printBridgeStatus() {
         STATUS.printBridgeStatus();
     }
 }
