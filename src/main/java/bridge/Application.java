@@ -12,7 +12,7 @@ public class Application {
     public static void main(String[] args) {
         outputView.startGame();
         user.initializePosition();
-        int size = inputView.readBridgeSize();
+        final int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
         while(true){
             inputView.readMoving(user);
