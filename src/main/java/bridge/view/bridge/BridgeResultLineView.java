@@ -1,9 +1,9 @@
 package bridge.view.bridge;
 
-import static bridge.domain.BridgeLocation.initBridgeLocation;
+import static bridge.domain.bridge.BridgeLocation.initBridgeLocation;
 import static bridge.value.BridgeLineCharacter.resultCharacterFor;
 
-import bridge.domain.BridgeLocation;
+import bridge.domain.bridge.BridgeLocation;
 import bridge.domain.bridge.BridgeAndPasser;
 import bridge.value.BridgeCharacter;
 import bridge.value.BridgeLineCharacter;

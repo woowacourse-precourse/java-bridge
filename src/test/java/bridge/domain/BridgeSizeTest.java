@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import static bridge.domain.BridgeSize.makeBridgeSize;
+import static bridge.domain.bridge.BridgeSize.makeBridgeSize;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;

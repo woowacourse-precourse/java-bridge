@@ -1,6 +1,5 @@
 package bridge.domain.bridge;
 
-import bridge.domain.BridgeLocation;
 import bridge.validate.BridgeValidation;
 import bridge.value.BridgeCharacter;
 import java.util.ArrayList;

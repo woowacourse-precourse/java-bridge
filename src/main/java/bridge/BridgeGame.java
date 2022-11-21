@@ -6,7 +6,7 @@ import static bridge.domain.bridge.BridgeAndPasser.compress;
 import static bridge.domain.bridge.BridgePasser.makeBridgePasser;
 import static bridge.domain.game.GameResult.makeGameResult;
 
-import bridge.domain.BridgeSize;
+import bridge.domain.bridge.BridgeSize;
 import bridge.domain.game.GameRecord;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeAndPasser;

@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge;
 
 import static bridge.value.LocationValue.LOCATION_INCREMENT;
 import static bridge.value.LocationValue.LOCATION_INIT;

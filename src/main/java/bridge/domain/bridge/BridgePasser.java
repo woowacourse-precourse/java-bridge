@@ -1,9 +1,8 @@
 package bridge.domain.bridge;
 
-import static bridge.domain.BridgeLocation.initBridgeLocation;
+import static bridge.domain.bridge.BridgeLocation.initBridgeLocation;
 import static bridge.validate.BridgeValidation.validateBridgeMovable;
 
-import bridge.domain.BridgeLocation;
 import bridge.value.BridgeCharacter;
 
 public class BridgePasser {

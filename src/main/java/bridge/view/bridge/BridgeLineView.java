@@ -1,12 +1,12 @@
 package bridge.view.bridge;
 
-import static bridge.domain.BridgeLocation.initBridgeLocation;
+import static bridge.domain.bridge.BridgeLocation.initBridgeLocation;
 import static bridge.value.BridgeLineCharacter.BRIDGE_SEPARATOR;
 import static bridge.value.BridgeLineCharacter.END_LINE;
 import static bridge.value.BridgeLineCharacter.START_LINE;
 import static bridge.value.BridgeLineCharacter.characterFor;
 
-import bridge.domain.BridgeLocation;
+import bridge.domain.bridge.BridgeLocation;
 import bridge.domain.bridge.BridgeAndPasser;
 import bridge.value.BridgeCharacter;
 import java.util.List;

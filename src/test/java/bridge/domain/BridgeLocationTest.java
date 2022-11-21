@@ -1,10 +1,8 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import bridge.domain.bridge.Bridge;
-import org.junit.jupiter.api.Test;
+import bridge.domain.bridge.BridgeLocation;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

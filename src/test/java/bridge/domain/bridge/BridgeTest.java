@@ -3,7 +3,6 @@ package bridge.domain.bridge;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.BridgeLocation;
 import bridge.value.BridgeCharacter;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
