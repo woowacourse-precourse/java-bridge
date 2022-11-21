@@ -1,7 +1,6 @@
 package bridge.model;
 
 import bridge.controller.GameController;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
 

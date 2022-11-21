@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.controller.GameController;
 import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -15,7 +16,8 @@ public class InputView {
         String inputBridgeSize = "";
         while (flag) {
             inputBridgeSize = Console.readLine();
-            if(!GameController.isValidBridgeNumber(inputBridgeSize) && !GameController.isValidBridgeRange(inputBridgeSize)) {
+            if (!GameController.isValidBridgeNumber(inputBridgeSize) && !GameController.isValidBridgeRange(
+                    inputBridgeSize)) {
                 flag = false;
             }
         }
@@ -30,7 +32,7 @@ public class InputView {
         String inputBridgeAction = "";
         while (flag) {
             inputBridgeAction = Console.readLine();
-            if(!GameController.isValidBridgeAction(inputBridgeAction)) {
+            if (!GameController.isValidBridgeAction(inputBridgeAction)) {
                 flag = false;
             }
         }
@@ -45,7 +47,7 @@ public class InputView {
         String inputBridgeRestart = "";
         while (flag) {
             inputBridgeRestart = Console.readLine();
-            if(!GameController.isValidBridgeRestart(inputBridgeRestart)) {
+            if (!GameController.isValidBridgeRestart(inputBridgeRestart)) {
                 flag = false;
             }
         }

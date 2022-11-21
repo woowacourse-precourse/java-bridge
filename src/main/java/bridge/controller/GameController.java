@@ -63,7 +63,7 @@ public class GameController {
 
     public static boolean isValidBridgeRange(String input) {
         try {
-            if (Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20) {
+            if (Long.parseLong(input) < 3 || Long.parseLong(input) > 20) {
                 throw new IllegalArgumentException(ErrorMessage.ERROR_RANGE.printMessage());
             }
         } catch (IllegalArgumentException illegalArgumentException) {

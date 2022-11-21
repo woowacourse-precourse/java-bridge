@@ -89,8 +89,8 @@ public class OutputView {
     }
 
     public static String convertBoolean() {
-        if(GameController.failOrSuccess) {
-           return "성공";
+        if (GameController.failOrSuccess) {
+            return "성공";
         }
         return "실패";
     }
