@@ -15,9 +15,10 @@ public class BridgeGameController {
     OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();
     List<String> bridge = new ArrayList<>();
+    List<String> isCorrectList = new ArrayList<>();
     public void start() {
         int lengthOfBridge = gameStart();
-        selectMoving(lengthOfBridge);
+        boolean isCorrect = selectMoving(lengthOfBridge);
     }
 
     public int gameStart() {
@@ -31,15 +32,17 @@ public class BridgeGameController {
         return lengthOfBridge;
     }
 
-    public void selectMoving(int lengthOfBridge) {
+    public boolean selectMoving(int lengthOfBridge) {
         for (int i = 0; i < lengthOfBridge; i++) {
             String userMove = InputView.readMoving();
             outputView.setUpAndDownSide(userMove, bridge.get(i));
             boolean isCorrect = bridgeGame.move(bridge, userMove);
             outputView.printMap();
             outputView.printEmptyLine();
-            if (!isCorrect) break;
+            if (!isCorrect) selectQuitOrRestart(lengthOfBridge);
+            if (isSuccess(isCorrect, lengthOfBridge)) return true;
         }
+        return false;
     }
 
     public void selectQuitOrRestart(int lengthOfBridge) {
@@ -48,12 +51,21 @@ public class BridgeGameController {
             restartGame(lengthOfBridge);
         }
         if (restartOrQuit.equals("Q")) {
-            quitGame();
         }
     }
 
     public void restartGame(int lengthOfBridge) {
         bridgeGame.retry();
         selectMoving(lengthOfBridge);
+    }
+
+    public boolean isSuccess(boolean isCorrect, int lengthOfBridge) {
+        if (isCorrect) {
+            isCorrectList.add("O");
+        }
+        if (isCorrectList.size() == lengthOfBridge) {
+            return true;
+        }
+        return false;
     }
 }
