@@ -4,16 +4,12 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.*;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameBoardTest extends NsTest {
     GameBoard gameBoard1;
@@ -22,9 +18,9 @@ class GameBoardTest extends NsTest {
 
     @BeforeEach
     void setup() {
-        gameBoard1 = new GameBoard(List.of(PASS, EMPTY, FAIL));
-        gameBoard2 = new GameBoard(List.of(EMPTY, PASS, EMPTY));
-        gameBoard3 = new GameBoard(List.of(EMPTY, FAIL, PASS));
+        gameBoard1 = new GameBoard(List.of(MOVING_PASS, EMPTY, MOVING_FAIL));
+        gameBoard2 = new GameBoard(List.of(EMPTY, MOVING_PASS, EMPTY));
+        gameBoard3 = new GameBoard(List.of(EMPTY, MOVING_FAIL, MOVING_PASS));
     }
 
     @DisplayName("이동 결과 입력 테스트")

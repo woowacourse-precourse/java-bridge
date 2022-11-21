@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.domain.GameBoard;
 import bridge.domain.GameResult;
+import bridge.domain.MovingResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import static bridge.constant.Constants.BridgeSign.*;
  */
 public class BridgeGame {
     GameBoard topGameBoard, bottomGameBoard;
-    boolean isGameLose = false;
+    MovingResult movingResult = MovingResult.PASS;
     int tryCount = 1;
 
 
@@ -34,32 +35,32 @@ public class BridgeGame {
      */
     public boolean move(String correctDirection, String movingDirection) {
         compare(correctDirection, movingDirection);
-        return isGameLose;
+        return movingResult.getIsGameLose();
     }
 
     private void compare(String correctDirection, String movingDirection) {
-        String movingResult = compareDirection(correctDirection, movingDirection);
+        MovingResult result = compareDirection(correctDirection, movingDirection);
 
-        checkDirection(movingDirection, movingResult);
-        if (movingResult.equals(FAIL)) {
-            isGameLose = true;
+        checkDirection(movingDirection, result);
+        if (result.getIsGameLose()) {
+            movingResult = MovingResult.FAIL;
         }
     }
 
 
-    private String compareDirection(String bridgeCheckPoint, String movingDirection) {
+    private MovingResult compareDirection(String bridgeCheckPoint, String movingDirection) {
         if (movingDirection.equals(bridgeCheckPoint)) {
-            return PASS;
+            return MovingResult.PASS;
         }
-        return FAIL;
+        return MovingResult.FAIL;
     }
 
-    private void checkDirection(String movingDirection, String movingResult) {
+    private void checkDirection(String movingDirection, MovingResult movingResult) {
         if (movingDirection.equals(UP)) {
-            topGameBoard.addMovingResult(movingResult);
+            topGameBoard.addMovingResult(movingResult.getResult());
             bottomGameBoard.addMovingResult(EMPTY);
         } else if (movingDirection.equals(DOWN)) {
-            bottomGameBoard.addMovingResult(movingResult);
+            bottomGameBoard.addMovingResult(movingResult.getResult());
             topGameBoard.addMovingResult(EMPTY);
         }
     }
@@ -76,18 +77,18 @@ public class BridgeGame {
     }
 
     public void resetGameValue() {
-        isGameLose = false;
+        movingResult = MovingResult.PASS;
         topGameBoard = new GameBoard(new ArrayList<>());
         bottomGameBoard = new GameBoard(new ArrayList<>());
     }
 
     public boolean checkIsGameLose() {
-        return isGameLose;
+        return movingResult.getIsGameLose();
     }
 
     public GameResult getFinalGameResult() {
         List<GameBoard> gameBoards = List.of(topGameBoard, bottomGameBoard);
-        return new GameResult(gameBoards, isGameLose, tryCount);
+        return new GameResult(gameBoards, movingResult.getIsGameLose(), tryCount);
     }
 
     public List<GameBoard> getGameBoards() {
