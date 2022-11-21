@@ -11,7 +11,7 @@ import java.util.List;
  * 4. 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class OutputView {
-    public static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    public static final String START_MESSAGE = "다리  건너기 게임을 시작합니다.\n";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -19,12 +19,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> results) {
-        String str2 = "";
-        String str3 = "";
-        for(List<String> result: results){
-            String str = ""+result.toString();
-            System.out.println(str.replace(","," |").replace("NO","").replace("[", "[ ").replace("]"," ]"));
-        }
+//        for(List<String> result: results){
+//            String str = ""+result.toString();
+//            System.out.println(str);
+//            System.out.println("결과: "+str.replace(","," |").replace("NO","").replace("[", "[ ").replace("]"," ]"));
+//        }
+        String str = results.get(0).toString();
+        System.out.println(str.replace(","," |").replace("NO","").replace("[", "[ ").replace("]"," ]"));
+        String str2 = results.get(1).toString();
+        System.out.println(str2.replace(","," |").replace("NO","").replace("[", "[ ").replace("]"," ]"));
     }
 
     /**
