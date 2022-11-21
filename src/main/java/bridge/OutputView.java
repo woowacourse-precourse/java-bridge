@@ -13,7 +13,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeStatusModel bridgeStatusModel) {
+    public static void printMap(BridgeStatusModel bridgeStatusModel) {
         System.out.println(bridgeStatusModel.getCurrentBridge());
     }
 
@@ -22,34 +22,34 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameResultModel gameResultModel) {
+    public static void printResult(GameResultModel gameResultModel) {
         printGameResultBridge(gameResultModel.getResultBridge());
         printGameSuccessOrFailure(gameResultModel.isSuccess());
         printGamePlaytime(gameResultModel.getPlaytime());
     }
 
-    public void printStart() {
+    public static void printStart() {
         System.out.println(OutputViewMessage.GAME_START.getMessage());
     }
 
-    public void printBridgeLengthRequest() {
+    public static void printBridgeLengthRequest() {
         System.out.println(OutputViewMessage.INPUT_BRIDGE_LENGTH.getMessage());
     }
 
-    public void printUserMoveRequest() {
+    public static void printUserMoveRequest() {
         System.out.println(OutputViewMessage.SELECT_BRIDGE_LOCATION.getMessage());
     }
 
-    public void printGameRestartRequest() {
+    public static void printGameRestartRequest() {
         System.out.println(OutputViewMessage.SELECT_GAME_RESTART.getMessage());
     }
 
-    private void printGameResultBridge(String resultBridge) {
+    private static void printGameResultBridge(String resultBridge) {
         System.out.println(OutputViewMessage.GAME_RESULT.getMessage());
         System.out.println(resultBridge);
     }
 
-    private void printGameSuccessOrFailure(boolean result) {
+    private static void printGameSuccessOrFailure(boolean result) {
         System.out.print(OutputViewMessage.GAME_SUCCESS_OR_FAILURE.getMessage());
         if (result) {
             System.out.println(OutputViewMessage.SUCCESS.getMessage());
@@ -58,7 +58,7 @@ public class OutputView {
         System.out.println(OutputViewMessage.FAILURE.getMessage());
     }
 
-    private void printGamePlaytime(int playtime) {
+    private static void printGamePlaytime(int playtime) {
         System.out.print(OutputViewMessage.GAME_PLAYTIME.getMessage());
         System.out.println(playtime);
     }
