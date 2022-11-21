@@ -65,7 +65,7 @@ public class PlayerMap {
 
     @Override
     public String toString() {
-        return "[PlayerMap] upSide: " + upSide + ", " + "downSide: " + downSide;
+        return String.format("< PlayerMap upSide=%s, downSide=%s >", upSide, downSide);
     }
 
 }

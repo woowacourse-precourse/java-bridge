@@ -14,4 +14,9 @@ public class MovingValidator implements InputValidator {
             throw new IllegalArgumentException(MOVING_INPUT_ERROR_MESSAGE);
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("< MovingValidator options=%s >", List.of(BridgeSides.UP, BridgeSides.DOWN));
+    }
 }

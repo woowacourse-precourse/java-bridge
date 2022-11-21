@@ -20,4 +20,9 @@ public class TotalResult {
     public int getTryCnt() {
         return tryCnt;
     }
+
+    @Override
+    public String toString() {
+        return String.format("< TotalResult win=%b tryCnt=%d >", win(), tryCnt);
+    }
 }

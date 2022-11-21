@@ -41,6 +41,6 @@ public class BridgeMapMaker {
 
     @Override
     public String toString() {
-        return "<BridgeMapMaker of bridge " + bridge + ">";
+        return String.format("< BridgeMapMaker bridge=%s >", bridge);
     }
 }

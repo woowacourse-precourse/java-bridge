@@ -23,4 +23,9 @@ public class PlayerMapMaker {
 
         return successSubMap.join(failureElement);
     }
+
+    @Override
+    public String toString(){
+        return "< PlayerMapMaker successMap=" + successMap.toStringsByFormat(MapFormat.FORMAT) + " >";
+    }
 }

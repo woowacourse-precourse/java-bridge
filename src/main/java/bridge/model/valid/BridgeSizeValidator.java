@@ -21,4 +21,9 @@ public class BridgeSizeValidator implements InputValidator {
             throw new IllegalArgumentException(BRIDGE_SIZE_INPUT_ERROR_MESSAGE);
         }
     }
+
+    @Override
+    public String toString(){
+        return String.format("< BridgeSizeValidator min=%d max=%d >", MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE);
+    }
 }

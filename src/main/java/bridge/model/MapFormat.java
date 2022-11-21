@@ -24,4 +24,9 @@ public enum MapFormat {
     private String convertToFormatString(List<String> map) {
         return start + String.join(delimiter, map) + end;
     }
+
+    @Override
+    public String toString() {
+        return String.format("< MapFormat start=%s delimiter=%s end=%s >", start, delimiter, end);
+    }
 }

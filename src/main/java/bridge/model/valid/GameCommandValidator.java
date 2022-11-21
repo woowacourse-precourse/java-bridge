@@ -14,4 +14,9 @@ public class GameCommandValidator implements InputValidator {
             throw new IllegalArgumentException(GAME_COMMAND_ERROR_MESSAGE);
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("< GameCommandValidator options=%s >", List.of(GameCommands.RETRY, GameCommands.QUIT));
+    }
 }

@@ -47,4 +47,9 @@ public class BridgeGame {
     public int getBridgeSize() {
         return bridge.size();
     }
+
+    @Override
+    public String toString() {
+        return String.format("< BridgeGame bridge=%s round=%d >", bridge, tryCnt);
+    }
 }
