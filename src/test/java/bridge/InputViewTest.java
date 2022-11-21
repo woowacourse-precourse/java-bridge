@@ -22,6 +22,18 @@ public class InputViewTest extends NsTest {
         });
     }
 
+    @DisplayName("잘못된 이동 입력 테스트")
+    @ValueSource(strings = {"-1", "u", "30", "d"})
+    @ParameterizedTest
+    void 이동_입력_테스트(String str) {
+        assertSimpleTest(() -> {
+            InputView.movingErrorHandling(str);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+
 
     @Override
     protected void runMain() {
