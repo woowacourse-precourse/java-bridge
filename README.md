@@ -91,6 +91,11 @@ BUILD SUCCESSFUL in 0s
     - [x] public boolean getGameWinStatus()
     - [x] public int getTotalTryCount()
 - [ ] **CLASS4. InputView**
+  - **Class Variables**
+    - [ ] private final String BRIDGE_SIZE_NOT_DIGITS
+    - [ ] private final String BRIDGE_SIZE_RANGE_OVER
+    - [ ] private final String MOVING_INPUT_NOT_VALID
+    - [ ] private final String GAME_COMMAND_NOT_VALID
   - **Class Methods**
     - [ ] public int readBridgeSize()
     - [ ] public String readMoving()
