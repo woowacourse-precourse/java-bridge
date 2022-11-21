@@ -48,5 +48,16 @@ public class OutputViewTest {
 
         Assertions.assertThat(outputView.getUpperMap()).isEqualTo("[ ]");
     }
+
+    @DisplayName("다리의 상태에 따라 맵에 X가 표시되고 괄호가 잘 닫히는지 테스트")
+    @Test
+    public void addXAndFinishMapTest() {
+        List<String> bridge = List.of("U");
+        List<String> bridgeStatus = List.of("X");
+        int idx = 0;
+        outputView.addXAndFinishMap(bridge, bridgeStatus, idx);
+
+        Assertions.assertThat(outputView.getLowerMap()).isEqualTo("[ X ]");
+    }
 }
 
