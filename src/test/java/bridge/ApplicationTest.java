@@ -5,9 +5,12 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.constant.ErrorType;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -187,6 +190,41 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 예외_테스트_다리의_길이가_숫자가_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3a");
+            assertThat(output()).contains(ErrorType.NUMBER_ERROR.getMessage());
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "1", "2", "21", "22"})
+    void 예외_테스트_다리의_길이가_범위를_벗어난_경우(String number) {
+        assertSimpleTest(() -> {
+            runException(number);
+            assertThat(output()).contains(ErrorType.BRIDGE_RANGE_ERROR.getMessage());
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "\n", " ", "1", "u", "d"})
+    void 예외_테스트_이동할_칸을_잘못_입력한_경우(String block) {
+        assertSimpleTest(() -> {
+            runException("3", block);
+            assertThat(output()).contains(ErrorType.MOVING_INPUT_ERROR.getMessage());
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "\n", " ", "1", "r", "q"})
+    void 예외_테스트_게임_다시_시도_여부를_잘못_입력한_경우(String gameCommand) {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "U", gameCommand);
+            assertThat(output()).contains(ErrorType.GAME_COMMAND_ERROR.getMessage());
+        }, 1, 0, 0);
     }
 
     @Override
