@@ -7,9 +7,11 @@ public class BridgeController {
     InputView inputView;
     OutputView outputView;
 
+    private boolean ready;
     public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        ready = true;
     }
 
     public void start() {
@@ -36,5 +38,9 @@ public class BridgeController {
             outputView.printError(e2);
         }
         return null;
+    }
+
+    public boolean isReady() {
+        return ready;
     }
 }
