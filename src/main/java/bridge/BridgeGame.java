@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Domain.History;
+import bridge.Domain.Result;
 import bridge.View.InputView;
 
 /**
@@ -13,22 +13,22 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static boolean move(String moveTo, String space, History gameHistory) {
+    public static boolean move(String moveTo, String space, Result result) {
 
         if(space.equals("U") && moveTo.equals("U")) {
-            gameHistory.move("O", " ");
+            result.saveMove("O", " ");
             return true;
         }
         if(space.equals("U") && moveTo.equals("D")) {
-            gameHistory.move(" ", "X");
+            result.saveMove(" ", "X");
             return false;
         }
         if(space.equals("D") && moveTo.equals("U")) {
-            gameHistory.move("X", " ");
+            result.saveMove("X", " ");
             return false;
         }
         if(space.equals("D") && moveTo.equals("D")) {
-            gameHistory.move(" ", "O");
+            result.saveMove(" ", "O");
             return true;
         }
 
@@ -40,13 +40,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static boolean retry(History gameHistory) {
+    public static boolean retry(Result result) {
         String retry = InputView.readGameCommand();
         if (retry.equals("Q")) {
             return false;
         }
 
-        gameHistory.reset();
+        result.resetSpaces();
         return true;
     }
 }
