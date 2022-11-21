@@ -23,11 +23,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Bridge bridge) {
+    public void printResult(Bridge bridge, String successOrFail, int count) {
         System.out.println(Message.FINAL_GAME_RESULT_MESSAGE);
         System.out.println(bridge.getUpsideBridge().toString().replace(", ", "|"));
         System.out.println(bridge.getDownBridge().toString().replace(", ", "|"));
-        System.out.println(Message.GAME_RESULT_MESSAGE);
-        System.out.println(Message.TOTAL_TRY_COUNT_MESSAGE);
+        System.out.println(Message.GAME_RESULT_MESSAGE+successOrFail);
+        System.out.println(Message.TOTAL_TRY_COUNT_MESSAGE+count);
     }
 }

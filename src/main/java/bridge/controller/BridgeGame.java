@@ -30,10 +30,7 @@ public class BridgeGame {
      */
     public boolean move(int position) {
         String moving = inputView.readMoving();
-        boolean success = false;
-        if (moving.equals(bridge.getShape(position))) {
-            success = true;
-        }
+        boolean success = canCross(moving, position);
         bridge.setUpsideBridge(UpsideBridgeRendering.renderUpsideBridge(moving, success));
         bridge.setDownBridge(DownBridgeRendering.renderDownBridge(moving, success));
         outputView.printMap(bridge);
@@ -52,5 +49,23 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public boolean canCross(String moving, int position) {
+        if (moving.equals(bridge.getShape(position))) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean complete(int position) {
+        if (position >= bridge.length()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void gameExit(String successOrFail, int count) {
+        outputView.printResult(bridge, successOrFail, count);
     }
 }

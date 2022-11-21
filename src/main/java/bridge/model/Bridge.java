@@ -37,4 +37,8 @@ public class Bridge {
         this.crossUpsideBridge = new ArrayList<>();
         this.crossDownBridge = new ArrayList<>();
     }
+
+    public int length() {
+        return this.bridgeShape.size();
+    }
 }
