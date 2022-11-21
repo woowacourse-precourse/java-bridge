@@ -38,7 +38,7 @@ public class BridgeGame {
      */
     public int retry(String input) {
         if(input.equals("Q"))
-            return 0;
+            return -1;
         attemptCount++;
         return length;
     }
