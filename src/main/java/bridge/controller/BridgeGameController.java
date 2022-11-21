@@ -32,7 +32,7 @@ public class BridgeGameController {
     }
 
     private void move(String moving) {
-        if (!bridgeGame.move(moving)) {
+        if (!isMoveSuccess(moving)) {
             outputView.printMap(bridgeGame.printResult());
             retry();
             return;
@@ -40,8 +40,12 @@ public class BridgeGameController {
         continueOrSuccess();
     }
 
+    private boolean isMoveSuccess(String moving) {
+        return bridgeGame.move(moving);
+    }
+
     private void continueOrSuccess() {
-        if (!bridgeGame.isCompletedGame()) {
+        if (!isCompletedGame()) {
             outputView.printMap(bridgeGame.printResult());
             play();
             return;
@@ -49,14 +53,22 @@ public class BridgeGameController {
         printResult(SUCCESS_MESSAGE);
     }
 
+    private boolean isCompletedGame() {
+        return bridgeGame.isCompletedGame();
+    }
+
     private void retry() {
         String answer = inputView.readGameCommand();
-        if (answer.equals(RETRY_SIGNAL)) {
+        if (isRetry(answer)) {
             bridgeGame.retry();
             play();
             return;
         }
         printResult(FAILURE_MESSAGE);
+    }
+
+    private static boolean isRetry(String answer) {
+        return answer.equals(RETRY_SIGNAL);
     }
 
     private void printResult(String message) {
