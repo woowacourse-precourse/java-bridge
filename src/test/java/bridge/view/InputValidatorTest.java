@@ -43,4 +43,17 @@ class InputValidatorTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @Nested
+    @DisplayName("재시작 여부 입력에 대한 검증 테스트")
+    class ValidateGameCommandTest {
+        @ParameterizedTest(name = "입력값 -> {0}")
+        @ValueSource(strings = {"r", "q", "U", "0"})
+        @EmptySource
+        @DisplayName("사용자 입력이 R 또는 Q가 아니면 예외가 발생한다.")
+        void validateMoving_InputIsNotUAndD_ExceptionThrown(String input) {
+            assertThatThrownBy(() -> new InputValidator().validateGameCommand(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }
