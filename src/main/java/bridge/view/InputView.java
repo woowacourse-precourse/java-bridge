@@ -30,7 +30,7 @@ public class InputView {
      */
     public static String readMoving() {
         String moving = Console.readLine();
-        if (!moving.equals(MOVE_TO_UP) && !moving.equals(MOVE_TO_DOWN)){
+        if (!moving.equals(MOVE_TO_UP) && !moving.equals(MOVE_TO_DOWN)) {
             throw new IllegalArgumentException(MOVE_TO_ERROR_MESSAGE);
         }
         return moving;
