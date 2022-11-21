@@ -3,9 +3,7 @@ package bridge.controller;
 import bridge.*;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
-import bridge.resource.ErrorType;
 import bridge.resource.InputType;
-import bridge.view.Error;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
