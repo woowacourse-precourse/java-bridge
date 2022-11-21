@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,8 +18,37 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Boolean> movingResult, List<String> bridge) {
-        System.out.println("[]");
+    public void printMap(List<Boolean> movingResults, List<String> bridge) {
+        List<String> upMap = new ArrayList<>();
+        List<String> downMap = new ArrayList<>();
+
+        for (int i = 0; i < movingResults.size(); i++) {
+            boolean movingResult = movingResults.get(i);
+            String curBridge = bridge.get(i);
+            if (movingResult) {
+                if (curBridge.equals(BridgeEnum.U.name())) {
+                    upMap.add("O");
+                    downMap.add(" ");
+                }
+                if (curBridge.equals(BridgeEnum.D.name())) {
+                    downMap.add("O");
+                    upMap.add(" ");
+                }
+                continue;
+            }
+            if (curBridge.equals(BridgeEnum.U.name())) {
+                upMap.add("X");
+                downMap.add(" ");
+            }
+            if (curBridge.equals(BridgeEnum.D.name())) {
+                downMap.add("X");
+                upMap.add(" ");
+            }
+        }
+        String upMapResult = "[ " + String.join(" | ", upMap) + " ]";
+        String downMapResult = "[ " + String.join(" | ", downMap) + " ]";
+        System.out.println(upMapResult);
+        System.out.println(downMapResult);
     }
 
     /**

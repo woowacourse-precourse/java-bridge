@@ -22,25 +22,28 @@ public class Application {
 //        for(int i = 0; i < bridge.size(); i++) {
 //            System.out.print(bridge.get(i) + " ");
 //        }
-//
-//        while(!bridgeGame.isEnd()) {
-//            String moving = inputView.readMoving();
-//            Boolean movingResult = bridgeGame.move(moving, movingResults, bridge);
-//            movingResults.add(movingResult);
-//            outputView.printMap(movingResults, bridge);
-//            if (movingResult == true) {
-//                continue;
-//            }
-//            String gameCommand = inputView.readGameCommand();
-//            if (gameCommand == "R") {
-//                movingResults = new ArrayList<>();
-//                tryCount++;
-//                continue;
-//            }
-//            if (gameCommand == "Q") {
-//                break;
-//            }
-//        }
-//        outputView.printResult(movingResults, bridge, tryCount);
+        try {
+            while(!bridgeGame.isEnd()) {
+                String moving = inputView.readMoving();
+                boolean movingResult = bridgeGame.move(moving, movingResults, bridge);
+                movingResults.add(movingResult);
+                outputView.printMap(movingResults, bridge);
+                if (movingResult == true) {
+                    continue;
+                }
+                String gameCommand = inputView.readGameCommand();
+                if (gameCommand.equals("R")) {
+                    movingResults = new ArrayList<>();
+                    tryCount++;
+                    continue;
+                }
+                if (gameCommand.equals("Q")) {
+                    break;
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        outputView.printResult(movingResults, bridge, tryCount);
     }
 }
