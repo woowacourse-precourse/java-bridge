@@ -35,6 +35,23 @@ public class OutputView {
         return lines;
     }
 
+    private String connectTop(List<String> lines, String topLine) {
+        if (lines.get(0).equals("[")) {
+            return lines.get(0) + topLine;
+        }
+        return lines.get(0) + "|" + topLine;
+    }
+
+    private String connectDown(List<String> lines, String downLine) {
+        if (lines.get(1).equals("[")) {
+            return lines.get(1) + downLine;
+        }
+        return lines.get(1) + "|" + downLine;
+    }
+
+
+
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
