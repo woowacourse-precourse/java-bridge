@@ -52,6 +52,17 @@ public class BridgeGameController {
     }
 
     private void askWhetherRetry(boolean check) {
+        String retry = askToRetryIfFailed(check);
+        ifWantToQuitTheGame(retry);
+    }
+
+    private void ifWantToQuitTheGame(String retry) {
+        if (retry.equals("Q")) {
+            isFinish = false;
+        }
+    }
+
+    private String askToRetryIfFailed(boolean check) {
         String retry = "R";
         if (!check) {
             retry = getWhetherToRetry();
@@ -61,10 +72,7 @@ public class BridgeGameController {
                 copyBridge = new Bridge(bridge.copyBridge()); // Call by value, Call by reference
             }
         }
-
-        if (retry.equals("Q")) {
-            isFinish = false;
-        }
+        return retry;
     }
 
     private boolean crossTheBridge() {
