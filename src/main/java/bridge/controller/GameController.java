@@ -34,6 +34,8 @@ public class GameController {
         while (true) {
             GameCondition gameCondition = bridgeGame.move(selectMove());
             outputView.printMap(bridgeGame.exportProgress());
+
+            if (checkCrossFail(bridgeGame, gameCondition)) { return gameCondition; }
         }
     }
 
@@ -42,7 +44,16 @@ public class GameController {
         return inputView.readMoving();
     }
 
+    private boolean checkCrossFail(BridgeGame bridgeGame, GameCondition gameCondition) {
+        if (gameCondition == GameCondition.GOAL) { return true; }
+        if (gameCondition == GameCondition.FAILURE) { return checkRetry(bridgeGame); }
 
+        return false;
+    }
+
+    private boolean checkRetry(BridgeGame bridgeGame) {
+        return false;
+    }
 }
 
 
