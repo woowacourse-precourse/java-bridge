@@ -81,6 +81,7 @@ public class BridgeGame {
         return false;
     }
 
-    public void retry() {
+    public static void resetBridge() {
+        currentBridge = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
     }
 }
