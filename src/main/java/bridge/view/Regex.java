@@ -1,7 +1,7 @@
-package bridge;
+package bridge.view;
 
 public enum Regex {
-    MOVE("[UD]"), CONTINUE("[RQ]");
+    RANGE("^[3-9]{1}$|^[1]{1}[0-9]{1}$|^20$"), MOVE("[UD]"), CONTINUE("[RQ]");
 
     private String pattern;
 
