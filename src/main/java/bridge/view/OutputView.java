@@ -33,23 +33,23 @@ public class OutputView {
 
 	public void printResult(ProgressMap result, BridgeGame bridgeGame) {
 		if (bridgeGame.getState() == CLEAR) {
-			printClearMap(result, bridgeGame.getRepeatCount());
+			printClearMap(result, bridgeGame);
 		}
 		if (bridgeGame.getState() == FAILED_CLEAR) {
-			printFailedMap(result, bridgeGame.getRepeatCount());
+			printFailedMap(result, bridgeGame);
 		}
 	}
 
-	private void printClearMap(ProgressMap result, int count) {
+	private void printClearMap(ProgressMap result, BridgeGame bridgeGame) {
 		printResultIntro(result);
-		System.out.println("게임 성공 여부: 성공");
-		printResultOutro(count);
+		System.out.printf("게임 성공 여부: %s%n", bridgeGame.getState().getMessage());
+		printResultOutro(bridgeGame.getRepeatCount());
 	}
 
-	private void printFailedMap(ProgressMap result, int count) {
+	private void printFailedMap(ProgressMap result, BridgeGame bridgeGame) {
 		printResultIntro(result);
-		System.out.println("게임 성공 여부: 실패");
-		printResultOutro(count);
+		System.out.printf("게임 성공 여부: %s%n", bridgeGame.getState().getMessage());
+		printResultOutro(bridgeGame.getRepeatCount());
 	}
 
 	private void printResultIntro(ProgressMap result) {
