@@ -58,7 +58,7 @@ public class BridgeGameController {
     }
 
     private void checkFailed() {
-        if(bridgeGame.getGameStatus() == GameStatusType.FAIL) {
+        if (bridgeGame.getGameStatus() == GameStatusType.FAIL) {
             requestRestartOrQuit();
         }
     }

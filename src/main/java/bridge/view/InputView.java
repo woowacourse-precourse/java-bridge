@@ -1,19 +1,15 @@
 package bridge.view;
 
-import static bridge.constant.BridgeConstant.QUIT;
-import static bridge.constant.BridgeConstant.RETRY;
 import static bridge.constant.ErrorConstant.ENTER_BRIDGE_LENGTH;
 import static bridge.constant.ErrorConstant.PICK_COMMAND;
 import static bridge.constant.ErrorConstant.PICK_POSITION;
-import static bridge.type.MovingType.DOWN;
-import static bridge.type.MovingType.UP;
+import static bridge.util.InputValidator.validateDigit;
+import static bridge.util.InputValidator.validateMoving;
+import static bridge.util.InputValidator.validateRetryOrExit;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import bridge.type.ErrorType;
 
 public class InputView {
-
-    private static final String REGEX = "[0-9]+";
 
     public int readBridgeSize() {
         System.out.println(ENTER_BRIDGE_LENGTH);
@@ -42,24 +38,5 @@ public class InputView {
             return readGameCommand();
         }
         return command;
-    }
-
-    private int validateDigit(String input) throws IllegalArgumentException {
-        if (!input.matches(REGEX)) {
-            throw new IllegalArgumentException(ErrorType.DIGIT_ERROR.printError());
-        }
-        return Integer.parseInt(input);
-    }
-
-    private void validateMoving(String input) {
-        if (!input.equals(UP.getKey()) && !input.equals(DOWN.getKey())) {
-            throw new IllegalArgumentException(ErrorType.MOVING_ERROR.printError());
-        }
-    }
-
-    private void validateRetryOrExit(String input) {
-        if (!input.equals(RETRY) && !input.equals(QUIT)) {
-            throw new IllegalArgumentException(ErrorType.COMMAND_ERROR.printError());
-        }
     }
 }
