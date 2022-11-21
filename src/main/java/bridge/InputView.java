@@ -37,6 +37,7 @@ public class InputView {
         String input = Console.readLine();
         return input;
     }
+
     // 이동할 칸 입력이 U 또는 D인지 예외처리
     private static boolean isUpDown(String input){
         if(!input.equals("U") || !input.equals("D")){
@@ -51,5 +52,13 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
         return input;
+    }
+
+    // 게임 재시도 여부 입력이 R 또는 Q인지 예외처리
+    private static boolean isRestartQuit(String input){
+        if(!input.equals("R") || !input.equals("Q")){
+            return false;
+        }
+        return true;
     }
 }
