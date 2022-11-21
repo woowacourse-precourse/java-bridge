@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static global.advice.ErrorMessage.CHECK_OUTBOUND;
+import static global.advice.ErrorMessage.makeErrorMessage;
 import static global.advice.InputValidator.checkIsDigit;
 import static global.advice.InputValidator.checkLength;
 import static global.advice.InputValidator.checkRange;
@@ -32,6 +34,10 @@ public class Bridge {
     }
 
     public boolean isCrossing(int step) {
+        if (step > this.bridge.size()) {
+            throw new IllegalStateException(
+                    makeErrorMessage(CHECK_OUTBOUND) + makeErrorMessage(step, this.bridge.toString()));
+        }
         return this.bridge.size() == step;
     }
 

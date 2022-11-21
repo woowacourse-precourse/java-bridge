@@ -42,8 +42,8 @@ public class BridgeProgram {
         while (true) {
             try {
                 return new BridgeGame(inputView.readBridgeSize());
-            } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
+            } catch (IllegalArgumentException | IllegalStateException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
@@ -52,8 +52,8 @@ public class BridgeProgram {
         while (true) {
             try {
                 return bridgeGame.move(inputView.readMoving());
-            } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
+            } catch (IllegalArgumentException | IllegalStateException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
@@ -62,8 +62,8 @@ public class BridgeProgram {
         while (true) {
             try {
                 return bridgeGame.retry(inputView.readGameCommand());
-            } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
+            } catch (IllegalArgumentException | IllegalStateException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
