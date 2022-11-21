@@ -38,7 +38,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-
+        user.clearUser();
+        result.clearResult();
     }
 
     public void enterResult(){
@@ -52,5 +53,12 @@ public class BridgeGame {
         if(user.getCurrentMoving().equals(bridge.getAnswer(currentLocation)))
             return "O";
         return "X";
+    }
+
+    private boolean checkRestart(){
+        String restart = util.inputRestart();
+        if(restart.equals("Q"))
+            return false;
+        return true;
     }
 }
