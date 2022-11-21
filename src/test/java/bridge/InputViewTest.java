@@ -13,12 +13,15 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class InputViewTest {
+    InputView inputView = new InputView();
+
 
     @Nested
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     class BridgeSizeTest {
-        InputView inputView = new InputView();
+
         Method validateBridgeSize;
 
         {
@@ -30,7 +33,7 @@ public class InputViewTest {
             }
         }
 
-        @ParameterizedTest(name="{index} : {0} ==> No Exception ")
+        @ParameterizedTest(name = "{index} : {0} ==> No Exception ")
         @MethodSource("bridgeSizeValidTestArgument")
         @DisplayName("3에서 20사이의 정수 값 입력시 ")
         void bridgeSizeValidTest(String inputString, int value) {
@@ -39,9 +42,9 @@ public class InputViewTest {
                 validateBridgeSize.invoke(inputView, inputString);
             });
             try {
-                int result = (int) validateBridgeSize.invoke(inputView,inputString);
+                int result = (int) validateBridgeSize.invoke(inputView, inputString);
                 assertThat(result).isEqualTo(value);
-            }catch (Exception e){
+            } catch (Exception e) {
                 //Do Nothing
             }
         }
@@ -55,7 +58,7 @@ public class InputViewTest {
             );
         }
 
-        @ParameterizedTest(name="{index} : {0} ==> Exception ")
+        @ParameterizedTest(name = "{index} : {0} ==> Exception ")
         @MethodSource("bridgeSizeInvalidTestArgument")
         @DisplayName("3에서 20 사이의 정수 이외의 값 입력시 ")
         void bridgeSizeInvalidTest(String inputString) {
@@ -79,8 +82,52 @@ public class InputViewTest {
     }
 
     @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     class MovingTest {
 
+        Method validateMoving;
+
+        {
+            try {
+                validateMoving = inputView.getClass().getDeclaredMethod("validateMoving", String.class);
+                validateMoving.setAccessible(true);
+            } catch (Exception e) {
+                //do nothing
+            }
+        }
+        @ParameterizedTest(name = "{index} : {0} ==> No Exception ")
+        @MethodSource("movingValidTestArgument")
+        @DisplayName("U,D 입력시 ")
+        void movingValidTest(String inputString) {
+
+            assertThatNoException().isThrownBy(() -> {
+                validateMoving.invoke(inputView, inputString);
+            });
+        }
+
+        Stream<Arguments> movingValidTestArgument() {
+            return Stream.of(
+                    arguments("U"),
+                    arguments("D")
+            );
+        }
+        @ParameterizedTest(name = "{index} : {0} ==> Exception ")
+        @MethodSource("movingInvalidTestArgument")
+        @DisplayName("U,D 이외의 값 입력시 ")
+        void movingInvalidTest(String inputString) {
+            assertThatThrownBy(() -> {
+                validateMoving.invoke(inputView, inputString);
+            });
+        }
+
+        Stream<Arguments> movingInvalidTestArgument() {
+            return Stream.of(
+                    arguments("0"),
+                    arguments("S"),
+                    arguments("U1"),
+                    arguments("D1")
+            );
+        }
     }
 
     @Nested
