@@ -1,6 +1,7 @@
 package bridge.game.context;
 
 import bridge.domain.bridge.Bridge;
+import bridge.domain.code.BridgePosition;
 import bridge.game.BridgeGame;
 
 public interface BridgeGameContext {
@@ -8,11 +9,13 @@ public interface BridgeGameContext {
 
     BridgeGame getBridgeGame();
 
-    void plusRepeatCount();
-
     void writeHistory(final String resultMap);
 
     String getCachedHistory();
 
     Integer getRepeatCount();
+
+    void retry();
+
+    void movePlayerUnit(BridgePosition movePosition);
 }
