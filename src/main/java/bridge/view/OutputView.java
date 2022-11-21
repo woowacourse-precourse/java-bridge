@@ -30,4 +30,8 @@ public class OutputView {
         System.out.printf(GameMessage.GAME_CLEAR_WHETHER, successOrNot);
         System.out.printf(GameMessage.TOTAL_TRY_COUNT, count);
     }
+
+    public static void printError(String msg) {
+        System.out.println(msg);
+    }
 }

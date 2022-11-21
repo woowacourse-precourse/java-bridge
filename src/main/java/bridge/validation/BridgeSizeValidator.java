@@ -3,6 +3,7 @@ package bridge.validation;
 import bridge.convertor.InputConvertor;
 import bridge.resource.ErrorMessage;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeSizeValidator {
     private static final int BRIDGE_MIN_SIZE = 3;
@@ -15,7 +16,7 @@ public class BridgeSizeValidator {
             bridgeSizeValidation(input);
             return input;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
             return sizeValidator();
         }
     }

@@ -3,6 +3,7 @@ package bridge.validation;
 import bridge.resource.ErrorMessage;
 import bridge.resource.GameConstant;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class RetryValidator {
@@ -15,7 +16,7 @@ public class RetryValidator {
             retryValidator(input);
             return input;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
             return retryValidator();
         }
     }
