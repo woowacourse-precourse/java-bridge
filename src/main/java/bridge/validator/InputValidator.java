@@ -3,6 +3,8 @@ package bridge.validator;
 import static bridge.messages.ErrorMessage.NON_NUMERIC_BRIDGE_SIZE_ERROR;
 import static bridge.messages.ErrorMessage.OUTBOUND_BRIDGE_SIZE_ERROR;
 
+import bridge.messages.ErrorMessage;
+
 public class InputValidator {
     private static final int MINIMUM_SIZE = 3;
     private static final int MAXIMUM_SIZE = 20;
@@ -20,6 +22,12 @@ public class InputValidator {
             return Integer.parseInt(inputBridgeSize);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(NON_NUMERIC_BRIDGE_SIZE_ERROR);
+        }
+    }
+
+    public static void validateBlock(final String inputBlock) {
+        if (!inputBlock.equals("U") && !inputBlock.equals("D")) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BLOCK_COMMAND_ERROR);
         }
     }
 }

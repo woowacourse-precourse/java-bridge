@@ -25,12 +25,21 @@ public class BridgeGameController {
     }
 
     private void requestBlock() {
+        checkFinishGame();
         try {
             bridgeGameService.move(inputView.readBlock());
+            responseMovingResult();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             requestBlock();
         }
+    }
+
+    private void responseMovingResult() {
+
+    }
+
+    private void checkFinishGame() {
     }
 
     private String requestBridgeSize() {
