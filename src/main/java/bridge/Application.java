@@ -8,13 +8,23 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
+
+        try {
+            app();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static void app() {
         bridgeGame.makeGame(inputView.readBridgeSize());
 
-        while (bridgeGame.playing())
-        {
+        while (bridgeGame.playing()) {
             moveAndPrint();
             if (bridgeGame.getDeath()) retryAndReset();
         }
+        
         outputView.printResult(bridgeGame.getDeath(), bridgeGame.getTryCount());
     }
 
