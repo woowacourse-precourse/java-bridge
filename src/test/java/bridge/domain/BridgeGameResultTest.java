@@ -57,6 +57,14 @@ public class BridgeGameResultTest {
         );
     }
 
+    @DisplayName("다리 건너기 결과를 초기화한다.")
+    @Test
+    void clearBridgeResult() {
+        gameResult.clearResult();
+        assertThat(gameResult.getBridgeByShape(UP_SIDE_SHAPE)).isEmpty();
+        assertThat(gameResult.getBridgeByShape(DOWN_SIDE_SHAPE)).isEmpty();
+    }
+
     static class GameResult extends BridgeGameResult {
         public void putMovingResult() {
             super.getBridgeByShape(UP_SIDE_SHAPE).addAll(List.of("O", "O", " ", " ", " "));
