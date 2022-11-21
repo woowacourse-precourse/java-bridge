@@ -1,19 +1,18 @@
 package bridge.model;
 
 import bridge.model.enums.MoveChoice;
-import bridge.model.enums.MoveResult;
 
 public class MoveInformation {
-    private final MoveResult moveResult;
+    private final boolean moveSucceed;
     private final MoveChoice moveChoice;
 
-    public MoveInformation(MoveResult moveResult, MoveChoice moveChoice) {
-        this.moveResult = moveResult;
+    public MoveInformation(boolean moveSucceed, MoveChoice moveChoice) {
+        this.moveSucceed = moveSucceed;
         this.moveChoice = moveChoice;
     }
 
-    public Boolean moveSucceed(){
-        return moveResult.succeed();
+    public boolean moveSucceed(){
+        return moveSucceed;
     }
 
     public int getRow(){
