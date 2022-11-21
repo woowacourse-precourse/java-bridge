@@ -3,29 +3,22 @@ package bridge;
 import java.util.Arrays;
 
 public enum BridgeEnum {
-    UP_TRUE(1,"U",true,"O"),
-    UP_FALSE(1,"U",false,"X"),
-    DOWN_TRUE(0,"D",true,"O"),
-    DOWN_FALSE(0,"D",false,"X");
+    UP_TRUE("U",1,true,"O"),
+    UP_FALSE("U",1,false,"X"),
+    DOWN_TRUE("D",0,true,"O"),
+    DOWN_FALSE("D",0,false,"X");
 
-    private final int bridgeNumberType;
     private final String bridgeStringType;
+    private final int bridgeNumberType;
     private final boolean correctLocation;
     private final String checkLocation;
 
 
-    BridgeEnum(int numberType, String stringType,boolean correctLocation,String checkLocation) {
-        this.bridgeNumberType = numberType;
+    BridgeEnum(String stringType,int numberType,boolean correctLocation,String checkLocation) {
         this.bridgeStringType = stringType;
+        this.bridgeNumberType = numberType;
         this.correctLocation = correctLocation;
         this.checkLocation = checkLocation;
-    }
-
-    public static BridgeEnum createBridgeNumberType(int locationNumber) {
-        return Arrays.stream(values())
-                .filter(pointValue -> pointValue.bridgeNumberType == locationNumber)
-                .findFirst()
-                .orElseThrow();
     }
 
     public static BridgeEnum createBridgeStringType(String location, boolean correctLocation) {
@@ -35,6 +28,14 @@ public enum BridgeEnum {
                 .findFirst()
                 .orElseThrow();
     }
+
+    public static BridgeEnum createBridgeNumberType(int locationNumber) {
+        return Arrays.stream(values())
+                .filter(pointValue -> pointValue.isLocationNumber(pointValue,locationNumber))
+                .findFirst()
+                .orElseThrow();
+    }
+
 
     private static boolean isLocationNumber(BridgeEnum locationValue, int locationNumber) {
         return locationValue.bridgeNumberType == locationNumber;
