@@ -30,7 +30,7 @@ public class OutputView {
     private List<String> createLineString(ChoiceDirections choiceDirections, CrossResults crossResults) {
         List<String> line = new ArrayList<>(Arrays.asList("[", "["));
         int length = choiceDirections.length();
-        for (int position = 0; position < choiceDirections.length(); position++) {
+        for (int position = 0; position < length; position++) {
             ChoiceDirection choiceDirection = choiceDirections.get(position);
             CrossResult crossResult = crossResults.get(position);
             line = concatCrossResult(line, choiceDirection, crossResult);
