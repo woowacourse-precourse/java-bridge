@@ -2,7 +2,7 @@ package bridge.model;
 
 public class Player {
     private int position;
-    private int retryCount;
+    private int tryCount;
 
     public Player() {
         initialize();
@@ -10,7 +10,7 @@ public class Player {
 
     public void initialize() {
         position = 0;
-        retryCount++;
+        tryCount++;
     }
 
     public MoveResult move(Bridge bridge, Direction direction) {
@@ -24,7 +24,7 @@ public class Player {
         return bridge.end(position);
     }
 
-    public int getRetryCount() {
-        return retryCount;
+    public int getTryCount() {
+        return tryCount;
     }
 }

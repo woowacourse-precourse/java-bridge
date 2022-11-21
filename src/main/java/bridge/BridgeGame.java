@@ -64,7 +64,7 @@ public class BridgeGame {
     }
 
     public GameResult gameResult() {
-        return new GameResult(complete(), player.getRetryCount());
+        return new GameResult(complete(), player.getTryCount());
     }
 
     private void setStatus(GameStatus status) {
