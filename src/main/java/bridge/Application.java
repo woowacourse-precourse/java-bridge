@@ -76,17 +76,19 @@ public class Application {
      */
     static String inputFinish() {
         OutputView outputView = new OutputView();
+        InputView inputView = new InputView();
 
         outputView.printWantFinish();
+        String gameCommand = inputView.readGameCommand();
 
-        return "";
+        return gameCommand;
     }
 
     /**
      * 게임을 종료하는 메서드
      */
     static Boolean gameEnd(List<List<String>> moveResult) {
-        String checkFinish = Application.inputFinish();
+        String gameCommand = Application.inputFinish();
 
         return false;
     }
@@ -94,10 +96,10 @@ public class Application {
     public static void main(String[] args) {
         Boolean wholeTry = true;
         try {
+            Application.gameStart();
+            int bridgeSize = Application.knowBridgeLength();
+            List<String> bridge = Application.makeBridge(bridgeSize);
             while (wholeTry) {
-                Application.gameStart();
-                int bridgeSize = Application.knowBridgeLength();
-                List<String> bridge = Application.makeBridge(bridgeSize);
                 List<List<String>> moveResult = Application.moveBridge(bridge);
                 wholeTry = Application.gameEnd(moveResult);
             }
