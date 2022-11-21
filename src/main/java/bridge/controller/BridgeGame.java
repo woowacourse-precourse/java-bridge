@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.domain.Bridge;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -17,10 +18,12 @@ public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public BridgeGame(BridgeMaker bridgeMaker, InputView inputView) {
+    public BridgeGame(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         this.bridgeMaker = bridgeMaker;
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void readBridgeSize() {
@@ -37,7 +40,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        String nextMoving = inputView.readMoving();
+        user.moveNext(inputView.readMoving(), currentStage);
+
+        List<String> result = this.bridge.matchAnswer(this.user, currentStage);
+        outputView.printMap(result, this.user.getBridge());
     }
 
     /**

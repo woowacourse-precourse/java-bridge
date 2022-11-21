@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -9,5 +10,43 @@ public class Bridge {
     public Bridge(List<String> bridge, int size) {
         this.bridge = bridge;
         this.size = size;
+    }
+
+    public Bridge(int size) {
+        this.size = size;
+        this.bridge = new ArrayList<>(size);
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * 도메인 로직
+     */
+    public void moveNext(String moving, int stage) {
+        this.bridge.add(stage, moving);
+    }
+
+    public List<String> matchAnswer(Bridge user, int stage) {
+        List<String> answer = new ArrayList<>();
+
+        while(stage-->=0){
+            String result = isCorrect(this.bridge.get(stage), user.bridge.get(stage));
+            answer.set(stage, result);
+        }
+
+        return answer;
+    }
+
+    private String isCorrect(String answer, String input) {
+        if(answer.equals(input))
+            return "O";
+
+        return "X";
     }
 }
