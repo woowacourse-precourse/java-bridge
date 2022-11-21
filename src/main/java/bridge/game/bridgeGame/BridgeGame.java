@@ -1,6 +1,6 @@
 package bridge.game.bridgeGame;
 
-import bridge.game.GameCommend;
+import bridge.game.GameCommand;
 import bridge.structure.Bridge;
 import bridge.structure.BridgeMoveValue;
 
@@ -67,8 +67,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(GameCommend gameCommend) {
-        if (GameCommend.isRestart(gameCommend)) {
+    public boolean retry(GameCommand gameCommand) {
+        if (GameCommand.isRestart(gameCommand)) {
             initializeMember();
             return true;
         }

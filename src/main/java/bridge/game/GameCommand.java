@@ -3,7 +3,7 @@ package bridge.game;
 
 import java.util.Arrays;
 
-public enum GameCommend {
+public enum GameCommand {
 
     RESTART("R"),
     QUIT("Q"),
@@ -13,7 +13,7 @@ public enum GameCommend {
     private static final String WARM_RESTART_CHOICE = WARM + " 게임을 재시도 여부를 바르게 입력해주세요. (재시도: R, 종료: Q)";
     private final String stringIdentifier;
 
-    GameCommend(String stringIdentifier) {
+    GameCommand(String stringIdentifier) {
         this.stringIdentifier = stringIdentifier;
     }
 
@@ -22,22 +22,22 @@ public enum GameCommend {
     }
 
     public static void validateInput(String input) {
-        Arrays.stream(GameCommend.values())
+        Arrays.stream(GameCommand.values())
                 .filter(gameCommend -> gameCommend.stringIdentifier.equals(input))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(WARM_RESTART_CHOICE));
     }
 
-    public static GameCommend generate(String stringIdentifier) {
-        return Arrays.stream(GameCommend.values())
+    public static GameCommand generate(String stringIdentifier) {
+        return Arrays.stream(GameCommand.values())
                 .filter(gameCommend -> gameCommend.getStringIdentifier()
                         .equals(stringIdentifier))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(WARM_RESTART_CHOICE));
     }
 
-    public static boolean isRestart(GameCommend gameCommend) {
-        if (gameCommend.equals(GameCommend.RESTART)) {
+    public static boolean isRestart(GameCommand gameCommend) {
+        if (gameCommend.equals(GameCommand.RESTART)) {
             return true;
         }
         return false;

@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.game.GameCommend;
+import bridge.game.GameCommand;
 import bridge.structure.BridgeMoveValue;
 import bridge.view.util.Transfer;
 import camp.nextstep.edu.missionutils.Console;
@@ -40,11 +40,11 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public GameCommend readGameCommand() {
+    public GameCommand readGameCommand() {
         try {
             String input = Console.readLine();
-            GameCommend.validateInput(input);
-            return GameCommend.generate(input);
+            GameCommand.validateInput(input);
+            return GameCommand.generate(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
