@@ -19,21 +19,21 @@ public class OutputView {
 
         for (int i = 0; i < playerList.size(); i++) {
             if (BRIDGEANSWER.get(i).equals(playerList.get(i))) {
-                if (BRIDGEANSWER.get(i).equals("0")) {
+                if (BRIDGEANSWER.get(i).equals("D")) {
                     lowerList.add(" O ");
                     upperList.add("   ");
                 }
-                if (BRIDGEANSWER.get(i).equals("1")) {
+                if (BRIDGEANSWER.get(i).equals("U")) {
                     lowerList.add("   ");
                     upperList.add(" O ");
                 }
             }
             if (!BRIDGEANSWER.get(i).equals(playerList.get(i))) {
-                if (playerList.get(i).equals("0")) {
+                if (playerList.get(i).equals("D")) {
                     lowerList.add(" X ");
                     upperList.add("   ");
                 }
-                if (playerList.get(i).equals("1")) {
+                if (playerList.get(i).equals("U")) {
                     lowerList.add("   ");
                     upperList.add(" X ");
                 }
