@@ -8,6 +8,8 @@ import bridge.view.OutputView;
 public class BridgeGameController {
 
     public static final String RETRY_SIGNAL = "R";
+    public static final String SUCCESS_MESSAGE = "게임 성공 여부: 성공";
+    public static final String FAILURE_MESSAGE = "게임 성공 여부: 실패";
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
@@ -44,8 +46,7 @@ public class BridgeGameController {
             play();
             return;
         }
-        printSuccessResult();
-
+        printResult(SUCCESS_MESSAGE);
     }
 
     private void retry() {
@@ -55,18 +56,12 @@ public class BridgeGameController {
             play();
             return;
         }
-        printFailureResult();
+        printResult(FAILURE_MESSAGE);
     }
 
-    private void printSuccessResult() {
+    private void printResult(String message) {
         outputView.printGameOverMessage();
         outputView.printMap(bridgeGame.printResult());
-        outputView.printResult(OutputView.SUCCESS_MESSAGE, bridgeGame.getRetryCount());
-    }
-
-    private void printFailureResult() {
-        outputView.printGameOverMessage();
-        outputView.printMap(bridgeGame.printResult());
-        outputView.printResult(OutputView.FAILURE_MESSAGE, bridgeGame.getRetryCount());
+        outputView.printResult(message, bridgeGame.getRetryCount());
     }
 }
