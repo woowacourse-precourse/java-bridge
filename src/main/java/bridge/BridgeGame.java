@@ -19,6 +19,17 @@ public class BridgeGame {
         this.answerBridge = answerBridge;
         init(INIT_TRY_COUNT);
     }
+
+    public BridgeMap getBridgeMap() {
+        return bridgeMap;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public String getResult() {
+        return gameStatus.getStatus();
     }
 
     /**
@@ -74,6 +85,11 @@ public class BridgeGame {
         this.bridgeMap = new BridgeMap();
         this.gameStatus = GameStatus.PLAYING;
     }
+
+    public boolean isGameOngoing() {
+        return gameStatus == GameStatus.PLAYING;
+    }
+
     public boolean isFail() {
         return gameStatus == GameStatus.FAIL;
     }

@@ -27,11 +27,16 @@ public class BridgeGameController {
     }
 
     public void run() {
+        while (bridgeGame.isGameOngoing()) {
             moveBridge();
             if (bridgeGame.isFail()) {
                 String userCommand = inputView.readGameCommand();
                 bridgeGame.retry(userCommand);
             }
+        }
+        outputView.printResult(bridgeGame);
+    }
+
     private void moveBridge() {
         String readMoving = inputView.readMoving();
         BridgeMap bridgeMap = bridgeGame.move(readMoving);
