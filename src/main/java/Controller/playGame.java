@@ -14,8 +14,14 @@ public class playGame {
     void play() {
         output.printStart();
         output.printInputBridgeSize();
-        bridge.bridgeSize(input.inputBridgeSize());
-        bridge.bridge(bridgeMaker.makeBridge(bridge.getConvertBridgeSize()));
+
+        while(bridge.bridgeSize(input.inputBridgeSize())){
+
+        }
+
+
+
+        bridge.bridge(bridgeMaker.makeBridge(bridge.getBridgeSize()));
 
         while (true) {
             bridge.initializeUserMove();
@@ -26,20 +32,22 @@ public class playGame {
     }
 
     boolean gamePlay() {
-
         boolean gameContinue = true;
         BridgeGameResult bridgeGameResult;
 
         while (true) {
             output.printSelectMove();
-            bridge.move(input.inputUserMoving());
+
+            while(bridge.move(input.inputUserMoving())){
+
+            }
 
             bridgeGameResult = new BridgeGameResult(bridge.getBridge(), bridge.getMoveList());
             output.printMap(bridgeGameResult.getList());
             if (bridge.checkFail(bridgeGameResult.getList()) == true) {
                 break;
             }
-            if (bridge.checkSuccess(bridgeGameResult.getList())==bridge.getConvertBridgeSize()) {
+            if (bridge.checkSuccess(bridgeGameResult.getList()) == bridge.getBridgeSize()) {
                 gameContinue = false;
                 break;
             }
@@ -48,12 +56,14 @@ public class playGame {
 
         if (gameContinue == true) {
             output.printReStart();
-            bridge.retry(input.inputReGame());
+            while(bridge.retry(input.inputReGame())){
+
+            }
             if (bridge.getRetry().equals("R")) {
                 bridge.checkTryNumber();
                 return true;
             }
-            if(bridge.getRetry().equals("Q")){
+            if (bridge.getRetry().equals("Q")) {
                 output.printResult(bridgeGameResult.getList(), bridge.getTryNumber(), gameContinue);
             }
         }
