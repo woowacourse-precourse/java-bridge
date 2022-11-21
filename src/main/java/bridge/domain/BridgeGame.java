@@ -56,8 +56,8 @@ public class BridgeGame {
                                 return Answer.CORRECT;
                             }
                             return Answer.NONE;
-                        }
-                ).limit(step)
+                        })
+                .limit(step)
                 .collect(Collectors.toList());
     }
 
@@ -93,5 +93,4 @@ public class BridgeGame {
         }
         return Answer.CORRECT;
     }
-
 }
