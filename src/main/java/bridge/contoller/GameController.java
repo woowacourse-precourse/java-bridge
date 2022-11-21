@@ -33,17 +33,17 @@ public class GameController {
                 break;
             }
         }
+
         outputView.printResult(bridgeGame);
     }
 
 
     private boolean tryMove() {
-        boolean moving = bridgeGame.move(inputView.readMoving());
-        outputView.printMap(bridgeGame.getBridgeTokens());
-
-        if (moving) {
+        if (bridgeGame.move(inputView.readMoving())) {
+            outputView.printMap(bridgeGame.getBridgeTokens());
             return true;
         }
+        outputView.printMap(bridgeGame.getBridgeTokens());
         return bridgeGame.retry(inputView.readGameCommand());
     }
 
