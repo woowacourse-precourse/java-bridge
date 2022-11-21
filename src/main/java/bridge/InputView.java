@@ -12,9 +12,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String size = Console.readLine();
+        int size = Integer.parseInt(Integer.parseInt(Console.readLine()));
+        Validator.validateBridgesize(size);
 
-        return Integer.parseInt(size);
+        return size;
     }
 
     /**
@@ -23,6 +24,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String movingType = Console.readLine();
+        Validator.validateMoving(movingType);
 
         return movingType;
     }
@@ -32,8 +34,9 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String RestartButton = Console.readLine();
+        String restartButton = Console.readLine();
+        Validator.validateRestartButton(restartButton);
 
-        return RestartButton;
+        return restartButton;
     }
 }
