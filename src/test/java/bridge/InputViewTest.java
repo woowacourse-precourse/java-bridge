@@ -77,6 +77,6 @@ class InputViewTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertThat(inputView.readMoving()).isEqualTo(1);
+        assertThat(inputView.readMoving()).isEqualTo("1");
     }
 }
