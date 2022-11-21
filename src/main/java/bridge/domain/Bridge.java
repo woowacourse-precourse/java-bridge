@@ -31,8 +31,8 @@ public class Bridge {
     public static void makeUpperBridge() {
         resetUpperBridge();
         List<String> userBridge = User.getUserMovingRecord();
-        for (int i = 0; i < userBridge.size(); i++) {
-            String keyword = CalculationResult.calculateUpper(bridge.get(i), userBridge.get(i));
+        for (int stage = 0; stage < userBridge.size(); stage++) {
+            String keyword = CalculationResult.calculateUpper(bridge.get(stage), userBridge.get(stage));
             upperBridge.add(keyword);
         }
     }
@@ -40,17 +40,19 @@ public class Bridge {
     public static void makeLowerBridge() {
         resetLowerBridge();
         List<String> userBridge = User.getUserMovingRecord();
-        for (int i = 0; i < userBridge.size(); i++) {
-            String keyword = CalculationResult.calculateLower(bridge.get(i), userBridge.get(i));
+        for (int stage = 0; stage < userBridge.size(); stage++) {
+            String keyword = CalculationResult.calculateLower(bridge.get(stage), userBridge.get(stage));
             lowerBridge.add(keyword);
         }
     }
 
     public static List<String> getUpperBridge() {
+        makeUpperBridge();
         return upperBridge;
     }
 
     public static List<String> getLowerBridge() {
+        makeLowerBridge();
         return lowerBridge;
     }
 }
