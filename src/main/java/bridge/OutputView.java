@@ -11,7 +11,7 @@ public class OutputView {
         START("다리 건너기 게임을 시작합니다."),
         BRIDGESIZEINPUT("다리의 길이를 입력해주세요. (3 이상 20 이하)"),
         MOVECOMMANDINPUT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
-        RETRY("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        GAMECOMMANDINPUT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
         private final String message;
         Guide(String message) { this.message = message; }
@@ -68,7 +68,7 @@ public class OutputView {
     /**
      * 게임 재시작/종료 코드 입력 안내 출력
      */
-    public void guideRetry() { guide(Guide.RETRY); }
+    public void guideGameCommandInput() { guide(Guide.GAMECOMMANDINPUT); }
 
     private void guide(Guide guide) {
         printNewLine();

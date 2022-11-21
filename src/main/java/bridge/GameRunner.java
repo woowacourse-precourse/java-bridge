@@ -53,7 +53,7 @@ public class GameRunner {
         bridgeGame.printMap();
     }
 
-    private void guideRetry() { outputView.guideRetry(); }
+    private void guideRetry() { outputView.guideGameCommandInput(); }
 
     private String getGameCommand() { return inputView.readGameCommand(); }
 
