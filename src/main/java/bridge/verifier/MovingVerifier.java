@@ -13,15 +13,15 @@ public class MovingVerifier {
         isNotUnderstandable(target);
     }
 
-    private void isNotUnderstandable(String target) {
-        if (!GameMoving.isUp(target) && !GameMoving.isDown(target)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_UNDERSTANDABLE_COMMAND);
-        }
-    }
-
     private void isNotAlphabetic(String target) {
         if (!Pattern.matches(ALPHABET_PATTERN, target)) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_ALPHABETIC);
+        }
+    }
+    
+    private void isNotUnderstandable(String target) {
+        if (!GameMoving.isUp(target) && !GameMoving.isDown(target)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_UNDERSTANDABLE_COMMAND);
         }
     }
 }

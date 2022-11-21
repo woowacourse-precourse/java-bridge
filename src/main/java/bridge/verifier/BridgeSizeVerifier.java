@@ -14,13 +14,6 @@ public class BridgeSizeVerifier {
         checkRange(target);
     }
 
-    private void checkRange(String target) {
-        int bridgeSize = Integer.parseInt(target);
-        if (bridgeSize < BRIDGE_SIZE_LOWERBOUND || bridgeSize > BRIDGE_SIZE_UPPERBOUND) {
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
-        }
-    }
-
     private void checkNumeric(String target) {
         try {
             new BigInteger(target);
@@ -34,6 +27,13 @@ public class BridgeSizeVerifier {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_TYPE_RANGE);
+        }
+    }
+
+    private void checkRange(String target) {
+        int bridgeSize = Integer.parseInt(target);
+        if (bridgeSize < BRIDGE_SIZE_LOWERBOUND || bridgeSize > BRIDGE_SIZE_UPPERBOUND) {
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
         }
     }
 }
