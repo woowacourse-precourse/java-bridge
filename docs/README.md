@@ -51,4 +51,4 @@
 
 ### 예외처리
 - 잘못된 값을 입력하는 경우 `IllegalArgumentException` 을 발생
-  - 예외가 발생하는 명확한 유형을 처리하여 `IllegalArgumentException` 을 발생시킨다.
+  - 예외가 발생하는 명확한 유형을 처리하여 `IllegalArgumentException` 을 발생시키고 그 지점부터 다시 실행
