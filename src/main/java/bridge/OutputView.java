@@ -24,6 +24,17 @@ public class OutputView {
         printLines(lines);
     }
 
+    // 현재까지 이동한 다리의 상태(윗 줄, 아랫 줄) 정보 합치기
+    private List<String> constructBothLines(List<String> item, List<String> lines) {
+        String topLine = constructTopLine(item);
+        String downLine = constructDownLine(item);
+
+        lines.set(0, connectTop(lines, topLine));
+        lines.set(1, connectDown(lines, downLine));
+
+        return lines;
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
