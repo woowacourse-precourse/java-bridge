@@ -43,10 +43,10 @@
     - False: 정답을 틀리거나, 정답이 맞더라도 마지막인 경우
 - [x] isSuccess
     - 게임 성공 여부를 확인하는 매서드
-- [ ] trials
+- [x] trials
     - 총 시도 횟수 확인
 
 ### GameController / 게임 진행 클래스
 
-- [ ] begin
+- [x] begin
     - 전체적인 게임을 진행하는 매서드
