@@ -13,6 +13,8 @@ import java.util.NoSuchElementException;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
+    static final String INPUT_BRIDGE_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -20,7 +22,7 @@ public class InputView {
     public int readBridgeSize(){
         while (true){
             try{
-                System.out.println(OutputViewPrintEnum.INPUT_BRIDGE_LENGTH.getMessage());
+                System.out.println(INPUT_BRIDGE_LENGTH);
                 return getBridgeSize(Console.readLine());
             } catch (IllegalArgumentException e){
                 System.out.println(ERROR_MESSAGE + e.getMessage());
@@ -34,7 +36,7 @@ public class InputView {
     public String readMoving() throws IllegalArgumentException {
         while (true){
             try{
-                System.out.println(OutputViewPrintEnum.INPUT_BRIDGE_MOVE.getMessage());
+                System.out.println(INPUT_BRIDGE_MOVE);
                 return getMoving(Console.readLine());
             } catch (IllegalArgumentException e){
                 System.out.println(ERROR_MESSAGE + e.getMessage());

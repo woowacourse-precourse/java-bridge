@@ -4,7 +4,6 @@ import bridge.Setting.BridgeRetryIndex;
 import bridge.Setting.BridgeSideIndex;
 import bridge.Setting.BridgeSidePrintIndex;
 import bridge.Setting.OutputViewPrintEnum;
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class BridgeGame {
             InputView inputView = new InputView();
             String gameCommand = inputView.readGameCommand();
 
-            if (gameCommand.equals(BridgeRetryIndex.QUIT.getLabel())){
+            if (gameCommand.equals(BridgeRetryIndex.QUIT.getLabel())) {
                 return;
             }
             if (gameCommand.equals(BridgeRetryIndex.RETRY.getLabel())) {
@@ -81,14 +80,14 @@ public class BridgeGame {
         return lines;
     }
 
-    public void doRetry(){
-        if (bridgeCorrect.size() > 0){
+    public void doRetry() {
+        if (bridgeCorrect.size() > 0) {
             bridgeCorrect.remove(bridgeCorrect.size() - 1);
         }
         tryTime += 1;
     }
 
-    public List<String> getResultLines(){
+    public List<String> getResultLines() {
         List<String> resultLines = new ArrayList<>();
         resultLines.add(OutputViewPrintEnum.FINAL_RESULT.getMessage());
         resultLines.addAll(getMapLines());
@@ -97,6 +96,7 @@ public class BridgeGame {
         resultLines.add(printTryTime());
         return resultLines;
     }
+
     private String getSideString(List<String> sideIndex) {
         String sideString = String.join(OutputViewPrintEnum.OUTPUT_BRIDGE_SIDE_SEPARATOR.getMessage(), sideIndex);
         return OutputViewPrintEnum.OUTPUT_BRIDGE_SIDE.getMessage()
@@ -113,10 +113,10 @@ public class BridgeGame {
     }
 
     private String getPrintEach(BridgeSideIndex bridgeSideIndex, String bridgeEach, boolean bridgeCorrectEach) {
-        if (bridgeSideIndex.getLabel().equals(bridgeEach)) {
-            if (bridgeCorrectEach) {
-                return BridgeSidePrintIndex.CORRECT.getLabel();
-            }
+        if (bridgeSideIndex.getLabel().equals(bridgeEach) && bridgeCorrectEach) {
+            return BridgeSidePrintIndex.CORRECT.getLabel();
+        }
+        if (!bridgeSideIndex.getLabel().equals(bridgeEach) && !bridgeCorrectEach) {
             return BridgeSidePrintIndex.WRONG.getLabel();
         }
         return BridgeSidePrintIndex.BLANK.getLabel();
@@ -143,7 +143,7 @@ public class BridgeGame {
     }
 
     private boolean lastBridgeCorrect() {
-        if (bridgeCorrect.size() == 0){
+        if (bridgeCorrect.size() == 0) {
             return true;
         }
         return bridgeCorrect.get(bridgeCorrect.size() - 1);
