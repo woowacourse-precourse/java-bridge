@@ -39,5 +39,14 @@ public class BridgeGame {
         }
         return false;
     }
+
+    /**
+     * 사용자 게임이 종료될 때 사용하는 메서드
+     */
+    public void quit(boolean isSuccess) {
+        outputView.printResult();
+        outputView.printMap(bridge, player);
+        outputView.printSuccessOrFail(isSuccess);
+        outputView.printTryCount(tryCount);
     }
 }
