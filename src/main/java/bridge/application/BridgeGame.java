@@ -29,15 +29,14 @@ public class BridgeGame {
         return new BridgeGame(bridgeMaker);
     }
 
-    public List<String> initBridge(int size) {
+    public void initBridge(int size) {
         validateBridge();
         bridge = bridgeMaker.makeBridge(size);
-        return bridge;
     }
 
     private void validateBridge() {
         if (bridge != null) {
-            throw new IllegalStateException("이미 다리가 생성되었습니다.");
+            throw new IllegalStateException("이미 다리가 존재합니다.");
         }
     }
 
