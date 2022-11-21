@@ -70,7 +70,6 @@ class ApplicationTest extends NsTest {
             String name) {
         String[] args = input.split(", ");
 
-        System.out.println(Arrays.toString(args));
         assertRandomNumberInRangeTest(() -> {
             run(args);
             assertThat(output()).contains(
