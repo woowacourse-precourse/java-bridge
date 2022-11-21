@@ -66,7 +66,7 @@ class BridgeGameTest {
 
         @DisplayName("진행 중인 경우")
         @Test
-        void should_BeTrue_When_StatusIsOnWay() {
+        void should_ReturnTrue_When_StatusIsOnWay() {
             // given
             bridgeGame.move(UPPER_SIDE);
             // when
@@ -77,7 +77,7 @@ class BridgeGameTest {
 
         @DisplayName("실패 상태인 경우")
         @Test
-        void should_BeFalse_When_StatusIsFail() {
+        void should_ReturnFalse_When_StatusIsFail() {
             // given
             bridgeGame.move(LOWER_SIDE);
             // when
@@ -93,7 +93,7 @@ class BridgeGameTest {
 
         @DisplayName("실패 상태인 경우")
         @Test
-        void should_BeTrue_When_StatusIsFail() {
+        void should_ReturnTrue_When_StatusIsFail() {
             // given
             bridgeGame.move(LOWER_SIDE);
             // when
@@ -104,7 +104,7 @@ class BridgeGameTest {
 
         @DisplayName("진행 중인 경우")
         @Test
-        void should_BeFalse_When_StatusIsOnWay() {
+        void should_ReturnFalse_When_StatusIsOnWay() {
             // given
             bridgeGame.move(UPPER_SIDE);
             // when
@@ -120,7 +120,7 @@ class BridgeGameTest {
 
         @DisplayName("종료 상태인 경우")
         @Test
-        void should_BeTrue_When_StatusIsEnd() {
+        void should_ReturnTrue_When_StatusIsEnd() {
             // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
@@ -133,7 +133,7 @@ class BridgeGameTest {
 
         @DisplayName("진행 중인 경우")
         @Test
-        void should_BeFalse_When_StatusIsOnWay() {
+        void should_ReturnFalse_When_StatusIsOnWay() {
             // given
             bridgeGame.move(UPPER_SIDE);
             // when
