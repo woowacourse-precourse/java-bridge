@@ -48,6 +48,10 @@ public class Controller {
             userMoveInput = inputView.getUserInput();
             isUserInputValid = moveInputException.isInputValid(userMoveInput);
         } while (!isUserInputValid);
+        return afterUserInput(bridgeGame, userMoveInput);
+    }
+
+    private boolean afterUserInput(BridgeGame bridgeGame, String userMoveInput) {
         boolean userInputCompareResult = bridgeUserInputComparator.compareUserInput(bridgeGame,
                 userMoveInput);
         outputView.printMap(bridgeGame);
