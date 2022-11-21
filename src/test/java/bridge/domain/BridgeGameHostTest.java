@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.BridgeGameHost;
-import bridge.domain.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -57,6 +55,6 @@ public class BridgeGameHostTest {
     @DisplayName("플레이어가 게임에서 성공하는 경우")
     void getResult() {
         // then
-        assertThat(bridgeGameHost.getResult()).isEqualTo("실패");
+        assertThat(BridgeGameHost.getResult()).isEqualTo("실패");
     }
 }

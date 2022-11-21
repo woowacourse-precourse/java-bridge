@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.BridgeGameHost;
-import bridge.domain.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
