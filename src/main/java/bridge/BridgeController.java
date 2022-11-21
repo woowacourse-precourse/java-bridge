@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class BridgeController {
 
     InputView inputView;
@@ -15,16 +17,16 @@ public class BridgeController {
     }
 
     // to do: 함수 길이 줄여아 함
-    public BridgeBluePrint getBridgeBluePrint() {
+    public BridgeBluePrint makeBridgeBluePrint() {
         BridgeBluePrint bluePrint = null;
         while (bluePrint == null) {
             outputView.printBridgeSizeInputStatement();
-            bluePrint = getBridgeBluePrintOrNull();
+            bluePrint = makeBridgeBluePrintOrNull();
         }
         return bluePrint;
     }
 
-    private BridgeBluePrint getBridgeBluePrintOrNull(){
+    private BridgeBluePrint makeBridgeBluePrintOrNull(){
         try {
             int number = inputView.readBridgeSize();
             return new BridgeBluePrint(number);

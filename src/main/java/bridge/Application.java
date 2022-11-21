@@ -10,6 +10,6 @@ public class Application {
     }
 
     private static void runBridge(BridgeController controller) {
-        BridgeBluePrint bluePrint = controller.getBridgeBluePrint();
+        BridgeBluePrint bluePrint = controller.makeBridgeBluePrint();
     }
 }
