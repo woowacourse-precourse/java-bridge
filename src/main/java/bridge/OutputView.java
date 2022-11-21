@@ -26,4 +26,13 @@ public class OutputView {
         System.out.println(downMap);
         System.out.println("\n");
     }
+
+
+    public void printSuccessOrFail(String result) {
+        System.out.println(GameMessage.SUCCESS_OR_FAIL.getMessage() + result);
+    }
+
+    public void printAttempt(int attempt) {
+        System.out.println(GameMessage.ATTEMPT.getMessage() + attempt);
+    }
 }
