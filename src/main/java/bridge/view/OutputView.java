@@ -18,6 +18,9 @@ public class OutputView {
     private final String TOTAL_NUMBER_OF_TRIAL_MESSAGE = "총 시도한 횟수: ";
     private final String SUCCESS = "성공";
     private final String FAILED = "실패";
+    private final String START_POINT = "[ ";
+    private final String END_POINT = " ]";
+    private final String DELIMITER = " | ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -45,14 +48,14 @@ public class OutputView {
     }
 
     private void printUpAndDown(List<String> bridge) {
-        System.out.print("[");
+        System.out.print(START_POINT);
         for (int i = 0; i < bridge.size(); i++) {
-            System.out.print(" " + bridge.get(i) + " ");
+            System.out.print(bridge.get(i));
             if (i == bridge.size() - 1) {
-                System.out.print("]");
+                System.out.print(END_POINT);
                 break;
             }
-            System.out.print("|");
+            System.out.print(DELIMITER);
         }
         System.out.println();
     }
