@@ -34,6 +34,11 @@ public class BridgeResult {
         currentMap.get(LOWER_BRIDGE).add(result);
     }
 
+    public void clear(){
+        currentMap.get(UPPER_BRIDGE).clear();
+        currentMap.get(LOWER_BRIDGE).clear();
+    }
+
     @Override
     public String toString(){
         return bridgeToString(UPPER_BRIDGE) + "\n" + bridgeToString(LOWER_BRIDGE);
