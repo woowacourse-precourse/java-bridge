@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,7 +26,7 @@ public class InputViewTest {
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertThat(Integer.toString(inputView.readBridgeSize())).isNotEqualTo(input);
+        assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("다리 길이가 3~20 사이의 숫자인 경우 오류가 발생하지 않는다.")
@@ -45,7 +46,7 @@ public class InputViewTest {
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertThat(inputView.readMoving()).isNotEqualTo(input);
+        assertThatThrownBy(() -> inputView.readMoving()).isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("이동 방향이 U 혹은 D인 경우 정상적으로 작동한다.")
@@ -65,7 +66,7 @@ public class InputViewTest {
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertThat(inputView.readGameCommand()).isNotEqualTo(input);
+        assertThatThrownBy(() -> inputView.readGameCommand()).isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("게임 종료 여부가 R 혹은 Q인 경우 정상적으로 작동한다.")
