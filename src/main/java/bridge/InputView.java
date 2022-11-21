@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
-    Bridge bridge = new Bridge();
+    private Bridge bridge = new Bridge();
 
     public void inputBridge() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -28,7 +28,7 @@ public class InputView {
         Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
         while (true) {
             try {
-                String value = validBridgeSize();
+                String value = inputBridgeSize();
                 return Integer.parseInt(value);
             } catch (IllegalArgumentException e) {
                 ErrorMessage.inputBridgeNumber();
@@ -36,11 +36,10 @@ public class InputView {
         } // end while
     }
 
-    public String validBridgeSize() {
+    public String inputBridgeSize() {
+        Valid valid = new Valid();
         String value = Console.readLine();
-        if (!isBridgeSizeNumber(value)) { // 3 ~ 20이 아니면 true
-            throw new IllegalArgumentException();
-        }
+        valid.validBridgeSize(value);
         return value;
     }
 
@@ -99,10 +98,9 @@ public class InputView {
      */
     public String readGameCommand() {
         Message.inputSelectGameRetry();
-        String retry = "";
         while (true) {
             try {
-                String value = validReadGameCommand();
+                String value = inputReadGameCommand();
                 return value;
             } catch (IllegalArgumentException e) {
                 ErrorMessage.inputRetryError();
@@ -110,11 +108,10 @@ public class InputView {
         } // end while
     }
 
-    public String validReadGameCommand() {
+    public String inputReadGameCommand() {
+        Valid valid = new Valid();
         String retry = Console.readLine();
-        if (!isRetry(retry)) {
-            throw new IllegalArgumentException();
-        } // end if
+        valid.validReadGameCommand(retry);
         return retry;
     }
 
@@ -129,7 +126,7 @@ public class InputView {
         Message.inputMoveBridgeMessage();
         while (true) {
             try {
-                String value = validReadMoving();
+                String value = inputReadMoving();
                 return value;
             } catch (IllegalArgumentException e) {
                 ErrorMessage.inputMoveBridgeError();
@@ -137,11 +134,10 @@ public class InputView {
         } // end while
     }
 
-    public String validReadMoving() {
+    public String inputReadMoving() {
+        Valid valid = new Valid();
         String moving = Console.readLine();
-        if (!isReadMoving(moving)) { // U 또는 D가 아니라면
-            throw new IllegalArgumentException();
-        } // end if
+        valid.validReadMoving(moving);
         return moving;
     }
 
