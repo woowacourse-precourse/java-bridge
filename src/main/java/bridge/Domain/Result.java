@@ -26,16 +26,24 @@ public class Result {
         tryCount++;
     }
 
-    public boolean isMovable(Bridge bridge){
+    public boolean isMovable(int bridgeSize, String bridgeIndexOf){
+        if(moves.size() == 0){
+            return true;
+        }
+
+        return moves.size() < bridgeSize && compare(bridgeIndexOf);
+    }
+
+    public boolean isSuccess(int bridgeSize, String bridgeIndexOf){
         return false;
     }
 
-    public boolean isSuccess(Bridge bridge){
+    public boolean compare(String bridgeIndexOf){
         return false;
     }
 
-    public boolean compare(List<String> bridge){
-        return false;
+    public int getMovesLastIndex(){
+        return moves.size() - 1;
     }
 
     public int getMovesCount(){

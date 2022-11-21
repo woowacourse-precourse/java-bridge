@@ -20,6 +20,10 @@ public class Bridge {
         return spaces.size();
     }
 
+    public String getIndexOf(int index){
+        return spaces.get(index);
+    }
+
     public List<String> getSpaces() {
         return spaces;
     }

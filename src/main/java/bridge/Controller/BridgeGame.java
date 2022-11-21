@@ -41,7 +41,7 @@ public class BridgeGame {
     public void crossBridge(){
         move();
 
-        if(result.isSuccess(bridge)){
+        if(result.isSuccess(bridge.getSize(), bridge.getIndexOf(result.getMovesLastIndex()))){
             return;
         }
 
@@ -54,7 +54,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        while(result.isMovable(bridge)){
+        while(result.isMovable(bridge.getSize(), bridge.getIndexOf(result.getMovesLastIndex()))){
             String moveTo = inputView.readMoving();
             result.move(moveTo);
             outputView.printMap();
