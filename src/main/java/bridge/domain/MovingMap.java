@@ -13,12 +13,11 @@ import java.util.Map;
 
 public class MovingMap {
 
-    private final Map<String, List<MovingMapState>> movingMap;
+    private final Map<String, List<MovingMapState>> movingMap = new HashMap<>();
 
     public MovingMap() {
-        movingMap = new HashMap<>();
         movingMap.put(UP_BRIDGE, new ArrayList<>());
-        movingMap.put(BridgeGame.DOWN_BRIDGE, new ArrayList<>());
+        movingMap.put(DOWN_BRIDGE, new ArrayList<>());
     }
 
     public void addMoving(String moving, boolean isSuccess) {
@@ -38,16 +37,13 @@ public class MovingMap {
         return FAIL;
     }
 
-    public MovingMapState getState(String moving, int position) {
-        return movingMap.get(moving).get(position);
-    }
-
-    public int getLength() {
-        return movingMap.get(UP_BRIDGE).size();
-    }
-
     public void clear() {
         movingMap.get(UP_BRIDGE).clear();
         movingMap.get(DOWN_BRIDGE).clear();
     }
+
+    public List<MovingMapState> getStateList(String moving) {
+        return movingMap.get(moving);
+    }
+
 }

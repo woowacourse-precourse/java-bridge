@@ -12,16 +12,13 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final Player player;
-    private final MovingMap movingMap;
-    private int tryCount;
-    private boolean isEnd;
+    private final MovingMap movingMap = new MovingMap();
+    private int tryCount = 1;
+    private boolean isEnd = false;
 
     public BridgeGame(List<String> bridge, Player player) {
         this.bridge = bridge;
         this.player = player;
-        movingMap = new MovingMap();
-        tryCount = 1;
-        isEnd = false;
     }
 
     /**
