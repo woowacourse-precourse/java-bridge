@@ -58,11 +58,19 @@ public class BridgeGame {
 
     public boolean retry(String gameCommand) {
         if (gameCommand.equals(GameCommand.R.toString())) {
-            trials++;
-            currentPosition = 0;
+            increaseTrials();
+            resetPosition();
             return true;
         }
         return false;
+    }
+
+    private void increaseTrials() {
+        trials++;
+    }
+
+    private void resetPosition() {
+        currentPosition = 0;
     }
 
     public boolean isPlaying() {
