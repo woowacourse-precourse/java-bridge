@@ -20,7 +20,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int length = Integer.parseInt(readLine());
+        String input = readLine();
+        inputValidate.validateSizeIntFormat(input);
+        int length = Integer.parseInt(input);
         inputValidate.validateSizeFormat(length);
         return length;
     }
