@@ -14,13 +14,12 @@ public class BridgeGame {
      *
      * @return
      */
-    public int move(String bridge, String moving) {
+    public String move(String bridge, String moving) {
 
         if (bridge.equals(moving)) {
-            return 1;
+            return "O";
         }
-
-        return 0;
+        return "X";
     }
 
     /**

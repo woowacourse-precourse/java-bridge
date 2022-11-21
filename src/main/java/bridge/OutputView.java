@@ -13,60 +13,42 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> aa, String location, int result) {
-        System.out.print("[");
+    public void printMap(List<String> bridge, String location, String result) {
+        List<String> list = List.of("U", "D");
 
+        for (String word : list) {
+            System.out.print("[");
 
-        check(aa, "U");
+            printMiddle(bridge, word);
 
-        if(location.equals("U")){
-            if (result == 1) {
-                System.out.print(" O ");
-            } else {
-                System.out.print(" X ");
-            }
+            printLast(location, result, word);
 
-
+            System.out.println("]");
         }
-        if(!(location.equals("U"))){
-            System.out.print("   ");
-        }
-        System.out.println("]");
-
-        System.out.print("[");
-
-        check(aa, "D");
-
-        if(location.equals("D")){
-            if (result == 1) {
-                System.out.print(" O ");
-            } else {
-                System.out.print(" X ");
-            }
-
-
-        }
-        if(!(location.equals("D"))){
-            System.out.print("   ");
-         }
-        System.out.println("]");
-
-
-
     }
 
-    public void check(List<String> world, String location) {
-        for (String i : world) {
+    public void printMiddle(List<String> bridge, String location) {
+        for (String i : bridge) {
             if (i.equals(location)) {
                 System.out.print(" O ");
             }
+
             if (!(i.equals(location))) {
                 System.out.print("   ");
-            }
 
+            }
             System.out.print("|");
         }
+    }
 
+    public void printLast(String location, String result, String word) {
+        if (location.equals(word)) {
+            System.out.print(" " + result + " ");
+        }
+
+        if (!(location.equals(word))) {
+            System.out.print("   ");
+        }
     }
 
     /**
@@ -77,7 +59,7 @@ public class OutputView {
     public void printResult(String result, int num) {
         System.out.println("최종 게임 결과");
         //printMap()
-        System.out.println("게임 성공 여부: "+result);
-        System.out.println("총 시도한 횟수 : "+ num);
+        System.out.println("게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수 : " + num);
     }
 }
