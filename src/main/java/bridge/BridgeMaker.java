@@ -13,15 +13,16 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> result = new ArrayList<>();
-        int random;
-         for (int i = 0; i < size; i++) {
-             random = bridgeNumberGenerator.generate();
-             if (random == 1) {
-                 result.add("U");
-             } else if (random == 0) {
-                 result.add("D");
-             }
-         }
-         return result;
+        for (int i = 0; i < size; i++) {
+            result.add(pushUpDown(bridgeNumberGenerator.generate()));
+        }
+        return result;
+    }
+
+    private String pushUpDown(int randomNumber) {
+        if (randomNumber == 1) {
+            return "U";
+        }
+        return "D";
     }
 }
