@@ -16,4 +16,11 @@ public class Exception {
         }
         return input;
     }
+
+    public static String validateGameCommand(String input) {
+        if (input.matches("[^RQ]")) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. R과 Q중 하나를 입력해주세요.");
+        }
+        return input;
+    }
 }
