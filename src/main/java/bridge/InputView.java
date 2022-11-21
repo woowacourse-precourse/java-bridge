@@ -9,6 +9,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    public void printBridgeSizeMsg() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
 
     public int checkBridgeSize(String input) {
         try {
@@ -23,7 +26,7 @@ public class InputView {
     }
 
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        printBridgeSizeMsg();
         int bridgeSize = checkBridgeSize(Console.readLine());
         return bridgeSize;
     }
