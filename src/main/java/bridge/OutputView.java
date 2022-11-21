@@ -55,7 +55,7 @@ public class OutputView {
     }
 
     public boolean checkSameMove(List<String> userBridge, List<String> answerBridge, int index){
-        if(userBridge.get(index)==answerBridge.get(index)){
+        if(userBridge.get(index).equals(answerBridge.get(index))){
             return true;
         }
         return false;
@@ -80,7 +80,7 @@ public class OutputView {
             return false;
         }
         for(int index=0;index<userBridge.size();index++){
-            if(userBridge.get(index)!=answerBridge.get(index)){
+            if(!userBridge.get(index).equals(answerBridge.get(index))){
                 return false;
             }
         }
