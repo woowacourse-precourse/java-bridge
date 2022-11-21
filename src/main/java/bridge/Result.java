@@ -1,16 +1,15 @@
 package bridge;
 
 public enum Result {
-    SUCCESS("O"), FAIL("X"),;
+    SUCCESS(Boolean.TRUE), FAIL(Boolean.FALSE),;
 
-    private String view;
+    private boolean value;
 
-    Result(String view) {
-        this.view = view;
+    Result(boolean value) {
+        this.value = value;
     }
 
-    //메서드 이름 리팩토링.
-    public String getView() {
-        return view;
+    public boolean getValue() {
+        return value;
     }
 }

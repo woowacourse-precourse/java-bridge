@@ -78,8 +78,8 @@ public class OutputView {
 
     //printMap
     private void printEachBuilder() {
-        System.out.println(upViewBuilder.toString());
-        System.out.println(downViewBuilder.toString());
+        System.out.println(upViewBuilder);
+        System.out.println(downViewBuilder);
     }
 
     //printMap
@@ -92,7 +92,7 @@ public class OutputView {
 
     //printMap
     private String getResultToPrint(MapViewDto viewModel) {
-        if (viewModel.isResult()) {
+        if (viewModel.getResult()) {
             return "O";
         }
         return "X";

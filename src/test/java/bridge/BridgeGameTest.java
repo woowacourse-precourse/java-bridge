@@ -23,10 +23,11 @@ class BridgeGameTest {
 
     @Test
     void moveTest() {
-        Result result = bridgeGame.move(Command.UP);
+        MoveResponseDto move = bridgeGame.move(Command.UP);
 
         assertThat(player.getCommands().get(0)).isEqualTo(Command.UP);
-        assertThat(result).isEqualTo(Result.SUCCESS);
+        assertThat(move.getSelectedBridge()).isEqualTo("UP");
+        assertThat(move.getResult()).isTrue();
     }
 
     //에외 테스트.

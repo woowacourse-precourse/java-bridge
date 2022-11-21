@@ -18,11 +18,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Result move(Command command) {
+    public MoveResponseDto move(Command command) {
         int currentLevel = player.checkCurrentLevel();
         player.enterCommand(command);
+        Result result = bridge.compare(command, currentLevel);
 
-        return bridge.compare(command, currentLevel);
+        return new MoveResponseDto(command.toString(), result.getValue());
     }
 
     /**

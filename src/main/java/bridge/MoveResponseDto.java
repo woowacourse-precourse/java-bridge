@@ -1,16 +1,14 @@
 package bridge;
 
-public class MapViewDto {
-
+public class MoveResponseDto {
     private String selectedBridge;
     private boolean result;
 
-    public MapViewDto(String selectedBridge, boolean result) {
+    public MoveResponseDto(String selectedBridge, boolean result) {
         this.selectedBridge = selectedBridge;
         this.result = result;
     }
 
-    //getter -> 메시지를 보내자.
     public String getSelectedBridge() {
         return selectedBridge;
     }
