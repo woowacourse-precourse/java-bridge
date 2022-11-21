@@ -34,4 +34,7 @@ public class OutputView {
     public void gameStart(){
         System.out.println(GAME_START);
     }
+    public void inputBridgeSize(){
+        System.out.println(INPUT_BRIDGE_SIZE);
+    }
 }
