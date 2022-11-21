@@ -9,6 +9,7 @@ public class CustomException {
     }
 
     public boolean checkMove(String input) {
-        return true;
+        if (input.equals("U") || input.equals("D")) return true;
+        return false;
     }
 }
