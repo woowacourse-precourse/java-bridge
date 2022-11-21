@@ -2,9 +2,12 @@ package bridge;
 
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 public class BridgeGameTest {
@@ -17,5 +20,28 @@ public class BridgeGameTest {
         bridgeGame.makeAnswerBridge(num);
         assertThat(bridgeGame.getAnswerBridgeSize()).isEqualTo(num);
     }
+    @DisplayName("이동 테스트")
+    @Test
+    public void movingResultTest(){
+        final BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+
+        assertThat(bridgeGame.getUserBridge()).isEqualTo(List.of("U","U"));
+    }
+    @DisplayName("해당 이동 결과 산출 테스트")
+    @Test
+    public void movingTest(){
+        final BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.setAnswerBridge(List.of("U","D","U"));
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.setMoveResult(0);
+        bridgeGame.setMoveResult(1);
+
+        assertThat(bridgeGame.getGameResult().getUpBridge()).isEqualTo(List.of("O","X"));
+        assertThat(bridgeGame.getGameResult().getDownBridge()).isEqualTo(List.of(" "," "));
+    }
+
 
 }
