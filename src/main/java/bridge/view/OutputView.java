@@ -2,8 +2,7 @@ package bridge.view;
 
 public class OutputView {
 
-    public void printMessage(String message)
-    {
+    public void printMessage(String message) {
         System.out.print(message);
     }
 
@@ -11,8 +10,7 @@ public class OutputView {
         printMessage(bridgeMap);
     }
 
-    public void printResult(String gameResult)
-    {
+    public void printResult(String gameResult) {
         printMessage(gameResult);
     }
 }

@@ -11,54 +11,45 @@ public class BridgeMap {
     private final BridgeMapComponent upperBridge;
     private final BridgeMapComponent lowerBridge;
 
-    public BridgeMap()
-    {
+    public BridgeMap() {
         upperBridge = new BridgeMapComponent();
         lowerBridge = new BridgeMapComponent();
     }
 
-    public void extendMap(String nextMove,boolean moveSuccess)
-    {
-        if(moveSuccess)
-        {
-            extendMap(nextMove,MOVE_SUCCESS_PIXEL);
+    public void extendMap(String nextMove, boolean moveSuccess) {
+        if (moveSuccess) {
+            extendMap(nextMove, MOVE_SUCCESS_PIXEL);
             return;
         }
 
-        extendMap(nextMove,MOVE_FAIL_PIXEL);
+        extendMap(nextMove, MOVE_FAIL_PIXEL);
     }
 
-    private void extendMap(String nextMove,String movePixel)
-    {
-        if(nextMove.equals(BridgeGameInfo.UPPER_MOVE))
-        {
-            addPixel(movePixel,EMPTY_PIXEL);
+    private void extendMap(String nextMove, String movePixel) {
+        if (nextMove.equals(BridgeGameInfo.UPPER_MOVE)) {
+            addPixel(movePixel, EMPTY_PIXEL);
             return;
         }
 
-        addPixel(EMPTY_PIXEL,movePixel);
+        addPixel(EMPTY_PIXEL, movePixel);
     }
 
-    public void restart()
-    {
+    public void restart() {
         removePixel();
     }
 
-    private void addPixel(String upperPixel,String lowerPixel)
-    {
+    private void addPixel(String upperPixel, String lowerPixel) {
         upperBridge.add(upperPixel);
         lowerBridge.add(lowerPixel);
     }
 
-    private void removePixel()
-    {
+    private void removePixel() {
         upperBridge.removeLast();
         lowerBridge.removeLast();
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return upperBridge.toString() +
                 lowerBridge.toString();
     }
