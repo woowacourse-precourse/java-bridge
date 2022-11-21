@@ -36,7 +36,7 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
         if(!isUpDown(input)){
-            throw  new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로만 입력가능 합니다");
+            throw  new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로만 입력가능 합니다.");
         }
         return input;
     }
@@ -54,6 +54,9 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
+        if(!isRestartQuit(input)){
+            throw  new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q 두 가지 입력만 가능합니다.");
+        }
         return input;
     }
 
