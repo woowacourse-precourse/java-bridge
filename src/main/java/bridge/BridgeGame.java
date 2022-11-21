@@ -10,6 +10,7 @@ public class BridgeGame {
     private List<String> userMove = new ArrayList<>();
     private String retry;
     private List<String> bridge = new ArrayList<>();
+    private int tryNumber=1;
 
     public void bridgeSize(String bridgeSize) {
         this.bridgeSize = bridgeSize;
@@ -43,14 +44,25 @@ public class BridgeGame {
         return bridge;
     }
 
-    public boolean checkFail(List<String> list){
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).contains("X")){
+    public boolean checkFail(List<String>bridgeResult){
+        for(int i=0;i<bridgeResult.size();i++){
+            if(bridgeResult.get(i).contains("X")){
                 return true;
             }
         }
         return false;
     }
+
+    public int checkSuccess(List<String>bridgeResult) {
+        int successCount=0;
+        for(int i=0;i<bridgeResult.size();i++){
+            successCount+=bridgeResult.get(i).chars()
+                    .filter(c -> c == 'O')
+                    .count();
+        }
+        return successCount;
+    }
+
     public void initializeUserMove(){
         userMove.clear();
     }
