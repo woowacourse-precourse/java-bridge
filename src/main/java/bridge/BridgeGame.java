@@ -28,12 +28,13 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-    public BridgeGame(){
+    public void initialize(){
         outputView.startPrint();
         this.size = inputView.readBridgeSize();
         this.map = bridgeMaker.makeBridge(size);
         userMap.add(new ArrayList<>());
         userMap.add(new ArrayList<>());
+        progress();
     }
 
     public void progress(){
@@ -60,7 +61,7 @@ public class BridgeGame {
         return false;
     }
 
-    private Move moveConstructor(String readMoving) {
+    public Move moveConstructor(String readMoving) {
         if(readMoving.equals(Constant.UP)){
             return new Move(readMoving, 0,1);
         }else if(readMoving.equals(Constant.DOWN)){

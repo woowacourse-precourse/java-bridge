@@ -6,7 +6,7 @@ public class Application {
         // TODO: 프로그램 구현
         try {
             BridgeGame bridgeGame = new BridgeGame();
-            bridgeGame.progress();
+            bridgeGame.initialize();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
