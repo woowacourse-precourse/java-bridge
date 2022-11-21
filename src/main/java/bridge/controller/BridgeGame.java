@@ -7,6 +7,7 @@ import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static bridge.domain.GameCommand.QUIT;
 import static bridge.domain.GameCommand.RESTART;
@@ -62,5 +63,20 @@ public class BridgeGame {
 
     public void addRunCount() {
         this.runCount++;
+    }
+
+    public boolean canMoveContinue() {
+        if (isMoveEnd()) return false;
+        if (isMoveFail()) return false;
+        return true;
+    }
+
+    private boolean isMoveEnd() {
+        return playerMove.size() == gameBridge.size();
+    }
+
+    private boolean isMoveFail() {
+        final int moveIndex = playerMove.size() - 1;
+        return !Objects.equals(gameBridge.get(moveIndex), playerMove.get(moveIndex));
     }
 }
