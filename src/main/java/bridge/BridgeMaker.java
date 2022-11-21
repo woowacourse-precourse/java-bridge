@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.view.BridgeBlock;
+
 import java.util.ArrayList;
 import java.util.List;
 
