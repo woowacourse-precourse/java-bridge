@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrossResults {
-    List<CrossResult> crossResults;
+    private List<CrossResult> crossResults;
 
     public CrossResults() {
         this.crossResults = new ArrayList<>();

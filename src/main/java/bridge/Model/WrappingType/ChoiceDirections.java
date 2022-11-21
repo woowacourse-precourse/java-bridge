@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChoiceDirections {
-    List<ChoiceDirection> ChoiceDirections;
+    private List<ChoiceDirection> ChoiceDirections;
 
     public ChoiceDirections() {
         this.ChoiceDirections = new ArrayList<>();
