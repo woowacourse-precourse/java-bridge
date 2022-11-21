@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.Setting.OutputViewPrintEnum;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +12,13 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final List<Boolean> bridgeCorrect;
+    private int tryTime;
 
     public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator, int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeCorrect = new ArrayList<>();
+        tryTime = 0;
     }
 
     /**
@@ -38,8 +42,18 @@ public class BridgeGame {
      */
     public void retry() {
         bridgeCorrect.remove(bridgeCorrect.size() - 1);
+        tryTime += 1;
     }
 
+    public String printSuccess(){
+        String line = OutputViewPrintEnum.OUTPUT_CHECK_SUCCESS.getMessage();
+        if (bridge.size() <= bridgeCorrect.size()) {
+            return line.replace(OutputViewPrintEnum.CHANGE_STRING.getMessage()
+                    , OutputViewPrintEnum.OUTPUT_RESULT_SUCCESS.getMessage());
+        }
+        return line.replace(OutputViewPrintEnum.CHANGE_STRING.getMessage()
+                , OutputViewPrintEnum.OUTPUT_RESULT_FAIL.getMessage());
+    }
     public List<Boolean> getBridgeCorrect() {
         return this.bridgeCorrect;
     }
