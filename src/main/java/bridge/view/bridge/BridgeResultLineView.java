@@ -31,6 +31,7 @@ public class BridgeResultLineView extends BridgeLineView {
         BridgeLocation currLocation = initBridgeLocation();
 
         fillSquares(currLocation);
+
         if(!isSuccess()) {
             renderBuffer.append(resultSquareCharacter().getCharacter());
             return;

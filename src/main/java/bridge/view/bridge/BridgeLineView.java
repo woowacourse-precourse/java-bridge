@@ -15,14 +15,18 @@ import java.util.List;
 public class BridgeLineView {
 
     protected final List<BridgeCharacter> bridgeCharacters;
+
     protected final BridgeLocation endLocation;
     protected final BridgeCharacter lineCharacter;
+
     protected final StringBuffer renderBuffer;
 
     public BridgeLineView(BridgeAndPasser bridgeAndPasser, BridgeCharacter lineCharacter) {
         this.bridgeCharacters = bridgeAndPasser.getBridge().characters();
+
         this.endLocation = bridgeAndPasser.getBridgePasser().getLocation();
         this.lineCharacter = lineCharacter;
+
         this.renderBuffer = new StringBuffer();
     }
 
@@ -46,6 +50,7 @@ public class BridgeLineView {
     }
 
     protected void fillSquares(BridgeLocation currLocation) {
+
         while (!currLocation.equals(endLocation)) {
 
             renderBuffer.append(squareCharacter(currLocation));
