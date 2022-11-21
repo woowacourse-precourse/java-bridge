@@ -17,8 +17,12 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void validateMoving() {
+    @DisplayName("이동할 칸에 대한 예외 처리")
+    @ValueSource(strings = {"1", "0", "R", "Q", "@#$"})
+    @ParameterizedTest
+    void validateMoving(String move) {
+        assertThatThrownBy(() -> Validator.validateMoving(move))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
