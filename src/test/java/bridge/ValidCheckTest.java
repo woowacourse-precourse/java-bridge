@@ -25,4 +25,9 @@ public class ValidCheckTest {
     void isUorDTest(String str, boolean output) {
         assertThat(ValidCheck.isUorD(str)).isEqualTo(output);
     }
+    @ParameterizedTest
+    @CsvSource({"3,false","10,false","R,true","Q,true","RR,true","abc,false","D,false"})
+    void isRorQTest(String str, boolean output) {
+        assertThat(ValidCheck.isRorQ(str)).isEqualTo(output);
+    }
 }
