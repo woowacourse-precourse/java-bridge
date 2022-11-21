@@ -29,4 +29,8 @@ public class Bridge {
     public String getBridgeByIndex(int index) {
         return bridges.get(index);
     }
+
+    public String getLastBridge() {
+        return bridges.get(bridges.size() - 1);
+    }
 }
