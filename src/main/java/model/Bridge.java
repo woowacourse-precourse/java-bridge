@@ -11,4 +11,9 @@ public class Bridge {
         validateSize(bridge.size());
         this.bridge = bridge;
     }
+
+    public String getAnswer(int currentLocation) {
+        return bridge.get(currentLocation);
+    }
+
 }

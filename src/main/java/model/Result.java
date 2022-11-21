@@ -6,12 +6,15 @@ public class Result {
 
     private List<String> totalMovingResult;
 
-    public void setMovingResult(List<String> totalMovingResult, String movingResult) {
-        totalMovingResult.add(movingResult);
+    public Result(List<String> totalMovingResult) {
         this.totalMovingResult = totalMovingResult;
     }
 
     public List<String> getTotalMovingResult() {
         return totalMovingResult;
+    }
+
+    public void addMovingResult(String movingResult){
+        totalMovingResult.add(movingResult);
     }
 }
