@@ -94,6 +94,25 @@
   - `BridgeGame.retry()` 호출
   - 처음 과정부터 재시작
 ### BridgeGame
+- Class field value: `int trialCount`
+  - 사용자가 정답까지 시도한 횟수
+- Class field value: `List<String> bridge`
+  - 랜덤으로 생성된 다리 게임 정답
+- Class field value: `List<String> userInput`
+  - 사용자가 게임을 진행하면서 입력한 이동들
+- 사용자가 게임을 진행하면서 입력한 이동에 대한 처리 로직 : `move()`
+  - 사용자가 입력한 이동을 userInput에 추가
+  - 정답과 입력한 이동 비교하여 true/false 반환
+- 사용자가 게임을 다시 시도할 때의 처리 로직 : `retry()`
+  - 시도 횟수 trialCount 1회 증가
+  - 기존에 입력해 놓은 사용자 이동 입력 초기화
+- 게임을 시작할 때 다리 초기화하는 메소드 : `initBridge()`
+  - BridgeRandomNumberGenerator 및 BridgeMaker 사용하여 다리 생성
+  - BridgeGame.bridge에 저장
+- 외부에서 클래스 변수 사용하기 위한 getter 메소드
+  - `getBridge()`
+  - `getUserInput()`
+  - `getTrialCount()`
 
 ### BridgeMaker
 - 게임에서 사용할 다리 생성 로직
