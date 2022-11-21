@@ -47,4 +47,20 @@ class CustomExceptionTest {
         boolean bool = customException.checkMove(input);
         assertThat(bool).isEqualTo(false);
     }
+
+    @DisplayName("true case : retry R")
+    @Test
+    void checkRetry() {
+        String input = "R";
+        boolean bool = customException.checkGameCommand(input);
+        assertThat(bool).isEqualTo(true);
+    }
+
+    @DisplayName("false case : retry q")
+    @Test
+    void checkRetry2() {
+        String input = "q";
+        boolean bool = customException.checkGameCommand(input);
+        assertThat(bool).isEqualTo(false);
+    }
 }
