@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
+import bridge.view.InputView.Command;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
@@ -31,14 +32,7 @@ public class BridgeGameController {
 
     public static void run() {
         startBridgeGame();
-        while (!manager.isGameSuccess()) {
-            String movingCommand = getMoving();
-            boolean movingSuccess = manager.move(movingCommand);
-            outputView.printMap(manager.getMovingStatus(), movingSuccess); // 이동 결과 출력
-            if (!movingSuccess && !doRetry()) {
-                break;
-            }
-        }
+        playGameUntilFinish();
         outputView.printResult(manager.getMovingStatus(), manager.isGameSuccess(), manager.getAttemptsCount());
     }
 
@@ -48,9 +42,20 @@ public class BridgeGameController {
         manager.setBridgeStatus(bridgeMaker.makeBridge(length));
     }
 
+    private static void playGameUntilFinish() {
+        while (!manager.isGameSuccess()) {
+            String movingCommand = getMoving();
+            boolean movingSuccess = manager.move(movingCommand);
+            outputView.printMap(manager.getMovingStatus(), movingSuccess); // 이동 결과 출력
+            if (!movingSuccess && !doRetry()) {
+                break;
+            }
+        }
+    }
+
     private static boolean doRetry() {
         String command = getGameCommand();
-        if (command.equals("R")) {
+        if (command.equals(Command.RETRY.getCommand())) {
             manager.retry();
             return true;
         }
@@ -60,9 +65,8 @@ public class BridgeGameController {
     private static int getBridgeLength() {
         while (true) {
             try {
-                int length = inputView.readBridgeSize(Message.REQUEST_BRIDGE_LENGTH.getMessage(), "\n");
-                return length;
-            } catch (IllegalArgumentException e) {
+                return inputView.readBridgeSize(Message.REQUEST_BRIDGE_LENGTH.getMessage(), "\n");
+            } catch (IllegalArgumentException ignored) {
             }
         }
     }
@@ -70,9 +74,8 @@ public class BridgeGameController {
     private static String getMoving() {
         while (true) {
             try {
-                String command = inputView.readMoving(Message.REQUEST_MOVING_COMMAND.getMessage(), "\n");
-                return command;
-            } catch (IllegalArgumentException e) {
+                return inputView.readMoving(Message.REQUEST_MOVING_COMMAND.getMessage(), "\n");
+            } catch (IllegalArgumentException ignored) {
             }
         }
     }
@@ -80,9 +83,8 @@ public class BridgeGameController {
     private static String getGameCommand() {
         while (true) {
             try {
-                String command = inputView.readGameCommand(Message.REQUEST_GAME_COMMAND.getMessage(), "\n");
-                return command;
-            } catch (IllegalArgumentException e) {
+                return inputView.readGameCommand(Message.REQUEST_GAME_COMMAND.getMessage(), "\n");
+            } catch (IllegalArgumentException ignored) {
             }
         }
     }
