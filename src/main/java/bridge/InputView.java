@@ -12,7 +12,9 @@ public class InputView {
      */
     public static int readBridgeSize() {
         OutputView.printInputBridgeLength();
-        return Integer.parseInt(Console.readLine());
+        String bridgeSize = Console.readLine();
+        Validate.checkBridgeSize(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
@@ -20,7 +22,9 @@ public class InputView {
      */
     public static String readMoving() {
         OutputView.printSelectDirection();
-        return Console.readLine();
+        String moveDirection = Console.readLine();
+        Validate.checkMoveDirection(moveDirection);
+        return moveDirection;
     }
 
     /**
@@ -28,6 +32,8 @@ public class InputView {
      */
     public static String readGameCommand() {
         OutputView.printRestartMessage();
-        return Console.readLine();
+        String gameCode = Console.readLine();
+        Validate.checkRestartCode(gameCode);
+        return gameCode;
     }
 }
