@@ -30,4 +30,9 @@ public class User {
     public void addMovingRoute(String moving){
         movingRoute.add(moving);
     }
+
+    public void clearUser(){
+        movingRoute.clear();
+        currentMoving = null;
+    }
 }
