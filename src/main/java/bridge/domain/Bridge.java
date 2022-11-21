@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Bridge {
 
-    private final List<String> bridge;
-    private static int stepCount = 0;
+    public final List<String> bridge;
+    public static int stepCount = 0;
     boolean currentResult = false;
     public Bridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
