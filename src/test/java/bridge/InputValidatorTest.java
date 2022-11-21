@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InputValidatorTest {
@@ -54,6 +55,30 @@ public class InputValidatorTest {
     public void bridgeMoveInputTest(String input){
         setInput(input);
         assertEquals(InputValidator.getValidateInput(InputType.MOVE), input);
+    }
+
+    @DisplayName("재시작 입력 예외 경우 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={" ","test","111"})
+    public void gameReplayInputExceptionTest(String input){
+        setInput(input);
+        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.REPLAY)).
+                isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("재시작 입력 정상 경우 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={"R","Q"})
+    public void gameReplayTest(String input){
+        setInput(input);
+        assertEquals(InputValidator.getValidateInput(InputType.REPLAY), input);
+    }
+
+    @DisplayName("입력 타입이 잘못된 경우 ( 다리, 이동, 재시작 타입 X)")
+    @ParameterizedTest
+    @ValueSource(strings={"test"})
+    public void wrongInputTypeTest(String input){
+        setInput(input);
+        assertThat(InputValidator.getValidateInput(null)).isNull();
     }
 
     public void setInput(String input) {
