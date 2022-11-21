@@ -56,6 +56,6 @@ public class BridgeGameController {
     private TotalResult restart() {
         BridgeGame nextBridgeGame = bridgeGame.retry();
         BridgeGameController nextBridgeGameController = new BridgeGameController(nextBridgeGame);
-        return progressByDistance(DEFAULT_DISTANCE);
+        return nextBridgeGameController.progressByDistance(DEFAULT_DISTANCE);
     }
 }
