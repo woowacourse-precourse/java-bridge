@@ -17,7 +17,7 @@ public enum AvailableInput {
     }
 
     public static boolean isGameCommand(String input) {
-        return input.equals(QUIT_GAME) || input.equals(RESTART_GAME);
+        return input.equals(QUIT_GAME.userInput) || input.equals(RESTART_GAME.userInput);
     }
 
     public static int getBridgeLengthRange(AvailableInput range) {
