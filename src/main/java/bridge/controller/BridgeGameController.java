@@ -21,10 +21,10 @@ public class BridgeGameController {
     }
 
     public void start() {
-        outputView.printStart();
+        this.outputView.printStart();
         int bridgeSize = inputView.readBridgeSize();
-        createNewGame(bridgeSize);
-        play();
+        this.createNewGame(bridgeSize);
+        this.play();
     }
 
     private void createNewGame(int bridgeSize) {
@@ -32,53 +32,53 @@ public class BridgeGameController {
     }
 
     private void play() {
-        String moving = inputView.readMoving();
-        move(Position.create(moving));
+        String moving = this.inputView.readMoving();
+        this.move(Position.create(moving));
     }
 
     private void move(Position position) {
-        if (!isMoveSuccess(position)) {
-            outputView.printMap(bridgeGame.printResult());
-            retry();
+        if (!this.isMoveSuccess(position)) {
+            this.outputView.printMap(this.bridgeGame.printResult());
+            this.retry();
             return;
         }
-        outputView.printMap(bridgeGame.printResult());
-        continueOrSuccess();
+        this.outputView.printMap(this.bridgeGame.printResult());
+        this.continueOrSuccess();
     }
 
     private boolean isMoveSuccess(Position position) {
-        return bridgeGame.move(position);
+        return this.bridgeGame.move(position);
     }
 
     private void continueOrSuccess() {
-        if (!isCompletedGame()) {
-            play();
+        if (!this.isCompletedGame()) {
+            this.play();
             return;
         }
-        printResult(SUCCESS_MESSAGE);
+        this.printResult(SUCCESS_MESSAGE);
     }
 
     private boolean isCompletedGame() {
-        return bridgeGame.isCompletedGame();
+        return this.bridgeGame.isCompletedGame();
     }
 
     private void retry() {
-        String answer = inputView.readGameCommand();
-        if (isInputRetry(answer)) {
-            bridgeGame.retry();
-            play();
+        String answer = this.inputView.readGameCommand();
+        if (this.isInputRetry(answer)) {
+            this.bridgeGame.retry();
+            this.play();
             return;
         }
-        printResult(FAILURE_MESSAGE);
+        this.printResult(FAILURE_MESSAGE);
     }
 
-    private static boolean isInputRetry(String answer) {
+    private boolean isInputRetry(String answer) {
         return answer.equals(RETRY_SIGNAL);
     }
 
     private void printResult(String message) {
-        outputView.printGameOverMessage();
-        outputView.printMap(bridgeGame.printResult());
-        outputView.printResult(message, bridgeGame.getRetryCount());
+        this.outputView.printGameOverMessage();
+        this.outputView.printMap(bridgeGame.printResult());
+        this.outputView.printResult(message, bridgeGame.getRetryCount());
     }
 }
