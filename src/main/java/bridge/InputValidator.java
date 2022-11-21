@@ -32,7 +32,7 @@ public class InputValidator {
     }
 
     public void validateGameCommand(String cmd) throws IllegalArgumentException {
-        if(!COMMAND_MOVE_LIST.contains(cmd)){
+        if(!COMMAND_RETRY_LIST.contains(cmd)){
             throw InputValidationError.ERROR_COMMAND_RETRY.exception;
         }
     }
