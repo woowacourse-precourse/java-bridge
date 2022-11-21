@@ -4,11 +4,11 @@ public class Statistics {
     private int countRetry = 1;
     private boolean isClear = false;
 
-    public void countRetry(){
+    public void countRetry() {
         countRetry++;
     }
 
-    public void gameClear(){
+    public void gameClear() {
         isClear = true;
     }
 
