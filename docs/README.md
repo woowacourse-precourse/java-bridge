@@ -2,13 +2,14 @@
 ## 기능 구현 목록
 
 ---
+## BridgeController (Controller)
+### 게임의 전체적 흐름을 관리하는 컨트롤러
 
-## BridgeGame(Controller)
-### - 게임의 전체적 흐름을 관리
+---
+## BridgeGame (input, outview X)
 ### - 사용자가 칸을 이동하는 역할(move)
 ### - 게임을 재시도하는 역할(retry)
 
----
 ## BridgeMaker
 ### - 입력받은 다리의 길이를 인자로 받아 다리를 생성하는 역할(makeBridge)
 
@@ -47,6 +48,9 @@
 ### 5. 게임 성공 여부(성공, 실패), 총 시도 횟수
 
 ---
+## 추가 요구사항
+### BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
+
 
 ## 피드백
 ### 메서드의 길이가 10라인을 넘어가지 않도록 구현
