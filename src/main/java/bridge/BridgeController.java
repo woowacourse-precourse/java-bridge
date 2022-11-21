@@ -1,13 +1,14 @@
 package bridge;
 
-import bridge.service.Service;
+import bridge.domain.Result;
+import bridge.domain.bridge.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
-    private final Service service = new Service();
+    private final BridgeGame bridgeGame = new BridgeGame();
     private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private OutputView outputView = new OutputView();
     public static int tryNumber = 0;
     private int size;
     void init(){
@@ -23,7 +24,7 @@ public class BridgeController {
     }
     void bridgeInit(){
         try {
-            service.makeBridge(size);
+            bridgeGame.makeBridge(size);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bridgeInit();
@@ -33,16 +34,44 @@ public class BridgeController {
     }
     void run(){
         tryNumber++;
+        Result result = null;
         for (int i = 0 ;i<size;i++) {
-            service.makePlayer();
-            if (service.movePlayer(i)){
-                continue;
-            }
-            if (service.retryPlayer()){
+            makePlayer();
+            result = bridgeGame.move(i);
+            printResult(result,i);
+            if(printRetry(result.getResultType().getWinLose())){
                 run();
                 return;
             }
         }
-        service.endGame();
+        endGame(result);
+    }
+    public void endGame(Result result){
+        outputView.printResult(result.getResultType());
+    }
+    private void printResult(Result result,int index){
+        outputView.plusResult(result.getResultType(),index);
+        outputView.printMap();
+    }
+    private boolean printRetry(boolean winLose){
+        try {
+            if (!winLose) {
+                outputView.printRetry();
+                return bridgeGame.retry(inputView.readGameCommand());
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return printRetry(winLose);
+        }
+        return false;
+    }
+    private void makePlayer(){
+        try {
+            outputView.gamePrint();
+            bridgeGame.makePlayer(inputView.readMoving());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            makePlayer();
+        }
     }
 }
