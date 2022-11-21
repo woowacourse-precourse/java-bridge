@@ -7,12 +7,12 @@ import bridge.domain.Bridge;
  */
 public class BridgeGame {
     private int attemptCount;
-    private int order;
+    private int panelOrder;
     private Bridge bridge;
 
     public BridgeGame (Bridge bridge) {
         attemptCount = 0;
-        order = 1;
+        panelOrder = 1;
         this.bridge = bridge;
     }
 
@@ -23,7 +23,7 @@ public class BridgeGame {
      */
     public boolean move(String userChoice) {
         increaseAttemptCount();
-        boolean isUserChoiceCorrect = bridge.isCorrectPanel(order, userChoice);
+        boolean isUserChoiceCorrect = bridge.isCorrectPanel(panelOrder, userChoice);
         increaseOrder();
         return isUserChoiceCorrect;
     }
@@ -42,18 +42,18 @@ public class BridgeGame {
     }
 
     private void increaseOrder() {
-        order++;
+        panelOrder++;
     }
 
     private void decreaseOrder() {
-        order--;
+        panelOrder--;
     }
 
     public int getAttemptCount() {
         return attemptCount;
     }
 
-    public int getOrder() {
-        return order;
+    public int getPanelOrder() {
+        return panelOrder;
     }
 }
