@@ -14,6 +14,13 @@ public class BridgeService {
     static final InputView inputView = new InputView();
     static final OutputView outputView = new OutputView();
 
+    public void bridgeGameStart(){
+        outputView.printGameStartMessage();
+        inputBridgeLength();
+        makeBridge();
+        TryPlayerMove();
+    }
+
     public void inputBridgeLength(){
         while(true){
             outputView.printRequestBridgeLengthMessage();
@@ -43,6 +50,17 @@ public class BridgeService {
         bridgeGame.initializeBridgeGame(bridge);
     }
 
+    public String inputGameRetryCommand(){
+        while(true){
+            outputView.printRetryGameMessage();
+            String gameRetryCommand = inputView.readGameCommand();
+            if(!inputValidation.isValidGameRetryInput(gameRetryCommand)) {
+                outputView.printRetryGameErrorMessage();
+                continue;
+            }
+            return gameRetryCommand;
+        }
+    }
 
 
 
