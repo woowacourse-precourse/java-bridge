@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.domain;
 
 import bridge.constants.Command;
 import bridge.constants.ExceptionMessage;
@@ -7,18 +7,6 @@ public class ValidateInput {
     private static final String REGULAR_PATTERN = "^\\d+$";
     private static final int STARTING_POINT_CONDITION = 3;
     private static final int LAST_POINT_CONDITION = 20;
-
-//        try {
-//                bridgeGameMachine.run();
-//                } catch (IllegalArgumentException e) {
-//                System.out.println("[ERROR] " + e.getMessage());
-//                }
-
-    public void bridgeSizeVerification(String bridgeLength) {
-        validateNull(bridgeLength);
-        validateNumber(bridgeLength);
-        validateBetween(bridgeLength);
-    }
 
     public void validateNull(String bridgeLength) {
         if (bridgeLength.equals(REGULAR_PATTERN)) {
@@ -52,5 +40,4 @@ public class ValidateInput {
             throw new IllegalArgumentException(ExceptionMessage.NOT_RESTART_OR_END_CHARACTERS);
         }
     }
-
 }

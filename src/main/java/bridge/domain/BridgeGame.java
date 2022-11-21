@@ -31,28 +31,12 @@ public class BridgeGame {
      * 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다. BridgeGame 클래스에서
      * InputView, OutputView 를 사용하지 않는다.
      */
-    public HashMap<String, StringBuilder> move(String playerMoving, String bridgeJudgment) {
-        if (playerMoving.equals("U") && bridgeJudgment.equals("O")) {
-            bridgeState.get(Command.UP.getCommand()).append(bridgeJudgment);
-            bridgeState.get(Command.DOWN.getCommand()).append(" ");
-        }
+    public void move() {
+        bridgeIndex++;
+    }
 
-        if (playerMoving.equals("U") && bridgeJudgment.equals("X")) {
-            bridgeState.get(Command.UP.getCommand()).append(bridgeJudgment);
-            bridgeState.get(Command.DOWN.getCommand()).append(" ");
-        }
-
-        if (playerMoving.equals("D") && bridgeJudgment.equals("O")) {
-            bridgeState.get(Command.UP.getCommand()).append(" ");
-            bridgeState.get(Command.DOWN.getCommand()).append(bridgeJudgment);
-        }
-
-        if (playerMoving.equals("D") && bridgeJudgment.equals("X")) {
-            bridgeState.get(Command.UP.getCommand()).append(" ");
-            bridgeState.get(Command.DOWN.getCommand()).append(bridgeJudgment);
-        }
-
-        return bridgeState;
+    public void addJudgment(String playerMoving, String judgement) {
+        bridgeState.addBridge(playerMoving, judgement);
     }
 
     /**
@@ -69,12 +53,35 @@ public class BridgeGame {
         return gameCommand;
     }
 
-    public String judgment(String playerMoving, String designBridge) {
-        String resultBridge = "";
-
-        if (playerMoving.equals(designBridge)) {
-            resultBridge = "O";
+    public String judgment(String playerMoving) {
+        if (playerMoving.equals(designBridge.get(bridgeIndex))) {
+            return SUCCESS;
         }
         return FAILURE;
+    }
+
+    public void restartOrQuit(String playerRetry) {
+        if (playerRetry.equals(Command.RE_START.relevantCommand())) {
+            bridgeIndex = 0;
+            gameCount++;
+            return;
+        }
+        gameSuccess = false;
+    }
+
+    public boolean isNotGameEnd(String playerRetry) {
+        return !playerRetry.equals(Command.END.relevantCommand()) && bridgeIndex < designBridge.size();
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
+
+    public BridgeState getBridgeState() {
+        return bridgeState;
+    }
+
+    public boolean getSuccess() {
+        return gameSuccess;
     }
 }

@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.constants.SystemMessage;
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeState;
 
 /**
@@ -25,17 +27,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeState bridgeState, int count, boolean success) {
-        String upBridge = bridgeState.upBridgeGenerate();
-        String downBridge = bridgeState.downBridgeGenerate();
-
+    public void printResult(BridgeGame bridgeGame) {
         printLastGameResult();
 
-        System.out.println(upBridge);
-        System.out.println(downBridge);
+        BridgeState bridgeState = bridgeGame.getBridgeState();
+        printMap(bridgeState);
 
-        gameSuccess(success);
-        printAllTryCount(count);
+        gameSuccess(bridgeGame.getSuccess());
+        printAllTryCount(bridgeGame.getGameCount());
     }
 
     private void gameSuccess(boolean success) {
@@ -55,9 +54,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printInputBridgeLength() {
-        System.out.println(SystemMessage.BRIDGE_LENGTH_INPUT);
-    }
+//    public void printInputBridgeLength() {
+//        System.out.println(SystemMessage.BRIDGE_LENGTH_INPUT);
+//    }
 
     public void printMovementInput() {
         System.out.println(SystemMessage.MOVEMENT_INPUT);

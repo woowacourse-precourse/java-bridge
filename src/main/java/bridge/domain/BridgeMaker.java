@@ -31,9 +31,9 @@ public class BridgeMaker {
         return randomBridge;
     }
 
-    private String func(int word) {
-        if (word == 1) {
-            randomWords = "U";
+    private String findWord(int word) {
+        if (word == U_CONDITION) {
+            return Command.UP.relevantCommand();
         }
         return Command.DOWN.relevantCommand();
     }

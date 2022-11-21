@@ -1,9 +1,8 @@
 package bridge.controller;
 
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.constants.Command;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -76,9 +75,9 @@ public class BridgeGameMachine {
 
     private int bridgeSizeInput() {
         outputView.printGameStartMessage();
-        outputView.printInputBridgeLength();
+        //outputView.printInputBridgeLength();
 
-        int bridgeLength = inputView.readBridgeSize();
+        int bridgeLength = inputView.inputBridgeSize();
 
         outputView.printNextLine();
         return bridgeLength;
