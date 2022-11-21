@@ -1,5 +1,7 @@
 package bridge.DomainTest;
 
+import bridge.Constants.StandardTools;
+import bridge.Constants.StandardTools.retry;
 import bridge.Domain.BridgeGame;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -84,11 +86,12 @@ public class BridgeGameTest {
         @DisplayName("R을 받을 경우 RETRY를 선언, 시도 횟수 증가, 유저의 인풋값을 초기화한다.")
         @Test
         void retryTest() {
-            String retry = "R";
-            InputStream in = new ByteArrayInputStream(retry.getBytes());
+            String retryInput = "R";
+            retry retry = StandardTools.retry.RETRY;
+            InputStream in = new ByteArrayInputStream(retryInput.getBytes());
             System.setIn(in);
 
-            assertThat(bridgeGame.getIsRetry()).isTrue();
+            assertThat(bridgeGame.retry()).isEqualTo(retry);
             assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(1);
             assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(
                     Collections.emptyList());
@@ -97,11 +100,12 @@ public class BridgeGameTest {
         @DisplayName("Q를 받을 경우, QUIT을 선언한다.")
         @Test
         void quitTest() {
-            String quit = "Q";
-            InputStream in = new ByteArrayInputStream(quit.getBytes());
+            String quitInput = "Q";
+            retry quit = retry.QUIT;
+            InputStream in = new ByteArrayInputStream(quitInput.getBytes());
             System.setIn(in);
 
-            assertThat(bridgeGame.getIsRetry()).isFalse();
+            assertThat(bridgeGame.retry()).isEqualTo(quit);
         }
     }
 }
