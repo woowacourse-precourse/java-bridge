@@ -43,8 +43,8 @@ public class Player {
         return this.totalTryNumber;
     }
 
-    public Result getResult() {
-        return result;
+    public String getGameResult() {
+        return result.getName();
     }
 
     public boolean isFail() {

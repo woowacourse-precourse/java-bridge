@@ -10,7 +10,7 @@ public class GameResultResponseDto {
 
     public GameResultResponseDto(BridgeStatus bridgeStatus, Player player) {
         this.bridgeStatus = bridgeStatus;
-        this.result = player.getResult().getName();
+        this.result = player.getGameResult();
         this.totalTryNumber = player.getTotalTryNumber();
     }
 
