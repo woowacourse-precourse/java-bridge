@@ -7,14 +7,15 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> computer, user= new ArrayList<>();
+    private int round = 0;
+    private List<String> computer = new ArrayList<>();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
     public BridgeGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        computer= bridgeMaker.makeBridge(inputView.readBridgeSize());
+        computer = bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
     /**
@@ -23,7 +24,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        user.add(inputView.readMoving());
+        outputView.updateMap(check(round, inputView.readMoving()));
+        round++;
     }
 
     /**
@@ -32,5 +34,20 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    /**
+     *사용자가 입력한 값과 컴퓨터의 값을 비교하는 메서드
+     * @param round 사용자가 움직인 횟수 - 1
+     * @param user 사용자가 입력한 이동할 값 : U or D
+     * @return updateMap()에서 각 map에 입력할 정보
+     */
+    public String[] check(int round, String user) {
+        if (computer.get(round) == user) {
+            if (user == "D") return new String[]{" ", "O"};
+            return new String[]{"O", " "};
+        }
+        if (user == "D") return new String[]{" ", "X"};
+        return new String[]{"X", " "};
     }
 }
