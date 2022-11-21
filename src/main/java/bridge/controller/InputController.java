@@ -7,6 +7,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class InputController {
+    private static final int MIN_SIZE = 3;
+    private static final int MAX_SIZE = 20;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -36,7 +38,7 @@ public class InputController {
     }
 
     private void isValidBridgeSize(int size) throws IllegalArgumentException {
-        if (size < 3 || size > 20) {
+        if (size < MIN_SIZE || size > MAX_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
                     + ExceptionMessage.BRIDGE_SIZE_OUT_OF_RANGE);
         }
