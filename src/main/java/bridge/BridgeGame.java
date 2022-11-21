@@ -3,6 +3,7 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,6 +68,29 @@ public class BridgeGame {
     }
 
     private List<String> playGame(GameStatus gameStatus, List<String> realBridges) {
-        return null;
+        List<String> selectBridges = playOneTry(gameStatus, realBridges);
+        while (!gameStatus.isEnd() && retry()) {
+            selectBridges = playOneTry(gameStatus, realBridges);
+            gameStatus.addTryCount();
+        }
+        return selectBridges;
+    }
+
+    public List<String> playOneTry(GameStatus gameStatus, List<String> realBridges) {
+        List<String> selectBridges = new ArrayList<>();
+        for (int index = 0; index < realBridges.size(); index++) {
+            String realBridge = realBridges.get(index);
+            String selectedBridge = getSelectBridge(selectBridges);
+            outputView.printMap(realBridges, selectBridges);
+            if (!realBridge.equals(selectedBridge)) return selectBridges;
+        }
+        gameStatus.setSuccess(true);
+        return selectBridges;
+    }
+
+    private String getSelectBridge(List<String> selectBridges) {
+        String selectedBridge = move();
+        selectBridges.add(selectedBridge);
+        return selectedBridge;
     }
 }
