@@ -1,8 +1,19 @@
 package bridge;
 
+import controller.BridgeController;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeController bridgeController = new BridgeController();
+
+        try{
+            bridgeController.makeBridge();
+            bridgeController.startGame();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
