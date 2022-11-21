@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class InputView {
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         String bridgesSize = readLine();
         notNumber(bridgesSize);
         validateBridgeSize(Integer.valueOf(bridgesSize));
@@ -16,21 +17,40 @@ public class InputView {
     }
     private void notNumber(String bridgesSize){
         try {
-            Double.parseDouble(bridgesSize);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+            checkNumber(bridgesSize);
+        }catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자만 입력해 주세요.");
+            readBridgeSize();
+        }
+    }
+
+    private void checkNumber(String bridgesSize) {
+        bridgesSize=bridgesSize.replaceAll("[0-9]", "");
+        if (bridgesSize != "") {
+            throw new IllegalArgumentException();
         }
     }
 
     private void validateBridgeSize(int numbers) {
-        if (numbers<3 || numbers>20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이를 3이상 20이하로 입력 하세요.");
+        try {
+            checkBridgeSize(numbers);
+        }catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 다리 길이를 3이상 20이하로 입력 하세요.");
+            readBridgeSize();
         }
     }
+
+    private void checkBridgeSize(int numbers) {
+        if (numbers<3 || numbers>20) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        String moveBridgePosition = readLine();
         return null;
     }
 
