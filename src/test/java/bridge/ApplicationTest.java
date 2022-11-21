@@ -55,6 +55,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void U또는_D가_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("11", "11");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
