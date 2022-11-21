@@ -6,5 +6,14 @@ public class BridgeSizeException extends UserException {
         isEmpty(userInput);
         isBlank(userInput);
         hasBlank(userInput);
+        int bridgeSize = isNotInt(userInput);
+    }
+
+    private int isNotInt(String bridgeSize) {
+        try {
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ExceptionCode.IS_NOT_INT.getMessage());
+        }
     }
 }
