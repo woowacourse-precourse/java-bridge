@@ -63,10 +63,19 @@ public class BridgeGameController {
         }
     }
     public boolean isQuit(){
-        String retry=inputView.readGameCommand();
-        Validator.checkRetryOrQuit(retry);
-        if(retry.equals(Constants.QUIT)) return true;
+        String retryOrQuit=inputRetryOrQuit();
+        if(retryOrQuit.equals(Constants.QUIT)) return true;
         return false;
+    }
+    public String inputRetryOrQuit(){
+        try{
+            String retryOrQuit=inputView.readGameCommand();
+            Validator.checkRetryOrQuit(retryOrQuit);
+            return retryOrQuit;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputRetryOrQuit();
+        }
     }
     public void finalResult(boolean success, int tryCount){
         boolean quit=true;
