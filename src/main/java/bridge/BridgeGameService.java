@@ -12,14 +12,14 @@ public class BridgeGameService {
     }
 
     public void init(){
-        make();
+        bridgeGame = makeBridgeGame();
     }
 
-    public void make(){
+    public BridgeGame makeBridgeGame(){
         List<String> bridge = makeBridge();
         Player player = makePlayer();
 
-        bridgeGame = new BridgeGame(bridge, player);
+        return new BridgeGame(bridge, player);
     }
     public List<String> makeBridge(){
         int bridgeSize = InputView.readBridgeSize();
