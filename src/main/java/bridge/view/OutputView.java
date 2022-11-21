@@ -14,7 +14,7 @@ public class OutputView {
     private final String INPUT_MOVE_TO_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String INPUT_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private final String FINAL_GAME_RESULT_GUIDE_MESSAGE = "최종 게임 결과";
-    private final String GAME_RESULT_MESSAGE= "게임 성공 여부: ";
+    private final String GAME_RESULT_MESSAGE = "게임 성공 여부: ";
     private final String TOTAL_NUMBER_OF_TRIAL_MESSAGE = "총 시도한 횟수: ";
     private final String SUCCESS = "성공";
     private final String FAILED = "실패";
@@ -30,6 +30,7 @@ public class OutputView {
 
         printUpAndDown(up);
         printUpAndDown(down);
+        System.out.println();
     }
 
     /**
@@ -38,20 +39,20 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Result result) {
-        printMap(result);
         printFinalGameResultGuideMessage();
+        printMap(result);
         printResultMessage(result.getIsSuccess(), result.getNumberOfTrial());
     }
 
     private void printUpAndDown(List<String> bridge) {
         System.out.print("[");
-        for (int i=0; i < bridge.size(); i++) {
+        for (int i = 0; i < bridge.size(); i++) {
             System.out.print(" " + bridge.get(i) + " ");
-            if (i == bridge.size()-1) {
-                System.out.println("]");
+            if (i == bridge.size() - 1) {
+                System.out.print("]");
                 break;
             }
-            System.out.println("|");
+            System.out.print("|");
         }
         System.out.println();
     }
