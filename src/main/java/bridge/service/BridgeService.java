@@ -9,10 +9,8 @@ public class BridgeService {
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeGame bridgeGame = new BridgeGame();
-
 
     public void startBridgeGame() {
         outputView.printStartMessage();
@@ -63,9 +61,9 @@ public class BridgeService {
     }
 
     public void printSuccess() {
-        String result = "성공";
+        String result = Command.SUCCESS;
         if (!bridgeGame.roundClear() || !bridgeGame.gameClear()) {
-            result = "실패";
+            result = Command.FAIL;
         }
         System.out.println(outputView.printBridgeGameSuccess() + result);
     }

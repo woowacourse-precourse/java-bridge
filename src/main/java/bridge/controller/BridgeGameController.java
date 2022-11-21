@@ -5,7 +5,7 @@ import bridge.service.BridgeService;
 public class BridgeGameController {
     BridgeService bridgeService = new BridgeService();
 
-    public void run(){
+    public void run() {
         bridgeService.startBridgeGame();
         bridgeService.moveBridge();
         System.out.println();

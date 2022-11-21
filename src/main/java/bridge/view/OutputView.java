@@ -39,11 +39,11 @@ public class OutputView {
         System.out.println(FINAL_MESSAGE);
     }
 
-    public String printBridgeGameSuccess(){
+    public String printBridgeGameSuccess() {
         return BRIDGE_GAME_SUCCESS;
     }
 
-    public String printTryBridgeGameCount(){
+    public String printTryBridgeGameCount() {
         return TRY_BRIDGE_GAME_COUNT;
     }
 
