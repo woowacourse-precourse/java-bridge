@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
@@ -25,7 +26,7 @@ public class GameController {
 
     private void makeBridgeByInput() {
         try {
-            bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize())));
         } catch (IllegalArgumentException e) {
             outputView.printErrorNotice(e);
             makeBridgeByInput();

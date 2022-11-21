@@ -2,9 +2,6 @@ package bridge.domain;
 
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private static final String INVALID_MOVEMENT_ERROR = "[ERROR] U(위 칸)와 D(아래 칸) 중 하나의 문자만 입력해야 합니다.";
@@ -16,10 +13,6 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
     }
-
-    public BridgeGame(List<String> bridge) {
-        this.bridge = new Bridge(bridge);
-    }                                                   // 삭제
 
     public boolean move(String movement) {
         validateMovement(movement);
