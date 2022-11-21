@@ -29,26 +29,9 @@ public class BridgeGame {
      */
     public boolean move(List<String> answerBrige, String userCommand) {
         boolean isChecked = userCommand.equals(answerBrige.get(moveCount));
-        if(userCommand.equals(answerBrige.get(moveCount))){
-            if(userCommand.equals("U")){
-                upBridge.add("O");
-                downBridge.add(" ");
-            }else{
-                upBridge.add(" ");
-                downBridge.add("O");
-            }
-
-            return true;
-        }
-        if(userCommand.equals("U")){
-            upBridge.add("X");
-            downBridge.add(" ");
-        }else{
-            upBridge.add(" ");
-            downBridge.add("X");
-        }
+        checkUserCommand(isChecked,userCommand);
         moveCount++;
-        return false;
+        return isChecked;
     }
 
     /**
