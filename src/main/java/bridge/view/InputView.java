@@ -47,6 +47,6 @@ public class InputView {
     public String readGameCommand() {
         String userInput = Console.readLine();
         validateLength(userInput);
-        return null;
+        return userInput;
     }
 }
