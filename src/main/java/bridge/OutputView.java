@@ -85,16 +85,14 @@ public class OutputView {
 
         String result = SUCCESS;
         System.out.println("게임 성공 여부: ");
-        if(bridgeAnswer.contains("X")){
+        if(bridgeAnswer.contains(CANNOT_CROSS)){
             result = FAIL;
         }
         System.out.println(result);
         System.out.println("총 시도한 횟수: " + tryCount);
     }
 
-    public void printRetry(String result){
-        if(result.equals("X")){
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        }
+    public void printRetry(){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }
