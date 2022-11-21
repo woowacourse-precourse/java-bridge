@@ -44,4 +44,8 @@ public class BridgeGame {
     public static void plusPlayCount() {
         ++playCount;
     }
+
+    public static int getPlayCount() {
+        return playCount;
+    }
 }

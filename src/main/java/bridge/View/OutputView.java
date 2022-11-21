@@ -28,4 +28,14 @@ public class OutputView {
     public static void printEndGame() {
         System.out.println(Message.RESULT.print());
     }
+
+    public static void printResult(final int playCount, final boolean isWinner) {
+        if (isWinner) {
+            System.out.println(Message.GAME_STATE.print() + "성공");
+        }
+        if (!isWinner) {
+            System.out.println(Message.GAME_STATE.print() + "실패");
+        }
+        System.out.println(Message.COUNT.print() + playCount);
+    }
 }
