@@ -4,19 +4,15 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printMap(List<String> bridgeNow, boolean flag, String moveTo) {
-        StringBuilder UpStep = new StringBuilder("[ ");
-        StringBuilder DownStep = new StringBuilder("[ ");
+    public static void printMap(List<String> bridgeNow, boolean success, String moveTo) {
+        StringBuilder UpStep = new StringBuilder("[" + UpstepAdder(bridgeNow));
+        StringBuilder DownStep = new StringBuilder("[" + DownstepAdder(bridgeNow));
 
-        UpStep.append(UpstepAdder(bridgeNow));
-        DownStep.append(DownstepAdder(bridgeNow));
-
-        if (flag) {
+        if (success) {
             continueRound(UpStep, DownStep);
+            return;
         }
-        if (!flag) {
-            overRound(UpStep, DownStep, moveTo);
-        }
+        overRound(UpStep, DownStep, moveTo);
     }
 
     public static void printResult(List<String> bridgeNow, boolean flag, String moveTo, int totalCount) {
