@@ -1,19 +1,29 @@
 package bridge;
 
-import bridge.domain.Bridge;
+import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeMaker;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BridgeTest {
     Bridge bridge = new Bridge();
     @DisplayName("Bridge 생성 테스트")
     @Test
     public void generateTest(){
-        bridge.inputBridgeNumber(Arrays.asList("1","0","1"));
-        assertNotNull(bridge);
+        bridge.inputBridgeSize(3);
+        assertThat(bridge).isNotNull();
     }
+
+    @DisplayName("Bridge 크기 예외 테스트")
+    @Test
+    public void sizeExceptionTest(){
+        assertThrows(IllegalArgumentException.class,()->{
+            bridge.inputBridgeSize(21);
+        });
+    }
+
 }
