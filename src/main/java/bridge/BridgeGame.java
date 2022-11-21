@@ -12,12 +12,14 @@ public class BridgeGame {
     public static final int START_POSITION = 0;
     public static final int FIRST = 1;
     private final List<String> bridge;
+    private final BridgeMap bridgeMap;
     private BridgeGameState state;
     private int position;
     private int attempt;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.bridgeMap = new BridgeMap();
         this.state = NORMAL;
         this.attempt = FIRST;
     }
@@ -30,6 +32,7 @@ public class BridgeGame {
     public void move(String selectedDirection) {
         checkMovable(bridge.get(position), selectedDirection);
         goForward();
+        bridgeMap.update(selectedDirection, state);
         checkFinished();
     }
 
@@ -64,6 +67,7 @@ public class BridgeGame {
     public void retry() {
         resetState();
         resetPlayerPosition();
+        bridgeMap.reset();
         increaseAttempts();
     }
 
@@ -95,11 +99,11 @@ public class BridgeGame {
         return Collections.unmodifiableList(bridge);
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public int getAttempt() {
         return attempt;
+    }
+
+    public BridgeMap getBridgeMap() {
+        return bridgeMap;
     }
 }

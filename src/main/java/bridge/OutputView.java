@@ -1,20 +1,14 @@
 package bridge;
 
 import java.util.List;
-import java.util.Stack;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
     public static final String DELIMITER = " | ";
-    public static final String UP = "U";
-    public static final String DOWN = "D";
     public static final String PREFIX = "[ ";
     public static final String SUFFIX = " ]";
-    public static final String SPACE = " ";
-    public static final String SUCCESS = "O";
-    public static final String FAIL = "X";
     public static final String GAME_RESULTS = "최종 게임 결과";
     public static final String GAME_CLEARED = "게임 성공 여부: ";
     public static final String TOTAL_ATTEMPT = "총 시도한 횟수: ";
@@ -25,51 +19,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        List<String> bridge = bridgeGame.getBridge();
-        int position = bridgeGame.getPosition();
+        BridgeMap bridgeMap = bridgeGame.getBridgeMap();
 
-        Stack<String> topRow = getRow(bridge, position, UP);
-        Stack<String> bottomRow = getRow(bridge, position, DOWN);
-        checkGameOver(bridgeGame, topRow, bottomRow);
+        List<String> upperRow = bridgeMap.getUpperRow();
+        List<String> lowerRow = bridgeMap.getLowerRow();
 
-        printRowWithPrefixAndSuffix(joinByDelimiter(topRow));
-        printRowWithPrefixAndSuffix(joinByDelimiter(bottomRow));
+        printRowWithPrefixAndSuffix(joinByDelimiter(upperRow));
+        printRowWithPrefixAndSuffix(joinByDelimiter(lowerRow));
         System.out.println();
     }
 
-    private static void checkGameOver(BridgeGame bridgeGame, Stack<String> topRow, Stack<String> bottomRow) {
-        if (bridgeGame.isGameOver()) {
-            changeLastResult(topRow);
-            changeLastResult(bottomRow);
-        }
-    }
-
-    private Stack<String> getRow(List<String> bridge, int position, String selectedDirection) {
-        Stack<String> row = new Stack<>();
-        for (int i = 0; i < position; i++) {
-            row.add(match(bridge.get(i), selectedDirection));
-        }
-        return row;
-    }
-
-    private String match(String movableDirection, String selectedDirection) {
-        if (movableDirection.equals(selectedDirection)) {
-            return SUCCESS;
-        }
-        return SPACE;
-    }
-
-    private static void changeLastResult(Stack<String> row) {
-        String lastResult = row.pop();
-        if (lastResult.equals(SUCCESS)) {
-            row.add(SPACE);
-        }
-        if (lastResult.equals(SPACE)) {
-            row.add(FAIL);
-        }
-    }
-
-    private static String joinByDelimiter(Stack<String> row) {
+    private static String joinByDelimiter(List<String> row) {
         return String.join(DELIMITER, row);
     }
 
