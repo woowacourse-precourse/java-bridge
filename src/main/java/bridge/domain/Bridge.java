@@ -33,6 +33,6 @@ public class Bridge {
 
     public List<BridgeState> makeSubBridge(int stage) {
         List<BridgeState> subBridge = Lists.newArrayList(bridge);
-        return subBridge.subList(0, stage);
+        return subBridge.subList(0, stage+1);
     }
 }
