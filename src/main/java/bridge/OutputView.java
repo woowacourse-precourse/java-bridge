@@ -71,4 +71,8 @@ public class OutputView {
 		if (!select)
 			System.out.println(Constant.FAIL_MESSAGE);
 	}
+
+	public void countView(int count) {
+		System.out.println(Constant.TOTAL_COUNT + count);
+	}
 }
