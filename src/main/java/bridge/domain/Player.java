@@ -48,6 +48,22 @@ public class Player {
         return false;
     }
 
+    public Boolean isGameClear(int bridgeSize) {
+        if (isReachedEnd(bridgeSize) && isPathCorrect()) {
+            return true;
+        }
+        return false;
+    }
+
+    private Boolean isPathCorrect() {
+        int currentPosition = getCurrentPosition();
+
+        if (upperBridge.get(currentPosition).equals(POSSIBLE) || lowerBridge.get(currentPosition).equals(POSSIBLE)) {
+            return true;
+        }
+        return false;
+    }
+
     private Boolean canKeepMoving() {
         int currentPosition = getCurrentPosition();
 

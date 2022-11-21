@@ -4,6 +4,7 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.Player;
 import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.dto.Bridge;
+import bridge.dto.GameResult;
 import bridge.dto.MoveResult;
 import bridge.dto.PathTravel;
 import bridge.repository.PlayerRepository;
@@ -53,4 +54,8 @@ public class BridgeGame {
         return new PathTravel(player.getUpperBridge(), player.getLowerBridge());
     }
 
+    public GameResult getGameResult(Long playerId, int bridgeSize) {
+        Player player = playerRepository.findById(playerId);
+        return new GameResult(player.isGameClear(bridgeSize), player.getNumberOfTry(), player.getUpperBridge(), player.getLowerBridge());
+    }
 }

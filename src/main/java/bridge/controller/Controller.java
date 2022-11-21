@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.dto.Bridge;
+import bridge.dto.GameResult;
 import bridge.dto.MoveResult;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
@@ -26,6 +27,7 @@ public class Controller {
 
         crossBridgePlayer(playerId, bridge, getPlayerMoving());
 
+        GameResult result = bridgeGame.getGameResult(playerId, bridge.getSize());
     }
 
     private void crossBridgePlayer(Long playerId, Bridge bridge, String position) {
