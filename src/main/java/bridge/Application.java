@@ -1,19 +1,19 @@
 package bridge;
 
-import bridge.controller.Controller;
+import bridge.controller.BridgeController;
 import bridge.domain.BridgeGame;
 import bridge.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        BridgeGame bridgeGame = Controller.startGame();
+        BridgeGame bridgeGame = BridgeController.startGame();
         do {
             OutputView outputView = new OutputView();
-            Controller.startRound(bridgeGame, outputView);
+            BridgeController.startRound(bridgeGame, outputView);
             if (!bridgeGame.isGameContinue()) {
-                Controller.restartOrQuitGame(bridgeGame, outputView);
+                BridgeController.restartOrQuitGame(bridgeGame, outputView);
             }
-            Controller.restartOrQuitGame(bridgeGame, outputView);
+            BridgeController.restartOrQuitGame(bridgeGame, outputView);
         } while (bridgeGame.isGameContinue());
     }
 }

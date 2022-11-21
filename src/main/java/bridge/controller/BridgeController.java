@@ -9,7 +9,7 @@ import bridge.utils.Setting;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-public class Controller {
+public class BridgeController {
 
     public static BridgeGame startGame() {
         System.out.printf("다리 건너기 게임을 시작합니다.%n%n");
