@@ -18,4 +18,8 @@ public class BrideSize {
             throw new ErrorException(BrideError.IS_NOT_NUMERIC);
         }
     }
+
+    private boolean checkInvalidRange() {
+        return (MIN_BRIDE_SIZE > brideSize) || (MAX_BRIDE_SIZE < brideSize);
+    }
 }
