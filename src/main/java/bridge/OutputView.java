@@ -11,10 +11,10 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * @param userState     유저가 입력해온 U or D
-     * @param continueGame  게임 종료 or 진행
-     * @param isSuccess     종료 일때 성공 or 실패
      *
+     * @param userState    유저가 입력해온 U or D
+     * @param continueGame 게임 종료 or 진행
+     * @param isSuccess    종료 일때 성공 or 실패
      */
     public void printMap(List<String> userState, boolean continueGame, boolean isSuccess) {
         initState();
@@ -27,9 +27,10 @@ public class OutputView {
 
     /**
      * 성공과 실패의 여부에 따라 각각 다른 출력을 제공
-     * @param userState     유저가 입력해온 U or D
-     * @param continueGame  게임 종료 or 진행
-     * @param isSuccess     종료 일때 성공 or 실패
+     *
+     * @param userState    유저가 입력해온 U or D
+     * @param continueGame 게임 종료 or 진행
+     * @param isSuccess    종료 일때 성공 or 실패
      */
     public static void judgeGameStatement(List<String> userState, boolean continueGame, boolean isSuccess) {
         if (continueGame) {
@@ -42,6 +43,7 @@ public class OutputView {
             printWrongAndFail(userState, isSuccess);
         }
     }
+
     // 게임이 끝 AND 실패
     public static void printWrongAndFail(List<String> userState, boolean isSuccess) {
         printGaming(userState, userState.size(), isSuccess);
@@ -72,11 +74,6 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + totalCount);
     }
 
-    // ] 제거 메서드
-    public static void replaceClose() {
-        upState = upState.replace("]", "");
-        downState = downState.replace("]", "");
-    }
     public static void printMapResult() {
         System.out.println(upState);
         System.out.println(downState);
@@ -129,9 +126,24 @@ public class OutputView {
         }
     }
 
+    public static void isWord(String userStateWord) {
+        if (userStateWord == "U") {
+            isU();
+        }
+        if (userStateWord == "D") {
+            isD();
+        }
+    }
+
     public void initState() {
         upState = "[";
         downState = "[";
+    }
+
+    // ] 제거 메서드
+    public static void replaceClose() {
+        upState = upState.replace("]", "");
+        downState = downState.replace("]", "");
     }
 
     public static void isWrongFinished(List<String> userState) {
@@ -148,15 +160,6 @@ public class OutputView {
     public static void isU() {
         upState += " O ";
         downState += "   ";
-    }
-
-    public static void isWord(String userStateWord) {
-        if (userStateWord == "U") {
-            isU();
-        }
-        if (userStateWord == "D") {
-            isD();
-        }
     }
 
     public static void isD() {

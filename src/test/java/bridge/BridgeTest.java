@@ -68,12 +68,10 @@ public class BridgeTest extends NsTest {
         assertThatThrownBy(() -> exeption.isRorQ("11"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
     @Test
     void 네개_한번에_성공_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("4", "U", "D", "U","U");
+            run("4", "U", "D", "U", "U");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   | O | O ]",
@@ -81,7 +79,6 @@ public class BridgeTest extends NsTest {
                     "게임 성공 여부: 성공",
                     "총 시도한 횟수: 1"
             );
-
             int upSideIndex = output().indexOf("[ O |   | O | O ]");
             int downSideIndex = output().indexOf("[   | O |   |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
@@ -105,7 +102,6 @@ public class BridgeTest extends NsTest {
                             "[   | O |   |   |   ]",
                             "게임 성공 여부: 성공",
                             "총 시도한 횟수: 2"
-
                     );
                     int upSideIndex = output().indexOf("[ O |   | O | O | O ]");
                     int downSideIndex = output().indexOf("[   | O |   |   |   ]");
@@ -116,7 +112,7 @@ public class BridgeTest extends NsTest {
     @Test
     void 실패_후_종료_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D","Q");
+            run("3", "U", "D", "D", "Q");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   |   ]",
@@ -124,13 +120,11 @@ public class BridgeTest extends NsTest {
                     "게임 성공 여부: 실패",
                     "총 시도한 횟수: 1"
             );
-
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isEqualTo(downSideIndex);
         }, 1, 0, 1);
     }
-
 
     @Override
     protected void runMain() {

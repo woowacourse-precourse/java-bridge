@@ -14,7 +14,7 @@ public class GameStarter {
         }
     }
 
-    // 게임 시작
+    // 게임 시작 메서드 (단일)
     public static boolean startGame(List<String> bridge, int totalCount) {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         boolean continueGame = true;
