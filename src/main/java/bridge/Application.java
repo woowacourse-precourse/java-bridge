@@ -23,7 +23,7 @@ public class Application {
         inputView.printStartMessage();
         Bridge bridge = bridgeGame.getBridge(bridgeMaker, inputView.readBridgeSize());
         GameResult gameResult = playBridgeGame(bridge);
-        outputView.printResult(bridge,gameResult);
+        outputView.printResult(gameResult);
     }
 
     private static GameResult playBridgeGame(Bridge bridge) {
@@ -40,12 +40,13 @@ public class Application {
 
     private static MoveResult moveToSelectedBlock(Bridge bridge) {
         MoveResult moveResult = bridgeGame.move(bridge, inputView.readMoving());
-        outputView.printMap(bridge,moveResult);
+        outputView.printMap(moveResult);
         return moveResult;
     }
 
     private static GameResult selectWhetherToRetry(Bridge bridge, MoveResult moveResult) {
         if (bridgeGame.retry(inputView.readGameCommand())) {
+            outputView.clearMap();
             return playBridgeGame(bridge);
         }
         return bridgeGame.closeGame(moveResult);
