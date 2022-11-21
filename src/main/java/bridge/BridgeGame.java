@@ -38,4 +38,8 @@ public class BridgeGame {
     public boolean isWrongAnswer() {
         return wrongAnswer;
     }
+
+    public int countTotalTry() {
+        return totalTry;
+    }
 }
