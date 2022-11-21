@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.bridgeenum.Restart;
 import bridge.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -14,30 +13,25 @@ public class GameController {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
-    private boolean isPlaying;
-    private int tryCount;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        startNewGame();
+    }
+
+    public void startNewGame() {
+        outputView.printStart();
+        bridgeGame = new BridgeGame(createNewBridge());
     }
 
     public void play() {
-        while (isPlaying) {
+        while (bridgeGame.isGamePlaying()) {
             move();
             printMoveResult();
             checkGameEnd();
         }
         printFinalResult();
-    }
-
-    private void startNewGame() {
-        printGameStart();
-        bridgeGame = new BridgeGame(createNewBridge());
-        isPlaying = true;
-        tryCount = 1;
     }
 
     private Bridge createNewBridge() {
@@ -61,10 +55,6 @@ public class GameController {
         }
     }
 
-    private void printGameStart() {
-        outputView.printStart();
-    }
-
     private List<String> generateBridge() {
         return bridgeMaker.makeBridge(requestBridgeLength());
     }
@@ -80,17 +70,13 @@ public class GameController {
     private void checkGameEnd() {
         if (bridgeGame.isGameOver()) {
             requestGameRestart();
-            return;
-        }
-        if (bridgeGame.isGamePass()) {
-            isPlaying = false;
         }
     }
 
     private void requestGameRestart() {
         while (true) {
             try {
-                checkGameRestart(inputView.readGameCommand());
+                bridgeGame.retry(inputView.readGameCommand());
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -98,16 +84,8 @@ public class GameController {
         }
     }
 
-    private void checkGameRestart(String command) {
-        isPlaying = Restart.isRestart(command);
-        if (isPlaying) {
-            bridgeGame.retry();
-            tryCount += 1;
-        }
-    }
-
     private void printFinalResult() {
-        outputView.printResult(bridgeGame.getCurrentMap(), tryCount, bridgeGame.isGamePass());
+        outputView.printResult(bridgeGame.getCurrentMap(), bridgeGame.getTryCount(), bridgeGame.isGamePass());
     }
 
 }
