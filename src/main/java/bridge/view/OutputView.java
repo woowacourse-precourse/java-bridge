@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void initializeMap() {
+    public void initializeMap() {
         upperMap = "[";
         lowerMap = "[";
     }
@@ -38,7 +38,7 @@ public class OutputView {
         }
     }
 
-    private void addOToMap(List<String> bridge, List<String> bridgeStatus, int idx) {
+    public void addOToMap(List<String> bridge, List<String> bridgeStatus, int idx) {
         if (bridgeStatus.get(idx) == "O") {
             if (bridge.get(idx) == "U") {
                 upperMap += " O";
@@ -52,7 +52,7 @@ public class OutputView {
         }
     }
 
-    private void continueOrFinishMap(List<String> bridgeStatus, int size, int idx) {
+    public void continueOrFinishMap(List<String> bridgeStatus, int size, int idx) {
         if (bridgeStatus.get(idx) == "O") {
             if (idx != size - 1) {
                 upperMap += " |";
@@ -66,7 +66,7 @@ public class OutputView {
         }
     }
 
-    private void addXAndFinishMap(List<String> bridge, List<String> bridgeStatus, int idx) {
+    public void addXAndFinishMap(List<String> bridge, List<String> bridgeStatus, int idx) {
         if (bridgeStatus.get(idx) == "X") {
             if (bridge.get(idx) == "U") {
                 upperMap += "   ]";
