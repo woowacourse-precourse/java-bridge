@@ -10,29 +10,26 @@ import bridge.ui.OutputView;
 import static bridge.util.ErrorCode.*;
 
 public class BridgeGameController {
+
     private static final String RETRY_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";
-    private static final String MOVE = "MOVE";
-    private static final String FINISH = "FINISH";
-    private static final String CANNOT_MOVE = "CANNOT_MOVE";
 
+    private final BridgeGame bridgeGame = new BridgeGame();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final Validator validator = new Validator();
-
-    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
         outputView.printStartMessage();
         startGame();
         playGame();
+        finishGame();
     }
 
     private void startGame() {
         while (true) {
             try {
-                int bridgeSize = getInputBridgeSize();
-                bridgeGame.start(bridgeSize);
+                bridgeGame.start(getInputBridgeSize());
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(INVALID_BRIDGE_SIZE);
@@ -43,46 +40,47 @@ public class BridgeGameController {
     private void playGame() {
         while (true) {
             try {
-                String direction = getInputDirection();
-                String action = decideWhatToDO(direction);
-                doAction(direction, action);
-                break;
+                if (!continueGettingInput())
+                    return;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(INVALID_MOVING);
             }
         }
     }
 
-    private String decideWhatToDO(String direction) {
-        boolean moveSucceed = bridgeGame.moveSucceed(direction);
-        boolean arrived = bridgeGame.isArrived();
-        if (arrived)
-            return FINISH;
-        if (moveSucceed)
-            return MOVE;
-        return CANNOT_MOVE;
+    private boolean continueGettingInput() {
+        String direction = getInputDirection();
+        boolean isMovable = bridgeGame.isMovable(direction);
+
+        doProperAction(direction, isMovable);
+
+        if (isMovable && !bridgeGame.isArrived())
+            return true;
+        return false;
     }
 
-    private void doAction(String direction, String action) {
-        if (action == FINISH)
-            finishGame(bridgeGame.moveSucceed(direction));
-        if (action == MOVE) {
-            move(direction);
-            playGame();
+    private void doProperAction(String direction, boolean movable) {
+        if (movable) {
+            successToMove(direction);
+            return;
         }
-        if (action == CANNOT_MOVE) {
-            bridgeGame.updateRecords(direction, false);
-            printMap();
-            retryOrQuit();
-        }
+        failToMove(direction);
+        retryOrQuit();
     }
-    private void move(String direction) {
+
+    private void successToMove(String direction) {
         bridgeGame.move(direction);
         printMap();
     }
 
-    private void finishGame(boolean lastSuccess) {
-        GameResultData gameResultData = bridgeGame.finish(lastSuccess);
+    private void failToMove(String direction) {
+        bridgeGame.updateRecords(direction, false);
+        printMap();
+    }
+
+    private void finishGame() {
+        boolean gameSuccess = bridgeGame.isArrived();
+        GameResultData gameResultData = bridgeGame.finish(gameSuccess);
         outputView.printResult(gameResultData);
     }
 
@@ -93,9 +91,7 @@ public class BridgeGameController {
 
     private void retryOrQuit() {
         while (true) {
-            try {
-                String command = getInputCommandLetter();
-                commandGame(command);
+            try {commandGame(getInputCommandLetter());
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(INVALID_COMMAND);
@@ -107,27 +103,26 @@ public class BridgeGameController {
         if (commandLetter.equals(RETRY_COMMAND)) {
             bridgeGame.retry();
             playGame();
+            return;
         }
-        if (commandLetter.equals(QUIT_COMMAND)) {
-            bridgeGame.finish(false);
-        }
+        bridgeGame.finish(false);
     }
 
     private int getInputBridgeSize() {
         int bridgeSize = inputView.readBridgeSize();
-        validator.validateBridgeSizeAndThrowException(bridgeSize);
+        validator.validateBridgeSize(bridgeSize);
         return bridgeSize;
     }
 
     private String getInputDirection() {
         String moving = inputView.readMoving();
-        validator.validateMovingAndThrowException(moving);
+        validator.validateDirection(moving);
         return moving;
     }
 
     private String getInputCommandLetter() {
         String commandLetter = inputView.readGameCommand();
-        validator.validateCommandAndThrowException(commandLetter);
+        validator.validateCommand(commandLetter);
         return commandLetter;
     }
 }

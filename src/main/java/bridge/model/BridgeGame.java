@@ -52,14 +52,15 @@ public class BridgeGame {
      */
     public void move(String moving) {
         updateRecords(moving, true);
+        nowIndex++;
     }
 
-    public boolean moveSucceed(String moving) {
+    public boolean isMovable(String moving) {
         if (bridge.get(nowIndex).equals(moving)) {
-            nowIndex++;
             return true;
         }
-        return false;    }
+        return false;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -95,7 +96,6 @@ public class BridgeGame {
         MapMaker mapMaker = new MapMaker(records.get(UPSIDE), records.get(DOWNSIDE));
         return mapMaker.makeMap();
     }
-
 
     private String judgeAnotherDirection(String moving) {
         if (moving.equals(UPSIDE)) {

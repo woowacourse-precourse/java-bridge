@@ -1,6 +1,7 @@
 package bridge.util;
 
 public class Converter {
+
     private static final String SUCCESS = "성공";
     private static final String FAILURE = "실패";
 
@@ -8,8 +9,8 @@ public class Converter {
         return Integer.parseInt(s);
     }
 
-    public String convertBooleanToString(boolean tf) {
-        if (tf) {
+    public String convertBooleanToString(boolean success) {
+        if (success) {
             return SUCCESS;
         }
         return FAILURE;

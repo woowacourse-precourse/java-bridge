@@ -1,6 +1,5 @@
 package bridge.model.data;
 
-import java.util.List;
 
 public class GameResultData {
     private MapData mapData;

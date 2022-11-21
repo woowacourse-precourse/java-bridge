@@ -1,7 +1,7 @@
 package bridge.ui;
 
-import bridge.model.dto.GameResultDto;
-import bridge.model.dto.MapDto;
+import bridge.model.data.GameResultData;
+import bridge.model.data.MapData;
 import bridge.util.ErrorCode;
 
 import java.util.List;
@@ -25,9 +25,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(MapDto mapDto) {
-        String upsideMap = mapDto.getUpsideMap();
-        String downsideMap = mapDto.getDownsideMap();
+    public void printMap(MapData mapData) {
+        String upsideMap = mapData.getUpsideMap();
+        String downsideMap = mapData.getDownsideMap();
         System.out.println(upsideMap);
         System.out.println(downsideMap);
     }
@@ -37,7 +37,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameResultDto gameResult) {
+    public void printResult(GameResultData gameResult) {
         System.out.println();
         System.out.println(TOTAL_RESULT_INFO_MESSAGE);
         printMap(gameResult.getMapData());

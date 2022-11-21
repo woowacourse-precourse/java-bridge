@@ -1,6 +1,7 @@
 package bridge.util;
 
 public class Validator {
+
     private static final int VALID_RANGE_START = 3;
     private static final int VALID_RANGE_END = 20;
     private static final String MOVING_UP_COMMAND_LETTER = "U";
@@ -8,19 +9,19 @@ public class Validator {
     private static final String RETRY_COMMAND_LETTER = "R";
     private static final String QUIT_COMMAND_LETTER = "Q";
 
-    public void validateBridgeSizeAndThrowException(int size) {
+    public void validateBridgeSize(int size) {
         if (!isValidRange(size)) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void validateMovingAndThrowException(String moving) {
+    public void validateDirection(String moving) {
         if (!isValidMoving(moving)) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void validateCommandAndThrowException(String letter) {
+    public void validateCommand(String letter) {
         if (!isValidCommand(letter)) {
             throw new IllegalArgumentException();
         }
