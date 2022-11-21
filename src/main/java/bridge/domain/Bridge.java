@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Bridge {
     private final int bridgeLength;
-    private final List<String> bridgeResult;
+    private final List<String> resultBridge;
 
-    public Bridge(int bridgeLength, List<String> bridgeResult) {
+    public Bridge(int bridgeLength, List<String> resultBridge) {
         this.bridgeLength = bridgeLength;
-        this.bridgeResult = bridgeResult;
+        this.resultBridge = resultBridge;
     }
 
 
@@ -16,7 +16,7 @@ public class Bridge {
         return bridgeLength;
     }
 
-    public List<String> getBridgeResult() {
-        return bridgeResult;
+    public List<String> getResultBridge() {
+        return resultBridge;
     }
 }
