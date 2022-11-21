@@ -7,7 +7,6 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    private static final int DOWN = 0;
     private static final int UP = 1;
     
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -26,12 +25,9 @@ public class BridgeMaker {
     private String checkUpDown() {
         int num;
         num = bridgeNumberGenerator.generate();
-        if(num == DOWN){
-            return "D";
-        }
         if(num == UP){
             return "U";
         }
-        return null;
+        return "D";
     }
 }
