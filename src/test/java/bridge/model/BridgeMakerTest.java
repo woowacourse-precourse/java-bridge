@@ -26,11 +26,4 @@ class BridgeMakerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("무작위 값이 0인 경우 아래 칸, 1인경우 위 칸이 건널 수 있는 칸이 된다")
-    @ParameterizedTest
-    @CsvSource({"1,U", "0,D"})
-    void validateToCrossByRandomNumber(int number, String expected) {
-        String actual = Column.judge(number);
-        assertThat(actual).isEqualTo(expected);
-    }
 }

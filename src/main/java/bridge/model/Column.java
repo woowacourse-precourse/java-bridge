@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public enum Column {
     TOP_ROW("U", 1),
     DOWN_ROW("D", 0),
-    NONE(" ",-1);
+    NONE("",-1);
 
     private final int randomNumber;
     private final String capitalLetter;
@@ -38,11 +38,13 @@ public enum Column {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
     }
-    public static String judge(int randomNumber) {
+    public static String changeNumToLetter(int randomNumber) {
         return BY_RANDOM_NUMBER.get(randomNumber).capitalLetter;
     }
 
-    public static boolean isValidateLetter(String input) {
-        return BY_RANDOM_NUMBER.containsKey(input);
+    public static void validateLetter(String input) {
+        if(!(BY_RANDOM_NUMBER.containsKey(input) && input != "")){
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -12,15 +12,17 @@ public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
+    private final ValidateInput validate;
     private int totalCount;
     BridgeController(){
         inputView = new InputView();
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
+        validate = new ValidateInput();
         totalCount = 1;
     }
     public void startGame(){
-        int size = ValidateInput.checkNumeric(inputView.readBridgeSize());
+        int size = validate.numeric(inputView.readBridgeSize());
         bridgeGame.start(size);
         playing(size);
     }
@@ -38,7 +40,7 @@ public class BridgeController {
 
     private boolean checkAnswer(int step){
         String letter = inputView.readMoving();
-        ValidateInput.checkLetter(letter);
+        Column.validateLetter(letter);
         if(bridgeGame.move(step,letter)!= Column.NONE){
             return true;
         }
@@ -51,8 +53,9 @@ public class BridgeController {
         // 게임 다시 시도
         // 출력
        // return moveGame(size);
+        return 0;
     }
-    private void addToBuffer(String msg){
+    private void addToBuffer(int step){
 
     }
 
