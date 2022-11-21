@@ -37,7 +37,13 @@ public class InputView {
         String input = Console.readLine();
         return input;
     }
-
+    // 이동할 칸 입력이 U 또는 D인지 예외처리
+    private static boolean isUpDown(String input){
+        if(!input.equals("U") || !input.equals("D")){
+            return false;
+        }
+        return true;
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
