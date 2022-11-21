@@ -9,11 +9,10 @@ public enum Range {
     private final Integer range;
 
     Range(Integer range) {
-        validate(range);
         this.range = range;
     }
 
-    private void validate(Integer range) {
+    public void validate(Integer range) {
         if (Range.MIN.getRange() <= range
             && range <= Range.MAX.getRange()) {
             return;

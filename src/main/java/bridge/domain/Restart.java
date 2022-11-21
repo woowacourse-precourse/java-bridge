@@ -12,7 +12,7 @@ public enum Restart {
         this.status = status;
     }
 
-    private void validate(String status) {
+    public void validate(String status) {
         if (status.equals(Restart.RESTART.getStatus())
             || status.equals(Restart.QUIT.getStatus())) {
             return;

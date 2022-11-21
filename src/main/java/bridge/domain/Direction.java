@@ -13,12 +13,11 @@ public enum Direction {
     private final Predicate<Integer> isMatch;
 
     Direction(String directionInitial, Predicate<Integer> isMatch) {
-        validate(directionInitial);
         this.directionInitial = directionInitial;
         this.isMatch = isMatch;
     }
 
-    private void validate(String directionInitial) {
+    public void validate(String directionInitial) {
         if (directionInitial.equals(Direction.UP.getDirectionInitial())
             || directionInitial.equals(Direction.DOWN.getDirectionInitial())) {
             return;
