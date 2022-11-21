@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeSize;
 import bridge.MapRenderer;
 import dto.BridgeDto;
+import dto.BridgeSizeDto;
 import dto.GameCommandDto;
 import dto.IndexDto;
 import dto.MapDto;
@@ -19,10 +20,10 @@ public class BridgeGame {
 	/**
 	 * 입력 받은 다리 길이로 다리를 생성하는 메서드
 	 */
-	public BridgeDto initBridge(int size) {
+	public BridgeDto initBridge(BridgeSizeDto bridgeSizeDto) {
 		BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-		BridgeSize bridgeSize = new BridgeSize(size);
+		BridgeSize bridgeSize = new BridgeSize(bridgeSizeDto.getBridgeSize());
 		return new Bridge(bridgeMaker.makeBridge(bridgeSize.getBridgeSize())).toBridgeDto();
 	}
 

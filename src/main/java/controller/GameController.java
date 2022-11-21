@@ -1,6 +1,7 @@
 package controller;
 
 import dto.BridgeDto;
+import dto.BridgeSizeDto;
 import dto.GameCommandDto;
 import dto.IndexDto;
 import dto.MapDto;
@@ -23,8 +24,8 @@ public class GameController {
 
 	private BridgeDto init() {
 		outputView.printStartMessage();
-		int bridgeSize = inputView.readBridgeSize();
-		return bridgeGame.initBridge(bridgeSize);
+		BridgeSizeDto bridgeSizeDto = new BridgeSizeDto(inputView.readBridgeSize());
+		return bridgeGame.initBridge(bridgeSizeDto);
 	}
 
 	private MapDto run(BridgeDto bridgeDto) {
