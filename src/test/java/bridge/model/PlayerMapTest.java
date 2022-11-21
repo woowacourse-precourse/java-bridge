@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.model.PlayerMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,7 +29,7 @@ public class PlayerMapTest {
     @DisplayName("PlayerMap 객체를 알맞는 형식의 문자열로 반환한다")
     @Test
     void toStringsByFormatTest() {
-        assertThat(playerMap1.toStringsByFormat())
+        assertThat(playerMap1.toStringsByFormat(MapFormat.FORMAT))
                 .isEqualTo(List.of(
                         "[ O | O | O ]",
                         "[   |   |   ]"

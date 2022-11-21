@@ -12,15 +12,14 @@ public class PlayerMap {
 
     protected final List<String> upSide;
     protected final List<String> downSide;
-    private final MapFormat mapFormat = MapFormat.FORMAT;
 
     public PlayerMap(List<String> upSide, List<String> downSide) {
         this.upSide = upSide;
         this.downSide = downSide;
     }
 
-    public List<String> toStringsByFormat() {
-        return mapFormat.convertToFormatStrings(List.of(upSide, downSide));
+    public List<String> toStringsByFormat(MapFormat mapFormat) {
+        return mapFormat.convertToStrings(List.of(upSide, downSide));
     }
 
     public PlayerMap join(PlayerMap other) {
