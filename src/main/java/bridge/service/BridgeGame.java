@@ -22,7 +22,7 @@ public class BridgeGame {
             if (isGameWin(nowBridge, generatedBridge).equals(WIN.getElement())) {
                 break;
             }
-        } while (retry(nowBridge));
+        } while (retry(nowBridge, bridgeController.readGameCommandController()));
         return count;
     }
 
@@ -52,9 +52,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(List<String> nowBridge) {
+    public boolean retry(List<String> nowBridge, String input) {
         nowBridge.clear();
-        if (bridgeController.readGameCommandController().equals(RETRY.getElement())) {
+        if (input.equals(RETRY.getElement())) {
             return true;
         }
         return false;

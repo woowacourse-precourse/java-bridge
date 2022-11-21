@@ -1,11 +1,14 @@
 package bridge;
 
+import static bridge.domain.BridgeMap.WIN;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.exception.BridgeException;
 import bridge.service.BridgeGame;
 import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -21,6 +24,7 @@ class ApplicationTest extends NsTest {
 
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
+    private final BridgeException bridgeException = new BridgeException();
 
     @Test
     void 다리_생성_테스트() {
@@ -81,6 +85,27 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 예외_테스트_게임_재시작_여부_R_또는_Q가_아닌_문자를_입력하는_경우() {
+        assertThatThrownBy(() -> {
+            bridgeException.gameCommandException("G");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
+    }
+
+    @Test
+    void 게임_재시작() {
+        // given
+        List<String> nowBridge = new ArrayList<>();
+        nowBridge.add("U");
+
+        // when
+        boolean result = bridgeGame.retry(nowBridge, "R");
+
+        // then
+        assertEquals(true, result);
+    }
+
+    @Test
     void 생성된_다리_사이즈() {
         // given
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -107,7 +132,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 게임_진행_여부() {
+    void 정답_판별() {
         // given
         List<String> generatedBridge = new ArrayList<>();
         generatedBridge.add("U");
@@ -121,6 +146,19 @@ class ApplicationTest extends NsTest {
 
         // then
         assertEquals(false, gameSuccess);
+    }
+
+    @Test
+    void 게임_승리_여부() {
+        // given
+        List<String> nowBridge = List.of("U", "D", "D");
+        List<String> generatedBridge = List.of("U", "D", "D");
+
+        // when
+        String result = bridgeGame.isGameWin(nowBridge, generatedBridge);
+
+        // then
+        assertEquals(WIN.getElement(), result);
     }
 
     @Test

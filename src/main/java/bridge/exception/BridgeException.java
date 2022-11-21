@@ -4,7 +4,7 @@ import static bridge.domain.BridgeCommand.*;
 
 public class BridgeException {
 
-    public static int BridgeSizeException(String input) {
+    public static int bridgeSizeException(String input) {
         if (!input.matches("[+-]?\\d*\\.?\\d+") || input.length() > 9) {
             throw new IllegalArgumentException("[ERROR] 3이상 20 이하 숫자를 입력해주시오.");
         }
@@ -15,7 +15,7 @@ public class BridgeException {
         return size;
     }
 
-    public static String MovingException(String input) {
+    public static String movingException(String input) {
         if (input.length() != 1) {
             throw new IllegalArgumentException("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
         }
@@ -25,7 +25,7 @@ public class BridgeException {
         return input;
     }
 
-    public static String GameCommandException(String input) {
+    public String gameCommandException(String input) {
         if (input.length() != 1) {
             throw new IllegalArgumentException("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
         }

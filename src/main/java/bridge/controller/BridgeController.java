@@ -2,12 +2,14 @@ package bridge.controller;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
 public class BridgeController {
 
     private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
 
     // 입력
     public int readBridgeSizeController() {
@@ -38,7 +40,7 @@ public class BridgeController {
     public String readGameCommandController() {
         while (true) {
             try {
-                return InputView.readGameCommand();
+                return inputView.readGameCommand(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
