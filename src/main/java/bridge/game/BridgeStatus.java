@@ -9,7 +9,6 @@ public class BridgeStatus {
     private static StringJoiner TOP_BRIDGE;
     private static StringJoiner BOTTOM_BRIDGE;
     private static final OutputView OUTPUT_VIEW = new OutputView();
-
     private static boolean CLEAR = false;
     private static int CURRENT_LOCATION = 0;
     private static int RETRY_COUNT = 1;
@@ -18,7 +17,6 @@ public class BridgeStatus {
         clearMap();
     }
 
-    // 상태 값 변경
     public void clearMap() {
         TOP_BRIDGE = new StringJoiner(GameConstant.MID_SYMBOL);
         BOTTOM_BRIDGE = new StringJoiner(GameConstant.MID_SYMBOL);
