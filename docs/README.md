@@ -18,12 +18,12 @@
 - [x] 재시작 or 종료 입력
 
 ### OutputView
-- [ ] 게임 시작 문구 출력
+- [x] 게임 시작 문구 출력
 - [x] 게임 진행 중 게임 상황 출력
-- [ ] 게임 종료 후 게임 결과 출력
+- [x] 게임 종료 후 게임 결과 출력
 
 ### BridgeGameController & BridgeGameHandler 
-- [ ] 기능 통합
+- [x] 기능 통합
 
 ### Exception
 - [ ] 다리 길이에 대한 예외 처리
