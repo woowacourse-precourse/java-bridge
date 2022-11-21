@@ -28,6 +28,9 @@ public class OutputView {
         Message(String out) {
             this.out = out;
         }
+        public String get() {
+            return out;
+        }
     }
 
     /**
