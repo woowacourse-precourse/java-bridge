@@ -43,7 +43,8 @@ public class InputView {
     public String readGameCommand() {
         outputView.printMessage(Message.REGAME);
         String userInput = Console.readLine();
-        if (!(userInput.equals(CommandType.QUIT.getCommands()) || userInput.equals(CommandType.RESTART.getCommands()))) {
+        if (!(userInput.equals(CommandType.QUIT.getCommands()) || userInput.equals(
+                CommandType.RESTART.getCommands()))) {
             throw new IllegalArgumentException(Message.ERROR_REGAME.getMessage());
         }
         return Console.readLine();

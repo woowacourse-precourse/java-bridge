@@ -65,7 +65,7 @@ public class BridgeGame {
         return this.trial;
     }
 
-    public int getIndex(){
+    public int getIndex() {
         return this.index;
     }
 
