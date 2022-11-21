@@ -1,15 +1,17 @@
 package enumCollections;
 
 public enum Position {
-    UP("U", 1),
-    DOWN("D", 0);
+    UP("U", 1, 0),
+    DOWN("D", 0, 1);
 
     private final String status;
     private final int number;
+    private final int index;
 
-    Position(String status, int number) {
+    Position(String status, int number, int index) {
         this.status = status;
         this.number = number;
+        this.index = index;
     }
 
     public static String getStatus(Position position) {
@@ -24,16 +26,14 @@ public enum Position {
     }
 
     public static int getIndex(Position position) {
-        return position.number;
+        return position.index;
     }
 
     public static Position getPosition(String status) {
-        for (Position position : Position.values()) {
-            if (position.status == status) {
-                return position;
-            }
+        if (Position.UP.status == status) {
+            return Position.UP;
         }
-        return null;
+        return Position.DOWN;
     }
 
     public static Position getOppositePosition(Position position) {
