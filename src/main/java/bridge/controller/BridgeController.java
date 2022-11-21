@@ -32,9 +32,9 @@ public class BridgeController {
                 outputView.printMap(bridgeGame.running());
                 continue;
             }
-            judgeGameStatus(step, size);
+            return judgeGameStatus(step, size);
         }
-        return 0;
+        return succeedGame();
     }
 
     private boolean checkAnswer(int step){
@@ -50,13 +50,9 @@ public class BridgeController {
     }
 
     private int judgeGameStatus(int step, int size){
-        if(step == size){
-            succeedGame();
-            return 0;
-        }
         outputView.printMap(bridgeGame.fail(step));
-        checkRetry(size);
-        return 0;
+        return checkRetry(size);
+
     }
 
     private int checkRetry(int size){
@@ -74,7 +70,8 @@ public class BridgeController {
         outputView.printResult(bridgeGame.over(), GameMessage.FAILURE, bridgeGame.getTotalCount());
         return 0;
     }
-    private void succeedGame(){
+    private int succeedGame(){
         outputView.printResult(bridgeGame.over(),GameMessage.SUCCESS, bridgeGame.getTotalCount());
+        return 0;
     }
 }
