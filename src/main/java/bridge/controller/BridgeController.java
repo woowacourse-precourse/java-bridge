@@ -4,11 +4,9 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeSize;
-import bridge.domain.Move;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
@@ -16,29 +14,18 @@ public class BridgeController {
     InputView inputView = new InputView();
     BridgeSize bridgeSize = new BridgeSize();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    Move mm = new Move();
     BridgeGame bridgeGame = new BridgeGame();
 
     public void start() {
         String reply;
         OutputView.printGameStart();
         do {
-                //play();
             int size = inputSize();
             List<String> bridge = bridgeMaker.makeBridge(size);
 
             reply = play(bridge);
-//                if (result.contains("X")) {
-//                    //new BridgeGame();
-//                    //bridges = new ArrayList<>();
-//                    reset();
-//                    //System.out.println();
-//                    break;
-//                }
-//            }
-//            reply = InputView.readGameCommand();
+
         }while(!reply.equals("Q"));
-       // }
     }
 
     public int inputSize(){
@@ -46,11 +33,6 @@ public class BridgeController {
         bridgeSize.checkNumber(size);
         return Integer.parseInt(size);
     }
-
-//    public List<String> makeBrige(int size){
-//        List<String> bridge = bridgeMaker.makeBridge(size);
-//        return bridge;
-//    }
 
     public void printResult(String fail, int attempt) {
         OutputView.printResult(bridgeGame.toString());
@@ -62,10 +44,8 @@ public class BridgeController {
     public String crossBridge(List<String> bridge) {
         for(int i=0;i<bridge.size();i++) {
             String move = inputView.readMoving();
-            mm.isProper(move);
             List<List<String>> bridges = bridgeGame.move(bridge.get(i),move);
             OutputView.printMap(bridgeGame.toString());
-            //reply(bridgeGame.toString());
             if(endGame(bridges).equals("실패")) {
                 return "실패";
             }

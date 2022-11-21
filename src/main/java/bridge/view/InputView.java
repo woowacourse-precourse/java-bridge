@@ -20,7 +20,11 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine();
+        String square = Console.readLine();
+        if(!(square.equals("U") || square.equals("D"))){
+            throw new IllegalArgumentException(ExceptionMessage.isProperMsg());
+        }
+        return square;
     }
 
     /**
