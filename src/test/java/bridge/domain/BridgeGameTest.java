@@ -28,6 +28,15 @@ class BridgeGameTest {
         assertThat(result).isEqualTo(false);
     }
 
+    @DisplayName("[성공] 게임을 재시작하면 게임 시도 횟수가 1 증가한다.")
+    @Test
+    void retry() {
+        List<String> bridge = List.of("U", "D");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.retry();
+        assertThat(bridgeGame.getAttemptCount()).isEqualTo(2);
+    }
+
     @DisplayName("[예외 발생] 건널 수 없는 칸을 건너려 하면 CannotCrossBridgeException 발생")
     @Test
     void moveByDifferentDirection() {
@@ -36,4 +45,5 @@ class BridgeGameTest {
         assertThatThrownBy(() -> bridgeGame.move("U", 1)).isInstanceOf(
             CannotCrossBridgeException.class);
     }
+
 }
