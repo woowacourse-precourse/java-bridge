@@ -21,6 +21,10 @@ public class PlayerRepository {
         return playerId;
     }
 
+    public Player findById(Long id) {
+        return repository.get(id);
+    }
+
     private void incrementId() {
         id = id + 1;
     }
