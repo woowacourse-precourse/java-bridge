@@ -11,33 +11,23 @@ public class Application {
     static OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
-        
+
+        BridgeFactory bridgeFactory = new BridgeFactory();
+        BridgeGameEngine bridgeGameEngine = new BridgeGameEngine(bridgeGame);
 
         System.out.println("다리 건너기 게임을 시작합니다");
 
         int bridgeSize = inputView.readBridgeSize();
 
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = bridgeFactory.makeBridgeByBridgeMaker(bridgeSize);
 
         int gameCount = 0;
 
         while (true) {
             gameCount++;
-            Bridge userBridge = new Bridge(new ArrayList<>(), new ArrayList<>());
-            PlayerStatus playerStatus = null;
+            Bridge userBridge = bridgeFactory.makeUserBridge();
 
-            for (String s : bridge) {
-
-                playerStatus = isMatchingWithBridge(userBridge, s);
-
-                playerMove(userBridge, playerStatus);
-
-                if (!playerStatus.isMatchingFlag()) {
-                    break;
-                }
-            }
+            PlayerStatus playerStatus = bridgeGameEngine.playerMoveBridge(bridge, userBridge);
 
             if (finishGamePlayerWin(gameCount, userBridge, playerStatus)) {
                 break;
@@ -49,13 +39,8 @@ public class Application {
         }
     }
 
-    private static void playerMove(Bridge userBridge, PlayerStatus playerStatus) {
-        bridgeGame.move(userBridge, playerStatus);
-        outputView.printMap(userBridge);
-    }
-
     private static boolean finishGamePlayerWin(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
-        if (!playerStatus.isMatchingFlag()) {
+        if (playerStatus.isMatchingFlag()) {
             outputView.printResult(userBridge, gameCount, playerStatus);
             return true;
         }
@@ -72,13 +57,5 @@ public class Application {
         return false;
     }
 
-    private static PlayerStatus isMatchingWithBridge(Bridge bridge, String currentStep) {
-        String nextStep = inputView.readMoving();
 
-        if (currentStep.equals(nextStep)) {
-            return new PlayerStatus(nextStep, true);
-        }
-
-        return new PlayerStatus(nextStep, false);
-    }
 }
