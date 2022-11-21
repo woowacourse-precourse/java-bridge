@@ -39,7 +39,7 @@ class BridgeGameTest extends NsTest {
     }
 
     @Nested
-    @DisplayName("올바른 입력이 들어오는지 테스트")
+    @DisplayName("다리 길이로 올바른 입력이 들어오는지 테스트")
     class BridgeSizeTest {
         @Test
         @DisplayName("다리 길이로 0으로 시작하는 숫자가 입력될 때")
@@ -74,6 +74,37 @@ class BridgeGameTest extends NsTest {
             assertSimpleTest(() -> {
                 runException("100");
                 assertThat(output()).contains(error);
+            });
+        }
+    }
+
+    @Nested
+    @DisplayName("발판 선택으로 올바른 입력이 들어오는지 테스트")
+    class MovingTest {
+        @Test
+        @DisplayName("발판 선택으로 U나 D가 아닌 문자가 입력될 떄_1")
+        void case1() {
+            assertSimpleTest(() -> {
+                runException("4", "1");
+                assertThat(output()).contains(error);
+            });
+        }
+
+        @Test
+        @DisplayName("발판 선택으로 U나 D가 아닌 문자가 입력될 떄_2")
+        void case2() {
+            assertSimpleTest(() -> {
+                runException("4", "u");
+                assertThat(output()).contains(error);
+            });
+        }
+
+        @Test
+        @DisplayName("발판 선택으로 올바른 문자가 입력될 떄")
+        void case3() {
+            assertSimpleTest(() -> {
+                runException("4", "U");
+                assertThat(output()).contains("[   ]");
             });
         }
     }
