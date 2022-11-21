@@ -17,25 +17,10 @@ public enum Moving {
     }
 
     public static Moving of(String direction) {
-        validate(direction);
-
         return Arrays.stream(values())
                 .filter(moving -> moving.isSameDirection(direction))
                 .findFirst()
-                .get();
-    }
-
-    private static void validate(String direction) {
-        if (direction.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BLANK_INPUT);
-        }
-        if (isValidMoving(direction)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MOVING_INPUT);
-        }
-    }
-
-    private static boolean isValidMoving(String direction) {
-        return !direction.equals(UP.direction) && !direction.equals(DOWN.direction);
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_MOVING_INPUT));
     }
 
     public boolean isSameDirection(String direction) {

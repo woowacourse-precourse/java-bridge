@@ -15,25 +15,10 @@ public enum GameCommand {
     }
 
     public static GameCommand of(String input) {
-        validate(input);
         return Arrays.stream(values())
                 .filter(command -> command.isSameWith(input))
                 .findFirst()
-                .get();
-    }
-
-    private static void validate(String command) {
-        if (command.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BLANK_INPUT);
-        }
-        if (isInvalidCommand(command)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_COMMAND_INPUT);
-        }
-
-    }
-
-    private static boolean isInvalidCommand(String command) {
-        return !command.equals(RESTART.command) && !command.equals(QUIT.command);
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_COMMAND_INPUT));
     }
 
     private boolean isSameWith(String command) {
