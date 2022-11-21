@@ -20,6 +20,22 @@ public class User {
         this.bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
     }
 
+    public boolean move() {
+        String goal = inputView.readMoving();
+        if (moveNext(goal)) {
+            outputView.printMap(route, true);
+            isCrossBridge();
+            return true;
+        }
+        outputView.printMap(route, false);
+        return false;
+    }
+
+    private boolean moveNext(String goal) {
+        this.location += 1;
+        this.route.add(goal);
+        return bridge.isCanCross(location, goal);
+    }
 
     public void retry() {
         String gameCommand = inputView.readGameCommand();
