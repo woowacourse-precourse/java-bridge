@@ -6,8 +6,6 @@ import enumCollections.GuideMessage;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class Controller {
     private final OutputView outputView;
     private final InputView inputView;
@@ -31,7 +29,7 @@ public class Controller {
     public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
-            getProgress(bridgeGame);
+            printProgress(bridgeGame);
             gameStatus = getGameStatus(bridgeGame, bridgeGame.isPlayerInRightSide());
         }
         return gameStatus;
@@ -46,8 +44,7 @@ public class Controller {
         bridgeGame.generateBridge(this.inputView.readBridgeSize());
     }
 
-    private void getProgress(BridgeGame bridgeGame) {
-        bridgeGame.updateMap();
+    private void printProgress(BridgeGame bridgeGame) {
         outputView.printMap(bridgeGame.getMap());
     }
 

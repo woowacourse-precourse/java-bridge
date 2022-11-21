@@ -30,6 +30,7 @@ public class BridgeGame {
 
     public void move(final String sideToMove) {
         this.player.move(sideToMove);
+        updateMap();
     }
 
     public boolean isPlayerInRightSide() {
