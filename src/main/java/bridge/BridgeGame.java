@@ -10,8 +10,8 @@ import java.util.List;
 public class BridgeGame {
     private final Bridge bridge;
 
-    public BridgeGame() {
-        bridge = new Bridge();
+    public BridgeGame(int bridgeSize) {
+        bridge = new Bridge(makeBridge(bridgeSize));
     }
 
     /**
@@ -32,9 +32,9 @@ public class BridgeGame {
 
     }
 
-    public void makeBridge(int bridgeSize) {
+    public List<String> makeBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = getBridgeMaker();
-        bridge.init(bridgeMaker.makeBridge(bridgeSize));
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     public BridgeMaker getBridgeMaker() {
