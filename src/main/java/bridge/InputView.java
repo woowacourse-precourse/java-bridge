@@ -56,7 +56,7 @@ public class InputView {
 
     private void validateGameCommand(String command) {
         if (!command.equals("R") && !command.equals("Q")) {
-            throw new IllegalArgumentException("게임 진행 여부는 R 또는 Q만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 게임 진행 여부는 R 또는 Q만 입력 가능합니다.");
         }
     }
 }
