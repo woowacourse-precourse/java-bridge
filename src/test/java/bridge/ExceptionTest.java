@@ -23,7 +23,7 @@ class ExceptionTest extends NsTest {
         });
     }
 
-    @ValueSource(strings = {"ASF", "1","K", "입력오류"})
+    @ValueSource(strings = {"ASF", "1","UU", "입력오류"})
     @ParameterizedTest
     void readMoving_이동할_칸의_입력_오류(String input) {
         assertSimpleTest(() -> {
