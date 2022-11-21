@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.GameResult;
+
 import java.util.List;
 import java.util.Stack;
 
@@ -21,12 +23,11 @@ public class OutputView {
     public void printMap(List<List<String>> map) {
         List<String> top = map.get(0);
         List<String> bottom = map.get(1);
-
-        System.out.println(printLine(top));
-        System.out.println(printLine(bottom));
+        System.out.println(parseLine(top));
+        System.out.println(parseLine(bottom));
     }
 
-    private String printLine(List<String> line) {
+    private String parseLine(List<String> line) {
         Stack<String> buffer = new Stack<>();
         buffer.add("[");
         for (String step : line) {
@@ -44,14 +45,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean isSuccess, int tryCount) {
-        String message;
-        if (isSuccess) {
-            message = "성공";
-        } else {
-            message = "실패";
-        }
-
-        System.out.println("게임 성공 여부: " + message);
+        System.out.println("게임 성공 여부: " + GameResult.valueOf(isSuccess));
         System.out.println("총 시도한 횟수: " + tryCount);
     }
 }
