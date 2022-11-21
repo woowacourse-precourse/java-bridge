@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMap;
 import java.util.List;
 
 /**

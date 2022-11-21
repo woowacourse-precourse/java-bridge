@@ -1,5 +1,11 @@
-package bridge;
+package bridge.controller;
 
+import bridge.domain.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.GameCommand;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 import java.util.function.Supplier;
 

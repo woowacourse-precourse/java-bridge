@@ -2,6 +2,8 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.Moving;
 import java.lang.reflect.Field;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

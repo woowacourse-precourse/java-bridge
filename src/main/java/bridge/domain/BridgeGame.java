@@ -1,6 +1,6 @@
-package bridge;
+package bridge.domain;
 
-import static bridge.BridgeGameState.*;
+import static bridge.domain.BridgeGameState.*;
 
 import java.util.Collections;
 import java.util.List;
