@@ -18,17 +18,29 @@ public class BridgeController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean hasMoved;
-        
-        do {
-            hasMoved = bridgeGame.move(getBridgeBlock());
-            getMoveInfo(bridgeGame.getCrossingResult());
-        } while (hasMoved);
-
+        play(bridgeSize, bridgeGame);
     }
 
-    private static void getMoveInfo(String moveInfo) {
-        outputView.print(moveInfo);
+    private static void play(String bridgeSize, BridgeGame bridgeGame) {
+        boolean hasMoved;
+        int count = Integer.parseInt(bridgeSize);
+
+        do {
+            count--;
+            hasMoved = bridgeGame.move(getBridgeBlock());
+            printMoveInfo(bridgeGame.getCrossingResult());
+        } while (hasMoved && count > 0);
+
+        if (!hasMoved) {
+            boolean isRetry = bridgeGame.retry(getRetry());
+            if (isRetry) {
+                play(bridgeSize, bridgeGame);
+            }
+        }
+    }
+
+    private static void printMoveInfo(String moveInfo) {
+        outputView.printMap(moveInfo);
     }
 
     private static String getBridgeBlock() {
@@ -41,4 +53,8 @@ public class BridgeController {
         return inputView.readBridgeSize();
     }
 
+    private static String getRetry() {
+        outputView.printRetry();
+        return inputView.readGameCommand();
+    }
 }

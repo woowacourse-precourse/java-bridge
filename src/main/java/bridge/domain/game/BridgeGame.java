@@ -27,15 +27,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String block) {
-        validateBlock(block);
+    public boolean move(String input) {
+        validateBlock(input);
 
-        if (bridge.isSameBlock(location, block)) {
-            crossingResult.add(CrossOver.SUCCESS, block);
+        if (bridge.isSameBlock(location, input)) {
+            crossingResult.add(CrossOver.SUCCESS, input);
             location++;
             return true;
         }
-        crossingResult.add(CrossOver.FAIL, block);
+        crossingResult.add(CrossOver.FAIL, input);
         return false;
     }
 
@@ -44,12 +44,25 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String input) {
+        validateRetry(input);
+
+        location = 0;
+        this.crossingResult = new CrossingResult();
+
+        return input.equals(Retry.RETRY.value);
     }
 
-    private void validateBlock(String block) {
-        if (!block.equals(BridgeBlock.UP.getDirection()) &&
-                !block.equals(BridgeBlock.DOWN.getDirection())) {
+    private void validateRetry(String input) {
+        if (!input.equals(Retry.RETRY.value) &&
+                !input.equals(Retry.QUIT.value)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_Q_OR_R_INPUT.getValue());
+        }
+    }
+
+    private void validateBlock(String input) {
+        if (!input.equals(BridgeBlock.UP.getDirection()) &&
+                !input.equals(BridgeBlock.DOWN.getDirection())) {
             throw new IllegalArgumentException(ErrorMessage.NOT_U_OR_D_INPUT.getValue());
         }
     }
