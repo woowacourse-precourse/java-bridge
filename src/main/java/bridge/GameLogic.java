@@ -64,7 +64,6 @@ public class GameLogic {
             playOneGame();
             return;
         }
-        showResult();
     }
     private void catchRetryException(){
         try{
