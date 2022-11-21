@@ -2,6 +2,8 @@ package bridge.domain;
 
 import static bridge.utils.Constants.BRIDGE_MIN_SIZE;
 import static bridge.utils.Constants.BRIDGE_MAX_SIZE;
+import static bridge.utils.Constants.UP;
+import static bridge.utils.Constants.DOWN;
 
 public enum ErrorMessage {
     HEADER {
@@ -22,5 +24,11 @@ public enum ErrorMessage {
             return HEADER + "다리 길이는 " + BRIDGE_MIN_SIZE + "부터 " + BRIDGE_MAX_SIZE + " 사이의 숫자여야 합니다.";
         }
     },
+    MOVING_INCORRECT_INPUT {
+        @Override
+        public String toString() {
+            return HEADER + "이동할 칸은 '" + UP + "'(위 칸) 또는 '" + DOWN + "'(아래 칸)만 선택 가능합니다.";
+        }
+    }
 
 }
