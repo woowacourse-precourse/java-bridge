@@ -17,7 +17,7 @@ public class BridgeController {
 
     public BridgeController() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        game = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()));
+        game = new BridgeGame(bridgeMaker.makeBridge(takeSize()));
     }
 
     public void play() {
@@ -46,14 +46,14 @@ public class BridgeController {
 
     private void move() {
         do {
-            String direction = getDirection();
+            String direction = decideDirection();
             game.move(direction);
             bridgeMap.update(direction, game.over());
             OutputView.printMap(bridgeMap.getBridgeMap());
         } while (game.inProgress());
     }
 
-    private String getDirection() {
+    private String decideDirection() {
         try {
             String direction = InputView.readMoving();
             checker.validateMoving(direction);
@@ -63,7 +63,7 @@ public class BridgeController {
         }
     }
 
-    private int getBridgeSize() {
+    private int takeSize() { //
         try {
             String bridgeSize = InputView.readBridgeSize();
             checker.validateBridgeSize(bridgeSize);
@@ -75,7 +75,7 @@ public class BridgeController {
 
     private String handlingMovingException(IllegalArgumentException e) {
         System.out.println(e.getMessage());
-        return getDirection();
+        return decideDirection();
     }
 
     private boolean handlingGameCommandException(IllegalArgumentException e) {
@@ -85,6 +85,6 @@ public class BridgeController {
 
     private int handlingBridgeSizeException(IllegalArgumentException e) {
         System.out.println(e.getMessage());
-        return getBridgeSize();
+        return takeSize();
     }
 }
