@@ -18,7 +18,7 @@ public class GameController {
     private int location;
     private int cnt;
 
-    public void run() {
+    public void run() throws Exception {
         makeBridge();
 
         boolean flag = true;
@@ -61,20 +61,17 @@ public class GameController {
         System.out.println(userMove);
         return userMove;
     }
-    public boolean retryCheck() {
+    public boolean retryCheck() throws Exception {
 
-        SELECT_RESTART_OR_QUIT.printMessage();
+        outputView.restartMessage();
         String command = inputView.readGameCommand();
-        if (command.equals("Q")) {
-            return false;
-        }
-        if (command.equals("R")) {
+        boolean checkCommand = bridgeGame.retry(command);
+        if (checkCommand == true){
             outputView = new OutputView();
             location = 0;
             return true;
         }
-        return true;
+        return false;
     }
-
 }
 
