@@ -10,7 +10,7 @@ public class BridgeGame {
     private StringBuilder sbUp = new StringBuilder();
     private StringBuilder sbDo = new StringBuilder();
     private int size = 0;
-    private int tryCount = 0;
+    private int tryCount = 1;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -22,6 +22,7 @@ public class BridgeGame {
 
     public int requestBridgeSize(){
         System.out.println("다리 길이를 입력해주세요.");
+        System.out.println("");
         try{
             return inputView.readBridgeSize();
         }catch (IllegalArgumentException e){

@@ -19,32 +19,36 @@ public class BridgeController {
 
     public void playBridgeGame(List<String> bridge){
         while(bridgeGame.getSize() < bridge.size()){
-            for(String str : bridge){
-                System.out.printf(str + " ");
-            }
-
             outputView.printRequestUpDownMessage();
             String move = inputView.readMoving();
             String oneBridge = bridgeGame.move(bridge, move, bridgeGame.getSize());
             outputView.printMap(oneBridge);
+            System.out.println("");
             bridgeGame.nextStep();
 
             if(isWrong(oneBridge)){
                 outputView.printRequestRetry();
-                inputView.readGameCommand();
+                String input = inputView.readGameCommand();
+                if(!isFinish(bridge, input)){
+                    break;
+                }
                 bridgeGame.clearResultRestart();
                 bridgeGame.initLevel();
             }
         }
+
+        outputView.printEndGame();
+        String s = bridgeGame.printFinalBridge(bridge);
+        System.out.println(s);
+        outputView.printSuccess(bridge, bridgeGame.getSize());
+        outputView.printTryCount(bridgeGame.getTryCount());
     }
 
-    public void isFinish(String str){
-        if(str.equals("R")){
-
-        }
+    public boolean isFinish(List<String> bridge, String str){
         if(str.equals("Q")){
-
+            return false;
         }
+        return true;
     }
 
     public boolean isWrong(String bridge){
