@@ -15,7 +15,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String movingResult) {
+        System.out.println(movingResult);
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -25,14 +26,13 @@ public class OutputView {
     public void printResult(Bridge bridge, String result) {
         System.out.println(PRINT_GAME_RESULT);
         if (result == SUCCESS) {
-            bridge.minusCurrent();
-            bridge.printSuccess();
-            System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, result));
+            printMap(bridge.movingResultToString(SUCCESS));
+            System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, SUCCESS));
             System.out.println(String.format(TOTAL_NUMBERS_OF_ATTEMPTS, bridge.getGameCount()));
             return;
         }
-        bridge.printFailure();
-        System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, result));
+        printMap(bridge.movingResultToString(FAILURE));
+        System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, FAILURE));
         System.out.println(String.format(TOTAL_NUMBERS_OF_ATTEMPTS, bridge.getGameCount()));
     }
 

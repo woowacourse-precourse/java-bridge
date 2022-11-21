@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.Bridge.JUST_CROSSED;
+import static bridge.Bridge.JUST_CROSSED_AND_CROSS_OVER;
 import static constant.Message.*;
 
 import constant.Message;
@@ -10,16 +12,7 @@ import view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    /**
-     * 필드의 수가 많은데 InputView, OutputView의 함수를 static으로 정의할까?
-     */
-
-
     private final Bridge bridge;
-    /** 재사용해야하니까
-     * private final로 인스턴스 변수로 선언했는데
-     * 다른 방법으로 재사용하게끔 만들수있을까?
-     */
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -31,12 +24,22 @@ public class BridgeGame {
     }
 
     public void start() {
-        bridge.readAndMove(inputView);
-        // readAndMove 메서드에서 빠져나왔다면
-        if (bridge.whetherFollowingEndOrNot()) {
+        int result = 0;
+
+        do {
+            result = move();
+            if (result == JUST_CROSSED) {
+                outputView.printMap(bridge.movingResultToString(SUCCESS));
+                continue;
+            }
+            break;
+        } while (true);
+
+        if (result == JUST_CROSSED_AND_CROSS_OVER) {
             outputView.printResult(bridge, SUCCESS);
             return;
         }
+        outputView.printMap(bridge.movingResultToString(FAILURE));
         retry();
     }
 
@@ -45,8 +48,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-
+    public int move() {
+        return bridge.updateMovingResultAndReturnNextMovingPossible(
+                inputView.readMoving()
+        );
     }
 
     /**
