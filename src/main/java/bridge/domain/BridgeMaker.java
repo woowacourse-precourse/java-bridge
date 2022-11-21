@@ -1,6 +1,4 @@
-package bridge;
-
-import bridge.domain.BridgePosition;
+package bridge.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
