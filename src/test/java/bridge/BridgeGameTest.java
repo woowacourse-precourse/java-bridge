@@ -59,21 +59,10 @@ class BridgeGameTest {
         );
     }
 
-    private static String castCommand(List<String> commands) {
-        StringBuilder inputCommand = new StringBuilder();
-
-        for (String command : commands) {
-            if (inputCommand.length() != 0) inputCommand.append("\n");
-            inputCommand.append(command);
-        }
-
-        return inputCommand.toString();
-    }
-
     @DisplayName("startGame_output 확인")
     @ParameterizedTest
     @MethodSource("generateData")
-    public void startGame_result(List<String> expect) {
+    public void startGame_Result(List<String> expect) {
         System.out.println(expect);
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
@@ -89,7 +78,7 @@ class BridgeGameTest {
     @DisplayName("move() 정상 작동")
     @ParameterizedTest
     @MethodSource("generateMoves")
-    public void moveBridge_success(List<String> inputMoves) {
+    public void moveBridge_Success(List<String> inputMoves) {
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
 
@@ -112,7 +101,7 @@ class BridgeGameTest {
             "D,'[   ]" + "\n" + "[ X ]'",
             "'U" + "\n" + "D','[ O |   ]" + "\n" + "[   | X ]'"
     })
-    public void moveBridge_take_fail(String input, String expect) {
+    public void moveBridge_Take_Fail(String input, String expect) {
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
 
@@ -128,7 +117,7 @@ class BridgeGameTest {
     @DisplayName("이동 방향이 U or D가 아닐 경우 예외 처리")
     @ParameterizedTest
     @CsvSource(value = {"R", "r", "1", "C", "uu", "ud", "UU"})
-    public void moveBridge_not_word(String inputMove) {
+    public void moveBridge_Not_Word(String inputMove) {
         assertThatCode(() -> {
             bridgeGame.setBridge(List.of("U", "U", "D"));
 
@@ -142,7 +131,7 @@ class BridgeGameTest {
     @DisplayName("재시작 성공")
     @ParameterizedTest
     @CsvSource(value = {"R", "r"})
-    public void retry_R_success(String inputCommand) {
+    public void retry_R_Success(String inputCommand) {
         assertThatCode(() -> {
             setInput(inputCommand);
             boolean retry = bridgeGame.retry();
@@ -155,7 +144,7 @@ class BridgeGameTest {
     @DisplayName("종료 성공")
     @ParameterizedTest
     @CsvSource(value = {"Q", "q"})
-    public void retry_Q_success(String inputCommand) {
+    public void retry_Q_Success(String inputCommand) {
         assertThatCode(() -> {
             setInput(inputCommand);
             boolean retry = bridgeGame.retry();
@@ -168,13 +157,24 @@ class BridgeGameTest {
     @DisplayName("명령이 R or Q가 아닐 경우 예외처리")
     @ParameterizedTest
     @CsvSource(value = {"a", "10", "e", "W", "rr", "Rr", "qQ", "QQ"})
-    public void retry_not_word(String inputCommand) {
+    public void retry_Not_Word(String inputCommand) {
         assertThatCode(() -> {
             setInput(inputCommand);
             bridgeGame.retry();
 
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.commandByNotRQ.getMessage());
+    }
+
+    private static String castCommand(List<String> commands) {
+        StringBuilder inputCommand = new StringBuilder();
+
+        for (String command : commands) {
+            if (inputCommand.length() != 0) inputCommand.append("\n");
+            inputCommand.append(command);
+        }
+
+        return inputCommand.toString();
     }
 
     private void setInput(String input) {

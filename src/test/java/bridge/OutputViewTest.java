@@ -49,14 +49,14 @@ class OutputViewTest {
             "' O | O |   ','   |   | O '",
             "' O | O | X ','   |   |   '"
     })
-    void printMap_check(StringBuilder up, StringBuilder down) {
+    void printMap_Check(StringBuilder up, StringBuilder down) {
         outputView.printMap(up, down);
         assertThat(outputStreamCaptor.toString()).contains("[" + up + "]", "[" + down + "]");
     }
 
     @ParameterizedTest
     @MethodSource("generateOutputs")
-    void printResult_check(List<String> outputs) {
+    void printResult_Check(List<String> outputs) {
         outputView.printResult(outputs);
         assertThat(outputStreamCaptor.toString()).contains(
                 outputs.get(0), outputs.get(1), outputs.get(2)
@@ -68,7 +68,7 @@ class OutputViewTest {
             "' O | O |   ','   |   | O '",
             "' O | O | X ','   |   |   '"
     })
-    void castMap_check(StringBuilder up, StringBuilder down) {
+    void castMap_Check(StringBuilder up, StringBuilder down) {
         assertThat(outputView.castMap(up, down))
                 .isEqualTo("[" + up + "]" + "\n" + "[" + down + "]");
 

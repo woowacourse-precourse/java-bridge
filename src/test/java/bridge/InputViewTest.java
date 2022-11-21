@@ -42,7 +42,7 @@ class InputViewTest {
     @DisplayName("입력값이 숫자가 20 초과면 예외를 발생한다.")
     @ParameterizedTest
     @CsvSource(value = {"21", "25", "100", "1000"})
-    public void readSizeByOverSize(String inputSize) {
+    public void readSizeByOver(String inputSize) {
         assertThatCode(() -> {
             setInput(inputSize);
             inputView.readBridgeSize();
@@ -53,7 +53,7 @@ class InputViewTest {
     @DisplayName("입력값이 숫자가 3 미만이면 예외를 발생한다.")
     @ParameterizedTest
     @CsvSource(value = {"2", "-5", "0", "-100"})
-    public void readSizeByUnderSize(String inputSize) {
+    public void readSizeByUnder(String inputSize) {
         assertThatCode(() -> {
             setInput(inputSize);
             inputView.readBridgeSize();
@@ -74,7 +74,7 @@ class InputViewTest {
     @DisplayName("이동거리가 U 또는 D가 아닐 경우 예외 발생")
     @ParameterizedTest
     @CsvSource(value = {"a", "A", "x", "X", "uu", "Uu", "DD"})
-    public void checkMoveWordsNot(String inputMove) {
+    public void checkNotMoveWords(String inputMove) {
         assertThatCode(() -> {
             setInput(inputMove);
             inputView.readMoving();
