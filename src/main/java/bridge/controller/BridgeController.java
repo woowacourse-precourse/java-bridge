@@ -36,9 +36,9 @@ public class BridgeController {
         try {
             play();
         } catch (QuitGameException e) {
-
+            quitGame();
         }catch (SuccessGameException e) {
-
+            successGame();
         }
     }
 
@@ -81,5 +81,13 @@ public class BridgeController {
         if(userInput.equals(Unit.QUITE.getCommand())) {
             bridgeGame.quit();
         }
+    }
+
+    public void quitGame() {
+        System.out.println("quit game");
+    }
+
+    public void successGame() {
+        System.out.println("success game");
     }
 }
