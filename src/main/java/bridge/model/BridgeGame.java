@@ -5,7 +5,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> bridge;
+    private final List<String> bridge;
     private int tryNumber;
     private int nowLocation;
     public BridgeGame(List<String> bridge){
@@ -17,10 +17,12 @@ public class BridgeGame {
     public boolean move(String input) {
         tryNumber++;
         if(input.equals(bridge.get(nowLocation))){
+            nowLocation++;
             return true;
         }
         return false;
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
