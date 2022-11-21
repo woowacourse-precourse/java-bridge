@@ -1,5 +1,6 @@
 package bridge.game.status;
 
+import bridge.domain.code.GameStatus;
 import bridge.game.context.BridgeGameContext;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -9,25 +10,20 @@ public class PlayerUnitMoveStatus implements BridgeGameStatus {
     @Override
     public BridgeGameStatus next(BridgeGameContext context, InputView inputView, OutputView outputView) {
         var game = context.getBridgeGame();
-        context.plusRepeatCount();
 
-        while (game.canPlayerMove()) {
-            var movePosition = inputView.readMoving();
-            var history = game.move(movePosition);
-            var resultHistory = history.resultByPositions();
-            context.writeHistory(resultHistory);
-            outputView.printMap(resultHistory);
+        while (game.getGameStatus().isRunning()) {
+            context.movePlayerUnit(inputView.readMoving());
+            outputView.printMap(context.getCachedHistory());
         }
 
-        if (game.isClear()) {
+        return verifyClearGame(game.getGameStatus());
+    }
+
+    private BridgeGameStatus verifyClearGame(GameStatus gameStatus) {
+        if (gameStatus.isClear()) {
             return new ResultVerificationStatus();
         }
-
-        var restartCommand = inputView.readGameCommand();
-        if (restartCommand.isContinue()) {
-            return new RestartGameStatus();
-        }
-        return new ResultVerificationStatus();
+        return new RestartGameStatus();
     }
 
     @Override
