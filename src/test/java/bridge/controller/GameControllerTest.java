@@ -11,9 +11,9 @@ public class GameControllerTest extends NsTest {
 
     BridgeGameController gameController = new BridgeGameController();
 
-    @DisplayName("U, D, U, U, U 다리")
+    @DisplayName("U, D, U, U, U 다리 1시도 성공")
     @Test
-    void controllerTest() {
+    void controllerSuccessByOneTryTest() {
         gameController.setBridge(List.of("U", "D", "U", "U", "U"));
         run("U", "D", "U", "U", "U");
 
@@ -26,9 +26,9 @@ public class GameControllerTest extends NsTest {
         );
     }
 
-    @DisplayName("U, D, D")
+    @DisplayName("U, D, D 다리 2시도 성공")
     @Test
-    void controllerTryTwoTest() {
+    void controllerSuccessByTwoTryTest() {
         gameController.setBridge(List.of("U", "D", "D"));
         run("U", "U", "R", "U", "D", "D");
 
@@ -44,16 +44,16 @@ public class GameControllerTest extends NsTest {
         );
     }
 
-    @DisplayName("U, D, U")
+    @DisplayName("U, D, D 다리 1시도 실패")
     @Test
-    void controllerFailTest() {
-        gameController.setBridge(List.of("U", "D", "U"));
-        run("U", "U", "Q");
+    void controllerFailByOneTryTest() {
+        gameController.setBridge(List.of("U", "D", "D"));
+        run("U", "D", "U", "Q");
 
         Assertions.assertThat(output()).contains(
                 "최종 게임 결과",
-                "[ O | X ]",
-                "[   |   ]",
+                "[ O |   | X ]",
+                "[   | O |   ]",
                 "게임 성공 여부: 실패",
                 "총 시도한 횟수: 1"
         );

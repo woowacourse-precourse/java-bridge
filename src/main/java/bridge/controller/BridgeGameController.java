@@ -33,7 +33,7 @@ public class BridgeGameController {
     public void start() {
         do {
             moveOneStage();
-            if (game.isFail() && !wantRetry()) {
+            if (game.isFail() && isNotWantRetry()) {
                 break;
             }
         } while (!game.isSuccess());
@@ -46,13 +46,17 @@ public class BridgeGameController {
         output.printMap(game.getCurrentPositions());
     }
 
-    private boolean wantRetry() {
+    private boolean isNotWantRetry() {
         output.guideInputGameCommand();
-        if (input.readGameCommand().equals(GameForm.RESTART_CODE)) {
+        String gameCommand = input.readGameCommand();
+        if (gameCommand.equals(GameForm.RESTART_CODE)) {
             game.retry();
+            return false;
+        }
+        if (gameCommand.equals(GameForm.QUIT_CODE)) {
             return true;
         }
-        return false;
+        throw new IllegalArgumentException();
     }
 
     private void exitGame() {
