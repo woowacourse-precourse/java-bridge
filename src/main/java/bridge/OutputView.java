@@ -37,6 +37,10 @@ public class OutputView {
         return "D".equals(input);
     }
 
+    private boolean Different(String input, String compared) {
+        return !Objects.equals(input, compared);
+    }
+
     private String printUpString(int movingIdx, List<String> bridgeList, String input) {
         StringBuilder upString = new StringBuilder();
         upString.append("[");
@@ -49,9 +53,10 @@ public class OutputView {
     }
 
     private String printEndedUpString(int movingIdx, List<String> bridgeList, String input) {
-        if (Same(bridgeList.get(movingIdx), input) && SameWithU(input)) return " O ]";
-        else if (!Same(bridgeList.get(movingIdx), input) && SameWithU(input)) return " X ]";
-        else if (SameWithD(input)) return "   ]";
+        if (SameWithU(input)) {
+            if (Same(bridgeList.get(movingIdx), input)) return " O ]";
+            else if (Different(bridgeList.get(movingIdx), input)) return " X ]";
+        } else if (SameWithD(input)) return "   ]";
         return "";
     }
 
@@ -67,9 +72,10 @@ public class OutputView {
     }
 
     private String printEndedDownString(int movingIdx, List<String> bridgeList, String input) {
-        if (Same(bridgeList.get(movingIdx), input) && SameWithD(input)) return " O ]";
-        else if (!Same(bridgeList.get(movingIdx), input) && SameWithD(input)) return " X ]";
-        else if (SameWithU(input)) return "   ]";
+        if (SameWithD(input)) {
+            if (Same(bridgeList.get(movingIdx), input)) return " O ]";
+            else if (Different(bridgeList.get(movingIdx), input)) return " X ]";
+        } else if (SameWithU(input)) return "   ]";
         return "";
     }
 
@@ -82,7 +88,7 @@ public class OutputView {
         System.out.println(gameResult);
         printMap(movingIdx, bridgeList, input);
         if (Same(bridgeList.get(movingIdx), input)) System.out.println(success);
-        if (!Same(bridgeList.get(movingIdx), input)) System.out.println(fail);
+        else if (Different(bridgeList.get(movingIdx), input)) System.out.println(fail);
     }
 
     public void printResult(int count) {
