@@ -35,7 +35,7 @@ public class BridgeGame {
                 isSuccess=false;
                 break;
             }
-            //OutputView.printMap();
+            OutputView.printMap(userLocation, bridgeMaker.getBridge().getBridgeAnswer());
             System.out.println("다리 정답:"+bridgeMaker.getBridge().getBridgeAnswer()+", 내가 입력한 길:"+userLocation);
             moveCount++;
         }

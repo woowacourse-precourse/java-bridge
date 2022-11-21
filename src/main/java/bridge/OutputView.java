@@ -1,11 +1,32 @@
 package bridge;
 
+import java.util.List;
+
 public class OutputView {
     public static void printStartGame(){
         System.out.println("다리 건너기 게임을 시작합니다. \n");
     }
 
-    public static void printMap() {
+    public static void printMap(List<String> userLocation, List<String> bridgeAnswer) {
+        System.out.println("유저 정보"+userLocation+", 정답:"+bridgeAnswer);
+
+        for(int i=0;i<2;i++) {
+            System.out.print("[");
+
+            printMapUpDown(userLocation, i);
+            System.out.println("]");
+        }
+    }
+
+    public static void printMapUpDown(List<String> userLocation, int moveIndex){
+        for(int i=0;i<userLocation.size();i++){
+                if((userLocation.get(i).equals("U") && moveIndex==0) || (userLocation.get(i).equals("D") && moveIndex==1))
+                    System.out.print(" O ");
+                else
+                    System.out.print("   ");
+                if(userLocation.size()-1!=i)
+                    System.out.print(" | ");
+        }
     }
     public static void printRequireSize(){
         System.out.println("다리 길이를 입력해주세요.");
