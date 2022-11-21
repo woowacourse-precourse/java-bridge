@@ -28,7 +28,11 @@ public class Player {
     }
 
     String printResult(Boolean success) {
-        return ResultPrinter.createResultPrinter(success, getPassingRout()).print();
+        return getResultPrinter(success).print();
+    }
+
+    private ResultPrinter getResultPrinter(Boolean success) {
+        return ResultPrinter.createResultPrinter(success, getPassingRout());
     }
 
     private List<String> getPassingRout() {
