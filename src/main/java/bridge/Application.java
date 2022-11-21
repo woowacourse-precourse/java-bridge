@@ -49,6 +49,7 @@ public class Application implements InstanceCollection {
 
     private static boolean isEndingCase(String result) {
         if (result.equals("O") && isLastPick()) {
+            output.printResult(up_bridge, down_bridge, 1);
             return true;
         }
         if (result.equals("X")) {
