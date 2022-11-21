@@ -6,7 +6,7 @@ package bridge.model;
 public class BridgeGame {
     private final Bridge bridge;
     private int attempts = 1;
-    private boolean success = false;
+    private SuccessAndFail successAndFail = SuccessAndFail.FAIL;
     private Diagram diagram;
 
     public BridgeGame(Bridge bridge) {
@@ -39,12 +39,12 @@ public class BridgeGame {
         return attempts;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public SuccessAndFail successOrFail() {
+        return successAndFail;
     }
 
     public void setSuccess() {
-        this.success = true;
+        this.successAndFail = SuccessAndFail.SUCCESS;
     }
 
     public Diagram getDiagram() {

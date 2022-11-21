@@ -21,14 +21,10 @@ public class GameController {
     private Bridge bridge;
 
     public void play() {
-        printStart();
+        outputView.printStartGame();
         createBridge();
         attempt();
         printResult();
-    }
-
-    private void printStart() {
-        outputView.printStartGame();
     }
 
     private void createBridge() {
@@ -39,17 +35,9 @@ public class GameController {
 
     public void attempt() {
         SuccessAndFail successAndFail = moving();
-        if (isSuccess(successAndFail)) {
-            bridgeGame.setSuccess();
-        }
-        if (!isSuccess(successAndFail)) {
-            if (selectedRetry(inputView.readGameCommand())) {
-                bridgeGame.retry();
-                attempt();
-            }
-        }
+        handleSuccess(successAndFail);
+        handleFail(successAndFail);
     }
-
     private SuccessAndFail moving() {
         for (int index = 0; index < bridge.getBridgeSize(); index++) {
             SurviveAndDie surviveAndDie = moveOnce(index);
@@ -67,8 +55,23 @@ public class GameController {
         return surviveAndDie;
     }
 
+    private void handleSuccess(SuccessAndFail successAndFail) {
+        if (isSuccess(successAndFail)) {
+            bridgeGame.setSuccess();
+        }
+    }
+
+    private void handleFail(SuccessAndFail successAndFail) {
+        if (!isSuccess(successAndFail)) {
+            if (selectedRetry(inputView.readGameCommand())) {
+                bridgeGame.retry();
+                attempt();
+            }
+        }
+    }
+
     private void printResult() {
-        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.isSuccess(), bridgeGame.getAttempts());
+        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.successOrFail(), bridgeGame.getAttempts());
     }
 
 }
