@@ -8,5 +8,7 @@ public class BridgeGameController {
     public void run(){
         bridgeService.startBridgeGame();
         bridgeService.moveBridge();
+        System.out.println();
+        bridgeService.endBridgeGame();
     }
 }
