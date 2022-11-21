@@ -17,18 +17,6 @@ public class OutputView {
 		moveHistory = new ArrayList<>();
 	}
 
-	public void receiveMoveCommandResult(MoveCommandDto moveCommandDto) {
-		moveHistory.add(moveCommandDto);
-	}
-
-	public void receiveGameResult(GameResultDto gameResultDto) {
-		gameResult = gameResultDto;
-	}
-
-	public void resetOutputView() {
-		moveHistory.clear();
-	}
-
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
 	 * <p>
@@ -51,6 +39,22 @@ public class OutputView {
 		System.out.println(result);
 	}
 
+	public void receiveMoveCommandResult(MoveCommandDto moveCommandDto) {
+		moveHistory.add(moveCommandDto);
+	}
+
+	public void receiveGameResult(GameResultDto gameResultDto) {
+		gameResult = gameResultDto;
+	}
+
+	public void resetOutputView() {
+		moveHistory.clear();
+	}
+
+	@Override public String toString() {
+		return buildMap().toString() + printSuccessOrFail() + printTotalTry();
+	}
+
 	private StringBuilder printSuccessOrFail() {
 		StringBuilder successOrFail = new StringBuilder();
 
@@ -66,10 +70,6 @@ public class OutputView {
 
 		totalTry.append(OutputMessages.TOTAL_TRY);
 		return totalTry.append(gameResult.getTotalTry()).append("\n");
-	}
-
-	@Override public String toString() {
-		return buildMap().toString() + printSuccessOrFail() + printTotalTry();
 	}
 
 	private StringBuilder buildMap() {
@@ -134,14 +134,14 @@ public class OutputView {
 		}
 	}
 
-	private void buildEndSign(StringBuilder upperMap, StringBuilder lowerMap) {
-		upperMap.append(MapComponent.END_BRIDGE_BOARDER);
-		lowerMap.append(MapComponent.END_BRIDGE_BOARDER);
-	}
-
 	private void buildStartSign(StringBuilder upperMap, StringBuilder lowerMap) {
 		upperMap.append(MapComponent.START_BRIDGE_BOARDER);
 		lowerMap.append(MapComponent.START_BRIDGE_BOARDER);
+	}
+
+	private void buildEndSign(StringBuilder upperMap, StringBuilder lowerMap) {
+		upperMap.append(MapComponent.END_BRIDGE_BOARDER);
+		lowerMap.append(MapComponent.END_BRIDGE_BOARDER);
 	}
 
 	private StringBuilder mergeUpperAndLowerMap(StringBuilder upperMap, StringBuilder lowerMap) {

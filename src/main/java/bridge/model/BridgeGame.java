@@ -21,19 +21,6 @@ public class BridgeGame {
 		initializeBridge(convertedSize);
 	}
 
-	private void checkBridgeSizeError(String bridgeSize) {
-		if (UserInputExceptions.isNotValidSize(bridgeSize)) {
-			throw new IllegalArgumentException(BridgeErrorMessages.lengthError);
-		}
-	}
-
-	private void initializeBridge(int convertedSize) {
-		this.bridge = GameSetting.makeBridge(convertedSize);
-		currentStep = GameSetting.FIRST_STEP;
-		totalTry = GameSetting.FIRST_TRY;
-		gameClear = GameSetting.GAME_FAIL;
-	}
-
 	/**
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
 	 * <p>
@@ -48,19 +35,6 @@ public class BridgeGame {
 		return new MoveCommandDto(moveCommand, moveFlag, gameClear);
 	}
 
-	private void checkMoveCommandError(String moveCommand) {
-		if (UserInputExceptions.isNotValidMove(moveCommand)) {
-			throw new IllegalArgumentException(BridgeErrorMessages.errorMovableCommand);
-		}
-	}
-
-	private int addStepIfMove(boolean moveFlag) {
-		if (moveFlag) {
-			return 1;
-		}
-		return 0;
-	}
-
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
 	 * <p>
@@ -72,12 +46,6 @@ public class BridgeGame {
 		if (endCommand.equals("R")) {
 			currentStep = GameSetting.FIRST_STEP;
 			totalTry++;
-		}
-	}
-
-	private void checkEndCommandError(String endCommand) {
-		if (UserInputExceptions.isNotValidEndCommand(endCommand)) {
-			throw new IllegalArgumentException(BridgeErrorMessages.errorEndCommand);
 		}
 	}
 
@@ -98,5 +66,37 @@ public class BridgeGame {
 		sb.append("현재 다리에서의 위치 : ").append(currentStep).append(" \n총 시도횟수 : ").append(totalTry);
 		sb.append("\n게임을 성공했습니까? : ").append(gameClear).append("\n");
 		return sb.toString();
+	}
+
+	private void checkBridgeSizeError(String bridgeSize) {
+		if (UserInputExceptions.isNotValidSize(bridgeSize)) {
+			throw new IllegalArgumentException(BridgeErrorMessages.lengthError);
+		}
+	}
+
+	private void initializeBridge(int convertedSize) {
+		this.bridge = GameSetting.makeBridge(convertedSize);
+		currentStep = GameSetting.FIRST_STEP;
+		totalTry = GameSetting.FIRST_TRY;
+		gameClear = GameSetting.GAME_FAIL;
+	}
+
+	private void checkMoveCommandError(String moveCommand) {
+		if (UserInputExceptions.isNotValidMove(moveCommand)) {
+			throw new IllegalArgumentException(BridgeErrorMessages.errorMovableCommand);
+		}
+	}
+
+	private int addStepIfMove(boolean moveFlag) {
+		if (moveFlag) {
+			return 1;
+		}
+		return 0;
+	}
+
+	private void checkEndCommandError(String endCommand) {
+		if (UserInputExceptions.isNotValidEndCommand(endCommand)) {
+			throw new IllegalArgumentException(BridgeErrorMessages.errorEndCommand);
+		}
 	}
 }
