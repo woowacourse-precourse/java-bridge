@@ -12,7 +12,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final User user;
-    private BridgeState bridgeState;
+    private final BridgeState bridgeState;
 
     public BridgeGame(Bridge bridge, User user) {
         this.bridge = bridge;
