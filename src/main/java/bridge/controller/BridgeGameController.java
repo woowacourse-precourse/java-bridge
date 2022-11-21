@@ -31,6 +31,12 @@ public class BridgeGameController {
             String userMove = inputView.readMoving();
             MovingType movingType = bridgeGame.move(userMove);
             outputView.printMap(bridgeGame.getMoveLog());
+            if (bridgeGame.getIndex() == bridgeSize) {
+                System.out.println("최종 게임 결과");
+                outputView.printMap(bridgeGame.getMoveLog());
+                outputView.printResult(movingType, bridgeGame.getTrial());
+                break;
+            }
         }
     }
 

@@ -60,4 +60,12 @@ public class BridgeGame {
         moveLog.clearMoveLog();
     }
 
+    public int getTrial() {
+        return this.trial;
+    }
+
+    public int getIndex(){
+        return this.index;
+    }
+
 }
