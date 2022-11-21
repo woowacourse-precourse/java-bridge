@@ -18,4 +18,13 @@ public class InputValidation {
         }
     }
 
+    public void validateGameCommand(String input) {
+
+        List<String> commands = List.of("R", "Q");
+
+        if (!commands.contains(input)) {
+            throw new IllegalArgumentException(String.valueOf(ErrorMessage.INVALID_GAME_COMMAND));
+        }
+    }
+
 }
