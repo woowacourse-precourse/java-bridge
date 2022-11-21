@@ -18,16 +18,18 @@ public class ValidatorTest {
     }
 
     @DisplayName("U 또는 D 문자를 입력하지 않으면 예외가 발생한다")
-    @Test
-    void directionTest(){
-        assertThatThrownBy(() -> Validator.direction("Q"))
+    @ValueSource(strings = {"A", "B", "3", "Q", "R"})
+    @ParameterizedTest
+    void directionTest(String input){
+        assertThatThrownBy(() -> Validator.direction(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("R 또는 Q 문자를 입력하지 않으면 예외가 발생한다")
-    @Test
-    void retryCommandTest(){
-        assertThatThrownBy(() -> Validator.retryCommand("I"))
+    @ValueSource(strings = {"A", "B", "3", "I", "$"})
+    @ParameterizedTest
+    void retryCommandTest(String input){
+        assertThatThrownBy(() -> Validator.retryCommand(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
