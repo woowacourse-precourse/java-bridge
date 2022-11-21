@@ -5,45 +5,25 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeGameTest {
-    @DisplayName("이동하려는 칸이 'U'나 'D'가 아닐 경우 예외 처리한다. (Case 1)")
-    @Test
-    void invalidMoveCase1() {
+    @DisplayName("이동하려는 칸이 'U'나 'D'가 아닐 경우 예외 처리한다.")
+    @ValueSource(strings = {"X", "123", "u"})
+    @ParameterizedTest
+    void invalidMoveCase(String userInput) {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        assertThatThrownBy(() -> bridgeGame.move("X"))
+        assertThatThrownBy(() -> bridgeGame.move(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("이동하려는 칸이 'U'나 'D'가 아닐 경우 예외 처리한다. (Case 2)")
-    @Test
-    void invalidMoveCase2() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        assertThatThrownBy(() -> bridgeGame.move("123"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("이동하려는 칸이 'U'나 'D'가 아닐 경우 예외 처리한다. (Case 3)")
-    @Test
-    void invalidMoveCase3() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        assertThatThrownBy(() -> bridgeGame.move("u"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("정상적인 경우 이동 진행 상태가 추가가 되어야 한다. - 1")
-    @Test
-    void validMoveCase1() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        assertThat(bridgeGame.move("U")).isEqualTo(true);
-    }
-
-    @DisplayName("정상적인 경우 이동 진행 상태가 추가가 되어야 한다. - 2")
+    @DisplayName("정상적인 경우 이동 진행 상태가 추가가 되어야 한다.")
     @Test
     void validMoveCase2() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        bridgeGame.move("U");
-        bridgeGame.move("D");
+        assertThat(bridgeGame.move("U")).isEqualTo(true);
+        assertThat(bridgeGame.move("D")).isEqualTo(true);
         assertThat(bridgeGame.getUserPath()).isEqualTo(List.of("U", "D"));
     }
 
@@ -127,12 +107,14 @@ public class BridgeGameTest {
     }
 
     @DisplayName("게임 재시도 시 시도 횟수가 증가되어야 한다.")
-    @Test
-    void incrementTryCountWhenRetry() {
+    @ValueSource(ints = {1, 2, 4, 8, 16, 32, 64, 200, 300})
+    @ParameterizedTest
+    void incrementTryCountWhenRetry(int targetTries) {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        bridgeGame.move("D");
-        assertThat(bridgeGame.getTryCount()).isEqualTo(1);
-        bridgeGame.retry();
-        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
+        for (int tries = 1; tries < targetTries; tries++) {
+            bridgeGame.move("D");
+            bridgeGame.retry();
+        }
+        assertThat(bridgeGame.getTryCount()).isEqualTo(targetTries);
     }
 }
