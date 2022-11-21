@@ -4,9 +4,11 @@ import bridge.Map;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
 
+import java.util.List;
+
 public class OutputView {
-    public void printMap(Map map) {
-        map.get().stream()
+    public void printMap(List<List<String>> map) {
+        map.stream()
                 .forEach(line -> {
                     System.out.print("[ ");
                     System.out.print(String.join(" | ", line));

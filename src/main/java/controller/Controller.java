@@ -7,6 +7,8 @@ import enumCollections.GuideMessage;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class Controller {
     private final OutputView outputView;
     private final InputView inputView;
@@ -27,7 +29,6 @@ public class Controller {
     }
 
     public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
-        Map map = new Map();
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
             getProgress(bridgeGame);
@@ -64,9 +65,9 @@ public class Controller {
         return bridgeGame.retry(inputView.readGameCommand());
     }
 
-    private void getResult(GameStatus gameResult, BridgeGame bridgeGame, Map map) {
+    private void getResult(GameStatus gameResult, BridgeGame bridgeGame, List<List<String>> map) {
         outputView.printGuideMessage(GuideMessage.RESULT_PRINT);
-        outputView.printMap(map);
+        outputView.printMap(bridgeGame.getMap());
         outputView.printNewline();
         outputView.printResult(gameResult);
         outputView.printGuideMessage(GuideMessage.GAME_TRIAL, bridgeGame.getTrial());

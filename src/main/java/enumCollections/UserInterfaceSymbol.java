@@ -21,4 +21,11 @@ public enum UserInterfaceSymbol {
     public static String getBlank() {
         return BLANK.symbol;
     }
+
+    public static String getMovableSymbol(boolean moved) {
+        if (moved) {
+            return AVAILABLE_TO_MOVE.symbol;
+        }
+        return UNAVAILABLE_TO_MOVE.symbol;
+    }
 }

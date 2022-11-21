@@ -4,6 +4,9 @@ import enumCollections.AvailableInput;
 import enumCollections.GameStatus;
 import enumCollections.Side;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BridgeGame {
     private final int INITIALIZED_TRIAL = 1;
     private Bridge bridge;
@@ -12,7 +15,7 @@ public class BridgeGame {
     private int trial;
 
     public BridgeGame() {
-        this.player = new Player();
+        this.player = new Player(new ArrayList<>());
         this.map = new Map();
         this.trial = INITIALIZED_TRIAL;
     }
@@ -37,7 +40,7 @@ public class BridgeGame {
     public GameStatus retry(String gameCommand) {
         if (gameCommand.equals(AvailableInput.get(AvailableInput.RESTART_GAME))) {
             player.initializePosition();
-            map.initialize();
+            this.map.initialize();
             addTrial();
             return GameStatus.CONTINUE;
         }
@@ -66,7 +69,7 @@ public class BridgeGame {
         );
     }
 
-    public Map getMap() {
-        return this.map;
+    public List<List<String>> getMap() {
+        return this.map.get();
     }
 }

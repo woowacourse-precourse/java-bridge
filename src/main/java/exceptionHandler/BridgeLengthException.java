@@ -4,7 +4,8 @@ import enumCollections.AvailableInput;
 import enumCollections.ExceptionMessage;
 
 public class BridgeLengthException {
-    private static final String regularExpression = "^[0-9]*$";
+    private static final String NUMERIC = "^[0-9]*$";
+
 
     public static void validate(String length) {
         validateNumeric(length);
@@ -13,7 +14,7 @@ public class BridgeLengthException {
     }
 
     private static void validateNumeric(String length) {
-        if (!length.matches(regularExpression)) {
+        if (!length.matches(NUMERIC)) {
             throw new IllegalArgumentException(ExceptionMessage.getMessage(ExceptionMessage.NOT_NUMERIC));
         }
     }

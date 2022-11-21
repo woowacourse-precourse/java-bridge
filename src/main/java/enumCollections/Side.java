@@ -32,8 +32,8 @@ public enum Side {
         return side.index;
     }
 
-    public static Side getPosition(String status) {
-        if (Side.UP.bridgeSavingFormat == status) {
+    public static Side get(String bridgeSavingFormat) {
+        if (Side.UP.bridgeSavingFormat.equals(bridgeSavingFormat)) {
             return Side.UP;
         }
         return Side.DOWN;
