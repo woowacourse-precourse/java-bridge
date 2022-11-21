@@ -35,9 +35,6 @@ public class Bridge {
     }
 
     public boolean isBroken(int index, String spaceToMove) {
-        if (get(index).equals(spaceToMove)) {
-            return false;
-        }
-        return true;
+        return !(get(index).equals(spaceToMove));
     }
 }
