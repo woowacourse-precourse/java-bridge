@@ -49,24 +49,34 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @ParameterizedTest(name = "[{index}] {5}")
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest(name = "[{index}] {4}{5}{3}")
     @CsvSource(value =
             {
-                    "3, U, U, R, U, D, D, R, U, D, U : [ O |   | O ] : [   | O |   ] : 성공 : 3 : 3번시도_성공",
+                    "3, U, U, R, U, D, D, R, U, D, U : [ O |   | O ] : [   | O |   ] : 성공 : 3 : 번시도_",
 
-                    "3, U, U, R, U, D, D, R, U, D, D, Q : [ O |   |   ] : [   | O | X ] : 실패 : 3 : 3번시도_마지막_실패",
-                    "3, U, U, R, U, D, D, R, U, U, Q : [ O | X ] : [   |   ] : 실패 : 3 : 3번시도_중간_실패",
-                    "3, U, U, R, U, D, D, R, D, Q : [   ] : [ X ] : 실패 : 3 : 3번시도_처음_실패",
+                    "3, U, U, R, U, D, D, R, U, D, D, Q : [ O |   |   ] : [   | O | X ] : 실패 : 3 : 번시도_마지막자리_",
+                    "3, U, U, R, U, D, D, R, U, U, Q : [ O | X ] : [   |   ] : 실패 : 3 : 번시도_중간자리_",
+                    "3, U, U, R, U, D, D, R, D, Q : [   ] : [ X ] : 실패 : 3 : 번시도_처음자리_",
 
-                    "3, U, U, R, U, D, U : [ O |   | O ] : [   | O |   ] : 성공 : 2 : 2번시도_성공",
+                    "3, U, U, R, U, D, U : [ O |   | O ] : [   | O |   ] : 성공 : 2 : 번시도_",
 
-                    "3, U, U, R, U, D, D, Q : [ O |   |   ] : [   | O | X ] : 실패 : 2 : 2번시도_마지막_실패",
-                    "3, U, U, R, U, U, Q : [ O | X ] : [   |   ] : 실패 : 2 : 2번시도_중간_실패",
-                    "3, U, U, R, D, Q  : [   ] : [ X ] : 실패 : 2 : 2번시도_잘못입력_처음실패",
-                    "3, U, U, R, R, D, Q  : [   ] : [ X ] : 실패 : 2 : 2번시도_잘못입력_처음실패"
+                    "3, U, U, R, U, D, D, Q : [ O |   |   ] : [   | O | X ] : 실패 : 2 : 번시도_마지막자리_",
+                    "3, U, U, R, U, U, Q : [ O | X ] : [   |   ] : 실패 : 2 : 번시도_중간자리_",
+                    "3, U, U, R, D, Q  : [   ] : [ X ] : 실패 : 2 : 번시도_잘못입력_처음자리",
+                    "3, U, U, R, R, D, Q  : [   ] : [ X ] : 실패 : 2 : 번시도_잘못입력_처음자리",
+                    "3, U, U, R, U, U, R, U, U, R, U, U, R, U, U, R, U, U, R, D, Q  : [   ] : [ X ] : 실패 : 7 : 번시도_잘못입력_처음자리"
             }, delimiter = ':'
     )
-    public void move_test(String input, String upLine, String downLine, String isSuccess, int count,
+    public void bridgeGame_test(String input, String upLine, String downLine, String isSuccess,
+            int count,
             String name) {
         String[] args = input.split(", ");
 
@@ -87,13 +97,6 @@ class ApplicationTest extends NsTest {
             assertThat(upSideIndex).isGreaterThan(printResult).isLessThan(downSideIndex)
                     .isLessThan(printSuccess);
         }, 1, 0, 1);
-    }
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
     }
 
     @Override
