@@ -37,7 +37,7 @@ public class UserBridgeTest {
     }
 
     @DisplayName("플레이어가 U와 D를 같이 입력 시 에러가 발생한다.")
-    @ValueSource(strings = {"UD", "DU", "DUU"})
+    @ValueSource(strings = {"UD", "DU", "DUU", "UU", "DD"})
     @ParameterizedTest
     void createAllInput(String input) {
         assertThatThrownBy(() -> new UserBridge(input))
