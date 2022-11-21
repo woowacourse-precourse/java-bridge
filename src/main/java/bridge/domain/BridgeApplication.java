@@ -17,13 +17,14 @@ public class BridgeApplication {
 
         Bridge bridge = new Bridge(inputView.readBridgeSize());
 
-        gameProcess(new BridgeGame(bridge));
+        gameProcess(new BridgeGame(bridge.getBridge()));
     }
 
     private void gameProcess(BridgeGame bridgeGame) {
         do {
-            BridgeMap bridgeMap = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeMap.getMap());
+            bridgeGame.move(inputView.readMoving());
+            bridgeGame.getMap();
+            outputView.printMap(bridgeGame.getMap());
         } while (!isWinningGame(bridgeGame) && (checkGameStatus(bridgeGame) || checkRestart(bridgeGame)));
         outputView.printResult(bridgeGame.getResult());
     }
