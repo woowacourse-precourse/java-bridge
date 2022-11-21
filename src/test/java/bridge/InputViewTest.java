@@ -21,57 +21,63 @@ class InputViewTest {
     @DisplayName("readBridgeSize 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"3", "5", "10", "14", "17", "20"})
-    void readBridgeSize_test(String input){
+    void readBridgeSize_test(String input) {
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        int result=INPUT_VIEW.readBridgeSize();
+        int result = INPUT_VIEW.readBridgeSize();
         assertThat(result).isEqualTo(Integer.parseInt(input));
     }
+
     @DisplayName("readBridgeSize 예외 사항 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"a", "5j", " 10", "1", "2", "-1", "21"})
-    void readBridgeSize_exception_test(String input){
+    void readBridgeSize_exception_test(String input) {
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(()->INPUT_VIEW.readBridgeSize())
+        assertThatThrownBy(() -> INPUT_VIEW.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("readMoving 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"U","D"})
-    void readMoving_test(String input){
+    @ValueSource(strings = {"U", "D"})
+    void readMoving_test(String input) {
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         String result = INPUT_VIEW.readMoving();
         assertThat(result).isEqualTo(input);
     }
+
     @DisplayName("readMoving 예외 사항 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"u","d", " ", "aa"})
-    void readMoving_exception_test(String input){
+    @ValueSource(strings = {"u", "d", " ", "aa"})
+    void readMoving_exception_test(String input) {
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(()->INPUT_VIEW.readMoving())
+        assertThatThrownBy(() -> INPUT_VIEW.readMoving())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("readGameCommand 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"R","Q"})
-    void readGameCommand_test(String input){
+    @ValueSource(strings = {"R", "Q"})
+    void readGameCommand_test(String input) {
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         String result = INPUT_VIEW.readGameCommand();
         assertThat(result).isEqualTo(input);
     }
+
     @DisplayName("readGameCommand 예외 사항 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"r","q", " ", "bbas"})
-    void readGameCommand_exception_test(String input){
+    @ValueSource(strings = {"r", "q", " ", "bbas"})
+    void readGameCommand_exception_test(String input) {
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(()->INPUT_VIEW.readGameCommand())
+        assertThatThrownBy(() -> INPUT_VIEW.readGameCommand())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("tryParse 예외 사항 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"1000j", "", " ", "1 3", "1a3", "1,2,3", " 1", "1 "})
