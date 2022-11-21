@@ -20,7 +20,7 @@ public class ValidatorProcessorTest {
     @TestFactory
     @DisplayName("validateBridgeSizeInput Success Test")
     Stream<DynamicTest> validateBridgeSizeInputSuccess() {
-        List<String> valueSource = List.of("1", "2", "3", "4", "5", "6");
+        List<String> valueSource = List.of("3", "4", "5", "6", "7", "8");
         validatorProcessor = new ValidatorProcessorImpl();
         return valueSource.stream()
                 .map(number -> DynamicTest.dynamicTest("성공케이스: 올바른 입력값", () -> {
@@ -33,13 +33,13 @@ public class ValidatorProcessorTest {
     @TestFactory
     @DisplayName("validateBridgeSizeInput Fail Test")
     Stream<DynamicTest> validateBridgeSizeInputFail() {
-        List<String> valueSource = List.of("ㅇ", "₩", "#", "ㅋ", "ㅠ", "/");
+        List<String> valueSource = List.of("1", "2", "21", "22");
         validatorProcessor = new ValidatorProcessorImpl();
         return valueSource.stream()
                 .map(UnNumber -> DynamicTest.dynamicTest("실패케이스: 올바르지 못한 입력값", () -> {
                                     assertThatThrownBy(()-> validatorProcessor.validateBridgeSizeInput(UnNumber))
                                             .isInstanceOf(IllegalArgumentException.class)
-                                            .hasMessageContaining("잘못된 입력값 입니다.");
+                                            .hasMessageContaining("[ERROR]");
                                 }
                         )
                 );
