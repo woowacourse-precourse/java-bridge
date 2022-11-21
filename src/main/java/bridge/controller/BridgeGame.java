@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
