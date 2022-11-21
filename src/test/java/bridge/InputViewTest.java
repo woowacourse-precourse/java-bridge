@@ -24,15 +24,14 @@ class InputViewTest {
                                 ",null"})
     void checkBridgeSizeValidationTest(String bridgeSize, String expectedValidationResult) {
 
+        boolean result = inputView.checkValidationOfBridgeSize(bridgeSize);
+
         if (expectedValidationResult.equals("success")) {
-            assertThatCode(() -> inputView.checkValidationOfBridgeSize(bridgeSize))
-                    .doesNotThrowAnyException();
+            assertThat(result).isFalse();
         } else if (expectedValidationResult.equals("fail")){
-            assertThatThrownBy(() -> inputView.checkValidationOfBridgeSize(bridgeSize))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThat(result).isTrue();
         } else if (expectedValidationResult.equals("null")) {
-            assertThatThrownBy(() -> inputView.checkValidationOfBridgeSize(bridgeSize))
-                    .isInstanceOf(NullPointerException.class);
+            assertThat(result).isTrue();
         }
     }
 
@@ -42,15 +41,14 @@ class InputViewTest {
                             "12345, fail", "!@#!@#$, fail", " \\t, fail"})
     void checkValidationOfMoveCommandTest(String inputMoveCommand, String expectedValidationResult) {
 
+        boolean result = inputView.checkValidationOfMoveCommand(inputMoveCommand);
+
         if (expectedValidationResult.equals("success")) {
-            assertThatCode(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
-                    .doesNotThrowAnyException();
+            assertThat(result).isFalse();
         } else if (expectedValidationResult.equals("fail")){
-            assertThatThrownBy(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThat(result).isTrue();
         } else if (expectedValidationResult.equals("null")) {
-            assertThatThrownBy(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
-                    .isInstanceOf(NullPointerException.class);
+            assertThat(result).isTrue();
         }
     }
 
@@ -60,15 +58,14 @@ class InputViewTest {
             "12345, fail", "!@#!@#$, fail", " \\t, fail"})
     void checkValidationOfGameCommandTest(String inputGameCommand, String expectedValidationResult) {
 
+        boolean result = inputView.checkValidationOfGameCommand(inputGameCommand);
+
         if (expectedValidationResult.equals("success")) {
-            assertThatCode(() -> inputView.checkValidationOfGameCommand(inputGameCommand))
-                    .doesNotThrowAnyException();
+            assertThat(result).isFalse();
         } else if (expectedValidationResult.equals("fail")){
-            assertThatThrownBy(() -> inputView.checkValidationOfGameCommand(inputGameCommand))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThat(result).isTrue();
         } else if (expectedValidationResult.equals("null")) {
-            assertThatThrownBy(() -> inputView.checkValidationOfGameCommand(inputGameCommand))
-                    .isInstanceOf(NullPointerException.class);
+            assertThat(result).isTrue();
         }
     }
 }
