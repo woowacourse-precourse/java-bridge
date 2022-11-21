@@ -53,4 +53,8 @@ public class BridgeGame {
         history.remove(history.size() - 1);
         return true;
     }
+
+    public boolean end() {
+        return true;
+    }
 }
