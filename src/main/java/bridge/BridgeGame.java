@@ -37,23 +37,32 @@ public class BridgeGame {
     }
 
     public void playGame() {
-        trial = 0;
-        outputView.printStartGameMessage();
+        startGame();
 
         do {
             crossBridge();
         } while(!success && retry());
 
-        outputView.printFinalState(savedBridge, savedPos, savedCorrect);
-        outputView.printResult(success, trial);
+        gameResult();
+    }
+
+    private void startGame() {
+        outputView.printStartGameMessage();
+        trial = 0;
     }
 
     private void crossBridge() {
         trial++;
-        outputView.printAskSizeMessage();
 
+        outputView.printAskSizeMessage();
         size = inputView.readBridgeSize();
+
         success = move(bridgeMaker.makeBridge(size));
+    }
+
+    private void gameResult() {
+        outputView.printFinalState(savedBridge, savedPos, savedCorrect);
+        outputView.printResult(success, trial);
     }
 
     /**
