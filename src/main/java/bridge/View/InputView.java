@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 import camp.nextstep.edu.missionutils.Console;
 

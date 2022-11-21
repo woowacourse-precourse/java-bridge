@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.View.InputView;
+import bridge.View.OutputView;
+import bridge.domain.BridgeGame;
+
 import java.util.Objects;
 
 public class Controller {

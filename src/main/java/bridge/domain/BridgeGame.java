@@ -1,10 +1,10 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.MoveType.X;
+import static bridge.domain.MoveType.X;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
