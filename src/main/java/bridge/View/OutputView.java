@@ -1,5 +1,7 @@
 package bridge.View;
 
+import bridge.Controller.BridgeController;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,7 @@ public class OutputView {
             return len;
         }
         System.out.println(error + LenError);
+        BridgeController.validate();
         return 0;
     }
 
@@ -57,19 +60,24 @@ public class OutputView {
             return Integer.parseInt(val);
         } catch (NumberFormatException e) {
             System.out.println(error + e);
+            BridgeController.validate();
             return 0;
         }
     }
 
     public static String MovingCheck(String moving) {
-        if (!MovingCheck.contains(moving))
+        if (!MovingCheck.contains(moving)) {
             System.out.println(error + MovingError);
+            BridgeController.validate();
+        }
         return moving;
     }
 
     public static String RetryCheck(String retry) {
-        if (!ReQuCheck.contains(retry))
-            throw new IllegalArgumentException(error + RetryQuitError);
+        if (!ReQuCheck.contains(retry)) {
+            System.out.println(error + RetryQuitError);
+            BridgeController.validate();
+        }
         return retry;
     }
 
@@ -118,7 +126,7 @@ public class OutputView {
             result.add(yes + signal);
             return;
         }
-            result.add(no + signal);
+        result.add(no + signal);
     }
 
     /**

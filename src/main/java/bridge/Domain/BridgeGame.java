@@ -58,4 +58,6 @@ public class BridgeGame {
             return SuccessQuit;
         return Move;
     }
+
+    public int getSize() { return brige.size(); }
 }
