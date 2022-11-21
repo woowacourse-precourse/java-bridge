@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
+import bridge.model.DownBridgeRendering;
+import bridge.model.UpsideBridgeRendering;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -32,7 +34,9 @@ public class BridgeGame {
         if (moving.equals(bridge.getShape(position))) {
             success = true;
         }
-        outputView.printMap(position, success, bridge);
+        bridge.setUpsideBridge(UpsideBridgeRendering.renderUpsideBridge(moving, success));
+        bridge.setDownBridge(DownBridgeRendering.renderDownBridge(moving, success));
+        outputView.printMap(bridge);
         return success;
     }
 
@@ -44,6 +48,7 @@ public class BridgeGame {
     public boolean retry() {
         String gameCommand = inputView.readGameCommand();
         if (gameCommand.equals("R")) {
+            bridge.clear();
             return true;
         }
         return false;
