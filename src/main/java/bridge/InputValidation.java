@@ -1,17 +1,17 @@
 package bridge;
 
 import static bridge.ErrorType.*;
+import static bridge.ValueType.BRIDGE_SIZE_END;
+import static bridge.ValueType.BRIDGE_SIZE_START;
 
 public class InputValidation {
-
-    static final int bridgeSizeStart = 3;
-    static final int bridgeSizeEnd = 20;
 
     public int readBridgeSizeValidation(String bridgeSize) {
         int size = getNumberToBridgeSize(bridgeSize);
 
-        if (size < bridgeSizeStart || size > bridgeSizeEnd) {
-            throw new IllegalArgumentException(String.format(NOT_BRIDGE_SIZE.getMessage(), bridgeSizeStart, bridgeSizeEnd));
+        if (size < BRIDGE_SIZE_START.getValue() || size > BRIDGE_SIZE_END.getValue()) {
+            throw new IllegalArgumentException(String.format(NOT_BRIDGE_SIZE.getMessage(),
+                    BRIDGE_SIZE_START.getValue(), BRIDGE_SIZE_END.getValue()));
         }
         return size;
     }
