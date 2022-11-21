@@ -18,4 +18,13 @@ public enum BridgeStatus {
                 .findAny()
                 .orElseThrow(() -> new NoSuchElementException("[ERROR] 다리 무작위 값은 0 또는 1이어야 합니다"));
     }
+
+    public static String getBridgeStatus(String safeBlock) {
+        try {
+            BridgeStatus bridgeStatus = BridgeStatus.valueOf(safeBlock);
+            return bridgeStatus.name();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다");
+        }
+    }
 }
