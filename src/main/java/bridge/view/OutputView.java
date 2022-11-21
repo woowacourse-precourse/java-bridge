@@ -41,7 +41,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    // currentBridge = [true, true, false], bridge = [U, U, D, D]
     public static void printTopMap(List<Boolean> currentBridge, List<String> bridge) {
         int index = -1;
         StringJoiner topLayer = new StringJoiner(" | ", "[ ", " ]");
