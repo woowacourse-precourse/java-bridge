@@ -23,8 +23,14 @@ public class Application {
             output.printStartMessage();
             createBridge();
 
+            int tryCount = 1;
+            String result = "실패";
             // 게임
             while(state == GameState.START || state == GameState.CORRECT || state == GameState.RESTART) {
+                if(state == GameState.RESTART) {
+                    tryCount++;
+                }
+
                 goToNextSpace();
 
                 if(state == GameState.INCORRECT) {
@@ -33,7 +39,12 @@ public class Application {
 
                 if(spaceNum == bridgeSize && state == GameState.CORRECT) {
                     state = GameState.QUIT;
-                    System.out.println("게임 성공 여부: 성공");
+                    result = "성공";
+                }
+
+                if(state == GameState.QUIT) {
+                    System.out.println("게임 성공 여부: " + result);
+                    System.out.println("총 시도한 횟수: " + tryCount);
                 }
             }
         } catch (IllegalArgumentException e) {
