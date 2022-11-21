@@ -28,19 +28,24 @@ public class Application {
             OutputView.printMap(nowResult);
             index += 1;
             if (nowResult.contains("X")) {
+                index = 0;
                 String userRetry = InputView.readGameCommand();
                 if (userRetry.equals("Q")) {
                     break;
                 }
-                index = 0;
                 Game.retry();
             }
         }
-        endGame(nowResult);
+        if (index == size) {
+            endGame(nowResult,true);
+        }
+        if (index != size) {
+            endGame(nowResult,false);
+        }
     }
 
-    public static void endGame(String finalResult) {
-        OutputView.printResult(finalResult);
+    public static void endGame(String finalResult, boolean matchResult) {
+        OutputView.printResult(finalResult, matchResult);
 
     }
 }
