@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
+    private int CurrentLocation = -1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -17,8 +18,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String movingValue) {
-        return true;
+    public void move(String movingValue) {
+        isCorrect(movingValue);
+    }
+
+    private boolean isCorrect(String movingValue) {
+        if (bridge.get(CurrentLocation).equals(movingValue)) {
+            return true;
+        }
+        if (!bridge.get(CurrentLocation).equals(movingValue)) {
+            return true;
+        }
+        throw new IllegalArgumentException("사용자 입력 값이 잘못 되었습니다.");
     }
 
     /**
