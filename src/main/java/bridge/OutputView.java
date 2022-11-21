@@ -46,13 +46,13 @@ public class OutputView {
 
     private static String arrToString(List<String> availableCalced) {
         String result = "";
-        if (availableCalced.size()==0) {
+        if (availableCalced.size() == 0) {
             return result;
         }
         for (String availableOrEmpty : availableCalced) {
             result = result + availableOrEmpty + BRIDGE_SEP;
         }
-        return result.substring(0, result.length() - BRIDGE_SEP.length());
+        return result;
     }
 
     /**
@@ -61,17 +61,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<String> crossedBridge, boolean isSuccess) {
-        printMapWithNew(crossedBridge.subList(0,crossedBridge.size()-1), isSuccess, crossedBridge.get(crossedBridge.size()-1));
+        printMapWithNew(crossedBridge.subList(0, crossedBridge.size() - 1), isSuccess, crossedBridge.get(crossedBridge.size() - 1));
     }
 
     private static String newGuessToString(boolean isSuccess, String position, String newPosition) {
         if (!position.equals(newPosition)) {
-            return BRIDGE_SEP + EMPTY;
+            return EMPTY;
         }
         if (isSuccess) {
-            return BRIDGE_SEP + BRIDGE_AVAILABLE;
+            return BRIDGE_AVAILABLE;
         }
-        return BRIDGE_SEP + BRIDGE_NOT_AVAILABLE;
+        return BRIDGE_NOT_AVAILABLE;
     }
 
     public static void printMapWithNew(List<String> crossedBridge, boolean isSuccess, String newPosition) {
@@ -95,11 +95,12 @@ public class OutputView {
         }
         return FAIL;
     }
+
     public static void printResult(List<String> crossedBridge, boolean isSuccess, int tries) {
         System.out.println(FINAL_RESULT);
-        printMapWithNew(crossedBridge.subList(0,crossedBridge.size()-1), isSuccess, crossedBridge.get(crossedBridge.size()-1));
+        printMapWithNew(crossedBridge.subList(0, crossedBridge.size() - 1), isSuccess, crossedBridge.get(crossedBridge.size() - 1));
         System.out.println(SUCCESS_OR_NOT + isSuccessToString(isSuccess));
-        System.out.println(TRIES+ tries);
+        System.out.println(TRIES + tries);
     }
 
     public static void printError(String errorMessage) {
