@@ -29,4 +29,8 @@ public class BridgeGame {
     public boolean retry(Result result) {
         return result.hasWrong();
     }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
 }
