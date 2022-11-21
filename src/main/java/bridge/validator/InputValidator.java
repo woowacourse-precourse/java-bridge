@@ -14,6 +14,13 @@ public enum InputValidator implements Validator<String> {
                     return false;
                 }
             }),
+    IS_UPPERCASE_ALPHABET(
+            "입력값이 대문자가 아닙니다.",
+            (String input) ->
+                    input.chars()
+                            .map(i -> (char) i)
+                            .allMatch(Character::isUpperCase)
+    ),
     ;
 
     private final String errorMessage;

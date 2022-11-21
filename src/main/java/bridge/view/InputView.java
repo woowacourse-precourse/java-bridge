@@ -23,6 +23,7 @@ public class InputView implements Validatable<String> {
      */
     public String readMove() {
         String input = getInput();
+        validate(input, InputValidator.IS_UPPERCASE_ALPHABET);
         return input;
     }
 

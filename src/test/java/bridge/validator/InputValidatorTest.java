@@ -21,5 +21,19 @@ class InputValidatorTest {
     void inValidInputNumber(String notNumber) {
         assertThat(InputValidator.IS_NUMBER.test(notNumber)).isFalse();
     }
-    
+
+    @DisplayName("입력이 알파벳 대문자이면 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "UPPERCASE"})
+    void validInputIsUppercaseAlphabet(String alphabet) {
+        assertThat(InputValidator.IS_UPPERCASE_ALPHABET.test(alphabet)).isTrue();
+    }
+
+    @DisplayName("입력이 알파벳 대문자가 아니면 false를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "lowercase", "123"})
+    void invalidInputIsUppercaseAlphabet(String alphabet) {
+        assertThat(InputValidator.IS_UPPERCASE_ALPHABET.test(alphabet)).isFalse();
+    }
+
 }
