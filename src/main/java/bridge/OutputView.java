@@ -52,8 +52,8 @@ public class OutputView {
     public void showLastBridgeResult(){
         System.out.println(LAST_BRIDGE_RESULT);
     }
-    public void showResult(String isPass){
-        System.out.println(IS_GAME_PASS+IS+isPass);
+    public void showResult(GameResult gameResult){
+        System.out.println(IS_GAME_PASS+IS+gameResult.getIsPass());
     }
     public void showTotalTry(int totalTry){
         System.out.println(TOTAL_TRY+IS+totalTry);

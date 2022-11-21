@@ -11,4 +11,7 @@ public enum GameResult {
         this.isPass = isPass;
         this.trueOrFalse = trueOrFalse;
     }
+    public String getIsPass(){
+        return this.isPass;
+    }
 }
