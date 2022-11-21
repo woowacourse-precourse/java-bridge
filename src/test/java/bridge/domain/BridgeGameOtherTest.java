@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -30,5 +31,11 @@ class BridgeGameOtherTest {
     @CsvSource({"0, true", "1, true", "2, false"})
     void findMovingResultByIndexTest(int index, boolean result) {
         assertThat(bridgeGame.findMovingResultByIndex(index)).isEqualTo(result);
+    }
+
+    @DisplayName("이동 횟수 가져오기 테스트")
+    @Test
+    void getMovingCountTest() {
+        assertThat(bridgeGame.getMovingCount()).isEqualTo(3);
     }
 }
