@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.enums.Command;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,21 +17,14 @@ public class UserState {
         this.downLine = new ArrayList<>();
     }
 
-    public void moveToNext(boolean isSafe, String moveLocation) {
-        if (moveLocation.equals(Command.UP.getCommand())) {
-            upLine.add(moveOrFall(isSafe));
-            downLine.add(" ");
-            return;
-        }
-        downLine.add(moveOrFall(isSafe));
-        upLine.add(" ");
+    public void moveToUp(String moveResult) {
+        upLine.add(moveResult);
+        downLine.add(" ");
     }
 
-    private String moveOrFall(boolean isSafe) {
-        if (isSafe) {
-            return "O";
-        }
-        return "X";
+    public void moveToDown(String moveResult) {
+        downLine.add(moveResult);
+        upLine.add(" ");
     }
 
     public boolean isSuccessOrFail(int bridgeSize) {
