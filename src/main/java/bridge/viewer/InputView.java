@@ -2,7 +2,7 @@ package bridge.viewer;
 
 import bridge.exception.ExceptionPrinter;
 import bridge.util.Converter;
-import bridge.validator.InputValidator;
+import bridge.gameComponent.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -21,8 +21,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(inputBridgeSizeMessage);
         while(true) {
-            System.out.println(inputBridgeSizeMessage);
             try {
                 String inputValue = Console.readLine();
                 int bridgeSize = Converter.stringToInt(inputValue);
@@ -36,8 +36,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(inputMoveMessage);
         while(true) {
-            System.out.println(inputMoveMessage);
             try {
                 String move = Console.readLine();
                 validator.validateMove(move);
@@ -52,8 +52,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public boolean readRetry() {
+        System.out.println(inputRetryMessage);
         while(true) {
-            System.out.println(inputRetryMessage);
             try {
                 String retryQuit = Console.readLine();
                 validator.validateRetry(retryQuit);
