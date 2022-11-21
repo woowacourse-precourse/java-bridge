@@ -35,6 +35,12 @@ public class UserExceptionTest {
         assertThrows(IllegalArgumentException.class, () -> userException.hasBlank(input));
     }
 
+    @Test
+    @DisplayName("길이가 1이 아닌 값을 입력하면 예외를 반환한다.")
+    void isNotLengthOneTest() {
+        assertThrows(IllegalArgumentException.class, () -> userException.isNotLengthOne("RR"));
+    }
+
     private static class CustomUserException extends UserException {
         @Override
         public void checkException(String userInput) {
