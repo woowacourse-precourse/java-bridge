@@ -1,6 +1,8 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
 import bridge.domain.Command;
+import bridge.domain.ResultMap;
 import bridge.service.BridgeGame;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
     public void printStartGame(){
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
@@ -19,19 +22,20 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> result, Command command) {
+        int mapSize = result.get(ResultMap.DIRECTION_MAP.index()).size();
         System.out.print("[");
-        for(int index=0; index<result.get(0).size(); index++){
+        for(int index = Bridge.START_INDEX.getValue(); index<mapSize; index++){
             printMoveOrBlank(result, index, command);
-            printVerticalBar(result.get(0).size(), index);
+            printVerticalBar(mapSize, index);
         }
         System.out.println("]");
     }
 
     private void printMoveOrBlank(List<List<String>> result, int index, Command move){
-        List<String> userBridge = result.get(0);
-        List<String> bridgeLog = result.get(1);
-        if(userBridge.get(index).equals(move.getValue())){
-            System.out.printf(" %s ",bridgeLog.get(index));
+        List<String> directionMap = result.get(ResultMap.DIRECTION_MAP.index());
+        List<String> signMap = result.get(ResultMap.SIGN_MAP.index());
+        if(directionMap.get(index).equals(move.getValue())){
+            System.out.printf(" %s ",signMap.get(index));
             return;
         }
         System.out.print("   ");

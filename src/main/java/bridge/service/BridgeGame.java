@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.Command;
 import bridge.validator.Validator;
 
@@ -13,13 +14,13 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final int BRIDGE_MIN_LENGTH = 3;
-    private final int BRIDGE_MAX_LENGTH = 20;
-    private final int ZERO = 0;
+    private final String O_SIGN = "O";
+    private final String X_SIGN = "X";
+    private final int INITIAL_ATTEMPT = 0;
     private final List<String> systemBridge;
 
     private List<String> userBridge = new ArrayList<>();
-    private int totalAttempt = ZERO;
+    private int totalAttempt = INITIAL_ATTEMPT;
 
     public BridgeGame(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException{
         this.systemBridge = makeBridge(generator, bridgeSize);
@@ -29,7 +30,7 @@ public class BridgeGame {
     private List<String> makeBridge(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException{
         final BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        Validator.validateListLengthInRange(bridge, BRIDGE_MIN_LENGTH, BRIDGE_MAX_LENGTH);
+        Validator.validateListLengthInRange(bridge, Bridge.MIN_LENGTH.getValue(), Bridge.MAX_LENGTH.getValue());
         return bridge;
     }
 
@@ -62,7 +63,7 @@ public class BridgeGame {
 
     private List<String> getBridgeLog(){
         List<String> bridgeLog = new ArrayList<>();
-        for(int index=ZERO; index<userBridge.size(); index++){
+        for(int index=Bridge.START_INDEX.getValue(); index<userBridge.size(); index++){
             bridgeLog.add(getOXByUserMove(index));
         }
         return bridgeLog;
@@ -70,13 +71,13 @@ public class BridgeGame {
 
     private String getOXByUserMove(int index){
         if(systemBridge.get(index).equals(userBridge.get(index))){
-            return "O";
+            return O_SIGN;
         }
-        return "X";
+        return X_SIGN;
     }
 
     public boolean isGameOver(){
-        return !systemBridge.subList(ZERO,userBridge.size()).equals(userBridge);
+        return !systemBridge.subList(Bridge.START_INDEX.getValue(), userBridge.size()).equals(userBridge);
     }
 
     public boolean isGameCompleted(){
