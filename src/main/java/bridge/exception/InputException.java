@@ -1,26 +1,31 @@
 package bridge.exception;
 
+import bridge.enums.ErrorMessage;
+import bridge.enums.KeyboardCommand;
+
 public class InputException {
     public void validateBridgeSize(String bridgeSize) {
         try {
             Integer.parseInt(bridgeSize);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값을 입력했습니다.");
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getMessage());
         }
         if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
         }
     }
 
     public void validateMoving(String moving) {
-        if (!moving.equals("U") && !moving.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] 주어진 선택지를 벗어났습니다.");
+        if (!moving.equals(KeyboardCommand.UP.getCommand())
+                && !moving.equals(KeyboardCommand.DOWN.getCommand())) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_OPTIONS.getMessage());
         }
     }
 
     public void validateGameCommand(String gameCommand) {
-        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
-            throw new IllegalArgumentException("[ERROR] 주어진 선택지를 벗어났습니다.");
+        if (!gameCommand.equals(KeyboardCommand.RESTART.getCommand())
+                && !gameCommand.equals(KeyboardCommand.QUIT.getCommand())) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_OPTIONS.getMessage());
         }
     }
 
