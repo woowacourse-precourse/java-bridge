@@ -26,4 +26,8 @@ public class Result {
     public void addMovingResult(String movingResult){
         totalMovingResult.add(movingResult);
     }
+    public void clearResult(){
+        totalMovingResult.clear();
+        currentResult = null;
+    }
 }

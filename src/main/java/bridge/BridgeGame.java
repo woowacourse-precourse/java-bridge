@@ -41,8 +41,6 @@ public class BridgeGame {
 
     }
 
-
-
     public void enterResult(){
         String movingResult = compareBridge();
         result.setCurrentResult(movingResult);
