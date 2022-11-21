@@ -52,10 +52,12 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(BRIDGE_COMMAND_MESSAGE);
+        return validateCommandType(Console.readLine());
     }
 
-    public void printSelectDirection() {
-        System.out.println(BRIDGE_DIRECTION_SELECT_MESSAGE);
+    // TODO: 검증 방식 고민
+    private String validateCommandType(String command) {
+        return command;
     }
 }
