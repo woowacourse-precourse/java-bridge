@@ -4,9 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -34,6 +32,15 @@ public class BridgeGenerateTest {
         assertThatThrownBy(() -> Validator.validateBridgeLength(bridgeLength)).isInstanceOf(
             IllegalArgumentException.class);
     }
+
+    @DisplayName("다리 길이는 정수여야 한다.")
+    @Test
+    void 다리_길이_정수_테스트() {
+        String bridgeLength = "SS";
+        assertThatThrownBy(() -> Validator.validateNumber(bridgeLength)).isInstanceOf(
+            IllegalArgumentException.class);
+    }
+
 
 
 }
