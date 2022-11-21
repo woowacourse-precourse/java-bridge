@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -30,5 +31,12 @@ public class BridgeGameTest {
     void checkMoveInputException(String input) {
         assertThatThrownBy(() -> game.move(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("move test")
+    @ParameterizedTest(name = "input = {0}")
+    @CsvSource({"U, true", "D, false"})
+    void checkMoveTest(String input, boolean expect) {
+        assertThat(game.move(input)).isEqualTo(expect);
     }
 }
