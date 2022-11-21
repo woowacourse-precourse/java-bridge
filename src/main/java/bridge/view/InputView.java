@@ -68,8 +68,9 @@ public class InputView {
 
     private static Supplier<String> getErrorSupplier(IllegalArgumentException e) {
         return () -> {
-            System.out.println(e.getMessage());
-            return e.getMessage();
+            String message = e.getMessage();
+            System.out.println(message);
+            return message;
         };
     }
 }
