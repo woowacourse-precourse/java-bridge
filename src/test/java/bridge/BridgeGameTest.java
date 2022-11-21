@@ -33,4 +33,28 @@ class BridgeGameTest {
 
         assertThat(result).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @DisplayName("판단한 결과값으로 이동 결과를 리턴하는 메서드 테스트")
+    @CsvSource(value = {"U, true", "U, false", "D, true", "D, false"})
+    void moveTest(String moveCommand, boolean isPossibleMove) {
+        List<String> expected = null;
+        if (moveCommand.equals("U")) {
+            if (isPossibleMove == true) {
+                expected = List.of("O", " ");
+            } else if (isPossibleMove == false) {
+                expected = List.of("X", " ");
+            }
+        } else if (moveCommand.equals("D")) {
+            if (isPossibleMove == true) {
+                expected = List.of(" ", "O");
+            } else if (isPossibleMove == false) {
+                expected = List.of(" ", "X");
+            }
+        }
+
+        List<String> result = bridgeGame.move(moveCommand, isPossibleMove);
+
+        assertThat(result).isEqualTo(expected);
+    }
 }
