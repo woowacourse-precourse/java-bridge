@@ -30,6 +30,7 @@ public class InputView {
 	}
 
 	public void ReadBridgeSizException(String userInputSize) {
+		exception.checkBridgeSizeNumberMissMatch(userInputSize);
 		exception.checkBridgeSize(userInputSize);
 	}
 }
