@@ -55,7 +55,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printResult(BridgeGame bridgeGame, int bridgeSize, int count, String game) {
+    public String printResult(BridgeGame bridgeGame, int bridgeSize, int count) {
         if (bridgeGame.getBridgeCount() == bridgeSize) {
             System.out.println(PRINT_FINAL_RESULT.getMessage());
             printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());

@@ -38,7 +38,7 @@ public class Application {
             whenItFails(bridgeSize, bridge);
             // 마지막 칸 도착시,최종 게임 결과
             // 다리 출력, 게임 성공 여부 출력,시도 횟수 출력
-            game = outputView.printResult(bridgeGame, bridgeSize, count, game);
+            game = outputView.printResult(bridgeGame, bridgeSize, count);
         }
     }
 
