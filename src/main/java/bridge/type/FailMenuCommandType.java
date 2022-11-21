@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public enum FailMenuCommandType {
 
-    RESTART("R", "재시작"),
+    RETRY("R", "재시작"),
     QUIT("Q", "종료");
 
     private static final String COMMAND_NOT_FOUND = "[" + getDescription() + "]" +
