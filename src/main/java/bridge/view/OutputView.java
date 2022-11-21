@@ -37,11 +37,11 @@ public class OutputView {
         return checkResult(movingSuccess);
     }
 
-    private static String createBridge(List<Integer> movingSuccess, List<String> PrintChecker){
+    private static String createBridge(List<Integer> movingSuccess, List<String> printChecker){
         String printBridge = "";
-        for (int i = 0; i < movingSuccess.size(); i++){
-            printBridge = printBridge + PrintChecker.get(movingSuccess.get(i));
-            if (i != movingSuccess.size()-1) {
+        for (int indexOfBridge = 0; indexOfBridge < movingSuccess.size(); indexOfBridge++){
+            printBridge = printBridge + printChecker.get(movingSuccess.get(indexOfBridge));
+            if (indexOfBridge != movingSuccess.size()-1) {
                 printBridge += "|";
             }
         }
@@ -60,11 +60,11 @@ public class OutputView {
     public static void printResult(List<Integer> movingSuccess, int numberOfAttempts) {
         System.out.println("최종 게임 결과");
         boolean result = printMap(movingSuccess);
-        System.out.println("\n게임 성공 여부: " + SuccessOrFailure(result));
+        System.out.println("\n게임 성공 여부: " + successOrFailure(result));
         System.out.println("총 시도한 횟수: " + numberOfAttempts);
     }
 
-    private static String SuccessOrFailure(boolean result) {
+    private static String successOrFailure(boolean result) {
         if (result) {
             return "성공";
         }
