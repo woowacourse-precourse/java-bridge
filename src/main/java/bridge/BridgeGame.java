@@ -24,10 +24,11 @@ public class BridgeGame {
         history.clear();
         Integer step = 0;
         for (String stair : bridge) {
-            move(history, step, bridge);
+            move(history, bridge);
             historyCount++;
-            if(historyCount == bridge.size()){
-                retry(bridge,true);
+            if(historyCount == bridge.size() && history.get(step).equals(stair)){
+//                retry(bridge,true);
+                outputView.printResult(true,++gameCount);
             }
         }
     }
@@ -36,10 +37,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<String> history, Integer step, List<String> bridge) {
+    public void move(List<String> history, List<String> bridge) {
         String movement = inputView.readMoving();
         history.add(movement);
-        if ( bridge.get(step++).equals(movement) ) {
+        if ( bridge.get(history.size()-1).equals(movement) ) {
+            if(history.equals(bridge)){
+                System.out.println("최종 게임 결과");
+            }
             makeResult(bridge,history);
         } else {
             makeResult(bridge,history);
@@ -59,27 +63,20 @@ public class BridgeGame {
             play(bridge);
             return;
         }
-        else{
-            outputView.printResult(isSuccess,gameCount);
-        }
+//        outputView.printResult(isSuccess,gameCount);
+//        return;
     }
     public void makeResult(List<String> answer, List<String> history){
-        List<String> ups = new ArrayList<>();
+        List<String> ups = makeUpList(answer, history);
+        List<String> downs = makeDownList(answer, history);
+        Map<String, List<String>> result = new HashMap<>();
+        result.put("up",ups);
+        result.put("down",downs);
+        outputView.printMap(result);
+    }
+
+    private List<String> makeDownList(List<String> answer, List<String> history) {
         List<String> downs = new ArrayList<>();
-        for (int i = 0; i < history.size(); i++) {
-            if(answer.get(i).equals("U") && history.get(i).equals("U")){
-                ups.add("O");
-            }
-            else if(answer.get(i).equals("U") && history.get(i).equals("D")){
-                ups.add(" ");
-            }
-            else if(answer.get(i).equals("D") && history.get(i).equals("U")){
-                ups.add("X");
-            }
-            else if(answer.get(i).equals("D") && history.get(i).equals("D")){
-                ups.add(" ");
-            }
-        }
         for (int i = 0; i < history.size(); i++) {
             if(answer.get(i).equals("U") && history.get(i).equals("U")){
                 downs.add(" ");
@@ -94,7 +91,22 @@ public class BridgeGame {
                 downs.add("O");
             }
         }
-        System.out.println("ups = " + ups);
-        System.out.println("downs = " + downs);
+        return downs;
+    }
+
+    private List<String> makeUpList(List<String> answer, List<String> history){
+        List<String> ups = new ArrayList<>();
+        for (int i = 0; i < history.size(); i++) {
+            if (answer.get(i).equals("U") && history.get(i).equals("U")) {
+                ups.add("O");
+            } else if (answer.get(i).equals("U") && history.get(i).equals("D")) {
+                ups.add(" ");
+            } else if (answer.get(i).equals("D") && history.get(i).equals("U")) {
+                ups.add("X");
+            } else if (answer.get(i).equals("D") && history.get(i).equals("D")) {
+                ups.add(" ");
+            }
+        }
+        return ups;
     }
 }
