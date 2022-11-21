@@ -17,10 +17,19 @@ public class BridgeGameTest {
     @DisplayName("입력 값에 따른 move 메서드 테스트")
     @MethodSource("provideParametersForMove")
     @ParameterizedTest
-    void BridgeGame_move메서드(List<String> bridge, int countOfMove, String moveBlock, boolean result) {
+    void BridgeGame_move_Method(List<String> bridge, int countOfMove, String moveBlock, boolean result) {
         BridgeGame bridgeGame = new BridgeGame();
         boolean canMove = bridgeGame.move(bridge, countOfMove, moveBlock);
         assertThat(canMove).isEqualTo(result);
+    }
+
+    @DisplayName("입력 값에 따른 move 메서드 테스트")
+    @MethodSource("provideParametersForRetry")
+    @ParameterizedTest
+    void BridgeGame_retry_method(String input, boolean result) {
+        BridgeGame bridgeGame = new BridgeGame();
+        boolean isRetry = bridgeGame.retry(input);
+        assertThat(isRetry).isEqualTo(result);
     }
 
     private static Stream<Arguments> provideParametersForMove() {
@@ -28,6 +37,13 @@ public class BridgeGameTest {
                 Arguments.of(List.of("U", "D", "D", "U"), 2, "U", false),
                 Arguments.of( List.of("U", "D", "D", "U"), 2, "D", true),
                 Arguments.of( List.of("U", "U", "U"), 1, "U", true)
+        );
+    }
+
+    private static Stream<Arguments> provideParametersForRetry() {
+        return Stream.of(
+                Arguments.of("R", true),
+                Arguments.of( "Q", false)
         );
     }
 }
