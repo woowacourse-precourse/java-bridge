@@ -15,7 +15,8 @@ public class Application {
 
         BridgeMaker maker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-        maker.makeBridge(size);
+        maker.makeBridge(size); // 다리 생성
+
         
 
     }
