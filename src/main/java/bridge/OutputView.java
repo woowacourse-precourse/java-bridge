@@ -27,7 +27,6 @@ public class OutputView {
     }
 
     public void printChooseMovingInputMessage() {
-        System.out.println();
         System.out.println(InputMessage.MOVE_DIRECTION_INPUT_MESSAGE.getMessage());
     }
 
@@ -44,6 +43,7 @@ public class OutputView {
     public void printMap(List<String> moves, List<String> bridge) {
         printOneSideMap(upperSideCharacter, moves, bridge);
         printOneSideMap(lowerSideCharacter, moves, bridge);
+        System.out.println();
     }
 
     private void printOneSideMap(String side, List<String> moves, List<String> bridge) {

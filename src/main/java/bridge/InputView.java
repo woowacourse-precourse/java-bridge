@@ -38,6 +38,7 @@ public class InputView {
         while (true) {
             outputView.printChooseMovingInputMessage();
             moveDirection = readLine();
+            System.out.println();
             try {
                 InputValidator.validateMoveDirection(moveDirection);
                 break;
