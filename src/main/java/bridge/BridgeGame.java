@@ -76,6 +76,9 @@ public class BridgeGame {
         if (userCommand.equals("U")){
             upBridge.add(input);
             downBridge.add(" ");
+            return;
         }
+        upBridge.add(" ");
+        downBridge.add(input);
     }
 }
