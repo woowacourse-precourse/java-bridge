@@ -1,20 +1,21 @@
 ## 기능 목록
-1. 사용자가 입력한 값에 따라 다리를 생성해야한다. - BridgeRandomNumberGenerator.generate()
-   - 다리 길이를 입력 받아야한다. - service.BridgeGame.readBridgeSize();
-     - 입력값에 대해 유효성 검사를 해야한다. - view.InputView.validateBridgeSize()
-       - 입력값은 정수 여야 한다. - view.InputView.validateInteger();
-       - 입력값은 3 ~ 24 여야 한다.
+[ ] 사용자가 입력한 값에 따라 다리를 생성해야한다. - BridgeRandomNumberGenerator.generate()
+   - [ ] 다리 길이를 입력 받아야한다. - service.BridgeGame.readBridgeSize();
+     - [x] 입력값에 대해 유효성 검사를 해야한다. - view.InputView.validateBridgeSize()
+       - [x] 입력값은 정수 여야 한다. - view.InputView.validateInteger();
+       - [x] 입력값은 3 ~ 24 여야 한다. - view.InputView.validateBridgeSizeRange();
    - 다리를 생성해야한다.
 2. 사용자의 입력값에 따라 이동할 수 있어야한다.
    - 이동 값을 입력 받아야한다.
      - 입력값 의 유효성 검사를 해야한다. 
    - 입력값에 맞게 이동해야한다.
-3. 게임 실패시 사용자가 입력한 값에 따라 재시작 또는 게임 종료를 해야한다.
+3. 잘못된 값을 입력한경우 [ERROR] 로 시작하는 에러 메세지를 출력 하고 입력을 다시 받아야한다.
+4. 게임 실패시 사용자가 입력한 값에 따라 재시작 또는 게임 종료를 해야한다.
    - 재시작시 사용자의 위치 와 이동위치 표시를 초기화 한다.
    - 게임 종료시 프로그램을 종료 시켜야한다.
-4. 사용자의 총 이동 횟수를 표시해야한다.
-5. 사용자가 이동할때마다 경로를 표시 해야한다.
-6. 게임 진행중 안내 메세지 또는 결과 메세지를 표시 해야한다.
+5. 사용자의 총 이동 횟수를 표시해야한다.
+6. 사용자가 이동할때마다 경로를 표시 해야한다.
+7. 게임 진행중 안내 메세지 또는 결과 메세지를 표시 해야한다.
 
 ---
 
