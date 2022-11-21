@@ -16,11 +16,12 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
-    private final Player player = new Player();
+    private Player player;
 
-    public void initBridge(int size) {
+    public void initBridgeGame(int size, Player player) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
+        this.player = player;
         System.out.println(bridge);
     }
 

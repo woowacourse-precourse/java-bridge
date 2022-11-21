@@ -10,22 +10,18 @@ public class Player {
 
     public boolean move(String moving, List<String> bridge) {
         bridgeRoute.add(moving);
-        if (bridge.get(correctAnswerCount).equals(moving)){
+        if (bridge.get(correctAnswerCount).equals(moving)) {
             correctAnswerCount++;
             return true;
         }
         return false;
     }
 
-    public int getTryCount() {
-        return tryCount;
-    }
-
     public int getCorrectAnswerCount() {
         return correctAnswerCount;
     }
 
-    public void increaseCorrectAnswerCount(){
+    public void increaseCorrectAnswerCount() {
         correctAnswerCount++;
     }
 
@@ -37,8 +33,8 @@ public class Player {
         bridgeRoute.add(moving);
     }
 
-    public void resetPlayer(){
-        tryCount ++;
+    public void resetPlayer() {
+        tryCount++;
         correctAnswerCount = 0;
         bridgeRoute = new ArrayList<>();
     }
