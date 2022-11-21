@@ -11,8 +11,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 class GameMovingTest {
 
     @Nested
-    @DisplayName("getMessageFromNumber 메소드 테스트")
-    class GetMessageFromNumber {
+    @DisplayName("getMovingFromNumber 메소드 테스트")
+    class GetMovingFromNumber {
         @ParameterizedTest
         @CsvSource(value = {"0, D", "1, U"})
         void 숫자를_입력받으면_매핑된_메세지를_잘_반환하는지_테스트(int number, String expected) {

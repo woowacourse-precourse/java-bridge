@@ -35,7 +35,7 @@ class GameControlTest {
     class IsRetry {
         @ParameterizedTest
         @ValueSource(strings = {"R"})
-        void 입력이_Q이면_참을_반환하는지_테스트(String target) {
+        void 입력이_R이면_참을_반환하는지_테스트(String target) {
             assertThat(GameControl.isRetry(target)).isTrue();
         }
 
