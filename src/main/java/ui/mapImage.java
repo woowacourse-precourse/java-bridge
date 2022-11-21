@@ -1,6 +1,6 @@
 package ui;
 
-public enum OutputImage {
+public enum mapImage {
 
     START("[ "),
     END(" ]"),
@@ -9,7 +9,7 @@ public enum OutputImage {
     WRONG("X"),
     NOT_SELECTED(" ");
 
-    OutputImage(String s) {
+    mapImage(String s) {
     }
 
 }
