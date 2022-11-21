@@ -35,12 +35,15 @@ public class OutputView {
     public static void printMap(Map map) {
         System.out.println(map.toString());
     }
-    
+
     public static void printResult(Map map, boolean success, int totalTry) {
         System.out.println(Guide.FINISH.getMessage());
+
         printMap(map);
+
         System.out.print(Guide.RESULT.getMessage());
         System.out.println(toMessage(success));
+
         System.out.print(Guide.TOTAL_TRY.getMessage());
         System.out.println(totalTry);
     }
@@ -49,6 +52,7 @@ public class OutputView {
         if (success) {
             return Guide.SUCCESS.getMessage();
         }
+
         return Guide.FAIL.getMessage();
     }
 }
