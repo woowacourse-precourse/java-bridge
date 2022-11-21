@@ -8,6 +8,7 @@ import bridge.verifier.MovingVerifier;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    private final String WELCOME_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private final String READ_BRIDGE_MESSAGE = "다리의 길이를 입력해주세요.";
     private final String READ_MOVING_MESSAGE =
             String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)\n", GameMoving.UP, GameMoving.DOWN);
@@ -15,6 +16,7 @@ public class InputView {
             String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)\n", GameControl.RETRY, GameControl.QUIT);
 
     public int readBridgeSize() {
+        System.out.println(WELCOME_MESSAGE);
         System.out.println(READ_BRIDGE_MESSAGE);
 
         String bridgeSize = Console.readLine();
