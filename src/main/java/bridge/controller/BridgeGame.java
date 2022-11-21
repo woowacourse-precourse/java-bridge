@@ -1,4 +1,6 @@
-package bridge.domain;
+package bridge.controller;
+
+import bridge.domain.Status;
 
 import java.util.List;
 
