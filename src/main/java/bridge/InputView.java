@@ -8,8 +8,6 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     public static final int BRIDGE_MIN_SIZE = 3;
     public static final int BRIDGE_MAX_SIZE = 20;
-    public static final String UP = "U";
-    public static final String DOWN = "D";
     public static final String RETRY = "R";
     public static final String QUIT = "Q";
     public static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
@@ -17,7 +15,6 @@ public class InputView {
     public static final String INPUT_RETRY_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     public static final String ENTER_NUMBER = "숫자를 입력해주세요.";
     public static final String BRIDGE_SIZE_BETWEEN_3_AND_20 = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    public static final String ENTER_U_OR_D = "위(U) 또는 아래(D)만 선택할 수 있습니다.";
     public static final String ENTER_R_OR_Q = "재시도(R) 또는 종료(Q)만 선택할 수 있습니다.";
 
     /**
@@ -50,16 +47,9 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Moving readMoving() {
         System.out.println(CHOICE_UP_OR_DOWN);
-        return validateMoving(Console.readLine());
-    }
-
-    private String validateMoving(String moving) {
-        if (!moving.equals(UP) && !moving.equals(DOWN)) {
-            throw new IllegalArgumentException(ENTER_U_OR_D);
-        }
-        return moving;
+        return Moving.findBySymbol(Console.readLine());
     }
 
     /**

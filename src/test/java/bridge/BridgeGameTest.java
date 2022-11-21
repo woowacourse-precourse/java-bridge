@@ -14,7 +14,7 @@ class BridgeGameTest {
     void moveThenReturnImmovable() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U"));
 
-        bridgeGame.move("D");
+        bridgeGame.move(Moving.DOWN);
 
         assertThat(bridgeGame.isGameOver()).isTrue();
     }
@@ -24,7 +24,7 @@ class BridgeGameTest {
     void moveThenReturnSuccess() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
 
-        bridgeGame.move("U");
+        bridgeGame.move(Moving.UP);
 
         assertThat(bridgeGame.isNormal()).isTrue();
     }
@@ -34,8 +34,8 @@ class BridgeGameTest {
     void moveThenReturnFinished() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
 
-        bridgeGame.move("U");
-        bridgeGame.move("D");
+        bridgeGame.move(Moving.UP);
+        bridgeGame.move(Moving.DOWN);
 
         assertThat(bridgeGame.isGameClear()).isTrue();
     }
@@ -46,7 +46,7 @@ class BridgeGameTest {
         Field position = BridgeGame.class.getDeclaredField("position");
         position.setAccessible(true);
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
-        bridgeGame.move("U");
+        bridgeGame.move(Moving.UP);
 
         bridgeGame.retry();
 
@@ -60,7 +60,7 @@ class BridgeGameTest {
         Field attempt = BridgeGame.class.getDeclaredField("attempt");
         attempt.setAccessible(true);
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
-        bridgeGame.move("U");
+        bridgeGame.move(Moving.UP);
 
         bridgeGame.retry();
 

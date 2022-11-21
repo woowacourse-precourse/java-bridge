@@ -13,8 +13,8 @@ class BridgeMapTest {
     void update() {
         BridgeMap bridgeMap = new BridgeMap();
 
-        bridgeMap.update("U", BridgeGameState.NORMAL);
-        bridgeMap.update("D", BridgeGameState.GAME_OVER);
+        bridgeMap.update(Moving.UP, BridgeGameState.NORMAL);
+        bridgeMap.update(Moving.DOWN, BridgeGameState.GAME_OVER);
 
         List<String> upperRow = bridgeMap.getUpperRow();
         List<String> lowerRow = bridgeMap.getLowerRow();

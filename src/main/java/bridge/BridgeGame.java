@@ -29,21 +29,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String selectedDirection) {
-        checkMovable(bridge.get(position), selectedDirection);
+    public void move(Moving moving) {
+        checkMovable(moving);
         goForward();
-        bridgeMap.update(selectedDirection, state);
+        bridgeMap.update(moving, state);
         checkFinished();
     }
 
-    private void checkMovable(String movableDirection, String selectedDirection) {
-        if (notEquals(movableDirection, selectedDirection)) {
+    private void checkMovable(Moving moving) {
+        if (moving.immovable(bridge.get(position))) {
             state = GAME_OVER;
         }
-    }
-
-    private boolean notEquals(String operand1, String operand2) {
-        return !operand1.equals(operand2);
     }
 
     private void goForward() {

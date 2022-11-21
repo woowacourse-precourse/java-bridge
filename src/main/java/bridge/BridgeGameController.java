@@ -49,8 +49,7 @@ public class BridgeGameController {
     }
 
     private void move(BridgeGame bridgeGame) {
-        String moving = handleException(inputView::readMoving);
-        bridgeGame.move(moving);
+        bridgeGame.move(handleException(inputView::readMoving));
         outputView.printMap(bridgeGame);
     }
 
