@@ -18,8 +18,7 @@ public class OutputView {
     }
 
     private static boolean isSame(Bridge target, Status preStatus) {
-        int size = preStatus.size();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < preStatus.size(); i++) {
             if (!target.bridgeSameIndex(i, preStatus.get(i))) {
                 return false;
             }
