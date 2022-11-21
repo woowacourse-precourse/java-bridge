@@ -1,5 +1,6 @@
 package bridge;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +34,16 @@ class BridgeMakerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> bridge = bridgeMaker.makeBridge(6);
         assertThat(bridge).containsExactly("U", "D", "D", "U", "D", "U");
+    }
+
+    @DisplayName("다리 숫자 중 1, 0이외의 숫자가 주어질 때 예외 발생")
+    @Test
+    void makeBridgeIllegalNumber() {
+        BridgeNumberGenerator generator = new TestBridgeNumberGenerator(newArrayList(3, 0, 0, 1, 0, 1));
+        BridgeMaker bridgeMaker = new BridgeMaker(generator);
+
+        Assertions.assertThatThrownBy(() -> bridgeMaker.makeBridge(6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리의 숫자 값은 1 or 0만 가능합니다.");
     }
 }

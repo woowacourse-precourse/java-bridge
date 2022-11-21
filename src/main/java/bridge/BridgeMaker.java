@@ -18,7 +18,7 @@ public class BridgeMaker {
     public static final int DOWN_VALUE = 0;
     public static final String UP_MARK = "U";
     public static final String DOWN_MARK = "D";
-    public static final String ERROR_INVALID_BRIDGE_NUMBER = "[ERROR] 유효하지 않는 다리 숫자 값 입니다.";
+    public static final String ERROR_INVALID_BRIDGE_NUMBER = "[ERROR] 다리의 숫자 값은 1 or 0만 가능합니다.";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
