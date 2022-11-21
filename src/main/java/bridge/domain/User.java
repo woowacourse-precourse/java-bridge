@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 유저의 상태 및 이동을 책임지는 클래스
+ * 유저의 상태 및 이동을 책임지는 클래
  */
 public class User {
 
@@ -32,7 +32,7 @@ public class User {
         String goal = inputView.readMoving();
         if (moveNext(goal)) {
             outputView.printMap(route, true);
-            isCrossBridge();
+            checkCrossBridge();
             return true;
         }
         outputView.printMap(route, false);
@@ -73,7 +73,7 @@ public class User {
     /**
      * 사용자 위치를 통해 사용자가 다리를 다 건넌 상태라면 상태를 업데이트한다.
      */
-    private void isCrossBridge() {
+    private void checkCrossBridge() {
         if (location == bridge.size() - 1) {
             status = Status.SUCCESS_END;
         }
