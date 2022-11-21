@@ -36,4 +36,10 @@ public class Controller {
         game.createPlayer();
         game.createCount();
     }
+
+    public void moveBridge() {
+        out.printMessage(INPUT_MOVE_MESSAGE);
+        game.move(input.readMoving());
+    }
+
 }
