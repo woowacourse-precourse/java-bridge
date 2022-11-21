@@ -6,14 +6,14 @@ public class RetryCommand {
     public static void moveLogic(InputView inputView, BridgeGame bridgeGame) {
         while (bridgeGame.isSuccess() && bridgeGame.moveResults().size() < bridgeGame.bridgeSize()) {
             inputView.chooseSquare();
-            bridgeGame.move(inputView.readMoving());
+            bridgeGame.move(inputView.readMoving().getMovingCommand());
             OutputView.printEachMap(bridgeGame.moveResults());
             quiteLogic(inputView, bridgeGame);
         }
     }
 
     private static void retryLogic(InputView inputView, BridgeGame bridgeGame) {
-        bridgeGame.moveResults().removeFailure();
+        bridgeGame.retry();
         inputView.chooseSquare();
         OutputView.printEachMap(bridgeGame.moveResults());
         moveLogic(inputView, bridgeGame);

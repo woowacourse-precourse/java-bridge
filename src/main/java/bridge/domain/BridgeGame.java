@@ -21,6 +21,7 @@ public class BridgeGame {
 
     public void retry() {
         moveResults.removeFailure();
+        moveResults.addTryNum();
     }
 
     public boolean isSuccess() {

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MoveResultsTest {
     @Test
@@ -16,7 +17,7 @@ public class MoveResultsTest {
 
         assertAll(() -> assertThat(moveResults).isNotNull(),
                 () -> assertThat(moveResults.getMoveResults()).hasSize(1),
-                ()  -> assertThat(moveResults.getMoveResults()).contains(success));
+                () -> assertThat(moveResults.getMoveResults()).contains(success));
     }
 
     @Test
@@ -31,6 +32,14 @@ public class MoveResultsTest {
 
         assertAll(() -> assertThat(moveResults).isNotNull(),
                 () -> assertThat(moveResults.getMoveResults()).hasSize(1),
-                ()  -> assertThat(moveResults.getMoveResults()).containsOnly(success));
+                () -> assertThat(moveResults.getMoveResults()).containsOnly(success));
+    }
+
+    @Test
+    void addTryNum() {
+        MoveResults moveResults = new MoveResults();
+        moveResults.addTryNum();
+
+        assertEquals(moveResults.getTryNum(), 2);
     }
 }

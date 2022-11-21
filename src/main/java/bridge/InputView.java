@@ -26,10 +26,10 @@ public class InputView {
         return new BridgeSizeParameter(convertBridge(bridgeSize));
     }
 
-    public String readMoving() {
+    public MovingCommandParameter readMoving() {
         String moving = Console.readLine();
         blank(moving);
-        return moving;
+        return new MovingCommandParameter(moving);
     }
 
     public CommandParameter readGameCommand() {

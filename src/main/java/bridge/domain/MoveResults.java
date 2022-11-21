@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 public class MoveResults {
     private final List<MoveResult> moveResults = new ArrayList<>();
 
+    private int tryNum = 1;
+
     public void addResult(MoveResult moveResult) {
         moveResults.add(moveResult);
     }
@@ -28,10 +30,14 @@ public class MoveResults {
         return moveResults.get(size() - 1).isMatchResult();
     }
 
-    public String map(){
+    public String map() {
         return moveResults.stream()
                 .map(moveResult -> CrossResult.successFailureLetter(moveResult.isMatchResult()))
                 .collect(Collectors.joining());
+    }
+
+    public void addTryNum() {
+        tryNum++;
     }
 
     public String lastControlKey() {
@@ -40,5 +46,9 @@ public class MoveResults {
 
     public List<MoveResult> getMoveResults() {
         return moveResults;
+    }
+
+    public int getTryNum() {
+        return tryNum;
     }
 }

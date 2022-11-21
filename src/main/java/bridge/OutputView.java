@@ -6,6 +6,7 @@ import bridge.domain.MoveResults;
 public class OutputView {
     private static final String RESULT_GREETING = "최종 게임 결과";
     private static final String RESULT = "게임 성공여부: ";
+    private static final String TOTAl_TRY = "총 시도한 횟수: ";
 
     public void printMap(MoveResults moveResults) {
         moveResults.getMoveResults().stream()
@@ -26,5 +27,6 @@ public class OutputView {
     public void printResult(MoveResults moveResults) {
         printMap(moveResults);
         System.out.println(RESULT + CrossResult.successFailureWord(moveResults.success()));
+        System.out.println(TOTAl_TRY + moveResults.getTryNum());
     }
 }

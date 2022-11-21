@@ -34,7 +34,7 @@ class BridgeGameTest {
         UpNumberGenerator upNumberGenerator = new UpNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(upNumberGenerator);
         int size = 3;
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker,size);
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker, size);
         MoveResult success = new MoveResult("U", true);
 
         bridgeGame.move("D");
@@ -43,6 +43,7 @@ class BridgeGameTest {
         MoveResults retryResult = bridgeGame.moveResults();
 
         assertAll(() -> assertThat(retryResult.size()).isEqualTo(1),
-                () -> assertThat(retryResult.getMoveResults()).contains(success));
+                () -> assertThat(retryResult.getMoveResults()).contains(success),
+                () ->assertThat(retryResult.getTryNum()).isEqualTo(2));
     }
 }
