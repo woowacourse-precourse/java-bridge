@@ -1,8 +1,8 @@
 package enumCollections;
 
 public enum AvailableInput {
-    BRIDGE_MINIMUM_LENGTH("3"),
-    BRIDGE_MAXIMUM_LENGTH("20"),
+    BRIDGE_MINIMUM_SIZE("3"),
+    BRIDGE_MAXIMUM_SIZE("20"),
     QUIT_GAME("Q"),
     RETRY_GAME("R");
 
@@ -20,7 +20,7 @@ public enum AvailableInput {
         return input.equals(QUIT_GAME.userInput) || input.equals(RETRY_GAME.userInput);
     }
 
-    public static int getBridgeLengthRange(AvailableInput range) {
+    public static int getBridgeSizeRange(AvailableInput range) {
         return Integer.valueOf(get(range));
     }
 }
