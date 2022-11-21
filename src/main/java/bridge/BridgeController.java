@@ -13,5 +13,6 @@ public class BridgeController {
         List<String> bridge;
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
+        String direction = inputView.readMoving();
     }
 }

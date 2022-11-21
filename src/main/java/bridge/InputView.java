@@ -11,7 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
 
-    OutputView outputView = new OutputView();
+    private OutputView outputView = new OutputView();
 
     public int readBridgeSize() {
         int num = 0;
@@ -30,7 +30,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        if (!input.equals("D") || !input.equals("U")) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     /**
