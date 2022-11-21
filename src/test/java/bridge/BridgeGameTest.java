@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
@@ -12,7 +15,16 @@ class BridgeGameTest {
     @Test
     void move() {
         BridgeGame bridgeGame = new BridgeGame();
-        assertTrue(bridgeGame.move("D", 0));
+        assertTrue(bridgeGame.move("U", "U"));
+    }
+
+    @DisplayName("")
+    @Test
+    void moveBridge(){
+        BridgeGame bridgeGame = new BridgeGame();
+        Bridge bridge = new Bridge();
+        bridge.setOutputBridge(new ArrayList<>(List.of(new ArrayList<>(List.of(" O ")), new ArrayList<>(List.of("   ")))));
+        assertThat(bridgeGame.moveBridge("U", true)).usingRecursiveComparison().isEqualTo(bridge);
     }
 
 }
