@@ -3,7 +3,7 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        BridgeController bridgeController = new BridgeController(new BridgeRandomNumberGenerator());
+        BridgeController bridgeController = new BridgeController();
         bridgeController.gameStart();
     }
 }

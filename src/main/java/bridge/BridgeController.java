@@ -14,10 +14,10 @@ public class BridgeController {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeController(BridgeNumberGenerator bridgeNumberGenerator) {
+    public BridgeController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void gameStart() {
