@@ -23,7 +23,7 @@ public class InputView {
 
     public String readGameCommand() {
         String retry = Console.readLine();
-        while (!Validation.bridgeSizeValidationTest(retry)){
+        while (!Validation.retryTest(retry)){
             retry = Console.readLine();
         }
         return retry;
