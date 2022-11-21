@@ -6,6 +6,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
+import bridge.domain.Player;
 import java.util.List;
 
 /**
@@ -15,14 +16,12 @@ public class BridgeGame {
 
 	private static final int RETRY_NUMBER = 0;
 	private final Bridge bridge;
+	private final Player player;
 	private int bridgeNumber = 0;
-	private int tryCount = 0;
-	private String gameResult;
-	private BridgeResult bridgeResult;
 
 	public BridgeGame(List<String> bridge) {
 		this.bridge = new Bridge(bridge);
-		this.tryCount++;
+		this.player = new Player();
 	}
 
 	public GameStatus isClear() {
@@ -35,15 +34,13 @@ public class BridgeGame {
 
 	public void checkClear(BridgeResult bridgeResult) {
 		if (isClear() == GameStatus.CLEAR) {
-			this.bridgeResult = bridgeResult;
-			this.gameResult = GameStatus.CLEAR.getMessage();
+			this.player.gameClear(bridgeResult);
 		}
 	}
 
 	public void end(BridgeResult bridgeResult) {
 		this.bridgeNumber = bridge.getSize();
-		this.bridgeResult = bridgeResult;
-		this.gameResult = GameStatus.END.getMessage();
+		this.player.gameQuit(bridgeResult);
 	}
 
 	/**
@@ -63,7 +60,7 @@ public class BridgeGame {
 	public boolean retry(String gameCommand) {
 		if (gameCommand.equals(RETRY)) {
 			this.bridgeNumber = RETRY_NUMBER;
-			this.tryCount++;
+			this.player.addRetry();
 
 			return true;
 		}
@@ -73,6 +70,6 @@ public class BridgeGame {
 
 	@Override
 	public String toString() {
-		return String.format("%s\n게임 성공 여부: %s\n총 시도한 횟수: %d", bridgeResult, gameResult, tryCount);
+		return this.player.toString();
 	}
 }
