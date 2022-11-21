@@ -14,13 +14,13 @@ import static bridge.domain.game.GameStatus.SUCCESS;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private final List<GameProgress> gameProgress;
+    private final GameProgress gameProgress;
     private final Attempt attempt;
     private boolean playing;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.gameProgress = new ArrayList<>();
+        this.gameProgress = new GameProgress();
         this.attempt = new Attempt();
         this.playing = true;
     }
@@ -32,7 +32,7 @@ public class BridgeGame {
      */
     public void move(String moving) {
         boolean move = canMove(moving);
-        gameProgress.add(new GameProgress(moving, move));
+        gameProgress.add(moving, move);
     }
 
     private boolean canMove(String moving) {
@@ -43,7 +43,7 @@ public class BridgeGame {
 
     private boolean isSuccessToCrossTotalBridge() {
         return (gameProgress.size() == bridge.getSize() &&
-                gameProgress.get(gameProgress.size() - 1).isSuccess());
+                gameProgress.isLastMoveSuccess());
     }
 
     public boolean isPlaying() {
@@ -71,7 +71,7 @@ public class BridgeGame {
 
 
 
-    public List<GameProgress> getGameProgress() {
+    public GameProgress getGameProgress() {
         return gameProgress;
     }
 
