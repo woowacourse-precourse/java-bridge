@@ -175,11 +175,15 @@
   - `INPUT_EXITCODE_ERROR` : 사용자 입력 종료 및 재시도 예외 처리 
 
 
-### ValidationUtil (삭제)
+### ValidationUtil 
 - 사용자 입력 및 비즈니스 모델 검증 Class
   - `validateBridgeSizeInput` : 사용자 입력 다리 길이 범위 확인
-- **고려했으나, 객체 생성 비용 또는 static 메모리 비용 증가로 인한 삭제 결정**
-- 정적 팩토리 메소드를 사용하는 방식으로 변경
+  - `validateBridgeSizeDigitInput` : 사용자 입력 다리 길이 숫자 확인
+  - `validateBridgeSizeNullInput` : 사용자 입력 다리 길이 공백 확인
+  - `validateUserMovement` : 사용자 입력 이동 예외 확인
+  - `validateUserMovementIfNull` : 사용자 입력 이동 공백 예외 확인
+  - `validateExitCode` : 사용자 입력 종료 및 재시도 예외 확인
+
 
 
 ## 👨🏻‍💻 추가된 프로그래밍 요구사항
