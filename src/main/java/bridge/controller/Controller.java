@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bridge.domain.BridgeGame;
@@ -22,8 +23,19 @@ public class Controller {
     }
 
     public void play() {
+        BridgeGame bridgeGame = makeGame();
+
+        List<TrialResult> trialResults = new ArrayList<>();
+        while (!bridgeGame.isFinished()) {
+            String moving = inputView.readMoving();
+            TrialResult trialResult = bridgeGame.move(moving);
+            trialResults.add(trialResult);
+        }
+    }
+
+    private BridgeGame makeGame() {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = BridgeGame.from(bridge);
+        return BridgeGame.from(bridge);
     }
 }
