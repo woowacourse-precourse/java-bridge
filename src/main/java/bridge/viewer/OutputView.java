@@ -24,12 +24,7 @@ public class OutputView {
     public static final String CLOSE = "]";
     public static final String SEPARATOR = "|";
 
-    public static void printMap(PositionTable userTable) {
-        showMap(userTable, Position::isUp);
-        showMap(userTable, Position::isDown);
-    }
-
-    public static void printResult(PositionTable userTable, Result result) {
+    public static void printMap(PositionTable userTable, Result result) {
         if (result.isLose()) {
             showReviseMap(userTable, Position::isUp);
             showReviseMap(userTable, Position::isDown);
@@ -39,6 +34,16 @@ public class OutputView {
             showMap(userTable, Position::isDown);
         }
 
+    }
+
+    public static void printResult(PositionTable userTable, Result result) {
+        if (result.isLose()) {
+            System.out.println(LOSE_MESSAGE);
+        }
+        if (result.isWin()) {
+            System.out.println(WIN_MESSAGE);
+        }
+        printMap(userTable, result);
     }
 
     private static void showMap(PositionTable userTable, Predicate<Position> p) {
