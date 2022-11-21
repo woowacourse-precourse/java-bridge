@@ -35,7 +35,7 @@ public class BridgeGameController {
     }
 
     private boolean isGameFinshed(BridgeGame bridgeGame, ResultType crossBridgeResult) {
-        if (bridgeGame.getIndex() == bridgeGame.getBridgeSize()) {
+        if (isWon(bridgeGame, crossBridgeResult)) {
             outputView.printResult(bridgeGame, crossBridgeResult);
             return true;
         }
@@ -57,6 +57,14 @@ public class BridgeGameController {
 
     private boolean isDefeated(ResultType crossBridgeResult) {
         return crossBridgeResult.getState().equals(ResultType.FAIL.getState());
+    }
+
+    private boolean isWon(BridgeGame bridgeGame, ResultType crossBridgeResult) {
+        if (bridgeGame.getIndex() == bridgeGame.getBridgeSize()) {
+            outputView.printResult(bridgeGame, crossBridgeResult);
+            return true;
+        }
+        return false;
     }
 
 }
