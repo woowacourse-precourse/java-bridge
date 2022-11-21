@@ -35,7 +35,7 @@ public class BridgeGame {
     }
 
     private boolean isGameOver() {
-        return gameUser.getOffFrom(answerBridge) ||
-                gameUser.isOnTheFinalBlock(answerBridge);
+        return gameUser.isGetOutFrom(answerBridge) ||
+                gameUser.isOnTheFinalBlockOf(answerBridge);
     }
 }

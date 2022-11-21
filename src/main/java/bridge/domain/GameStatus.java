@@ -10,7 +10,7 @@ public class GameStatus {
     }
 
     public void setFlag(GameUser gameUser, Bridge answerBridge) {
-        if (gameUser.getOffFrom(answerBridge)) {
+        if (gameUser.isGetOutFrom(answerBridge)) {
             flag = GameFlag.FAIL;
             return;
         }

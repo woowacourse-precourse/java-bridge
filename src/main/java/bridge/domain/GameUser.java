@@ -13,11 +13,11 @@ public class GameUser {
         userBridge.reset();
     }
 
-    public boolean getOffFrom(Bridge otherBridge) {
+    public boolean isGetOutFrom(Bridge otherBridge) {
         return !userBridge.isPartOfBridgeInOrder(otherBridge);
     }
 
-    public boolean isOnTheFinalBlock(Bridge otherBridge) {
+    public boolean isOnTheFinalBlockOf(Bridge otherBridge) {
         return userBridge.length() == otherBridge.length();
     }
 

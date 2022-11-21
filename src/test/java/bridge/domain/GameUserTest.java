@@ -42,7 +42,7 @@ class GameUserTest {
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
-    @DisplayName("getOffFrom 메소드 테스트")
+    @DisplayName("isGetOutFrom 메소드 테스트")
     class GetOffFrom {
         @ParameterizedTest
         @MethodSource("parameterProvider")
@@ -52,7 +52,7 @@ class GameUserTest {
                 gameUser.move(moving);
             }
 
-            assertThat(gameUser.getOffFrom(targetBridge)).isTrue();
+            assertThat(gameUser.isGetOutFrom(targetBridge)).isTrue();
         }
 
         private Stream<Arguments> parameterProvider() {
@@ -67,7 +67,7 @@ class GameUserTest {
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
-    @DisplayName("isOnTheFinalBlock 메소드 테스트")
+    @DisplayName("isOnTheFinalBlockOf 메소드 테스트")
     class IsOnTheFinalBlock {
         @ParameterizedTest
         @MethodSource("parameterProvider")
@@ -77,7 +77,7 @@ class GameUserTest {
                 gameUser.move(moving);
             }
 
-            assertThat(gameUser.isOnTheFinalBlock(targetBridge)).isTrue();
+            assertThat(gameUser.isOnTheFinalBlockOf(targetBridge)).isTrue();
         }
 
         private Stream<Arguments> parameterProvider() {
