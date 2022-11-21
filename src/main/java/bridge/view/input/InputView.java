@@ -8,12 +8,15 @@ import bridge.view.console.Reader;
  */
 public class InputView {
 
+    private static final String NEW_LINE = "\n";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         int bridgeSize;
 
+        Printer.print(NEW_LINE);
         Printer.printLine(InputMessage.BRIDGE_SIZE);
         bridgeSize = Reader.readNumber();
         return InputValidator.validateBridgeSize(bridgeSize);
@@ -25,6 +28,7 @@ public class InputView {
     public String readMoving() {
         String moving;
 
+        Printer.print(NEW_LINE);
         Printer.printLine(InputMessage.MOVING);
         moving = Reader.readString();
         return InputValidator.validateMoving(moving);
