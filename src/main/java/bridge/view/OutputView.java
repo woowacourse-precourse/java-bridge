@@ -4,7 +4,9 @@ import static bridge.constants.OutputConstants.END;
 import static bridge.constants.OutputConstants.Fail;
 import static bridge.constants.OutputConstants.MIDDLE;
 import static bridge.constants.OutputConstants.RESULT_MESSAGE;
+import static bridge.constants.OutputConstants.SET_SIZE_BRIDGE_MESSAGE;
 import static bridge.constants.OutputConstants.START;
+import static bridge.constants.OutputConstants.START_MESSAGE;
 import static bridge.constants.OutputConstants.SUCCEES;
 import static bridge.constants.OutputConstants.TOTAL_TRY;
 
@@ -62,5 +64,9 @@ public class OutputView {
                 System.out.println(Fail.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
             }
         }
+    }
+    public void startMessage() {
+        START_MESSAGE.printMessage();
+        SET_SIZE_BRIDGE_MESSAGE.printMessage();
     }
 }
