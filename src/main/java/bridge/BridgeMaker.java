@@ -24,8 +24,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int space = bridgeNumberGenerator.generate();
-            bridge.add(Direction.matchDirection(space));
+            int number = bridgeNumberGenerator.generate();
+            bridge.add(Direction.matchDirection(number));
         }
         return bridge;
     }
