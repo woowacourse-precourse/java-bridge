@@ -1,11 +1,19 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private List<String> bridge = new ArrayList<>();
+    InputView inputView = new InputView();
+
     public BridgeGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge= bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
     /**
