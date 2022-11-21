@@ -48,19 +48,19 @@ public class BridgeGame {
         user.clearUserMoving();
     }
 
-    public boolean gameClear() {
-        if (!roundClear()) {
-            return false;
-        }
-        if (user.getUserMovings().size() != bridge.getAnswerBridge().size()) {
+    public boolean roundClear() {
+        int userLastMove = user.getUserMovings().size() - 1;
+        if (!user.getUserMovings().get(userLastMove).equals(bridge.getAnswerBridge().get(userLastMove))) {
             return false;
         }
         return true;
     }
 
-    public boolean roundClear() {
-        int userLastMove = user.getUserMovings().size() - 1;
-        if (!user.getUserMovings().get(userLastMove).equals(bridge.getAnswerBridge().get(userLastMove))) {
+    public boolean gameClear() {
+        if (!roundClear()) {
+            return false;
+        }
+        if (user.getUserMovings().size() != bridge.getAnswerBridge().size()) {
             return false;
         }
         return true;
