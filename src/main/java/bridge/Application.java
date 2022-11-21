@@ -3,7 +3,6 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -33,8 +32,7 @@ public class Application {
             /*
             int tryCount = 1;
             String result = "실패";
-            // 게임
-            while(state == GameState.START || state == GameState.CORRECT || state == GameState.RESTART) {
+            while(state != GameState.QUIT) {
                 if(state == GameState.RESTART) {
                     tryCount++;
                 }
@@ -49,17 +47,15 @@ public class Application {
                     state = GameState.QUIT;
                     result = "성공";
                 }
-
-                if(state == GameState.QUIT) {
-                    System.out.println("게임 성공 여부: " + result);
-                    System.out.println("총 시도한 횟수: " + tryCount);
-                }
             }
+
+             */
+
+//            output.printResult(result, tryCount);
         } catch (IllegalArgumentException e) {
             System.out.printf("[ERROR] %s", e.getMessage());
         }
 
-        // TODO: 프로그램 구현
     }
 
     private static void goToNextSpace(Route route) {
@@ -83,9 +79,9 @@ public class Application {
         output.printChoseRetryInputRequestMessage();
         String gameCommand = input.readGameCommand();
         boolean restart = game.retry(gameCommand);
-        if(restart) {
+        if (restart) {
             state = GameState.RESTART;
-            spaceNum = 0;
+//            spaceNum = 0;
             return;
         }
         state = GameState.QUIT;
