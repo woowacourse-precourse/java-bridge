@@ -2,35 +2,32 @@ package model;
 
 import java.util.Arrays;
 
+import static constant.Config.ERROR;
+
 public enum CommandType {
-    RETRY(true, "R"),
-    QUIT(false, "Q");
+    R(true),
+    Q(false);
 
+    private static final String VALUE_ERROR = ERROR + String.format("%s 또는 %s가 아닙니다.", R, Q);
     private final boolean run;
-    private final String mark;
 
-    CommandType(boolean run, String mark) {
+    CommandType(boolean run) {
         this.run = run;
-        this.mark = mark;
     }
 
     public boolean isRun() {
         return run;
     }
 
-    public String getMark() {
-        return mark;
+    public static Boolean isRetry(String command) {
+        return Arrays.stream(values())
+                .filter(type -> type.equals(valueOf(command)))
+                .findAny()
+                .map(CommandType::isRun)
+                .orElseThrow(() -> new IllegalArgumentException(VALUE_ERROR));
     }
 
     public boolean isEqualsMark(String mark) {
-        return this.mark.equals(mark);
-    }
-
-    public static Boolean isRetry(String command) {
-        return Arrays.stream(values())
-                .filter(type -> type.mark.equals(command))
-                .findAny()
-                .map(CommandType::isRun)
-                .orElse(null);
+        return this.equals(valueOf(mark));
     }
 }
