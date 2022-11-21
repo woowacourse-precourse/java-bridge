@@ -32,8 +32,15 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String input = Console.readLine();
-        return input;
+        while (true) {
+            String input = Console.readLine();
+            try {
+                inputValidator.checkMoving(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
