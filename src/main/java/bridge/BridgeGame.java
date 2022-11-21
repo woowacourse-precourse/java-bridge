@@ -7,6 +7,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String CAN_PASS = "O";
+    private static final String CANNOT_PASS = "X";
+    private static final String QUIT = "Q";
     private final List<String> bridge;
     private List<Choice> inputs;
     private int index;
@@ -49,8 +52,8 @@ public class BridgeGame {
     }
 
     private void addResult(String userInput, boolean result){
-        String isRight = "X";
-        if (result) isRight = "O";
+        String isRight = CANNOT_PASS;
+        if (result) isRight = CAN_PASS;
 
         inputs.add(new Choice(userInput, isRight));
     }
@@ -64,7 +67,7 @@ public class BridgeGame {
     }
 
     private boolean checkRestart(String userInput){
-        if (userInput.equals("Q")){
+        if (userInput.equals(QUIT)){
             return false;
         }
         return true;
