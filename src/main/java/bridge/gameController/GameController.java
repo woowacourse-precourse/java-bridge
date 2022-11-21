@@ -7,9 +7,9 @@ import java.util.List;
 
 public class GameController {
 
-    private InputView inputView = new InputView();
+    private final InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     private List<String> builtBridge;
 
@@ -30,12 +30,12 @@ public class GameController {
 //        outputView.printResult();
     }
 
-    public void makeBridge() {
+    private void makeBridge() {
         outputView.startMessage();
         builtBridge = bridgeGame.makeBridge(inputView.readBridgeSize());
     }
 
-    public boolean moveBridge() {
+    private boolean moveBridge() {
         boolean moveCheck = true;
         while (moveCheck) {
             String userMove = moveChoice();
@@ -50,14 +50,14 @@ public class GameController {
         return false;
     }
 
-    public String moveChoice() {
+    private String moveChoice() {
         outputView.choiceUpDown();
         String userMove = inputView.readMoving();
         System.out.println(userMove);
         return userMove;
     }
 
-    public boolean retryCheck() {
+    private boolean retryCheck() {
 
         outputView.restartMessage();
         String command = inputView.readGameCommand();
@@ -70,7 +70,7 @@ public class GameController {
         return false;
     }
 
-    public void retryMessage() {
+    private void retryMessage() {
         outputView.restartMessage();
         String command = inputView.readGameCommand();
     }
