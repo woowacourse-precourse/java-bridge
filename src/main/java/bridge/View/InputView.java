@@ -1,6 +1,7 @@
 package bridge.View;
 
 import bridge.Controller.BridgeSizeValidator;
+import bridge.Controller.GameCommandValidator;
 import bridge.Controller.MovingCommandValidator;
 import bridge.Controller.Validator;
 import camp.nextstep.edu.missionutils.Console;
@@ -12,6 +13,7 @@ public class InputView {
 
     private static final String GET_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String GET_MOVING_COMMAND = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GET_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private Validator validator;
 
@@ -49,6 +51,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(GET_GAME_COMMAND);
+        String input = Console.readLine();
+        validator = new GameCommandValidator();
+        try{
+            validator.validate(input);
+        }catch(IllegalArgumentException e){
+            readGameCommand();
+        }
+        return input;
     }
 }
