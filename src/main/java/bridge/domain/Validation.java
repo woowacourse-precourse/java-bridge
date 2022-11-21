@@ -4,11 +4,15 @@ import java.util.regex.Pattern;
 
 import static bridge.domain.ValidationString.*;
 
+import static bridge.domain.BridgePair.DOWN;
+import static bridge.domain.BridgePair.UP;
+
 public class Validation {
-    private static int MAX_NUMBER = 20;
-    private static int MIN_NUMBER = 3;
-    private static String BLANK_TO_MOVE_RANGE = "[U|D]";
-    private static String RETRY_OR_END_RANGE = "[R|Q]";
+    private static final int MAX_NUMBER = 20;
+    private static final int MIN_NUMBER = 3;
+    //private static String BLANK_TO_MOVE_RANGE = "[U|D]";
+    private static final String BLANK_TO_MOVE_RANGE = "["+UP.getValue()+"|"+DOWN.getValue()+"]";
+    private static final String RETRY_OR_END_RANGE = "[R|Q]";
 
     public static void validateRange(int number){
         if (number < MIN_NUMBER || number > MAX_NUMBER){
