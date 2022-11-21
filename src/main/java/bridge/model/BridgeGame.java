@@ -35,7 +35,7 @@ public class BridgeGame {
         }
 
 
-        System.out.println("equalsCheck:" + equalsCheck);
+        //System.out.println("equalsCheck:" + equalsCheck);
         return equalsCheck;
     }
 
@@ -125,7 +125,7 @@ public class BridgeGame {
     public static void gameResult(ArrayList<String> resultFinal, int bridgeLen, ArrayList<String> bridges, int startCount){
         int successCount = Integer.parseInt(resultFinal.get(0));
 
-        System.out.println("successCount: " + successCount + ", bridgeLen:" + bridgeLen);
+        //System.out.println("successCount: " + successCount + ", bridgeLen:" + bridgeLen);
         if(successCount == bridgeLen){
             //gameResultFinal(resultFinal, startCount);
             printResult(resultFinal, startCount, 0);
@@ -157,10 +157,9 @@ public class BridgeGame {
         successCount = 0;
         ArrayList<String> resultFinal = new ArrayList<>();
         resultFinal.clear();
-        System.out.println("여긴가?");
 
-        System.out.println("equalsCheck: " + equalsCheck);
-        System.out.println("resultFinal: " + resultFinal);
+        //System.out.println("equalsCheck: " + equalsCheck);
+        //System.out.println("resultFinal: " + resultFinal);
         ArrayList<String> inputMove = new ArrayList<>();
 
         for (int count = 0; count < bridgeLen; count++) {
@@ -171,7 +170,7 @@ public class BridgeGame {
             resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
         }
 
-        System.out.println("resultFinal: " + resultFinal);
+        //System.out.println("resultFinal: " + resultFinal);
 
         gameResult(resultFinal, bridgeLen, bridges, startCount);
         int count = bridgeLen;

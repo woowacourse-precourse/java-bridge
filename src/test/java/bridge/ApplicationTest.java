@@ -104,4 +104,31 @@ class ApplicationTest extends NsTest {
             return numbers.remove(0);
         }
     }
+
+    @Test
+    void 다리_이동_결과_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D");
+            assertThat(output()).contains(
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                    "U",
+                    "[ O ]",
+                    "[   ]",
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                    "D",
+                    "[ O |   ]",
+                    "[   | O ]",
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                    "D",
+                    "[ O |   |   ]",
+                    "[   | O | O ]",
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
+            );
+
+        }, 1, 0, 1);
+    }
 }

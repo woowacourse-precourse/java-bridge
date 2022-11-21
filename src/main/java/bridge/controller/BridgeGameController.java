@@ -17,7 +17,6 @@ public class BridgeGameController {
         int startCount = 1;
         int check = 0;
         int bridgeLen = 0;
-        int c = 0;
 
         bridgeLen = readBridgeSize();
 
@@ -29,7 +28,7 @@ public class BridgeGameController {
             moveCheck(move);
             inputMove.add(move);
             resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
-            System.out.println("result: " +resultFinal);
+            //System.out.println("result: " +resultFinal);
 
 
             if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen+1){

@@ -41,14 +41,14 @@ public class InputView {
      */
     public static String readMoving() {
         String move = "";
-        System.out.println("이동할 칸을 선택해주세요.");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         try{
             move = readLine();
         }catch (IllegalArgumentException e){
             //System.out.println("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
         }
-        System.out.println("move:" + move);
+        System.out.println(move);
         return move;
     }
 
@@ -69,7 +69,7 @@ public class InputView {
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 게임을 다시 시도시 R, 종료시 Q여야 합니다.");
         }
-        System.out.println("replay:" + replay);
+        //System.out.println("replay:" + replay);
         return replay;
 
     }
