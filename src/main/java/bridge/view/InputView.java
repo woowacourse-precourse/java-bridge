@@ -16,8 +16,8 @@ public class InputView {
 
     public int readBridgeSize() {
         System.out.println(READ_BRIDGE_MESSAGE);
-        String bridgeSize = Console.readLine();
 
+        String bridgeSize = Console.readLine();
         BridgeSizeVerifier bridgeSizeVerifier = new BridgeSizeVerifier();
         bridgeSizeVerifier.check(bridgeSize);
         return Integer.parseInt(bridgeSize);
@@ -25,8 +25,8 @@ public class InputView {
 
     public String readMoving() {
         System.out.printf(READ_MOVING_MESSAGE);
-        String moving = Console.readLine();
 
+        String moving = Console.readLine();
         MovingVerifier movingVerifier = new MovingVerifier();
         movingVerifier.check(moving);
         return moving;
@@ -34,8 +34,8 @@ public class InputView {
 
     public String readGameCommand() {
         System.out.printf(READ_GAME_COMMAND_MESSAGE);
-        String gameCommand = Console.readLine();
 
+        String gameCommand = Console.readLine();
         GameCommandVerifier gameCommandVerifier = new GameCommandVerifier();
         gameCommandVerifier.check(gameCommand);
         return gameCommand;
