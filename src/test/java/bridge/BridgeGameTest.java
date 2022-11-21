@@ -20,8 +20,8 @@ class BridgeGameTest {
     @DisplayName("이동할 칸을 건널 수 있으면 O를 반환")
     @ParameterizedTest
     @CsvSource(value = {"U:U:O", "D:D:O"}, delimiter = COLON)
-    void correctMove(String playerMove, String answerMove, String expected) {
-        assertThat(bridgeGame.move(playerMove, answerMove)).isEqualTo(expected);
+    void correctMove(String playerMove, String answerMove, String expectedMatchResult) {
+        assertThat(bridgeGame.move(playerMove, answerMove)).isEqualTo(expectedMatchResult);
     }
 
     @DisplayName("이동할 칸을 건널 수 없으면 X를 반환")

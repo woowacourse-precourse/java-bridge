@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.util.Constants.*;
+import static bridge.util.Constants.COLON;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
