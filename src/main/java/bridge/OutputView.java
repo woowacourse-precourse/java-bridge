@@ -20,7 +20,6 @@ public class OutputView {
         printStartBridge();
         printCrossState(currentUpState);
         printEndBridge();
-
     }
 
     public void printDownState(List<String> currentDownState){

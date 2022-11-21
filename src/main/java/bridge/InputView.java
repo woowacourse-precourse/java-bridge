@@ -81,8 +81,29 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = "";
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        gameCommand = Console.readLine();
+        while(true) {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            gameCommand = Console.readLine();
+            if(gameCommandCheck(gameCommand))
+                break;
+        }
         return gameCommand;
     }
+
+    public boolean gameCommandCheck(String gameCommand){
+        try{
+            gameCommandException(gameCommand);
+            return true;
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] R 과 Q 두 문자중 하나를 입력해 주세요");
+            return false;
+        }
+    }
+
+    public void gameCommandException(String gameCommand){
+        if(!gameCommand.equals("R")||!gameCommand.equals("Q"))
+            throw new IllegalArgumentException();
+    }
+
+
 }
