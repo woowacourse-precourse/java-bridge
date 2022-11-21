@@ -1,8 +1,8 @@
 package bridge.ui;
 
+import bridge.domain.GameCommand;
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.DirectionSelectionValidator;
-import bridge.validator.ReStartValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.ui.ViewConstant.*;
@@ -44,11 +44,10 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public GameCommand readGameCommand() {
         try {
             String restartWhether = getAnswer(INPUT_RESTART_WHETHER);
-            ReStartValidator.validate(restartWhether);
-            return restartWhether;
+            return GameCommand.getByCommandString(restartWhether);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return readGameCommand();

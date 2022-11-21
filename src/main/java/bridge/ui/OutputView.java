@@ -1,7 +1,13 @@
 package bridge.ui;
 
+import bridge.domain.BridgeMap;
+import bridge.domain.BridgeStatus;
 import bridge.domain.Result;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static bridge.domain.BridgeGameConstant.START_INDEX;
 import static bridge.ui.ViewConstant.*;
 
 /**
@@ -14,8 +20,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String map) {
-        System.out.println(map);
+    public void printMap(BridgeMap bridgeMap, int exposureBridgeBlockCount) {
+        System.out.println(createBridgeView(bridgeMap, exposureBridgeBlockCount));
     }
 
     /**
@@ -25,12 +31,29 @@ public class OutputView {
      */
     public void printResult(Result result) {
         System.out.println(GAME_RESULT);
-        System.out.println(result.getBridgeMap());
+        printMap(result.getBridgeMap(), result.getBlockCount());
         System.out.println(GAME_SUCCESS_WHETHER + result.getWinning());
         System.out.println(GAME_COUNT + result.getGameCount());
     }
 
     public void printGameStartMessage() {
         System.out.println(GAME_INIT_MESSAGE);
+    }
+
+    public String createBridgeView(BridgeMap bridgeMap, int exposureBridgeBlockCount) {
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(bridgeMap.bridgeStatuses).forEach(row -> {
+            sb.append(START_BRIDGE_SHAPE);
+            sb.append(buildBridge(row, exposureBridgeBlockCount));
+            sb.append(END_BRIDGE_SHAPE);
+        });
+        return sb.toString();
+    }
+
+    private String buildBridge(BridgeStatus[] row, int exposureBridgeBlockCount) {
+        return Arrays.asList(row).subList(START_INDEX, exposureBridgeBlockCount)
+                .stream()
+                .map(bridgeBlockStatus -> bridgeBlockStatus.buildBridge)
+                .collect(Collectors.joining(JOINING_DELIMITER));
     }
 }
