@@ -11,6 +11,8 @@ import static bridge.Convert.convert;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    
+    private final IllegalArgumentException illegalArgumentException = new IllegalArgumentException();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -27,7 +29,10 @@ public class BridgeMaker {
             String result = convert(temp);
             bridge.add(result);
         }
-        return bridge;
+        if(bridge.size() == size){
+         return bridge;
+        }
+        throw illegalArgumentException;
     }
     
     
