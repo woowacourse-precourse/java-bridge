@@ -22,8 +22,8 @@ public class BridgeMaker {
         List<String> bridgeNo = new ArrayList<>();
         for (int i = 0; i <size; i++) {
             int number = bridgeNumberGenerator.generate();
-            if(number == 0) bridgeNo.add("U");
-            if(number == 1) bridgeNo.add("D");
+            if(number == 1) bridgeNo.add("U");
+            if(number == 0) bridgeNo.add("D");
             System.out.println(bridgeNo);
         }
         return bridgeNo;
