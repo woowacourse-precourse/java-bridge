@@ -45,12 +45,8 @@ public class BridgeGame {
         upperClass.add(" ");
     }
 
-    public String retry() {
-        OutputView outputView = new OutputView();
-        InputView inputView = new InputView();
-
-        outputView.printRetry();
-        return inputView.readGameCommand();
+    public boolean retry(String commend) {
+        return (commend.equals("Q"));
     }
 
     public List<List<String>> getResult() {

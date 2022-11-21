@@ -12,10 +12,16 @@ public class GameController {
         outputView.printStart();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(getBridgeSize());
-        while (!startCrossBridge(bridge) && bridgeGame.retry().equals("Q")) {
+        while (!startCrossBridge(bridge) && isRetry()) {
             attempts++;
         }
         getGameResult(attempts);
+    }
+
+    private boolean isRetry() {
+        InputView inputView = new InputView();
+        outputView.printRetry();
+        return bridgeGame.retry(inputView.readGameCommand());
     }
 
     private int getBridgeSize() {
