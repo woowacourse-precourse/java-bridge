@@ -7,11 +7,10 @@ import bridge.data.way.DownSide;
 import bridge.data.way.UpSide;
 
 public class BridgeGame {
-    public static UpSide upSide = new UpSide();
-    public static DownSide downSide = new DownSide();
-    public static int totalTrial = 1;
+    public UpSide upSide = new UpSide();
+    public DownSide downSide = new DownSide();
 
-    public static void move() {
+    public void move() {
         if (StartGame.isRightWay()) {
             rightWayMove();
             return;
@@ -19,32 +18,32 @@ public class BridgeGame {
         wrongWayMove();
     }
 
-    public static void retry() {
-        upSide = new UpSide();
-        downSide = new DownSide();
+    public void retry() {
+        this.upSide = new UpSide();
+        this.downSide = new DownSide();
         Application.movingTurn = 1;
-        totalTrial++;
+        StartGame.totalTrial++;
     }
 
-    public static void rightWayMove() {
+    public void rightWayMove() {
         if (StartGame.movingInput.equals(OutputConstants.UP)) {
-            upSide.upSideArr.add(OutputConstants.CORRECT);
-            downSide.downSideArr.add(OutputConstants.BLANK);
+            this.upSide.upSideArr.add(OutputConstants.CORRECT);
+            this.downSide.downSideArr.add(OutputConstants.BLANK);
         }
         if (StartGame.movingInput.equals(OutputConstants.DOWN)) {
-            upSide.upSideArr.add(OutputConstants.BLANK);
-            downSide.downSideArr.add(OutputConstants.CORRECT);
+            this.upSide.upSideArr.add(OutputConstants.BLANK);
+            this.downSide.downSideArr.add(OutputConstants.CORRECT);
         }
     }
 
-    public static void wrongWayMove() {
+    public void wrongWayMove() {
         if (StartGame.movingInput.equals(OutputConstants.UP)) {
-            upSide.upSideArr.add(OutputConstants.WRONG);
-            downSide.downSideArr.add(OutputConstants.BLANK);
+            this.upSide.upSideArr.add(OutputConstants.WRONG);
+            this.downSide.downSideArr.add(OutputConstants.BLANK);
         }
         if (StartGame.movingInput.equals(OutputConstants.DOWN)) {
-            upSide.upSideArr.add(OutputConstants.BLANK);
-            downSide.downSideArr.add(OutputConstants.WRONG);
+            this.upSide.upSideArr.add(OutputConstants.BLANK);
+            this.downSide.downSideArr.add(OutputConstants.WRONG);
         }
     }
 }
