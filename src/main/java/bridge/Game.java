@@ -43,7 +43,7 @@ public class Game {
             index += 1;
             if (nowResult.contains("X")) {
                 index = 0;
-                String userRetry = InputView.readGameCommand();
+                String userRetry = checkUserRetry();
                 if (userRetry.equals("Q")) {
                     break;
                 }
@@ -63,6 +63,14 @@ public class Game {
         String input = InputView.readMoving();
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException("입력 방향이 U나 D가 아닙니다.");
+        }
+        return input;
+    }
+
+    private static String checkUserRetry() {
+        String input = InputView.readGameCommand();
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("재시작 여부가 R이나 Q가 아닙니다.");
         }
         return input;
     }
