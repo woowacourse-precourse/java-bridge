@@ -1,5 +1,7 @@
 package bridge.businesslogic;
 
+import bridge.businesslogic.bridgestatus.BridgeCrossingStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
