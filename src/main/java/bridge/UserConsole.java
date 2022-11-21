@@ -15,6 +15,7 @@ public class UserConsole {
         outputView = new OutputView();
         bridgeGame = new BridgeGame(); /// get init userconsole instance
         this.round = 0;
+        this.totalNumber = 1;
     }
 
     public void initGame(){
@@ -26,23 +27,27 @@ public class UserConsole {
         while (round < bridgeGame.getBridgeSize()) {
             boolean result =bridge.getComparison(round,inputView.readMoving());
             round++;
-            bridgeGame.move(result);
+            move(result);
             if(!result) {
-                retry(totalNumber,inputView.readGameCommand());
+                retry(inputView.readGameCommand());
             }
         }
     }
     public void endGame(){
-        System.out.println("최종 게임 결과");
-        System.out.println();
+        outputView.printResult(totalNumber);
     }
-    public void retry(int totalNumber,String userInput){
-        if(bridgeGame.retry(totalNumber,userInput)){
+    public void retry(String userInput){
+        if(bridgeGame.retry(userInput)){
             round = 0 ;
+            totalNumber++;
             startGame();
         }
-        if(!bridgeGame.retry(totalNumber,userInput)){
+        if(!bridgeGame.retry(userInput)){
             endGame();
         }
+    }
+    public void move(boolean result){
+        bridgeGame.move(result);
+        outputView.printMap();
     }
 }
