@@ -13,7 +13,8 @@ public enum SurviveStatus {
         this.surviveStatusValue = value;
     }
 
-    public static SurviveStatus convertValueToStatus(BridgePosition originalPosition, BridgePosition targetPosition) {
+    public static SurviveStatus getSurviveStatusByCompareBridgePosition(
+            BridgePosition originalPosition, BridgePosition targetPosition) {
         if (originalPosition.equals(targetPosition)) {
             return SURVIVE;
         }
