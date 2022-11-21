@@ -38,12 +38,12 @@ public class InputView {
      */
     public String readMoving() {
         String moving = Console.readLine();
-        validateMovingValueLength(moving);
+        validateBridgeMoving(moving);
         return moving;
     }
 
-    private void validateMovingValueLength(String moving) {
-        if (moving.length() > BRIDGE_ARROW_VALUE_LENGTH) {
+    private void validateBridgeMoving(String moving) {
+        if (!moving.equals(UP) && !moving.equals(DOWN)) {
             throw new IllegalArgumentException(ERROR_MOVING_VALUE);
         }
     }

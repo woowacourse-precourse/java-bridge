@@ -7,7 +7,7 @@
   - [X] 입력 값 예외처리(수로 변환될 수 있는 값인지 검증)
   - [X] 다리 길이 유효성 검증 및 예외처리 - InputView#validateBrideSize()
 - [X] 이동할 칸 입력 (위: U, 아래: D) - InputView#readMoving()
-  - [X] 입력 값 예외처리(길이 1의 문자를 입력했는지 검증) - InputView#validateMovingValueLength()
+  - [X] 입력 값 예외처리(U 또는 D를 입력 했는지 검증) - InputView#validateBridgeMoving()
 - [X] 게임 재시도 여부 입력 (재시도: R, 종료: Q) - InputView#readGameCommand()
   - [X] 입력 값 예외처리(길이 1의 문자를 입력했는지 검증) - InputView#validateCommandValueLength()
 ***
@@ -34,7 +34,8 @@
     - [X] 다리 길이 초기화 - BridgeGameManager#initBridgeLength()
     - [X] 다리 길이만큼 아래 작업 반복
       - [X] 다리 건너기 및 현재 다리 출력 - BridgeGameManager#moveProgress()
-        - [X] 방향 키 입력 받기
+        - [ ] 건널 다리 방향 입력 안내 메시지 출력
+        - [X] 방향 키 입력 처리 - BridgeGameManager#readMoving() 
         - [X] 다리 건너기
         - [X] 현재 다리 상태 출력
       - [X] 다리를 건널 수 없는 경우이면서 게임 종료를 원하는 경우 게임 종료 처리 - BridgeGameManager#isQuit()
@@ -50,7 +51,6 @@
   - [X] 생성된 다리에 각 다리 지점 별로 이동할 수 있는 방향 값 배치 - BridgeMaker#addBridgeArrow()
 ***
 - [X] 다리 건너기 - BridgeGame#move()
-  - [X] 다리 방향 입력 값 검증 및 예외처리 - BridgeGame#validateBridgeArrow()
   - [X] 몇 라운드인지 계산
   - [X] 사용자가 입력한 다리 방향에 대해 다리를 건널 수 있는지 여부 확인 - BridgeGame#isCrossable()
     - [X] 게임 성공 여부 값 없데이트 - BridgeGame#updateGameResult()

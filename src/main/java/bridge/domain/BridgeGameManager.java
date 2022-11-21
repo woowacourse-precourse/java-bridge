@@ -40,6 +40,7 @@ public class BridgeGameManager {
         initBrigeSize(bridgeGame);
         while (bridgeSize --> BRIDGE_SIZE_INIT) {
             moveProgress(bridgeGame);
+            outputView.printMap(bridgeState);
             if (!bridgeGame.isWon() && !isRetry(bridgeGame)) {
                 break;
             }
@@ -51,9 +52,18 @@ public class BridgeGameManager {
     }
 
     private void moveProgress(BridgeGame bridgeGame) {
-        outputView.printInputArrow();
-        bridgeGame.move(inputView.readMoving());
-        outputView.printMap(bridgeState);
+        bridgeGame.move(readMoving());
+    }
+
+    private String readMoving() {
+        while (true) {
+            outputView.printInputArrow();
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private boolean isRetry(BridgeGame bridgeGame) {
