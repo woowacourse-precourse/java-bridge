@@ -31,6 +31,10 @@ public class BridgeGame {
         status = StatusType.PLAY;
     }
 
+    public void quit() {
+        status = StatusType.FAIL;
+    }
+
     private void ifFail(String move) {
         if (!answerBridge.get(route.size() - 1).equals(move)) {
             status = StatusType.FAIL;
