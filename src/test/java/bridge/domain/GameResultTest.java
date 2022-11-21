@@ -16,7 +16,7 @@ class GameResultTest {
         bridgeGame = new BridgeGame(new Bridge(List.of("U", "D", "U", "D")));
         bridgeGame.move(0, "U");
         bridgeGame.move(1, "U");
-        bridgeGame.retry();
+        bridgeGame.retry("R");
         bridgeGame.move(0, "U");
         bridgeGame.move(1, "D");
         bridgeGame.move(2, "U");
@@ -48,7 +48,7 @@ class GameResultTest {
     @Test
     void 시도_횟수가_2번인_경우() {
         GameResult gameResult = new GameResult(bridgeGame);
-        bridgeGame.retry();
+        bridgeGame.retry("R");
         Assertions.assertThat(gameResult.totalPlayCount()).isEqualTo(2);
     }
 
