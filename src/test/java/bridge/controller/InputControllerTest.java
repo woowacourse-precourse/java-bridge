@@ -2,7 +2,7 @@ package bridge.controller;
 
 import java.io.*;
 
-import static org.assertj.core.api.Assertions.assertThat;L
+import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Movement;
 import org.junit.jupiter.api.Test;
