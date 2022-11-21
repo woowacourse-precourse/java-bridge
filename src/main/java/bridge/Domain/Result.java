@@ -1,5 +1,6 @@
 package bridge.Domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Result {
@@ -16,11 +17,11 @@ public class Result {
     }
 
     public List<String> getUpperSpaces() {
-        return upperBridge.getSpaces();
+        return Collections.unmodifiableList(upperBridge.getSpaces());
     }
 
     public List<String> getLowerSpaces() {
-        return lowerBridge.getSpaces();
+        return Collections.unmodifiableList(lowerBridge.getSpaces());
     }
 
     public void saveMove(String upperMove, String lowerMove) {
