@@ -1,14 +1,20 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final InputView inputView = new InputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private List<String> bridge = new ArrayList<>();
 
     public void init() {
         OutputView.startGameMessage();
         int size = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(size);
     }
 
     /**
