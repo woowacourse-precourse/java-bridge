@@ -36,6 +36,9 @@
 * [ ] refactor : 함수 이름 변경 BridgeGame - getResult()
 * [ ] refactor : 주석 제거
 * [ ] java 컨벤션 지키기
+* [ ] BridgeMaker - makeBridge : 10줄 이하로 리팩토링하기
+* [ ] BridgeGame - retry : controller에서 in&output 관리. retry 함수 자체에서는 boolean 반 
+* [ ] InputView - validateSize : 리팩토링 필요
 
 ## 🔍 진행 방식
 
