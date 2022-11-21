@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.User;
+import bridge.utils.UserInputException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -15,19 +16,28 @@ public class InputView {
         OutputView.printGameStart();
         OutputView.printInputSize();
         String userInput = Console.readLine();
-        //예외처리
+        try {
+            UserInputException.checkUserInputBridgeSize(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
         User.setBridgeSize(userInput);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
+    public static void readMoving() {
         OutputView.printSelectMessage();
         String userInput = Console.readLine();
-        //예외처리
+        try {
+            UserInputException.isCorrectMovingCommand(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readMoving();
+        }
         User.recordUserMoving(userInput);
-        return userInput;
     }
 
     /**
@@ -36,7 +46,12 @@ public class InputView {
     public static String readGameCommand() {
         OutputView.printRestartMessage();
         String userInput = Console.readLine();
-        //예외처리
+        try {
+            UserInputException.isCorrectGameCommand(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readGameCommand();
+        }
         return userInput;
     }
 }
