@@ -6,10 +6,6 @@ import java.util.List;
 import static bridge.domain.BridgeMaker.*;
 
 public class BridgeGame {
-    public static final String CROSSABLE = "O";
-    public static final String UNCROSSABLE = "X";
-    public static final String NONE = " ";
-
     private final Bridge bridge;
     private List<String> top;
     private List<String> bottom;
@@ -22,12 +18,12 @@ public class BridgeGame {
         this.playCount = 1;
     }
 
-    public boolean move(int idx, String input) {
-        if (bridge.isMatch(idx, input)) {
-            pass(input);
+    public boolean move(int idx, Direction direction) {
+        if (bridge.isMatch(idx, direction)) {
+            pass(direction);
             return true;
         }
-        fail(input);
+        fail(direction);
         return false;
     }
 
