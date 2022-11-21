@@ -31,13 +31,25 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("U or D 입력: ");
+        String direction = readLine();
+        if(direction.length() != 1) throw new IllegalArgumentException();
+        char dir = direction.charAt(0);
+        if(dir != 'U' && dir != 'D') throw new IllegalArgumentException();
+
+        return direction;
+
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("Restart? ");
+        String action = readLine();
+        if(action.length() != 1) throw new IllegalArgumentException();
+        if(action.charAt(0) != 'R' && action.charAt(0) != 'Q') throw new IllegalArgumentException();
+
+        return action;
     }
 }
