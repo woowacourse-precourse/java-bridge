@@ -38,4 +38,8 @@ public class Bridge {
     public List<String> getBridge() {
         return bridge;
     }
+
+    public String getBridgeValue(int index){
+        return bridge.get(index);
+    }
 }
