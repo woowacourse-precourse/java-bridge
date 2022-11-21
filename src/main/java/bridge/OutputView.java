@@ -10,7 +10,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(BridgeMap bridgeMap) {
+        System.out.println(bridgeMap.getUpperBridgeToString());
+        System.out.println(bridgeMap.getLowerBridgeToString());
     }
 
     /**
@@ -29,7 +31,7 @@ public class OutputView {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
-    public void printAskingMoving() {
+    public void printAskingMovingSide() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 

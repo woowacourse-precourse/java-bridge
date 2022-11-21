@@ -21,11 +21,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        BridgeNumberGenerator bridgeNumberGenerator= new BridgeRandomNumberGenerator();
 
-        for(int loopCount = 0; size > loopCount; loopCount++) {
-            BridgeStairsType bridgeStairs = BridgeStairsType.getFindByNumber(bridgeNumberGenerator.generate());
-            bridge.add(bridgeStairs.getStairs());
+        for(int loopCount = 0; loopCount < size; loopCount++) {
+            BridgeSideType bridgeStairs = BridgeSideType.getFindByNumber(bridgeNumberGenerator.generate());
+            bridge.add(bridgeStairs.getSide());
         }
         return bridge;
     }
