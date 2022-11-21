@@ -49,8 +49,8 @@ public class OutputView {
 
     // ox와 빈칸을 저장하는 기능
     private void addOX(String addUp, String addDown) {
-            upList.add(addUp);
-            downList.add(addDown);
+        upList.add(addUp);
+        downList.add(addDown);
     }
 
     // 유저 List와 정답 List를 비교하여 OX를 저장하는 기능
