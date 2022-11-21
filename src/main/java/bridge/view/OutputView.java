@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.MoveResult;
+import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -13,35 +14,51 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap() {
-        System.out.println(createUpMap());
-        System.out.println(createDownMap());
+    public static void printMap(List<MoveResult> moveResult) {
+        printUpMap(moveResult);
+        printDownMap(moveResult);
     }
 
-    private static StringJoiner createUpMap(){
-        StringJoiner stringjoiner = new StringJoiner("|", "[", "]");
-        for (String history : MoveResult.history) {
-            if (history == "U"){
-                stringjoiner.add("O");
-            }
+    public static void printUpMap(List<MoveResult> moveResult){
+        StringJoiner upResult = new StringJoiner(" | ", "[ ", " ]");
+
+        for(int i = 0; i<moveResult.size(); i++){
+            upResult.add(createUpMap(moveResult.get(i)));
         }
-        if (MoveResult.step == "U"){
-            stringjoiner.add("X");
-        }
-        return stringjoiner;
+
+        String upMap = upResult.toString();
+        System.out.println(upMap);
     }
 
-    private static StringJoiner createDownMap(){
-        StringJoiner stringjoiner = new StringJoiner("|", "[", "]");
-        for (String history : MoveResult.history) {
-            if (history == "D"){
-                stringjoiner.add("O");
-            }
+    public static void printDownMap(List<MoveResult> moveResult){
+        StringJoiner downResult = new StringJoiner(" | ", "[ ", " ]");
+
+        for(int i = 0; i<moveResult.size(); i++){
+            downResult.add(createDownMap(moveResult.get(i)));
         }
-        if (MoveResult.step == "D"){
-            stringjoiner.add("X");
+
+        String downMap = downResult.toString();
+        System.out.println(downMap);
+    }
+
+    private static String createUpMap(MoveResult moveResult){
+        if(moveResult.isUpMove() && moveResult.isSuccessMove()){
+            return "O";
         }
-        return stringjoiner;
+        if(moveResult.isUpMove() && !moveResult.isSuccessMove()){
+            return "X";
+        }
+        return " ";
+    }
+
+    private static String createDownMap(MoveResult bridgeResult){
+        if(!bridgeResult.isUpMove() && bridgeResult.isSuccessMove()){
+            return "O";
+        }
+        if(!bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()){
+            return "X";
+        }
+        return " ";
     }
 
     /**
