@@ -1,7 +1,10 @@
 package bridge.views;
 
+import bridge.exceptions.CustomIllegalArgumentException;
 import bridge.exceptions.CustomIllegalStateException;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.regex.Pattern;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -9,6 +12,9 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView extends DefaultView {
 
     private static final String MSG_REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String MSG_REQUEST_MOVING_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
+    private static final String FORMAT_ONLY_ALPHABET = "^[a-zA-Z]*$";
 
 
     /**
@@ -35,7 +41,17 @@ public class InputView extends DefaultView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(MSG_REQUEST_MOVING_DIRECTION);
+        String input = Console.readLine();
+        validateMovingDirection(input);
+        return input;
+    }
+
+    private void validateMovingDirection(String input){
+        if(!Pattern.matches(FORMAT_ONLY_ALPHABET, input))
+            throw new CustomIllegalArgumentException(
+                    "알파벳만 입력해야 합니다."
+            );
     }
 
     /**
