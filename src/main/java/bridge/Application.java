@@ -51,6 +51,7 @@ public class Application {
         String retry = input.readGameCommand();
         if (bridgeGame.retry(retry)) {
             trying += 1;
+            position = 0;
             return;
         }
         stopGame(position, false);
