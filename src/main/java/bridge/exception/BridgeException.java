@@ -33,6 +33,12 @@ public class BridgeException {
         }
     }
 
+    public void checkBridgeMoveInputAlphabet(String movement) {
+        if(!movement.equals("U") && !movement.equals("D")) {
+            throw new IllegalArgumentException("U, D 중에 하나를 입력해주세요. ");
+        }
+    }
+
 
 
 
