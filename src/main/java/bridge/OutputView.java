@@ -14,9 +14,19 @@ public class OutputView {
 
     private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
 
+    private static final OutputView outputView = new OutputView();
+
+    private OutputView() {
+    }
+
+    public static OutputView getInstance() {
+        return outputView;
+    }
+
     public void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
     }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

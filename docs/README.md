@@ -85,7 +85,8 @@
 
 
 - [x] InputView 싱글턴 구현
-- [ ] OutputView 싱글턴 구현
+- [x] OutputView 싱글턴 구현
+- [ ] BridgeGameController 클래스의 inputView, outputView 선언 방식 변경
 
 - [x] InputValidatorTest 리팩토링
 
