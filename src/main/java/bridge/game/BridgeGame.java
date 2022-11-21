@@ -15,21 +15,28 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
     private int trial;
 
     public BridgeGame() {
-        outputView.printStart();
+        start();
+
         int bridgeSize = inputView.readBridgeSize();
         bridge = generateBridge(bridgeSize);
         trial = 0;
     }
 
+    @Override
+    public void start() {
+        outputView.printStart();
+    }
+
     private Bridge generateBridge(int bridgeSize) {
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge;
+
+        bridge = bridgeMaker.makeBridge(bridgeSize);
         return Bridge.generate(bridge);
     }
 
     @Override
     public void play() {
         increaseTrial();
-
         while (!bridge.isEnd()) {
             move();
         }
