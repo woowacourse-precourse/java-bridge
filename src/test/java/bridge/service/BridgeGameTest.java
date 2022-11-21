@@ -17,37 +17,27 @@ import static org.assertj.core.api.Assertions.*;
 
 class BridgeGameTest {
 
-    @DisplayName("게임을 진행하며 건널 수 있는 다리인 경우 true를 반환한다.")
-    @Test
-    void createSuccessMoveInBridgeGame() {
-        // given
-        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "D", "U")), new User());
-        boolean expectedFlag = true;
-
-        // when
-        List<String> movings = List.of("U", "D", "U");
-
-        // then
-        movings.forEach(moving -> assertThat(bridgeGame.move(moving)).isEqualTo(expectedFlag));
-    }
-
-    @DisplayName("게임을 진행하며 건널 수 있는 다리인 경우 false를 반환한다.")
-    @Test
-    void createFailMoveInBridgeGame() {
+    @DisplayName("게임을 진행하며 건널 수 있는 다리인 경우 true, 없으면 false를 반환한다.")
+    @ParameterizedTest
+    @MethodSource("generateMovingData")
+    void createFailMoveInBridgeGame(String moving, boolean passedFlag) {
         // given
         BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
-        boolean expectedFlag = false;
 
-        // when
-        List<String> movings = List.of("D", "D", "D");
+        // when, then
+        assertThat(bridgeGame.move(moving)).isEqualTo(passedFlag);
+    }
 
-        //then
-        movings.forEach(moving -> assertThat(bridgeGame.move(moving)).isEqualTo(expectedFlag));
+    static Stream<Arguments> generateMovingData() {
+        return Stream.of(
+                Arguments.of("U", true),
+                Arguments.of("D", false)
+        );
     }
 
     @DisplayName("게임을 진행하며 다리를 건너는 경우, 다리 상태가 업데이트 된다.")
     @ParameterizedTest
-    @MethodSource("generateData")
+    @MethodSource("generateMovingAndResultData")
     void createBridgeStateInBridgeGame(String moving, String upperResult, String lowerResult) {
         // given
         BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
@@ -60,7 +50,7 @@ class BridgeGameTest {
         assertThat(bridgeGame.getBridgeState().getLowerBridge().get(0)).isEqualTo(lowerResult);
     }
 
-    static Stream<Arguments> generateData() {
+    static Stream<Arguments> generateMovingAndResultData() {
         return Stream.of(
                 Arguments.of("U", "O", " "),
                 Arguments.of("D", " ", "X")
@@ -84,33 +74,24 @@ class BridgeGameTest {
         assertThat(bridgeGame.getBridgeState().getUpperBridge().size()).isEqualTo(0);
     }
 
-    @DisplayName("다리를 통과한 경우, 게임 종료 조건이 충족된다.")
-    @Test
-    void getGameEndSuccessCondition() {
+    @DisplayName("다리를 통과한 경우 게임 종료 조건이 충족되고, 통과하지 못한경우 종료 조건을 만족하지 않는다.")
+    @ParameterizedTest
+    @MethodSource("generateBridgeAndMovingData")
+    void getGameEndSuccessCondition(List<String> bridge, List<String> movings, boolean endFlag) {
         // given
-        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(bridge), new User());
 
         // when
-        bridgeGame.move("U");
-        bridgeGame.move("U");
-        bridgeGame.move("U");
+        movings.stream().forEach(moving -> bridgeGame.move(moving));
 
         // then
-        assertThat(bridgeGame.canContinue()).isEqualTo(false);
+        assertThat(bridgeGame.canContinue()).isEqualTo(endFlag);
     }
 
-    @DisplayName("다리를 통과하지 못한경우, 게임 종료 조건을 만족하지 않는다.")
-    @Test
-    void getGameEndFailCondition() {
-        // given
-        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
-
-        // when
-        bridgeGame.move("U");
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-
-        // then
-        assertThat(bridgeGame.canContinue()).isEqualTo(true);
+    static Stream<Arguments> generateBridgeAndMovingData() {
+        return Stream.of(
+                Arguments.of(List.of("U", "U", "U"), List.of("U", "U", "U"), false),
+                Arguments.of(List.of("U", "U", "U"), List.of("U", "U", "D"), true)
+        );
     }
 }
