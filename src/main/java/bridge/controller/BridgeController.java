@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.service.BridgeGame;
 import bridge.service.BridgeMaker;
 import bridge.service.BridgeRandomNumberGenerator;
+
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
-    private BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
 
     private Integer bridgeSize;
