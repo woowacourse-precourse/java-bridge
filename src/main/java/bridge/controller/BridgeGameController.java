@@ -28,8 +28,15 @@ public class BridgeGameController {
     private void operate() {
         do {
             boolean correct = playGame();
-            insertReGameCommand();
+            retryGame(correct);
         } while (true);
+    }
+
+    private void retryGame(boolean correct) {
+        if (!correct) {
+            String command = insertReGameCommand();
+            bridgeGame.retry(command);
+        }
     }
 
     private String insertReGameCommand() {

@@ -49,4 +49,9 @@ public class DrawBridge {
         bottom.setCharAt(bottom.length() - 1, ']');
         return top + "\n" + bottom;
     }
+
+    public void reset() {
+        top.setLength(1);
+        bottom.setLength(1);
+    }
 }
