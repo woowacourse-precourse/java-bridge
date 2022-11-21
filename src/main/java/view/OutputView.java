@@ -22,21 +22,42 @@ public class OutputView {
     public static void printMap(BridgeGame bridgeGame) {
         List<String> movingPosition = bridgeGame.getMovingPositions();
         List<String> result = bridgeGame.getResult();
-        printPositionBridge(movingPosition, result, MoveCommand.UP.getCommand());
-        printPositionBridge(movingPosition, result, MoveCommand.DOWN.getCommand());
+        printTopPositionBridge(movingPosition, result);
+        printLowPositionBridge(movingPosition, result);
         System.out.println();
     }
 
-    private static void printPositionBridge(List<String> movingPosition, List<String> result, String POSITION) {
+    private static void printTopPositionBridge(List<String> movingPosition, List<String> result) {
         for(int i = 0; i< result.size(); i++){
             printFrame(result, i);
-            if(Objects.equals(movingPosition.get(i), POSITION)){
-                System.out.print(" " + result.get(i) + " ");
-            }
-            if(!Objects.equals(movingPosition.get(i), POSITION)){
-                System.out.print(" " + " " + " ");
-            }
+            printTopOX(movingPosition, result, i);
             printSeparator(result, i);
+        }
+    }
+
+    private static void printTopOX(List<String> movingPosition, List<String> result, int i) {
+        if(Objects.equals(movingPosition.get(i), MoveCommand.UP.getCommand())){
+            System.out.print(" " + result.get(i) + " ");
+        }
+        if(!Objects.equals(movingPosition.get(i), MoveCommand.UP.getCommand())){
+            System.out.print(" " + " " + " ");
+        }
+    }
+
+    private static void printLowPositionBridge(List<String> movingPosition, List<String> result) {
+        for(int i = 0; i< result.size(); i++){
+            printFrame(result, i);
+            printLowOX(movingPosition, result, i);
+            printSeparator(result, i);
+        }
+    }
+
+    private static void printLowOX(List<String> movingPosition, List<String> result, int i) {
+        if(Objects.equals(movingPosition.get(i), MoveCommand.DOWN.getCommand())){
+            System.out.print(" " + result.get(i) + " ");
+        }
+        if(!Objects.equals(movingPosition.get(i), MoveCommand.DOWN.getCommand())){
+            System.out.print(" " + " " + " ");
         }
     }
 
