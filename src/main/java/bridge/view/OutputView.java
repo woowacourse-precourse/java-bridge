@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.BridgeGameCount;
 import bridge.domain.BridgeGameResult;
 
 import java.util.List;
@@ -27,11 +28,12 @@ public class OutputView {
     public void printMap(BridgeGameResult bridgeGameResult) {
         System.out.println(printBridgeByShape(bridgeGameResult, BRIDGE_UP_SIDE_SHAPE));
         System.out.println(printBridgeByShape(bridgeGameResult, BRIDGE_DOWN_SIDE_SHAPE));
+        printNewLine();
     }
 
     private String printBridgeByShape(BridgeGameResult bridgeGameResult, String shape) {
         List<String> bridge = bridgeGameResult.getBridgeByShape(shape);
-        String bridgeElements = String.join(" " + BRIDGE_SPACE_DIVISION + " ", bridge);
+        String bridgeElements = String.join(BRIDGE_SPACE_DIVISION, bridge);
         return BRIDGE_START +  bridgeElements + BRIDGE_END;
     }
 
@@ -40,11 +42,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGameResult bridgeGameResult) {
+    public void printResult(BridgeGameResult bridgeGameResult, BridgeGameCount bridgeGameCount) {
         System.out.println(GAME_RESULT);
         printMap(bridgeGameResult);
-        System.out.println(bridgeGameResult.isSuccess());
-        System.out.println(GAME_COUNT + bridgeGameResult.getCount());
+        System.out.println(GAME_SUCCESS_OR_FAIL + isSuccess(bridgeGameResult));
+        System.out.println(GAME_COUNT + bridgeGameCount.getCount());
+    }
+
+    private String isSuccess(BridgeGameResult bridgeGameResult) {
+        if (bridgeGameResult.isSuccess()) {
+            return "성공";
+        }
+        return "실패";
     }
 
     public void printNewLine() {
