@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.viewer.InputView;
+
 import java.util.List;
 
 public class Bridge {
@@ -17,6 +19,11 @@ public class Bridge {
 
     public static Bridge of(List<String> generatedBridge) {
         return new Bridge(generatedBridge);
+    }
+
+    public static Bridge makeBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return of(bridgeMaker.makeBridge(InputView.readBridgeSize()));
     }
 
     public GameResult play(PositionTable userTable) {
