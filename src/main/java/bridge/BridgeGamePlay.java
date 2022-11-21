@@ -18,14 +18,25 @@ public class BridgeGamePlay {
         outputView.printResult();
     }
 
+//    private void playLoop(Bridge bridge, BridgeGame bridgeGame, OutputView outputView) {
+//        while (!bridge.getGameResult()) {
+//            if (!moveAndPrint(bridgeGame, outputView)) {
+//                break ;
+//            }
+//        }
+//        if (!bridge.getGameResult() && bridgeGame.retry(inputView.readGameCommand())) {
+//            playLoop(bridge, bridgeGame, outputView);
+//        }
+//    }
+
     private void playLoop(Bridge bridge, BridgeGame bridgeGame, OutputView outputView) {
         while (!bridge.getGameResult()) {
-            if (!moveAndPrint(bridgeGame, outputView)) {
-                break ;
+            if (moveAndPrint(bridgeGame, outputView)) {
+                continue;
             }
-        }
-        if (!bridge.getGameResult() && bridgeGame.retry(inputView.readGameCommand())) {
-            playLoop(bridge, bridgeGame, outputView);
+            if (!bridgeGame.retry(inputView.readGameCommand())) {
+                break;
+            }
         }
     }
 
