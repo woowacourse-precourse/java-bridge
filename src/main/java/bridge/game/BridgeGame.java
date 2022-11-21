@@ -31,18 +31,21 @@ public class BridgeGame {
      */
     public boolean move() {
         MOVE = function.moveValidation();
-        if (!goMove()) {
-            printBridgeStatus();
-            return false;
-        }
-        return true;
-    }
-
-    private boolean goMove() {
         crossingSuccess();
         boolean b = crossingFailure();
-        plusCurrentLocation();
+        if (checkFinish()) {
+            return false;
+        }
         return b;
+    }
+
+    private boolean checkFinish() {
+        status.checkGameOver(bridge.size());
+        if (status.getClear()) {
+            gameOver();
+            return true;
+        }
+        return false;
     }
 
     private void crossingSuccess() { // 다리 건너기 성공
@@ -56,6 +59,7 @@ public class BridgeGame {
             drawingBridge("X");
             return confirmRetry();
         }
+        plusCurrentLocation();
         return true;
     }
 
@@ -65,8 +69,7 @@ public class BridgeGame {
             retry();
             return true;
         }
-
-        finish();
+        gameOver();
         return false;
     }
 
@@ -76,7 +79,7 @@ public class BridgeGame {
     }
 
 
-    private void finish() {
+    private void gameOver() {
         status.checkGameOver(bridge.size());
         status.printGameOver();
 
