@@ -42,7 +42,7 @@ public class InputView {
     }
 
     private String validateDirectionType(String direction) {
-        if (!direction.equals(LOWER_BRIDGE) && !direction.equals(UPPER_BRIDGE)) {
+        if (!direction.equals(Bridge.LOWER_BRIDGE.getDirection()) && !direction.equals(Bridge.UPPER_BRIDGE.getDirection())) {
             throw new RuntimeException(INPUT_TYPE_IS_NOT_PROPER);
         }
         return direction;

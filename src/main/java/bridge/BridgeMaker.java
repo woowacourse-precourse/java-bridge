@@ -11,10 +11,6 @@ public class BridgeMaker {
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String BRIDGE_SIZE_IS_OUT_OF_RANGE = "[ERROR] 다리 길이가 범위 밖입니다.";
     private static final String NUMBER_IS_NOT_LOWER_UPPER_NUMBER = "[ERROR] 입력값이 0 또는 1이 아닙니다.";
-    private static final int RANDOM_LOWER_INCLUSIVE = 0;
-    private static final int RANDOM_UPPER_INCLUSIVE = 1;
-    private static final String LOWER_BRIDGE = "D";
-    private static final String UPPER_BRIDGE = "U";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -43,17 +39,17 @@ public class BridgeMaker {
 
     private String drawBridge(int randomNumber) {
         validateNumber(randomNumber);
-        if (randomNumber == RANDOM_LOWER_INCLUSIVE) {
-            return LOWER_BRIDGE;
+        if (randomNumber == Bridge.LOWER_BRIDGE.getNumber()) {
+            return Bridge.LOWER_BRIDGE.getDirection();
         }
-        if (randomNumber == RANDOM_UPPER_INCLUSIVE) {
-            return UPPER_BRIDGE;
+        if (randomNumber == Bridge.UPPER_BRIDGE.getNumber()) {
+            return Bridge.UPPER_BRIDGE.getDirection();
         }
         return null;
     }
 
     private void validateNumber(int randomNumber) {
-        if (randomNumber != RANDOM_LOWER_INCLUSIVE && randomNumber != RANDOM_UPPER_INCLUSIVE) {
+        if (randomNumber != Bridge.LOWER_BRIDGE.getNumber() && randomNumber != Bridge.UPPER_BRIDGE.getNumber()) {
             throw new IllegalArgumentException(NUMBER_IS_NOT_LOWER_UPPER_NUMBER);
         }
     }

@@ -26,13 +26,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String isSuccess, int playCount) {
-        if (isSuccess.equals(SUCCESS)) {
-            System.out.println(IS_GAME_SUCCESS + SUCCESS);
+        if (isSuccess.equals(Result.SUCCESS.name())) {
+            System.out.println(IS_GAME_SUCCESS + Result.SUCCESS.getLabel());
             System.out.println(TOTAL_TRY_COUNT + playCount);
             return;
         }
-        if (isSuccess.equals(FAIL)) {
-            System.out.println(IS_GAME_SUCCESS + FAIL);
+        if (isSuccess.equals(Result.FAIL.name())) {
+            System.out.println(IS_GAME_SUCCESS + Result.FAIL.getLabel());
             System.out.println(TOTAL_TRY_COUNT + playCount);
         }
     }
