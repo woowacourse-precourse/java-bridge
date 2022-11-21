@@ -17,10 +17,6 @@ public class ProgressMap {
 		progressMap.add(new ArrayList<>());
 	}
 
-	public boolean isMoveFailed() {
-		return (progressMap.get(0).contains(MOVE_FAILED_VALUE) || progressMap.get(1).contains(MOVE_FAILED_VALUE));
-	}
-
 	public void updateProgressMap(String moving, boolean isCorrectMove) {
 		if (isCorrectMove) {
 			correctMove(moving);

@@ -29,10 +29,6 @@ public class BridgeGame {
 		}
 	}
 
-	public boolean isNotFinish(ProgressMap progressMap) {
-		return bridge.getBridgeSize() != progressMap.getMapSize() || progressMap.isMoveFailed();
-	}
-
 	public ProgressMap retry(boolean userChoice, ProgressMap progressMap) {
 		if (userChoice) {
 			this.repeatCount++;
