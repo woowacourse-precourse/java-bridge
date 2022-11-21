@@ -14,7 +14,7 @@ public enum Command {
         this.command = command;
     }
 
-    public String getCommand() {
+    public String relevantCommand() {
         return command;
     }
 }

@@ -51,7 +51,8 @@ public class BridgeGameMachine {
                 outputView.printMovementInput();
                 String playerMoving = inputView.readMoving();
 
-                String bridgeJudgment = bridgeGame.judgment(playerMoving, designBridge.get(bridgeIndex));
+                String bridgeJudgment = bridgeGame.judgment(playerMoving,
+                        designBridge.get(bridgeIndex));
 
                 BridgeState bridgePlace = bridgeGame.move(playerMoving, bridgeJudgment);
 
@@ -65,21 +66,21 @@ public class BridgeGameMachine {
 
                     playerRetry = bridgeGame.retry(gameCommand);
 
-                    if (playerRetry.equals(Command.RE_START.getCommand())) {
+                    if (playerRetry.equals(Command.RE_START.relevantCommand())) {
                         gameCount++;
                         break;
                     }
 
-                    if (playerRetry.equals(Command.END.getCommand())) {
+                    if (playerRetry.equals(Command.END.relevantCommand())) {
                         gameSuccess = false;
                         outputView.printResult(bridgeState, gameCount, gameSuccess);
                         break Loop1;
                     }
                 }
 
-                if (bridgeIndex == bridgeLength -1) {
+                if (bridgeIndex == bridgeLength - 1) { // TODO: 상수화
                     outputView.printResult(bridgeState, gameCount, gameSuccess);
-                    playerRetry = Command.END.getCommand();
+                    playerRetry = Command.END.relevantCommand();
                     break;
                 }
             }

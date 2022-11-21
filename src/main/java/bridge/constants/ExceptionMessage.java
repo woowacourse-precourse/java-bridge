@@ -1,7 +1,6 @@
 package bridge.constants;
 
 public class ExceptionMessage {
-
     private ExceptionMessage() {
     }
 
