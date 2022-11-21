@@ -2,24 +2,25 @@ package bridge.View;
 
 import bridge.Message.Error;
 import bridge.Message.Message;
+import bridge.Validate.InputValidate;
 import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    InputValidate inputValidate = new InputValidate();
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException {
+    public int readBridgeSize() {
         System.out.println(Message.INPUT_BRIDGE_LENGTH);
         String length = Console.readLine();
         System.out.println();
-        try {
-            return Integer.parseInt(length);
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException(Error.WRONG_BRIDGE_NUMBER);
-        }
+        inputValidate.validateBridgeSize(length);
+        return Integer.parseInt(length);
     }
 
     /**
