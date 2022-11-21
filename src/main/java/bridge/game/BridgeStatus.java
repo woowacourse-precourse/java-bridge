@@ -1,17 +1,12 @@
 package bridge.game;
 
+import bridge.resource.GameConstant;
 import bridge.resource.GameMessage;
 import bridge.view.OutputView;
 import java.util.StringJoiner;
 
 public class BridgeStatus {
-    private static final String SPACE = " ";
-    private static final String MID_SYMBOL = " | ";
-    private static final String SUCCESS = "성공";
-    private static final String FAILURE = "실패";
-
     private static StringJoiner TOP_BRIDGE;
-
     private static StringJoiner BOTTOM_BRIDGE;
     private static final OutputView OUTPUT_VIEW = new OutputView();
 
@@ -25,8 +20,8 @@ public class BridgeStatus {
 
     // 상태 값 변경
     public void clearMap() {
-        TOP_BRIDGE = new StringJoiner(MID_SYMBOL);
-        BOTTOM_BRIDGE = new StringJoiner(MID_SYMBOL);
+        TOP_BRIDGE = new StringJoiner(GameConstant.MID_SYMBOL);
+        BOTTOM_BRIDGE = new StringJoiner(GameConstant.MID_SYMBOL);
     }
 
     public void checkGameOver(int size) {
@@ -61,19 +56,19 @@ public class BridgeStatus {
     // 게임 성공 여부 확인
     private String gameClearStatusUpdate() {
         if (CLEAR) {
-            return SUCCESS;
+            return GameConstant.SUCCESS;
         }
-        return FAILURE;
+        return GameConstant.FAILURE;
     }
 
     // 다리 지도 그리기
     public void drawingBridge(String move, String division) {
-        if (move.equals("U")) {
+        if (move.equals(GameConstant.TOP)) {
             TOP_BRIDGE.add(division);
-            BOTTOM_BRIDGE.add(SPACE);
+            BOTTOM_BRIDGE.add(GameConstant.SPACE);
         }
-        if (move.equals("D")) {
-            TOP_BRIDGE.add(SPACE);
+        if (move.equals(GameConstant.BOTTOM)) {
+            TOP_BRIDGE.add(GameConstant.SPACE);
             BOTTOM_BRIDGE.add(division);
         }
     }
