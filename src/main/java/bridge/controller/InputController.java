@@ -15,8 +15,7 @@ public class InputController {
 
     public String selectMoving() {
         try {
-            outputView.printSelectUpOrDownInput();
-            String readMoving = inputView.readMoving();
+            String readMoving = inputMovingByUser();
             return readMoving;
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printExceptionMessage(illegalArgumentException);
@@ -24,14 +23,25 @@ public class InputController {
         }
     }
 
+    private String inputMovingByUser() {
+        outputView.printSelectUpOrDownInput();
+        String inputMoving = inputView.readMoving();
+        return inputMoving;
+    }
+
     public String selectRetryGame() {
         try {
-            outputView.printSelectRetryOrNotInput();
-            String selectRetryingGame = inputView.readGameCommand();
+            String selectRetryingGame = inputRetryingByUser();
             return selectRetryingGame;
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printExceptionMessage(illegalArgumentException);
             return selectRetryGame();
         }
+    }
+
+    private String inputRetryingByUser() {
+        outputView.printSelectRetryOrNotInput();
+        String selectRetryingGame = inputView.readGameCommand();
+        return selectRetryingGame;
     }
 }
