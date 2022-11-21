@@ -7,7 +7,8 @@ import bridge.View.OutputView;
 public class Verification {
 
     public static boolean isBridgeNum(final String size) {
-        return verify(size, Regex.NUMBER.verify(), Error.NUMBER.printError());
+        return verify(size, Regex.NUMBER.verify(), Error.NUMBER.printError()) &&
+            verify(size, Regex.THREE_TO_TWENTY.verify(), Error.THREE_TO_TWENTY.printError());
     }
 
     private static boolean verify(final String input, final String value, final String error) {
