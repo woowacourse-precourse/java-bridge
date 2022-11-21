@@ -34,4 +34,9 @@ public enum Direction {
         String directionMessage = direction.message;
         return message.equals(directionMessage);
     }
+
+    public static Boolean isDirection(String direction) {
+        return Stream.of(values())
+                .anyMatch(value -> direction.equals(value.message));
+    }
 }
