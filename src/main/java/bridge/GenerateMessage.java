@@ -13,6 +13,11 @@ public class GenerateMessage {
   private static final String failure = " X ";
   private static final String success = " O ";
   
+  public void reset(){
+    this.topLine = "";
+    this.bottomLine = "";
+  }
+  
   public List<String> get(){
     List<String> temp = new ArrayList<>();
     temp.add(start + this.topLine + end);
