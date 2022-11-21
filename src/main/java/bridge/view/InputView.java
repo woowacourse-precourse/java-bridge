@@ -64,6 +64,20 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String inputCommand = Console.readLine();
+        try {
+            validateGameCommand(inputCommand);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputCommand = readMoving();
+        }
+        return inputCommand;
+    }
+
+    private void validateGameCommand(String inputCommand){
+        if (!inputCommand.equals("R") && !inputCommand.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력할 수 있습니다.");
+        }
     }
 }
