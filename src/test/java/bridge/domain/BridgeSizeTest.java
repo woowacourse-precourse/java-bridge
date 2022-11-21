@@ -18,7 +18,7 @@ class BridgeSizeTest {
 
     @DisplayName("다리의 길이가 3이상, 20이하를 벗어나면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"0", "2", "21", "100", "30000000000"})
+    @ValueSource(strings = {"0", "2", "21", "100", "30000000000", "10000000000000000000000"})
     void bridgeSizeNotInRange(String input) {
         Assertions.assertThatThrownBy(() -> new BridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class)
