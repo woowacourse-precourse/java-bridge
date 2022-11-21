@@ -1,6 +1,6 @@
 package view.input;
 
-import validation.Validation;
+import bridge.clientValidation.ClientValidation;
 
 public enum InputMessage {
     INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요.") {
@@ -23,7 +23,7 @@ public enum InputMessage {
         }
     };
 
-    private static final Validation validation = new Validation();
+    private static final ClientValidation validation = new ClientValidation();
     private final String message;
 
     InputMessage(String message) {

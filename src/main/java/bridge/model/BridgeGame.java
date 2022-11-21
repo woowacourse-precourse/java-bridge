@@ -2,12 +2,14 @@ package bridge.model;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.RetryCode;
+import bridge.combinator.BridgeCase;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
- *
+ * <p>
  * 요구사항
  * 1. 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
  * 2. BridgeGame 에 필드(인스턴스 변수)를 추가할 수 있다.
@@ -17,27 +19,41 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private static List<String> bridge;
+    private final List<String> bridge;
+    private int count;
 
-    public void createBridge(int bridgeSize) {
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+    public BridgeGame(int bridgeSize) {
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        count = 0;
     }
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean move(int index, String crossToBridge) {
-        if (!bridge.get(index).equals(crossToBridge))
-            return retry();
-        return true;
+
+    public BridgeCase move(String bridgeToMove, int index) {
+        if (index == 0) countUp();
+        return Arrays.stream(BridgeCase.values())
+                .filter(bridgePrinter -> isAnswer(bridgeToMove, index) == bridgePrinter.isAnswer())
+                .filter(bridgePrinter -> isFirst(index) == bridgePrinter.isFirst())
+                .filter(bridgePrinter -> bridgeToMove.equals(bridgePrinter.getMark()))
+                .findFirst()
+                .orElse(BridgeCase.DEFAULT);
     }
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean retry() {
-        return false;
+
+    public boolean isAnswer(String bridgeToMove, int index) {
+        return bridge.get(index).equals(bridgeToMove);
+    }
+
+    public boolean retry(String command) {
+        return command.equals(RetryCode.RETRY.getRetryCode());
+    }
+
+    public boolean isFirst(int index) {
+        return index == 0;
+    }
+
+    public void countUp() {
+        count += 1;
+    }
+
+    public int getCount() {   // 수정해보기
+        return count;
     }
 }

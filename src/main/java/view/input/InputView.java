@@ -1,7 +1,7 @@
 package view.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import validation.Validation;
+import bridge.clientValidation.ClientValidation;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -13,39 +13,28 @@ import validation.Validation;
  * 4. 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
-    private static final Validation validation = new Validation();
-    public static String input = "";
+    private static final ClientValidation validation = new ClientValidation();
 
-    public String repeat(String message) {
+    public String repeat(InputMessage inputMessage) {
         while(true) {
             try {
-                System.out.println("\n" + message);
-                validation.validate(input = Console.readLine(), message);
-                return input;
+                System.out.println("\n" + inputMessage.getMessage());
+                return validation.validate(Console.readLine(), inputMessage);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
-        return Integer.parseInt(repeat(InputMessage.INPUT_BRIDGE_SIZE.getMessage()));
+        return Integer.parseInt(repeat(InputMessage.INPUT_BRIDGE_SIZE));
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return repeat(InputMessage.INPUT_BRIDGE_MOVE.getMessage());
+        return repeat(InputMessage.INPUT_BRIDGE_MOVE);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return repeat(InputMessage.INPUT_RESTART_CODE.getMessage());
+        return repeat(InputMessage.INPUT_RESTART_CODE);
     }
 }

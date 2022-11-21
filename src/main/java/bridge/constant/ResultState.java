@@ -1,12 +1,12 @@
 package bridge.constant;
 
-public enum Result {
+public enum ResultState {
     SUCCESS("성공"),
     FAIL("실패");
 
     private final String result;
 
-    Result(String result) {
+    ResultState(String result) {
         this.result = result;
     }
 

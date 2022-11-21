@@ -1,18 +1,16 @@
-package validation;
+package bridge.clientValidation;
 
 import view.input.InputMessage;
 
-import java.util.Arrays;
-
-public class Validation {
+public class ClientValidation {
     private static final String NUMBER_REGEX = "^\\d*$";
 
-    public void validate(String input, String message) {
+    public String validate(String input, InputMessage inputMessage) {
         validateEmpty(input);
         validateContainBlank(input);
-        Arrays.stream(InputMessage.values())
-                .filter(inputMessage -> message.equals(inputMessage.getMessage()))
-                .forEach(inputMessage -> inputMessage.validation(input));
+        inputMessage.validation(input);
+
+        return input;
     }
 
     public void validateEmpty(String input) {

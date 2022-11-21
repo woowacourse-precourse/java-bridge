@@ -35,6 +35,7 @@ public class BridgeMaker {
             Arrays.stream(BridgeMakerComponent.values())
                     .filter(bridgeMakerComponent -> bridgeNumber  == bridgeMakerComponent.getRandomNumber())
                     .forEach(bridgeMakerComponent -> bridge.add(bridgeMakerComponent.getMark()));
+            System.out.print(bridge.get(count) +" ");
         }
         return bridge;
     }
