@@ -8,6 +8,9 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    public static final int BRIDGE_RANGE_MAX = 20;
+    public static final int BRIDGE_RANGE_MIN = 3;
+    public static final int COUNT_INIT = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -22,20 +25,18 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         validateBridgeSizeRange(size);
         List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = COUNT_INIT; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             bridge = addStringByBridgeNumber(bridge, bridgeNumber);
         }
-
         return bridge;
     }
 
     public void validateBridgeSizeRange(int bridgeSize) {
-        if (bridgeSize > 20 || bridgeSize < 3) {
+        if (bridgeSize > BRIDGE_RANGE_MAX || bridgeSize < BRIDGE_RANGE_MIN) {
             throw new IllegalArgumentException(Message.ERROR_BRIDGE_SIZE_RANGE.getMessage());
         }
     }
-
 
     private List<String> addStringByBridgeNumber(List<String> bridge, int bridgeNumber) {
         if (bridgeNumber == BridgeType.UP.getIntCode()) {
