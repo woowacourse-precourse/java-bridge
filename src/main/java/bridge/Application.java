@@ -6,6 +6,7 @@ public class Application {
     private static final InputView receiver = new InputView();
     private static final BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(generator);
+    private static final String BROKEN = "X";
 
     public static void main(String[] args) {
         System.out.printf(Constants.Messages.START.getMessage());
@@ -68,6 +69,17 @@ public class Application {
     private static void printGoodMove(List<String> bridge, int index, OutputView printer) {
         printer.mapBuilder(true, index, bridge);
         printer.printMap();
+    }
+
+    private static String retryChoiceUI() {
+        System.out.printf(Constants.Messages.RESTART_OR_END.getMessage());
+        while (true) {
+            try {
+                return receiver.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     private static OutputView retryProcess(OutputView printer, BridgeGame bridgeGame) {
