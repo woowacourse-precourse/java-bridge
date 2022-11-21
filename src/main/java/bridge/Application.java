@@ -20,22 +20,44 @@ public class Application {
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        int gameCount = 0;
 
-        Bridge userBridge = new Bridge(new ArrayList<>(), new ArrayList<>());
-
-        for (String s : bridge) {
-            String nextStep = inputView.readMoving();
-
+        while (true) {
+            gameCount++;
             boolean matchingFlag = true;
+            Bridge userBridge = new Bridge(new ArrayList<>(), new ArrayList<>());
 
-            if (!nextStep.equals(s)) {
-                matchingFlag = false;
+            for (String s : bridge) {
+                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+
+                String nextStep = inputView.readMoving();
+
+                if (!nextStep.equals(s)) {
+                    matchingFlag = false;
+                }
+
+                bridgeGame.move(userBridge, nextStep, matchingFlag);
+
+                outputView.printMap(userBridge);
+
+                if (!matchingFlag) {
+                    break;
+                }
+
             }
 
-            bridgeGame.move(userBridge, nextStep, matchingFlag);
+            if (matchingFlag) {
+                outputView.printResult(userBridge, gameCount, matchingFlag);
+                break;
+            }
 
-            outputView.printMap(userBridge);
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            String retry = inputView.readGameCommand();
+
+            if (retry.equals("Q")) {
+                outputView.printResult(userBridge, gameCount, matchingFlag);
+                break;
+            }
         }
     }
 }
