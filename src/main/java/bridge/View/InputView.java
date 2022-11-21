@@ -24,6 +24,11 @@ public class InputView {
     }
 
     public static String readGameCommand() {
-
+        while(true) {
+            String key = Console.readLine();
+            if(Verification.isRestartKey(key)) {
+                return key;
+            }
+        }
     }
 }
