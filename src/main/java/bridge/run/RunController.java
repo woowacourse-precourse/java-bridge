@@ -28,7 +28,7 @@ public class RunController {
             if (gameController.moveBridge(bridge).getResult().equals("X")) {
                 status = gameController.retryGame();
             }
-            gameController.printResultMap();
+            gameController.printResultMap(bridge);
         }
         gameController.printResultAndCount();
     }

@@ -43,8 +43,8 @@ public class GameController {
         return gameResultStatus;
     }
 
-    public void printResultMap() {
-        outputView.printGameResultMap();
+    public void printResultMap(Bridge bridge) {
+        outputView.printGameResultMap(bridge);
     }
 
     public void printResultAndCount() {
