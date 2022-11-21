@@ -17,7 +17,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void beforeEach() {
-        bridgeGame = new BridgeGame(new Bridge(List.of("U", "D", "U", "D", "U")), new Player());
+        bridgeGame = new BridgeGame(new Bridge(List.of("U", "D", "U")), new Player());
         gameMap = new GameMap();
     }
 
@@ -35,5 +35,19 @@ class BridgeGameTest {
 
         assertThat(gameResult.getResult()).isEqualTo("실패");
         assertThat(gameResult.getRetryCount()).isEqualTo(2);
+    }
+
+    @Test
+    void 다리_끝까지_건너면_게임_결과는_성공이어야한다() {
+        bridgeGame.move(Direction.U);
+        bridgeGame.move(Direction.D);
+        bridgeGame.move(Direction.U);
+
+        assertThat(bridgeGame.quit()).isTrue();
+
+        GameResult gameResult = bridgeGame.gameResult();
+
+        assertThat(gameResult.getResult()).isEqualTo("성공");
+        assertThat(gameResult.getRetryCount()).isEqualTo(1);
     }
 }
