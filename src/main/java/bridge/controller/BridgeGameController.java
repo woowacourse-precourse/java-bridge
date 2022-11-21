@@ -27,6 +27,7 @@ public class BridgeGameController {
         moveBridge(bridge, user);
     }
 
+
     public void printStartGame() {
         outputView.printStartGame();
     }
@@ -61,7 +62,7 @@ public class BridgeGameController {
             bridgeGame.retry(bridge, user);
         }
         if (gameCommand.equals(QUIT)) {
-            user.finishGame();
+            user.finishWitFail();
         }
     }
 
