@@ -32,15 +32,15 @@ public class Bridge {
 		return false;
 	}
 
-	public int getNextStep() {
-		return this.nextStep;
-	}
-
 	public List<String> getSuccessfullyMovedPartialBridge() {
 		List<String> deepCopiedPartialBridge = new ArrayList<>();
 		for (int i = 0; i < nextStep; i++) {
 			deepCopiedPartialBridge.add(bridge.get(i));
 		}
 		return deepCopiedPartialBridge;
+	}
+
+	public void resetMoveStatus() {
+		this.nextStep = 0;
 	}
 }

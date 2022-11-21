@@ -1,5 +1,6 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -62,10 +63,19 @@ class BridgeTest {
 	@Test
 	void getSuccessfullyMovedPartialBridgeTest() {
 		alternativeBridge.moveNext(Inputs.MOVE_UP);
-		Assertions.assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U"));
+		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U"));
 		alternativeBridge.moveNext(Inputs.MOVE_DOWN);
-		Assertions.assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D"));
+		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D"));
 		alternativeBridge.moveNext(Inputs.MOVE_UP);
-		Assertions.assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D", "U"));
+		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D", "U"));
+	}
+
+	@DisplayName("진행 상황이 초기화되어야 한다.")
+	@Test
+	void resetMoveStatusTest() {
+		alternativeBridge.moveNext(Inputs.MOVE_UP);
+		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U"));
+		alternativeBridge.resetMoveStatus();
+		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge().size()).isEqualTo(0);
 	}
 }
