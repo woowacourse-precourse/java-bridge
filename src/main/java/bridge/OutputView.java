@@ -28,12 +28,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int position, boolean available, BridgeGame bridgeGame) {
+    public void printResultMap(int position, boolean available, BridgeGame bridgeGame) {
         System.out.println(Sentence.OUTPUT_RESULT);
         printMap(position, available, bridgeGame.bridge);
+    }
 
+    public void printResult(boolean available, int trying) {
         System.out.println(getSuccessOrFail(available));
-        System.out.println(Sentence.OUTPUT_TRY + Integer.toString(bridgeGame.trying));
+        System.out.println(Sentence.OUTPUT_TRY + Integer.toString(trying));
     }
 
     private void printUp(int position, boolean available, List<String> bridge) {

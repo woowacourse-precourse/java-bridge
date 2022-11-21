@@ -8,7 +8,6 @@ import java.util.List;
 public class BridgeGame {
 
     public final List<String> bridge;
-    public int trying = 1;
 
     public BridgeGame(int size) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -37,7 +36,6 @@ public class BridgeGame {
      */
     public boolean retry(String retry) {
         if (retry.equals(Input.RETRY.toString())) {
-            trying += 1;
             return true;
         }
         return false;

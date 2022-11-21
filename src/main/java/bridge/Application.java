@@ -6,6 +6,7 @@ public class Application {
     private static final OutputView output = new OutputView();
     private static int position = 0;
     private static boolean stopFlag = false;
+    private static int trying = 1;
     private static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
@@ -48,13 +49,16 @@ public class Application {
 
     private static void executeInUnavailable() {
         String retry = input.readGameCommand();
-        if (!bridgeGame.retry(retry)) {
-            stopGame(position, false);
+        if (bridgeGame.retry(retry)) {
+            trying += 1;
+            return;
         }
+        stopGame(position, false);
     }
 
     private static void stopGame(int position, boolean available) {
-        output.printResult(position, available, bridgeGame);
+        output.printResultMap(position, available, bridgeGame);
+        output.printResult(available, trying);
         stopFlag = true;
     }
 }
