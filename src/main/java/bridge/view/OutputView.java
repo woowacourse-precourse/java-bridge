@@ -52,7 +52,7 @@ public class OutputView {
     }
 
     public static String isSuccess(boolean result) {
-        if (result){
+        if (result) {
             return SUCCESS_OUTPUT_MESSAGE;
         }
         return FAIL_OUTPUT_MESSAGE;

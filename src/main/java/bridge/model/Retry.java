@@ -11,7 +11,7 @@ public class Retry {
     }};
 
     public static Boolean isRetry(final String symbol) {
-        if (!bridge.containsKey(symbol)){
+        if (!bridge.containsKey(symbol)) {
             throw new IllegalArgumentException(RETRY_INCORRECT_INPUT_EXCEPTION.message());
         }
         return bridge.get(symbol);

@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
  */
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final int startInclusive=3;
-    private final int endInclusive=20;
+    private final int startInclusive = 3;
+    private final int endInclusive = 20;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -24,7 +24,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        Validator.inRange(size,startInclusive,endInclusive);
+        Validator.inRange(size, startInclusive, endInclusive);
         return IntStream.range(0, size)
                 .mapToObj(e -> Result.getSymbol(bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
