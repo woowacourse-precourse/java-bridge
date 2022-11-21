@@ -3,12 +3,10 @@ package bridge.DomainTest;
 import bridge.Database.BridgeData;
 import bridge.Domain.BridgeGame;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BridgeGameTest {
 
     @Mock
-    BridgeData bridgeData = new BridgeData();
     BridgeGame bridgeGame = new BridgeGame();
 
     @Nested
@@ -71,11 +68,12 @@ public class BridgeGameTest {
         @Test
         void finishCrossingBridgeTest() {
             bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
-            bridgeGame.bridgeData.updateBridgeDesignByUser(Arrays.asList("U", "D", "D"));
+            List<String> nextSteps = new ArrayList<>(Arrays.asList("U", "D", "D"));
+            bridgeGame.bridgeData.updateBridgeDesignByUser(nextSteps);
+
+            bridgeGame.validateGameSuccessfullyFinished();
 
             assertThat(bridgeGame.getIsGameSucceed()).isTrue();
         }
     }
-
-
 }
