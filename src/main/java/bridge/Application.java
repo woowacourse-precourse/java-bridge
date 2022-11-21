@@ -1,8 +1,12 @@
 package bridge;
 
+
 public class Application {
 
+    static BridgeGame bridgeGame;
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        bridgeGame = new BridgeGame();
+        bridgeGame.startGame();
     }
 }
