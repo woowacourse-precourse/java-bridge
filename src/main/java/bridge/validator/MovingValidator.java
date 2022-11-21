@@ -3,7 +3,7 @@ package bridge.validator;
 import static bridge.utils.command.MoveCommand.DOWN;
 import static bridge.utils.command.MoveCommand.UP;
 import static bridge.utils.message.ErrorMessage.BLANK_VALUE;
-import static bridge.utils.message.ErrorMessage.INVALID_MOVING;
+import static bridge.utils.message.ErrorMessage.INVALID_VALUE;
 import static bridge.utils.message.ErrorMessage.LOWERCASE_VALUE;
 
 import java.util.Objects;
@@ -39,7 +39,7 @@ public class MovingValidator implements Validator {
 
     private void checkInvalidMoving(String inputValue) {
         if (!isValidMoving(inputValue)) {
-            System.out.println(String.format(INVALID_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
+            System.out.println(INVALID_VALUE.getMessage());
             throw new IllegalArgumentException();
         }
     }
