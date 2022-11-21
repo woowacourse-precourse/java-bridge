@@ -1,8 +1,8 @@
 package constant;
 
 public enum BothSideConstant {
-    UP_SIDE(1),
-    DOWN_SIDE(0);
+    UP_SIDE_INDEX(1),
+    DOWN_SIDE_INDEX(0);
 
     public final int bothSideConstant;
 
