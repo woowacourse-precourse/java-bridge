@@ -4,8 +4,8 @@ import bridge.util.CommandKeys;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OneSideResults {
-    private final List<String> results;
+public abstract class OneSideResults {
+    protected final List<String> results;
 
     public OneSideResults() {
         results = new ArrayList<>();
@@ -14,6 +14,8 @@ public class OneSideResults {
     public List<String> getResults() {
         return results;
     }
+
+    public abstract void updateResults();
 
     public void reset(String input) {
         if (CommandKeys.isRetry(input)) {
