@@ -45,4 +45,14 @@ public class BridgeTest {
         }
     }
 
+    @Test
+    void illegalInputTest() {
+        List<String> moveInput = List.of("-1","A","14","M","FE","BE");
+        List<Integer> positions = List.of(0,1,2,3,4,5);
+
+        for (int i = 0; i < moveInput.size(); i++) {
+            Assertions.assertFalse(bridge.isMovable(positions.get(i),moveInput.get(i)));
+        }
+    }
+
 }
