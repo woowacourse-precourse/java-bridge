@@ -64,6 +64,7 @@ public class GamePlayerTest {
             "[   | O |   ]",
             "게임 성공 여부: 성공",
             "총 시도한 횟수: 2");
+
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -90,7 +91,7 @@ public class GamePlayerTest {
     @DisplayName("한 번의 재시도 후 다리 건너기에 성공한다.")
     @Test
     void 한_번의_재시도_후_게임_진행_전체_단계_테스트() {
-        String userInputs = "3\nU\nD\nD\nR\nU\nD\nU\n";
+        String userInputs = "3\nU\nD\nD\nR\nU\nD\nU";
         initInputStream(userInputs);
 
         gamePlayer.playGame();
