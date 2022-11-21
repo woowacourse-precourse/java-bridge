@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 
+import static bridge.model.GameStatus.QUIT;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -23,5 +25,9 @@ public class BridgeGame {
 
     public void stop(){
         bridgeGameController.concludeGame();
+    }
+
+    public boolean isGameDone(){
+        return bridgeGameController.isSuccess();
     }
 }
