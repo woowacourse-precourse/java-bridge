@@ -8,7 +8,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String input = Console.readLine();
         int size = Integer.parseInt(input);
         return size;
@@ -17,7 +17,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String move_location = Console.readLine();
         return move_location;
     }
@@ -25,7 +25,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         String re_game = Console.readLine();
         return re_game;
     }
