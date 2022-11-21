@@ -14,14 +14,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridgeAnswer, int bridgeSize, List<String> userCommand) {
+    public void printMap(List<String> bridgeAnswer, int bridgeSize, List<String> userMove) {
         String upSentence = "[";
         String downSentence = "[";
         for(int size = 0; size < bridgeSize; size++){
-            String command = userCommand.get(size);
+            String move = userMove.get(size);
             String answer = bridgeAnswer.get(size);
-            boolean up = isUp(command);
-            boolean down = isDown(command);
+            boolean up = isUp(move);
+            boolean down = isDown(move);
             upSentence += printAnswer(answer, bridgeSize, up);
             downSentence += printAnswer(answer, bridgeSize, down);
         }
@@ -48,17 +48,17 @@ public class OutputView {
         return combinedAnswer;
     }
 
-    boolean isUp(String command){
+    boolean isUp(String move){
         boolean up = false;
-        if(command.equals("U")){
+        if(move.equals("U")){
             up = true;
         }
         return up;
     }
 
-    boolean isDown(String command){
+    boolean isDown(String move){
         boolean down = false;
-        if(command.equals("D")){
+        if(move.equals("D")){
             down = true;
         }
         return down;
@@ -78,10 +78,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridgeAnswer, int bridgeSize, List<String> userCommand,
+    public void printResult(List<String> bridgeAnswer, int bridgeSize, List<String> userMove,
                             int tryCount) {
         System.out.println("최종 게임 결과");
-        printMap(bridgeAnswer, bridgeSize, userCommand);
+        printMap(bridgeAnswer, bridgeSize, userMove);
 
         String result = SUCCESS;
         System.out.println("게임 성공 여부: ");
