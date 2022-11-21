@@ -17,26 +17,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int lastMovePosition, String movedDirection, List<String> bridge) {
-        printUpperSideMap(lastMovePosition, movedDirection, bridge);
-        printLowerSideMap(lastMovePosition, movedDirection, bridge);
+    public void printMap(List<String> moves, List<String> bridge) {
+        printOneSideMap(upperSideCharacter, moves, bridge);
+        printOneSideMap(lowerSideCharacter, moves, bridge);
     }
 
-    private void printUpperSideMap(int lastMovePosition, String movedDirection, List<String> bridge) {
+    private void printOneSideMap(String side, List<String> moves, List<String> bridge) {
+        int lastMovePosition = moves.size() - 1;
         System.out.print("[");
         for (int i = 0; i < lastMovePosition; ++i) {
-            System.out.print(" " + getOneBlockFormat(upperSideCharacter, bridge.get(i)) + " |");
+            System.out.print(" " + getOneBlockFormat(side, bridge.get(i)) + " |");
         }
-        System.out.print(getLastBlockFormat(upperSideCharacter, movedDirection, bridge.get(lastMovePosition)));
-        System.out.println("]");
-    }
-
-    private void printLowerSideMap(int lastMovePosition, String movedDirection, List<String> bridge) {
-        System.out.print("[");
-        for (int i = 0; i < lastMovePosition; ++i) {
-            System.out.print(" " + getOneBlockFormat(lowerSideCharacter, bridge.get(i)) + " |");
-        }
-        System.out.print(getLastBlockFormat(lowerSideCharacter, movedDirection, bridge.get(lastMovePosition)));
+        System.out.print(getLastBlockFormat(side, moves.get(lastMovePosition), bridge.get(lastMovePosition)));
         System.out.println("]");
     }
 

@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.messages.InputMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,10 +37,11 @@ public class BridgeGame {
      * 실제 게임이 진행되는 메서드
      */
     private boolean play(int bridgeSize, List<String> bridge) {
+        List<String> moves = new ArrayList<>();
         for (int i = 0; i < bridgeSize; ++i) {
-            String moveDirection = move();
-            outputView.printMap(i, moveDirection, bridge);
-            if (!isRightMove(moveDirection, bridge.get(i))) {
+            move(moves);
+            outputView.printMap(moves, bridge);
+            if (!isRightMove(moves.get(i), bridge.get(i))) {
                 return willRetry;
             }
         }
@@ -51,9 +53,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move() {
+    public void move(List<String> moves) {
         String moveDirection = inputView.readMoving();
-        return moveDirection;
+        moves.add(moveDirection);
     }
 
     private boolean isRightMove(String movedDirection, String answerDirection) {
