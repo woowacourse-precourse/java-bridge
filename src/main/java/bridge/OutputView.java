@@ -10,13 +10,17 @@ public class OutputView {
     public static void printMap(List<String> userLocation, List<String> bridgeAnswer) {
         for(int i=0;i<2;i++) {
             System.out.print("[");
-            printMapUpDown(userLocation, i);
+            printMapUpDown(userLocation, i, bridgeAnswer);
             System.out.println("]");
         }
     }
 
-    public static void printMapUpDown(List<String> userLocation, int moveIndex){
+    public static void printMapUpDown(List<String> userLocation, int moveIndex, List<String> bridgeAnswer){
         for(int i=0;i<userLocation.size();i++){
+                if(!isRightBridge(userLocation.get(i), bridgeAnswer.get(i)) && (userLocation.get(i).equals("U") && moveIndex==0 || userLocation.get(i).equals("D") && moveIndex==1)){
+                    System.out.print(" X ");
+                    return;
+            }
                 if((userLocation.get(i).equals("U") && moveIndex==0) || (userLocation.get(i).equals("D") && moveIndex==1))
                     System.out.print(" O ");
                 else
@@ -24,6 +28,12 @@ public class OutputView {
                 if(userLocation.size()-1!=i)
                     System.out.print(" | ");
         }
+    }
+
+    public static boolean isRightBridge(String currentUserLocation, String bridgeLocation){
+        if(currentUserLocation.equals(bridgeLocation))
+            return true;
+        return false;
     }
     public static void printRequireSize(){
         System.out.println("다리 길이를 입력해주세요.");

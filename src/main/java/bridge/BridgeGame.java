@@ -31,12 +31,11 @@ public class BridgeGame {
         while(moveCount<inputBridgeSize){
             String userMove=InputView.readMoving();
             userLocation.add(userMove);
+            OutputView.printMap(userLocation, bridgeMaker.getBridge().getBridgeAnswer());
             if(!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(moveCount))){
                 isSuccess=false;
                 break;
             }
-            OutputView.printMap(userLocation, bridgeMaker.getBridge().getBridgeAnswer());
-            System.out.println("다리 정답:"+bridgeMaker.getBridge().getBridgeAnswer()+", 내가 입력한 길:"+userLocation);
             moveCount++;
         }
         if(!isSuccess)
