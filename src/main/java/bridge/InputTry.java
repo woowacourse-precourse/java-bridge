@@ -4,39 +4,27 @@ public class InputTry {
     private static final InputView input = new InputView();
 
     public static int readBridgeSizeTry(){
-        Integer bridgeSize = null;
-        while ( bridgeSize == null ) {
-            try {
-                bridgeSize = input.readBridgeSize();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                bridgeSize = null;
-            }
+        try {
+            return input.readBridgeSize();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readBridgeSizeTry();
         }
-        return bridgeSize;
     }
     public static String readMovingTry(){
-        String moving = null;
-        while ( moving == null ) {
-            try {
-                moving = input.readMoving();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                moving = null;
-            }
+        try {
+            return input.readMoving();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readMovingTry();
         }
-        return moving;
     }
     public static String readGameCommandTry(){
-        String command = null;
-        while ( command == null ) {
-            try {
-                command = input.readGameCommand();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                command = null;
-            }
+        try {
+            return input.readGameCommand();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readGameCommandTry();
         }
-        return command;
     }
 }
