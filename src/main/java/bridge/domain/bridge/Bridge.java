@@ -1,8 +1,5 @@
 package bridge.domain.bridge;
 
-import bridge.domain.game.SquareResult;
-import bridge.domain.move.MoveResult;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
