@@ -23,15 +23,15 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printInputBridgeLength() {
+    public static void printInputBridgeLength() {
         System.out.println(Message.INPUT_BRIDGE_SIZE.getMessage());
     }
 
-    public void printSelectDirection() {
+    public static void printSelectDirection() {
         System.out.println(Message.SELECT_DIRECTION.getMessage());
     }
 
-    public void printRestartMessage() {
+    public static void printRestartMessage() {
         System.out.println(Message.RESTART.getMessage());
     }
 }
