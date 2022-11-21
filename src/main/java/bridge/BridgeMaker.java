@@ -15,6 +15,9 @@ public class BridgeMaker {
     private static final String ICON_FALSE = "x";
     private static final String ICON_UP = "U";
     private static final String ICON_DOWN = "D";
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
+    public static final int TWO = 2;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -26,16 +29,18 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         BridgeGame bridgeGame = new BridgeGame();
+        List<String> errorBridge = new ArrayList<>();
         List<String> bridgeU = new ArrayList<>();
         List<String> bridgeD = new ArrayList<>();
         List<String> joined = new ArrayList<>();
         List<String> randomCollect = makeRandomUpDown(size);
-        int countCycle = 1;
-        for (int i = 0; i < size; i++)
+        errorBridge.add("e");
+        int countCycle = ONE;
+        for (int i = ZERO; i < size; i++)
             System.out.println(randomCollect.get(i));
 
         String moveUpOrDown;
-        for (int i = 0; i < size; i++) {
+        for (int i = ZERO; i < size; i++) {
             moveUpOrDown = bridgeGame.move();
             if (moveUpOrDown.equals(ICON_UP)) {
                 if (randomCollect.get(i).equals(moveUpOrDown))
@@ -55,39 +60,27 @@ public class BridgeMaker {
                 bridgeU.add(GAME_ICON_BAR);
                 bridgeD.add(GAME_ICON_BAR);
             }
-            System.out.print("[ ");
-            for (int j = 0; j < countCycle; j++)
-                System.out.print(bridgeU.get(j));
-            System.out.print(" ]");
-            System.out.println();
-            System.out.print("[ ");
-            for (int j = 0; j < countCycle; j++)
-                System.out.print(bridgeD.get(j));
-            System.out.println(" ]");
+            printBridge(bridgeU, bridgeD, countCycle);
 
             if (bridgeU.contains(ICON_FALSE)) {
-                bridgeGame.retry();
                 System.out.println();
-                break;
+                return errorBridge;
             }
             if (bridgeD.contains(ICON_FALSE)) {
                 System.out.println();
-                bridgeGame.retry();
-                break;
+                return errorBridge;
             }
-
-            countCycle += 2;
+            countCycle += TWO;
             System.out.println();
         }
         joined.addAll(bridgeU);
         joined.addAll(bridgeD);
-
         return joined;
     }
 
     public List<String> makeRandomUpDown(int size) {
         List<String> inputUpDown = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = ZERO; i < size; i++) {
             int generateRandom = bridgeNumberGenerator.generate();
             System.out.print(generateRandom);
             if (generateRandom == 1)
@@ -96,5 +89,17 @@ public class BridgeMaker {
                 inputUpDown.add(ICON_DOWN);
         }
         return inputUpDown;
+    }
+
+    public static void printBridge(List<String> bridgeUp, List<String> bridgeDown, int countCycle) {
+        System.out.print("[ ");
+        for (int j = ZERO; j < countCycle; j++)
+            System.out.print(bridgeUp.get(j));
+        System.out.print(" ]");
+        System.out.println();
+        System.out.print("[ ");
+        for (int j = ZERO; j < countCycle; j++)
+            System.out.print(bridgeDown.get(j));
+        System.out.println(" ]");
     }
 }

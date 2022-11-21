@@ -19,6 +19,7 @@ public class OutputView {
     public static final String GAME_ICON_O = "O";
     public static final String GAME_ICON_X = "X";
     public static final String GAME_ICON_SPACE = " ";
+    public static final int ONE = 1;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -33,8 +34,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printFinalResult() {
         System.out.println(FINAL_GAME_MESSAGE);
+    }
+
+    public void printRunCycle(int runCycle) {
+        runCycle += ONE;
+        System.out.println(GAME_REPEAT_MESSAGE + runCycle);
+    }
+
+    public void printWin() {
+        System.out.println(GAME_RESULT_MESSAGE + GAME_WIN_MESSAGE);
     }
 
     public void printStart() {
@@ -42,27 +52,27 @@ public class OutputView {
     }
 
     public void printIconOpen() {
-        System.out.println(GAME_ICON_OPEN);
+        System.out.print(GAME_ICON_OPEN);
     }
 
     public void printIconClose() {
-        System.out.println(GAME_ICON_CLOSE);
+        System.out.print(GAME_ICON_CLOSE);
     }
 
     public void printIconBar() {
-        System.out.println(GAME_ICON_BAR);
+        System.out.print(GAME_ICON_BAR);
     }
 
     public void printIconO() {
-        System.out.println(GAME_ICON_O);
+        System.out.print(GAME_ICON_O);
     }
 
     public void printIconX() {
-        System.out.println(GAME_ICON_X);
+        System.out.print(GAME_ICON_X);
     }
 
     public void printIconSpace() {
-        System.out.println(GAME_ICON_SPACE);
+        System.out.print(GAME_ICON_SPACE);
     }
 
     public void printInputBridgeLength() {
@@ -72,6 +82,7 @@ public class OutputView {
     public void printInputMovement() {
         System.out.println(GAME_CHOOSE_MOVE_MESSAGE);
     }
+
     public void printRetry() {
         System.out.println(GAME_RETRY_MESSAGE);
     }

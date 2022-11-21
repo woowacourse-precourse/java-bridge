@@ -1,14 +1,17 @@
 package bridge;
 
+import javax.sound.midi.SysexMessage;
 import java.util.List;
 
 import static bridge.ErrorCheck.isUpDown;
-import static bridge.ErrorCheck.stringToInt;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
+    public static final int TWO = 2;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -32,47 +35,43 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public int retry() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         outputView.printRetry();
         if (inputView.readGameCommand().equals("R"))
-            run();
+            if(run() == 1)
+                return 1;
+        return 0;
     }
 
-    public void run() {
+    public int run() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
         outputView.printStart();
         outputView.printInputBridgeLength();
         int bridgeSize = inputView.readBridgeSize();
-        //List<String> bridgeDraw = bridgeMaker.makeBridge(bridgeSize);
-        bridgeMaker.makeBridge(bridgeSize);
-        //retry();
-
-        //outputView.printInputMovement();
-/*        System.out.println();
-        for(int i=0; i<bridgeDraw.size(); i++) {
-            System.out.println(i + " " + bridgeDraw.get(i));
-        }*/
-        /*
-        System.out.println();
-        System.out.print("[ ");
-        for(int i=0; i<bridgeSize*2-1; i++){
-            System.out.print(bridgeDraw.get(i));
-            //System.out.print("ㄴㅇㄴㅇㄹ");
+        List<String> bridgeDraw = bridgeMaker.makeBridge(bridgeSize);
+        printFinalBridge(bridgeDraw);
+        if(bridgeDraw.contains("e")) {
+            return ONE;
         }
-        System.out.print(" ]");
+        return ZERO;
+    }
+    public void printFinalBridge(List<String> finalBridge) {
+        OutputView outputView = new OutputView();
+        outputView.printFinalResult();
+        outputView.printIconOpen();
+        for(int i=0; i<finalBridge.size()/TWO-ONE; i++)
+            System.out.print(finalBridge.get(i));
+        outputView.printIconClose();
         System.out.println();
-        System.out.print("[ ");
-        for(int i=bridgeSize*2; i<bridgeSize*4-1; i++){
-            System.out.print(bridgeDraw.get(i));
-            //System.out.print("ㄴㅇㄴㅇㄹ");
-        }
-        System.out.print(" ]");*/
-
+        outputView.printIconOpen();
+        for(int i=finalBridge.size()/TWO; i<finalBridge.size()-ONE; i++)
+            System.out.print(finalBridge.get(i));
+        outputView.printIconClose();
+        System.out.println();
     }
 }
