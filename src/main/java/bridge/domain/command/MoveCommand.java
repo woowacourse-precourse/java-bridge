@@ -4,7 +4,7 @@ import java.util.Map;
 
 import static java.util.Arrays.stream;
 import static java.util.Optional.ofNullable;
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
 public enum MoveCommand {
 
@@ -15,7 +15,7 @@ public enum MoveCommand {
     private static final String NOT_MATCH_COMMAND = "이동 명령은 U와 D만이 입력 가능합니다.";
 
     private static final Map<String, MoveCommand> BY_SHORTCUT =
-            stream(values()).collect(toMap(MoveCommand::shortcut, command -> command));
+            stream(values()).collect(toUnmodifiableMap(MoveCommand::shortcut, command -> command));
 
     private final String shortcut;
 

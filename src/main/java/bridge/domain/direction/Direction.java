@@ -5,7 +5,7 @@ import java.util.Map;
 import static java.lang.String.format;
 import static java.util.Arrays.stream;
 import static java.util.Optional.ofNullable;
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
 public enum Direction {
 
@@ -17,10 +17,10 @@ public enum Direction {
     private static final String NOT_MATCH_DIRECTION_BY_SYMBOL = "%s 에 대응되는 방향이 없습니다.";
 
     private static final Map<String, Direction> BY_SYMBOL =
-            stream(values()).collect(toMap(Direction::symbol, direction -> direction));
+            stream(values()).collect(toUnmodifiableMap(Direction::symbol, direction -> direction));
 
     private static final Map<Integer, String> NUMBER_TO_SYMBOL =
-            stream(values()).collect(toMap(Direction::mappingNumber, Direction::symbol));
+            stream(values()).collect(toUnmodifiableMap(Direction::mappingNumber, Direction::symbol));
 
     private final String symbol;
     private final int mappingNumber;

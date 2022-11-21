@@ -4,7 +4,7 @@ import java.util.Map;
 
 import static java.util.Arrays.stream;
 import static java.util.Optional.ofNullable;
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
 public enum GameCommand {
 
@@ -15,8 +15,7 @@ public enum GameCommand {
     private static final String NOT_MATCH_COMMAND = "게임 재시도 여부는 R 또는 Q만이 입력 가능합니다.";
 
     private static final Map<String, GameCommand> BY_SHORTCUT =
-            stream(values()).collect(toMap(GameCommand::shortcut, command -> command));
-
+            stream(values()).collect(toUnmodifiableMap(GameCommand::shortcut, command -> command));
 
     private final String shortcut;
 
