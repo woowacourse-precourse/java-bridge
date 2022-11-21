@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.error.Error;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Crossing {
 
@@ -35,5 +36,9 @@ public class Crossing {
         }
 
         return history.size() == bridgeSize.getValue();
+    }
+
+    public Stream<PassOrFail> stream() {
+        return history.stream();
     }
 }
