@@ -35,7 +35,11 @@ public class GameSystem {
     }
 
     public void result() {
-
+        String challenge = "성공";
+        if (state.equals("Q")) {
+            challenge = "실패";
+        }
+        outputView.printResult(challenge, attempt, game.getUserBridge());
     }
 
     private String choiceMove() {
