@@ -20,6 +20,21 @@ public class GameManager {
     private static User player;
     private static BridgeGame bridgeGame;
 
+    public enum GameStatus {
+        RETRY("R"),
+        QUIT("Q");
+
+        private String status;
+
+        GameStatus(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+    }
+
     /**
      * 다리 생성 게임, 사용자 생성
      */
@@ -56,7 +71,7 @@ public class GameManager {
             moveUser();
             printBridge_userPredict();
             if (isGameSucceed()) break;
-            if (isGameFailed()) askRestartGame();
+            if (isGameFailed() && isQuitGame()) break;
         }
         printGameResult();
     }
@@ -84,6 +99,7 @@ public class GameManager {
         boolean isGameSucceed = bridgeGame.checkIfGameIsSucceed(userNumberOfMoves);
         if (isGameSucceed) {
             player.setGameSucceed();
+            player.setNotPlayingGame();
         }
         return isGameSucceed;
     }
@@ -94,7 +110,19 @@ public class GameManager {
         return bridgeGame.checkIfGameIsFailed(userNumberOfMoves);
     }
 
-    private void askRestartGame() {
+    // 게임 종료 여부 확인
+    private boolean isQuitGame() {
+        String userGameCommand = askGameCommand();
+        if (userGameCommand.compareTo(GameStatus.QUIT.getStatus()) == 0) {
+            player.setNotPlayingGame();
+            return true;
+        }
+        return false;
+    }
+
+    private String askGameCommand() {
+        OutputView.askGameCommand();
+        return InputView.readGameCommand();
     }
 
     private void printGameResult() {
