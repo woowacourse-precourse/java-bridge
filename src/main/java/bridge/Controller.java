@@ -14,12 +14,13 @@ public class Controller {
     }
 
     public void startGame(final BridgeGame bridgeGame) {
+        outputView.printGuideMessage(GuideMessage.START);
         generateBridge(bridgeGame);
         play(bridgeGame, GameStatus.CONTINUE);
     }
 
     private void generateBridge(final BridgeGame bridgeGame) {
-        new OutputView().printGuideMessage(GuideMessage.START);
+        outputView.printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
         bridgeGame.generateBridge(this.inputView.readBridgeSize());
     }
 
@@ -37,10 +38,6 @@ public class Controller {
     private void getProgress(BridgeGame bridgeGame) {
         bridgeGame.updateMap();
         outputView.printMap(bridgeGame.getMap());
-    }
-
-    private void updateMap(Side movingSide, boolean moved, Map map) {
-        map.add(movingSide, moved);
     }
 
     private void movePlayer(final BridgeGame bridgeGame) {
@@ -62,7 +59,6 @@ public class Controller {
 
     private void getResult(GameStatus gameResult, BridgeGame bridgeGame, Map map) {
         outputView.printGuideMessage(GuideMessage.RESULT_PRINT);
-        outputView.printGuideMessage(GuideMessage.GAME_RESULT, GameStatus.get(gameResult));
         outputView.printMap(map);
         outputView.printNewline();
         outputView.printResult(gameResult);
