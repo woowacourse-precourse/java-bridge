@@ -25,5 +25,7 @@ class ValidTest {
 
     @Test
     void validReadGameCommand() {
+        Valid valid = new Valid();
+        assertThatThrownBy(() -> valid.validReadGameCommand("z")).isInstanceOf(IllegalArgumentException.class);
     }
 }
