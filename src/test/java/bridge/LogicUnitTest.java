@@ -48,6 +48,14 @@ class LogicUnitTest extends NsTest {
         assertThat(output()).contains(ERROR_MESSAGE);
     }
 
+    @Test
+    void 재시작_RorQ아니면_예외처리() {
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("R".getBytes()));
+        String test = inputView.handleCheckGameCommandValidate("E");
+        assertThat(output()).contains(ERROR_MESSAGE);
+    }
+
 //    private void runReadBridgeSizeTest(final Object args) {
 //        System.setIn(new ByteArrayInputStream("a".getBytes()));
 //        InputView inputView = new InputView();
