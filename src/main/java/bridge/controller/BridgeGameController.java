@@ -18,7 +18,7 @@ public class BridgeGameController {
 
     private final BridgeGame bridgeGame;
 
-    private BridgeGameController(BridgeGame bridgeGame){
+    private BridgeGameController(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
     }
 
@@ -26,7 +26,7 @@ public class BridgeGameController {
         outputView.printGameStartMessage();
         BridgeGame bridgeGame = initializeBridgeGame();
         BridgeGameController bridgeGameController = new BridgeGameController(bridgeGame);
-        return bridgeGameController.progressBridgeGame(DEFAULT_DISTANCE);
+        return bridgeGameController.progressByDistance(DEFAULT_DISTANCE);
     }
 
     public static void printResult(TotalResult result) {
@@ -42,26 +42,26 @@ public class BridgeGameController {
         return new BridgeGame(bridge, DEFAULT_TRY_COUNT);
     }
 
-    private TotalResult progressBridgeGame(int distance) {
-        TotalResult result = move(distance);
+    private TotalResult progressByDistance(int distance) {
+        TotalResult result = selectBridgeSideAndMove(distance);
 
         if (!result.win()) {
-            return restartOrNot(result);
+            return restartOrQuit(result);
         }
         if (bridgeGame.getBridgeSize() == distance) {
             return result;
         }
-        return progressBridgeGame(distance + 1);
+        return progressByDistance(distance + 1);
     }
 
-    private TotalResult move(int distance) {
+    private TotalResult selectBridgeSideAndMove(int distance) {
         String movingSide = inputView.readMoving();
         TotalResult result = bridgeGame.move(movingSide, distance);
         outputView.printMap(result.getPlayerMap());
         return result;
     }
 
-    private TotalResult restartOrNot(TotalResult result) {
+    private TotalResult restartOrQuit(TotalResult result) {
         String gameCommand = inputView.readGameCommand();
         if (gameCommand.equals(GameCommands.RETRY)) {
             return restart();
@@ -72,6 +72,6 @@ public class BridgeGameController {
     private TotalResult restart() {
         BridgeGame nextBridgeGame = bridgeGame.retry();
         BridgeGameController nextBridgeGameController = new BridgeGameController(nextBridgeGame);
-        return progressBridgeGame(1);
+        return progressByDistance(DEFAULT_DISTANCE);
     }
 }
