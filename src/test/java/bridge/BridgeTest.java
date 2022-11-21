@@ -86,4 +86,31 @@ public class BridgeTest {
                 "O |   |  "
         );
     }
+
+    @DisplayName("재시작 여부가 정상인 경우에 대한 테스트")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void command(String input) {
+        Validation validation = new Validation();
+        assertThatCode(() -> validation.validateCommand(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("재시작 여부가 문자가 아닌 경우에 대한 예외 테스트")
+    @ValueSource(strings = {"2", " "})
+    @ParameterizedTest
+    void notCharacterCommand(String input) {
+        Validation validation = new Validation();
+        assertThatThrownBy(() -> validation.validateMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이동할 칸이 R 또는 Q가 아닌 경우에 대한 예외 테스트")
+    @ValueSource(strings = {"retry", "종료"})
+    @ParameterizedTest
+    void wrongCommand(String input) {
+        Validation validation = new Validation();
+        assertThatThrownBy(() -> validation.validateMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
