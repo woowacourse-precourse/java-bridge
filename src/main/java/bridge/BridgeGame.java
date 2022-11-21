@@ -23,17 +23,28 @@ public class BridgeGame {
                 break;
             }
 
-            boolean isMoved = move(idx);
+            boolean isMoved = move(bridge);
             if (!isMoved) {
                 isPlaying = retry();
             }
         }
-        
+        if (isEnd) {
+            outputView.printResult(count, true);
+            return;
+        }
+        outputView.printResult(count, false);
     }
 
-    public boolean move(int idx) {
+    public boolean move(List<String> bridge) {
+        //up : 1, down : 0
         String moving = inputView.readMoving();
-        return true;
+        if (bridge.get(idx)==moving) {
+            outputView.printMap(idx,bridge,true);
+            idx++;
+            return true;
+        }
+        outputView.printMap(idx,bridge,false);
+        return false;
     }
     public boolean retry() {
         String command = inputView.readGameCommand();
