@@ -12,7 +12,7 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public void initialize() {
+    public void startGame() {
         player = new Player();
         trialCount = TrialCount.firstTrial();
     }
@@ -42,6 +42,10 @@ public class BridgeGame {
 
     public boolean isPlayerDead() {
         return player.isDead();
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public TrialCount getTrialCount() {
