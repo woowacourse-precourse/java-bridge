@@ -7,10 +7,8 @@ public class Bridge {
     private final List<String> bridge;
     private int pos = -1;
 
-    public Bridge() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int size = InputView.readBridgeSize();
-        this.bridge = bridgeMaker.makeBridge(size);
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
     public boolean matchBridge(String uOrD) {
