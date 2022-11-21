@@ -17,6 +17,10 @@ public class Bridge {
         return bridge.get(--order).equals(choice);
     }
 
+    public boolean isEnd(int order) {
+        return order == bridge.size();
+    }
+
     public List<String> getBridge() {
         return Collections.unmodifiableList(bridge);
     }
