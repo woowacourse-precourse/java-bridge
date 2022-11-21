@@ -26,5 +26,12 @@ public class BridgeLengthTest {
                 .hasMessage("[ERROR] 숫자만 입력해야 합니다.");
     }
 
-    // 3 이상 20 이하가 아닌 경우
+    @DisplayName("3 이상 20 이하가 아닌 경우")
+    @ValueSource(strings = {"0", "2", "21"})
+    @ParameterizedTest
+    void validateInRange(String inputLength) {
+        assertThatThrownBy(() -> BridgeLength.createBridgeLength(inputLength))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
 }
