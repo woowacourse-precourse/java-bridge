@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 public class SystemMessage {
     public static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요";
