@@ -8,20 +8,25 @@ public class InputView {
     private static int bridgeSize;
     public static String retryGame;
     static Validator validator = new Validator();
+    public static boolean checkError = true;
 
     // 다리의 길이를 입력받는다
     public static int readBridgeSize() {
         OutputView.printBridgeSize();
+
         String input = Console.readLine();
+
         System.out.println();
         if (input != null && !input.matches("-?\\d+")) {
             validator.checkBridgeSizeInputInteger(input);
             input = validator.inputNum;
         }
         bridgeSize = Integer.parseInt(input);
+
         if (bridgeSize < 3 || bridgeSize > 20) {
             validator.checkBridgeSize(bridgeSize);
         }
+
         return bridgeSize;
     }
 

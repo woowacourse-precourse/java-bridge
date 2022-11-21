@@ -13,7 +13,7 @@ public class OutputView {
 
     // 다리 길이 입력 선언
     public static void printBridgeSize() {
-        System.out.println(BridgeConstant.INPUT_BRIDGE_SIZE);
+        System.out.println(BridgeConstant.INPUT_BRIDGE_SIZE.getValue());
     }
 
     // 다리 선택 U or D

@@ -8,6 +8,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.main.Application;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeNumberGenerator;
+import bridge.model.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -48,6 +49,17 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void Random_Bridge_Make_Test() {
+        List<String> bridge;
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int size = 10;
+        bridge = bridgeMaker.makeBridge(size);
+        System.out.println(bridge);
+        assertThat(bridge.size()).isEqualTo(size);
     }
 
     @Override
