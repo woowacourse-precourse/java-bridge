@@ -17,7 +17,7 @@ public class Bridge {
         BridgeMaker bridgeMaker = new BridgeMaker(randomNumberGenerator);
         this.size = size;
         this.bridge = bridgeMaker.makeBridge(this.size);
-        this.userRoute = new ArrayList<>();
+        initializeUserRoute();
     }
 
     public gameStatus updateUserRoute(String direction) {
@@ -58,5 +58,9 @@ public class Bridge {
             }
         }
         return eachBridgeRouteInfo;
+    }
+
+    public void initializeUserRoute() {
+        this.userRoute = new ArrayList<>();
     }
 }

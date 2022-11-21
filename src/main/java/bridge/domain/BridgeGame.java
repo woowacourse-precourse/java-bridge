@@ -19,6 +19,6 @@ public class BridgeGame {
 
     public void retry() {
         attemptCount++;
-        this.currentStatus = gameStatus.CONTINUE;
+        currentStatus = gameStatus.CONTINUE;
     }
 }
