@@ -90,7 +90,7 @@ public class BridgeGame {
         return new GameResult(gameBoards, isGameLose, tryCount);
     }
 
-    public List<GameBoard> getGameBoards(){
+    public List<GameBoard> getGameBoards() {
         List<GameBoard> gameBoards = List.of(topGameBoard, bottomGameBoard);
         return gameBoards;
     }

@@ -50,7 +50,7 @@ public class InputView {
         String retryCheck = Console.readLine();
         validateRetryCheckValue(retryCheck);
 
-        if(retryCheck.equals(QUIT)){
+        if (retryCheck.equals(QUIT)) {
             return false;
         }
         return true;
@@ -66,10 +66,10 @@ public class InputView {
         throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MESSAGE);
     }
 
-    private static void validateBridgeSizeInputValueFormat(String size){
-        try{
+    private static void validateBridgeSizeInputValueFormat(String size) {
+        try {
             Integer.parseInt(size);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_VALUE_FORMAT_ERROR_MESSAGE);
         }
     }
@@ -81,8 +81,8 @@ public class InputView {
         throw new IllegalArgumentException(MOVE_DIRECTION_ERROR_MESSAGE);
     }
 
-    private static void validateRetryCheckValue(String retryCheck){
-        if(retryCheck.equals(QUIT) || retryCheck.equals(RETRY)){
+    private static void validateRetryCheckValue(String retryCheck) {
+        if (retryCheck.equals(QUIT) || retryCheck.equals(RETRY)) {
             return;
         }
         throw new IllegalArgumentException(RETRY_ERROR_MESSAGE);

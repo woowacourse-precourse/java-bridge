@@ -9,11 +9,11 @@ public class GameBoard {
 
     private final List<String> gameBoard;
 
-    public GameBoard(List<String> gameBoard){
+    public GameBoard(List<String> gameBoard) {
         this.gameBoard = gameBoard;
     }
 
-    public void addMovingResult(String movingResult){
+    public void addMovingResult(String movingResult) {
         gameBoard.add(movingResult);
     }
 

@@ -60,7 +60,6 @@ public class BridgeGameController {
     }
 
 
-
     private Bridge generateBridge(BridgeMaker bridgeMaker) {
         printInputBridgeSizeMessage();
         Bridge bridge;
