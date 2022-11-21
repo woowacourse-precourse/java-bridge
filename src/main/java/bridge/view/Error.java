@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.resource.ErrorType;
 
-public class Error extends RuntimeException {
+public class Error extends IllegalArgumentException {
     private static final String ERROR = "[ERROR] %s";
 
     public Error(ErrorType type) {
