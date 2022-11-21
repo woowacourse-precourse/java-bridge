@@ -8,23 +8,38 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public static int readBridgeSize() {
-        OutputView.requestBridgeSize();
-        String input = Console.readLine();
-        BridgeSizeValidator.validateBridgeSize(input);
-        return Integer.parseInt(input);
+        try {
+            OutputView.requestBridgeSize();
+            String input = Console.readLine();
+            BridgeSizeValidator.validateBridgeSize(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     public static String readMoving() {
-        OutputView.requestMoving();
-        String input = Console.readLine();
-        MovingValidator.validateMoving(input);
-        return input;
+        try {
+            OutputView.requestMoving();
+            String input = Console.readLine();
+            MovingValidator.validateMoving(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return readMoving();
+        }
     }
 
     public static String readGameCommand() {
-        OutputView.requestGameCommand();
-        String input = Console.readLine();
-        GameCommandValidator.validateGameCommand(input);
-        return input;
+        try {
+            OutputView.requestGameCommand();
+            String input = Console.readLine();
+            GameCommandValidator.validateGameCommand(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return readGameCommand();
+        }
     }
 }
