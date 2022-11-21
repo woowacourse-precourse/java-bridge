@@ -20,6 +20,14 @@ class LogicUnitTest extends NsTest {
         });
     }
 
+    @Test
+    void 다리길이_3미만_20초과이면_예외처리() {
+        assertSimpleTest(() -> {
+            runException("21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
