@@ -29,7 +29,7 @@ public class BridgeGame {
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
     }
-    public void gameInProgress(String moving) {
+    public void move(String moving) {
         progressStatus = true;
         createBridgeResult(moving);
         moveCount++;
@@ -76,7 +76,7 @@ public class BridgeGame {
         return true;
     }
 
-    public boolean isRetry(String gameCommand) {
+    public boolean retry(String gameCommand) {
         if (gameCommand.equals("R")) {
             initBeforeRestart();
         }

@@ -40,19 +40,19 @@ public class BridgeController {
     public void game() {
         while(!(bridgeGame.isOver())){
             outputView.printMovingInputMessage();
-            bridgeGame.gameInProgress(inputView.readMoving());
+            bridgeGame.move(inputView.readMoving());
             outputView.printBridge(bridgeGame.getUpBridge(),bridgeGame.getDownBridge());
         }
     }
     public boolean gameOver() {
         if(!(bridgeGame.isSuccess())) {
-            return retry();
+            return isRetry();
         }
         return false;
     }
-    public boolean retry() {
+    public boolean isRetry() {
         outputView.printRetryMessage();
         String gameCommand = inputView.readGameCommand();
-        return bridgeGame.isRetry(gameCommand);
+        return bridgeGame.retry(gameCommand);
     }
 }
