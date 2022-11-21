@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import static bridge.value.LocationValue.LOCATION_INCREMENT;
+import static bridge.value.LocationValue.LOCATION_INIT;
+
 import java.util.Objects;
 
 public class BridgeLocation {
@@ -12,13 +15,13 @@ public class BridgeLocation {
     }
 
     private void validate(int location) {
-        if(location < 0) {
+        if(location < LOCATION_INIT.getValue()) {
             throw new IllegalArgumentException("다리에서의 위치가 양수가 아닙니다.");
         }
     }
 
     public static BridgeLocation initBridgeLocation() {
-        return new BridgeLocation(0);
+        return new BridgeLocation(LOCATION_INIT.getValue());
     }
 
     public int value() {
@@ -26,7 +29,7 @@ public class BridgeLocation {
     }
 
     public BridgeLocation next() {
-        return new BridgeLocation(value() + 1);
+        return new BridgeLocation(value() + LOCATION_INCREMENT.getValue());
     }
 
     public boolean isBelow(int size) {
