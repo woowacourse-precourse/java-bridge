@@ -10,15 +10,15 @@ import static org.assertj.core.util.Lists.newArrayList;
  */
 public class BridgeGame {
     private static List<String> brige;
+    private static final String Right = "O";
+    private static final String Wrong = "X";
+    private static final String Re = "R";
+    private static final String Retry = "Retry";
+    private static final String SuccessQuit = "S_Quit";
+    private static final String FailuresQuit = "F_Quit";
+    private static final String Move = "Move";
     private static int position = 0;
-    public BridgeGame(int readBridgeSize) {
-        try {
-            brige = new_BridgeMaker(readBridgeSize);
-        }
-        catch (Exception e){
-            throw new IllegalArgumentException(e);
-        }
-    }
+    public BridgeGame(int readBridgeSize) { brige = new_BridgeMaker(readBridgeSize); }
 
     private List<String> new_BridgeMaker(int readBridgeSize){
         return new BridgeMaker().makeBridge(readBridgeSize);
@@ -31,9 +31,9 @@ public class BridgeGame {
     public String move(String moving) {
         if (brige.get(position).matches(moving)){
             position++;
-            return "O";
+            return Right;
         }
-        return "X";
+        return Wrong;
     }
 
     /**
@@ -41,17 +41,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int retry(String re) {
-        if (re.equals("R")) {
+    public String retry(String re) {
+        if (re.equals(Re)) {
             position = 0;
-            return 3;
+            return Retry;
         }
-        return 4;
+        return FailuresQuit;
     }
 
-    public int check_over(){
+    public String check_over(){
         if (position == brige.size())
-            return 1;
-        return 2;
+            return SuccessQuit;
+        return Move;
     }
 }

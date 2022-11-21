@@ -1,7 +1,5 @@
 package bridge.View;
 
-import javax.swing.*;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**

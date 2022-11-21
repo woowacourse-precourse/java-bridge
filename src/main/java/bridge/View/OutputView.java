@@ -11,6 +11,9 @@ public class OutputView {
 
     private static List<Integer> result = new ArrayList<>();
 
+    private static final String Retry = "Retry";
+    private static final String Quit = "Quit";
+    private static final String Move = "Move";
     private static final String error = "[ERROR]";
     private static final String LenError = "다리 길이는 3부터 20사이의 숫자여야 합니다.";
 
@@ -58,9 +61,9 @@ public class OutputView {
         return retry;
     }
 
-    public static void printCount(int result, int count_try) {
+    public static void printCount(String result, int count_try) {
         printResult();
-        if (result == 1) {
+        if (result.contains("S")) {
             System.out.println(end + success);
             System.out.println(count + count_try);
             return;
@@ -74,14 +77,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static int printMap(String res, String moving) {
+    public static String printMap(String res, String moving) {
         loadingMap(res, moving);
         if (res.equals("O")){
             Map();
-            return 2;
+            return Move;
         }
         Map();
-        return 3;
+        return Retry;
     }
 
     public static void MapReset(){
