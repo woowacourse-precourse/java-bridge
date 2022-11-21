@@ -35,7 +35,7 @@ public class OutputView {
     public String makeMap(BridgeGame bridgeGame) {
         List<MoveCase> result = bridgeGame.getResults();
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("\n" + BRIDGE_OPEN.getMessage());
+        stringBuffer.append(BRIDGE_OPEN.getMessage());
         appendUpBridge(stringBuffer, result);
         stringBuffer.append("\n" + BRIDGE_OPEN.getMessage());
         appendDownBridge(stringBuffer, result);
