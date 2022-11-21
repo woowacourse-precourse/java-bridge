@@ -12,15 +12,17 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public void readBridgeSize() {
         System.out.println("\n다리의 길이를 입력해주세요.");
         try {
             bridge_size = Integer.parseInt(Console.readLine());
             checkBridgeSizeException(bridge_size);
         } catch(NumberFormatException e) {
             changeExceptionType();
+            readBridgeSize();
+        } catch(IllegalArgumentException e){
+            readBridgeSize();
         }
-        return bridge_size;
     }
 
     /**
@@ -29,7 +31,11 @@ public class InputView {
     public String readMoving() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving = Console.readLine();
-        checkMovingException(moving);
+        try {
+            checkMovingException(moving);
+        } catch (IllegalArgumentException e){
+            return readMoving();
+        }
         return moving;
     }
 
@@ -39,11 +45,19 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String game_command = Console.readLine();
+        try {
+            checkGameCommandException(game_command);
+        }catch(IllegalArgumentException e){
+            return readGameCommand();
+        }
+        return game_command;
+    }
+
+    private static void checkGameCommandException(String game_command) {
         if (!(game_command.equals("R")) && !(game_command.equals("Q"))){
             System.out.println("[ERROR] 재시작 여부는 R/Q 중 하나를 입력해야 합니다.");
             throw new IllegalArgumentException();
         }
-        return game_command;
     }
 
     private void checkBridgeSizeException(int bridge_size) {
