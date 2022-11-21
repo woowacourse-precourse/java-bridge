@@ -7,7 +7,10 @@ import bridge.view.InputView;
 
 import java.util.List;
 
-public class Judgement {
+/**
+ * 조건을 충족하는지 여부를 알려주는 역할을 한다.
+ */
+public class JudgementUtil {
     private final static InputView inputView = new InputView();
 
     /**

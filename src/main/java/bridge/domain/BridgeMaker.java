@@ -1,12 +1,12 @@
 package bridge.domain;
 
+import bridge.enums.Sign;
 import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -24,17 +24,20 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            bridge.add(intToDirection(bridgeNumberGenerator.generate()));
-        }
-        return bridge;
+        return Stream.generate(() -> getDirectionSign(bridgeNumberGenerator.generate()))
+                .limit(size)
+                .collect(Collectors.toList());
     }
 
-    private String intToDirection(int number) {
-        if (number == 1) {
-            return "D";
+    /**
+     * 숫자에 해당하는 방향 사인을 반환한다.
+     * @param number    0 또는 1
+     * @return  0이면 "D", 1이면 "U"
+     */
+    private String getDirectionSign(int number) {
+        if (number == 0) {
+            return Sign.DOWN.getSign();
         }
-        return "U";
+        return Sign.UP.getSign();
     }
 }

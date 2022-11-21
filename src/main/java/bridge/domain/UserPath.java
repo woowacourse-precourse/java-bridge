@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge.domain;
 
 import bridge.domain.Bridge;
 import bridge.domain.UserMovement;
@@ -7,7 +7,10 @@ import bridge.enums.Sign;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompareResult {
+/**
+ * 유저가 이동한 경로를 알려준다.
+ */
+public class UserPath {
 
     /**
      * 유저 움직임의 위쪽 결과를 반환한다.

@@ -2,6 +2,9 @@ package bridge.util;
 
 import bridge.enums.ErrorMessage;
 
+/**
+ * 입력 검증 로직
+ */
 public class ValidationUtil {
 
     /**
@@ -10,7 +13,7 @@ public class ValidationUtil {
      * @param size 다리의 길이
      */
     public static void validateBridgeSize(int size) {
-        if (size <= 0) {
+        if (size < 3 || size > 20) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_LENGTH_INPUT.getMessage());
         }
     }

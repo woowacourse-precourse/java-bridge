@@ -1,2 +1,5 @@
-package bridge.util;public class BridgeMakerTest {
+package bridge.util;
+
+public class BridgeMakerTest {
+
 }
