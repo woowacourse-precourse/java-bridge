@@ -39,7 +39,7 @@ public class BridgeStatus {
             List<String> status = bridgeStatus.get(bridgeBlock).stream()
                     .map(BlockStatus::toString)
                     .collect(Collectors.toList());
-            totalStatus.append(status.toString().replaceAll(",", "|")).append('\n');
+            totalStatus.append(status.toString().replaceAll(", ", "|")).append('\n');
         }
         return totalStatus.toString();
     }
