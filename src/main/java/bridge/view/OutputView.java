@@ -19,10 +19,6 @@ public class OutputView {
     public final String SUCCESS = "성공";
     public final String FAIL = "실패";
 
-    public void printStartMessage() {
-        System.out.println(GAME_START_MESSAGE);
-    }
-
     private static final OutputView outputView = new OutputView();
 
     private OutputView() {
@@ -69,4 +65,7 @@ public class OutputView {
         return FAIL;
     }
 
+    public void printStartMessage() {
+        System.out.println(GAME_START_MESSAGE);
+    }
 }
