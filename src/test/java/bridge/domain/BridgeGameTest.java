@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.domain.BridgeGame;
 import bridge.util.BridgeType;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
-    private BridgeGame bridgeGame;
+    BridgeGame bridgeGame;
 
     private static final int BRIDGE_SIZE = 3;
     private static final String UP = "U";
