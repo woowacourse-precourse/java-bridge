@@ -1,6 +1,9 @@
 package bridge.model;
 
+import static bridge.controller.InputController.getGameCommand;
 import static bridge.controller.InputController.getUserSelection;
+import static bridge.model.GameCommand.selectedRetry;
+import static bridge.model.Status.die;
 import static bridge.model.Status.findStatus;
 
 /**
@@ -8,11 +11,17 @@ import static bridge.model.Status.findStatus;
  */
 public class BridgeGame {
     private final Bridge bridge;
-    private final Diagram diagram;
+    private Diagram diagram;
+    private int attempts;
+    private static boolean success;
+    private static GameCommand command;
 
     public BridgeGame(Bridge bridge, Diagram diagram) {
         this.bridge = bridge;
         this.diagram = diagram;
+        this.attempts = 1;
+        this.success = false;
+        this.command = GameCommand.RETRY;
     }
 
     /**
@@ -34,5 +43,44 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(GameCommand gameCommand) {
+        if (selectedRetry(gameCommand)) {
+            initialize();
+            attempt();
+        }
+        if (!selectedRetry(gameCommand)) {
+            command = GameCommand.QUIT;
+        }
+    }
+
+    public void initialize() {
+        attempts++;
+        diagram = new Diagram();
+    }
+
+    public void attempt() {
+        for (int index = 0; index < bridge.getBridgeSize(); index++) {
+            Status status = move(index);
+            if (bridge.survivedToTheLast(index)) {
+                success = true;
+            }
+            if (!die(status)) {
+                continue;
+            }
+            if (die(status)) {
+                GameCommand gameCommand = getGameCommand();
+                retry(gameCommand);
+            }
+            if (success || command == GameCommand.QUIT) {
+                break;
+            }
+        }
+    }
+
+    public int getAttempts() {
+        return attempts;
+    }
+
+    public static boolean isSuccess() {
+        return success;
     }
 }
