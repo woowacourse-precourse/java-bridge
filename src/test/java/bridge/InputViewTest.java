@@ -43,4 +43,30 @@ class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
     }
+
+
+
+    @DisplayName("입력한 데이터가 U나 D가 아닌 경우 예외가 발생한다.")
+    @Test
+    void readMovingTest1() {
+        InputView inputView = new InputView();
+
+        String input = "-1";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> inputView.readMoving()).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("소문자를 넣어도 대문자로 바꿔준다.")
+    @Test
+    void readMovingTest2() {
+        InputView inputView = new InputView();
+
+        String input = "u";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThat(inputView.readMoving()).isEqualTo("U");
+    }
 }
