@@ -27,11 +27,7 @@ public class Bridge {
         return Movable.X;
     }
 
-    public int size() {
-        return bridge.size();
-    }
-
     public boolean isEndOfBridge(int position) {
-        return position == size();
+        return position == bridge.size();
     }
 }
