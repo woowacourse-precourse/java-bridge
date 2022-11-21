@@ -1,4 +1,5 @@
 package bridge;
+import bridge.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
@@ -28,7 +29,6 @@ public class InputView {
     public boolean readMoving(List<String> moves) {
         String moveString = Console.readLine();
         validator.isValidMove(moveString);
-        moves.add(moveString); // does this work?
         return (moveString.equals("U"));
     }
 

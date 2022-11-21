@@ -20,6 +20,9 @@
    - isValidCommand: 입력값이 R 또 Q인지 확인
 7. OutputView
    - printMap: 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력
+     - translateBridge: List<String>을 List<Boolean>으로 변경
+     - checkCell: move와 bridge에 같은 index가 같은 값인지 확인
+     - makeMap: print하기 전 map 만들기
    - printResult: 게임 최종 결과를 정해진 형식에 맞춰 출력
    - printStart: 게임 시작 문구 출력
    - printGetLength: 다리 길이 입력 문구 출력

@@ -12,7 +12,7 @@ public class Validator {
     private final String ERROR_NOT_VALID_COMMAND = ERROR_MESSAGE + "게임 재시도 여부는 R 또는 Q여야 합니다.";
     public int isInt(String input) {
         try {
-            int length = Integer.parseInt(input);
+            Integer.parseInt(input);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(ERROR_NOT_INT);
         }
@@ -25,13 +25,13 @@ public class Validator {
         return length;
     }
     public void isValidMove(String move) {
-        List<String> validMoves = new ArrayList<String>(Arrays.asList("U", "D"));
+        List<String> validMoves = new ArrayList<>(Arrays.asList("U", "D"));
         if (!(validMoves.contains(move.toUpperCase()))) {
             throw new IllegalArgumentException(ERROR_NOT_VALID_MOVE);
         }
     }
     public void isValidCommand(String command) {
-        List<String> validCommands = new ArrayList<String>(Arrays.asList("R", "Q"));
+        List<String> validCommands = new ArrayList<>(Arrays.asList("R", "Q"));
         if (!(validCommands.contains(command.toUpperCase()))) {
             throw new IllegalArgumentException(ERROR_NOT_VALID_COMMAND);
         }
