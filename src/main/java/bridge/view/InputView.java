@@ -24,24 +24,38 @@ public class InputView {
     }
 
     private void validateBridgeSize(String size) {
-            try{
-                validator.inputSizeValidator(size);
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
+            validator.inputSizeValidator(size);
+            validator.validatorBridgeSizeRange(size);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while(true) {
+            try {
+                String moving = Console.readLine();
+                validator.validateMoving(moving);
+                return moving;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        while(true) {
+            try {
+                String command = Console.readLine();
+                validator.validateRetryCommand(command);
+                return command;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

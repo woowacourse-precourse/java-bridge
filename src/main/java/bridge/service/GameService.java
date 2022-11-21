@@ -1,26 +1,48 @@
 package bridge.service;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.vo.Commend;
 
 public class GameService {
 
     BridgeGame bridgeGame = new BridgeGame();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    public void gameStart(){
+    public void gameStart() {
         outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        bridgeGame.setBridge(bridge);
+        bridgeGame.setGameStart(bridgeSize);
     }
 
     public void runGame() {
+        outputView.printMoveChooseMessage();
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame);
+        checkResult();
+    }
+
+    private void checkResult() {
+        if(bridgeGame.gameOver())
+            return;
+        if(bridgeGame.isNotEnd())
+            runGame();
+        if(!bridgeGame.isNotEnd())
+            chooseRetry();
+    }
+
+    private void chooseRetry() {
+        outputView.printChooseRetry();
+        String retry = inputView.readGameCommand();
+        if(retry.equals(Commend.RETRY)){
+            bridgeGame.retry();
+            runGame();
+        }
+    }
+
+    public void endGame() {
+        outputView.printResult(bridgeGame);
     }
 }

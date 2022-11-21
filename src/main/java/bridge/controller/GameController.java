@@ -9,5 +9,6 @@ public class GameController {
     public void play() {
         gameService.gameStart();
         gameService.runGame();
+        gameService.endGame();
     }
 }

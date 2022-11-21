@@ -5,24 +5,18 @@ package bridge.domain;
  */
 public class BridgeGame {
 
+    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private Bridge bridge;
     private User user;
-
-
-    public void setBridge(Bridge bridge) {
-        this.bridge = bridge;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param move
      */
-    public void move() {
+    public void move(String move) {
+        user.addMoving(move);
     }
 
     /**
@@ -34,4 +28,16 @@ public class BridgeGame {
     }
 
 
+    public boolean isNotEnd() {
+        return false;
+    }
+
+    public void setGameStart(int bridgeSize) {
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        this.user = new User();
+    }
+
+    public boolean gameOver() {
+        return false;
+    }
 }
