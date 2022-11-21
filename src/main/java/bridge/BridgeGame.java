@@ -11,14 +11,23 @@ public class BridgeGame {
 
     private final List<String> stageBridge;
     private final List<String> playLog;
-    private int currentPosition;
-    private int tryCount;
+    private int currentPosition; // 현재 비교 위치
+    private int tryCount; // 게임 플레이 횟수
 
     public BridgeGame(List<String> stageBridge) {
         this.stageBridge = stageBridge;
         this.playLog = new ArrayList<>();
+
+        resetFields();
+    }
+
+    /**
+     * 새로운 게임을 할 수 있도록 설계될 수 있으므로 확장 가능하도록 필드를 reset하는 함수 구분
+     */
+    private void resetFields(){
+        this.playLog.clear();
         this.currentPosition = 0;
-        this.tryCount = 1; // 게임 플레이 횟수
+        this.tryCount = 1;
     }
 
     public int getBridgeSize(){
