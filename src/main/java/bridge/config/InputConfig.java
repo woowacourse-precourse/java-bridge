@@ -32,7 +32,8 @@ public class InputConfig {
 
     private void isNumber(String input) {
         if (!Pattern.matches(NUMBER_PATTERN, input)) {
-            throw new IllegalArgumentException(NOT_IN_CORRECT_RANGE);
+            String errMsg = String.format(NOT_IN_CORRECT_RANGE, BRIDGE_MIN_LENGTH, BRIDGE_MAX_LENGTH);
+            throw new IllegalArgumentException(errMsg);
         }
     }
 
