@@ -41,7 +41,7 @@ public class BridgeGameController {
 
     private void responseMovingResult() {
         MovingResult movingResult = bridgeGameService.createMovingResult();
-        outputView.printMovingResult(MessageGenerator.createMovedMessage(movingResult));
+        outputView.printMap(MessageGenerator.createMovedMessage(movingResult));
         if (movingResult.isFailToMove()) {
             requestPlayingAgain();
             return;
