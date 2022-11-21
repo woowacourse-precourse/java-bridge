@@ -1,6 +1,6 @@
 package bridge.input.validator;
 
-import bridge.Move;
+import bridge.constant.Move;
 
 public class MoveValidator {
     private static final String UP = Move.UP.getValue();

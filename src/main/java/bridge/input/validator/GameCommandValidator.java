@@ -1,6 +1,6 @@
 package bridge.input.validator;
 
-import bridge.GameCommand;
+import bridge.constant.GameCommand;
 
 public class GameCommandValidator {
     private static final String RETRY = GameCommand.RETRY.getValue();

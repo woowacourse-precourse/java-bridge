@@ -1,12 +1,12 @@
-package bridge;
+package bridge.constant;
 
-public enum GameCommand {
-    RETRY("R"),
-    QUIT("Q");
+public enum Move {
+    DOWN("D"),
+    UP("U");
 
     private final String value;
 
-    GameCommand(String value) {
+    Move(String value) {
         this.value = value;
     }
 
