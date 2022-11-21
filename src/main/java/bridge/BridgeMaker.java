@@ -36,5 +36,4 @@ public class BridgeMaker {
         }
         return parseBridge;
     }
-
 }
