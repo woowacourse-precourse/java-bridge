@@ -10,10 +10,10 @@ import bridge.domain.Validation;
 
 import java.util.List;
 
-import static bridge.domain.BridgeGame.*;
+import static bridge.domain.BridgeEnum.*;
 
 public class BridgeGameController {
-    private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeGame bridgeGame;
     private String successResult = "";
     private boolean moving = true;
@@ -63,9 +63,9 @@ public class BridgeGameController {
 
     private String successJudgment(){
         String judgment = bridgeGame.judgment();
-        if (judgment.equals(SUCCESS)){
+        if (judgment.equals(SUCCESS.getValue())){
             moving = false;
-        } else if (judgment.equals(FAILURE)) {
+        } else if (judgment.equals(FAILURE.getValue())) {
             inputRetryOrEnd();
         }
         return judgment;
