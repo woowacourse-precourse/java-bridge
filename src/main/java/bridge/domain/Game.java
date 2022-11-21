@@ -1,7 +1,9 @@
-package bridge;
+package bridge.domain;
+
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class Game {
     int SUCCESS = 1;
