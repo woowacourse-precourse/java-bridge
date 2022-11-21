@@ -69,6 +69,14 @@ public class BridgeGame {
         marks.clear();
     }
 
+    /**
+     * 다리를 무사히 건너갔는지 확인하는 메소드
+     * @return
+     */
+    public boolean isEndOfBridge() {
+        return bridge.size() == marks.size();
+    }
+
     public void makeBridge(int size) {
         bridge = bridgeMaker.makeBridge(size);
     }
