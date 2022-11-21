@@ -33,3 +33,7 @@ input regex를 모은 enum
 ### makeBridge
 
     U,D로 구성된 bridge(ArrayList) 생성
+
+# BrdigeGameInfo
+
+게임의 현재 정보를 저장하는 class
