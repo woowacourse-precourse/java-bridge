@@ -1,8 +1,6 @@
 package bridge.Model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,7 +8,6 @@ import java.util.Map;
 public class BridgeGame {
 
     private final List<String> bridge;  // 건널 수 있는 칸을 정의한 리스트
-    private Map<String, List<String>> currentMap = Map.of("U", new ArrayList<>(), "D", new ArrayList<>());  // 현재 플레이어의 이동 결과를 담은 Map
 
     public BridgeGame(List<String> bridge){
         this.bridge = bridge;
@@ -20,34 +17,30 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * @param index 다리의 몇번째 칸을 건널 것인지
      * @param command 사용자가 입력한 이동 명령
+     * @param bridgeResult 현재까지 이동한 다리의 상태
      */
-    public Map<String, List<String>> move(int index, String command) {
+    public BridgeResult move(int index, String command, BridgeResult bridgeResult) {
         String result = getResult(index, command);
         if (command.equals("U")){
-            selectUpperBridge(result);
+            bridgeResult.selectUpperBridge(result);
         }
         if (command.equals("D")){
-            selectLowerBridge(result);
+            bridgeResult.selectLowerBridge(result);
         }
-        return currentMap;
+        return bridgeResult;
     }
 
+    /**
+     * 이동 가능한 칸을 건너려고 했는지 결과 반환
+     * @param index 다리의 몇번째 칸을 건널 것인지
+     * @param command 사용자가 입력한 이동 명령
+     */
     private String getResult(int index, String command){
         String answer = bridge.get(index);
         if (command.equals(answer)){
             return "O";
         }
         return "X";
-    }
-
-    private void selectUpperBridge(String result){
-        currentMap.get("U").add(result);
-        currentMap.get("D").add(" ");
-    }
-
-    private void selectLowerBridge(String result){
-        currentMap.get("U").add(" ");
-        currentMap.get("D").add(result);
     }
 
     /**
