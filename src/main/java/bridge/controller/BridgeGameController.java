@@ -31,7 +31,7 @@ public class BridgeGameController {
 
     private void move(String moving) {
         if (!bridgeGame.move(moving)) {
-            outputView.printMap(bridgeGame.printWrongResult());
+            outputView.printMap(bridgeGame.printResult());
             retry();
             return;
         }
@@ -39,12 +39,13 @@ public class BridgeGameController {
     }
 
     private void continueOrSuccess() {
-        if (!bridgeGame.isSuccess()) {
-            outputView.printMap(bridgeGame.printRightResult());
+        if (!bridgeGame.isCompletedGame()) {
+            outputView.printMap(bridgeGame.printResult());
             play();
             return;
         }
         printSuccessResult();
+
     }
 
     private void retry() {
@@ -58,14 +59,14 @@ public class BridgeGameController {
     }
 
     private void printSuccessResult() {
-        outputView.printOverMessage();
-        outputView.printMap(bridgeGame.printRightResult());
+        outputView.printGameOverMessage();
+        outputView.printMap(bridgeGame.printResult());
         outputView.printResult(OutputView.SUCCESS_MESSAGE, bridgeGame.getRetryCount());
     }
 
     private void printFailureResult() {
-        outputView.printOverMessage();
-        outputView.printMap(bridgeGame.printWrongResult());
+        outputView.printGameOverMessage();
+        outputView.printMap(bridgeGame.printResult());
         outputView.printResult(OutputView.FAILURE_MESSAGE, bridgeGame.getRetryCount());
     }
 }
