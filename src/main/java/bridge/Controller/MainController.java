@@ -20,6 +20,14 @@ public class MainController {
 
     public void initGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        BridgeSize bridgeSize = inputSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
+        List<ChoiceDirection> choiceDirections = new ArrayList<>();
+        List<CrossResult> crossResults = new ArrayList<>();
+        bridgeGame = new BridgeGame(bridge, choiceDirections, crossResults);
+    }
+
+    private BridgeSize inputSize(){
         BridgeSize bridgeSize = null;
         do {
             try {
@@ -28,24 +36,14 @@ public class MainController {
                 System.out.println("[ERROR] " + exception.getMessage());
             }
         } while(bridgeSize == null);
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
-        List<ChoiceDirection> choiceDirections = new ArrayList<>();
-        List<CrossResult> crossResults = new ArrayList<>();
-        bridgeGame = new BridgeGame(bridge, choiceDirections, crossResults);
+
+        return bridgeSize;
     }
 
     public void run() {
         GameStatus gameStatus = GameStatus.RUNNING;
         while (gameStatus.equals(GameStatus.RUNNING)) {
-            ChoiceDirection choice = null;
-            do {
-                try {
-                    choice = inputView.readMoving();
-                } catch (IllegalArgumentException exception){
-                    System.out.println("[ERROR] " + exception.getMessage());
-                }
-            }while(choice == null);
-
+            ChoiceDirection choice = inputChoice();
             bridgeGame.move(choice);
             gameStatus = bridgeGame.checkGameStatus();
             outputView.printMap(bridgeGame);
@@ -54,16 +52,22 @@ public class MainController {
         outputView.printResult(bridgeGame, gameStatus);
     }
 
+    private ChoiceDirection inputChoice(){
+        ChoiceDirection choice = null;
+        do {
+            try {
+                choice = inputView.readMoving();
+            } catch (IllegalArgumentException exception){
+                System.out.println("[ERROR] " + exception.getMessage());
+            }
+        }while(choice == null);
+
+        return choice;
+    }
+
     private GameStatus checkKeepRunning(GameStatus gameStatus) {
         if (gameStatus.equals(GameStatus.FAIL)) {
-            Command command = null;
-            do {
-                try {
-                    command = inputView.readGameCommand();
-                } catch (IllegalArgumentException exception){
-                    System.out.println("[ERROR] " + exception.getMessage());
-                }
-            } while(command == null);
+            Command command = inputCommand();
             if (command.isQuit()) {
                 //pass
             } else if (command.isRetry()) {
@@ -72,5 +76,18 @@ public class MainController {
             }
         }
         return gameStatus;
+    }
+
+    private Command inputCommand(){
+        Command command = null;
+        do {
+            try {
+                command = inputView.readGameCommand();
+            } catch (IllegalArgumentException exception){
+                System.out.println("[ERROR] " + exception.getMessage());
+            }
+        } while(command == null);
+
+        return command;
     }
 }
