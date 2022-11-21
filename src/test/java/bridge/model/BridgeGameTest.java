@@ -1,9 +1,10 @@
 package bridge.model;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameTest {
 
@@ -14,42 +15,17 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame();
     }
 
-    @Test
-    void oneStepMoveCorrectBridge() {
-        boolean result = bridgeGame.move("U", "U");
-        assertThat(result).isTrue();
+    @ParameterizedTest
+    @CsvSource(value = {"U,U,true", "D,D,true", "U,D,false", "D,U,false"})
+    void moveBridge(String correctStep, String moving, boolean expected) {
+        boolean result = bridgeGame.move(correctStep, moving);
+        assertThat(result).isEqualTo(expected);
     }
 
-    @Test
-    void MoveCorrectBridge() {
-        bridgeGame.move("U", "U");
-        bridgeGame.move("D", "D");
-        boolean result = bridgeGame.move("D", "D");
-        assertThat(result).isTrue();
-    }
-
-    @Test
-    void oneStepMoveInCorrectBridge() {
-        boolean result = bridgeGame.move("U", "D");
-        assertThat(result).isFalse();
-    }
-
-    @Test
-    void twoStepMoveInCorrectBridge() {
-        bridgeGame.move("U", "U");
-        boolean result = bridgeGame.move("D", "U");
-        assertThat(result).isFalse();
-    }
-
-    @Test
-    void choiceRetry() {
-        boolean result = bridgeGame.retry("R");
-        assertThat(result).isTrue();
-    }
-
-    @Test
-    void choiceEndGame() {
-        boolean result = bridgeGame.retry("Q");
-        assertThat(result).isFalse();
+    @ParameterizedTest
+    @CsvSource(value = {"R,true", "Q,false"})
+    void choiceGameCommand(String gameCommand, boolean expected) {
+        boolean result = bridgeGame.retry(gameCommand);
+        assertThat(result).isEqualTo(expected);
     }
 }
