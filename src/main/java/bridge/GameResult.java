@@ -53,4 +53,9 @@ public class GameResult {
     public List<String> getLowerBridge() {
         return lowerBridge.getBridge();
     }
+
+    public void reset() {
+        upperBridge.clear();
+        lowerBridge.clear();
+    }
 }

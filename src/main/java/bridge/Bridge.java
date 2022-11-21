@@ -3,6 +3,7 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
+
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
@@ -23,7 +24,11 @@ public class Bridge {
     }
 
     public void add(String element) {
-         bridge.add(element);
+        bridge.add(element);
+    }
+
+    public void clear() {
+        bridge.clear();
     }
 
     public List<String> getBridge() {

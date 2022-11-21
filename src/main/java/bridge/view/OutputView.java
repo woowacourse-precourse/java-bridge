@@ -31,7 +31,7 @@ public class OutputView {
 //        int i = 0;
 //        while(i < bridgeResult.size() - 1) {
 //            stringBuilder.append(bridgeResult.get(i));
-//            stringBuilder.append(BLOCK_SEPERATOR);
+//            stringBuilder.append(BLOCK_SEPARATOR);
 //            i++;
 //        }
 //        stringBuilder.append(END_BRIDGE);

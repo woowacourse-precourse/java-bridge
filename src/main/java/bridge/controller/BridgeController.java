@@ -15,10 +15,15 @@ public class BridgeController {
     private final OutputView outputView;
 
     private BridgeGame bridgeGame;
+    private boolean playing;
+
+    private int countTry;
 
     public BridgeController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        playing = true;
+        countTry = 0;
     }
 
     public void start() {
@@ -26,12 +31,11 @@ public class BridgeController {
         setUpBridge();
         // TODO: 정답 출력문 지우기
         System.out.println(bridgeGame.getAnswerBridge().getBridge());
-        while(true) {
+        while (playing) {
             moveToDirection();
             outputView.printMap(bridgeGame);
             if (!bridgeGame.getMoveState()) {
                 gameRetryOrQuit();
-                break;
             }
         }
         outputView.printResult(); //TODO: 구현해야함
@@ -62,6 +66,14 @@ public class BridgeController {
     private void gameRetryOrQuit() {
         try {
             outputView.printMessage(ENTER_RETRY_OR_QUIT.toString());
+            boolean retry = inputView.readGameCommand();
+            if (retry) {
+                bridgeGame.retry();
+                countTry += 1;
+            }
+            if (!retry) {
+                playing = false;
+            }
         } catch (IllegalArgumentException ex) {
             outputView.printMessage(ex.getMessage());
             gameRetryOrQuit();
