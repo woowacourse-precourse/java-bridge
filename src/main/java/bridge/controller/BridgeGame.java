@@ -2,18 +2,29 @@
  * BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
  */
 
-package bridge;
+package bridge.controller;
 
 //Controller
 import bridge.View.BridgeView;
+import bridge.domain.Computer;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+    // component
+    private int bridgeSize; // 총 다리 개수
+    private List<Integer> bridgeNumber = new ArrayList<>(); // 각 다리의 정답
+
+    // domain
+    Computer computer = new Computer();
+
+    // Util
     private final BridgeView bridgeView = new BridgeView();
-    private int bridgeSize;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -43,5 +54,13 @@ public class BridgeGame {
      */
     public void enterNumberOfBridge() {
         this.bridgeSize = bridgeView.readBridgeSize();
+    }
+
+    /**
+     * 컴퓨터가 랜덤 값을 생성하는 메서드
+     */
+    public void createRandomNumber() {
+        bridgeNumber.add(computer.createRandomNumber());
+        System.out.println(bridgeNumber.get(bridgeNumber.size()-1));
     }
 }
