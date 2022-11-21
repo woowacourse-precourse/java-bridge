@@ -10,9 +10,7 @@ import java.util.List;
 public class BridgeValidation {
 
     public static void validateBridgeSize(List<BridgeCharacter> bridge) {
-        if (!(SIZE_START_RANGE.getValue() <= bridge.size() && bridge.size() <= SIZE_END_RANGE.getValue())) {
-            throw new IllegalArgumentException("다리의 길이가 범위에 해당되지 않습니다.");
-        }
+        validateBridgeSize(bridge.size());
     }
 
     public static void validateBridgeSize(int size) {
