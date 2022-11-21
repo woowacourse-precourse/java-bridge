@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
-    private static final BridgeStep[] STEPS_FOR_GENERATED_NUMBERS = new BridgeStep[] {BridgeStep.DOWN, BridgeStep.UP};
+    private static final Moving[] MOVINGS_FOR_GENERATED_NUMBERS = new Moving[] {Moving.DOWN, Moving.UP};
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -17,8 +17,8 @@ public class BridgeMaker {
         int count = 0;
 
         while (count < size) {
-            BridgeStep step = STEPS_FOR_GENERATED_NUMBERS[this.bridgeNumberGenerator.generate()];
-            bridge.add(step.getValue());
+            Moving moving = MOVINGS_FOR_GENERATED_NUMBERS[this.bridgeNumberGenerator.generate()];
+            bridge.add(moving.getValue());
             count++;
         }
 
