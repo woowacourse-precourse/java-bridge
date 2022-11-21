@@ -14,4 +14,8 @@ public class Bridge {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
     }
+
+    public String getBridge(int count) {
+        return bridge.get(count);
+    }
 }
