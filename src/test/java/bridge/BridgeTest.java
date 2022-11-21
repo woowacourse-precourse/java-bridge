@@ -35,7 +35,9 @@ class BridgeTest {
     void 다리_생성자3(){
         Bridge bridge = new Bridge("3");
         for(int i=0;i<bridge.getCrossAble().size();i++){
-            assertTrue(bridge.getCrossAble().get(i) ==1 ||bridge.getCrossAble().get(i)==0);
+            System.out.println(bridge.getCrossAble().get(i));
+            assertTrue(bridge.getCrossAble().get(i) ==UserCommand.MOVE_UP.getCommand()
+                    ||bridge.getCrossAble().get(i)==UserCommand.MOVE_DOWN.getCommand());
         }
     }
 
