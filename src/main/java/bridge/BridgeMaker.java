@@ -9,6 +9,8 @@ import java.util.List;
 public class BridgeMaker {
     public static final int MIN_VALUE = 3;
     private static final int MAX_VALUE = 20;
+    private static final int DOWN = 0;
+    private static final int UP = 1;
     private static final String SIZE_RANGE_ERROR_MESSAGE = "[ERROR] 다리 길이는 " + MIN_VALUE + "부터 " + MAX_VALUE + " 사이의 숫자여야 합니다.";
 
 
@@ -25,6 +27,10 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         isValidateSize(size);
         List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int number=bridgeNumberGenerator.generate();
+            bridge.add(convertUpDown(number));
+        }
         return bridge;
     }
 
@@ -33,4 +39,10 @@ public class BridgeMaker {
             throw new IllegalArgumentException(SIZE_RANGE_ERROR_MESSAGE);
         }
     }
+
+    private String convertUpDown(int number) {
+        if (number == DOWN) {return "D";}
+        return "U";
+    }
+
 }
