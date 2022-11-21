@@ -17,11 +17,14 @@ public class BridgeGame {
     private boolean isMoveSuccess;
     private int count;
 
-    public BridgeGame(BridgeMap bridgeMap) {
+    private BridgeGame(BridgeMap bridgeMap) {
         this.bridgeMap = bridgeMap;
         this.playerMap = new PlayerMap();
         this.isMoveSuccess = true;
         this.count = 1;
+    }
+    public static BridgeGame from(BridgeMap bridgeMap) {
+        return new BridgeGame(bridgeMap);
     }
 
     /**
