@@ -25,18 +25,18 @@ public class BridgeGame {
 
     public void saveNextMove() {
         String destination = character.showNextDestination();
-        Move move = makeMove(destination, isAbleToMove());
+        int nextArea = character.showNextArea();
+        Move move = makeMove(destination, isAbleToMove(nextArea, destination));
         moves.add(move);
     }
 
-    public boolean isAbleToMove() {
-        int nextArea = character.showNextArea();
-        String nextMove = character.showNextDestination();
-        return showRightDestinationInArea(nextArea).equals(nextMove);
+    public boolean isAbleToMove(int area, String destination) {
+        String answer = showRightDestinationInArea(area);
+        return answer.equals(destination);
     }
 
     public List<String> showBridge() {
-        return bridge;
+        return new ArrayList<>(bridge);
     }
 
     public String showRightDestinationInArea(int area) {
