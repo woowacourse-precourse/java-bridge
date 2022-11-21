@@ -31,9 +31,7 @@ public class BridgeGameController {
     }
 
     public void start() {
-        int bridgeLength = getBridgeLength();
-        bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
-        copyBridge = new Bridge(bridge.copyBridge());
+        makeBridge(getBridgeLength());
 
         outputView.printStart();
 
@@ -62,6 +60,11 @@ public class BridgeGameController {
             }
         }
         outputView.printResult(gameStatus);
+    }
+
+    private void makeBridge(int bridgeLength) {
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
+        copyBridge = new Bridge(bridge.copyBridge());
     }
 
     private String getWhetherToRetry() {
