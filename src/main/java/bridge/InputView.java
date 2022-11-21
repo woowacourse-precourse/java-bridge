@@ -12,11 +12,11 @@ public class InputView {
      */
     public static int readBridgeSize() {
         try {
-            int n = Integer.parseInt(Console.readLine());
-            if (n < 3 || n > 20) {
+            int bridgeSize = Integer.parseInt(Console.readLine());
+            if (bridgeSize < 3 || bridgeSize > 20) {
                 throw new IllegalArgumentException();
             }
-            return n;
+            return bridgeSize;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이는 3 이상 20 이하의 숫자만 입력가능합니다.");
             return readBridgeSize();

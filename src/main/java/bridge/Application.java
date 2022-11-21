@@ -30,8 +30,8 @@ public class Application {
             upperBridge = BridgeGame.move(upperBridge, isUpper, input);
             lowerBridge = BridgeGame.move(lowerBridge, !isUpper, input);
 
-            OutputView.printMap(upperBridge, bridgeSize, movingIndex - 1);
-            OutputView.printMap(lowerBridge, bridgeSize, movingIndex - 1);
+            OutputView.printMap(upperBridge);
+            OutputView.printMap(lowerBridge);
             System.out.println();
 
             if (!isCorrectChoice) {
@@ -49,8 +49,8 @@ public class Application {
 
             if (retry == false) {
                 System.out.println("최종 게임 결과");
-                OutputView.printResult(upperBridge, bridgeSize, movingIndex);
-                OutputView.printResult(lowerBridge, bridgeSize, movingIndex);
+                OutputView.printResult(upperBridge);
+                OutputView.printResult(lowerBridge);
                 System.out.println();
             }
 
