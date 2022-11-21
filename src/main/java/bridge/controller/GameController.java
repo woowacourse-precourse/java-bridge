@@ -2,6 +2,7 @@ package bridge.controller;
 
 import static bridge.controller.InputController.getBridgeSize;
 import static bridge.controller.InputController.getGameCommand;
+import static bridge.model.GameCommand.selectedRetry;
 import static bridge.model.Status.die;
 
 import bridge.BridgeMaker;
@@ -11,7 +12,6 @@ import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Diagram;
 import bridge.model.GameCommand;
-import bridge.model.Position;
 import bridge.model.Status;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -19,40 +19,59 @@ import bridge.view.OutputView;
 public class GameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private static int attempts;
     private static boolean success;
     private static GameCommand command;
+    private Diagram diagram;
+    private int attempts;
+    private BridgeGame bridgeGame;
 
     public GameController() {
-        this.attempts = 1;
+        this.attempts = 0;
         this.success = false;
         this.command = GameCommand.RETRY;
     }
 
     public void play() {
 
+        // 브릿지 생성
         outputView.printStartGame();
         Bridge bridge = createBridge();
 
-        while (continueGame()) {
-            Diagram diagram = new Diagram();
-            BridgeGame bridgeGame = new BridgeGame(bridge, diagram);
-            int index;
-            for (index = 0; index < bridge.getBridgeSize(); index++) {
-                Status status = bridgeGame.move(index);
-                if (die(status)) {
-                    break;
-                }
-            }
+        initialize(bridge);
+        attempt(bridge);
+        outputView.printResult(diagram, success, attempts);
+    }
+
+    private void attempt(Bridge bridge) {
+        for (int index = 0; index < bridge.getBridgeSize(); index++) {
+            Status status = bridgeGame.move(index);
             if (bridge.survivedToTheLast(index)) {
                 success = true;
             }
-            if (!bridge.survivedToTheLast(index)) {
-                GameCommand gameCommand = getGameCommand();
-                bridgeGame.retry(gameCommand);
+            if (!die(status)) {
+                continue;
             }
-            outputView.printResult(diagram, success, attempts);
+            if (die(status)) {
+                GameCommand gameCommand = getGameCommand();
+                if (selectedRetry(gameCommand)) {
+                    initialize(bridge);
+                    attempt(bridge);
+                }
+                if (!selectedRetry(gameCommand)) {
+                    command = GameCommand.QUIT;
+                }
+            }
+            if (success || command == GameCommand.QUIT) {
+                break;
+            }
         }
+    }
+
+    private void initialize(Bridge bridge) {
+        // 다이어그램 초기화, index 초기화, 시도 횟수 증가
+        attempts++;
+        diagram = new Diagram();
+        bridgeGame = new BridgeGame(bridge, diagram);
     }
 
     private static Bridge createBridge() {
@@ -62,15 +81,4 @@ public class GameController {
         return bridge;
     }
 
-    public static void addAttempts() {
-        attempts++;
-    }
-
-    public static void quit() {
-        command = GameCommand.QUIT;
-    }
-
-    public boolean continueGame() {
-        return command == GameCommand.RETRY && !success;
-    }
 }
