@@ -7,8 +7,8 @@ import static bridge.constant.Moving.UPPER_SIDE;
 import bridge.constant.GameStatus;
 
 public class BridgeDrawer {
-    private StringBuilder upperLine;
-    private StringBuilder lowerLine;
+    private final StringBuilder upperLine;
+    private final StringBuilder lowerLine;
     private static final String END_BRACKET = "]";
     private static final String BRACKETS = "[]";
     private static final String EMPTY = "   ";

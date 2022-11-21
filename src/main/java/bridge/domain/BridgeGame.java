@@ -15,8 +15,8 @@ import java.util.List;
 public class BridgeGame {
     private GameStatus gameStatus;
     private int tryCount;
-    private BridgeReferee bridgeReferee;
-    private BridgeDrawer bridgeDrawer;
+    private final BridgeReferee bridgeReferee;
+    private final BridgeDrawer bridgeDrawer;
 
     public BridgeGame(List<String> bridge) {
         this.gameStatus = ON_WAY;

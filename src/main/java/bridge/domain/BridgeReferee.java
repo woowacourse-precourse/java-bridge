@@ -8,7 +8,7 @@ import bridge.constant.GameStatus;
 import java.util.List;
 
 public class BridgeReferee {
-    private List<String> bridge;
+    private final List<String> bridge;
     private int location;
 
     public BridgeReferee(List<String> bridge) {

@@ -8,8 +8,8 @@ import bridge.ui.OutputView;
 import java.util.List;
 
 public class BridgeController {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private BridgeGame bridgeGame;
 
     public BridgeController() {
