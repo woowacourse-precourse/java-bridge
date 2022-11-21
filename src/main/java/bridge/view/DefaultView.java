@@ -21,6 +21,7 @@ public class DefaultView implements View {
         outputWelcome();
         inputBridgeSize();
         playGame();
+        outputResult();
     }
 
     private void outputWelcome() {
@@ -47,7 +48,6 @@ public class DefaultView implements View {
             outputBridgeMap();
         } while (isMove && !isEnd);
         if (isEnd) {
-            outputResult();
             return;
         }
         inputGameCommand();
@@ -73,18 +73,18 @@ public class DefaultView implements View {
 
     private void inputGameCommand() {
         outputView.printRetry();
-        String input;
         try {
-            input = inputView.readGameCommand();
-            boolean isRetry = controller.runCommand(input);
-            if (isRetry) {
-                playGame();
-                return;
-            }
-            outputResult();
+            String command = inputView.readGameCommand();
+            doBehaviorByCommand(command);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputGameCommand();
+        }
+    }
+
+    private void doBehaviorByCommand(String command) {
+        if (controller.runCommand(command)) {
+            playGame();
         }
     }
 
