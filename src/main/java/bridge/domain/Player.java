@@ -6,10 +6,12 @@ public class Player {
     private static final int BRIDGE_MAX_SIZE = 20;
 
     private List<BridgeShapeMatcher> bridgeShapeMatcher;
+    private int location;
 
     public Player(List<BridgeShapeMatcher> bridgeShapeMatcher) {
         validation(bridgeShapeMatcher);
         this.bridgeShapeMatcher = bridgeShapeMatcher;
+        this.location =0;
     }
 
     private void validation(List<BridgeShapeMatcher> bridgeShapeMatcher) {
@@ -31,6 +33,19 @@ public class Player {
 
     public void addMatcher(BridgeShapeMatcher bridgeShapeMatcher) {
         this.bridgeShapeMatcher.add(bridgeShapeMatcher);
+        move();
+    }
+
+    public void removeMatcher(){
+        this.bridgeShapeMatcher.remove(bridgeShapeMatcher.size()-1);
+        moveBack();
+    }
+
+    public void move(){
+        this.location++;
+    }
+    public void moveBack(){
+        this.location--;
     }
 
     public List<BridgeShapeMatcher> getBridgeShapeMatcher() {
