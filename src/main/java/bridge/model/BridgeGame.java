@@ -11,8 +11,6 @@ public class BridgeGame {
     private boolean success = false;
     private Diagram diagram;
 
-    private GameCommand command = GameCommand.RETRY;
-
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         diagram = new Diagram();

@@ -1,5 +1,7 @@
 package bridge.model;
 
+import java.util.Arrays;
+
 public enum SuccessAndFail {
     SUCCESS("성공", true),
     FAIL("실패", false);
@@ -13,10 +15,13 @@ public enum SuccessAndFail {
     }
 
     public static String getKoreanDisplay(boolean isSuccess) {
-        if (isSuccess) {
-            return SUCCESS.koreanDisplay;
-        }
-        return FAIL.koreanDisplay;
+        return Arrays.stream(SuccessAndFail.values())
+                .filter(element -> element.isSuccess == isSuccess).findFirst()
+                .orElse(null).koreanDisplay;
+    }
+
+    public static boolean isSuccess(SuccessAndFail successAndFail) {
+        return successAndFail.isSuccess;
     }
 
 }

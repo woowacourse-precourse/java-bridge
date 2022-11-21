@@ -2,6 +2,7 @@ package bridge.controller;
 
 import static bridge.model.GameCommand.selectedRetry;
 import static bridge.model.Status.die;
+import static bridge.model.SuccessAndFail.isSuccess;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
@@ -10,6 +11,7 @@ import bridge.model.BridgeGame;
 import bridge.model.GameCommand;
 import bridge.model.Position;
 import bridge.model.Status;
+import bridge.model.SuccessAndFail;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -23,20 +25,23 @@ public class GameController {
         outputView.printStartGame();
         bridge = createBridge();
         bridgeGame = new BridgeGame(bridge);
-
         attempt();
+        printResult();
+    }
 
-        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.isSuccess(), bridgeGame.getAttempts());
+    private Bridge createBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
     }
 
     public void attempt() {
-        boolean isSuccess = moving();
+        SuccessAndFail successAndFail = moving();
 
-        if (isSuccess) {
+        if (isSuccess(successAndFail)) {
             bridgeGame.setSuccess();
         }
 
-        if (!isSuccess) {
+        if (!isSuccess(successAndFail)) {
             GameCommand gameCommand = inputView.readGameCommand();
             if (selectedRetry(gameCommand)) {
                 bridgeGame.retry();
@@ -45,21 +50,20 @@ public class GameController {
         }
     }
 
-    public boolean moving() {
+    private SuccessAndFail moving() {
         for (int index = 0; index < bridge.getBridgeSize(); index++) {
             Position position = inputView.readMoving();
             Status status = bridgeGame.move(index, position);
             outputView.printMap(bridgeGame.getDiagram());
             if (die(status)) {
-                return false;
+                return SuccessAndFail.FAIL;
             }
         }
-        return true;
+        return SuccessAndFail.SUCCESS;
     }
 
-    private Bridge createBridge() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+    private void printResult() {
+        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.isSuccess(), bridgeGame.getAttempts());
     }
 
 }
