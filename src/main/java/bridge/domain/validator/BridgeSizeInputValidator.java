@@ -20,14 +20,10 @@ public class BridgeSizeInputValidator implements Validator {
      */
     @Override
     public void validate(String inputValue) {
-        try{
-            validateIsBlank(inputValue);
-            inputValue = inputValue.trim();
-            validateIsInvalid(inputValue);
-            validateRange(inputValue);
-        }catch (IllegalArgumentException exception){
-            throw exception;
-        }
+        validateIsBlank(inputValue);
+        inputValue = inputValue.trim();
+        validateIsInvalid(inputValue);
+        validateRange(inputValue);
     }
 
     /**
@@ -57,7 +53,7 @@ public class BridgeSizeInputValidator implements Validator {
      */
     @Override
     public void validateIsInvalid(String inputValue) {
-        if(inputValue.matches("(\\d{3})*")){
+        if(inputValue.matches("\\d{3,}")){
             throw new IllegalArgumentException(Errors.OUT_OF_BOUND.message());
         }
         if (!inputValue.matches("\\d{1,2}")) {
