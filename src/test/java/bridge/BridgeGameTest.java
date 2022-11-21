@@ -60,7 +60,7 @@ class BridgeGameTest {
         assertThat(currentPosition).isEqualTo(0);
     }
 
-    @DisplayName("다리의 두 번째 칸에 건너기 시작할 때 건널 수 없는 칸을 선택한 경우 FAIL을 반환한다.")
+    @DisplayName("다리의 두 번째 칸으로 건너기 시작할 때 건널 수 없는 칸을 선택한 경우 FAIL을 반환한다.")
     @Test
     void moveNonPassableBlockFromFirstBlock() {
         movePassableBlockFromStart();
@@ -70,7 +70,7 @@ class BridgeGameTest {
         assertThat(currentPosition).isEqualTo(1);
     }
 
-    @DisplayName("다리의 두 번째 칸에 건너기 시작할 때 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
+    @DisplayName("다리의 두 번째 칸으로 건너기 시작할 때 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
     @Test
     void movePassableBlockFromFirstBlock() {
         movePassableBlockFromStart();
@@ -90,12 +90,25 @@ class BridgeGameTest {
         assertThat(currentPosition).isEqualTo(-1);
     }
 
-    @DisplayName("플레이어가 다리의 마지막 칸에 도달하면 FINISHED를 반환한다.")
+    @DisplayName("플레이어가 다리의 마지막 칸에 도달하였지만 건널 수 없는 칸인 경우 NOT_FINISHED를 반환한다.")
     @Test
-    void checkWhetherFinished() {
-        IntStream.range(0, 4)
-                .forEach(i -> gameStatusOperator.changePosition());
-        FinishCondition finishCondition = bridgeGame.checkWhetherFinished();
+    void moveLastBlockButFail() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        ProcessCondition passCondition = bridgeGame.move("U");
+        FinishCondition finishCondition = bridgeGame.checkWhetherFinished(passCondition);
+        assertThat(finishCondition).isEqualTo(FinishCondition.NOT_FINISHED);
+    }
+
+    @DisplayName("플레이어가 다리의 마지막 칸에 도달하였지만 건널 수 있는 칸인 경우 FINISHED를 반환한다.")
+    @Test
+    void moveLastBlockAndPass() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        ProcessCondition passCondition = bridgeGame.move("D");
+        FinishCondition finishCondition = bridgeGame.checkWhetherFinished(passCondition);
         assertThat(finishCondition).isEqualTo(FinishCondition.FINISHED);
     }
 }
