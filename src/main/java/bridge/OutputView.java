@@ -77,4 +77,7 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + gameResult.getAttemptCount());
     }
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

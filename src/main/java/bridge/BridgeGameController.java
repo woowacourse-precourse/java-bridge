@@ -19,7 +19,7 @@ public class BridgeGameController {
             BridgeGame bridgeGame = initBridgeGame();
             startGame(bridgeGame);
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            outputView.printErrorMessage(exception.getMessage());
         }
     }
 
