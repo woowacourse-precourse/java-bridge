@@ -40,4 +40,16 @@ public class Application {
         outputView.printMap(result);
         return crossedBridge;
     }
+
+    private static boolean restartGame() {
+        String gameCommand = inputView.readGameCommand();
+        boolean isRetry = bridgeGame.retry(gameCommand);
+        if (isRetry) {
+            result.increaseTryCount();
+        }
+        if (!isRetry) {
+            result.setSuccessToFail();
+        }
+        return isRetry;
+    }
 }
