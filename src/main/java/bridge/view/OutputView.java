@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.constant.Message.OutputViewMessage;
-import bridge.domain.BridgeMap;
+import bridge.domain.game.BridgeMap;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

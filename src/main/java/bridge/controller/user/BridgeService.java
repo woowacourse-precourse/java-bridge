@@ -1,6 +1,6 @@
-package bridge.controller;
+package bridge.controller.user;
 
-import bridge.domain.BridgeChecker;
+import bridge.domain.user.BridgeChecker;
 import bridge.view.InputView;
 import bridge.constant.Bridge.GameConstants;
 
