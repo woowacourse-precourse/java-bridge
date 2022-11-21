@@ -3,9 +3,11 @@ package bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
@@ -14,9 +16,20 @@ class BridgeGameTest {
     @DisplayName("사용자 이동 입력 결과에 따른 반환값 테스트")
     @Test
     void checkMoveReturnValue() {
-        final BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
+        String input = "3";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
 
+        final BridgeGame bridgeGame = new BridgeGame();
+
+        String input2 = "R";
+        InputStream in2 = new ByteArrayInputStream(input2.getBytes());
+        System.setIn(in);
+
+        bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
+        String result = bridgeGame.move(0, "U");
+
+        assertThat(result).isEqualTo("C");
     }
 
     //이동 입력값에 따라 적절한 결과가 출력되는지 테스트

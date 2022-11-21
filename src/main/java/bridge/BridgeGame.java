@@ -17,7 +17,7 @@ public class BridgeGame extends BridgeGameInit{
         for (int i=0; i < bridge.size(); i++) {
             String moveDir = inputView.readMoving();
             String gameResult = move(i,moveDir);
-            return checkGameResult(gameResult);
+            if (!gameResult.equals("C")){return checkGameResult(gameResult);}
         }
         return "S";
     }
