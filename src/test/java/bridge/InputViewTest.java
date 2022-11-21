@@ -131,7 +131,52 @@ public class InputViewTest {
     }
 
     @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     class GameCommandTest {
 
+        Method validateGameCommand;
+
+        {
+            try {
+                validateGameCommand = inputView.getClass().getDeclaredMethod("validateGameCommand", String.class);
+                validateGameCommand.setAccessible(true);
+            } catch (Exception e) {
+                //do nothing
+            }
+        }
+        @ParameterizedTest(name = "{index} : {0} ==> No Exception ")
+        @MethodSource("gameCommandValidTestArgument")
+        @DisplayName("R,Q 입력시 ")
+        void gameCommandValidTest(String inputString) {
+
+            assertThatNoException().isThrownBy(() -> {
+                validateGameCommand.invoke(inputView, inputString);
+            });
+        }
+
+        Stream<Arguments> gameCommandValidTestArgument() {
+            return Stream.of(
+                    arguments("R"),
+                    arguments("Q")
+            );
+        }
+        @ParameterizedTest(name = "{index} : {0} ==> Exception ")
+        @MethodSource("gameCommandInvalidTestArgument")
+        @DisplayName("R,Q 이외의 값 입력시 ")
+        void gameCommandInvalidTest(String inputString) {
+            assertThatThrownBy(() -> {
+                validateGameCommand.invoke(inputView, inputString);
+            });
+        }
+
+        Stream<Arguments> gameCommandInvalidTestArgument() {
+            return Stream.of(
+                    arguments("A"),
+                    arguments("S"),
+                    arguments("R1"),
+                    arguments("Q1")
+            );
+        }
     }
+
 }
