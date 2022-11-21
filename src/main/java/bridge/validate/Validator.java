@@ -2,6 +2,8 @@ package bridge.validate;
 
 import bridge.input.GameCommand;
 import bridge.generator.AreaStatus;
+import bridge.message.ErrorMessage;
+
 import java.util.List;
 
 public class Validator {

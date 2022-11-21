@@ -1,6 +1,6 @@
-package bridge.view;
+package bridge.message;
 
-public enum Message {
+public enum GameMessage {
     GAME_START("다리 건너기 게임을 시작합니다."),
     ENTER_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
     ENTER_MOVE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
@@ -11,7 +11,7 @@ public enum Message {
 
     public final String msg;
 
-    Message(String msg) {
+    GameMessage(String msg) {
         this.msg = msg;
     }
 

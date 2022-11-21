@@ -3,6 +3,8 @@ package bridge.view;
 import bridge.game.BridgeGame;
 import bridge.game.MapMaker;
 import bridge.game.Move;
+import bridge.message.GameMessage;
+
 import java.util.List;
 
 public class OutputView {
@@ -13,34 +15,34 @@ public class OutputView {
     }
 
     public void start() {
-        System.out.println(Message.GAME_START + "\n");
+        System.out.println(GameMessage.GAME_START + "\n");
     }
 
     public void enterBridgeSize() {
-        System.out.println(Message.ENTER_BRIDGE_SIZE);
+        System.out.println(GameMessage.ENTER_BRIDGE_SIZE);
     }
 
     public void enterMove() {
-        System.out.println(Message.ENTER_MOVE);
+        System.out.println(GameMessage.ENTER_MOVE);
     }
 
     public void enterGameCommand() {
-        System.out.println(Message.ENTER_GAME_COMMAND);
+        System.out.println(GameMessage.ENTER_GAME_COMMAND);
     }
 
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println(Message.FINAL_GAME_RESULT);
+        System.out.println(GameMessage.FINAL_GAME_RESULT);
         printMap(bridgeGame.showCurrentMap());
         printSuccess(bridgeGame);
         printTotalTry(bridgeGame);
     }
 
     private void printSuccess(BridgeGame bridgeGame) {
-        System.out.println(Message.IS_GAME_SUCCESS + bridgeGame.getResultMessage());
+        System.out.println(GameMessage.IS_GAME_SUCCESS + bridgeGame.getResultMessage());
     }
 
     private void printTotalTry(BridgeGame bridgeGame) {
-        System.out.println(Message.TOTAL_TRY.toString() + bridgeGame.getTotalTry());
+        System.out.println(GameMessage.TOTAL_TRY.toString() + bridgeGame.getTotalTry());
     }
 
     public static void printError(Exception e) {

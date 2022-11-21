@@ -1,4 +1,4 @@
-package bridge.validate;
+package bridge.message;
 
 public enum ErrorMessage {
     ERROR("[ERROR] "),
