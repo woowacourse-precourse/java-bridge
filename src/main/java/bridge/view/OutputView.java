@@ -11,8 +11,8 @@ import java.util.List;
 public class OutputView {
 
     public void printMap(String upperBlock, String lowerBlock) {
-        System.out.println(upperBlock);
-        System.out.println(lowerBlock);
+        System.out.println(OutputText.MAP_START.getMessage() + upperBlock + OutputText.MAP_END.getMessage());
+        System.out.println(OutputText.MAP_START.getMessage() + lowerBlock + OutputText.MAP_END.getMessage());
 
     }
 

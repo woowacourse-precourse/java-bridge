@@ -8,7 +8,10 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.text.OutputText;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Controller {
     private BridgeMaker bridgeMaker;
@@ -65,20 +68,7 @@ public class Controller {
     }
 
     private String mapToString(List<String> map){
-        String ret = "";
-        for (int i = 0; i < map.size(); i++){
-            if (i == 0) {
-                ret += "[ ";
-            }
-            ret += map.get(i);
-            if (i != map.size() - 1){
-                ret += " | ";
-            }
-            if (i == map.size() - 1){
-                ret += " ]";
-            }
-        }
-        return ret;
+        return String.join(OutputText.MAP_BORDER.getMessage(), map);
     }
 
     private void retry(){

@@ -8,7 +8,10 @@ public enum OutputText {
     GAME_RESULT_TITLE("최종 게임 결과"),
     GAME_CLEAR("게임 성공 여부: %s\n"),
     TRIAL_COUNT("총 시도한 횟수: %d\n"),
-    CURRENT_MAP("[%s]"),
+
+    MAP_START("[ "),
+    MAP_END(" ]"),
+    MAP_BORDER(" | "),
     MOVABLE_BLOCK("O"),
     UNMOVABLE_BLOCK("X"),
     BLANK_BLOCK(" "),
