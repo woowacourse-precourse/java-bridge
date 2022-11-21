@@ -106,4 +106,31 @@ public class BridgeGameTest {
         bridgeGame.move("D");
         assertThat(bridgeGame.getGameStatus()).isEqualTo(GameStatus.ONGOING);
     }
+
+    @DisplayName("게임 재시도 여부가 'R'나 'Q'가 아닐 경우 예외 처리한다. (Case 1)")
+    @Test
+    void invalidRetryCase1() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("D");
+        assertThatThrownBy(() -> bridgeGame.retry("X"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게임 재시도 여부가 'R'나 'Q'가 아닐 경우 예외 처리한다. (Case 2)")
+    @Test
+    void invalidRetryCase2() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("D");
+        assertThatThrownBy(() -> bridgeGame.retry("14123"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게임 재시도 여부가 'R'나 'Q'가 아닐 경우 예외 처리한다. (Case 3)")
+    @Test
+    void invalidRetryCase3() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("D");
+        assertThatThrownBy(() -> bridgeGame.retry("q"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
