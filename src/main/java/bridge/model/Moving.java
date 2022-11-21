@@ -5,8 +5,8 @@ import bridge.constant.ErrorMessage;
 import java.util.Arrays;
 
 public enum Moving {
-    UP(0, "U"),
-    DOWN(1, "D");
+    UP(1, "U"),
+    DOWN(0, "D");
 
     private final int command;
     private final String direction;
