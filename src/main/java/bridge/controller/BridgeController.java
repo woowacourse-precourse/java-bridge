@@ -18,9 +18,6 @@ public class BridgeController {
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         answerBridge = bridgeMaker.makeBridge(size);
-        for (String s : answerBridge) {
-            System.out.print(s + " ");
-        }
         bridgeGame = new BridgeGame(answerBridge, 1);
     }
 
