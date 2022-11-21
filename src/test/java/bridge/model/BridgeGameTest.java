@@ -10,12 +10,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class PlayerTest {
+public class BridgeGameTest {
     @ParameterizedTest
     @DisplayName("플레이어의 칸과 다리의 칸을 비교하여 다리 건너기 결과값을 반환한다.")
     @MethodSource("provideParametersForComparison")
     void comparePlayerAndBridgePosition(String player, String bridge, Direction direction, String result) {
-        assertThat(new Player().comparePosition(player, bridge, direction)).isEqualTo(result);
+        assertThat(new BridgeGame().comparePosition(player, bridge, direction)).isEqualTo(result);
     }
     private static Stream<Arguments> provideParametersForComparison() {
         return Stream.of(
@@ -34,7 +34,7 @@ public class PlayerTest {
     @DisplayName("플레이어가 이동할 수 없는 칸으로 이동했는지 확인한다.")
     @MethodSource("provideParametersForCorrectMove")
     void playerCannotCross(List<String> moves, List<String> bridge, boolean result) {
-        assertThat(new Player().hasMadeCorrectMove(moves, bridge)).isEqualTo(result);
+        assertThat(new BridgeGame().hasMadeCorrectMove(moves, bridge)).isEqualTo(result);
     }
     private static Stream<Arguments> provideParametersForCorrectMove() {
         return Stream.of(

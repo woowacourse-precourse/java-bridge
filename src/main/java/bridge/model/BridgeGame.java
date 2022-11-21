@@ -1,22 +1,29 @@
 package bridge.model;
 
 import bridge.model.constant.Direction;
+import bridge.model.constant.Result;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private Player player;
     private List<String> bridge;
+    private final List<String> playerMoves;
     private int numberOfAttempts;
 
     public BridgeGame() {
+        playerMoves = new ArrayList<>();
         numberOfAttempts = 0;
     }
 
     private void increaseNumberOfAttempts() {
         numberOfAttempts++;
+    }
+
+    private void resetPlayerMoves() {
+        playerMoves.clear();
     }
 
     public int getNumberOfAttempts() {
@@ -25,12 +32,7 @@ public class BridgeGame {
 
     public void initializeGame(List<String> bridge) {
         this.bridge = bridge;
-        createNewPlayer();
         increaseNumberOfAttempts();
-    }
-
-    public void createNewPlayer() {
-        player = new Player();
     }
 
     /**
@@ -39,7 +41,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String direction) {
-        player.move(direction);
+        playerMoves.add(direction);
     }
 
     /**
@@ -48,23 +50,50 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        createNewPlayer();
+        resetPlayerMoves();
         increaseNumberOfAttempts();
     }
 
     public List<String> getCurrentUpperMap() {
-        return player.getCurrentMap(bridge, Direction.UP);
+        return getCurrentMap(bridge, Direction.UP);
     }
 
     public List<String> getCurrentLowerMap() {
-        return player.getCurrentMap(bridge, Direction.DOWN);
+        return getCurrentMap(bridge, Direction.DOWN);
     }
 
-    public boolean canPlayerTakeNextStep() {
-        return player.canTakeNextMove(bridge);
+    public List<String> getCurrentMap(List<String> bridge, Direction direction) {
+        List<String> currentMap = new ArrayList<>();
+        for (int index = 0; index < playerMoves.size(); index++) {
+            String playerPosition = playerMoves.get(index);
+            String bridgePosition = bridge.get(index);
+            currentMap.add(comparePosition(playerPosition, bridgePosition, direction));
+        }
+        return currentMap;
     }
 
-    public boolean hasPlayerReachedEnd() {
-        return player.hasReachedEnd(bridge);
+    public String comparePosition(String playerPosition, String bridgePosition, Direction direction) {
+        if (playerPosition.equals(direction.getValue())) {
+            if (playerPosition.equals(bridgePosition)) {
+                return Result.CAN_CROSS.getValue();
+            }
+            return Result.CANNOT_CROSS.getValue();
+        }
+        return Result.UNKNOWN.getValue();
+    }
+
+    public boolean canTakeNextMove() {
+        return hasMadeCorrectMove(playerMoves, bridge) && playerMoves.size() < bridge.size();
+    }
+
+    public boolean hasReachedEnd() {
+        return hasMadeCorrectMove(playerMoves, bridge) && playerMoves.size() == bridge.size();
+    }
+
+    public boolean hasMadeCorrectMove(List<String> moves, List<String> bridge) {
+        int lastMoveIndex = moves.size() - 1;
+        String lastMove = moves.get(lastMoveIndex);
+        String bridgeDirection = bridge.get(lastMoveIndex);
+        return lastMove.equals(bridgeDirection);
     }
 }

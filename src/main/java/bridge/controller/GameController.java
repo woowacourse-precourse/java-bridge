@@ -15,11 +15,11 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class Controller {
+public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public Controller() {
+    public GameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
@@ -35,8 +35,8 @@ public class Controller {
             do {
                 bridgeGame.move(getNextMove());
                 outputView.printMap(bridgeGame);
-            } while (bridgeGame.canPlayerTakeNextStep());
-        } while (retry(bridgeGame));
+            } while (bridgeGame.canTakeNextMove());
+        } while (checkRetry(bridgeGame));
     }
 
     public void endGame(BridgeGame bridgeGame) {
@@ -49,13 +49,14 @@ public class Controller {
         int bridgeSize = getBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initializeGame(bridge);
         return bridgeGame;
     }
 
-    public boolean retry(BridgeGame bridgeGame) {
-        if (bridgeGame.hasPlayerReachedEnd() || getGameCommand().equals(GameCommand.QUIT.getValue())) {
+    public boolean checkRetry(BridgeGame bridgeGame) {
+        if (bridgeGame.hasReachedEnd() || getGameCommand().equals(GameCommand.QUIT.getValue())) {
             return false;
         }
         bridgeGame.retry();
@@ -88,7 +89,7 @@ public class Controller {
         } while (!validateInput(input, new GameCommandValidator(), ErrorMessage.INVALID_GAME_COMMAND));
         return input;
     }
-    
+
     public boolean validateInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
         try {
             inputValidator.validateInput(input);
