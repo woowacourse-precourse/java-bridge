@@ -51,16 +51,25 @@ public class BridgeService {
     }
 
     public void TryPlayerMove(){
+        boolean doRetry = true;
         while(bridgeGame.getBridgeIdx() < bridgeGame.getBridgeSize()){
             if(!inputPlayerMoveDirection())
                 continue;
-
             outputView.printMap(bridgeGame);
-            if(isFalsePlayerMove())
-                continue;
+            if(!isDoRetry(doRetry))
+                return;
         }
         bridgeGame.gameSuccess();
         outputView.printResult(bridgeGame);
+    }
+
+    private boolean isDoRetry(boolean doRetry) {
+        if(!bridgeGame.isMoveSuccess())
+            doRetry = bridgeGame.retry(inputGameRetryCommand());
+        if(!doRetry)
+            outputView.printResult(bridgeGame);
+
+        return doRetry;
     }
 
     public boolean inputPlayerMoveDirection(){
@@ -73,20 +82,6 @@ public class BridgeService {
         }
         bridgeGame.move(moveDirection,bridgeGame.getBridgeIdx());
         return true;
-    }
-
-    public boolean isFalsePlayerMove(){
-        if(!bridgeGame.isMoveSuccess()){
-            String gameRetryCommand = inputGameRetryCommand();
-            if(gameRetryCommand.equals(GameRetry.R.command)){
-                bridgeGame.initializePlayerMoveRecord();
-            }
-            if(gameRetryCommand.equals(GameRetry.Q.command)){
-                outputView.printResult(bridgeGame);
-            }
-            return true;
-        }
-        return false;
     }
 
     public String inputGameRetryCommand(){
