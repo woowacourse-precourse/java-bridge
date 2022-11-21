@@ -1,25 +1,24 @@
 package bridge.business;
 
-import java.util.List;
-import java.util.Set;
+import bridge.business.enumeration.BridgeLength;
+import bridge.business.enumeration.MovingKey;
+import bridge.business.enumeration.RetryKey;
+
+import java.util.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final int MIN_LENGTH_SIZE;
-    private final int MAX_LENGTH_SIZE;
-    private final Set<String> MOVING_KEY;
-    private final Set<String> RETRY_KEY;
+    private final int MIN_LENGTH_SIZE = BridgeLength.MIN.getValue();
+    private final int MAX_LENGTH_SIZE = BridgeLength.MAX.getValue();
+    private final Set<String> MOVING_KEY = new HashSet<>(Set.of(MovingKey.UP.getKey(), MovingKey.DOWN.getKey()));
+    private final Map<String, Boolean> RETRY_KEY = new HashMap<>(
+            Map.of(RetryKey.RETRY.getKey(), RetryKey.RETRY.getValue(),
+                    RetryKey.NONE.getKey(), RetryKey.NONE.getValue()));
 
     private List<String> bridge;
 
-    public BridgeGame(int minLengthSize, int maxLengthSize, Set<String> movingKey, Set<String> retryKey) {
-        this.MIN_LENGTH_SIZE = minLengthSize;
-        this.MAX_LENGTH_SIZE = maxLengthSize;
-        this.MOVING_KEY = movingKey;
-        this.RETRY_KEY = retryKey;
-    }
 
     public void setBridge(List<String> bridge){
         this.bridge = bridge;
@@ -71,7 +70,7 @@ public class BridgeGame {
         if(retryKey == null){
             throw new IllegalArgumentException("올바르지 못한 재시도 키 입니다.");
         }
-        if(!RETRY_KEY.contains(retryKey)){
+        if(!RETRY_KEY.containsKey(retryKey)){
             throw new IllegalArgumentException("올바르지 못한 재시도 키 입니다.");
         }
         return retryKey;

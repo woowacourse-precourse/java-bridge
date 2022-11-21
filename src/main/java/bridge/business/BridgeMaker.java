@@ -1,6 +1,7 @@
 package bridge.business;
 
 import bridge.BridgeNumberGenerator;
+import bridge.business.enumeration.MovingKey;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +32,10 @@ public class BridgeMaker {
 
     private String changeKey(int number){
         if(number == 0){
-            return "D";
+            return MovingKey.DOWN.getKey();
         }
         if(number == 1){
-            return "U";
+            return MovingKey.UP.getKey();
         }
         return null;
     }

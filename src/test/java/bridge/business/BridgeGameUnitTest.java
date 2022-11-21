@@ -5,20 +5,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Set;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameUnitTest {
-    private static final int BRIDGE_MIN_SIZE = 3;
-    private static final int BRIDGE_MAX_SIZE = 20;
-    private static final Set<String> MOVING_KEY = Set.of("U","D");
-    private static final Set<String> RETRY_KEY = Set.of("R","Q");
     private BridgeGame bridgeGame;
     @BeforeEach
     public void setUp(){
-        bridgeGame = new BridgeGame(BRIDGE_MIN_SIZE, BRIDGE_MAX_SIZE, MOVING_KEY, RETRY_KEY);
+        bridgeGame = new BridgeGame();
     }
 
     @ParameterizedTest
