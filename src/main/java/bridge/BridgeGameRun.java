@@ -61,6 +61,16 @@ public class BridgeGameRun {
         return false;
     }
 
+    private void bridgeGameEnd() {
+        outputView.printResultTitle();
+        List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
+        outputView.printMap(bridgeMap);
+
+        int retryCount = bridgeGame.getRetryCount();
+        String message = getResultMessage();
+        outputView.printResult(message, retryCount);
+    }
+
     private String getResultMessage() {
         if (result) {
             return "성공";
