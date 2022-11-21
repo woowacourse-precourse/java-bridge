@@ -11,16 +11,7 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class Move{
-    String direction;
-    int moveIdx;
-    int notMoveIdx;
-    public Move(String direction, int moveIdx, int notMoveIdx){
-        this.direction = direction;
-        this.moveIdx = moveIdx;
-        this.notMoveIdx = notMoveIdx;
-    }
-}
+
 public class BridgeGame {
     static List<String> map;
     static List<List<String>> userMap = new ArrayList<>();
