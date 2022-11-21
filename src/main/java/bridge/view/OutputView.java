@@ -54,4 +54,8 @@ public class OutputView {
     public static void notifySelectMoveLocation(){
         System.out.println(Constant.SELECT_MOVE_LOCATION);
     }
+
+    public static void errorMessageLogger(IllegalArgumentException illegalArgumentException){
+        System.out.println(Constant.ERRORMESSAGE + illegalArgumentException.getMessage());
+    }
 }
