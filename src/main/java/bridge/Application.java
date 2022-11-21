@@ -55,6 +55,10 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        return retry(retry);
+    }
+
+    private static boolean retry(String retry) {
         if (retry.equals(InputView.RETRY)) {
             bridgeGame.retry();
             return true;
