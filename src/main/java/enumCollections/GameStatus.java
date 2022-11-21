@@ -11,7 +11,7 @@ public enum GameStatus {
         this.message = inputMessage;
     }
 
-    public static String getMessage(GameStatus gameStatus) {
+    public static String get(GameStatus gameStatus) {
         return gameStatus.message;
     }
 }

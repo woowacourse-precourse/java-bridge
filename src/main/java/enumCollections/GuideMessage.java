@@ -7,7 +7,7 @@ public enum GuideMessage {
     GET_GAME_COMMAND("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     GAME_RESULT("게임 성공 여부: %s\n"),
     GAME_TRIAL("총 시도한 횟수: %s\n"),
-    RESULT("최종 게임 결과");
+    RESULT_PRINT("최종 게임 결과");
 
     private String message;
 
@@ -15,7 +15,7 @@ public enum GuideMessage {
         this.message = message;
     }
 
-    public static String getMessage(GuideMessage situation) {
+    public static String get(GuideMessage situation) {
         return situation.message;
     }
 }
