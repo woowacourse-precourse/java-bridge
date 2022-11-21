@@ -9,13 +9,16 @@ public class InputView {
         System.out.println(BRIDGE_LENGTH_INPUT);
         String input = Console.readLine();
         try {
-            int inputLength = Integer.parseInt(input);
+            int inputLength;
+            try {
+                inputLength = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ERROR_NO_NUMBER_INPUT);
+            }
             if (inputLength < 3 || inputLength > 20) {
                 throw new IllegalArgumentException(ERROR_NOT_IN_RANGE);
             }
             return inputLength;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_NO_NUMBER_INPUT);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
