@@ -10,9 +10,7 @@ public class Application {
 
         bridgeController.startGame();
         List<String> bridge = bridgeController.bridgeMake();
-        for(String str : bridge){
-            System.out.printf(str + " ");
-        }
+
         bridgeController.playBridgeGame(bridge);
     }
 }

@@ -10,6 +10,7 @@ public class BridgeGame {
     private StringBuilder sbUp = new StringBuilder();
     private StringBuilder sbDo = new StringBuilder();
     private int size = 0;
+    private int tryCount = 0;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -48,7 +49,7 @@ public class BridgeGame {
         printMapStart();
         printGoUp(bridge, input, step);
         printGoDown(bridge, input, step);
-        printEnd(bridge, step);
+        midOrLast(bridge, step);
 
         String upBridge = sbUp.substring(0, sbUp.toString().length() - 1) + "]";
         String doBridge = sbDo.substring(0, sbDo.toString().length() - 1) + "]";
@@ -66,18 +67,21 @@ public class BridgeGame {
     }
 
     public void printMapStart(){
-        sbUp.append("[");
-        sbDo.append("[");
+        if(size == 0){
+            sbUp.append("[");
+            sbDo.append("[");
+        }
     }
 
-    public void printMapEnd(){
-        sbUp.append("]");
-        sbDo.append("]");
-    }
-
-    public void printMapBetween(){
-        sbUp.append("|");
-        sbDo.append("|");
+    public void midOrLast(List<String> bridge, int size){
+        if(bridge.size()-1 != size){
+            sbUp.append("|");
+            sbDo.append("|");
+        }
+        if(bridge.size()-1 == size){
+            sbUp.append("]");
+            sbDo.append("]");
+        }
     }
 
     public String printMoveUpDown(List<String> bridge, String input, int step){
@@ -104,7 +108,6 @@ public class BridgeGame {
 
     public void printGoDown(List<String> bridge, String input, int step){
         String result = printMoveUpDown(bridge, input, step);
-
         if(bridge.get(step).equals("D")) {
             if (result.equals(" O ")) {
                 sbUp.append("   ");
@@ -114,15 +117,6 @@ public class BridgeGame {
                 sbUp.append(result);
                 sbDo.append("   ");
             }
-        }
-    }
-
-    public void printEnd(List<String> bridge, int step){
-        if(bridge.size() - 1  != step){
-            printMapBetween();
-        }
-        if(bridge.size() - 1 == step){
-            printMapEnd();
         }
     }
 
@@ -140,5 +134,19 @@ public class BridgeGame {
 
     public void nextStep(){
         this.size = size + 1;
+    }
+
+    public int getTryCount(){
+        return tryCount;
+    }
+
+    public void initLevel(){
+        this.tryCount = tryCount + 1;
+        this.size = 0;
+    }
+
+    public void clearResultRestart(){
+        sbUp.delete(0, sbUp.length());
+        sbDo.delete(0, sbDo.length());
     }
 }
