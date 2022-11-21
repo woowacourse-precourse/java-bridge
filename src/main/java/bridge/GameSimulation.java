@@ -5,34 +5,43 @@ import java.util.List;
 
 public class GameSimulation {
     private final List<String> bridge;
-    private int station;
+    public String answer;
+    private int location;
     private List<String> step;
+    private boolean success;
 
     public GameSimulation(List<String> bridge) {
         this.bridge = bridge;
-        this.station = 1;
+        this.location = 0;
         step = new ArrayList<>();
+        this.success = true;
+        this.answer = "O";
     }
-
     public List<String> getbridge() {
         return bridge;
     }
 
-    public int getStation() {
-        return station;
+    public int getLocation() {
+        return location;
     }
 
-    public void setStation(int station) {
-        this.station = station;
+    public void setLocation(int location) {
+        this.location = location;
     }
 
     public void addStep(String move) {
         step.add(move);
     }
 
+    public String getAnswer() {
+        return answer;
+    }
     public boolean isSuccess() {
-        int location = step.size() - 1;
-        return step.get(location).equals(bridge.get(location));
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public List<String> getStep() {
@@ -43,8 +52,8 @@ public class GameSimulation {
         return step.size() == bridge.size();
     }
 
-    public void forward() {
-        this.station += 1;
+    public void addLocation() {
+        this.location += 1;
     }
 
 
