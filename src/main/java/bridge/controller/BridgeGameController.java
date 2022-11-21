@@ -4,6 +4,9 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
+import bridge.validator.InputBridgeSizeValidator;
+import bridge.validator.InputMovingValidator;
+import bridge.validator.InputRetryOrExitValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -24,8 +27,9 @@ public class BridgeGameController {
     public void startGame() {
         try {
             int bridgeSize = inputView.readBridgeSize();
-            BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridgeMaker);
+            InputBridgeSizeValidator.validateBridgeSize(bridgeSize);
 
+            BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridgeMaker);
             playGame(bridgeGame);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -43,6 +47,8 @@ public class BridgeGameController {
 
     private boolean continueGame(BridgeGame bridgeGame) {
         String movement = inputView.readMoving();
+        InputMovingValidator.validateMovingInput(movement);
+
         boolean isPass = bridgeGame.move(movement);
         boolean isSuccess = bridgeGame.checkSuccess();
 
@@ -55,9 +61,9 @@ public class BridgeGameController {
         if (isPass && isSuccess) {
             return false;
         }
-
         if (!isPass) {
             String command = inputView.readGameCommand();
+            InputRetryOrExitValidator.validateRetryOrExitCommand(command);
             return bridgeGame.retry(command);
         }
 
