@@ -37,7 +37,7 @@ public class Game {
         String nowResult = "";
         int matchNum = 1;
         while (index != size) {
-            String userDirection = checkuserDirection();
+            String userDirection = checkUserDirection();
             nowResult = String.valueOf(bridgeGame.move(userDirection,index));
             OutputView.printMap(nowResult);
             index += 1;
@@ -59,7 +59,7 @@ public class Game {
         }
     }
 
-    private static String checkuserDirection() {
+    private static String checkUserDirection() {
         String input = InputView.readMoving();
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException("입력 방향이 U나 D가 아닙니다.");
