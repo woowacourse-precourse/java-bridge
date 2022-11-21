@@ -6,12 +6,7 @@ import java.util.*;
 public class OutputView {
     private StringBuilder printUp;
     private StringBuilder printDown;
-    private static String isDraw_true = " O ";
-    private static String isDraw_false = " X ";
-    private static String isDraw_Blank = "   ";
-    private static String isDraw_SquareBracket_Right = "]";
-    private static String isDraw_SquareBracket_Left = "[";
-    private static String isDraw_Middle = "|";
+
     OutputView(){
         this.printUp = new StringBuilder();
         this.printDown = new StringBuilder();
@@ -26,25 +21,25 @@ public class OutputView {
         printDown.append(printFirstMap(index));
         printUp.append(printUpMap(user,isDraw));
         printDown.append(printDownMap(user,isDraw));
-        System.out.println(printUp.toString()+isDraw_SquareBracket_Right);
-        System.out.println(printDown.toString()+isDraw_SquareBracket_Right);
+        System.out.println(printUp.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
+        System.out.println(printDown.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
     }
     public String printUpMap(String user, boolean isDraw){
-        if(!user.equals("U")) return isDraw_Blank;
+        if(!user.equals(StringEnum.UP.getStr())) return StringEnum.BLANK.getStr();
         return printUserMap(isDraw);
     }
     public String printDownMap(String user, boolean isDraw){
-        if(!user.equals("D")) return isDraw_Blank;
+        if(!user.equals(StringEnum.DOWN.getStr())) return StringEnum.BLANK.getStr();
         return printUserMap(isDraw);
 
     }
     public String printFirstMap(int index){
-        if(index ==0) return isDraw_SquareBracket_Left;
-        return isDraw_Middle;
+        if(index ==0) return StringEnum.SQUAREBRACKET_LEFT.getStr();
+        return StringEnum.MIDDLE.getStr();
     }
     public String printUserMap(boolean isDraw){
-        if(isDraw) return isDraw_true;
-        return isDraw_false;
+        if(isDraw) return StringEnum.O.getStr();
+        return StringEnum.X.getStr();
     }
     public void removePrintMap(){
         this.printUp = new StringBuilder();
@@ -57,20 +52,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
-        System.out.println("최종 게임 결과");
-
-
-        System.out.println(printUp.toString()+isDraw_SquareBracket_Right);
-        System.out.println(printDown.toString()+isDraw_SquareBracket_Right);
+        System.out.println(StringEnum.GAME_RESULT_FINAL.getStr());
+        System.out.println(printUp.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
+        System.out.println(printDown.toString()+StringEnum.SQUAREBRACKET_RIGTH.getStr());
     }
     public void printSuccessOrFailure(boolean bridgeGameResult, int attempts) {
-        System.out.print("게임 성공 여부: ");
-        if (bridgeGameResult) {
-            System.out.println("성공");
-        }else {
-            System.out.println("실패");
-        }
-        System.out.print("총 시도한 횟수: ");
-        System.out.println(attempts);
+        System.out.print(StringEnum.GAME_RESULT.getStr());
+        System.out.println(StringEnum.GAME_RESULT.gameResult(bridgeGameResult));
+        System.out.print(StringEnum.GAME_RESUTL_ATTEMPTS.getStr()+attempts);
+
     }
 }

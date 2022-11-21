@@ -9,8 +9,6 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private static final String MAKER_MOVABLE_INCLUSIVE = "U";
-    private static final String MAKER_UNMOVABLE_INCLUSIVE = "D";
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
@@ -24,10 +22,10 @@ public class BridgeMaker {
         while (movable.size()<size) {
             int movableNumber = bridgeNumberGenerator.generate();
             if (movableNumber == 1) {
-                movable.add(MAKER_MOVABLE_INCLUSIVE);
+                movable.add(StringEnum.UP.getStr());
                 continue;
             }
-            movable.add(MAKER_UNMOVABLE_INCLUSIVE);
+            movable.add(StringEnum.DOWN.getStr());
         }
         return movable;
     }
