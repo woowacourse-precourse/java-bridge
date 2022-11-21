@@ -3,6 +3,7 @@ package bridge.domain;
 import java.util.Arrays;
 
 import static bridge.domain.Constants.*;
+import static bridge.domain.exception.ErrorMessage.*;
 
 public enum BridgeStatus {
 
@@ -31,6 +32,6 @@ public enum BridgeStatus {
         return Arrays.stream(values())
                 .filter(value -> value.arrow.equals(arrow) && value.status.equals(mark))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException());
+                .orElseThrow(() -> new IllegalStateException(ERROR_BRIDGE_STATUS));
     }
 }
