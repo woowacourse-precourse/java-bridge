@@ -1,5 +1,7 @@
 package bridge.gameController;
 
+import static bridge.constants.OutputConstants.SELECT_RESTART_OR_QUIT;
+
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -58,6 +60,20 @@ public class GameController {
         String userMove = inputView.readMoving();
         System.out.println(userMove);
         return userMove;
+    }
+    public boolean retryCheck() {
+
+        SELECT_RESTART_OR_QUIT.printMessage();
+        String command = inputView.readGameCommand();
+        if (command.equals("Q")) {
+            return false;
+        }
+        if (command.equals("R")) {
+            outputView = new OutputView();
+            location = 0;
+            return true;
+        }
+        return true;
     }
 
 }
