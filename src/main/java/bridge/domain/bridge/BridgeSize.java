@@ -1,11 +1,13 @@
 package bridge.domain.bridge;
 
+import static bridge.validate.BridgeValidation.validateBridgeSize;
+
 public class BridgeSize {
 
     private final int size;
 
     public BridgeSize(int size) {
-        validate(size);
+        validateBridgeSize(size);
         this.size = size;
     }
 
@@ -15,11 +17,5 @@ public class BridgeSize {
 
     public int value() {
         return size;
-    }
-
-    private void validate(int size) {
-        if (!(3 <= size && size <= 20)) {
-            throw new IllegalArgumentException("다리의 길이가 범위에 해당되지 않습니다.");
-        }
     }
 }
