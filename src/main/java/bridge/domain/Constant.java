@@ -1,11 +1,11 @@
 package bridge.domain;
 
-public enum Constants {
+public enum Constant {
     MINIMUM_LENGTH_INCLUSIVE(3),
     MAXIMUM_LENGTH_INCLUSIVE(20);
 
     private int value;
-    Constants(int value){
+    Constant(int value){
         this.value = value;
     }
 

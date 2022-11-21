@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Constants;
+import bridge.domain.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class BridgeMaker {
     }
 
     private void validateSize(int size){
-        if (size < Constants.MINIMUM_LENGTH_INCLUSIVE.getValue() || size > Constants.MAXIMUM_LENGTH_INCLUSIVE.getValue()) throw new IllegalArgumentException();
+        if (size < Constant.MINIMUM_LENGTH_INCLUSIVE.getValue() || size > Constant.MAXIMUM_LENGTH_INCLUSIVE.getValue()) throw new IllegalArgumentException();
     }
 
     private String generateBlock(){
