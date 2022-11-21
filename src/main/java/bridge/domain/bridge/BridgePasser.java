@@ -1,6 +1,7 @@
 package bridge.domain.bridge;
 
 import static bridge.domain.BridgeLocation.initBridgeLocation;
+import static bridge.validate.BridgeValidation.validateBridgeMovable;
 
 import bridge.domain.BridgeLocation;
 import bridge.value.BridgeCharacter;
@@ -23,9 +24,8 @@ public class BridgePasser {
     }
 
     public void move() {
-        if(!bridge.isRange(bridgeLocation.next())) {
-            throw new IllegalStateException("더이상 이동할 수 없습니다.");
-        }
+        validateBridgeMovable(bridge.isRange(bridgeLocation.next()));
+
         addLocation();
     }
 
