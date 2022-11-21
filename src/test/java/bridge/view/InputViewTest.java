@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.domain.game.Retry;
 import bridge.provider.BridgeSizeProvider;
