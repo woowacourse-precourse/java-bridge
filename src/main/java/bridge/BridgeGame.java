@@ -42,7 +42,7 @@ public class BridgeGame {
             path.get(oppositionCommand.get(movingCommand)).add("N");
         }
     }
-    private void isFail(){
+    private boolean isFail(){
         for (int i=0;i<moveCount;i++){
             if (path.get("U").contains("X") || path.get("D").contains("X")){
                 retry();
