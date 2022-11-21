@@ -1,21 +1,15 @@
 package bridge.service;
 
-import java.util.List;
-
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
 import bridge.domain.BridgeResult;
+import bridge.service.dto.MoveDto;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final Bridge bridge;
     private final BridgeResult resultBridge;
 
-    public BridgeGame(Bridge bridge, BridgeResult resultBridge) {
-        this.bridge = bridge;
+    public BridgeGame(BridgeResult resultBridge) {
         this.resultBridge = resultBridge;
     }
 
@@ -24,14 +18,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String blockToMove, int blockPosition, int bridgeSize) {
-        String block = bridge.getBlock(blockPosition);
+    public String move(MoveDto moveDto, int blockPosition) {
+        String block = moveDto.getBridge().getBlock(blockPosition);
+        String blockToMove = moveDto.getInputView().readMoving();
 
         if (blockToMove.equals(block)) {
             resultBridge.addBlock(blockToMove, "O");
             return "O";
         }
-
         resultBridge.addBlock(blockToMove, "X");
         return "X";
     }
@@ -46,13 +40,6 @@ public class BridgeGame {
             return true;
         }
         return false;
-    }
-
-    public List<String> makeBridge(int bridgeSize) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge.setBridge(bridgeMaker.makeBridge(bridgeSize));
-
-        return bridge.getBridge();
     }
 
     public String getResultBridge() {
