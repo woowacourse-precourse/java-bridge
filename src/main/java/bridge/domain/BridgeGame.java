@@ -34,12 +34,8 @@ public class BridgeGame {
         return trial;
     }
 
-    public void makeSuccess() {
-        this.succeeds = true;
-    }
-
-    public boolean isSucceeds() {
-        return succeeds;
+    public boolean hasSucceeded(Player player) {
+        return player.hasSucceeded(bridge);
     }
 
     /**

@@ -32,6 +32,10 @@ public class Player {
         return path.get(index).equals(bridge.get(index));
     }
 
+    public boolean hasSucceeded(List<String> bridge) {
+        return path.equals(bridge);
+    }
+
     private void validateDirection(String direction) {
         if (!DIRECTIONS.contains(direction)) {
             throw new IllegalArgumentException("[ERROR] 이동 방향은 U 혹은 D만 입력할 수 있습니다.");

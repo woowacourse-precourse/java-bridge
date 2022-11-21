@@ -14,17 +14,18 @@ public class Application {
             BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(InputView.readBridgeSize()));
             Player player = new Player();
             System.out.println("다리 건너기 게임을 시작합니다.");
-            while (!bridgeGame.isSucceeds()) {
+            while (true) {
                 playGame(bridgeGame, player);
-                if (bridgeGame.isSucceeds()) {
+                if (bridgeGame.hasSucceeded(player)) {
                     break;
                 }
                 if (!bridgeGame.retry(InputView.readGameCommand())) { // 중간에 실패한 경우
                     break;
                 }
+
                 player = new Player();
             }
-            OutputView.printResult(player.generateMap(), bridgeGame);
+            OutputView.printResult(player, bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -40,6 +41,5 @@ public class Application {
                 return;
             }
         }
-        bridgeGame.makeSuccess();
     }
 }
