@@ -14,7 +14,7 @@ public class InputView {
         try {
             size = Integer.parseInt(number);
         } catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException("올바른 값을 입력해주세요");
+            throw new IllegalArgumentException("올바른 값을 입력해주세요");
         }
 
         return new BridgeSize(size);
