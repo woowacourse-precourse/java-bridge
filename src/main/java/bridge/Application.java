@@ -15,16 +15,7 @@ public class Application {
             List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
             BridgeGame bridgeGame = new BridgeGame(bridge, new Player());
             System.out.println("다리 건너기 게임을 시작합니다.");
-            while (true) {
-                playGame(bridgeGame);
-                if (bridgeGame.hasSucceeded()) {
-                    break;
-                }
-                if (!bridgeGame.retry(InputView.readGameCommand())) {
-                    break;
-                }
-                bridgeGame.setPlayer(new Player());
-            }
+            playGame(bridgeGame);
             OutputView.printResult(bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -32,12 +23,25 @@ public class Application {
     }
 
     private static void playGame(BridgeGame bridgeGame) {
+        while (true) {
+            playGameOnce(bridgeGame);
+            if (bridgeGame.hasSucceeded()) {
+                break;
+            }
+            if (!bridgeGame.retry(InputView.readGameCommand())) {
+                break;
+            }
+            bridgeGame.setPlayer(new Player());
+        }
+    }
+
+    private static void playGameOnce(BridgeGame bridgeGame) {
         int totalRounds = bridgeGame.getTotalRounds();
         for (int round = 0; round < totalRounds; round++) {
             boolean isAnswer = bridgeGame.move(InputView.readMoving(), round);
             OutputView.printMap(bridgeGame.getMap());
             if (!isAnswer) {
-                return;
+                break;
             }
         }
     }
