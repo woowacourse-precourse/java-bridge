@@ -11,10 +11,12 @@ final class Logger {
     void put(final Position moving, final boolean correct) {
         validateMoving(moving);
         if (moving == Position.UP) {
-            addOneCheck(up, down, correct);
+            addSign(up, correct);
+            addSpace(down);
             return;
         }
-        addOneCheck(down, up, correct);
+        addSign(down, correct);
+        addSpace(up);
     }
 
     private void validateMoving(final Position moving) {
@@ -23,13 +25,16 @@ final class Logger {
         }
     }
 
-    private void addOneCheck(final StringBuilder addSign, final StringBuilder addSpace, final boolean correct) {
-        addSpace.append(BLANK_SIGN);
+    private void addSign(final StringBuilder line, final boolean correct) {
         if (correct) {
-            addSign.append(CORRECT_SIGN);
+            line.append(CORRECT_SIGN);
             return;
         }
-        addSign.append(WRONG_SIGN);
+        line.append(WRONG_SIGN);
+    }
+
+    private void addSpace(final StringBuilder line) {
+        line.append(BLANK_SIGN);
     }
 
     String calculateLog() {
