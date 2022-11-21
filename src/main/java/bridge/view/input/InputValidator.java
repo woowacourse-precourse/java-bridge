@@ -4,14 +4,12 @@ import bridge.Validator;
 import bridge.bridge.Direction;
 import bridge.exception.ExceptionHandler;
 import bridge.exception.ExceptionMessage;
+import bridge.game.Command;
 
 public class InputValidator extends Validator {
 
     private static final int BRIDGE_LOWER_INCLUSIVE = 3;
     private static final int BRIDGE_UPPER_INCLUSIVE = 20;
-    private static final String RETRY_COMMAND = "R";
-    private static final String QUIT_COMMAND = "Q";
-
 
     public static int validateBridgeSize(int bridgeSize) {
         validateLowerBridgeSize(bridgeSize);
@@ -49,8 +47,8 @@ public class InputValidator extends Validator {
     }
 
     private static void validateRetryOrQuitCommand(String command) {
-        if (!command.equals(RETRY_COMMAND)
-                && !command.equals(QUIT_COMMAND)) {
+        if (!Command.RETRY.equals(command)
+                && !Command.QUIT.equals(command)) {
             ExceptionHandler.throwException(new IllegalArgumentException(), ExceptionMessage.GAME_COMMAND);
         }
     }
