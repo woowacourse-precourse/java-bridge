@@ -3,8 +3,8 @@ package bridge;
 import bridge.domain.direction.Direction;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.generate;
 
 /**
@@ -26,6 +26,6 @@ public class BridgeMaker {
         return generate(bridgeNumberGenerator::generate)
                 .limit(size)
                 .mapToObj(Direction::mapNumberToSymbol)
-                .collect(toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 }

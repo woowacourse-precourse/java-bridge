@@ -5,6 +5,7 @@ import bridge.domain.direction.Direction;
 import java.util.List;
 
 import static bridge.domain.bridge.CrossStatus.*;
+import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
 
 public class Bridge {
@@ -18,7 +19,7 @@ public class Bridge {
 
     public Bridge(final List<Direction> directions) {
         validateSize(directions.size());
-        this.directions = directions;
+        this.directions = unmodifiableList(directions);
     }
 
     public static Bridge fromStrings(final List<String> bridge) {
