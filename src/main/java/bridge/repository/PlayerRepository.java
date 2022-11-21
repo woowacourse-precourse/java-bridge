@@ -25,6 +25,10 @@ public class PlayerRepository {
         return repository.get(id);
     }
 
+    public void update(Long playerId, Player player) {
+        repository.put(playerId, player);
+    }
+
     private void incrementId() {
         id = id + 1;
     }
