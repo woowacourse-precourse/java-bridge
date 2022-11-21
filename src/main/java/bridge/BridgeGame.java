@@ -42,6 +42,13 @@ public class BridgeGame {
             path.get(oppositionCommand.get(movingCommand)).add("N");
         }
     }
+    private void isFail(){
+        for (int i=0;i<moveCount;i++){
+            if (path.get("U").contains("X") || path.get("D").contains("X")){
+                retry();
+            }
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
