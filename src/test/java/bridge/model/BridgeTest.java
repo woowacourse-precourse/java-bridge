@@ -35,7 +35,7 @@ class BridgeTest {
 
         @Test
         @DisplayName("movement가 비어있을 때 예외가 발생한다.")
-        void canMove__() {
+        void canMove_MovementIsEmpty_ExceptionThrown() {
             movement.clear();
             assertThatThrownBy(() -> new Bridge(List.of(Direction.D))
                     .canMove(movement))

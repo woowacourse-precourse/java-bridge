@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("사용자 입력 테스트")
 class InputViewTest {
     InputView inputView;
     OutputStream out;

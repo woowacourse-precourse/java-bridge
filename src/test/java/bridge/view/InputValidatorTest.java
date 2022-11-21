@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayName("사용자 입력 검증 테스트")
 class InputValidatorTest {
     @Nested
     @DisplayName("다리 길이 입력에 대한 검증 테스트")

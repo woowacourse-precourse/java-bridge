@@ -10,7 +10,7 @@ class TryCountTest {
     private TryCount tryCount;
 
     @BeforeEach
-    void Init_Test() {
+    void init_Test() {
         tryCount = new TryCount();
     }
 
