@@ -29,6 +29,10 @@ public class Application {
             outputView.printSelect();
             String moving = inputView.readMoving();
             userMove.add(moving);
+            // TODO: 다리 정보와 입력받은 정보 비교하여 결과 도출
+            String bridgeInfo = bridgeList.get(size);
+            String result = bridgeGame.move(moving, bridgeInfo);
+            moveResults.add(result);
         }
 
     }
