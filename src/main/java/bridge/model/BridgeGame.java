@@ -1,4 +1,7 @@
-package bridge;
+package bridge.model;
+
+import bridge.Moving;
+import bridge.Pass;
 
 import java.util.ArrayList;
 import java.util.Arrays;

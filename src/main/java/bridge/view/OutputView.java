@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.Moving;
 
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class OutputView {
         List<String> downLine = map.get(Moving.DOWN.ordinal());
         printOneLineMap(upLine);
         printOneLineMap(downLine);
+        System.out.println();
     }
 
     private void printOneLineMap(List<String> line) {
