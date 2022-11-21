@@ -8,9 +8,4 @@ public class OutputSentence {
     public static final String GAME_RESULT = "최종 게임 결과";
     public static final String SUCCESS_OR_FAILURE = "\n게임 성공 여부: ";
     public static final String TOTAL_ATTEMPTS = "총 시도한 횟수: ";
-    public static final String INITIAL_SETTING = "[]";
-    public static final String FIRST_POINT = "[";
-    public static final String END_POINT = "]";
-    public static final String CHANGE_POINT = "[|";
-    public static final String EMPTY = "|   ]";
 }
