@@ -1,8 +1,8 @@
 package bridge;
 
 public class Application {
-
+    private static BridgeController bridgeController;
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        bridgeController.run();
     }
 }
