@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class BridgeGame {
     public ArrayList<String> bridge = new ArrayList<>();
+    public ArrayList<String> currentCoordinate = new ArrayList<>();
     public void makeBridge(int size) {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
@@ -18,7 +19,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String moving) {
+        this.currentCoordinate.add(moving);
     }
 
     /**
