@@ -35,5 +35,13 @@ public class BridgeGame {
         this.gameState=true;
         this.gameRecordMaker=new GameRecordMaker();
     }
+    public void constructBridge(int bridgeLength){
+        this.bridgeLength=bridgeLength;
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        List<String> bridgeMade = bridgeMaker.makeBridge(bridgeLength);
+
+        gameAgent.initialize(bridgeMade);
+    }
 
 }
