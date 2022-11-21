@@ -18,6 +18,18 @@ public class BridgeTest {
         bridgeGame.move(List.of("U", "D", "D"), "U");
         bridgeGame.move(List.of("U", "D", "D"), "D");
         List<String> moveResult = bridgeGame.move(List.of("U", "D", "D"), "U");
+
         assertThat(moveResult).isEqualTo(List.of("O", " ", " ", "O", "X", " "));
+    }
+
+    @Test
+    @DisplayName("게임 재시도 할시 이동 결과 초기화")
+    void 다리_게임_재시도_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move(List.of("U", "D", "D"), "U");
+        bridgeGame.move(List.of("U", "D", "D"), "D");
+        List<String> moveResult = bridgeGame.retry("R");
+
+        assertThat(moveResult).isEqualTo(List.of());
     }
 }
