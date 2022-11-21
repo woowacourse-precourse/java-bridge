@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 public enum SafeBridge {
     UP(1, "U"),

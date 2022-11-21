@@ -1,20 +1,31 @@
-package bridge;
+package bridge.controller;
 
-import static org.assertj.core.util.Lists.newArrayList;
-
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.util.CommandKeys;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Application {
+public class Controller {
     private static final int INITIAL_COUNT = 1;
     private final static String BLANK_SPACE = " ";
     private final static String SUCCESS = "성공";
     private final static String FAILURE = "실패";
 
-    public static void main(String[] args) {
+    private final List<String> upSideResults;
+    private final List<String> downSideResults;
+    private final BridgeGame bridgeGame;
+
+    public Controller(BridgeGame bridgeGame) {
+        this.upSideResults = new ArrayList<>();
+        this.downSideResults = new ArrayList<>();
+        this.bridgeGame = bridgeGame;
+    }
+
+    public void play() {
         OutputView.printGameStart();
         int trialCount = INITIAL_COUNT;
         String gameResult = SUCCESS;
@@ -24,8 +35,6 @@ public class Application {
         final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(answerBridge);
 
-        List<String> upSideResults = new ArrayList<>();
-        List<String> downSideResults = new ArrayList<>();
         final BridgeGame bridgeGame = new BridgeGame(answerBridge);
 
         int index = 0;
@@ -33,14 +42,14 @@ public class Application {
             final String currentMoving = InputView.readMoving();
             final String moveResult = bridgeGame.move(currentMoving, index);
 
-            if (bridgeGame.isMovingUp(currentMoving)) {
-                bridgeGame.updateOneSideResults(upSideResults, moveResult);
-                bridgeGame.updateOneSideResults(downSideResults, BLANK_SPACE);
+            if (isMovingUp(currentMoving)) {
+                updateOneSideResults(upSideResults, moveResult);
+                updateOneSideResults(downSideResults, BLANK_SPACE);
             }
 
-            if (bridgeGame.isMovingDown(currentMoving)) {
-                bridgeGame.updateOneSideResults(upSideResults, BLANK_SPACE);
-                bridgeGame.updateOneSideResults(downSideResults, moveResult);
+            if (isMovingDown(currentMoving)) {
+                updateOneSideResults(upSideResults, BLANK_SPACE);
+                updateOneSideResults(downSideResults, moveResult);
             }
 
             OutputView.printMap(index, upSideResults, downSideResults);
@@ -68,5 +77,17 @@ public class Application {
             OutputView.printResult(index - 1, upSideResults, downSideResults, gameResult);
             OutputView.printTotalTrialCount(bridgeGame.trialCount);
         }
+    }
+
+    private static void updateOneSideResults(List<String> oneSideResults, String moveResult) {
+        oneSideResults.add(moveResult);
+    }
+
+    private static boolean isMovingUp(String currentMoving) {
+        return CommandKeys.isSame(CommandKeys.UP, currentMoving);
+    }
+
+    private static boolean isMovingDown(String currentMoving) {
+        return CommandKeys.isSame(CommandKeys.DOWN, currentMoving);
     }
 }

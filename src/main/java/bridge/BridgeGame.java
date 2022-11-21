@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.util.CommandKeys;
 import java.util.List;
 
 /**
@@ -43,5 +44,17 @@ public class BridgeGame {
      */
     public void retry() {
         trialCount++;
+    }
+
+    public boolean isMovingUp(String currentMoving) {
+        return CommandKeys.isSame(CommandKeys.UP, currentMoving);
+    }
+
+    public boolean isMovingDown(String currentMoving) {
+        return CommandKeys.isSame(CommandKeys.DOWN, currentMoving);
+    }
+
+    public void updateOneSideResults(List<String> oneSideResults, String moveResult) {
+        oneSideResults.add(moveResult);
     }
 }
