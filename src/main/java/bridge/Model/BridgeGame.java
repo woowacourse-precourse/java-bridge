@@ -35,13 +35,14 @@ public class BridgeGame {
     }
 
     public GameStatus checkGameStatus() {
+        GameStatus status = GameStatus.RUNNING;
         if (isEndPoint()) {
-            return GameStatus.SUCCESS;
+            status =  GameStatus.SUCCESS;
         }
         if (isFailed()) {
-            return GameStatus.FAIL;
+            status =  GameStatus.FAIL;
         }
-        return GameStatus.RUNNING;
+        return status;
     }
 
     private boolean isEndPoint() {
