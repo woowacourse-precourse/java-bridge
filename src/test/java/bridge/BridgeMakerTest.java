@@ -15,9 +15,10 @@ class BridgeMakerTest {
     void initiateBridgeMakerTest() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
-    @Test
-    void requestReadBridgeSize() {
-    }
+//    @Test
+//    void requestReadBridgeSize() {
+//
+//    }
     @DisplayName("다리 길이로 2를 입력했을때, 예외를 던진다.")
     @Test
     void isValid() {
@@ -25,7 +26,7 @@ class BridgeMakerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void makeBridge() {
-    }
+//    @Test
+//    void makeBridge() {
+//    }
 }
