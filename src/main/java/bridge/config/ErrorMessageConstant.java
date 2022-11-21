@@ -9,4 +9,5 @@ public class ErrorMessageConstant {
     public static final String IS_NOT_NUMBER_FORMAT = "숫자만 입력할 수 있습니다.";
     public static final String COMMAND_NOT_FOUND = "지원하지 않는 명령어입니다.";
     public static final String INVALID_COMMAND_IN_STATUS = "현재 상황에서 사용할 수 없는 명령어입니다.";
+    public static final String COMMAND_GROUP_NOT_FOUND = "해당 명령어의 그룹을 찾을 수 없습니다.";
 }

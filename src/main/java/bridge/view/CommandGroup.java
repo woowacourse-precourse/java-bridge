@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.config.ErrorMessageConstant;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,7 +22,7 @@ public enum CommandGroup {
         return Arrays.stream(CommandGroup.values())
                 .filter(commandGroup -> commandGroup.hasCommandCode(commandType))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new NoSuchElementException(ErrorMessageConstant.COMMAND_GROUP_NOT_FOUND));
     }
 
     private boolean hasCommandCode(CommandType commandType) {

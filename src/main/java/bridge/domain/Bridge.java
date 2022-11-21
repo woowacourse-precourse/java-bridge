@@ -56,7 +56,7 @@ public class Bridge {
      * @param size 다리의 길이
      * @throws IllegalArgumentException 다리의 길이가 3 이상 20 이하를 만족하지 않는 경우 예외처리
      */
-    private void bridgeSizeValidation(int size) {
+    private void bridgeSizeValidation(int size) throws IllegalArgumentException {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException(ErrorMessageConstant.INVALID_BRIDGE_SIZE);
         }
