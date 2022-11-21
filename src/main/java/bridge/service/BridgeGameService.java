@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static bridge.domain.Command.RETRY;
-import static bridge.domain.game.GameStatus.FAILED;
 import static bridge.support.MapConst.BLANK;
 import static bridge.support.MapConst.BRIDGE_UNIT_DELIMITER;
 import static bridge.support.MapConst.SYMBOL_FAIL;
@@ -29,19 +28,23 @@ public class BridgeGameService {
     }
 
     public GameStatus crossBridgeUnit(String moving) {
-        return bridgeGame.move(moving);
+        bridgeGame.move(moving);
+        return bridgeGame.getGameResult();
     }
 
-    public GameStatus executeGameCommand(String code) {
+    public boolean isPlaying() {
+        return bridgeGame.isPlaying();
+    }
+
+    public void executeGameCommand(String code) {
         Command command = Command.from(code);
-        return executeIfRetry(command);
+        executeIfRetry(command);
     }
 
-    private GameStatus executeIfRetry(Command command) {
+    private void executeIfRetry(Command command) {
         if (RETRY.equals(command)) {
-            return bridgeGame.retry();
+            bridgeGame.retry();
         }
-        return FAILED;
     }
 
     public ResultDto getResultDto(GameStatus status) {

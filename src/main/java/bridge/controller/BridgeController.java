@@ -7,7 +7,6 @@ import bridge.service.BridgeGameService;
 import bridge.view.OutputView;
 
 import static bridge.domain.game.GameStatus.FAILED;
-import static bridge.domain.game.GameStatus.PLAYING;
 import static bridge.support.ErrorMessage.UNEXPECTED_EXCEPTION;
 
 public class BridgeController {
@@ -15,12 +14,10 @@ public class BridgeController {
     private final OutputView outputView;
     private final ReadController readController;
     private BridgeGameService service;
-    private GameStatus status;
 
     public BridgeController() {
         this.outputView = new OutputView();
         this.readController = new ReadController();
-        this.status = PLAYING;
     }
 
     public void run() {
@@ -28,7 +25,7 @@ public class BridgeController {
         service = new BridgeGameService(initBridgeGame());
 
         try {
-            playBridgeGame();
+            GameStatus status = playBridgeGame();
             outputView.printResult(service.getResultDto(status));
         } catch (Exception | Error e) {
             OutputView.printError(UNEXPECTED_EXCEPTION);
@@ -40,29 +37,33 @@ public class BridgeController {
         return BridgeGameGenerator.generate(bridgeSize);
     }
 
-    private void playBridgeGame() {
-        while (PLAYING.equals(status)) {
-            crossBridge();
+    private GameStatus playBridgeGame() {
+        GameStatus status = FAILED;
+        while (service.isPlaying()) {
+            status = crossBridge();
             if (FAILED.equals(status)) {
-                status = executeGameCommand();
+                executeGameCommand();
             }
         }
+        return status;
     }
 
-    private void crossBridge() {
-        while (PLAYING.equals(status)) {
-            crossBridgeUnit();
+    private GameStatus crossBridge() {
+        GameStatus status = FAILED;
+        while (service.isPlaying()) {
+            status = crossBridgeUnit();
             outputView.printMap(service.getMapDto());
         }
+        return status;
     }
 
-    private void crossBridgeUnit() {
+    private GameStatus crossBridgeUnit() {
         String moving = readController.readMoving();
-        status = service.crossBridgeUnit(moving);
+        return service.crossBridgeUnit(moving);
     }
 
-    private GameStatus executeGameCommand() {
+    private void executeGameCommand() {
         String command = readController.readGameCommand();
-        return service.executeGameCommand(command);
+        service.executeGameCommand(command);
     }
 }

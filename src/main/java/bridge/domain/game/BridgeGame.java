@@ -18,11 +18,13 @@ public class BridgeGame {
     private final Bridge bridge;
     private final List<GameProgress> gameProgress;
     private int attempt;
+    private boolean playing;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.gameProgress = new ArrayList<>();
         this.attempt = 1;
+        this.playing = true;
     }
 
     /**
@@ -30,30 +32,32 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameStatus move(String moving) {
-        GameStatus status = moveAndGetStatus(moving);
-        if (isSuccessToCrossTotalBridge(status)) {
-            status = SUCCESS;
-        }
-        return status;
-    }
-
-    private GameStatus moveAndGetStatus(String moving) {
-        if (canMove(moving)) {
-            gameProgress.add(new GameProgress(moving, true));
-            return PLAYING;
-        }
-        gameProgress.add(new GameProgress(moving, false));
-        return FAILED;
+    public void move(String moving) {
+        boolean move = canMove(moving);
+        gameProgress.add(new GameProgress(moving, move));
     }
 
     private boolean canMove(String moving) {
         int position = gameProgress.size();
-        return bridge.getBridgeBlock(position).equals(moving);
+        playing = bridge.getBridgeBlock(position).equals(moving);
+        return playing;
     }
 
-    private boolean isSuccessToCrossTotalBridge(GameStatus status) {
-        return (gameProgress.size() == bridge.getSize()) && PLAYING.equals(status);
+    private boolean isSuccessToCrossTotalBridge() {
+        return (gameProgress.size() == bridge.getSize() &&
+                gameProgress.get(gameProgress.size() - 1).isSuccess());
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public GameStatus getGameResult() {
+        if (isSuccessToCrossTotalBridge()) {
+            playing = false;
+            return SUCCESS;
+        }
+        return FAILED;
     }
 
     /**
@@ -61,11 +65,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameStatus retry() {
+    public void retry() {
         checkTooManyAttempts();
         attempt++;
         gameProgress.clear();
-        return PLAYING;
+        playing = true;
     }
 
     private void checkTooManyAttempts() {
