@@ -1,5 +1,6 @@
-package bridge;
+package bridge.View;
 
+import bridge.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.Message.GuideMessage.*;
