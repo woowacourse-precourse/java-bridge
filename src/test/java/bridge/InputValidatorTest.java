@@ -64,6 +64,15 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
+    @Test
+    @DisplayName("재시도 명령 입력시 1글자가 아닐 때 예외처리")
+    void inputRetryCommandNotChar() throws Exception {
+        //given
+        String input = "RR";
+        //when
+        //then
+        assertThatThrownBy(() -> inputValidator.validateInputRetry(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 }
