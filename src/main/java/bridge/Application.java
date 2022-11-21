@@ -17,4 +17,17 @@ public class Application {
         moveOrRetry(bridgeGame, bridge);
         OutputView.printResult(bridgeGame);
     }
+
+    static List<String> bridgeBundle() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge;
+        int bridgeLen;
+
+        OutputView.printBridgeSizeMessage();
+        bridgeLen = InputView.readBridgeSize();
+        System.out.print("\n");
+        bridge = bridgeMaker.makeBridge(bridgeLen);
+
+        return bridge;
+    }
 }
