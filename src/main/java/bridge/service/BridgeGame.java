@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.domain.Bridge;
+import bridge.service.constant.GameStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -8,11 +9,13 @@ import bridge.domain.Bridge;
 public class BridgeGame {
     private int attemptCount;
     private int panelOrder;
+    private GameStatus status;
     private Bridge bridge;
 
     public BridgeGame (Bridge bridge) {
         attemptCount = 0;
         panelOrder = 0;
+        status = GameStatus.PLAYING;
         this.bridge = bridge;
     }
 
@@ -54,5 +57,9 @@ public class BridgeGame {
 
     public int getPanelOrder() {
         return panelOrder;
+    }
+
+    public GameStatus getStatus() {
+        return status;
     }
 }
