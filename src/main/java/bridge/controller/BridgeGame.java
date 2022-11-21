@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.service.BridgeGenerateService;
 import bridge.domain.GameCommand;
+import bridge.view.InputView;
 import java.util.List;
 
 /**
@@ -11,9 +12,11 @@ public class BridgeGame {
 
     private static List<String> bridge;
 
+    private final InputView inputView;
     private final BridgeGenerateService bridgeGenerateService;
 
-    public BridgeGame(BridgeGenerateService bridgeGenerateService) {
+    public BridgeGame(InputView inputView, BridgeGenerateService bridgeGenerateService) {
+        this.inputView = inputView;
         this.bridgeGenerateService = bridgeGenerateService;
     }
 
@@ -23,6 +26,10 @@ public class BridgeGame {
 
     private boolean move(String moving, int position) {
         return bridge.get(position).equals(moving);
+    }
+
+    private String askGameCommand() {
+        return inputView.readGameCommand();
     }
 
     /**
