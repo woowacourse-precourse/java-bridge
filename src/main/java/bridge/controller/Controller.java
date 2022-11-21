@@ -1,4 +1,6 @@
-package bridge;
+package bridge.controller;
+
+import bridge.*;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class Controller {
     private BridgeGame bridgeGame;
     private SingleMap singleMap;
 
-    Controller(){
+    public Controller(){
         inputView=new InputView();
         outputView=new OutputView();
     }
@@ -35,6 +37,7 @@ public class Controller {
     }
 
     public boolean playGame(){
+        bridgeGame.retry();
         do{
             String move=inputView.readMoving();
             bridgeGame.move(move);
@@ -47,18 +50,7 @@ public class Controller {
     private void printMap(){
         outputView.printMap(singleMap.convertToSingleMap("U"));
         outputView.printMap(singleMap.convertToSingleMap("D"));
-    }
-
-    public boolean askRestart(){
-        String command=inputView.readGameCommand();
-        if(command.matches("R")){
-            return true;
-        }
-        return false;
-    }
-
-    public void printResult(){
-        outputView.printResult(singleMap);
+        System.out.println();
     }
 
 }
