@@ -2,8 +2,7 @@ package bridge.model.service;
 
 import java.util.List;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.model.domain.Bridges;
 import bridge.model.domain.FootPrint;
 import bridge.model.domain.GameResult;
 import bridge.model.domain.Map;
@@ -14,17 +13,22 @@ import bridge.model.validation.Stairs;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+	private final Bridges bridges;
 	private final Map map;
 	private final GameResult result;
 
 	public BridgeGame() {
+		this.bridges = new Bridges();
 		this.map = new Map();
 		this.result = new GameResult();
 	}
 
-	public List<String> makeBridge(int userInput) {
-		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		return bridgeMaker.makeBridge(userInput);
+	public void makeBridge(int userInput) {
+		bridges.makeBridge(userInput);
+	}
+
+	public List<String> getBridges() {
+		return bridges.getBridges();
 	}
 
 	public void setUpRound() {
