@@ -33,18 +33,14 @@ public class BridgeGame {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
-        //System.out.println(bridge);
 
         OutputView outputView = new OutputView();
-        outputView.printMap(bridge);
+        outputView.printAnswer(bridge);
 
         boolean success = move(bridge);
         count++;
         if (success){
-            System.out.println("\n최종 게임 결과");
             OutputView.printResult(Result);
-            System.out.println("게임 성공 여부 : 성공");
-            System.out.println("총 시도한 횟수 : " + count);
             end = false;
         }
         else{
@@ -60,7 +56,7 @@ public class BridgeGame {
             userBridge.add(MovingSquare);
 
             Result = OutputView.print(bridge, userBridge);
-            OutputView.printResult(Result);
+            OutputView.printGame(Result);
             if (!Objects.equals(MovingSquare, bridge.get(i))) {
                 return false;
             }
@@ -78,10 +74,7 @@ public class BridgeGame {
         InputView inputView = new InputView();
         String retryCommand = inputView.readGameCommand();
         if (Objects.equals(retryCommand, "Q")){
-            System.out.println("\n최종 게임 결과");
             OutputView.printResult(Result);
-            System.out.println("게임 성공 여부 : 실패");
-            System.out.println("총 시도한 횟수 : " + count);
             end = false;
         }
     }

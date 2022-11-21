@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.BridgeGame.count;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -15,21 +17,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> map) {
-        StringBuilder printUp = new StringBuilder();
-        StringBuilder printDown = new StringBuilder();
+    //@Deprecated
+    public void printAnswer(List<String> map) {
+        StringBuilder AnswerUp = new StringBuilder();
+        StringBuilder AnswerDown = new StringBuilder();
         for(String bridge : map){
             if (bridge == "U"){
-                printUp.append("[ O ]");
-                printDown.append("[   ]");
+                AnswerUp.append("[ O ]");
+                AnswerDown.append("[   ]");
             }
             else if (bridge == "D"){
-                printUp.append("[   ]");
-                printDown.append("[ O ]");
+                AnswerUp.append("[   ]");
+                AnswerDown.append("[ O ]");
             }
         }
-        System.out.println(printUp);
-        System.out.println(printDown);
+        System.out.println(AnswerUp);
+        System.out.println(AnswerDown);
     }
 
     public static List<String> initialPrint(String init){
@@ -93,8 +96,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> Result) {
+    public static void printGame(List<String> Result) {
         System.out.println(Result.get(0));
         System.out.println(Result.get(1));
+    }
+
+    public static void printResult(List<String> Result) {
+        System.out.println("\n최종 게임 결과");
+        System.out.println(Result.get(0));
+        System.out.println(Result.get(1));
+        System.out.println("게임 성공 여부 : 성공");
+        System.out.println("총 시도한 횟수 : " + count);
     }
 }
