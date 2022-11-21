@@ -17,7 +17,7 @@ public class OutputView {
 
 
     public void askRetry() {
-        System.out.println(String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", Command.RETRY.getSymbol(), Command.QUIT.getSymbol()));
+        System.out.printf("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)%n", Command.RETRY.getSymbol(), Command.QUIT.getSymbol());
     }
 
     public void askSize() {
@@ -49,7 +49,7 @@ public class OutputView {
             System.out.println("실패");
         }
 
-        System.out.println(String.format("총 시도한 횟수: %d", bridgeGame.getTrial()));
+        System.out.printf("총 시도한 횟수: %d%n", bridgeGame.getTrial());
     }
 
     public void printBegin() {
@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     public void askDirection() {
-        System.out.println(String.format("이동할 칸을 선택해주세요. (위: U, 아래: D)", Direction.UP.getSymbol(), Direction.DOWN.getSymbol()));
+        System.out.printf("이동할 칸을 선택해주세요. (위: %s, 아래: %s)%n", Direction.UP.getSymbol(), Direction.DOWN.getSymbol());
     }
 
     public void printHistory(List<Round> history) {
@@ -73,13 +73,12 @@ public class OutputView {
 
     private void printHistoryDirection(List<Round> history, Direction direction) {
         List<String> historyDirection = new ArrayList<>();
-        for (int i = 0; i < history.size(); i++) {
-            Round round = history.get(i);
-            if(round.getSelection().equals(direction)){
-                if(round.isPass()){
+        for (Round round : history) {
+            if (round.getSelection().equals(direction)) {
+                if (round.isPass()) {
                     historyDirection.add(PASS);
                 }
-                if(!round.isPass()){
+                if (!round.isPass()) {
                     historyDirection.add(FAIL);
                 }
                 continue;
