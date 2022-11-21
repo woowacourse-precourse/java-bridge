@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 /*
  * 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
