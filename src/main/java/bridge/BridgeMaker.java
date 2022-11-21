@@ -1,7 +1,6 @@
-package bridge.domain;
+package bridge;
 
 import bridge.utils.BridgeDirection;
-import bridge.BridgeNumberGenerator;
 
 import java.util.LinkedList;
 import java.util.List;
