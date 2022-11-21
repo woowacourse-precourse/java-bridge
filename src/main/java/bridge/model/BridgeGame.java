@@ -4,56 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
-    private BridgeMaker bridgeMaker;
-    private List<String> bridge;
-    private List<String> bridgeState;
-    private String userState;
-    private int tryTime;
+    private User user;
+    private Bridge bridge;
 
-    public BridgeGame() {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    }
-
-    public List<String> move(String move) {
+    public List<String> move(String input) {
+        String move = new Move(input).getMove();
         if (!checkMove(move)) {
-            userState = GameState.Over.getState();
-            move = move + "X";
-        } else if (bridgeState.size() + 1 == bridge.size()) {
-            userState = GameState.Success.getState();
+            user.setState(GameState.Over.getState());
+            move += "X";
+        } else if (user.getBridgeState().size() + 1 == bridge.getAnswer().size()) {
+            user.setState(GameState.Success.getState());
         }
-        bridgeState.add(move);
-        return bridgeState;
+        user.addBridgeState(move);
+        return user.getBridgeState();
     }
 
     private boolean checkMove(String move) {
-        if (move.equals(bridge.get(bridgeState.size()))) {
+        if (move.equals(bridge.getAnswer().get(user.getBridgeState().size()))) {
             return true;
         }
         return false;
     }
 
-    public void setBridge(int size) {
-        tryTime = 1;
-        bridge = bridgeMaker.makeBridge(size);
-        userState = GameState.Playing.getState();
-        bridgeState = new ArrayList<String>();
+    public void setBridge(String input) {
+        bridge = new Bridge(input);
+        user = new User();
     }
 
     public void retry() {
-        tryTime++;
-        userState = GameState.Playing.getState();
-        bridgeState = new ArrayList<String>();
+        user.addTryTime();
+        user.setState(GameState.Playing.getState());
+        user.setBridgeState(new ArrayList<String>());
     }
 
     public String getUserState() {
-        return userState;
+        return user.getState();
     }
 
     public List<String> getBridgeState() {
-        return bridgeState;
+        return user.getBridgeState();
     }
 
     public int getTryTime() {
-        return tryTime;
+        return user.getTryTime();
     }
 }

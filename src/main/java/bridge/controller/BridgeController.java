@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
+import bridge.model.Command;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -22,15 +23,25 @@ public class BridgeController {
     }
 
     public void setBridgeController() {
-        final int size = inputView.readBridgeSize();
-        bridgeGame.setBridge(size);
+        try {
+            final String input = inputView.readBridgeSize();
+            bridgeGame.setBridge(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setBridgeController();
+        }
     }
 
     public void moveController() {
-        final String move = inputView.readMoving();
-        final List<String> bridge = bridgeGame.move(move);
-        outputView.printMap(bridge);
-        subMoveController(bridgeGame.getUserState());
+        try {
+            final String move = inputView.readMoving();
+            final List<String> bridge = bridgeGame.move(move);
+            outputView.printMap(bridge);
+            subMoveController(bridgeGame.getUserState());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            moveController();
+        }
     }
 
     private void subMoveController(String userState) {
@@ -44,7 +55,15 @@ public class BridgeController {
     }
 
     private void retry() {
-        final String command = inputView.readGameCommand();
+        try {
+            final String command = new Command(inputView.readGameCommand()).getCommand();
+            subRetry(command);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            retry();
+        }
+    }
+    private void subRetry(String command) {
         if (command.equals("R")) {
             bridgeGame.retry();
             moveController();
