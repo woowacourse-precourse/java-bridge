@@ -1,5 +1,9 @@
 package bridge;
 
+/**
+ * Keeps track of attempts made
+ */
+
 public class AttemptCount {
   private int Attempts = 0;
   
