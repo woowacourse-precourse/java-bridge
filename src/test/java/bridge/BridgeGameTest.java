@@ -48,7 +48,7 @@ class BridgeGameTest {
         ProcessCondition passCondition = bridgeGame.move("D");
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         assertThat(passCondition).isEqualTo(PassCondition.FAIL);
-        assertThat(currentPosition).isEqualTo(-1);
+        assertThat(currentPosition).isEqualTo(0);
     }
 
     @DisplayName("다리를 건너기 시작할 때 플레이어가 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
@@ -67,7 +67,7 @@ class BridgeGameTest {
         ProcessCondition passCondition = bridgeGame.move("U");
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         assertThat(passCondition).isEqualTo(PassCondition.FAIL);
-        assertThat(currentPosition).isEqualTo(0);
+        assertThat(currentPosition).isEqualTo(1);
     }
 
     @DisplayName("다리의 두 번째 칸에 건너기 시작할 때 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
