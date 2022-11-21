@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static util.BridgeUtil.UP;
+import static util.BridgeUtil.DOWN;
 
 class BridgeTest {
 
@@ -23,6 +25,17 @@ class BridgeTest {
         Bridge bridge = new Bridge(madeBridge);
 
         assertThat(bridge.getBridgeLength()).isEqualTo(size);
+    }
+
+    @DisplayName("Bridge 클래스에서 인덱스 위치의 값이 U 또는 D인지 확인")
+    @Test
+    void 다리_인덱스_테스트() {
+        int size = 5;
+        int index = 2;
+        List<String> madeBridge = bridgeMaker.makeBridge(size);
+        Bridge bridge = new Bridge(madeBridge);
+
+        assertThat(bridge.getBridgeByIndex(index)).isIn(UP, DOWN);
     }
 
 }

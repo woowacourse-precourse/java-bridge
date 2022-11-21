@@ -10,7 +10,7 @@
 
 ### Bridge : 초기 지정하는 다리 사이즈로 생성되고, 사용자 선택을 채점하기 위한 정답으로 여겨지는 클래스
 - [x] 다리 길이를 반환한다. #getBridgeLength
-- [ ] 다리의 특정 인덱스번째 정답을 반환한다. #getBridgeByIndex
+- [x] 다리의 특정 인덱스번째 정답을 반환한다. #getBridgeByIndex
 
 ### Player: 사용자의 이동 선택
 - [ ] 사용자의 답을 추가한다. #addChoice

@@ -14,4 +14,8 @@ public class Bridge {
         return bridge.size();
     }
 
+    public String getBridgeByIndex(int index) {
+        return bridge.get(index);
+    }
+
 }
