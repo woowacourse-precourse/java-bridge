@@ -50,4 +50,8 @@ public class BridgeGame {
     public int getCurrentUserPosition() {
         return this.currentUserPosition;
     }
+
+    public boolean getGameWinStatus() {
+        return this.gameWinStatus;
+    }
 }

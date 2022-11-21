@@ -88,7 +88,7 @@ BUILD SUCCESSFUL in 0s
     - [x] public boolean retry(RetrySelector retrySelector)
     - [x] public List<String> getBridge()
     - [x] public int getCurrentUserPosition()
-    - [ ] public boolean getGameWinStatus()
+    - [x] public boolean getGameWinStatus()
     - [ ] public int getTotalTryCount()
 - [ ] **CLASS4. InputView**
   - **Class Methods**
