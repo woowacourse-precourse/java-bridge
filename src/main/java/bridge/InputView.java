@@ -59,7 +59,14 @@ public class InputView {
     public void printGameCommandMsg() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
-    
+
+    public String checkGameCommand(String gameCommand) {
+        if (!Objects.equals(gameCommand, "R") && !Objects.equals(gameCommand, "Q")) {
+            throw new IllegalArgumentException("[ERROR] 입력할 수 있는 방향은 R(재시도) 또는 Q(종료) 두가지 입니다.");
+        }
+        return gameCommand;
+    }
+
     public String readGameCommand() {
         printGameCommandMsg();
         String gameCommand = checkGameCommand(Console.readLine());
