@@ -49,11 +49,11 @@ public class BridgeMaker {
 
 
         possibleToGo = ranVal.generate();
-        if (firstORretry == false) {
+        if (firstORretry == false) { // 첫 시도시 다리 만들기
             ll.add(possibleToGo);
         }
 
-        if (firstORretry == true) {
+        if (firstORretry == true) { // 재시작시 똑같은 다리 만들기
             try {
                 possibleToGo = ll.get(i);
                 i++;
@@ -62,7 +62,9 @@ public class BridgeMaker {
             }
 
         }
-
+/**
+ * 다리 만들기
+ * */
         upperMap = upperMap.replace(" ]", "");
         lowerMap = lowerMap.replace(" ]", "");
 
