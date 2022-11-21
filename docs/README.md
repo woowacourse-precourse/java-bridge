@@ -61,8 +61,9 @@
 - [x] "총 시도한 횟수: "를 출력 - Message#tryCount
 
 - [x] 최종 게임 결과를 출력(게임 결과, 게임 성공 여부, 총 시도한 횟수) - OutputView#printResult
-  - [x] 최종 게임 결과에 따라 성공 또는 실패로 출력 - OutputView#printIsGameSuccess
-  - [x] 총 시도한 횟수를 출력 - OutputView#printTryCount
+  - [x] 현재까지 초기화된 다리를 출력 - OutputView#printMap
+    - [x] 최종 게임 결과에 따라 성공 또는 실패로 출력 - OutputView#printIsGameSuccess
+    - [x] 총 시도한 횟수를 출력 - OutputView#printTryCount
 
 - [x] "[ERROR] 3 이상 20 이하의 숫자를 입력해주세요."를 출력 - ErrorMessage#inputBridgeNumber
 - [x] "[ERROR] 위 칸은 'U', 아래 칸은 'D'를 입력해주세요."를 출력 - ErrorMessage#inputMoveBridgeError
