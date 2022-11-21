@@ -1,9 +1,5 @@
 package bridge;
 
-import bridge.Message.Message;
-import bridge.View.InputView;
-import bridge.View.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,29 +8,18 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    BridgeMaker bridgeMaker;
-    InputView inputView;
-    OutputView outputView;
-
     private List<String> upperBridge;
     private List<String> lowerBridge;
     private List<String> answerBridge;
     private int bridgeIndex;
-    private boolean isSuccess;
     private int tryCount;
 
-    private static final String SUCCESS = "성공";
-    private static final String FAILURE = "실패";
 
 
     public BridgeGame() {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        inputView = new InputView();
-        outputView = new OutputView();
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
         bridgeIndex = 0;
-        isSuccess = true;
         tryCount = 1;
     }
 
@@ -46,63 +31,17 @@ public class BridgeGame {
         return answerBridge;
     }
 
-    public void playGame() {
-        outputView.printGameStart();
-        List<String> bridge = makeAnswerBridge();
-        pickMovingDirection(bridge);
-        outputView.printResult(upperBridge, lowerBridge);
-        System.out.print(Message.GAME_SUCCESS_OR_FAILURE);
-        showWhetherGameSuccess();
-        showTryCount();
+    public List<String> getUpperBridge() {
+        return upperBridge;
     }
 
-    private void showTryCount() {
-        System.out.print(Message.TRY_COUNT);
-        System.out.println(tryCount);
+    public List<String> getLowerBridge() {
+        return lowerBridge;
     }
 
-    private void showWhetherGameSuccess() {
-        if(isSuccess){
-            System.out.println(SUCCESS);
-        }
-        if(!isSuccess){
-            System.out.println(FAILURE);
-        }
-    }
 
-    private void pickMovingDirection(List<String> bridge) {
-        while (bridgeIndex < bridge.size()) {
-            if (move(inputView.readMoving()) == false) {
-                outputView.printMap(upperBridge, lowerBridge);
-                String retryFlag = inputView.readGameCommand();
-                if (isQuit(retryFlag)) break;
-                if (isRetry(retryFlag)) continue;
-             }
-            outputView.printMap(upperBridge, lowerBridge);
-            bridgeIndex++;
-        }
-    }
-
-    private List<String> makeAnswerBridge() {
-        setAnswerBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        List<String> bridge = getAnswerBridge();
-        return bridge;
-    }
-
-    private boolean isRetry(String retryFlag) {
-        if (retryFlag.equals("R")) {
-            retry();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isQuit(String retryFlag) {
-        if (retryFlag.equals("Q")) {
-            isSuccess = false;
-            return true;
-        }
-        return false;
+    public int getTryCount() {
+        return tryCount;
     }
 
     /**
@@ -151,5 +90,9 @@ public class BridgeGame {
         tryCount++;
         upperBridge.clear();
         lowerBridge.clear();
+    }
+
+    public void increaseBridgeIndex(){
+        bridgeIndex++;
     }
 }
