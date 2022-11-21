@@ -20,4 +20,15 @@ public class BridgeMakerTest {
         //then
         assertThat(randomBridge.contains("U") || randomBridge.contains("D")).isTrue();
     }
+    @DisplayName("숫자에 따른 UD생성")
+    @Test
+    void makeUD() {
+        //given
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int number = 1;
+        //when
+        String isUD = bridgeMaker.makeUD(number);
+        //then
+        assertThat(isUD).isSameAs("U");
+    }
 }
