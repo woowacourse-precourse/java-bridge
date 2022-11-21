@@ -23,7 +23,7 @@ class BridgeSizeValidationTest {
     void isNullTest() {
         // when, then
         assertThatThrownBy(() -> validation.isNull(""))
-                .isInstanceOf(NullPointerException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
