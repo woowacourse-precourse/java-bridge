@@ -30,4 +30,11 @@ public class BridgeGameController {
         }
     }
 
+    public static BridgeGame chooseToMoveOn(List<String> crossableBridge){
+        try{
+            outputView.printStatements(NormalStatements.ASK_BRIDGE_TO_MOVE_ON.getNormalStatement());
+        } catch (IllegalArgumentException e){
+
+        }
+    }
 }
