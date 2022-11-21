@@ -46,8 +46,8 @@ public class OutputView {
     public List<String> printMapUpsideCorrect(List<String> currentResult, int stage) {
         String correct = "[ O ]";
         String notSelected = "[   ]";
-        currentResult.add(stage, notSelected);
-        currentResult.add(0, correct);
+        currentResult.add(notSelected);
+        currentResult.add(stage, correct);
 
         return currentResult;
     }
@@ -64,8 +64,8 @@ public class OutputView {
     public List<String> printMapUpsideWrong(List<String> currentResult, int stage) {
         String wrong = "[ X ]";
         String notSelected = "[   ]";
+        currentResult.add(wrong);
         currentResult.add(stage, notSelected);
-        currentResult.add(0, wrong);
 
         return currentResult;
     }
@@ -74,8 +74,8 @@ public class OutputView {
         String wrong = "[ X ]";
         String notSelected = "[   ]";
 
-        currentResult.add(currentResult.size() - stage, notSelected);
-        currentResult.add(wrong);
+        currentResult.add(currentResult.size() - stage, wrong);
+        currentResult.add(notSelected);
         return currentResult;
     }
 
