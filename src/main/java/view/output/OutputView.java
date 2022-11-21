@@ -1,7 +1,5 @@
 package view.output;
 
-import view.output.BridgePrinter;
-
 import java.util.Arrays;
 
 /**

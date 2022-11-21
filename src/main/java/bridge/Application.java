@@ -1,11 +1,11 @@
 package bridge;
 
-import bridge.controller.BridgeGame;
+import bridge.controller.BridgeGameController;
 
 public class Application {
-    private final static BridgeGame bridgeGame = new BridgeGame();
+    private final static BridgeGameController bridgeGameController = new BridgeGameController();
 
     public static void main(String[] args) {
-        bridgeGame.start();
+        bridgeGameController.run();
     }
 }
