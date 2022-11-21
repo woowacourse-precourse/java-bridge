@@ -1,14 +1,13 @@
 package bridge;
 
+import bridge.view.InputView;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
     @DisplayName("다리 길이에 대한 입력은 숫자여야 하고, 3부터 20 사이의 숫자여야 한다.")

@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.message.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class BridgeMap {
         if (isMovingUp) {
             isMovingUpBridgeUp(isBridgeUp);
             isMovingUpBridgeDown(!isBridgeUp);
-            downRecord.add(" ");
+            downRecord.add(Message.BLANK.getMessage());
         }
     }
 
@@ -24,31 +26,31 @@ public class BridgeMap {
         if (!isMovingUp) {
             isMovingDownBridgeUp(isBridgeUp);
             isMovingDownBridgeDown(!isBridgeUp);
-            upRecord.add(" ");
+            upRecord.add(Message.BLANK.getMessage());
         }
     }
 
     public static void isMovingUpBridgeUp(boolean isBridgeUp) {
         if (isBridgeUp) {
-            upRecord.add("O");
+            upRecord.add(Message.CORRECT.getMessage());
         }
     }
 
     public static void isMovingUpBridgeDown(boolean isBridgeDown) {
         if (isBridgeDown) {
-            upRecord.add("X");
+            upRecord.add(Message.WRONG.getMessage());
         }
     }
 
     public static void isMovingDownBridgeUp(boolean isBridgeUp) {
         if (isBridgeUp) {
-            downRecord.add("X");
+            downRecord.add(Message.WRONG.getMessage());
         }
     }
 
     public static void isMovingDownBridgeDown(boolean isBridgeDown) {
         if (isBridgeDown) {
-            downRecord.add("O");
+            downRecord.add(Message.CORRECT.getMessage());
         }
     }
 

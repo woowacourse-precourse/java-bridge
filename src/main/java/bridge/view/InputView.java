@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.message.ErrorMessage;
+import bridge.message.Message;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -27,10 +29,10 @@ public class InputView {
 
     public static void validateBridgeSize(String bridgeSize) {
         if (isNotNumber(bridgeSize)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_IS_NOT_DIGIT.getErrorMessage());
         }
         if (isLengthOutOfRange(Integer.parseInt(bridgeSize))) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_OUT_OF_RANGE.getErrorMessage());
         }
     }
 
@@ -60,12 +62,12 @@ public class InputView {
 
     public static void validateMoving(String moving) {
         if (isNotUD(moving)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸에 대한 입력은 'U' 또는 'D'여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MOVING_IS_NOT_U_D.getErrorMessage());
         }
     }
 
     private static boolean isNotUD(String moving) {
-        return !moving.equals("U") && !moving.equals("D");
+        return !moving.equals(Message.UP.getMessage()) && !moving.equals(Message.DOWN.getMessage());
     }
 
     /**
@@ -85,11 +87,11 @@ public class InputView {
 
     private static void validateGameCommand(String gameCommand) {
         if (isNotRQ(gameCommand)) {
-            throw new IllegalArgumentException("[ERROR] 게임 재시작/종료 여부에 대한 입력은 'R' 또는 'Q'여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.GAME_COMMAND_IS_NOT_Q_R.getErrorMessage());
         }
     }
 
     private static boolean isNotRQ(String gameCommand) {
-        return !gameCommand.equals("R") && !gameCommand.equals("Q");
+        return !gameCommand.equals(Message.RETRY.getMessage()) && !gameCommand.equals(Message.QUIT.getMessage());
     }
 }

@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.message.Message;
 
 import java.util.List;
 
@@ -18,15 +20,15 @@ public class OutputView {
     }
 
     private static void printUpBridge(List<String> upRecord) {
-        System.out.print("[ ");
+        System.out.print(Message.START_MAP.getMessage());
         printBridge(upRecord);
-        System.out.println(" ]");
+        System.out.println(Message.END_MAP.getMessage());
     }
 
     private static void printDownBridge(List<String> downRecord) {
-        System.out.print("[ ");
+        System.out.print(Message.START_MAP.getMessage());
         printBridge(downRecord);
-        System.out.println(" ]");
+        System.out.println(Message.END_MAP.getMessage());
     }
 
     private static void printBridge(List<String> record) {
@@ -38,7 +40,7 @@ public class OutputView {
 
     private static void splitBridge(int position) {
         if (position != 0) {
-            System.out.print(" | ");
+            System.out.print(Message.SPLIT_MAP.getMessage());
         }
     }
 
@@ -49,12 +51,12 @@ public class OutputView {
      */
     public static void printResult(int tryNumber, boolean gameSuccessOrFail) {
         if (gameSuccessOrFail) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(Message.GAME_SUCCESS.getMessage());
         }
         if (!gameSuccessOrFail) {
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(Message.GAME_FAIL.getMessage());
         }
-        System.out.println("총 시도한 횟수: " + tryNumber);
+        System.out.println(Message.TRY_NUMBER.getMessage() + tryNumber);
 
     }
 }

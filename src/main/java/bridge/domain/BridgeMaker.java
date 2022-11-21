@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeNumberGenerator;
+import bridge.message.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +26,8 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            if (number == 0) bridge.add("D");
-            if (number == 1) bridge.add("U");
+            if (number == 0) bridge.add(Message.DOWN.getMessage());
+            if (number == 1) bridge.add(Message.UP.getMessage());
         }
 
         return bridge;

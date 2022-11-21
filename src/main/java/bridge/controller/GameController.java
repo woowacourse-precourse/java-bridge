@@ -1,6 +1,14 @@
-package bridge;
+package bridge.controller;
 
-import java.util.ArrayList;
+import bridge.*;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeMap;
+import bridge.message.Message;
+import bridge.view.ViewMessage;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 public class GameController {
@@ -42,7 +50,6 @@ public class GameController {
     private static void crossBridgeProcess() {
         while (successOrFail) {
             moveAndCheck();
-
             movingCount++;
 
             if (movingCount >= bridge.size()) {
@@ -78,7 +85,7 @@ public class GameController {
     }
 
     private static void isGameCommandR(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(Message.RETRY.getMessage())) {
             tryNumber++;
             successOrFail = true;
             bridgeGame.retry();
@@ -86,7 +93,7 @@ public class GameController {
     }
 
     private static void isGameCommandQ(String gameCommand) {
-        if (gameCommand.equals("Q")) {
+        if (gameCommand.equals(Message.QUIT.getMessage())) {
             successOrFail = false;
         }
     }
@@ -105,5 +112,4 @@ public class GameController {
         OutputView.printMap(BridgeMap.getUpRecord(), BridgeMap.getDownRecord());
         OutputView.printResult(tryNumber, successOrFail);
     }
-
 }
