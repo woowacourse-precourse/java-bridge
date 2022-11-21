@@ -1,6 +1,7 @@
 package bridge.view.validation;
 
 import bridge.vo.ErrorMessage;
+import bridge.vo.StepDirectionCommand;
 
 public class InputMoveValidator {
 
@@ -11,7 +12,7 @@ public class InputMoveValidator {
     }
 
     public static boolean isNotUAndIsNotB(String input) {
-        return !(input.equals("U") || input.equals("D"));
+        return !(input.equals(StepDirectionCommand.U.toString()) || input.equals(StepDirectionCommand.D.toString()));
     }
 
 }

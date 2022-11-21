@@ -30,8 +30,7 @@ public class BridgeGameManager {
 
         int length = inputView.readBridgeSize();
 
-        List<String> createdBridge
-                = new BridgeMaker(bridgeNumberGenerator).makeBridge(length);
+        List<String> createdBridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(length);
 
         bridgeGame = new BridgeGame(createdBridge);
     }
@@ -57,7 +56,7 @@ public class BridgeGameManager {
         final String SUCCESS_MESSAGE = "성공";
         final String FAIL_MESSAGE = "실패";
 
-        if(bridgeGame.checkPlayerCrossedAllBridge()) {
+        if (bridgeGame.checkPlayerCrossedAllBridge()) {
             return SUCCESS_MESSAGE;
         }
 
@@ -65,7 +64,7 @@ public class BridgeGameManager {
     }
 
     public boolean GameKeepGoingOrNot() {
-        if(!bridgeGame.checkPlayerCrossedAllBridge()) {
+        if (!bridgeGame.checkPlayerCrossedAllBridge()) {
             System.out.println(GameProgressMessage.GAME_RETRY_MESSAGE);
             String input = Console.readLine();
 

@@ -38,41 +38,31 @@ public class CurrentBridgeStatusMaker {
     }
 
     private void makeEndPartBridge() {
-        updateUpBridge(BridgeDrawing.BRIDGE_END_DRAWING.toString());
-        updateDownBridge(BridgeDrawing.BRIDGE_END_DRAWING.toString());
+        updateBridge(UP_INDEX, BridgeDrawing.BRIDGE_END_DRAWING.toString());
+        updateBridge(DOWN_INDEX, BridgeDrawing.BRIDGE_END_DRAWING.toString());
     }
 
-    private void updateUpBridge(String add) {
-        StringBuilder upBridge = currentBridgeStatus.get(UP_INDEX);
+    private void updateBridge(int index, String partOfBridge) {
+        StringBuilder bridgeLine = currentBridgeStatus.get(index);
 
-        if(add.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
-            upBridge.replace(upBridge.length() - 1, upBridge.length(), add);
+        if(partOfBridge.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
+            bridgeLine.replace(bridgeLine.length() - 1, bridgeLine.length(), partOfBridge);
             return;
         }
 
-        upBridge.append(add);
-    }
-
-    private void updateDownBridge(String add) {
-        StringBuilder downBridge = currentBridgeStatus.get(DOWN_INDEX);
-
-        if(add.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
-            downBridge.replace(downBridge.length() - 1, downBridge.length(), add);
-            return;
-        }
-
-        downBridge.append(add);
+        bridgeLine.append(partOfBridge);
     }
 
     void markBridge(String currentPlayerPosition, BridgeDrawing bridgeDrawing) {
+        String drawingBridge = String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(), bridgeDrawing.toString());
         if(currentPlayerPosition.equals(StepDirectionCommand.U.toString())) {
-            updateUpBridge(String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(), bridgeDrawing.toString()));
-            updateDownBridge(BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
+            updateBridge(UP_INDEX, drawingBridge);
+            updateBridge(DOWN_INDEX, BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
             return;
         }
 
-        updateUpBridge(BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
-        updateDownBridge(String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(), bridgeDrawing.toString()));
+        updateBridge(UP_INDEX, BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
+        updateBridge(DOWN_INDEX, drawingBridge);
     }
 
 }

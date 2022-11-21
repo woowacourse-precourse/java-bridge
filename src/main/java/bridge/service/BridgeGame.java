@@ -68,11 +68,13 @@ public class BridgeGame {
     public boolean isUserDead() {
         int currentStandingIndex = userStatus.getCurrentIndex();
 
-        checkBeforePlayerCrossBridge(currentStandingIndex);
+        if(checkBeforePlayerCrossBridge(currentStandingIndex)) {
+            return false;
+        }
 
         String currentStandingPosition = userStatus.getCurrentPosition();
 
-        return bridge.checkCrossableBridge(currentStandingIndex, currentStandingPosition);
+        return !bridge.checkCrossableBridge(currentStandingIndex, currentStandingPosition);
     }
 
     public boolean checkBeforePlayerCrossBridge(int currentStandingIndex) {

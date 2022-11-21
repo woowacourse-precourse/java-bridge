@@ -1,6 +1,7 @@
 package bridge.view.validation;
 
 import bridge.vo.ErrorMessage;
+import bridge.vo.RetryCommand;
 
 public class InputRestartValidator {
 
@@ -11,6 +12,6 @@ public class InputRestartValidator {
     }
 
     private static boolean inputIsNotRAndIsNotQ(String input) {
-        return !(input.equals("R") || input.equals("Q"));
+        return !(input.equals(RetryCommand.R.toString()) || input.equals(RetryCommand.Q.toString()));
     }
 }

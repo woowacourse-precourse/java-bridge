@@ -13,13 +13,17 @@ public class Bridge {
     }
 
     public void validate(List<String> bridge) {
-        boolean isAllMatchUAndD = bridge.stream().allMatch((direction)
-                -> direction.equals(StepDirectionCommand.U.toString()) ||
-                direction.equals(StepDirectionCommand.D.toString()));
+        boolean isAllMatchUAndD = containsOnlyUAndD(bridge);
 
         if (!isAllMatchUAndD) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_DIRECTION_MESSAGE.toString());
         }
+    }
+
+    public boolean containsOnlyUAndD(List<String> bridge) {
+        return bridge.stream().allMatch((direction)
+                -> direction.equals(StepDirectionCommand.U.toString()) ||
+                direction.equals(StepDirectionCommand.D.toString()));
     }
 
     public boolean checkCrossableBridge(int currentStandingIndex, String currentStandingPosition) {
