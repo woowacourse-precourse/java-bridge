@@ -9,6 +9,7 @@ public class BridgeGame {
     private static final String DOWN = "D";
     private static final String NOTHING = " ";
     private static final String RIGHT_POSITION = "O";
+    private static final String WRONG_POSITION = "X";
     private static int bridgeSize;
     private static List<String> bridgeAnswer;
     private static int gameCount = 0;
@@ -46,7 +47,7 @@ public class BridgeGame {
             rightMove(nextPosition);
         }
         if (!isEqual) {
-
+            wrongMove(nextPosition);
         }
     }
 
@@ -61,6 +62,16 @@ public class BridgeGame {
         }
     }
 
-    public void retry() {
+    public static void wrongMove(String nextPosition) {
+        if (nextPosition.equals(UP)) {
+            currentBridge.get(0).add(WRONG_POSITION);
+            currentBridge.get(1).add(NOTHING);
+        }
+        if (nextPosition.equals(DOWN)) {
+            currentBridge.get(0).add(NOTHING);
+            currentBridge.get(1).add(WRONG_POSITION);
+        }
+
+        public void retry () {
+        }
     }
-}
