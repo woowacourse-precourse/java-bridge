@@ -14,18 +14,18 @@ public class MoveResult {
 
     public void addMove(String moving, String result) {
         if (moving.equals("U")) {
-            addUpMove(result);
+            addMoveUp(result);
             return;
         }
-        addDownMove(result);
+        addMoveDown(result);
     }
 
-    private void addUpMove(String result) {
+    private void addMoveUp(String result) {
         upMoves.add(result);
         downMoves.add(" ");
     }
 
-    private void addDownMove(String result) {
+    private void addMoveDown(String result) {
         downMoves.add(result);
         upMoves.add(" ");
     }
