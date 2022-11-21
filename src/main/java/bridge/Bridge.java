@@ -9,7 +9,7 @@ public class Bridge {
     private int bridgeSize;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private List<Integer> crossAble;
-    public void bridge(String bridgeSize){
+    public Bridge(String bridgeSize){
         this.bridgeSize = validate(bridgeSize);
         bridgeInit();
     }
