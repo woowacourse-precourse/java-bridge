@@ -83,6 +83,26 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @Test
+    void 이동칸_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "f", "U", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            int upSideIndex = output().indexOf("[ O |   |  O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+
+    @Test
+    void 재시작커맨드_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "D", "D", "s", "Q");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
