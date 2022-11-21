@@ -19,4 +19,12 @@ public class User {
     public void addSelect(String word) {
         select.add(word);
     }
+
+    public int getPosition() {
+        return select.size();
+    }
+
+    public String getIndexSelect(int index) {
+        return select.get(index);
+    }
 }

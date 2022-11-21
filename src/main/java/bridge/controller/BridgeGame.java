@@ -17,17 +17,27 @@ public class BridgeGame {
     private Bridge bridge;
     private User user;
 
-    BridgeGame(int size) {
+    public BridgeGame() {
+    }
+
+    public void makeBridge() {
+        OutputView.printLine(Message.INTRO);
+        OutputView.printLine("");
+        OutputView.printLine(Message.INQUIRE_BRIDGE_LENGTH);
+        int size = InputView.readBridgeSize();
         this.bridge = new Bridge(size);
         this.user = new User();
+        OutputView.printLine("");
     }
 
     public void start() {
+        makeBridge();
         boolean tryAcross = true;
         while(tryAcross) {
             inOrderAcross();
             tryAcross = retry();
         }
+        OutputView.printResult();
     }
 
     public void inOrderAcross() {
@@ -35,6 +45,7 @@ public class BridgeGame {
             boolean movingResult = move(i);
             if(!movingResult) break;
         }
+        // 성공로직
     }
 
     /**
@@ -46,7 +57,7 @@ public class BridgeGame {
         OutputView.printLine(Message.INQUIRE_MOVE_BLOCK);
         String input = InputView.readMoving();
         boolean isSuccess = compareInputAndResult(input, bridge.getIndexResult(index));
-        OutputView.printMap();
+        OutputView.printMap(bridge, user);
         return isSuccess;
     }
 
@@ -57,11 +68,17 @@ public class BridgeGame {
         return false;
     }
 
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
+        OutputView.printLine(Message.INQUIRE_REGAIN_GAME);
+        String decision = InputView.readGameCommand();
+        if(decision.equals("Q")) {
+            return false;
+        }
         return true;
     }
 }
