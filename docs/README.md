@@ -2,17 +2,33 @@
 
 ## Controller
 
-    - 다리 건너기 게임 준비 및 실행을 담당
+    - 다리 건너기 게임 셋업
+    - 다리 건너기 게임 분기까지 반복 진행
+    - 다리 건너기 게임 결과 출력
 
 ## Domain
 
     - BridgeGame
-        - move, retry
+        - bridge 정보 보관
+        - user 정보 보관
+        - 재시도 횟수 보관
+        - 게임 종료 상태 보관
 
 ## Service
 
     - BridgeService
-        - BridgeMaker
+        - Bridge 자동 생성
+        - Bridge User 비교 결과 생성
+
+## Exception
+
+    - BridgeSizeException
+        - 숫자로만 구성
+        - 3부터 20까지의 수만 허락
+    - MoveInputException
+        - U, D만 가능
+    - GameRestartInputException
+        - R, Q만 가능
 
 ## Util
 
