@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.domain.constant.BridgeComponent;
+
 import java.util.List;
 
 public class BridgeMapMaker {
