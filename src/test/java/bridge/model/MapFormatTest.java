@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.model.MapFormat;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public class MapFormatTest {
     @Test
     void convertToStringByFormatTest() {
         MapFormat mapFormat = MapFormat.FORMAT;
-        assertThat(mapFormat.convertToFormatStrings(
+        assertThat(mapFormat.convertToStrings(
                 List.of(
                         List.of("O", "X", " "),
                         List.of(" ", " ", " "))

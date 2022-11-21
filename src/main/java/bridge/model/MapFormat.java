@@ -16,7 +16,7 @@ public enum MapFormat {
         this.end = end;
     }
 
-    public List<String> convertToFormatStrings(List<List<String>> maps) {
+    public List<String> convertToStrings(List<List<String>> maps) {
         return maps.stream()
                 .map(this::convertToFormatString)
                 .collect(Collectors.toList());
