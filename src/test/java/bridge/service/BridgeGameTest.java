@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.model.entity.BridgeMap;
-import bridge.model.value.Bridge;
+import bridge.model.entity.Bridge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +23,7 @@ class BridgeGameTest {
         bridgeGame.createBridge(answer);
         bridgeGame.createBridgeMap();
         bridgeGame.createPlayer();
+        bridgeGame.createCount();
 
     }
 
@@ -140,7 +141,7 @@ class BridgeGameTest {
         bridgeGame.retry(retry);
 
         //Then
-        assertThat(bridgeGame.getBridgeMap().getIndex()).isEqualTo(expectSize);
+        assertThat(bridgeGame.getBridgeMap().getUpMap().size()).isEqualTo(expectSize);
     }
 
     @DisplayName("retry 'Q'입력 테스트(BridgeMap 초기화)")

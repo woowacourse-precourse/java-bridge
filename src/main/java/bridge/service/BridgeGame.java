@@ -1,8 +1,8 @@
 package bridge.service;
 
 import bridge.model.entity.*;
-import bridge.model.value.Bridge;
-import bridge.model.value.Move;
+import bridge.model.entity.Bridge;
+import bridge.model.entity.Move;
 
 import java.util.List;
 
@@ -108,7 +108,7 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
     public void checkRetry(String retry) {
         if(Quit.equals(retry)){
             player.setAnswer(retry);
-            return ;
+            return;
         }
         player.setAnswer(retry);
         createBridgeMap();
