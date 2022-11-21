@@ -1,15 +1,13 @@
 package bridge.view;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        return 0;
+    public static int readBridgeSize() {
+        int input = Integer.valueOf(readLine());
+        return input;
     }
 
     /**
