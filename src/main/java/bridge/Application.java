@@ -1,13 +1,17 @@
 package bridge;
 
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
-        int bridgeSize = inputView.readBridgeSize();
-        String bridgeCommand = inputView.readMoving();
+        OutputView outputView = new OutputView();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame);
     }
 }
