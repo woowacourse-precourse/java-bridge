@@ -53,5 +53,16 @@ public class BridgeGame {
     }
 
     public void retry() {
+        bridge.initBridge();
+        initMovingCount();
+        addGameCount();
+    }
+
+    private void initMovingCount() {
+        this.movingCount = 0;
+    }
+
+    private void addGameCount() {
+        this.totalGame++;
     }
 }
