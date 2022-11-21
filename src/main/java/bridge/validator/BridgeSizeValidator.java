@@ -2,6 +2,7 @@ package bridge.validator;
 
 import static bridge.util.BridgeGameConstant.VALID_MAX_RANGE;
 import static bridge.util.BridgeGameConstant.VALID_MIN_RANGE;
+import static bridge.validator.ErrorStatus.BRIDGE_SIZE_BLANK_ERROR;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_RANGE_ERROR;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_TYPE_ERROR;
 
@@ -12,6 +13,10 @@ public class BridgeSizeValidator implements Validator {
 
     @Override
     public void validate(String bridgeSize) {
+        if (isBlank(bridgeSize)) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_BLANK_ERROR.getMessage());
+        }
+
         if (!hasValidType(bridgeSize)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_TYPE_ERROR.getMessage());
         }
@@ -27,5 +32,9 @@ public class BridgeSizeValidator implements Validator {
 
     private boolean hasValidRange(int bridgeSize) {
         return bridgeSize >= VALID_MIN_RANGE && bridgeSize <= VALID_MAX_RANGE;
+    }
+
+    private boolean isBlank(String bridgeSize) {
+        return bridgeSize.trim().equals("");
     }
 }
