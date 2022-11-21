@@ -32,6 +32,6 @@ public class BridgeView {
     }
 
     public void printMoveResult(BridgeResult bridgeResult) {
-        outputView.printMap(bridgeResult.getUpLine(), bridgeResult.getDownLine());
+        outputView.printMap(bridgeResult);
     }
 }
