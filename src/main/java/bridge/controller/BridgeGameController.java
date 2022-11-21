@@ -7,12 +7,11 @@ import bridge.service.BridgeGame;
 import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
 import java.util.List;
 
-public class BridgeGameController {
-    private static final String RETRY = "R";
+import static bridge.util.constants.GameCommand.RETRY;
 
+public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -92,7 +91,7 @@ public class BridgeGameController {
     }
 
     private void retryOrFinish(BridgeGame bridgeGame) {
-        if (getGameCommandInput().equals(RETRY)) {
+        if (getGameCommandInput().equals(RETRY.command())) {
             bridgeGame.retry();
         }
     }
