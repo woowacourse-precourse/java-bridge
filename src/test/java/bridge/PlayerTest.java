@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest {
 
-    Player player;
+    private Player player;
 
     @BeforeEach
     void setUp() {
@@ -21,7 +21,7 @@ public class PlayerTest {
         player.record(BridgeMark.DOWN);
     }
 
-    @DisplayName("플레이어의 게임 기록을 반환")
+    @DisplayName("플레이어의 게임 기록 확인")
     @Test
     void getGameRecord() {
         GameRecordDto gameRecord = player.toResponseDto();
@@ -38,7 +38,7 @@ public class PlayerTest {
         assertThat(record).containsExactly(BridgeMark.UP, BridgeMark.DOWN);
     }
 
-    @DisplayName("플레이어가 움직인 기록을 초기화")
+    @DisplayName("플레이어가 움직인 기록 초기화")
     @Test
     void clearRecord() {
         player.clearRecord();
@@ -48,7 +48,7 @@ public class PlayerTest {
         assertThat(record.size()).isEqualTo(0);
     }
 
-    @DisplayName("플레이어의 게임 시도 횟수 증가")
+    @DisplayName("플레이어의 게임 시도 횟수 증가 후 결과 확인")
     @Test
     void increaseAttempt() {
         player.increaseAttempt();
