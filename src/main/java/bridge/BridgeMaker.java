@@ -20,18 +20,16 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         ArrayList<String> bridge = new ArrayList<>();
-        for(int bridgeBlock=0;bridgeBlock<size;bridgeBlock++)
-        {
+        for (int bridgeBlock = 0; bridgeBlock < size; bridgeBlock++) {
             bridge.add(generateBlock(bridgeNumberGenerator.generate()));
         }
         return bridge;
     }
 
-    public String generateBlock(int number)
-    {
-        if(number==1)
-            return "U";
-        return "D";
+    public String generateBlock(int number) {
+        if (number == 1)
+            return BridgeJoyStick.U.toString();
+        return BridgeJoyStick.D.toString();
     }
 
 }
