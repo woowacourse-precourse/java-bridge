@@ -1,5 +1,7 @@
 package bridge;
 
+import util.BridgeUtil;
+
 import java.util.List;
 
 /**
@@ -19,5 +21,18 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private void makePartOfBridge(int size, List<String> bridge) {
+        for (int position = 0; position < size; position++) {
+            int binary = bridgeNumberGenerator.generate();
+
+            if (binary == BridgeUtil.BINARY_UP) {
+                bridge.add(BridgeUtil.UP);
+                continue;
+            }
+
+            bridge.add(BridgeUtil.DOWN);
+        }
     }
 }
