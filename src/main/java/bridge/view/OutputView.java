@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
+import bridge.message.GameMessage;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class OutputView {
 
     public void printRequestSize(){
-        System.out.println("다리 길이를 입력해주세요.");
+        System.out.println(GameMessage.REQUEST_BRIDGE_LENGTH_MESSAGE.getMessage());
     }
 
     /**
@@ -37,29 +38,29 @@ public class OutputView {
     }
 
     public void printRequestUpDownMessage(){
-        System.out.println("이동할 칸을 입력해주세요 (위: U, 아래: D)");
+        System.out.println(GameMessage.REQUEST_MOVE_MESSAGE.getMessage());
     }
 
 
     public void printSuccess(List<String> bridge, int step){
         System.out.println("");
         if(bridge.size() == step){
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(GameMessage.GAME_SUCCESS_MESSAGE.getMessage());
         }
         if(bridge.size() != step){
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(GameMessage.GAME_FAIL_MESSAGE.getMessage());
         }
     }
 
     public void printRequestRetry(){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(GameMessage.REQUEST_RETRY_MESSAGE.getMessage());
     }
 
     public void printEndGame(){
-        System.out.println("최종 게임 결과");
+        System.out.println(GameMessage.FINAL_RESULT_MESSAGE.getMessage());
     }
 
     public void printTryCount(int count){
-        System.out.println("총 시도한 횟수: " + count);
+        System.out.println(GameMessage.TOTAL_COUNT_MESSAGE.getMessage() + count);
     }
 }
