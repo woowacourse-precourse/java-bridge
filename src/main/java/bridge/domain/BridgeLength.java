@@ -1,12 +1,12 @@
 package bridge.domain;
 
-public enum BrideLength {
+public enum BridgeLength {
     MIN(3),
     MAX(20);
 
     private final int size;
 
-    BrideLength(int size) {
+    BridgeLength(int size) {
         this.size = size;
     }
 

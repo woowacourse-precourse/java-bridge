@@ -6,7 +6,7 @@ import static bridge.view.OutputView.*;
 import bridge.repository.BridgeRepository;
 import bridge.view.InputView;
 
-public class BrideGameService {
+public class BridgeGameService {
 
     private BridgeRepository bridgeRepository;
 
