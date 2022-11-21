@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    public static void printStart(){
+    public void printStart(){
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
     /**
@@ -20,7 +20,7 @@ public class OutputView {
         printPresentBridge(down_bridge);
     }
 
-    private static void printPresentBridge(List<String> down_bridge) {
+    private void printPresentBridge(List<String> down_bridge) {
         System.out.print("[ ");
         for (int i = 0;i<BridgeMaker.bridge_index;i++){
             System.out.print(down_bridge.get(i));
