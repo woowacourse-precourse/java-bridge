@@ -20,6 +20,11 @@ public class OutputView {
     private static final String SUCCESS_CROSSING = " O ";
     private static final String FAILED_CROSSING = " X ";
     private static final String NOTING_CROSSING = "   ";
+    private static final String SUCCESS = "성공";
+    private static final String FAILED = "실패";
+    private static final String BRIDGE_START = "[";
+    private static final String BRIDGE_MIDTERM = "|";
+    private static final String BRIDGE_END = "]";
 
     public void printStartGame() {
         System.out.println(START_GAME);
@@ -67,19 +72,19 @@ public class OutputView {
     }
 
     private void printOneLineMap(List<String> bridge) {
-        System.out.print("[");
+        System.out.print(BRIDGE_START);
         for (int i = 0; i < bridge.size(); i++) {
             System.out.print(bridge.get(i));
             if (i != bridge.size() - 1)
-                System.out.print("|");
+                System.out.print(BRIDGE_MIDTERM);
         }
-        System.out.println("]");
+        System.out.println(BRIDGE_END);
     }
 
     private String checkIsSuccess(User user) {
         if (user.isGameSuccess() == GameState.FAILED)
-            return "실패";
-        return "성공";
+            return FAILED;
+        return SUCCESS;
     }
 
 }
