@@ -21,6 +21,15 @@ public class User {
     }
 
 
+    public void retry() {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("R")) {
+            reinitialize();
+            return;
+        }
+        status = Status.FAILED_END;
+    }
+
     private void reinitialize() {
         location = -1;
         route = new ArrayList<>();
