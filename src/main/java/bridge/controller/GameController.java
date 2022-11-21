@@ -4,6 +4,8 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.model.Record;
+import bridge.model.Result;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -57,5 +59,14 @@ public class GameController {
 
     private boolean isFinalRound() {
         return bridgeGame.isRoundLeft();
+    }
+
+    private void printGameResult() {
+        Record record = bridgeGame.getRecord();
+        List<List<String>> bridgeRecord = record.getBridgeRecord();
+        OutputView.printFinalResult(bridgeRecord);
+
+        Result result = bridgeGame.getResult();
+        OutputView.printResult(result);
     }
 }
