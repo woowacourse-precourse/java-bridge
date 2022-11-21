@@ -12,9 +12,8 @@ public class BridgeGame {
     public int retryNum;
     public boolean result;
 
-    public BridgeGame(int boardSize){
-        BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
-        board = new BridgeMaker(randomGenerator).makeBridge(boardSize);
+    public BridgeGame(List<String> board){
+        this.board = board;
         step = 0;
         retryNum = 0;
         result = true;

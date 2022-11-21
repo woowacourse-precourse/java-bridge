@@ -1,6 +1,8 @@
 package bridge;
 
 
+import java.util.List;
+
 public class Application {
     static InputView input = new InputView();
     static OutputView output = new OutputView();
@@ -21,8 +23,9 @@ public class Application {
     public static BridgeGame getBridgeGame(){
         while(true){
             try{
+                BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
                 int boardSize = input.readBridgeSize();
-                return new BridgeGame(boardSize);
+                return new BridgeGame(bridgeMaker.makeBridge(boardSize));
             }catch (IllegalArgumentException e){
                 System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
