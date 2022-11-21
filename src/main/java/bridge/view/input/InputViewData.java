@@ -16,12 +16,12 @@ public enum InputViewData {
             "[ERROR] 해당하는 문자만 입력할 수 있습니다.");
 
     private String requestMessage;
-    private Predicate<String> inputFormCheck;
+    private Predicate<String> formCheck;
     private String errorMessage;
 
     InputViewData(String requestMessage, Predicate<String> formCheck, String errorMessage) {
         this.requestMessage = requestMessage;
-        this.inputFormCheck = formCheck;
+        this.formCheck = formCheck;
         this.errorMessage = errorMessage;
     }
 
@@ -35,7 +35,7 @@ public enum InputViewData {
 
     public boolean isCorrect(String input) {
         try {
-            return inputFormCheck.test(input);
+            return formCheck.test(input);
         } catch (NumberFormatException e) {
             return false;
         }
