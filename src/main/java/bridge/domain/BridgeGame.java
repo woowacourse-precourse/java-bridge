@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +30,7 @@ public class BridgeGame {
     }
 
     private boolean check(List<String> bridge, int idx) {
-        return Objects.equals(bridge.get(idx), "1");
+        return Objects.equals(bridge.get(idx), "U");
     }
 
 
