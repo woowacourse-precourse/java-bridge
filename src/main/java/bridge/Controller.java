@@ -59,6 +59,7 @@ public class Controller {
                 systemMessage.error("이동경로는 U 또는 D여야 합니다.");
             }
         }
+        result(inputCount);
     }
 
     private String getMove() throws IllegalArgumentException {
@@ -85,5 +86,25 @@ public class Controller {
             }
         }
         return false;
+    }
+
+    public void result(int inputCount) {
+        if (inputCount != bridge.size()) {
+            String command = getCommand();
+        }
+    }
+
+    private String getCommand() {
+        String inputCommand;
+        while (true) {
+            try {
+                inputCommand = inputView.readGameCommand();
+                validation.validateCommand(inputCommand);
+                break;
+            } catch (IllegalArgumentException e) {
+                systemMessage.error("재시도 여부는 R 또는 Q여야 합니다.");
+            }
+        }
+        return inputCommand;
     }
 }

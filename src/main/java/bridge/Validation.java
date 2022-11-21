@@ -26,4 +26,10 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public void validateCommand(String command) throws IllegalArgumentException {
+        if (!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
