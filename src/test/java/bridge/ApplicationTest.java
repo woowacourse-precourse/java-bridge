@@ -10,45 +10,30 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
 
-    @Test
-    void 다리_길이_예외_테스트(){
+    @ParameterizedTest
+    @ValueSource(strings={"2","21","-","s"})
+    void 다리_길이_예외_테스트(String input){
         assertSimpleTest(() -> {
-            runException("2");
+            runException(input);
             assertThat(output()).contains("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         });
     }
 
     @Test
-    void 다리_길이_예외_테스트2(){
-        assertSimpleTest(() -> {
-            runException("21");
-            assertThat(output()).contains("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        });
-    }
-
-    @Test
-    void 다리_길이_예외_테스트3(){
-        assertSimpleTest(() -> {
-            runException("-S");
-            assertThat(output()).contains("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        });
-    }
-
-    @Test
-    void 다리_생성_테스트2() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 1,0,0));
+    void 다리_생성_테스트() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(5);
-        assertThat(bridge).containsExactly("U", "U", "U", "D", "D");
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).containsExactly("U", "D", "D");
     }
-
-
 
     @Test
     void 기능_테스트() {
