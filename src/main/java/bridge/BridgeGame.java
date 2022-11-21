@@ -44,6 +44,44 @@ public class BridgeGame {
     public List<List<String>> getMap() {
         return new ArrayList<>(this.map);
     }
+
+    private void makeMap(Boolean isMove) {
+        List<List<String>> map = new ArrayList<>();
+        List<String> upperList = new ArrayList<>(makeMapList("U", isMove));
+        List<String> lowerList = new ArrayList<>(makeMapList("D", isMove));
+        map.add(upperList);
+        map.add(lowerList);
+        this.map = map;
+        return;
+    }
+
+    private List<String> makeMapList(String line, Boolean isMove) {
+        List<String> lineList = new ArrayList<>();
+        for (int i = 0; i < this.locationNumber; i++) {
+            lineList.add(makeOneMap(this.bridge.get(i), line));
+        }
+        if (!isMove) {
+            lineList.set(this.locationNumber - 1, replaceOneMap(lineList.get(this.locationNumber - 1)));
+        }
+        return lineList;
+    }
+    private String replaceOneMap(String origin){
+        if (origin == " "){
+            return "X";
+        }
+        if (origin == "O"){
+            return " ";
+        }
+        return origin;
+    }
+
+    private String makeOneMap(String origin, String line) {
+        if (origin == line) {
+            return "O";
+        }
+        return " ";
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
