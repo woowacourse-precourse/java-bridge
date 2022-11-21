@@ -1,6 +1,7 @@
 package bridge.view;
 
-import bridge.domain.Moving;
+import bridge.constants.GameCommand;
+import bridge.constants.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.constants.Life;
+import bridge.constants.Moving;
+
 import java.util.List;
 
 /**

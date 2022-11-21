@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.Life;
-import bridge.domain.Moving;
+import bridge.constants.Life;
+import bridge.constants.Moving;
 
 import java.util.List;
 
