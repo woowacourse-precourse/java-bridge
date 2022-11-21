@@ -45,7 +45,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(Success successResult, int tryCounts) {
+
         System.out.println(Constant.GAME_IS_SUCCESS_MESSAGE+successResult.getIsSuccessWord());
         System.out.println(Constant.TOTAL_TRY_COUNT+tryCounts);
+    }
+
+    public static void printResultMap(UserMove user, BridgeMaker bridgeMaker){
+        System.out.println(Constant.FINAL_GAME_RESULT);
+        OutputView.printMap(user.getUserLocation(), bridgeMaker.getBridge().getBridgeAnswer());
     }
 }

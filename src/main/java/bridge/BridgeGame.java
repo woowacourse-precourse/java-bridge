@@ -76,6 +76,7 @@ public class BridgeGame {
     }
 
     public void meetEnd(){
+       OutputView.printResultMap(user, bridgeMaker);
         OutputView.printResult(isBridgeEnd(), user.getTryCount());
     }
 }

@@ -18,4 +18,5 @@ public class Constant {
     static String TOTAL_TRY_COUNT="총 시도한 횟수: ";
     static String SUCCESS="성공";
     static String FAIL="실패";
+    static String FINAL_GAME_RESULT="최종 게임 결과";
 }
