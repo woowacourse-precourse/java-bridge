@@ -10,7 +10,9 @@ public class Application {
         BridgeGame bridgeGame = bridgeController.doBridgeMake();
 
         while (true){
-            bridgeController.doBridgeMove(bridgeGame);
+            if(!bridgeController.doBridgeMove(bridgeGame)){
+
+            }
         }
     }
 }
