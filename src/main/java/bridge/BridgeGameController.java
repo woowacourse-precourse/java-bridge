@@ -32,9 +32,9 @@ public class BridgeGameController {
 
     public boolean retry() {
         String command = inputView.readGameCommand();
-        if (command == "R") {
-            return true;
-        }
-        return false;
+        return bridgeGame.retry(command);
+    }
+
+    public void printResult() {
     }
 }

@@ -9,8 +9,13 @@ public class Application {
         boolean retry = true;
         while (retry) {
             boolean succeed = bridgeGameController.move(size);
-            if (!succeed) {
-                retry = bridgeGameController.retry();
+            if (succeed) {
+                bridgeGameController.printResult();
+                break;
+            }
+            retry = bridgeGameController.retry();
+            if (!retry) {
+                bridgeGameController.printResult();
             }
         }
     }
