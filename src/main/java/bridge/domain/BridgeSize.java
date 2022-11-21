@@ -1,7 +1,8 @@
 package bridge.domain;
 
+import static bridge.utils.Constant.BRIDGE_MAX_SIZE;
 import static bridge.utils.Constant.BRIDGE_MIN_SIZE;
-import static bridge.utils.Constant.LESS_THAN_MIN_SIZE_MESSAGE;
+import static bridge.utils.Constant.WRONG_BRIDGE_SIZE_MESSAGE;
 
 import bridge.utils.Converter;
 
@@ -11,13 +12,13 @@ public class BridgeSize {
 
     public BridgeSize(String bridgeSize) {
         int size = Converter.parseToInteger(bridgeSize);
-        validGreaterThanZero(size);
+        validBridgeSize(size);
         this.bridgeSize = size;
     }
 
-    private void validGreaterThanZero(int size) {
-        if (size < BRIDGE_MIN_SIZE) {
-            throw new IllegalArgumentException(LESS_THAN_MIN_SIZE_MESSAGE);
+    private void validBridgeSize(int size) {
+        if (size < BRIDGE_MIN_SIZE || size > BRIDGE_MAX_SIZE) {
+            throw new IllegalArgumentException(WRONG_BRIDGE_SIZE_MESSAGE);
         }
     }
 
