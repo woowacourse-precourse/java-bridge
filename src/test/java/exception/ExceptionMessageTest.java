@@ -31,4 +31,12 @@ class ExceptionMessageTest {
         String message = invalidInput.getMessage();
         assertThat(message).isEqualTo("[ERROR] 잘못된 입력 입니다. 알맞게 입력해 주세요.");
     }
+
+    @DisplayName("INVALID_GAME_COMMAND 테스트")
+    @Test
+    void gameCommand() {
+        ExceptionMessage invalidGameCommand = ExceptionMessage.INVALID_GAME_COMMAND;
+        String message = invalidGameCommand.getMessage();
+        assertThat(message).isEqualTo("[ERROR] 잘못된 입력 입니다. R(재시작), Q(종료)를 입력해 주세요");
+    }
 }
