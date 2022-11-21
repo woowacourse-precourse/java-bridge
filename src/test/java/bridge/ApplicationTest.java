@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
@@ -114,6 +115,30 @@ class ApplicationTest extends NsTest {
             assertThat(player.getLastChoice()).isEqualTo(three);
             assertThat(player.getGameHistory()).isEqualTo(new ArrayList<>(Arrays.asList(choices)));
 
+        }
+    }
+
+    @Nested
+    class BridgeGameTest {
+
+        Player player = new Player();
+
+        @AfterEach
+        @DisplayName("초기화")
+        void initializeTest() {
+            player.initialize();
+        }
+
+        @ParameterizedTest
+        @DisplayName("게임 진행 완료")
+        @CsvSource({"3", "9", "15"})
+        void checkGameCompletionTest(int bridgeLength) {
+            BridgeGame bridgeGame = new BridgeGame(bridgeLength);
+            for (int step = 0; step < bridgeLength; step++) {
+                bridgeGame.move("U", player);
+            }
+
+            assertThat(bridgeGame.checkGameCompletion(player)).isTrue();
         }
     }
 }
