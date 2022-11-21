@@ -54,12 +54,17 @@ public class Controller {
 
     private void askRetry(int movingIndex, String lastInput) {
         String Command = inputView.readGameCommand(); //R또는 Q를 입력받고
-        if (bridgeGame.retry(Command)) { //R(게임 재개)
+        if (chooseRetry(Command)) return; //R(재시도)를 입력
+        printingResult(movingIndex, lastInput); //Q(게임 종료)를 입력
+    }
+
+    private boolean chooseRetry(String Command) {
+        if (bridgeGame.retry(Command)) {
             count++;
             Game(Start_Point, "");
-            return;
+            return true;
         }
-        printingResult(movingIndex, lastInput); //Q(게임 종료)
+        return false;
     }
 
     private void printingResult(int movingIndex, String lastInput) {
