@@ -47,7 +47,7 @@ public class Application {
         }
     }
 
-    public static void gameStart(){
+    private static void gameStart(){
         tryCount++;
         tryGame();
 
