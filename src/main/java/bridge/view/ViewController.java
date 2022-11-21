@@ -2,7 +2,8 @@ package bridge.view;
 
 import bridge.BridgeSizeConstant;
 import bridge.domain.CommandType;
-import bridge.domain.MoveType;
+import bridge.domain.bridge.MoveType;
+import bridge.domain.result.Map;
 
 public class ViewController {
     private final InputView inputView;
@@ -59,5 +60,9 @@ public class ViewController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void printMap(Map map) {
+        outputView.printMap(map);
     }
 }
