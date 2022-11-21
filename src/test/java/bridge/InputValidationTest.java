@@ -23,4 +23,12 @@ public class InputValidationTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputValidation.validateReadMoving(input));
     }
+
+    @DisplayName("올바르지 않은 게임 재시작 여부에 대한 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "D", "U", "BRO", " 우아한"})
+    void 게임_재시작_여부_예외_테스트(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputValidation.validateReadGameCommand(input));
+    }
 }
