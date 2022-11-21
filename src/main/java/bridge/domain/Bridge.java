@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -20,5 +21,9 @@ public class Bridge {
     public Boolean checkWhetherLastBlock(Integer currentPosition) {
         if (currentPosition == bridgeMap.size() - 1) return true;
         return false;
+    }
+
+    public List<String> getBridgeMapUntil(Integer currentPosition) {
+        return bridgeMap.subList(0, currentPosition + 1);
     }
 }

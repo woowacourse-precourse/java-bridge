@@ -19,7 +19,7 @@
 
 ### OutputView
 - [ ] 게임 시작 문구 출력
-- [ ] 게임 진행 중 게임 상황 출력
+- [x] 게임 진행 중 게임 상황 출력
 - [ ] 게임 종료 후 게임 결과 출력
 
 ### BridgeGameController & BridgeGameHandler 
