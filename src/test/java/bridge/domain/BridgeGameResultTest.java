@@ -77,8 +77,6 @@ public class BridgeGameResultTest {
         public void putMovingResult() {
             super.getBridgeByShape(UP_SIDE_SHAPE).addAll(List.of("O", "O", " ", " ", " "));
             super.getBridgeByShape(DOWN_SIDE_SHAPE).addAll(List.of(" ", " ", "O", "O", "O"));
-            System.out.println(super.getBridgeByShape(UP_SIDE_SHAPE));
-            System.out.println(super.getBridgeByShape(DOWN_SIDE_SHAPE));
         }
     }
 }
