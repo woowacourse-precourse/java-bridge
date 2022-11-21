@@ -18,12 +18,18 @@ public class Application {
         while(true){
             String direction = inputView.readMoving();
             boolean checkDirection = progressGame(direction, bridge);
-            if(checkDirection){
-                if(gameIsOverByWinning(user, direction, size, bridge) == true) break;
+            if(checkDirectionToQuitGameByWinning(checkDirection, user, direction, size, bridge) == true) break;
             }else{
                 if(RetryOrQuitGame(user, direction, bridge) == false) break;
             }
         }
+    }
+
+    public static boolean checkDirectionToQuitGameByWinning(boolean checkDirection, User user, String direction, int size, List<String> bridge ){
+        if(checkDirection == true && gameIsOverByWinning(user, direction, size, bridge) == true){
+            return true;
+        }
+        return false;
     }
     public static int checkUserInputToQuitGame(int size){
         if(size == -1){
