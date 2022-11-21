@@ -1,7 +1,5 @@
 package bridge;
 
-import org.mockito.internal.matchers.Or;
-
 public class InputVerify {
 
 	public static void verifyBridgeSize(String input) {
@@ -32,15 +30,23 @@ public class InputVerify {
 	}
 
 	public static void verifyOrderMove(String order) {
-		verifyIsOrder(order);
+		verifyIsMove(order);
 	}
 
-	private static void verifyIsOrder(String order) {
+	private static void verifyIsMove(String order) {
 		if (!Order.isOrderMoving(order)) {
-			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_NOT_ORDER);
+			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_ORDER_NOT_MOVE);
 		}
 	}
 
+
 	public static void verifyOrderControl(String order) {
+		verifyIsControl(order);
+	}
+
+	public static void verifyIsControl(String order) {
+		if (!Order.isOrderControl(order)) {
+			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_ORDER_NOT_CONTROL);
+		}
 	}
 }

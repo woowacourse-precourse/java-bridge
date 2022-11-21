@@ -23,4 +23,13 @@ public enum Order {
 		}
 		return false;
 	}
+
+	public static boolean isOrderControl(String input) {
+		for (Control control : CONTROL.orders) {
+			if (control.getControlOrder().equals(input)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
