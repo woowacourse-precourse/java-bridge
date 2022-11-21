@@ -26,7 +26,7 @@ public class OutputView {
     public void printResult(int count, BridgePrinting bridgePrinting, boolean isSuccess) {
         Validate validate = new Validate();
         System.out.println(ShowPrint.RESULT.getPrint());
-        bridgePrinting.makeList();
+        bridgePrinting.makeBridge();
         System.out.println(ShowPrint.RESULT_IS_SUCCESS.getPrint() + validate.validateFinalSuccess(isSuccess));
         System.out.println(ShowPrint.RESULT_GAME_COUNT.getPrint() + count);
     }

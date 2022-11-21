@@ -49,7 +49,7 @@ public class BridgeMoveProcess {
         String nowIndex) {
         BridgePrinting bridgePrinting = new BridgePrinting(upState, downState);
         bridgePrinting.addTraceLocation(convertNowIndex(nowIndex));
-        bridgePrinting.makeList();
+        bridgePrinting.makeBridge();
         return bridgePrinting;
     }
 
@@ -65,8 +65,6 @@ public class BridgeMoveProcess {
         return GameState.DOWN_STATEMENT;
     }
 
-    public static String findByIndex(int index) {
-        return moving.get(index);
-    }
+
 
 }

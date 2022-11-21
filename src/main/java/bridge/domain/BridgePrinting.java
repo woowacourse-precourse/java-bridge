@@ -34,7 +34,7 @@ public class BridgePrinting {
     public void addTraceLocation(int nowLocation) {
         traceLocation.add(nowLocation);
     }
-    public void makeList() {
+    public void makeBridge() {
         makeUpUserBridge();
         makeDownUserBridge();
         System.out.println();
