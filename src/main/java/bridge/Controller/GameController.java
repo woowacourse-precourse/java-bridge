@@ -11,37 +11,50 @@ public class GameController {
     private static final String RETRY = GameResult.RETRY.getResult();
     private int progress;
     private int totalTries = 1;
-    private boolean isCrossable;
+    private boolean isCleared;
     private BridgeGame bridgeGame = new BridgeGame();
 
     public void run(Bridge bridge) {
-        String command;
+        String lastCommand;
 
-        do { //TODO: 라인 줄이기
-            command = "";
-            boolean isCrossable = proceed(bridge);
-            if (!isCrossable) {
-                command = handleRetryCommand();
-                totalTries++;
-            }
-        } while (command.equals(RETRY));
+        do {
+            lastCommand = repeatGame(bridge);
+        } while (lastCommand.equals(RETRY));
 
         printFinalResult();
     }
 
-    private boolean proceed(Bridge bridge) {
+    private String repeatGame(Bridge bridge) {
+        String command = "";
+
+        isCleared = playOnce(bridge);
+        if (!isCleared) {
+            command = handleRetryCommand();
+            totalTries = bridgeGame.retry(totalTries);
+        }
+
+        return command;
+    }
+
+    private boolean playOnce(Bridge bridge) {
         final int bridgeSize = bridge.getSize();
-        isCrossable = true;
+        boolean isCrossable = true;
         progress = 0;
 
         while (isCrossable && bridgeSize > progress) { //TODO: 라인 줄이기
-            String input = handleInput();
-            String currentResult = bridge.getResult(input, progress);
-            isCrossable = bridgeGame.isCrossable(currentResult);
-
-            progress = bridgeGame.move(progress);
-            printResult(currentResult, input);
+            isCrossable = proceed(bridge);
         }
+
+        return isCrossable;
+    }
+
+    private boolean proceed(Bridge bridge) {
+        String input = handleInput();
+        String currentResult = bridge.getResult(input, progress);
+        boolean isCrossable = bridgeGame.isCrossable(currentResult);
+
+        progress = bridgeGame.move(progress);
+        printResult(currentResult, input);
 
         return isCrossable;
     }
@@ -71,6 +84,6 @@ public class GameController {
     private void printFinalResult() {
         OutputView outputView = new OutputView();
 
-        outputView.printResult(isCrossable, totalTries);
+        outputView.printResult(isCleared, totalTries);
     }
 }
