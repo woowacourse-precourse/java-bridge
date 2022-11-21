@@ -1,11 +1,16 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    public static final int MIN_VALUE = 3;
+    private static final int MAX_VALUE = 20;
+    private static final String SIZE_RANGE_ERROR_MESSAGE = "[ERROR] 다리 길이는 " + MIN_VALUE + "부터 " + MAX_VALUE + " 사이의 숫자여야 합니다.";
+
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -18,6 +23,14 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        isValidateSize(size);
+        List<String> bridge = new ArrayList<>();
+        return bridge;
+    }
+
+    void isValidateSize(int size) {
+        if (!(MIN_VALUE <= size && size <= MAX_VALUE)) {
+            throw new IllegalArgumentException(SIZE_RANGE_ERROR_MESSAGE);
+        }
     }
 }
