@@ -29,7 +29,7 @@ public class BridgeGame {
         InputView inputView = new InputView();
         int size = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge.inputBridegeSize(size);
+        bridge.inputBridgeSize(size);
         bridge.inputBridgeNumber(bridgeMaker.makeBridge(size));
     }
     public void setPlayer(){

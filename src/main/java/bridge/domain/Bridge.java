@@ -3,19 +3,15 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
-    private List<String> bridgeNumber;
+    private BridgeNumber bridgeNumber;
     private BridgeSize bridgeSize;
-    public int getBridgeNumber(int index){
-        return Integer.parseInt(bridgeNumber.get(index));
-    }
-    private Boolean isBridgeValid(){
-        return true;
+    public BridgeNumber getBridgeNumber(int index){
+        return bridgeNumber;
     }
     public void inputBridgeNumber(List<String> number){
-        bridgeNumber = number;
-        isBridgeValid();
+        bridgeNumber = new BridgeNumber(number);
     }
-    public void inputBridegeSize(int size){
+    public void inputBridgeSize(int size){
         bridgeSize = new BridgeSize(size);
     }
 }
