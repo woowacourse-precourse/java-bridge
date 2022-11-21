@@ -23,7 +23,7 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         boolean isCorrect = checkValue(direction);
-        bridgeMap.addMap(direction, isCorrect);
+        bridgeMap.add(direction, isCorrect);
         this.turn ++;
         return isCorrect;
     }

@@ -18,7 +18,7 @@ public class BridgeMap {
         };
     }
 
-    public void addMap(String direction, boolean isCorrect) {
+    public void add(String direction, boolean isCorrect) {
         int index = Direction.getBySymbol(direction).getKey();
         int otherIndex = getOtherIndex(index);
         String symbol = Status.getByStatus(isCorrect).getSymbol();
