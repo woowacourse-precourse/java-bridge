@@ -12,7 +12,7 @@
 - [X] 길이에 따라 다리 생성
 - [X] 방향 enum 추가
 - [X] 게임 결과 메세지 enum 추가
-- [ ] BridgeGame 정의
+- [X] BridgeGame 정의
 
 ## 프로그래밍 요구 사항
 - [X] OutputView#printResult else문 제거
