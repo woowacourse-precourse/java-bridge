@@ -14,9 +14,12 @@ public class Player {
     }
 
     public void startRound() {
+        if (round > 0) {
+            alive = true;
+            bridgeResult.deleteWrongStep();
+        }
+
         round++;
-        location = -1;
-        alive = true;
     }
 
     public boolean movable() {

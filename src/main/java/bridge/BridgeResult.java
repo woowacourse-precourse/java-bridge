@@ -38,4 +38,11 @@ public class BridgeResult {
     public List<String> getLowerResult() {
         return lowerResult;
     }
+
+    public void deleteWrongStep() {
+        int deleteIndex = upperResult.size() - 1;
+
+        upperResult.remove(deleteIndex);
+        lowerResult.remove(deleteIndex);
+    }
 }
