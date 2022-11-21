@@ -8,10 +8,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class BridgeGameTest {
     @DisplayName("사용자가 칸을 이동할 때 정확하게 점수가 집계됐는지 확인")
@@ -102,6 +105,18 @@ public class BridgeGameTest {
         // then
         assertThat(collectUpDown).containsExactly(UpDown.UP);
         assertThat(collectIsCorrect).containsExactly(true);
+    }
+
+    @DisplayName("생성자에 NULL이 들어올 경우 예외 테스트")
+    @Test
+    void 생성자_NULL_파라미터_예외_테스트() {
+        try {
+            // when
+            BridgeGame bridgeGame = new BridgeGame(null);
+            fail();
+        } catch (NullPointerException e) {
+            // pass
+        }
     }
 
 
