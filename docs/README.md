@@ -8,6 +8,8 @@
     - [x]  Getter
         - 다리 길이
         - 다리 리스트
+    - [ ]  다리길이 입력받기
+    - [ ]  validate
 - User
     - [x]  Getter
         - 사용자 다리 그림
