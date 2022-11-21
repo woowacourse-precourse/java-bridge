@@ -25,4 +25,12 @@ public class BridgeGameController {
 
         return new BridgeGame(bridge);
     }
+
+    public void run() {
+            moveBridge();
+    private void moveBridge() {
+        String readMoving = inputView.readMoving();
+        BridgeMap bridgeMap = bridgeGame.move(readMoving);
+        outputView.printMap(bridgeMap);
+    }
 }
