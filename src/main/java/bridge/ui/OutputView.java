@@ -1,6 +1,9 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.Const.*;
+import bridge.domain.BridgeGameHost;
+import bridge.domain.Player;
+
+import static bridge.constant.Const.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -43,7 +46,7 @@ public class OutputView {
     }
 
     private void appendPastMap(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
-        for (int index = 0; index < bridgeGameHost.getPlayerIndex(); index++) {
+        for (int index = 0; index < Player.getIndex(); index++) {
             if (bridgeGameHost.stepOfIndexInBridge(index).equals(position)) {
                 printOfMap.append("| ").append("O ");
             }
@@ -55,31 +58,31 @@ public class OutputView {
     }
 
     private void appendNowMap(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
-        if (bridgeGameHost.getPlayerAlive()) { // 플레이어가 살아있을 떄
+        if (Player.getAlive()) { // 플레이어가 살아있을 떄
             appendNowMapWhenAlive(bridgeGameHost, printOfMap, position);
         }
 
-        if (!bridgeGameHost.getPlayerAlive()) { // 플레이어가 죽었을 때
+        if (!Player.getAlive()) { // 플레이어가 죽었을 때
             appendNowMapWhenNotAlive(bridgeGameHost, printOfMap, position);
         }
     }
 
     private void appendNowMapWhenAlive(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
-        if (bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
+        if (bridgeGameHost.stepOfIndexInBridge(Player.getIndex()).equals(position)) {
             printOfMap.append("| ").append("O ");
         }
 
-        if (!bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
+        if (!bridgeGameHost.stepOfIndexInBridge(Player.getIndex()).equals(position)) {
             printOfMap.append("| ").append("  ");
         }
     }
 
     private void appendNowMapWhenNotAlive(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
-        if (bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
+        if (bridgeGameHost.stepOfIndexInBridge(Player.getIndex()).equals(position)) {
             printOfMap.append("| ").append("  ");
         }
 
-        if (!bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
+        if (!bridgeGameHost.stepOfIndexInBridge(Player.getIndex()).equals(position)) {
             printOfMap.append("| ").append("X ");
         }
     }
@@ -112,6 +115,6 @@ public class OutputView {
 
     private void printNumberOfRetry(BridgeGameHost bridgeGameHost) {
         System.out.print("총 시도한 횟수: ");
-        System.out.println(bridgeGameHost.getRetry());
+        System.out.println(Player.getNumberOfRetry());
     }
 }

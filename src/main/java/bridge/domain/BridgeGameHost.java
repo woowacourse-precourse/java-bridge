@@ -1,24 +1,23 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 import java.util.List;
 
-import static bridge.Const.*;
+import static bridge.constant.Const.*;
 
 public class BridgeGameHost {
 
     private List<String> bridge;
-    private int playerIndex;
-    private int numberOfRetry;
-    private boolean playerAlive;
     private boolean gameInProgress;
     private final OutputView outputView;
     private final InputView inputView;
     private final BridgeGame bridgeGame;
 
     public BridgeGameHost() {
-        numberOfRetry = 1;
-        playerIndex = -1;
-        playerAlive = true;
         gameInProgress = true;
         outputView = new OutputView();
         inputView = new InputView();
@@ -46,7 +45,7 @@ public class BridgeGameHost {
     private void isPlayerDead() {
         String gameCommand = "";
 
-        if (!playerAlive) {
+        if (!Player.getAlive()) {
             decideRetryOrQuit(gameCommand);
         }
     }
@@ -125,36 +124,10 @@ public class BridgeGameHost {
     public String getResult() {
         String answer = FAIL;
 
-        if ((playerIndex + 1) == bridge.size() && playerAlive) {
+        if ((Player.getIndex() + 1) == bridge.size() && Player.getAlive()) {
             answer = SUCCESS;
         }
 
         return answer;
-    }
-
-    public boolean getPlayerAlive() {
-        return playerAlive;
-    }
-
-    public int getPlayerIndex() {
-        return playerIndex;
-    }
-
-    public int getRetry() {
-        return numberOfRetry;
-    }
-
-    public void movePlayer() {
-        this.playerIndex++;
-    }
-
-    public void playerDie() {
-        this.playerAlive = false;
-    }
-
-    public void retry() {
-        this.playerIndex = -1;
-        this.playerAlive = true;
-        this.numberOfRetry++;
     }
 }

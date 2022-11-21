@@ -1,7 +1,7 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.ErrorCode.*;
-import static bridge.Const.*;
+import static bridge.constant.ErrorCode.*;
+import static bridge.constant.Const.*;
 
 public class Validator {
     private static final int SHORTEST_LENGTH = 3;

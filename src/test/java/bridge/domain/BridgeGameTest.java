@@ -1,12 +1,15 @@
-package bridge;
+package bridge.domain;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameHost;
+import bridge.domain.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static bridge.Const.*;
+import static bridge.constant.Const.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
@@ -29,8 +32,8 @@ public class BridgeGameTest {
         bridgeGame.move(bridgeGameHost, UP);
 
         // then
-        assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(0);
-        assertThat(bridgeGameHost.getPlayerAlive()).isTrue();
+        assertThat(Player.getIndex()).isEqualTo(0);
+        assertThat(Player.getAlive()).isTrue();
     }
 
     @Test
@@ -40,23 +43,23 @@ public class BridgeGameTest {
         bridgeGame.move(bridgeGameHost, DOWN);
 
         // then
-        assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(0);
-        assertThat(bridgeGameHost.getPlayerAlive()).isFalse();
+        assertThat(Player.getIndex()).isEqualTo(0);
+        assertThat(Player.getAlive()).isFalse();
     }
 
     @Test
     @DisplayName("재시작을 하는 경우")
     void playerRetry() {
         // given
-        bridgeGameHost.movePlayer();
-        bridgeGameHost.playerDie();
+        Player.moving();
+        Player.dead();
 
         // when
         bridgeGame.retry(bridgeGameHost);
 
         // then
-        assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(-1);
-        assertThat(bridgeGameHost.getPlayerAlive()).isTrue();
-        assertThat(bridgeGameHost.getRetry()).isEqualTo(2);
+        assertThat(Player.getIndex()).isEqualTo(-1);
+        assertThat(Player.getAlive()).isTrue();
+        assertThat(Player.getNumberOfRetry()).isEqualTo(2);
     }
 }

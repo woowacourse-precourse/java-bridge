@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static bridge.Const.*;
+import static bridge.constant.Const.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeMakerTest {

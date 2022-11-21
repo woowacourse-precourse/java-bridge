@@ -1,4 +1,4 @@
-package bridge;
+package bridge.constant;
 
 public class ErrorCode {
 
