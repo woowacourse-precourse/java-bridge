@@ -28,7 +28,7 @@ public class BridgeDTO {
         if(InputCase.UP.getInput().equals(this.bridge.get(i))) {
             upCase[i] = BridgeCase.ANSWER;
         }
-        if(InputCase.DOWN.equals(this.bridge.get(i))) {
+        if(InputCase.DOWN.getInput().equals(this.bridge.get(i))) {
             downCase[i] = BridgeCase.ANSWER;
         }
     }

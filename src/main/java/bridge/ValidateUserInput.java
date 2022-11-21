@@ -6,7 +6,7 @@ public class ValidateUserInput {
     public void checkBridgeLength(String bridgeSize){
         for(int i = 0; i < bridgeSize.length(); i++){
             if(!Character.isDigit(bridgeSize.charAt(i))) {
-                throw new IllegalArgumentException("[ERROR]");
+                throw new IllegalArgumentException("[ERROR] ");
             }
         }
         if(Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20)

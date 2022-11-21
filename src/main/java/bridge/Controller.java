@@ -8,13 +8,13 @@ public class Controller {
         inputView = new InputView();
     }
     public int inputBridgeSize(){
-      return inputView.readBridgeSize();
+      return inputView.getBrideSize();
     }
     public String inputMovingCommand(){
-        return inputView.readMoving();
+        return inputView.getReadMoving();
     }
     public String inputReadGameCommand(){
-        return inputView.readGameCommand();
+        return inputView.getReadCommand();
     }
     public Controller startMessage(){
         outputView.printStart();

@@ -10,10 +10,6 @@ public enum BridgeCase {
     }
     private final String input;
 
-    public String getBridgeCase() {
-        return input;
-    }
-
     @Override
     public String toString() {
         return input;
