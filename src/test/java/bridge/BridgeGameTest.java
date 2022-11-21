@@ -8,29 +8,6 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
-
-    @Test
-    @DisplayName("총 3칸 건넌 경우")
-    void move_MoveThreeSteps_TryCount3() {
-        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U", "D", "U", "D", "U", "U"));
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("U");
-        assertThat(bridgeGame.getTryCount()).isEqualTo(3);
-    }
-
-    @Test
-    @DisplayName("총 5칸 건넌 경우")
-    void move_MoveFiveSteps_TryCount5() {
-        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U", "D", "U", "D", "D", "U", "D"));
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("D");
-        assertThat(bridgeGame.getTryCount()).isEqualTo(5);
-    }
-
     @Test
     @DisplayName("총 3칸 건너고 앞에서부터 방향이 완전히 일치한 경우")
     void isCorrectChoice_EqualsFirstThreeSteps_ReturnTrue() {
@@ -102,7 +79,7 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("게임 다시 시도시 시도한 횟수가 그대로 이어지는지 테스트")
+    @DisplayName("게임 다시 시도시 시도한 횟수가 누적되는지 테스트")
     void retry_PlayerCommandsClear_KeepTryCount() {
         BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U", "D", "D"));
         bridgeGame.move("D");
@@ -110,6 +87,6 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("D");
-        assertThat(bridgeGame.getTryCount()).isEqualTo(4);
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
     }
 }
