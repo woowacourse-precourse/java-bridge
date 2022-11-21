@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+
 import java.util.List;
 
 public class Application {
