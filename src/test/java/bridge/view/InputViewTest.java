@@ -24,6 +24,13 @@ public class InputViewTest extends NsTest {
         Assertions.assertThat(inputView.validateMove(input)).isEqualTo(result);
     }
 
+    @DisplayName("게임 재시작 여부 입력 받기 테스트")
+    @ParameterizedTest
+    @CsvSource({"R,true", "Q,true", "1,false", "RETRY,false", "r,false", "q,false", "R1, false"})
+    void validateGameCommandTest(String input, boolean result) {
+        Assertions.assertThat(inputView.validateGameCommand(input)).isEqualTo(result);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
