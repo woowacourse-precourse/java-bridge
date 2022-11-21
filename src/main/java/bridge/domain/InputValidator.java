@@ -1,16 +1,18 @@
 package bridge.domain;
 
+import bridge.domain.game.GameMode;
+
 public class InputValidator {
 
     public boolean checkUpDown(String upDown){
-        if (!upDown.equals("U") && !upDown.equals("D")){
+        if (!upDown.equals(Step.UPPER_STEP.getStepTxt()) && !upDown.equals(Step.LOWER_STEP.getStepTxt())){
             throw new IllegalArgumentException();
         }
         return true;
     }
 
     public boolean checkRetry(String input){
-        if (!input.equals("Q") && !input.equals("R")){
+        if (!input.equals(GameMode.QUIT.getKey()) && !input.equals(GameMode.RETRY.getKey())){
             throw new IllegalArgumentException();
         }
         return true;
