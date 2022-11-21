@@ -24,6 +24,7 @@ public class Application {
         Controller controller = new Controller(inputView, outputView);
 
         inputFunctions(outputView, controller::start);
+        inputFunctions(outputView, controller::move);
 
 
 

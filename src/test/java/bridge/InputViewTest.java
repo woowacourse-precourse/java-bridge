@@ -19,5 +19,15 @@ class InputViewTest extends NsTest {
         assertThat(output()).contains("[ERROR] 다리 길이는");
     }
 
+    @DisplayName("움직임 입력 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"5 a U", "5 a D", "5 5 U"})
+    public void move_입력_테스트(String input) {
+        String[] inputs = input.split(" ");
+        run(inputs[0], inputs[1], inputs[2]);
+        assertThat(output()).contains("[ERROR]");
+        assertThat(output()).contains("하나의");
+    }
+
     public void runMain() { Application.main(new String[]{}); }
 }

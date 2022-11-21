@@ -24,5 +24,15 @@ public class Controller {
         this.bridgeGame = new BridgeGame(new BridgeMaker(rng).makeBridge(input));
     }
 
+    /**
+     * input user command, move user
+     */
+    public void move() {
+        while (true) {
+            String command = iView.readMoving();
+            break;
+        }
+    }
+
 
 }
