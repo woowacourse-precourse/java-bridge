@@ -92,11 +92,16 @@ public class Controller {
 
     public boolean retry(BridgeGame bridgeGame) {
         boolean flag = false;
-        outputView.printSelectRetry();
-        String retryOrQuit = inputView.readGameCommand();
-        if(bridgeGame.checkRetry(retryOrQuit)) {
-            user.addTryCount();
-            start(bridgeGame);
+        try {
+            outputView.printSelectRetry();
+            String retryOrQuit = inputView.readGameCommand();
+            if(bridgeGame.checkRetry(retryOrQuit)) {
+                user.addTryCount();
+                start(bridgeGame);
+            }
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            retry(bridgeGame);
         }
         return !flag;
     }
