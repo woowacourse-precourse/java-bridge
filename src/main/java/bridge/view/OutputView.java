@@ -15,18 +15,18 @@ public class OutputView {
         System.out.println(Constants.SELECT_UP_OR_DOWN_INPUT);
     }
 
-    public void printSelectRetryOrNotInput() {
-        System.out.println(Constants.SELECT_RETRY_OR_NOT_INPUT);
-    }
-
     public void printMap(String map) {
         System.out.println(map);
+    }
+
+    public void printSelectRetryOrNotInput() {
+        System.out.println(Constants.SELECT_RETRY_OR_NOT_INPUT);
     }
 
     public void printResult(GameResultDto gameResultDto) {
         printFinalGameResult();
         printMap(gameResultDto.getMap());
-        printSuccess(gameResultDto.isSuccess());
+        printSuccessResult(gameResultDto.isSuccess());
         printNumberOfTry(gameResultDto.getNumberOfTry());
     }
 
@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println(Constants.FINAL_GAME_RESULT_OUTPUT);
     }
 
-    private void printSuccess(boolean isSuccess) {
+    private void printSuccessResult(boolean isSuccess) {
         if (isSuccess) {
             System.out.println(Constants.GAME_SUCCESS_OUTPUT);
             return;
@@ -43,10 +43,14 @@ public class OutputView {
     }
 
     private void printNumberOfTry(int numberOfTry) {
-        System.out.printf(Constants.TOTAL_NUMBER_OF_TRY_OUTPUT,numberOfTry);
+        System.out.printf(Constants.TOTAL_NUMBER_OF_TRY_OUTPUT, numberOfTry);
     }
 
     public void printExceptionMessage(Exception exception) {
         System.out.println(exception.getMessage());
+    }
+
+    public void printNewLine() {
+        System.out.println();
     }
 }

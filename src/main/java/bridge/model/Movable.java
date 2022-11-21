@@ -6,11 +6,11 @@ public enum Movable {
     BLANK(" ", false);
 
     private final String mark;
-    private final boolean canMovable;
+    private final boolean isMovable;
 
-    Movable(String mark, boolean canMovable) {
+    Movable(String mark, boolean isMovable) {
         this.mark = mark;
-        this.canMovable = canMovable;
+        this.isMovable = isMovable;
     }
 
     public String getMark() {
@@ -18,6 +18,6 @@ public enum Movable {
     }
 
     public boolean isMovable() {
-        return canMovable;
+        return isMovable;
     }
 }

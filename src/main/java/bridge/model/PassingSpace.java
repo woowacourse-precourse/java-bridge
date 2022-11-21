@@ -45,6 +45,6 @@ public class PassingSpace {
 
     private String conformToForms(List<String> contents) {
         String form = String.join(" | ", contents);
-        return String.format(FORM,form);
+        return String.format(FORM, form);
     }
 }

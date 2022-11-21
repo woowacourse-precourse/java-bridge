@@ -5,7 +5,7 @@ import java.util.List;
 public class Bridge {
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final int MIN_BRIDGE_SIZE = 3;
-    private static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리의 크기는 3~20 입니다.";
+    private static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다";
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {

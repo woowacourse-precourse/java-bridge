@@ -1,15 +1,13 @@
 package bridge.model;
 
 public enum Space {
-    U("U", 1),
-    D("D", 0);
+    U("U"),
+    D("D");
 
     private final String value;
-    private final int index;
 
-    Space(String value, int index) {
+    Space(String value) {
         this.value = value;
-        this.index = index;
     }
 
     public static Space from(int numberOfRow) {
