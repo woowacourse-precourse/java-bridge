@@ -68,10 +68,10 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        return !isMoveSuccess || getBridgeMapSize() == playerMap.getSize();
+        return !isMoveSuccess || isSameSize();
     }
 
-    private int getBridgeMapSize() {
-        return bridgeMap.getSize();
+    private boolean isSameSize() {
+        return bridgeMap.getSize() == playerMap.getSize();
     }
 }
