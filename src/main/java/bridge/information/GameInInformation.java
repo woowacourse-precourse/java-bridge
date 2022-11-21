@@ -1,7 +1,7 @@
-package bridge;
+package bridge.information;
 
 
-public final class Position {
+public final class GameInInformation {
     public static final String UP = "U";
     public static final String DOWN = "D";
     public static final String RESTART = "R";
