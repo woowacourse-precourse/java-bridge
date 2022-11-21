@@ -20,7 +20,6 @@ public enum Step {
                 .filter(value -> number == value.number)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_VALUE_MESSAGE))
-                // TODO: IllegalArgumentException 이 적절하지 않을 수 있다.
                 .toString();
     }
 
@@ -29,7 +28,6 @@ public enum Step {
                 .filter(bridgeStep -> bridgeStep.toString().equals(value))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_VALUE_MESSAGE));
-                // TODO: IllegalArgumentException 이 적절하지 않을 수 있다.
     }
 
     public static List<Step> from(List<String> steps) {

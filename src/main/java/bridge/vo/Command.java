@@ -13,7 +13,6 @@ public enum Command {
                 .filter(command -> command.toString().equals(value))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_VALUE_MESSAGE));
-        // TODO: IllegalArgumentException 이 적절하지 않을 수 있다.
     }
 
     public boolean isRetrying() {
