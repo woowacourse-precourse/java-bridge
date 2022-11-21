@@ -19,4 +19,9 @@ public class ErrorCheck {
             System.out.println("error not U D");
     }
 
+    public static void isRestart(String haveToCheck){
+        if(!haveToCheck.equals("R") && !haveToCheck.equals("Q"))
+            System.out.println("error not R Q");
+    }
+
 }

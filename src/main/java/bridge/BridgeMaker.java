@@ -31,44 +31,52 @@ public class BridgeMaker {
         List<String> joined = new ArrayList<>();
         List<String> randomCollect = makeRandomUpDown(size);
         int countCycle = 1;
-        System.out.println("call makeBridge : " + size);
-        System.out.println("@@@@");
         for (int i = 0; i < size; i++)
             System.out.println(randomCollect.get(i));
-        //
+
         String moveUpOrDown;
         for (int i = 0; i < size; i++) {
             moveUpOrDown = bridgeGame.move();
-            if (moveUpOrDown.equals("U")) {
+            if (moveUpOrDown.equals(ICON_UP)) {
                 if (randomCollect.get(i).equals(moveUpOrDown))
                     bridgeU.add(ICON_COLLECT);
                 if (!randomCollect.get(i).equals(moveUpOrDown))
-                    bridgeU.add(ICON_FALSE); // 게임 re
-                //bridgeD.add("$");
+                    bridgeU.add(ICON_FALSE);
                 bridgeD.add(GAME_ICON_SPACE);
                 bridgeU.add(GAME_ICON_BAR);
                 bridgeD.add(GAME_ICON_BAR);
             }
-            if (moveUpOrDown.equals("D")) {
+            if (moveUpOrDown.equals(ICON_DOWN)) {
                 if (randomCollect.get(i).equals(moveUpOrDown))
                     bridgeD.add(ICON_COLLECT);
                 if (!randomCollect.get(i).equals(moveUpOrDown))
-                    bridgeD.add(ICON_FALSE); // 게임 re
-                //bridgeU.add("$");
+                    bridgeD.add(ICON_FALSE);
                 bridgeU.add(GAME_ICON_SPACE);
                 bridgeU.add(GAME_ICON_BAR);
                 bridgeD.add(GAME_ICON_BAR);
             }
             System.out.print("[ ");
-            for(int j=0; j<countCycle; j++)
+            for (int j = 0; j < countCycle; j++)
                 System.out.print(bridgeU.get(j));
             System.out.print(" ]");
             System.out.println();
             System.out.print("[ ");
-            for(int j=0; j<countCycle; j++)
+            for (int j = 0; j < countCycle; j++)
                 System.out.print(bridgeD.get(j));
-            System.out.print(" ]");
-            countCycle+=2;
+            System.out.println(" ]");
+
+            if (bridgeU.contains(ICON_FALSE)) {
+                bridgeGame.retry();
+                System.out.println();
+                break;
+            }
+            if (bridgeD.contains(ICON_FALSE)) {
+                System.out.println();
+                bridgeGame.retry();
+                break;
+            }
+
+            countCycle += 2;
             System.out.println();
         }
         joined.addAll(bridgeU);

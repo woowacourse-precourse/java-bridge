@@ -72,4 +72,7 @@ public class OutputView {
     public void printInputMovement() {
         System.out.println(GAME_CHOOSE_MOVE_MESSAGE);
     }
+    public void printRetry() {
+        System.out.println(GAME_RETRY_MESSAGE);
+    }
 }
