@@ -1,4 +1,4 @@
-package bridge.Controller;
+package bridge;
 
 import bridge.Model.Bridge;
 import bridge.Model.BridgeJudge;
