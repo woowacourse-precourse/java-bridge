@@ -14,11 +14,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public String readBridgeSize() {
         String bridgeSize = Console.readLine();
 
-        validateBridgeSize(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        validateBridgeSizeAsString(bridgeSize);
+        validateBridgeSizeAsInteger(bridgeSize);
+        return bridgeSize;
     }
 
     /**
@@ -41,11 +42,14 @@ public class InputView {
         return gameCommand;
     }
 
-    public void validateBridgeSize(final String bridgeSize) {
-        final int parsedBridgeSize = Integer.parseInt(bridgeSize);
-
+    public void validateBridgeSizeAsString(final String bridgeSize) {
         validateEmptyString(bridgeSize);
         validateNumber(bridgeSize);
+    }
+
+    public void validateBridgeSizeAsInteger(final String bridgeSize) {
+        int parsedBridgeSize = Integer.parseInt(bridgeSize);
+
         validateInteger(parsedBridgeSize);
         validateRange(parsedBridgeSize);
     }

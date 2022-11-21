@@ -31,7 +31,7 @@ public class OutputView {
                 printOorBlankOnUpperMap(movings.get(i));
             }
             if (!bridge.isO(i)) {
-                System.out.print("X");
+                printXorBlankOnUpperMap(movings.get(i));
             }
             printPartition(movings.size(), i);
         }
@@ -43,7 +43,7 @@ public class OutputView {
                 printOorBlankOnLowerMap(movings.get(i));
             }
             if (!bridge.isO(i)) {
-                System.out.print("X");
+                printXorBlankOnLowerMap(movings.get(i));
             }
             printPartition(movings.size(), i);
         }
@@ -61,6 +61,24 @@ public class OutputView {
     public void printOorBlankOnLowerMap(final String moving) {
         if (moving.equals("D")) {
             System.out.print("O");
+        }
+        if (moving.equals("U")) {
+            System.out.print(" ");
+        }
+    }
+
+    public void printXorBlankOnUpperMap(final String moving) {
+        if (moving.equals("U")) {
+            System.out.print("X");
+        }
+        if (moving.equals("D")) {
+            System.out.print(" ");
+        }
+    }
+
+    public void printXorBlankOnLowerMap(final String moving) {
+        if (moving.equals("D")) {
+            System.out.print("X");
         }
         if (moving.equals("U")) {
             System.out.print(" ");

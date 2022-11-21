@@ -8,11 +8,8 @@ public class BridgeUtils {
     private OutputView outputView = new OutputView();
     private BridgeGame bridgeGame = new BridgeGame();
 
-    public Bridge startBridgeGame(){
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        System.out.println("다리의 길이를 입력해주세요.");
-
-        return new Bridge(inputView.readBridgeSize());
+    public Bridge startBridgeGame() {
+        return new Bridge(Integer.parseInt(inputView.readBridgeSize()));
     }
 
     public String canPass(final int bridgeNumber) {
@@ -26,7 +23,7 @@ public class BridgeUtils {
     }
 
     public void play(Bridge bridge) {
-        while (!bridge.isGameOver()){
+        while (!bridge.isGameOver()) {
             actWhenMoving(bridge);
         }
         actAfterLastMoving(bridge);
@@ -38,10 +35,10 @@ public class BridgeUtils {
     }
 
     public void actAfterLastMoving(final Bridge bridge) {
-        if(bridge.isO(bridge.getMovings().size() - 1)){
+        if (bridge.isO(bridge.getMovings().size() - 1)) {
             printResultWhenSuccess(bridge);
         }
-        if(!bridge.isO(bridge.getMovings().size() - 1)){
+        if (!bridge.isO(bridge.getMovings().size() - 1)) {
             actWhenFail(bridge);
         }
     }
@@ -55,10 +52,10 @@ public class BridgeUtils {
 
         String gameCommand = inputView.readGameCommand();
 
-        if(gameCommand.equals("Q")) {
+        if (gameCommand.equals("Q")) {
             actWhenReadingQ(bridge);
         }
-        if(gameCommand.equals("R")) {
+        if (gameCommand.equals("R")) {
             actWhenReadingR(bridge);
         }
     }
