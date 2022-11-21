@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final static List<String> POSSIBLE_DIRECTION = List.of("U", "D");
-    private List<String> bridge;
+    private final List<String> bridge;
     private List<String> userPath;
     private GameStatus gameStatus;
     private int tryCount;
