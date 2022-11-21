@@ -25,8 +25,14 @@ public class BridgeController {
 
     private void loop() {
         while (true) {
-            bridgeView.inputMoveCommandMessage();
-
+            String str = bridgeView.inputMoveCommandMessage();
+            ResultSymbol resultSymbol = bridgeGame.move(str);
+            if (ResultSymbol.FAIL == resultSymbol) {
+                bridgeView.inputRetryCommandMessage();
+            }
+            if (bridgeGame.allTry()) {
+                break;
+            }
         }
     }
 }
