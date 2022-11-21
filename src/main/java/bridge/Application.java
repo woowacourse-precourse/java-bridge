@@ -11,15 +11,13 @@ public class Application {
     private static User user = new User();
     public static void main(String[] args) {
         outputView.startGame();
-        int size = checkUserInputToQuitGame(inputView.readBridgeSize());
+        int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
-        user.addUserAttempt();
         while(true){
             String direction = inputView.readMoving();
             boolean checkDirection = progressGame(direction, bridge);
             if(checkDirectionToQuitGameByWinning(checkDirection, user, direction, size, bridge) == true) break;
-            if(checkDirectionToQuitOrRetryGameByLosing(checkDirection,user,direction, bridge) == true) break;
-        }
+            if(checkDirectionToQuitOrRetryGameByLosing(checkDirection,user,direction, bridge) == true) break; }
     }
 
     public static boolean checkDirectionToQuitGameByWinning(boolean checkDirection, User user, String direction, int size, List<String> bridge ){
@@ -34,12 +32,6 @@ public class Application {
             return true;
         }
         return false;
-    }
-    public static int checkUserInputToQuitGame(int size){
-        if(size == -1){
-            System.exit(0);
-        }
-        return size;
     }
     public static boolean progressGame(String direction, List<String> bridge){
         bridgeGame.move(user);
