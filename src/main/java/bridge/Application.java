@@ -27,7 +27,7 @@ public class Application {
     }
 
     public static void makeBridge() {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
     }
