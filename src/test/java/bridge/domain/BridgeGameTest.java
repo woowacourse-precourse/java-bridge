@@ -26,11 +26,9 @@ class BridgeGameTest {
                 BridgeGame bridgeGame = new BridgeGame();
                 bridgeGame.initAnswerBridge(moveInfo.size());
                 GameStatus gameStatus = null;
-
                 for (String move : moveInfo) {
                     gameStatus = bridgeGame.getMovingResult(move);
                 }
-                System.out.println(gameStatus.getGameHistory());
                 assertThat(gameStatus.isClear()).isTrue();
             }, 1, randomValues.toArray(new Integer[0]));
         }
