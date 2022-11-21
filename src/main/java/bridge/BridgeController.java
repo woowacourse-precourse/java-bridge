@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.BridgeGame;
+import bridge.domain.bridge.BridgeGame;
 
 public class BridgeController {
     private final BridgeGame bridgeGame = new BridgeGame();
