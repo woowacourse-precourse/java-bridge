@@ -8,11 +8,8 @@ public class OutputView {
     }
 
     public static void printMap(List<String> userLocation, List<String> bridgeAnswer) {
-        System.out.println("유저 정보"+userLocation+", 정답:"+bridgeAnswer);
-
         for(int i=0;i<2;i++) {
             System.out.print("[");
-
             printMapUpDown(userLocation, i);
             System.out.println("]");
         }
