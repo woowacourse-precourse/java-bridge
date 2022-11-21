@@ -22,6 +22,34 @@ public class OutputView {
         newLine();
     }
 
+    public void printStart() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    public void printInputBridgeSize() {
+        newLine();
+        System.out.println("다리의 길이를 입력해 주세요.");
+    }
+
+    public void printMove() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printRestart() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame.recentResult());
+        System.out.println("게임 성공 여부: " + changeSuccessOrFail(bridgeGame.movable()));
+        System.out.println("총 시도한 횟수: " + bridgeGame.printPlayCount());
+    }
+
+    public void newLine() {
+        System.out.println();
+    }
+
     private StringBuilder unionMap(Result result, StringBuilder first, StringBuilder second) {
         openParenthesis(first, second);
         printMiddleMap(result, first, second);
@@ -81,38 +109,10 @@ public class OutputView {
         second.append(OPEN);
     }
 
-    public void printResult(BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
-        printMap(bridgeGame.recentResult());
-        System.out.println("게임 성공 여부: " + changeSuccessOrFail(bridgeGame.movable()));
-        System.out.println("총 시도한 횟수: " + bridgeGame.printPlayCount());
-    }
-
     private String changeSuccessOrFail(boolean movable) {
         if (movable) {
             return SUCCESS;
         }
         return FAIL;
-    }
-
-    public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-    }
-
-    public void printInputBridgeSize() {
-        newLine();
-        System.out.println("다리의 길이를 입력해 주세요.");
-    }
-
-    public void printMove() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-    }
-
-    public void printRestart() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-    }
-
-    public void newLine() {
-        System.out.println();
     }
 }
