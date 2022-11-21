@@ -24,6 +24,7 @@ public class BridgeGame {
 
     public boolean move(String sideToMove) {
         boolean movable = bridge.isAvailableToMove(sideToMove, player.getNextPosition());
+
         if (movable) {
             player.move();
         }
