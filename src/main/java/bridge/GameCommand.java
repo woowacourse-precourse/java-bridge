@@ -1,15 +1,15 @@
 package bridge;
 
 public class GameCommand {
-    private String gameCommand;
+    private static String gameCommand;
 
-    public GameCommand(String userGameCommand) {
+    public static void validateInput(String userGameCommand) {
         Validator.validateLength(userGameCommand);
         Validator.validateGameCommand(userGameCommand);
         gameCommand = userGameCommand;
     }
 
-    public String getGameCommand() {
+    public static String getGameCommand() {
         return gameCommand;
     }
 }
