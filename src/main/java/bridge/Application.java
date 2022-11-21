@@ -7,29 +7,36 @@ import bridge.View.InputView;
 import bridge.View.OutputView;
 
 public class Application {
+    static InputView inputView = new InputView();
+    static BridgeGame bridgeGame = new BridgeGame();
+    static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    static OutputView outputView = new OutputView();
+    static GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker,outputView);
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        BridgeGame bridgeGame = new BridgeGame();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        OutputView outputView = new OutputView();
-        GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker,outputView);
-
+        GAMESTART();
         try {
-            gameController.GAMESTART();
-
-            do {
-                gameController.RUNPROCESS();
-                if (bridgeGame.isSuccecss()) {
-                    break;
-                }
-            } while (gameController.SELECTRESTART());
-
-            gameController.STOPGAME();
-
+            GAMEPROCESS();
+            GAMESTOP();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    public static void GAMESTART() {
+        gameController.GAMESTART();
+    }
+
+    public static void GAMESTOP() {
+        gameController.STOPGAME();
+    }
+
+    public static void GAMEPROCESS() {
+        do {
+            gameController.RUNPROCESS();
+            if (bridgeGame.isSuccecss()) {
+                break;
+            }
+        } while (gameController.SELECTRESTART());
     }
 }
