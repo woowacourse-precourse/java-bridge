@@ -2,8 +2,7 @@ package bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class BridgeMakerTest {
     @DisplayName("무작위로 만든 이동가능한 곳")
     @Test
