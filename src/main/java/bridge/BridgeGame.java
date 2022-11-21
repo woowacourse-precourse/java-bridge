@@ -15,15 +15,14 @@ public class BridgeGame {
         newBridgePattern();
     }
 
-    public boolean move(int bridgeNum, String moving) {
+    public List<List<String>> move(int bridgeNum, String moving) {
         String correctAnswer = correctBridge.get(bridgeNum);
 
-        if (moving.equals(correctAnswer)) {
+        if (moving.equals(correctAnswer))
             mapIfCorrect(correctAnswer);
-            return true;
-        }
-        mapIfWrong(correctAnswer);
-        return false;
+        if (!moving.equals(correctAnswer))
+            mapIfWrong(correctAnswer);
+        return this.bridgeMap;
     }
 
     public List<List<String>> getBridgeMap() {
