@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -11,15 +11,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class lengthBridgeTest {
 
-    @ValueSource(strings = {"1", "11","113","145141"})
+    @ValueSource(strings = {"1", "11", "113", "145141"})
     @ParameterizedTest
-    void lengthBridge_테스트(String input){
+    void lengthBridge_테스트(String input) {
         assertThat(new lengthBridge(input).getLength()).isEqualTo(Integer.parseInt(input));
     }
 
-    @ValueSource(strings = {"x", "a1","1d","@"})
+    @ValueSource(strings = {"x", "a1", "1d", "@"})
     @ParameterizedTest
-    void lengthBridge_예외_테스트(String input){
-        assertThatThrownBy(() -> new lengthBridge(input)).isInstanceOf(IllegalArgumentException.class);
+    void lengthBridge_예외_테스트(String input) {
+        assertThatThrownBy(() -> new lengthBridge(input)).isInstanceOf(
+            IllegalArgumentException.class);
     }
 }

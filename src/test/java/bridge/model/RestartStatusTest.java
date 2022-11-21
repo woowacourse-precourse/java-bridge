@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -20,6 +20,7 @@ class RestartStatusTest {
     @ValueSource(strings = {"UD", "DD", "x", "1"})
     @ParameterizedTest
     void RestartStatusTest_예외_테스트(String input) {
-        assertThatThrownBy(() -> new RestartStatus(input)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new RestartStatus(input)).isInstanceOf(
+            IllegalArgumentException.class);
     }
 }
