@@ -1,8 +1,10 @@
 package bridge;
 
-import bridge.Bridge.ValidBridgeInput;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import bridge.Bridge.ValidBridgeInput;
+
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

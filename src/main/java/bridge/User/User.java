@@ -1,11 +1,13 @@
 package bridge.User;
 
+import bridge.Bridge.Bridge;
 import java.util.ArrayList;
 import java.util.List;
 
 import bridge.InputView;
 import bridge.OutputView;
-import bridge.Bridge.Bridge;
+
+
 
 public class User {
     public List<String> inputHistory;
