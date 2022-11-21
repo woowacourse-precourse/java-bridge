@@ -30,6 +30,7 @@ public class GameMachine {
     public void run() {
         RetryCommand respond;
         do {
+            bridgeGame.retry();
             MoveResult gameResult = play();
             respond = askRetry(gameResult);
         } while (respond == RetryCommand.RETRY);
@@ -54,15 +55,16 @@ public class GameMachine {
 
     private MoveResult play() {
         gameCounter++;
-        for (int location = 0; location < bridge.size(); location++) {
-            MoveResult moveResult = move();
-            if (moveResult == MoveResult.FAIL) {
-                view.printMap(bridge, location, MoveResult.FAIL);
-                return MoveResult.FAIL;
-            }
-            view.printMap(bridge, location, MoveResult.PASS);
+        MoveResult result = MoveResult.PASS;
+        for (int location = 0; location < bridge.size() && isPass(result); location++) {
+            result = move();
+            view.printMap(bridge, location, result);
         }
-        return MoveResult.PASS;
+        return result;
+    }
+
+    private boolean isPass(MoveResult result) {
+        return result == MoveResult.PASS;
     }
 
     private MoveResult move() {
