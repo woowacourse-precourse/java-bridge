@@ -9,6 +9,7 @@ public enum Result {
     ;
 
     private static final Map<Boolean, String> RESULT_VALUE = new HashMap<>();
+
     static {
         for (Result value : values()) {
             RESULT_VALUE.put(value.flag, value.result);

@@ -10,6 +10,7 @@ public enum Direction {
     ;
 
     private static final Map<Integer, String> MOVING_DIRECTION = new HashMap<>();
+
     static {
         for (Direction value : values()) {
             MOVING_DIRECTION.put(value.number, value.direction);

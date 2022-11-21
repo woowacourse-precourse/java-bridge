@@ -2,8 +2,6 @@ package bridge.view.output;
 
 import bridge.view.Message;
 
-import java.util.List;
-
 public enum OutputMessage implements Message {
     START("다리 건너기 게임을 시작합니다."),
     RESULT("최종 게임 결과"),

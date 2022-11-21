@@ -1,6 +1,5 @@
 package bridge.view.console;
 
-import bridge.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Reader {
