@@ -114,6 +114,45 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        printRetryMessage();
+        String retry = Console.readLine();
+
+        while (tryValidateRetry(retry)) {
+            printReRetryMessage();
+            retry = Console.readLine();
+        }
+
+        return retry;
     }
+
+    private void printRetryMessage() {
+        System.out.println();
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    private void printReRetryMessage() {
+        System.out.println();
+        System.out.println("게임을 다시 시도할지 여부를 다시 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    private boolean tryValidateRetry(String retry) {
+        try {
+            validateRetry(retry);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean validateRetry(String retry) {
+        if (!(retry.equals("R") || retry.equals("Q"))) {
+            System.out.println("[ERROR] 올바른 커멘드가 아닙니다.");
+            throw new IllegalArgumentException();
+        }
+
+        return false;
+    }
+
+
 }

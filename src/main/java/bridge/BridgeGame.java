@@ -10,6 +10,7 @@ public class BridgeGame {
     int currentIndex = 0;
     int bridgeSize;
     List<String> bridge;
+//    InputView inputView = new InputView();
 
     public BridgeGame(int bridgeSize, List<String> bridge) {
         this.bridgeSize = bridgeSize;
@@ -21,14 +22,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String moving) {
+    public int move(String moving) {
         if (!this.bridge.get(currentIndex).equals(moving)) {
-            retry();
-            return; // currentIndex 반환하도록 수정예정, currentIndex와 bridge를 OuputView에 전달해서 현재상태를 출력할 수 있게 할 예정
+            return -1; // currentIndex 반환하도록 수정예정, currentIndex와 bridge를 OuputView에 전달해서 현재상태를 출력할 수 있게 할 예정
         }
 
         currentIndex += 1;
         System.out.println(currentIndex);
+
+        return currentIndex;
     }
 
     public boolean isEndGame() {
@@ -46,5 +48,14 @@ public class BridgeGame {
      */
     public void retry() {
         this.currentIndex = 0;
+    }
+
+    public boolean isRetry(String command) {
+        if (command.equals("R")) {
+            retry();
+            return true;
+        }
+
+        return false;
     }
 }
