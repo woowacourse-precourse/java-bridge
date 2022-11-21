@@ -31,29 +31,10 @@ public class BridgeGameController {
         int bridgeSize = getBridgeSize();
         Bridge bridge = makeBridge(bridgeMaker, bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        int position;
 
-        do {
-            String block = getMovingInput();
-            position = bridgeGame.getPosition();
-
-            if (bridge.isMovableBlock(position, block)) {
-                outputView.printMap(bridgeGame, true);
-                position = bridgeGame.move();
-                continue;
-            }
-            outputView.printMap(bridgeGame, false);
-            String gameCommandInput = getGameCommandInput();
-
-            if (gameCommandInput.equals(RETRY_GAME)) {
-                bridgeGame.retry();
-                continue;
-            }
-            if (gameCommandInput.equals(QUIT_GAME)) {
-                outputView.printResult(bridgeGame, false);
-                return;
-            }
-        } while (position < bridgeSize);
+        if (!doBridgeGame(bridgeSize, bridgeGame)) {
+            return;
+        }
         outputView.printResult(bridgeGame, true);
     }
 
@@ -71,15 +52,45 @@ public class BridgeGameController {
 
     private String getMovingInput() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String block = inputView.readMoving();
-        System.out.println(block);
-        return block;
+        return inputView.readMoving();
     }
 
     private String getGameCommandInput() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String gameCommand = inputView.readGameCommand();
-        System.out.println(gameCommand);
-        return gameCommand;
+        return inputView.readGameCommand();
+    }
+
+    private int moveOrNot(BridgeGame bridgeGame, boolean isMovable) {
+        outputView.printMap(bridgeGame, isMovable);
+        if (isMovable) {
+            return bridgeGame.move();
+        }
+        return bridgeGame.getPosition();
+    }
+
+    private boolean doBridgeGame(int bridgeSize, BridgeGame bridgeGame) {
+        int position;
+        do {
+            String movingInput = getMovingInput();
+            boolean isMovable = bridgeGame.isMovable(movingInput);
+            position = moveOrNot(bridgeGame, isMovable);
+            if (retryOrQuit(bridgeGame,isMovable).equals(QUIT_GAME)) {
+                return false;
+            }
+        } while (position < bridgeSize);
+        return true;
+    }
+
+    private String retryOrQuit(BridgeGame bridgeGame, boolean isMove) {
+        if (isMove) {
+            return RETRY_GAME;
+        }
+        String gameCommandInput = getGameCommandInput();
+        if (gameCommandInput.equals(RETRY_GAME)) {
+            bridgeGame.retry();
+            return RETRY_GAME;
+        }
+        this.outputView.printResult(bridgeGame, false);
+        return QUIT_GAME;
     }
 }

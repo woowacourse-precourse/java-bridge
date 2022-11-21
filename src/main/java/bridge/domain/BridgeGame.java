@@ -40,6 +40,10 @@ public class BridgeGame {
         this.attempts++;
     }
 
+    public boolean isMovable(String movingInput) {
+        return this.bridge.isMovableBlock(this.position, movingInput);
+    }
+
     public Bridge getBridge() {
         return this.bridge;
     }
