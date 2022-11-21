@@ -52,7 +52,15 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public Continue readGameCommand(String command) {
+        validForGameCommand(command);
+        return Continue.getEnum(command);
+    }
+
+    private void validForGameCommand(String command) {
+        if (!Pattern.matches(Regex.CONTINUE.getPattern(), command)) {
+            System.err.println("[ERROR] 게임 재시작/종료 명령은 R 혹은 Q중 하나를 입력해야만 합니다.");
+            throw new IllegalArgumentException();
+        }
     }
 }
