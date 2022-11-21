@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.validator.BridgeValidator;
-import bridge.validator.UserInputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -19,60 +17,27 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        while (true) {
-            try {
-                return getBridgeSize();
-            } catch (IllegalArgumentException illegalArgumentException) {
-                ErrorView.printException(illegalArgumentException);
-            }
-        }
+    public String readBridgeSize() {
+        System.out.println();
+        System.out.println(PRINT_BRIDGE_SIZE);
+        return Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        while (true) {
-            try {
-                return getMovingCommand();
-            } catch (IllegalArgumentException illegalArgumentException) {
-                ErrorView.printException(illegalArgumentException);
-            }
-        }
+        System.out.println();
+        System.out.println(PRINT_SELECT_MOVING_DIRECTION);
+        return Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        while (true) {
-            try {
-                return getRetryCommand();
-            } catch (IllegalArgumentException illegalArgumentException) {
-                ErrorView.printException(illegalArgumentException);
-            }
-        }
-    }
-
-    private String getMovingCommand() {
-        System.out.println();
-        System.out.println(PRINT_SELECT_MOVING_DIRECTION);
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return UserInputValidator.gameCommandValidation(userInput);
-    }
-
-    private String getRetryCommand() {
         System.out.println();
         System.out.println(PRINT_SELECT_RETRY);
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return UserInputValidator.gameCommandValidation(userInput);
-    }
-
-    private int getBridgeSize() {
-        System.out.println();
-        System.out.println(PRINT_BRIDGE_SIZE);
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return UserInputValidator.checkBridgeSize(userInput);
+        return Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
     }
 }

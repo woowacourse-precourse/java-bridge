@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final int ZERO = 0;
     private static final String UP_ROW = "U";
     private static final String DOWN_ROW = "D";
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -31,12 +32,12 @@ public class BridgeMaker {
      * <p>
      * BridgeNumberGenerator 의 generate 함수를 통해 0을 받으면 "D"를 1을 받으면 "U"를 result 에 추가 한다.
      *
-     * @param result 건널 수 있는 다리의 정보를 가지고 있는 List<String>
+     * @param result 건널 수 있는 다리의 정보를 가지고 있는 List
      * @param size   generate 함수 호출 횟수
      */
     private void makeRandomBridge(List<String> result, int size) {
         for (int i = 0; i < size; ++i) {
-            if (this.bridgeNumberGenerator.generate() == 0) {
+            if (this.bridgeNumberGenerator.generate() == ZERO) {
                 result.add(DOWN_ROW);
                 continue;
             }

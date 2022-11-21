@@ -54,12 +54,13 @@ public class OutputView {
     }
 
     public void printFinalGameResult() {
+        System.out.println();
         System.out.println(PRINT_FINAL_GAME_RESULT);
     }
 
     private void printRow(final Bridge bridge, final List<String> userAnswerSheet, final String thisRow) {
         for (int i = INDEX_ZERO; i < userAnswerSheet.size(); ++i) {
-            printDelimiter(i);
+            printRowDelimiter(i);
             if (!userAnswerSheet.get(i).equals(thisRow)) {
                 System.out.print(ANSWER_WHITE_SPACE);
                 continue;
@@ -75,7 +76,7 @@ public class OutputView {
         return ANSWER_INCORRECT;
     }
 
-    private void printDelimiter(final int index) {
+    private void printRowDelimiter(final int index) {
         if (index != INDEX_ZERO) {
             System.out.print(DELIMITER);
         }

@@ -8,8 +8,4 @@ public class ErrorView {
     public static void printException(IllegalArgumentException illegalArgumentException) {
         System.out.printf(ERROR_FORMAT, ERROR_PREFIX, illegalArgumentException.getMessage(), System.lineSeparator());
     }
-
-    public static void printException(IllegalStateException illegalStateException) {
-        System.out.printf(ERROR_FORMAT, ERROR_PREFIX, illegalStateException.getMessage(), System.lineSeparator());
-    }
 }

@@ -96,9 +96,9 @@ public class BridgeGame {
     private int getBridgeSize() {
         while (true) {
             try {
-                return BridgeValidator.checkBridgeSizeValid(this.inputView.readBridgeSize());
-            } catch (IllegalStateException illegalStateException) {
-                ErrorView.printException(illegalStateException);
+                return BridgeValidator.checkBridgeSize(this.inputView.readBridgeSize());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
             }
         }
     }
@@ -107,8 +107,8 @@ public class BridgeGame {
         while (true) {
             try {
                 return BridgeGameCommandValidator.checkMovingCommandCharacter(this.inputView.readMoving());
-            } catch (IllegalStateException illegalStateException) {
-                ErrorView.printException(illegalStateException);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
             }
         }
     }
@@ -117,8 +117,8 @@ public class BridgeGame {
         while (true) {
             try {
                 return BridgeGameCommandValidator.checkRetryGameCommandCharacter(this.inputView.readGameCommand());
-            } catch (IllegalStateException illegalStateException) {
-                ErrorView.printException(illegalStateException);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
             }
         }
     }
