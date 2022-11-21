@@ -64,7 +64,9 @@ public class BridgeGame {
 
     private void validateCommand(String command) {
         if (!PROGRESS_COMMANDS.contains(command)) {
-            throw new IllegalArgumentException("[ERROR] R(재시작) 또는 Q(종료)만 입력할 수 있습니다.");
+            String guide = "[ERROR] %s(재시작) 또는 %s(종료)만 입력할 수 있습니다.";
+            throw new IllegalArgumentException(String.format(
+                    guide, Progress.RETRY, Progress.QUIT));
         }
     }
 }
