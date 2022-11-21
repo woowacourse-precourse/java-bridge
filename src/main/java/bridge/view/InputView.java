@@ -45,6 +45,6 @@ public class InputView {
     }
 
     public boolean checkAllCorrect() {
-        return allCorrect;
+        return bridgeGame.checkAllCorrect();
     }
 }

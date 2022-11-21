@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-
 public class GameStatus {
     private boolean isCorrect;
     private int gameCount;

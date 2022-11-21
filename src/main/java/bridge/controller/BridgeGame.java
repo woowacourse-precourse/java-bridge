@@ -57,4 +57,9 @@ public class BridgeGame {
     public boolean getMatchCorrect(){
         return gameStatus.getMatchCorrect();
     }
+
+    public boolean checkAllCorrect(){
+        bridgeGameService.setMatch();
+        return gameStatus.getMatchCorrect();
+    }
 }
