@@ -11,10 +11,7 @@ public class BridgeGameController {
     private final InputView inputView;
     private BridgeGame bridgeGame;
 
-    public BridgeGameController(
-            OutputView outputView,
-            InputView inputView
-    ) {
+    public BridgeGameController(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
     }
@@ -27,17 +24,18 @@ public class BridgeGameController {
     }
 
     private void setForGame() {
-        int bridgeSize = inputView.readBridgeSize();
-        bridgeGame = new BridgeGame(bridgeSize);
+        bridgeGame = new BridgeGame(inputView.readBridgeSize());
     }
 
     private void run() {
         while (bridgeGame.isPlaying()) {
-            String direction = inputView.readMoving();
-            bridgeGame.move(direction);
+            bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame);
         }
+        finishOrRestart();
+    }
 
+    private void finishOrRestart() {
         if (bridgeGame.isGameClear()) {
             return;
         }
