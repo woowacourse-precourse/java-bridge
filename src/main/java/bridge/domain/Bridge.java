@@ -4,22 +4,22 @@ import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 
 public class Bridge {
+    private static final BridgeMaker BRIDGE_MAKER = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
+    public static Bridge generateBridge(int bridgeSize) {
+        return new Bridge(BRIDGE_MAKER.makeBridge(bridgeSize));
+    }
+
     public boolean isMovable(String move, int location) {
         return bridge.get(location).equals(move);
     }
 
-    public int size(){
+    public int size() {
         return bridge.size();
-    }
-
-    public static Bridge generateBridge(int bridgeSize){
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 }
