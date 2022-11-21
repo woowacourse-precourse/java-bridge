@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import bridge.model.PlayerMap;
 import bridge.model.TotalResult;
