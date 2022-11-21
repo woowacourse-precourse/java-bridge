@@ -25,17 +25,26 @@ public class OutputView {
         for (int row = 0; row < map.length; row++) {
             System.out.print("[");
             printRow(map[row]);
-            System.out.println("]");
+            System.out.println(" ]");
         }
     }
     public void printRow(String[] row) {
         for (int idx = 0; idx < row.length; idx ++) {
             if (idx != row.length-1) {
-                System.out.print(" "+row[idx]+" |");
+                System.out.print(" ");
+                printSpaceOrCell(row[idx]);
+                System.out.print(" |");
                 continue;
             }
-            System.out.print(row[idx]+ " ");
+            printSpaceOrCell(row[idx]);
         }
+    }
+    public void printSpaceOrCell(String cell) {
+        if (cell == null) {
+            System.out.print(" ");
+            return;
+        }
+        System.out.print(cell);
     }
     public String[][] makeMap(List<String> bridge, List<String> moves) {
         int progress = moves.size();
