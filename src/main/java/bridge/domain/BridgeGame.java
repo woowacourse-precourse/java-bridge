@@ -7,9 +7,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-	List<List<String>> upDownBridgeList = new ArrayList<>();
-	ArrayList<String> upBridge = new ArrayList<>();
-	ArrayList<String> downBridge = new ArrayList<>();
+	private List<List<String>> upDownBridgeList = new ArrayList<>();
+	private ArrayList<String> upBridge = new ArrayList<>();
+	private ArrayList<String> downBridge = new ArrayList<>();
 	private int bridgeSize = 0;
 
 	public BridgeGame(int bridgeSize) {

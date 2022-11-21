@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class UI_readBridgeSizeTest extends NsTest {
 
 	private static final String ERROR_MESSAGE = "[ERROR]";
-	InputView inputView = new InputView();
+	private InputView inputView = new InputView();
 
 	@DisplayName("다리의 길이가 3이상 20이하의 정수가 아닐 경우 예외가 발생한다.")
 	@ParameterizedTest

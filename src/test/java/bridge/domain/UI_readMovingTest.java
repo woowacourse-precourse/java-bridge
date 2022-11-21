@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class UI_readMovingTest extends NsTest {
 
 	private static final String ERROR_MESSAGE = "[ERROR]";
-	InputView inputView = new InputView();
+	private InputView inputView = new InputView();
 
 	@DisplayName("다리를 선택할 때 U나 D의 문자가 아니면 예외가 발생한다.")
 	@ParameterizedTest

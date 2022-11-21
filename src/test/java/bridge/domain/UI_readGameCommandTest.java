@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class UI_readGameCommandTest extends NsTest {
 
 	private static final String ERROR_MESSAGE = "[ERROR]";
-	InputView inputView = new InputView();
+	private InputView inputView = new InputView();
 
 	@DisplayName("다리 건너기 게임을 재시작할지 종료할지 여부에서 R이나 Q의 문자가 아니면 예외가 발생한다.")
 	@ParameterizedTest
