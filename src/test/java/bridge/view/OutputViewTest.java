@@ -66,7 +66,8 @@ class OutputViewTest {
 
     @Test
     void 최종_결과_성공_출력_테스트() {
-        GameStatus gameStatus = new GameStatus(true, 1);
+        GameStatus gameStatus = new GameStatus();
+        gameStatus.setSuccess(true);
         outputView.printResult(gameStatus, List.of("U", "D", "U", "D"), List.of("U", "D", "U", "D"));
         String printOut = consoleOut.toString().trim();
 
@@ -81,7 +82,8 @@ class OutputViewTest {
 
     @Test
     void 최종_결과_실패_출력_테스트() {
-        GameStatus gameStatus = new GameStatus(false, 1);
+        GameStatus gameStatus = new GameStatus();
+        gameStatus.setSuccess(false);
         outputView.printResult(gameStatus, List.of("U", "D", "U", "U"), List.of("U", "D", "U", "D"));
         String printOut = consoleOut.toString().trim();
 
