@@ -20,7 +20,7 @@ public enum ValidationType {
         this.errorMessage = errorMessage;
     }
 
-    private List<String> getValidationRange() {
+    public List<String> getValidationRange() {
         return validationRange;
     }
 

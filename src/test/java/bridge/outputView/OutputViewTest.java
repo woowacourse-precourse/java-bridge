@@ -15,7 +15,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class OutputViewTest extends NsTest {
 
-
     OutputView outputView = new OutputView();
 
     @DisplayName("한 칸씩 움직일 때마다의 출력 테스트 코드")
