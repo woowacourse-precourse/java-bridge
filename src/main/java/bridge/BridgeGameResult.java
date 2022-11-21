@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.BridgeChoice;
 import bridge.constant.MovingResult;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +17,8 @@ public class BridgeGameResult {
         resultMap = new HashMap<>();
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
-        resultMap.put("U", upBridge);
-        resultMap.put("D", downBridge);
+        resultMap.put(BridgeChoice.UP.getDirection(), upBridge);
+        resultMap.put(BridgeChoice.DOWN.getDirection(), downBridge);
         Success = true;
     }
 
