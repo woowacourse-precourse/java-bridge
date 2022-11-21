@@ -12,4 +12,8 @@ public class MessageQuestionPrint {
 	public void userMoveQuestion() {
 		System.out.println(Constant.MOVE_INPUT_MESSAGE_QUESTION);
 	}
+
+	public void userCommandQuestion() {
+		System.out.println(Constant.COMMAND_INPUT_MESSAGE_QUESTION);
+	}
 }
