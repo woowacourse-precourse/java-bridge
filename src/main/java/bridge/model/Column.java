@@ -27,9 +27,14 @@ public enum Column {
 
     private static final Map<Integer, Column> BY_RANDOM_NUMBER = Stream.of(values()).collect(Collectors.toMap(Column::randomNumber, Function.identity()));
 
+    public boolean equals(Column column){
+        if(this.capitalLetter == column.capitalLetter)
+            return true;
+        return false;
+    }
     public static Column valueOfCapitalLetter(String capitalLetter) {
         return Arrays.stream(values())
-                .filter(row -> row.capitalLetter == capitalLetter)
+                .filter(row -> row.capitalLetter.equals(capitalLetter))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
     }
