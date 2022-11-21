@@ -5,7 +5,8 @@ import java.util.Arrays;
 import static bridge.validator.ExceptionMessage.RESTART_WHETHER;
 
 public enum GameCommand {
-    RESTART("R"), QUIT("Q");
+    RESTART("R"),
+    QUIT("Q");
 
     private String gameCommandString;
 
