@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import util.Constants;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -30,7 +31,7 @@ public class InputView {
     }
 
     private void validateCorrectRange(int size) {
-        if (size < 3 || size > 20) {
+        if (size < Constants.MIN_SIZE || size > Constants.MAX_SIZE) {
             throw new IllegalArgumentException("[ERROR] 3~20 사이의 양의 정수를 입력해주세요");
         }
     }
@@ -51,7 +52,7 @@ public class InputView {
     }
 
     private void validateCorrectMoving(String choice) {
-        if (!(choice.equals("U")) && !(choice.equals("D"))) {
+        if (!(choice.equals(Constants.UP)) && !(choice.equals(Constants.DOWN))) {
             throw new IllegalArgumentException("[ERROR] U 또는 D 문자만 입력해주세요");
         }
     }
@@ -72,7 +73,7 @@ public class InputView {
     }
 
     private static void validateCorrectRetry(String choice) {
-        if (!(choice.equals("R")) && !(choice.equals("Q"))) {
+        if (!(choice.equals(Constants.RESTART)) && !(choice.equals(Constants.EXIT))) {
             throw new IllegalArgumentException("[ERROR] R 또는 Q 문자만 입력해주세요");
         }
     }

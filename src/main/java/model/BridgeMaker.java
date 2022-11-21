@@ -1,8 +1,10 @@
 package model;
 
 import bridge.BridgeNumberGenerator;
+import util.Constants;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 /**
@@ -29,11 +31,11 @@ public class BridgeMaker {
     }
 
     public void checkZeroOrOne(int zeroOrOne, List<String> bridge) {
-        if (zeroOrOne == 0) {
-            bridge.add("D");
+        if (zeroOrOne == Constants.ZERO) {
+            bridge.add(Constants.DOWN);
         }
-        if (zeroOrOne == 1) {
-            bridge.add("U");
+        if (zeroOrOne == Constants.ONE) {
+            bridge.add(Constants.UP);
         }
     }
 }

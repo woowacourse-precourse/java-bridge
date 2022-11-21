@@ -72,7 +72,7 @@ public class BridgeGame {
     }
 
     public static boolean retry() {
-        if (InputView.readGameCommand().equals("Q")) {
+        if (InputView.readGameCommand().equals(Constants.EXIT)) {
             OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]",Constants.FAIL,attempt);
             return true;
         }
