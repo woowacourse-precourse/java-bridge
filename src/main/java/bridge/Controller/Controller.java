@@ -37,9 +37,10 @@ public class Controller {
         //게임 시작
 
         boolean gameContinue = true;
+        boolean gameStatus = true;
         while(gameContinue){
             String position = inputView.readMoving();
-            boolean gameStatus = bridgeGame.gamePlayOnce(position);
+            gameStatus = bridgeGame.gamePlayOnce(position);
             if(!gameStatus){
                 //실패한 맵 표시
                 outputView.printMap(bridgeGame.mySelectBridge, false, bridgeGame.mySelectBridge.size()-1);
@@ -53,7 +54,7 @@ public class Controller {
         }
 
         System.out.println("최종 게임 결과");
-        outputView.printMap(bridgeGame.mySelectBridge, !gameContinue, bridgeGame.mySelectBridge.size()-1);
+        outputView.printMap(bridgeGame.mySelectBridge, gameStatus, bridgeGame.mySelectBridge.size()-1);
         //결과 출력
         outputView.printResult(bridgeGame.gameSuccess, bridgeGame.gameTryCount);
     }
