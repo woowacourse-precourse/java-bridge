@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.domain.MessageStorage;
-
 import java.util.List;
 
 /**
