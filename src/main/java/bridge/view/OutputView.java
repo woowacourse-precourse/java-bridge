@@ -1,7 +1,11 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
 import bridge.domain.GameProgress;
 import bridge.domain.GameResult;
+import bridge.domain.Move;
+
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -14,11 +18,11 @@ public class OutputView {
     public void printGame(GameResult gameResult) {
         GameProgress nowProgress = gameResult.getProgress();
         if (nowProgress == GameProgress.PLAYING) {
-            printMap();
+            printMap(gameResult.getBridge());
         }
         if (nowProgress == GameProgress.SUCCESS || nowProgress == GameProgress.FAILURE) {
             System.out.println("최종 게임 결과");
-            printMap();
+            printMap(gameResult.getBridge());
             printResult(nowProgress, gameResult.getNumberOfAttempts());
         }
     }
@@ -28,7 +32,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(Bridge bridge) {
+        String firstRow = "";
+        String secondRow = "";
+
+        //TODO 길이를 줄이자!
+        for (String upDown : bridge.getBridge()) {
+            if (upDown.equals(Move.UP.getDirection())) {
+                firstRow += "O";
+                secondRow += " ";
+            }
+            if (upDown.equals(Move.DOWN.getDirection())) {
+                firstRow += " ";
+                secondRow += "O";
+            }
+        }
+
+        System.out.println(firstRow);
+        System.out.println(secondRow);
     }
 
     /**
