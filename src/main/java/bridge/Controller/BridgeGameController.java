@@ -63,12 +63,8 @@ public class BridgeGameController {
     }
 
     public boolean isSuccess(boolean isCorrect, int lengthOfBridge) {
-        if (isCorrect) {
-            isCorrectList.add("O");
-        }
-        if (isCorrectList.size() == lengthOfBridge) {
-            return true;
-        }
+        if (isCorrect) isCorrectList.add("O");
+        if (isCorrectList.size() == lengthOfBridge) return true;
         return false;
     }
 
