@@ -16,7 +16,7 @@ public class BridgeGame {
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.currentUserPosition = -1;
         this.gameWinStatus = false;
-        this.totalTryCount = 0;
+        this.totalTryCount = 1;
     }
 
     /**
@@ -26,7 +26,6 @@ public class BridgeGame {
      */
     public boolean move(BridgeBlock block) {
         this.currentUserPosition++;
-        this.totalTryCount++;
         if (this.bridge.get(this.currentUserPosition).equals(block.getBridgeBlock())) {
             if (this.currentUserPosition == bridge.size() - 1) {
                 this.gameWinStatus = true;
@@ -44,6 +43,7 @@ public class BridgeGame {
     public boolean retry(RetrySelector retrySelector) {
         if (retrySelector == RetrySelector.RETRY) {
             this.currentUserPosition = -1;
+            this.totalTryCount++;
             return true;
         }
         return false;
