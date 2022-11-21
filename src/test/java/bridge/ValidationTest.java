@@ -22,6 +22,14 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_INVALID_BRIDGE_SIZE);
     }
+    @Test
+    @DisplayName("[ERROR] 다리 사이즈로 입력하지 않았을 때 예외 발생")
+    void noInputInBridgeSize() {
+        String userInput = "";
+        assertThatThrownBy(() -> validateBridgeSize(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_INVALID_BRIDGE_SIZE);
+    }
 
     @ParameterizedTest
     @DisplayName("[ERROR] U 또는 D 이외의 값 입력시 예외 발생")
@@ -40,4 +48,6 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_INVALID_GAME_COMMAND);
     }
+
+
 }
