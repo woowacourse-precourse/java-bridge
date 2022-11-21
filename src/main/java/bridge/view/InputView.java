@@ -17,7 +17,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
         String inputLength = Console.readLine();
-        inputLengthIsNumValidate(inputLength);;
+        inputLengthIsNumValidate(inputLength);
         return Integer.parseInt(inputLength);
     }
 
@@ -37,10 +37,10 @@ public class InputView {
         return Console.readLine();
     }
 
-    public void inputLengthIsNumValidate(String inputLength) {
-        for (Character ch : inputLength.toCharArray()) {
-            if (Character.isDigit(ch)) {
-                throw new IllegalArgumentException("[ERROR] 숫자인 값만 입력해야 합니다.");
+    public void inputLengthIsNumValidate(String inputLength) throws NumberFormatException {
+        for (char ch : inputLength.toCharArray()) {
+            if (!Character.isDigit(ch)) {
+                throw new NumberFormatException("[ERROR] 숫자인 값만 입력해야 합니다.");
             }
         }
     }
