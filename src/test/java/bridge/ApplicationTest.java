@@ -294,21 +294,19 @@ class ApplicationTest extends NsTest {
 
     //region 재시작 시 초기화 단위 테스트 케이스
     @Test
-    void 재시작시초기화_기능테스트(){
+    void 재시작시초기화_기능테스트1(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U"));
-        bridgeResult = new BridgeResult(
-                new LinkedList<>(List.of("O")),
-                new LinkedList<>(List.of(" "))
-        );
-        bridgeResult = bridgeGame.move(1, "U", bridgeResult);
-        outputView.printMap(bridgeResult);
-        bridgeGame.retry(bridgeResult);
+        bridgeResult = new BridgeResult();
+        bridgeResult = bridgeGame.move(0, "D", bridgeResult);
+        assertThat(bridgeResult.getLastResult()).isEqualTo("X");
+    }
+
+    @Test
+    void 재시작시초기화_기능테스트2(){
+        bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeResult = new BridgeResult();
         bridgeResult = bridgeGame.move(0, "U", bridgeResult);
-        outputView.printMap(bridgeResult);
-        assertThat(output()).contains(
-                "[ O ]",
-                "[   ]"
-        );
+        assertThat(bridgeResult.getLastResult()).isEqualTo("O");
     }
     //endregion
 
