@@ -71,10 +71,30 @@ public class InputView {
      */
     public String readMoving() {
         String moveBridge = "";
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        moveBridge = Console.readLine();
+        while(true) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            moveBridge = Console.readLine();
+            if(moveBridgeCheck(moveBridge))
+                break;
+        }
         return moveBridge;
     }
+
+    public boolean moveBridgeCheck(String moveBridge){
+        try{
+            moveBridgeException(moveBridge);
+            return true;
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] U 와 D 두 문자중 하나를 입력해주세요.");
+            return false;
+        }
+    }
+
+    public void moveBridgeException(String moveBridge){
+        if(!moveBridge.equals("U")&&!moveBridge.equals("D"))
+            throw new IllegalArgumentException();
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -95,13 +115,13 @@ public class InputView {
             gameCommandException(gameCommand);
             return true;
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] R 과 Q 두 문자중 하나를 입력해 주세요");
+            System.out.println("[ERROR] R 과 Q 두 문자중 하나를 입력해주세요");
             return false;
         }
     }
 
     public void gameCommandException(String gameCommand){
-        if(!gameCommand.equals("R")||!gameCommand.equals("Q"))
+        if(!gameCommand.equals("R")&&!gameCommand.equals("Q"))
             throw new IllegalArgumentException();
     }
 
