@@ -12,7 +12,7 @@ public class Bridge {
         this.status = status;
     }
 
-    public String compareTo(int index, String input) {
+    public String compareTo(int index, Moving input) {
         if (status.get(index).equals(input)) {
             return MovingType.MOVE.getResult();
         }

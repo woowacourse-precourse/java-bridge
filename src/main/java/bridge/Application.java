@@ -25,8 +25,8 @@ public class Application {
         }
     }
 
-    private static String move(Bridge bridge) {
-        String moving = inputView.readMoving();
+    private static Moving move(Bridge bridge) {
+        Moving moving = inputView.readMoving();
         outputView.printMap(bridgeGame.move(bridge, moving));
         return moving;
     }

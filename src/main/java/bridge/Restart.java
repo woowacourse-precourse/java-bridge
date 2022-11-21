@@ -3,7 +3,7 @@ package bridge;
 import validation.Validation;
 
 public class Restart {
-    private String result;
+    private final String result;
 
     public Restart(String result) {
         Validation.ofRestart(result);

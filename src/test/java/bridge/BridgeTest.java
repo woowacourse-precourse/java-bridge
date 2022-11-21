@@ -13,6 +13,6 @@ public class BridgeTest {
     @CsvSource({"0,U,O", "0,D,X", "1,D,O", "1,U,X"})
     void 이동할_칸과_다리의_값을_비교(int index, String input, String result) {
         Bridge bridge = new Bridge(List.of("U", "D"));
-        assertThat(bridge.compareTo(index, input)).isEqualTo(result);
+        assertThat(bridge.compareTo(index, new Moving(input))).isEqualTo(result);
     }
 }
