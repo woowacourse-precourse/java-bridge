@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.errorenum.ErrorMessage;
-import bridge.util.BridgeMaker;
+import bridge.BridgeMaker;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

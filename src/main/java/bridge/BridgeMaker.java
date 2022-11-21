@@ -1,6 +1,5 @@
-package bridge.util;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.domain.bridgeenum.MovePosition;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int index = 0; index < size; index++) {
+        while (bridge.size() < size) {
             bridge.add(generateMovePosition());
         }
         return bridge;

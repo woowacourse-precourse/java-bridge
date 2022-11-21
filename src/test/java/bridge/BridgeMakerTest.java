@@ -1,8 +1,7 @@
-package bridge.util;
+package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
