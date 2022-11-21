@@ -26,4 +26,8 @@ public enum MovementStatusForm {
         return DOWM_X;
     }
 
+    public static boolean isPassCase(MovementStatusForm movementStatusForm){
+        return movementStatusForm.isPass;
+    }
+
 }
