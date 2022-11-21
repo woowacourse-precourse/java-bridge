@@ -37,10 +37,7 @@ public class BridgeGame {
     }
 
     public List<List<String>> makeMap() {
-        List<List<String>> map = new ArrayList<>();
-        map.add(makeRow(BridgeConstants.UP));
-        map.add(makeRow(BridgeConstants.DOWN));
-        return map;
+        return List.of(makeRow(BridgeConstants.UP), makeRow(BridgeConstants.DOWN));
     }
 
     private List<String> makeRow(String position) {
