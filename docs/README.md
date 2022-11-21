@@ -202,7 +202,7 @@ Q
 ### ⭐ 도메인 로직
 
 <details>
-<summary> GameAgent </summary>
+<summary> 다리 횡단 기능  </summary>
 <div markdown="1">
 
 - [X] 다리를 생성한다.
@@ -217,47 +217,41 @@ Q
 </details>
 
 <details>
-<summary> CrossingState </summary>
+<summary> 다리 횡단 결과 관련 기능</summary>
 <div markdown="1">
 
 - [X] 다리를 건넌 상태를 정의한다.
   - [X] 다리 건넌 상태에 따라 객체를 반환한다.
   - [X] 다리 건넌 상태에 따라 기호를 반환한다.
-</div>
-</details>
-
-<details>
-<summary> GameRecordSymbol </summary>
-<div markdown="1">
 
 - [X] 다리 건넌 상태 출력 형태에 사용할 특수 문자들을 정의한다.
 </div>
 </details>
 
+
 <details>
-<summary> GameRecord </summary>
+<summary> 다리 건너기 게임 기록 작성 기능</summary>
 <div markdown="1">
 
 - [X] 현재 다리 건넌 위치에 따른 포맷에 대해 정의한다. 
   - [X] 현재 다리 건넌 위치에 따라 정의된 포맷 객체를 반환한다.
   - [X] 현재 다리 건넌 위치에 따라 정의된 포맷을 반환한다.
+  
+- [X] 현재 다리 건넌 상태를 만든다.
+
+- [X] 다리 건넌 횟수에 따른 포맷을 정의한다.
+  - [X] 현재 횟수를 검사하여 ' | '의 추가 여부를 판별한다.
+  - [X] 횟수를 비교하여 출력 포맷에  ' | '를 추가하거나 그대로 사용한다.
 </div>
 </details>
 
 <details>
-<summary> GameRecordGenerator </summary>
+<summary> 다리 건너기 게임 기록 저장 기능</summary>
 <div markdown="1">
 
-- [X] 현재 다리 건넌 상태를 만든다.
-</div>
-</details>
-
 - [ ] 디리 건넌 상태를 저장한다.
-  - [ ] 다리의 횟수가 처음이 아닐 때 ' | '를 추가한다.
-  - [ ] 다리 건넌 횟수에 따른 포맷을 정의한다.
-    - [ ] 현재 횟수를 검사하여 ' | '의 추가 여부를 판별한다. 
-    - [ ] 횟수를 비교하여 출력 포맷에  ' | '를 추가하거나 그대로 사용한다. 
-    
+  - [ ] 다리 건넌 횟수가 1회가 넘는지 확인한다.
+
 - [ ] 다리 건넌 상태 출력 형태를 만든다.
   - [ ] 저장 시작 시 '[ '를 추가한다.
   - [ ] 현재까지의 다리 건넌 상태를 추가한다.
@@ -265,6 +259,8 @@ Q
   - [ ] 띄어쓰기를 추가한다.
 
 - [ ] 다리 건넌 상태를 반환한다.
+</div>
+</details>
 
 ---
 ### 🎨 UI 로직
