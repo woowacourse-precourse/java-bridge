@@ -55,6 +55,10 @@
     - 자바의 String, StringBuilder 와 StringBuffer
         ‼️학습 계기
             - 위의 API를 공부하다 추가적인 궁금증
+        - 구조
+            구조를 보면 StringBuffer와 StringBuilder는 AbstractStringBuilder를 상속 받고 있다.
+            StringBuffer는 synchronized가 있어 동기 처리를 해준다.
+            반대로 StringBuilder는 동기 지원을 하지 않는다.
         - String
             - 불변의 속성
                 ex) 처음에 String s = 'hello'라는 문자열을 선언하면 메모리에 공간할당을 받는다.
@@ -67,4 +71,24 @@
             - 하지만 단일 쓰레드에서는 StringBuffer보다 성능이 좋다.
         👉 문자열의 연산이 많아진다면 StringBuffer나 StringBulider를 사용하자
             쓰레드 환경에 따라 Buffer와 Builder를 선택하여 사용
+    - checkedException과 UncheckedException
+        ‼️학습 계기
+            - Exception에 대해 찾아보다가
+        - Exception
+            - Exception은 비정상적인 상황이 발생 시 발생하는 것
+        -   상위 클래스인 Exception을 보면 두가지로 나뉜다.
+            RuntimeException과 그 외 Exception
+            이 중 RuntimeException의 하위 클래스를 unchecked Exception
+            그 외의 에러를 checked Exception이라 한다.
+        - checked Exception
+            컴파일러가 에러 확인을 하기 때문에 try~catch문을 사용하여 에러 처리를 반드시 해줘야한다.
+            ex) IOException 등
+        - unchecked Exception
+            RuntimeException. 말그대로 실행 중 발생하는 에러를 뜻한다.
+            ex) NullpointException, IllegalArgumentException 등
+        👉 상위 클래스인 Exception은 runtimeException과 그 외 Exception으로 나뉜다.
+            이 둘의 차이는 컴파일러가 에러를 확인 유무에 따라 나뉜다. 
+            checkedExcpetion은 컴파일러가 에러를 확인 하기 때문에 에러 처리를 해주어야한다.
+            uncheckedException은 에러처리를 강제하지 않는다.
+        
 ````
