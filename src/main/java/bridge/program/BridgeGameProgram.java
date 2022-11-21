@@ -1,11 +1,12 @@
 package bridge.program;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeOfUser;
 import bridge.domain.common.BridgeRandomNumberGenerator;
 import bridge.view.ConsoleView;
-import bridge.domain.BridgeGame;
 import java.util.List;
+import java.util.Map;
 
 public class BridgeGameProgram {
 
@@ -31,7 +32,7 @@ public class BridgeGameProgram {
     }
 
     private void playBridgeGame(BridgeGame bridgeGame) {
-        while (!bridgeGame.isDone()) {
+        while (!bridgeGame.checkFinish()) {
             bridgeMove(bridgeGame);
             checkRetry(bridgeGame);
         }
@@ -51,8 +52,7 @@ public class BridgeGameProgram {
 
     private void showBridgeGameResults(BridgeGame bridgeGame) {
         BridgeOfUser bridgeOfUser = bridgeGame.nowUserMapState();
-        String failOrSuccess = bridgeGame.calculateDoneResult();
-        int tryCount = bridgeGame.getTryCount();
-        consoleView.showResult(bridgeOfUser,failOrSuccess,tryCount);
+        Map<String,String> results = bridgeGame.calculateDoneResults();
+        consoleView.showResult(bridgeOfUser,results);
     }
 }
