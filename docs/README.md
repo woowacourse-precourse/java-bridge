@@ -17,12 +17,12 @@
 ---
 
 ### 출력 - ClassName : OutputView
-- [ ] 현재까지 이동한 다리의 상태를 출력 - `#printMap()`
-- [ ] 최종 결과 출력 - `#printResult()`
-    - [ ] 게임 성공 여부 출력 -`#printIsSuccess()`
-    - [ ] 총 시도 횟수 출력 - `#printTotalTry()`
+- [x] 현재까지 이동한 다리의 상태를 출력 - `#printMap()`
+- [x] 최종 결과 출력 - `#printResult()`
+    - [x] 게임 성공 여부 출력 -`#printIsSuccess()`
+    - [x] 총 시도 횟수 출력 - `#printTotalTry()`
 
-- [ ] 사용자의 게임 재시도 입력을 받는다. - `#readGameCommand()`
+- [x] 사용자의 게임 재시도 입력을 받는다. - `#readGameCommand()`
     - 예외사항
         - R/Q 외의 문자가 입력된 경우
       
@@ -45,7 +45,7 @@
 - [x] 이동할 수 있는지 없는지 확인 - `#isMovableBlock()`
 - 예외사항
   - U/D 이외의 문자가 포함된 경우
-- [ ] 현재까지 이동한 다리 정보 조회 - `#getCrossedBridge`
+- [x] 현재까지 이동한 다리 정보 조회 - `#getCrossedBridge`
 
 ---
 
