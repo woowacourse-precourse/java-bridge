@@ -23,6 +23,9 @@ public class OutputView {
     private static final String END_BRACKET = "]";
     private static final String WALL = "|";
 
+    private static final String SUCCESS_MSG = "성공";
+    private static final String FAIL_MSG = "실패";
+
     private static final String GAME_SUCCESS = "게임 성공 여부";
     private static final String TOTAL_TRY = "총 시도한 횟수";
 
@@ -39,9 +42,14 @@ public class OutputView {
 
     private void printMapUpper(List<Boolean> moveResult, List<String> playersMove) {
         System.out.print(START_BRACKET);
-        for (int i = 0; i < playersMove.size(); i++) {
-            printMoveAtIdx(moveResult, playersMove, i, UP);
-            if (printWallIfNotEnd(playersMove, i)) {
+        for (int idx = 0; idx < playersMove.size(); idx++) {
+            if (playersMove.get(idx).equals(UP)) {
+                printSingleResult(moveResult, idx);
+            }
+            if (playersMove.get(idx).equals(DOWN)) {
+                printEmptySpaces();
+            }
+            if (printWallIfNotEnd(playersMove, idx)) {
                 break;
             }
         }
@@ -50,20 +58,26 @@ public class OutputView {
 
     private void printMapLower(List<Boolean> moveResult, List<String> playersMove) {
         System.out.print(START_BRACKET);
-        for (int i = 0; i < playersMove.size(); i++) {
-            printMoveAtIdx(moveResult, playersMove, i, DOWN);
-            if (printWallIfNotEnd(playersMove, i)) {
+        for (int idx = 0; idx < playersMove.size(); idx++) {
+            if (playersMove.get(idx).equals(DOWN)) {
+                printSingleResult(moveResult, idx);
+            }
+            if (playersMove.get(idx).equals(UP)) {
+                printEmptySpaces();
+            }
+            if (printWallIfNotEnd(playersMove, idx)) {
                 break;
             }
         }
         System.out.println(END_BRACKET);
     }
 
-    private void printMoveAtIdx(List<Boolean> moveResult, List<String> playersMove, int i, String d) {
-        if (playersMove.get(i).equals(d)) {
-            System.out.printf(" %s ", resultMapper(moveResult.get(i)));
-            return;
-        }
+    private void printSingleResult(List<Boolean> moveResult, int idx) {
+        String resultToPrint = resultMapper(moveResult.get(idx));
+        System.out.printf(" %s ", resultToPrint);
+    }
+
+    private void printEmptySpaces(){
         System.out.print("   ");
     }
 
@@ -89,12 +103,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(GameContext context) {
-        System.out.printf("%s: %s\n", GAME_SUCCESS, sucessMapper(context.isPlaying()));
+        System.out.printf("%s: %s\n", GAME_SUCCESS, successMapper(context.isPlaying()));
         System.out.printf("%s: %d", TOTAL_TRY, context.getRetryCnt());
     }
 
-    private String sucessMapper(boolean success){
-        return Map.of(true, "성공", false, "실패").get(success);
+    private String successMapper(boolean success){
+        return Map.of(true, SUCCESS_MSG, false, FAIL_MSG).get(success);
     }
 
     public void printOpening() {
