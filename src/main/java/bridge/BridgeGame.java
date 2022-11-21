@@ -14,6 +14,28 @@ public class BridgeGame {
     private int attempts = 1;
 
 
+    public void run() {
+        while (true) {
+            boolean isSuccess = move();
+            if (isSuccess) {
+                //성공
+                //O 출력
+                // 총 시도한 횟수
+                return;
+            }
+            //실패
+            boolean isRetry = retry();
+            //재시도 x
+            if (!isRetry) {
+                //최종 게임 결과 출력
+                //게임 성공 여부 출력
+                //총 시도한 횟수 출력
+                return;
+            }
+            //재시작
+        }
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
