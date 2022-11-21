@@ -4,6 +4,7 @@ import enumCollections.Side;
 import enumCollections.UserInterfaceSymbol;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Map {
@@ -25,7 +26,7 @@ public class Map {
     }
 
     public List<List<String>> get() {
-        return bridgeUserInterface;
+        return Collections.unmodifiableList(bridgeUserInterface);
     }
 
     public void add(Side side, boolean moved) {
