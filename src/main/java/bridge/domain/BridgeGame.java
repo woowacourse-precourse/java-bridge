@@ -85,6 +85,17 @@ public class BridgeGame {
         printPlayerMoveDown.append("|   ");
     }
 
+
+    public MoveAnswer comparePlayerMoveAndBridge(int bridgeIdx){
+        if(bridge.get(bridgeIdx).equals(playerMoveRecord.get(bridgeIdx)) && playerMoveRecord.get(bridgeIdx).equals(MoveDirection.U.strMoveDirection))
+            return MoveAnswer.UP_TRUE;
+        if(bridge.get(bridgeIdx).equals(playerMoveRecord.get(bridgeIdx)) && playerMoveRecord.get(bridgeIdx).equals(MoveDirection.D.strMoveDirection))
+            return MoveAnswer.DOWN_TRUE;
+        if(!bridge.get(bridgeIdx).equals(playerMoveRecord.get(bridgeIdx)) && playerMoveRecord.get(bridgeIdx).equals(MoveDirection.U.strMoveDirection))
+            return MoveAnswer.UP_FALSE;
+        return MoveAnswer.DOWN_FALSE;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
