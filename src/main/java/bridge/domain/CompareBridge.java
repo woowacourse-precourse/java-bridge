@@ -19,16 +19,18 @@ public class CompareBridge {
     public List<Boolean> stepping(Player player, List<String> bridge) {
         List<String> movingChoices = player.getMovingInputs();
         List<Boolean> moveResults = new ArrayList<>();
-        int index = 0;
-        for (String moving : movingChoices) {
-            if (isSame(moving, bridge.get(index))) {
+        checkSameOrNot(movingChoices, moveResults);
+        return moveResults;
+    }
+
+    public void checkSameOrNot(List<String> movingChoices, List<Boolean> moveResults) {
+        for (int index = 0; index < movingChoices.size(); index++) {
+            if (isSame(movingChoices.get(index), bridge.get(index))) {
                 moveResults.add(true);
             }
-            if (!isSame(moving, bridge.get(index))) {
+            if (!isSame(movingChoices.get(index), bridge.get(index))) {
                 moveResults.add(false);
             }
-            index++;
         }
-        return moveResults;
     }
 }
