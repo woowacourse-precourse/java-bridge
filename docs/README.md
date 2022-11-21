@@ -33,3 +33,15 @@
 - [X] 인스턴수 변수의 접근제어자가 `private`인가?
 - [ ] 성공하는 케이스와 예외에 대한 케이스가 존재하는가?
 - [ ] 테스트 코드도 리팩터링 하였는가?
+- [X] `InputView` 클래스에만 `readLine()` 메서드를 사용을 했는가 ?
+- [X] `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않았는가? 
+- [X] `OutputView` 클래스
+  - [X] `OutputView`의 메서드 이름을 변경하지 않았는가? 
+- [X] `BridgeGame` 클래스
+  - [X] 메서드 이름을 변경하지 않았는가? 
+- [X] `BridgeMaker` 클래스
+  - [X] `BridgeMaker`의 필드를 변경 하지 않았는가? 
+  - [X] `BridgeMaker`의 반환타입과 시그니쳐를 변경하지 않았는가? 
+- [X] `BridgeRandomNumberGenerator` 클래스
+  - [X] `BridgeNumberGenerator`, `BridgeNumberGenerator`의 클래스 코드를 변경하지 않았는가? 
+  - 
