@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.exception.BridgeSize;
+import bridge.exception.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -14,7 +15,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
         BridgeSize bridgeSize = new BridgeSize(bridgeSizeInput);
-        
+
         return Integer.parseInt(bridgeSizeInput);
     }
 
@@ -22,7 +23,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String movingInput = Console.readLine();
+        Moving moving = new Moving(movingInput);
+
+        return movingInput;
     }
 
     /**
