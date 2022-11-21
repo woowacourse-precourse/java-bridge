@@ -4,7 +4,7 @@ package bridge;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String error = "[ERROR] ";
+    private static final String ERROR_START_WITH = "[ERROR] ";
     private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 
 
@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public static void printError(String errorMessage) {
-        System.out.println(error + errorMessage);
+        System.out.println(ERROR_START_WITH + errorMessage);
     }
 
     public static void printRequestBridgeSize() {
