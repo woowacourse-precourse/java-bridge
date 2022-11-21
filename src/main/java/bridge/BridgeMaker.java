@@ -31,9 +31,9 @@ public class BridgeMaker {
 
     private String generateUpOrDown(int generatedNumber) {
         if (generatedNumber == 0) {
-            return "U";
+            return "D";
         }
 
-        return "D";
+        return "U";
     }
 }
