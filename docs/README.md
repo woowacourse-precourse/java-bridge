@@ -25,7 +25,7 @@
 - [ ] InputView : 사용자로부터 입력을 받는 클래스
     - [x] 생성자 추가
       - InputValidator 설정
-    - [ ] 다리 길이 입력, 검증
+    - [x] 다리 길이 입력, 검증
       - 검증 실패 시 IllegalArgumentException
     - [ ] 이동할 칸 입력, 검증
       - 검증 실패 시 IllegalArgumentException
