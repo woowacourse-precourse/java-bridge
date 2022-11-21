@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Validator {
 
-    public static int validateLengthOfBridge(String lengthOfBridge) {
-        validateIsDigit(lengthOfBridge);
-        return validateRangeOfLength(lengthOfBridge);
+    public static int validateBridgeSize(String bridgeSize) {
+        validateIsDigit(bridgeSize);
+        return validateRangeOfLength(bridgeSize);
     }
 
     private static void validateIsDigit(String number) {

@@ -8,7 +8,7 @@ public class Getter {
     public static int getBridgeSize() {
         try {
             OutputView.printMessageForBridgeSize();
-            return Validator.validateLengthOfBridge(InputView.readBridgeSize());
+            return Validator.validateBridgeSize(InputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getBridgeSize();
