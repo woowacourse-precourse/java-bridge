@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.game.BridgeEnum;
 import bridge.resource.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private final String TOP = "U";
-    private final String BOTTOM = "D";
-
     /**
      * 필드 변경 불가 (* 추가는 가능하다는 것인가?) 함수의 파라미터 및 반환 값 변경 불가
      */
@@ -34,12 +32,6 @@ public class BridgeMaker {
 
     private String makePassable() {
         int passable = bridgeNumberGenerator.generate();
-        if (passable == 1) {
-            return TOP;
-        }
-        if (passable == 0) {
-            return BOTTOM;
-        }
-        throw new IllegalArgumentException(ErrorMessage.UNEXPECTED_ERROR);
+        return BridgeEnum.getDivision(passable);
     }
 }
