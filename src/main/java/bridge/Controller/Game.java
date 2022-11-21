@@ -36,6 +36,7 @@ public class Game {
             }
             isStart = isStartOrEnd(); //다리를 다 건너지 못했다면
         }
+        endGame();
     }
 
     private boolean crossBridge() {
@@ -61,5 +62,9 @@ public class Game {
     private boolean isStartOrEnd() {
         OutputView.printStartOrEnd();
         return bridgeGame.retry(InputView.readGameCommand());
+    }
+
+    private void endGame() {
+        OutputView.printEndGame();
     }
 }
