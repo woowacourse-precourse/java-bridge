@@ -28,10 +28,28 @@ public class BridgeCheckerTest {
         다리_길이_예외테스트(size);
     }
 
-    @DisplayName("이동 방향 입력이 U나 D가 아닐 때")
-    @ValueSource(strings = {"-1", "100", "u", "asd"})
+    @DisplayName("이동 방향 입력이 숫자를 포함했을 때")
+    @ValueSource(strings = {"-1", "100", "U1", "0D"})
     @ParameterizedTest
-    public void 이동_방향_예외테스트(String moving) {
+    public void 이동_방향_숫자_예외테스트(String moving) {
+        이동_방향_예외테스트(moving);
+    }
+
+    @DisplayName("이동 방향 입력이 다른 문자열일 때")
+    @ValueSource(strings = {"UP", "DOWN", "asd"})
+    @ParameterizedTest
+    public void 이동_방향_잘못된_문자_예외테스트(String moving) {
+        이동_방향_예외테스트(moving);
+    }
+
+    @DisplayName("이동 방향 입력이 소문자일 때 때")
+    @ValueSource(strings = {"u", "d"})
+    @ParameterizedTest
+    public void 이동_방향_소문자_예외테스트(String moving) {
+        이동_방향_예외테스트(moving);
+    }
+
+    private void 이동_방향_예외테스트(String moving) {
         assertThatThrownBy(() -> bridgeChecker.validateMoving(moving))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(InputExceptionMessage.WRONG_MOVING);
