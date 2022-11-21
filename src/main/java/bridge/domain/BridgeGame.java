@@ -31,9 +31,7 @@ public class BridgeGame {
      */
     public void move(Moving moving) {
         checkMovable(moving);
-        goForward();
-        bridgeMap.update(moving, state);
-        checkFinished();
+        goForward(moving);
     }
 
     private void checkMovable(Moving moving) {
@@ -42,15 +40,14 @@ public class BridgeGame {
         }
     }
 
-    private void goForward() {
+    private void goForward(Moving moving) {
         position++;
+        bridgeMap.update(moving, state);
+        checkFinished();
     }
 
     private void checkFinished() {
-        if (state == GAME_OVER) {
-            return;
-        }
-        if (position == bridge.size()) {
+        if (state != GAME_OVER && position == bridge.size()) {
             state = GAME_CLEAR;
         }
     }
@@ -61,18 +58,14 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        resetState();
-        resetPlayerPosition();
-        bridgeMap.reset();
+        reset();
         increaseAttempts();
     }
 
-    private void resetState() {
+    private void reset() {
         state = NORMAL;
-    }
-
-    private void resetPlayerPosition() {
         position = START_POSITION;
+        bridgeMap.reset();
     }
 
     private void increaseAttempts() {
