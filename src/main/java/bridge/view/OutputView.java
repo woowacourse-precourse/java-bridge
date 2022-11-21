@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -12,7 +14,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> upBridge, List<String> downBridge) {
+        String upBridgeMap = String.join(viewMessage.WALL_PRINT.getMessage(), upBridge);
+        String downBridgeMap = String.join(viewMessage.WALL_PRINT.getMessage(), downBridge);
+
+        System.out.println(viewMessage.HEAD_PRINT.getMessage() + upBridgeMap + viewMessage.TAIL_PRINT.getMessage());
+        System.out.println(viewMessage.HEAD_PRINT.getMessage() + downBridgeMap + viewMessage.TAIL_PRINT.getMessage());
     }
 
     /**
@@ -23,7 +30,7 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printGameStart(){
+    public void printGameStart() {
         System.out.println(viewMessage.START_GAME_MESSAGE.getMessage());
     }
 }
