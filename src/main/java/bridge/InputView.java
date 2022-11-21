@@ -31,7 +31,7 @@ public class InputView {
         System.out.println(CHOOSE_UPDOWN_MSG.getMsg());
         String bridgeMoving = readLine();
         validateMoving(bridgeMoving);
-        return  bridgeMoving;
+        return bridgeMoving;
     }
 
     /**

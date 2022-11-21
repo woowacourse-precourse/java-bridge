@@ -40,20 +40,19 @@ public class BridgeGame {
     public boolean checkRetry(String RetryInput){
         return RetryInput.equals("R");
     }
-    public void retry() {
-        movingRecord.addRetryCount();
-        movingRecord.reset();
-    }
-
     public boolean checkArrival(){
         return judgement.checkArrival(movingRecord,bridge);
     }
-
     public boolean checkPlay(String movingDirection){
         move(movingDirection);
         movingRecord.printMap(bridge);
         if (checkArrival()) return false;
-        return judgement.checkDirection(movingRecord,movingDirection,bridge);
+        return judgement.checkSameDirection(movingRecord,movingDirection,bridge);
+    }
+
+    public void retry() {
+        movingRecord.addRetryCount();
+        movingRecord.reset();
     }
 
     public void printResult() {

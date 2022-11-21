@@ -34,6 +34,7 @@ public class OutputView {
             System.out.print(bridge.get(i));
         }
         System.out.println();
+
         System.out.print("[ ");
         for (int i  = 0 ; i< movingRecord.size(); i++) {
             if (movingRecord.get(i).equals("D") && bridge.get(i).equals("D"))
@@ -42,7 +43,7 @@ public class OutputView {
                 System.out.print("O");
             if (bridge.get(i).equals("U") && movingRecord.get(i).equals("D"))
                 System.out.print("X");
-            if (i != movingRecord.size()-1) System.out.print("|");
+            if (i != movingRecord.size()-1) System.out.print(" | ");
         }
         System.out.println(" ]");
         System.out.print("[ ");
@@ -53,10 +54,11 @@ public class OutputView {
                 System.out.print("X");
             if (movingRecord.get(i).equals("U") && bridge.get(i).equals("U"))
                 System.out.print(" ");
-            if (i != movingRecord.size()-1) System.out.print("|");
+            if (i != movingRecord.size()-1) System.out.print(" | ");
         }
         System.out.println(" ]");
     }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
