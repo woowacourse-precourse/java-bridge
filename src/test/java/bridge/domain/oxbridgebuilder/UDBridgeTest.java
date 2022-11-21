@@ -27,9 +27,9 @@ class UDBridgeTest {
 
     private static Stream<Arguments> addTestArgumentProvider() {
         return Stream.of(
-            Arguments.of("O", "[ O ]\n"),
-            Arguments.of("O", "[ O ]\n"),
-            Arguments.of("X", "[ X ]\n")
+                Arguments.of("O", "[ O ]\n"),
+                Arguments.of("O", "[ O ]\n"),
+                Arguments.of("X", "[ X ]\n")
         );
     }
 }

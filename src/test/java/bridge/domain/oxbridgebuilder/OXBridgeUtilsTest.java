@@ -18,8 +18,8 @@ class OXBridgeUtilsTest {
 
     private static Stream<Arguments> makerOXTestArgumentProvider() {
         return Stream.of(
-            Arguments.of(true, "O"),
-            Arguments.of(false, "X")
+                Arguments.of(true, "O"),
+                Arguments.of(false, "X")
         );
     }
 }

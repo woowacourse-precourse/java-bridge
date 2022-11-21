@@ -28,10 +28,10 @@ class OXBridgeTest {
 
     private static Stream<Arguments> addUDTestArgumentProvider() {
         return Stream.of(
-            Arguments.of("U", true, "[ O ]\n[   ]\n"),
-            Arguments.of("U", false, "[ X ]\n[   ]\n"),
-            Arguments.of("D", true, "[   ]\n[ O ]\n"),
-            Arguments.of("D", false, "[   ]\n[ X ]\n")
+                Arguments.of("U", true, "[ O ]\n[   ]\n"),
+                Arguments.of("U", false, "[ X ]\n[   ]\n"),
+                Arguments.of("D", true, "[   ]\n[ O ]\n"),
+                Arguments.of("D", false, "[   ]\n[ X ]\n")
         );
     }
 

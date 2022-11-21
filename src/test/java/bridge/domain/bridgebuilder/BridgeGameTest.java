@@ -3,7 +3,6 @@ package bridge.domain.bridgebuilder;
 import bridge.domain.oxbridgebuilder.OXBridge;
 import bridge.domain.resources.Bridge;
 import bridge.domain.resources.UpOrDown;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,20 +50,20 @@ class BridgeGameTest {
     private static Stream<Arguments> retryTestArgumentProvider() {
 
         return Stream.of(
-            Arguments.of("R", true),
-            Arguments.of("Q", false)
+                Arguments.of("R", true),
+                Arguments.of("Q", false)
         );
     }
 
     private static Stream<Arguments> moveTestArgumentProvider() {
 
         return Stream.of(
-            Arguments.of(3, "U"),
-            Arguments.of(4, "U"),
-            Arguments.of(5, "U"),
-            Arguments.of(10, "U"),
-            Arguments.of(15, "U"),
-            Arguments.of(20, "U")
+                Arguments.of(3, "U"),
+                Arguments.of(4, "U"),
+                Arguments.of(5, "U"),
+                Arguments.of(10, "U"),
+                Arguments.of(15, "U"),
+                Arguments.of(20, "U")
         );
     }
 }

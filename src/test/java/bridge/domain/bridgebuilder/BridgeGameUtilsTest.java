@@ -34,17 +34,17 @@ class BridgeGameUtilsTest {
 
     private static Stream<Arguments> rightArgumentProvider() {
         return Stream.of(
-            Arguments.of("U", 0, true),
-            Arguments.of("D", 1, true),
-            Arguments.of("U", 2, true)
+                Arguments.of("U", 0, true),
+                Arguments.of("D", 1, true),
+                Arguments.of("U", 2, true)
         );
     }
 
     private static Stream<Arguments> wrongTestArgumentProvider() {
         return Stream.of(
-            Arguments.of("D", 0, false),
-            Arguments.of("U", 1, false),
-            Arguments.of("D", 2, false)
+                Arguments.of("D", 0, false),
+                Arguments.of("U", 1, false),
+                Arguments.of("D", 2, false)
         );
     }
 }
