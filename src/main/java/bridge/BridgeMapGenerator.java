@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMapGenerator {
+
     List<String> upBridgeMap = new ArrayList<>();
     List<String> downBridgeMap = new ArrayList<>();
 
@@ -36,10 +37,10 @@ public class BridgeMapGenerator {
     }
 
     public List<List<String>> getBridgeMap() {
-        List<List<String>> BridgeMap = new ArrayList<>();
-        BridgeMap.add(upBridgeMap);
-        BridgeMap.add(downBridgeMap);
-        return BridgeMap;
+        List<List<String>> bridgeMap = new ArrayList<>();
+        bridgeMap.add(upBridgeMap);
+        bridgeMap.add(downBridgeMap);
+        return bridgeMap;
     }
 
 }
