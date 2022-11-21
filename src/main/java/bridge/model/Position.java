@@ -24,9 +24,9 @@ public class Position {
 
     public void setPositionY(String moveTo) {
         if (moveTo.equals(UP_KEY)) {
-            this.y = UP_POSITION;
+            this.y = UPPER_BRIDGE;
             return;
         }
-        this.y = DOWN_POSITION;
+        this.y = LOWER_BRIDGE;
     }
 }

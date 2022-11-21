@@ -3,7 +3,7 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.util.BridgeConstant.UP_POSITION;
+import static bridge.util.BridgeConstant.UPPER_BRIDGE;
 
 public class BridgeMap {
     private static final BridgeMap bridgeMap = new BridgeMap();
@@ -27,7 +27,7 @@ public class BridgeMap {
     }
 
     public void addBridgeMap(String block, int playerPosition) {
-        if (playerPosition == UP_POSITION) {
+        if (playerPosition == UPPER_BRIDGE) {
             upperBridgeMap.add(block);
             lowerBridgeMap.add(BLANK_BLOCK);
             return;
