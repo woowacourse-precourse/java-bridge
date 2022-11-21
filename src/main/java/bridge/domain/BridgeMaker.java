@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.viewer.ErrorMessage.BRIDGE_LENGTH_MESSAGE;
+import static bridge.viewer.ErrorMessage.BRIDGE_LENGTH_ERROR;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -33,7 +33,7 @@ public class BridgeMaker {
 
     private void validateSize(int size) throws IllegalArgumentException {
         if (size > MAXIMUM_LENGTH || size < MINIMUM_LENGTH) {
-            throw new IllegalArgumentException(BRIDGE_LENGTH_MESSAGE);
+            throw new IllegalArgumentException(BRIDGE_LENGTH_ERROR);
         }
     }
 
