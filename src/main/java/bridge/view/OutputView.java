@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.core.BridgeGame;
 import bridge.domain.Bridge;
 import bridge.type.BridgeBlock;
+import bridge.type.FinishCondition;
 import bridge.type.PassCondition;
 import bridge.type.ProcessCondition;
 
@@ -19,6 +20,12 @@ public class OutputView {
     private static final String CROSS_MARK = " X ";
     private static final String SPACE = "   ";
 
+    private static final String RESULT = "최종 게임 결과";
+    private static final String FINISHED_OR_NOT_FINISHED = "게임 성공 여부: ";
+    private static final String FINISHED = "성공";
+    private static final String NOT_FINISHED = "실패";
+    private static final String NUMBER_OF_TRY = "총 시도한 횟수: ";
+
     public static void printMap(ProcessCondition passCondition, BridgeGame bridgeGame) {
         Bridge bridge = bridgeGame.getBridge();
         Integer currentPosition = bridgeGame.getGameStatusOperator().getCurrentPosition();
@@ -28,12 +35,23 @@ public class OutputView {
         if (passCondition == PassCondition.FAIL) printFail(currentPosition, upIndexes, downIndexes);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public static void printResult() {
+    public static void printResult(ProcessCondition finishCondition, BridgeGame bridgeGame) {
+        System.out.println(RESULT);
+        if (finishCondition == FinishCondition.FINISHED) {
+            printWhetherFinished(PassCondition.PASS, FINISHED, bridgeGame);
+        }
+        if (finishCondition == FinishCondition.NOT_FINISHED) {
+            printWhetherFinished(PassCondition.FAIL, NOT_FINISHED, bridgeGame);
+        }
+        System.out.println(NUMBER_OF_TRY + bridgeGame.getGameStatusOperator().getNumberOfTry());
+    }
+
+    private static void printWhetherFinished(ProcessCondition passCondition,
+                                             String finishCondition,
+                                             BridgeGame bridgeGame) {
+        printMap(passCondition, bridgeGame);
+        System.out.println();
+        System.out.println(FINISHED_OR_NOT_FINISHED + finishCondition);
     }
 
     private static List<Integer> getPrintIndexes(Bridge bridge, Integer currentPosition, BridgeBlock bridgeBlock) {
