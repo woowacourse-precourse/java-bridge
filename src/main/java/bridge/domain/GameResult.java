@@ -16,6 +16,10 @@ public class GameResult {
         attemptNumber += 1;
     }
 
+    public void changeSuccess() {
+        success = SUCCESS_MESSAGE;
+    }
+
     public void changeFail() {
         success = FAIL_MESSAGE;
     }

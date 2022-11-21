@@ -49,7 +49,7 @@ public class BridgeController {
             List<String> map = bridgeGame.move(userSpace, answer);
             outputView.printMap(map);
             if (!isSameWithAnswer(userSpace, answer)) {
-                askRestart();
+                bridgeGame.changeToFail();
                 break;
             }
         }

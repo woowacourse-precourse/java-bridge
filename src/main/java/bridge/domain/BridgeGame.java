@@ -25,6 +25,7 @@ public class BridgeGame {
     }
 
     public void resetRound() {
+        result.changeSuccess();
         result.addAttemptNumber();
         map.resetMap();
     }
@@ -60,5 +61,9 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public void changeToFail() {
+        result.changeFail();
     }
 }
