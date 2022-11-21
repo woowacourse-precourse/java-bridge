@@ -7,12 +7,10 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge;
-    private boolean succeeds;
     private int trial;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.succeeds = false;
         this.trial = 1;
     }
 
