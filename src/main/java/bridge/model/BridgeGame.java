@@ -63,26 +63,30 @@ public class BridgeGame {
     }
 
     public void addColumn(Column answer){
+        if(buffer.get(0).get(buffer.get(0).size()-1) == BridgeBuffer.END){
+            buffer.get(0).set(buffer.get(0).size()-1,BridgeBuffer.CONTOUR);
+            buffer.get(1).set(buffer.get(1).size()-1,BridgeBuffer.CONTOUR);
+        }
         buffer.get(answer.getIndex()).add(BridgeBuffer.RIGHT);
         buffer.get(answer.getIndex()).add(BridgeBuffer.CONTOUR);
         buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.BLANK);
         buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.CONTOUR);
     }
     public List<List<String>> running(){
-        buffer.get(0).set(-1,BridgeBuffer.END);
-        buffer.get(1).set(-1,BridgeBuffer.END);
+        buffer.get(0).set(buffer.get(0).size()-1,BridgeBuffer.END);
+        buffer.get(1).set(buffer.get(1).size()-1,BridgeBuffer.END);
         return buffer;
     }
     public List<List<String>> over(){
         return buffer;
     }
     public List<List<String>> fail(int step){
-        buffer.get(0).set(-1,BridgeBuffer.CONTOUR);
-        buffer.get(1).set(-1,BridgeBuffer.CONTOUR);
+        buffer.get(0).set(buffer.get(0).size()-1,BridgeBuffer.CONTOUR);
+        buffer.get(1).set(buffer.get(1).size()-1,BridgeBuffer.CONTOUR);
         buffer.get(bridge.get(step).getIndex()).add(BridgeBuffer.WRONG);
         buffer.get(bridge.get(step).getOppositeIndex()).add(BridgeBuffer.BLANK);
-        buffer.get(0).add(-1,BridgeBuffer.CONTOUR);
-        buffer.get(1).add(-1,BridgeBuffer.CONTOUR);
+        buffer.get(0).add(buffer.get(0).size()-1,BridgeBuffer.CONTOUR);
+        buffer.get(1).add(buffer.get(1).size()-1,BridgeBuffer.CONTOUR);
         return buffer;
     }
 
