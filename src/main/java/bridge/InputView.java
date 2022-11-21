@@ -44,15 +44,16 @@ public class InputView {
 
     private void validateOfMoveTo(String moveTo) {
         if ((!moveTo.equals("U")) && (!moveTo.equals("D"))) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] U 또는 D를 입력하세요");
             throw new IllegalArgumentException();
         }
     }
 
     private void validateOfRestart(String restart) {
         if ((!restart.equals("R")) && (!restart.equals("Q"))) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] R 또는 Q를 입력하세요");
             throw new IllegalArgumentException();
         }
     }
+
     }

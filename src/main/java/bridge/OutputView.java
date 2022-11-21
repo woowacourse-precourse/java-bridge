@@ -5,8 +5,8 @@ import java.util.List;
 public class OutputView {
 
     public static void printMap(List<String> bridgeNow, boolean success, String moveTo) {
-        StringBuilder UpStep = new StringBuilder("[ " + UpstepAdder(bridgeNow));
-        StringBuilder DownStep = new StringBuilder("[ " + DownstepAdder(bridgeNow));
+        StringBuilder UpStep = new StringBuilder("[ " + UpStepAdder(bridgeNow));
+        StringBuilder DownStep = new StringBuilder("[ " + DownStepAdder(bridgeNow));
 
         if (success) {
             continueRound(UpStep, DownStep);
@@ -27,22 +27,6 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + bridge.getCountTotal());
     }
 
-    public static void messageGameStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-    }
-
-    public static void messageInputBridge() {
-        System.out.println("다리의 길이를 입력해주세요.");
-    }
-
-    public static void messageInputMove() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-    }
-
-    public static void messageRestart() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-    }
-
     private static void continueRound(StringBuilder UpStep, StringBuilder DownStep) {
         System.out.println(UpStep.substring(0,UpStep.length() - 3) + " ]");
         System.out.println(DownStep.substring(0,DownStep.length() - 3) + " ]");
@@ -57,7 +41,7 @@ public class OutputView {
             System.out.println(DownStep.substring(0,DownStep.length() - 4) + "X ]");}
     }
 
-    private static StringBuilder UpstepAdder(List<String> bridgeNow) {
+    private static StringBuilder UpStepAdder(List<String> bridgeNow) {
         StringBuilder adder = new StringBuilder("");
         for (String s : bridgeNow) {
             if (s.equals("U")) {
@@ -70,7 +54,7 @@ public class OutputView {
         return adder;
     }
 
-    private static StringBuilder DownstepAdder(List<String> bridgeNow) {
+    private static StringBuilder DownStepAdder(List<String> bridgeNow) {
         StringBuilder adder = new StringBuilder("");
         for (String s : bridgeNow) {
             if (s.equals("U")) {
@@ -81,5 +65,21 @@ public class OutputView {
             }
         }
         return adder;
+    }
+
+    public static void messageGameStart() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    public static void messageInputBridge() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    public static void messageInputMove() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public static void messageRestart() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }

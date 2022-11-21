@@ -6,7 +6,6 @@ import java.util.List;
 
 public class BridgeMaker {
     public static HashMap<Integer, String> generateDict = new HashMap<>();
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
