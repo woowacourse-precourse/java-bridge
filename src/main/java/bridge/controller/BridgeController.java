@@ -19,7 +19,7 @@ public class BridgeController {
             int bridgeSize = Integer.parseInt(size);
             bridgeGame = new BridgeGame(bridgeSize);
         } catch (IllegalArgumentException e) {
-
+            outputView.printErrorMessage(e.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class BridgeController {
     public void validateBridgeSizeRange(String size) {
         int bridgeSize = Integer.parseInt(size);
 
-        if (bridgeSize < 3 && bridgeSize > 20) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(String.valueOf(ExceptionMessage.BRIDGE_SIZE_RANGE_ERROR));
         }
     }
