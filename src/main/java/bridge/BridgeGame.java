@@ -21,21 +21,23 @@ public class BridgeGame {
      */
     public BirdgeMoveType move(String moveWay) {
         //IllegalStatementException bridgeList 없을시
-        if(bridgeList.get(count) == moveWay){
+
+        if(bridgeList.get(count).equals(moveWay)){
             count+=1;
             if(moveWay.equals("U")){
                 return BirdgeMoveType.upGoMovement;
             } else if (moveWay.equals("D")) {
                 return BirdgeMoveType.downGoMovement;
             }
-        } else if (bridgeList.get(count) != moveWay) {
+        } else if (!bridgeList.get(count).equals(moveWay)) {
             if (moveWay.equals("U")){
                 return BirdgeMoveType.upStopMovement;
             } else if (moveWay.equals("D")) {
                 return BirdgeMoveType.downStopMovement;
             }
         }
-        return null;
+
+        throw new IllegalArgumentException("[ERROR] U / D 로 입력해주세요");
     }
 
     /**
