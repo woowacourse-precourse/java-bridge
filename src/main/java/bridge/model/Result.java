@@ -32,4 +32,8 @@ public class Result {
     public void increaseTryCount() {
         tryCount++;
     }
+
+    public void setSuccessToFail() {
+        success = false;
+    }
 }
