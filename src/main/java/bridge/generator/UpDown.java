@@ -5,18 +5,18 @@ public enum UpDown {
     DOWN(0,"D");
 
     private int number;
-    private String direction;
+    private String result;
 
     UpDown(int number, String direction) {
         this.number = number;
-        this.direction = direction;
+        this.result = direction;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public String getDirection() {
-        return direction;
+    public String getResult() {
+        return result;
     }
 }

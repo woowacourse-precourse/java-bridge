@@ -13,7 +13,6 @@ import java.util.List;
 public class BridgeGameTest {
     @BeforeEach
     void reset() {
-        BridgeRecord.resetRecord();
         BridgeStage.resetStage();
     }
 
@@ -24,7 +23,7 @@ public class BridgeGameTest {
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        StageResult result = bridgeGame.compareInputWithBridge("U");
+        StageResult result = bridgeGame.move("U");
 
         Assertions.assertThat(result).isEqualTo(StageResult.PASS);
     }
@@ -36,7 +35,7 @@ public class BridgeGameTest {
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        StageResult result = bridgeGame.compareInputWithBridge("D");
+        StageResult result = bridgeGame.move("D");
 
         Assertions.assertThat(result).isEqualTo(StageResult.FAIL);
     }
@@ -45,7 +44,7 @@ public class BridgeGameTest {
     @DisplayName("마지막까지 정답을 틀리지 않고 맞출경우 SUCCESS 반환")
     void successTest() {
         List<String> bridge = List.of("U","D","D","U");
-        String lastUserInput = "U";
+        List<String> userInput = List.of("U","D","D","U");
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
@@ -53,47 +52,15 @@ public class BridgeGameTest {
             bridgeGame.pass();
         }
 
-        StageResult result = bridgeGame.compareInputWithBridge(lastUserInput);
+        String lastInput = bridge.get(bridge.size() - 1);
+        StageResult lastResult = bridgeGame.move(lastInput);
 
-        Assertions.assertThat(result).isEqualTo(StageResult.SUCCESS);
+
+        Assertions.assertThat(lastResult).isEqualTo(StageResult.SUCCESS);
     }
 
     @Test
-    @DisplayName("move()를 실행한 뒤 사용자의 입력이 record에 남는지 확인")
-    void moveTestFirst() {
-        List<String> bridge = List.of("U","D","D","U");
-        List<String> input = List.of("U","D","D", "U");
-
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-
-        for (int round = 0; round < input.size(); round++) {
-            bridgeGame.move(input.get(round));
-        }
-
-        List<String> record = BridgeRecord.getRecord();
-
-        Assertions.assertThat(record).containsExactly("U","D","D","U");
-    }
-
-    @Test
-    @DisplayName("move()를 실행한 뒤 사용자의 입력이 중간에 틀려도 record에 남는지 확인")
-    void moveTestSecond() {
-        List<String> bridge = List.of("U","D","D","U");
-        List<String> input = List.of("U","D");
-
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-
-        for (int round = 0; round < input.size(); round++) {
-            bridgeGame.move(input.get(round));
-        }
-
-        List<String> record = BridgeRecord.getRecord();
-
-        Assertions.assertThat(record).containsExactly("U","D");
-    }
-
-    @Test
-    @DisplayName("결과가 PASS이면 stage를 1 증가한다")
+    @DisplayName("결과가 PASS이면 BridgeStage의 stage를 1 증가한다")
     void afterPassTest() {
         List<String> bridge = List.of("U","D","D","U");
 
@@ -107,17 +74,18 @@ public class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("게임을 재시작하면 BridgeStage, BridgeRecord를 초기화 한다")
+    @DisplayName("게임을 재시작하면 BridgeStage의 retry를 증가시키고 stage를 0으로 초기화 한다")
     void retryTest() {
         List<String> bridge = List.of("U","D","D","U");
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        bridgeGame.pass();
-        bridgeGame.move("U");
-
         bridgeGame.retry();
 
-        Assertions.assertThat(BridgeStage.currentStage()).isEqualTo(0);
-        Assertions.assertThat(BridgeRecord.getRecord()).isEmpty();
+        int retry = BridgeStage.getRetry();
+        int stage = BridgeStage.currentStage();
+
+        Assertions.assertThat(retry).isEqualTo(2);
+        Assertions.assertThat(stage).isEqualTo(0);
+
     }
 }

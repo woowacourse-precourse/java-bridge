@@ -28,7 +28,7 @@ public class BridgeMakerTest {
     @DisplayName("0과 1로 구성된 리스트를 U,D으로 변경")
     void convertNumberToUpAndDown() {
         List<Integer> numbers = List.of(0,1,0,1,1,0);
-        List<String> result = bridgeMaker.convertNumberToUpAndDown(numbers);
+        List<String> result = bridgeMaker.convertNumbersToUpAndDown(numbers);
 
         Assertions.assertThat(result).containsExactly("D","U","D","U","U","D");
     }
