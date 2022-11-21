@@ -9,8 +9,8 @@ public enum BridgeMovement {
     UP("U", 1),
     DOWN("D", 0);
 
-    private String move;
-    private int code;
+    private final String move;
+    private final int code;
 
     private static final Map<Integer, BridgeMovement> BY_CODE =
             Stream.of(values()).collect(Collectors.toMap(BridgeMovement::getCode, e -> e));

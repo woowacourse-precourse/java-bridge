@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.util.BridgeLogger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -49,4 +50,8 @@ public class Player {
     }
 
 
+    @Override
+    public String toString() {
+        return BridgeLogger.log(Collections.unmodifiableMap(movingRoute));
+    }
 }

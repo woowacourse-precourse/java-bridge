@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.util.BridgeLogger;
 import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
 import bridge.domain.BridgeMovement;
@@ -16,8 +15,8 @@ public class BridgeGame {
     private Bridge bridge;
     private int numberOfAttempts;
 
-    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
         player = new Player();
         numberOfAttempts = 1;
     }
@@ -30,8 +29,8 @@ public class BridgeGame {
         return numberOfAttempts;
     }
 
-    public String logResult() {
-        return BridgeLogger.log(player.getMovingRoute());
+    public String crossOverResult() {
+        return player.toString();
     }
 
     public GameStatus move(BridgeMovement playerMove) {

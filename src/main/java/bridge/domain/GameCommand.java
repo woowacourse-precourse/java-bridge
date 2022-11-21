@@ -11,7 +11,7 @@ public enum GameCommand {
     RETRY("R"),
     QUIT("Q");
 
-    private String code;
+    private final String code;
     private static final Map<String, GameCommand> BY_CODE =
             Stream.of(values()).collect(Collectors.toMap(GameCommand::getCode, e -> e));
 

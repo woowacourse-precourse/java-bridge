@@ -4,7 +4,7 @@ public enum BridgeSize {
     MINIMUM(3),
     MAXIMUM(20);
 
-    private int size;
+    private final int size;
 
     BridgeSize(int size) {
         this.size = size;

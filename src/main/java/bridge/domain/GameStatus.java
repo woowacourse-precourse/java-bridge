@@ -7,10 +7,10 @@ public enum GameStatus {
     FAILED("실패", false, false),
     PLAYING("진행 중", true, false);
 
-    private String status;
+    private final String status;
 
-    private boolean isCrossed;
-    private boolean isReached;
+    private final boolean isCrossed;
+    private final boolean isReached;
 
     GameStatus(String status, boolean isCrossed, boolean isReached) {
         this.status = status;

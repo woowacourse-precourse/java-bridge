@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bridge {
-    private List<BridgeMovement> route;
+    private final List<BridgeMovement> route;
 
     public Bridge(List<String> route) {
         this.route = route.stream().map(BridgeMovement::findByMovement).collect(Collectors.toList());

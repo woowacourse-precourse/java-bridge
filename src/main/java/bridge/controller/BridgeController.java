@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
@@ -17,7 +18,7 @@ public class BridgeController {
     public BridgeController(InputView inputView, OutputView outputView, BridgeNumberGenerator bridgeNumberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        bridgeGame = new BridgeGame(bridgeNumberGenerator);
+        bridgeGame = new BridgeGame(new BridgeMaker(bridgeNumberGenerator));
         gameStatus = GameStatus.PLAYING;
     }
 
@@ -47,7 +48,7 @@ public class BridgeController {
         outputView.inputPlayerMove();
         BridgeMovement playerMove = inputView.readMoving();
         gameStatus = bridgeGame.move(playerMove);
-        outputView.printMap(bridgeGame.logResult());
+        outputView.printMap(bridgeGame.crossOverResult());
     }
 
     private void retryGame() {
@@ -58,7 +59,7 @@ public class BridgeController {
 
     private void end() {
         outputView.printGameOver();
-        outputView.printMap(bridgeGame.logResult());
+        outputView.printMap(bridgeGame.crossOverResult());
         outputView.printResult(gameStatus, bridgeGame.getNumberOfAttempts());
     }
 }
