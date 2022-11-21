@@ -22,4 +22,16 @@ public class BridgeGameRun {
         List<String> bridge = bridgeMaker.makeBridge(size);
         bridgeGame = new BridgeGame(bridge);
     }
+
+    private void bridgeGameStart() {
+        do {
+            String direct = inputView.readMoving();
+            inputValidation.readMovingValidation(direct);
+            gameRun(direct);
+
+            List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
+            outputView.printMap(bridgeMap);
+
+        } while (!isGameEnd());
+    }
 }
