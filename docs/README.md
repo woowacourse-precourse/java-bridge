@@ -73,7 +73,7 @@
 - [x] 게임 진행, 게임 종료, 게임 패배 저장
 
 ### BridgeAppConfig
-- [ ] InputView 클래스 생성 및 반환
+- [x] InputView 클래스 생성 및 반환
 - [ ] OutputView 클래스 생성 및 반환
 - [ ] BridgeNumberGenerator 인터페이스 구현체 반환
 - [ ] BridgeMaker 클래스 생성 및 반환
