@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.constant.NumberType.*;
 import static bridge.constant.OutputViewConstant.DIVIDING_LINE;
 import static bridge.constant.OutputViewConstant.FINAL_RESULT_MESSAGE;
 import static bridge.constant.OutputViewConstant.GAME_SUCCESS_OR_FAIL_MESSAGE;
@@ -20,7 +21,7 @@ import java.util.List;
 public class OutputView {
 
     private static boolean isAppendableDividingLine(List<BridgeMap> bridgeMaps, int index) {
-        return bridgeMaps.size() != 1 && index < bridgeMaps.size() - 1;
+        return bridgeMaps.size() != ONE.getValue() && index < bridgeMaps.size() - ONE.getValue();
     }
 
     /**

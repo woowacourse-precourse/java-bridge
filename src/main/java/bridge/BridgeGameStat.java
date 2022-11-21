@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.constant.GameStatus;
+import bridge.constant.NumberType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class BridgeGameStat {
     public BridgeGameStat() {
         this.bridgeMaps = new ArrayList<>();
         this.gameStatus = GameStatus.FAIL;
-        this.countOfGame = 1;
+        this.countOfGame = NumberType.INITIALIZE_TO_ONE.getValue();
     }
 
     public List<BridgeMap> getBridgeMaps() {
