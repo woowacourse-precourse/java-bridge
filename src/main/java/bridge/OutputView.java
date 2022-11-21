@@ -44,10 +44,15 @@ public class OutputView {
             if (SameWithU(bridgeList.get(i))) upString.append(" O |");
             else if (SameWithD(bridgeList.get(i))) upString.append("   |");
         }
-        if (Same(bridgeList.get(movingIdx), input) && SameWithU(input)) upString.append(" O ]");
-        else if (!Same(bridgeList.get(movingIdx), input) && SameWithU(input)) upString.append(" X ]");
-        else if (SameWithD(input)) upString.append("   ]");
+        upString.append(printEndedUpString(movingIdx, bridgeList, input));
         return upString.toString();
+    }
+
+    private String printEndedUpString(int movingIdx, List<String> bridgeList, String input) {
+        if (Same(bridgeList.get(movingIdx), input) && SameWithU(input)) return " O ]";
+        else if (!Same(bridgeList.get(movingIdx), input) && SameWithU(input)) return " X ]";
+        else if (SameWithD(input)) return "   ]";
+        return "";
     }
 
     private String printDownString(int movingIdx, List<String> bridgeList, String input) {
@@ -57,10 +62,15 @@ public class OutputView {
             if (SameWithD(bridgeList.get(i))) downString.append(" O |");
             else if (SameWithU(bridgeList.get(i))) downString.append("   |");
         }
-        if (Same(bridgeList.get(movingIdx), input) && SameWithD(input)) downString.append(" O ]");
-        else if (!Same(bridgeList.get(movingIdx), input) && SameWithD(input)) downString.append(" X ]");
-        else if (SameWithU(input)) downString.append("   ]");
+        downString.append(printEndedDownString(movingIdx, bridgeList, input));
         return downString.toString();
+    }
+
+    private String printEndedDownString(int movingIdx, List<String> bridgeList, String input) {
+        if (Same(bridgeList.get(movingIdx), input) && SameWithD(input)) return " O ]";
+        else if (!Same(bridgeList.get(movingIdx), input) && SameWithD(input)) return " X ]";
+        else if (SameWithU(input)) return "   ]";
+        return "";
     }
 
     /**
