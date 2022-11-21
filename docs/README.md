@@ -15,7 +15,7 @@
   - [ ] 구현체로 BridgeRandomNumberGenerator 선택 - BridgeRandomNumberGenerator
   - [ ] BridgeMaker의 생성자에서 구현체를 넣어줄 수 있다.
 - [ ] 사용자로부터 입력받는 역할을 하는 클래스 필요 - InputView
-  - [ ] 다리의 길이를 입력받는다. - InputView#readBridgeSize
+  - [x] 다리의 길이를 입력받는다. - InputView#readBridgeSize
   - [ ] 사용자가 이동할 칸을 입력받는다. - InputView#readMoving
   - [ ] 게임을 다시 할지 말지 여부를 입력받는다 - InputView#readGameCommand
 - [ ] 사용자에게 게임 진행 상황과 결과를 알려주는 클래스 필요 - OutputView
