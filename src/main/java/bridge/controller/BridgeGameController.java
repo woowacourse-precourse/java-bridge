@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.*;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.model.Count;
 import bridge.resource.InputType;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -10,11 +11,11 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     private BridgeGame bridgeGame;
     private boolean isContinue;
-    private int countOfAttempt;
+    private Count countOfAttempt;
 
     public BridgeGameController() {
         isContinue = true;
-        countOfAttempt = 0;
+        countOfAttempt = new Count();
     }
 
     public void run() {
@@ -27,7 +28,7 @@ public class BridgeGameController {
     }
 
     private void playGame() {
-        countOfAttempt++;
+        countOfAttempt.increase();
 
         while (isContinue && !bridgeGame.isGameClear()) {
             move();
@@ -71,6 +72,6 @@ public class BridgeGameController {
     }
 
     private void printResult() {
-        OutputView.printResult(bridgeGame.getPath(), countOfAttempt, bridgeGame.isGameClear());
+        OutputView.printResult(bridgeGame.getPath(), countOfAttempt.getCount(), bridgeGame.isGameClear());
     }
 }
