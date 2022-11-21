@@ -34,17 +34,21 @@ public class OutputView {
             if(!checkSameLocation(userBridge,index, location)){
                 oneLine+="  ";
             }
-            if(checkSameLocation(userBridge,index, location)&&checkSameMove(userBridge, answerBridge, index)){
-                oneLine+="O ";
-            }
-            if(checkSameLocation(userBridge,index, location)&&!checkSameMove(userBridge, answerBridge, index)){
-                oneLine+="X ";
+            if(checkSameLocation(userBridge,index, location)){
+                oneLine+=getOX(userBridge,answerBridge,index);
             }
             if(index< userBridge.size()-1) {
                 oneLine += "| ";
             }
         }
         return oneLine;
+    }
+
+    public String getOX(List<String> userBridge, List<String> answerBridge, int index){
+        if(checkSameMove(userBridge, answerBridge, index)){
+            return "O ";
+        }
+        return "X ";
     }
 
     public boolean checkSameLocation(List<String> userBridge, int index, String location){
