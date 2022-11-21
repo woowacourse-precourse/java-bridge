@@ -33,6 +33,7 @@ public class BridgeGameStarter {
     }
 
     public void reInitialize() {
+        tryCount++;
         outputView.printInputBridgeSize();
         outputView.printInputMoving();
         bridgeGame.initializeLeftRightMovingLog();
@@ -94,7 +95,6 @@ public class BridgeGameStarter {
         if (proceed()) return;
         askToRetry();
         while (gameStatusFlag.get("retryFlag")) {
-            tryCount++;
             reInitialize();
             if (proceed()) break;
             askToRetry();
