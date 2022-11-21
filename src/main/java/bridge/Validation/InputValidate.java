@@ -14,4 +14,9 @@ public class InputValidate {
             throw new IllegalArgumentException(MOVING_FORMAT_MESSAGE);
         }
     }
+    public void validateGameCommendFormat(String gameCommend){
+        if(!gameCommend.equals("R") || !gameCommend.equals("Q")){
+            throw new IllegalArgumentException(MOVING_FORMAT_MESSAGE);
+        }
+    }
 }
