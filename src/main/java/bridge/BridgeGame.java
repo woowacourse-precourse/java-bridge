@@ -9,27 +9,54 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private final InputView inputManager = new InputView();
-
+    private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-
     private List<String> bridge;
-
     private List<String> movingList = new ArrayList<>();
 
-    public List<String> getBridge() {
-        return bridge;
-    }
+    private int tryCount = 1;
+
 
     public void gameStart() {
         printStartMessage();
         while (true) {
             try {
-                int bridgeSize = inputManager.readBridgeSize();
+                int bridgeSize = inputView.readBridgeSize();
                 bridge = bridgeMaker.makeBridge(bridgeSize);
                 break;
-            } catch (IllegalArgumentException e) {System.out.println(e.getMessage());}
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+    }
+
+
+    public boolean gamePlay() {
+        if (!runGame()) {
+            loseMessage();
+            return true;
+        }
+        if(finishCount()){
+            WinMessage();
+            return true;
+        }
+        return false;
+    }
+
+    public void WinMessage(){
+        endGameMassage();
+        System.out.println("게임 성공 여부: 성공");
+        System.out.println("총 시도한 횟수: "+tryCount);
+    }
+    public void loseMessage(){
+        endGameMassage();
+        System.out.println("게임 성공 여부: 실패");
+        System.out.println("총 시도한 횟수: "+tryCount);
+    }
+
+    private void endGameMassage() {
+        List<String> movingResult = getMovingResult(movingList, bridge);
+        outputView.printResult(movingResult);
     }
 
     private void printStartMessage() {
@@ -43,19 +70,51 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        while (true){
+    public boolean move() {
+        while (true) {
             try {
-                 movingList.add(inputManager.readMoving());
+                movingList.add(inputView.readMoving());
                 List<String> movingResult = getMovingResult(movingList, bridge);
-                System.out.println("다리 : "+bridge);
-                outputView.printMap(movingResult);
-                 break;
-            }catch (IllegalArgumentException e){System.out.println(e.getMessage());}
+                System.out.println("다리 : " + bridge);
+                return isMoveSuccess(outputView.printMap(movingResult));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    public List<String> getMovingResult(List<String> movingList,List<String > bridge){
+    public boolean runGame() {
+        if (!move()) {
+
+            String answer = retryQuestion();
+            if (answer.equals("R")) {
+                retry();
+            }
+            return !answer.equals("Q");
+        }
+        return true;
+    }
+
+
+    public boolean finishCount() {
+        int movingCount = movingList.size();
+        int bridgeSize = bridge.size();
+
+        return movingCount == bridgeSize;
+    }
+
+    public boolean isMoveSuccess(List<String> resultMap) {
+        for (int i = 0; i < resultMap.size(); i++) {
+            String s = resultMap.get(i);
+            if (s.contains("X")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public List<String> getMovingResult(List<String> movingList, List<String> bridge) {
         List<String> movingResult = new ArrayList<>();
 
         for (int i = 0; i < movingList.size(); i++) {
@@ -67,10 +126,10 @@ public class BridgeGame {
     }
 
     private String getResult(String correctAnswer, String userAnswer) {
-        if(correctAnswer.equals(userAnswer)){
-            return userAnswer+",O";
+        if (correctAnswer.equals(userAnswer)) {
+            return userAnswer + ",O";
         }
-        return userAnswer+",X";
+        return userAnswer + ",X";
     }
 
 
@@ -80,5 +139,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        movingList.clear();
+        tryCount++;
+
     }
+
+    public String retryQuestion() {
+        return inputView.readGameCommand();
+    }
+
 }
