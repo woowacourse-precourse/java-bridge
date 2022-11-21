@@ -23,7 +23,7 @@ public class BridgeGameTest {
         assertTrue(bridgeGame.move(bridge.get(4), userBridge.get(4)));
     }
 
-    @DisplayName("사용자의 이동 입력이 정답인 경우와 오답인 경우 테스트")
+    @DisplayName("사용자의 재시작 입력 테스트")
     @Test
     void testRetry() {
         assertTrue(bridgeGame.retry("R"));
