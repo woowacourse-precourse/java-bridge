@@ -41,35 +41,42 @@ public class BridgeGame {
         return check;
     }
 
+    public void makeList(String check) {
+        if (!up.isEmpty()) {
+            up.add(String.format(" %s ", check));
+            down.add("   ");
+        }
+        if (up.isEmpty()) {
+            up.add(String.format("[ %s ", check));
+            down.add("[   ");
+        }
+        this.up = up;
+        this.down = down;
+    }
+
+    public void makeList2(String check) {
+        if (!down.isEmpty()) {
+            up.add("   ");
+            down.add(String.format(" %s ", check));
+        }
+        if (down.isEmpty()) {
+            up.add("[   ");
+            down.add(String.format("[ %s ", check));
+        }
+        this.up = up;
+        this.down = down;
+    }
+
     public void make(String userMove, String check) {
         OutputView opv = new OutputView();
         if (userMove.equals("U")) {
-            if (!up.isEmpty()) {
-                up.add(String.format(" %s ", check));
-                down.add("   ");
-            }
-            if (up.isEmpty()) {
-                up.add(String.format("[ %s ", check));
-                down.add("[   ");
-            }
+            makeList(check);
         }
         if (userMove.equals("D")) {
-            if (!down.isEmpty()) {
-                up.add("   ");
-                down.add(String.format(" %s ", check));
-            }
-            if (down.isEmpty()) {
-                up.add("[   ");
-                down.add(String.format("[ %s ", check));
-            }
+            makeList2(check);
         }
-            giveFactor(opv,up,down);
-
-    }
-    public  void giveFactor(OutputView opv,List<String> up , List<String> down){
-        this.up = up;
-        this.down = down;
         opv.printMap(String.join("|", up), String.join("|", down));
+
     }
 
     /**
