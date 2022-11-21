@@ -6,7 +6,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    String[] map = new String[2];
+    private String[] map = new String[2];
 
     public OutputView() {
         map[0] = "[";
@@ -42,5 +42,12 @@ public class OutputView {
             if (map[i] != "[") map[i] += "|";
             map[i] += " " + result[i] + " ";
         }
+    }
+
+    /**
+     * 다시 시작하기 위해 저장된 게임 진행 상황을 지운다.
+     */
+    public void reMap(){
+        map[1]="[";
     }
 }
