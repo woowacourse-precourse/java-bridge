@@ -20,24 +20,26 @@ public class Application {
         }
         int tryCount = 1; // 총 시도 횟수
         int saveLength = bridgeLength;
-        int savecnt = 0;
+
         while (bridgeLength > 0) {
             bridgeMake.makeBridge(bridgeLength); // 맵 생성
             if (bridgeMake.firstORretry == false)
-                bridgeMake.saveIdx();
-            if (bridgeMake.error.contains("ERROR")) {
-                System.out.println("[ERROR] U 또는 D를 입력하세요.");
-                return;
-            }
+                if (bridgeMake.error.contains("ERROR")) {
+                    System.out.println("[ERROR] U 또는 D를 입력하세요.");
+                    return;
+                }
 
             output.printMap(bridgeMake); // Map 출력
-            savecnt = bridgeMake.saveIDX;
             if (bridgeMake.upperMap.contains("X") || bridgeMake.lowerMap.contains("X")) {
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String retry = gamestart.retry(input.readGameCommand()); // Q or R
                 if (retry.equals("R")) {
                     bridgeMake.firstORretry = true;// 재시도
-                    bridgeMake.saveIDX = savecnt;
+                    if (bridgeMake.possibleToGo == 0) { // "X"가 나온 반대 길을 넣어주기
+                        bridgeMake.ll.add(1);
+                    } else if (bridgeMake.possibleToGo == 1) {
+                        bridgeMake.ll.add(0);
+                    }
                     bridgeMake.i = 0;
                     tryCount += 1;
                     bridgeLength = saveLength + 1;

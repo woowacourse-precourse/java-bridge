@@ -25,11 +25,8 @@ public class BridgeMaker {
     public int i = 0;
     public boolean firstORretry = false;
 
-    public int saveIDX = 0;
+    public int possibleToGo;
 
-    public void saveIdx() {
-        saveIDX++;
-    }
 
     public LinkedList<Integer> ll = new LinkedList<>();
 
@@ -49,17 +46,21 @@ public class BridgeMaker {
         if (userMove == "ERROR") {
             return null;
         }
-        int possibleToGo;
+
 
         possibleToGo = ranVal.generate();
         if (firstORretry == false) {
             ll.add(possibleToGo);
         }
 
-        if (firstORretry == true && saveIDX > 0) {
-            possibleToGo = ll.get(i);
-            saveIDX--;
-            i++;
+        if (firstORretry == true) {
+            try {
+                possibleToGo = ll.get(i);
+                i++;
+            } catch (IndexOutOfBoundsException e) {
+                firstORretry = false;
+            }
+
         }
 
         upperMap = upperMap.replace(" ]", "");
