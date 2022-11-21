@@ -22,8 +22,8 @@ public enum Direction {
 
     public static String matchDirection(int upOrDown) {
         if (upOrDown == 0) {
-            return "D";
+            return DOWN.direction;
         }
-        return "U";
+        return UP.direction;
     }
 }

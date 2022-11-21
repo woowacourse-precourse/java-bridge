@@ -45,10 +45,10 @@ public class BridgeController {
 
     private void startRound(List<String> bridge) {
         for (String answer : bridge) {
-            String userSpace = inputDirection().getUserInput();
-            List<String> map = bridgeGame.move(userSpace, answer);
+            String userDirection = inputDirection().getUserInput();
+            List<String> map = bridgeGame.move(userDirection, answer);
             outputView.printMap(map);
-            if (!isSameWithAnswer(userSpace, answer)) {
+            if (!isSameWithAnswer(userDirection, answer)) {
                 bridgeGame.changeToFail();
                 break;
             }

@@ -4,6 +4,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.BridgeSymbol;
 import bridge.BridgeMaker;
+import bridge.constant.Direction;
 import bridge.domain.GameResult;
 import bridge.domain.Map;
 
@@ -35,7 +36,7 @@ public class BridgeGame {
     }
 
     public boolean isClear() {
-        return result.getSuccess().equals("성공");
+        return result.getSuccess().equals(BridgeSymbol.SUCCESS.getState());
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -44,9 +45,9 @@ public class BridgeGame {
      */
     public List<String> move(String user, String answer) {
         String result = compareUserAndAnswer(user, answer);
-        if (user.equals("U")) {
+        if (user.equals(Direction.UP.getDirection())) {
             map.makeUpMap(result);
-        } else if (user.equals("D")) {
+        } else if (user.equals(Direction.DOWN.getDirection())) {
             map.makeDownMap(result);
         }
         return List.of(map.getUpMap(), map.getDownMap());
@@ -65,7 +66,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String command) {
-        if (command.equals("R")) {
+        if (command.equals(BridgeSymbol.RETRY.getState())) {
             return true;
         }
         return false;

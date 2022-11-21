@@ -1,14 +1,13 @@
 package bridge.domain;
 
-public class GameResult {
-    private static final String SUCCESS_MESSAGE = "성공";
-    private static final String FAIL_MESSAGE = "실패";
+import bridge.constant.BridgeSymbol;
 
+public class GameResult {
     private String success;
     private int attemptNumber;
 
     public GameResult() {
-        success = SUCCESS_MESSAGE;
+        success = BridgeSymbol.SUCCESS.getState();
         attemptNumber = 0;
     }
 
@@ -17,11 +16,11 @@ public class GameResult {
     }
 
     public void changeSuccess() {
-        success = SUCCESS_MESSAGE;
+        success = BridgeSymbol.SUCCESS.getState();
     }
 
     public void changeFail() {
-        success = FAIL_MESSAGE;
+        success = BridgeSymbol.FAIL.getState();
     }
 
     public String getSuccess() {

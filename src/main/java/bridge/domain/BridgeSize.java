@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.Bridge;
 import bridge.constant.ErrorMessage;
 
 public class BridgeSize {
@@ -25,7 +26,7 @@ public class BridgeSize {
     }
 
     private boolean validateRange(int bridgeSize) {
-        return bridgeSize >= 3 && bridgeSize <= 20;
+        return bridgeSize >= Bridge.MIN.getNumber() && bridgeSize <= Bridge.MAX.getNumber();
     }
 
     public int getBridgeSize() {

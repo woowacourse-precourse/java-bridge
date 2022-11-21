@@ -6,7 +6,11 @@ public enum BridgeSymbol {
     BLANK("   "),
     OPEN("["),
     MIDDLE("|"),
-    CLOSE("]");
+    CLOSE("]"),
+    SUCCESS("성공"),
+    FAIL("실패"),
+    RETRY("R"),
+    QUIT("Q");
 
     private final String state;
 
