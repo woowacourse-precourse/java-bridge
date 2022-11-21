@@ -16,12 +16,15 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        String input = Console.readLine();
-        // 숫자인지 확인
-        // 입력 숫자가 범위를 만족하는지 확인
-        // input을 숫자로 바꿔서 return 하기
-        return 0;
+    public int readBridgeSize(String input) {
+        validateBridgeSize(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validateBridgeSize(String input) {
+        if (!validateIsNumber(input) || !validateNumberInRange(input)) {
+            throw new IllegalArgumentException(ExceptionHandler.BRIDGE_SIZE_EXCEPTION);
+        }
     }
 
     private boolean validateIsNumber(String input) {
