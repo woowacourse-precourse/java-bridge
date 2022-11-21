@@ -16,11 +16,8 @@ import java.util.List;
 public class Controller {
     private final List<String> answerBridge;
     private final BridgeGame bridgeGame;
-
     private final OneSideResults upsideResults;
     private final OneSideResults downsideResults;
-
-    private String finalResult;
 
     public Controller() {
         OutputView.printGameStart();
@@ -43,19 +40,7 @@ public class Controller {
             final String matchResult = bridgeGame.move(playerMove, answerBridge.get(index));
             updateResults(playerMove, matchResult);
             OutputView.printMap(upsideResults, downsideResults);
-
-            if (wasWrongMove(matchResult)) {
-                final String playerCommand = InputView.readGameCommand();
-                if (CommandKeys.isRetry(playerCommand)) {
-                    index = -1;
-                    resetResults(playerCommand);
-                    bridgeGame.retry();
-                }
-                if (CommandKeys.isQuit(playerCommand)) {
-                    bridgeGame.quit();
-                    index = answerBridge.size() - 1;
-                }
-            }
+            index = setIndexByMatchResult(index, matchResult);
         }
         OutputView.printResult(upsideResults, downsideResults, bridgeGame);
     }
@@ -65,12 +50,49 @@ public class Controller {
         downsideResults.update(playerMove, matchResult);
     }
 
-    private static boolean wasWrongMove(String matchResult) {
+    private int setIndexByMatchResult(int index, String matchResult) {
+        if (wasWrongMove(matchResult)) {
+            final String playerCommand = InputView.readGameCommand();
+            checkIfContinueOrNot(playerCommand);
+            index = setIndex(index, playerCommand);
+        }
+        return index;
+    }
+
+    private boolean wasWrongMove(String matchResult) {
         return matchResult.equals(WRONG_MOVE);
+    }
+
+    private void checkIfContinueOrNot(String playerCommand) {
+        if (CommandKeys.isRetry(playerCommand)) {
+            resetResults(playerCommand);
+            bridgeGame.retry();
+        }
+        if (CommandKeys.isQuit(playerCommand)) {
+            bridgeGame.quit();
+        }
     }
 
     private void resetResults(String playerCommand) {
         upsideResults.reset(playerCommand);
         downsideResults.reset(playerCommand);
+    }
+
+    private int setIndex(int index, String playerCommand) {
+        if (CommandKeys.isRetry(playerCommand)) {
+            index = toFirstIndex();
+        }
+        if (CommandKeys.isQuit(playerCommand)) {
+            index = toLastIndex();
+        }
+        return index;
+    }
+
+    private int toFirstIndex() {
+        return -1;
+    }
+
+    private int toLastIndex() {
+        return answerBridge.size() - 1;
     }
 }
