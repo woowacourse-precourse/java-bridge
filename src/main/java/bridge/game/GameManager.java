@@ -72,6 +72,7 @@ public class GameManager {
             printBridge_userPredict();
             if (isGameSucceed()) break;
             if (isGameFailed() && isQuitGame()) break;
+            if (player.isPlayingGame()) retryGame();
         }
         printGameResult();
     }
@@ -127,6 +128,13 @@ public class GameManager {
 
     private void printGameResult() {
         OutputView.printResult(player, bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
+    }
+
+    // 게임 재시작
+    private void retryGame() {
+        bridgeGame.retry();
+        player.increaseNumberOfGameTrials();
+        player.resetNumberOfMoves();
     }
 
 }

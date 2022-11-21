@@ -7,8 +7,8 @@ public class User {
 
     private boolean isPlayingGame;
     private boolean isGameSucceed;
-    private int numberOfGameTrials;
     private int numberOfMoves;
+    private int numberOfGameTrials;
 
     public User(boolean isPlayingGame, boolean isGameSucceed, int numberOfGameTrials) {
         this.isPlayingGame = isPlayingGame;
