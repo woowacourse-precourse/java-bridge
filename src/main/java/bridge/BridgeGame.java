@@ -24,9 +24,12 @@ public class BridgeGame {
         int bridgeSize = inputView.readBridgeSize();
         this.answerBridge = bridgeMaker.makeBridge(bridgeSize);
         boolean isContinue;
+        int count = 0;
         do {
+            count++;
             isContinue = eachGame(bridgeSize);
         } while (isContinue);
+        outputView.printResult(curMap, answerBridge, count);
     }
 
     public boolean eachGame(int bridgeSize) {
