@@ -79,7 +79,7 @@ public class BridgeGame {
         return success;
     }
 
-    public String showSuccess() {
+    public String getResultMessage() {
         if (success) {
             return Result.SUCCESS.getKorean();
         }

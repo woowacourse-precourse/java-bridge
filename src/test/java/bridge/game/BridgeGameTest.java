@@ -149,9 +149,9 @@ class BridgeGameTest {
         final String FAIL = "실패";
         final String SUCCESS = "성공";
         //when
-        String fail = bridgeGame.showSuccess();
+        String fail = bridgeGame.getResultMessage();
         bridgeGame.success();
-        String success = bridgeGame.showSuccess();
+        String success = bridgeGame.getResultMessage();
         //then
         assertThat(fail).isEqualTo(FAIL);
         assertThat(success).isEqualTo(SUCCESS);

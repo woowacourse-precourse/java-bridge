@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     private void printSuccess(BridgeGame bridgeGame) {
-        System.out.println(Message.IS_GAME_SUCCESS + bridgeGame.showSuccess());
+        System.out.println(Message.IS_GAME_SUCCESS + bridgeGame.getResultMessage());
     }
 
     private void printTotalTry(BridgeGame bridgeGame) {
