@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Validator {
 	public static void validateBridgeSize (String bridgeSize){
-
 		try{
 			int parseIntBridgeSize = Integer.parseInt(bridgeSize);
 			if(parseIntBridgeSize < 3 || parseIntBridgeSize >20){

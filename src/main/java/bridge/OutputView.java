@@ -63,5 +63,4 @@ public class OutputView {
             BoilerPlates.printResultDown(mapU,mapD);
         }
     }
-
 }
