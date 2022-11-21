@@ -75,6 +75,22 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 복잡한_기능_실패_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R", "U", "D", "U", "Q");
+            assertThat(output()).contains(
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "최종 게임 결과",
+                    "[ O |   | X ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1, 0, 0);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
