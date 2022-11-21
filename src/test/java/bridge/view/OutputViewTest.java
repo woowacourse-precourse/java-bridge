@@ -6,6 +6,7 @@ import bridge.Application;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.game.BridgeGame;
+import bridge.user.User;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +28,9 @@ public class OutputViewTest extends NsTest {
         bridge = bridgeMaker.makeBridge(bridgeLength);
     }
 
+    /**
+     * printMap : 현재까지 이동한 다리의 상태 출력
+     */
     @DisplayName("printMap 출력 테스트 - 이동할 수 있는 칸을 선택한 경우")
     @Test
     void printMap_userMovedToAble_테스트() {
@@ -38,6 +42,24 @@ public class OutputViewTest extends NsTest {
     void printMap_userMovedToDisable_테스트() {
         List<String> bridge_userMove = new ArrayList<>(List.of("U", "D", "U"));
         OutputView.printMap(bridge, bridge_userMove);
+    }
+
+    /**
+     * printResult : 게임의 최종 결과 출력
+     */
+    @DisplayName("printResult 출력 테스트 - 게임 성공한 경우")
+    @Test
+    void printResult_isGameSucceed_테스트() {
+        User player = new User(false, true, 1);
+        OutputView.printResult(player, bridge, bridge);
+    }
+
+    @DisplayName("printResult 출력 테스트 - 게임 실패한 경우")
+    @Test
+    void printResult_isGameFailed_테스트() {
+        List<String> bridge_userMove = new ArrayList<>(List.of("U", "D", "U"));
+        User player = new User(false, false, 1);
+        OutputView.printResult(player, bridge, bridge_userMove);
     }
 
 
