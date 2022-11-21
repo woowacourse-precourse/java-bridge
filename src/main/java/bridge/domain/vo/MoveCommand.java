@@ -12,8 +12,7 @@ public class MoveCommand extends Command {
     }
 
     @Override
-    void addCorrectValues(List<String> correctValues) {
-        correctValues.add(MOVE_TO_UPPER_BLOCK);
-        correctValues.add(MOVE_TO_LOWER_BLOCK);
+    protected List<String> getCorrectValues() {
+        return List.of(MOVE_TO_UPPER_BLOCK, MOVE_TO_LOWER_BLOCK);
     }
 }

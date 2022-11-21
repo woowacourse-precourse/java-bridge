@@ -12,9 +12,8 @@ public class RetryCommand extends Command {
     }
 
     @Override
-    void addCorrectValues(List<String> correctValues) {
-        correctValues.add(RETRY);
-        correctValues.add(QUIT);
+    protected List<String> getCorrectValues() {
+        return List.of(RETRY, QUIT);
     }
 
     public boolean isRetry() {
