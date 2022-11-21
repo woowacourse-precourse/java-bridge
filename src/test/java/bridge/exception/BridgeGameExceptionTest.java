@@ -9,6 +9,17 @@ public class BridgeGameExceptionTest {
     private final BridgeGameException bridgeGameException = new BridgeGameException();
 
     @Test
+    @DisplayName("다리의 입력이 null값인지 확인하는 예외 테스트")
+    public void validateBridgeInputIsNull() {
+        // given
+        String input = "";
+
+        // when, then
+        assertThatThrownBy(() -> bridgeGameException.validateBridgeInputIsNull(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("다리의 길이가 숫자로만 이뤄졌는지 확인하는 예외 테스트")
     public void validateBridgeSizeOnlyContainsNumberTest() {
         // given
