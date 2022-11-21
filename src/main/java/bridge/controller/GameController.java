@@ -2,6 +2,7 @@ package bridge.controller;
 
 import static bridge.controller.InputController.getBridgeSize;
 import static bridge.controller.InputController.getGameCommand;
+import static bridge.model.Status.die;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
@@ -10,10 +11,14 @@ import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Diagram;
 import bridge.model.GameCommand;
+import bridge.model.Position;
+import bridge.model.Status;
+import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
-    private static OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private static int attempts;
     private static boolean success;
     private static GameCommand command;
@@ -32,11 +37,17 @@ public class GameController {
         while (continueGame()) {
             Diagram diagram = new Diagram();
             BridgeGame bridgeGame = new BridgeGame(bridge, diagram);
-            int finalIndex = bridgeGame.move();
-            if (bridge.survivedToTheLast(finalIndex)) {
+            int index;
+            for (index = 0; index < bridge.getBridgeSize(); index++) {
+                Status status = bridgeGame.move(index);
+                if (die(status)) {
+                    break;
+                }
+            }
+            if (bridge.survivedToTheLast(index)) {
                 success = true;
             }
-            if (!bridge.survivedToTheLast(finalIndex)) {
+            if (!bridge.survivedToTheLast(index)) {
                 GameCommand gameCommand = getGameCommand();
                 bridgeGame.retry(gameCommand);
             }
