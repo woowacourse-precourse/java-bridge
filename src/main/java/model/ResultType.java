@@ -2,10 +2,13 @@ package model;
 
 import java.util.Arrays;
 
+import static constant.Config.ERROR;
+
 public enum ResultType {
     WIN(true, "성공"),
     LOSE(false, "실패");
 
+    private static final String VALUE_ERROR = ERROR + String.format("%s 또는 %s가 아닙니다.", WIN.run, LOSE.run);
     private final boolean run;
     private final String message;
 
@@ -26,6 +29,6 @@ public enum ResultType {
         return Arrays.stream(values())
                 .filter(type -> type.run == run)
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException(VALUE_ERROR));
     }
 }
