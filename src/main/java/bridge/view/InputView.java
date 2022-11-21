@@ -1,9 +1,9 @@
 package bridge.view;
 
-import bridge.exceptions.InputException;
+import bridge.exception.InputException;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.exceptions.InputException.*;
+import static bridge.exception.InputException.*;
 
 public class InputView {
 

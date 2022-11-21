@@ -1,8 +1,10 @@
-package bridge;
+package bridge.domain;
 
 
-import bridge.ways.DownSide;
-import bridge.ways.UpSide;
+import bridge.Application;
+import bridge.data.constant.OutputConstants;
+import bridge.data.way.DownSide;
+import bridge.data.way.UpSide;
 
 public class BridgeGame {
     public static UpSide upSide = new UpSide();

@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.Application;
-import bridge.BridgeGame;
-import bridge.OutputConstants;
+import bridge.domain.BridgeGame;
+import bridge.data.constant.OutputConstants;
 
 public class OutputView {
 

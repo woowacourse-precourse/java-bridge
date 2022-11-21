@@ -1,4 +1,4 @@
-package bridge.ways;
+package bridge.data.way;
 
 import java.util.ArrayList;
 import java.util.List;

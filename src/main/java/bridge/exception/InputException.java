@@ -1,6 +1,6 @@
-package bridge.exceptions;
+package bridge.exception;
 
-import bridge.ErrorMessage;
+import bridge.data.constant.ErrorMessage;
 
 public class InputException {
     public static int bridgeSizeInputError(String bridgeSizeInput) throws IllegalArgumentException{

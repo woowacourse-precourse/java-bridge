@@ -1,5 +1,9 @@
-package bridge;
+package bridge.domain;
 
+import bridge.Application;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

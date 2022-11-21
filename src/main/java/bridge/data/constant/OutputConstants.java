@@ -1,4 +1,4 @@
-package bridge;
+package bridge.data.constant;
 
 public class OutputConstants {
     public final static String RESULT = "최종 게임 결과";

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Initialization;
+import bridge.domain.StartGame;
 import bridge.view.OutputView;
 
 import java.util.List;
