@@ -36,4 +36,11 @@ public class Result {
     public void setSuccessToFail() {
         success = false;
     }
+
+    public String getSuccess() {
+        if (success) {
+            return "성공";
+        }
+        return "실패";
+    }
 }
