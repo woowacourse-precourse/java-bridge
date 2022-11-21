@@ -1,4 +1,4 @@
-package bridge;
+package bridge.validation;
 
 public class ValidationCheck {
     public int toInts(String bridgeSize) {

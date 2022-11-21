@@ -1,5 +1,7 @@
-package bridge;
+package bridge.input;
 
+import bridge.Application;
+import bridge.validation.ValidationCheck;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
