@@ -1,16 +1,17 @@
 package bridge.domain;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.util.Constants.*
-        ;
+import static bridge.util.Constants.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
     private final List<String> bridge;
     private List<String> topMap;
     private List<String> bottomMap;
@@ -18,8 +19,8 @@ public class BridgeGame {
     private int tryCount;
     private int step;
 
-    public BridgeGame(int bridgeSize) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator, int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = bridgeMaker.makeBridge(bridgeSize);
         topMap = new ArrayList<>();
         bottomMap = new ArrayList<>();

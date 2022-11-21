@@ -5,6 +5,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class Application {
+
     private static final InputView inputView;
     private static final OutputView outputView;
     private static BridgeGame bridgeGame;
@@ -26,8 +27,9 @@ public class Application {
 
     private static void initializeGame() {
         outputView.printWelcome();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         int bridgeSize = inputView.readBridgeSize();
-        bridgeGame = new BridgeGame(bridgeSize);
+        bridgeGame = new BridgeGame(bridgeNumberGenerator, bridgeSize);
     }
 
     private static void playUntilEnd() {
