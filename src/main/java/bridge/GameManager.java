@@ -19,7 +19,7 @@ public class GameManager {
 
     public void start() {
         ouputView.printGameStart();
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = getBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         boolean activation = true;
         int round = 0;
@@ -28,7 +28,7 @@ public class GameManager {
         List<String> downResult = new ArrayList<>();
 
         while (activation) {
-            String moving = inputView.readMoving();
+            String moving = getMoving();
             List<List<String>> result = bridgeGame.move(round, moving);
             upResult = result.get(0);
             downResult = result.get(1);
@@ -54,7 +54,7 @@ public class GameManager {
     }
 
     public boolean isRetried() {
-        String command = inputView.readGameCommand();
+        String command = getGameCommand();
         return Objects.equals(command, "R");
     }
 
@@ -66,5 +66,32 @@ public class GameManager {
         }
 
         return success;
+    }
+
+    public int getBridgeSize() {
+        try {
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            ouputView.printException(e.getMessage());
+            return getBridgeSize();
+        }
+    }
+
+    public String getMoving() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            ouputView.printException(e.getMessage());
+            return getMoving();
+        }
+    }
+
+    public String getGameCommand() {
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            ouputView.printException(e.getMessage());
+            return getGameCommand();
+        }
     }
 }
