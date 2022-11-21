@@ -20,7 +20,14 @@ public class MainController {
 
     public void initGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
-        BridgeSize bridgeSize = inputView.readBridgeSize();
+        BridgeSize bridgeSize = null;
+        do {
+            try {
+                bridgeSize = inputView.readBridgeSize();
+            } catch(IllegalArgumentException exception){
+                System.out.println("[ERROR] " + exception.getMessage());
+            }
+        } while(bridgeSize == null);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
         List<ChoiceDirection> choiceDirections = new ArrayList<>();
         List<CrossResult> crossResults = new ArrayList<>();
@@ -30,7 +37,15 @@ public class MainController {
     public void run() {
         GameStatus gameStatus = GameStatus.RUNNING;
         while (gameStatus.equals(GameStatus.RUNNING)) {
-            ChoiceDirection choice = inputView.readMoving();
+            ChoiceDirection choice = null;
+            do {
+                try {
+                    choice = inputView.readMoving();
+                } catch (IllegalArgumentException exception){
+                    System.out.println("[ERROR] " + exception.getMessage());
+                }
+            }while(choice == null);
+
             bridgeGame.move(choice);
             gameStatus = bridgeGame.checkGameStatus();
             outputView.printMap(bridgeGame);
@@ -41,7 +56,14 @@ public class MainController {
 
     private GameStatus checkKeepRunning(GameStatus gameStatus) {
         if (gameStatus.equals(GameStatus.FAIL)) {
-            Command command = inputView.readGameCommand();
+            Command command = null;
+            do {
+                try {
+                    command = inputView.readGameCommand();
+                } catch (IllegalArgumentException exception){
+                    System.out.println("[ERROR] " + exception.getMessage());
+                }
+            } while(command == null);
             if (command.isQuit()) {
                 //pass
             } else if (command.isRetry()) {
