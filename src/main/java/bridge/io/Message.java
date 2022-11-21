@@ -8,7 +8,9 @@ public enum Message {
     ROUTE("[ %s ]\n"),
     INPUT_ERROR("[ERROR] 올바른 입력 형식이 아닙니다."),
     END("최종 게임 결과"),
-    RESULT("게임 성공 여부: %s\n총 시도한 횟수: %d");
+    RESULT("게임 성공 여부: %s\n총 시도한 횟수: %d"),
+    SUCCESS("성공"),
+    FAIL("실패");
 
 
     private final String message;

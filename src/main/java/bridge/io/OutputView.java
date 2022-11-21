@@ -31,7 +31,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> route, String result, int count) {
+    public void printResult(List<List<String>> route, Message result, int count) {
         System.out.println(Message.END);
         printMap(route);
         System.out.printf(Message.RESULT.toString(), result, count);

@@ -6,6 +6,7 @@ import bridge.domain.BridgeMaker;
 import bridge.io.InputView;
 import bridge.io.Message;
 import bridge.io.OutputView;
+import bridge.utils.GameCommand;
 import bridge.utils.GameStatus;
 import bridge.utils.Mark;
 
@@ -39,7 +40,7 @@ public class BridgeGameProgram {
             }
 
             if (bridge.getSize() == bridgeGame.getMovingCount()) {
-                end(route, "성공");
+                end(route, Message.SUCCESS);
             }
         }
     }
@@ -55,8 +56,8 @@ public class BridgeGameProgram {
     }
 
     private void restartOrStop(List<List<String>> route) {
-        if (getGameCommand().equals("Q")) {
-            end(route, "실패");
+        if (getGameCommand().equals(GameCommand.END.getCommand())) {
+            end(route, Message.FAIL);
             return;
         }
         bridgeGame.retry();
@@ -67,7 +68,7 @@ public class BridgeGameProgram {
         return input.readGameCommand();
     }
 
-    private void end(List<List<String>> route, String result) {
+    private void end(List<List<String>> route, Message result) {
         GameStatus.quitGame();
         output.printResult(route, result, bridgeGame.getGameCount());
     }
