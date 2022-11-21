@@ -15,6 +15,7 @@ public class BridgeGameController {
     }
 
     public void gameStart() {
+        outputView.printGameStart();
         BridgeGame bridgeGame = makeBridgeGame();
         do {
             playGame(bridgeGame);
