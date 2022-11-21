@@ -29,9 +29,6 @@ public class BridgeGame {
     public HashMap<String, List<String>> move(String movingCommand) {
         HashMap<String,String> oppositionCommand = new HashMap<>(Map.of("U","D","D","U"));
         pathCheck(movingCommand, oppositionCommand);
-        if (isFail()){
-            retry();
-        }
         moveCount++;
         return path;
     }
@@ -45,7 +42,7 @@ public class BridgeGame {
             path.get(oppositionCommand.get(movingCommand)).add("N");
         }
     }
-    private boolean isFail(){
+    public boolean isFail(){
         boolean result = false;
         if (path.get("U").contains("X") || path.get("D").contains("X")){
             result = true;
@@ -57,6 +54,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String retryCommand) {
+        if (retryCommand.equals("R")){
+            path=new HashMap<>(Map.of("U", new ArrayList<>(), "D",new ArrayList<>()));
+            moveCount=0;
+            tryCount++;
+            return true;
+        }
+        return false;
     }
 }
