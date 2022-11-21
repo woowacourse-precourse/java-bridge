@@ -23,10 +23,9 @@ public class BridgeController {
 
     private void loop() {
         while (true) {
-            String moveCommand = bridgeView.inputMoveCommandMessage();
-            ResultSymbol resultSymbol = bridgeGame.move(moveCommand);
+            bridgeGame.move(bridgeView.inputMoveCommandMessage());
             bridgeView.printMoveResult(bridgeGame.printLines());
-            if (ResultSymbol.FAIL == resultSymbol) {
+            if (bridgeGame.getResultSymbol() == ResultSymbol.FAIL) {
                 String retryCommand = bridgeView.inputRetryCommandMessage();
                 if (retryCommand.equals("R")) {
                     bridgeGame.retry();
