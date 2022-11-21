@@ -5,13 +5,15 @@ import enumCollections.GameStatus;
 import enumCollections.Side;
 
 public class BridgeGame {
-    private final int INITIALIZED_TRIAL = 0;
+    private final int INITIALIZED_TRIAL = 1;
     private Bridge bridge;
     private Player player;
+    private Map map;
     private int trial;
 
     public BridgeGame() {
         this.player = new Player();
+        this.map = new Map();
         this.trial = INITIALIZED_TRIAL;
     }
 
@@ -35,6 +37,7 @@ public class BridgeGame {
     public GameStatus retry(String gameCommand) {
         if (gameCommand.equals(AvailableInput.get(AvailableInput.RESTART_GAME))) {
             player.initializePosition();
+            map.initialize();
             addTrial();
             return GameStatus.CONTINUE;
         }
@@ -59,5 +62,13 @@ public class BridgeGame {
 
     private void addTrial() {
         this.trial++;
+    }
+
+    public void updateMap() {
+        this.map.add(getCurrentAvailableSide(), isPlayerInRightSide());
+    }
+
+    public Map getMap() {
+        return this.map;
     }
 }

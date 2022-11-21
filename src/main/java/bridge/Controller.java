@@ -27,16 +27,16 @@ public class Controller {
         Map map = new Map();
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
-            getProgress(map, bridgeGame);
+            getProgress(bridgeGame);
             gameStatus = getGameStatus(bridgeGame, bridgeGame.isPlayerInRightSide());
         }
-        getResult(gameStatus, bridgeGame, map);
+        getResult(gameStatus, bridgeGame, bridgeGame.getMap());
         return gameStatus;
     }
 
-    private void getProgress(Map map, BridgeGame bridgeGame) {
-        updateMap(bridgeGame.getCurrentAvailableSide(), bridgeGame.isPlayerInRightSide(), map);
-        outputView.printMap(map);
+    private void getProgress(BridgeGame bridgeGame) {
+        bridgeGame.updateMap();
+        outputView.printMap(bridgeGame.getMap());
     }
 
     private void updateMap(Side movingSide, boolean moved, Map map) {

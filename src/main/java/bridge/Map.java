@@ -34,4 +34,10 @@ public class Map {
         }
         add(side, isSucceed);
     }
+
+    public void initialize() {
+        for (List<String> bridgeSide : bridgeUserInterface) {
+            bridgeSide.clear();
+        }
+    }
 }
