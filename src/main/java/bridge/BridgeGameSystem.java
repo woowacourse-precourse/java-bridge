@@ -1,6 +1,5 @@
 package bridge;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 import static bridge.Bridge.*;
@@ -9,7 +8,7 @@ public class BridgeGameSystem {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static int tryCount = 1;
-    private static int index = 2;
+    private static int index = 0;
 
     public void startBridgeGame(){
         startGame();
@@ -18,11 +17,14 @@ public class BridgeGameSystem {
         System.out.println(bridge);
         String direct = BridgeGame.getMoveDirect();
         Bridge pos = toCrossBridge(bridge, direct, index);
-        outputView.printMap(bridge, pos, index);
     }
 
     public static void startGame(){
         inputView.printStartMessage();
+    }
+
+    public static StringBuilder toCrossBridgeResult(List<String> bridge, Bridge block){
+        return outputView.makeSide(bridge, block, index);
     }
 
     public static Bridge toCrossBridge(List<String> bridge, String direct, int index){
