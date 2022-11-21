@@ -62,10 +62,25 @@ class ApplicationTest extends NsTest {
     @Test
     void createWrongMoveInput(){
         assertRandomNumberInRangeTest(() -> {
-            run("3", "u", "U", "D", "U");
+            run("3", "u", "U", "D", "U", "Q");
             assertThat(output()).contains(
                     "다리 건너기 게임을 시작합니다.",
                     ERROR_MESSAGE
+            );
+        }, 1, 0, 1);
+    }
+
+    @DisplayName("게임 종료 테스트")
+    @Test
+    void choiceExit() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
             );
         }, 1, 0, 1);
     }
