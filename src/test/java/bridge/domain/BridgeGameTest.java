@@ -2,6 +2,9 @@ package bridge.domain;
 
 import static bridge.Constants.DOWN;
 import static bridge.Constants.UP;
+import static bridge.domain.GameSituation.FAIL;
+import static bridge.domain.GameSituation.ON_GOING;
+import static bridge.domain.GameSituation.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -55,5 +58,36 @@ class BridgeGameTest {
 		Bridge nextBridge = bridgeGame.getBridge();
 		//then
 		assertThat(currentBridge).isEqualTo(nextBridge);
+	}
+
+	@Test
+	@DisplayName("게임을 시작하면 상황은 '진행중'이다.")
+	void 게임_상황_진행중_테스트() {
+		GameSituation currentSituation = bridgeGame.checkSituation();
+		assertThat(currentSituation).isEqualTo(ON_GOING);
+	}
+
+	@Test
+	@DisplayName("게임을 종료하고 플레이어가 죽으면 상황은 '실패'이다.")
+	void 게임_상황_실패_테스트() {
+		//when
+		bridgeGame.move(UP);
+		bridgeGame.move(DOWN);
+		bridgeGame.move(DOWN);
+		//then
+		GameSituation currentSituation = bridgeGame.checkSituation();
+		assertThat(currentSituation).isEqualTo(FAIL);
+	}
+
+	@Test
+	@DisplayName("게임을 종료하고 플레이어가 죽으면 상황은 '성공'이다.")
+	void 게임_상황_성공_테스트() {
+		//when
+		bridgeGame.move(UP);
+		bridgeGame.move(DOWN);
+		bridgeGame.move(UP);
+		//then
+		GameSituation currentSituation = bridgeGame.checkSituation();
+		assertThat(currentSituation).isEqualTo(SUCCESS);
 	}
 }
