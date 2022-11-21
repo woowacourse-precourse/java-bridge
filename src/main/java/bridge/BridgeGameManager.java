@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ public class BridgeGameManager {
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
     private static int gamePlayCount = 1;
+    private boolean isClear;
 
     public BridgeGameManager() {
         this.bridgeGame = new BridgeGame();
@@ -18,8 +20,13 @@ public class BridgeGameManager {
     }
 
     public void crossBridge() {
+        List<String> playerInput = new ArrayList<>();
         for (int count = 0; count < bridge.size(); count++) {
-            if (!bridgeGame.move(bridge, InputView.readMoving())) {
+            String currPlayerInput = InputView.readMoving();
+            playerInput.add(currPlayerInput);
+            OutputView.printMap(bridge, playerInput);
+            isClear = bridgeGame.move(bridge, currPlayerInput);
+            if (!isClear) {
                 restartGame();
                 return;
             }
@@ -32,8 +39,7 @@ public class BridgeGameManager {
     }
 
     public void endGame() {
-        OutputView outputView = new OutputView();
-        outputView.printResult();
+        OutputView.printResult(gamePlayCount, isClear);
     }
 
     public void restartGame() {
