@@ -29,7 +29,7 @@ public class Application {
         while(!GAME_STATE.equals("Q")) {
             String userPick = inputView.readMoving();
             userPicks.add(userPick);
-            boolean isCorrect = bridgeGame.move();
+            boolean isCorrect = bridgeGame.move(bridge, userPicks);
             outputView.printMap(bridge, userPicks);
             if(!isCorrect) GAME_STATE = inputView.readGameCommand();
         }
