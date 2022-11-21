@@ -5,11 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
  */
 
 public class InputView {
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    private int bridgeLength = 0;
-    private String movingCommand ;
 
     InputView(){
         System.out.println(Constants.START_INFO);
@@ -18,7 +13,10 @@ public class InputView {
 
     public int readBridgeSize() {
         System.out.println(Constants.INPUT_LENGTH_INFO);
-        bridgeLength= Integer.valueOf(Console.readLine());
+        /**
+         * 다리의 길이를 입력받는다.
+         */
+        int bridgeLength = Integer.valueOf(Console.readLine());
         System.out.println(bridgeLength);
         return bridgeLength;
     }
@@ -28,7 +26,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(Constants.INPUT_MOVING_INFO);
-        movingCommand = Console.readLine();
+        String movingCommand = Console.readLine();
         return movingCommand;
     }
 
@@ -36,6 +34,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(Constants.RESTART_INFO);
+        String restartCommand = Console.readLine();
+        return restartCommand;
     }
 }

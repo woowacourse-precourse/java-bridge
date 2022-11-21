@@ -6,5 +6,7 @@ public class Application {
         // TODO: 프로그램 구현
         InputView Input = new InputView();
         Input.readBridgeSize();
+        Input.readMoving();
+        Input.readGameCommand();
     }
 }
