@@ -68,4 +68,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printStartGame() {
+        System.out.println(START_GAME.getMessage());
+    }
 }
