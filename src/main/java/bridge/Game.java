@@ -16,12 +16,20 @@ public class Game {
     }
 
     private void makeBridge() {
-        this.size = InputView.readBridgeSize();
+        this.size = checkSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker user = new BridgeMaker(bridgeNumberGenerator);
         List<String> userBridge = user.makeBridge(size);
         this.bridgeGame = new BridgeGame(userBridge);
         System.out.println(userBridge);
+    }
+
+    private int checkSize() {
+        int input = InputView.readBridgeSize();
+        if (!(3 <= input && input <= 20)) {
+            throw new IllegalArgumentException("다리의 길이가 3이상 20이하가 아닙니다.");
+        }
+        return input;
     }
 
     public static void playGame() {
