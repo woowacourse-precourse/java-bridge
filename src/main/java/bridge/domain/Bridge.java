@@ -1,10 +1,9 @@
-package bridge;
+package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private List<String> bridge = new ArrayList<>();
+    private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
@@ -14,15 +13,10 @@ public class Bridge {
         if (bridge.get(index).equals(userDirection)) {
             return true;
         }
-
         return false;
     }
 
     public String returnCertainIndexUpOrDown(int index) {
         return bridge.get(index);
-    }
-
-    public int returnBridgeLength() {
-        return bridge.size();
     }
 }

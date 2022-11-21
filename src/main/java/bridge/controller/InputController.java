@@ -6,7 +6,7 @@ import java.util.List;
 
 public class InputController {
     private final static int MAX_RECURSION = 1000;
-    private static List<Integer> recursions = Arrays.asList(1, 1, 1);
+    private final static List<Integer> recursions = Arrays.asList(1, 1, 1);
 
     public static int setBridgeSize() {
         try {

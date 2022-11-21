@@ -1,24 +1,29 @@
 package bridge.controller;
 
-import bridge.Bridge;
+import bridge.domain.Bridge;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.view.InputView;
+import bridge.BridgeMaker;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    private BridgeMaker bridgeMaker  = new BridgeMaker(bridgeRandomNumberGenerator);
-    private BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+    private final BridgeMaker bridgeMaker;
+    private final BridgeGame bridgeGame;
     private Bridge bridge;
     private OutputView outputView;
     private int tryNumbers;
     private boolean pass;
     List<String> choices;
+
+    public Controller() {
+        bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        bridgeGame = new BridgeGame();
+    }
 
     public void game() throws IllegalArgumentException{
         int size = makeBridgeObject();
