@@ -2,8 +2,9 @@ package bridge;
 
 public enum BridgeJoyStick {
     U("U"),
-    D("D");
-
+    D("D"),
+    R("R"),
+    Q("Q");
     private String bridgeJoyStick;
 
     private BridgeJoyStick(String bridgeJoyStick) {
