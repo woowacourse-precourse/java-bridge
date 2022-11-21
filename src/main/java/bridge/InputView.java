@@ -9,23 +9,33 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        String bridgeLength = "";
         System.out.println("다리의 길이를 입력해주세요.");
-        bridgeTypeCheck();
-        bridgeSizeCheck();
-        bridgeSizeException(Integer.parseInt(bridgeLength));
+        bridgeLength = bridgeTypeCheck();
+        bridgeSizeCheck(Integer.parseInt(bridgeLength));
         return Integer.parseInt(bridgeLength);
     }
 
-    public void bridgeTypeCheck(){
+    public String bridgeTypeCheck(){
+        String bridgeLength = "";
         try{
-            String bridgeLength = Console.readLine();
+            bridgeLength = Console.readLine();
             bridgeTypeException(bridgeLength);
-        }catch(IllegalArgumentException e){
+        }catch(IllegalArgumentException e) {
             System.out.println("[ERROR] 숫자를 입력해주세요.");
             readBridgeSize();
         }
+        return bridgeLength;
     }
 
+    public void bridgeSizeCheck(int bridgeLength){
+        try{
+            bridgeSizeException(bridgeLength);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 3이상 20이하의 숫자를 입력해주세요.");
+            readBridgeSize();
+        }
+    }
 
     public void bridgeTypeException(String bridgeLength){
         char check[] = bridgeLength.toCharArray();
@@ -34,9 +44,6 @@ public class InputView {
                 throw new IllegalArgumentException();
         }
     }
-
-
-
     public static void bridgeSizeException(int bridgeLength){
         if(bridgeLength<3||bridgeLength>20)
             throw new IllegalArgumentException();
