@@ -11,6 +11,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameTest {
     @Test
+    @DisplayName("BridgeGame 객체 생성 테스트")
+    void createBridgeGame() {
+        BridgeGame bg = new BridgeGame(3);
+        assertThat(bg.getBridgeLength()).isEqualTo(3);
+        assertThat(bg.getAnswer().size()).isEqualTo(3);
+    }
+
+    @Test
     @DisplayName("사용자 이동 테스트")
     void userMoveTest() {
         User user = new User(List.of("D","U","D","D"),4);
