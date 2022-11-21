@@ -23,6 +23,7 @@ public class BridgeGameController {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
         crossBridge(bridgeGame);
+        outputView.printResult(bridgeGame.getMovingMap(), bridgeGame.allPass(), bridgeGame.getTryCount());
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
