@@ -12,30 +12,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(final Bridge bridge, final List<String> movings) {
-        int index = movings.size() - 1;
-
-        if (movings.get(index).equals("U")) {
-            return compareWhenMovingEqualsU(bridge, index);
-        }
-        if (movings.get(index).equals("D")) {
-            return compareWhenMovingEqualsD(bridge, index);
-        }
-        return null;
-    }
-
-    public String compareWhenMovingEqualsU(final Bridge bridge, final int index) {
-        if (bridge.hasUAtIndex(index)) {
-            return "O";
-        }
-        return "X";
-    }
-
-    public String compareWhenMovingEqualsD(final Bridge bridge, final int index) {
-        if (!bridge.hasUAtIndex(index)) {
-            return "O";
-        }
-        return "X";
+    public List<String> move(final Bridge bridge, final String moving) {
+        return bridge.addMoving(moving);
     }
 
     /**
@@ -43,6 +21,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(Bridge bridge) {
+        bridge.increaseCounter();
     }
 }
