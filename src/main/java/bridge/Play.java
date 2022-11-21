@@ -24,13 +24,13 @@ public class Play {
         bridgeGame.move(moving);
         map.drawMap(bridgeGame.getUserPath(), bridgeGame.isCorrectPath());
         view.mapView(map.getMap());
-        if (checkRetry()) {
+        if (isRetry()) {
             bridgeGame.retry(map);
             nextRound();
         }
     }
 
-    private boolean checkRetry() {
+    private boolean isRetry() {
         if (!bridgeGame.isCorrectPath()) {
             String retryCommand = view.retryView();
             return retryCommand.equals(RETRY_COMMAND);
