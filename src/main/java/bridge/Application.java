@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 public class Application {
     final static BridgeGame bridgeGame = new BridgeGame();
     final static InputView inputView = new InputView();
@@ -9,21 +7,25 @@ public class Application {
 
 
     public static void main(String[] args) {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
         bridgeGame.makeGame(inputView.readBridgeSize());
-        int totalTry = 1;
 
-
-
-        while (!bridgeGame.isDead()) {
-            bridgeGame.move(inputView.readMoving());
-
-            if (bridgeGame.isDead()) {
-                bridgeGame.retry(inputView.readGameCommand());
-                totalTry++;
-            }
+        while (bridgeGame.playing())
+        {
+            moveAndPrint();
+            if (bridgeGame.getDeath()) retryAndReset();
         }
-        outputView.printResult(bridgeGame.isDead(), totalTry);
+        outputView.printResult(bridgeGame.getDeath(), bridgeGame.getTryCount());
+    }
 
+    public static void moveAndPrint() {
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getCurStep(), bridgeGame.getDeath());
+    }
 
+    public static void retryAndReset() {
+        String command = inputView.readGameCommand();
+        bridgeGame.retry(command);
+        outputView.outputReset(command);
     }
 }
