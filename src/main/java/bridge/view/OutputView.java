@@ -21,33 +21,40 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Player player, List<String> bridge, String move) {
+    public void printMap(Player player, boolean moveResult) {
         up = new StringBuilder(MapType.START.getType());
         down = new StringBuilder(MapType.START.getType());
         for (int index = 0; index <= player.informMovingIndex(); index++) {
-            makeUpMap(player, bridge, move);
-            makeDownMap(player, bridge, move);
+            makeUpSide(player, moveResult);
+            makeDownSide(player, moveResult);
         }
-        System.out.println(up);
-        System.out.println(down);
+        printWithDivision(up, down);
     }
 
-    public void makeUpMap(Player player, List<String> bridge, String move) {
-        if (bridge.get(player.informMovingIndex()).equals(BridgePanel.UP_PANEL.getPosition())) {
-            up.append(move).append(MapType.END.getType());
-            down.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+    public void makeUpSide(Player player, boolean moveResult) {
+        List<String> movingChoices = player.getMovingInputs();
+        if (movingChoices.get(player.informMovingIndex()).equals(BridgePanel.UP_PANEL.getPosition())) {
+            if (moveResult) {
+                up.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
+                return;
+            }
+            up.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
+            return;
         }
-        insertDivision(up);
-        insertDivision(down);
+        up.append(MapType.EMPTY.getType()).append(MapType.END.getType());
     }
 
-    public void makeDownMap(Player player, List<String> bridge, String move) {
-        if (bridge.get(player.informMovingIndex()).equals(BridgePanel.DOWN_PANEL.getPosition())) {
-            down.append(move).append(MapType.END.getType());
-            up.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+    public void makeDownSide(Player player, boolean moveResult) {
+        List<String> movingChoices = player.getMovingInputs();
+        if (movingChoices.get(player.informMovingIndex()).equals(BridgePanel.DOWN_PANEL.getPosition())) {
+            if (moveResult) {
+                down.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
+                return;
+            }
+            down.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
+            return;
         }
-        insertDivision(up);
-        insertDivision(down);
+        down.append(MapType.EMPTY.getType()).append(MapType.END.getType());
     }
 
     public void insertDivision(StringBuilder builder) {
@@ -56,6 +63,13 @@ public class OutputView {
                 builder.replace(index, index + 1, MapType.DIVISION.getType());
             }
         }
+    }
+
+    public void printWithDivision(StringBuilder up, StringBuilder down) {
+        insertDivision(up);
+        insertDivision(down);
+        System.out.println(up);
+        System.out.println(down);
     }
 
     /**

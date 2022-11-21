@@ -9,6 +9,10 @@ public class Player {
         this.movingInputs = movingInputs;
     }
 
+    public List<String> getMovingInputs() {
+        return movingInputs;
+    }
+
     public String informMoving() {
         return movingInputs.get(movingInputs.size() - 1);
     }
