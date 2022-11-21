@@ -13,20 +13,38 @@ public class OutputView {
     private static final String BRIDGE_MOVE_INPUT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String RESTART_GAME_INPUT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String FINAL_MESSAGE = "최종 게임 결과";
+    private static final String BRIDGE_GAME_SUCCESS = "게임 성공 여부: ";
+    private static final String TRY_BRIDGE_GAME_COUNT = "총 시도한 횟수: ";
 
 
     BridgePrinter bridgePrinter = new BridgePrinter();
 
-    public void printStartMessage(){
+    public void printStartMessage() {
         System.out.println(START_MESSAGE);
     }
 
-    public void printInputBridgeSizeMessage(){
+    public void printInputBridgeSizeMessage() {
         System.out.println(BRIDGE_SIZE_INPUT);
     }
 
-    public void printInputMoveBridgeMessage(){
+    public void printInputMoveBridgeMessage() {
         System.out.println(BRIDGE_MOVE_INPUT);
+    }
+
+    public void printRestartGameMessage() {
+        System.out.println(RESTART_GAME_INPUT);
+    }
+
+    public void printFinalMessage() {
+        System.out.println(FINAL_MESSAGE);
+    }
+
+    public String printBridgeGameSuccess(){
+        return BRIDGE_GAME_SUCCESS;
+    }
+
+    public String printTryBridgeGameCount(){
+        return TRY_BRIDGE_GAME_COUNT;
     }
 
 
@@ -36,7 +54,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(User user, Bridge bridge) {
-        bridgePrinter.print(user,bridge);
+        bridgePrinter.printLine(user, bridge);
     }
 
     /**
@@ -44,6 +62,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(User user, Bridge bridge) {
+        bridgePrinter.printLine(user, bridge);
     }
 }
