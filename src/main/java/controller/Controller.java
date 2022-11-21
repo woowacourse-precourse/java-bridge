@@ -30,7 +30,7 @@ public class Controller {
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
             printProgress(bridgeGame);
-            gameStatus = getGameStatus(bridgeGame, bridgeGame.isPlayerInRightSide());
+            gameStatus = getGameStatus(bridgeGame, bridgeGame.isPlayerInMovableSide());
         }
         return gameStatus;
     }
@@ -53,8 +53,8 @@ public class Controller {
         bridgeGame.move(inputView.readMoving());
     }
 
-    private GameStatus getGameStatus(final BridgeGame bridgeGame, boolean moved) {
-        if (!moved) {
+    private GameStatus getGameStatus(final BridgeGame bridgeGame, boolean playerOnMovableSide) {
+        if (!playerOnMovableSide) {
             return askForRetry(bridgeGame);
         }
         return bridgeGame.getGameStatus();

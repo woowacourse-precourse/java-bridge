@@ -33,7 +33,7 @@ public class BridgeGame {
         updateMap();
     }
 
-    public boolean isPlayerInRightSide() {
+    public boolean isPlayerInMovableSide() {
         return this.bridge.isMovableSide(
                 this.player.getLastMoving(),
                 this.player.getCurrentPosition()
@@ -68,7 +68,7 @@ public class BridgeGame {
     public void updateMap() {
         this.map.add(
                 Side.get(player.getLastMoving()),
-                isPlayerInRightSide()
+                isPlayerInMovableSide()
         );
     }
 
