@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +12,35 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> userPath, GameStatus gameStatus) {
+        List<String> map = formatMap(userPath, gameStatus);
+        System.out.println("[ " + String.join(" | ", map.get(0).split("")) + " ]");
+        System.out.println("[ " + String.join(" | ", map.get(1).split("")) + " ]");
+    }
+
+    private List<String> formatMap(List<String> userPath, GameStatus gameStatus) {
+        String matches = parseMatches(userPath, gameStatus);
+        return formatUpDown(userPath, matches);
+    }
+
+    private List<String> formatUpDown(List<String> userPath, String matches) {
+        StringBuilder upSide = new StringBuilder(matches);
+        StringBuilder downSide = new StringBuilder(matches);
+        for (int i = 0; i < userPath.size(); i++) {
+            if (userPath.get(i).equals("U")) {
+                downSide.setCharAt(i, ' ');
+                continue;
+            }
+            upSide.setCharAt(i, ' ');
+        }
+        return List.of(upSide.toString(), downSide.toString());
+    }
+
+    private String parseMatches(List<String> userPath, GameStatus gameStatus) {
+        if (gameStatus.equals(GameStatus.LOSE)) {
+            return "O".repeat(userPath.size() - 1) + "X";
+        }
+        return "O".repeat(userPath.size());
     }
 
     /**

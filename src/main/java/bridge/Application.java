@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 public class Application {
 
     public static void main(String[] args) {
@@ -15,6 +13,7 @@ public class Application {
             String direction = inputView.readMoving();
 
             bridgeGame.move(direction);
+            outputView.printMap(bridgeGame.getUserPath(), bridgeGame.getGameStatus());
         }
     }
 
