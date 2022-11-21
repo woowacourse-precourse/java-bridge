@@ -52,6 +52,7 @@ public class OutputView {
         System.out.println();
         System.out.println(RESULT);
         System.out.println(mapResult);
+        System.out.println();
         printGameResult(gameResult);
         printGameTotalCount(count);
     }
