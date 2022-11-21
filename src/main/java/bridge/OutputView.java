@@ -9,6 +9,9 @@ import java.util.Map;
  */
 public class OutputView {
 
+    private int gameTry = 1;
+
+
     public void start() {
         System.out.println("다리 건너기 게임을 시작합니다");
         System.out.println();
@@ -32,13 +35,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> userInput) {
-        Map<>
-        for (String input : userInput) {
-
-        }
+    public void printMap(List<String> userInput, boolean passFail) {
+        String[][] bridge = bridgeResult(userInput, passFail);
+        System.out.println("[ " + String.join(" | ", bridge[0]) + " ]");
+        System.out.println("[ " + String.join(" | ", bridge[1]) + " ]");
     }
 
+    public String[][] bridgeResult(List<String> userInput, boolean passFail) {
+        Map<String, Integer> upDownAndNumber = Map.of("U", 0, "D", 1);
+        String[][] bridgeOutput = new String[userInput.size()][userInput.size()];
+        for (int index = 0 ; index< userInput.size()-1 ; index++) {
+            bridgeOutput[upDownAndNumber.get(userInput.get(index))][index] = "O";
+            bridgeOutput[1-upDownAndNumber.get(userInput.get(index))][index] = " ";
+        }
+        if (passFail) {
+            bridgeOutput[upDownAndNumber.get(userInput.get(userInput.size()-1))][userInput.size()-1] = "O";
+            bridgeOutput[1-upDownAndNumber.get(userInput.get(userInput.size()-1))][userInput.size()-1] = " ";
+            return bridgeOutput;
+        }
+        bridgeOutput[upDownAndNumber.get(userInput.get(userInput.size()-1))][userInput.size()-1] = "X";
+        bridgeOutput[1-upDownAndNumber.get(userInput.get(userInput.size()-1))][userInput.size()-1] = " ";
+        return bridgeOutput;
+    }
 
 
     /**
@@ -46,7 +64,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> userInput, boolean passFail) {
+        Map<Boolean, String> gameResult = Map.of(true, "성공", false, "실패");
+        System.out.println("최종 게임 결과");
+        String[][] bridge = bridgeResult(userInput, passFail);
+        System.out.println("[ " + String.join(" | ", bridge[0]) + " ]");
+        System.out.println("[ " + String.join(" | ", bridge[1]) + " ]");
+        System.out.println("게임 성공 여부: " + gameResult.get(passFail));
+        System.out.println("총 시도한 횟수: " + gameTry);
+        gameTry++;
     }
 
     /**
