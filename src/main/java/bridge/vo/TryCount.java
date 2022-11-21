@@ -9,8 +9,12 @@ public class TryCount {
         tryCount = 0;
     }
 
-    public void addCount() {
-        tryCount++;
+    private TryCount(int tryCount) {
+        this.tryCount = tryCount;
+    }
+
+    public TryCount addCount() {
+        return new TryCount(++tryCount);
     }
 
     @Override

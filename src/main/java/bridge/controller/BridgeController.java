@@ -41,8 +41,7 @@ public class BridgeController {
     private List<StepResult> handleFailure(Bridge bridge, TryCount tryCount, List<StepResult> stepHistory) {
         outputView.printAskingGameCommandMessage();
         if (getCommand().isRetrying()) {
-            bridgeGame.retry(tryCount);
-            return crossBridge(bridge, tryCount);
+            return crossBridge(bridge, bridgeGame.retry(tryCount));
         }
         return stepHistory;
     }
