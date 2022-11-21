@@ -1,6 +1,5 @@
 package bridge;
 
-import javax.swing.text.Position;
 import java.util.StringJoiner;
 
 public class ResultInformation {
@@ -8,7 +7,7 @@ public class ResultInformation {
     private final char[] upBridge;
     private final char[] downBridge;
     private final int bridgeSize;
-    private int tryCount = 0;
+    private int tryCount = 1;
 
     public ResultInformation(int size) {
         this.bridgeSize = size;
@@ -24,10 +23,10 @@ public class ResultInformation {
         downBridge[position] = sign;
     }
 
-    String makeMap(int tryCount) {
+    String makeMap(int stage) {
         StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
         StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
-        for (int i = 0; i < tryCount; i++) {
+        for (int i = 0; i < stage + 1; i++) {
             upJoiner.add(String.valueOf(upBridge[i]));
             downJoiner.add(String.valueOf(downBridge[i]));
         }
