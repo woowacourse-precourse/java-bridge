@@ -14,13 +14,25 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요");
-
         String size = Console.readLine();
 
-        InputValidator.isDigit(size);
-        InputValidator.isInBoundary(size);
+        while (handlingBridgeSizeException(size)) {
+            System.out.println("다리의 길이를 입력해주세요");
+            size = Console.readLine();
+        }
 
         return Integer.parseInt(size);
+    }
+
+    private boolean handlingBridgeSizeException(String size) {
+        try {
+            InputValidator.isDigit(size);
+            InputValidator.isInBoundary(size);
+            return false;
+        } catch (IllegalArgumentException retry) {
+            System.out.println(retry.getMessage());
+        }
+        return true;
     }
 
     /**
@@ -28,11 +40,16 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-
-        String nextStep = Console.readLine();
-
-        PlayerInputValidator.canMove(nextStep);
-
+        String nextStep = null;
+        while (true) {
+            try {
+                nextStep = Console.readLine();
+                PlayerInputValidator.canMove(nextStep);
+                break;
+            } catch (IllegalArgumentException retry) {
+                System.out.println(retry.getMessage());
+            }
+        }
         return nextStep;
     }
 
@@ -41,15 +58,16 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-
-        String finish = Console.readLine();
-
-        try {
-            PlayerInputValidator.canFinish(finish);
-        } catch (IllegalArgumentException retry) {
-            readGameCommand();
+        String finish = null;
+        while (true) {
+            try {
+                finish = Console.readLine();
+                PlayerInputValidator.canFinish(finish);
+                break;
+            } catch (IllegalArgumentException retry) {
+                System.out.println(retry.getMessage());
+            }
         }
-
         return finish;
     }
 }
