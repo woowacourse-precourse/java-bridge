@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.message.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -15,7 +16,7 @@ public class InputView {
         if(size >= 3 && size <= 20)
             return size;
 
-        throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_OUT_RANGE.value);
     }
 
     /**
@@ -26,7 +27,7 @@ public class InputView {
         if(moving.equals("U") || moving.equals("D"))
             return moving;
 
-        throw new IllegalArgumentException("U 또는 D를 입력해야 합니다.");
+        throw new IllegalArgumentException(ErrorMessage.INPUT_UD.value);
     }
 
     /**
@@ -37,7 +38,7 @@ public class InputView {
         if(moving.equals("R") || moving.equals("Q"))
             return moving;
 
-        throw new IllegalArgumentException("R 또는 Q를 입력해야 합니다.");
+        throw new IllegalArgumentException(ErrorMessage.INPUT_RQ.value);
     }
 
     private int readInteger() {
@@ -45,7 +46,7 @@ public class InputView {
             int number = Integer.parseInt(Console.readLine());
             return number;
         } catch(Exception e) {
-            throw new IllegalArgumentException("정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_INTEGER.value);
         }
     }
 
@@ -54,10 +55,10 @@ public class InputView {
         try {
             line = Console.readLine();
         } catch (Exception e) {
-            throw new IllegalArgumentException("입력 과정에서 오류가 발생했습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR.value);
         }
         if(line.length() != 1) {
-            throw new IllegalArgumentException("알파벳 하나를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONE_CHARACTER.value);
         }
         return line;
     }
