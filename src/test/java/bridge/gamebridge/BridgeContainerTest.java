@@ -1,6 +1,6 @@
 package bridge.gamebridge;
 
-import static bridge.command.util.MoveTestUtils.convertStringListToMoveList;
+import static bridge.command.util.MoveTestUtils.insertMovesInContainer;
 import static bridge.config.ExceptionMessage.ERROR;
 import static bridge.result.GameStatus.FAIL;
 import static bridge.result.GameStatus.PROGRESS;
@@ -22,9 +22,8 @@ public class BridgeContainerTest {
     void checkInsertedMoveTest() {
         BridgeContainer bridgeContainer = new BridgeContainer();
         bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(List.of("U", "D"), bridgeContainer);
 
-        Result result = bridgeContainer.insertMove(new Move("U"));
+        Result result = insertMovesInContainer(List.of("U", "D", "U"), bridgeContainer);
 
         assertThat(result.getGameStatus()).isEqualTo(PROGRESS);
     }
@@ -34,9 +33,8 @@ public class BridgeContainerTest {
     void checkInsertedWrongMoveTest() {
         BridgeContainer bridgeContainer = new BridgeContainer();
         bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(List.of("U", "D"), bridgeContainer);
 
-        Result result = bridgeContainer.insertMove(new Move("D"));
+        Result result = insertMovesInContainer(List.of("U", "D", "D"), bridgeContainer);
 
         assertThat(result.getGameStatus()).isEqualTo(FAIL);
     }
@@ -46,9 +44,8 @@ public class BridgeContainerTest {
     void checkInsertSuccessBridge() {
         BridgeContainer bridgeContainer = new BridgeContainer();
         bridgeContainer.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
-        insertMovesForTest(List.of("U", "D", "U", "U"), bridgeContainer);
 
-        Result result = bridgeContainer.insertMove(new Move("D"));
+        Result result = insertMovesInContainer(List.of("U", "D", "U", "U", "D"), bridgeContainer);
 
         assertThat(result.getGameStatus()).isEqualTo(SUCCESS);
     }
@@ -70,13 +67,5 @@ public class BridgeContainerTest {
         assertThatThrownBy(() -> bridgeContainer.generateAnswerBridge(new Bridge(List.of("D", "U"))))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
-    }
-
-
-    private void insertMovesForTest(List<String> inputMoves, BridgeContainer bridgeContainer) {
-        List<Move> moves = convertStringListToMoveList(inputMoves);
-        for (Move move : moves) {
-            bridgeContainer.insertMove(move);
-        }
     }
 }

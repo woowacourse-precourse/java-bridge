@@ -1,9 +1,9 @@
 package bridge.domain;
 
+import static bridge.config.ExceptionMessage.ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.config.ExceptionMessage;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,6 @@ public class BridgeTest {
     void insertSquaresWithWrongElement() {
         assertThatThrownBy(() -> new Bridge(List.of("U", "D", "A", "D")))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(ExceptionMessage.ERROR);
+            .hasMessageContaining(ERROR);
     }
-
 }
