@@ -81,6 +81,14 @@ public class BridgeTest extends NsTest {
 		});
 	}
 
+	@Test
+	void 재시작_선택지에_없는_문자_예외테스트() {
+		assertSimpleTest(() -> {
+			runException("3", "U", "U", "W");
+			assertThat(output()).contains(ERROR_MESSAGE);
+		});
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
