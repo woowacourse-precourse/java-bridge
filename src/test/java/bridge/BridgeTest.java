@@ -35,6 +35,12 @@ public class BridgeTest extends NsTest {
 		}, 1, 0, 1);
 	}
 
+	@Test
+	void retry_기능테스트() {
+		BridgeGame bridgeGame = new BridgeGame();
+		assertThat(true).isEqualTo(bridgeGame.retry("R"));
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
