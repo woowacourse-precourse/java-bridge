@@ -1,18 +1,17 @@
 package bridge.controller;
 
-import bridge.view.OutputView;
 import bridge.service.BridgeGameService;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
     private BridgeGameService bridgeGameService;
-    private OutputView outputView;
     private InputController inputController;
+    private OutputView outputView;
 
-    public BridgeGameController(BridgeGameService bridgeGameService, OutputView outputView,
-                                InputController inputController) {
+    public BridgeGameController(BridgeGameService bridgeGameService) {
         this.bridgeGameService = bridgeGameService;
-        this.outputView = outputView;
-        this.inputController = inputController;
+        inputController = new InputController();
+        outputView = new OutputView();
     }
 
     public void makeBridge() {

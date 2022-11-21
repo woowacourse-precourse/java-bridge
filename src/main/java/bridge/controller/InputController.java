@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Validator;
 import bridge.view.ErrorOutputView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -9,10 +10,10 @@ public class InputController {
     private OutputView outputView;
     private ErrorOutputView errorOutputView;
 
-    public InputController(InputView inputView, OutputView outputView, ErrorOutputView errorOutputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.errorOutputView = errorOutputView;
+    public InputController() {
+        inputView = new InputView(new Validator());
+        outputView = new OutputView();
+        errorOutputView = new ErrorOutputView();
     }
 
     public int suggestBridgeSize() {

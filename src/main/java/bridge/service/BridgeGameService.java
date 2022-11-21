@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameManager;
 import bridge.BridgeMaker;
@@ -9,17 +10,16 @@ import java.util.List;
 
 public class BridgeGameService {
     private BridgeGameManager bridgeGameManager;
-    private BridgeGame bridgeGame;
     private UserBridge userBridge;
+    private BridgeGame bridgeGame;
     private BridgeMaker bridgeMaker;
     private List<String> bridge;
 
-    public BridgeGameService(BridgeGameManager bridgeGameManager, BridgeGame bridgeGame, UserBridge userBridge,
-                             BridgeMaker bridgeMaker) {
+    public BridgeGameService(BridgeGameManager bridgeGameManager, UserBridge userBridge) {
         this.bridgeGameManager = bridgeGameManager;
-        this.bridgeGame = bridgeGame;
         this.userBridge = userBridge;
-        this.bridgeMaker = bridgeMaker;
+        bridgeGame = new BridgeGame();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     private static Direction findDirection(List<String> bridge, BridgeGameManager bridgeGameManager) {
