@@ -19,6 +19,7 @@ public class Application {
             bridgeGame.newGame();
             playing();
         } while (retryQuit());
+        outputView.printResult(repository.getResult(), repository.getTimes());
     }
 
     private static boolean retryQuit() {
@@ -36,7 +37,6 @@ public class Application {
     private static boolean endGame() {
         repository.save(bridgeGame.getGame());
         if (bridgeGame.success()) {
-            outputView.printResult(repository.getResult(), repository.getTimes());
             return true;
         }
         return false;
