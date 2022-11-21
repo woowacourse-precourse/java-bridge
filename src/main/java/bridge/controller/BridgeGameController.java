@@ -21,7 +21,7 @@ public class BridgeGameController {
             BridgeGame bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(new BridgeRandomNumberGenerator()));
             playGame(bridgeGame);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             makeBridge();
         }
     }
@@ -41,7 +41,7 @@ public class BridgeGameController {
             gameContinue = bridgeGame.move(InputView.readMoving());
             OutputView.printMap(bridgeGame.getPlayer());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return move(bridgeGame);
         }
         return gameContinue;
@@ -59,7 +59,7 @@ public class BridgeGameController {
             String gameCommand = InputView.readGameCommand();
             return bridgeGame.retry(gameCommand);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return decideKeepPlay(bridgeGame);
         }
     }

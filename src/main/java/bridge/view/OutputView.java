@@ -23,6 +23,10 @@ public class OutputView {
         printSuccessMessage(gameContinue, player.getPlayResult());
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     private static void printUpperBridge(List<MoveStatus> result) {
         System.out.println(makeUpperBridge(result));
     }
