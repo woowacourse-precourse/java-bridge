@@ -7,7 +7,9 @@ public enum ExceptionCode {
     OUT_OF_RANGE("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     IS_NOT_INT("[ERROR] 숫자를 입력해야 합니다."),
     IS_NOT_MOVING("[ERROR] U 또는 D만 입력할 수 있습니다."),
-    IS_NOT_GAME_COMMAND("[ERROR] R 또는 Q만 입력할 수 있습니다.");
+    IS_NOT_GAME_COMMAND("[ERROR] R 또는 Q만 입력할 수 있습니다."),
+    IS_NOT_LENGTH_ONE("[ERROR] 한 문자만 입력할 수 있습니다."),
+    IS_LOWER_CASE("[ERROR] 대문자만 입력할 수 있습니다.");
 
     private final String message;
 
