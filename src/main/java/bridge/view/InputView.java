@@ -17,10 +17,6 @@ public class InputView {
         validator = new Validator();
     }
 
-    // 게임 시작을 출력한다.
-    public void startGame() {
-    }
-
     /**
      * 다리의 길이를 입력받는다.
      */
