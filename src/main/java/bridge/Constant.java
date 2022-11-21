@@ -8,12 +8,13 @@ public class Constant {
 
     static final String MOVE_UP = "U";
     static final String MOVE_DOWN = "D";
-    static final String RESTART_YES = "R";
-    static final String RESTART_NO = "Q";
+    static final String RETRY_USER_YES = "R";
     static final String PRINT_BLOCK_VALID = " O ";
     static final String PRINT_BLOCK_INVALID = " X ";
 
     static final int MOVERESULT_FLAG_VALID = 1;
     static final int MOVERESULT_FLAG_INVALID = 0;
+    static final int RETRY_FLAG_YES = 1;
+    static final int RETRY_FLAG_NO = 0;
 
 }
