@@ -25,7 +25,7 @@ class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"3", "10"})
+    @ValueSource(strings = {"3", "10", "20"})
     void inputBridgeSize(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         int result = Integer.parseInt(input);
