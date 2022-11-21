@@ -43,7 +43,7 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - 다리 건너기 게임의 실행 순서를 제어하는 인터페이스 입니다.
         - InitStatus
             - 게임의 준비 상태입니다.
-            - [ ] 게임의 준비 상태로 next를 호출하면 다음 단계로 넘어갑니다.
+            - [O] 게임의 준비 상태로 next를 호출하면 다음 단계로 넘어갑니다.
         - GameStartStatus
             - 게임의 시작을 알리는 상태입니다.
             - [ ] 게임의 시작 메시지를 출력합니다.
