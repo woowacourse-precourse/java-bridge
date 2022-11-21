@@ -15,12 +15,12 @@ import java.util.StringJoiner;
  */
 public class OutputView {
 
-    public static final String ERROR_PREFIX = "[ERROR]";
-    public static final String FINAL_RESULT_MESSAGE = "\n최종 게임 결과";
-    public static final String GAME_STATUS_MESSAGE = "\n게임 성공 여부: %s";
-    public static final String TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수: %d";
-    public static final String SUCCESS_MESSAGE = "성공";
-    public static final String FAIL_MESSAGE = "실패";
+    private static final String ERROR_PREFIX = "[ERROR]";
+    private static final String FINAL_RESULT_MESSAGE = "\n최종 게임 결과";
+    private static final String GAME_STATUS_MESSAGE = "\n게임 성공 여부: %s";
+    private static final String TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수: %d";
+    private static final String SUCCESS_MESSAGE = "성공";
+    private static final String FAIL_MESSAGE = "실패";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.

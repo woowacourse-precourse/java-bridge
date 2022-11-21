@@ -15,9 +15,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public static final String BRIDGE_LENGTH_MESSAGE = "\n다리의 길이를 입력해주세요.";
-    public static final String MOVE_SELECT_MESSAGE = "\n이동할 칸을 선택해주세요. (위: %s, 아래: %s)";
-    public static final String TRY_AGAIN_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)";
+    private static final String BRIDGE_LENGTH_MESSAGE = "\n다리의 길이를 입력해주세요.";
+    private static final String MOVE_SELECT_MESSAGE = "\n이동할 칸을 선택해주세요. (위: %s, 아래: %s)";
+    private static final String TRY_AGAIN_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)";
 
     /**
      * 다리의 길이를 입력받는다.

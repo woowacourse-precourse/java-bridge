@@ -13,7 +13,7 @@ public class BridgeController {
 
     public static final int RANGE_START = 3;
     public static final int RANGE_END = 20;
-    public static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
     private final InputView inputView;
     private final OutputView outputView;

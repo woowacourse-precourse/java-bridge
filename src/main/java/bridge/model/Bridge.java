@@ -6,6 +6,9 @@ import java.util.stream.IntStream;
 
 public class Bridge {
 
+    private static final String EXCEED_COUNT_MESSAGE = "방향의 개수가 존재하는 다리를 초과했습니다. 다리 길이 : %d / 현재 위치 : %d";
+    private static final String MISMATCH_MESSAGE = "다리와 일치하지 않는 방향을 가지고 있습니다. 방향 : %s";
+
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
@@ -21,15 +24,14 @@ public class Bridge {
     private void validateCount(List<String> directions) {
         if (directions.size() > bridge.size()) {
             throw new IllegalStateException(
-                    String.format("방향의 개수가 존재하는 다리를 초과했습니다. 다리 길이 : %d / 현재 위치 : %d",
-                            bridge.size(), directions.size()));
+                    String.format(EXCEED_COUNT_MESSAGE, bridge.size(), directions.size()));
         }
     }
 
     private void validateMatch(List<String> directions) {
         if (hasMismatchDirection(directions)) {
             throw new IllegalStateException(
-                    String.format("다리와 일치하지 않는 방향을 가지고 있습니다. 방향 : %s", directions));
+                    String.format(MISMATCH_MESSAGE, directions));
         }
     }
 
