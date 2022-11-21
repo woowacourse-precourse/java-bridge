@@ -49,7 +49,7 @@ public class BridgeGame {
         return (commend.equals("Q"));
     }
 
-    public List<List<String>> getResult() {
+    public List<List<String>> bridge() {
         return List.of(upperClass, lowerClass);
     }
 }

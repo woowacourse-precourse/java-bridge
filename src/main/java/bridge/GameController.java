@@ -40,7 +40,7 @@ public class GameController {
 
     private void getGameResult(int attempts) {
         outputView.printResult();
-        outputView.printMap(bridgeGame.getResult());
+        outputView.printMap(bridgeGame.bridge());
         outputView.printSuccess(success);
         outputView.printAttempts(attempts);
     }
@@ -51,7 +51,7 @@ public class GameController {
         int count = 0;
         do {
             correct = bridgeGame.move(inputView.readMoving(), count++);
-            outputView.printMap(bridgeGame.getResult());
+            outputView.printMap(bridgeGame.bridge());
         } while (correct && (count < bridge.size()));
         return count;
     }
