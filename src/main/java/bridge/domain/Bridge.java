@@ -8,9 +8,10 @@ import java.util.List;
 public class Bridge {
     private List<String> bridgeInfo;
 
-    private Bridge() {}
+    private Bridge() {
+    }
 
-    public void init (List<String> bridgeInfo) {
+    public void init(List<String> bridgeInfo) {
         this.bridgeInfo = Collections.unmodifiableList(bridgeInfo);
     }
 
