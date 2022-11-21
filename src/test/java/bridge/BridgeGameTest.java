@@ -21,6 +21,15 @@ class BridgeGameTest {
                         .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력 받은 다리 길이는 3이상 20이하의 숫자")
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "20", "15", "11", "10", "7"})
+    void NumberRange3over20underOK(String input) {
+        assertDoesNotThrow(()->
+                bridgeGame.init(input));
+    }
+
+
     @DisplayName("입력 받은 이동 방향이 \"U\" 와 \"D\" 둘 중 하나가 아니면 오류 ")
     @ParameterizedTest
     @ValueSource(strings = {"A", "UU", " ", "UD", "1D"})
