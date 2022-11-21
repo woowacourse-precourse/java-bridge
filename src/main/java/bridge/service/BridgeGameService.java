@@ -3,12 +3,14 @@ package bridge.service;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.repository.BridgeRepository;
+import bridge.repository.PositionRepository;
 
 import java.util.List;
 
 public class BridgeGameService {
 
     private final BridgeRepository bridgeRepository = new BridgeRepository();
+    private final PositionRepository positionRepository = new PositionRepository();
     private BridgeGame bridgeGame;
 
     public void makeBridge(int number) {
@@ -16,7 +18,8 @@ public class BridgeGameService {
         this.bridgeGame = BridgeGame.of(number, randomGenerator);
     }
 
-    public boolean moveAndReturnSuccess(final int currentPosition, final String move) {
+    public boolean moveAndReturnSuccess(final String move) {
+        int currentPosition = positionRepository.getPosition();
         List<String> result = bridgeGame.move(currentPosition, move);
         bridgeRepository.save(result);
 
@@ -33,5 +36,17 @@ public class BridgeGameService {
 
     public void clearRepository() {
         bridgeRepository.clear();
+    }
+
+    public void increasePosition() {
+        positionRepository.increase();
+    }
+
+    public boolean isEndPosition(final int bridgeSize) {
+        return positionRepository.isEndPosition(bridgeSize);
+    }
+
+    public void initializePosition() {
+        positionRepository.initialize();
     }
 }

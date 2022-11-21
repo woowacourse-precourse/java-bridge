@@ -15,7 +15,6 @@ import static bridge.model.GameResultState.WIN;
 public class BridgeGameController {
 
     private static int totalTries = 1;
-    private static int currentPosition = 0;
     private static int bridgeSize;
 
     private final InputView inputView = new InputView();
@@ -51,7 +50,7 @@ public class BridgeGameController {
 
         while (proceed) {
             String move = inputView.printMoveMessage();
-            boolean success = bridgeGameService.moveAndReturnSuccess(currentPosition, move);
+            boolean success = bridgeGameService.moveAndReturnSuccess(move);
             printMap();
             proceed = judgeProceed(success);
         }
@@ -66,7 +65,7 @@ public class BridgeGameController {
         return judgeIfWin();
     }
 
-    private static boolean isLose(final boolean success) {
+    private boolean isLose(final boolean success) {
         return !success;
     }
 
@@ -79,24 +78,25 @@ public class BridgeGameController {
         return false;
     }
 
-    private static boolean judgeIfWin() {
+    private boolean judgeIfWin() {
         if (isEndPosition()) {
             return false;
         }
-        currentPosition++;
+
+        bridgeGameService.increasePosition();
         return true;
     }
 
-    private static boolean isEndPosition() {
-        return currentPosition == bridgeSize - 1;
+    private boolean isEndPosition() {
+        return bridgeGameService.isEndPosition(bridgeSize);
     }
 
-    private static boolean isRetryCommand(final String gameCommand) {
+    private boolean isRetryCommand(final String gameCommand) {
         return Objects.equals(gameCommand, RETRY.getSign());
     }
 
     private void initialize() {
-        currentPosition = 0;
+        bridgeGameService.initializePosition();
         totalTries++;
         bridgeGameService.clearRepository();
     }
