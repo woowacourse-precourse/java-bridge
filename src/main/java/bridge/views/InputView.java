@@ -16,6 +16,7 @@ public class InputView extends DefaultView {
     private static final String MSG_REQUEST_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private static final String FORMAT_ONLY_ALPHABET = "^[a-zA-Z]*$";
+    private static final String FORMAT_ONLY_NUMBER = "^[0-9]*$";
 
 
     /**
@@ -30,13 +31,7 @@ public class InputView extends DefaultView {
     }
 
     private void validateBridgeSize(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (IllegalArgumentException exception) {
-            throw new CustomIllegalStateException(
-                    "자바 정수 범위 이내의 숫자를 입력해야 합니다."
-            );
-        }
+        validateOnlyNumber(input);
     }
 
     /**
@@ -49,7 +44,7 @@ public class InputView extends DefaultView {
         return input;
     }
 
-    private void validateMovingDirection(String input){
+    private void validateMovingDirection(String input) {
         validateOnlyAlphabet(input);
     }
 
@@ -63,14 +58,21 @@ public class InputView extends DefaultView {
         return input;
     }
 
-    private void validateGameCommand(String input){
+    private void validateGameCommand(String input) {
         validateOnlyAlphabet(input);
     }
 
-    private void validateOnlyAlphabet(String input){
-        if(!Pattern.matches(FORMAT_ONLY_ALPHABET, input))
+    private void validateOnlyAlphabet(String input) {
+        if (!Pattern.matches(FORMAT_ONLY_ALPHABET, input))
             throw new CustomIllegalArgumentException(
                     "알파벳만 입력해야 합니다."
+            );
+    }
+
+    private void validateOnlyNumber(String input){
+        if (Pattern.matches(FORMAT_ONLY_NUMBER, input))
+            throw new CustomIllegalStateException(
+                    "숫자만 입력해야 합니다."
             );
     }
 }
