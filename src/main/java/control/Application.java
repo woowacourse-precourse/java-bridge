@@ -1,4 +1,10 @@
-package bridge;
+package control;
+
+import bridge.*;
+import domain.BridgeGame;
+import domain.BridgeMaker;
+import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
@@ -10,7 +16,16 @@ public class Application {
     private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        try{
+            playGame();
+        }catch (IllegalArgumentException illegalArgumentException){
+            System.out.println(illegalArgumentException.getMessage());
+        }
+    }
+
+    public static void playGame(){
+
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
