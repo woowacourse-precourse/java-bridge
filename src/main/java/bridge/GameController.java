@@ -25,18 +25,27 @@ public class GameController {
     }
 
     private void run() {
-        play();
+        boolean isNormalTermination = play();
+        if (!isNormalTermination) {
+            outputView.printRetry();
+            String tryCommand = inputView.readGameCommand();
+            boolean retry = bridgeGame.retry(tryCommand);
+            if(retry) {
+                run();
+            }
+        }
+        //finish();
     }
 
-    private void play() {
-        boolean moveResult = true;
+    private boolean play() {
         outputView.printPlay();
         String movingValue = inputView.readMoving();
-        moveResult = bridgeGame.isCorrect(movingValue);
+        boolean moveResult = bridgeGame.isCorrect(movingValue);
         List<Stack> stairs = bridgeGame.move(movingValue, moveResult);
         outputView.printStairs(stairs);
-        if(moveResult && !bridgeGame.isFinishWithAllCollect()) {
-           play();
+        if (bridgeGame.isFinishWithAllCollect() && !moveResult) {
+            return false;
         }
+        return play();
     }
 }
