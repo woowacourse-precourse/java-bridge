@@ -1,8 +1,8 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import bridge.view.InputView;
+import java.util.List;
 
-import static bridge.view.InputView.readBridgeSize;
 
 public class Application {
 
@@ -11,6 +11,12 @@ public class Application {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 
         BridgeMaker user = new BridgeMaker(bridgeNumberGenerator);
-        System.out.println(user.makeBridge(readBridgeSize()));
+        int size = InputView.readBridgeSize();
+        List<String> userBridge = user.makeBridge(size);
+        System.out.println(userBridge);
+        for (int index = 0; index < size; index++) {
+            String userDirection = InputView.readMoving();
+            BridgeGame.move(userDirection,userBridge,index);
+        }
     }
 }
