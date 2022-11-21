@@ -16,7 +16,6 @@ public class InputView {
 		if (!Pattern.matches(InputPattern.BRIDGE_SIZE.getValue(), userInput)) {
 			throw new IllegalArgumentException(Error.BRIDGE_SIZE.getValue());
 		}
-
 		return Integer.parseInt(userInput);
 	}
 
@@ -28,11 +27,9 @@ public class InputView {
 		if (!Pattern.matches(InputPattern.MOVE.getValue(), userInput)) {
 			throw new IllegalArgumentException(Error.MOVE.getValue());
 		}
-
 		if (userInput.equals(Command.UP.getValue())) {
 			return Command.UP.getValue();
 		}
-
 		return Command.DOWN.getValue();
 	}
 
