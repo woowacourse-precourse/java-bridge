@@ -48,7 +48,7 @@
 
 ## 리팩토링
 - 패키지 구조 변경
-  - `domain`, `view`, `util`, `error`, `controller`
+  - `domain`, `view`, `util`, `error`, `controller`, `service`
 - **`error/ErrorMessage`** 생성
 - 클래스별 기능 분할
   - 클래스 필드 접근자 확인
