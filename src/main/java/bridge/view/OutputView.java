@@ -67,10 +67,19 @@ public class OutputView {
         printMapForm(upList);
         printMapForm(downList);
         System.out.println();
-        if (isSuccess) System.out.println(ProgressMessage.SUCCESS_GAME_MESSAGE);
-        if (!(isSuccess)) System.out.println(ProgressMessage.FAIL_GAME_MESSAGE);
+        successOrFail(isSuccess);
         System.out.print(ProgressMessage.TOTAL_GAME_COUNT_MESSAGE);
         System.out.println(gameCount);
+    }
+
+    // 성공 실패 여부를 출력하는 기능
+    private void successOrFail(boolean isSuccess) {
+        if (isSuccess) {
+            System.out.println(ProgressMessage.SUCCESS_GAME_MESSAGE);
+        }
+        if (!(isSuccess)) {
+            System.out.println(ProgressMessage.FAIL_GAME_MESSAGE);
+        }
     }
 
 }
