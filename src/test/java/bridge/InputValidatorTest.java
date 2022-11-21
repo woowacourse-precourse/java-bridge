@@ -46,4 +46,22 @@ public class InputValidatorTest {
         InputValidator validator = new InputValidator();
         validator.validateMove(cmd);
     }
+
+    @DisplayName("게임 재시도 여부 입력 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"U","D"})
+    void validateGameCommandIllegal(String cmd){
+        InputValidator validator = new InputValidator();
+        assertThatThrownBy(() -> validator.validateGameCommand(cmd)).isEqualTo(
+                InputValidationError.ERROR_COMMAND_RETRY.exception
+        );
+    }
+
+    @DisplayName("게임 재시도 여부 입력 정상 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"Q","R"})
+    void validateGameCommandPass(String cmd){
+        InputValidator validator = new InputValidator();
+        validator.validateGameCommand(cmd);
+    }
 }
