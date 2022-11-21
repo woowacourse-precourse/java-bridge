@@ -5,7 +5,7 @@ import static bridge.Constant.InputValue.SELECTION_UP;
 
 import static bridge.Constant.OutputValue.*;
 
-import bridge.Domain.BridgeGame;
+import bridge.Model.BridgeGame;
 
 import java.util.List;
 

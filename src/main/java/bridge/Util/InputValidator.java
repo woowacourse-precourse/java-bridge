@@ -1,4 +1,4 @@
-package bridge.Domain;
+package bridge.Util;
 
 import static bridge.Constant.InputValue.COMMAND_QUIT;
 import static bridge.Constant.InputValue.COMMAND_RETRY;

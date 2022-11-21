@@ -2,8 +2,8 @@ package bridge.View;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import bridge.Domain.InputConverter;
-import bridge.Domain.InputValidator;
+import bridge.Util.InputConverter;
+import bridge.Util.InputValidator;
 
 
 

@@ -1,7 +1,8 @@
-package bridge.Domain;
+package bridge.Util;
 
 import bridge.Constant.InputValue;
 
+import bridge.Util.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
