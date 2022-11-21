@@ -60,4 +60,11 @@ public class BridgeGameRun {
         }
         return false;
     }
+
+    private String getResultMessage() {
+        if (result) {
+            return "성공";
+        }
+        return "실패";
+    }
 }
