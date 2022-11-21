@@ -39,10 +39,14 @@ public class BridgeGameController {
     }
 
     private int getBridgeSize() {
-        System.out.println("다리 길이를 입력해주세요.");
-        int bridgeSize = inputView.readBridgeSize();
-        System.out.println(" ");
-        return bridgeSize;
+        while(true){
+            System.out.println("다리 길이를 입력해주세요.");
+            try {
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Bridge makeBridge(int bridgeSize) {
@@ -51,13 +55,25 @@ public class BridgeGameController {
     }
 
     private String getMovingInput() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return inputView.readMoving();
+        while (true) {
+            try {
+                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private String getGameCommandInput() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return inputView.readGameCommand();
+        while (true) {
+            try {
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int moveOrNot(BridgeGame bridgeGame, boolean isMovable) {
