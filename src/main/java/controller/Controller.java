@@ -37,10 +37,12 @@ public class Controller {
 
     private void printWelcomeMessage() {
         outputView.printGuideMessage(GuideMessage.START);
+        outputView.printNewline();
     }
 
     private void printProgress(BridgeGame bridgeGame) {
         outputView.printMap(bridgeGame.getMap());
+        outputView.printNewline();
     }
 
     private void printResult(final GameStatus gameResult, final BridgeGame bridgeGame) {
@@ -50,6 +52,7 @@ public class Controller {
     private void generateBridge(final BridgeGame bridgeGame) {
         outputView.printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
         bridgeGame.generateBridge(this.inputView.readBridgeSize());
+        outputView.printNewline();
     }
 
     private void movePlayer(final BridgeGame bridgeGame) {

@@ -1,7 +1,6 @@
 package view;
 
 import bridge.BridgeGame;
-import bridge.Map;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
 
