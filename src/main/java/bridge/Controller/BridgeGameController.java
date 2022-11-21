@@ -40,19 +40,23 @@ public class BridgeGameController {
             boolean isCorrect = bridgeGame.move(bridge, userMove);
             outputView.printMap();
             outputView.printEmptyLine();
-            if (!isCorrect) selectQuitOrRestart(lengthOfBridge);
+            if (!isCorrect) {
+                if (!selectQuitOrRestart(lengthOfBridge)) break;
+            }
             if (isSuccess(isCorrect, lengthOfBridge)) return true;
         }
         return false;
     }
 
-    public void selectQuitOrRestart(int lengthOfBridge) {
+    public boolean selectQuitOrRestart(int lengthOfBridge) {
         String restartOrQuit = InputView.readGameCommand();
         if (restartOrQuit.equals("R")) {
             restartGame(lengthOfBridge);
         }
         if (restartOrQuit.equals("Q")) {
+            return false;
         }
+        return false;
     }
 
     public void restartGame(int lengthOfBridge) {
