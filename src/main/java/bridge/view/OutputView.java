@@ -45,7 +45,7 @@ public class OutputView {
     private static String makeLowerBridge(List<MoveStatus> result) {
         return OPEN_BRACKET + result.stream()
                 .map(MoveStatus::getDownSideMoveMessage)
-                .collect(Collectors.joining(SEPARATOR)) + CLOSE_BRACKET;
+                .collect(Collectors.joining(SEPARATOR)) + CLOSE_BRACKET + LF;
     }
 
     private static String makeSuccessMessage(boolean gameContinue) {

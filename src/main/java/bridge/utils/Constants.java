@@ -30,16 +30,17 @@ public class Constants {
     public static final String FAIL_MESSAGE = "X";
     public static final String BLANK = " ";
     public static final String INPUT_MESSAGE_ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    public static final String INPUT_MESSAGE_ENTER_SPACE_TO_MOVE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String INPUT_MESSAGE_RETRY_GAME_COMMAND = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String INPUT_MESSAGE_ENTER_SPACE_TO_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String INPUT_MESSAGE_RETRY_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     //출력 관련 상수
+    public static final String LF = "\n";
     public static final String OPEN_BRACKET = "[ ";
     public static final String CLOSE_BRACKET = " ]";
     public static final String SEPARATOR = " | ";
     public static final String OUTPUT_MESSAGE_SUCCESS = "성공";
     public static final String OUTPUT_MESSAGE_FAIL = "실패";
     public static final String OUTPUT_MESSAGE_FINAL_GAME_RESULT = "최종 게임 결과";
-    public static final String OUTPUT_MESSAGE_IS_SUCCESS_GAME = "\n게임 성공 여부: ";
+    public static final String OUTPUT_MESSAGE_IS_SUCCESS_GAME = "게임 성공 여부: ";
     public static final String OUTPUT_MESSAGE_TOTAL_TRY_COUNT = "총 시도한 횟수: ";
 }
