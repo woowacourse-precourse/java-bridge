@@ -10,10 +10,10 @@ import java.util.List;
 
 public class BridgeGame {
     private final List<String> bridge;
-    private int trials;
-    private int currentPosition;
     private final List<String> fullUpperMap;
     private final List<String> fullLowerMap;
+    private int trials;
+    private int currentPosition;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -48,7 +48,6 @@ public class BridgeGame {
         fullUpperMap.add(PrintMessage.MAP_BLANK.getString());
         fullLowerMap.add(PrintMessage.MAP_RIGHT.getString());
     }
-
 
     public boolean move(String moving) {
         return bridge.get(currentPosition++).equals(moving);
