@@ -12,24 +12,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리 길이를 입력해주세요.");
-        String input = Console.readLine();
-        sizeValidation(input);
+        String size = Console.readLine();
+        sizeValidation(size);
 
-        return Integer.parseInt(input);
-    }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+        return Integer.parseInt(size);
     }
 
     /**
@@ -50,5 +36,34 @@ public class InputView {
         if (result < 3 || result > 20) {
             throw new IllegalArgumentException(sizeErrorMessage);
         }
+    }
+
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() {
+        System.out.println("다리 길이를 입력해주세요.");
+        String moving = Console.readLine();
+        movingValidation(moving);
+
+        return moving;
+    }
+
+    public void movingValidation(String moving) {
+        String movingErrorMessage = "[ERROR] U(위 칸) 또는 D(아래 칸) 중 하나의 문자여야 합니다";
+
+        if (moving.length() != 1) {
+            throw new IllegalArgumentException(movingErrorMessage);
+        }
+        if (!(moving.charAt(0) == 'U' || moving.charAt(0) == 'D')) {
+            throw new IllegalArgumentException(movingErrorMessage);
+        }
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        return null;
     }
 }
