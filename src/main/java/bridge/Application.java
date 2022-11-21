@@ -7,5 +7,6 @@ public class Application {
         InputView inputView = new InputView();
         System.out.println(inputView.readBridgeSize());
         System.out.println(inputView.readMoving());
+        System.out.println(inputView.readGameCommand());
     }
 }
