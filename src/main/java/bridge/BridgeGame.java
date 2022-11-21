@@ -17,7 +17,7 @@ public class BridgeGame {
     public BridgeGame(List<String> bridge){
         this.bridge= new ValidateBridgeGame().validate(bridge);
         playerPosition=0;
-        playCount=1;
+        playCount=0;
         success =true;
     }
 
