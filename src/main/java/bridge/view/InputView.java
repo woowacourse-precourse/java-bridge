@@ -30,7 +30,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public GameOptionType readGameCommand() {
+    public String readGameCommand() {
         System.out.println(IOMessage.RESTART_MSG);
         return illegalInputChecker.checkRestartOrQuit(Console.readLine());
     }
