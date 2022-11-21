@@ -16,6 +16,7 @@ public class BridgeApplication {
         outputView.printGameStartMessage();
 
         Bridge bridge = new Bridge(inputView.readBridgeSize());
+        System.out.println(bridge.getBridge());
 
         gameProcess(new BridgeGame(bridge.getBridge()));
     }
@@ -23,21 +24,16 @@ public class BridgeApplication {
     private void gameProcess(BridgeGame bridgeGame) {
         do {
             bridgeGame.move(inputView.readMoving());
-            bridgeGame.getMap();
-            outputView.printMap(bridgeGame.getMap());
-        } while (!isWinningGame(bridgeGame) && (checkGameStatus(bridgeGame) || checkRestart(bridgeGame)));
+            outputView.printMap(bridgeGame.getBridgeMap(), bridgeGame.getMapCoordinate());
+        } while (bridgeGame.isContinueStatus() || checkRestart(bridgeGame));
         outputView.printResult(bridgeGame.getResult());
     }
 
-    private boolean checkGameStatus(BridgeGame bridgeGame) {
-        return bridgeGame.checkStatus();
-    }
-
-    private boolean isWinningGame(BridgeGame bridgeGame) {
-        return bridgeGame.checkWinning();
-    }
-
     private boolean checkRestart(BridgeGame bridgeGame) {
-        return bridgeGame.retry(inputView.readGameCommand());
+        if (bridgeGame.isRetryable() && inputView.readGameCommand().equals(GameCommand.RESTART)) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
     }
 }
