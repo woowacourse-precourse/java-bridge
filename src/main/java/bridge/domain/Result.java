@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
+    private static final int TO_INDEX = 1;
+
     private final List<MoveStatus> moveStatuses;
     private int location;
 
@@ -20,11 +22,11 @@ public class Result {
     }
 
     public boolean isEnd(Bridge bridge) {
-        return !moveStatuses.get(moveStatuses.size() - 1).didCross() || bridge.isEnd(location);
+        return !moveStatuses.get(moveStatuses.size() - TO_INDEX).didCross() || bridge.isEnd(location);
     }
 
     public boolean isSuccess(Bridge bridge) {
-        return moveStatuses.get(moveStatuses.size() - 1).didCross() && bridge.isEnd(location);
+        return moveStatuses.get(moveStatuses.size() - TO_INDEX).didCross() && bridge.isEnd(location);
     }
 
     public void reset() {
