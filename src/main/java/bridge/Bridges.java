@@ -41,7 +41,11 @@ public class Bridges {
         this.playerMoves.clear();
         sb.setLength(0);
     }
-    
+
+    public List<BridgeMove> getPlayerMoves() {
+        return this.playerMoves;
+    }
+
     @Override
     public String toString() {
         sb.setLength(0);
