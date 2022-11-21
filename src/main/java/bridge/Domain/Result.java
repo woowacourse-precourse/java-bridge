@@ -39,7 +39,7 @@ public class Result {
     }
 
     public boolean compare(String bridgeIndexOf){
-        return false;
+        return moves.get(getMovesLastIndex()).equals(bridgeIndexOf);
     }
 
     public int getMovesLastIndex(){
