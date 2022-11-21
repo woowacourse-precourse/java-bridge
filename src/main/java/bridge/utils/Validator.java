@@ -3,12 +3,32 @@ package bridge.utils;
 public class Validator {
 
     public static final String NUM_ERROR = "[ERROR] 입력이 숫자가 아닙니다.";
+    public static final String ZERO_ERROR = "[ERROR] 크기가 0일 수 없습니다.";
+    public static final String RANGE_ERROR = "[ERROR] 정수의 범위를 넘어갔습니다.";
     public static final String MOVE_ERROR = "[ERROR] 이동할 칸은 U, D의 입력만 가능합니다.";
     public static final String RESTART_ERROR = "[ERROR] 재시작은 R, Q의 입력만 가능합니다.";
 
     public static void isNumber(String number){
         if (!number.matches("[0-9]+")){
             throw new IllegalArgumentException(NUM_ERROR);
+        }
+    }
+
+    public static void isPossibleNumber(String number){
+        isNumber(number);
+        isZero(number);
+        checkRange(number);
+    }
+
+    public static void isZero(String number){
+        if (Integer.valueOf(number) == 0){
+            throw new IllegalArgumentException(ZERO_ERROR);
+        }
+    }
+
+    public static void checkRange(String number){
+        if (Double.valueOf(number) > 2000000000){
+            throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
 

@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.utils.Validator;
 
+import static bridge.utils.Validator.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -23,12 +24,12 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String userInput = readLine();
         try {
-            Validator.isNumber(userInput);
+            isPossibleNumber(userInput);
         }
         catch (IllegalArgumentException e){
+            System.out.println(e);
             return readBridgeSize();
         }
-        System.out.println();
         return Integer.valueOf(userInput);
     }
 
@@ -39,9 +40,10 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String userInput = readLine();
         try{
-            Validator.isMoveAlpha(userInput);
+            isMoveAlpha(userInput);
         }
         catch (IllegalArgumentException e){
+            System.out.println(e);
             return readMoving();
         }
         return userInput;
@@ -54,9 +56,10 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String userInput = readLine();
         try{
-            Validator.isRestart(userInput);
+            isRestart(userInput);
         }
         catch (IllegalArgumentException e){
+            System.out.println(e);
             return readGameCommand();
         }
         return userInput;
