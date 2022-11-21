@@ -101,25 +101,26 @@ public class InputView {
         Message.inputSelectGameRetry();
         String retry = "";
         while (true) {
-            retry = Console.readLine();
-            if (isRetry(retry)) {
-                return retry;
-            } // end if
+            try {
+                String value = validReadGameCommand();
+                return value;
+            } catch (IllegalArgumentException e) {
+                ErrorMessage.inputRetryError();
+            }
         } // end while
     }
 
-    // 입력 값이 R 또는 Q 인지 검사
-    public boolean isRetry(String retry) {
-        if (retry.equals("R") || retry.equals("Q"))
-            return true;
-        ErrorMessage.inputRetryError();
-        return false;
+    public String validReadGameCommand() {
+        String retry = Console.readLine();
+        if (!isRetry(retry)) {
+            throw new IllegalArgumentException();
+        } // end if
+        return retry;
     }
 
     public void initGameResult() {
         bridge.setGame(true);
     }
-
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
@@ -130,18 +131,26 @@ public class InputView {
             try {
                 String value = validReadMoving();
                 return value;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 ErrorMessage.inputMoveBridgeError();
             }
         } // end while
     }
 
-    public String validReadMoving(){
+    public String validReadMoving() {
         String moving = Console.readLine();
         if (!isReadMoving(moving)) { // U 또는 D가 아니라면
             throw new IllegalArgumentException();
         } // end if
         return moving;
+    }
+
+    // 입력 값이 R 또는 Q 인지 검사
+    public boolean isRetry(String retry) {
+        if (retry.equals("R") || retry.equals("Q")) {
+            return true;
+        }
+        return false;
     }
 
     // 입력 값이 U 또는 D 인지 검사
