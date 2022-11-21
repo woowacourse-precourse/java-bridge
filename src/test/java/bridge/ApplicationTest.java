@@ -130,7 +130,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 게임_지속_여부로_실수가_입력됐을_때() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "U", "3.5");
+            run("3", "U", "D", "D", "3.5");
             assertThat(output()).contains(ERROR_MESSAGE);
         }, 1, 0, 1);
     }
@@ -138,7 +138,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 게임_지속_여부로_다른_문자열이_입력됐을_때() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "U", "Y");
+            run("3", "U", "D", "D", "Y");
             assertThat(output()).contains(ERROR_MESSAGE);
         }, 1, 0, 1);
     }
