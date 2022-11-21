@@ -48,51 +48,69 @@ public class BridgeGame {
 
     public void makePrintResultIfUp(int bridgeIdx){
         if(bridgeIdx == 0) {
-            appendPlayerMoveResultAtFirstMove(bridgeIdx , true);
+            appendPlayerMoveUpResultAtFirstMove(bridgeIdx , true);
             return;
         }
-        appendPlayerMoveResultNotFirstMove(bridgeIdx , true);
+        appendPlayerMoveUpResultNotFirstMove(bridgeIdx , true);
 
     }
 
     public void makePrintResultIfDown(int bridgeIdx){
         if(bridgeIdx == 0) {
-            appendPlayerMoveResultAtFirstMove(bridgeIdx ,false);
+            appendPlayerMoveDownResultAtFirstMove(bridgeIdx ,false);
             return;
         }
-        appendPlayerMoveResultNotFirstMove(bridgeIdx ,false);
+        appendPlayerMoveDownResultNotFirstMove(bridgeIdx ,false);
     }
 
-    private void appendPlayerMoveResultNotFirstMove(int bridgeIdx , boolean isUpMove) {
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_TRUE))
+    private void appendPlayerMoveUpResultNotFirstMove(int bridgeIdx , boolean isUpMove) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_TRUE)) {
             printPlayerMoveUp.append("| O ");
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_FALSE))
+            return;
+        }
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_FALSE)) {
             printPlayerMoveUp.append("| X ");
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_TRUE))
+            return;
+        }
+        printPlayerMoveUp.append("   ");
+    }
+
+    private void appendPlayerMoveDownResultNotFirstMove(int bridgeIdx , boolean isUpMove) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_TRUE)) {
             printPlayerMoveDown.append("| O ");
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_FALSE))
+            return;
+        }
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_FALSE)) {
             printPlayerMoveDown.append("| X ");
-        appendPlayerMoveResultAtNotDirection(isUpMove);
+            return;
+        }
+        printPlayerMoveDown.append("   ");
     }
 
-    private void appendPlayerMoveResultAtFirstMove(int bridgeIdx , boolean isUpMove) {
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_TRUE))
-            printPlayerMoveUp.append(" O ");
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_FALSE))
-            printPlayerMoveUp.append(" X ");
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_TRUE))
+    private void appendPlayerMoveDownResultAtFirstMove(int bridgeIdx , boolean isUpMove) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_TRUE)) {
             printPlayerMoveDown.append(" O ");
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_FALSE))
+            return;
+        }
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_FALSE)) {
             printPlayerMoveDown.append(" X ");
-        appendPlayerMoveResultAtNotDirection(isUpMove);
+            return;
+        }
+        printPlayerMoveDown.append("   ");
     }
 
-    private void appendPlayerMoveResultAtNotDirection(boolean isUpMove){
-        if(isUpMove)
-            printPlayerMoveUp.append("   ");
-        if(!isUpMove)
-            printPlayerMoveDown.append("   ");
+    private void appendPlayerMoveUpResultAtFirstMove(int bridgeIdx , boolean isUpMove) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_TRUE)) {
+            printPlayerMoveUp.append(" O ");
+            return;
+        }
+        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_FALSE)) {
+            printPlayerMoveUp.append(" X ");
+            return;
+        }
+        printPlayerMoveUp.append("   ");
     }
+
 
     public void playerMoveWhetherAnswer(){
         for (int bridgeIdx =0 ; bridgeIdx < playerMoveRecord.size() ; bridgeIdx++) {
