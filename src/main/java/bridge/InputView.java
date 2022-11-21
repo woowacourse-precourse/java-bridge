@@ -84,4 +84,16 @@ public class InputView {
             return readMoving();
         }
     }
+
+    public String checkInputOfGameCommand(String moving) throws IllegalStateException{
+        try{
+            List<String> command = new ArrayList<>();
+            command.add("Q");
+            command.add("R");
+            return checkInputInCommend(moving, command);
+        }catch (IllegalStateException e){
+            System.out.print("[ERROR]: 유효하지 않은 입력 값입니다.");
+            throw new IllegalStateException();
+        }
+    }
 }
