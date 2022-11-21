@@ -42,6 +42,17 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    
+    @Test
+    @DisplayName("이동 명령 입력시 1글자가 아닐 때 예외처리")
+    void inputMoveCommandNotChar() throws Exception {
+        //given
+        String input = "UU";
+        //when
+        //then
+        assertThatThrownBy(() -> inputValidator.validateInputMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 
 }
