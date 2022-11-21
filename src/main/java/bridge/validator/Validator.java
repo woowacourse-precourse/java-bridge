@@ -9,13 +9,11 @@ public class Validator {
     private Validator() {
     }
 
-    public static Condition getNotPassCondition(List<Condition> conditions, String input) {
+    public static void validateConditions(List<Condition> conditions, String input) {
         for (Condition condition : conditions) {
             if (!condition.test(input)) {
-                return condition;
+                throw new IllegalArgumentException();
             }
         }
-
-        return null;
     }
 }

@@ -16,11 +16,10 @@ class ValidatorTest {
         // given
         List<Condition> conditions = List.of(getPassCondition(), getPassCondition());
 
-        // when
-        Condition notPassCondition = Validator.getNotPassCondition(conditions, DUMMY_INPUT);
-
-        // then
-        assertThat(notPassCondition).isNull();
+        // when, then
+        assertThatCode(() -> {
+            Validator.validateConditions(conditions, DUMMY_INPUT);
+        }).doesNotThrowAnyException();
     }
 
     @Test
@@ -28,11 +27,10 @@ class ValidatorTest {
         // given
         List<Condition> conditions = List.of(getPassCondition(), getNotPassCondition());
 
-        // when
-        Condition notPassCondition = Validator.getNotPassCondition(conditions, DUMMY_INPUT);
-
-        // then
-        assertThat(notPassCondition).isNotNull();
+        // when, then
+        assertThatThrownBy(() -> {
+            Validator.validateConditions(conditions, DUMMY_INPUT);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     private Condition getPassCondition() {
