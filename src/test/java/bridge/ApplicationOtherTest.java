@@ -12,7 +12,23 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ApplicationOtherTest extends NsTest {
+    @Test
+    void 첫_실패_Test() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[   ]",
+                    "[ X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
 
+            int upSideIndex = output().indexOf("[   ]");
+            int downSideIndex = output().indexOf("[ X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
     @Test
     void 실패_Test() {
         assertRandomNumberInRangeTest(() -> {
@@ -41,7 +57,9 @@ class ApplicationOtherTest extends NsTest {
                     "게임 성공 여부: 실패",
                     "총 시도한 횟수: 1"
             );
-
+            System.out.println("--------");
+            System.out.println(output());
+            System.out.println("--------");
             int upSideIndex = output().indexOf("[ O | X ]");
             int downSideIndex = output().indexOf("[   |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
