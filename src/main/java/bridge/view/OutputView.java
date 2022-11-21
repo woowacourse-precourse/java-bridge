@@ -1,9 +1,7 @@
 package bridge.view;
 
-import static bridge.utils.Constants.DOWN;
-import static bridge.utils.Constants.QUIT;
-import static bridge.utils.Constants.RESTART;
-import static bridge.utils.Constants.UP;
+import bridge.domain.GameCommand;
+import bridge.domain.Moving;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -35,10 +33,14 @@ public class OutputView {
     }
 
     public void printMovingInputNotice() {
-        System.out.println("이동할 칸을 선택해주세요. (위: " + UP + ", 아래: " + DOWN + ")");
+        String up = Moving.UP.getCommand();
+        String Down = Moving.DOWN.getCommand();
+        System.out.println("이동할 칸을 선택해주세요. (위: " + up + ", 아래: " + Down + ")");
     }
 
     public void printGameCommandInputNotice() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + RESTART + ", 종료: " + QUIT + ")");
+        String restart = GameCommand.RESTART.getCommand();
+        String quit = GameCommand.QUIT.getCommand();
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + restart + ", 종료: " + quit + ")");
     }
 }

@@ -6,10 +6,9 @@ import static bridge.domain.ErrorMessage.GAME_COMMAND_INCORRECT_INPUT;
 import static bridge.domain.ErrorMessage.MOVING_INCORRECT_INPUT;
 import static bridge.utils.Constants.BRIDGE_MAX_SIZE;
 import static bridge.utils.Constants.BRIDGE_MIN_SIZE;
-import static bridge.utils.Constants.QUIT;
-import static bridge.utils.Constants.RESTART;
-import static bridge.utils.Constants.UP;
-import static bridge.utils.Constants.DOWN;
+
+import bridge.domain.GameCommand;
+import bridge.domain.Moving;
 
 public class Validation {
 
@@ -44,10 +43,10 @@ public class Validation {
     }
 
     private static boolean isNotUpOrDown(String input) {
-        return !input.equals(UP) && !input.equals(DOWN);
+        return !input.equals(Moving.UP.getCommand()) && !input.equals(Moving.DOWN.getCommand());
     }
 
     private static boolean isNotRestartOrQuit(String input) {
-        return !input.equals(RESTART) && !input.equals(QUIT);
+        return !input.equals(GameCommand.RESTART.getCommand()) && !input.equals(GameCommand.QUIT.getCommand());
     }
 }
