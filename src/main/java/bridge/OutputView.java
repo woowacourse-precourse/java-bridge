@@ -48,7 +48,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        printSuccess(bridgeGame.getGameStatus());
+    }
+
+    private void printSuccess(GameStatus gameStatus) {
+        StringBuilder base = new StringBuilder("게임 성공 여부: ");
+        if (gameStatus.equals(GameStatus.LOSE)) {
+            System.out.println(base.append("실패"));
+        }
+        if (gameStatus.equals(GameStatus.WIN)) {
+            System.out.println(base.append("성공"));
+        }
     }
 
     public void printGreeting() {

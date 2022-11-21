@@ -10,6 +10,7 @@ public class Application {
         do {
             run(inputView, outputView, bridgeGame);
         } while (retry(inputView, outputView, bridgeGame));
+        outputView.printResult(bridgeGame);
     }
 
     private static void run(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
