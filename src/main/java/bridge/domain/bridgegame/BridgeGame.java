@@ -6,12 +6,21 @@ package bridge.domain.bridgegame;
 public class BridgeGame {
     private final StringBuilder upBridge;
     private final StringBuilder downBridge;
+    private int gameTrialCount = 1;
     private boolean winOrLose = true;
 
     public BridgeGame() {
         upBridge = new StringBuilder();
         downBridge = new StringBuilder();
     }
+
+    public void reset() {
+        winOrLose = true;
+        upBridge.setLength(0);
+        downBridge.setLength(0);
+        gameTrialCount++;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
