@@ -18,10 +18,10 @@
 ## Domain
 
 ### request
-- [ ] View로 부터 받은값에 대해 Shape & types에 대해 검증하는 기능 
+- [x] View로 부터 받은값에 대해 Shape & types에 대해 검증하는 기능 
      - [x] 다리 길이는 숫자만 가능하고 범위는 3 ~ 20 이어야 한다. - > BridgeSizeRequest
      - [x] 사용자가 이동하기를 위한 입력값으로 "U" or "D" 인지 검증하는 기능 - > MoveRequest
-     - [ ] 재시도 여부를 묻는 입력값으로 "R" or "Q" 인지 검증하는 기능 - > GameRequest
+     - [x] 재시도 여부를 묻는 입력값으로 "R" or "Q" 인지 검증하는 기능 - > GameRequest
 
 ### Bridge Game
 - [ ] 요구사항에 맞게 다리를 만드는 기능
