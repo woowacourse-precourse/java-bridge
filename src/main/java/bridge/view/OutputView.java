@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.view.text.OutputText;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -20,4 +22,21 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printGameStart(){
+        System.out.println(OutputText.GAME_START.getMessage());
+    }
+
+    public void printBridgeLengthInputRequest(){
+        System.out.println(OutputText.BRIDGE_LENGTH_INPUT_REQUEST.getMessage());
+    }
+
+    public void printMoveInputRequest(){
+        System.out.println(OutputText.MOVE_INPUT_REQUEST.getMessage());
+    }
+
+    public void printRetryInputRequest(){
+        System.out.println(OutputText.RETRY_INPUT_REQUEST.getMessage());
+    }
+
 }
