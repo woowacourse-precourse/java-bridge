@@ -37,15 +37,19 @@ public class BridgeGame {
      */
     private String getBridgeResult(Moving moving, String bridgePos){
         String movingValue = moving.getValue();
-        String bridgeValue = this.bridge.getBridgeValue(MovingData.getRecentMovingIndex());
-        if (movingValue.equals(bridgeValue) && movingValue.equals(bridgePos)){
+        if (isRightResult(movingValue) && movingValue.equals(bridgePos)){
             return RIGHT_RESULT;
         }
-        if (!movingValue.equals(bridgeValue) && movingValue.equals(bridgePos)){
+        if (!isRightResult(movingValue) && movingValue.equals(bridgePos)){
             return WRONG_RESULT;
         }
 
         return NOTHING_RESULT;
+    }
+
+    public boolean isRightResult(String movingValue){
+        String bridgeValue = this.bridge.getBridgeValue(MovingData.getRecentMovingIndex());
+        return movingValue.equals(bridgeValue);
     }
 
     /**
