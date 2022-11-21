@@ -39,7 +39,7 @@ public class Bridge {
         List<Boolean> booleans = IntStream.range(0, compareBridge.bridgeShapes.size())
                 .mapToObj(index -> compareBridge.bridgeShapes.get(index) == this.bridgeShapes.get(index))
                 .collect(Collectors.toList());
-        return new BridgeGameResult(this, booleans);
+        return new BridgeGameResult(new Bridge(this.bridgeShapes), booleans);
     }
 
     private void validateCompareBridgeSize(Bridge compareBridge) {
