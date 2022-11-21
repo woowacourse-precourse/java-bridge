@@ -22,13 +22,13 @@ public class BridgeExceptionChecker {
         }
     }
 
-    static void raiseExceptionIfIsNotCommand(String str) {
-        if (!isCommand(str)) {
+    static void raiseExceptionIfIsNotMoving(String str) {
+        if (!isMoving(str)) {
             throw new IllegalArgumentException(ErrorPhrases.NOT_MOVING_STRING.toString());
         }
     }
 
-    private static boolean isCommand(String str) {
+    private static boolean isMoving(String str) {
         for (VerticalPositionValue val : VerticalPositionValue.values()) {
             if (val.getSign().equals(str)) {
                 return true;
