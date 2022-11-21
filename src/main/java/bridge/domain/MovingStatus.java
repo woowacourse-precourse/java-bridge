@@ -19,6 +19,10 @@ public enum MovingStatus {
         return movingKey;
     }
 
+    public String sideFail() {
+        return FAIL.getMovingKey() + movingKey;
+    }
+
     public static MovingStatus find(int statusNumber) {
         return Arrays.stream(values())
                 .filter(move -> move.statusNumber == statusNumber)
