@@ -61,7 +61,6 @@ public class GameController {
 
     public String getCommand() {
         String command = inputView.readGameCommand();
-        bridgeGame.retry(command, player, referee);
         return command;
     }
 }
