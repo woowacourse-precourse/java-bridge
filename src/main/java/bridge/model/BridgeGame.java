@@ -115,7 +115,7 @@ public class BridgeGame {
                 //gameReStartFinal(resultFinal,startCount);
                 printResult(resultFinal, startCount, 1);
                 resultFinal.clear();
-                resultFinal.add(String.valueOf(bridgeLen));
+                resultFinal.add(String.valueOf(bridgeLen+1));
             }
 
         }

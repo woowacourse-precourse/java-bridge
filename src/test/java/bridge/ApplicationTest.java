@@ -54,6 +54,8 @@ class ApplicationTest extends NsTest {
         });
     }
 
+
+
     @Test
     void 다리길이_숫자_범위_테스트() {
         int input = 21;
@@ -62,6 +64,7 @@ class ApplicationTest extends NsTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
+
 
     @Test
     void 이동칸_예외_테스트() {

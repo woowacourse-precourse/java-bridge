@@ -17,6 +17,7 @@ public class BridgeGameController {
         int check = 0;
 
         int bridgeLen = readBridgeSize();
+
         bridgeLenRangeCheck(bridgeLen);
         bridges = makeBridge(bridgeLen);
 
@@ -25,9 +26,11 @@ public class BridgeGameController {
             moveCheck(move);
             inputMove.add(move);
             resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
+            System.out.println("result: " +resultFinal);
 
 
-            if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen){
+            if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen+1){
+                //System.out.println("여기");
                 check++;
                 break;
             }

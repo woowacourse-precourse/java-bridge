@@ -40,7 +40,6 @@ public class BridgeMaker {
             }
 
         }
-        System.out.println("bridge만들기: " + bridges.toString());
         return bridges;
     }
 }
