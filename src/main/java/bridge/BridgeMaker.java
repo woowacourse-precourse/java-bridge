@@ -32,11 +32,6 @@ public class BridgeMaker {
 	private void addUpOrDownCell(List<String> bridgeCells) {
 		int bridgeNumber = bridgeNumberGenerator.generate();
 
-		if (Cell.isUp(bridgeNumber)) {
-			bridgeCells.add(Cell.upPosition());
-		}
-		if (Cell.isDown(bridgeNumber)) {
-			bridgeCells.add(Cell.downPosition());
-		}
+		bridgeCells.add(Cell.convertToPosition(bridgeNumber));
 	}
 }

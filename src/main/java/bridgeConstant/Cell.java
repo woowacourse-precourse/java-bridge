@@ -12,20 +12,10 @@ public enum Cell {
 		this.position = position;
 	}
 
-	public static boolean isUp(int number) {
-		return number == UP.number;
-	}
-
-	public static boolean isDown(int number) {
-		return number == DOWN.number;
-	}
-
-	public static String upPosition() {
-		return UP.position;
-	}
-
-	public static String downPosition() {
+	public static String convertToPosition(int number) {
+		if (number == UP.number) {
+			return UP.position;
+		}
 		return DOWN.position;
 	}
-
 }
