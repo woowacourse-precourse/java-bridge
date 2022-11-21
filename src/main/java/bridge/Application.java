@@ -25,5 +25,6 @@ public class Application {
                 break;
             }
         }
+        outputView.printResult(bridgeGame);
     }
 }
