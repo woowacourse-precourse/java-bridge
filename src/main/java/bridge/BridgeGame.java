@@ -30,7 +30,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() { //이동
+    public void move() {
         while(true) {
             if( setResultWhenSuccess() ) break;
             if ( showWhenCorrect() ) continue;
@@ -46,7 +46,7 @@ public class BridgeGame {
     }
 
     private boolean showWhenCorrect(){
-        if ( bridgeAnswer.get(position).equals(inputView.readMoving()) ) { // 맞는 경우
+        if ( bridgeAnswer.get(position).equals(inputView.readMoving()) ) {
             outputView.printMap();
             position++;
             return true;
@@ -59,7 +59,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    private void retry() {
         trial++;
         outputView.printMapWhenFail();
         String retrial = inputView.readGameCommand();
