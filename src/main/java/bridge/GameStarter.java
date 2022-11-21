@@ -40,6 +40,35 @@ public class GameStarter {
         return false;
     }
 
+    // 재시도 여부 확인하는 메서드
+    public static boolean retryCheck(boolean continueGame, BridgeGame bridgeGame) {
+        if (!continueGame && !bridgeGame.getIsSuccess()) {
+            boolean retryCheck = inputReTry(outputView, bridgeGame, continueGame);
+            // R 입력
+            if (retryCheck) {
+                return true;
+            }
+        }
+        // Q 입력
+        return false;
+    }
+
+    // R과 Q에 대한 값 구별 메서드
+    public static boolean inputReTry(OutputView outputView, BridgeGame bridgeGame, boolean continueGame) {
+        outputView.printMap(bridgeGame.getGameState(), continueGame, bridgeGame.getIsSuccess());
+        String whetherRetryGame = inputView.readGameCommand();
+        //true 면 R (다시)
+        return bridgeGame.retry(whetherRetryGame);
+    }
+
+    // U와 D에 대한 값 구별 메서드
+    public static boolean moveForward(BridgeGame bridgeGame) {
+        if (bridgeGame.move(inputView.readMoving())) {
+            return true;
+        }
+        return false;
+    }
+
     // 다리 생성 메서드
     public static List<String> makeBridge() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
