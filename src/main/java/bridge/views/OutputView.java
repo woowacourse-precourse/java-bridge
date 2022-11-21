@@ -39,21 +39,22 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<Direction> playerPath, boolean isGameOver) {
-        int pathLength = playerPath.size();
+        Map<Direction, List<String>> messageParts = makeMessagePartsByDirection(playerPath, isGameOver);
+        System.out.println(applyMapFormat(messageParts.get(Direction.UP)));
+        System.out.println(applyMapFormat(messageParts.get(Direction.DOWN)));
+        printSeparator();
+    }
 
-        Map<Direction, List<String>> messageParts = makeMessagePartsByDirection(pathLength);
+    private Map<Direction, List<String>> makeMessagePartsByDirection(List<Direction> playerPath, boolean isGameOver){
+        int pathLength = playerPath.size();
+        Map<Direction, List<String>> messageParts = new HashMap<>();
+        messageParts.put(Direction.UP, makeNoneDirections(pathLength));
+        messageParts.put(Direction.DOWN, makeNoneDirections(pathLength));
 
         for (int index = 0; index < pathLength; ++index) {
             modifyPathMessageParts(playerPath.get(index), isGameOver, pathLength, messageParts, index);
         }
-        System.out.println(applyMapFormat(messageParts.get(Direction.UP)));
-        System.out.println(applyMapFormat(messageParts.get(Direction.DOWN)));
-    }
 
-    private Map<Direction, List<String>> makeMessagePartsByDirection(int pathLength){
-        Map<Direction, List<String>> messageParts = new HashMap<>();
-        messageParts.put(Direction.UP, makeNoneDirections(pathLength));
-        messageParts.put(Direction.DOWN, makeNoneDirections(pathLength));
         return messageParts;
     }
 
@@ -92,7 +93,6 @@ public class OutputView {
     public void printResult(List<Direction> playerPath, boolean isGameOver, boolean isSuccess, int countAttempt) {
         System.out.println(MSG_FINAL_RESULT);
         printMap(playerPath, isGameOver);
-        printSeparator();
         System.out.println(makeWhetherSuccessMessage(isSuccess));
         System.out.println(makeAttemptCountMessage(countAttempt));
     }
