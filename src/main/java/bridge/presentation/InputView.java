@@ -9,6 +9,7 @@ public class InputView {
 
     private static final String NUMBER_REGEX = "^[0-9]*$";
     private static final String MOVING_REGEX = "^[UD]$";
+    private static final String COMMAND_REGEX = "^[RQ]$";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -51,6 +52,17 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(Message.INPUT_COMMAND);
+
+        String line = Console.readLine();
+        validateCommand(line);
+
+        return line;
+    }
+
+    private void validateCommand(String line) {
+        if (!line.matches(COMMAND_REGEX)) {
+            throw new IllegalArgumentException("게임 조작 명령은 R, Q 만 입력될 수 있습니다.");
+        }
     }
 }
