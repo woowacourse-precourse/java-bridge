@@ -1,15 +1,10 @@
 package bridge.io;
 
+import bridge.MSG;
 import camp.nextstep.edu.missionutils.*;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public static int readBridgeSize() {
         System.out.println(MSG.INPUT_BRIDGE_SIZE.message);
         String bridgeSizeCommand = Console.readLine();
@@ -28,9 +23,8 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+
+
     public static String readMoving() {
         System.out.println(MSG.INPUT_MOVING.message);
         String movingCommand = Console.readLine();
@@ -49,9 +43,8 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
+
+
     public static String readGameCommand() {
         System.out.println(MSG.INPUT_GAME.message);
         String gameCommand = Console.readLine();
