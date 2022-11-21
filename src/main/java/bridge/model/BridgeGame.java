@@ -36,6 +36,10 @@ public class BridgeGame {
         return this.status;
     }
 
+    public String getPrintable(BridgePrinter printer) {
+        return printer.getPrintable(this.moveTrace);
+    }
+
     private void checkMoveValidation() {
         if (this.status != GameStatus.RUNNING) {
             throw new InvalidMoveException();
