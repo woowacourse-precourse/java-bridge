@@ -19,8 +19,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String userInput, StageResult stageResult) {
+        makeMap(userInput, stageResult);
+        String result = convertMapToString();
 
+        System.out.println(result);
     }
 
     public void makeMap(String userInput, StageResult stageResult) {
@@ -93,6 +96,26 @@ public class OutputView {
         }
     }
 
+    public String dequeToString(Deque<String> deque) {
+        String result = "";
+
+        for (int place = 0; place < deque.size(); place++) {
+            result += deque.pollFirst();
+        }
+
+        return result;
+    }
+
+    public String convertMapToString() {
+        StringBuilder sb = new StringBuilder();
+
+        String upSide = dequeToString(userInputMap.get(Unit.UP));
+        String downSide = dequeToString(userInputMap.get(Unit.DOWN));
+
+        sb.append(upSide).append("\n").append(downSide);
+
+        return sb.toString();
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
