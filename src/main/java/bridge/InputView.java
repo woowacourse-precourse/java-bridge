@@ -33,6 +33,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
+        Validator.isRorQ(input);
         return input;
     }
 }
