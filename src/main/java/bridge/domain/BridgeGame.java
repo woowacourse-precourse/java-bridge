@@ -11,9 +11,11 @@ import java.util.List;
 public class BridgeGame {
 
     private final Map map;
+    private final GameResult result;
 
     public BridgeGame() {
         map = new Map();
+        result = new GameResult();
     }
 
     public List<String> setBridge(int size) {
@@ -23,6 +25,7 @@ public class BridgeGame {
     }
 
     public void resetRound() {
+        result.addAttemptNumber();
         map.resetMap();
     }
     /**
