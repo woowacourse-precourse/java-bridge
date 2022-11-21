@@ -57,7 +57,7 @@ public class BridgeGameController {
     private void startBridgeGame(final BridgeGame bridgeGame) {
         GameCommands gameCommand = NOTHING;
 
-        while (!gameCommand.is(QUIT) && bridgeGame.playerIsOnTheBridge()) {
+        while (bridgeGame.isNotOver(gameCommand)) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {

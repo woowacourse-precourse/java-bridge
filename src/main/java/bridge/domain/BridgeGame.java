@@ -25,7 +25,11 @@ public class BridgeGame {
         this.moveResults = moveResults;
     }
 
-    public boolean playerIsOnTheBridge() {
+    public boolean isNotOver(GameCommands gameCommand) {
+        return !gameCommand.is(QUIT) && playerIsOnTheBridge();
+    }
+
+    private boolean playerIsOnTheBridge() {
         return player.isOnTheBridge(bridge);
     }
 
