@@ -51,7 +51,4 @@
 > 리팩토링이 필요한 부분 정리
 - [x] BridgeSizeValidator 클래스 위치 수정
   - 해당 validator를 사용하는 객체 내부로 이동
-- [ ] GameCommandValidator 위치 수정
-  - 해당 validator를 사용하는 객체 내부로 이동
-- [ ] MoveDirectionValidator 위치 수정
-  - 해당 validator를 사용하는 객체 내부로 이동
+- [x] Application 클래스의 게임 실행 로직을 BridgeGameController 에게 위임

@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.service;
 
 import bridge.domain.BridgeGameStatus;
 import bridge.domain.GameCommand;
