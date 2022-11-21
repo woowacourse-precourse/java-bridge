@@ -314,10 +314,10 @@ int number = bridgeNumberGenerator.generate();
 
 
 ### Bridge
-  멤버변수: 다리 (List<String>), 다리 모양 (String[][])
+  멤버변수: 다리(List<String>), 다리사이즈(bridgeSize)
+  인스턴스변수: BridgeShape
   #### 기능목록
   - [x] D와 U를 입력 받아 다리와 비교
-  - [x] 다리와 비교해 정답이면 다리 모양에 "O" 또는 "X" 추가
   #### 밸리데이션
   - [x] "U" or "D" 이외의 문자를 입력할 수 없다.
   
@@ -331,9 +331,22 @@ int number = bridgeNumberGenerator.generate();
 
 ### BridgeGame
   인스턴스변수: Player, Bridge
+  #### 기능목록
   - [x] 사용자의 이동할 칸을 입력 받아 Bridge의 정답과 비교한 후 다리 모양을 그림. (출력은 안함)
   - [x] 사용자로부터 게임 재시작 여부(R, Q)를 파라미터로 받고 R인 경우 Player의 위치, Bridge의 여태까지 건너왔던 출력 초기화
   - [x] 유저가 다리를 끝까지 건넜는지 검증
+
+
+### BridgeShape
+  멤버변수: 다리모양 (List<List<String>)
+  #### 기능목록
+  - [ ] 다리와 비교해 정답이면 다리 모양에 "O", "X", 또는 " " 추가
+  - [ ] 자신의 다리 모양을 초기화
+
+
+### InputMatcher (Enum)
+  ### 기능목록
+  - [ ] 파라미터로 정답이 넘어오면 자신이 가지고 있는 객체와 비교해 이에 대응하는 String을 넘겨줌
 
 
 ### BridgeGameController
@@ -347,6 +360,7 @@ int number = bridgeNumberGenerator.generate();
   - [x] 사용자가 이동할 칸(U, D)을 올바르게 입력할 때까지 루프를 도는 기능
   - [x] 사용자가 게임 재시작 여부(R, Q)를 올바르게 입력할 때까지 루프를 도는 기능
   - [x] 플레이어가 잘못된 값을 입력할 경우 에러 메시지를 출력하고 올바른 값을 입력할 때까지 루프를 도는 기능
+
 
 ### InputView
   #### 기능목록
