@@ -13,23 +13,31 @@ public class InputView {
     public int readBridgeSize() {
 
         System.out.println("다리 건너기 게임을 시작합니다.\n\n다리의 길이를 입력해주세요.");
-        String bridgeSize = Console.readLine();
-        checkValidationOfBridgeSize(bridgeSize);
+        boolean reInput = true;
+        String bridgeSize = "";
+
+        while (reInput) {
+            bridgeSize = Console.readLine();
+            reInput = checkValidationOfBridgeSize(bridgeSize);
+        }
 
         return Integer.parseInt(bridgeSize);
     }
 
-    public void checkValidationOfBridgeSize(String bridgeSize) {
+    public boolean checkValidationOfBridgeSize(String bridgeSize) {
         try {
             checkNull(bridgeSize);
             checkLengthOfBridgeSize(bridgeSize);
             checkInteger(bridgeSize);
             checkNumberOfBridgeSize(bridgeSize);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 3 ~ 20 사이의 값을 입력해야 합니다.");
+            System.out.println("[ERROR] 3 ~ 20 사이의 값을 입력해야 합니다. 다시 입력해주세요.");
+            return true;
         } catch (NullPointerException e) {
-            throw new NullPointerException("[ERROR] 3 ~ 20 사이의 값을 입력해야 합니다.");
+            System.out.println("[ERROR] 3 ~ 20 사이의 값을 입력해야 합니다. 다시 입력해주세요.");
+            return true;
         }
+        return false;
     }
 
     private void checkNull(String bridgeSize) throws NullPointerException{
@@ -72,22 +80,29 @@ public class InputView {
     public String readMoving() {
 
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String inputMoveCommand = Console.readLine();
-        checkValidationOfMoveCommand(inputMoveCommand);
+        boolean reInput = true;
+        String inputMoveCommand = "";
+        while (reInput) {
+            inputMoveCommand = Console.readLine();
+            reInput = checkValidationOfMoveCommand(inputMoveCommand);
+        }
 
         return inputMoveCommand;
     }
 
-    public void checkValidationOfMoveCommand(String inputMoveCommand) {
+    public boolean checkValidationOfMoveCommand(String inputMoveCommand) {
         try {
             checkNull(inputMoveCommand);
             checkLengthOfCommand(inputMoveCommand);
             checkValueOfMoveCommand(inputMoveCommand);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 U, D 만 입력 가능합니다. (위: U, 아래: D )");
+            System.out.println("[ERROR] 입력값은 U, D 만 입력 가능합니다. 다시 입력해주세요.(위: U, 아래: D )");
+            return true;
         } catch (NullPointerException e) {
-            throw new NullPointerException("[ERROR] 이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            System.out.println("[ERROR] 입력값은 U, D 만 입력 가능합니다. 다시 입력해주세요.(위: U, 아래: D )");
+            return true;
         }
+        return false;
     }
 
     private void checkValueOfMoveCommand(String inputMoveCommand) throws IllegalArgumentException{
@@ -113,22 +128,28 @@ public class InputView {
     public String readGameCommand() {
 
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String inputGameCommand = Console.readLine();
-        checkValidationOfGameCommand(inputGameCommand);
-
+        boolean reInput = true;
+        String inputGameCommand = "";
+        while (reInput) {
+            inputGameCommand = Console.readLine();
+            reInput = checkValidationOfGameCommand(inputGameCommand);
+        }
         return inputGameCommand;
     }
 
-    public void checkValidationOfGameCommand(String inputGameCommand) {
+    public boolean checkValidationOfGameCommand(String inputGameCommand) {
         try {
             checkNull(inputGameCommand);
             checkLengthOfCommand(inputGameCommand);
             checkValueOfGameCommand(inputGameCommand);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 R, Q 만 입력 가능합니다. (재시도: U, 종료: D )");
+            System.out.println("[ERROR] 입력값은 R, Q 만 입력 가능합니다. 다시 입력해주세요.(재시도: U, 종료: D )");
+            return true;
         } catch (NullPointerException e) {
-            throw new NullPointerException("[ERROR] 입력값은 R, Q 만 입력 가능합니다. (재시도: U, 종료: D )");
+            System.out.println("[ERROR] 입력값은 R, Q 만 입력 가능합니다. 다시 입력해주세요. (재시도: U, 종료: D )");
+            return true;
         }
+        return false;
     }
 
     private void checkValueOfGameCommand(String inputGameCommand) throws IllegalArgumentException{
