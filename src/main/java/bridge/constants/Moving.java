@@ -16,6 +16,6 @@ public enum Moving {
         return Arrays.stream(Moving.values())
                 .filter(move -> move.number == number)
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 숫자 생성은 0과 1만 가능합니다"));
     }
 }
