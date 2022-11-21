@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -19,6 +17,7 @@ public class BridgeGame {
      */
     public static void move(Bridge bridge, String step) {
         MoveSpace moveSpace = new MoveSpace(bridge.getBridge(bridgeCount));
+
         MoveResult moveResult = new MoveResult(moveSpace.isItMovable(step), step);
     }
 
