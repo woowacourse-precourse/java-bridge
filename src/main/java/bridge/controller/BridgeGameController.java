@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.config.BridgeGameConfig;
 import bridge.generator.BridgeMaker;
 import bridge.generator.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
@@ -10,6 +9,9 @@ import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.config.BridgeGameCommand.COMMAND_GAME_EXIT;
+import static bridge.config.BridgeGameCommand.COMMAND_GAME_RETRY;
 
 public class BridgeGameController {
 
@@ -34,9 +36,10 @@ public class BridgeGameController {
     }
 
     private void makeBridge() {
+        outputView.printInputLength();
+
         int size = inputView.readBridgeSize();
         List<String> rawAnswerBridge = bridgeMaker.makeBridge(size);
-
         Bridge answerBridge = new Bridge(rawAnswerBridge);
         Bridge currentBridge = new Bridge(new ArrayList<>());
         bridgeGame.setUp(answerBridge, currentBridge);
@@ -46,12 +49,25 @@ public class BridgeGameController {
 
     private void move() {
         while (isPlaying && !isAnswer()) {
+            outputView.printInputMoving();
             String inputMoving = inputView.readMoving();
             bridgeGame.move(inputMoving);
-            outputView.printMap();
+            outputView.printMap(bridgeGame.getCurrentBridge(), bridgeGame.getAnswerBridge());
             if (!checkCurrentState()) {
                 checkRetry();
             }
+        }
+    }
+
+    private void checkRetry() {
+        outputView.printGameCommand();
+        String command = inputView.readGameCommand();
+        if (command.equals(COMMAND_GAME_RETRY)) {
+            bridgeGame.retry();
+            return;
+        }
+        if (command.equals(COMMAND_GAME_EXIT)) {
+            isPlaying = false;
         }
     }
 
@@ -65,22 +81,10 @@ public class BridgeGameController {
     }
 
     private void showResult() {
-        outputView.printResult();
-    }
-
-    private void checkRetry() {
-        outputView.printGameCommand();
-        String command = inputView.readGameCommand();
-        if (command.equals(BridgeGameConfig.GAME_RETRY)) {
-            bridgeGame.retry();
-            return;
-        }
-        if (command.equals(BridgeGameConfig.GAME_EXIT)) {
-            isPlaying = false;
-        }
+        outputView.printResult(bridgeGame);
     }
 
     private boolean isAnswer() {
-        return bridgeGame.correctAnswer();
+        return bridgeGame.checkAnswer();
     }
 }
