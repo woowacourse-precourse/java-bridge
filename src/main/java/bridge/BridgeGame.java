@@ -8,15 +8,15 @@ public class BridgeGame {
 
 	private InputController input;
 	private Bridge bridge;
-	private OutputView output;
-	private int gameTry = Numeric.INITIALIZE.getValue();
+	private OutputController output;
+	private int gameTry = Numeric.FIRST_TRY.getValue();
 
 	public void init() {
 		BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 		input = new InputController();
 		bridge = new Bridge(bridgeMaker.makeBridge(input.requestBridgeSize()));
-		output = new OutputView();
+		output = new OutputController();
 	}
 
 	public void play() {
