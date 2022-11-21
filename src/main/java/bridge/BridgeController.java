@@ -24,15 +24,22 @@ public class BridgeController {
             String oneBridge = bridgeGame.move(bridge, move, bridgeGame.getSize());
             outputView.printMap(oneBridge);
 
+            if(!isFinish(oneBridge)){
+                String result = bridgeGame.printFinalBridge(bridge);
+                outputView.printEndGame();
+                System.out.println(result);
+                break;
+            }
             bridgeGame.nextStep();
         }
     }
 
     public boolean isFinish(String input){
         if(input.contains("X")){
+            outputView.printRequestRetry();
             String strRetry = inputView.readGameCommand();
             if(strRetry.equals("R")){
-                gameRestart;
+//                gameRestart;
             }
             if(strRetry.equals("Q")){
                 return false;

@@ -126,6 +126,18 @@ public class BridgeGame {
         }
     }
 
+    public String printFinalBridge(List<String> bridge){
+        String result = sbUp + System.getProperty("line.separator") + sbDo;
+
+        if(size != bridge.size()){
+            result = sbUp.substring(0, sbUp.toString().length()-1) + "]"
+                    + System.getProperty("line.separator")
+                    + sbDo.substring(0, sbDo.toString().length()-1) + "]";
+        }
+
+        return result;
+    }
+
     public void nextStep(){
         this.size = size + 1;
     }
