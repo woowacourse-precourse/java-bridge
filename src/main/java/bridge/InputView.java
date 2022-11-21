@@ -9,18 +9,22 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
+    public void inputBridgeSize() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+        int bridgeSize = readBridgeSize(); // 다리 길이 입력
+        bridgeMaker.initBridge(bridgeSize); // 다리 생성
+    }
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
-        String value = "";
-        int bridgeSize = 0;
         while (true) {
-            value = Console.readLine();
+            String value = Console.readLine();
             if (isBridgeSizeNumber(value)) {
-                bridgeSize = Integer.parseInt(value);
-                return bridgeSize;
+                return Integer.parseInt(value);
             } // end if
         } // end while
     }
