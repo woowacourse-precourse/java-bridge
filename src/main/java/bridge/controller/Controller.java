@@ -45,35 +45,29 @@ public class Controller {
             if (index == 0 && checkInitMoveBridge(bridgeGame, bridge, inputMove)) return;
             if (index != 0 && checkMoveBridge(bridgeGame, bridge, inputMove)) return;
         } while (!checkBridgeIndex(bridgeGame));
-        
+
         gameEnd(bridge);
     }
 
     private boolean checkMoveBridge(BridgeGame bridgeGame, Bridge bridge, String inputMove) {
         if (bridgeGame.moveBridge(bridgeGame, inputMove, bridge)) {
             outputView.printMap(bridge);
-        } else {
-            outputView.printMap(bridge);
-            bridgeGame.initIndex();
-
-            if (retry(bridgeGame)) {
-                return true;
-            }
+            return false;
         }
-        return false;
+        outputView.printMap(bridge);
+        bridgeGame.initIndex();
+
+        return retry(bridgeGame);
     }
 
     private boolean checkInitMoveBridge(BridgeGame bridgeGame, Bridge bridge, String inputMove) {
         if (bridgeGame.moveBridgeInit(bridgeGame, inputMove, bridge)) {
             outputView.printMap(bridge);
-        } else {
-            outputView.printMap(bridge);
-            bridgeGame.initIndex();
-            if (retry(bridgeGame)) {
-                return true;
-            }
+            return false;
         }
-        return false;
+        outputView.printMap(bridge);
+        bridgeGame.initIndex();
+        return retry(bridgeGame);
     }
 
     private boolean checkBridgeIndex(BridgeGame bridgeGame) {
