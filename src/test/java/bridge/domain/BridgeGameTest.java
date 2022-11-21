@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.constant.Message;
+import bridge.constant.Message.LogicExceptionMessage;
 import bridge.constant.enums.Moving;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -83,10 +85,11 @@ public class BridgeGameTest {
     }
 
     @DisplayName("게임 진행 중 성공 여부 반환 기능 호출 시 예외발생 테스트")
+    @Test
     public void 게임_성공_여부_반환_예외_테스트() {
         assertThatThrownBy(() -> bridgeGame.successOrNot())
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage();
+                .hasMessage(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
     }
 
     private void 게임_상태_확인_기능들_테스트(boolean inProgressExcepted,

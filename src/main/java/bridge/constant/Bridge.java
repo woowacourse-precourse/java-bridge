@@ -8,6 +8,7 @@ public final class Bridge {
         public static final String GAME_RETRY = "R";
         public static final String GAME_QUIT = "Q";
         public static final int INITIAL_VALUE_OF_ATTEMPTS_NUMBER = 1;
+        public static final int REVISION_NUMBER = 1;
 
         private GameConstants() {}
     }
