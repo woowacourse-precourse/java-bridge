@@ -21,8 +21,7 @@ public class BridgeGame {
                 .filter(bridgePrinter -> isAnswer(bridgeToMove, index) == bridgePrinter.isAnswer())
                 .filter(bridgePrinter -> isFirst(index) == bridgePrinter.isFirst())
                 .filter(bridgePrinter -> bridgeToMove.equals(bridgePrinter.getMark()))
-                .findFirst()
-                .orElse(BridgeCase.DEFAULT);
+                .findFirst().orElse(BridgeCase.NOTHING);
     }
 
     public boolean isAnswer(String bridgeToMove, int index) {

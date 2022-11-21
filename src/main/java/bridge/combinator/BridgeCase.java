@@ -57,7 +57,7 @@ public enum BridgeCase {
             downSideBridge.insert(downSideBridge.length() - 1, "| X ");
         }
     },
-    DEFAULT(false, false, "NOT") {
+    NOTHING(false, false, "NOT") {
         @Override
         public void add(StringBuilder upSideBridge, StringBuilder downSideBridge) { }
     };
