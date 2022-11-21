@@ -23,15 +23,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList <>();
         for (int i = 0 ; i < size ; i++) {
-            bridge.add(convertBridgeNumber(bridgeRandomNumberGenerator.generate()));
+            int num = bridgeRandomNumberGenerator.generate();
+            validateBridgeRandomNum(num);
+            if (num == 0) { bridge.add("D"); continue;}
+            bridge.add("U");
         }
         return bridge;
-    }
-
-    public String convertBridgeNumber(int randomNum) {
-        validateBridgeRandomNum(randomNum);
-        if (randomNum == 0) return "D";
-        if (randomNum == 1) return "U";
-        return null;
     }
 }
