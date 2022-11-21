@@ -8,9 +8,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private int index = 0;
     private final List<String> bridge;
     private final MoveLog moveLog;
-    private int index = 0;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -31,8 +31,10 @@ public class BridgeGame {
 
     public MovingType userMoveToChoice(String userMove, int index) {
         if (bridge.get(index).equals(userMove)) {
+            this.index += 1;
             return MovingType.SUCCESS;
         }
+        this.index += 1;
         return MovingType.FAIL;
     }
 
