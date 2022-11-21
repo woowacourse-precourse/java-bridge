@@ -11,13 +11,18 @@ public class RepeatValidator {
     public static <T> T readUntilValidate(InputFunction<T> expression) {
         T input = null;
         do {
-            try {
-                input = expression.read();
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
+            input = tryExpression(expression);
         } while (input == null);
 
         return input;
+    }
+
+    private static <T> T tryExpression(InputFunction<T> expression) {
+        try {
+            return expression.read();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return null;
+        }
     }
 }
