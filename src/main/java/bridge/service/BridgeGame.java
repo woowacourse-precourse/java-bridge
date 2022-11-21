@@ -1,6 +1,4 @@
-package bridge;
-
-import bridge.service.UserInput;
+package bridge.service;
 
 import java.util.List;
 
