@@ -44,7 +44,11 @@ public class InputView {
      */
     public String readGameCommand() {
         String Command = Console.readLine();
-        validationChecker.checkInputIsSpecificString(Command, List.of("R","Q"));
+        try {
+            validationChecker.checkInputIsSpecificString(Command, List.of("R","Q"));
+        }catch (IllegalArgumentException e){ outputView.printGameCommandError();
+            return readGameCommand();
+        }
         return Command;
     }
 }
