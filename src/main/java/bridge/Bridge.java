@@ -7,7 +7,7 @@ public class Bridge {
 
     private List<String> bridge;
     private List<List<String>> outputBridge = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
-
+    private static int tryCount = 1;
 
     public List<String> getBridge() {
         return bridge;
@@ -23,6 +23,14 @@ public class Bridge {
 
     public void setOutputBridge(List<List<String>> outputBridge){
         this.outputBridge = outputBridge;
+    }
+
+    public static int getTryCount() {
+        return tryCount;
+    }
+
+    public void setTryCount(int tryCount) {
+        this.tryCount = tryCount;
     }
 
 
