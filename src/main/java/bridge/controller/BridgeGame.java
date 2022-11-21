@@ -14,11 +14,14 @@ public class BridgeGame {
     private BridgeNumberGenerator bridgeNumberGenerator;
     private int size;
     private List<String> bridges;
+    private int currentLocation = 0;
 
     public void start(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
         init();
-
+        while (isGameDone()) {
+            move();
+        }
     }
 
     private void init() {
@@ -49,6 +52,20 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        OutputView.readMoving();
+        String moving = InputView.readMoving();
+        updateBridgeStatus(moving);
+        OutputView.printMap();
+    }
+
+    private void updateBridgeStatus(String moving) {
+        if (bridges.get(currentLocation) == moving) {
+            currentLocation += 1;
+        }
+    }
+
+    private boolean isGameDone() {
+        return true;
     }
 
     /**
