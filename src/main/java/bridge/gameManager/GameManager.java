@@ -5,8 +5,9 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.gameComponent.Bridge;
 import bridge.gameComponent.BridgeGame;
-import bridge.util.MoveResult;
 import bridge.gameComponent.InputValidator;
+import bridge.util.MoveResult;
+import bridge.gameComponent.InputValidatorImpl;
 import bridge.viewer.InputView;
 import bridge.viewer.OutputView;
 
@@ -24,7 +25,7 @@ public class GameManager {
 
     // 의존성 설정
     public GameManager() { //TODO: interface
-        this.inputValidator = new InputValidator();
+        this.inputValidator = new InputValidatorImpl();
         this.inputView = new InputView(this.inputValidator);
         this.outputView = new OutputView();
         this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();

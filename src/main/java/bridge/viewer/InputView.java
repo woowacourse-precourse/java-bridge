@@ -1,8 +1,9 @@
 package bridge.viewer;
 
 import bridge.exception.ExceptionPrinter;
-import bridge.util.Converter;
 import bridge.gameComponent.InputValidator;
+import bridge.util.Converter;
+import bridge.gameComponent.InputValidatorImpl;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
