@@ -80,4 +80,8 @@ public class OutputView {
     public void inputMoving() {
         System.out.println(NEW_LINE.getMessage() +  INPUT_MOVING.getMessage());
     }
+
+    public void restartOrQuit() {
+        System.out.println(NEW_LINE.getMessage() +  RESTART_OR_QUIT.getMessage());
+    }
 }
