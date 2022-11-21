@@ -12,13 +12,8 @@ public class BridgeMoveState {
     private static final String MOVE = "O";
     private static final String STOP = "X";
 
-    private final List<String> upState;
-    private final List<String> downState;
-
-    public BridgeMoveState() {
-        this.upState = new ArrayList<>();
-        this.downState = new ArrayList<>();
-    }
+    private final List<String> upState = new ArrayList<>();
+    private final List<String> downState = new ArrayList<>();
 
     public void update(String moving, boolean canMove) {
         String state = makeState(canMove);
