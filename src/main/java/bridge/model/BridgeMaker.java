@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +13,8 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
-    }
-
-    private void isUp(List<String> newBridge, int randomNumber){
-        if (randomNumber == 1) {
-            newBridge.add("U");
-        }
-    }
-
-    private void isDown(List<String> newBridge, int randomNumber){
-        if (randomNumber == 0) {
-            newBridge.add("D");
-        }
+    public BridgeMaker() {
+        this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     }
 
     /**
@@ -40,5 +29,17 @@ public class BridgeMaker {
             isDown(newBridge, randomNumber);
         }
         return newBridge;
+    }
+
+    private void isUp(List<String> newBridge, int randomNumber){
+        if (randomNumber == 1) {
+            newBridge.add("U");
+        }
+    }
+
+    private void isDown(List<String> newBridge, int randomNumber){
+        if (randomNumber == 0) {
+            newBridge.add("D");
+        }
     }
 }

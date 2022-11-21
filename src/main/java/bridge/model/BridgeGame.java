@@ -11,8 +11,7 @@ public class BridgeGame {
     private List<String> preStatus = new ArrayList<>();
 
     public List<String> makeTargetBridge(int bridgeSize) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker();
         return bridgeMaker.makeBridge(bridgeSize);
     }
 

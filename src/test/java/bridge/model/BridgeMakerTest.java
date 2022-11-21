@@ -18,7 +18,7 @@ class BridgeMakerTest {
     @BeforeEach
     void setUp() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        bridgeMaker = new BridgeMaker();
     }
 
     @DisplayName("다리가 잘 생성되었나 확인")
