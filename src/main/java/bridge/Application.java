@@ -39,7 +39,14 @@ public class Application {
             // 재도전 여부
             canYouRetry(successOrFail);
             System.out.println("CURRENT_LOCATION3 : " + CURRENT_LOCATION);
+
+            // 최종 결과
+            gameResult(gameCnt, CURRENT_LOCATION);
         }
+    }
+
+    public static void gameResult(int gameCnt, int CURRENT_LOCATION) {
+        if(CURRENT_LOCATION==0) BridgeGame.retryAnswerIsSuccess(gameCnt);
     }
 
     public static int canYouRetry(boolean successOrFail) {
@@ -49,6 +56,7 @@ public class Application {
             idx = INITIALIZE;
             OutputView.bridgeInitialize();
             OutputView.getSuccessOrFail();;
+            gameCnt++;
 
             return CURRENT_LOCATION;
         }

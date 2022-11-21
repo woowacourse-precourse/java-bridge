@@ -40,6 +40,17 @@ public class BridgeGame {
         System.out.println("최종 게임 결과");
         OutputView.printUpBridge();
         OutputView.printDownBridge();
+        System.out.println();
+        System.out.println("게임 성공 여부: 실패");
+        System.out.println("총 시도한 횟수: " + gameCnt);
+    }
+
+    public static void retryAnswerIsSuccess(int gameCnt) {
+        System.out.println("최종 게임 결과");
+        OutputView.printUpBridge();
+        OutputView.printDownBridge();
+        System.out.println();
+        System.out.println("게임 성공 여부: 성공");
         System.out.println("총 시도한 횟수: " + gameCnt);
     }
 }
