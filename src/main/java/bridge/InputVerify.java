@@ -1,5 +1,7 @@
 package bridge;
 
+import org.mockito.internal.matchers.Or;
+
 public class InputVerify {
 
 	public static void verifyBridgeSize(String input) {
@@ -31,5 +33,11 @@ public class InputVerify {
 
 	public static void verifyOrderMove(String order) {
 		verifyIsOrder(order);
+	}
+
+	private static void verifyIsOrder(String order) {
+		if (!Order.isOrder(order)) {
+			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_NOT_ORDER);
+		}
 	}
 }
