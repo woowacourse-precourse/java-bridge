@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.exception.UserException;
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -24,5 +27,17 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String checkInput(UserException userException) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                userException.checkException(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
