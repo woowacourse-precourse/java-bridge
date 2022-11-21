@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-
 class GameCommandTest {
 
     @DisplayName("재시작/종료 여부 예외 처리 테스트")
