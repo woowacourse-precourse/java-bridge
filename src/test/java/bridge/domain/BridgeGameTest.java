@@ -23,4 +23,16 @@ class BridgeGameTest {
         Assertions.assertThat(bridgeGame.move(Direction.DOWN)).isTrue();
     }
 
+    @DisplayName("retry 테스트")
+    @Test
+    void retryTest() {
+        Assertions.assertThat(bridgeGame.retry(GameCommand.RETRY)).isTrue();
+    }
+
+    @DisplayName("quit 테스트")
+    @Test
+    void quitTest() {
+        Assertions.assertThat(bridgeGame.retry(GameCommand.QUIT)).isFalse();
+    }
+
 }
