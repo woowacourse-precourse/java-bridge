@@ -14,7 +14,7 @@ public class GameController {
         outputView.gameStartMessage();
         outputView.bridgeSizeMessage();
 
-        int size = inputView.readBridgeSize();
+        int size = readBridgeSizeStep();//inputView.readBridgeSize();
 
         List<String> answer_bridge = bridgeMaker.makeBridge(size);
         System.out.println(answer_bridge);
@@ -53,5 +53,16 @@ public class GameController {
         //printMap
         outputView.printMap(bridgeGame);
 
+    }
+    private int readBridgeSizeStep(){
+        try{
+            return inputView.readBridgeSize();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readBridgeSizeStep();
+        }catch (IllegalStateException e){
+            System.out.println(e.getMessage());
+            return readBridgeSizeStep();
+        }
     }
 }
