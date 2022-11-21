@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeTest {
 
-    @DisplayName("생성자 및 getter 테스트")
+    @DisplayName("생성자 테스트")
     @Test
     public void BridgeConstructorAndGetterTest() {
         // given
@@ -18,21 +18,8 @@ public class BridgeTest {
         Bridge bridge = new Bridge(list);
 
         // then
-        assertThat(bridge.getBridge()).isEqualTo(list);
-    }
-
-    @DisplayName("nowIndex Getter, Setter 테스트")
-    @Test
-    public void nowIndexGetterAndSetterTest() {
-        // given
-        Bridge bridge = new Bridge(List.of("U", "D", "D"));
-        int index = 3;
-
-        // when
-        bridge.setNowIndex(index);
-
-        // then
-        assertThat(bridge.getNowIndex()).isEqualTo(index);
+        assertThat(bridge.isEndOfIndex()).isEqualTo(false);
+        assertThat(bridge.getNowIndex()).isEqualTo(0);
     }
 
     @DisplayName("resetGame 테스트")
@@ -40,7 +27,9 @@ public class BridgeTest {
     public void resetGameTest() {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
-        bridge.setNowIndex(3);
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
 
         // when
         bridge.resetGame();
@@ -62,19 +51,22 @@ public class BridgeTest {
         assertThat(bridge.getNowIndex()).isEqualTo(1);
     }
 
-    @DisplayName("getBridgeSize 테스트")
+    @DisplayName("isEndOfIndex 테스트")
     @Test
-    public void getBridgeSizeTest() {
+    public void isEndOfIndexTest() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        Bridge bridge = new Bridge(List.of("U", "D", "D", "U", "U"));
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
+        bridge.nowIndexUpdate();
 
         // when
-        int result = bridge.getBridgeSize();
+        boolean isEndOfIndex = bridge.isEndOfIndex();
 
         // then
-        assertThat(result).isEqualTo(3);
+        assertThat(isEndOfIndex).isEqualTo(true);
     }
-
 
     @DisplayName("isCorrectMoveDirection 테스트")
     @Test
