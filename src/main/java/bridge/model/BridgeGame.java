@@ -44,8 +44,8 @@ public class BridgeGame {
         return retryCount;
     }
 
-    public String printResult() {
-        return player.printResult(isCompletedGame());
+    public String printResult(Boolean success) {
+        return player.printResult(success);
     }
 
     boolean isStartStatus() {

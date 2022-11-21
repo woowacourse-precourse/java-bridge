@@ -9,7 +9,7 @@ public class ErrorThrower {
 
     private static final Logger logger = Logger.getLogger(ErrorThrower.class.getName());
 
-    public static void throwError(String errorMessage){
+    public static void throwError(String errorMessage) {
         try {
             throw new IllegalArgumentException(errorMessage);
         } catch (IllegalArgumentException e) {

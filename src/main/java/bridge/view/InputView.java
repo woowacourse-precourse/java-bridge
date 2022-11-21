@@ -1,7 +1,11 @@
 package bridge.view;
 
+import static bridge.model.ErrorThrower.ERROR_BRIDGE_SIZE;
+import static bridge.model.ErrorThrower.ERROR_MOVING;
+import static bridge.model.ErrorThrower.ERROR_RETRY;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.model.ErrorThrower;
 import bridge.model.InputValidator;
 
 /**
@@ -23,7 +27,7 @@ public class InputView {
         if (InputValidator.isValidSize(input)) {
             return Integer.parseInt(input);
         }
-        InputValidator.throwError(InputValidator.ERROR_BRIDGE_SIZE);
+        ErrorThrower.throwError(ERROR_BRIDGE_SIZE);
         return readBridgeSize();
     }
 
@@ -36,7 +40,7 @@ public class InputView {
         if (InputValidator.isValidMoving(inputMoving)) {
             return inputMoving;
         }
-        InputValidator.throwError(InputValidator.ERROR_MOVING);
+        ErrorThrower.throwError(ERROR_MOVING);
         return readMoving();
     }
 
@@ -49,7 +53,7 @@ public class InputView {
         if (InputValidator.isValidRetry(inputRetry)) {
             return inputRetry;
         }
-        InputValidator.throwError(InputValidator.ERROR_RETRY);
+        ErrorThrower.throwError(ERROR_RETRY);
         return readGameCommand();
     }
 }

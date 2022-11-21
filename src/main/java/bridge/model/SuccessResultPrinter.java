@@ -2,7 +2,7 @@ package bridge.model;
 
 import java.util.List;
 
-class SuccessResultPrinter extends ResultPrinter{
+class SuccessResultPrinter extends ResultPrinter {
 
 
     public SuccessResultPrinter(List<String> directions) {
@@ -14,5 +14,4 @@ class SuccessResultPrinter extends ResultPrinter{
         return getResultFormat(getUpResult())
                 + getResultFormat(getDownResult());
     }
-
 }

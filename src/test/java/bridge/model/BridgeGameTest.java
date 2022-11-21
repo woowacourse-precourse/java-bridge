@@ -42,7 +42,7 @@ public class BridgeGameTest {
 
     @DisplayName("도전 회수 조회")
     @Test
-    void get_retry_count(){
+    void get_retry_count() {
         BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeOneZeroLoopNumberGenerator());
         assertThat(bridgeGame.getRetryCount()).isEqualTo(1);
         bridgeGame.retry();

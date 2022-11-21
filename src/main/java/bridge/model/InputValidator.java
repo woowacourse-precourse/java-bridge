@@ -11,7 +11,6 @@ public class InputValidator {
     public static final String RESTART_GAME = "R";
     public static final String QUIT_GAME = "Q";
 
-
     private InputValidator() {
     }
     //TODO 수정 고려

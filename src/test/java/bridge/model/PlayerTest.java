@@ -30,6 +30,7 @@ public class PlayerTest {
     void is_start_status() {
         Player player = new Player();
         assertThat(player.isStartStatus()).isTrue();
+
         player.move("U");
         assertThat(player.isStartStatus()).isFalse();
     }
