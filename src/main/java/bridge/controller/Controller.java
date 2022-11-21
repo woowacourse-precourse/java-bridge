@@ -32,4 +32,11 @@ public class Controller {
         bridgeGame.setBridge(bridge);
     }
 
+    private void move(){
+        outputView.printMoveInputRequest();
+        String moveCommand = inputView.readMoving();
+        bridgeGame.move(moveCommand);
+        List<String> map = bridgeGame.getBridgeProgress();
+        outputView.printMap(map);
+    }
 }

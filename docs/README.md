@@ -92,11 +92,11 @@
     + [X] BridgeMaker) 입력 받은 길이의 다리를 만듦.
     + [X] 만들어진 다리를 BridgeGame으로 건넴
   + [ ] 이동할 칸 선택
-    + [ ] OutputView) 입력 요청 메시지 출력
-    + [ ] InputView) 입력 받음
-    + [ ] 입력을 BridgeGame으로 건넴
-    + [ ] BridgeGame) 현재 진행 상황을 받아오기
-    + [ ] OutputView) 현재 진행 상황을 출력
+    + [X] OutputView) 입력 요청 메시지 출력
+    + [X] InputView) 입력 받음
+    + [X] 입력을 BridgeGame으로 건넴
+    + [X] BridgeGame) 현재 진행 상황을 받아오기
+    + [X] OutputView) 현재 진행 상황을 출력
   + [ ] (실패 시)게임 재시도 여부 확인
     + [ ] OutputView) 입력 요청 메시지 출력
     + [ ] InputView) 입력 받음
