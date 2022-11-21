@@ -20,4 +20,8 @@ public class Move {
         return false;
     }
 
+    public String getMove() {
+        return this.move;
+    }
+
 }

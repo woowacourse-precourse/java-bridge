@@ -2,16 +2,16 @@ package bridge.domain;
 
 public class BridgeResult {
 
-    private final String nowStep;
+    private final String nowMove;
     private final boolean nowResult;
 
-    public BridgeResult(String nowStep, boolean nowResult) {
-        this.nowStep = nowStep;
+    public BridgeResult(String nowMove, boolean nowResult) {
+        this.nowMove = nowMove;
         this.nowResult = nowResult;
     }
 
     public boolean isUpMove(){
-        if(this.nowStep == "U"){
+        if(this.nowMove.equals("U")){
             return true;
         }
         return false;

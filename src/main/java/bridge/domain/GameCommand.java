@@ -3,18 +3,27 @@ package bridge.domain;
 import bridge.utils.validator.GameCommandValidator;
 
 public class GameCommand {
-    private final String gameCommand;
-    private boolean isRetry;
+    private final boolean gameCommand;
+
     public GameCommand(String gameCommand){
         new GameCommandValidator(gameCommand);
-        this.gameCommand = gameCommand;
-        this.isRetry = isRetry();
+        this.gameCommand = isRetry(gameCommand);
     }
 
-    private boolean isRetry(){
-        if(this.gameCommand == "R"){
+    private boolean isRetry(String gameCommand){
+        if(gameCommand.equals("R")){
             return true;
         }
         return false;
     }
+
+    public void isRetryGame(BridgeGame bridgeGame){
+        if(this.gameCommand){
+            bridgeGame.retry();
+        }
+        if(!this.gameCommand){
+            bridgeGame.exit();
+        }
+    }
+
 }

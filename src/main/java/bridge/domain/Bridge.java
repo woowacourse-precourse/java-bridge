@@ -29,17 +29,34 @@ public class Bridge {
 
     public BridgeResult isGoodMove(Move move){
         String nowStep = this.bridge.get(this.step);
+        String nowMove = move.getMove();
         boolean nowResult = false;
         if(move.goToNextMove(nowStep)){
-            this.step += 1;
             nowResult = true;
         }
-        return new BridgeResult(nowStep,nowResult);
+        return new BridgeResult(nowMove, nowResult);
+    }
+
+    public boolean nowGoodMove(List<BridgeResult> bridgeResults){
+        if(bridgeResults.get(this.step).isSuccessMove()){
+            return true;
+        }
+        return false;
     }
 
     public void resetStep(){
-        this.step = ZERO;
+        this.step = -1;
     }
 
+    public boolean notOverStep(){
+        if(this.step < this.size){
+            return true;
+        }
+        return false;
+    }
+
+    public void goToNextStep(){
+        this.step += 1;
+    }
 
 }

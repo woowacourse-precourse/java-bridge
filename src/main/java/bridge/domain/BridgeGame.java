@@ -11,8 +11,20 @@ public class BridgeGame {
 
     private int gameCount;
 
-    public BridgeGame(){
+    public List<BridgeResult> getBridgeResults() {
+        return bridgeResults;
+    }
+
+    private List<BridgeResult> bridgeResults;
+    private Bridge bridge;
+
+    private boolean exit;
+
+    public BridgeGame(List<BridgeResult> bridgeResults, Bridge bridge){
+        this.bridgeResults = bridgeResults;
+        this.bridge = bridge;
         this.gameCount = 1;
+        this.exit = false;
     }
 
     /**
@@ -20,9 +32,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<BridgeResult> bridgeResults, Bridge bridge) {
+    public void move() {
         Move move = InputController.inputMoving();
-        bridgeResults.add(bridge.isGoodMove(move));
+        this.bridgeResults.add(this.bridge.isGoodMove(move));
     }
 
     /**
@@ -30,13 +42,27 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<BridgeResult> bridgeResults, Bridge bridge) {
-        resetBridgeResults(bridgeResults);
-        bridge.resetStep();
+    public void retry() {
+        this.bridgeResults = new ArrayList<>();
+        this.bridge.resetStep();
         this.gameCount += 1;
     }
 
-    private void resetBridgeResults(List<BridgeResult> bridgeResults){
-        bridgeResults = new ArrayList<>();
+    public void exit() {
+        this.exit = true;
+    }
+
+    public boolean notExit(){
+        if(!this.exit){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFailedGame(){
+        if(!this.bridge.nowGoodMove(this.bridgeResults)){
+            return true;
+        }
+        return false;
     }
 }
