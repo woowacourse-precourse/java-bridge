@@ -15,8 +15,15 @@ public class BridgeController {
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private BridgeGame bridgeGame;
+    private String resultOfGame;
 
     public void startGame() {
+        initBridgeGame();
+        proceedBridgeGame();
+        outputView.printResult(bridgeGame.getUserMoving(), resultOfGame, bridgeGame.getAttemptCount());
+    }
+
+    public void initBridgeGame(){
         List<String> bridge;
 
         outputView.printStartingPhrase();
@@ -24,8 +31,6 @@ public class BridgeController {
         //실행 예시와 맞추기 위해 한 칸 띄워준다.
         System.out.println();
         bridgeGame = new BridgeGame(bridge);
-
-        proceedBridgeGame();
     }
 
     public void proceedBridgeGame() {
@@ -35,18 +40,18 @@ public class BridgeController {
             //System.out.println(bridgeGame.getBridge());
             startMove();
 
-            if (proceedEndOfGame()) break;
+            if (decideEndOfGame()) break;
         }
     }
 
-    public boolean proceedEndOfGame() {
+    public boolean decideEndOfGame() {
         if (bridgeGame.isSuccess()) {
-            outputView.printResult(bridgeGame.getUserMoving(), SUCCESS, bridgeGame.getAttemptCount());
+            resultOfGame = SUCCESS;
             return true;
         }
         // 성공 하지도 못했는데 재시작도 안하면 실패
         if (bridgeGame.retry(inputView.readGameCommand()) == false) {
-            outputView.printResult(bridgeGame.getUserMoving(), FAILURE, bridgeGame.getAttemptCount());
+            resultOfGame = FAILURE;
             return true;
         }
         return false;
