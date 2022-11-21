@@ -37,7 +37,12 @@
 
 
 # 테스트
+- [ ] BridgeGame 테스트
+  - [ ] move 테스트
+    - 성공,실패,진행중에 대한 테스트
+
 - [x] BridgeMaker 테스트
   - [x] makeBridge
     - 크기가 맞는지
     - 모든 원소가 "U"나 "D"인지
+
