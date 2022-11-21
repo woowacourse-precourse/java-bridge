@@ -1,6 +1,7 @@
 package bridge.engine.state;
 
 import bridge.engine.BridgeGame;
+import bridge.engine.reporter.BridgeReporter;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -9,11 +10,13 @@ import java.util.List;
 public class BridgeMoveState implements BridgeState {
 
     private BridgeGame bridgeGame;
+    private BridgeReporter reporter;
     private OutputView outputView;
     private InputView inputView;
 
     public BridgeMoveState(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
+        this.reporter = new BridgeReporter();
         this.outputView = new OutputView();
         this.inputView = new InputView();
     }
@@ -28,14 +31,13 @@ public class BridgeMoveState implements BridgeState {
         boolean isSuccess = true;
         outputView.printInputBridge();
         bridgeGame.getUserDirection().add(inputView.readMoving());
-        bridgeGame.setTryCount(bridgeGame.getTryCount() + 1);
+        bridgeGame.setMoveCount(bridgeGame.getMoveCount() + 1);
 
         if (!isBridgeCorrect(bridgeGame.getBridge(), bridgeGame.getUserDirection())) {
             bridgeGame.setState(bridgeGame.getRetryState());
             isSuccess = false;
         }
-
-        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserDirection());
+        outputView.printMap(reporter.reportBridge(bridgeGame.getBridge(), bridgeGame.getUserDirection()));
         return isSuccess;
     }
 
@@ -56,6 +58,8 @@ public class BridgeMoveState implements BridgeState {
 
     @Override
     public void end() {
+        String bridgeMap = reporter.reportBridge(bridgeGame.getBridge(), bridgeGame.getUserDirection());
 
+        outputView.printResult(bridgeMap, "성공", bridgeGame.getTryCount());
     }
 }

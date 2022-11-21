@@ -1,8 +1,8 @@
 package bridge.engine.state;
 
 import bridge.engine.BridgeGame;
-import bridge.engine.BridgeMaker;
-import bridge.engine.BridgeRandomNumberGenerator;
+import bridge.engine.generator.BridgeMaker;
+import bridge.engine.generator.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -25,13 +25,13 @@ public class BridgeStartState implements BridgeState {
     @Override
     public void start() {
         outputView.printStartMessage();
+        outputView.printInputBridgeSize();
+
+        int bridgeSize = inputView.readBridgeSize();
         outputView.printNewLine();
 
-        outputView.printInputBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.getBridge().addAll(bridge);
-        System.out.println(bridgeGame.getBridge());
 
         bridgeGame.setState(bridgeGame.getMoveState());
     }

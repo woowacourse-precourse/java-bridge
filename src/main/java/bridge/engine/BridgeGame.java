@@ -14,6 +14,7 @@ import java.util.List;
 public class BridgeGame {
 
     private int tryCount;
+    private int moveCount;
     private List<String> bridge;
     private List<String> userDirection;
 
@@ -23,11 +24,11 @@ public class BridgeGame {
     private BridgeRetryState retryState;
 
     private BridgeGame(
-            int tryCount,
             List<String> bridge,
             List<String> userDirection)
     {
-        this.tryCount = tryCount;
+        this.tryCount = 1;
+        this.moveCount = 0;
         this.bridge = bridge;
         this.userDirection = userDirection;
         this.state = new BridgeStartState(this);
@@ -37,14 +38,14 @@ public class BridgeGame {
     }
 
     public static BridgeGame init() {
-        return new BridgeGame(0, new ArrayList<>(), new ArrayList<>());
+        return new BridgeGame(new ArrayList<>(), new ArrayList<>());
     }
 
     public void start() {
         boolean isMoving = true;
         state.start();
 
-        while (isMoving && tryCount < bridge.size()) {
+        while (isMoving && moveCount < bridge.size()) {
             boolean isSuccess = move();
 
             if (!isSuccess) {
@@ -76,20 +77,16 @@ public class BridgeGame {
         return tryCount;
     }
 
+    public int getMoveCount() {
+        return moveCount;
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
 
     public List<String> getUserDirection() {
         return userDirection;
-    }
-
-    public BridgeState getState() {
-        return state;
-    }
-
-    public BridgeStartState getStartState() {
-        return startState;
     }
 
     public BridgeMoveState getMoveState() {
@@ -108,11 +105,11 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public void setUserDirection(List<String> userDirection) {
-        this.userDirection = userDirection;
-    }
-
     public void setState(BridgeState state) {
         this.state = state;
+    }
+
+    public void setMoveCount(int moveCount) {
+        this.moveCount = moveCount;
     }
 }

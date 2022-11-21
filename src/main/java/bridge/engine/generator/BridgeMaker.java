@@ -1,4 +1,6 @@
-package bridge.engine;
+package bridge.engine.generator;
+
+import bridge.engine.BridgeDirection;
 
 import java.util.ArrayList;
 import java.util.List;

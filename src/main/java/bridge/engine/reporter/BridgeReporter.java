@@ -1,14 +1,8 @@
-package bridge.engine;
+package bridge.engine.reporter;
 
 import java.util.List;
 
 public class BridgeReporter {
-
-    private String separator;
-
-    public BridgeReporter(String separator) {
-        this.separator = separator;
-    }
 
     public String reportBridge(List<String> bridge, List<String> userDirection) {
         return renderUpBridge(bridge, userDirection) + "\n" + renderDownBridge(bridge, userDirection);
@@ -21,7 +15,7 @@ public class BridgeReporter {
             upBridge.append(renderUpBridgeEachPoint(i, bridge, userDirection));
 
             if (userDirection.size() - 1 != i) {
-                upBridge.append(" ").append(separator).append(" ");
+                upBridge.append(" ").append("|").append(" ");
             }
         }
         return upBridge.append(" ]").toString();
@@ -34,7 +28,7 @@ public class BridgeReporter {
             downBridge.append(renderDownBridgeEachPoint(i, bridge, userDirection));
 
             if (userDirection.size() - 1 != i) {
-                downBridge.append(" ").append(separator).append(" ");
+                downBridge.append(" ").append("|").append(" ");
             }
         }
         return downBridge.append(" ]").toString();

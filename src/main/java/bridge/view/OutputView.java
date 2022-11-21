@@ -1,9 +1,5 @@
 package bridge.view;
 
-import bridge.engine.BridgeReporter;
-
-import java.util.List;
-
 import static bridge.view.Message.*;
 
 /**
@@ -11,26 +7,30 @@ import static bridge.view.Message.*;
  */
 public class OutputView {
 
-    private BridgeReporter reporter;
-
-    public OutputView() {
-        this.reporter = new BridgeReporter("|");
-    }
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
-    public void printMap(List<String> bridge, List<String> userDirection) {
-        System.out.println(reporter.reportBridge(bridge, userDirection));
+    public void printMap(String bridgeMap) {
+        System.out.println(bridgeMap);
+        System.out.println();
     }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      */
-    public void printResult() {
+    public void printResult(String bridgeMap, String result, int tryCount) {
+        System.out.println(FINAL_REPORT);
+        System.out.println(bridgeMap);
+
+        System.out.println();
+        System.out.println("게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + tryCount);
     }
 
-    public void printStartMessage() {System.out.println(START);}
+    public void printStartMessage() {
+        System.out.println(START);
+        System.out.println();
+    }
 
     public void printInputBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
