@@ -25,13 +25,33 @@ public class ClassContext {
         return ClassContext.instance;
     }
 
-    public static void setBridgeNumberGenerator(BridgeNumberGenerator bridgeNumberGenerator) {
+    public InputView getInputView() {
+        return inputView;
+    }
+
+    public BridgeGame getBridgeGame() {
+        return bridgeGame;
+    }
+
+    public OutputView getOutputView() {
+        return outputView;
+    }
+
+    public BridgeNumberGenerator getBridgeNumberGenerator() {
+        return bridgeNumberGenerator;
+    }
+
+    public BridgeMaker getBridgeMaker() {
+        return bridgeMaker;
+    }
+
+    public GameLauncher getGameLauncher() {
+        return gameLauncher;
+    }
+
+    public void setBridgeNumberGenerator(BridgeNumberGenerator bridgeNumberGenerator) {
         ClassContext.bridgeNumberGenerator = bridgeNumberGenerator;
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         gameLauncher = new GameLauncher(inputView, outputView, bridgeGame, bridgeMaker);
-    }
-
-    public static GameLauncher getGameLauncher() {
-        return gameLauncher;
     }
 }
