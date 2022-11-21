@@ -16,7 +16,7 @@ public class ErrorException extends IllegalArgumentException {
         super(cause);
     }
 
-    public ErrorException(BrideError errorMessage){
+    public ErrorException(BridgeError errorMessage){
         super(errorMessage.getErrorMessage());
     }
 }

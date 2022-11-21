@@ -1,6 +1,6 @@
 package bridge.domain.bridgenumber;
 
-import bridge.exception.BrideError;
+import bridge.exception.BridgeError;
 import bridge.exception.ErrorException;
 
 public class BridgeRandomNumber {
@@ -11,7 +11,7 @@ public class BridgeRandomNumber {
     public BridgeRandomNumber(int bridgeRandomNumber) {
         this.bridgeRandomNumber = bridgeRandomNumber;
         if (!checkInvalidRandomNumber()) {
-            throw new ErrorException(BrideError.INVALID_RANDOM_NUMBER);
+            throw new ErrorException(BridgeError.INVALID_RANDOM_NUMBER);
         }
     }
 

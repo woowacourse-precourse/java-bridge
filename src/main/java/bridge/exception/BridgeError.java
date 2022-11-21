@@ -1,6 +1,6 @@
 package bridge.exception;
 
-public enum BrideError {
+public enum BridgeError {
     IS_NOT_NUMERIC("다리 길이의 입력 값이 숫자가 아닙니다."),
     INVALID_RANGE("다리 길이의 입력 값이 3이상 20이하가 아닙니다."),
     INVALID_RANDOM_NUMBER("무작위 값이 0또는 1이 아닙니다."),
@@ -11,7 +11,7 @@ public enum BrideError {
 
     private final String errorMessage;
 
-    BrideError(String errorMessage) {
+    BridgeError(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
