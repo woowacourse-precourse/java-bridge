@@ -43,7 +43,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @DisplayName("게임 종료")
+    @DisplayName("게임 재시작 후 종료")
     void Test1() {
         assertRandomNumberInRangeTest(() -> {
             runException("3", "U", "U", "R", "U", "D", "U");
@@ -60,7 +60,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @DisplayName("게임 재시작")
+    @DisplayName("게임 실패 후 종료")
     void Test2() {
         assertRandomNumberInRangeTest(() -> {
             runException("3", "U", "U", "Q");
