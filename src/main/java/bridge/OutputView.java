@@ -52,24 +52,24 @@ public class OutputView {
     }
 
     private void printBridgeResult(List<String> bridgeResult) {
-        System.out.println(String.join("|", bridgeResult));
+        System.out.println("[" + String.join("|", bridgeResult) + "]");
     }
 
     private List<String> getUpperBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail) {
         List<String> upperBridgeResult = new ArrayList<>();
-        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition - 1; bridgeIndex++) {
+        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition; bridgeIndex++) {
             upperBridgeResult.add(compareBridgeBlock(bridge.get(bridgeIndex), "U"));
         }
-        upperBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition - 1), "U", isFail));
+        upperBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition), "U", isFail));
         return upperBridgeResult;
     }
 
     private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail) {
         List<String> lowerBridgeResult = new ArrayList<>();
-        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition - 1; bridgeIndex++) {
+        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition; bridgeIndex++) {
             lowerBridgeResult.add(compareBridgeBlock(bridge.get(bridgeIndex), "D"));
         }
-        lowerBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition - 1), "D", isFail));
+        lowerBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition), "D", isFail));
         return lowerBridgeResult;
     }
 
@@ -83,6 +83,8 @@ public class OutputView {
     private String compareFailBridgeBlock(String bridgeBlock, String comparatorBridgeBlock, boolean isFail) {
         if (bridgeBlock.equals(comparatorBridgeBlock) && isFail) {
             return " X ";
+        } else if (bridgeBlock.equals(comparatorBridgeBlock)) {
+            return " O ";
         }
         return "   ";
     }
