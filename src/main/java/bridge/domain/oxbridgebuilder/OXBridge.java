@@ -1,20 +1,19 @@
 package bridge.domain.oxbridgebuilder;
 
 import bridge.domain.resources.UpOrDown;
-import java.util.List;
 
 public class OXBridge {
 
-    private final List<String> upBridge;
-    private final List<String> downBridge;
+    private final UDBridge upBridge;
+    private final UDBridge downBridge;
 
-    private OXBridge(List<String> upBridge, List<String> downBridge) {
-        this.upBridge = upBridge;
-        this.downBridge = downBridge;
+    private OXBridge() {
+        this.upBridge = UDBridge.of();
+        this.downBridge = UDBridge.of();
     }
 
-    public static OXBridge from(List<String> emptyUp, List<String> emptyDown) {
-        return new OXBridge(emptyUp, emptyDown);
+    public static OXBridge from() {
+        return new OXBridge();
     }
 
     public void addUD(UpOrDown upOrDown, boolean correctOrWrong) {
@@ -43,7 +42,8 @@ public class OXBridge {
         return upBridge.size();
     }
 
+    @Override
     public String toString() {
-        return OXBridgeUtils.makingResult(upBridge, downBridge);
+        return String.valueOf(upBridge) + downBridge;
     }
 }

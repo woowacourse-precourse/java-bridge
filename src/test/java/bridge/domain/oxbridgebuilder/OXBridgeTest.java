@@ -1,7 +1,6 @@
 package bridge.domain.oxbridgebuilder;
 
 import bridge.domain.resources.UpOrDown;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
