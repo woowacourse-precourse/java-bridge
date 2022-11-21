@@ -22,10 +22,12 @@ public class OutputView {
     private static final String GAME_SUCCESS = "성공";
     private static final String GAME_FAIL = "실패";
 
+    private static final String ROUND_SEPARATE_MARK = " | ";
+
     private static final int FOR_GET_ONLY_OTHER_ROUND_RESULT = 1;
 
     /**
-     * 성공 - 실패 여부가 불확실한 현재 라운드 결과(getCurrentRoundResult)와
+     * 성공 & 실패 여부가 불확실한 현재 라운드 결과(getCurrentRoundResult)와
      * 성공일 수 밖에 없는 이전 라운드를 별개의 로직으로(getOtherRoundResult) 구하여 지도를 출력
      */
     public void printMap(Bridge bridge,
@@ -91,7 +93,7 @@ public class OutputView {
                                         String key) {
         List<String> blocks = otherValues.get(key);
         blocks.add(recentValue.get(key));
-        System.out.printf("[ %s ]\n", String.join(" | ", blocks));
+        System.out.printf("[ %s ]\n", String.join(ROUND_SEPARATE_MARK, blocks));
     }
 
     private String getGameClearResultMessage(GameResult gameResult) {
