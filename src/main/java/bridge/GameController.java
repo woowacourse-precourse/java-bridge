@@ -16,8 +16,7 @@ public class GameController {
     public void manageGame(BridgeGame bridgeGame, Bridge bridge) {
         int tryCount = 1;
         while(true) {
-            startGame(bridgeGame, bridge);
-            if (!restartGame(bridgeGame, bridge)) {
+            if (!restartGame(startGame(bridgeGame, bridge), bridgeGame)) {
                 endGame(bridgeGame, bridge, tryCount);
                 break;
             }
@@ -59,17 +58,18 @@ public class GameController {
         return userSelect;
     }
 
-    public void startGame(BridgeGame bridgeGame, Bridge bridge) {
+    public boolean startGame(BridgeGame bridgeGame, Bridge bridge) {
         try {
             activateUserTurn(bridgeGame, bridge);
+            return bridgeGame.checkGameClear(bridge);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            startGame(bridgeGame, bridge);
+            return startGame(bridgeGame, bridge);
         }
     }
 
-    public boolean restartGame(BridgeGame bridgeGame, Bridge bridge) {
-        if (bridgeGame.checkGameClear(bridge)) { // 게임 클리어면 종료
+    public boolean restartGame(boolean clear, BridgeGame bridgeGame) {
+        if (clear) { // 게임 클리어면 종료
             return false;
         }
         return checkRestart(bridgeGame); // 게임 실패, 재시작이면 계속하기, 종료이면 종료
