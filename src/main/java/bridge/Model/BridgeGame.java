@@ -14,4 +14,8 @@ public class BridgeGame {
     public static void saveBridgeSize(final int bridgeSize) {
         BridgeGame.bridgeSize = bridgeSize;
     }
+
+    public static int getBridgeSize() {
+        return bridgeSize;
+    }
 }
