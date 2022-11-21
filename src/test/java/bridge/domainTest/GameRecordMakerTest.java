@@ -32,4 +32,21 @@ public class GameRecordMakerTest {
                 Arguments.of(List.of(" ", " | O"), "[   | O ]\n")
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("provideGameRecordForMakeTotalRecord")
+    @DisplayName("입력된 횡단 결과에 맞게 모든 게임 기록을 반환하는지 확인한다.")
+    public void createResult(List<String> gameRecord, String expectedResult){
+        gameRecordMaker.updateCurrentRecord(gameRecord);
+        gameRecordMaker.updateResult();
+
+        assertThat(gameRecordMaker.getRecord()).isEqualTo(expectedResult);
+    }
+
+    private static Stream<Arguments> provideGameRecordForMakeTotalRecord() {
+        return Stream.of(
+                Arguments.of(List.of("O", " "), "[ O ]\n[   ]\n"),
+                Arguments.of(List.of(" ", "O"), "[ O |   ]\n[   | O ]\n")
+        );
+    }
 }
