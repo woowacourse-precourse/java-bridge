@@ -39,7 +39,13 @@ public class BridgeGame {
     }
 
     public void crossBridge(){
+        move();
 
+        if(result.isSuccess(bridge)){
+            return;
+        }
+
+        selectRetry();
     }
 
     /**
