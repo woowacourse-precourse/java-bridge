@@ -35,4 +35,23 @@ public class SlabDTO {
     public void setTread(boolean value) {
         this.tread = value;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+
+        SlabDTO dto = (SlabDTO) object;
+
+        return step == dto.step
+                && position == dto.position
+                && glass == dto.glass;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = step;
+        result = 31 * result + position.hashCode();
+        result = 31 * result + glass.hashCode();
+        return result;
+    }
 }

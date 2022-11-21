@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.type.SlabType;
+import bridge.type.PositionType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class BridgeMaker {
     }
 
     private String getBridgeTypeName() {
-        String typeName = SlabType
+        String typeName = PositionType
                 .build(this.bridgeNumberGenerator.generate())
                 .getTypeName();
 
@@ -39,7 +39,7 @@ public class BridgeMaker {
     }
 
     private void checkBridgeTypeIsUnknown(String bridgeTypeName) {
-        if (bridgeTypeName.equals(SlabType.UNKNOWN.getTypeName())) {
+        if (bridgeTypeName.equals(PositionType.UNKNOWN.getTypeName())) {
             throw new RuntimeException(Lang.get(Lang.SLAB_TYPE_IS_UNKNOWN));
         }
     }

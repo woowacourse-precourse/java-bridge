@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.Env;
 import bridge.Lang;
+import bridge.type.PositionType;
 import bridge.util.Console;
 import bridge.util.Validator;
 import bridge.util.Parser;
@@ -29,14 +30,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public PositionType readMoving() {
         String response = this.getMovingResponse();
         Validator.checkConsoleCommandIsCorrect(
                 List.of(Env.CODE_OF_UP, Env.CODE_OF_DOWN),
                 response
         );
 
-        return response;
+        return PositionType.build(response);
     }
 
     private String getMovingResponse() {

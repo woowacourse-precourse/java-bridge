@@ -8,7 +8,8 @@ public enum Lang {
     SLAB_TYPE_IS_UNKNOWN("SlabType 이 Unknown 이에요."),
     INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
     SELECT_SLAB("이동할 칸을 선택해주세요. (위: %s, 아래: %s"),
-    SELECT_RETRY_OR_QUIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s");
+    SELECT_RETRY_OR_QUIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s"),
+    ERROR_OCCUR_WHILE_SAVE_DATA("데이터를 저장하던 중 오류가 발생했어요.");
 
     private final String message;
 
