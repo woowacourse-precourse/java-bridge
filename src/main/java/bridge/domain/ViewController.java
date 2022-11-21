@@ -10,12 +10,10 @@ import java.util.List;
 public class ViewController {
     InputView inputView;
     OutputView outputView;
-    InputValidator inputValidator;
 
     public ViewController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        inputValidator = new InputValidator();
     }
 
     public void printBeginning(){
