@@ -57,16 +57,4 @@ public enum BridgeMove {
                 .filter(bridgeDirection -> bridgeDirection.generateNumber.equals(generateNumber))
                 .findAny();
     }
-    
-    public static Map<BridgeMove, List<String>> getInitMoveResultByMoves(int size) {
-        Map<BridgeMove, List<String>> result = new HashMap<>();
-    
-        for (BridgeMove bridgeMove : BridgeMove.values()) {
-            List<String> list = Arrays.asList(new String[size]);
-            Collections.fill(list, "   ");
-            result.put(bridgeMove, list);
-        }
-        
-        return result;
-    }
 }

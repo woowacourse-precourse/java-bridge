@@ -2,10 +2,6 @@ package bridge.domain.bridge;
 
 import static org.assertj.core.api.Assertions.*;
 
-import bridge.domain.bridge.BridgeMove;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,15 +43,4 @@ public class BridgeMoveTest {
         assertThat(BridgeMove.isContain("A")).isEqualTo(false);
     }
     
-    @DisplayName("인수로 받은 size 만큼 모든 방향별로 초기 이동 결과 문자열 리스트를 생성한다.")
-    @Test
-    void getInitMoveResultByMovesByValid() {
-        Map<BridgeMove, List<String>> expected = new HashMap<>();
-        
-        for (BridgeMove bridgeMove : BridgeMove.values()) {
-            expected.put(bridgeMove, List.of("   ", "   ", "   "));
-        }
-    
-        assertThat(BridgeMove.getInitMoveResultByMoves(3)).isEqualTo(expected);
-    }
 }
