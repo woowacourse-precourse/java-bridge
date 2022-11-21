@@ -11,6 +11,11 @@
   - BridgeMaker 클래스 up, down별 BridegeRandomNumberGenerator 랜덤값 토대로 결과값 리턴 함수
 - Controller
   - BridgeGame 클래스에서 View, Domain 연결해주고 필요한 로직 작성
+- Refactoring
+  - 변수 이름, 함수 이름
+  - 한줄 120라인 넘어가지 않게
+  - 예외처리 error메세지 출력
+  - 자바 컨벤션, 3주차 공통 피드백 확인
 
 ## View 기능 목록
 - InputView 클래스
@@ -30,7 +35,10 @@
   2. 클래스 필요 기능 목록
      - 브리지 관련 정보 get, set 함수 구현
 - BridgeMaker 클래스
-  1. 랜덤 함수 입력받아서 게임 결과값 출력
+  1. 사이즈 입력받고 랜덤함수를 통해서 정답 브리지 리턴
 ## Controller 기능 목록
 - BridgeGame 클래스
-  1. View, Domain 연결해주는 기능 록직
+  1. 사이즈 입력받고 BridgeInform 클래스 생성
+  2. BridgeMaker 클래스를 통해 정답 브리지 저장
+  3. 사용자에게 move 값 하나씩 입력받으며 결과 출력
+  4. 실패시 재도전 여부, 성공시 최종 결과 출력
