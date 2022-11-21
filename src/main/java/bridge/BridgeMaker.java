@@ -21,7 +21,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            String safeBlock = BridgeStatus.of(bridgeNumberGenerator.generate()).name();
+            String safeBlock = BridgeBlock.of(bridgeNumberGenerator.generate()).name();
             bridge.add(safeBlock);
         }
         return bridge;

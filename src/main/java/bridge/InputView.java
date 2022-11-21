@@ -21,7 +21,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String movingInput = Console.readLine();
         try {
-            return BridgeStatus.getBridgeStatus(movingInput);
+            return BridgeBlock.getBlockName(movingInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
