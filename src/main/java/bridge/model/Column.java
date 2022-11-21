@@ -16,6 +16,9 @@ public enum Column {
     private final int index;
 
 
+    private String capitalLetter() {
+        return capitalLetter;
+    }
     private int randomNumber() {
         return randomNumber;
     }
@@ -31,7 +34,7 @@ public enum Column {
 
 
     private static final Map<Integer, Column> BY_RANDOM_NUMBER = Stream.of(values()).collect(Collectors.toMap(Column::randomNumber, Function.identity()));
-
+    private static final Map<String, Column> BY_CAPITAL_LETTER = Stream.of(values()).collect(Collectors.toMap(Column::capitalLetter, Function.identity()));
     public boolean equals(Column column){
         if(this.capitalLetter == column.capitalLetter)
             return true;
@@ -54,7 +57,7 @@ public enum Column {
     }
 
     public static void validateLetter(String input) {
-        if(!(BY_RANDOM_NUMBER.containsKey(input) && input != "")){
+        if(!(BY_CAPITAL_LETTER.containsKey(input)) || input == ""){
             throw new IllegalArgumentException();
         }
     }

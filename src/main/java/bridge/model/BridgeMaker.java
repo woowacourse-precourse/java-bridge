@@ -41,7 +41,7 @@ public class BridgeMaker {
     }
 
     public void validateRandomNumber(int number) {
-        if (number != 0 || number != 1) {
+        if (number != 0 && number != 1) {
             throw new IllegalArgumentException();
         }
     }

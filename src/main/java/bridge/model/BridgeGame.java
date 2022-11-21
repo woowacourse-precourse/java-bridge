@@ -56,8 +56,10 @@ public class BridgeGame {
 
     private void initializeBuffer(){
         buffer = new ArrayList<>();
-        buffer.get(0).add(BridgeBuffer.START);
-        buffer.get(1).add(BridgeBuffer.START);
+        for(int i = 0; i < 2; i++){
+            buffer.add(new ArrayList<>());
+            buffer.get(i).add(BridgeBuffer.START);
+        }
     }
 
     public void addColumn(Column answer){
