@@ -54,14 +54,14 @@ public class BridgeGame {
     }
 
     private void matchAboutLastMoving() {
-        bridgeController.printResult(user);
+        bridgeController.printResultByBridge(user);
         if (user.isFinish()) {
             quit(true);
         }
     }
 
     private void notMatchAboutLastMoving() {
-        bridgeController.printResult(user);
+        bridgeController.printResultByBridge(user);
         quitOrRetry();
     }
 

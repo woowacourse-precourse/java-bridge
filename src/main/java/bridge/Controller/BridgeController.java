@@ -38,7 +38,7 @@ public class BridgeController {
         return RETRY;
     }
 
-    public void printResult(Bridge bridge) {
+    public void printResultByBridge(Bridge bridge) {
         view.printResult(bridge.getResult());
     }
 
