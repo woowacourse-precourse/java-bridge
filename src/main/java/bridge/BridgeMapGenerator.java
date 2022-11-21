@@ -22,23 +22,19 @@ public enum BridgeMapGenerator {
 
     public static List<List<String>> generateRightAnswerMap(String moving, List<List<String>> bridgeMap) {
         if (moving.equals(Constant.UP)) {
-            bridgeMap.get(0).add(RIGHT_ANSWER_INPUT_UP.resultOfUp);
-            bridgeMap.get(1).add(RIGHT_ANSWER_INPUT_UP.resultOfDown);
+            generateMap(RIGHT_ANSWER_INPUT_UP, bridgeMap);
             return bridgeMap;
         }
-        bridgeMap.get(0).add(RIGHT_ANSWER_INPUT_DOWN.resultOfUp);
-        bridgeMap.get(1).add(RIGHT_ANSWER_INPUT_DOWN.resultOfDown);
+        generateMap(RIGHT_ANSWER_INPUT_DOWN, bridgeMap);
         return bridgeMap;
     }
 
     public static List<List<String>> generateWrongAnswerMap(String moving, List<List<String>> bridgeMap) {
         if (moving.equals(Constant.UP)) {
-            bridgeMap.get(0).add(WRONG_ANSWER_INPUT_UP.resultOfUp);
-            bridgeMap.get(1).add(WRONG_ANSWER_INPUT_UP.resultOfDown);
+            generateMap(WRONG_ANSWER_INPUT_UP, bridgeMap);
             return bridgeMap;
         }
-        bridgeMap.get(0).add(WRONG_ANSWER_INPUT_DOWN.resultOfUp);
-        bridgeMap.get(1).add(WRONG_ANSWER_INPUT_DOWN.resultOfDown);
+        generateMap(WRONG_ANSWER_INPUT_DOWN, bridgeMap);
         return bridgeMap;
     }
 
