@@ -25,7 +25,6 @@ public class BridgeMaker {
 		for (int index = 0; index < size; index++) {
 			addUpOrDownCell(bridge);
 		}
-		Validator.validateBridgeSize(bridge, size);
 		return bridge;
 	}
 

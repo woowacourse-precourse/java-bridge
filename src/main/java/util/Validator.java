@@ -6,17 +6,11 @@ import bridgeConstant.Constant;
 import bridgeConstant.ErrorLog;
 
 public class Validator {
-	private static final String NUMBER_REGEX = "\\d+";
+	private static final String NUMBER_REGEX = "\\d{1,2}";
 	private static final String CAPITAL_LETTER_REGEX = "[A-Z]";
 
 	private static final int SIZE_LOWER_INCLUSIVE = 3;
 	private static final int SIZE_UPPER_INCLUSIVE = 20;
-
-	public static void validateBridgeSize(List<String> bridge, int size) {
-		if (bridge.size() != size) {
-			throw new IllegalArgumentException(ErrorLog.LENGTH_IS_NOT_MATCHED_EXCEPTION.log());
-		}
-	}
 
 	public static void validateBridgeSizeRange(int size) {
 		if (size < SIZE_LOWER_INCLUSIVE || size > SIZE_UPPER_INCLUSIVE) {
