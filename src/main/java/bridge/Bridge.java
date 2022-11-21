@@ -1,15 +1,15 @@
 package bridge;
 
 public enum Bridge {
-    FAILURE_UPPER("U", false),
-    SUCCESS_UPPER("U", true),
-    FAILURE_LOWER("D", false),
-    SUCCESS_LOWER("D", true);
+    FAILURE_UPPER("U", "X"),
+    SUCCESS_UPPER("U", "O"),
+    FAILURE_LOWER("D", "X"),
+    SUCCESS_LOWER("D", "O");
 
     private final String direct;
-    private final boolean result;
+    private final String result;
 
-    Bridge(String direct, boolean result){
+    Bridge(String direct, String result){
         this.direct = direct;
         this. result = result;
     }
@@ -18,7 +18,7 @@ public enum Bridge {
         return direct;
     }
 
-    public boolean getResult(){
+    public String getResult(){
         return result;
     }
 
