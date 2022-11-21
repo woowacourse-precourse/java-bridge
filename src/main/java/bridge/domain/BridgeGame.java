@@ -12,7 +12,6 @@ public class BridgeGame {
     private final List<String> bridge;
     private int trials;
     private int currentPosition;
-    private boolean isCorrect;
     private final List<String> fullUpperMap;
     private final List<String> fullLowerMap;
 
@@ -52,8 +51,7 @@ public class BridgeGame {
 
 
     public boolean move(String moving) {
-        isCorrect = bridge.get(currentPosition++).equals(moving);
-        return isCorrect;
+        return bridge.get(currentPosition++).equals(moving);
     }
 
     public boolean retry(String gameCommand) {
@@ -77,7 +75,7 @@ public class BridgeGame {
         return (currentPosition < bridge.size());
     }
 
-    public List<String> getMap() {
+    public List<String> getMap(boolean isCorrect) {
         List<String> totalMap = generateFullMapForRightAnswer();
         if (!isCorrect) {
             totalMap.set(currentPosition - 1, changeSymbolForWrongAnswer(totalMap.get(currentPosition - 1)));
@@ -103,7 +101,4 @@ public class BridgeGame {
         return trials;
     }
 
-    public boolean getIsCorrect() {
-        return isCorrect;
-    }
 }

@@ -8,7 +8,7 @@ import bridge.view.OutputView;
 public class Application {
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
-    static boolean IsSuccess;
+    static boolean isCorrect;
     static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
@@ -16,14 +16,14 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
         startGame();
-        outputView.printResult(bridgeGame.getIsCorrect(), bridgeGame.getMap(), bridgeGame.getTrials());
+        outputView.printResult(isCorrect, bridgeGame.getMap(isCorrect), bridgeGame.getTrials());
     }
 
     public static void startGame() {
         while (bridgeGame.isPlaying()) {
-            IsSuccess = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.getMap());
-            if (!IsSuccess) {
+            isCorrect = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.getMap(isCorrect));
+            if (!isCorrect) {
                 wrongAnswerHandling();
                 return;
             }
