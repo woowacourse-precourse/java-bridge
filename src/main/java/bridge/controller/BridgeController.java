@@ -27,7 +27,7 @@ public class BridgeController {
         outputView.printResult(bridgeGame.getMap(), bridgeGame.getResult());
     }
 
-    public BridgeSize inputBridgeSize() {
+    private BridgeSize inputBridgeSize() {
         try {
             return new BridgeSize(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
@@ -46,13 +46,16 @@ public class BridgeController {
     private void startRound(List<String> bridge) {
         for (String answer : bridge) {
             String userDirection = inputDirection().getUserInput();
-            List<String> map = bridgeGame.move(userDirection, answer);
-            outputView.printMap(map);
+            outputView.printMap(goDirection(userDirection, answer));
             if (!isSameWithAnswer(userDirection, answer)) {
                 bridgeGame.changeToFail();
                 break;
             }
         }
+    }
+
+    private List<String> goDirection(String direction, String answer) {
+        return bridgeGame.move(direction, answer);
     }
 
     private UserBridge inputDirection() {
@@ -70,8 +73,7 @@ public class BridgeController {
 
     private boolean askRestart(boolean success) {
         if (!success) {
-            String command = inputCommand().getCommand();
-            return bridgeGame.retry(command);
+            return bridgeGame.retry(inputCommand().getCommand());
         }
         return false;
     }
