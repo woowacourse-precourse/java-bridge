@@ -37,7 +37,7 @@ public class InputView {
     public boolean loopBridge(List<String> bridgeList) {
         OutputView outputView = new OutputView();
         for (String bridgeMove : bridgeList) {
-            boolean isMove = inputMoveBridge(bridgeMove); // 이동할 칸 입력 요구 & 이동에 성공했는지
+            boolean isMove = isBridgeMove(bridgeMove); // 이동할 칸 입력 요구 & 이동에 성공했는지
             bridge = outputView.initOutputBridge(bridgeMove, isMove); // 출력 값 초기화
             if (!isMove) {
                 return isGameCommand(); // 재시도 입력
@@ -47,6 +47,14 @@ public class InputView {
         return false;
     }
 
+
+
+    public boolean isBridgeMove(String bridge) {
+        BridgeGame bridgeGame = new BridgeGame();
+        String moving = readMoving(); // 이동할 칸 입력 요구
+        boolean isMove = bridgeGame.move(bridge, moving); // 이동에 성공했는지
+        return isMove;
+    }
 
     /**
      * 다리의 길이를 입력받는다.
@@ -92,6 +100,7 @@ public class InputView {
         ErrorMessage.inputMoveBridgeError();
         return false;
     }
+
 
 
     /**
