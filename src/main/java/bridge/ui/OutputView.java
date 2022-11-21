@@ -22,6 +22,19 @@ public class OutputView {
     public void printMap() {
     }
 
+    public String printEachBridgeMap(Bridge bridge, String direction) {
+        List<String> mapInfo = bridge.getEachBridgeRouteInfo(direction);
+        String eachBridgeMap = "[ ";
+        for (int round=0; round<mapInfo.size(); round++) {
+            eachBridgeMap += mapInfo.get(round);
+            if (round != mapInfo.size()-1) { // 마지막이 아니라면
+                eachBridgeMap += " | ";
+            }
+        }
+        eachBridgeMap += " ]";
+        return eachBridgeMap;
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
