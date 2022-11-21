@@ -12,6 +12,8 @@ public class OutputView {
   public static final String BRIDGE_BLACK_SHAPE = " ";
   public static final String MOVE_SUCCESS_SIGN = "O";
   public static final String MOVE_FAIL_SIGN = "X";
+  public static final String GAME_SUCCESS_STRING = "성공";
+  public static final String GAME_FAIL_STRING = "실패";
 
   public static void printGameStartMessage() {
     System.out.println(GAME_START_MESSAGE.getMessage());
@@ -37,6 +39,15 @@ public class OutputView {
 
   public static void printCheckRetryInputMessage() {
     System.out.println(CHECK_RETRY_INPUT_MESSAGE.getMessage());
+  }
+
+  public static void printGameSuccessOrFailure(boolean isSuccess){
+    System.out.println(GAME_SUCCESS_OR_FAILURE_MESSAGE.getMessage() + getSuccessOrFailure(isSuccess));
+  }
+
+  private static String getSuccessOrFailure(boolean isSuccess){
+    if(isSuccess) return GAME_SUCCESS_STRING;
+    return GAME_FAIL_STRING;
   }
 
   /**
