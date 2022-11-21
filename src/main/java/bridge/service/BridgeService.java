@@ -19,6 +19,10 @@ public class BridgeService {
 
     private static List<String>[] presentMoveBridge;
 
+    public static List<String>[] getPresentMoveBridge(){
+        return presentMoveBridge;
+    }
+
     public static int getInputSize() {
         return inputSize;
     }
@@ -99,7 +103,7 @@ public class BridgeService {
                 BridgeController.compareMove();
             }
             else if(input.equals("Q")){
-                return;
+                OutputView.printResult(presentMoveBridge);
             }
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
