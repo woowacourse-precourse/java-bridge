@@ -27,7 +27,7 @@ public class BridgeMaker {
         return bridges;
     }
 
-    private static void addBridge(List<String> bridges, int bridgeIndex) {
+    private void addBridge(List<String> bridges, int bridgeIndex) {
         if (bridgeIndex == MovementType.UP.getIndex()) {
             bridges.add(MovementType.UP.getCode());
             return;
