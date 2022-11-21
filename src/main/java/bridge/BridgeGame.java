@@ -8,15 +8,14 @@ import static bridge.Constants.MoveMark.*;
 
 public class BridgeGame {
     private boolean isCorrect;
-    private final List<String> correctBridge;
-    private final List<List<String>> bridgeMap = new ArrayList<>();
+    private final List<List<String>> bridgeMap;
 
-    public BridgeGame(List<String> correctBridge) {
-        this.correctBridge = correctBridge;
+    public BridgeGame() {
+        bridgeMap = new ArrayList<>();
         newBridgePattern();
     }
 
-    public List<List<String>> move(int bridgeNum, String moving) {
+    public List<List<String>> move(int bridgeNum, String moving, List<String> correctBridge) {
         String correctAnswer = correctBridge.get(bridgeNum);
         isCorrect = moving.equals(correctAnswer);
 
