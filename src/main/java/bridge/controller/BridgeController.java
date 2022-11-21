@@ -36,7 +36,7 @@ public class BridgeController {
         outputView.printResult(bridge, bridgeGame);
     }
 
-    public boolean isWrong(String bridge){
+    private boolean isWrong(String bridge){
         if(bridge.contains(Variable.FAIL.getStr())){
             return true;
         }

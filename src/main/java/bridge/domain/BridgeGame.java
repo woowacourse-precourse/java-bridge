@@ -57,21 +57,21 @@ public class BridgeGame {
         initLevel();
     }
 
-    public boolean isFinish(String str){
+    private boolean isFinish(String str){
         if(str.equals(Variable.QUIT.getStr())){
             return false;
         }
         return true;
     }
 
-    public void printMapStart(){
+    private void printMapStart(){
         if(size == 0){
             sbUp.append(Variable.START_BRACKET.getStr());
             sbDo.append(Variable.START_BRACKET.getStr());
         }
     }
 
-    public void midOrLast(List<String> bridge, int size){
+    private void midOrLast(List<String> bridge, int size){
         if(bridge.size()-1 != size){
             sbUp.append(Variable.MID_BRACKET.getStr());
             sbDo.append(Variable.MID_BRACKET.getStr());
@@ -103,7 +103,7 @@ public class BridgeGame {
         }
     }
 
-    public void printGoDown(List<String> bridge, String input, int step){
+    private void printGoDown(List<String> bridge, String input, int step){
         String result = printMoveUpDown(bridge, input, step);
         if(bridge.get(step).equals(Variable.DOWN.getStr())) {
             if (result.equals(Variable.SUCCESS.getStr())) {
