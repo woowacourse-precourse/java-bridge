@@ -18,6 +18,7 @@ public class OutputView {
         for(String str : map){
             System.out.print(str);
         }
+        System.out.println("\n");
     }
 
     /**
@@ -66,14 +67,14 @@ public class OutputView {
     }
 
     public String UToO(String move){
-        if(move == "U"){
+        if(move.equals("U")){
             return "O";
         }
         return " ";
     }
 
     public String DToO(String move){
-        if(move == "D"){
+        if(move.equals("D")){
             return "O";
         }
         return " ";

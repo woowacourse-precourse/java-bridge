@@ -59,7 +59,7 @@ public class InputView {
 
     public boolean checkMoving(String input){
         try{
-            if(!input.equals("U") || !input.equals("D")){
+            if(!input.equals("U") && !input.equals("D")){
                 throw new IllegalArgumentException();
             }
             return true;

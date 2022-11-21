@@ -26,10 +26,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean canMove(String input) {
-        if(bridge.get(move.size()) != input){
+        move.add(input);
+        if(!bridge.get(move.size() - 1).equals(input)) {
             return false;
         }
-        move.add(input);
         return true;
     }
 
@@ -55,9 +55,13 @@ public class BridgeGame {
         if(move.size() != bridge.size()){
             return false;
         }
-        if(move.get(move.size()-1) != bridge.get(bridge.size()-1)){
+        if(!move.get(move.size()-1).equals(bridge.get(bridge.size()-1))){
             return false;
         }
         return true;
+    }
+
+    public List<String> getBridge(){
+        return bridge;
     }
 }
