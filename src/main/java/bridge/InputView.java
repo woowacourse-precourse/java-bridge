@@ -32,6 +32,7 @@ public class InputView {
             result=Integer.parseInt(input);
         }catch (NumberFormatException exception){
             IllegalArgumentException e = new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            throw e;
         }
         return result;
     }
