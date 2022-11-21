@@ -9,11 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class BridgeMaker {
-    private static final int UP_SIDE_INDEX = BothSideConstant.UP_SIDE_INDEX.getConstant();
-    private static final int DOWN_SIDE_INDEX = BothSideConstant.DOWN_SIDE_INDEX.getConstant();
-    private static final String UP_SIDE = InputConstant.UP_SIDE.getConstant();
-    private static final String DOWN_SIDE = InputConstant.DOWN_SIDE.getConstant();
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -52,19 +47,18 @@ public class BridgeMaker {
     }
 
     private boolean isBridgeNumberUpSide(int bridgeNumber) {
-        return bridgeNumber == UP_SIDE_INDEX;
+        return bridgeNumber == BothSideConstant.UP_SIDE_INDEX.getConstant();
     }
 
     private boolean isBridgeNumberDownSide(int bridgeNumber) {
-        return bridgeNumber == DOWN_SIDE_INDEX;
+        return bridgeNumber == BothSideConstant.DOWN_SIDE_INDEX.getConstant();
     }
 
     private void addBridgeUpPath(List<String> bridge) {
-        bridge.add(UP_SIDE);
+        bridge.add(InputConstant.UP_SIDE.getConstant());
     }
 
     private void addBridgeDownPath(List<String> bridge) {
-        bridge.add(DOWN_SIDE);
+        bridge.add(InputConstant.DOWN_SIDE.getConstant());
     }
-
 }
