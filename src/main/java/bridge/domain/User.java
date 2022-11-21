@@ -1,20 +1,18 @@
 package bridge.domain;
 
-import java.util.List;
-
 public class User {
-    private int restartCount;
+    private int tryCount;
     private String mapUpperUserBridge;
     private String mapLowerUserBridge;
 
     public User() {
-        this.restartCount = 0;
+        this.tryCount = 1;
         this.mapUpperUserBridge = "";
         this.mapLowerUserBridge = "";
     }
 
     public void updateRestartCount(){
-        this.restartCount ++;
+        this.tryCount++;
     }
 
     public void updateMapUserBridge(String move, int isSuccess){
@@ -46,8 +44,8 @@ public class User {
         }
     }
 
-    public int getRestartCount() {
-        return restartCount;
+    public int getTryCount() {
+        return tryCount;
     }
 
     public String getMapUpperUserBridge() {
