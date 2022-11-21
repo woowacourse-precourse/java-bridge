@@ -36,4 +36,10 @@ public class Player {
     public void insertBridgeRoute(String moving) {
         bridgeRoute.add(moving);
     }
+
+    public void resetPlayer(){
+        tryCount ++;
+        correctAnswerCount = 0;
+        bridgeRoute = new ArrayList<>();
+    }
 }
