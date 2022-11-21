@@ -47,6 +47,19 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 숫자_범위_트스트() {
+        assertSimpleTest(() -> {
+            runException(Integer.toString(InputView.MAX_BRIDGE + 1));
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException(Integer.toString(InputView.MIN_BRIDGE -2));
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
