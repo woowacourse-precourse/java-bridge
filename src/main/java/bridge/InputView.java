@@ -22,8 +22,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving() throws IllegalArgumentException {
+        String moving = Console.readLine();
+        System.out.println("moving = " + moving);
+        System.out.println("isBlank(moving) = " + isBlank(moving));
+        if(isBlank(moving)){
+            throw new IllegalArgumentException();
+        }
+        return checkMovingEnum(moving);
     }
 
     /**
@@ -48,5 +54,13 @@ public class InputView {
             throw new IllegalArgumentException(" 다리 길이는 3에서 20사이여야합니다.");
         }
         return bridgeSize;
+    }
+    public String checkMovingEnum(String moving) throws IllegalArgumentException {
+        if(moving.equals("U") || moving.equals("D")){
+            return moving;
+        }
+        throw new IllegalArgumentException();
+        // "U" -> 변수선언 가능성
+        // enum class 이용 가능
     }
 }
