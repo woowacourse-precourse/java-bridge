@@ -12,6 +12,7 @@ public class BridgeGame {
 
     public void play() {
         System.out.println("게임 시작");
+        int bridgeSize = inputView.readBridgeSize();
     }
 
     public void move() {
