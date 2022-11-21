@@ -5,8 +5,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import static bridge.domain.Command.validateGameCommand;
-import static bridge.domain.bridge.Bridge.validateBridgeSize;
 import static bridge.domain.Move.validateMoving;
+import static bridge.domain.bridge.BridgeMaker.validateBridgeSize;
 
 public class ReadController {
 

@@ -6,10 +6,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+
+    private static final int MINIMUM_BRIDGE_SIZE = 3;
+    private static final int MAXIMUM_BRIDGE_SIZE = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -26,5 +31,11 @@ public class BridgeMaker {
                 .map(number -> Move.from(number).getCode())
                 .limit(size)
                 .collect(Collectors.toList());
+    }
+
+    public static void validateBridgeSize(int bridgeSize) {
+        if (bridgeSize < MINIMUM_BRIDGE_SIZE || MAXIMUM_BRIDGE_SIZE < bridgeSize) {
+            throw new IllegalArgumentException(BRIDGE_MAKER_SIZE_ERROR);
+        }
     }
 }
