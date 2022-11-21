@@ -22,11 +22,14 @@ public class Application {
             System.out.print(bridge.get(i) + " ");
         }
 
-        // 이동할 칸 선택
-        String nextMove = BridgeGame.move();
+        while(bridgeLength-->0) {
+            // 이동할 칸 선택
+            String nextMove = BridgeGame.move();
 
-        // 다리 그리기
-        OutputView.printMap(idx, bridge, nextMove);
+            // 다리 그리기
+            OutputView.printMap(idx, bridge, nextMove);
+            idx++;
+        }
     }
 
     public static List<String> makeBridge(int bridgeLength) {
