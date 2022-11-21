@@ -46,4 +46,8 @@ public class Controller {
         out.printMap(game.getBridgeMap());
     }
 
+    public void retry() {
+        out.printMessage(INPUT_RETRY_MESSAGE);
+        game.retry(input.readGameCommand());
+    }
 }
