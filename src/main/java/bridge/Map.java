@@ -2,28 +2,25 @@ package bridge;
 
 public class Map {
 
-    private String upMap = "";
-    private String downMap = "";
+    private String upMap = "[ ";
+    private String downMap = "[ ";
 
     public void makeMap(String moving, String check) {
         if (moving.equals("U")) {
-            upMap += "[ " + check;
-            downMap += "[ " + " ";
+            if (upMap.length() > 2) {
+                upMap += " | ";
+                downMap += " | ";
+            }
+            upMap += check;
+            downMap += " ";
         }
         if (moving.equals("D")) {
-            upMap += "[ " + " ";
-            downMap += "[ " + check;
-        }
-    }
-
-    public void addMap(String moving, String check) {
-        if (moving.equals("U")) {
-            upMap += " | " + check;
-            downMap += " | " + " ";
-        }
-        if (moving.equals("D")) {
-            upMap += " | " + " ";
-            downMap += " | " + check;
+            if (downMap.length() > 2) {
+                upMap += " | ";
+                downMap += " | ";
+            }
+            upMap += " ";
+            downMap += check;
         }
     }
 
