@@ -2,6 +2,7 @@ package bridge.dto;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeResult;
+import bridge.model.Retry;
 
 public class ResultDto {
 
@@ -12,10 +13,10 @@ public class ResultDto {
     private int tryCount;
 
 
-    public ResultDto(Bridge bridge, BridgeResult bridgeResult) {
+    public ResultDto(Bridge bridge, BridgeResult bridgeResult, Retry retry) {
         this.mapDto = new MapDto(bridge, bridgeResult);
         this.success = bridgeResult.checkSuccess(bridge);
-        this.tryCount = bridgeResult.getTryCount();
+        this.tryCount = retry.getCount();
     }
 
     public MapDto getMapDto() {
