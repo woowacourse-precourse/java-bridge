@@ -2,8 +2,10 @@ package bridge.view;
 
 import bridge.domain.bridge.BridgeMove;
 import bridge.domain.game.BridgeGame;
+import bridge.domain.history.BridgeGameHistory;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -20,7 +22,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        printMapBySides(bridgeGame.getHistory().getMoveResultByTryCount(bridgeGame.getTryCount()));
+        printMapBySides(bridgeGame.getCurrentHistory().getMoveResultMap());
     }
     
     /**
@@ -30,12 +32,14 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
-        int tryCountOfBestRecord = bridgeGame.getHistory().getTryCountOfBestRecord();
-        
-        printMapBySides(bridgeGame.getHistory().getMoveResultByTryCount(tryCountOfBestRecord));
-        
-        printSuccessOrFailure(bridgeGame);
-        printTryCount(bridgeGame);
+        Optional<BridgeGameHistory> historyOfBestRecord = bridgeGame.getHistoryOfBestRecord();
+    
+        historyOfBestRecord.ifPresent((history) -> {
+            printMapBySides(history.getMoveResultMap());
+    
+            printSuccessOrFailure(bridgeGame);
+            printTryCount(bridgeGame);
+        });
     }
     
     private void printMapBySides(Map<BridgeMove, List<String>> moveResults) {

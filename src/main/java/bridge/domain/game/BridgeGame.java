@@ -5,26 +5,26 @@ import bridge.domain.bridge.Bridge;
 import bridge.domain.history.BridgeGameHistory;
 import bridge.domain.history.BridgeMoveResult;
 import bridge.domain.history.BridgeMoveResultStatus;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class BridgeGame {
     
     private final Bridge bridge;
-    private final BridgeGameHistory history;
+    private final List<BridgeGameHistory> histories;
     private Integer currentPosition = -1;
     private Integer tryCount = 1;
     
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.history = new BridgeGameHistory();
-        history.createHistory(tryCount);
+        this.histories = new ArrayList<>();
+        addHistory();
     }
     
     public Bridge getBridge() {
         return bridge;
-    }
-    
-    public BridgeGameHistory getHistory() {
-        return history;
     }
     
     public Integer getCurrentPosition() {
@@ -51,23 +51,53 @@ public class BridgeGame {
         return getBridge().size() - 1 <= getCurrentPosition();
     }
     
+    private int getHistoryIndex(Integer tryCount) {
+        return tryCount - 1;
+    }
+    
+    private void addHistory() {
+        histories.add(new BridgeGameHistory(getTryCount()));
+    }
+    
+    public BridgeGameHistory getCurrentHistory() {
+        return histories.get(getHistoryIndex(getTryCount()));
+    }
+    
     public void move(BridgeMove move) {
-        if (isReachedLastPosition()) return;
-        getHistory().addMoveResult(getTryCount(), new BridgeMoveResult(move, BridgeMoveResultStatus.SUCCESS));
+        if (isReachedLastPosition()) {
+            return;
+        }
+        getCurrentHistory().addMoveResult(new BridgeMoveResult(move, BridgeMoveResultStatus.SUCCESS));
         setCurrentPosition(getCurrentPosition() + 1);
     }
     
     public void fail(BridgeMove move) {
-        getHistory().addMoveResult(getTryCount(), new BridgeMoveResult(move, BridgeMoveResultStatus.FAILURE));
+        getCurrentHistory().addMoveResult(new BridgeMoveResult(move, BridgeMoveResultStatus.FAILURE));
     }
     
     public void retry() {
         setCurrentPosition(-1);
         setTryCount(getTryCount() + 1);
-        getHistory().createHistory(getTryCount());
+        addHistory();
     }
     
     public boolean canMoveToNextPosition(BridgeMove move) {
         return getBridge().canMoveToPosition(move, getNextPosition());
+    }
+    
+    public Optional<BridgeGameHistory> getHistoryOfBestRecord() {
+        List<BridgeGameHistory> cloneHistories = new ArrayList<>(List.copyOf(histories));
+        Collections.sort(cloneHistories);
+        
+        System.out.println();
+        cloneHistories.forEach(history -> {
+            System.out.println(history.getTryCount());
+        });
+        
+        if (cloneHistories.size() != 0) {
+            return Optional.of(cloneHistories.get(0));
+        }
+        
+        return Optional.empty();
     }
 }
