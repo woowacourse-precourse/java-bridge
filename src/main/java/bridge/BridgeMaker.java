@@ -28,8 +28,8 @@ public class BridgeMaker {
 
     private String upDown() {
         if (bridgeNumberGenerator.generate() == 1){
-            return "U";
+            return InputView.UP;
         }
-        return "D";
+        return InputView.DOWN;
     }
 }
