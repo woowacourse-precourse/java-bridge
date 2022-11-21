@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String BEGINING_BRIDGE = "[ ";
+    private static final String BEGINNING_BRIDGE = "[ ";
     private static final String END_BRIDGE = " ]";
-    private static final String BLOCK_SEPERATOR = " | ";
+    private static final String BLOCK_SEPARATOR = " | ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -21,13 +21,13 @@ public class OutputView {
      */
     public void printMap(BridgeGame bridgeGame) {
         GameResult gameResult = bridgeGame.getGameResult();
-        System.out.println(makeBridgeFormat(gameResult.getUpperBridge().getBridge()));
-        System.out.println(makeBridgeFormat(gameResult.getLowerBridge().getBridge()));
+        System.out.println(makeBridgeFormat(gameResult.getUpperBridge()));
+        System.out.println(makeBridgeFormat(gameResult.getLowerBridge()));
     }
 
     private String makeBridgeFormat(List<String> bridgeResult) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(BEGINING_BRIDGE);
+        stringBuilder.append(BEGINNING_BRIDGE);
 //        int i = 0;
 //        while(i < bridgeResult.size() - 1) {
 //            stringBuilder.append(bridgeResult.get(i));
@@ -41,7 +41,7 @@ public class OutputView {
                 stringBuilder.append(END_BRIDGE);
                 break;
             }
-            stringBuilder.append(BLOCK_SEPERATOR);
+            stringBuilder.append(BLOCK_SEPARATOR);
         }
         return stringBuilder.toString();
     }

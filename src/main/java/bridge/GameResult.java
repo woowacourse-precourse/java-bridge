@@ -5,6 +5,7 @@ import static bridge.constant.Direction.UPPER;
 
 import bridge.constant.Direction;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameResult {
 
@@ -14,15 +15,15 @@ public class GameResult {
     private final Bridge upperBridge = new Bridge(new ArrayList<>());
     private final Bridge lowerBridge = new Bridge(new ArrayList<>());
 
-    public void add(String upperOrLower, boolean isAnswer) {
+    public void add(String upperOrLower, boolean moveState) {
         Direction direction = Direction.getDirection(upperOrLower);
         if (direction.equals(UPPER)) {
             addToLowerBridge(EMPTY_ELEMENT);
-            addToUpperBridge(getElement(isAnswer));
+            addToUpperBridge(getElement(moveState));
         }
         if (direction.equals(LOWER)) {
             addToUpperBridge(EMPTY_ELEMENT);
-            addToLowerBridge(getElement(isAnswer));
+            addToLowerBridge(getElement(moveState));
         }
     }
 
@@ -45,11 +46,11 @@ public class GameResult {
         return upperBridge.getSize();
     }
 
-    public Bridge getUpperBridge() {
-        return upperBridge;
+    public List<String> getUpperBridge() {
+        return upperBridge.getBridge();
     }
 
-    public Bridge getLowerBridge() {
-        return lowerBridge;
+    public List<String> getLowerBridge() {
+        return lowerBridge.getBridge();
     }
 }

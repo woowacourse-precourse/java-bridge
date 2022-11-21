@@ -24,17 +24,17 @@ public class BridgeController {
     public void start() {
         outputView.printStart();
         setUpBridge();
-        // 주석 지우기
+        // TODO: 정답 출력문 지우기
         System.out.println(bridgeGame.getAnswerBridge().getBridge());
         while(true) {
-            String direction = getMoveDirection();
-            boolean canGo = bridgeGame.move(direction);
+            moveToDirection();
             outputView.printMap(bridgeGame);
-            if (!canGo) {
-                getGameRetryOrQuit();
-                break; // TODO: 추가 구현
+            if (!bridgeGame.getMoveState()) {
+                gameRetryOrQuit();
+                break;
             }
         }
+        outputView.printResult(); //TODO: 구현해야함
     }
 
     private void setUpBridge() {
@@ -48,26 +48,23 @@ public class BridgeController {
         }
     }
 
-    private String getMoveDirection() {
-        String direction = null;
+    private void moveToDirection() {
         try {
             outputView.printMessage(ENTER_MOVE_DIRECTION.toString());
-            direction = inputView.readMoving();
+            String direction = inputView.readMoving();
+            bridgeGame.move(direction);
         } catch (IllegalArgumentException ex) {
             outputView.printMessage(ex.getMessage());
-            getMoveDirection();
+            moveToDirection();
         }
-        return direction;
     }
 
-    private String getGameRetryOrQuit() {
+    private void gameRetryOrQuit() {
         try {
             outputView.printMessage(ENTER_RETRY_OR_QUIT.toString());
-            inputView.readGameCommand();
         } catch (IllegalArgumentException ex) {
             outputView.printMessage(ex.getMessage());
-            getGameRetryOrQuit();
+            gameRetryOrQuit();
         }
-        return null;
     }
 }

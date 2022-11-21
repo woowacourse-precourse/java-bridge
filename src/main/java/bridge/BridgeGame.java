@@ -7,9 +7,11 @@ public class BridgeGame {
 
     private final Bridge answerBridge;
     private GameResult  gameResult;
+    private boolean moveState;
     public BridgeGame(Bridge answerBridge) {
         this.answerBridge = answerBridge;
         gameResult = new GameResult();
+        moveState = false;
     }
 
     /**
@@ -18,9 +20,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String playerDirection) {
-        boolean canGo = checkCrossBridge(playerDirection);
-        gameResult.add(playerDirection, canGo);
-        return canGo;
+        moveState = checkCrossBridge(playerDirection);
+        gameResult.add(playerDirection, moveState);
+        return moveState;
     }
 
     public boolean checkCrossBridge(String playerDirection) {
@@ -35,6 +37,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+
     }
 
     public GameResult getGameResult() {
@@ -43,5 +46,9 @@ public class BridgeGame {
 
     public Bridge getAnswerBridge() {
         return answerBridge;
+    }
+
+    public boolean getMoveState() {
+        return moveState;
     }
 }
