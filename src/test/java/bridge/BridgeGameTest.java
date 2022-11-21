@@ -1,6 +1,5 @@
 package bridge;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,6 +12,16 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 class BridgeGameTest {
+
+    @Test
+    void 사용자_다리_건너기_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.getUserPath()).isEqualTo(List.of("U", "U", "D", "U"));
+    }
 
     @Test
     void 현재_위치_테스트() {
@@ -37,6 +46,5 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("U");
         assertThat(bridgeGame.checkGameClear(new Bridge(bridge))).isEqualTo(result);
-
     }
 }
