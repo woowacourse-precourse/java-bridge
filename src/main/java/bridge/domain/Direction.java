@@ -1,14 +1,12 @@
 package bridge.domain;
 
 public enum Direction {
-    UP("U", 1),
-    DOWN("D", 0);
+    UP("U"),
+    DOWN("D");
     private String direction;
-    private int binaryDirection;
 
-    Direction(String direction, int binaryDirection) {
+    Direction(String direction) {
         this.direction = direction;
-        this.binaryDirection = binaryDirection;
     }
 
     public String toString() {
