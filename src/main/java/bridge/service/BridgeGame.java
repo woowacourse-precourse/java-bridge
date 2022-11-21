@@ -49,5 +49,10 @@ public class BridgeGame {
         gameRecordMaker.updateCurrentRecord(currentCrossedResult);
         ++currentBridgeLocation;
     }
+    public String makeReport(){
+        gameRecordMaker.updateResult();
+        return gameRecordMaker.getRecord();
+    }
+
 
 }
