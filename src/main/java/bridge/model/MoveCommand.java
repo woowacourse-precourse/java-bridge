@@ -7,24 +7,24 @@ public enum MoveCommand {
 	// 다리의 구성요소에서 값이 0이면 아래로 이동가능을 의미, 값이 1이면 위로 이동가능을 의미
 	UP("U", 1), DOWN("D", 0);
 
-	private final String moveCommandSymbol;
-	private final int moveCommandNumber;
+	private final String symbol;
+	private final int number;
 
-	MoveCommand(String moveCommandSymbol, int moveCommandNumber) {
-		this.moveCommandSymbol = moveCommandSymbol;
-		this.moveCommandNumber = moveCommandNumber;
+	MoveCommand(String symbol, int number) {
+		this.symbol = symbol;
+		this.number = number;
 	}
 
-	public String getMoveCommandSymbol() {
-		return moveCommandSymbol;
+	public String getSymbol() {
+		return symbol;
 	}
 
-	public int getMoveCommandNumber() {
-		return moveCommandNumber;
+	public int getNumber() {
+		return number;
 	}
 
 	public static String getSymbolFromNumber(int movable) {
-		return Arrays.stream(values()).filter(symbol -> symbol.moveCommandNumber == movable)
-			.findAny().orElseThrow(NoSuchElementException::new).moveCommandSymbol;
+		return Arrays.stream(values()).filter(symbol -> symbol.number == movable)
+			.findAny().orElseThrow(NoSuchElementException::new).symbol;
 	}
 }

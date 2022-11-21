@@ -21,11 +21,9 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
-
 		for (int length = 1; length <= size; length++) {
 			bridge.add(getRandomLocation());
 		}
-
 		return bridge;
 	}
 

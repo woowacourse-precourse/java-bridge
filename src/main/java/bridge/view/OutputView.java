@@ -29,7 +29,6 @@ public class OutputView {
 		moveHistory.clear();
 	}
 
-
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
 	 * <p>
@@ -39,7 +38,6 @@ public class OutputView {
 		StringBuilder completeMap = buildMap();
 		System.out.println(completeMap);
 	}
-
 
 	/**
 	 * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

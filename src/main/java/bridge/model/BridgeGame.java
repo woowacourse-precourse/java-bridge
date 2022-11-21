@@ -21,17 +21,17 @@ public class BridgeGame {
 		initializeBridge(convertedSize);
 	}
 
+	private void checkBridgeSizeError(String bridgeSize) {
+		if (UserInputExceptions.isNotValidSize(bridgeSize)) {
+			throw new IllegalArgumentException(BridgeErrorMessages.lengthError);
+		}
+	}
+
 	private void initializeBridge(int convertedSize) {
 		this.bridge = GameSetting.makeBridge(convertedSize);
 		currentStep = GameSetting.FIRST_STEP;
 		totalTry = GameSetting.FIRST_TRY;
 		gameClear = GameSetting.GAME_FAIL;
-	}
-
-	private void checkBridgeSizeError(String bridgeSize) {
-		if (UserInputExceptions.isNotValidSize(bridgeSize)) {
-			throw new IllegalArgumentException(BridgeErrorMessages.lengthError);
-		}
 	}
 
 	/**
@@ -52,6 +52,13 @@ public class BridgeGame {
 		if (UserInputExceptions.isNotValidMove(moveCommand)) {
 			throw new IllegalArgumentException(BridgeErrorMessages.errorMovableCommand);
 		}
+	}
+
+	private int addStepIfMove(boolean moveFlag) {
+		if (moveFlag) {
+			return 1;
+		}
+		return 0;
 	}
 
 	/**
@@ -76,13 +83,6 @@ public class BridgeGame {
 
 	public GameResultDto sendGameResult() {
 		return new GameResultDto(totalTry, gameClear);
-	}
-
-	private int addStepIfMove(boolean moveFlag) {
-		if (moveFlag) {
-			return 1;
-		}
-		return 0;
 	}
 
 	@Override public String toString() {

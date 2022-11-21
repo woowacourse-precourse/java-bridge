@@ -5,14 +5,6 @@ public class UserInputExceptions {
 		return isNotNumber(size) || isNotInRangeNumber(size);
 	}
 
-	public static boolean isNotValidMove(String movableCommand) {
-		return isNotOneLength(movableCommand) || isNotValidMovableCommand(movableCommand);
-	}
-
-	public static boolean isNotValidEndCommand(String endCommand) {
-		return isNotOneLength(endCommand) || isNotEndCommand(endCommand);
-	}
-
 	private static boolean isNotNumber(String size) {
 		try {
 			Integer.parseInt(size);
@@ -27,13 +19,20 @@ public class UserInputExceptions {
 		return number < 3 || number > 20;
 	}
 
-
-	private static boolean isNotOneLength(String movableCommand) {
-		return movableCommand.length() != 1;
+	public static boolean isNotValidMove(String movableCommand) {
+		return isNotOneLength(movableCommand) || isNotValidMovableCommand(movableCommand);
 	}
 
 	private static boolean isNotValidMovableCommand(String movableCommand) {
 		return !movableCommand.equals("U") && !movableCommand.equals("D");
+	}
+
+	public static boolean isNotValidEndCommand(String endCommand) {
+		return isNotOneLength(endCommand) || isNotEndCommand(endCommand);
+	}
+
+	private static boolean isNotOneLength(String movableCommand) {
+		return movableCommand.length() != 1;
 	}
 
 	private static boolean isNotEndCommand(String endCommand) {
