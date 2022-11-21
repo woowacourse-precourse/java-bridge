@@ -7,6 +7,8 @@ public class InputValidator {
     private static String DOWN_BRIDGE = "D";
     private static String RETRY_GAME = "R";
     private static String END_GAME = "Q";
+    private static int MIN_BRIDGE_SIZE = 3;
+    private static int MAX_BRIDGE_SIZE = 20;
 
     public static void inputBridgeSizeValidate(String bridgeSize) {
         checkNumber(bridgeSize);
@@ -45,7 +47,7 @@ public class InputValidator {
 
     private static void checkSizeInRange(String bridgeSize) {
         int size = Integer.parseInt(bridgeSize);
-        if (size < 3 || 20 < size) {
+        if (size < MIN_BRIDGE_SIZE || MAX_BRIDGE_SIZE < size) {
             throw new IllegalArgumentException(Error.NOT_IN_RANGE.getMessage());
         }
     }

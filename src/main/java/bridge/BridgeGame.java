@@ -11,10 +11,11 @@ public class BridgeGame {
     private static final boolean WRONG_BRIDGE = false;
     private static final boolean GAME_END = true;
     private static final boolean GAME_ING = false;
+    private static final int INIT_TRY_COUNT = 1;
 
     private List<Boolean> movingResult = new LinkedList<>();
 
-    private int tryCount = 1;
+    private int tryCount = INIT_TRY_COUNT;
     private boolean gameStatus = GAME_ING;
 
     public boolean move(List<String> bridge, String moving) {

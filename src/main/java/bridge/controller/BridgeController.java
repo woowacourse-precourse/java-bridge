@@ -9,6 +9,9 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeController {
+    private static String RETRY_GAME = "R";
+    private static String END_GAME = "Q";
+
     public static BridgeGame game = new BridgeGame();
 
     public void run() {
@@ -33,7 +36,6 @@ public class BridgeController {
                 retryOrExit(InputView.readGameCommand(), game);
             }
         } while (!game.isEnd(bridge));
-
     }
 
     private boolean crossBridge(List<String> bridge, BridgeGame game) {
@@ -43,10 +45,10 @@ public class BridgeController {
     }
 
     private void retryOrExit(String command, BridgeGame game) {
-        if ("R".equals(command)) {
+        if (RETRY_GAME.equals(command)) {
             game.retry();
         }
-        if ("Q".equals(command)) {
+        if (END_GAME.equals(command)) {
             game.end();
         }
     }
