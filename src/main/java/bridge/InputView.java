@@ -8,7 +8,8 @@ import java.util.List;
 public class InputView {
     private static final int BRIDGE_SIZE_LOWER_INCLUSIVE = 3;
     private static final int BRIDGE_SIZE_UPPER_INCLUSIVE = 20;
-    private static final List<String> PERMITTED_COMMAND = List.of("U","D","R","Q");
+    private static final List<String> PERMITTED_MOVING_COMMAND = List.of("U","D");
+    private static final List<String> PERMITTED_RETRY_COMMAND = List.of("R","Q");
     /**
      * 다리의 길이를 입력받는다.
      */
