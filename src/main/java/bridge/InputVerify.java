@@ -36,7 +36,7 @@ public class InputVerify {
 	}
 
 	private static void verifyIsOrder(String order) {
-		if (!Order.isOrder(order)) {
+		if (!Order.isOrderMoving(order)) {
 			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_NOT_ORDER);
 		}
 	}
