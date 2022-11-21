@@ -10,7 +10,7 @@ import java.util.List;
  * BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다.
  */
 public class BridgeGame {
-    private static final int START_POINT = 0;
+    private static final int START_POINT = -1;
     private static final int TRY_COUNT = 1;
 
     private final List<String> bridge;
