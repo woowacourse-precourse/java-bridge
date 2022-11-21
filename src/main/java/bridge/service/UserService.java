@@ -1,17 +1,17 @@
 package bridge.service;
 
-import bridge.domain.UserResult;
+import bridge.domain.User;
 
 import java.util.ArrayList;
 
 public class UserService {
 
-    public static UserResult generateUserResult() {
-        return new UserResult(new ArrayList<>(), new ArrayList<>());
+    public static User generateUserResult() {
+        return new User(new ArrayList<>(), new ArrayList<>());
     }
 
 
-    public static void initUserResult(UserResult userResult) {
-        userResult.init();
+    public static void initUserResult(User user) {
+        user.init();
     }
 }

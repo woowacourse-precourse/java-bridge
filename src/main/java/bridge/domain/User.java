@@ -2,7 +2,7 @@ package bridge.domain;
 
 import java.util.List;
 
-public class UserResult {
+public class User {
     private int count;
     private int tryCount;
 
@@ -10,11 +10,17 @@ public class UserResult {
 
     private List<String> downSpace;
 
-    public UserResult(List<String> upSpace, List<String> downSpace) {
+    public User(List<String> upSpace, List<String> downSpace) {
         this.upSpace = upSpace;
         this.downSpace = downSpace;
         this.tryCount = 1;
         this.count = 0;
+    }
+
+    public void init() {
+        upSpace.clear();
+        downSpace.clear();
+        count = 0;
     }
 
     public void recordResult(String movingResult, String moving) {
@@ -49,22 +55,16 @@ public class UserResult {
         return "X";
     }
 
-    public void plusTryCoint() {
+    public void increaseTryCount() {
         tryCount ++;
+    }
+
+    public void increaseCount() {
+        count ++;
     }
 
     public int getTryCount() {
         return tryCount;
-    }
-
-    public void upCount() {
-        count ++;
-    }
-
-    public void init() {
-        upSpace.clear();
-        downSpace.clear();
-        count = 0;
     }
 
     public List<String> getUpSpace() {

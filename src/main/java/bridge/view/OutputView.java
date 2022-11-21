@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.UserResult;
+import bridge.domain.User;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -12,9 +12,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(UserResult userResult) {
-        System.out.println("[ "+String.join(" | ", userResult.getUpSpace())+" ]");
-        System.out.println("[ "+String.join(" | ", userResult.getDownSpace())+" ]");
+    public static void printMap(User user) {
+        System.out.println("[ "+String.join(" | ", user.getUpSpace())+" ]");
+        System.out.println("[ "+String.join(" | ", user.getDownSpace())+" ]");
     }
 
 
@@ -23,9 +23,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(UserResult userResult) {
+    public static void printResult(User user) {
         System.out.println("최종 게임 결과");
-        System.out.println("총 시도한 횟수: " + userResult.getTryCount());
+        System.out.println("총 시도한 횟수: " + user.getTryCount());
     }
 
     public static void printException(String message) {

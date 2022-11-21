@@ -1,21 +1,21 @@
 package bridge.service;
 
-import bridge.domain.UserResult;
+import bridge.domain.User;
 
 import java.util.List;
 
 public class GameService {
-    public static boolean judgeMoving(List<String> bridge, UserResult userResult, String userMoving) {
-            String movingResult = userResult.canMove(bridge,userMoving);
-            record(userResult,movingResult,userMoving);
+    public static boolean judgeMoving(List<String> bridge, User user, String userMoving) {
+            String movingResult = user.canMove(bridge,userMoving);
+            record(user,movingResult,userMoving);
             if(movingResult.equals("O")){
                 return true;
             }
             return false;
     }
 
-    public static void record(UserResult userResult,String movingResult,String userMoving) {
-        userResult.recordResult(movingResult,userMoving);
+    public static void record(User user, String movingResult, String userMoving) {
+        user.recordResult(movingResult,userMoving);
     }
 
 }

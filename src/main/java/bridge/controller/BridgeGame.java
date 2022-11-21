@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.domain.UserResult;
+import bridge.domain.User;
 import bridge.service.BridgeService;
 import bridge.service.GameService;
 import bridge.service.UserService;
@@ -21,63 +21,63 @@ public class BridgeGame {
         }while (bridgeSize == "error");
 
         List<String> bridge = BridgeService.initBridge(bridgeSize);
-        UserResult userResult = UserService.generateUserResult();
+        User user = UserService.generateUserResult();
 
-        startGame(bridge,userResult);
-        endGame(bridge, userResult);
+        startGame(bridge, user);
+        endGame(bridge, user);
     }
 
-    private void endGame(List<String> bridge, UserResult userResult) {
-        OutputView.printResult(userResult);
-        if(userResult.sameBridgeSize(bridge.size())){
+    private void endGame(List<String> bridge, User user) {
+        OutputView.printResult(user);
+        if(user.sameBridgeSize(bridge.size())){
             OutputView.printSuccess();
             return;
         }
         OutputView.printFail();
     }
 
-    private void startGame(List<String> bridge, UserResult userResult) {
-        UserService.initUserResult(userResult);
-        move(bridge, userResult);
+    private void startGame(List<String> bridge, User user) {
+        UserService.initUserResult(user);
+        move(bridge, user);
 
-        if(userResult.sameBridgeSize(bridge.size())){
+        if(user.sameBridgeSize(bridge.size())){
             return;
         }
-        retry(bridge,userResult);
+        retry(bridge, user);
     }
 
-    public void move(List<String> bridge, UserResult userResult) {
-        while (userResult.lessThanBridgeSize(bridge.size())) {
-            boolean crossResult = canCross(bridge,userResult);
-            OutputView.printMap(userResult);
+    public void move(List<String> bridge, User user) {
+        while (user.lessThanBridgeSize(bridge.size())) {
+            boolean crossResult = canCross(bridge, user);
+            OutputView.printMap(user);
             if(!crossResult){
                 return;
             }
-            userResult.upCount();
+            user.increaseCount();
         }
     }
 
-    private boolean canCross(List<String> bridge, UserResult userResult) {
+    private boolean canCross(List<String> bridge, User user) {
         String userMoving;
         do {
             userMoving = InputView.readMoving();
         }while (userMoving == "error");
 
-        if(GameService.judgeMoving(bridge,userResult,userMoving)){
+        if(GameService.judgeMoving(bridge, user,userMoving)){
             return true;
         }
         return false;
     }
 
-    public void retry(List<String> bridge, UserResult userResult) {
+    public void retry(List<String> bridge, User user) {
         OutputView.printRetry();
         String retryInput;
         do {
             retryInput = InputView.readGameCommand();
         }while(retryInput == "error");
         if(retryInput.equals("R")){
-            userResult.plusTryCoint();
-            startGame(bridge,userResult);
+            user.increaseTryCount();
+            startGame(bridge, user);
         }
     }
 
