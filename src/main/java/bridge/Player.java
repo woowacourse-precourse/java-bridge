@@ -1,12 +1,26 @@
 package bridge;
 
 public class Player {
+
+
     private int attempt;
-    private int currentSpace;
+    private int currentLocation; //TODO curLocation으로 변경
+
+    private int winOrLose;
+    private static final int WIN = 1;
+    private static final int LOSE = -1;
+    private static final int NOT_PENDED = 0;
 
     public Player(){
         this.attempt=1;
-        this.currentSpace=0;
+        this.currentLocation =0;
+        this.winOrLose=NOT_PENDED;
+    }
+
+    public Player(int attempt, int currentLocation){
+        this.attempt=attempt;
+        this.currentLocation = currentLocation;
+        this.winOrLose=NOT_PENDED;
     }
 
     public void increaseAttempt(){
@@ -14,14 +28,33 @@ public class Player {
     }
 
     public void moveBackSpace(){
-        this.currentSpace-=1;
+        this.currentLocation -=1;
     }
 
     public void moveFrontSpace(){
-        this.currentSpace+=1;
+        this.currentLocation +=1;
     }
 
-    public int getCurrentSpace() {
-        return currentSpace;
+    public int getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void lose(){
+        winOrLose=LOSE;
+    }
+
+    public void win(){
+        winOrLose=WIN;
+    }
+
+    public boolean isPlayerWin(){
+        if(winOrLose==WIN) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getAttempt() {
+        return attempt;
     }
 }
