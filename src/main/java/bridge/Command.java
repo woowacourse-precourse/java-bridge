@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Objects;
+
 public enum Command {
     UP(1, "U"),
     DOWN(0, "D");
@@ -20,8 +22,15 @@ public enum Command {
         this.commandString = commandString;
     }
 
-    public static Command isUpOrDown(int number) {
+    public static Command commandUpOrDown(int number) {
         if (number == 1) {
+            return UP;
+        }
+        return DOWN;
+    }
+
+    public static Command commandZeroOrOne(String string) {
+        if (Objects.equals(string, "U")) {
             return UP;
         }
         return DOWN;

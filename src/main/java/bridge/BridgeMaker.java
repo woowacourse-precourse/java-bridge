@@ -22,7 +22,7 @@ public class BridgeMaker {
         List<String> Bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generatedNumber = bridgeNumberGenerator.generate();
-            Command inputCommand = Command.isUpOrDown(generatedNumber);
+            Command inputCommand = Command.commandUpOrDown(generatedNumber);
             Bridge.add(inputCommand.getCommandString());
         }
         return Bridge;
