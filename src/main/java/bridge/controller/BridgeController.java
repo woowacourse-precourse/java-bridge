@@ -59,7 +59,7 @@ public class BridgeController {
 
     public void proceedMove() {
         while (true) {
-            if (startMove() == false || bridgeGame.isEndOfBridge() == true) {
+            if (move() == false || bridgeGame.isEndOfBridge() == true) {
                 outputView.printMap(bridgeGame.getUserMoving());
                 break;
             }
@@ -67,7 +67,7 @@ public class BridgeController {
         }
     }
 
-    public boolean startMove(){
+    public boolean move(){
         String moving;
         boolean resultOfMove;
 
