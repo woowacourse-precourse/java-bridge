@@ -48,15 +48,19 @@ public class OutputView {
 
     public void addOToMap(List<String> bridge, List<String> bridgeStatus, int idx) {
         if (bridgeStatus.get(idx) == "O") {
-            if (bridge.get(idx) == "U") {
-                upperMap += " O";
-                lowerMap += "  ";
-            }
+            addOWhenBridgeIsUpper(bridge, idx);
 
             if (bridge.get(idx) == "D") {
                 upperMap += "  ";
                 lowerMap += " O";
             }
+        }
+    }
+
+    private void addOWhenBridgeIsUpper(List<String> bridge, int idx) {
+        if (bridge.get(idx) == "U") {
+            upperMap += " O";
+            lowerMap += "  ";
         }
     }
 
