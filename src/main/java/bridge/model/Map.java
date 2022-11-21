@@ -8,12 +8,16 @@ public class Map {
 
     private ArrayList<LinkedList<String>> map;
 
-    public Map() {
+    private Map(ArrayList<LinkedList<String>> map){
+        this.map = map;
+    }
+
+    public static Map generateMap() {
         ArrayList<LinkedList<String>> initializedMap = new ArrayList<>();
         for (int i = 0; i < SIZE_OF_TILES; i++) {
             initializedMap.add(new LinkedList<String>());
         }
-        this.map = initializedMap;
+        return new Map(initializedMap);
     }
 
     public void insertMove(String moveResult,int order) {

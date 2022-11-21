@@ -15,8 +15,8 @@ public class MapTest {
         //given
         List<String> generatedMap = List.of("U","D","U");
 
-        Map map = new Map();
-        Map map2 = new Map();
+        Map map = Map.generateMap();
+        Map map2 = Map.generateMap();
 
         //when
         map.insertMove("O",0);
