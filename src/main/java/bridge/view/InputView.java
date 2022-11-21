@@ -15,8 +15,7 @@ public class InputView {
         printReadBridgeSizeMessage();
         try {
             int bridgeSize = Integer.parseInt(Console.readLine());
-            if(bridgeSize < 3 || bridgeSize > 20)
-                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            validateBridgeSize(bridgeSize);
             return bridgeSize;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
@@ -29,6 +28,11 @@ public class InputView {
 
     private static void printReadBridgeSizeMessage() {
         System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    protected static void validateBridgeSize(int bridgeSize) {
+        if(bridgeSize < 3 || bridgeSize > 20)
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
     /**

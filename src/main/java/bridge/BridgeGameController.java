@@ -11,8 +11,7 @@ public class BridgeGameController {
     private static BridgeGame game;
     private static List<String> bridge;
 
-    public BridgeGameController() {
-        final int bridgeSize = readBridgeSize();
+    public BridgeGameController(int bridgeSize) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(bridgeSize);
         game = new BridgeGame();
@@ -54,5 +53,9 @@ public class BridgeGameController {
             return true;
         }
         return false;
+    }
+
+    public static List<String> getBridge() {
+        return bridge;
     }
 }

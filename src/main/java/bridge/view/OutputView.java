@@ -11,8 +11,8 @@ import static java.lang.Boolean.TRUE;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    static List<String> up = new ArrayList<>();
-    static List<String> down = new ArrayList<>();
+    static List<String> upSideBridge = new ArrayList<>();
+    static List<String> downSideBridge = new ArrayList<>();
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -24,8 +24,8 @@ public class OutputView {
         resetFormat();
         for(int i=0; i<status.size(); i++) {
             List<String> resultOne = getResultOne(bridge.get(i), status.get(i));
-            up.add(resultOne.get(0));
-            down.add(resultOne.get(1));
+            upSideBridge.add(resultOne.get(0));
+            downSideBridge.add(resultOne.get(1));
         }
         printBridge();
     }
@@ -53,13 +53,13 @@ public class OutputView {
     }
 
     private static void printBridge() {
-        System.out.println(up.stream().map(n->String.valueOf(n)).collect(Collectors.joining("|","[","]")));
-        System.out.println(down.stream().map(n->String.valueOf(n)).collect(Collectors.joining("|","[","]")));
+        System.out.println(upSideBridge.stream().map(n->String.valueOf(n)).collect(Collectors.joining("|","[","]")));
+        System.out.println(downSideBridge.stream().map(n->String.valueOf(n)).collect(Collectors.joining("|","[","]")));
         System.out.println();
     }
 
     private static void resetFormat() {
-        up = new ArrayList<>();
-        down = new ArrayList<>();
+        upSideBridge = new ArrayList<>();
+        downSideBridge = new ArrayList<>();
     }
 }
