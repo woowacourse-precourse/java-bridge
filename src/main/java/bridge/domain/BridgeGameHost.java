@@ -25,7 +25,7 @@ public class BridgeGameHost {
         outputView.printOpeningPhrase();
         prepare();
         mainPartOfTheGame();
-        outputView.printResult(this);
+        outputView.printResult();
     }
 
     private void mainPartOfTheGame() {
@@ -43,7 +43,6 @@ public class BridgeGameHost {
 
     private void gameSuccess() {
         if (getResult().equals(SUCCESS)) {
-            outputView.printResult(this);
             gameInProgress = false;
         }
     }
@@ -113,7 +112,7 @@ public class BridgeGameHost {
         outputView.printMap();
     }
 
-    public String getResult() {
+    public static String getResult() {
         String answer = FAIL;
 
         if ((Player.getIndex() + 1) == Bridge.size() && Player.getAlive()) {

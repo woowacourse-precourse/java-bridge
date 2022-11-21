@@ -10,11 +10,11 @@ public class GameProgress {
         return map;
     }
 
-    public static StringBuilder result(BridgeGameHost bridgeGameHost) {
+    public static StringBuilder result() {
         StringBuilder result = new StringBuilder();
         result.append(lastMap()).append("\n");
-        result.append(whetherFailOrSuccess(bridgeGameHost)).append("\n");
-        result.append(numberOfRetry()).append("\n");
+        result.append(whetherFailOrSuccess());
+        result.append(numberOfRetry());
         return result;
     }
 
@@ -60,7 +60,7 @@ public class GameProgress {
 
     private static void appendNowMapWhenNotAlive(StringBuilder printOfMap, String position) {
         if (Player.playerCanGo(Player.getIndex(), position)) {
-            printOfMap.append(VERTICAL_BAR).append(O);
+            printOfMap.append(VERTICAL_BAR).append(BLANK);
         }
 
         if (!Player.playerCanGo(Player.getIndex(), position)) {
@@ -77,8 +77,8 @@ public class GameProgress {
         return GAME_RESULT + "\n" + map();
     }
 
-    private static String whetherFailOrSuccess(BridgeGameHost bridgeGameHost) {
-        return GAME_SUCCESS + bridgeGameHost.getResult() + "\n";
+    private static String whetherFailOrSuccess() {
+        return GAME_SUCCESS + BridgeGameHost.getResult() + "\n";
     }
 
     private static String numberOfRetry() {

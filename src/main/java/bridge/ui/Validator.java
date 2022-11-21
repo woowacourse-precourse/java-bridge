@@ -6,6 +6,8 @@ import static bridge.constant.Const.*;
 public class Validator {
     private static final int SHORTEST_LENGTH = 3;
     private static final int LONGEST_LENGTH = 20;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
 
     public Validator() {
     }
@@ -29,12 +31,12 @@ public class Validator {
     }
 
     private static boolean isNotWrongLength(String input) {
-        return input.length() == 1 || input.length() == 2;
+        return input.length() == ONE || input.length() == TWO;
     }
 
     private static boolean isOnlyContainDigit(String input) {
-        for (int i = 0; i < input.length(); i++) {
-            char character = input.charAt(i);
+        for (int index = 0; index < input.length(); index++) {
+            char character = input.charAt(index);
 
             if (!Character.isDigit(character)) {
                 return false;

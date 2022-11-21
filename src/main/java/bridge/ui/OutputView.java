@@ -1,6 +1,5 @@
 package bridge.ui;
 
-import bridge.domain.BridgeGameHost;
 import bridge.domain.GameProgress;
 
 import static bridge.constant.Const.*;
@@ -35,7 +34,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() { // 여기서 player 위치는 index 로 따졌을 때 현재 위치인 것
+    public void printMap() {
         System.out.println(GameProgress.map());
     }
 
@@ -44,7 +43,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGameHost bridgeGameHost) {
-        System.out.println(GameProgress.result(bridgeGameHost));
+    public void printResult() {
+        System.out.print(GameProgress.result());
     }
 }
