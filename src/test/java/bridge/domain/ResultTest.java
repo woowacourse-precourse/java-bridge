@@ -19,6 +19,7 @@ class ResultTest {
     }
 
     @DisplayName("정답 여부가 결과에 입력되었을 때, 정답 여부 리스트가 잘 저장되는지 테스트")
+    @Test
     void updateIsAnswers() {
         //given
         //when
