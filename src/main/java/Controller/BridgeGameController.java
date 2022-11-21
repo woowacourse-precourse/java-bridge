@@ -21,6 +21,10 @@ public class BridgeGameController {
             String movePosition = InputView.readMoving();
             bridgeGame.move(movePosition);
             OutputView.printMap(bridgeGame);
+            if(bridgeGame.isFailure()){
+                String restartCommand = InputView.readGameCommand();
+                bridgeGame.retry(restartCommand);
+            }
         }
     }
 
