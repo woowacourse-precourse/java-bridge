@@ -1,11 +1,13 @@
 package bridge.domain;
 
+import bridge.domain.constant.ExceptionMessage;
+
 public class BridgeLength {
     private static final String INTEGER_REGEX = "^[0-9]*$";
     private static final int START_LENGTH_RANGE = 3;
     private static final int END_LENGTH_RANGE = 20;
 
-    private int length;
+    private final int length;
 
     private BridgeLength(int length) {
         this.length = length;
@@ -28,5 +30,9 @@ public class BridgeLength {
         if (!inputLength.matches(INTEGER_REGEX)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER);
         }
+    }
+
+    public int getLength() {
+        return this.length;
     }
 }
