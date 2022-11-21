@@ -11,8 +11,8 @@ import java.util.Optional;
  */
 public class InputView {
     private static final String BRIDGE_LENGTH_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String MOVING_INPUT_MESSAGE = "이동할 칸을 선택해주세요. ";
-    private static final String RETRY_OR_QUIT_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. ";
+    private static final String MOVING_INPUT_MESSAGE = "이동할 칸을 선택해주세요. %s";
+    private static final String RETRY_OR_QUIT_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. %s";
     private static final String TWO_CHOICE_FORMAT = "(%s: %s, %s: %s)";
 
     private final InputConfig inputConfig;
@@ -42,7 +42,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public Optional<String> readMoving() {
-        printMovingUpOrDown();
+        printMoveUpOrDown();
         try {
             String input = Console.readLine().trim();
             inputConfig.checkMovingInput(input);
@@ -72,16 +72,17 @@ public class InputView {
 
     private void printRetryOrQuit() {
         String tmp = printTwoChoice(Command.RETRY, Command.QUIT);
-        System.out.println(RETRY_OR_QUIT_INPUT_MESSAGE + tmp);
+        System.out.println(String.format(RETRY_OR_QUIT_INPUT_MESSAGE, tmp));
     }
 
-    private void printMovingUpOrDown() {
+    private void printMoveUpOrDown() {
         String tmp = printTwoChoice(Command.UP, Command.DOWN);
-        System.out.println(MOVING_INPUT_MESSAGE + tmp);
+        System.out.println(String.format(MOVING_INPUT_MESSAGE, tmp));
     }
 
-    private String printTwoChoice(Command command1, Command command2) {
-        String formatted = String.format(TWO_CHOICE_FORMAT, command1.getKor(), command1.getAbbreviation(), command2.getKor(), command2.getAbbreviation());
-        return formatted;
+    private String printTwoChoice(Command cmd1, Command cmd2) {
+        return String.format(TWO_CHOICE_FORMAT,
+                cmd1.getKor(), cmd1.getAbbreviation(),
+                cmd2.getKor(), cmd2.getAbbreviation());
     }
 }
