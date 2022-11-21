@@ -15,5 +15,4 @@ public abstract class AbstractGameController {
     List<String> bridgeInfo = new ArrayList<>();
     BridgeGame bridgeGame = new BridgeGame();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    int tryCnt;
 }
