@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Command;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeGameGenerator;
 import bridge.domain.GameStatus;
@@ -70,7 +71,7 @@ public class BridgeController {
         if (!FAILED.equals(status)) {
             return false;
         }
-        String command = readController.readGameCommand();
+        Command command = readController.readGameCommand();
         return service.executeGameCommand(command);
     }
 }

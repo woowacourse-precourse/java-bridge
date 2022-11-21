@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Command;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -37,11 +38,11 @@ public class ReadController {
         }
     }
 
-    public String readGameCommand() {
+    public Command readGameCommand() {
         try {
             String command = inputView.readGameCommand();
             validateGameCommand(command);
-            return command;
+            return Command.from(command);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return readGameCommand();

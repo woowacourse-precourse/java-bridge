@@ -29,8 +29,7 @@ public class BridgeGameService {
         return bridgeGame.isPlaying();
     }
 
-    public boolean executeGameCommand(String code) {
-        Command command = Command.from(code);
+    public boolean executeGameCommand(Command command) {
         return executeIfRetry(command);
     }
 
