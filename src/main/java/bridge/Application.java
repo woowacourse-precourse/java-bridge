@@ -31,7 +31,7 @@ public class Application {
 
         System.out.println("size"+bridge.size());
         while((moving.equals("O"))) {
-            num++;
+
             System.out.println("num"+num);
             String move = inputView.readMoving();
             moving = bridgeGame.move(bridge.get(num), move);
