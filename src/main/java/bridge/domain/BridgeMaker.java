@@ -23,18 +23,17 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            generateBridgeSide(bridge);
+            bridge.add(generateBridgeSide());
         }
         return bridge;
     }
 
-    private void generateBridgeSide(List<String> bridge) {
+    private String generateBridgeSide() {
         int bridgeNumber = bridgeNumberGenerator.generate();
         if (bridgeNumber == 1) {
-            bridge.add("U");
+            return "U";
         }
-        if (bridgeNumber == 0) {
-            bridge.add("D");
-        }
+        return "D";
+
     }
 }
