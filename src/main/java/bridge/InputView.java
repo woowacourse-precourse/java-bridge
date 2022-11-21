@@ -56,7 +56,7 @@ public class InputView {
         } catch (Exception e) {
             throw new IllegalArgumentException("입력 과정에서 오류가 발생했습니다.");
         }
-        if(line.length() != 0) {
+        if(line.length() != 1) {
             throw new IllegalArgumentException("알파벳 하나를 입력해야 합니다.");
         }
         return line;
