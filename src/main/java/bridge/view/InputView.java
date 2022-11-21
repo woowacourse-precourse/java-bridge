@@ -62,4 +62,16 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    private void isValidMoveCommand(String command) {
+
+    }
+
+    private void validateOneWord() {
+
+    }
+
+    private void validateFormat() {
+
+    }
 }
