@@ -27,13 +27,42 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while(true) {
+            try {
+                String input = Console.readLine();
+                validateIsUorD(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 이동 입력은 U또는 D여야 합니다.");
+            }
+        }
     }
 
+    private void validateIsUorD(String input) throws IllegalArgumentException {
+        if (input.equals("U") || input.equals("D")) {
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        while(true) {
+            try {
+                String input = Console.readLine();
+                validateIsQorR(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 재시작 입력은 Q또는 R이어야 합니다.");
+            }
+        }
+    }
+
+    private void validateIsQorR(String input) throws IllegalArgumentException {
+        if (input.equals("Q") || input.equals("R")) {
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 }
