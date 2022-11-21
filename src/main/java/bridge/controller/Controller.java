@@ -19,16 +19,19 @@ public class Controller {
     private final BridgeGame bridgeGame;
 
     public Controller() {
-        OutputView.printGameStart();
-        bridgeSize = InputView.readBridgeSize();
-        final List<String> answerBridge = createAnswerBridge(bridgeSize);
-        System.out.println(answerBridge); // 추후 삭제
-        this.bridgeGame = new BridgeGame(answerBridge);
+        bridgeSize = setBridgeSize();
+        bridgeGame = new BridgeGame(createAnswerBridge(bridgeSize));
     }
 
-    public List<String> createAnswerBridge(int bridgeSize) {
+    private int setBridgeSize() {
+        OutputView.printGameStart();
+        return InputView.readBridgeSize();
+    }
+
+    private List<String> createAnswerBridge(int bridgeSize) {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return bridgeMaker.makeBridge(bridgeSize);
+        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize); // 추후 삭제
+        return answerBridge;
     }
 
     public void play() {
