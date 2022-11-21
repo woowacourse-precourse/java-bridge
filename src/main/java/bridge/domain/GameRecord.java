@@ -10,12 +10,12 @@ import static bridge.util.constants.MovableSpace.UPPER_SPACE;
 import static bridge.util.constants.Marker.NOT_CROSS;
 
 public class GameRecord {
-    private final List<String> upperCrossedRecord;
-    private final List<String> lowerCrossedRecord;
+    private final Map<String, List<String>> crossedRecord;
     private int tryCount;
     public GameRecord() {
-        upperCrossedRecord = new ArrayList<>();
-        lowerCrossedRecord = new ArrayList<>();
+        crossedRecord = new HashMap<>();
+        crossedRecord.put("upperCrossedRecord", new ArrayList<>());
+        crossedRecord.put("lowerCrossedRecord", new ArrayList<>());
         this.tryCount = 1;
     }
 
@@ -29,11 +29,17 @@ public class GameRecord {
     }
 
     private void recordCrossedUpper(String marker) {
+        List<String> upperCrossedRecord = crossedRecord.get("upperCrossedRecord");
+        List<String> lowerCrossedRecord = crossedRecord.get("lowerCrossedRecord");
+
         upperCrossedRecord.add(marker);
         lowerCrossedRecord.add(NOT_CROSS.getValue());
     }
 
     private void recordCrossedLower(String marker) {
+        List<String> upperCrossedRecord = crossedRecord.get("upperCrossedRecord");
+        List<String> lowerCrossedRecord = crossedRecord.get("lowerCrossedRecord");
+
         upperCrossedRecord.add(NOT_CROSS.getValue());
         lowerCrossedRecord.add(marker);
     }
@@ -44,6 +50,9 @@ public class GameRecord {
     }
 
     private void clearCrossedRecord() {
+        List<String> upperCrossedRecord = crossedRecord.get("upperCrossedRecord");
+        List<String> lowerCrossedRecord = crossedRecord.get("lowerCrossedRecord");
+
         upperCrossedRecord.clear();
         lowerCrossedRecord.clear();
     }
@@ -53,9 +62,6 @@ public class GameRecord {
     }
 
     public Map<String, List<String>> getCrossedRecord() {
-        Map<String, List<String>> crossedRecord = new HashMap<>();
-        crossedRecord.put("upperCrossedRecord", upperCrossedRecord);
-        crossedRecord.put("lowerCrossedRecord", lowerCrossedRecord);
         return crossedRecord;
     }
 }
