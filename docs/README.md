@@ -37,47 +37,63 @@
 
 #### < Model >
 
-- 다리
+- 다리 : Bridge
   - 필드
-    - 다리 리스트 (static)
-  - 모델에서 다리를 생성하는 것이 아닌, 생성자에서 파라미터로 다리를 전달받아 저장만 함.
-  - 칸 별로 건널 수 있는지 여부 boolean 타입 반환
-- 다리를 건넌 기록
+    - 다리 리스트 (static) : bridge
+    - 다리 생성 여부 (static) : bridgeCreated
+  - 모델에서 다리를 생성하는 것이 아닌, 생성자에서 파라미터로 다리를 전달받아 저장만 함. : setBridge()
+  - 칸 별로 건널 수 있는지 여부 boolean 타입 반환 : checkMovingPossibility()
+  - 다리의 크기를 반환함 : getBridgeSize()
+
+
+- 다리를 건넌 기록 : CrossRecord
   - 필드
-    - 건넌 기록 (static)
-  - 건넌 기록 추가하는 기능 포함
-- 게임 결과 정보
+    - 건넌 기록 (static) : crossedBridge
+    - 첫칸 그리는지 여부 (static) : isFirst
+  - 건넌 기록 추가하는 기능 : recordCrossedBridge()
+  - 건넌 기록 리셋 기능 : resetCrossedBridge()
+  - 건넌 기록 반환 기능 : getCrossedBridge()
+
+
+- 게임 결과 정보 : GameResultInformation
   - 필드
-    - 게임 성공 여부
-    - 총 시도한 횟수
+    - 게임 성공 여부 : GAME_RESULT
+    - 총 시도한 횟수 : countOfTry
+  - 게임 성공 여부 설정 기능 : setGameResult()
+  - 시도 횟수 증가 기능 : increaseCountOfTry()
+  - 게임 성공 여부 반환 기능 : getGameResult()
+  - 총 시도 횟수 반환 기능 : getCountOfTry()
 
 #### < View >
 
 - InputView
-  - 다리 길이 입력 기능
-  - 이동할 칸 입력 기능
-  - 게임 재시작 여부 입력 기능
+  - 다리 길이 입력 기능 : readBridgeSize()
+  - 이동할 칸 입력 기능 : readMoving()
+  - 게임 재시작 여부 입력 기능 : readGameCommand()
+
+
 - OutputView
-  - 다리 건너기 게임 시작 안내문 출력 기능
-  - 다리 길이 입력 안내문 출력 기능
-  - 이동할 칸 선택 안내문 출력 기능
-  - 그려진 다리를 출력하는 기능
-  - 게임 재시작 여부 안내문 출력 기능
-  - 게임 성공 여부 출력 기능
-  - 총 시도 횟수 출력 기능
+  - 다리 건너기 게임 시작 안내문 출력 기능 : printStartGuide()
+  - 다리 길이 입력 안내문 출력 기능 : printInputBridgeLengthGuide()
+  - 이동할 칸 선택 안내문 출력 기능 : printInputMoveDirectionGuide()
+  - 그려진 다리를 출력하는 기능 : printMap()
+  - 게임 재시작 여부 안내문 출력 기능 : printRetryGuide()
+  - 게임 최종 결과 출력 기능 : printResult()
+  - 공백 출력 기능 : printEmptyLine()
 
 #### < Controller >
 
 - BridgeGame
   - 입력된 값으로 이동하고 결과를 반환하는 기능 : move()
   - 게임 재시작 시 동작(다리 상태 초기화, 시도 횟수 증가 등) 기능 : retry()
+
+
 - BridgeGameOperator
-  - 게임 운영 기능
-  - 성공 여부에 따라 게임 결과에 반영하는 기능
+  - 게임 운영 기능 : playBridgeGame()
 
 #### < Constants >
 
-- 안내 문장들
+- 안내 문장들 : GuideSentences
     - 게임 시작 안내 (`다리 건너기 게임을 시작합니다.`)
     - 다리 길이 입력 안내 (`다리의 길이를 입력해주세요.`)
     - 이동할 칸 입력 안내 (`이동할 칸을 선택해주세요. (위: U, 아래: D)`)
@@ -87,96 +103,33 @@
         - `: `의 우측 공백 포함
     - 시도 횟수 안내 (`총 시도한 횟수: `)
         - `: `의 우측 공백 포함
-- 다리 표현 문자
+
+
+- 다리 표현 문자 : BridgeDrawer
   - 다리 시작 (`[` 우측 공백 포함)
   - 다리 끝 (`]` 좌측 공백 포함)
   - 칸 나누기 (`|` 양측 공백 포함
+  - 건너지 않은 다리 공백 (` `)
 
-- 건너기 가능 여부
+
+- 건너기 가능 여부 : MovingPossibility
   - 가능 (`O`)
   - 불가능 (`X`)
 
-- 방향
+
+- 방향 : Direction
   - 위 칸 (`U`)
   - 아래 칸 (`D`)
 
-- 게임 결과
+
+- 게임 결과 : GameResult
   - 성공 (`성공`)
   - 실패 (`실패`)
+
 
 #### < Root >
 - BridgeMaker
   - 입력된 길이만큼 다리를 생성하는 기능 : makeBridge()
-
-#### < 실행 예시 >
-
-```java
-다리 건너기 게임을 시작합니다.
-
-다리의 길이를 입력해주세요.
-3
-
-이동할 칸을 선택해주세요. (위: U, 아래: D)
-U
-[ O ]
-[   ]
-
-이동할 칸을 선택해주세요. (위: U, 아래: D)
-U
-[ O | X ]
-[   |   ]
-
-게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
-R
-이동할 칸을 선택해주세요. (위: U, 아래: D)
-U
-[ O ]
-[   ]
-
-이동할 칸을 선택해주세요. (위: U, 아래: D)
-D
-[ O |   ]
-[   | O ]
-
-이동할 칸을 선택해주세요. (위: U, 아래: D)
-D
-[ O |   |   ]
-[   | O | O ]
-
-최종 게임 결과
-[ O |   |   ]
-[   | O | O ]
-
-게임 성공 여부: 성공
-총 시도한 횟수: 2
-```
-
-```java
-다리 건너기 게임을 시작합니다.
-
-다리의 길이를 입력해주세요.
-3
-
-이동할 칸을 선택해주세요. (위: U, 아래: D)
-U
-[ O ]
-[   ]
-
-이동할 칸을 선택해주세요. (위: U, 아래: D)
-U
-[ O | X ]
-[   |   ]
-
-게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
-Q
-최종 게임 결과
-[ O | X ]
-[   |   ]
-
-게임 성공 여부: 실패
-총 시도한 횟수: 1
-```
-
 
 
 ### 4. 예외 사항 정리
@@ -185,46 +138,32 @@ Q
 
 ##### < 예시 >
 
-```java
-        String a = "";
-        while (true) {
-        try {
-        a = Console.readLine();
-        handleException(a);
-        break;
-        } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-        }
-        }
+- 사용자 입력 관련 예외 : InputExceptionHandler
+  - 공통 예외 : handleCommonException()
+    - 사용자 입력이 비어있는 경우 예외 처리 : handleEmptyInputException()
+    - 사용자 입력이 숫자, 알파벳이 아닌 경우 예외 처리 : handleNotNumberOrAlphabetException()
+  - 다리 길이 입력 : handleBridgeSizeInputException()
+    - 숫자가 아닌 경우 예외 처리 : handleNotNumberException()
+  - 이동할 칸 및 게임 재시작 여부 입력 : handleMoveAndRetryException()
+    - 대문자 알파벳이 아닌 경우 예외 처리 : handleNotUpperAlphabetException()
 
-        System.out.println(methodTwo());
-```
 
-- 사용자 입력 관련 예외
-  - 공통 예외
-    - 사용자 입력이 비어있는 경우 예외 처리
-    - 사용자 입력이 하나의 숫자, 혹은 대문자 알파벳이 아닌 경우 예외 처리
-  - 다리 길이 입력
-    - 숫자가 아닌 경우 예외 처리
-  - 이동할 칸 및 게임 재시작 여부 입력
-    - 대문자 알파벳이 아닌 경우 예외 처리
 - 로직 내 예외
-  - Bridge
+  - Bridge : BridgeExceptionHandler
     - 다리 생성 기능
-      - 다리 구성에 U, D 외에 다른 문자가 있을 경우 예외 처리
+      - 다리 구성에 U, D 외에 다른 문자가 있을 경우 예외 처리 : handleNotOnlyUOrDException()
     - 건너기 가능 여부 확인 기능
-      - 다리 생성 전 건너기 가능 여부 확인 시 예외 처리
-      - 다리 길이보다 큰 위치에 대해 확인 시 예외 처리
+      - 다리 생성 전 건너기 가능 여부 확인 시 예외 처리 : handleBridgeNotCreatedException()
+      - 다리의 마지막 인덱스보다 크거나 0보다 작은 숫자를 전달받을 시 예외 처리 : handleCheckSpaceOutOfRangeException()
     - 다리 길이 반환 기능
-      - 다리 생성 전 다리 길이 확인 시 예외 처리
-  - BridgeGame
-    - 이동 기능 (move())
-      - space 파라미터 값이 3~20 사이가 아니면 예외 처리
-  - BridgeGameOperator
+      - 다리 생성 전 다리 길이 확인 시 예외 처리 : handleBridgeNotCreatedException()
+  - BridgeGameOperator : GameOperatorExceptionHandler
+    - 다리 길이 입력받는 기능 (setBridge())
+      - 입력된 값이 3~20의 범위 내 숫자가 아닐 경우 예외 처리 : handleBridgeSizeOutOfRangeException()
     - 방향 입력받는 기능 (getDirection())
-      - 입력된 값이 U 혹은 D가 아닐 경우 예외 처리
+      - 입력된 값이 U 혹은 D가 아닐 경우 예외 처리 : handleNotUOrDException()
     - 게임 재시작 여부 입력받는 기능 (isRetrySelected())
-      - 입력된 값이 R 혹은 Q가 아닐 경우 예외 처리
+      - 입력된 값이 R 혹은 Q가 아닐 경우 예외 처리 : handleNotROrQException()
 
 ### 5. 개발 순서
 
