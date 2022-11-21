@@ -1,12 +1,14 @@
 package bridge;
 
 public class InputValidator {
-    public int validateBridgeSize(String input) throws NumberFormatException {
-        int bridgeSize = Integer.parseInt(input);
-        if (bridgeSize >= 3 && bridgeSize <= 20) {
-            return bridgeSize;
+    public int validatePureNumber(String input) throws NumberFormatException {
+        return Integer.parseInt(input);
+    }
+
+    public void validateBridgeSizeRange(int size) {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
     }
 
     public String validateMoving(String input) {
