@@ -42,4 +42,8 @@ public class BridgeGameEngine {
 
         bridgeGame.move(crossing, passOrFail);
     }
+
+    public void retry(Crossing crossing) {
+        bridgeGame.retry(crossing);
+    }
 }
