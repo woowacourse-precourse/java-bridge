@@ -25,6 +25,7 @@ public class BridgeGame {
     }
 
     public void move(String moveCommand) {
+        validateMoveCommand(moveCommand);
         if (isMovable(moveCommand)) {
             this.bridgeProgress.add("O");
             currentBlockIndex += 1;
@@ -38,12 +39,15 @@ public class BridgeGame {
         return bridge.get(currentBlockIndex + 1).equals(moveCommand);
     }
 
-    private void validateCommand(List<String> commandEntry, String command){
-        if (!commandEntry.contains(command)) throw new IllegalArgumentException();
+    private void validateMoveCommand(String command){
+        if (!command.equals(Command.MOVE_UP.getCommand()) && !command.equals(Command.MOVE_DOWN.getCommand())) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public void retry(String retryCommand) {
-        if (retryCommand.equals("R")) {
+    public void retry(String retrialCommand) {
+        validateRetrialCommand(retrialCommand);
+        if (retrialCommand.equals(Command.RETRY.getCommand())) {
             currentBlockIndex = -1;
             this.bridgeProgress = new ArrayList<>();
             trialCount += 1;
@@ -53,6 +57,12 @@ public class BridgeGame {
         gameState = GameState.OVER;
     }
 
+    private void validateRetrialCommand(String command){
+        if (!command.equals(Command.RETRY.getCommand()) && !command.equals(Command.QUIT.getCommand())){
+            throw new IllegalArgumentException();
+        }
+
+    }
     public List<String> getBridgeProgress() {
         return bridgeProgress;
     }
