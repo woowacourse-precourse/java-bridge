@@ -30,15 +30,11 @@ class BridgeGameTest {
                         .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void isRightDirection() {
-    }
-
-    @Test
-    void getResult() {
-    }
-
-    @Test
-    void retry() {
+    @ParameterizedTest
+    @ValueSource(strings = {"RR", "12", "QQQ", "abc", "a", "RQ"})
+    void retry(String select) {
+        Assertions.assertThatThrownBy(()->
+                bridgeGame.retry(select))
+                        .isInstanceOf(IllegalArgumentException.class);
     }
 }
