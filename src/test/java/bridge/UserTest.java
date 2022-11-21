@@ -20,4 +20,13 @@ public class UserTest {
             user.userMove("D");
         assertThat(user.isSuccess(3)).isEqualTo(true);
     }
+    @Test
+    void userFailureTest() {
+        User user = new User(List.of("U","U","U"),3);
+        user.userMove("U");
+        assertThat(user.isFailure()).isEqualTo(false);
+
+        user.userMove("D");
+        assertThat(user.isFailure()).isEqualTo(true);
+    }
 }
