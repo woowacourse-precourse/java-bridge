@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerMap {
 
-    private static final String MOVE_FAILURE = "X";
     protected final List<String> upSide;
     protected final List<String> downSide;
     private final MapFormat mapFormat = MapFormat.FORMAT;
@@ -36,7 +35,7 @@ public class PlayerMap {
     }
 
     public boolean isFailure() {
-        return upSide.contains(MOVE_FAILURE) || downSide.contains(MOVE_FAILURE);
+        return upSide.contains(MapStates.MOVE_FAILURE) || downSide.contains(MapStates.MOVE_FAILURE);
     }
 
     public PlayerMap subMapBy(int distance) {
