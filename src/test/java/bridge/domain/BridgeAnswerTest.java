@@ -49,6 +49,33 @@ class BridgeAnswerTest {
         assertThat(gameState).isIn(CONTINUE);
     }
 
+    @ParameterizedTest(name = "[{index}] bridgeSize = {0}")
+    @ValueSource(ints = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
+    @DisplayName("두 다리의 마지막 위치가 다를 경우 FAIL 반환을 성공한다.")
+    void whenDifferentMoveTypeAndLengthThenSuccessTest(int bridgeSize) {
+        // given
+        BridgeAnswer bridgeAnswer = new BridgeAnswer();
+        bridgeAnswer.setUpAnswerSizeBy(bridgeSize);
+
+        List<BridgeMoveType> moveTypes = bridgeAnswer.getAnswerMoveHistory();
+        BridgeMoveType removedMoveType = moveTypes.remove(bridgeSize - 1);
+        moveTypes.add(getReversedMoveType(removedMoveType));
+
+        BridgePlayer bridgePlayer = new BridgePlayer();
+        moveTypes.forEach(bridgePlayer::moveTo);
+        //  when
+        BridgeGameState gameState = bridgeAnswer.compareWith(bridgePlayer);
+        // then
+        assertThat(gameState).isIn(FAIL);
+    }
+
+    private BridgeMoveType getReversedMoveType(BridgeMoveType removedMoveType) {
+        if (removedMoveType.isSame(UP)) {
+            return DOWN;
+        }
+        return UP;
+    }
+
     static Stream<Arguments> whenCompareBridgeThenSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(UP, UP, UP)),
