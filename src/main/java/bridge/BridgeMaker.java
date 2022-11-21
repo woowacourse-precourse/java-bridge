@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
-    private static final int RANDOM_UPPER_INCLUSIVE = 1;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -13,6 +12,7 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
+        final int RANDOM_UPPER_INCLUSIVE = 1;
         List<String> bridge = new ArrayList<>();
         for (int index = 0; index < size; index++) {
             String nextAnswer = Moving.D.toString();
