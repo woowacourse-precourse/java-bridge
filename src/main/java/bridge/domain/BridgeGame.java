@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BridgeGame {
 
+    private static final String YES = "R";
 
     private Bridge bridge;
     private Player player;
@@ -26,13 +27,21 @@ public class BridgeGame {
         }
     }
 
-    public void retry() {
+    public void retry(String playerChoice) {
+        if(playerChoice.equals(YES))
         this.player = new Player();
         this.trialCount++;
         this.stage = 0;
     }
 
     public boolean isGameEnd() {
+        if (!isPlayerAlive() || isFinalStage()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFinalStage() {
         return bridge.get().size() == player.getPosition();
     }
 
@@ -60,7 +69,7 @@ public class BridgeGame {
     }
 
     public int getStageNumber() {
-        if (isGameEnd()) {
+        if (isFinalStage()) {
             stage = player.getPosition() - 1;
         }
         return stage;

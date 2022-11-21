@@ -12,46 +12,39 @@ public class BridgeGameController {
         OutputView.printStartMessage();
         BridgeGame bridgeGame = init();
         play(bridgeGame);
-    }
-
-    private static BridgeGame init() {
-        while (true) {
-            try {
-                int size = InputView.readBridgeSize();
-                BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-                return new BridgeGame(size, bridgeNumberGenerator);
-            } catch (IllegalArgumentException error) {
-                System.out.println(error.getMessage());
-            }
-        }
-    }
-
-    private void play(BridgeGame bridgeGame) {
-        do {
-            playRounds(bridgeGame);
-            if (!bridgeGame.isPlayerAlive()) {
-                getGameCommand(bridgeGame);
-            }
-        } while (!bridgeGame.isGameEnd() && bridgeGame.isPlayerAlive());
         OutputView.printResult(bridgeGame);
     }
 
-    private static void playRounds(BridgeGame bridgeGame) {
-        while (!bridgeGame.isGameEnd() && bridgeGame.isPlayerAlive()) {
-            String playerChoice = getPlayerChoice();
-            bridgeGame.move(playerChoice);
+    private static BridgeGame init() {
+        try {
+            int size = InputView.readBridgeSize();
+            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+            return new BridgeGame(size, bridgeNumberGenerator);
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return init();
+        }
+
+    }
+
+    private void play(BridgeGame bridgeGame) {
+        while (!bridgeGame.isGameEnd()) {
+            move(bridgeGame);
             OutputView.printMap(bridgeGame);
             bridgeGame.nextRound();
+            if (!bridgeGame.isPlayerAlive()) {
+                getGameCommand(bridgeGame);
+            }
         }
     }
 
-    private static String getPlayerChoice() {
-        return InputView.readMoving();
+    private void move(BridgeGame bridgeGame) {
+        String playerChoice = InputView.readMoving();
+        bridgeGame.move(playerChoice);
     }
 
-    private void getGameCommand(BridgeGame bridgeGame) {
-        if (InputView.readGameCommand()) {
-            bridgeGame.retry();
-        }
+    private static void getGameCommand(BridgeGame bridgeGame) {
+        String playerChoice = InputView.readGameCommand();
+        bridgeGame.retry(playerChoice);
     }
 }

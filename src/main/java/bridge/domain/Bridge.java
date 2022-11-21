@@ -1,13 +1,13 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
-import bridge.exception.BridgeSizeException;
 import java.util.List;
 
 public class Bridge {
 
     private static final int MAX = 20;
     private static final int MIN = 3;
+    private static final String SIZE_RANGE_ERROR = "[ERROR]다리길이는 3보다 작거나 20보다 클 수 없습니다. : %d ";
 
     private List<String> steps;
 
@@ -19,7 +19,8 @@ public class Bridge {
 
     private void validate(int size) throws IllegalArgumentException {
         if (size < MIN || size > MAX) {
-            throw new BridgeSizeException(size);
+            throw new IllegalArgumentException(
+                String.format(SIZE_RANGE_ERROR, size));
         }
     }
 

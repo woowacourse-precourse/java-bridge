@@ -38,7 +38,7 @@ public class BridgeGameTest {
     })
     void bridgeGameMoveTest(String playerChoice, boolean expected) {
         bridgeGame.move(playerChoice);
-        assertThat(bridgeGame.isPlayerAlive()).isEqualTo(expected);
+        assertEquals(expected, bridgeGame.isPlayerAlive());
     }
 
     @DisplayName("플레이어가 재시작에 동의하면 플레이어는 부활하고 위치가 0 이된다.")
@@ -49,11 +49,48 @@ public class BridgeGameTest {
         assertFalse(bridgeGame.isPlayerAlive());
 
         //when
-        bridgeGame.retry();
+        bridgeGame.retry("R");
 
         //then
         assertTrue(bridgeGame.isPlayerAlive());
-        assertEquals(0,bridgeGame.getPlayer().getPosition());
+        assertEquals(0, bridgeGame.getPlayer().getPosition());
+    }
+
+    @DisplayName("플레이어가 죽거나 마지막 스테이지를 통과하면 게임은 종료 된다.")
+    @ParameterizedTest
+    @CsvSource({
+        "U,D,D,true,true",
+        "U,D,U,true,false"
+    })
+    void isGameEndTest(String stage1, String stage2, String stage3, boolean isGameEnd,
+        boolean isPlayerAlive) {
+        //when
+        bridgeGame.move(stage1);
+        bridgeGame.nextRound();
+
+        bridgeGame.move(stage2);
+        bridgeGame.nextRound();
+
+        bridgeGame.move(stage3);
+        bridgeGame.nextRound();
+        //then
+        assertEquals(isPlayerAlive, bridgeGame.isPlayerAlive());
+        assertEquals(isGameEnd, bridgeGame.isGameEnd());
+    }
+
+    @DisplayName("플레이어가 재시작에 동의하면 도전횟수가 1 증가한다.")
+    @Test
+    void bridgeGameTrialCountTest() {
+        //given
+        bridgeGame.move("D");
+        assertEquals(1, bridgeGame.getTrialCount());
+
+        //when
+        bridgeGame.retry("R");
+
+        //then
+        assertEquals(2, bridgeGame.getTrialCount());
+
     }
 
 }
