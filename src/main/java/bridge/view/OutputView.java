@@ -90,15 +90,19 @@ public class OutputView {
 
     public void addXAndFinishMap(List<String> bridge, List<String> bridgeStatus, int idx) {
         if (bridgeStatus.get(idx) == "X") {
-            if (bridge.get(idx) == "U") {
-                upperMap += "   ]";
-                lowerMap += " X ]";
-            }
+            addXAndFinishWhenBridgeIsUpper(bridge, idx);
 
             if (bridge.get(idx) == "D") {
                 upperMap += " X ]";
                 lowerMap += "   ]";
             }
+        }
+    }
+
+    private void addXAndFinishWhenBridgeIsUpper(List<String> bridge, int idx) {
+        if (bridge.get(idx) == "U") {
+            upperMap += "   ]";
+            lowerMap += " X ]";
         }
     }
 
