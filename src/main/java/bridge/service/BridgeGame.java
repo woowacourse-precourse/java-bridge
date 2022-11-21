@@ -9,7 +9,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final int INITIAL_TRI_NUMBER = 1;
+    private static final int INITIAL_TRY_NUMBER = 1;
     private final List<String> userMoves;
     private final List<Boolean> results;
     private final Bridge bridge;
@@ -20,7 +20,7 @@ public class BridgeGame {
         this.results = new ArrayList<>();
         this.userMoves = new ArrayList<>();
         this.bridge = bridge;
-        this.tries = INITIAL_TRI_NUMBER;
+        this.tries = INITIAL_TRY_NUMBER;
         this.bridgeIterator = bridge.getIterator();
     }
 
@@ -40,9 +40,6 @@ public class BridgeGame {
         return tries;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     */
     public boolean move(String move, String answerMove) {
         boolean result = isCorrectMove(move, answerMove);
         userMoves.add(move);
@@ -54,9 +51,6 @@ public class BridgeGame {
         return userMove.equals(answerMove);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     */
     public void retry() {
         userMoves.clear();
         results.clear();
