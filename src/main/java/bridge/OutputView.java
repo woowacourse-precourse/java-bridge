@@ -26,6 +26,7 @@ public class OutputView {
     public void printMap(List<String> map) {
         System.out.println(map.get(BridgeStatus.UP.getStatusNumber()));
         System.out.println(map.get(BridgeStatus.DOWN.getStatusNumber()));
+        printBlankLine();
     }
 
     /**
@@ -44,7 +45,6 @@ public class OutputView {
 
         System.out.println(GAME_RESULT_TITLE);
         printMap(map);
-        printBlankLine();
         System.out.println(GAME_RESULT_EVENT_MESSAGE
                 .replace(REPLACE_GAME_RESULT_FROM, gameResult)
                 .replace(REPLACE_TRY_COUNT_FROM, Integer.toString(tryCount)));
