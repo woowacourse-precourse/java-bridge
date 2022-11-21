@@ -80,4 +80,15 @@ class BridgeGameTest {
         assertTrue(bridgeGame.checkSuccess());
     }
 
+    @Test
+    void retry_getAttempts_테스트(){
+        //given
+        bridgeGame.start(3);
+        //when
+        boolean retry = bridgeGame.retry("R");
+        //then
+        assertTrue(retry);
+        assertEquals(2, bridgeGame.getAttempts());
+    }
+
 }
