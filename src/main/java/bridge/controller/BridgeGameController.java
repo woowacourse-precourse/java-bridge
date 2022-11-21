@@ -48,7 +48,7 @@ public class BridgeGameController {
         }
     }
 
-    public boolean continueGettingInput() {
+    private boolean continueGettingInput() {
         String direction = getInputDirection();
         boolean isMovable = bridgeGame.isMovable(direction);
 
@@ -59,7 +59,7 @@ public class BridgeGameController {
         return false;
     }
 
-    public void doProperAction(String direction, boolean movable) {
+    private void doProperAction(String direction, boolean movable) {
         if (movable) {
             successToMove(direction);
             return;
