@@ -78,17 +78,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridgeAnswer, int bridgeSize, List<String> userMove,
-                            int tryCount) {
+    public void printResult(List<String> bridgeAnswer, List<String> userMove, int tryCount) {
+        int bridgeSize = bridgeAnswer.size();
         System.out.println("최종 게임 결과");
         printMap(bridgeAnswer, bridgeSize, userMove);
 
         String result = SUCCESS;
-        System.out.println("게임 성공 여부: ");
         if(bridgeAnswer.contains(CANNOT_CROSS)){
             result = FAIL;
         }
-        System.out.println(result);
+        System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + tryCount);
     }
 
