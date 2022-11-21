@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.constant.ExceptionMessage;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
