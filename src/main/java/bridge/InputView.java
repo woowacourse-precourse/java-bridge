@@ -3,6 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.Check.checkBridgeSize;
+import static bridge.Check.checkBridgeStep;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

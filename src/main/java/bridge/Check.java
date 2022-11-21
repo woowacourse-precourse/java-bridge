@@ -18,6 +18,14 @@ public class Check {
   }
   
   public static String checkBridgeStep(String in) throws IllegalArgumentException{
-    return null;
+    try{
+     if(in.equals("D") || in.equals("U")){
+       return in;
+     }
+     throw illegalArgumentException;
+    }
+    catch(Exception e){
+      throw illegalArgumentException;
+    }
   }
 }
