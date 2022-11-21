@@ -7,7 +7,6 @@ import java.util.List;
 
 import static bridge.domain.game.GameStatus.FAILED;
 import static bridge.domain.game.GameStatus.SUCCESS;
-import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -16,13 +15,13 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final List<GameProgress> gameProgress;
-    private int attempt;
+    private final Attempt attempt;
     private boolean playing;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.gameProgress = new ArrayList<>();
-        this.attempt = 1;
+        this.attempt = new Attempt();
         this.playing = true;
     }
 
@@ -65,23 +64,18 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        checkTooManyAttempts();
-        attempt++;
+        attempt.addAttempt();
         gameProgress.clear();
         playing = true;
     }
 
-    private void checkTooManyAttempts() {
-        if (Integer.MAX_VALUE == attempt) {
-            throw new IllegalArgumentException(TOO_MANY_ATTEMPTS);
-        }
-    }
+
 
     public List<GameProgress> getGameProgress() {
         return gameProgress;
     }
 
     public int getAttempt() {
-        return attempt;
+        return attempt.getAttempt();
     }
 }
