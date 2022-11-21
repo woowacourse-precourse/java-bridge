@@ -105,4 +105,8 @@ public class BridgeGame {
     public int getGameCount() {
         return gameCount;
     }
+
+    public boolean isTerminate() {
+        return terminate;
+    }
 }
