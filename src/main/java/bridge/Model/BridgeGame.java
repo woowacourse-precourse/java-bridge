@@ -31,14 +31,10 @@ public class BridgeGame {
         if (bridge.isEndPoint(choiceDirections.length())) {
             status = GameStatus.SUCCESS;
         }
-        if (isFailed(crossResults)) {
+        if (crossResults.isFailed()) {
             status = GameStatus.FAIL;
         }
         return status;
-    }
-
-    private boolean isFailed(CrossResults crossResults) {
-        return crossResults.contain(CrossResult.FAIL);
     }
 
     public void retry() {

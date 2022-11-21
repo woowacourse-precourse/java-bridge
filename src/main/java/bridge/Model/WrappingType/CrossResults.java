@@ -19,8 +19,8 @@ public class CrossResults {
         crossResults.add(crossResult);
     }
 
-    public boolean contain(CrossResult crossResult) {
-        return crossResults.contains(crossResult);
+    public boolean isFailed() {
+        return crossResults.contains(CrossResult.FAIL);
     }
 
     public CrossResult get(int position) {
