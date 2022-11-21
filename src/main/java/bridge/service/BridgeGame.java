@@ -45,11 +45,11 @@ public class BridgeGame {
 
     private BridgeResponseDto response(String mark, String block) {
         if(block.equals(GameConstance.UP_BLOCK_EXPRESSION)) {
-            bridgeStatus.addStatus(mark, " ");
+            bridgeStatus.addStatus(mark, GameConstance.EMPTY_BLOCK);
             return new BridgeResponseDto(bridgeStatus);
         }
 
-        bridgeStatus.addStatus(" ", mark);
+        bridgeStatus.addStatus(GameConstance.EMPTY_BLOCK, mark);
         return new BridgeResponseDto(bridgeStatus);
     }
 
@@ -57,10 +57,10 @@ public class BridgeGame {
         if (bridge.canCross(currentPosition, block)) {
             player.move();
             isDoneCrossingBridge(player.nowPosition());
-            return "O";
+            return GameConstance.CROSSABLE;
         }
         player.fail();
-        return "X";
+        return GameConstance.NOT_CROSSABLE;
     }
 
     private void isDoneCrossingBridge(int currentPosition) {
