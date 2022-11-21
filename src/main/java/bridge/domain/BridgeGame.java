@@ -1,10 +1,7 @@
 package bridge.domain;
 
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
