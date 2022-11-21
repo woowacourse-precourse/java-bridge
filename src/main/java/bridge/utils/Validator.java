@@ -27,7 +27,7 @@ public class Validator {
     }
 
     public static void checkRange(String number){
-        if (Double.valueOf(number) > 2000000000){
+        if (Long.valueOf(number) > 2000000000 || Long.valueOf(number) <1){
             throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
