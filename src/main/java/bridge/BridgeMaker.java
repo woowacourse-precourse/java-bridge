@@ -28,9 +28,12 @@ public class BridgeMaker {
 		return bridge;
 	}
 
-	private void addUpOrDownCell(List<String> bridgeCells) {
+	/**
+	 * bridge에 생성된 숫자에 해당하는 칸을 추가한다.
+	 */
+	private void addUpOrDownCell(List<String> bridge) {
 		int bridgeNumber = bridgeNumberGenerator.generate();
 
-		bridgeCells.add(Cell.convertToPosition(bridgeNumber));
+		bridge.add(Cell.convertToPosition(bridgeNumber));
 	}
 }
