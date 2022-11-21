@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BridgeSequenceNumberGenerator implements BridgeNumberGenerator {
     private List<Integer> sequence;
-    private static int idx = 0;
+    private int idx = 0;
 
     public BridgeSequenceNumberGenerator(List<Integer> sequence) {
         this.sequence = sequence;
