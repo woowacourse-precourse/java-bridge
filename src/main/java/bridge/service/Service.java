@@ -9,7 +9,7 @@ public class Service {
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     Converter converter = new Converter();
-    Result result = new Result();
+    Record record = new Record();
     BridgeGame game;
 
     public void prepareGame(String bridgeSizeInput) {
@@ -21,11 +21,11 @@ public class Service {
 
     public void move(String moveInput) {
         boolean moveSuccess = game.move(moveInput);
-        result.write(moveInput, moveSuccess);
+        record.write(moveInput, moveSuccess);
     }
 
     public List<String> getCurrentResult() {
-        return result.getResult();
+        return record.getResult();
     }
 
     public boolean checkMoveSuccess() {
@@ -37,12 +37,12 @@ public class Service {
     }
 
     public List<String> getFinalResult() {
-        return result.getFinalResultToString();
+        return record.getFinalResultToString();
     }
 
     public void resetForRetry() {
         game.initialize();
-        result.initialize();
-        result.plusTryCount();
+        record.initialize();
+        record.plusTryCount();
     }
 }

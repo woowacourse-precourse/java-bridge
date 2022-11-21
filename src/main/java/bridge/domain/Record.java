@@ -5,7 +5,7 @@ import bridge.utils.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Result {
+public class Record {
     private static final String SUCCESS = " O ";
     private static final String FAIL = " X ";
     private static final String NONE = "   ";
@@ -13,7 +13,7 @@ public class Result {
     private List<String> downBridgeResult;
     private int tryCount = 1;
 
-    public Result() {
+    public Record() {
         upBridgeResult = new ArrayList<>();
         downBridgeResult = new ArrayList<>();
     }

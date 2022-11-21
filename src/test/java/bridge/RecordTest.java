@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Result;
+import bridge.domain.Record;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,23 +10,23 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ResultTest {
-    Result result;
+public class RecordTest {
+    Record record;
     List<String> upBridgeResult;
     List<String> downBridgeResult;
 
     @BeforeEach
     void generateResult() {
         try {
-            result = new Result();
+            record = new Record();
 
-            Field upBridgeResultField = result.getClass().getDeclaredField("upBridgeResult");
+            Field upBridgeResultField = record.getClass().getDeclaredField("upBridgeResult");
             upBridgeResultField.setAccessible(true);
-            upBridgeResult = (List<String>) upBridgeResultField.get(result);
+            upBridgeResult = (List<String>) upBridgeResultField.get(record);
 
-            Field downBridgeResultField = result.getClass().getDeclaredField("downBridgeResult");
+            Field downBridgeResultField = record.getClass().getDeclaredField("downBridgeResult");
             downBridgeResultField.setAccessible(true);
-            downBridgeResult = (List<String>) downBridgeResultField.get(result);
+            downBridgeResult = (List<String>) downBridgeResultField.get(record);
         } catch (NoSuchFieldException | IllegalAccessException exception) {
             exception.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class ResultTest {
         String moveInput = "U";
         boolean moveSuccess = true;
 
-        result.write(moveInput, moveSuccess);
+        record.write(moveInput, moveSuccess);
         assertThat(upBridgeResult).contains(" O ");
         assertThat(downBridgeResult).contains("   ");
     }
@@ -49,7 +49,7 @@ public class ResultTest {
         String moveInput = "U";
         boolean moveSuccess = false;
 
-        result.write(moveInput, moveSuccess);
+        record.write(moveInput, moveSuccess);
         assertThat(upBridgeResult).contains(" X ");
         assertThat(downBridgeResult).contains("   ");
     }
