@@ -16,8 +16,10 @@ public class Application {
     }
 
     private static String startLoop(BridgeGame game){
-        String last ="";
+        String last = null;
         while(true){
+            OutputView.printInputForward();
+            last = InputView.readMoving();
             if(actLoopContent(game, last)){
                 break;
             }
@@ -26,8 +28,6 @@ public class Application {
     }
 
     private static boolean actLoopContent(BridgeGame game, String last){
-        OutputView.printInputForward();
-        last = InputView.readMoving();
         String result = game.judge(last);
         if(actIfRight(game,last,result)){   //true 게임 완료 종료
             return true;
@@ -58,6 +58,7 @@ public class Application {
         }
         return false;
     }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         BridgeGame game = initiate();
