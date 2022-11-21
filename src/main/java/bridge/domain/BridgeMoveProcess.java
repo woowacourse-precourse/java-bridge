@@ -17,7 +17,7 @@ public class BridgeMoveProcess {
     public int moveProcess(List<String> bridgeState, int bridgeSize){
         clearInfo();
         while (idx < bridgeSize && !BridgePrinting.isMoveStop()) {
-            System.out.println("bridgeState = " + bridgeState); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
+            System.out.println("bridgeState = " + bridgeState); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할, 제출 전 꼭 삭제!
             moving.add(inputView.readMoving());
             setPrintState(upState, downState, convertNowIndex(bridgeState.get(idx)));
             makeUserBridge(upState, downState, moving.get(idx));
