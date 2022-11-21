@@ -7,11 +7,15 @@ import bridge.domain.*;
 public class Application {
 
     public static void main(String[] args) {
-        PositionTable userTable = PositionTable.newInstance();
-        Bridge bridge = Bridge.makeBridge();
-        BridgeGame bridgeGame = BridgeGame.of(bridge, userTable);
-        GameResult gameResult = bridgeGame.startGame();
-        gameResult = bridgeGame.retry(gameResult);
-        BridgeGameManager.showResult(userTable, gameResult, bridgeGame.getTryNumber());
+        try {
+            PositionTable userTable = PositionTable.newInstance();
+            Bridge bridge = Bridge.makeBridge();
+            BridgeGame bridgeGame = BridgeGame.of(bridge, userTable);
+            GameResult gameResult = bridgeGame.startGame();
+            gameResult = bridgeGame.retry(gameResult);
+            BridgeGameManager.showResult(userTable, gameResult, bridgeGame.getTryNumber());
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
