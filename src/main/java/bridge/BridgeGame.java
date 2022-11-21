@@ -15,11 +15,11 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String moving, List<String> up_bridge, List<String> down_bridge) {
-        if (isPossible(moving)){
+        if (isPossible(moving)) {
             checkMovingPossibleCase(moving, up_bridge, down_bridge);
             return "O";
         }
-        if (!isPossible(moving)){
+        if (!isPossible(moving)) {
             checkMovingImpossibleCase(moving, up_bridge, down_bridge);
             return "X";
         }
@@ -31,19 +31,19 @@ public class BridgeGame {
     }
 
     private void checkMovingImpossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
-        if (moving.equals("U")){
-           changeUpBridge("X", up_bridge, down_bridge);
+        if (moving.equals("U")) {
+            changeUpBridge("X", up_bridge, down_bridge);
         }
-        if (moving.equals("D")){
+        if (moving.equals("D")) {
             changeDownBridge("X", up_bridge, down_bridge);
         }
     }
 
     private void checkMovingPossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
-        if (moving.equals("U")){
+        if (moving.equals("U")) {
             changeUpBridge("O", up_bridge, down_bridge);
         }
-        if (moving.equals("D")){
+        if (moving.equals("D")) {
             changeDownBridge("O", up_bridge, down_bridge);
         }
     }

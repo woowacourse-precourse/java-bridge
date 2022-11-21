@@ -11,6 +11,7 @@ interface InstanceCollection {
     List<String> up_bridge = new ArrayList<>(InputView.bridge_size);
     List<String> down_bridge = new ArrayList<>(InputView.bridge_size);
 }
+
 public class Application implements InstanceCollection {
 
     public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class Application implements InstanceCollection {
             input.readBridgeSize();
             maker.makeBridge(InputView.bridge_size);
             bridgeGameStart();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
         } finally {
             readyForNextGameUser();
         }
@@ -65,7 +66,7 @@ public class Application implements InstanceCollection {
     private static boolean checkQuit() {
         String command = input.readGameCommand();
         if (command.equals("R")) {
-            game.retry(up_bridge,down_bridge);
+            game.retry(up_bridge, down_bridge);
         }
         if (command.equals("Q")) {
             output.printResult(up_bridge, down_bridge, 0);
