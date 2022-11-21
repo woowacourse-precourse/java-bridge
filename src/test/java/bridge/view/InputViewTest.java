@@ -62,4 +62,25 @@ public class InputViewTest {
                         .isInstanceOf(IllegalArgumentException.class));
     }
 
+    /**
+     * readGameCommand - 사용자의 게임 재시작 또는 종료 여부 입력
+     */
+    @DisplayName("사용자의 게임 재시작 또는 종료 여부 입력은 R 또는 Q")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void readGameCommand_테스트(String userMoveDirection) {
+        putSystemInput(userMoveDirection);
+        assertThat(userMoveDirection).isEqualTo(InputView.readGameCommand());
+    }
+
+    @DisplayName("사용자의 재시작 또는 종료 입력에 대한 예외처리")
+    @ValueSource(strings = {"0", "1", "RR", "QQ", "RQ", "QR", "읶"})
+    @ParameterizedTest
+    void readGameCommand_예외_테스트(String userMoveDirection) {
+        putSystemInput(userMoveDirection);
+        assertSimpleTest(() ->
+                assertThatThrownBy(InputView::readGameCommand)
+                        .isInstanceOf(IllegalStateException.class));
+    }
+
 }
