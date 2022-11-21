@@ -17,30 +17,9 @@ public class BridgeController {
         OutputView.printGameStart();
 
         Bridge bridge = makeBridge();
-
         UserBridges userBridges = new UserBridges();
 
-        Status status = Status.PLAYING;
-        int tries = 0;
-        boolean success = false;
-        while (status == Status.PLAYING) {
-
-            tries += 1;
-            Status currentStatus = run(bridge, userBridges);
-
-            if (currentStatus == Status.END_OF_BRIDGE) {
-                success = true;
-                break;
-            }
-
-            if (currentStatus == Status.WRONG_CHOICE) {
-                String retry = InputView.readGameCommand();
-                status = BridgeGame.retry(retry, userBridges);
-            }
-        }
-
-        // 최종 결과를 출력한다
-        OutputView.printResult(userBridges, success, tries);
+        gameStart(bridge, userBridges);
     }
 
     public Bridge makeBridge() {
@@ -53,13 +32,26 @@ public class BridgeController {
         return new Bridge(spaces, bridgeSize);
     }
 
+    public void gameStart(Bridge bridge, UserBridges userBridges) {
+        Status currentState;
+        int tries;
+
+        for (tries = 1; ; tries++) {
+            currentState = run(bridge, userBridges);
+
+            if (currentState == Status.END_OF_BRIDGE) break;
+            if (retryOrNot(userBridges) == Status.QUIT) break;
+        }
+        OutputView.printResult(userBridges, currentState, tries);
+    }
+
     public Status run(Bridge bridge, UserBridges userBridges) {
-        for(int location=0; location< bridge.getSize(); location++) {
+        for (int location = 0; location < bridge.getSize(); location++) {
 
             Status result = moveMap(bridge, userBridges, location);
             OutputView.printMap(userBridges);
 
-            if(result == Status.WRONG_CHOICE)
+            if (result == Status.WRONG_CHOICE)
                 return result;
         }
         return Status.END_OF_BRIDGE;
@@ -69,5 +61,15 @@ public class BridgeController {
         String moving = InputView.readMoving();
         String space = bridge.getSpaceByLocation(location);
         return BridgeGame.move(moving, space, userBridges);
+    }
+
+    public Status retryOrNot(UserBridges userBridges) {
+        String retry = InputView.readGameCommand();
+
+        if (retry.equals("Q"))
+            return Status.QUIT;
+
+        BridgeGame.retry(userBridges);
+        return Status.RETRY;
     }
 }

@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.Domain.UserBridges;
 import bridge.Domain.Status;
-import bridge.View.InputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -41,13 +40,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static Status retry(String retry, UserBridges userBridges) {
-
-        if (retry.equals("Q")) {
-            return Status.QUIT;
-        }
-
+    public static void retry(UserBridges userBridges) {
         userBridges.resetSpaces();
-        return Status.PLAYING;
     }
 }
