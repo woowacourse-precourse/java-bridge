@@ -29,8 +29,8 @@ public class BridgeGame {
 
     public String move(Direction direction) {
         movement.push(direction);
-        String message = mapMaker.buildMap(movement, bridge);
-        return message;
+        String map = mapMaker.buildMap(movement, bridge);
+        return map;
     }
 
     public void retry() throws EmptyStackException {

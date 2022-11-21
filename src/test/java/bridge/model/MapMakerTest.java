@@ -13,7 +13,7 @@ class MapMakerTest {
     private final MapMaker mapMaker = new MapMaker();
 
     @Test
-    @DisplayName("지도가 제대로 반환되면 통과")
+    @DisplayName("다리와 이동을 비교하여 지도를 생성한다.")
     void buildMap_CompareBridgeWithMovement_ReturnMap() {
         Bridge bridge = new Bridge(List.of(Direction.U, Direction.D, Direction.D));
         Stack<Direction> movement = new Stack<>();
