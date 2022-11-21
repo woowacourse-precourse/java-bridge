@@ -1,10 +1,11 @@
-package bridge.domain;
+package bridge;
 
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
