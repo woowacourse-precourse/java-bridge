@@ -24,4 +24,11 @@ class BridgeGameOtherTest {
     void findMovingByIndexTest(int index, String moving) {
         assertThat(bridgeGame.findMovingByIndex(index)).isEqualTo(moving);
     }
+
+    @DisplayName("이동 결과 찾기 테스트")
+    @ParameterizedTest
+    @CsvSource({"0, true", "1, true", "2, false"})
+    void findMovingResultByIndexTest(int index, boolean result) {
+        assertThat(bridgeGame.findMovingResultByIndex(index)).isEqualTo(result);
+    }
 }
