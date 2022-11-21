@@ -10,4 +10,12 @@ public class UserMove {
     public void increaseTryCount(){
         tryCount++;
     }
+
+    public void moveUser(String bridge){
+        userLocation.add(bridge);
+    }
+
+    public List<String> getUserLocation() {
+        return userLocation;
+    }
 }
