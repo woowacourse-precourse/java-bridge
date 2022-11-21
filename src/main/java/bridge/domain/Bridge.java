@@ -21,41 +21,41 @@ public class Bridge {
         this.step = ZERO;
     }
 
-    private void makeBridgeBySize(int size){
+    private void makeBridgeBySize(int size) {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
-    public BridgeResult isGoodMove(Move move){
+    public BridgeResult isGoodMove(Move move) {
         String nowStep = this.bridge.get(this.step);
         String nowMove = move.getMove();
         boolean nowResult = false;
-        if(move.goToNextMove(nowStep)){
+        if (move.goToNextMove(nowStep)) {
             nowResult = true;
         }
         return new BridgeResult(nowMove, nowResult);
     }
 
-    public boolean nowGoodMove(List<BridgeResult> bridgeResults){
-        if(bridgeResults.get(this.step).isSuccessMove()){
+    public boolean nowGoodMove(List<BridgeResult> bridgeResults) {
+        if (bridgeResults.get(this.step).isSuccessMove()) {
             return true;
         }
         return false;
     }
 
-    public void resetStep(){
+    public void resetStep() {
         this.step = -1;
     }
 
-    public boolean notOverStep(){
-        if(this.step < this.size){
+    public boolean notOverStep() {
+        if (this.step < this.size) {
             return true;
         }
         return false;
     }
 
-    public void goToNextStep(){
+    public void goToNextStep() {
         this.step += 1;
     }
 

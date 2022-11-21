@@ -1,10 +1,9 @@
 package bridge.view;
 
-import static bridge.utils.Constant.ZERO;
+import static bridge.utils.Constant.*;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeResult;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -29,10 +28,10 @@ public class OutputView {
         printDownMap(bridgeResults);
     }
 
-    public static void printUpMap(List<BridgeResult> bridgeResults){
+    public static void printUpMap(List<BridgeResult> bridgeResults) {
         StringJoiner upResultView = new StringJoiner(" | ", "[ ", " ]");
 
-        for(int i = ZERO; i<bridgeResults.size(); i++){
+        for (int i = ZERO; i < bridgeResults.size(); i++) {
             upResultView.add(drawUpMap(bridgeResults.get(i)));
         }
 
@@ -40,10 +39,10 @@ public class OutputView {
         System.out.println(upMap);
     }
 
-    public static void printDownMap(List<BridgeResult> bridgeResults){
+    public static void printDownMap(List<BridgeResult> bridgeResults) {
         StringJoiner downResultView = new StringJoiner(" | ", "[ ", " ]");
 
-        for(int i = ZERO; i<bridgeResults.size(); i++){
+        for (int i = ZERO; i < bridgeResults.size(); i++) {
             downResultView.add(drawDownMap(bridgeResults.get(i)));
         }
 
@@ -51,21 +50,21 @@ public class OutputView {
         System.out.println(downMap);
     }
 
-    private static String drawUpMap(BridgeResult bridgeResult){
-        if(bridgeResult.isUpMove() && bridgeResult.isSuccessMove()){
+    private static String drawUpMap(BridgeResult bridgeResult) {
+        if (bridgeResult.isUpMove() && bridgeResult.isSuccessMove()) {
             return "O";
         }
-        if(bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()){
+        if (bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()) {
             return "X";
         }
         return " ";
     }
 
-    private static String drawDownMap(BridgeResult bridgeResult){
-        if(!bridgeResult.isUpMove() && bridgeResult.isSuccessMove()){
+    private static String drawDownMap(BridgeResult bridgeResult) {
+        if (!bridgeResult.isUpMove() && bridgeResult.isSuccessMove()) {
             return "O";
         }
-        if(!bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()){
+        if (!bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()) {
             return "X";
         }
         return " ";
@@ -83,15 +82,15 @@ public class OutputView {
         printSentence(PRINT_IS_SUCCESS + getPrintIsSuccess(bridgeGame));
         printSentence(PRINT_GAME_COUNT + bridgeGame.getGameCount());
     }
-    
-    public static String getPrintIsSuccess(BridgeGame bridgeGame){
-        if(bridgeGame.notExit()){
+
+    public static String getPrintIsSuccess(BridgeGame bridgeGame) {
+        if (bridgeGame.notExit()) {
             return PRINT_SUCCESS;
         }
         return PRINT_FAIL;
     }
-    
-    public static void printSentence(String s){
+
+    public static void printSentence(String s) {
         System.out.println(s);
     }
 }

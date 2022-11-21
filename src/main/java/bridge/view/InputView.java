@@ -41,11 +41,11 @@ public class InputView {
         return getInput();
     }
 
-    public static void printSentence(String s){
+    public static void printSentence(String s) {
         System.out.println(s);
     }
 
-    public static void printBlankLine(){
+    public static void printBlankLine() {
         System.out.println("");
     }
 }

@@ -10,15 +10,15 @@ public class BridgeResult {
         this.nowResult = nowResult;
     }
 
-    public boolean isUpMove(){
-        if(this.nowMove.equals("U")){
+    public boolean isUpMove() {
+        if (this.nowMove.equals("U")) {
             return true;
         }
         return false;
     }
 
-    public boolean isSuccessMove(){
-        if(this.nowResult == true){
+    public boolean isSuccessMove() {
+        if (this.nowResult == true) {
             return true;
         }
         return false;

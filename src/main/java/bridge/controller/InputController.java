@@ -7,14 +7,16 @@ import bridge.view.InputView;
 
 public class InputController {
 
-    public static Bridge inputBridgeSize(){
+    public static Bridge inputBridgeSize() {
         return new Bridge(InputView.readBridgeSize());
     }
 
-    public static Move inputMoving(){
+    public static Move inputMoving() {
         return new Move(InputView.readMoving());
     }
 
-    public static GameCommand inputGameCommand(){ return new GameCommand(InputView.readGameCommand());}
+    public static GameCommand inputGameCommand() {
+        return new GameCommand(InputView.readGameCommand());
+    }
 
 }

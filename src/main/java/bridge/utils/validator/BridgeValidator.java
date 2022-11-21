@@ -11,7 +11,7 @@ public class BridgeValidator {
 
     protected final String BridgeSize;
 
-    public BridgeValidator(String BridgeSize){
+    public BridgeValidator(String BridgeSize) {
         this.BridgeSize = BridgeSize;
         isInteger();
         isValidRange();

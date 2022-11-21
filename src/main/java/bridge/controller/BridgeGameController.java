@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameController {
+
     public BridgeGameController() {
         activate();
     }
 
-    private void activate(){
-        try{
+    private void activate() {
+        try {
             playBridgeGame();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -27,9 +28,9 @@ public class BridgeGameController {
         startBridgeGame(bridgeResults, bridge);
     }
 
-    private void startBridgeGame(List<BridgeResult> bridgeResults, Bridge bridge){
+    private void startBridgeGame(List<BridgeResult> bridgeResults, Bridge bridge) {
         BridgeGame bridgeGame = new BridgeGame(bridgeResults, bridge);
-        while(bridge.notOverStep() && bridgeGame.notExit()){
+        while (bridge.notOverStep() && bridgeGame.notExit()) {
             bridgeGame.move();
             OutputView.printMap(bridgeGame.getBridgeResults());
             testBridgeGame(bridgeGame);
@@ -38,8 +39,8 @@ public class BridgeGameController {
         OutputView.printResult(bridgeGame, bridgeGame.getBridgeResults());
     }
 
-    private void testBridgeGame(BridgeGame bridgeGame){
-        if(bridgeGame.isFailedGame()){
+    private void testBridgeGame(BridgeGame bridgeGame) {
+        if (bridgeGame.isFailedGame()) {
             GameCommand gameCommand = InputController.inputGameCommand();
             gameCommand.isRetryGame(bridgeGame);
         }

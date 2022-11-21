@@ -23,14 +23,14 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> Bridge = new ArrayList<>();
-        for(int i = ZERO; i< size; i++){
+        for (int i = ZERO; i < size; i++) {
             Bridge.add(makeUpAndDown(this.bridgeNumberGenerator.generate()));
         }
         return Bridge;
     }
 
     private String makeUpAndDown(int num) {
-        if(num==ZERO){
+        if (num == ZERO) {
             return DOWN;
         }
         return UP;
