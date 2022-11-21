@@ -39,8 +39,8 @@ public class BridgeMaker {
         List<String> randomCollect = makeRandomUpDown(size);
         errorBridge.add(BRIDGE_ERROR);
         int countCycle = ONE;
-        for (int i = ZERO; i < size; i++)
-            System.out.println(randomCollect.get(i));//
+        /*for (int i = ZERO; i < size; i++)
+            System.out.println(randomCollect.get(i));/*/
 
         String moveUpOrDown;
         for (int i = ZERO; i < size; i++) {
