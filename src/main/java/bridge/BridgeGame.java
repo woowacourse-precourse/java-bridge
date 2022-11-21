@@ -31,6 +31,7 @@ public class BridgeGame {
     public void retry() {
         String reGame = new InputView().readGameCommand();
         if (reGame.equals("R")) {
+            setRegame();
             return true;
         }
         return false;
@@ -62,5 +63,10 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public void setRegame() {
+        tryCount++;
+        this.user = new ArrayList<>(bridgeLength);
     }
 }
