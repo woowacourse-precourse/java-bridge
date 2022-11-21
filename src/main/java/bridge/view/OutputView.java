@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.BridgeGame;
+import bridge.model.MakeLine;
 
 public class OutputView {
     private static final int INCORRECT = 0;

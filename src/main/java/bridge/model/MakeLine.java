@@ -1,6 +1,8 @@
-package bridge.view;
+package bridge.model;
 
 import bridge.model.BridgeGame;
+import bridge.view.LineType;
+import bridge.view.PrintSentence;
 
 public class MakeLine {
 
