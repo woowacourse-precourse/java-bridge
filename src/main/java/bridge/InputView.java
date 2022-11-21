@@ -41,8 +41,22 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String Move_Enter = Console.readLine();
+        while (readMoving_ERROR(Move_Enter)) {
+            Move_Enter = Console.readLine();
+        }
         return Move_Enter;
 
+    }
+
+    private boolean readMoving_ERROR(String Bridge_length) {
+        try {
+            if (!(Bridge_length.equals("U") || Bridge_length.equals("D")))
+                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -51,6 +65,20 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String Enter = Console.readLine();
+        while (readGameCommand_ERROR(Enter)) {
+            Enter = Console.readLine();
+        }
         return Enter;
+    }
+
+    private boolean readGameCommand_ERROR(String Bridge_length) {
+        try {
+            if (!(Bridge_length.equals("R") || Bridge_length.equals("Q")))
+                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return true;
+        }
+        return false;
     }
 }
