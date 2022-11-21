@@ -51,4 +51,11 @@ public class BridgeGame {
     public BridgeStatus getStatus() {
         return bridgeStatus;
     }
+
+    /**
+     * 게임 반복 횟수를 반환하는 메서드
+     */
+    public int getRepeatCount() {
+        return repeatCount;
+    }
 }
