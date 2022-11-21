@@ -64,6 +64,13 @@ public class BridgeGame {
         return true;
     }
 
+    public static boolean userSuccess(String userBridgeWord,String bridgeWord){
+        if (!Objects.equals(userBridgeWord, bridgeWord)){
+            return false;
+        }
+        return true;
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
