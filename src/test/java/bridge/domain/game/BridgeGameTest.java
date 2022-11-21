@@ -87,6 +87,18 @@ class BridgeGameTest {
         return count;
     }
 
+    @DisplayName("isSuccess 메소드에 Pedestrian 객체를 입력하였을 때 Pedestrian가 다리 끝에 위치했는지 여부를 반환하는지 확인")
+    @ParameterizedTest
+    @MethodSource("provideArgumentsForIsSuccessTest")
+    void isSuccess_test(List<String> inputDirections, boolean expected) {
+        List<Direction> directions = createDirections(inputDirections);
+        moveInManyDirections(game, directions);
+
+        boolean actual = game.isSuccess(pedestrian);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
     static Stream<Arguments> provideArgumentsForMoveTest() {
         return Stream.of(
                 Arguments.of(List.of("U", "U", "D", "U", "D")),
