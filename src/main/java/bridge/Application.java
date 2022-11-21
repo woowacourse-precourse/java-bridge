@@ -33,9 +33,14 @@ public class Application {
             bridgeGame.move(getMoving().toString());
             printMap(bridgeGame.getSavedStatus());
         }
-        // 재시작 여부 확인
+        successOrFail(bridgeGame);
     }
 
+    private static void successOrFail(BridgeGame bridgeGame) {
+        if (bridgeGame.isFail()) {
+            //재시작 여부 입력받기
+        }
+    }
 
     private static BridgeLength getBridgeLength() {
         try {
