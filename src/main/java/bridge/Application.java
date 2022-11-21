@@ -6,10 +6,12 @@ import java.util.List;
 import static bridge.BridgeGame.*;
 
 public class Application {
+    private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    static BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     static int trial = 0;
     public static void startGame(){
         OutputView.printStart();
-        List<String> bridge = BridgeMaker.makeBridge(InputView.readBridgeSize());
+        List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
         boolean success = move(bridge);
         while(!success){
             OutputView.printRetry();
