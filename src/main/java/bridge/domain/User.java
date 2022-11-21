@@ -13,7 +13,38 @@ public class User {
         this.mapLowerUserBridge = "";
     }
 
+    public void updateRestartCount(){
+        this.restartCount ++;
+    }
 
+    public void updateMapUserBridge(String move, int isSuccess){
+        if(isSuccess == 1)
+            updateMapUserBridgeTrue(move);
+        if(isSuccess == 0)
+            updateMapUserBridgeFalse(move);
+    }
+
+    private void updateMapUserBridgeFalse(String move){
+        if(move == "U"){
+            mapUpperUserBridge += " | X";
+            mapLowerUserBridge += " |  ";
+        }
+        if(move == "D"){
+            mapUpperUserBridge += " |  ";
+            mapLowerUserBridge += " | X";
+        }
+    }
+
+    private void updateMapUserBridgeTrue(String move){
+        if(move == "U"){
+            mapUpperUserBridge += " | O";
+            mapLowerUserBridge += " |  ";
+        }
+        if(move == "D"){
+            mapUpperUserBridge += " |  ";
+            mapLowerUserBridge += " | O";
+        }
+    }
 
     public int getRestartCount() {
         return restartCount;
