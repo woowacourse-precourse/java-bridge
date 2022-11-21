@@ -21,5 +21,8 @@ public class BridgeController {
         do {
             outputView.printRequestMove();
         } while (bridgeGame.move(inputView.readMoving()));
+
+        outputView.printRequestGameCommand();
+        inputView.readGameCommand();
     }
 }
