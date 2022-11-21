@@ -13,13 +13,15 @@ public class InputView {
     private final String NOT_MOVING = "[ERROR] 이동할 칸은 \"U\" 또는 \"D\"만 가능합니다.";
     private final String BRIDGE_UP = "U";
     private final String BRIDGE_DOWN = "D";
+    private final String READ_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private final String READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(READ_BRIDGE_SIZE);
         String bridgeSize = Console.readLine();
 
         validateBridgeSize(bridgeSize);
@@ -31,6 +33,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(READ_MOVING);
         String position = Console.readLine();
         validateMoving(position);
         return position;
