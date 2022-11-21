@@ -18,7 +18,7 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeCorrect = new ArrayList<>();
-        tryTime = 0;
+        tryTime = 1;
     }
 
     /**
@@ -53,6 +53,11 @@ public class BridgeGame {
         }
         return line.replace(OutputViewPrintEnum.CHANGE_STRING.getMessage()
                 , OutputViewPrintEnum.OUTPUT_RESULT_FAIL.getMessage());
+    }
+
+    public String printTryTime(){
+        return OutputViewPrintEnum.OUTPUT_TRY_TIME.getMessage()
+                .replace(OutputViewPrintEnum.CHANGE_INT.getMessage(), String.valueOf(tryTime));
     }
     public List<Boolean> getBridgeCorrect() {
         return this.bridgeCorrect;
