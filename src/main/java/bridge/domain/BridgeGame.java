@@ -66,4 +66,12 @@ public class BridgeGame {
     public void changeToFail() {
         result.changeFail();
     }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public GameResult getResult() {
+        return result;
+    }
 }

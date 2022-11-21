@@ -22,9 +22,9 @@ public class BridgeController {
 
     public void start() {
         outputView.printStart();
-
         List<String> bridge = bridgeGame.setBridge(inputBridgeSize().getBridgeSize());
         startPlay(bridge);
+        outputView.printResult(bridgeGame.getMap(), bridgeGame.getResult());
     }
 
     public BridgeSize inputBridgeSize() {
