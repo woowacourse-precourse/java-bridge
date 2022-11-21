@@ -21,7 +21,7 @@ public class Controller {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView = new OutputView();
 
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        inputView.printGameStartMessage();
 
         //다리 길이 입력 받기
         int bridgeLen = inputView.readBridgeSize();

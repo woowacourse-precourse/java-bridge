@@ -6,6 +6,11 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+
+    public void printGameStartMessage(){
+        System.out.println(GAME_START_MESSAGE);
+    }
 
     /**
      * 다리의 길이를 입력받는다.
