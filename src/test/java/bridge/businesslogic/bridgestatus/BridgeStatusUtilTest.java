@@ -98,4 +98,37 @@ class BridgeStatusUtilTest {
             assertThat(testBuilder.toString()).isEqualTo("[ O | X ]");
         }
     }
+    @Nested
+    class CheckLineElementsExistsTest{
+
+        @DisplayName("아무것도 없을 때는, | 를 넣어주지 않고 바로 진행한다")
+        @Test
+        void checkLineElementsExists_case1(){
+            StringBuilder testUpLineBuilder = new StringBuilder();
+            StringBuilder testDownLineBuilder = new StringBuilder();
+            statusUtil.checkLineElementsExists(testUpLineBuilder,testDownLineBuilder);
+            assertThat(testUpLineBuilder.toString()).isEqualTo("");
+            assertThat(testDownLineBuilder.toString()).isEqualTo("");
+        }
+
+        @DisplayName("한쪽(위쪽)이라도 데이터가 있을 때는, | 를 넣어주고 마저 진행한다.")
+        @Test
+        void checkLineElementsExists_case2(){
+            StringBuilder testUpLineBuilder = new StringBuilder("O");
+            StringBuilder testDownLineBuilder = new StringBuilder(" ");
+            statusUtil.checkLineElementsExists(testUpLineBuilder,testDownLineBuilder);
+            assertThat(testUpLineBuilder.toString()).isEqualTo("O | ");
+            assertThat(testDownLineBuilder.toString()).isEqualTo("  | ");
+        }
+
+        @DisplayName("한쪽(아래쪽)이라도 데이터가 있을 때는, | 를 넣어주고 마저 진행한다.")
+        @Test
+        void checkLineElementsExists_case3(){
+            StringBuilder testUpLineBuilder = new StringBuilder(" ");
+            StringBuilder testDownLineBuilder = new StringBuilder("O");
+            statusUtil.checkLineElementsExists(testUpLineBuilder,testDownLineBuilder);
+            assertThat(testUpLineBuilder.toString()).isEqualTo("  | ");
+            assertThat(testDownLineBuilder.toString()).isEqualTo("O | ");
+        }
+    }
 }
