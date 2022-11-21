@@ -14,6 +14,8 @@ public class Controller {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final List<TrialResult> trialResults = new ArrayList<>();
+    private BridgeGame game;
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -21,26 +23,8 @@ public class Controller {
     }
 
     public void play() {
-        BridgeGame bridgeGame = makeGame();
-
-        List<TrialResult> trialResults = new ArrayList<>();
-        while (!bridgeGame.isFinished()) {
-            String moving = inputView.readMoving();
-            TrialResult trialResult = bridgeGame.move(moving);
-            trialResults.add(trialResult);
-            outputView.printMap(trialResults);
-
-            if (!trialResult.wasSuccessful()) {
-                String command = inputView.readGameCommand();
-                if (command.equals("R")) {
-                    bridgeGame.retry();
-                    trialResults.clear();
-                }
-                if (command.equals("Q")) {
-                    break;
-                }
-            }
-        }
+        this.game = makeGame();
+        doGame();
     }
 
     private BridgeGame makeGame() {
@@ -48,5 +32,39 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         return BridgeGame.from(bridge);
+    }
+
+    private void doGame() {
+        if (game.isFinished()) {
+            // TODO: EXIT
+            return;
+        }
+        if (!move().wasSuccessful()) {
+            retryOrExit();
+            return;
+        }
+        doGame();
+    }
+
+    private TrialResult move() {
+        String moving = inputView.readMoving();
+        TrialResult trialResult = game.move(moving);
+        trialResults.add(trialResult);
+        outputView.printMap(trialResults);
+        return trialResult;
+    }
+
+    private void retryOrExit() {
+        if (askForRetry()) {
+            game.retry();
+            trialResults.clear();
+            doGame();
+        }
+        // TODO: Exit
+    }
+
+    private boolean askForRetry() {
+        String command = inputView.readGameCommand();
+        return command.equals("R");
     }
 }
