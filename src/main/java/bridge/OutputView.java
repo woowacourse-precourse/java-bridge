@@ -42,13 +42,55 @@ public class OutputView {
             printWrongAndFail(userState, isSuccess);
         }
     }
-
-    public void printResult() {
+    // 게임이 끝 AND 실패
+    public static void printWrongAndFail(List<String> userState, boolean isSuccess) {
+        printGaming(userState, userState.size(), isSuccess);
+        replaceClose();
+        isWrongFinished(userState);
     }
 
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void printResult(List<String> userState, boolean isSuccess, int totalCount) {
+        initState();
+        System.out.println("\n최종 게임 결과");
+        printGaming(userState, userState.size(), isSuccess);
+        if (!isSuccess) {
+            replaceClose();
+            isWrongFinished(userState);
+        }
+        printEndOfGame(isSuccess, totalCount);
+    }
+
+    // 최종 게임 결과 출력
+    public void printEndOfGame(boolean isSuccess, int totalCount) {
+        printMapResult();
+        System.out.println("\n게임 성공 여부: " + isFail(isSuccess));
+        System.out.println("총 시도한 횟수: " + totalCount);
+    }
+
+    // ] 제거 메서드
+    public static void replaceClose() {
+        upState = upState.replace("]", "");
+        downState = downState.replace("]", "");
+    }
     public static void printMapResult() {
         System.out.println(upState);
         System.out.println(downState);
+    }
+
+    // 게임 종료 판단 실패 or 성공
+    public static String isFail(boolean isSuccess) {
+        if (isSuccess) {
+            return "성공";
+        }
+        if (!isSuccess) {
+            return "실패";
+        }
+        return "오류";
     }
 
     public static void printGaming(List<String> userState, int size, boolean continueGame) {
@@ -91,11 +133,7 @@ public class OutputView {
         upState = "[";
         downState = "[";
     }
-    // ] 제거 메서드
-    public static void replaceClose() {
-        upState = upState.replace("]", "");
-        downState = downState.replace("]", "");
-    }
+
     public static void isWrongFinished(List<String> userState) {
         if (userState.get(userState.size() - 1).equals("U")) {
             upState += " X ]";
