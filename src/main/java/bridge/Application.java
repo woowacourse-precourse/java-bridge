@@ -13,6 +13,9 @@ public class Application {
         while (bridgeGame.getGameStatus().equals(GameStatus.ONGOING)) {
             move(inputView, outputView, bridgeGame);
         }
+        if (bridgeGame.getGameStatus().equals(GameStatus.LOSE)) {
+            outputView.printRetryInputMessage();
+        }
     }
 
     private static void move(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
