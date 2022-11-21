@@ -20,4 +20,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printStatements(String printThis) {
+        System.out.println(printThis);
+    }
 }

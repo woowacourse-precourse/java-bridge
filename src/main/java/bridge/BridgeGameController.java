@@ -16,8 +16,11 @@ public class BridgeGameController {
     public static List<String> setBridgeGame() {
         BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();;
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        outputView.showNormalStatements(NormalStatements.GAME_START.getNormalStatement())
+        outputView.printStatements(NormalStatements.GAME_START.getNormalStatement());
         int bridgeLength = new InputView().readBridgeSize(); //Validator 객체를 사용해 유효성 검증 후 반환하게 한다.
         return crossableBridge = bridgeMaker.makeBridge(bridgeLength);
     }
+
+
+
 }
