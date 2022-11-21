@@ -41,7 +41,7 @@ class UserTest {
         int expectedPosition = 1;
 
         // when
-        user.updateState();
+        user.updatePosition();
 
         // then
         assertThat(user.getPosition()).isEqualTo(expectedPosition);
@@ -52,7 +52,7 @@ class UserTest {
     void resetUserPositionWithRetry() {
         // given
         User user = new User();
-        user.updateState();
+        user.updatePosition();
         int expectedPosition = 0;
 
         // when
@@ -67,7 +67,7 @@ class UserTest {
     void addUserTrialWithRetry() {
         // given
         User user = new User();
-        user.updateState();
+        user.updatePosition();
         int expectedTrial = 2;
 
         // when

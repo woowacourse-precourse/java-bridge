@@ -13,7 +13,7 @@ public class User {
         this.trial = INIT_TRIAL;
     }
 
-    public void updateState() {
+    public void updatePosition() {
         position++;
     }
 

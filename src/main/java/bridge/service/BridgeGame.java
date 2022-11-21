@@ -27,7 +27,7 @@ public class BridgeGame {
      */
     public boolean move(String moving) {
         if (bridge.canMove(user.getPosition(), moving)) {
-            user.updateState();
+            user.updatePosition();
             bridgeState.update(StepResult.getStepResult(moving, true));
             return true;
         }
