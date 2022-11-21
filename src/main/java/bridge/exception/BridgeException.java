@@ -16,6 +16,11 @@ public class BridgeException {
         checkBridgeInputAlphabetOnlyEnglish(movement);
     }
 
+    public void checkBridgeInputGameOptionExceptions(String gameOption) {
+        checkBridgeGameOptionInputAlphabet(gameOption);
+        checkBridgeInputAlphabetOnlyEnglish(gameOption);
+    }
+
 
 
 
