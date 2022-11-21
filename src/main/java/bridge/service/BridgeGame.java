@@ -11,6 +11,8 @@ public class BridgeGame {
     private static final String NO_START_GAME_ERROR = "[ERROR] 게임이 시작되지 않았습니다";
     private static final String RESTART_COMMAND = "R";
     public static final String QUIT_COMMAND = "Q";
+    private static final String UP_COMMAND = "U";
+    private static final String DOWN_COMMAND = "D";
     private PlayState playState;
     private Count count;
     private Bridge bridge;
@@ -28,6 +30,7 @@ public class BridgeGame {
     }
 
     public void move(String input, int count) {
+        checkUpDown(input);
         updateResult(input, count);
     }
 
@@ -101,9 +104,15 @@ public class BridgeGame {
         }
     }
 
+    private void checkUpDown(String input) {
+        if (!input.equals(UP_COMMAND) && !input.equals(DOWN_COMMAND)) {
+            throw new IllegalStateException(RESTART_QUIT_ERROR);
+        }
+    }
+
     private void checkRestartQuitCommand(String input) {
         if (!input.equals(RESTART_COMMAND) && !input.equals(QUIT_COMMAND)) {
-            throw new IllegalArgumentException(RESTART_QUIT_ERROR);
+            throw new IllegalStateException(RESTART_QUIT_ERROR);
         }
     }
 
