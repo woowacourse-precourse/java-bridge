@@ -67,5 +67,10 @@ public class BridgeGame {
         numberOfTrial += COUNT;
     }
 
+    public int getTotalTrial(){
+        return numberOfTrial;
+    }
+
+
 
 }
