@@ -98,7 +98,12 @@ public class BridgeController {
     }
 
     private Bridge createBridge(List<String> bridgeNumbers) {
-        return new Bridge(bridgeNumbers);
+        try {
+            return new Bridge(bridgeNumbers);
+        } catch (IllegalStateException ex) {
+            outputView.printError(ex.getMessage());
+        }
+        return null;
     }
 
     private PassingPositions createPassingPositions(Bridge bridge) {

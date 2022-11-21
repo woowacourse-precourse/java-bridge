@@ -36,7 +36,7 @@ public class Bridge {
                 .filter(direction -> direction.equals(UP) || direction.equals(DOWN))
                 .count() == directions.size();
         if (!isValid) {
-            throw new IllegalArgumentException(BRIDGE_COMPONENTS_INVALID_ERROR); // TODO: exception 타입
+            throw new IllegalStateException(BRIDGE_COMPONENTS_INVALID_ERROR);
         }
     }
 }
