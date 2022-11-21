@@ -1,6 +1,5 @@
 package bridge;
 
-import java.net.http.HttpRequest;
 import java.util.List;
 
 public class Application {
@@ -15,14 +14,22 @@ public class Application {
         // output view
         outputView.startMessage();
         // 자동으로 생성할 다리 길이를 입력 받는다. --> input view
+        int bridgeSize = getBridgeSize();
+        // 다리를 생성합니다. --> bridge maker
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        // U 또는 D 입력 받기 --> input view
+        crossingTheBridge(bridgeSize, bridge);
+    }
+
+    private int getBridgeSize() {
         int bridgeSize = 0;
         while (bridgeSize == 0) {
             bridgeSize = inputView.readBridgeSize();
         }
-        // 다리를 생성합니다. --> bridge maker
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        return bridgeSize;
+    }
 
-        // U 또는 D 입력 받기 --> input view
+    private void crossingTheBridge(int bridgeSize, List<String> bridge) {
         while (game.equals("R")) {
             // 이동할 칸을 선택해주세요 --> output view
             String move = inputView.getMove();
@@ -40,9 +47,6 @@ public class Application {
             game = outputView.printResult(bridgeGame, bridgeSize, count, game);
         }
     }
-
-
-
 
     private void restartAfterFailure(List<String> bridge) {
         if (game.equals("R")) {
