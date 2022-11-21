@@ -40,7 +40,7 @@ public class InputView {
 
     public void checkReadMoving(String move) {
         if( !(move.equals("U") || move.equals("D")) ) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 움직임 입력입니다.");
+            throw new IllegalArgumentException(ErrorMessage.MOVE.getErrorMsg());
         }
     }
 
@@ -62,7 +62,7 @@ public class InputView {
 
     public void checkReadCommand(String command) {
         if( !(command.equals("R") || command.equals("Q")) ) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 커맨드 입력입니다.");
+            throw new IllegalArgumentException(ErrorMessage.COMMAND.getErrorMsg());
         }
     }
 }
