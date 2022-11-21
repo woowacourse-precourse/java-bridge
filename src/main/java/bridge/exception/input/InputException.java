@@ -28,4 +28,10 @@ public class InputException {
             throw new IllegalArgumentException("not proper range");
         }
     }
+
+    public static void checkBridgeLengthInput(String userInput){
+        validateProperBridgeLength(userInput);
+        validateProperNumbersRange(userInput);
+    }
+
 }
