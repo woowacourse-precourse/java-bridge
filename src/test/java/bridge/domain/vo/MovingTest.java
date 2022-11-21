@@ -14,7 +14,7 @@ class MovingTest {
     @ParameterizedTest(name = "[{index}] input {0} ")
     @ValueSource(strings = {"U", "D"})
     void Normal_Test(String input) {
-        Assertions.assertThat(new Moving(input).equals(input)).isTrue();
+        Assertions.assertThat(Moving.from(input).equals(input)).isTrue();
     }
 
     @DisplayName("Unvalidated GameMoving")
@@ -22,7 +22,7 @@ class MovingTest {
     @ValueSource(strings = {"a", "1", "u", "r", "d", "@"})
     void Unvalidated_GameMoving_exception(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Moving(input);
+            Moving.from(input);
         });
         assertEquals(ErrorCode.MOVING_NOT_U_D.getException().getMessage(),
                 exception.getMessage());

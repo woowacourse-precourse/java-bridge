@@ -18,7 +18,7 @@ class BridgeGameTest {
             String secondResult) {
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = BridgeGame.from(bridgeMap);
-        bridgeGame.move(new Moving(playerValue));
+        bridgeGame.move(Moving.from(playerValue));
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
         assertThat(bridgeGame.getPlayerMap()).isEqualTo(estimatedResult);
     }
@@ -26,8 +26,8 @@ class BridgeGameTest {
     @Test
     public void retry_R_0() {
         BridgeGame bridgeGame = BridgeGame.from(new BridgeMap(List.of("U", "U", "U")));
-        bridgeGame.move(new Moving("U"));
-        bridgeGame.move(new Moving("D"));
+        bridgeGame.move(Moving.from("U"));
+        bridgeGame.move(Moving.from("D"));
         bridgeGame.retry(new GameCommand("R"));
         assertThat(bridgeGame.getCount()).isEqualTo(2);
     }
@@ -35,8 +35,8 @@ class BridgeGameTest {
     @Test
     public void retry_Q_Test() {
         BridgeGame bridgeGame = BridgeGame.from(new BridgeMap(List.of("U", "U", "U")));
-        bridgeGame.move(new Moving("U"));
-        bridgeGame.move(new Moving("D"));
+        bridgeGame.move(Moving.from("U"));
+        bridgeGame.move(Moving.from("D"));
         bridgeGame.retry(new GameCommand("Q"));
         List<List> estimatedResult = List.of(List.of("O", " "), List.of(" ", "X"));
         assertThat(bridgeGame.getPlayerMap()).isEqualTo(estimatedResult);
@@ -47,7 +47,7 @@ class BridgeGameTest {
     public void isEnd_test(String bridgeValue, String playerValue, boolean value) {
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = BridgeGame.from(bridgeMap);
-        bridgeGame.move(new Moving(playerValue));
+        bridgeGame.move(Moving.from(playerValue));
         assertThat(bridgeGame.isEnd()).isEqualTo(value);
     }
 
@@ -56,6 +56,6 @@ class BridgeGameTest {
     public void isMove_test(String bridgeValue, String playerValue, boolean value) {
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = BridgeGame.from(bridgeMap);
-        assertThat(bridgeGame.move(new Moving(playerValue))).isEqualTo(value);
+        assertThat(bridgeGame.move(Moving.from(playerValue))).isEqualTo(value);
     }
 }

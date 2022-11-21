@@ -66,7 +66,7 @@ public class BridgeGameController {
 
     private Moving inputMoving() {
         try {
-            return new Moving(inputView.readMoving());
+            return Moving.from(inputView.readMoving());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }

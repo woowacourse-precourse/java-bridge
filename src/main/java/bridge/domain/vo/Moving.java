@@ -7,9 +7,13 @@ public class Moving {
 
     private final String input;
 
-    public Moving(String input) {
+    private Moving(String input) {
         validateInput(input);
         this.input = input;
+    }
+
+    public static Moving from(String input) {
+        return new Moving(input);
     }
 
     private void validateInput(String input) {
