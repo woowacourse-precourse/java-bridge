@@ -38,7 +38,11 @@ public class InputView {
     public String readGameCommand() {
         String finish = Console.readLine();
 
-        PlayerInputValidator.canFinish(finish);
+        try {
+            PlayerInputValidator.canFinish(finish);
+        } catch (IllegalArgumentException retry) {
+            readGameCommand();
+        }
 
         return finish;
     }
