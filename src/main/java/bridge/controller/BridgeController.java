@@ -10,7 +10,6 @@ import java.util.List;
 public class BridgeController {
     private final String SUCCESS = "성공";
     private final String FAILURE = "실패";
-    private final int START_OF_COUNT = 0;
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -30,26 +29,24 @@ public class BridgeController {
     }
 
     public void proceedBridgeGame() {
-        int count = START_OF_COUNT;
-
         while (true) {
-            count++;
             bridgeGame.resetUserMoving();
+            bridgeGame.addAttemptCount();
             //System.out.println(bridgeGame.getBridge());
             startMove();
 
-            if (proceedEndOfGame(count)) break;
+            if (proceedEndOfGame()) break;
         }
     }
 
-    public boolean proceedEndOfGame(int count) {
+    public boolean proceedEndOfGame() {
         if (bridgeGame.isSuccess()) {
-            outputView.printResult(bridgeGame.getUserMoving(), SUCCESS, count);
+            outputView.printResult(bridgeGame.getUserMoving(), SUCCESS, bridgeGame.getAttemptCount());
             return true;
         }
         // 성공 하지도 못했는데 재시작도 안하면 실패
         if (bridgeGame.retry(inputView.readGameCommand()) == false) {
-            outputView.printResult(bridgeGame.getUserMoving(), FAILURE, count);
+            outputView.printResult(bridgeGame.getUserMoving(), FAILURE, bridgeGame.getAttemptCount());
             return true;
         }
         return false;

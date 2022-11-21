@@ -74,13 +74,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge, String successOrFail, int count) {
+    public void printResult(List<String> bridge, String successOrFail, int attemptCount) {
         System.out.println(PRINT_RESULT_MSG);
         printUpperBridge(bridge);
         printLowerBridge(bridge);
         //실행 예시와 맞추기 위해 한 칸 띄워준다.
         System.out.println();
         System.out.println(GAME_SUCCESS_OR_NOT_MSG + successOrFail);
-        System.out.println(TOTAL_NUMBER_MSG + count);
+        System.out.println(TOTAL_NUMBER_MSG + attemptCount);
     }
 }

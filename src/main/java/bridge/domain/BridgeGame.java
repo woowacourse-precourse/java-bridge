@@ -21,8 +21,10 @@ public class BridgeGame {
     private final String WRONG_WHEN_INPUT_UP = "UX";
     private final String WRONG_WHEN_INPUT_DOWN = "DX";
     private final String RETRY = "R";
+    private final int START_OF_ATTEMPT_COUNT = 0;
     private final List<String> bridge;
     private List<String> userMoving;
+    private int attemptCount = START_OF_ATTEMPT_COUNT;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -76,11 +78,19 @@ public class BridgeGame {
         return isEndOfBridge() && (userMoving.get(userMoving.size() - 1).equals(UP) || userMoving.get(userMoving.size() - 1).equals(DOWN));
     }
 
+    public void addAttemptCount(){
+        attemptCount++;
+    }
+
     public List<String> getUserMoving() {
         return userMoving;
     }
 
     public List<String> getBridge() {
         return bridge;
+    }
+
+    public int getAttemptCount() {
+        return attemptCount;
     }
 }
