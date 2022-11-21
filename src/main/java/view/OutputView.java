@@ -88,7 +88,7 @@ public class OutputView {
      */
     public static void printResult(BridgeGame bridgeGame, GameStatus gameStatus) {
         printFinalBridge(bridgeGame);
-        printSuccessStatus(bridgeGame, gameStatus);
+        printSuccessStatus(gameStatus);
         System.out.println(TOTAL_NUMBER_ATTEMPTS + bridgeGame.getCount());
     }
 
@@ -97,7 +97,7 @@ public class OutputView {
         printMap(bridgeGame);
     }
 
-    private static void printSuccessStatus(BridgeGame bridgeGame, GameStatus gameStatus) {
+    private static void printSuccessStatus(GameStatus gameStatus) {
         System.out.print(IS_CLEAR);
         if (gameStatus.isFailure()) {
             System.out.println("실패");
