@@ -29,9 +29,9 @@ public class InputView {
         System.out.println(readBridgeSizeMs);
         try {
             input = getInput();
-            if (ThisIsNumber(input)) getSize();
+            if (ThisIsNumber(input)) getSize(); //숫자가 아니라면
             size = Integer.parseInt(input);
-            if (RangeOfNumber()) getSize();
+            if (RangeOfNumber()) getSize(); //숫자의 범위가 3~20이 아니라면
         } catch (IllegalArgumentException e) {
             size = readBridgeSize();
         }
