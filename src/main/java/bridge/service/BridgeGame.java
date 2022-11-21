@@ -54,9 +54,9 @@ public class BridgeGame {
 
     private String compareUserAndAnswer(String user, String answer) {
         if (user.equals(answer)) {
-            return Bridge.O.getLocation();
+            return Bridge.O.getState();
         }
-        return Bridge.X.getLocation();
+        return Bridge.X.getState();
     }
 
     /**

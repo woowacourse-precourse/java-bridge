@@ -3,38 +3,35 @@ package bridge.domain;
 import bridge.constant.Bridge;
 
 public class Map {
-    private static final String OPEN_SYMBOL = "[";
-    private static final String MIDDLE_SYMBOL = "|";
-    private static final String CLOSE_SYMBOL = "]";
 
     private String upMap;
     private String downMap;
 
     public Map() {
-        this.upMap = OPEN_SYMBOL;
-        this.downMap = OPEN_SYMBOL;
+        this.upMap = Bridge.OPEN.getState();
+        this.downMap = Bridge.OPEN.getState();
     }
 
     public void makeUpMap(String result) {
-        upMap += result + MIDDLE_SYMBOL;
-        downMap += Bridge.BLANK.getLocation() + MIDDLE_SYMBOL;
+        upMap += result + Bridge.MIDDLE.getState();
+        downMap += Bridge.BLANK.getState() + Bridge.MIDDLE.getState();
     }
 
     public void makeDownMap(String result) {
-        upMap += Bridge.BLANK.getLocation() + MIDDLE_SYMBOL;
-        downMap += result + MIDDLE_SYMBOL;
+        upMap += Bridge.BLANK.getState() + Bridge.MIDDLE.getState();
+        downMap += result + Bridge.MIDDLE.getState();
     }
 
     public void resetMap() {
-        upMap = OPEN_SYMBOL;
-        downMap = OPEN_SYMBOL;
+        upMap = Bridge.OPEN.getState();
+        downMap = Bridge.OPEN.getState();
     }
 
     public String getUpMap() {
-        return upMap.substring(0, upMap.length() - 1) + CLOSE_SYMBOL;
+        return upMap.substring(0, upMap.length() - 1) + Bridge.CLOSE.getState();
     }
 
     public String getDownMap() {
-        return downMap.substring(0, downMap.length() - 1) + CLOSE_SYMBOL;
+        return downMap.substring(0, downMap.length() - 1) + Bridge.CLOSE.getState();
     }
 }

@@ -3,16 +3,19 @@ package bridge.constant;
 public enum Bridge {
     O(" O "),
     X(" X "),
-    BLANK("   ");
+    BLANK("   "),
+    OPEN("["),
+    MIDDLE("|"),
+    CLOSE("]");
 
-    private final String location;
+    private final String state;
 
-    private Bridge(String location) {
-        this.location = location;
+    private Bridge(String state) {
+        this.state = state;
     }
 
-    public String getLocation() {
-        return location;
+    public String getState() {
+        return state;
     }
 
 }
