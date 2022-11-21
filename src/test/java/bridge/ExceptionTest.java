@@ -33,6 +33,15 @@ public class ExceptionTest {
         String input = "I";
         assertThatThrownBy(() -> inputView.readMovingCommandCheck(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] U와 R 중에 하나를 입력하세요.");
+                .hasMessage("[ERROR] U와 D 중에 하나를 입력하세요.");
+    }
+
+    @Test
+    @DisplayName("사용자의 요청이 올바르지 않으면 예외 발생")
+    void 사용자의_요청이_올바르지_않으면_예외_발생(){
+        String input = "O";
+        assertThatThrownBy(() -> inputView.readGameCommandCheck(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] R와 Q 중에 하나를 입력하세요.");
     }
 }
