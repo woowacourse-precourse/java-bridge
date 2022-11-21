@@ -13,7 +13,6 @@ public class InputValidator {
 
     private InputValidator() {
     }
-    //TODO 수정 고려
 
     public static boolean isValidSize(String inputSize) {
         if (isNullOrBlank(inputSize) || !inputSize.matches(IS_NUMBER)) {

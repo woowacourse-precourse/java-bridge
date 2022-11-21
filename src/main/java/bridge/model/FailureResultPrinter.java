@@ -5,7 +5,7 @@ import java.util.List;
 public class FailureResultPrinter extends ResultPrinter {
 
     public static final String WRONG_SIGN = "X";
-    public static final int LAST_INDEX_AND_SIZE_DIFFERENT = 1;
+    public static final int INDEX_SIZE_DIFFERENT = 1;
     public static final int BEGIN_INDEX = 0;
 
     FailureResultPrinter(List<String> directions) {
@@ -22,11 +22,14 @@ public class FailureResultPrinter extends ResultPrinter {
     }
 
     private static String replaceSignToX(String result) {
-        String substring = result.substring(BEGIN_INDEX, getEndIndex(result.length()));
-        return substring + WRONG_SIGN;
+        return removeLastChar(result) + WRONG_SIGN;
+    }
+
+    private static String removeLastChar(String result) {
+        return result.substring(BEGIN_INDEX, getEndIndex(result.length()));
     }
 
     private static int getEndIndex(int size) {
-        return size - LAST_INDEX_AND_SIZE_DIFFERENT;
+        return size - INDEX_SIZE_DIFFERENT;
     }
 }
