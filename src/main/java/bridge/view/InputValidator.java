@@ -4,7 +4,7 @@ import java.util.List;
 
 public class InputValidator {
 
-    static void validateBridgeSize(int size) {
+    void validateBridgeSize(int size) {
         final int BRIDGE_SIZE_MIN_INCLUSIVE = 3;
         final int BRIDGE_SIZE_MAX_INCLUSIVE = 20;
 
@@ -16,7 +16,7 @@ public class InputValidator {
         }
     }
 
-    static void validateMoving(String moving) {
+    void validateMoving(String moving) {
         final String UP = "U";
         final String DOWN = "D";
 
@@ -25,7 +25,7 @@ public class InputValidator {
         }
     }
 
-    static void validateGameCommand(String gameCommand) {
+    void validateGameCommand(String gameCommand) {
         final String QUIT = "Q";
         final String RETRY = "R";
 

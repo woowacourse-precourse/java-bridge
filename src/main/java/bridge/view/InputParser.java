@@ -4,7 +4,7 @@ public class InputParser {
 
     public static final String NUMBER_REGEX = "^\\d+$";
 
-    static int parseNumber(String str) {
+    int parseNumber(String str) {
         if (!str.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException("숫자를 입력해주세요");
         }
