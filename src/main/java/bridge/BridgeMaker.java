@@ -23,15 +23,25 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridgeList = new ArrayList<>();
         for(int count = 0; count < size; count++) {
-            try {
-                int number = bridgeNumberGenerator.generate();
-                String bridgeShape = discriminateBridgeShape(number);
-                bridgeList.add(bridgeShape);
-            } catch(IllegalArgumentException e){
-                e.printStackTrace();
-            }
+            int number = makeRandomNumber();
+            String bridgeShape = discriminateBridgeShape(number);
+            bridgeList.add(bridgeShape);
         }
         return bridgeList;
+    }
+
+    int makeRandomNumber(){
+        int number;
+        while(true) {
+            try {
+                number = bridgeNumberGenerator.generate();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                continue;
+            }
+            break;
+        }
+        return number;
     }
 
     String discriminateBridgeShape(int bridgeNumber){
