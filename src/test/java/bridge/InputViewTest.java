@@ -1,5 +1,6 @@
 package bridge;
 
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
+import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -58,4 +59,25 @@ class InputViewTest {
         exceptionBridgeSize(input);
     }
 
+
+    @DisplayName("이동할 칸을 정상적으로 입력 받는 케이스")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void 이동할_칸을_정상적으로_입력받는_경우(String input){
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readMoving()).isNotIn(Step.values());
+        System.setIn(sysInBackup);
+    }
+
+    @DisplayName("이동할 칸에 U,D 제외하고 다른 문자가 입력되는 경우 예외 처리")
+    @ValueSource(strings = {"UU", "DD", "Q" , "1", ","})
+    @ParameterizedTest
+    void 이동할_칸을_정상적으로_입력받지_못하는_경우(String input){
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class);
+        System.setIn(sysInBackup);
+    }
 }
