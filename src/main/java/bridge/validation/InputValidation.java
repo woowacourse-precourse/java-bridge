@@ -1,9 +1,11 @@
 package bridge.validation;
 
+import static bridge.constant.BridgeConstant.DIRECTION_INPUT_REGEX;
 import static bridge.constant.BridgeConstant.MAX_BRIDGE_LENGTH;
 import static bridge.constant.BridgeConstant.MIN_BRIDGE_LENGTH;
 import static bridge.constant.BridgeErrorMessage.BRIDGE_LENGTH_IS_NOT_DIGIT_ERROR_MESSAGE;
 import static bridge.constant.BridgeErrorMessage.BRIDGE_LENGTH_IS_NOT_IN_RANGE_ERROR_MESSAGE;
+import static bridge.constant.BridgeErrorMessage.DIRECTION_IS_NOT_VALID_ERROR_MESSAGE;
 
 public class InputValidation {
 
@@ -21,5 +23,12 @@ public class InputValidation {
         }
 
         return inputValue;
+    }
+
+    public String getDirections(String input) throws IllegalArgumentException {
+        if(!input.matches(DIRECTION_INPUT_REGEX)) {
+            throw new IllegalArgumentException(DIRECTION_IS_NOT_VALID_ERROR_MESSAGE);
+        }
+        return input;
     }
 }
