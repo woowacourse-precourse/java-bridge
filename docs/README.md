@@ -79,4 +79,4 @@
 - [X] InputType -> Command로 이름 변경
 - [X] GamePlayer.play() 메서드 추출
 - [X] gamePlayer에서 bridgeMap new 연산자 사용하는 대신 리셋 기능 구현
-- [ ] GamePlayer 필드들 클래스로 빼기
+- [X] GamePlayer 필드들 클래스로 빼기
