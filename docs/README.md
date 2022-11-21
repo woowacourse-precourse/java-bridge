@@ -27,7 +27,7 @@
 ### 구현 목록
 
 - [x]  게임 시작 메세지를 출력하는 기능 구현 - `OutputView#printStart()`
-- [ ]  현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력하는 기능 구현 - `OutputView#printMap()`
+- [x]  현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력하는 기능 구현 - `OutputView#printMap()`
 - [ ]  게임의 최종 결과를 정해진 형식에 맞춰 출력하는 기능 구현 - `OutputView#printResult()`
 
 ## ****BridgeGame 클래스****
