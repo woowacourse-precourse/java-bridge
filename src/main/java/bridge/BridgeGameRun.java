@@ -77,4 +77,12 @@ public class BridgeGameRun {
         }
         return "실패";
     }
+
+    private int getNumberToBridgeSize(String bridgeSize) {
+        try {
+            return Integer.parseInt(bridgeSize);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
