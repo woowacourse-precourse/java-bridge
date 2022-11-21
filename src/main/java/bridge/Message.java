@@ -30,7 +30,6 @@ public enum Message {
     }
 
     public static void inputMoveBridgeMessage() {
-        System.out.println();
         System.out.println(INPUT_MOVE_BRIDGE_MESSAGE.script + " " + BRIDGE_OPTIONS.script);
     }
 
