@@ -39,4 +39,17 @@ public class InputViewTest {
         //then
         assertThat(move).isEqualTo("U");
     }
+    @DisplayName("이동할 칸 D 입력 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"D"})
+    void readMovingD(String input) {
+        //given
+        InputView inputView = new InputView();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        //when
+        System.setIn(in);
+        String move = inputView.readMoving();
+        //then
+        assertThat(move).isEqualTo("D");
+    }
 }
