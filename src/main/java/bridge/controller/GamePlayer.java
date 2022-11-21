@@ -18,8 +18,8 @@ public class GamePlayer {
         crossingBridge();
     }
     private void crossingBridge() {
-        for(int i = 0; i < this.bridge.size(); i++) {
-            this.bridgeGame.move(inputView.readMoving());
+        for(String space: this.bridge) {
+            this.bridgeGame.move(inputView.readMoving(), space);
         }
     }
 }
