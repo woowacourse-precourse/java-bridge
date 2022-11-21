@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,21 @@ class BridgeGameTest {
                 .collect(Collectors.toList())).isEqualTo(directions);
     }
 
+    @DisplayName("retry 메소드에 Pedestrian 객체를 입력하였을 때 Pedestrian 객체의 기록을 지우는지 확인")
+    @ParameterizedTest
+    @MethodSource("provideArgumentsForMoveTest")
+    void retry_test(List<String> inputDirections) {
+        List<Direction> directions = createDirections(inputDirections);
+        moveInManyDirections(game, directions);
+        int expectedCount = 0;
+
+        game.retry(pedestrian);
+
+        assertThat(pedestrian.readRecord()
+                .count()).isEqualTo(expectedCount);
+    }
+
+
     private void moveInManyDirections(BridgeGame game, List<Direction> directions) {
         for (Direction direction : directions) {
             game.move(pedestrian, direction);
@@ -60,6 +76,16 @@ class BridgeGameTest {
                 Arguments.of(List.of("U", "D", "D", "U", "U")),
                 Arguments.of(List.of("U", "U", "U", "U", "U")),
                 Arguments.of(List.of("D", "D", "D", "D", "D"))
+        );
+    }
+
+    static Stream<Arguments> provideArgumentsForIsSuccessTest() {
+        return Stream.of(
+                Arguments.of(List.of("U"), false),
+                Arguments.of(List.of("U", "D"), false),
+                Arguments.of(List.of("U", "U", "U"), false),
+                Arguments.of(List.of("U", "U", "U", "D"), false),
+                Arguments.of(List.of("D", "D", "D", "D", "D"), true)
         );
     }
 }
