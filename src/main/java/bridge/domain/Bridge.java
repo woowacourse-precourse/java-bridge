@@ -13,11 +13,14 @@ public class Bridge {
         validate(length, bridge);
         this.length = length;
         this.bridge = bridge;
+        validateLength(this.length);
     }
 
     public Bridge(List<String> bridge) {
         this.length = bridge.size();
         this.bridge = bridge;
+        validate(this.length, this.bridge);
+        validateLength(this.length);
     }
 
     private void validate(int length, List<String> bridge) {
