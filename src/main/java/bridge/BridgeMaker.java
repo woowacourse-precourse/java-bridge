@@ -24,6 +24,13 @@ public class BridgeMaker {
         return numberBridge;
     }
 
+    public void transferNumberToAlphabet(List<Integer> numberBridge) {
+        List<String> alphabetBridge = new ArrayList<>();
+        for (int i = 0; i < numberBridge.size(); i++) {
+            if (numberBridge.get(i) == 0) {alphabetBridge.add("U");}
+            if (numberBridge.get(i) == 1) {alphabetBridge.add("D");}
+        }
+    }
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
