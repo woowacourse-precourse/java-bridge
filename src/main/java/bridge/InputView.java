@@ -53,7 +53,20 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String userInput=readLine();
+        errorCheckReadMovig(userInput);
+        return userInput;
+    }
+
+    public void errorCheckReadMovig(String userInput) {
+        try{
+            if(userInput.equals("U")||userInput.equals("D")){
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
     /**

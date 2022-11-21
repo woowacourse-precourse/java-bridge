@@ -13,15 +13,24 @@ public class GameService {
 
         int size=inputView.readBridgeSize();        //다리 길이 입력
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> strings = bridgeMaker.makeBridge(size);    // 다리 "UDU" String 으로 List에 담김
+        List<String> bridges = bridgeMaker.makeBridge(size);    // 다리 "UDU" String 으로 List에 담김
 
-
+        String correctBridge="";
+        int indexOfBridge=0;
         while (gameStartOrNot){
-            if(!bridgeGame.move()){
-                gameStartOrNot= bridgeGame.retry();
-            }else{
+            outputView.printUpOrDownMessage();
+            String upOrDown=inputView.readMoving();
+            boolean stillgameSign=bridgeGame.move(bridges.get(0), upOrDown, indexOfBridge);
+            if(!stillgameSign){
+                correctBridge+="X";
 
+            }else{
+                correctBridge+="O";
             }
+            if(!stillgameSign){
+                bridgeGame.retry();
+            }
+            indexOfBridge++;
         }
     }
 }
