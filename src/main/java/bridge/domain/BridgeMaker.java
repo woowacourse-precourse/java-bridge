@@ -36,6 +36,6 @@ public class BridgeMaker {
             return BridgeComponent.DOWN.getComponentLetter();
         if (bridgeNumber == BridgeComponent.UP.getComponentNumber())
             return BridgeComponent.UP.getComponentLetter();
-        return ""; // return 수정
+        return "";
     }
 }
