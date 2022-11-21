@@ -3,6 +3,7 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import javax.xml.crypto.dom.DOMCryptoContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,19 +28,32 @@ public class BridgeGame {
     List<List<String>> results = new ArrayList<>();
     private int count = 0;
     boolean isRight = true;
+    String gameResult = "";
 
     public void start(){
         outputView.printStartMessage();
         int size = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(size);
         System.out.println(bridge);
-        while (isRight){
+        judgeGame();
+        if(!isRight)
+            retry();
+        System.out.println(gameResult);
+
+    }
+
+    private void judgeGame() {
+        while (isRight && count<bridge.size()){
             String moving = inputView.readMoving();
             move(bridge,moving,count);
             count++;
             outputView.printMap(results);
         }
+        if(isRight)
+            gameResult = "성공";
+
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -61,6 +75,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        String restart = inputView.readGameCommand();
+        if(restart.equals("R")){
+            up = new ArrayList<>();
+            down = new ArrayList<>();
+            judgeGame();
+        }
+        if(restart.equals("Q"))
+            gameResult = "실패";
+
     }
 
     public void checkUp(List<String> bridge, String moving, int count){
