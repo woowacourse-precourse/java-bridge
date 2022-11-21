@@ -29,23 +29,23 @@ public enum PassingDirectionType {
         this.isSelected = isSelected;
     }
 
-    public static PassingDirectionType getSelectedDir(Position position, Bridge bridge) {
+    public static PassingDirectionType getSelectedDirection(Position position, Bridge bridge) {
         return Arrays.stream(PassingDirectionType.values())
                 .filter(type -> type.isSelected)
-                .filter(type -> findSelectedDir(type, position, bridge))
+                .filter(type -> findSelectedDirection(type, position, bridge))
                 .findAny()
                 .orElse(null);
     }
 
-    public static PassingDirectionType getNotSelectedDir(Position position) {
+    public static PassingDirectionType getNotSelectedDirection(Position position) {
         return Arrays.stream(PassingDirectionType.values())
                 .filter(type -> !type.isSelected)
-                .filter(type -> findNotSelectedDir(type, position))
+                .filter(type -> findNotSelectedDirection(type, position))
                 .findAny()
                 .orElse(null);
     }
 
-    private static boolean findSelectedDir(PassingDirectionType type, Position position, Bridge bridge) {
+    private static boolean findSelectedDirection(PassingDirectionType type, Position position, Bridge bridge) {
         if (position.getDirection().isSameUp()) {
             return moveToUp(type, position, bridge);
         }
@@ -66,7 +66,7 @@ public enum PassingDirectionType {
         return type.direction.equals(DOWN) && type.isMovable.contains(NOT_MOVABLE);
     }
 
-    private static boolean findNotSelectedDir(PassingDirectionType type, Position position) {
+    private static boolean findNotSelectedDirection(PassingDirectionType type, Position position) {
         if (position.getDirection().isSameUp()) {
             return type.direction.equals(UP);
         }
@@ -78,7 +78,7 @@ public enum PassingDirectionType {
                 .anyMatch(type -> type.isMovable.contains(NOT_MOVABLE));
     }
 
-    public static String reformat(List<PassingDirectionType> types) {
+    public static String reformatTypes(List<PassingDirectionType> types) {
         return types.stream()
                 .map(type -> type.isMovable)
                 .collect(Collectors.joining(" | ", "[ ", " ]"));

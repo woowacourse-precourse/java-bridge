@@ -22,9 +22,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean printMap(Result result) {
-        List<List<PassingDirectionType>> resultsGroup = result.getResultsGroup();
-        for (List<PassingDirectionType> results : resultsGroup) {
-            System.out.println(PassingDirectionType.reformat(results));
+        List<List<PassingDirectionType>> directionTypesGroup = result.getDirectionTypesGroup();
+        for (List<PassingDirectionType> type : directionTypesGroup) {
+            System.out.println(PassingDirectionType.reformatTypes(type));
         }
         System.out.println();
         return result.isContainWrongAnswer();

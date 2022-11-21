@@ -42,12 +42,12 @@ public class PassingPositions {
     }
 
     private void moveToUp(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, Position position) {
-        upDirections.add(PassingDirectionType.getSelectedDir(position, bridge));
-        downDirections.add(PassingDirectionType.getNotSelectedDir(position));
+        upDirections.add(PassingDirectionType.getSelectedDirection(position, bridge));
+        downDirections.add(PassingDirectionType.getNotSelectedDirection(position));
     }
 
     private void moveToDown(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, Position position) {
-        upDirections.add(PassingDirectionType.getNotSelectedDir(position));
-        downDirections.add(PassingDirectionType.getSelectedDir(position, bridge));
+        upDirections.add(PassingDirectionType.getNotSelectedDirection(position));
+        downDirections.add(PassingDirectionType.getSelectedDirection(position, bridge));
     }
 }
