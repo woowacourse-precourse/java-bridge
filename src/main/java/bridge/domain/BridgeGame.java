@@ -69,4 +69,15 @@ public class BridgeGame {
 
         return false;
     }
+
+    public boolean isFailure() {
+        int lastIdx = bridgeCurrStatus.size() - 1;
+
+        if (bridgeCurrStatus.get(lastIdx) == "X") {
+            return true;
+        }
+
+        return false;
+    }
+
 }
