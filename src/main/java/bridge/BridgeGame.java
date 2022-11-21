@@ -9,16 +9,12 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final int tryCnt;
-    private final BridgeMap successMap;
-    private final BridgeMap failureMap;
+    private final PlayerMapMaker playerMapMaker;
 
     public BridgeGame(List<String> bridge, int tryCnt) {
         this.bridge = bridge;
         this.tryCnt = tryCnt;
-
-        BridgeMapMaker bridgeMapMaker = new BridgeMapMaker(bridge);
-        this.successMap = bridgeMapMaker.getSuccessBridgeMap();
-        this.failureMap = bridgeMapMaker.getFailureBridgeMap();
+        this.playerMapMaker = new PlayerMapMaker(bridge);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -27,28 +23,17 @@ public class BridgeGame {
      */
     public TotalResult move(String movingSide, int distance) {
         if (movingSuccess(movingSide, distance)) {
-            RouteMap resultMap = getSuccessRouteAt(distance);
+            PlayerMap resultMap = playerMapMaker.makeSuccessPlayerMapTo(distance);
             return new TotalResult(resultMap, tryCnt);
         }
 
-        RouteMap resultMap = getFailureRouteAt(distance);
+        PlayerMap resultMap = playerMapMaker.makeFailurePlayerMapTo(distance);
         return new TotalResult(resultMap, tryCnt);
     }
 
     private boolean movingSuccess(String movingSide, int distance) {
         String bridgeSide = bridge.get(distance - 1);
         return movingSide.equals(bridgeSide);
-    }
-
-    private RouteMap getSuccessRouteAt(int distance) {
-        return successMap.getRouteAt(distance);
-    }
-
-    private RouteMap getFailureRouteAt(int distance) {
-        RouteMap successRoute = successMap.getRouteAt(distance - 1);
-        RouteMap failureStatus = failureMap.getStatusAt(distance);
-
-        return successRoute.join(failureStatus);
     }
 
     /**
