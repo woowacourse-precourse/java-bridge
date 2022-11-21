@@ -3,7 +3,6 @@ package bridge.views;
 import bridge.utils.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
-// TODO Singleton 패턴으로 구현 고민해보기
 public class InputView {
     private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String REQUEST_MOVING_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";

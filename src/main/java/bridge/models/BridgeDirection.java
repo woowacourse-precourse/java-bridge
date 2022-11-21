@@ -17,7 +17,6 @@ public enum BridgeDirection {
         return capital;
     }
 
-    // TODO BridgeDirection Enum 구조 고찰해보기
     public static BridgeDirection getDirection(int number) {
         for (BridgeDirection bridgeDirection : BridgeDirection.values()) {
             if (bridgeDirection.number == number) {
