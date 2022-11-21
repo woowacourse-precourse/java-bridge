@@ -14,6 +14,7 @@ import java.util.List;
 public class BridgeGameController {
     private static List<String> bridge = new ArrayList<>();
     private static final List<String> movingChoices = new ArrayList<>();
+    private static Player player = new Player(movingChoices);
     private static String gameCommand = "";
 
     private final BridgeGame game;
@@ -50,7 +51,7 @@ public class BridgeGameController {
 
     public void playing() {
         movingChoices.add(getMoving());
-        Player player = new Player(movingChoices);
+        player = new Player(movingChoices);
         printMap(game.move(player, bridge));
         if (game.move(player, bridge).contains(false)) {
             rePlaying();
@@ -72,9 +73,9 @@ public class BridgeGameController {
     }
 
     public void rePlaying() {
-        movingChoices.remove(movingChoices.size() - 1);
         gameCommand = getGameCommand();
         if (game.retry(gameCommand)) {
+            movingChoices.remove(movingChoices.size() - 1);
             playing();
         }
     }
@@ -91,7 +92,7 @@ public class BridgeGameController {
 
     public void printResult(String gameCommand) {
         PrintGuideMessage.printResultGuide();
-        printMap(game.move(new Player(movingChoices), bridge));
+        printMap(game.move(player, bridge));
         String successOrNot = game.getSuccessOrNot(gameCommand, movingChoices, bridge);
         int attempts = game.getAttempts();
         outputView.printResult(successOrNot, attempts);
