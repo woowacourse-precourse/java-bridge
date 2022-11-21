@@ -9,13 +9,13 @@ public class Validator {
     }
 
     public static void validateMoving(String movingType) throws IllegalArgumentException {
-        if (movingType != "U" || movingType != "D") {
+        if (!movingType.equals("U") || !movingType.equals("D")) {
             throw new IllegalArgumentException("[ERROR] 이동은 U 또는 D를 입력해야합니다.");
         }
     }
 
     public static void validateRestartButton(String restartButton) throws IllegalArgumentException {
-        if (restartButton != "R" || restartButton != "Q"){
+        if (!restartButton.equals("R") || !restartButton.equals("Q")) {
             throw new IllegalArgumentException("[ERROR] 다시 시도는 Q 또는 R을 입력해야합니다.");
         }
     }
