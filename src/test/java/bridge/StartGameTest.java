@@ -42,6 +42,7 @@ public class StartGameTest {
         checkList = runGame.setBridgeSize().getBridge();
         assertThat(checkList).hasSize(lenght);
     }
+
     private void setInput(String input) {
         InputStream in = generateUserInput(input);
         System.setIn(in);
