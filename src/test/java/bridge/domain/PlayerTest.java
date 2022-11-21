@@ -48,7 +48,7 @@ class PlayerTest {
     @Test
     void 재시작_시_후진() {
         player.move("U");
-        player.deletePreviousResult();
+        player.deletePreviousPlayResult();
 
         assertThat(player)
                 .extracting("position", InstanceOfAssertFactories.INTEGER)
@@ -59,7 +59,7 @@ class PlayerTest {
     @Test
     void 재시작_시_이전_플레이_결과_삭제() {
         player.move("U");
-        player.deletePreviousResult();
+        player.deletePreviousPlayResult();
 
         assertThat(player.getPlayResult().getPlayResult().isEmpty()).isTrue();
     }

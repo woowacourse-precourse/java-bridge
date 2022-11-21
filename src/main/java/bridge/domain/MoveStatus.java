@@ -27,14 +27,7 @@ public enum MoveStatus {
         if (canMove) {
             return BY_SPACE_TO_MOVE.get(spaceToMove);
         }
-        return findFail(spaceToMove);
-    }
-
-    private static MoveStatus findFail(String spaceToMove) {
-        if (spaceToMove.equals(Constants.UP)) {
-            return UP_FAIL;
-        }
-        return DOWN_FAIL;
+        return BY_SPACE_TO_MOVE.get(spaceToMove + Constants.FAIL);
     }
 
     public String getUpperSideMoveMessage() {

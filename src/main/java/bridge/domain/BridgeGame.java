@@ -16,7 +16,7 @@ public class BridgeGame {
 
     public boolean retry(String retryCommand) {
         if (retryCommand.equals(RETRY)) {
-            player.deletePreviousResult();
+            player.deletePreviousPlayResult();
             return true;
         }
         return false;

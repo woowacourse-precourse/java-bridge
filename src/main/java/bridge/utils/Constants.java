@@ -5,6 +5,7 @@ import java.util.List;
 public class Constants {
     public final static String UP = "U";
     public final static String DOWN = "D";
+    public static final String FAIL = "F";
     public static final String UP_AND_FAIL = "UF";
     public static final String DOWN_AND_FAIL = "DF";
     public static final String RETRY = "R";

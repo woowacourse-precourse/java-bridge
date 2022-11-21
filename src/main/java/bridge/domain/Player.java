@@ -14,16 +14,16 @@ public class Player {
 
     public boolean move(String spaceToMove) {
         boolean canMove = bridge.hasNextTileThatPosition(position, spaceToMove);
-        move(MoveStatus.findBySpaceToMove(spaceToMove, canMove));
+        updatePlayResult(MoveStatus.findBySpaceToMove(spaceToMove, canMove));
         return canMove;
     }
 
-    private void move(MoveStatus moveStatus) {
+    private void updatePlayResult(MoveStatus moveStatus) {
         playResult.updateResult(moveStatus);
         position++;
     }
 
-    public void deletePreviousResult() {
+    public void deletePreviousPlayResult() {
         playResult.deletePreviousResult();
         position--;
     }
