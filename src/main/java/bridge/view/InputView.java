@@ -1,6 +1,8 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameCommand;
+import bridge.domain.Move;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,6 +14,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        printInputBridgeSizeMessage();
+
         // 다리 길이를 입력받고 숫자인지 확인한다.
         String input = Console.readLine();
         validateBridgeSizeType(input);
@@ -32,21 +36,22 @@ public class InputView {
         Bridge.validateLength(bridgeSize);
     }
 
-    private void convertToInteger() {
-    }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public Move readMoving() {
+        printInputMovingMessage();
+        String input = Console.readLine();
+        return Move.fromString(input);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public GameCommand readGameCommand() {
+        printInputGameCommandMessage();
+        String input = Console.readLine();
+        return GameCommand.of(input);
     }
 
 
