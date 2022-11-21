@@ -9,6 +9,8 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final int length;
     private final List<String> bridge;
+    private boolean isDone = false;
+    private int attemptCount = 0;
     public BridgeGame(int length){
         this.length = length;
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -20,7 +22,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(String input,int bridgeIndex) {
+        if(bridge.get(bridgeIndex).equals(input)){
+            if(bridgeIndex == length-1)
+                isDone = true;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -28,7 +36,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public int retry(String input) {
+        if(input.equals("Q"))
+            return 0;
+        attemptCount++;
+        return length;
     }
 
     public int getLength(){
@@ -37,5 +49,12 @@ public class BridgeGame {
 
     public List<String> getBridge(){
         return bridge;
+    }
+
+    public boolean isDone(){
+        return isDone;
+    }
+    public int getAttemptCount(){
+        return attemptCount;
     }
 }
