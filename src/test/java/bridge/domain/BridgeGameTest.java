@@ -46,8 +46,15 @@ class BridgeGameTest {
         assertThat(result.getDown().get(0)).isEqualTo("X");
     }
 
+    @DisplayName("다리를 한 번 건넌 후 재시도하는 경우 결과가 초기화되는지 확인")
     @Test
     void retry() {
+        bridgeGame.move("D");
+        bridgeGame.retry();
+        assertThat(user.getPosition()).isEqualTo(0);
+        assertThat(result.getUp().size()).isEqualTo(0);
+        assertThat(result.getDown().size()).isEqualTo(0);
+        assertThat(result.getNumberOfTrial()).isEqualTo(2);
     }
 
     @Test
