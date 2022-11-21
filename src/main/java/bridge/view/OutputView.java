@@ -2,8 +2,6 @@ package bridge.view;
 
 import bridge.constant.Direction;
 import bridge.constant.MoveStatus;
-import bridge.domain.Result;
-import bridge.dto.CurrentGameResultResponse;
 import bridge.dto.FinishedGameResultResponse;
 import bridge.util.OutputConverter;
 import java.util.List;
