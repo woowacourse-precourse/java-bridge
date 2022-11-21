@@ -29,6 +29,9 @@ public class BridgeGame {
     public HashMap<String, List<String>> move(String movingCommand) {
         HashMap<String,String> oppositionCommand = new HashMap<>(Map.of("U","D","D","U"));
         pathCheck(movingCommand, oppositionCommand);
+        if (isFail()){
+            retry();
+        }
         moveCount++;
         return path;
     }
@@ -44,10 +47,8 @@ public class BridgeGame {
     }
     private boolean isFail(){
         boolean result = false;
-        for (int i=0;i<moveCount;i++){
-            if (path.get("U").contains("X") || path.get("D").contains("X")){
-                result = true;
-            }
+        if (path.get("U").contains("X") || path.get("D").contains("X")){
+            result = true;
         }
         return result;
     }
