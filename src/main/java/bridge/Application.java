@@ -6,5 +6,6 @@ public class Application {
         InputView input = new InputView();
         int size = input.readBridgeSize();
         Bridge bridge = new Bridge(size);
+        String direction = input.readMoving();
     }
 }
