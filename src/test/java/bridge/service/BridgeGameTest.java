@@ -21,15 +21,13 @@ class BridgeGameTest {
     @Test
     void createSuccessMoveInBridgeGame() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "D", "U"));
-        User user = new User();
-        BridgeGame bridgeGame = new BridgeGame(bridge, user);
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "D", "U")), new User());
         boolean expectedFlag = true;
 
         // when
         List<String> movings = List.of("U", "D", "U");
 
-        //then
+        // then
         movings.forEach(moving -> assertThat(bridgeGame.move(moving)).isEqualTo(expectedFlag));
     }
 
@@ -37,9 +35,7 @@ class BridgeGameTest {
     @Test
     void createFailMoveInBridgeGame() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "U", "U"));
-        User user = new User();
-        BridgeGame bridgeGame = new BridgeGame(bridge, user);
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
         boolean expectedFlag = false;
 
         // when
@@ -54,9 +50,7 @@ class BridgeGameTest {
     @MethodSource("generateData")
     void createBridgeStateInBridgeGame(String moving, String upperResult, String lowerResult) {
         // given
-        Bridge bridge = new Bridge(List.of("U", "U", "U"));
-        User user = new User();
-        BridgeGame bridgeGame = new BridgeGame(bridge, user);
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
 
         // when
         bridgeGame.move(moving);
@@ -71,5 +65,22 @@ class BridgeGameTest {
                 Arguments.of("U", "O", " "),
                 Arguments.of("D", " ", "X")
         );
+    }
+
+    @DisplayName("게임을 재시작하는 경우, 사용자의 위치와 다리 상태가 초기화된다.")
+    @Test
+    void resetUserPositionAndBridgeStateInBridgeGame() {
+        // given
+        User user = new User();
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), user);
+
+        // when
+        bridgeGame.move("D");
+        bridgeGame.retry();
+
+        // then
+        assertThat(user.getPosition()).isEqualTo(0);
+        assertThat(bridgeGame.getBridgeState().getLowerBridge().size()).isEqualTo(0);
+        assertThat(bridgeGame.getBridgeState().getUpperBridge().size()).isEqualTo(0);
     }
 }
