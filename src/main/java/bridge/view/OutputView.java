@@ -84,7 +84,7 @@ public class OutputView {
         // index 0 - 아래쪽 다리
         // index 1 - 위 쪽 다리
         System.out.println(bridgeInfo[1].toString());
-        System.out.println(bridgeInfo[0].toString());
+        System.out.println(bridgeInfo[0].toString() + "\n");
     }
 
     private int getReverseNumber(int number) {
@@ -106,7 +106,6 @@ public class OutputView {
     public void printResult(List<String> movingStatus, boolean isSuccess, int attemptsCount) {
         System.out.println(GameResultMessage.HEADER.getMessage());
         printMap(movingStatus, isSuccess);
-        System.out.println();
         printSuccessInfo(isSuccess);
         System.out.println(GameResultMessage.ATTEMPTS_COUNT.getMessage() + attemptsCount);
     }

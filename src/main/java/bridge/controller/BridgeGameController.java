@@ -37,7 +37,7 @@ public class BridgeGameController {
     }
 
     private static void startBridgeGame() {
-        outputView.printMessage(Message.GAME_START.getMessage(), "\n");
+        outputView.printMessage(Message.GAME_START.getMessage(), "\n\n");
         int length = getBridgeLength();
         manager.setBridgeStatus(bridgeMaker.makeBridge(length));
     }
