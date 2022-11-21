@@ -83,14 +83,25 @@ public class BridgeGameRun {
     }
 
     private boolean isRetry() {
-        String command = inputView.readGameCommand();
-        inputValidation.readGameCommandValidation(command);
+        String command = getGameCommandByValidation();
 
         if (command.equals("R")) {
             bridgeGame.retry();
             return true;
         }
         return false;
+    }
+
+    private String getGameCommandByValidation() {
+        while (true) {
+            try {
+                String command = inputView.readGameCommand();
+                inputValidation.readGameCommandValidation(command);
+                return command;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void bridgeGameEnd() {
@@ -118,4 +129,3 @@ public class BridgeGameRun {
         }
     }
 }
-//ToDo: 에러 검증부분 묶어서 리팩토링
