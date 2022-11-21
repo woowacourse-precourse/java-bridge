@@ -51,4 +51,8 @@ public class Application {
         }
         return false;
     }
+
+    public static void printCurrent() {
+
+    }
 }
