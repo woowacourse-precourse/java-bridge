@@ -12,6 +12,10 @@ public class BridgeGame {
         this.indexOfBridge = 0;
     }
 
+    public int getIndexOfBridge() {
+        return indexOfBridge;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
