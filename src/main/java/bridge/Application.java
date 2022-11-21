@@ -76,7 +76,7 @@ public class Application {
 
     private static void CheckRetry(){
         String retry = inputview.readGameCommand();
-        if(retry.equals("R"))
+        if(retry.equals(Retry.R.name()))
             bridgeGame.retry();
 
         return;

@@ -70,7 +70,7 @@ public class InputView {
     }
 
     private void checkUpOrDown(String input) {
-        if (!input.equals("U") && !input.equals("D"))
+        if(!Step.validStep(input))
             throw new IllegalArgumentException(Message.ERROR_UP_AND_DOWN);
     }
     //endregion
@@ -97,7 +97,7 @@ public class InputView {
     }
 
     private void checkRetryAndQuit(String input) {
-        if (!input.equals("R") && !input.equals("Q"))
+        if (!Retry.validRetry(input))
             throw new IllegalArgumentException(Message.ERROR_RETRY_AND_QUIT);
     }
     //endregion

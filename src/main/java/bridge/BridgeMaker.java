@@ -7,17 +7,6 @@ import java.util.ArrayList;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    public enum Move{
-        D(0),
-        U(1);
-
-        public final int value;
-
-        Move(int value) {
-            this.value = value;
-        }
-    }
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -33,19 +22,11 @@ public class BridgeMaker {
 
         for(int i = 0; i < size; i++){
             int random = bridgeNumberGenerator.generate();
-            Move move = getMove(random);
-            bridge.add(move.name());
+            Step step = Step.getStep(random);
+            bridge.add(step.name());
         }
 
         return bridge;
     }
 
-    private Move getMove(int value){
-        for(Move move : Move.values()){
-            if(move.value == value)
-                return move;
-        }
-
-        return null;
-    }
 }

@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
+    private static final String CORRECT = "O";
+    private static final String WRONG = "X";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -82,9 +83,9 @@ public class OutputView {
 
     private String compareStair(String bridge, String move){
         if(bridge.equals(move))
-            return "O";
+            return CORRECT;
 
-        return "X";
+        return WRONG;
     }
 
     public static void printError(String errorMessage){
