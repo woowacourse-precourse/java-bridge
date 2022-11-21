@@ -47,7 +47,7 @@ public class GameTest extends NsTest {
         OutputView output = new OutputView();
         List<String> bridge = List.of("U", "U", "D", "D");
         output.printMap(bridge, "D", isPassed);
-        
+
         assertThat(output()).contains(upperPath);
         assertThat(output()).contains(lowerPath);
     }
@@ -63,6 +63,21 @@ public class GameTest extends NsTest {
             String expectedMessage = COUNT_OF_RETRY.getMessage() + expectedCount;
             assertThat(output()).contains(expectedMessage);
         }, 1, 0, 0);
+    }
+
+    @DisplayName("게임성공여부를 확인합니다.")
+    @CsvSource(value = {
+            "3 & U & D & R & D & R & D & Q,실패",
+            "3 & D & Q,실패",
+            "3 & U & U & U,성공",
+            "3 & D & R & U & U & U,성공"})
+    @ParameterizedTest
+    void result(String runInputs, String expectedResult) {
+        String[] inputArray = runInputs.split(" & ");
+        assertRandomNumberInRangeTest(() -> {
+            run(inputArray);
+            assertThat(output()).contains(expectedResult);
+        }, 1, 1, 1);
     }
 
     @Override
