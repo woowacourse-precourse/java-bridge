@@ -12,7 +12,7 @@ public class OutputView {
      */
     public void printMap(GameData gameData) {
         System.out.println("[ " + String.join(" | ", gameData.getTopStatus()) + " ]");
-        System.out.println("[ " + String.join(" | ", gameData.getBottomStatus()) + " ]");
+        System.out.println("[ " + String.join(" | ", gameData.getBottomStatus()) + " ]\n");
     }
 
     /**
