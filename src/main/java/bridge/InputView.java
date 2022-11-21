@@ -9,7 +9,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(Message.BRIDGE_LENTH_INPUT_MESSAGE);
+        while(true){
+            try{
+                return Integer.parseInt(InputValidator.getValidateInput(InputType.BRIDGE));
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
