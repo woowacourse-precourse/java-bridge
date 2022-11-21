@@ -7,23 +7,22 @@ public enum BridgeChannel {
 	DOWN(0, "D"),
 	UP(1, "U");
 
-	private final int channelInNumber;
-	private final String channelInString;
+	private final int channelType;
+	private final String channelShape;
 
-	BridgeChannel(int channelInNumber, String channelInString) {
-		this.channelInNumber = channelInNumber;
-		this.channelInString = channelInString;
+	BridgeChannel(int channelType, String channelShape) {
+		this.channelType = channelType;
+		this.channelShape = channelShape;
 	}
 
 	public static BridgeChannel of(int channelInNumber) {
 		return Arrays.stream(BridgeChannel.values())
-				.filter(channelShape -> channelShape.channelInNumber == channelInNumber)
+				.filter(channelShape -> channelShape.channelType == channelInNumber)
 				.findFirst()
 				.orElseThrow(IllegalArgumentException::new);
 	}
 
-	@Override
-	public String toString() {
-		return channelInString;
+	public String Shape() {
+		return channelShape;
 	}
 }
