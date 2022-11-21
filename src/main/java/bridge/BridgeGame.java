@@ -39,6 +39,14 @@ public class BridgeGame {
 
     public boolean isFail() {
         if (user.size() > 0 && !answer.get(user.size()-1).equals(user.get(user.size()-1))) {
+            if (!retry())
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isClear() {
+        if (user.size() == bridgeLength) {
             return true;
         }
         return false;
