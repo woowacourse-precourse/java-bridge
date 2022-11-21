@@ -16,8 +16,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeAnswerTest {
 
+    @ParameterizedTest(name = "[{index}] bridgeSize = {0}")
+    @ValueSource(ints = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
+    @DisplayName("다리 길이를 이용한 다리 정답 생성을 확인  성공한다.")
+    void whenSetUpBridgeAnswerBySizeThenSuccessTest(int bridgeSize) {
+        // given
+        BridgeAnswer bridgeAnswer = new BridgeAnswer();
+
+        //  when
+        bridgeAnswer.setUpAnswerSizeBy(bridgeSize);
+        List<BridgeMoveType> moveHistory = bridgeAnswer.getAnswerMoveHistory();
+
+        // then
+        assertThat(moveHistory).hasSize(bridgeSize);
+    }
+
     @ParameterizedTest(name = "[{index}] moveTypes = {0}")
-    @MethodSource("whenCompareBridgeThenSuccessDummy")
+    @MethodSource("moveTypeDummy")
     @DisplayName("두 다리를 비교해서 게임 상태 반환 확인을 성공한다.")
     void whenCompareBridgeThenSuccessTest(List<BridgeMoveType> moveTypes) {
         // given
@@ -52,7 +67,7 @@ class BridgeAnswerTest {
     @ParameterizedTest(name = "[{index}] bridgeSize = {0}")
     @ValueSource(ints = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
     @DisplayName("두 다리의 마지막 위치가 다를 경우 FAIL 반환을 성공한다.")
-    void whenDifferentMoveTypeAndLengthThenSuccessTest(int bridgeSize) {
+    void whenDifferentMoveTypeThenSuccessTest(int bridgeSize) {
         // given
         BridgeAnswer bridgeAnswer = new BridgeAnswer();
         bridgeAnswer.setUpAnswerSizeBy(bridgeSize);
@@ -76,7 +91,23 @@ class BridgeAnswerTest {
         return UP;
     }
 
-    static Stream<Arguments> whenCompareBridgeThenSuccessDummy() {
+    @ParameterizedTest(name = "[{index}] bridgeSize = {0}")
+    @ValueSource(ints = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
+    @DisplayName("두 다리의 길이와 모든 타입이 같을 경우 SUCCESS 반환을 성공한다.")
+    void whenSameBridgeLengthAndMoveTypesThenSuccessTest(int bridgeSize) {
+        // given
+        BridgeAnswer bridgeAnswer = new BridgeAnswer();
+        bridgeAnswer.setUpAnswerSizeBy(bridgeSize);
+        List<BridgeMoveType> moveTypes = bridgeAnswer.getAnswerMoveHistory();
+        BridgePlayer bridgePlayer = new BridgePlayer();
+        moveTypes.forEach(bridgePlayer::moveTo);
+        //  when
+        BridgeGameState gameState = bridgeAnswer.compareWith(bridgePlayer);
+        // then
+        assertThat(gameState).isIn(SUCCESS);
+    }
+
+    static Stream<Arguments> moveTypeDummy() {
         return Stream.of(
                 Arguments.arguments(List.of(UP, UP, UP)),
                 Arguments.arguments(List.of(UP, DOWN, UP)),
