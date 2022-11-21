@@ -19,12 +19,10 @@ public class OutputView {
      *
      * @param endTurn : 마지막 턴에는 "|"를 출력하지 않도록 구분하기위해 사용
      */
-    public void printMap(int endTurn, HashMap upBridge, HashMap downBridge) {
-        List<HashMap> bridge = List.of(upBridge, downBridge);
+    public void printMap(int endTurn, List<HashMap> bridge) {
         for (HashMap bridgeSelect : bridge) {
             printBridge(endTurn, bridgeSelect);
         }
-
     }
 
     private void printBridge(int endTurn, HashMap<Integer, Boolean> bridge) {
@@ -55,6 +53,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int endTurn, List<HashMap> bridge, int tryCount) {
+        for (HashMap bridgeSelect : bridge) {
+            printOutput(endTurn, bridgeSelect, tryCount);
+        }
+    }
+
+    private void printOutput(int endTurn, HashMap<Integer, Boolean> bridge, int tryCount) {
+        if (bridge.get(endTurn - 1)) {
+            System.out.println("게임 성공 여부: 성공");
+            System.out.println(String.format("총 시도한 횟수: %s", endTurn));
+            return;
+        }
+        System.out.println("게임 성공 여부: 실패");
+        System.out.println(String.format("총 시도한 횟수: %s", tryCount));
+        return;
     }
 }

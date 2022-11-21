@@ -24,15 +24,18 @@ public class PlayGame {
         while(turn < endTurn) {
             Boolean matchResult = bridgeGame.move(crossAble, turn);
             if(!matchResult) {
+                tryCount++;
                 Boolean isRetry = bridgeGame.retry();
                 if(isRetry){
-                    tryCount++;
                     continue;
                 }
+                endTurn = turn+1;
                 break;
             }
             turn++;
         }
-        outputView.printMap(endTurn, bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+        List<HashMap> bridge = List.of(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+        outputView.printMap(endTurn, bridge);
+        outputView.printResult(endTurn, bridge, tryCount);
     }
 }
