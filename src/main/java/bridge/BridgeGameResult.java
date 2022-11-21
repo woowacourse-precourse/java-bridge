@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.MovingResult;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

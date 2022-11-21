@@ -1,4 +1,4 @@
-package bridge;
+package bridge.constant;
 
 public enum ExceptionMessage {
     IS_NUMBER("[ERROR] 다리 길이는 숫자를 입력해야 합니다."),

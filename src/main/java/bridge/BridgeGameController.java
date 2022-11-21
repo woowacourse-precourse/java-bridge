@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

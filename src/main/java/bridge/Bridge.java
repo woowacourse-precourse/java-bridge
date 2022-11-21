@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.MovingResult;
 import java.util.List;
 
 public class Bridge {

@@ -1,9 +1,8 @@
 package bridge.view;
 
-import bridge.Bridge;
 import bridge.BridgeGame;
 import bridge.BridgeGameResult;
-import bridge.MovingResult;
+import bridge.constant.MovingResult;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
