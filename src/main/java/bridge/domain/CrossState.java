@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum CrossState {
     SUCCESS("O", true, true),
     FAILED("X", true, false),
-    NONE(" ", false, false);
+    NOT_CROSS(" ", false, false);
 
     private final String status;
     private final boolean isSameBridgeMovement;
@@ -26,6 +26,6 @@ public enum CrossState {
                 .filter(value -> value.isSameBridgeMovement == isSameBridgeMovement)
                 .filter(value -> value.isCrossable == isCrossable)
                 .findAny()
-                .orElse(NONE);
+                .orElse(NOT_CROSS);
     }
 }

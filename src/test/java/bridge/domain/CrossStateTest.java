@@ -22,8 +22,8 @@ class CrossStateTest {
         return Stream.of(
                 arguments(true, true, CrossState.SUCCESS),
                 arguments(true, false, CrossState.FAILED),
-                arguments(false, true, CrossState.NONE),
-                arguments(false, false, CrossState.NONE)
+                arguments(false, true, CrossState.NOT_CROSS),
+                arguments(false, false, CrossState.NOT_CROSS)
         );
     }
 
