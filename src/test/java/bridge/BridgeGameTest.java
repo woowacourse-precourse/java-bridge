@@ -47,4 +47,22 @@ class BridgeGameTest {
     }
 
 
+    @Test
+    void checkFail_테스트() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        Field field = bridgeGame.getClass().getDeclaredField("bridge");
+        field.setAccessible(true);
+        bridgeGame.start(10);
+        Map<String,List<String>> resultMap =  bridgeGame.move("U");
+        //when
+        List<String> bridge = (List<String>) field.get(bridgeGame);
+        //then
+        if (bridge.get(0) == "U"){
+            checkFail_테스트();
+        }
+        if (bridge.get(0) == "D") {
+            assertTrue(bridgeGame.checkFail());
+        }
+    }
+
 }
