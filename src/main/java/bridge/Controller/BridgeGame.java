@@ -34,7 +34,8 @@ public class BridgeGame {
     }
 
     public void makeBridge(){
-
+        int size = inputView.readBridgeSize();
+        bridge.makeBridge(size);
     }
 
     public void crossBridge(){
