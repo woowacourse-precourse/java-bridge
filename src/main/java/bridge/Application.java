@@ -18,6 +18,7 @@ public class Application {
     private static void startGame(BridgeGame bridgeGame) {
         try {
             crossBridge(bridgeGame);
+            endGame(new GameResult(bridgeGame.getBridgeStatus(), GameStatus.SUCCESS, 0));
         } catch (CannotCrossBridgeException exception) {
             outputView.printMap(bridgeGame.getBridgeStatus());
             outputView.printGuideForGameCommand();
@@ -33,8 +34,12 @@ public class Application {
         }
 
         if (gameCommand.equals("Q")) {
-            //TODO: 게임 끝내기
+            endGame(new GameResult(bridgeGame.getBridgeStatus(), GameStatus.FAIL, 0));
         }
+    }
+
+    private static void endGame(GameResult gameResult) {
+        outputView.printResult(gameResult);
     }
 
     private static void crossBridge(BridgeGame bridgeGame) {
