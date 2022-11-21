@@ -1,15 +1,21 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.io.IOException;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final String INPUT_BRIDGE_LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
+        return Integer.parseInt(Console.readLine());
     }
 
     /**
