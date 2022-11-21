@@ -8,6 +8,9 @@ public class Application {
         // TODO: 프로그램 구현
 
         InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+
+        outputView.printStart();
 
         int size =inputView.readBridgeSize();
 
@@ -25,7 +28,7 @@ public class Application {
         int gameCount = 1;
 
         BridgeGame bridgeGame = new BridgeGame();
-        OutputView outputView = new OutputView();
+
         System.out.println("size"+bridge.size());
         while((moving.equals("O"))) {
             num++;
