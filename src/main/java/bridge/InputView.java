@@ -11,15 +11,11 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String sizeOfBridge =  camp.nextstep.edu.missionutils.Console.readLine();
+        validationInput.validateInputBridge(sizeOfBridge);
         int size = Integer.parseInt(sizeOfBridge);
         return size;
     }
 
-    public String valid_sizeOfBridge(String size){
-        validationInput.checkDigit(size);
-        validationInput.validSizeOfBridge(size);
-        return size;
-    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
