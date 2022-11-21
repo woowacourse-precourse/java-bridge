@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Key;
 import bridge.domain.Player;
 
 import java.util.List;
@@ -8,6 +9,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String SUCCESS = " O ";
+    private static final String FAIL = " X ";
+    private static final String WHITESPACE = "   ";
+    private static final String SEPARATOR = "|";
+
     private List<String> bridge;
     private Player player;
 
@@ -32,5 +38,64 @@ public class BridgeGame {
      */
     public void retry() {
         player.retry();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder ret = new StringBuilder();
+
+        String upPart = toStringEachPart(Key.UP);
+        String downPart = toStringEachPart(Key.DOWN);
+
+        ret.append(upPart);
+        ret.append(downPart);
+
+        return ret.toString();
+    }
+
+
+    private String toStringEachPart(Key key) {
+        StringBuilder ret = new StringBuilder("[");
+
+        ret.append(getSuccessOrWhitespace(key));
+        if (!player.isLastSuccess()) {
+            ret.append(getFailOrWhitespace(key));
+        }
+
+        ret.append("]\n");
+        return ret.toString();
+    }
+
+    private String getSuccessOrWhitespace(Key key) {
+        StringBuilder ret = new StringBuilder();
+
+        for (int i = 0; i < player.getPosition(); i++) {
+            ret.append(compareBridgeIndexWithKey(i, key, SUCCESS));
+            ret.append(getSeparator(i, player.getPosition() - 1));
+        }
+
+        return ret.toString();
+    }
+
+    private String compareBridgeIndexWithKey(int index, Key key, String expected) {
+        if (bridge.get(index).equals(key.command())) {
+            return expected;
+        }
+        return WHITESPACE;
+    }
+
+    private String getSeparator(int index, int expected){
+        if (index != expected)
+            return SEPARATOR;
+        return "";
+    }
+
+    private String getFailOrWhitespace(Key key) {
+        StringBuilder ret = new StringBuilder();
+
+        ret.append(getSeparator(player.getPosition(), 0));
+        ret.append(compareBridgeIndexWithKey(player.getPosition(), key, FAIL));
+
+        return ret.toString();
     }
 }
