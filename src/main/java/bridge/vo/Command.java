@@ -16,6 +16,10 @@ public enum Command {
         // TODO: IllegalArgumentException 이 적절하지 않을 수 있다.
     }
 
+    public boolean isRetrying() {
+        return this == R;
+    }
+
     @Override
     public String toString() {
         return super.toString();

@@ -35,8 +35,12 @@ public class GameController {
         outputView.printAskingBridgeSizeMessage();
         int bridgeSize = inputView.readBridgeSize();
 
-        List<Step> steps = Step.from(bridgeMaker.makeBridge(bridgeSize));
+        List<Step> steps = makeBridgeSteps(bridgeSize);
         return new Bridge(steps);
+    }
+
+    private List<Step> makeBridgeSteps(int bridgeSize) {
+        return Step.from(bridgeMaker.makeBridge(bridgeSize));
     }
 
     private void handleGameResult(Bridge bridge, GameResult gameResult) {

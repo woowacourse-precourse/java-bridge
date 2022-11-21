@@ -40,12 +40,15 @@ public class BridgeController {
 
     private List<StepResult> handleFailure(Bridge bridge, TryCount tryCount, List<StepResult> stepHistory) {
         outputView.printAskingGameCommandMessage();
-        Command command = Command.getByValue(inputView.readGameCommand());
-        if (command.equals(Command.R)) {
+        if (getCommand().isRetrying()) {
             bridgeGame.retry(tryCount);
             return crossBridge(bridge, tryCount);
         }
         return stepHistory;
+    }
+
+    private Command getCommand() {
+        return Command.getByValue(inputView.readGameCommand());
     }
 
     private StepResult moveForward(Step answerStep, List<StepResult> stepHistory) {

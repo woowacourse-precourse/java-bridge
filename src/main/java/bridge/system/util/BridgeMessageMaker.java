@@ -19,11 +19,15 @@ public class BridgeMessageMaker {
         StringBuilder upBridgeBuilder = new StringBuilder();
         StringBuilder downBridgeBuilder = new StringBuilder();
 
+        makeBridgeMap(results, upBridgeBuilder, downBridgeBuilder);
+
+        return makeResult(upBridgeBuilder, downBridgeBuilder);
+    }
+
+    private void makeBridgeMap(List<StepResult> results, StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder) {
         makeStartOfBridge(upBridgeBuilder, downBridgeBuilder);
         makeStepsOfBridge(results, upBridgeBuilder, downBridgeBuilder);
         makeEndOfBridge(upBridgeBuilder, downBridgeBuilder);
-
-        return makeResult(upBridgeBuilder, downBridgeBuilder);
     }
 
     private void makeStepsOfBridge(List<StepResult> results, StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder) {
