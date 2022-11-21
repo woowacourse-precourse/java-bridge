@@ -17,6 +17,21 @@ public class BridgeGame {
         this.secondLine = "";
     }
 
+    public String getFirstLine() {
+        return firstLine;
+    }
+
+    public String getSecondLine() {
+        return secondLine;
+    }
+
+    public void setLine(String stringOfFirstLine, String stringOfSecondLine){
+        firstLine += stringOfFirstLine;
+        secondLine += stringOfSecondLine;
+    }
+
+
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
