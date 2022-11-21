@@ -1,6 +1,7 @@
 package bridge.view.input;
 
 import bridge.constant.Constants;
+import java.util.function.Predicate;
 
 public enum InputViewData {
 
@@ -15,12 +16,12 @@ public enum InputViewData {
             "[ERROR] 해당하는 문자만 입력할 수 있습니다.");
 
     private String requestMessage;
-    private InputFormCheck inputFormCheck;
+    private Predicate<String> inputFormCheck;
     private String errorMessage;
 
-    InputViewData(String requestMessage, InputFormCheck inputFormCheck, String errorMessage) {
+    InputViewData(String requestMessage, Predicate<String> formCheck, String errorMessage) {
         this.requestMessage = requestMessage;
-        this.inputFormCheck = inputFormCheck;
+        this.inputFormCheck = formCheck;
         this.errorMessage = errorMessage;
     }
 
@@ -34,7 +35,7 @@ public enum InputViewData {
 
     public boolean isCorrect(String input) {
         try {
-            return inputFormCheck.isCorrect(input);
+            return inputFormCheck.test(input);
         } catch (NumberFormatException e) {
             return false;
         }
