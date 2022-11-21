@@ -11,7 +11,11 @@ public enum Message {
     GAME_SUCCESS("게임 성공 여부:"),
     TOTAL_TRY("총 시도한 횟수: "),
     SUCCESS("성공"),
-    FAIL("실패");
+    FAIL("실패"),
+    BRIDGE_SIZE_RANGE_ERROR("[ERROR] 다리의 길이가 범위를 초과합니다 3이상 20 이하의 범위여야 합니다"),
+    BRIDGE_SIZE_INPUT_ERROR("[ERROR] 다리 길이의 입력은 숫자만 가능합니다"),
+    USER_MOVE_INPUT_ERROR("[ERROR] 사용자가 이동할 칸의 입력은 U,D만 입력 가능합니다"),
+    USER_RETRY_INPUT_ERROR("[ERROR] 재시작 여부의 입력은 R,Q만 입력 가능합니다");
 
 
     private final String message;
