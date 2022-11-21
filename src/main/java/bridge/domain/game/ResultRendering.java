@@ -43,7 +43,7 @@ public class ResultRendering {
 		return renderUpperBridge(bridgeMap) + ENTER + renderUnderBridge(bridgeMap);
 	}
 
-	public String getBridgeDescription() {
+	public String getBridgeRendered() {
 		return BridgeRendered;
 	}
 }

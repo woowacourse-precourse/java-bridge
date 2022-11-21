@@ -27,7 +27,7 @@ public class CrossingBridge {
 
 		stepAhead(crossingDecision, bridgeNowCrossing);
 		OutputView.withContentOf(ResultRendering.generatedBy(
-				BridgeMap.depictedBy(crossingDecision, movementCommand)).getBridgeDescription(), false, false).ConsoleMessage();
+				BridgeMap.constructedBy(crossingDecision, movementCommand)).getBridgeRendered(), false, false).ConsoleMessage();
 
 		keepCrossing(crossingDecision, bridgeNowCrossing);
 	}

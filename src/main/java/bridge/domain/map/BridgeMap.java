@@ -14,7 +14,7 @@ public class BridgeMap {
 	private BridgeMap() {
 	}
 
-	public static BridgeMap depictedBy(CrossingDecision crossingDecision, MovementCommand movementCommand){
+	public static BridgeMap constructedBy(CrossingDecision crossingDecision, MovementCommand movementCommand){
 		buildMapDescription(crossingDecision, movementCommand);
 		return new BridgeMap();
 	}
