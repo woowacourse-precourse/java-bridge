@@ -22,12 +22,14 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-
+            bridge.add(numberToStringConvert());
         }
+
+        return bridge;
     }
 
     /**
-     * @return bridgeNumberGenerator에서 생성한 번호가 <p>0이라면 "D" <p>1이라면 "U" 반환한다.
+     * @return bridgeNumberGenerator 에서 생성한 번호가 <p>0이라면 "D" <p>1이라면 "U" 반환한다.
      */
     private String numberToStringConvert() {
         // 0또는 1번호 생성
