@@ -12,11 +12,15 @@ public class Application {
     static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
-        System.out.println(PrintMessage.START_MESSAGE.getString());
-        int bridgeSize = inputView.readBridgeSize();
-        bridgeGame = new BridgeGame(bridgeSize);
+        outputView.print(PrintMessage.START_MESSAGE);
+        createBridgeGame();
         startGame();
         outputView.printResult(isCorrect, bridgeGame.getMap(isCorrect), bridgeGame.getTrials());
+    }
+
+    private static void createBridgeGame() {
+        int bridgeSize = inputView.readBridgeSize();
+        bridgeGame = new BridgeGame(bridgeSize);
     }
 
     public static void startGame() {

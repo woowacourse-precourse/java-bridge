@@ -4,6 +4,10 @@ import bridge.constant.PrintMessage;
 import java.util.List;
 
 public class OutputView {
+    public void print(PrintMessage startMessage) {
+        System.out.println(startMessage.getString());
+    }
+
     public void printMap(List<String> map) {
         int mid = map.size() / 2;
         List<String> upperMap = map.subList(0, mid);
@@ -23,7 +27,7 @@ public class OutputView {
         if (isSuccess) {
             resultInKor = PrintMessage.SUCCEED_IN_KOR;
         }
-        System.out.println(PrintMessage.RESULT_MAP.getString());
+        print(PrintMessage.RESULT_MAP);
         printMap(map);
         System.out.printf(PrintMessage.RESULT_IS_SUCCESS.getString(), resultInKor.getString());
         System.out.printf(PrintMessage.RESULT_TRIALS.getString(), trials);
