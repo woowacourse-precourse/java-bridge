@@ -5,8 +5,7 @@ package bridge;
  */
 public class BridgeGame {
 
-    public void start(){
-        Message.LENGTH_INPUT.print();
+    public void start() {
     }
 
     /**
