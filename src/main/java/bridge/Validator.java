@@ -42,4 +42,24 @@ public class Validator {
             throw exit_Program;
         }
     }
+
+    public static String isUorD(String uOrD){
+        if(uOrD=="U"){
+            return uOrD;
+        }
+        if(uOrD=="D"){
+            return uOrD;
+        }
+        throw exit_Program;
+    }
+
+    public static String tryCatchIsUorD(String input){
+        try{
+            return isUorD(input);
+        }catch(IllegalArgumentException e){
+            outputView.printStatements(ErrorStatements.INVALID_FORMAT_ERROR.warned());
+            outputView.printStatements("");
+            throw exit_Program;
+        }
+    }
 }

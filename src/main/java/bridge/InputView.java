@@ -24,6 +24,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
+        Validator.tryCatchIsUorD(input);
         return input;
     }
 
