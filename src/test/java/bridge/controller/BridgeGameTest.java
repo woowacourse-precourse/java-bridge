@@ -88,12 +88,12 @@ class BridgeGameTest {
         Assertions.assertThat(user.getUserCrossing(0)).isEqualTo(BridgeState.convertToBridgeState(position, isAlive));
     }
 
-    public void inputToConsole(String input) {
+    private void inputToConsole(String input) {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
     }
 
-    public void manyInputToConsole(String[] input) {
+    private void manyInputToConsole(String[] input) {
         final byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
     }

@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.utils.BridgeCommand;
 import bridge.domain.utils.BridgeState;
 import bridge.domain.utils.GameState;
 
