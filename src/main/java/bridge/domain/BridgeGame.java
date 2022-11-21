@@ -10,14 +10,8 @@ import java.util.List;
 public class BridgeGame {
 
     private int gameCount;
-
-    public List<BridgeResult> getBridgeResults() {
-        return bridgeResults;
-    }
-
     private List<BridgeResult> bridgeResults;
     private Bridge bridge;
-
     private boolean exit;
 
     public BridgeGame(List<BridgeResult> bridgeResults, Bridge bridge){
@@ -27,6 +21,12 @@ public class BridgeGame {
         this.exit = false;
     }
 
+    public int getGameCount() {
+        return gameCount;
+    }
+    public List<BridgeResult> getBridgeResults() {
+        return bridgeResults;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

@@ -10,7 +10,15 @@ import java.util.List;
 
 public class BridgeGameController {
     public BridgeGameController() {
-        playBridgeGame();
+        activate();
+    }
+
+    private void activate(){
+        try{
+            playBridgeGame();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void playBridgeGame() {
@@ -27,6 +35,7 @@ public class BridgeGameController {
             testBridgeGame(bridgeGame);
             bridge.goToNextStep();
         }
+        OutputView.printResult(bridgeGame, bridgeGame.getBridgeResults());
     }
 
     private void testBridgeGame(BridgeGame bridgeGame){
