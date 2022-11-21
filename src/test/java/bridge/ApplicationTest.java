@@ -95,6 +95,26 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @Test
+    void 잘못된_이동할_칸을_입력했을_경우_이동할_칸부터_재입력받아야한다() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "23", "A", "1U", "U1", "U", "D", "U");
+            assertThat(output()).contains(
+                    "다리의 길이를 입력해주세요.",
+                    "입력은 위: U, 아래: D 여야만 합니다.",
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
