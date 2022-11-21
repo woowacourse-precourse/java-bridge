@@ -22,8 +22,8 @@
   - [ ] 게임을 종료한다. - BridgeGame.finish()
     - [ ] 최종 게임 결과를 출력한다. - OutputView.printFinish()
       - [ ] 시도 횟수를 출력한다. - OutputView.printResult()
-- [ ] 메세지를 출력한다. - OutputView.printMessage()
-- [ ] 각 예외 메세지를 구분한다. - ExceptionMessage
+- [x] 메시지를 출력한다. - OutputView.printMessage()
+- [ ] 각 예외 메시지를 구분한다. - ExceptionMessage
 
 ## 🚀 기능 요구 사항
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
