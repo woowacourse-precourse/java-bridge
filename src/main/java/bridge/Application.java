@@ -1,5 +1,6 @@
 package bridge;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Application {
@@ -39,6 +40,7 @@ public class Application {
         bridgeMaking(bridgeMaker, inputView);
         size = bridgeMaker.bridge.size();
 
+        System.out.println(bridgeMaker.bridge);
         while (size-- > 0) {
             boolean result = bridgeGame.move(count, inputView.readMoving());
             count = answerCount(outputView, count, result);

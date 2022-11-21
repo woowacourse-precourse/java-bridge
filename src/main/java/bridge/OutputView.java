@@ -61,10 +61,13 @@ public class OutputView {
         if (answer && bridgeMaker.bridge.get(count).equals("D")) {
             System.out.print(answerPrint[0]);
         }
-        if (!answer && bridgeMaker.bridge.get(count).equals("D")) {
+        if (answer && bridgeMaker.bridge.get(count).equals("U")) {
+            System.out.print("   ");
+        }
+        if (!answer && bridgeMaker.bridge.get(count).equals("U")) {
             System.out.print(answerPrint[1]);
         }
-        if (bridgeMaker.bridge.get(count).equals("U")) {
+        if (!answer && bridgeMaker.bridge.get(count).equals("D")) {
             System.out.print("   ");
         }
     }
@@ -73,10 +76,13 @@ public class OutputView {
         if (answer && bridgeMaker.bridge.get(count).equals("U")) {
             System.out.print(answerPrint[0]);
         }
-        if (!answer && bridgeMaker.bridge.get(count).equals("U")) {
+        if (answer && bridgeMaker.bridge.get(count).equals("D")) {
+            System.out.print("   ");
+        }
+        if (!answer && bridgeMaker.bridge.get(count).equals("D")) {
             System.out.print(answerPrint[1]);
         }
-        if (bridgeMaker.bridge.get(count).equals("D")) {
+        if (!answer &&bridgeMaker.bridge.get(count).equals("U")) {
             System.out.print("   ");
         }
     }
