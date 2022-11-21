@@ -1,7 +1,13 @@
 package bridge;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerMap {
 
@@ -56,8 +62,13 @@ public class PlayerMap {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(upSide, downSide);
+    }
+
+    @Override
     public String toString() {
-        return "upSide: " + upSide + ", " + "downSide: " + downSide;
+        return "[PlayerMap] upSide: " + upSide + ", " + "downSide: " + downSide;
     }
 
 }

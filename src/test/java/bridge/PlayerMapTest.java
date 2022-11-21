@@ -88,6 +88,20 @@ public class PlayerMapTest {
         assertThat(playerMap1).isNotEqualTo(failureMap);
     }
 
+    @DisplayName("같은 경로를 가진 playerMap1과 playerMap2는 동일한 해시코드를 가진다")
+    @Test
+    void sameHashCodeTest() {
+        assertThat(playerMap1.hashCode())
+                .isEqualTo(playerMap2.hashCode());
+    }
+
+    @DisplayName("다른 경로를 가진 playerMap1과 failureMap은 다른 해시코드를 가진다")
+    @Test
+    void differentHashCodeTest() {
+        assertThat(playerMap1.hashCode())
+                .isNotEqualTo(failureMap.hashCode());
+    }
+
     private static Stream<Arguments> subMapTestSource() {
         return Stream.of(
                 Arguments.of(1, new PlayerMap(
