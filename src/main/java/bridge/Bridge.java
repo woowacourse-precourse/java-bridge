@@ -5,14 +5,13 @@ import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
-    private int pos = -1;
+    private int pos = 0;
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
     public boolean matchBridge(String uOrD) {
-        increasePos();
         return bridge.get(pos).equals(uOrD);
     }
 
@@ -21,13 +20,14 @@ public class Bridge {
     }
 
     public boolean checkResult() {
-        return bridge.size() == pos+1;
+        return bridge.size() == pos;
+    }
+
+    public int getPos() {
+        return pos;
     }
     public void increasePos() {
         this.pos++;
-    }
-    public void decreasePos() {
-        this.pos--;
     }
     public String inputMoving() {
         while(true){
