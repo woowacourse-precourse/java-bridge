@@ -35,12 +35,13 @@ public class BridgeController {
             game();
         }
         while(gameOver());
-        bridgeGame.lastMapResult();
+        outputView.printResult(bridgeGame);
     }
     public void game() {
         while(!(bridgeGame.isOver())){
             outputView.printMovingInputMessage();
             bridgeGame.gameInProgress(inputView.readMoving());
+            outputView.printBridge(bridgeGame.getUpBridge(),bridgeGame.getDownBridge());
         }
     }
     public boolean gameOver() {

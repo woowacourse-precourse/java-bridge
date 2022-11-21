@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.service.BridgeGame;
+
 import java.util.List;
 
 /**
@@ -32,10 +34,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String gameResult, int attempt) {
+    public void printResult(BridgeGame bridgeGame) {
         printResultPrefixMessage();
-        printGameSuccessOrNot(gameResult);
-        printNumberOfAttempts(attempt);
+        printBridge(bridgeGame.getUpBridge(),bridgeGame.getDownBridge());
+        printGameSuccessOrNot(bridgeGame.gameSuccess());
+        printNumberOfAttempts(bridgeGame.gameCount());
     }
 
     public void printGameStartMessage() {

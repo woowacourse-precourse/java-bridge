@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,7 +32,6 @@ public class BridgeGame {
     public void gameInProgress(String moving) {
         progressStatus = true;
         createBridgeResult(moving);
-        outputView.printBridge(upBridge, downBridge);
         moveCount++;
     }
 
@@ -93,16 +93,21 @@ public class BridgeGame {
     public boolean isSuccess(){
         return progressStatus && moveCount == bridgeList.size();
     }
-    public void lastMapResult(){
-        outputView.printResultPrefixMessage();
-        outputView.printBridge(upBridge, downBridge);
-        outputView.printGameSuccessOrNot(gameSuccess());
-        outputView.printNumberOfAttempts(gameAttemptCount);
+    public Integer gameCount(){
+        return gameAttemptCount;
     }
     public String gameSuccess(){
         if(progressStatus) {
             return "성공";
         }
         return "실패";
+    }
+
+    public List<String> getUpBridge() {
+        return Collections.unmodifiableList(upBridge);
+    }
+
+    public List<String> getDownBridge() {
+        return Collections.unmodifiableList(downBridge);
     }
 }
