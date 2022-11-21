@@ -9,8 +9,8 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isMatch(int idx, String input) {
-        if (bridge.get(idx).equals(input)) {
+    public boolean isMatch(int idx, Direction direction) {
+        if (bridge.get(idx).equals(direction.getValue())) {
             return true;
         }
         return false;
