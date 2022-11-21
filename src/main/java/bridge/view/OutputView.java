@@ -32,7 +32,21 @@ public class OutputView {
         print(AnnounceMessage.START_GAME.getMessage());
     }
 
+
+    public void printSizeInputException() {
+        print(ExceptionMessage.WRONG_SIZE_INPUT.getMessage());
+    }
+
+    public void printUDInputException() {
+        print(ExceptionMessage.WRONG_UD_INPUT.getMessage());
+    }
+
+    public void printRQInputException() {
+        print(ExceptionMessage.WRONG_RQ_INPUT.getMessage());
+    }
+
     private void print(String message) {
         System.out.println(message);
     }
+
 }
