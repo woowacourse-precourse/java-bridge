@@ -8,9 +8,11 @@ import static bridge.util.BridgeConstant.CONTINUE_GAME;
 import static bridge.util.BridgeConstant.QUIT_GAME;
 
 public class BridgeRetry {
+    private static final String GAME_RETRY_KEY = "R";
+
     public boolean getContinueCode(Player player) {
-        boolean continueCode = InputView.getInputView().readGameCommand();
-        if (continueCode == CONTINUE_GAME) {
+        String continueCode = InputView.getInputView().readGameCommand();
+        if (continueCode.equals(GAME_RETRY_KEY)) {
             updateGameStatus(player);
             return CONTINUE_GAME;
         }
