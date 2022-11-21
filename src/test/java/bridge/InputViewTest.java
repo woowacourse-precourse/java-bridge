@@ -35,4 +35,14 @@ class InputViewTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+
+    @DisplayName("입력 문자열은 R또는 Q여야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", " ", "!@#$", ""})
+    void validateGameCommand(String gameCommand) {
+        assertThatThrownBy(() -> {
+            inputView.validateBridgeSize(gameCommand);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
