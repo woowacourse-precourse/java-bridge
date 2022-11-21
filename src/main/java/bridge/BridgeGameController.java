@@ -6,8 +6,8 @@ public class BridgeGameController {
 
     private static final int DEFAULT_TRY_COUNT = 1;
     private static final int DEFAULT_DISTANCE = 1;
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
+    private static final InputView inputView = InputView.getInstance();
+    private static final OutputView outputView = OutputView.getInstance();
 
     private final BridgeGame bridgeGame;
 
