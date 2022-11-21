@@ -30,6 +30,7 @@ public class GameView {
         while (status != ViewStatus.WIN && status != ViewStatus.DETERMINE_CONTINUE) {
             GameResult gameResult = inputView.move();
             status = gameResult.getNextViewStatus();
+            outputView.printMap(gameResult);
         }
     }
 }
