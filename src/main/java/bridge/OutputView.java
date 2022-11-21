@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     private void printIsGameClear(boolean isGameClear) {
-        if(isGameClear) {
+        if (isGameClear) {
             System.out.println(ConsoleMessage.GAME_CLEAR);
             return;
         }

@@ -52,7 +52,7 @@ public class BridgeMap {
     }
 
     private void inputDivision() {
-        if(upStair.size() == INIT_SIZE) {
+        if (upStair.size() == INIT_SIZE) {
             return;
         }
         upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);

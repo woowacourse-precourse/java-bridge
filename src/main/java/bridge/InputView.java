@@ -28,7 +28,7 @@ public class InputView {
             input = Console.readLine();
             System.out.println(); // 빈 줄 출력
             inputValidator.validateInputBridgeSize(input);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return null;
         }

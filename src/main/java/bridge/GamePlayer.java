@@ -11,6 +11,7 @@ public class GamePlayer {
     private Command isExit = Command.RETRY;
     private boolean isGameClear = false;
     private BridgeMap bridgeMap = new BridgeMap();
+
     public void play() {
         bridgeSize = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
