@@ -18,4 +18,12 @@ public class BridgePlayer {
     public void increaseAttemptCount(){
         gameAttemptCount+=1;
     }
+
+    public int getCurrentBridgePosition(){
+        return currentBridgePosition;
+    }
+
+    public int getGameAttemptCount(){
+        return gameAttemptCount;
+    }
 }
