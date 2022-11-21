@@ -9,14 +9,13 @@ public class GameMachine {
     InputView inputView;
     OutputView outputView;
 
-    public GameMachine(InputView inputView, OutputView outputView) {
+    public GameMachine(InputView inputView) {
         this.inputView = inputView;
-        this.outputView = outputView;
+        this.outputView = inputView.getOutputView();
         play();
     }
     void play() {
         inputView.readBridgeSize();
         inputView.readMoving();
-
     }
 }
