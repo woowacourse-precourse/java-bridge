@@ -91,7 +91,6 @@ public class BridgeGame {
     }
 
     public List<GameBoard> getGameBoards() {
-        List<GameBoard> gameBoards = List.of(topGameBoard, bottomGameBoard);
-        return gameBoards;
+        return List.of(topGameBoard, bottomGameBoard);
     }
 }
