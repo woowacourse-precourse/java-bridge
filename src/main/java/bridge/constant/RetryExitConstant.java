@@ -28,7 +28,7 @@ public enum RetryExitConstant {
         return symbol;
     }
 
-    public boolean retry() {
+    public boolean doRetry() {
         if (symbol == RETRY.symbol) {
             return true;
         }

@@ -22,12 +22,14 @@ public class BridgeGameController {
 
     private boolean thisTurnBridgeGame(BridgeGame bridgeGame) {
         AfterMovingStatusConstant afterMovingStatusConstant = thisTurnGame(bridgeGame);
-        if (afterMovingStatusConstant.isGameSuccess()) {
-            thisGameResultView(bridgeGame, afterMovingStatusConstant);
-            return false;
+        if (!(afterMovingStatusConstant.isGameSuccess())) {
+            RetryExitConstant retryExitConstant = gameRetryOrExitView();
+            if (isRetryThisGame(bridgeGame, retryExitConstant)) {
+                return true;
+            }
         }
-        RetryExitConstant retryExitConstant = gameRetryOrExitView();
-        return isFinishThisGame(bridgeGame, retryExitConstant);
+        thisGameResultView(bridgeGame, afterMovingStatusConstant);
+        return false;
     }
 
     private AfterMovingStatusConstant thisTurnGame(BridgeGame bridgeGame) {
@@ -45,8 +47,8 @@ public class BridgeGameController {
         outputView.printMap(thisTurnBridge);
     }
 
-    private static boolean isFinishThisGame(BridgeGame bridgeGame, RetryExitConstant retryExitConstant) {
-        if (retryExitConstant.retry()) {
+    private static boolean isRetryThisGame(BridgeGame bridgeGame, RetryExitConstant retryExitConstant){
+        if (retryExitConstant.doRetry()) {
             bridgeGame.retry();
             return true;
         }
