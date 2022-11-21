@@ -1,6 +1,5 @@
 package bridge.model;
 
-import static bridge.model.GameCommand.validateGameCommandInput;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +10,7 @@ class GameCommandTest {
     @ParameterizedTest
     @ValueSource(strings = {"K", "L", "0", "kwkl", "아아아아"})
     void 잘못된_입력값(String input) {
-        assertThatThrownBy(() -> validateGameCommandInput(input))
+        assertThatThrownBy(() -> GameCommand.from(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

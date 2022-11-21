@@ -1,8 +1,6 @@
 package bridge.model;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public enum GameCommand {
     RETRY("R"),
@@ -15,23 +13,12 @@ public enum GameCommand {
         this.input = input;
     }
 
-    public static void validateGameCommandInput(String input) {
-        if (!getCommandInputOptions().contains(input)) {
-            throw new IllegalArgumentException("R/Q 중 재시작 여부를 입력해 주세요.");
-        }
-    }
 
-    private static List<String> getCommandInputOptions() {
-        return Arrays.stream(GameCommand.values())
-                .map(command -> command.input)
-                .collect(Collectors.toList());
-    }
-
-    public static GameCommand findCommandByInput(String input) {
+    public static GameCommand from(String input) {
         return Arrays.stream(GameCommand.values())
                 .filter(command -> command.input.equals(input))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException("R/Q 중 재시작 여부를 입력해 주세요."));
     }
 
     public static boolean selectedRetry(GameCommand command) {

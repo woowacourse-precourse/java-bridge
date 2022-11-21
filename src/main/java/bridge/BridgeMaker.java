@@ -5,9 +5,12 @@ import static bridge.util.Constants.BRIDGE_SIZE_REGEX;
 import static bridge.util.Constants.MAX_BRIDGE_SIZE;
 import static bridge.util.Constants.MIN_BRIDGE_SIZE;
 
+import bridge.model.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -24,11 +27,10 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            bridge.add(findAbbreviationByNumber(bridgeNumberGenerator.generate()));
-        }
-        return Collections.unmodifiableList(bridge);
+        return IntStream.generate(bridgeNumberGenerator::generate)
+                .limit(size)
+                .mapToObj(Position::findAbbreviationByNumber)
+                .collect(Collectors.toList());
     }
 
     public static void validateBridgeSizeType(String input) {
@@ -50,6 +52,4 @@ public class BridgeMaker {
             throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
-
-
 }

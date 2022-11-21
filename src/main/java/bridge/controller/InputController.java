@@ -1,7 +1,5 @@
 package bridge.controller;
 
-import static bridge.model.GameCommand.findCommandByInput;
-
 import bridge.model.GameCommand;
 import bridge.model.Position;
 import bridge.view.InputView;
@@ -34,7 +32,7 @@ public class InputController {
     public static GameCommand getGameCommand() {
         try {
             outputView.printGameCommandInput();
-            return findCommandByInput(inputView.readGameCommand());
+            return GameCommand.from(inputView.readGameCommand());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
             return getGameCommand();
