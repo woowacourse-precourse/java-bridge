@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.model.constant.GameCommand;
+
 import java.util.ArrayList;
 import java.util.List;
 

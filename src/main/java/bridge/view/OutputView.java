@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.view.constant.ErrorMessage;
 import bridge.view.constant.GameMapInterface;
 import bridge.view.constant.GameMessage;
+
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -10,6 +11,9 @@ import java.util.StringJoiner;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    public void printEmptyLine() {
+        System.out.println();
+    }
     public void printErrorMessage(ErrorMessage errorType) {
         System.out.println(errorType.getMessage());
     }
@@ -26,6 +30,7 @@ public class OutputView {
     public void printMap(List<String> upperMap, List<String> lowerMap) {
         System.out.println(transformToString(upperMap));
         System.out.println(transformToString(lowerMap));
+        printEmptyLine();
     }
 
     public String transformToString(List<String> map) {
@@ -45,7 +50,7 @@ public class OutputView {
     }
 
     public String getResultString(boolean reachedEnd) {
-        StringBuilder stringBuilder = new StringBuilder(GameMessage.GAME_RESULT_BODY.getMessage());
+        StringBuilder stringBuilder = new StringBuilder(GameMessage.RESULT_BODY.getMessage());
         if (reachedEnd) {
             stringBuilder.append(GameMessage.SUCCESS.getMessage());
             return stringBuilder.toString();
@@ -55,6 +60,6 @@ public class OutputView {
     }
 
     public String getAttemptString(int attempts) {
-        return GameMessage.GAME_RESULT_ATTEMPTS.getMessage() + attempts;
+        return GameMessage.RESULT_ATTEMPTS.getMessage() + attempts;
     }
 }

@@ -25,6 +25,7 @@ public class GameController {
     }
 
     public void startGame() {
+        outputView.printGameMessage(GameMessage.START);
         BridgeGame bridgeGame = createNewGame();
         runGame(bridgeGame);
         endGame(bridgeGame);
@@ -40,7 +41,7 @@ public class GameController {
     }
 
     public void endGame(BridgeGame bridgeGame) {
-        outputView.printGameMessage(GameMessage.GAME_RESULT_HEADER);
+        outputView.printGameMessage(GameMessage.RESULT_HEADER);
         outputView.printMap(bridgeGame.getUpperMap(), bridgeGame.getLowerMap());
         outputView.printResult(bridgeGame.hasReachedEnd(), bridgeGame.getNumberOfAttempts());
     }
@@ -68,7 +69,8 @@ public class GameController {
         do {
             outputView.printGameMessage(GameMessage.ASK_BRIDGE_SIZE);
             input = inputView.readBridgeSize();
-        } while (!validateInput(input, new BridgeSizeValidator(), ErrorMessage.INVALID_BRIDGE_SIZE));
+            outputView.printEmptyLine();
+        } while (isInvalidInput(input, new BridgeSizeValidator(), ErrorMessage.INVALID_BRIDGE_SIZE));
         return Integer.parseInt(input);
     }
 
@@ -77,7 +79,7 @@ public class GameController {
         do {
             outputView.printGameMessage(GameMessage.ASK_NEXT_MOVE);
             input = inputView.readMoving();
-        } while (!validateInput(input, new NextMoveValidator(), ErrorMessage.INVALID_NEXT_MOVE));
+        } while (isInvalidInput(input, new NextMoveValidator(), ErrorMessage.INVALID_NEXT_MOVE));
         return input;
     }
 
@@ -86,18 +88,18 @@ public class GameController {
         do {
             outputView.printGameMessage(GameMessage.ASK_RETRY);
             input = inputView.readGameCommand();
-        } while (!validateInput(input, new GameCommandValidator(), ErrorMessage.INVALID_GAME_COMMAND));
+        } while (isInvalidInput(input, new GameCommandValidator(), ErrorMessage.INVALID_GAME_COMMAND));
         return input;
     }
 
-    public boolean validateInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
+    public boolean isInvalidInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
         try {
             inputValidator.validateInput(input);
-            return true;
+            return false;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(errorMessage);
             exception.printStackTrace();
-            return false;
+            return true;
         }
     }
 }
