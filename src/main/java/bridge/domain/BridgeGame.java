@@ -1,10 +1,14 @@
 package bridge.domain;
 
+import bridge.BridgeRandomNumberGenerator;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final int bridgeSize;
+    private final List<String> bridge;
     public BridgeGame(int readBridgeSize) {
         try {
             ValidationUtil.bridgeSizeValidation(readBridgeSize);
@@ -12,6 +16,7 @@ public class BridgeGame {
             System.out.println(err);
         }
         this.bridgeSize = readBridgeSize;
+        this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
     }
 
     /**
