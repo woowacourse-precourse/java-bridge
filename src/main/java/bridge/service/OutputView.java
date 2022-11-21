@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public void printRequestMoveDirectionMessage(){
-        System.out.println(REQUEST_MOVE_DIRECTION_MESSAGE);
+        System.out.print(REQUEST_MOVE_DIRECTION_MESSAGE);
     }
 
     public void printInValidMoveDirectionErrorMessage(){
@@ -48,7 +48,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge , List<String> playerMoveRecord) {
+    public void printMap(BridgeGame bridgeGame) {
+        List<StringBuilder> playerMoveResults = bridgeGame.makePrintResult();
+        for (StringBuilder playerMoveResult : playerMoveResults) {
+            System.out.println(playerMoveResult);
+        }
     }
 
     /**
@@ -56,6 +60,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println(GAME_RESULT_MAP_MESSAGE);
+        printMap(bridgeGame);
+        bridgeGame.printFinalResult();
     }
 }

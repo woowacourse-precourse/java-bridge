@@ -30,7 +30,7 @@ public class InputValidation {
 
     public boolean isValidDirection(String moveDirection){
         try{
-            if(!U.equals(moveDirection) && !D.equals(moveDirection))
+            if(!U.strMoveDirection.equals(moveDirection) && !D.strMoveDirection.equals(moveDirection))
                 throw new IllegalArgumentException();
         }catch (IllegalArgumentException e){
             return false;
@@ -40,7 +40,7 @@ public class InputValidation {
 
     public boolean isValidGameRetryInput(String gameRetryInput){
         try{
-            if(R.equals(gameRetryInput) || Q.equals(gameRetryInput))
+            if(!R.command.equals(gameRetryInput) && !Q.command.equals(gameRetryInput))
                 throw new IllegalArgumentException();
         }catch (IllegalArgumentException e){
             return false;
