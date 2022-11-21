@@ -10,8 +10,6 @@ import java.util.List;
 
 public class CrossingBridge {
 
-	private static final String REQUEST_MOVEMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-
 	private final boolean crossComplete;
 
 	private CrossingBridge(List<String> bridgeNowCrossing) {
@@ -24,7 +22,6 @@ public class CrossingBridge {
 	}
 
 	private void cross(List<String> bridgeNowCrossing) {
-		OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
 		MovementCommand movementCommand = (MovementCommand) InputCommandReader.read(CommandReader.GAME_MOVEMENT).command();
 		CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 
@@ -34,7 +31,6 @@ public class CrossingBridge {
 
 		keepCrossing(crossingDecision, bridgeNowCrossing);
 	}
-
 
 	private void stepAhead(CrossingDecision crossingDecision, List<String> bridgeNowCrossing) {
 		if (crossingDecision.isCrossable()) {

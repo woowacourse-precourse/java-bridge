@@ -1,7 +1,5 @@
-package bridge;
+package bridge.view.input;
 
-import bridge.view.input.InputException;
-import bridge.view.input.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

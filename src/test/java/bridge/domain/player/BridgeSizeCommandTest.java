@@ -1,6 +1,5 @@
-package bridge;
+package bridge.domain.player;
 
-import bridge.domain.player.BridgeSizeCommand;
 import bridge.view.input.InputCommandReader;
 import bridge.view.input.InputException;
 import camp.nextstep.edu.missionutils.test.NsTest;

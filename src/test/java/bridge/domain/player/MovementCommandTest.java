@@ -1,6 +1,5 @@
-package bridge;
+package bridge.domain.player;
 
-import bridge.domain.player.MovementCommand;
 import bridge.view.input.InputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

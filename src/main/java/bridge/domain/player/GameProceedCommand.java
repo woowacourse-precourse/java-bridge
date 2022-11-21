@@ -2,8 +2,11 @@ package bridge.domain.player;
 
 import bridge.view.input.InputException;
 import bridge.view.input.InputValidator;
+import bridge.view.output.OutputView;
 
 public class GameProceedCommand implements InputValidator {
+
+	private static final String REQUEST_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
 	public static final String RETRY = "R";
 	public static final String QUIT = "Q";
@@ -16,6 +19,7 @@ public class GameProceedCommand implements InputValidator {
 	}
 
 	public static GameProceedCommand valueOf(String gameCommand) {
+		OutputView.withContentOf(REQUEST_RETRY, true, false).ConsoleMessage();
 		return new GameProceedCommand(gameCommand);
 	}
 
@@ -30,7 +34,7 @@ public class GameProceedCommand implements InputValidator {
 		}
 	}
 
-	public String getGameCommand() {
+	public String gameCommand() {
 		return gameCommand;
 	}
 
