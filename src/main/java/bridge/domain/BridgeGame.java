@@ -54,4 +54,14 @@ public class BridgeGame {
 	GameRecord getGameRecord() {
 		return gameRecord;
 	}
+
+	public GameSituation checkSituation() {
+		if (player.isDead()) {
+			return GameSituation.FAIL;
+		}
+		if (player.getCurrentLocation() == bridge.getLength()) {
+			return GameSituation.SUCCESS;
+		}
+		return GameSituation.ON_GOING;
+	}
 }

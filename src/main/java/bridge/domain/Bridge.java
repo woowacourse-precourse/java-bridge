@@ -29,4 +29,8 @@ public class Bridge {
 			throw new IllegalArgumentException();
 		}
 	}
+
+	int getLength() {
+		return value.size();
+	}
 }
