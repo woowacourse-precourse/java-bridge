@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-
 class RetryCommandTest {
 
     @Nested
@@ -22,13 +21,13 @@ class RetryCommandTest {
         @DisplayName("올바른 값이라면 정상적으로 retryCommand를 생성한다")
         @ValueSource(strings = {RETRY, QUIT})
         @ParameterizedTest
-        void through_right_value_is_ok(String rightValue) {
+        void When_InputRightValue_Expect_CreateInstance(String rightValue) {
             assertThatNoException().isThrownBy(() -> new RetryCommand(rightValue));
         }
 
         @DisplayName("올바른 값이 아니라면 예외를 반환한다.")
         @Test
-        void through_right_value_is_exception() {
+        void When_InputWrongValue_Expect_Exception() {
             assertThatThrownBy(() -> new RetryCommand("wrongValue"))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -40,13 +39,13 @@ class RetryCommandTest {
 
         @DisplayName(RETRY + "일시 true를 반환한다.")
         @Test
-        void if_message_is_retry_return_true() {
+        void When_MessageIsRetry_Expect_True() {
             assertThat(new RetryCommand(RETRY).isRetry()).isTrue();
         }
 
         @DisplayName(RETRY + "가 아닐시 false를 반환한다.")
         @Test
-        void if_message_is_not_retry_return_false() {
+        void When_MessageIsNotRetry_Expect_False() {
             assertThat(new RetryCommand(QUIT).isRetry()).isFalse();
         }
     }

@@ -19,19 +19,19 @@ class BridgeGameRepositoryTest {
 
     @DisplayName("round의 기본값은 1이다.")
     @Test
-    void round_default_value_is_1() {
+    void When_AfterSetBridgeGameInfo_Expect_RoundIsOne() {
         assertThat(bridgeGameRepository.findRound()).isEqualTo(1);
     }
 
     @DisplayName("tryCount의 기본값은 1이다.")
     @Test
-    void tryCount_default_value_is_1() {
+    void When_AfterSetBridgeGameInfo_Expect_TryCountIsOne() {
         assertThat(bridgeGameRepository.findTryCount()).isEqualTo(1);
     }
 
     @DisplayName("다음 라운드로 넘어갈시 round 값이 1 증가한다.")
     @Test
-    void round_value_plus_1_if_go_to_next_round() {
+    void When_AfterGoToNextRound_Expect_RoundPlusOne() {
         bridgeGameRepository.goToNextRound();
         assertThat(bridgeGameRepository.findRound()).isEqualTo(2);
     }
@@ -47,13 +47,13 @@ class BridgeGameRepositoryTest {
 
         @DisplayName("tryCount 값이 1 증가한다.")
         @Test
-        void tryCount_plus_one() {
+        void When_AfterRetry_Expect_TryCountPlusOne() {
             assertThat(bridgeGameRepository.findTryCount()).isEqualTo(2);
         }
 
         @DisplayName("round는 기본값으로 변경된다.")
         @Test
-        void round_set_default_value() {
+        void When_AfterRetry_Expect_RoundIsOne() {
             assertThat(bridgeGameRepository.findRound()).isEqualTo(1);
         }
     }
@@ -64,15 +64,16 @@ class BridgeGameRepositoryTest {
 
         @DisplayName("일치하면 true를 반환한다.")
         @Test
-        void if_match_return_true() {
+        void When_FinalRoundIsEqualToRound_Expect_True() {
             bridgeGameRepository.goToNextRound();
             bridgeGameRepository.goToNextRound();
             assertThat(bridgeGameRepository.isFinalRound()).isTrue();
         }
 
+        //TODO  ifNotMatch_return_false?
         @DisplayName("일치하지않으면 false를 반환한다.")
         @Test
-        void if_not_match_return_false() {
+        void When_FinalRoundIsNotEqualToRound_Expect_False() {
             assertThat(bridgeGameRepository.isFinalRound()).isFalse();
         }
     }

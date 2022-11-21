@@ -27,7 +27,7 @@ class BridgeTest {
         @DisplayName("길이가 " + MIN_SIZE + " 미만," + MAX_SIZE + " 초과일시 예외를 반환한다.")
         @ValueSource(ints = {MIN_SIZE - 1, MAX_SIZE + 1})
         @ParameterizedTest
-        void wrong_range_value_is_exception(int wrongSize) {
+        void When_InputWrongSizeValue_Expect_Exception(int wrongSize) {
             assertThatThrownBy(() -> new Bridge(createBlocks(wrongSize)))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -35,7 +35,7 @@ class BridgeTest {
         @DisplayName("잘못된 값을 가지고 있을 경우 예외를 반환한다.")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void if_blocks_contain_wrong_value_is_exception(int rightSize) {
+        void When_InputWrongKindOfValue_Expect_Exception(int rightSize) {
             List<String> blocks = createBlocks(rightSize);
             blocks.add("wrongValue");
             assertThatThrownBy(() -> new Bridge(blocks))
@@ -45,7 +45,7 @@ class BridgeTest {
         @DisplayName("값이 문제없으면 정상적으로 생성한다")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void pass_logic(int rightSize) {
+        void When_RightValue_Expect_CreateInstance(int rightSize) {
             assertThatNoException().isThrownBy(() -> new Bridge(createBlocks(rightSize)));
         }
 
@@ -58,7 +58,7 @@ class BridgeTest {
         @DisplayName("일치하면 true를 반환한다")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void match_specific_round_value_is_true(int rightSize) {
+        void When_RoundValueIsEqualToInput_Expect_True(int rightSize) {
             List<String> blocks = createBlocks(rightSize);
             Bridge bridge = new Bridge(blocks);
 
@@ -68,7 +68,7 @@ class BridgeTest {
         @DisplayName("일치하지않으면 false를 반환한다")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void not_match_specific_round_value_is_false(int rightSize) {
+        void When_RoundValueIsNotEqualToInput_Expect_False(int rightSize) {
             List<String> blocks = createBlocks(rightSize);
             Bridge bridge = new Bridge(blocks);
             String falseValue = getFalseValue(blocks.get(0));
@@ -90,7 +90,7 @@ class BridgeTest {
 
         @DisplayName("생성하는데 쓰인 리스트를 변경시켜도 불변이 유지된다.")
         @Test
-        void bridge_is_immutable_if_modified_parameter_list() {
+        void When_ModifyListThatUseForCreateBridge_Expect_ResultNotChange() {
             List<String> blocks = createBlocks(10);
             Bridge bridge = new Bridge(blocks);
             blocks.add("1");
@@ -100,7 +100,7 @@ class BridgeTest {
 
         @DisplayName("Bridge 내부 blocks를 변경하면 예외 반환를 한다")
         @Test
-        void if_modified_bridge_is_exception() {
+        void When_ModifyBlocks_Expect_Exception() {
             List<String> blocks = createBlocks(10);
             Bridge bridge = new Bridge(blocks);
 

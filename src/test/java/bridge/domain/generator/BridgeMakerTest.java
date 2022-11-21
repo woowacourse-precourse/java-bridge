@@ -19,7 +19,7 @@ class BridgeMakerTest {
     @DisplayName("입력한 길이와 다리 길이가 일치한다")
     @ValueSource(ints = 10)
     @ParameterizedTest
-    void bridge_size_is_match_by_input(int anyValue) {
+    void When_MakeBridge_Expect_BridgeSizeIsEqualToInput(int anyValue) {
         List<String> bridge = bridgeMaker.makeBridge(anyValue);
         assertThat(bridge.size()).isEqualTo(anyValue);
     }
@@ -27,7 +27,7 @@ class BridgeMakerTest {
     @DisplayName(MOVE_TO_UPPER_BLOCK + ", " + MOVE_TO_LOWER_BLOCK + " 2개의 값만 생성된다")
     @ValueSource(ints = 10)
     @ParameterizedTest
-    void bright_contain_only_specific_value(int anyValue) {
+    void When_MakeBridge_Expect_ResultContainOnlySpecificValue(int anyValue) {
         List<String> bridge = bridgeMaker.makeBridge(anyValue);
         assertThat(bridge.stream()
                 .allMatch(value -> value.equals(MOVE_TO_UPPER_BLOCK) || value.equals(MOVE_TO_LOWER_BLOCK))).isTrue();
@@ -39,7 +39,7 @@ class BridgeMakerTest {
 
         @DisplayName("1이면 " + MOVE_TO_UPPER_BLOCK + "를 반환한다.")
         @Test
-        void if_1_change_to_U() {
+        void When_InputOne_Expect_U() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 1);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_UPPER_BLOCK);
             assertThat(result).isTrue();
@@ -47,7 +47,7 @@ class BridgeMakerTest {
 
         @DisplayName("0이면 " + MOVE_TO_LOWER_BLOCK + "를 반환한다.")
         @Test
-        void if_2_change_to_D() {
+        void When_InputZero_Expect_D() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_LOWER_BLOCK);
             assertThat(result).isTrue();
@@ -55,17 +55,17 @@ class BridgeMakerTest {
 
         @DisplayName("그외의 값이면 예외를 반환한다.")
         @Test
-        void else_value_is_exception() {
+        void When_InputWrongValue_Expect_Exception() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 2);
             assertThatThrownBy(() -> bridgeMaker.makeBridge(10))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         private boolean isCreateSpecificValue(BridgeMaker bridgeMaker,
-                                              String moveToUpperBlock) {
+                                              String expectValue) {
             List<String> bridge = bridgeMaker.makeBridge(10);
             return bridge.stream()
-                    .allMatch(value -> value.equals(moveToUpperBlock));
+                    .allMatch(value -> value.equals(expectValue));
         }
     }
 }
