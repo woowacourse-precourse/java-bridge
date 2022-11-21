@@ -19,42 +19,31 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> route, boolean isEnd, boolean isSuccess) {
+    public void printMap(List<String> route, boolean isSuccess) {
         List<StringBuilder> maps = List.of(new StringBuilder(startMap), new StringBuilder(startMap));
-        if (isEnd) {
-            printMapIfIsEnd(route, maps, isSuccess);
+        if (isSuccess) {
+            printMapIfIsSuccess(route, maps);
             System.out.println();
             return;
         }
-        printMapIfIsNotEnd(route, maps);
+        printMapIfIsNotSuccess(route, maps);
         System.out.println();
     }
 
-    private void printMapIfIsEnd(List<String> route, List<StringBuilder> maps, boolean isSuccess) {
-        if (isSuccess) {
-            System.out.println(makeUpStringIfSuccess(route, maps.get(0)));
-            System.out.println(makeDownStringIfSuccess(route, maps.get(1)));
-            return;
-        }
+    private void printMapIfIsNotSuccess(List<String> route, List<StringBuilder> maps) {
         System.out.println(makeUpStringIfFailed(route, maps.get(0)));
         System.out.println(makeDownStringIfFailed(route, maps.get(1)));
     }
 
-    private void printMapIfIsNotEnd(List<String> route, List<StringBuilder> maps) {
+    private void printMapIfIsSuccess(List<String> route, List<StringBuilder> maps) {
         makeUpString(route, maps.get(0), route.size());
         makeDownString(route, maps.get(1), route.size());
+        maps.get(0).delete(maps.get(0).length()-3,maps.get(0).length()).append(endMap);
+        maps.get(1).delete(maps.get(1).length()-3,maps.get(1).length()).append(endMap);
         System.out.println(maps.get(0).toString());
         System.out.println(maps.get(1).toString());
     }
 
-    private String makeDownStringIfSuccess(List<String> route, StringBuilder downBridge) {
-        makeDownString(route, downBridge, route.size() - 1);
-        if (route.get(route.size() - 1).equals("U")) {
-            downBridge.append(" ").append(endMap);
-            return downBridge.toString();
-        }
-        return downBridge.append("O").append(endMap).toString();
-    }
 
     private String makeDownStringIfFailed(List<String> route, StringBuilder downBridge) {
         makeDownString(route, downBridge, route.size() - 1);
@@ -63,15 +52,6 @@ public class OutputView {
             return downBridge.toString();
         }
         return downBridge.append("X").append(endMap).toString();
-    }
-
-    private String makeUpStringIfSuccess(List<String> route, StringBuilder upBridge) {
-        makeUpString(route, upBridge, route.size() - 1);
-        if (route.get(route.size() - 1).equals("D")) {
-            upBridge.append(" ").append(endMap);
-            return upBridge.toString();
-        }
-        return upBridge.append("O").append(endMap).toString();
     }
 
     private String makeUpStringIfFailed(List<String> route, StringBuilder upBridge) {
@@ -90,7 +70,7 @@ public class OutputView {
                 upBridge.append(" " + separator);
                 continue;
             }
-            upBridge.append("O");
+            upBridge.append("O" + separator);
         }
     }
 
@@ -100,7 +80,7 @@ public class OutputView {
                 downBridge.append(" " + separator);
                 continue;
             }
-            downBridge.append("O");
+            downBridge.append("O" + separator);
         }
     }
 
@@ -110,9 +90,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> route, boolean isSuccess, int trialNum) {
-        List<StringBuilder> maps = List.of(new StringBuilder(startMap), new StringBuilder(startMap));
         System.out.println(resultOfGame);
-        printMapIfIsEnd(route, maps, isSuccess);
+        printMap(route, isSuccess);
         System.out.println();
         printResultSuccess(isSuccess);
         printResultTrial(trialNum);
@@ -127,6 +106,6 @@ public class OutputView {
     }
 
     private void printResultTrial(int trialNum) {
-        System.out.println(resultOfGameTrial+ trialNum);
+        System.out.println(resultOfGameTrial + trialNum);
     }
 }
