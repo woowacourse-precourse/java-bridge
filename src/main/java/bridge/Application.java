@@ -25,6 +25,7 @@ public class Application {
             String moveCommand = inputView.readMoving();
             boolean isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
             bridgeGame.move(currentBridge, moveCommand, isPossibleMove);
+            outputView.printMap(currentBridge);
         }
 
     }
