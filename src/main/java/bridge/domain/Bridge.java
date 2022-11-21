@@ -9,4 +9,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
+    public boolean matches(int index, String direction) {
+        return direction.equals(bridge.get(index));
+    }
 }
