@@ -1,9 +1,9 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-
     private final List<String> bridge;
     private BridgeGameState bridgeGameState;
     private int positionOnBridge;
@@ -18,15 +18,25 @@ public class Bridge {
         return bridgeGameState;
     }
 
-    public void move(String input) {
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getPositionOnBridge() {
+        return positionOnBridge;
+    }
+
+    public BridgeGameState move(String input) {
         if (input.equals(bridge.get(positionOnBridge++))) {
             if (positionOnBridge == bridge.size()) {
-                this.bridgeGameState = BridgeGameState.SUCCESS_AND_END;
-                return;
+                return this.bridgeGameState = BridgeGameState.SUCCESS_AND_END;
             }
-            this.bridgeGameState = BridgeGameState.NORMAL;
-            return;
+            return this.bridgeGameState = BridgeGameState.NORMAL;
         }
-        this.bridgeGameState = BridgeGameState.FAIL;
+        return this.bridgeGameState = BridgeGameState.FAIL;
+    }
+
+    public String toString() {
+        return BridgeOutputView.bridgePrint(this);
     }
 }
