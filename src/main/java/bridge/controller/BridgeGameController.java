@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
 import bridge.domain.GameResult;
 import bridge.exception.CannotCrossBridgeException;
@@ -38,7 +39,7 @@ public class BridgeGameController {
         } catch (CannotCrossBridgeException exception) {
             outputView.printMap(bridgeGame.getBridgeStatus());
             outputView.printGuideForGameCommand();
-            String gameCommand = inputView.readGameCommand();
+            GameCommand gameCommand = inputView.readGameCommand();
             retry(bridgeGame, gameCommand);
         }
     }
@@ -56,13 +57,13 @@ public class BridgeGameController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private void retry(BridgeGame bridgeGame, String gameCommand) {
-        if (gameCommand.equals("R")) {
+    private void retry(BridgeGame bridgeGame, GameCommand gameCommand) {
+        if (gameCommand == GameCommand.R) {
             bridgeGame.retry();
             startGame(bridgeGame);
         }
 
-        if (gameCommand.equals("Q")) {
+        if (gameCommand == GameCommand.Q) {
             endGame(new GameResult(bridgeGame.getBridgeStatus(), GameStatus.FAIL,
                 bridgeGame.getAttemptCount()));
         }
