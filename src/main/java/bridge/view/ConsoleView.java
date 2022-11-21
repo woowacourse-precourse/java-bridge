@@ -56,5 +56,4 @@ public class ConsoleView {
         outputView.printMap(userMap);
         outputView.printResult(results.get("성공여부"), results.get("시도횟수"));
     }
-
 }
