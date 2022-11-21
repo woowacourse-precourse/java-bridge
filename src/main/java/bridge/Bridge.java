@@ -22,6 +22,7 @@ public class Bridge {
         for(int i=0;i<this.bridgeSize;i++){
             crossAble.add(bridgeRandomNumberGenerator.generate());
         }
+        setBridgeMap();
     }
     private int validate(String bridgeSize){
         int bridgeSizeNumber = stringToNumber(bridgeSize);
@@ -50,10 +51,14 @@ public class Bridge {
         return false;
     }
     public void setBridgeMap(){
+        bridgeMap = new ArrayList<>();
         for(int i=0;i<bridgePositionNumber;i++){
             for(int j=0;j<bridgeSize;j++){
                 bridgeMap.add(" ");
             }
         }
+    }
+    public List<String> getBridgeMap(){
+        return this.bridgeMap;
     }
 }
