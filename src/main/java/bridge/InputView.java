@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.Error.ERROR_INPUT_U_OR_D;
+import static bridge.Error.ERROR_SIZE_BRIDGE;
 import static bridge.Message.*;
 
 /**
@@ -19,11 +21,11 @@ public class InputView {
         try {
             bridgeSize = Integer.parseInt(Console.readLine());
             if (bridgeSize < 3 || bridgeSize > 20) {
-                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                System.out.println(ERROR_SIZE_BRIDGE.getMessage());
                 bridgeSize = readBridgeSize();
             }
         } catch (IllegalStateException | IllegalArgumentException exception) {
-            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            System.out.println(ERROR_SIZE_BRIDGE.getMessage());
         }
         return bridgeSize;
     }
@@ -42,26 +44,27 @@ public class InputView {
             moving = Console.readLine().toUpperCase();
             return moving;
         } catch (IllegalArgumentException | IllegalStateException e) {
-            System.out.println("[ERROR] U 또는 D를 입력해주세요");
+            System.out.println(ERROR_INPUT_U_OR_D.getMessage());
         }finally {
             moving = checkMovingNull(moving);
-            checkUpAndDown(moving);
+            moving = checkUpAndDown(moving);
         }
         return moving;
     }
 
-    private String checkMovingNull(String moving) {
+    public String checkMovingNull(String moving) {
         if (moving == null) {
             moving = readMoving();
         }
         return moving;
     }
 
-    private void checkUpAndDown(String moving) {
+    public String checkUpAndDown(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))) {
-            System.out.println("[ERROR] U 또는 D를 입력해주세요");
+            System.out.println("");
             moving = readMoving();
         }
+        return moving;
     }
 
     /**
