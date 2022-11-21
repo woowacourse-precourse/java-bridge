@@ -7,12 +7,12 @@ import bridge.model.Bridge;
  */
 public class OutputView {
 
-    private static final String START_GAME = "다리 건너기 게임을 시작합니다.";
+    private static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
     private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
-    private static final String MOVE_UP_OR_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String RETRY_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String GAME_RESULT = "최종 게임 결과";
-    private static final String SUCCESS_OR_FAIL = "게임 성공 여부: ";
+    private static final String MOVE_UP_OR_DOWN = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String RETRY_OR_QUIT = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String GAME_RESULT = "\n최종 게임 결과";
+    private static final String SUCCESS_OR_FAIL = "\n게임 성공 여부: ";
     private static final String TRY_COUNT = "총 시도한 횟수: ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";

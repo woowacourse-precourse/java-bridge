@@ -25,23 +25,23 @@ public class Controller {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridgeList);
-        start(bridgeGame, bridgeList);
+        start(bridgeGame);
     }
 
-    public void start(BridgeGame bridgeGame, List<String> bridgeList) {
+    public void start(BridgeGame bridgeGame) {
 
         StringBuilder upperBridge = new StringBuilder();
         StringBuilder lowerBridge = new StringBuilder();
+        Bridge bridge = new Bridge(upperBridge, lowerBridge);
 
+        playGame(bridgeGame, bridge);
+    }
+
+    private void playGame(BridgeGame bridgeGame, Bridge bridge) {
+        // Todo: do-while 로 수정하면 break 포인트를 많이 생성하지 않아도 될까?
         while (true) {
-
             outputView.printSelectMove();
             String inputMove = inputView.readMoving();
-
-            System.out.println(bridgeList);
-
-            Bridge bridge = new Bridge(upperBridge, lowerBridge);
-
             int index = bridgeGame.getIndex();
             if (index == 0) {
                 if(bridgeGame.moveBridgeInit(bridgeGame, inputMove, bridge)) {
@@ -50,7 +50,7 @@ public class Controller {
                 else {
                     outputView.printMap(bridge);
                     bridgeGame.initIndex();
-                    if(retry(bridgeGame, bridgeList)){
+                    if(retry(bridgeGame)){
                         break;
                     }
                 }
@@ -63,42 +63,44 @@ public class Controller {
                     outputView.printMap(bridge);
                     bridgeGame.initIndex();
 
-                    if(retry(bridgeGame, bridgeList)){
-                        gameEnd();
+                    if(retry(bridgeGame)){
+                        gameEnd(bridge);
                         break;
                     }
                 }
             }
-            if (checkBridgeIndex(bridgeGame, bridgeList)) break;
+            if (checkBridgeIndex(bridgeGame)) break;
         }
+        gameEnd(bridge);
     }
 
-    private boolean checkBridgeIndex(BridgeGame bridgeGame, List<String> bridgeList) {
+    private boolean checkBridgeIndex(BridgeGame bridgeGame) {
+        List<String> bridgeList = bridgeGame.getBridge();
         int bridgeSize = bridgeList.size();
         int curIndex = bridgeGame.getIndex();
         if(curIndex == bridgeSize) {
             user.checkSuccess();
-            gameEnd();
             return true;
         }
         return false;
     }
 
-    public boolean retry(BridgeGame bridgeGame, List<String> bridgeList) {
+    public boolean retry(BridgeGame bridgeGame) {
         boolean flag = false;
         outputView.printSelectRetry();
         String retryOrQuit = inputView.readGameCommand();
         if(bridgeGame.checkRetry(retryOrQuit)) {
             user.addTryCount();
-            start(bridgeGame, bridgeList);
+            start(bridgeGame);
         }
         return !flag;
     }
 
-    private void gameEnd() {
+    private void gameEnd(Bridge bridge) {
         boolean success = user.isSuccess();
         int tryCount = user.getTryCount();
         outputView.printResultMessage();
+        outputView.printMap(bridge);
         outputView.printResult(success, tryCount);
     }
 }
