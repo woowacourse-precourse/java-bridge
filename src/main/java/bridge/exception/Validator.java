@@ -2,7 +2,6 @@ package bridge.exception;
 
 import bridge.domain.BrideLength;
 import bridge.domain.BridgeSpace;
-import java.util.Objects;
 
 public class Validator {
 
@@ -12,9 +11,8 @@ public class Validator {
         }
     }
 
-    public static void validBridgeSpaceType(String input) {
-        if (!Objects.equals(input, BridgeSpace.DOWN.getType()) &&
-                    !Objects.equals(input, BridgeSpace.UP.getType())) {
+    public static void validBridgeSpaceType(String type) {
+        if (BridgeSpace.findByType(type) == null) {
             throw new IllegalArgumentException(Error.WRONG_BRIDGE_SPACE_TYPE.getMessage());
         }
     }
