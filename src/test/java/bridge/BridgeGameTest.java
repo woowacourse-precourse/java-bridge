@@ -4,6 +4,7 @@ import static bridge.constant.MoveResult.CAN_MOVE;
 import static bridge.constant.MoveResult.CAN_NOT_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.constant.GameStatus;
 import bridge.constant.MoveResult;
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,7 +44,7 @@ class BridgeGameTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0})
-    void compareByNotMatch(int count) {
+    void moveByNotMove(int count) {
         // given
         List<String> bridge = List.of("U", "D", "D");
         String player = "D";
@@ -54,5 +55,22 @@ class BridgeGameTest {
 
         // then
         assertThat(result).isEqualTo(CAN_NOT_MOVE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0})
+    void retry(int round) {
+        // given
+        BridgeGame bridgeGame = new BridgeGame();
+        int countOfGame = bridgeGame.getBridgeGameStat().getCountOfGame();
+
+        // when
+        bridgeGame.retry();
+
+        // then
+        assertThat(bridgeGame.getCountOfRound()).isEqualTo(round);
+        assertThat(bridgeGame.getBridgeGameStat().getBridgeMaps()).isEmpty();
+        assertThat(bridgeGame.getBridgeGameStat().getGameStatus()).isEqualTo(GameStatus.FAIL);
+        assertThat(bridgeGame.getBridgeGameStat().getCountOfGame()).isEqualTo(countOfGame + 1);
     }
 }
