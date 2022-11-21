@@ -3,7 +3,7 @@ package bridge.exception;
 import bridge.data.constant.ErrorMessage;
 
 public class InputException {
-    public static int bridgeSizeInputError(String bridgeSizeInput) throws IllegalArgumentException{
+    public static int bridgeSizeInputError(String bridgeSizeInput) throws IllegalArgumentException {
         bridgeSizeTypeError(bridgeSizeInput);
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
         bridgeSizeRangeError(bridgeSize);
@@ -11,8 +11,8 @@ public class InputException {
     }
 
     public static void bridgeSizeTypeError(String bridgeSizeInput) {
-        for (int i = 0; i < bridgeSizeInput.length(); i++) {
-            if (!Character.isDigit(bridgeSizeInput.charAt(i))) {
+        for (char e : bridgeSizeInput.toCharArray()) {
+            if (!Character.isDigit(e)) {
                 throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR.getErrorLog());
             }
         }
