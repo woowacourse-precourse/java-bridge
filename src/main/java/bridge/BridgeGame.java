@@ -16,6 +16,9 @@ public class BridgeGame {
     private int size;
     private boolean success;
 
+    private int savedPos;
+    private boolean savedCorrect;
+
     BridgeGame(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         this.bridgeMaker = bridgeMaker;
         this.inputView = inputView;
@@ -50,15 +53,18 @@ public class BridgeGame {
      */
     public boolean move(List<String> bridge) {
         boolean correct = true;
-        for(int pos = 0; pos < size; pos++) {
+        for(int pos = 0; pos < size && correct; pos++) {
             outputView.printAskMoveMessage();
             correct = inputView.readMoving().equals(bridge.get(pos));
             outputView.printMap(bridge, pos, correct);
-            if(!correct) {
-                break;
-            }
+            saveState(pos, correct);
         }
         return correct;
+    }
+
+    private void saveState(int pos, boolean correct) {
+        this.savedPos = pos;
+        this.savedCorrect = correct;
     }
 
     /**
