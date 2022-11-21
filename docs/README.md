@@ -16,7 +16,7 @@ main 포함 모든 함수 10줄만
 -BridgeGame Controller 느낌으로 구현 예정.
 
 #BridgeGame-패키지변경O,필드추가O,메서드이름변경X,메서드추가,인자반환타입변경O
--생성자(다리 길이)
+-생성자(다리 길이, 다리 모양)
 -메서드) 사용자가 칸 이동할 때 사용  
 -메서드) 사용자가 게임 다시 시도할때 사용  
 
@@ -24,14 +24,12 @@ main 포함 모든 함수 10줄만
 다리 길이 입력받고 생성 하는 역할  
 -메서드) 다리 길이 받아서 해당하는 다리 모양 만들기 리스트로 만들어서 리스트 반환
 
-#BridgeNumberGenerator  
+#BridgeNumberGenerator-불변  
 public interface/ int generate()  
-함수형 인터페이스->람다식 사용 가능  
-불변  
+함수형 인터페이스->람다식 사용 가능
 
-#BridgeRandomNumberGenerator  
+#BridgeRandomNumberGenerator-불변  
 0, 1 return  
-불변  
 
 #InputView-패키지/메서드의 시그니처/반환타입 변경O,메서드추가O
 사용자로부터 입력 받음  
