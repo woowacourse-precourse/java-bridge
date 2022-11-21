@@ -1,9 +1,11 @@
 package bridge.view;
 
 import bridge.service.BridgeGame;
-
 import java.util.List;
 import java.util.Map;
+
+import static bridge.util.constants.RecordKey.UPPER_RECORD_KEY;
+import static bridge.util.constants.RecordKey.LOWER_RECORD_KEY;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -34,8 +36,8 @@ public class OutputView {
      */
     public void printMap(BridgeGame bridgeGame) {
         Map<String, List<String>> crossedRecord = bridgeGame.getCrossedRecord();
-        printUpperPart(crossedRecord.get("upperCrossedRecord"));
-        printLowerPart(crossedRecord.get("lowerCrossedRecord"));
+        printUpperPart(crossedRecord.get(UPPER_RECORD_KEY.getValue()));
+        printLowerPart(crossedRecord.get(LOWER_RECORD_KEY.getValue()));
     }
 
     private void printUpperPart(List<String> upperCrossedRecord) {

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static bridge.util.constants.RecordKey.UPPER_RECORD_KEY;
+import static bridge.util.constants.RecordKey.LOWER_RECORD_KEY;
 import static bridge.util.constants.MovableSpace.UPPER_SPACE;
 import static bridge.util.constants.Marker.NOT_CROSS;
 
@@ -14,8 +16,8 @@ public class GameRecord {
     private int tryCount;
     public GameRecord() {
         crossedRecord = new HashMap<>();
-        crossedRecord.put("upperCrossedRecord", new ArrayList<>());
-        crossedRecord.put("lowerCrossedRecord", new ArrayList<>());
+        crossedRecord.put(UPPER_RECORD_KEY.getValue(), new ArrayList<>());
+        crossedRecord.put(LOWER_RECORD_KEY.getValue(), new ArrayList<>());
         this.tryCount = 1;
     }
 
@@ -29,16 +31,16 @@ public class GameRecord {
     }
 
     private void recordCrossedUpper(String marker) {
-        List<String> upperCrossedRecord = crossedRecord.get("upperCrossedRecord");
-        List<String> lowerCrossedRecord = crossedRecord.get("lowerCrossedRecord");
+        List<String> upperCrossedRecord = crossedRecord.get(UPPER_RECORD_KEY.getValue());
+        List<String> lowerCrossedRecord = crossedRecord.get(LOWER_RECORD_KEY.getValue());
 
         upperCrossedRecord.add(marker);
         lowerCrossedRecord.add(NOT_CROSS.getValue());
     }
 
     private void recordCrossedLower(String marker) {
-        List<String> upperCrossedRecord = crossedRecord.get("upperCrossedRecord");
-        List<String> lowerCrossedRecord = crossedRecord.get("lowerCrossedRecord");
+        List<String> upperCrossedRecord = crossedRecord.get(UPPER_RECORD_KEY.getValue());
+        List<String> lowerCrossedRecord = crossedRecord.get(LOWER_RECORD_KEY.getValue());
 
         upperCrossedRecord.add(NOT_CROSS.getValue());
         lowerCrossedRecord.add(marker);
@@ -50,8 +52,8 @@ public class GameRecord {
     }
 
     private void clearCrossedRecord() {
-        List<String> upperCrossedRecord = crossedRecord.get("upperCrossedRecord");
-        List<String> lowerCrossedRecord = crossedRecord.get("lowerCrossedRecord");
+        List<String> upperCrossedRecord = crossedRecord.get(UPPER_RECORD_KEY.getValue());
+        List<String> lowerCrossedRecord = crossedRecord.get(LOWER_RECORD_KEY.getValue());
 
         upperCrossedRecord.clear();
         lowerCrossedRecord.clear();
