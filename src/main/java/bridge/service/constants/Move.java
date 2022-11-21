@@ -2,16 +2,16 @@ package bridge.service.constants;
 
 public enum Move {
 
-    UPBRIDGE("U"),
-    DOWNBRIDGE("D");
+    UP_BRIDGE("U"),
+    DOWN_BRIDGE("D");
 
-    private final String moveBridge;
+    private final String value;
 
-    Move(String moveBridge){
-        this.moveBridge = moveBridge;
+    Move(String value){
+        this.value = value;
     }
 
-    public String getMoveBridge(){
-        return moveBridge;
+    public String getValue(){
+        return value;
     }
 }
