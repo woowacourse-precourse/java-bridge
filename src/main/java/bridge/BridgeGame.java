@@ -7,6 +7,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final int TRIES_INIT = 1;
     private List<String> bridge;
     private static List<String> crossedBridge;
     private static int tries;
@@ -14,7 +15,7 @@ public class BridgeGame {
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.crossedBridge = new ArrayList<>();
-        this.tries = 0;
+        this.tries = TRIES_INIT;
     }
 
     /**
@@ -24,7 +25,7 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         crossedBridge.add(direction);
-        if (bridge.get(crossedBridge.size()-1).equals(direction)) {
+        if (bridge.get(crossedBridge.size() - 1).equals(direction)) {
             return true;
         }
         tries = tries + 1;
@@ -46,6 +47,6 @@ public class BridgeGame {
      */
     public void retry() {
         this.crossedBridge = new ArrayList<>();
-        this.tries = 0;
+        this.tries = TRIES_INIT;
     }
 }
