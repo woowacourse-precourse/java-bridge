@@ -13,6 +13,10 @@ public class InputView {
     	try {
     		int inputbridgesize = Integer.parseInt(Console.readLine());
     		
+    		if(inputbridgesize < 3 && inputbridgesize > 20) {
+    			throw new IllegalArgumentException();
+    		}
+    		
     		return inputbridgesize;
     	}
     	catch(IllegalArgumentException e) {
