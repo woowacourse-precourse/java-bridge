@@ -5,9 +5,6 @@ import bridge.domain.UserMovement;
 import bridge.domain.UserPath;
 import bridge.view.OutputView;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static bridge.util.JudgementUtil.whetherUserWinMessage;
 
 /**
@@ -24,10 +21,7 @@ public class GameResult {
      * @param tryCnt       시도 횟수
      */
     public static void gameResult(UserMovement userMovement, Bridge bridge, int tryCnt) {
-        List<List<String>> bothCellResult = Arrays.asList(
-                UserPath.getUpperCellResult(userMovement, bridge)
-                , UserPath.getLowerCellResult(userMovement, bridge)
-        );
-        outputView.printResult(bothCellResult, tryCnt, whetherUserWinMessage(userMovement, bridge));
+        UserPath userPath = new UserPath(userMovement, bridge);
+        outputView.printResult(userPath, tryCnt, whetherUserWinMessage(userMovement, bridge));
     }
 }

@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.UserPath;
 import bridge.enums.OutputMessage;
 
 import java.util.List;
@@ -32,9 +33,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> bothCell, Integer retryCnt, String gameResultMessage) {
+    public void printResult(UserPath userPath, Integer retryCnt, String gameResultMessage) {
         System.out.println(OutputMessage.FINAL_GAME_RESULT_MESSAGE.getMessage());
-        printMap(bothCell.get(0), bothCell.get(1));
+        printMap(userPath.getUpperPath(), userPath.getLowerPath());
         System.out.println(OutputMessage.GAME_STATUS_MESSAGE.getMessage() + gameResultMessage);
         System.out.println(OutputMessage.TOTAL_ATTEMPTS_MESSAGE.getMessage() + retryCnt);
     }

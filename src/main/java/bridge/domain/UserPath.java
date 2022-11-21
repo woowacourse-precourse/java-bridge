@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.domain.UserMovement;
 import bridge.enums.Sign;
 
 import java.util.ArrayList;
@@ -11,41 +9,11 @@ import java.util.List;
  * 유저가 이동한 경로를 알려준다.
  */
 public class UserPath {
+    private List<String> upperPath, lowerPath;
 
-    /**
-     * 유저 움직임의 위쪽 결과를 반환한다.
-     *
-     * @param userMovement  유저의 움직임 정보
-     * @param bridge 다리 정보
-     * @return 각 칸마다 "O"/"X"/" "의 정보를 담은 결과
-     */
-    public static List<String> getUpperCellResult(UserMovement userMovement, Bridge bridge) {
-        List<String> compareTarget = userMovement.getUserMovement();
-        List<Boolean> compareResult = bridge.compareWithUserMovement(compareTarget);
-
-        List<String> upperCell = new ArrayList<>();
-        for (int index = 0; index < compareTarget.size(); index++) {
-            upperCell.add(getUpperSign(compareTarget.get(index), compareResult.get(index)));
-        }
-        return upperCell;
-    }
-
-    /**
-     * 유저 움직임의 아래쪽 결과를 반환한다.
-     *
-     * @param userMovement  유저의 움직임 정보
-     * @param bridge 다리 정보
-     * @return 각 칸마다 "O"/"X"/" "의 정보를 담은 결과
-     */
-    public static List<String> getLowerCellResult(UserMovement userMovement, Bridge bridge) {
-        List<String> compareTarget = userMovement.getUserMovement();
-        List<Boolean> compareResult = bridge.compareWithUserMovement(compareTarget);
-
-        List<String> lowerCell = new ArrayList<>();
-        for (int index = 0; index < compareTarget.size(); index++) {
-            lowerCell.add(getLowerSign(compareTarget.get(index), compareResult.get(index)));
-        }
-        return lowerCell;
+    public UserPath(UserMovement userMovement, Bridge bridge) {
+        this.upperPath = getUpperPath(userMovement, bridge);
+        this.lowerPath = getLowerPath(userMovement, bridge);
     }
 
     /**
@@ -53,9 +21,9 @@ public class UserPath {
      *
      * @param cell
      * @param isSame
-     * @return "O" or "X" or " "
+     * @return "O" 또는 "X" 또는 " "
      */
-    private static String getUpperSign(String cell, Boolean isSame) {
+    private String getUpperSign(String cell, Boolean isSame) {
         if (cell.equals("U")) {
             if (isSame) {
                 return Sign.CORRECT.getSign();
@@ -70,9 +38,9 @@ public class UserPath {
      *
      * @param cell
      * @param isSame
-     * @return "O" or "X" or " "
+     * @return "O" 또는 "X" 또는 " "
      */
-    private static String getLowerSign(String cell, Boolean isSame) {
+    private String getLowerSign(String cell, Boolean isSame) {
         if (cell.equals("D")) {
             if (isSame) {
                 return Sign.CORRECT.getSign();
@@ -80,5 +48,51 @@ public class UserPath {
             return Sign.WRONG.getSign();
         }
         return Sign.BLANK.getSign();
+    }
+
+    /**
+     * 유저 움직임의 위쪽 결과를 반환한다.
+     *
+     * @param userMovement 유저의 움직임 정보
+     * @param bridge       다리 정보
+     * @return 각 칸마다 "O", "X", " "의 정보를 담은 결과
+     */
+    private List<String> getUpperPath(UserMovement userMovement, Bridge bridge) {
+        List<String> compareTarget = userMovement.getUserMovement();
+        List<Boolean> compareResult = bridge.compareWithUserMovement(compareTarget);
+
+        List<String> upperCell = new ArrayList<>();
+        for (int index = 0; index < compareTarget.size(); index++) {
+            upperCell.add(getUpperSign(compareTarget.get(index), compareResult.get(index)));
+        }
+        return upperCell;
+    }
+
+    /**
+     * 유저 움직임의 아래쪽 결과를 반환한다.
+     *
+     * @param userMovement 유저의 움직임 정보
+     * @param bridge       다리 정보
+     * @return 각 칸마다 "O", "X", " "의 정보를 담은 결과
+     */
+    private List<String> getLowerPath(UserMovement userMovement, Bridge bridge) {
+        List<String> compareTarget = userMovement.getUserMovement();
+        List<Boolean> compareResult = bridge.compareWithUserMovement(compareTarget);
+
+        List<String> lowerCell = new ArrayList<>();
+        for (int index = 0; index < compareTarget.size(); index++) {
+            lowerCell.add(getLowerSign(compareTarget.get(index), compareResult.get(index)));
+        }
+        return lowerCell;
+    }
+
+    /* toString 사용을 고려해본다 */
+
+    public List<String> getUpperPath() {
+        return upperPath;
+    }
+
+    public List<String> getLowerPath() {
+        return lowerPath;
     }
 }

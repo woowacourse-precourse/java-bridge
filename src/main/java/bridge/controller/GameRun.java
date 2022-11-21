@@ -2,14 +2,12 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.UserMovement;
+import bridge.domain.UserPath;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
-import static bridge.domain.UserPath.getLowerCellResult;
-import static bridge.domain.UserPath.getUpperCellResult;
-import static bridge.util.JudgementUtil.*;
+import static bridge.util.JudgementUtil.whetherToContinueGame;
+import static bridge.util.JudgementUtil.whetherToRepeatMovingUser;
 
 /**
  * 게임을 실행한다. 유저가 이동하고, 없는 칸으로 이동할 경우 게임을 계속할지 물어본다.
@@ -63,8 +61,7 @@ public class GameRun {
      * @param bridge       다리 정보
      */
     private static void printUserMovement(UserMovement userMovement, Bridge bridge) {
-        List<String> upperCellResult = getUpperCellResult(userMovement, bridge),
-                lowerCellResult = getLowerCellResult(userMovement, bridge);
-        outputView.printMap(upperCellResult, lowerCellResult);
+        UserPath userPath = new UserPath(userMovement, bridge);
+        outputView.printMap(userPath.getUpperPath(), userPath.getLowerPath());
     }
 }
