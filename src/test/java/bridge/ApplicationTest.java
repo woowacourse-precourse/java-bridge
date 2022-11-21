@@ -5,12 +5,14 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.*;
 
 class ApplicationTest extends NsTest {
 
@@ -178,6 +180,64 @@ class ApplicationTest extends NsTest {
                 );
 
             }, 0, 0, 0, 0, 0);
+        }
+    }
+
+    @Nested
+    @DisplayName("다리 출력 테스트")
+    class PrintMapTest{
+        private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        private final PrintStream standardOut = System.out;
+        private OutputView outputView;
+
+        @BeforeEach
+        void setUp() {
+            System.setOut(new PrintStream(outputStreamCaptor));
+        }
+
+        @AfterEach
+        void tearDown() {
+            System.setOut(standardOut);
+        }
+
+        PrintMapTest() {
+            outputView = new OutputView();
+        }
+
+        @Test
+        @DisplayName("다리 중간 출력")
+        void printBridgeInMiddle() {
+            List<String> bridge = List.of("U", "U", "U", "D");
+
+            outputView.printMap(bridge, 1, false);
+
+            assertThat(outputStreamCaptor.toString().trim())
+                    .contains("[ O |   ]",
+                            "[   | X ]");
+        }
+
+        @Test
+        @DisplayName("다리 오류")
+        void printBridgeWrong() {
+            List<String> bridge = List.of("U", "U", "U", "D");
+
+            outputView.printMap(bridge, 3, false);
+
+            assertThat(outputStreamCaptor.toString().trim())
+                    .contains("[ O | O | O | X ]",
+                            "[   |   |   |   ]");
+        }
+
+        @Test
+        @DisplayName("다리 정답")
+        void printBridgeCorrect() {
+            List<String> bridge = List.of("U", "U", "U", "D");
+
+            outputView.printMap(bridge, 3, true);
+
+            assertThat(outputStreamCaptor.toString().trim())
+                    .contains("[ O | O | O |   ]",
+                            "[   |   |   | O ]");
         }
     }
 }
