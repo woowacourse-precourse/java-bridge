@@ -9,13 +9,13 @@ public class Bridge {
     private int length;
     private List<String> bridge;
 
-    Bridge(int length, List<String> bridge) {
+    public Bridge(int length, List<String> bridge) {
         validate(length, bridge);
         this.length = length;
         this.bridge = bridge;
     }
 
-    Bridge(List<String> bridge) {
+    public Bridge(List<String> bridge) {
         this.length = bridge.size();
         this.bridge = bridge;
     }
