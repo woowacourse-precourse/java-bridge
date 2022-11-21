@@ -47,7 +47,6 @@ public class BridgeGame {
         return moveOrFail(canCross, isUpBlock);
     }
 
-    //TODO
     private BridgeResponseDto moveOrFail(boolean canCross, boolean isUpBlock) {
         if (canCross) {
             result.addBlocks(BlockExpression.getBlockExpressionByMove(isUpBlock));
@@ -87,7 +86,7 @@ public class BridgeGame {
     public boolean retry(GameRetryRequestDto dto) {
         if (dto.getRetry().equals(GameConstance.RETRY)) {
             this.result.init();
-            this.player = new Player();
+            this.player.init();
             return true;
         }
         return false;

@@ -8,6 +8,10 @@ public class Player {
         this.position = 0;
     }
 
+    public void init() {
+        this.position = 0;
+    }
+
     public void move() {
         this.position += 1;
     }
