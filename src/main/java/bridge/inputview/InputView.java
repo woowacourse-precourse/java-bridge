@@ -103,6 +103,32 @@ public class InputView implements bridge.extensible.InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        String inputRestartCommand;
+        while (true) {
+            inputRestartCommand = Console.readLine();
+            if (validateReadCommand(inputRestartCommand)) {
+                break;
+            }
+        }
+        return inputRestartCommand;
     }
+
+    private boolean validateReadCommand(String inputCommand) {
+        try {
+            throwIfFailToValidateCommand(inputCommand);
+            return true;
+        } catch (IllegalArgumentException IA) {
+            System.out.println(IA.getMessage());
+            return false;
+        }
+    }
+
+    private void throwIfFailToValidateCommand(String inputCommand) {
+        if (inputCommand != "R" && inputCommand != "Q") {
+            throw new IllegalArgumentException("[ERROR] 'R' 또는 'Q'를 입력해주세요.");
+        }
+        return;
+    }
+
 
 }
