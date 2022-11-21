@@ -33,7 +33,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(INPUT_MOVE);
-        return Console.readLine();
+        String moving = Console.readLine();
+        bridgeException.validateMove(moving);
+        return moving;
     }
 
     /**
