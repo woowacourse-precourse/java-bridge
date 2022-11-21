@@ -1,19 +1,19 @@
 package bridge;
 
 public class GameStatus {
+    private boolean isEnd = false;
     private boolean isSuccess = false;
-    private int tryCount = 0;
+    private int tryCount = 1;
 
-    public GameStatus(boolean isSuccess, int tryCount) {
-        this.isSuccess = isSuccess;
-        this.tryCount = tryCount;
-    }
 
     public boolean isSuccess() {
         return isSuccess;
     }
 
     public void setSuccess(boolean success) {
+        if (success) {
+            isEnd = true;
+        }
         isSuccess = success;
     }
 
@@ -21,11 +21,15 @@ public class GameStatus {
         return tryCount;
     }
 
-    public void setTryCount(int tryCount) {
-        this.tryCount = tryCount;
-    }
-
     public void addTryCount() {
         this.tryCount++;
+    }
+
+    public boolean isEnd() {
+        return isEnd;
+    }
+
+    public static GameStatus startNewGame() {
+        return new GameStatus();
     }
 }
