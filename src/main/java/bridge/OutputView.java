@@ -5,8 +5,8 @@ package bridge;
  */
 public class OutputView {
 
-    private String upSideIndex="";
-    private String downSideIndex="";
+    private String upSideIndex = "";
+    private String downSideIndex = "";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -27,8 +27,8 @@ public class OutputView {
     public void printResult(boolean success, int attempt) {
         System.out.println("\n최종 게임 결과");
         printMap();
-        System.out.println("\n게임 성공 여부: "+ succesString(success));
-        System.out.println("총 시도한 횟수: "+attempt);
+        System.out.println("\n게임 성공 여부: " + succesString(success));
+        System.out.println("총 시도한 횟수: " + attempt);
     }
 
     public void buildIndex(String move, String result, int position) {
@@ -41,13 +41,12 @@ public class OutputView {
         }
         this.downSideIndex += tempstr;
         this.downSideIndex += result;
-        this.upSideIndex +=  tempstr + " ";
+        this.upSideIndex += tempstr + " ";
     }
 
-    public String separator(int position)
-    {
+    public String separator(int position) {
         if (position > 0) {
-            return  " | ";
+            return " | ";
         }
         return " ";
     }
@@ -57,19 +56,15 @@ public class OutputView {
         this.downSideIndex = "";
     }
 
-    private String succesString(boolean success)
-    {
-        if(success == true)
-        {
+    private String succesString(boolean success) {
+        if (success == true) {
             return "성공";
         }
         return "실패";
     }
-    
-    public static void gameStart()
-    {
+
+    public static void gameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
-
 
 }

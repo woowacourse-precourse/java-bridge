@@ -1,6 +1,5 @@
 package bridge;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import java.util.regex.Pattern;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -17,6 +16,7 @@ public class InputView {
     private static String GET_SIZE = "다리의 길이를 입력해주세요.";
     private static String GET_MOVE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static String RESTART_GAME = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -26,10 +26,10 @@ public class InputView {
         int size = 0;
         if (checkInputisNumber(input) == true) {
             size = Integer.parseInt(input);
-            //throw new IllegalArgumentException();
+            // throw new IllegalArgumentException();
         }
         if (checkBridgeSize(size) == false) {
-            //throw new IllegalArgumentException();
+            // throw new IllegalArgumentException();
         }
         return size;
     }
@@ -41,7 +41,7 @@ public class InputView {
         System.out.println(GET_MOVE);
         String input = Console.readLine();
         if (checkInputisUpDown(input) == false) {
-           // throw new IllegalArgumentException();
+            // throw new IllegalArgumentException();
         }
         return input;
     }
@@ -52,9 +52,8 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(RESTART_GAME);
         String input = Console.readLine();
-        if(validateCommand(input) == false)
-        {
-           // throw new IllegalArgumentException();
+        if (validateCommand(input) == false) {
+            // throw new IllegalArgumentException();
         }
         return input;
     }

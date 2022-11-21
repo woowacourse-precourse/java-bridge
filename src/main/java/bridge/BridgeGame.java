@@ -10,15 +10,12 @@ public class BridgeGame {
 
     private static BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
     private static BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-    // private static InputView inputView = new InputView();
     public static OutputView outputView = new OutputView();
 
     private static int position = 0;
     private int attempt = 1;
 
     public static List<String> bridge;
-    // private static List<String> upside = new ArrayList<String>();
-    // private static List<String> downside = new ArrayList<String>();
 
     public BridgeGame(int size) {
         this.bridge = bridgeMaker.makeBridge(size);
@@ -47,7 +44,7 @@ public class BridgeGame {
      */
     public boolean retry(String command) {
         if (command.equals("Q")) {
-            outputView.printResult(isSuccess(),this.attempt);
+            outputView.printResult(isSuccess(), this.attempt);
             return false;
         }
         this.position = 0;
@@ -77,8 +74,7 @@ public class BridgeGame {
         return false;
     }
 
-    public void getResult()
-    {
+    public void getResult() {
         outputView.printResult(isSuccess(), attempt);
     }
 
