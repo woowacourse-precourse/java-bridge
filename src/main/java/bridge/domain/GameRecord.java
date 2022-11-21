@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import static bridge.util.constants.MovableSpace.UPPER_SPACE;
+import static bridge.util.constants.Marker.CROSS_SUCCESS;
+import static bridge.util.constants.Marker.CROSS_FAIL;
+import static bridge.util.constants.Marker.NOT_CROSS;
 
 public class GameRecord {
     private final List<String> upperCrossedRecord;
@@ -18,13 +21,13 @@ public class GameRecord {
     }
 
     public void recordMove(String spaceToMove, boolean isDead) {
-        String marker = isDead ? " X " : " O ";
+        String marker = isDead ? CROSS_FAIL.getValue() : CROSS_SUCCESS.getValue();
         if (spaceToMove.equals(UPPER_SPACE.getValue())) {
             upperCrossedRecord.add(marker);
-            lowerCrossedRecord.add("   ");
+            lowerCrossedRecord.add(NOT_CROSS.getValue());
             return;
         }
-        upperCrossedRecord.add("   ");
+        upperCrossedRecord.add(NOT_CROSS.getValue());
         lowerCrossedRecord.add(marker);
     }
 
