@@ -5,7 +5,8 @@ package bridge;
  */
 public class BridgeGame {
 
-    public void init(){
+    public void init() {
+        OutputView.startGameMessage();
 
     }
 
