@@ -38,7 +38,7 @@ public class Map {
         this.lower.add(" X ");
     }
 
-    private void clear(){
+    public void clear(){
         this.upper.clear();
         this.lower.clear();
     }
@@ -46,8 +46,8 @@ public class Map {
     public List<String> getPrintableMap(){
         List<String> printableMaps = new ArrayList<>(2);
 
-        String printableUpper = this.upper.toString().replaceAll(",", "|");
-        String printableLower = this.lower.toString().replaceAll(",", "|");
+        String printableUpper = this.upper.toString().replaceAll(", ", "|");
+        String printableLower = this.lower.toString().replaceAll(", ", "|");
 
         printableMaps.add(printableUpper);
         printableMaps.add(printableLower);
