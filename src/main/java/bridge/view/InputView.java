@@ -26,4 +26,16 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private void validateBridgeSize(String bridgeSize){
+
+    }
+
+    private void validateInteger(String bridgeSize) {
+        try{
+            Integer.parseInt(bridgeSize);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
+    }
 }
