@@ -15,6 +15,7 @@ public class Application {
     private static final BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
+        inputView.printStartMessage();
         Bridge bridge = bridgeGame.getBridge(inputView.readBridgeSize());
         GameResult gameResult = playBridgeGame(bridge);
         outputView.printResult(bridge,gameResult);
