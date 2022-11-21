@@ -117,7 +117,11 @@ public class BridgeGame {
             OutputView.downSide ="";
             return;
         }
-        round = bridgeSize;
+        if(userInput.equals("Q")){
+            round = bridgeSize;
+            outputView.printResult();
+            Print.failResult(challenge);
+        }
     }
 
     public void challengeCount(){
