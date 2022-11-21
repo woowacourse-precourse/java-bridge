@@ -21,6 +21,12 @@ public class User {
     }
 
 
+    private void reinitialize() {
+        location = -1;
+        route = new ArrayList<>();
+        attemptNum += 1;
+    }
+
     private void isCrossBridge() {
         if (location == bridge.size() - 1) {
             status = Status.SUCCESS_END;
