@@ -4,6 +4,7 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 import data.ExceptionData;
+import data.BridgeData;
 import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 /**
@@ -19,7 +20,7 @@ public class InputView {
         while(true){
             System.out.println("입력");
             try{
-                rawData = Console.readLine();
+                rawData = readLine();
                 return validateSize(rawData);
             }catch(IllegalArgumentException e){
                 ExceptionData.EXCEPTION_SIZE.printExceptionData();
@@ -48,13 +49,40 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = readLine();
+        validateMove(moving);
+        return moving;
     }
 
+    private void validateMove(String moving){
+        try {
+            if (!moving.equals(BridgeData.UP) || !moving.equals(BridgeData.DOWN)) {
+                throw new IllegalArgumentException(ExceptionData.EXCEPTION_MOVE.name());
+            }
+        }catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ExceptionData.EXCEPTION_MOVE.name());
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = readLine();
+        validateCommand(gameCommand);
+        return gameCommand;
+    }
+
+    private void validateCommand(String command) throws IllegalArgumentException{
+        try {
+            if (!command.equals(BridgeData.RESTART) || !command.equals(BridgeData.QUIT)) {
+                throw new IllegalArgumentException(ExceptionData.EXCEPTION_RESTART.name());
+            }
+        }catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ExceptionData.EXCEPTION_RESTART.name());
+        }
+    }
+    public String readLine() {
+        String liner = Console.readLine();
+        return liner;
     }
 }
