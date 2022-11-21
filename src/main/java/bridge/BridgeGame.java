@@ -7,7 +7,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private boolean isPass;
+    private boolean isPass = true;
     private int round = 0, total_round = 0;
     private List<String> computer = new ArrayList<>();
     InputView inputView = new InputView();
@@ -22,17 +22,16 @@ public class BridgeGame {
     public void run() {
         for (int i = 0; i < computer.size(); i++) {
             move();
-            outputView.printMap();
             if (!isPass) {
                 break;
             }
         }
         String retryCommand = inputView.readGameCommand();
-        if (retryCommand == "Q") {
+        if (retryCommand.equals("Q")) {
             outputView.printResult(total_round, success());
             return;
         }
-        if (retryCommand != "R")
+        if (retryCommand.equals("R"))
             throw new IllegalArgumentException();
         retry();
         run();
@@ -68,13 +67,13 @@ public class BridgeGame {
      * @return {" ","O","X"} - updateMap()에서 각 map에 입력할 정보
      */
     public String[] check(int round, String user) {
-        if (computer.get(round) == user) {
+        if (computer.get(round).equals(user)) {
             isPass = true;
-            if (user == "D") return new String[]{" ", "O"};
+            if (user.equals("D")) return new String[]{" ", "O"};
             return new String[]{"O", " "};
         }
         isPass = false;
-        if (user == "D") return new String[]{" ", "X"};
+        if (user.equals("D")) return new String[]{" ", "X"};
         return new String[]{"X", " "};
     }
 

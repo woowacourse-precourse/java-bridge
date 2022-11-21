@@ -44,7 +44,7 @@ public class OutputView {
      */
     public void updateMap(String[] result) {
         for (int i = 0; i < 2; i++) {
-            if (map[i] != "[") map[i] += "|";
+            if (!map[i].equals("[")) map[i] += "|";
             map[i] += " " + result[i] + " ";
         }
     }
