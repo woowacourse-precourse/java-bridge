@@ -31,4 +31,16 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    static private int readInt() {
+        while (true) {
+            try {
+                return Integer.parseInt(readLine());
+            } catch (NumberFormatException e) {
+                e.getStackTrace();
+                System.out.println("숫자가 아닙니다. 다시 입력하세요.");
+            }
+        }
+    }
+
 }

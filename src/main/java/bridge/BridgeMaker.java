@@ -1,5 +1,7 @@
 package bridge;
 
+import view.InputView;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +9,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static BridgeNumberGenerator bridgeNumberGenerator;
+    private static final int BRIDGE_MAX_LONG = 20;
+    private static final int BRIDGE_MIN_LONG = 3;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -44,4 +48,15 @@ public class BridgeMaker {
         }
         return blocks;
     }
+
+    private static void validateBridgeSize(List<String> blocks) {
+        if (blocks.size() > BRIDGE_MAX_LONG){
+            throw new IllegalArgumentException("[ERROR] 최대 20까지 입력할 수 있습니다.");
+        }
+
+        if (blocks.size() < BRIDGE_MIN_LONG){
+            throw new IllegalArgumentException("[ERROR] 최소 3이상의 숫자를 적어주세요.");
+        }
+    }
+
 }
