@@ -27,14 +27,12 @@ public class InputView {
     public static String readMoving() throws IllegalArgumentException {
         String movingCommand = Console.readLine();
         validateMoving(movingCommand);
-        System.out.println(MOVING_MESSAGE);
         return movingCommand;
     }
 
     public static String readGameCommand() throws IllegalArgumentException {
         String gameCommand = Console.readLine();
         validateGame(gameCommand);
-        System.out.println(GAME_COMMAND_MESSAGE);
         return gameCommand;
     }
 
