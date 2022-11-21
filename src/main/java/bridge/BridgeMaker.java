@@ -8,6 +8,8 @@ public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     private static final int UP = 1;
+    private static final String DOWN_DIRECTION = "D";
+    private static final String UP_DIRECTION = "U";
     
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -26,8 +28,8 @@ public class BridgeMaker {
         int num;
         num = bridgeNumberGenerator.generate();
         if(num == UP){
-            return "U";
+            return UP_DIRECTION;
         }
-        return "D";
+        return DOWN_DIRECTION;
     }
 }
