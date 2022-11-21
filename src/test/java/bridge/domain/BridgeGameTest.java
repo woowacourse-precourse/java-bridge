@@ -31,7 +31,8 @@ class BridgeGameTest {
         @Test
         void should_ReturnBridgeSketch_When_SuccessToMove() {
             String moving = UPPER_SIDE;
-            String bridgeSketch = bridgeGame.move(moving);
+            bridgeGame.move(moving);
+            String bridgeSketch = bridgeGame.getSketch();
             assertThat(bridgeSketch).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
@@ -39,7 +40,8 @@ class BridgeGameTest {
         @Test
         void should_ReturnBridgeSketch_When_FailToMove() {
             String moving = LOWER_SIDE;
-            String bridgeSketch = bridgeGame.move(moving);
+            bridgeGame.move(moving);
+            String bridgeSketch = bridgeGame.getSketch();
             assertThat(bridgeSketch).isEqualTo("[   ]" + "\n" + "[ X ]");
         }
 

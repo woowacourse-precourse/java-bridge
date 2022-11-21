@@ -35,7 +35,8 @@ public class BridgeController {
 
     private void playTurn() {
         String moving = inputView.readMoving();
-        String bridgeSketch = bridgeGame.move(moving);
+        bridgeGame.move(moving);
+        String bridgeSketch = bridgeGame.getSketch();
         outputView.printMap(bridgeSketch);
         if (bridgeGame.isFail()) {
             String gameCommand = inputView.readGameCommand();

@@ -25,12 +25,11 @@ public class BridgeGame {
         this.bridgeDrawer = new BridgeDrawer();
     }
 
-    public String move(String moving) {
+    public void move(String moving) {
         validateMoving(moving);
         GameStatus gameStatusAfterMoving = bridgeReferee.judge(moving);
         gameStatus = gameStatusAfterMoving;
         bridgeDrawer.record(moving, gameStatusAfterMoving);
-        return bridgeDrawer.getSketch();
     }
 
     public void retry(String gameCommand) {
