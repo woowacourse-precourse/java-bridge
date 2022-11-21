@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.List;
-
 public class User {
 
     private int position = 0;
