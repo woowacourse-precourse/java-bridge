@@ -8,8 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidatorTest {
-	@DisplayName("숫자인 다리 길이를 입력받는다.")
-	@ValueSource(strings = {"20", "0", "3", "12312412"})
+	@DisplayName("한자리, 두자리 숫자인 다리 길이를 입력받는다.")
+	@ValueSource(strings = {"20", "0", "3", "04"})
 	@ParameterizedTest
 	void validateSizeIsNumberNormal(String strings) {
 		assertDoesNotThrow(() -> Validator.validateSizeIsNaturalNumber(strings));
