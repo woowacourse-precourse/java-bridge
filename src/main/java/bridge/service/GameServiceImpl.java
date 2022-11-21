@@ -16,19 +16,18 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public boolean passThisRound(List<String> bridgeInfo) {
+        if (checkIsGameFinished(bridgeInfo, BridgeGame.getUserDirection())) {
+            return false;
+        }
         if (!bridgeGame.move(bridgeInfo, inputView.readMoving())) {
             return askOption();
-        }
-        if (checkIsGameFinished(bridgeInfo, bridgeGame.getUserDirection())) {
-            endType = ResultType.SUCCESS;
-            return false;
         }
         return true;
     }
 
     @Override
     public boolean askOption() {
-        if (inputView.readGameCommand().equals(GameOptionType.QUIT)) {
+        if (inputView.readGameCommand().equals( GameOptionType.QUIT )) {
             endType = ResultType.FAIL;
             return false;
         }
@@ -39,6 +38,7 @@ public class GameServiceImpl implements GameService {
     public boolean checkIsGameFinished(List<String> bridgeInfo, List<String> userDirection) {
         CheckService checkService = new CheckServiceImpl();
         if (checkService.isSucceed(bridgeInfo)) {
+            endType = ResultType.SUCCESS;
             return true;
         }
         return false;
