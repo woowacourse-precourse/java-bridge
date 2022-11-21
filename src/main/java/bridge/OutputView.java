@@ -73,4 +73,11 @@ public class OutputView {
 	public static void printNewLine() {
 		System.out.println();
 	}
+
+	public static void printStatus(HashMap<String, String> status) {
+		for (String key : status.keySet()) {
+			System.out.print(status.get(key));
+			printNewLine();
+		}
+	}
 }
