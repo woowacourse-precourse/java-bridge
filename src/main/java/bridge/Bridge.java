@@ -19,12 +19,15 @@ public class Bridge {
         return MovingType.NOT_MOVE.getResult();
     }
 
-    public void addBridge(String status){
+    public void addBridge(String status) {
         this.status.add(status);
     }
 
-    public List<String> getBridge(){
-        List<String> status = this.status.stream().collect(Collectors.toList());
-        return status;
+    public String getBridge(int index) {
+        return this.status.get(index);
+    }
+
+    public int getSize() {
+        return this.status.size();
     }
 }
