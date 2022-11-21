@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.BridgeShape;
+import bridge.domain.MyBridge;
 
 import java.util.HashMap;
 
@@ -14,7 +17,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(HashMap<String, String> bridgeMap) {
+        System.out.println(bridgeMap.get("U"));
+        System.out.println(bridgeMap.get("D"));
     }
 
     /**
@@ -47,10 +52,10 @@ public class OutputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
-    public void printBridge(HashMap<String, String> bridgeMap) {
-        System.out.println(bridgeMap.get("U"));
-        System.out.println(bridgeMap.get("D"));
-    }
+//    public void printBridge(HashMap<String, String> bridgeMap) {
+//        System.out.println(bridgeMap.get("U"));
+//        System.out.println(bridgeMap.get("D"));
+//    }
 
     public void printRetry(){
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");

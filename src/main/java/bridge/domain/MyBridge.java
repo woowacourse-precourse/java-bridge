@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain;
+
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +16,7 @@ public class MyBridge {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
 
-    MyBridge(List<String> answerBridge, int size) {
+    public MyBridge(List<String> answerBridge, int size) {
         this.inputList = new ArrayList<>();
         this.answerBridge = answerBridge;
         this.size = size;
@@ -50,10 +53,6 @@ public class MyBridge {
 
     public List<String> getInputList() {
         return inputList;
-    }
-
-    public List<String> getAnswerBridge() {
-        return answerBridge;
     }
 
     public void initializeInputList() {

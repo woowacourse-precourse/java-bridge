@@ -1,7 +1,8 @@
-package bridge;
+package bridge.domain;
+
+import bridge.view.OutputView;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class BridgeShape {
     private final static String CORRECT = " O ";
@@ -18,7 +19,7 @@ public class BridgeShape {
         HashMap<String, String> bridgeMap = new HashMap<String, String>();
         bridgeMap.put("U", makeLine(myBridge,"U"));
         bridgeMap.put("D", makeLine(myBridge, "D"));
-        outputView.printBridge(bridgeMap);
+        outputView.printMap(bridgeMap);
     }
 
     private static String makeLine(MyBridge myBridge, String target) {
