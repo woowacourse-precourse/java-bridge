@@ -12,8 +12,8 @@ public class Application {
         moving.add("D");
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println(InputView.readBridgeSize());
-        System.out.println(InputView.readMoving());
-        System.out.println(InputView.readGameCommand());
+        System.out.println(BridgeGame.move(InputView.readMoving()));
+        BridgeGame.retry(InputView.readGameCommand());
         OutputView.printMap(moving);
         OutputView.printResult(1,4);
     }
