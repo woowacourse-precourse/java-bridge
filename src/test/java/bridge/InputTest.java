@@ -15,19 +15,6 @@ import org.junit.jupiter.api.Test;
 public class InputTest  {
     InputView inputView = new InputView();
 
-    @DisplayName("사용자의 입력을 성공적으로 받아들이는 테스트 케이스")
-    @Test
-    void inputValueSuccess() {
-        command("테스트");
-        assertThatCode(() -> inputView.readValue()).doesNotThrowAnyException();
-    }
-
-    @DisplayName("사용자가 입력을 하지 않고 다음 단계로 넘어갈 시 실패하는 테스트 케이스")
-    @Test
-    void inputValueFail() {
-        assertThatThrownBy(() -> inputView.readValue()).isInstanceOf(NoSuchElementException.class);
-    }
-
     @DisplayName("인자를 정수형으로 성공적으로 바꾸는 케이스")
     @Test
     void convertToIntegerSuccess() {
