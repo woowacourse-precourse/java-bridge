@@ -16,6 +16,14 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
+    public void runGame() {
+        InputView input = new InputView();
+        String playerInput = input.readMoving();
+        String userMove = move(playerInput);
+        OutputView printer = new OutputView();
+        printer.printMap(upResultToString(playerInput,userMove),downResultToString(playerInput,userMove));
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -46,6 +54,10 @@ public class BridgeGame {
         gameResult.put(playerInput, gameResult.get(playerInput) + " ");
         return gameResult.get(playerInput);
     }
+
+
+
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
