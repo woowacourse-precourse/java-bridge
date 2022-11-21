@@ -4,7 +4,6 @@ public class GameConst {
 
 	public static final String USER_CORRECT_SPACE = "O";
 	public static final String USER_WRONG_SPACE = "X";
-	public static final String BLANK_SPACE = " ";
 	public static final String SUCCESS = "성공";
 	public static final String FAIL = "실패";
 	public static final String RESTART = "R";

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeNumberGenerator;
-import bridge.domain.UserBridgeStatus;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 class ApplicationTest extends NsTest {
@@ -20,8 +19,7 @@ class ApplicationTest extends NsTest {
 
 	@AfterEach
 	void tearDown() {
-		UserBridgeStatus.UPPER_BRIDGE.clearStatus();
-		UserBridgeStatus.LOWER_BRIDGE.clearStatus();
+
 	}
 
 	@Test

@@ -38,7 +38,11 @@ public class BridgeGame {
 		if (userRestartCommand.equals(GameConst.QUIT)) {
 			return false;
 		}
-		userBridgeRepository.clear();
+		clearBridgeGame();
 		return true;
+	}
+
+	public void clearBridgeGame() {
+		userBridgeRepository.clear();
 	}
 }
