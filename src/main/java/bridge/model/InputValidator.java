@@ -10,33 +10,42 @@ public class InputValidator {
     public static final String IS_NUMBER = "[0-9]*";
     public static final String RESTART_GAME = "R";
     public static final String QUIT_GAME = "Q";
+    public static final String ERROR_BRIDGE_SIZE = "[ERROR] 3-20사이의 숫자가 아닙니다.";
+    public static final String ERROR_MOVING = "[ERROR] Moving 문자를 잘못 입력하셨습니다.";
+    public static final String ERROR_RETRY = "[ERROR] Retry 문자를 잘못 입력하셨습니다.";
 
     private InputValidator() {
     }
 
-    public static boolean isValidSize(String inputSize) {
+    public static void isValidSize(String inputSize) {
         if (isNullOrBlank(inputSize) || !inputSize.matches(IS_NUMBER)) {
-            return false;
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
         int size = Integer.parseInt(inputSize);
-        return size <= BRIDGE_MAX_SIZE && size >= BRIDGE_MIN_SIZE;
+        if (size > BRIDGE_MAX_SIZE || size < BRIDGE_MIN_SIZE) {
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
+        }
+    }
+
+    public static void isValidMoving(String moving) {
+        if (isNullOrBlank(moving)) {
+            throw new IllegalArgumentException(ERROR_MOVING);
+        }
+        if (!moving.equals(UP_BRIDGE) && !moving.equals(DOWN_BRIDGE)) {
+            throw new IllegalArgumentException(ERROR_MOVING);
+        }
+    }
+
+    public static void isValidRetry(String restart) {
+        if (isNullOrBlank(restart)) {
+            throw new IllegalArgumentException(ERROR_RETRY);
+        }
+        if (!restart.equals(RESTART_GAME) && !restart.equals(QUIT_GAME)) {
+            throw new IllegalArgumentException(ERROR_RETRY);
+        }
     }
 
     private static boolean isNullOrBlank(String inputSize) {
         return inputSize == null || inputSize.isBlank();
-    }
-
-    public static boolean isValidMoving(String moving) {
-        if (isNullOrBlank(moving)) {
-            return false;
-        }
-        return moving.equals(UP_BRIDGE) || moving.equals(DOWN_BRIDGE);
-    }
-
-    public static boolean isValidRetry(String restart) {
-        if (isNullOrBlank(restart)) {
-            return false;
-        }
-        return restart.equals(RESTART_GAME) || restart.equals(QUIT_GAME);
     }
 }

@@ -1,11 +1,7 @@
 package bridge.view;
 
-import static bridge.model.ErrorThrower.ERROR_BRIDGE_SIZE;
-import static bridge.model.ErrorThrower.ERROR_MOVING;
-import static bridge.model.ErrorThrower.ERROR_RETRY;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import bridge.model.ErrorThrower;
 import bridge.model.InputValidator;
 
 /**
@@ -22,38 +18,49 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(INPUT_BRIDGE_SIZE);
+        requestInput(INPUT_BRIDGE_SIZE);
         String input = readLine();
-        if (InputValidator.isValidSize(input)) {
+        try {
+            InputValidator.isValidSize(input);
             return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
         }
-        ErrorThrower.throwError(ERROR_BRIDGE_SIZE);
-        return readBridgeSize();
     }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(INPUT_MOVING);
+        requestInput(INPUT_MOVING);
         String inputMoving = readLine();
-        if (InputValidator.isValidMoving(inputMoving)) {
+        try {
+            InputValidator.isValidMoving(inputMoving);
             return inputMoving;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
         }
-        ErrorThrower.throwError(ERROR_MOVING);
-        return readMoving();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(INPUT_RETRY);
+        requestInput(INPUT_RETRY);
         String inputRetry = readLine();
-        if (InputValidator.isValidRetry(inputRetry)) {
+        try {
+            InputValidator.isValidRetry(inputRetry);
             return inputRetry;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
         }
-        ErrorThrower.throwError(ERROR_RETRY);
-        return readGameCommand();
+    }
+
+    private static void requestInput(String request) {
+        System.out.println(request);
     }
 }

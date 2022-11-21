@@ -6,6 +6,7 @@ package bridge.model;
 public class BridgeGame {
 
     public static final int RETRY_DEFAULT_COUNT = 1;
+
     private final Bridges bridges;
     private Player player;
     private int retryCount;
