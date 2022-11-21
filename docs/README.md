@@ -14,8 +14,8 @@
         - [ ] 현재 몇번째 칸인지 반환
         - [ ] 게임 상태(BrideGameStatus) 반환
 
-- [ ] BridgeGameStatus : 게임 상태 정보 Enum
-    - [ ] 게임 상태 정의(진행중,성공,실패)
+- [x] BridgeGameStatus : 게임 상태 정보 Enum
+    - [x] 게임 상태 정의(진행중,성공,실패)
 
 - [x] BridgeMaker : 다리 정보를 만드는 클래스
     - [x] 다리 생성 후 반환
