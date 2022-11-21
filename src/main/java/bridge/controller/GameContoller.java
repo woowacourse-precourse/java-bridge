@@ -1,19 +1,19 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
 import bridge.view.OutputView;
 
 public class GameContoller {
     private final InputController inputController = new InputController();
     private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
-//        System.out.println(inputController.readBridgeSize());
-//        System.out.println(inputController.readMoving());
-//        System.out.println(inputController.readGameCommand());
-//        outputView.printStart();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        System.out.println(bridgeMaker.makeBridge(3));
+        outputView.printStart();
+        bridgeGame.initBridge(inputController.readBridgeSize());
+        do {
+            boolean moveState = bridgeGame.move(inputController.readMoving());
+            if (moveState) break;
+        }while (true);
     }
 }
