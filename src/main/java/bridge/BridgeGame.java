@@ -42,4 +42,8 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
 }
