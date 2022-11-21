@@ -92,7 +92,7 @@ BUILD SUCCESSFUL in 0s
         - [x] public int getCurrentUserPosition()
         - [x] public boolean getGameWinStatus()
         - [x] public int getTotalTryCount()
-- [ ] **CLASS4. InputView**
+- [x] **CLASS4. InputView**
     - **Class Variables**
         - [x] private final String BRIDGE_SIZE_NOT_DIGITS
         - [x] private final String BRIDGE_SIZE_RANGE_OVER
@@ -102,7 +102,7 @@ BUILD SUCCESSFUL in 0s
         - [x] public InputView()
         - [x] public int readBridgeSize() throws IllegalArgumentException
         - [x] public String readMoving() throws IllegalArgumentException
-        - [ ] public String readGameCommand() throws IllegalArgumentException
+        - [x] public String readGameCommand() throws IllegalArgumentException
         - [x] private boolean isDigit(String size)
 - [ ] **CLASS5. OutputView**
     - **Class Methods**
