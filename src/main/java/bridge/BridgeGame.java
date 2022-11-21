@@ -25,10 +25,6 @@ public class BridgeGame {
         return this.bridgeMap;
     }
 
-    public List<List<String>> getBridgeMap() {
-        return this.bridgeMap;
-    }
-
     public void retry() {
         newBridgePattern();
     }
