@@ -19,28 +19,7 @@ public class OutputView {
 		System.out.print("[");
 
 		for (int i=0;i<=idx;i++){
-			if (i==0 && idx==0){
-				if (bridge.getBridge().get(idx).equals("U") && block.equals("U")){
-					System.out.print(" O ");
-				}
-				if (bridge.getBridge().get(idx).equals("U") && block.equals("D")){
-					System.out.print("   ");
-				}
-				if (bridge.getBridge().get(idx).equals("D") && block.equals("D")){
-					System.out.print("   ");
-				}
-				if (bridge.getBridge().get(idx).equals("D") && block.equals("U")){
-					System.out.print(" X ");
-				}
-			}
-			if (i==0 && idx!=0){
-				if (bridge.getBridge().get(0).equals("U")){
-					System.out.print(" O ");
-				}
-				if (bridge.getBridge().get(0).equals("D")){
-					System.out.print("   ");
-				}
-			}
+			checkFirstUpBlock(i,idx,bridge.getBridge().get(0),block);
 
 			if (0<i && i<idx) {
 				if (bridge.getBridge().get(i).equals("U")) {
@@ -72,6 +51,7 @@ public class OutputView {
 		}
 		System.out.println("]");
 	}
+
 
 	public void printDown(Bridge bridge, int idx, String block, boolean correct){
 		System.out.print("[");
@@ -150,4 +130,44 @@ public class OutputView {
 		}
 		System.out.println("총 시도한 횟수: "+ numberOfAttempts);
 	}
+
+
+	private void checkFirstUpBlock(int firstIdx, int idx, String bridgeBlock, String block) {
+		if (firstIdx == 0 && idx ==0){
+			checkFirstUpBridgeAndBlockSameIndexZero(bridgeBlock, block);
+			checkFirstUpBridgeAndBlockDifferentIndexZero(bridgeBlock, block);
+		}
+		if (firstIdx == 0 && idx != 0){
+			checkFirstUpBridgeAndBlockIndexNotZero(bridgeBlock,block);
+		}
+
+	}
+
+
+	private void checkFirstUpBridgeAndBlockSameIndexZero(String bridgeBlock, String block) {
+		if (bridgeBlock.equals("U") && block.equals("U")){
+			System.out.print(" O ");
+		}
+		if (bridgeBlock.equals("D") && block.equals("D")){
+			System.out.print("   ");
+		}
+	}
+	private void checkFirstUpBridgeAndBlockDifferentIndexZero(String bridgeBlock, String block) {
+		if (bridgeBlock.equals("U") && block.equals("D")){
+			System.out.print("   ");
+		}
+		if (bridgeBlock.equals("D") && block.equals("U")){
+			System.out.print(" X ");
+		}
+	}
+	private void checkFirstUpBridgeAndBlockIndexNotZero(String bridgeBlock, String block) {
+		if (bridgeBlock.equals("U")){
+			System.out.print(" O ");
+		}
+		if (bridgeBlock.equals("D")){
+			System.out.print("   ");
+		}
+	}
+
+
 }
