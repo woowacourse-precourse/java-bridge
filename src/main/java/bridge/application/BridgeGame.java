@@ -11,8 +11,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static BridgeGame instance;
-
     private final BridgeMaker bridgeMaker;
 
     private List<String> bridge;
@@ -27,11 +25,8 @@ public class BridgeGame {
         this.terminate = false;
     }
 
-    public static BridgeGame getInstance(BridgeMaker bridgeMaker) {
-        if (instance == null) {
-            instance = new BridgeGame(bridgeMaker);
-        }
-        return instance;
+    public static BridgeGame createInstance(BridgeMaker bridgeMaker) {
+        return new BridgeGame(bridgeMaker);
     }
 
     public List<String> initBridge(int size) {
