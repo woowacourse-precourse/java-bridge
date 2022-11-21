@@ -11,7 +11,7 @@ public class Retry {
         count++;
     }
 
-    public int getCount(){
-        return count;
+    public String toString(){
+        return String.valueOf(count);
     }
 }

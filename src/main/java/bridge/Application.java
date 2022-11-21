@@ -15,7 +15,7 @@ public class Application {
 
     public static void play(int size) {
         Bridge bridge = bridgeGame.setBridge(size);
-        for (int i = 0; i < size; i++) {
+        while (!bridgeGame.isFinish(bridge)) {
             if (bridgeGame.isMoving(bridge, move(bridge))) {
                 continue;
             }
@@ -23,10 +23,11 @@ public class Application {
                 break;
             }
         }
+        outputView.printResult(bridgeGame, bridge);
     }
 
     private static Moving move(Bridge bridge) {
-        Moving moving = inputView.readMoving();
+        Moving moving =  inputView.readMoving();
         bridgeGame.move(bridge, moving);
         outputView.printMap(bridgeGame.getMovedBridge());
         return moving;

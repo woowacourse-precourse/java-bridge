@@ -2,6 +2,7 @@ package bridge;
 
 import type.MovingType;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,6 +20,7 @@ public class BridgeGame {
     public void move(Bridge bridge, Moving input) {
         if (input.isUpper()) {
             bridges.moveUpperBridge(input.isMoving(bridge, bridges.getSize()));
+            return;
         }
         bridges.moveLowerBridge(input.isMoving(bridge, bridges.getSize()));
     }
@@ -49,4 +51,21 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean isFinish(Bridge bridge) {
+        if (bridge.getSize() == bridges.getSize()) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getResult(Bridge bridge) {
+        if (isFinish(bridge)) {
+            return "성공";
+        }
+        return "실패";
+    }
+
+    public String getNumberOfRetry() {
+        return retry.toString();
+    }
 }
