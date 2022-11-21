@@ -19,11 +19,11 @@ public enum GameSuccess {
         return message;
     }
 
-    public boolean test(boolean result){
+    public boolean test(boolean result) {
         return predicate.test(result);
     }
 
-    public static GameSuccess findMessage(boolean result){
+    public static GameSuccess findMessage(boolean result) {
         return Arrays.stream(GameSuccess.values())
                 .filter(x -> x.test(result))
                 .findAny()

@@ -2,6 +2,7 @@ package bridge.serviceImpl;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.message.SystemMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.service.GameService;
@@ -12,12 +13,14 @@ import bridge.validation.RestartQuickValidation;
 import java.util.List;
 
 public class BridgeGame implements GameService {
+    private static final String RETRY = "R";
+
     private static InputView inputView;
     private static OutputView outputView;
     private static int gameTry;
     private static int count;
 
-    public BridgeGame(){
+    public BridgeGame() {
         inputView = buildInputView();
         outputView = new OutputView();
         gameTry = 1;
@@ -25,42 +28,45 @@ public class BridgeGame implements GameService {
     }
 
     @Override
-    public void startGame(){
-        println("다리 건너기 게임을 시작합니다." + System.lineSeparator());
-        println("다리의 길이를 입력해주세요.");
-        int size = inputView.readBridgeSize();
+    public void startGame() {
+        introMessage();
+        int bridgeSize = inputView.readBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(size);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        int count = doGame(bridge);
+        doGame(bridge);
 
-        boolean isSuccess = (count == size);
+        boolean isSuccess = (count == bridgeSize);
         outputView.printResult(isSuccess, gameTry);
     }
 
-    private int doGame(List<String> bridge){
-        int bridgeSize =  bridge.size();
+    private void introMessage() {
+        println(SystemMessage.START.getMessage() + System.lineSeparator());
+        println(SystemMessage.BRIDGE_SIZE.getMessage());
+    }
+
+    private void doGame(List<String> bridge) {
+        int bridgeSize = bridge.size();
 
         while (count < bridgeSize) {
-            println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            println(SystemMessage.MOVING_DIRECTION.getMessage());
             String inputMove = inputView.readMoving();
 
-            boolean moving = move(count, inputMove, bridge);
+            boolean moving = move(inputMove, bridge);
             count++;
 
-            if(!isRestart(moving)){
+            if (!isRestart(moving)) {
                 break;
             }
         }
-        return count;
     }
 
-    private boolean isRestart(boolean moving){
-        if(!moving) {
-            println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    private boolean isRestart(boolean moving) {
+        if (!moving) {
+            println(SystemMessage.RESTART_OR_QUICK.getMessage());
             String restartOrQuick = inputView.readGameCommand();
-            if(!retry(restartOrQuick)){
+            if (!retry(restartOrQuick)) {
                 return false;
             }
             count = 0;
@@ -69,16 +75,13 @@ public class BridgeGame implements GameService {
         return true;
     }
 
-    public boolean move(int count, String inputMove, List<String> bridge) {
+    public boolean move(String inputMove, List<String> bridge) {
         outputView.printMap(count, inputMove, bridge);
-        if(bridge.get(count).equals(inputMove)){
-            return true;
-        }
-        return false;
+        return bridge.get(count).equals(inputMove);
     }
 
     public boolean retry(String restartOrQuick) {
-        return restartOrQuick.equals("R");
+        return restartOrQuick.equals(RETRY);
     }
 
     private static void println(String message) {

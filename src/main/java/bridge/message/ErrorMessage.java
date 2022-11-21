@@ -6,8 +6,7 @@ public enum ErrorMessage {
     NOT_MOVE_VALID_STRING("[ERROR] U와 D만 입력할 수 있습니다."),
     NOT_RESTART_QUICK_VALID_STRING("[ERROR] R와 Q만 입력할 수 있습니다.");
 
-
-    private String message;
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = message;

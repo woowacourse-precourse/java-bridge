@@ -7,7 +7,7 @@ public class InputView {
 
     Validation bridgeValidation, movingValidation, restartQuickValidation;
 
-    public InputView builder(){
+    public InputView builder() {
         return this;
     }
 
@@ -26,7 +26,7 @@ public class InputView {
         return this;
     }
 
-    public InputView build(){
+    public InputView build() {
         return this;
     }
 
@@ -43,17 +43,17 @@ public class InputView {
         return validatedUserInput(restartQuickValidation);
     }
 
-    private String validatedUserInput(Validation validation){
+    private String validatedUserInput(Validation validation) {
         String input = userInput();
         validate(input, validation);
         return input;
     }
 
-    private void validate(String input, Validation validation){
+    private void validate(String input, Validation validation) {
         validation.validate(input);
     }
 
-    private String userInput(){
+    private String userInput() {
         return Console.readLine();
     }
 }

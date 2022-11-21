@@ -14,7 +14,7 @@ public class ExceptionGameServiceImpl implements GameService {
     public void startGame() {
         try {
             gameService.startGame();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.print(e.getMessage());
         }
     }
