@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.util.Message;
 import java.util.List;
 
 /**
@@ -9,6 +8,7 @@ import java.util.List;
 public class BridgeGame {
 
     private int index = 0;
+    private final String NONE = " ";
     private final List<String> bridge;
     private final MoveLog moveLog;
 
@@ -23,10 +23,17 @@ public class BridgeGame {
         this.moveLog = moveLog;
     }
 
-    public void move(String move) {
-        if (isMoveStringFalse(move)) {
-            throw new IllegalArgumentException(Message.ERROR_MOVE.getMessage());
+    public MovingType move(String userMove) {
+        MovingType movingType = userMoveToChoice(userMove, index);
+        if (userMove.equals(BridgeType.UP.getStringCode())) {
+            moveLog.updateMoveLog(BridgeType.UP, movingType.getIsSuccess());
+            moveLog.updateMoveLog(BridgeType.DOWN, NONE);
         }
+        if (userMove.equals(BridgeType.DOWN.getStringCode())) {
+            moveLog.updateMoveLog(BridgeType.UP, NONE);
+            moveLog.updateMoveLog(BridgeType.DOWN, movingType.getIsSuccess());
+        }
+        return movingType;
     }
 
     public MovingType userMoveToChoice(String userMove, int index) {
@@ -38,8 +45,8 @@ public class BridgeGame {
         return MovingType.FAIL;
     }
 
-    private boolean isMoveStringFalse(String move) {
-        return !(move.equals("U") || move.equals("D"));
+    public MoveLog getMoveLog() {
+        return this.moveLog;
     }
 
     /**
