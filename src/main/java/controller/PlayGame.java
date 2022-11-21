@@ -19,13 +19,13 @@ public class PlayGame {
 
     public void playGame() {
         int turn = 0;
-        int tryCount = 0;
+        int tryCount = 1;
         int endTurn = inputView.setBridgeSize();
         while(turn < endTurn) {
             Boolean matchResult = bridgeGame.move(crossAble, turn);
             if(!matchResult) {
-                tryCount++;
                 Boolean isRetry = bridgeGame.retry();
+                tryCount++;
                 if(isRetry){
                     continue;
                 }
@@ -35,6 +35,7 @@ public class PlayGame {
             turn++;
         }
         List<HashMap> bridge = List.of(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+        System.out.println("최종 게임 결과");
         outputView.printMap(endTurn, bridge);
         outputView.printResult(endTurn, bridge, tryCount);
     }
