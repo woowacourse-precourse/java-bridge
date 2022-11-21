@@ -23,8 +23,7 @@ BridgeMaker
 >> 다리 길이에 따른 U,D 리스트 반환
 
 BridgeGame  
->변수  
->> - enum UpOrDown(): 위치 arraylist의 첫 번째 요소, 위 아래  
+>변수   
 >> - ArrayList(Integer) position:현재위치,    
 >> - ArrayList(Integer) formerPosition:이동 전 위치,  
 >> - int retryNumber:재시도 횟수,  
@@ -33,3 +32,6 @@ BridgeGame
 >> - move(String readMoving): 이동 전 / 현재 위치 formerPosition 저장  
 >> => 이동 / [입력받은 값에 따라 up or down, 현재위치 +1]
 >> - retry(): 현재위치 -1, 재시도 횟수 +1
+
+Enum UpOrDown
+>위치 arraylist의 첫 번째 요소, 위 아래를 나타내는 상수 값
