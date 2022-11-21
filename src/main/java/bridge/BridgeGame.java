@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import bridge.view.InputView;
 import bridge.view.Message;
 import bridge.view.OutputView;
@@ -54,9 +55,9 @@ public class BridgeGame {
         System.out.println(Message.INITIAL_MESSAGE.getMessage());
 
         int bridgeSize = getBridgeSize();
-        List<String> realBridges = bridgeMaker.makeBridge(bridgeSize);
-        List<String> selectBridges = playGame(gameStatus, realBridges);
-        outputView.printResult(gameStatus, realBridges, selectBridges);
+        Bridge realBridges = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Bridge selectedBridges = playGame(gameStatus, realBridges);
+        outputView.printResult(gameStatus, realBridges, selectedBridges);
     }
 
     private int getBridgeSize() {
@@ -68,8 +69,8 @@ public class BridgeGame {
         }
     }
 
-    private List<String> playGame(GameStatus gameStatus, List<String> realBridges) {
-        List<String> selectBridges = playOneTry(gameStatus, realBridges);
+    private Bridge playGame(GameStatus gameStatus, Bridge realBridges) {
+        Bridge selectBridges = playOneTry(gameStatus, realBridges);
         while (!gameStatus.isEnd() && retry()) {
             selectBridges = playOneTry(gameStatus, realBridges);
             gameStatus.addTryCount();
@@ -77,10 +78,10 @@ public class BridgeGame {
         return selectBridges;
     }
 
-    public List<String> playOneTry(GameStatus gameStatus, List<String> realBridges) {
-        List<String> selectBridges = new ArrayList<>();
-        for (int index = 0; index < realBridges.size(); index++) {
-            String realBridge = realBridges.get(index);
+    public Bridge playOneTry(GameStatus gameStatus, Bridge realBridges) {
+        Bridge selectBridges = new Bridge();
+        for (int index = 0; index < realBridges.getSize(); index++) {
+            String realBridge = realBridges.getBridgeByIndex(index);
             String selectedBridge = getSelectBridge(selectBridges);
             outputView.printMap(realBridges, selectBridges);
             if (!realBridge.equals(selectedBridge)) return selectBridges;
@@ -89,9 +90,9 @@ public class BridgeGame {
         return selectBridges;
     }
 
-    private String getSelectBridge(List<String> selectBridges) {
+    private String getSelectBridge(Bridge selectedBridges) {
         String selectedBridge = move();
-        selectBridges.add(selectedBridge);
+        selectedBridges.addNewBridge(selectedBridge);
         return selectedBridge;
     }
 }

@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.GameStatus;
 import bridge.MovementType;
+import bridge.domain.Bridge;
 
 import java.util.List;
 
@@ -18,16 +19,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> realBridges, List<String> selectBridges) {
+    public void printMap(Bridge realBridges, Bridge selectBridges) {
         String map = makeMaps(realBridges, selectBridges);
         System.out.println(map);
     }
 
-    public String makeMaps(List<String> realBridges, List<String> selectBridges) {
+    public String makeMaps(Bridge realBridges, Bridge selectBridges) {
         List<StringBuilder> maps = List.of(new StringBuilder(), new StringBuilder());
-        for (int index = 0; index < selectBridges.size(); index++) {
-            String selectBridge = selectBridges.get(index);
-            String realBridge = realBridges.get(index);
+        for (int index = 0; index < selectBridges.getSize(); index++) {
+            String selectBridge = selectBridges.getBridgeByIndex(index);
+            String realBridge = realBridges.getBridgeByIndex(index);
             updateMaps(maps, realBridge, selectBridge);
         }
         return convertStringBuilderListToString(maps);
@@ -80,7 +81,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameStatus gameStatus, List<String> realBridges, List<String> selectBridges) {
+    public void printResult(GameStatus gameStatus, Bridge realBridges, Bridge selectBridges) {
         System.out.println(Message.FINAL_RESULT.getMessage());
         printMap(realBridges, selectBridges);
         if (gameStatus.isSuccess()) {

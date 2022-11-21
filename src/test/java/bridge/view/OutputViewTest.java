@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.GameStatus;
+import bridge.domain.Bridge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +25,8 @@ class OutputViewTest {
 
     @Test
     void 맵_그리기_테스트1() {
-        List<String> realBridges = List.of("U", "D", "U", "D");
-        List<String> selectBridges = List.of("U", "D", "D");
+        Bridge realBridges = new Bridge(List.of("U", "D", "U", "D"));
+        Bridge selectBridges = new Bridge(List.of("U", "D", "D"));
 
         outputView.printMap(realBridges, selectBridges);
         String printOut = consoleOut.toString().trim();
@@ -38,8 +39,8 @@ class OutputViewTest {
 
     @Test
     void 맵_그리기_테스트2() {
-        List<String> realBridges = List.of("U", "D", "D", "D");
-        List<String> selectBridges = List.of("U", "D", "D");
+        Bridge realBridges = new Bridge(List.of("U", "D", "D", "D"));
+        Bridge selectBridges = new Bridge(List.of("U", "D", "D"));
 
         outputView.printMap(realBridges, selectBridges);
         String printOut = consoleOut.toString().trim();
@@ -52,8 +53,8 @@ class OutputViewTest {
 
     @Test
     void 맵_그리기_테스트3() {
-        List<String> realBridges = List.of("U", "D", "D", "D", "U");
-        List<String> selectBridges = List.of("U", "D", "D", "U");
+        Bridge realBridges = new Bridge(List.of("U", "D", "D", "D", "U"));
+        Bridge selectBridges = new Bridge(List.of("U", "D", "D", "U"));
 
         outputView.printMap(realBridges, selectBridges);
         String printOut = consoleOut.toString().trim();
@@ -68,7 +69,7 @@ class OutputViewTest {
     void 최종_결과_성공_출력_테스트() {
         GameStatus gameStatus = new GameStatus();
         gameStatus.setSuccess(true);
-        outputView.printResult(gameStatus, List.of("U", "D", "U", "D"), List.of("U", "D", "U", "D"));
+        outputView.printResult(gameStatus, new Bridge(List.of("U", "D", "U", "D")), new Bridge(List.of("U", "D", "U", "D")));
         String printOut = consoleOut.toString().trim();
 
         assertThat(printOut).contains(
@@ -84,7 +85,7 @@ class OutputViewTest {
     void 최종_결과_실패_출력_테스트() {
         GameStatus gameStatus = new GameStatus();
         gameStatus.setSuccess(false);
-        outputView.printResult(gameStatus, List.of("U", "D", "U", "U"), List.of("U", "D", "U", "D"));
+        outputView.printResult(gameStatus, new Bridge(List.of("U", "D", "U", "U")), new Bridge(List.of("U", "D", "U", "D")));
         String printOut = consoleOut.toString().trim();
 
         assertThat(printOut).contains(
