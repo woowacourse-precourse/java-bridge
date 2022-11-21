@@ -12,7 +12,6 @@ public class Application {
                 String moving = InputView.readMoving();
                 game.move(moving);
             }
-            System.out.println("루프탈출");
             if (game.completeBridge){
                 break;
             }

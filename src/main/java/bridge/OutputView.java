@@ -27,8 +27,7 @@ public class OutputView {
             mapU += "   ";
             mapD += " O ";
         }
-        System.out.println(mapU + "]");
-        System.out.println(mapD + "]");
+        BoilerPlates.printMap(mapU,mapD);
     }
 
     /**
@@ -39,23 +38,19 @@ public class OutputView {
     public void printResult(int gameCount, ArrayList<String> currentCoordinate) {
         int lastChar = currentCoordinate.size()-1;
         if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
-            System.out.println(mapU + "| O ]");
-            System.out.println(mapD + "|   ]");
+            BoilerPlates.printCompleteUp(mapU,mapD);
         }
         if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
-            System.out.println(mapU + "|   ]");
-            System.out.println(mapD + "| O ]");
+            BoilerPlates.printCompleteDown(mapU,mapD);
         }
     }
     public void printFailed(int gameCount, ArrayList<String> currentCoordinate) {
         int lastChar = currentCoordinate.size()-1;
         if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
-            System.out.println(mapU + "| X ]");
-            System.out.println(mapD + "|   ]");
+            BoilerPlates.printFailedUp(mapU,mapD);
         }
         if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
-            System.out.println(mapU + "|   ]");
-            System.out.println(mapD + "| X ]");
+            BoilerPlates.printFailedDown(mapU,mapD);
         }
     }
 }
