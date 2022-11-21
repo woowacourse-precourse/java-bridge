@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,8 +12,8 @@ import static bridge.Constant.START_BRIDGE_GAME;
  */
 public class BridgeGame {
     public static boolean end = true;
-    public static List<String> Result = new ArrayList<>();
     public static int count = 0;
+    public static String[] Result;
 
     public void gameStart() {
         System.out.println(START_BRIDGE_GAME);
@@ -52,8 +53,6 @@ public class BridgeGame {
             InputView inputView = new InputView();
             String MovingSquare = inputView.readMoving();
             userBridge.add(MovingSquare);
-            //userBridge = User.userBridge();
-
             Result = OutputView.print(bridge, userBridge);
             OutputView.printGame(Result);
             if (!Objects.equals(userBridge.get(i), bridge.get(i))) {
