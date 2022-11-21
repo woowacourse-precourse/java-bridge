@@ -15,7 +15,10 @@ public class InputView {
     private final String BRIDGE_DOWN = "D";
     private final String READ_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private final String READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-
+    private final String READ_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private final String RETRY = "R";
+    private final String QUIT = "Q";
+    private final String NOT_GAME_COMMAND = "[ERROR] 재시도는 \"R\", 종료는 \"Q\"만 가능합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -43,7 +46,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(READ_GAME_COMMAND);
+        String command = Console.readLine();
+        validateCommand(command);
+        return command;
+    }
+
+    private void validateCommand(String command) {
+        if (!(command.equals(RETRY) || command.equals(QUIT))) {
+            throw new IllegalArgumentException(NOT_GAME_COMMAND);
+        }
     }
 
     private void validateBridgeSize(String bridgeSize) {
