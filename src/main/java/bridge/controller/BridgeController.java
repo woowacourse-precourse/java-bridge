@@ -10,6 +10,7 @@ import bridge.input.*;
 
 import java.util.List;
 
+import static bridge.controller.GameCommand.*;
 import static bridge.controller.GameState.*;
 
 public class BridgeController {
@@ -41,10 +42,30 @@ public class BridgeController {
             String moving = inputView.readMoving();
             game.move(moving);
         } while (game.checkGameState() == RUN);
-        confirm();
+        confirmState();
     }
 
-    public void confirm() {
+    public void confirmState() {
+        final GameState state = game.getState();
+        if (state == FAIL) {
+            choiceRestartOrQuit();
+        } else if (state == CLEAR) {
+            end(CLEAR.getComment());
+        }
+    }
+
+    private void choiceRestartOrQuit() {
+        String command = inputView.readGameCommand();
+        GameCommand gameCommand = parseCommandToInstance(command);
+        if (gameCommand == RESTART) {
+            game.retry();
+            play();
+        } else if (gameCommand == QUIT) {
+            end(FAIL.getComment());
+        }
+    }
+
+    public void end(String result) {
 
     }
 

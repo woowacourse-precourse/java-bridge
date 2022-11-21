@@ -15,11 +15,13 @@ public class BridgeGame {
     private Player player;
     private final Bridge bridge;
     private GameState state;
+    private int tryCount;
 
     public BridgeGame(Player player, Bridge bridge) {
         this.player = player;
         this.bridge = bridge;
         this.state = RUN;
+        this.tryCount = 1;
     }
 
     public void move(String moving) {
@@ -27,6 +29,9 @@ public class BridgeGame {
     }
 
     public void retry() {
+        this.player = new Player();
+        this.state = RUN;
+        this.tryCount += 1;
     }
 
     public GameState checkGameState() {
@@ -59,5 +64,9 @@ public class BridgeGame {
 
     public GameState getState() {
         return state;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
