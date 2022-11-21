@@ -55,4 +55,14 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] R(재시작) 또는 Q(종료)를 입력해야 합니다.");
     }
+    @Test
+    @DisplayName("다리길이의 범위 밖이거나 또는 정수가 아닌 경우 예외처리하는지 확인")
+    void checkBridgeSize(){
+        assertThatThrownBy(()->Validator.checkBridgeSize("21"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리의 길이는 3부터 20 사이의 숫자여야 합니다.");
+        assertThatThrownBy(()->Validator.checkBridgeSize("O"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리의 길이는 정수여야 합니다.");
+    }
 }
