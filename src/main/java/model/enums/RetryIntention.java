@@ -1,6 +1,6 @@
 package model.enums;
 
-import static model.BridgeGameExceptions.NOT_A_RETRY_INTENTION;
+import static message.ErrorMessage.NOT_A_RETRY_INTENTION;
 
 import java.util.Arrays;
 
@@ -19,7 +19,7 @@ public enum RetryIntention {
 
         RetryIntention retryIntention = Arrays.stream(RetryIntention.values())
                 .filter((intention) -> intention.intention.equals(userIntention)).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_A_RETRY_INTENTION));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_A_RETRY_INTENTION.get()));
         return retryIntention.wantRetry;
     }
 }
