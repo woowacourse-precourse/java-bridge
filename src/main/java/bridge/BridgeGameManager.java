@@ -1,10 +1,11 @@
-package bridge.domain;
+package bridge;
 
 import static bridge.utils.GameMessageConstants.BRIDGE_SIZE_REQUEST_MESSAGE;
 import static bridge.utils.GameMessageConstants.GAME_START_MESSAGE;
 import static bridge.utils.GameMessageConstants.MOVING_PATH_REQUEST_MESSAGE;
 import static bridge.utils.GameMessageConstants.RETRY_OR_END_COMMAND_REQUEST_MESSAGE;
 
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -43,7 +44,7 @@ public class BridgeGameManager {
 		outputView.printGameMessage(RETRY_OR_END_COMMAND_REQUEST_MESSAGE);
 		String gameCommand = inputView.readGameCommand();
 		if (gameCommand.equals("R")) {
-			bridgeGame.retry(gameCommand);
+			bridgeGame.retry();
 		}
 
 		return gameCommand;
