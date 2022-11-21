@@ -88,11 +88,14 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
         return !bridgeMap.getUpMap().contains(NotMatch) && !bridgeMap.getDownMap().contains(NotMatch);
     }
 
-    public Boolean isEnd(int index){
-        return index == bridge.getAnswer().size();
+    public Boolean isEnd(){
+        return bridgeMap.getUpMap().size() == bridge.getAnswer().size();
     }
 
-    public void success(){
+    public Boolean keepGoingGame() {
+
+        return player.getAnswer().equals(Retry);
+    }
 
     public String success(){
         if(bridgeMap.getUpMap().size() == bridge.getAnswer().size() && checkResult()){
@@ -102,21 +105,17 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
         return Fail;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void retry(String retry) { // TODO: Refactring 해줄 것
         checkRetry(retry);
     }
 
     public void checkRetry(String retry) {
-        if("Q".equals(retry)){
+        if(Quit.equals(retry)){
             player.setAnswer(retry);
-            return;
+            return ;
         }
         player.setAnswer(retry);
         this.bridgeMap = BridgeMap.of(); // TODO: Refactoring 예정
+        this.retryCount.upCount();
     }
 }

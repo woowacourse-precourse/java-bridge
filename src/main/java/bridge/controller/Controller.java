@@ -21,13 +21,30 @@ public class Controller {
     }
     /*
 1. startGame()
-    2. 다리 생성 - 입력 필요
+2. createBridge()
 3. moveBridge()
-    4. 결과 출력
+4. printState()
 5. retry()
 6.success()
 7. printResult()
      */
+    public void startGame() { //다리 게임 시작
+        createBridge(); //다리 생성
+        while(game.keepGoingGame()) { //사용자 문자가 "R"인가?
+            moveBridge();   // 움직이기
+            printState();   // 입력값 결과 출력
+            if(!game.checkResult()){    // 정답 여부 맞았나 틀렸나
+                retry();
+            }
+            else if(game.isEnd()){  // 끝까지 도달했나 안했나 // TODO: 리펙토링 예정
+                success();
+            }
+        }
+        printResult(game.success(), game.getBridgeMap(), game.getRetryCount());
+        // TODO: Refactoring 해줄것 Dto클래스로 만들어 전달할 것
+    }
+
+
     public void createBridge() {
         out.printMessage(START_MESSAGE);
         out.printMessage(INPUT_BRIDGE_MESSAGE);
