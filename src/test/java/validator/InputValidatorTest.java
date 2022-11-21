@@ -1,12 +1,11 @@
 package validator;
 
-import static model.BridgeGame.MAXIMUM_BRIDGE_SIZE;
+import static bridge.model.BridgeGame.MAXIMUM_BRIDGE_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import model.BridgeGame;
-import model.InputValidator;
-import model.enums.MoveChoice;
-import model.enums.RetryIntention;
+import bridge.model.InputValidator;
+import bridge.model.enums.MoveChoice;
+import bridge.model.enums.RetryIntention;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package message;
+package bridge.message;
 
 public enum OutputMessage {
     GET_BRIDGE_SIZE_COMMENT("다리의 길이를 입력해주세요."),

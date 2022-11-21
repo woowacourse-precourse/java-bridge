@@ -1,19 +1,17 @@
-package model;
+package bridge.model;
 
-import static model.BridgeGame.MAXIMUM_BRIDGE_SIZE;
-import static model.BridgeGame.MINIMUM_BRIDGE_SIZE;
-import static message.ErrorMessage.NOT_A_MOVE_CHOICE;
-import static message.ErrorMessage.NOT_A_RETRY_INTENTION;
-import static message.ErrorMessage.OUT_OF_RANGE;
+import static bridge.message.ErrorMessage.NOT_A_MOVE_CHOICE;
+import static bridge.message.ErrorMessage.NOT_A_RETRY_INTENTION;
+import static bridge.message.ErrorMessage.OUT_OF_RANGE;
 
+import bridge.model.enums.MoveChoice;
+import bridge.model.enums.RetryIntention;
 import java.util.Arrays;
-import model.enums.MoveChoice;
-import model.enums.RetryIntention;
 
 public class InputValidator {
 
     public void validateBridgeLength(int bridgeLength) {
-        if (MINIMUM_BRIDGE_SIZE <= bridgeLength && bridgeLength <= MAXIMUM_BRIDGE_SIZE) {
+        if (BridgeGame.MINIMUM_BRIDGE_SIZE <= bridgeLength && bridgeLength <= BridgeGame.MAXIMUM_BRIDGE_SIZE) {
             return;
         }
         throw new IllegalArgumentException(OUT_OF_RANGE.get());

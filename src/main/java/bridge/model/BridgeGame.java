@@ -1,13 +1,13 @@
-package model;
+package bridge.model;
 
-import dto.GameResult;
+import bridge.dto.GameResult;
+import bridge.model.enums.GameStatus;
+import bridge.model.enums.MoveChoice;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import model.enums.GameStatus;
-import model.enums.MoveChoice;
-import model.enums.MoveResult;
+import bridge.model.enums.MoveResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

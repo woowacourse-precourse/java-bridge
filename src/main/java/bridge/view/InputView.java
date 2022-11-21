@@ -1,9 +1,9 @@
-package view;
+package bridge.view;
 
-import static message.ErrorMessage.NOT_A_NUMBER;
-import static message.OutputMessage.GET_BRIDGE_SIZE_COMMENT;
-import static message.OutputMessage.GET_MOVE_CHOICE_COMMENT;
-import static message.OutputMessage.GET_RETRY_INTENTION_COMMENT;
+import static bridge.message.ErrorMessage.NOT_A_NUMBER;
+import static bridge.message.OutputMessage.GET_BRIDGE_SIZE_COMMENT;
+import static bridge.message.OutputMessage.GET_MOVE_CHOICE_COMMENT;
+import static bridge.message.OutputMessage.GET_RETRY_INTENTION_COMMENT;
 
 import camp.nextstep.edu.missionutils.Console;
 

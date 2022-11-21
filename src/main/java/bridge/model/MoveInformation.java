@@ -1,7 +1,7 @@
-package model;
+package bridge.model;
 
-import model.enums.MoveChoice;
-import model.enums.MoveResult;
+import bridge.model.enums.MoveChoice;
+import bridge.model.enums.MoveResult;
 
 public class MoveInformation {
     private final MoveResult moveResult;

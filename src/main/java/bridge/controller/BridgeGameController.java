@@ -1,13 +1,12 @@
-package controller;
+package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import model.BridgeGame;
-import model.InputValidator;
-import model.enums.GameStatus;
-import model.enums.RetryIntention;
-import view.InputView;
-import view.OutputView;
+import bridge.model.BridgeGame;
+import bridge.model.InputValidator;
+import bridge.model.enums.RetryIntention;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
 

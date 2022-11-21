@@ -1,7 +1,7 @@
-package dto;
+package bridge.dto;
 
-import model.MoveInformation;
-import model.enums.GameStatus;
+import bridge.model.MoveInformation;
+import bridge.model.enums.GameStatus;
 import java.util.List;
 import java.util.Optional;
 

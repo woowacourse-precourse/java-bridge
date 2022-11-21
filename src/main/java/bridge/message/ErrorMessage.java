@@ -1,4 +1,4 @@
-package message;
+package bridge.message;
 
 public enum ErrorMessage {
 

@@ -1,6 +1,6 @@
-package model.enums;
+package bridge.model.enums;
 
-import static message.ErrorMessage.NOT_A_RETRY_INTENTION;
+import static bridge.message.ErrorMessage.NOT_A_RETRY_INTENTION;
 
 import java.util.Arrays;
 

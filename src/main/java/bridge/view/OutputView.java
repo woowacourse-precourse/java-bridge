@@ -1,24 +1,24 @@
-package view;
+package bridge.view;
 
-import static message.OutputMessage.BLANK_SYMBOL;
-import static message.OutputMessage.ERROR_FORMAT;
-import static message.OutputMessage.FINAL_RESULT_COMMENT;
-import static message.OutputMessage.GAME_FAIL_COMMENT;
-import static message.OutputMessage.GAME_INIT_COMMENT;
-import static message.OutputMessage.GAME_SUCCESS_COMMENT;
-import static message.OutputMessage.MOVE_FAIL_SYMBOL;
-import static message.OutputMessage.MOVE_SUCCESS_SYMBOL;
-import static message.OutputMessage.ROW_MOVE_RESULT_FORMAT;
-import static message.OutputMessage.SUCCESS_FORMAT;
-import static message.OutputMessage.SYMBOL_PARSER;
-import static message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
+import static bridge.message.OutputMessage.BLANK_SYMBOL;
+import static bridge.message.OutputMessage.ERROR_FORMAT;
+import static bridge.message.OutputMessage.FINAL_RESULT_COMMENT;
+import static bridge.message.OutputMessage.GAME_FAIL_COMMENT;
+import static bridge.message.OutputMessage.GAME_INIT_COMMENT;
+import static bridge.message.OutputMessage.GAME_SUCCESS_COMMENT;
+import static bridge.message.OutputMessage.MOVE_FAIL_SYMBOL;
+import static bridge.message.OutputMessage.MOVE_SUCCESS_SYMBOL;
+import static bridge.message.OutputMessage.ROW_MOVE_RESULT_FORMAT;
+import static bridge.message.OutputMessage.SUCCESS_FORMAT;
+import static bridge.message.OutputMessage.SYMBOL_PARSER;
+import static bridge.message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
 
-import dto.GameResult;
+import bridge.dto.GameResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import model.MoveInformation;
-import model.enums.MoveChoice;
+import bridge.model.MoveInformation;
+import bridge.model.enums.MoveChoice;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

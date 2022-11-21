@@ -6,13 +6,15 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.model.BridgeGame;
+import bridge.model.MoveInformation;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import dto.GameResult;
+import bridge.dto.GameResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import model.enums.GameStatus;
-import model.enums.MoveChoice;
+import bridge.model.enums.GameStatus;
+import bridge.model.enums.MoveChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
