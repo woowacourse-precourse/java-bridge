@@ -18,7 +18,7 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 숫자만 입력해야 합니다.");
     }
 
-    @DisplayName("입력값이 3 에서 20 사이가 아닌 경우 예외가 발생한다.")
+    @DisplayName("입력값이 3부터 20 사이의 숫자가 아닌 경우 예외가 발생한다.")
     @ValueSource(strings = {"-10", "2", "21", "100"})
     @ParameterizedTest
     void inputBridgeSizeNotInRange(String input) {
@@ -26,7 +26,7 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
-    @DisplayName("입력값이 3-20 사이의 숫자인 경우 예외가 발생하지 않는다")
+    @DisplayName("입력값이 3부터 20 사이의 숫자인 경우 예외가 발생하지 않는다")
     @Test
     void inputBridgeSizeAppropriate() {
         assertThatNoException().isThrownBy(() -> testInputValidator.validateBridgeSize("10"));
