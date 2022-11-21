@@ -12,7 +12,7 @@ public class Validation {
             throw new IllegalArgumentException(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
         }
 
-        if (convertNumber < 1 || convertNumber > 20) {
+        if (convertNumber < 3 || convertNumber > 20) {
             throw new IllegalArgumentException(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
         }
     }
