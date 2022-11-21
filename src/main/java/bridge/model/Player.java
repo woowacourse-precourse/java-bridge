@@ -22,6 +22,14 @@ public class Player {
         return history.size() - 1;
     }
 
+    public boolean isCrossedBridge() {
+        return playerStatus == PlayerStatus.CROSSED;
+    }
+
+    public boolean isDead() {
+        return playerStatus == PlayerStatus.DEAD;
+    }
+
     public List<Moving> getHistory() {
         return history;
     }
