@@ -10,7 +10,7 @@ public class BridgeGame {
     private final OutputView outputView;
     private BridgeMaker bridgeMaker;
 
-    private Bridge bridge;
+    private GameSimulation game;
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -29,7 +29,7 @@ public class BridgeGame {
     public List<String> initGame() {
         int bridgeSize = inputView.readBridgeSize();
         List<String> newBridge = this.bridgeMaker.makeBridge(bridgeSize);
-        bridge = new Bridge(newBridge);
+        game = new GameSimulation(newBridge);
         return newBridge;
     }
 
@@ -40,14 +40,15 @@ public class BridgeGame {
      */
     public void move() {
         while (true) {
-            int status = bridge.getState();
+            int status = game.getStation();
             moveNext(status);
         }
     }
 
     private void moveNext(int status) {
         String direction = inputView.readMoving();
-        String input = input(direction, bridge.getbridge().get(status));
+        String input = input(direction, game.getbridge().get(status));
+
     }
 
     private String input(String user, String answer) {
