@@ -27,4 +27,13 @@ class BridgeGameStatTest {
         assertThat(bridgeGameStat.getGameStatus()).isEqualTo(GameStatus.FAIL);
         assertThat(bridgeGameStat.getCountOfGame()).isEqualTo(countOfGame + 1);
     }
+
+    @Test
+    void gameWin() {
+        // when
+        bridgeGameStat.gameWin();
+
+        // then
+        assertThat(bridgeGameStat.getGameStatus()).isEqualTo(GameStatus.SUCCESS);
+    }
 }
