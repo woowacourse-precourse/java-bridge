@@ -41,7 +41,4 @@ public class ViewTest {
 		Assertions.assertThatThrownBy(() -> new InputStringValidator(input))
 				.isInstanceOf(IllegalArgumentException.class);
 	}
-
-
-
 }
