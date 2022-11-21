@@ -1,5 +1,8 @@
 package bridge.view;
 
+import static bridge.domain.BridgeGame.DOWN_BRIDGE;
+import static bridge.domain.BridgeGame.UP_BRIDGE;
+
 import java.util.List;
 
 public class InputValidator {
@@ -17,10 +20,7 @@ public class InputValidator {
     }
 
     void validateMoving(String moving) {
-        final String UP = "U";
-        final String DOWN = "D";
-
-        if (!List.of(UP, DOWN).contains(moving)) {
+        if (!List.of(UP_BRIDGE, DOWN_BRIDGE).contains(moving)) {
             throw new IllegalArgumentException("이동할 칸은 U(위), D(아래) 중 하나여야 합니다.");
         }
     }
