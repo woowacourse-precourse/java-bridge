@@ -22,20 +22,23 @@ public class BridgeController {
     }
 
     public void GameTest(){
+        boolean check = true;
         BridgeGame bridgeGame = createBridgeGame(inputView);
-        inputMoving(inputView,outputView,bridgeGame);
+        while(check){
+            check = inputMoving(inputView,outputView,bridgeGame);
+        }
     }
     private static BridgeGame createBridgeGame(InputView inputView) {
         return new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())
                 .makeBridge(inputView.readBridgeSize()));
     }
 
-    private static void inputMoving(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+    private static boolean inputMoving(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         if (bridgeGame.move(inputView.readMoving())) {
             System.out.println(outputView.printMap(bridgeGame.currentBridge()));
-        }else{
-            System.out.println(outputView.printMap(bridgeGame.currentBridge()));
+            return true;
         }
-
+        System.out.println(outputView.printMap(bridgeGame.currentBridge()));
+        return false;
     }
 }
