@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String GAME_START_MESSAGE = "\n다리 건너기 게임을 시작합니다.";
-    private static final String ERROR_MESSAGE_FORMAT = "\n[ERROR] {0}";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] {0}";
     private static final String MAP_MESSAGE_FORMAT = "[ {0} ]";
     private static final String MAP_MESSAGE_DELIMITER = " | ";
     private static final String RESULT_MESSAGE = "\n최종 게임 결과";
