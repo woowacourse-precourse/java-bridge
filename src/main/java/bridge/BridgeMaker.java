@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.UserInput.BridgeSelection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +24,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomBLock = bridgeNumberGenerator.generate();
-            if (randomBLock == 1)
-                bridge.add("U");
-            if (randomBLock == 0)
-                bridge.add("D");
+            if (randomBLock == 1) bridge.add(BridgeSelection.Up.get());
+            if (randomBLock == 0) bridge.add(BridgeSelection.Down.get());
         }
         return bridge;
     }
