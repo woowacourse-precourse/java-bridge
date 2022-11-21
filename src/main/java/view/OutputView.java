@@ -1,8 +1,7 @@
 package view;
 
-import bridge.Bridge;
 import bridge.BridgeGame;
-import bridge.MoveCommand;
+import bridge.command.MoveCommand;
 
 import java.util.List;
 import java.util.Objects;

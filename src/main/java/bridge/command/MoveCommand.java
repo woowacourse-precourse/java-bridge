@@ -1,4 +1,4 @@
-package bridge;
+package bridge.command;
 
 public enum MoveCommand {
     UP(1, "U"),
