@@ -41,9 +41,6 @@ public class BridgeGame {
         return OutputState.SUCCESS_OR_NOT + result;
     }
 
-
-
-
     public static void setBridge(List<String> bridge) {
         BridgeGame.bridge = bridge;
     }
@@ -72,8 +69,8 @@ public class BridgeGame {
         return BridgeGame.bridge.get(bridgeIndex).equals(command);
     }
 
-    private void drawLine(List<String> selectedLine, List<String> oppositeLine, String movable) {
-        selectedLine.add(movable);
+    private void drawLine(List<String> selectedLine, List<String> oppositeLine, String movementShape) {
+        selectedLine.add(movementShape);
         oppositeLine.add(BridgeShape.BLANK);
     }
     private void addMovement(List<String> selectedLine, List<String> oppositeLine, boolean isCorrect) {
