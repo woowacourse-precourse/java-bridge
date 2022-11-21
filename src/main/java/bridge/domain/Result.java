@@ -22,11 +22,11 @@ public class Result {
     }
 
     public boolean isEnd(Bridge bridge) {
-        return !moveStatuses.get(moveStatuses.size() - TO_INDEX).didCross() || bridge.isEnd(location);
+        return !didCrossAtLatestMove() || didArriveEndOfBridge(bridge);
     }
 
     public boolean isSuccess(Bridge bridge) {
-        return moveStatuses.get(moveStatuses.size() - TO_INDEX).didCross() && bridge.isEnd(location);
+        return didCrossAtLatestMove() && didArriveEndOfBridge(bridge);
     }
 
     public void reset() {
@@ -36,5 +36,17 @@ public class Result {
 
     public List<MoveStatus> getMoveStatuses() {
         return this.moveStatuses;
+    }
+
+    private boolean didCrossAtLatestMove() {
+        return moveStatuses.get(latestLocation()).didCross();
+    }
+
+    private int latestLocation() {
+        return moveStatuses.size() - TO_INDEX;
+    }
+
+    private boolean didArriveEndOfBridge(Bridge bridge) {
+        return bridge.isEnd(location);
     }
 }
