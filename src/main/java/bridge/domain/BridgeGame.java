@@ -1,11 +1,8 @@
 package bridge.domain;
 
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.constant.Constant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +14,9 @@ public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private Bridge bridge;
     private Player player;
-
+    private List<String> bridgeStatus;
+    private int attempt;
+    private boolean gameStatus;
 
 
     public BridgeGame(int bridgeSize) {
@@ -25,6 +24,9 @@ public class BridgeGame {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         player = new Player();
+        bridgeStatus = new ArrayList<>();
+        attempt = 0;
+        gameStatus = false;
     }
 
     /**
@@ -32,7 +34,26 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String movingInput) {
+        player.movePlayer(movingInput);
+        List<String> playerMoving = player.getPlayerMoving();
+        if (!bridge.isMove(playerMoving, playerMoving.size() - 1)) {
+            bridgeStatus.add(Constant.IMPOSSIBLE.getConstant());
+            return;
+        }
+        bridgeStatus.add(Constant.POSSIBLE.getConstant());
+    }
+
+    public List<String> getplayerMoving() {
+        return player.getPlayerMoving();
+    }
+
+    public List<String> getBridgeStatus() {
+        return bridgeStatus;
+    }
+
+    public boolean gameOver() {
+        return gameStatus || bridgeStatus.size() == bridge.getBridgeSize();
     }
 
     /**
