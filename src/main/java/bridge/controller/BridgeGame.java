@@ -15,12 +15,11 @@ public class BridgeGame {
     private BridgeResult bridgeResult;
 
     public BridgeGame() {
-        this.bridge = new Bridge();
         this.bridgeResult = new BridgeResult();
     }
 
     public void make(String size) {
-        bridge.make(size);
+        this.bridge = new Bridge(size);
     }
 
     /**
