@@ -12,10 +12,9 @@ public class Player {
         history = new ArrayList<>();
     }
 
-    public PlayerStatus move(Moving choice, Bridge bridge) {
+    public void move(Moving choice, Bridge bridge) {
         history.add(choice);
         playerStatus = bridge.acceptPlayer(nextLocation(), choice);
-        return playerStatus;
     }
 
     private int nextLocation() {
@@ -23,15 +22,15 @@ public class Player {
     }
 
     public boolean isCrossedBridge() {
-        return this.equals(PlayerStatus.CROSSED);
+        return playerStatus.equals(PlayerStatus.CROSSED);
     }
 
     public boolean isMoving() {
-        return this.equals(PlayerStatus.MOVING);
+        return playerStatus.equals(PlayerStatus.MOVING);
     }
 
     public boolean isDead() {
-        return this.equals(PlayerStatus.DEAD);
+        return playerStatus.equals(PlayerStatus.DEAD);
     }
 
     public PlayerStatus getPlayerStatus() {
