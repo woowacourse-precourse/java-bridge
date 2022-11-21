@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.BridgeDisplay;
+import bridge.enums.BridgeMoving;
 import java.util.ArrayList;
 
 public class BridgeResult {

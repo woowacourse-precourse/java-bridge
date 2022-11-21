@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum BridgeRange {
     MIN(3),

@@ -3,6 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.enums.BridgeMoving;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.stream.Collectors;

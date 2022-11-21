@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.BridgeRange;
+
 public class BridgeBluePrint {
 
     private int size;

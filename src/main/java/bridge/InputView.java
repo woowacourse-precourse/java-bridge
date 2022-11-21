@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.BridgeGameCommand;
+import bridge.enums.BridgeMoving;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 

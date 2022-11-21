@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.BridgeDisplay;
+import bridge.enums.BridgeGameCommand;
 import java.util.Arrays;
 import java.util.List;
 
