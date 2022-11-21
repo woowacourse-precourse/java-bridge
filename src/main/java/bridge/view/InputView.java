@@ -41,22 +41,26 @@ public class InputView {
      */
     public void readMoving() {
         while (true) {
-            String moveDirection;
-            do {
-                System.out.println(MessageView.SELECT_TO_MOVE.getMessage());
-                moveDirection = Console.readLine();
-            } while(bridgeException.invalidMovingInputValue(moveDirection));
-            gameStatistics.getCheckRoad().add(bridgeGame.move(moveDirection, gameStatistics.getAnswerRoad(), bridgeGame.getPlayer()));
+            gameStatistics.getCheckRoad().add(bridgeGame.move(enterMoveDirection(), gameStatistics.getAnswerRoad(), bridgeGame.getPlayer()));
             boolean roundResult = bridge.buildBridge();
             outputView.printMap();
             if (isGameFinished(roundResult)) break;
         }
     }
 
+    private String enterMoveDirection() {
+        String moveDirection;
+        do {
+            System.out.println(MessageView.SELECT_TO_MOVE.getMessage());
+            moveDirection = Console.readLine();
+        } while(bridgeException.invalidMovingInputValue(moveDirection));
+        return moveDirection;
+    }
+
     private boolean isGameFinished(boolean roundResult) {
         if (!roundResult) {
             String retryGame = readGameCommand();
-            if (checkRetryCommand(retryGame)) return true;
+            return checkRetryCommand(retryGame);
         } else if (Player.currentLocation == bridge.getSize()) {
             showGameResult();
             return true;
@@ -83,13 +87,19 @@ public class InputView {
      */
     public String readGameCommand() {
         String retryGame;
-        do {
-            System.out.println(MessageView.INPUT_RETRY_OR_NOT_GAME.getMessage());
-            retryGame = Console.readLine();
-        } while(bridgeException.invalidRetryGame(retryGame));
+        retryGame = enterGameCommand();
         if (retryGame.equals("Q")) {
             gameStatistics.setGameResult("실패");
             outputView.printResult();
         } return retryGame;
+    }
+
+    private String enterGameCommand() {
+        String retryGame;
+        do {
+            System.out.println(MessageView.INPUT_RETRY_OR_NOT_GAME.getMessage());
+            retryGame = Console.readLine();
+        } while(bridgeException.invalidRetryGame(retryGame));
+        return retryGame;
     }
 }
