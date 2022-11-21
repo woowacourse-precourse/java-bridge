@@ -13,6 +13,7 @@ public class InputView extends DefaultView {
 
     private static final String MSG_REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String MSG_REQUEST_MOVING_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String MSG_REQUEST_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private static final String FORMAT_ONLY_ALPHABET = "^[a-zA-Z]*$";
 
@@ -48,16 +49,27 @@ public class InputView extends DefaultView {
     }
 
     private void validateMovingDirection(String input){
-        if(!Pattern.matches(FORMAT_ONLY_ALPHABET, input))
-            throw new CustomIllegalArgumentException(
-                    "알파벳만 입력해야 합니다."
-            );
+        validateOnlyAlphabet(input);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(MSG_REQUEST_GAME_COMMAND);
+        String input = Console.readLine();
+        validateGameCommand(input);
+        return input;
+    }
+
+    private void validateGameCommand(String input){
+        validateOnlyAlphabet(input);
+    }
+
+    private void validateOnlyAlphabet(String input){
+        if(!Pattern.matches(FORMAT_ONLY_ALPHABET, input))
+            throw new CustomIllegalArgumentException(
+                    "알파벳만 입력해야 합니다."
+            );
     }
 }
