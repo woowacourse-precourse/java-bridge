@@ -3,7 +3,6 @@ package bridge.error;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -25,7 +24,11 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void validateGameCommand() {
+    @DisplayName("재시작 여부에 대한 예외 처리")
+    @ValueSource(strings = {"1", "0", "U", "D", "@#$"})
+    @ParameterizedTest
+    void validateGameCommand(String gameCommand) {
+        assertThatThrownBy(() -> Validator.validateGameCommand(gameCommand))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
