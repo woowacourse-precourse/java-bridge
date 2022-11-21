@@ -29,31 +29,29 @@ public class Bridge {
      * 도메인 로직
      */
     public boolean isCorrectLastElement(Bridge answer, int stage) {
-        String userLastInput = bridge.get(stage - 1);
-        String expected = answer.getBridge().get(stage - 1);
+        String userLastInput = bridge.get(stage);
+        String expected = answer.getBridge().get(stage);
 
         return expected.equals(userLastInput);
     }
 
-    public void moveNext(String moving, int stage) {
-        this.bridge.add(stage, moving);
+    public void moveNext(String moving) {
+        this.bridge.add(moving);
     }
 
     public List<String> matchAnswer(Bridge user, int stage) {
         List<String> answer = new ArrayList<>();
-        for (int i = 0; i < stage; i++)
-            answer.add(" ");
 
-        while(stage-->0){
-            String result = isCorrect(this.bridge.get(stage), user.bridge.get(stage));
-            answer.set(stage, result);
+        for (int i = 0; i <= stage; i++) {
+            String result = isCorrect(this.bridge.get(i), user.bridge.get(i));
+            answer.add(result);
         }
 
         return answer;
     }
 
     private String isCorrect(String answer, String input) {
-        if(answer.equals(input))
+        if (answer.equals(input))
             return "O";
 
         return "X";

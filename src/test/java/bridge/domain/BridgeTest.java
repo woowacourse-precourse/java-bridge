@@ -30,16 +30,16 @@ class BridgeTest {
     @ValueSource(ints = {0, 1, 2, 3, 4, 5, 10})
     void 정답_판단하기(int stage) throws Exception{
         //given
-        List<String> bridge = bridgeMaker.makeBridge(10);
-        Bridge newBridge = new Bridge(bridge, 10);
-        Bridge user = new Bridge(10);
+        List<String> bridge = bridgeMaker.makeBridge(stage+1);
+        Bridge newBridge = new Bridge(bridge, stage+1);
+        Bridge user = new Bridge(stage+1);
 
         //when
-        for(int i=0; i<stage; i++)
-            user.moveNext(newBridge.getBridge().get(i), i);
+        for(int i=0; i<=stage; i++)
+            user.moveNext(newBridge.getBridge().get(i));
 
         //then
         assertThat(user.matchAnswer(user, stage)).allMatch(o -> o.equals("O"));
-        assertThat(user.matchAnswer(user, stage).size()).isEqualTo(stage);
+        assertThat(user.matchAnswer(user, stage).size()).isEqualTo(stage+1);
     }
 }

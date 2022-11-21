@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.GameStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +17,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> result, List<String> user) {
+    public String printMap(List<String> result, List<String> user) {
         List<String> upLine = createLine(result, user, UP);
         List<String> downLine = createLine(result, user, DOWN);
 
-        System.out.println(concatenateLine(upLine));
-        System.out.println(concatenateLine(downLine));
+        return concatenateLine(upLine) + "\n" + concatenateLine(downLine) + "\n";
     }
 
     /**
@@ -28,7 +29,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int attempts, String finalOutput, GameStatus gameStatus) {
+        System.out.println("최종 게임 결과");
+        System.out.println(finalOutput);
+
+        System.out.println("게임 성공 여부: " + gameStatus.getMessage());
+        System.out.print("총 시도한 횟수: " + attempts);
     }
 
     private String concatenateLine(List<String> line) {
@@ -42,7 +48,6 @@ public class OutputView {
 
         for (int i = 0; i < result.size(); i++) {
             output.add(" ");
-
             if (user.get(i).equals(line))
                 output.set(i, result.get(i));
         }

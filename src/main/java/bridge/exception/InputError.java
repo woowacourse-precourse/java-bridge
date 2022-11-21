@@ -7,13 +7,14 @@ public enum InputError {
     INVALID_INPUT_SIZE("한 글자만 입력해야 합니다."),
     INVALID_RESTART_OPTION("R 또는 Q만 입력해야 합니다.");
 
+    private final String prefix = "[ERROR] ";
     private final String message;
 
     InputError(String message) {
-        this.message = message;
+        this.message = prefix + message+"\n";
     }
 
     public String getMessage() {
         return message;
     }
-    }
+}
