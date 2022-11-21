@@ -14,8 +14,7 @@ import static bridge.model.GameResultState.WIN;
 
 public class BridgeGameController {
 
-    private static int totalTries = 1;
-    private static int bridgeSize;
+    private int bridgeSize;
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -97,14 +96,14 @@ public class BridgeGameController {
 
     private void initialize() {
         bridgeGameService.initializePosition();
-        totalTries++;
+        bridgeGameService.increaseTries();
         bridgeGameService.clearRepository();
     }
 
     private void printEndMessage(GameResultState state) {
         outputView.printResultMessage();
         printMap();
-        outputView.printResult(state, totalTries);
+        outputView.printResult(state, bridgeGameService.getTotalTries());
     }
 
     private void printMap() {
