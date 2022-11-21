@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -9,6 +11,7 @@ public class BridgeGame {
 
     private final List<String> answerBridge;
     private BridgeMap bridgeMap;
+    private GameStatus gameStatus;
     private int bridgeIndex;
     private int tryCount;
 
@@ -23,7 +26,35 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public BridgeMap move(String readMoving) {
+        Move move = Move.of(readMoving);
+        String answerRoom = answerBridge.get(bridgeIndex);
+
+        if (answerRoom.equals(readMoving)) {
+            return moveCorrectBridge(move);
+        }
+
+        return moveWrongBridge(move);
+    }
+
+    private BridgeMap moveCorrectBridge(Move move) {
+        incrementCurrentPosition();
+        bridgeMap.moveCorrectBridge(move);
+        return bridgeMap;
+    }
+
+    public void incrementCurrentPosition() {
+        bridgeIndex += 1;
+
+        if (bridgeIndex == answerBridge.size()) {
+            gameStatus = GameStatus.WIN;
+        }
+    }
+
+    private BridgeMap moveWrongBridge(Move move) {
+        gameStatus = GameStatus.FAIL;
+        bridgeMap.moveWrongBridge(move);
+        return bridgeMap;
     }
 
     /**
@@ -37,5 +68,7 @@ public class BridgeGame {
         this.bridgeIndex = INIT_BRIDGE_INDEX;
         this.tryCount = tryCount;
         this.bridgeMap = new BridgeMap();
+        this.gameStatus = GameStatus.PLAYING;
+    }
     }
 }
