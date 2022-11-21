@@ -2,15 +2,13 @@ package bridge;
 
 import java.util.List;
 
-public class BridgeService {
+public class BridgeInit {
 
     private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
-    BridgeService(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker){
+    BridgeInit(InputView inputView, BridgeMaker bridgeMaker){
         this.inputView = inputView;
-        this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
     }
 
@@ -19,7 +17,11 @@ public class BridgeService {
         return bridgeMaker.makeBridge(bridgeLength);
     }
 
-    private String getNextStep(){
+    public String getNextStep(){
         return inputView.readMoving();
+    }
+
+    public String getNextGameMode(){
+        return inputView.readGameCommand();
     }
 }

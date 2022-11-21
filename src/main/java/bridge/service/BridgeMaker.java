@@ -10,7 +10,7 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
+    public BridgeMaker(BridgeRandomNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
