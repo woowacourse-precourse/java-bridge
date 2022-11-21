@@ -6,11 +6,12 @@
      - [x] 입력값은 3 ~ 24 여야 한다. - view.InputView.validateBridgeSizeRange();
 - [x] 사용자의 입력값에 따라 이동할 수 있어야한다. - BridgeGame.move()
    - [x] 이동 값을 입력 받아야한다. - InputView.readMoving()
-     - [x] 입력값 의 유효성 검사를 해야한다. - InputView.isValidBridgeSizeRange()
+     - [x] 입력값 의 유효성 검사를 해야한다. - InputView.isValidMoveCommand()
        - [x] 입력값이 "U" 또는 "D" 이어야 한다. - InputView.validateMoveFormat()
 - 잘못된 값을 입력한경우 [ERROR] 로 시작하는 에러 메세지를 출력 하고 입력을 다시 받아야한다.
 - [ ] 게임 실패시 사용자가 입력한 값에 따라 재시작 또는 게임 종료를 해야한다. - BridgeGameRun.gameFail()
-  - [ ] 게임 종료, 재시작 유무를 입력 받아야한다. - InputView.readGameCommand()
+  - [x] 게임 종료, 재시작 유무를 입력 받아야한다. - InputView.readGameCommand()
+    - [ ] 종료, 재시작 유무 입력 값에 대해 유효성 겁사를 해야한다. - InputView.isValidFailCommand()
     - [x] 입력값이 R 또는 Q 이어야 한다. - InputView.validateGameFailFormat()
   - [x] 재시작시 이동 경로를 초기화 한다. - BridgeGame.retry()
   - [ ] 종료시 프로그램이 종료되도록 해야한다. 
