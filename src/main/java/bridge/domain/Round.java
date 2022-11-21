@@ -34,8 +34,7 @@ public class Round {
     }
 
     public Round nextRound() {
-        validate(round + ROUND_DIFFERENCE);
-        return CACHE.get(round + ROUND_DIFFERENCE);
+        return CACHE.getOrDefault(this.round + ROUND_DIFFERENCE, this);
     }
 
     private static void validate(Integer round) {
