@@ -15,35 +15,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class BridgeTest {
 
     @Nested
-    @DisplayName("생성자 유효성 테스트")
-    class DescribeConstructValidate {
-
-        @Test
-        @DisplayName("인자가 U,D로 이루어진 리스트가 아니라면 IllegalAgumentException을 반환")
-        void receiveWrongArgument() {
-            //given
-            List<String> wrongBridge = List.of("A", "B");
-
-            //then
-            Assertions.assertThatThrownBy(() -> new Bridge(wrongBridge))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @Test
-        @DisplayName("U, D로 이루어진 리스트 인자를 받으면 정상적인 Bridge 생성")
-        void receiveValidArgument() {
-            //given
-            List<String> bridge = List.of("U", "D", "U");
-
-            //when
-            Bridge actual = new Bridge(bridge);
-
-            //then
-            Assertions.assertThat(actual.getClass()).isEqualTo(Bridge.class);
-        }
-    }
-
-    @Nested
     @TestInstance(Lifecycle.PER_CLASS)
     @DisplayName("isCross 메서드는")
     class DescribeIsCross {
@@ -61,7 +32,7 @@ class BridgeTest {
         @DisplayName("인자로 null인 UpOrDown 혹은 bridge 필드에 존재하지 않는 index를 인자로 받으면 IllegalArgumentException 반환")
         void throwIllegalArgumentExceptionWhenNotValidArgument(int index, UpOrDown upOrDown) {
             //given
-            Bridge bridge = new Bridge(List.of("U"));
+            Bridge bridge = new Bridge(List.of(new UpOrDown("U")));
 
             //then
             Assertions.assertThatThrownBy(() -> bridge.isCross(index, upOrDown))
@@ -74,7 +45,7 @@ class BridgeTest {
             //given
             int index = 0;
             UpOrDown upOrDown = new UpOrDown("D");
-            Bridge bridge = new Bridge(List.of("U"));
+            Bridge bridge = new Bridge(List.of(new UpOrDown("U")));
 
             //when
             boolean actual = bridge.isCross(index, upOrDown);
@@ -89,7 +60,7 @@ class BridgeTest {
             //given
             int index = 0;
             UpOrDown upOrDown = new UpOrDown("U");
-            Bridge bridge = new Bridge(List.of("U"));
+            Bridge bridge = new Bridge(List.of(new UpOrDown("U")));
 
             //when
             boolean actual = bridge.isCross(index, upOrDown);

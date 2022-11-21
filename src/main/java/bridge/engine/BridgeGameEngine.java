@@ -7,7 +7,9 @@ import bridge.model.BridgeSize;
 import bridge.model.Crossing;
 import bridge.model.PassOrFail;
 import bridge.model.UpOrDown;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class BridgeGameEngine {
 
@@ -22,8 +24,11 @@ public class BridgeGameEngine {
     public Bridge makeBridge(int userInputSize) {
         BridgeSize bridgeSize = new BridgeSize(userInputSize);
         int size = bridgeSize.getValue();
+        List<UpOrDown> bridge = bridgeMaker.makeBridge(size).stream()
+                .map(v -> new UpOrDown(v))
+                .collect(Collectors.toList());
 
-        return new Bridge(bridgeMaker.makeBridge(size));
+        return new Bridge(bridge);
     }
 
     public void cross(Crossing crossing, Bridge bridge, UpOrDown upOrDown) {
