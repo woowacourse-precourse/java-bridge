@@ -6,11 +6,13 @@ public class Application {
     static BridgeGame bridgeGame = new BridgeGame();
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
-    static BridgeMaker bridgeMaker = new BridgeMaker(null);
+    static BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
+    static BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
         List<String> bridgeState = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        System.out.println(bridgeState);
         List<String> currentBridgeState=bridgeMaker.initialBridge();
         int count=0;
         while(true){
