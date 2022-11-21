@@ -33,18 +33,21 @@ public class BridgeGame {
 
     public void move() {
         user.initMove();
-        while (user.getMoveCount() < user.getUserBridgeSize()) {
-            String userMove = InputView.readMoving();
-            Validation.isNotUpOrDown(userMove);
-            user.moveUser(userMove);
-            OutputView.printMap(user.getUserLocation(), bridgeMaker.getBridge().getBridgeAnswer());
-            if (!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount()))) {
+        while (user.getMoveCount() < user.getUserBridgeSize() && isSuccess) {
+            String userMove=makeUserMove();
+            if (!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount())))
                 isSuccess = false;
-                break;
-            }
             user.increaseMoveCount();
         }
         isMeetBridgeEnd();
+    }
+
+    public String makeUserMove(){
+        String userMove = InputView.readMoving();
+        Validation.isNotUpOrDown(userMove);
+        user.moveUser(userMove);
+        OutputView.printMap(user.getUserLocation(), bridgeMaker.getBridge().getBridgeAnswer());
+        return userMove;
     }
 
     public void isMeetBridgeEnd(){
