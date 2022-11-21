@@ -5,7 +5,11 @@ public class Application {
     public static void main(String[] args) {
 
         System.out.print("다리 건너기 게임을 시작합니다.");
+
         // 다리 길이 입력 -> inputView 클래스의 readBridgeSize()
+        InputView inputView = new InputView();
+        int bridgeLength = inputView.readBridgeSize();
+
         // 다리 길이만큼 다리 생성 -> BridgeMaker 클래스의 makeBridge(int size)
         // 이동할 칸 입력받기 -> InputView 클래스의 readMoving()
         // 입력받은 값에 따라 이동 -> BridgeGame 클래스의 move()
