@@ -38,7 +38,7 @@ public class BridgeGameRepository {
         store.put(GAME_COUNT, (int) store.getOrDefault(GAME_COUNT, INITIALIZE_COUNT) + 1);
     }
 
-    public void clearStore() {
+    private void clearStore() {
         store.clear();
     }
 
