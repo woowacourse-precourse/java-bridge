@@ -13,12 +13,16 @@ public enum Stairs {
     }
 
     public static String convertIntToStr(int randomValue) {
-        if(randomValue == Stairs.UP_STAIRS.randomValue){
+        if (randomValue == Stairs.UP_STAIRS.randomValue) {
             return UP_STAIRS.abbreviation;
         }
-        if(randomValue == Stairs.DOWN_STAIRS.randomValue) {
+        if (randomValue == Stairs.DOWN_STAIRS.randomValue) {
             return DOWN_STAIRS.abbreviation;
         }
         throw new IllegalStateException("올바른 랜덤 값이 아닙니다.");
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
     }
 }
