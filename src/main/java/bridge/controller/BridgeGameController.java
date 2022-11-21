@@ -52,11 +52,15 @@ public class BridgeGameController {
     }
 
     private boolean checkRetry(BridgeGame bridgeGame) {
-        if (getRetryIntention().equals(RETRY)) {
+        if (hasUserRetryIntention()) {
             bridgeGame.retry();
             return true;
         }
         return false;
+    }
+
+    private boolean hasUserRetryIntention() {
+        return getRetryIntention().equals(RETRY);
     }
 
     private String getRetryIntention() {
