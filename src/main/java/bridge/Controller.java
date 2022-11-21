@@ -49,6 +49,11 @@ public class Controller {
         }
     }
 
+    /**
+     * 게임 성공 시 수행하는 기능
+     * @params moveResult 한 칸 선택하고 받은 점수판
+     * @return 게임 진행 여부. 게임을 끝낸다면 false, 게임을 이어서 한다면 true
+     * */
     private boolean gameSuccess(BridgeGameResultDto moveResult) {
         outputView.printResult(moveResult);
         return false;
