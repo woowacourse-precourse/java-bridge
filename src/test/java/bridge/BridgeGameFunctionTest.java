@@ -1,7 +1,8 @@
-package bridge.controller;
+package bridge;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.controller.BridgeGameController;
 import bridge.model.BridgeGame;
 import bridge.model.Record;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +18,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class InputControllerTest {
+public class BridgeGameFunctionTest {
     private BridgeMaker bridgeMaker;
     private Record record;
 
@@ -28,7 +29,7 @@ public class InputControllerTest {
     }
 
     @Nested
-    class BridgeSizeTest {
+    class MakeBridgeTest {
         @DisplayName("유효한 범위 내 숫자를 입력하면 해당 길이를 가진 다리를 생성한다.")
         @ValueSource(ints = {3, 10, 20})
         @ParameterizedTest
@@ -48,11 +49,11 @@ public class InputControllerTest {
     }
 
     @Nested
-    class DirectionTest {
+    class MoveTest {
         @DisplayName("유효한 형식의 방향을 입력하면 오류 없이 반환한다.")
         @ValueSource(strings = {"U", "D"})
         @ParameterizedTest
-        void successGetMovingDirection(String moving) {
+        void successMovingDirection(String moving) {
             BridgeGame bridgeGame = new BridgeGame();
             assertThatThrownBy(() ->
                     assertThatThrownBy(() -> bridgeGame.move(record, moving))
@@ -63,7 +64,7 @@ public class InputControllerTest {
         @DisplayName("유효하지 않은 방향을 입력하면 오류가 발생한다.")
         @ValueSource(strings = {"u", "d", "KKK", "%%"})
         @ParameterizedTest
-        void failGetMovingDirection(String moving) {
+        void failMovingDirection(String moving) {
             BridgeGame bridgeGame = new BridgeGame();
             assertThatThrownBy(() -> bridgeGame.move(record, moving))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -71,11 +72,11 @@ public class InputControllerTest {
     }
 
     @Nested
-    class GameCommandTest {
+    class RetryTest {
         @DisplayName("유효한 형식의 명령어를 입력하면 오류 없이 반환한다.")
         @ValueSource(strings = {"R", "Q"})
         @ParameterizedTest
-        void successGetMovingDirection(String command) {
+        void successGetCommandDirection(String command) {
             BridgeGame bridgeGame = new BridgeGame();
             assertThatThrownBy(() -> assertThatThrownBy(
                     () -> bridgeGame.retry(record, command))
@@ -86,7 +87,7 @@ public class InputControllerTest {
         @DisplayName("유효하지 않은 명령어를 입력하면 오류가 발생한다.")
         @ValueSource(strings = {"r", "q", "KKK", "%%"})
         @ParameterizedTest
-        void failGetMovingDirection(String command) {
+        void failGetCommandDirection(String command) {
             BridgeGame bridgeGame = new BridgeGame();
             assertThatThrownBy(() -> bridgeGame.retry(record, command))
                     .isInstanceOf(IllegalArgumentException.class);
