@@ -8,21 +8,21 @@ final class Visited {
     private final List<Position> positions;
     private final Logger logger;
 
-    public Visited() {
+    Visited() {
         positions = new ArrayList<>();
         logger = new Logger();
     }
 
-    public void move(final Position moving, final Bridge bridge) {
+    void move(final Position moving, final Bridge bridge) {
         logger.put(moving, bridge.isEqualAtIndex(positions.size(), moving));
         positions.add(moving);
     }
 
-    public String toPrintableLog() {
+    String toPrintableLog() {
         return logger.calculateLog();
     }
 
-    public boolean isRemained(final Bridge bridge) {
+    boolean isRemained(final Bridge bridge) {
         if (isEnd(bridge)) {
             return false;
         }
@@ -38,7 +38,7 @@ final class Visited {
                 .allMatch(index -> bridge.isEqualAtIndex(index, positions.get(index)));
     }
 
-    public GameResult result(final Bridge bridge) {
+    GameResult result(final Bridge bridge) {
         if (!isEnd(bridge)) {
             return GameResult.FAILURE;
         }

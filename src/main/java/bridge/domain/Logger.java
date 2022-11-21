@@ -8,7 +8,7 @@ final class Logger {
     private final StringBuilder up = new StringBuilder("[");
     private final StringBuilder down = new StringBuilder("[");
 
-    public void put(final Position moving, final boolean correct) {
+    void put(final Position moving, final boolean correct) {
         validateMoving(moving);
         if (moving == Position.UP) {
             addOneCheck(up, down, correct);
@@ -32,7 +32,7 @@ final class Logger {
         addSign.append(WRONG_SIGN);
     }
 
-    public String calculateLog() {
+    String calculateLog() {
         final StringBuilder firstLine = new StringBuilder(up);
         final StringBuilder secondLine = new StringBuilder(down);
         firstLine.setCharAt(firstLine.length() - 1, ']');

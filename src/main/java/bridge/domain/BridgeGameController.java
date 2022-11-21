@@ -22,7 +22,7 @@ public final class BridgeGameController {
         validateBridgeMaker(bridgeMaker);
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridge = setUpBridge(bridgeMaker);
+        bridge = setUpBridge(bridgeMaker);
     }
 
     private void validateInputView(final InputView inputView) {

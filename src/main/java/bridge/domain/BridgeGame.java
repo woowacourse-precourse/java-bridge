@@ -7,7 +7,7 @@ final class BridgeGame {
     private final Bridge bridge;
     private Visited visited;
 
-    public BridgeGame(final Bridge bridge) {
+    BridgeGame(final Bridge bridge) {
         this.bridge = bridge;
         retry();
     }
@@ -17,7 +17,7 @@ final class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(final Position nextPosition) {
+    void move(final Position nextPosition) {
         visited.move(nextPosition, bridge);
     }
 
@@ -27,19 +27,19 @@ final class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    void retry() {
         visited = new Visited();
     }
 
-    public boolean isFinish() {
+    boolean isFinish() {
         return !visited.isRemained(bridge);
     }
 
-    public GameResult result() {
+    GameResult result() {
         return visited.result(bridge);
     }
 
-    public String toPrintableLog() {
+    String toPrintableLog() {
         return visited.toPrintableLog();
     }
 }

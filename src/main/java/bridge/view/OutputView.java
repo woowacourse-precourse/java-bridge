@@ -35,7 +35,7 @@ public final class OutputView {
     public void printResult(final BridgeGameResultDto bridgeGameResultDto) {
         validateGameResult(bridgeGameResultDto);
         System.out.println("최종 게임 결과");
-        this.printMap(bridgeGameResultDto.getLog());
+        printMap(bridgeGameResultDto.getLog());
 
         System.out.print("게임 성공 여부: ");
         System.out.println(bridgeGameResultDto.getGameResult().toResultMessage());

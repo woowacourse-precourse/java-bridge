@@ -18,6 +18,6 @@ public enum GameResult {
     }
 
     public String toResultMessage() {
-        return this.resultMessage;
+        return resultMessage;
     }
 }
