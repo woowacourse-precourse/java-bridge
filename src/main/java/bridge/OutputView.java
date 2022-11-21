@@ -64,4 +64,8 @@ public class OutputView {
     public void printRetryEventMessage() {
         System.out.println(RETRY_EVENT_MESSAGE);
     }
+
+    public void printBlankLine() {
+        System.out.println();
+    }
 }
