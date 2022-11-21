@@ -36,4 +36,11 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+    public void isValidateValue(String size) {
+        try {
+            Integer.parseInt(size);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]: 정수로 변환될 수 없음");
+        }
+    }
 }
