@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import java.util.regex.Pattern;
-
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -32,7 +31,7 @@ public class InputView {
 		int bridgeLength = 0;
 		if (Pattern.matches(pattern, bridgeLengthStr)) {
 			bridgeLength = Integer.parseInt(bridgeLengthStr);
-			if (bridgeLength >= 3 && bridgeLength <= 20) {			
+			if (bridgeLength >= 3 && bridgeLength <= 20) {
 				this.bridgeLength = bridgeLength;
 				return;
 			}
@@ -59,7 +58,7 @@ public class InputView {
 
 	public void readMovingExceptionCheck(String upOrDown) {
 		if (!upOrDown.equals("U") && !upOrDown.equals("D")) {
-			throw new IllegalArgumentException("[ERROR] U와 D만 선택하세요.");	
+			throw new IllegalArgumentException("[ERROR] U와 D만 선택하세요.");
 		}
 	}
 
@@ -78,15 +77,15 @@ public class InputView {
 		}
 		return restartOrQuit;
 	}
-	
+
 	public void readGameCommandExceptionCheck(String tempRestartOrQuit) {
 		if (tempRestartOrQuit.equals("R") || tempRestartOrQuit.equals("Q")) {
-			this.restartOrQuit = tempRestartOrQuit;	
+			this.restartOrQuit = tempRestartOrQuit;
 			return;
 		}
 		throw new IllegalArgumentException("[ERROR] R와 Q만 선택하세요.");
 	}
-	
+
 	public String getRestartOrQuit() {
 		this.restartOrQuit = "";
 		readGameCommand();
