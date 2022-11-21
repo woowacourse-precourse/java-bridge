@@ -15,8 +15,21 @@ public class BridgeGame {
 
     public BridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int bridgeSize = bridgeMaker.readBridgeSize();
+        int bridgeSize = 0;
+        try {
+            bridgeSize = bridgeMaker.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            new OutputView().printException(e.getMessage());
+        }
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    public void run() {
+        try {
+            move();
+        } catch (IllegalArgumentException e) {
+            new OutputView().printException(e.getMessage());
+        }
     }
 
     /**
@@ -28,17 +41,30 @@ public class BridgeGame {
         String successful = "성공";
         List<String>[] moveBridge = new BridgeMoveController(bridge).run();
         count++;
+        successful = checkSuccessful(successful, moveBridge);
+        if (successful != null) {
+            new OutputView().printResult(moveBridge, successful, count);
+        }
+    }
 
+    private String checkSuccessful(String successful, List<String>[] moveBridge) {
         if (moveBridge[0].contains("X") || moveBridge[1].contains("X")) {
             successful = "실패";
-            Retry retry = new Retry(new InputView().readGameCommand());
-            String retryCommand = retry.getRetry();
-            if (retryCommand.equals("R")) {
-                retry();
-                return;
+            if (checkRetry()) {
+                return null;
             }
         }
-        new OutputView().printResult(moveBridge, successful, count);
+        return successful;
+    }
+
+    private boolean checkRetry() {
+        Retry retry = new Retry(new InputView().readGameCommand());
+        String retryCommand = retry.getRetry();
+        if (retryCommand.equals("R")) {
+            retry();
+            return true;
+        }
+        return false;
     }
 
     /**
