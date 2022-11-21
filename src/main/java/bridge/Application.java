@@ -38,7 +38,24 @@ public class Application {
 
     private static void successOrFail(BridgeGame bridgeGame) {
         if (bridgeGame.isFail()) {
-            //재시작 여부 입력받기
+            askRestart(bridgeGame);
+        }
+    }
+
+    private static void askRestart(BridgeGame bridgeGame) {
+        if (Command.isRestart(getCommand())) {
+            bridgeGame.retry();
+            run(bridgeGame);
+        }
+    }
+
+
+    private static Command getCommand() {
+        try {
+            return Command.createCommand(readGameCommand());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return getCommand();
         }
     }
 
