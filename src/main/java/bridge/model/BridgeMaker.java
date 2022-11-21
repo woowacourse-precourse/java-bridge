@@ -26,8 +26,8 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    public static List<String> makeBridge(int size) {
-        List<String> bridges = new ArrayList<>();
+    public static ArrayList<String> makeBridge(int size) {
+        ArrayList<String> bridges = new ArrayList<>();
         for(int num = 0; num < size; num++){
             double ran = Math.random()*2;
             int rand =  (int) ran;
