@@ -86,5 +86,9 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - 게임의 재시작 혹은 종료에 대한 상태 코드입니다
     - [X] R은 재시작 Q는 종료 상태입니다.
     - [X] [검증] R과 Q가 아닌 값은 가질 수 없습니다.
+- GameStatus
+    - 게임의 진행 상황을 나타냅니다.
+        - [ ] 진행 상태와 클리어 상태 실패상태를 가집니다.
+        - [ ] 게임이 진행중인지 확인할 수 있습니다.
 
 #
