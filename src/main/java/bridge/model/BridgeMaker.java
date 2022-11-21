@@ -31,7 +31,7 @@ public class BridgeMaker {
         for(int num = 0; num < size; num++){
             double ran = Math.random()*2;
             int rand =  (int) ran;
-            //System.out.println("rand: " + rand);
+            System.out.println("rand: " + rand);
             // 0이면 U, 1이면 D
             if(rand == 0){
                 bridges.add("U");
