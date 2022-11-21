@@ -4,6 +4,7 @@ import static bridge.utils.constants.BridgeConstants.DOWN_CROSS;
 import static bridge.utils.constants.BridgeConstants.UP_CROSS;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class BridgeMaker {
             addUpCross(bridge, generate);
             addDownCross(bridge, generate);
         }
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 
     private static void addUpCross(List<String> bridge, int generate) {
