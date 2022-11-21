@@ -1,7 +1,5 @@
 package bridge.gameController;
 
-import static bridge.constants.OutputConstants.SELECT_RESTART_OR_QUIT;
-
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -18,9 +16,8 @@ public class GameController {
     private int location;
     private int cnt;
 
-    public void run() throws Exception {
+    public void run() {
         makeBridge();
-
         boolean flag = true;
         while (flag) {
             cnt++;
@@ -30,23 +27,20 @@ public class GameController {
             }
             flag = retryCheck();
         }
-
 //        outputView.printResult();
     }
+
     public void makeBridge() {
         outputView.startMessage();
         builtBridge = bridgeGame.makeBridge(inputView.readBridgeSize());
     }
+
     public boolean moveBridge() {
-
         boolean moveCheck = true;
-
         while (moveCheck) {
-
             String userMove = moveChoice();
             moveCheck = bridgeGame.move(userMove, location, builtBridge);
             outputView.printMap(moveCheck, userMove, location);
-
             if (builtBridge.size() - 1 == location && moveCheck == true) {
                 outputView.printResult(moveCheck, cnt);
                 return true;
@@ -55,23 +49,30 @@ public class GameController {
         }
         return false;
     }
+
     public String moveChoice() {
         outputView.choiceUpDown();
         String userMove = inputView.readMoving();
         System.out.println(userMove);
         return userMove;
     }
-    public boolean retryCheck() throws Exception {
+
+    public boolean retryCheck() {
 
         outputView.restartMessage();
         String command = inputView.readGameCommand();
         boolean checkCommand = bridgeGame.retry(command);
-        if (checkCommand == true){
+        if (checkCommand == true) {
             outputView = new OutputView();
             location = 0;
             return true;
         }
         return false;
+    }
+
+    public void retryMessage() {
+        outputView.restartMessage();
+        String command = inputView.readGameCommand();
     }
 }
 
