@@ -20,6 +20,13 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_MESSAGE + "이동 형태는 U또는 D여야 합니다");
         }
     }
+    public static void validateRestartInput(String input){
+        String restartPattern = "[RQ]";
+        if(!Pattern.matches(restartPattern, input)){
+            throw new IllegalArgumentException(ERROR_MESSAGE + "재시도 여부는 R 또는 Q여야 합니다");
+        }
+    }
+
 
     public static void validateNumeric(String input){
         String numericPattern = "^[0-9]*$";
