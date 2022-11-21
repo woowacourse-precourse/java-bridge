@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 
 public class MoveChoiceTest {
 
-    private static final int UP_NUMBER = MoveChoice.UP.row;
-    private static final int DOWN_NUMBER = MoveChoice.DOWN.row;
-    private static final String UP_MOVING = MoveChoice.UP.moving;
-    private static final String DOWN_MOVING = MoveChoice.DOWN.moving;
+    private static final int UP_NUMBER = MoveChoice.UP.getNumberValue();
+    private static final int DOWN_NUMBER = MoveChoice.DOWN.getNumberValue();
+    private static final String UP_MOVING = MoveChoice.UP.getMovingType();
+    private static final String DOWN_MOVING = MoveChoice.DOWN.getMovingType();
     private static final int ERROR_NUMBER = 10;
     private static final String ERROR_MOVING = "u";
 

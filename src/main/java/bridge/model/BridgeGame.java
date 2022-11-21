@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,11 +15,12 @@ public class BridgeGame {
     public static final int MINIMUM_BRIDGE_SIZE = 3;
     public static final int MAXIMUM_BRIDGE_SIZE = 20;
     private List<MoveInformation> bridgeMoveInformation;
-    private List<String> bridge;
+    private List<MoveChoice> bridge;
     private int tryCount;
 
     public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
+        this.bridge = bridge.stream().map((point) -> MoveChoice.getMatchChoice(point))
+                .collect(Collectors.toUnmodifiableList());
         this.tryCount = 1;
         this.bridgeMoveInformation = new ArrayList<>();
     }
@@ -28,9 +30,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String moveChoice) {
+    public void move(String movingType) {
+        MoveChoice choice = MoveChoice.getMatchChoice(movingType);
+
         int targetColumn = bridgeMoveInformation.size();
-        updateMoveResults(MoveChoice.getMatchChoice(moveChoice), movable(targetColumn, moveChoice));
+        updateMoveResults(movable(targetColumn, choice), choice);
     }
 
     /**
@@ -70,7 +74,7 @@ public class BridgeGame {
         return bridgeMoveInformation.get(lastIndex).moveSucceed() != true;
     }
 
-    private void updateMoveResults(MoveChoice moveChoice, boolean succeed) {
+    private void updateMoveResults(boolean succeed, MoveChoice moveChoice) {
         bridgeMoveInformation.add(new MoveInformation(succeed, moveChoice));
     }
 
@@ -78,7 +82,7 @@ public class BridgeGame {
         return Collections.unmodifiableList(bridgeMoveInformation);
     }
 
-    private boolean movable(int position, String moveChoice) {
-        return bridge.get(position).equals(moveChoice);
+    private boolean movable(int position, MoveChoice moveChoice) {
+        return this.bridge.get(position) == moveChoice;
     }
 }

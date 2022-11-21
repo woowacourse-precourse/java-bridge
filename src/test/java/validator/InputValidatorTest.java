@@ -44,8 +44,8 @@ public class InputValidatorTest {
         @Test
         @DisplayName("알맞은 입력인 경우 아무것도 하지 않는다.")
         void normalTest() {
-            inputValidator.validateMoveChoice(MoveChoice.UP.moving);
-            inputValidator.validateMoveChoice(MoveChoice.DOWN.moving);
+            inputValidator.validateMoveChoice(MoveChoice.UP.getMovingType());
+            inputValidator.validateMoveChoice(MoveChoice.DOWN.getMovingType());
         }
 
         @Test

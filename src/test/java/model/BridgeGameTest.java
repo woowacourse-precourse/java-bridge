@@ -22,8 +22,8 @@ import org.junit.jupiter.api.Test;
 public class BridgeGameTest extends NsTest {
 
     private final int SIZE = 3;
-    private final String UP = MoveChoice.UP.moving;
-    private final String DOWN = MoveChoice.DOWN.moving;
+    private final String UP = MoveChoice.UP.getMovingType();
+    private final String DOWN = MoveChoice.DOWN.getMovingType();
 
     private BridgeGame bridgeGame;
 

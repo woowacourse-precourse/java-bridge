@@ -5,26 +5,26 @@ import java.util.Arrays;
 public enum MoveChoice {
     UP("U", 1), DOWN("D", 0);
 
-    public final String moving;
-    public final int row;
+    private final String movingType;
+    private final int numberValue;
 
-    MoveChoice(String moving, int row) {
-        this.moving = moving;
-        this.row = row;
+    MoveChoice(String movingType, int numberValue) {
+        this.movingType = movingType;
+        this.numberValue = numberValue;
     }
 
-    public String getMoving() {
-        return moving;
+    public String getMovingType() {
+        return movingType;
     }
 
-    public int getRow() {
-        return row;
+    public int getNumberValue() {
+        return numberValue;
     }
 
     public static MoveChoice getMatchChoice(String moving){
-        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.moving.equals(moving)).findAny().get();
+        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.movingType.equals(moving)).findAny().get();
     }
     public static MoveChoice getMatchChoice(int positionNumber){
-        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.row == positionNumber).findAny().get();
+        return Arrays.stream(MoveChoice.values()).filter((choice) -> choice.numberValue == positionNumber).findAny().get();
     }
 }
