@@ -5,6 +5,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.command.GameCommand;
 import bridge.domain.ProgressMap;
+import bridge.domain.command.MoveCommand;
 
 public class BridgeGameService {
 	private static final int MIN_SIZE = 3;
@@ -36,7 +37,8 @@ public class BridgeGameService {
 	}
 
 	public String checkMoveCommand(String inputCommand) {
-		return GameCommand.findMoveCommand(inputCommand);
+		MoveCommand command = MoveCommand.findCommand(inputCommand);
+		return command.getValue();
 	}
 
 	public boolean retryOrEnd(String inputCommand) {

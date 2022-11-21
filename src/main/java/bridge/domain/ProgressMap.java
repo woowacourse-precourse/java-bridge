@@ -3,12 +3,12 @@ package bridge.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.domain.command.MoveCommand;
+
 public class ProgressMap {
 	private static final String MOVE_FAILED_VALUE = "X";
 	private static final String MOVE_SUCCESS_VALUE = "O";
 	private static final String NO_MOVE_VALUE = " ";
-	private static final String MOVE_UP_VALUE = "U";
-	private static final String MOVE_DOWN_VALUE = "D";
 	private final List<List<String>> progressMap;
 
 	public ProgressMap() {
@@ -31,10 +31,10 @@ public class ProgressMap {
 	}
 
 	private void correctMove(String moving) {
-		if (moving.equals(MOVE_UP_VALUE)) {
+		if (moving.equals(MoveCommand.MOVE_UP.getValue())) {
 			correctMoveUp();
 		}
-		if (moving.equals(MOVE_DOWN_VALUE)) {
+		if (moving.equals(MoveCommand.MOVE_DOWN.getValue())) {
 			correctMoveDown();
 		}
 	}
@@ -50,10 +50,10 @@ public class ProgressMap {
 	}
 
 	private void incorrectMove(String moving) {
-		if (moving.equals(MOVE_UP_VALUE)) {
+		if (moving.equals(MoveCommand.MOVE_UP.getValue())) {
 			incorrectMoveUp();
 		}
-		if (moving.equals(MOVE_DOWN_VALUE)) {
+		if (moving.equals(MoveCommand.MOVE_DOWN.getValue())) {
 			incorrectMoveDown();
 		}
 	}
