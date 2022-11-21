@@ -23,7 +23,7 @@ public class BridgeMakerTest {
 
     @Test
     void 다리_생성_테스트() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeNumberGenerator numberGenerator = new BridgeMakerTest.TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
@@ -31,10 +31,9 @@ public class BridgeMakerTest {
 
     @Test
     void 다리_생성_오류_테스트() {
-        int BRIDGE_SIZE = 3;
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 2, 0));
+        BridgeNumberGenerator numberGenerator = new BridgeMakerTest.TestNumberGenerator(newArrayList(1, 2, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(BRIDGE_SIZE))
+        assertThatThrownBy(() -> bridgeMaker.makeBridge(3))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.RANDOM_NUMBER_GENERATOR_OPERATION_FAILED);
     }
 
