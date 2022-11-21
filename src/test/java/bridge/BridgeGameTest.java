@@ -1,5 +1,7 @@
 package bridge;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,19 +13,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
+    private InputStream in;
+    private OutputStream out;
+    private PrintStream standardOut;
+
+    @BeforeEach
+    final void init() {
+        in = new ByteArrayInputStream("3".getBytes());
+        System.setIn(in);
+        standardOut = System.out;
+        out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+    }
+
+
+    @AfterEach
+    final void printOutput() {
+        System.setOut(standardOut);
+        System.out.println(out.toString().trim());
+    }
+
 
     //이동 입력값에 따라 적적한 결과가 반환되는지 테스트
     @DisplayName("사용자 이동 입력 결과에 따른 반환값 테스트")
     @Test
     void checkMoveReturnValue() {
-        String input = "3";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
 
         final BridgeGame bridgeGame = new BridgeGame();
 
-        String input2 = "R";
-        InputStream in2 = new ByteArrayInputStream(input2.getBytes());
+        in = new ByteArrayInputStream("R".getBytes());
         System.setIn(in);
 
         bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
@@ -33,7 +51,24 @@ class BridgeGameTest {
     }
 
     //이동 입력값에 따라 적절한 결과가 출력되는지 테스트
+    @DisplayName("사용자 이동 입력 결과에 따른 출력값 테스트")
+    @Test
+    void checkMovePrintValue() {
 
+        final BridgeGame bridgeGame = new BridgeGame();
+
+        in = new ByteArrayInputStream("R".getBytes());
+        System.setIn(in);
+
+        bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
+        bridgeGame.move(0, "U");
+
+        assertThat(out.toString()).contains(
+            "다리의 길이를 입력해주세요.",
+            "[ O ]",
+            "[   ]"
+        );
+    }
 
     //게임을 재시작 할 때, outputView 필드를 제대로 초기화 하는지 테스트
 
