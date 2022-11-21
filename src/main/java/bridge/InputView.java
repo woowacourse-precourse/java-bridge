@@ -38,7 +38,7 @@ public class InputView {
             validateSize(bridgeSize);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -58,10 +58,12 @@ public class InputView {
     }
 
     public String validateMoving(String moving) {
-        moving = moving.toUpperCase();
+        if (moving.equals(Command.UP.get().toLowerCase()) || moving.equals(Command.DOWN.get().toLowerCase())) {
+            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_LOWER_MOVING_COMMAND.get());
+        }
 
         if (!(moving.equals(Command.UP.get()) || moving.equals(Command.DOWN.get()))) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_MOVING_COMMAND.get());
+            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_NOT_MOVING_COMMAND.get());
         }
 
         return moving;
@@ -72,7 +74,7 @@ public class InputView {
             validateMoving(moving);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -92,10 +94,12 @@ public class InputView {
     }
 
     public String validateRetry(String retry) {
-        retry = retry.toUpperCase();
+        if (retry.equals(Command.RETRY.get().toLowerCase()) || retry.equals(Command.QUIT.get().toLowerCase())) {
+            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_LOWER_RETRY_COMMAND.get());
+        }
 
         if (!(retry.equals(Command.RETRY.get()) || retry.equals(Command.QUIT.get()))) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_RETRY_COMMAND.get());
+            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_NOT_RETRY_COMMAND.get());
         }
 
         return retry;
@@ -106,7 +110,7 @@ public class InputView {
             validateRetry(retry);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return false;
         }
     }
