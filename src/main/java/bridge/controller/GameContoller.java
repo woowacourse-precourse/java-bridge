@@ -12,8 +12,15 @@ public class GameContoller {
         outputView.printStart();
         bridgeGame.initBridge(inputController.readBridgeSize());
         do {
-            String moving = inputController.readMoving();
-            if (bridgeGame.move(moving)) break;
+            if (move().equals("SUCCESS")) break;
         }while (bridgeGame.retry(inputController.readGameCommand()));
+    }
+
+    private String move(){
+        while (true){
+            String moveState = bridgeGame.move(inputController.readMoving());
+            if (moveState.equals("NEXT")) continue;
+            return moveState;
+        }
     }
 }
