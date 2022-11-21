@@ -49,7 +49,7 @@ public class BridgeGameController {
 
     public void BridgeAlgorithm() {
         constructBridgeAlgorithm();
-//        showResult();
+        showResult();
     }
 
     public void showRestart() {
@@ -58,5 +58,9 @@ public class BridgeGameController {
             playerBridgeMap = new ArrayList<String>();
             constructBridgeAlgorithm();
         }
+    }
+
+    public void showResult() {
+        outputView.printResult(playerBridgeMap, isSucess, attepmtCnt);
     }
 }
