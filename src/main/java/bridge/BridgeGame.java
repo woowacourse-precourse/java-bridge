@@ -10,7 +10,7 @@ public class BridgeGame {
     public static final int UPWARD = 1;
     public static final int DOWNWARD = 0;
     private final List<String> bridge;
-    private List<List<String>> userInputBridge;
+    private final List<List<String>> userInputBridge;
     private int tryCount = 1;
     private int current;
 
@@ -22,7 +22,6 @@ public class BridgeGame {
         current = 0;
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(this.bridge);
     }
 
     /**
