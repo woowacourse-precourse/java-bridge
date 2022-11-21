@@ -8,4 +8,11 @@ public class Bridge {
     public Bridge(List<String> blocks) {
         this.blocks = blocks;
     }
+
+    public boolean canMove(int index, String moving) {
+        if (blocks.get(index).equals(moving)) {
+            return true;
+        }
+        return false;
+    }
 }
