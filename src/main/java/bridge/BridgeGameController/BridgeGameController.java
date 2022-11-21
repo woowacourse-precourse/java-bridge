@@ -25,10 +25,21 @@ public class BridgeGameController {
             BridgeGame.move(nextPosition, currentBridgeSize);
             OutputView.printMap(BridgeGame.getCurrentBridge());
             if (!BridgeGame.isSuccess()) {
-                //
+                return playAgainBridgeGame();
             }
         }
         BridgeGame.increaseGameCount();
         return true;
+    }
+
+    public boolean playAgainBridgeGame() {
+        String retryCommand = InputView.readGameCommand();
+        boolean playAgain = BridgeGame.retry(retryCommand);
+        BridgeGame.increaseGameCount();
+        if (playAgain) {
+            BridgeGame.resetBridge();
+            return playBridgeGame();
+        }
+        return false;
     }
 }
