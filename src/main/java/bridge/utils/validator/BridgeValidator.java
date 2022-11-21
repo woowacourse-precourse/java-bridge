@@ -7,11 +7,12 @@ import static bridge.utils.constants.ErrorConstants.NOT_NUMBER_BRIDGE_SIZE;
 
 public class BridgeValidator {
 
-    public static void validSize(String bridgeSize) {
+    public static int validSize(String bridgeSize) {
         int size = isNumber(bridgeSize);
         if (size < BRIDGE_SIZE_MIN_INCLUSIVE || size > BRIDGE_SIZE_MAX_INCLUSIVE) {
             throw new IllegalArgumentException(OUT_RANGE_BRIDGE_SIZE);
         }
+        return size;
     }
 
     private static int isNumber(String bridgeSize) {

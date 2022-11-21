@@ -9,16 +9,16 @@ import static bridge.utils.constants.GameConstants.RETRY_GAME;
 
 public class GameValidator {
 
-    public static void validMovingOption(String movingOption) {
+    public static String validMovingOption(String movingOption) {
         if (movingOption.equals(UP_CROSS) || movingOption.equals(DOWN_CROSS)) {
-            return;
+            return movingOption;
         }
         throw new IllegalArgumentException(NOT_MATCH_MOVING_OPTION);
     }
 
-    public static void validGameCommand(String gameCommand) {
+    public static String validGameCommand(String gameCommand) {
         if (gameCommand.equals(RETRY_GAME) || gameCommand.equals(EXIT_GAME)) {
-            return;
+            return gameCommand;
         }
         throw new IllegalArgumentException(NOT_MATCH_GAME_COMMAND);
     }
