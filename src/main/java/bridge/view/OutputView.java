@@ -37,9 +37,8 @@ public class OutputView {
      */
     public static void printResult(List<String> playerBridge, List<String> answerBridge, int count) {
         System.out.println(END_MESSAGE);
-        BridgeResult bridgeResult = new BridgeResult(answerBridge);
-        System.out.println(bridgeResult.matchBridge(playerBridge));
-        printSuccessFail(bridgeResult.matchBridge(playerBridge));
+        printMap(playerBridge, answerBridge);
+        printSuccessFail(new BridgeResult(answerBridge).matchBridge(playerBridge));
         System.out.println(COUNT_MESSAGE + count);
     }
 
