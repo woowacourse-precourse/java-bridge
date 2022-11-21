@@ -76,7 +76,7 @@ BUILD SUCCESSFUL in 0s
   - **Class Methods**
     - [x] public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator)
     - [x] public List<String> makeBridge(int size)
-- [ ] **CLASS3. BridgeGame**
+- [x] **CLASS3. BridgeGame**
   - **Class Variables**
     - [x] private final List<String> bridge
     - [x] private int currentUserPosition

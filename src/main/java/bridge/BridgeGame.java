@@ -27,7 +27,13 @@ public class BridgeGame {
     public boolean move(BridgeBlock block) {
         this.currentUserPosition++;
         this.totalTryCount++;
-        return this.bridge.get(this.currentUserPosition).equals(block.getBridgeBlock());
+        if (this.bridge.get(this.currentUserPosition).equals(block.getBridgeBlock())) {
+            if (this.currentUserPosition == bridge.size() - 1) {
+                this.gameWinStatus = true;
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
