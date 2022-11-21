@@ -1,6 +1,8 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +40,17 @@ class BridgeGameTest {
 
             assertThat(result).isEqualTo(new BridgeGameResult(upDownUpBridge, List.of(false)));
         }
+
+        @DisplayName("다리보다 많이 이동하면 예외 처리한다.")
+        @Test
+        void moveException() {
+            BridgeGame bridgeGame = new BridgeGame(upDownUpBridge);
+            bridgeGame.move(BridgeShape.DOWN);
+            bridgeGame.move(BridgeShape.DOWN);
+            bridgeGame.move(BridgeShape.DOWN);
+
+            assertThatThrownBy(() -> bridgeGame.move(BridgeShape.DOWN)).isInstanceOf(IllegalArgumentException.class);
+        }
     }
 
     @DisplayName("이동 결과를 반환한다.")
@@ -51,6 +64,19 @@ class BridgeGameTest {
         bridgeGame.move(BridgeShape.UP);
 
         assertThat(bridgeGame.result()).isEqualTo(new BridgeGameResult(bridge, List.of(true, true, true, false)));
+    }
+
+    @DisplayName("게임 시도 횟수를 반환한다.")
+    @Test
+    void tryCount() {
+        Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame retryBridgeGame = bridgeGame.retry();
+
+        assertAll(
+                () -> assertThat(bridgeGame.tryCount()).isEqualTo(new TryCount(1)),
+                () -> assertThat(retryBridgeGame.tryCount()).isEqualTo(new TryCount(2))
+        );
     }
 
     @DisplayName("게임을 재시작한다.")
