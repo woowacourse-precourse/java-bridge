@@ -12,6 +12,13 @@ public class BridgeVerifier {
         return bridgeSize;
     }
 
+    public static String validateMoving(String input) {
+        if (!(input.equals(BridgeEnum.U.name()) || input.equals(BridgeEnum.D.name()))) {
+            throw new IllegalArgumentException(BridgeError.INVALID_MOVING.getMessage());
+        }
+        return input;
+    }
+
     public static boolean isInteger(String input) {
         if (input.matches("[+-]?\\d+")) {
             return true;
