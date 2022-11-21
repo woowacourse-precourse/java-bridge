@@ -7,21 +7,25 @@ import java.util.List;
  */
 public class OutputView {
 
-    Application application = new Application();
+    Bridge bridge = new Bridge();
+    BridgeGame bridgeGame = new BridgeGame();
+
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Bridge> bridgeList, int bridgeCount) {
-        for (Bridge bridge : bridgeList) {
-            System.out.print("[");
-            for (int i = 0; i < bridgeCount; i++) {
-                System.out.print(bridge.getBridge().get(i));
+    public void printMap() {
+        for (List<String> bridgeList : bridge.getOutputBridge()) {
+            System.out.print("[" + bridgeList.get(0));
+            for (int i = 1; i < bridgeList.size(); i++) {
+                System.out.print("|" + bridgeList.get(i));
             }
             System.out.println("]");
         }
+        System.out.println();
     }
 
     /**
@@ -29,24 +33,25 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<Bridge> bridgeList, int bridgeCount) {
+    public void printResult(Bridge bridge) {
+        this.bridge = bridge;
         Message.printResult();
-        printMap(bridgeList, bridgeCount);
-        printIsGameSuccess();
-        printTryCount();
+        printMap(); // 최종 다리 출력
+        printIsGameSuccess(); // 게임 결과 출력
+        printTryCount(); // 총 시도한 횟수 출력
     }
 
     public void printIsGameSuccess() {
         Message.printGame();
-        if (application.getIsGame()) {
+        if (Bridge.isGame()) {
             Message.gameSuccess();
             return;
         }
         Message.gameFail();
     }
 
-    public void printTryCount(){
+    public void printTryCount() {
         Message.tryCount();
-        System.out.println(application.getTryCount());
+        System.out.println(bridge.getTryCount());
     }
 }
