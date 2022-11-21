@@ -1,5 +1,9 @@
-package bridge.domain;
+package bridge.service;
 
+import bridge.domain.Bridge;
+import bridge.domain.CurrentRoute;
+import bridge.domain.GameProgress;
+import bridge.service.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

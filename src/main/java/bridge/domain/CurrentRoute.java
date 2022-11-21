@@ -11,7 +11,7 @@ public class CurrentRoute {
         this.currentRoute = new ArrayList<>();
     }
 
-    public void initialize() {
+    public void clear() {
         currentRoute.clear();
     }
 

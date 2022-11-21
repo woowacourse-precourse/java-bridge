@@ -1,4 +1,8 @@
-package bridge.domain;
+package bridge.service;
+
+import bridge.domain.Bridge;
+import bridge.domain.CurrentRoute;
+import bridge.domain.GameProgress;
 
 public class BridgeGame {
 
@@ -19,7 +23,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        currentRoute.initialize();
+        currentRoute.clear();
         gameProgress.updateTrialCount();
     }
 

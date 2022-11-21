@@ -30,9 +30,9 @@ public class OutputView {
         System.out.println(INPUT_NEXT_MOVEMENT);
     }
 
-    public static void printMap(List<Character> upperMap, List<Character> lowerMap) {
-        printOneLineOfBridge(upperMap);
-        printOneLineOfBridge(lowerMap);
+    public static void printMap(List<List<Character>> map) {
+        printOneLineOfBridge(map.get(0));
+        printOneLineOfBridge(map.get(1));
         printBlankLine();
     }
 

@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,18 +24,24 @@ public class MapConverterTest {
         mapConverter.drawNext("D", true);
         mapConverter.drawNext("U", false);
 
-        assertThat(mapConverter.getUpperMap()).isEqualTo(List.of('O', ' ', 'X'));
-        assertThat(mapConverter.getLowerMap()).isEqualTo(List.of(' ', 'O', ' '));
+        assertThat(mapConverter.getDrawnMap())
+                .isEqualTo(List.of(
+                        List.of('O', ' ', 'X'),
+                        List.of(' ', 'O', ' '))
+                );
     }
 
     @DisplayName("정상적으로 맵을 초기화하는지 확인")
     @Test
-    void initializeMapSuccess() {
+    void resetMapSuccess() {
         mapConverter.drawNext("D", true);
         mapConverter.drawNext("U", false);
-        mapConverter.initialize();
+        mapConverter.reset();
 
-        assertThat(mapConverter.getUpperMap()).hasSize(0);
-        assertThat(mapConverter.getLowerMap()).hasSize(0);
+        assertThat(mapConverter.getDrawnMap())
+                .isEqualTo(List.of(
+                        List.of(),
+                        List.of())
+                );
     }
 }

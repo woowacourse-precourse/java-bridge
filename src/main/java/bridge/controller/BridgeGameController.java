@@ -1,18 +1,19 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
 import bridge.domain.CurrentRoute;
 import bridge.domain.GameProgress;
+import bridge.service.BridgeGame;
+import bridge.service.MapConverter;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 
     private BridgeGame bridgeGame;
-    private final MapConverterController mapConverterController;
+    private final MapConverter mapConverter;
 
     public BridgeGameController() {
-        this.mapConverterController = new MapConverterController();
+        this.mapConverter = new MapConverter();
     }
 
     public void process() {
@@ -64,7 +65,8 @@ public class BridgeGameController {
     private void takeTurn() {
         String movement = getMove();
         boolean movementSuccess = bridgeGame.isMovementSuccess();
-        mapConverterController.drawMap(movement, movementSuccess);
+        mapConverter.drawNext(movement, movementSuccess);
+        OutputView.printMap(mapConverter.getDrawnMap());
     }
 
     private String getMove() {
@@ -77,7 +79,7 @@ public class BridgeGameController {
 
     private void setRetry() {
         bridgeGame.retry();
-        mapConverterController.initialize();
+        mapConverter.reset();
     }
 
     private boolean isRestart() {
@@ -88,7 +90,7 @@ public class BridgeGameController {
 
     private void finishGame() {
         OutputView.printResultHeader();
-        mapConverterController.drawLatestMap();
+        OutputView.printMap(mapConverter.getDrawnMap());
         OutputView.printResult(bridgeGame.isGameSuccess(), bridgeGame.getTrialCount());
     }
 }

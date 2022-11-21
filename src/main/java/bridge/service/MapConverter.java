@@ -1,6 +1,8 @@
-package bridge.domain;
+package bridge.service;
 
-import java.util.ArrayList;
+import bridge.domain.BridgeMaker;
+import bridge.domain.ShownMap;
+
 import java.util.List;
 
 public class MapConverter {
@@ -9,26 +11,18 @@ public class MapConverter {
     private final static Character FAIL = 'X';
     private final static Character BLANK = ' ';
 
-    private final List<Character> upperMap;
-    private final List<Character> lowerMap;
-
+    private final ShownMap shownMap;
 
     public MapConverter() {
-        this.upperMap = new ArrayList<>();
-        this.lowerMap = new ArrayList<>();
+        this.shownMap = new ShownMap();
     }
 
-    public void initialize() {
-        upperMap.clear();
-        lowerMap.clear();
+    public void reset() {
+        shownMap.clear();
     }
 
-    public List<Character> getUpperMap() {
-        return upperMap;
-    }
-
-    public List<Character> getLowerMap() {
-        return lowerMap;
+    public List<List<Character>> getDrawnMap() {
+        return shownMap.getShownMap();
     }
 
     public void drawNext(String movement, boolean success) {
@@ -56,22 +50,22 @@ public class MapConverter {
     }
 
     private void drawUpperMapWithSuccess() {
-        upperMap.add(SUCCESS);
-        lowerMap.add(BLANK);
+        shownMap.addUpper(SUCCESS);
+        shownMap.addLower(BLANK);
     }
 
     private void drawUpperMapWithFail() {
-        upperMap.add(FAIL);
-        lowerMap.add(BLANK);
+        shownMap.addUpper(FAIL);
+        shownMap.addLower(BLANK);
     }
 
     private void drawLowerMapWithSuccess() {
-        lowerMap.add(SUCCESS);
-        upperMap.add(BLANK);
+        shownMap.addUpper(BLANK);
+        shownMap.addLower(SUCCESS);
     }
 
     private void drawLowerMapWithFail() {
-        lowerMap.add(FAIL);
-        upperMap.add(BLANK);
+        shownMap.addUpper(BLANK);
+        shownMap.addLower(FAIL);
     }
 }
