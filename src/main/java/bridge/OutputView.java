@@ -9,8 +9,8 @@ import java.util.List;
 public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
-    private static final String TITLE = "최종 게임 결과";
-    private static final String EVENT_MESSAGE = "게임 성공 여부: $gameResult\n총 시도한 횟수: $tryCount\n";
+    private static final String GAME_RESULT_TITLE = "최종 게임 결과";
+    private static final String GAME_RESULT_EVENT_MESSAGE = "게임 성공 여부: $gameResult\n총 시도한 횟수: $tryCount\n";
     private static final String REPLACE_GAME_RESULT_FROM = "$gameResult";
     private static final String REPLACE_TRY_COUNT_FROM = "$tryCount";
 
@@ -38,9 +38,9 @@ public class OutputView {
             gameResult = FAIL;
         }
 
-        System.out.println(TITLE);
+        System.out.println(GAME_RESULT_TITLE);
         printMap(map);
-        System.out.println(EVENT_MESSAGE
+        System.out.println(GAME_RESULT_EVENT_MESSAGE
                 .replace(REPLACE_GAME_RESULT_FROM, gameResult)
                 .replace(REPLACE_TRY_COUNT_FROM, Integer.toString(tryCount)));
     }
