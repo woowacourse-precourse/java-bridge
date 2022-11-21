@@ -21,6 +21,8 @@ public class OutputView {
     private static final String FINAL_RESULT_MSG = "최종 게임 결과";
     private static final String GAME_WIN_LOSE_CASE_MSG = "게임 성공 여부: %s";
     private static final String GAME_TRY_COUNT_MSG = "총 시도한 횟수: %d";
+    private static final String ERROR_MSG = "[ERROR] %s";
+    
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -78,4 +80,9 @@ public class OutputView {
         System.out.println(String.format(GAME_WIN_LOSE_CASE_MSG, winning_msg));
         System.out.println(String.format(GAME_TRY_COUNT_MSG, play_count));
     }
+
+    public static void printError(String error_msg) {
+        System.out.println(String.format(ERROR_MSG, error_msg));
+    }
+
 }
