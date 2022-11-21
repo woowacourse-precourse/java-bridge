@@ -19,10 +19,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String userInput, StageResult stageResult) {
+    public void printMap() {
+
+    }
+
+    public void makeMap(String userInput, StageResult stageResult) {
         String result = decideOX(stageResult);
         Unit key = decideUpDown(userInput);
+
         saveUserInput(key, result);
+        saveOppositeSide(key);
     }
 
     public String decideOX(StageResult stageResult) {
@@ -39,12 +45,31 @@ public class OutputView {
         return Unit.DOWN;
     }
 
-    public void saveInput(Unit key, String result) {
+
+    public void saveUserInput(Unit key, String result) {
+        save(key, result);
+    }
+
+    public void saveOppositeSide(Unit key) {
+        Unit oppositeKey = findOppositeKey(key);
+
+        save(oppositeKey, " ");
+    }
+
+    public void save(Unit key, String result) {
         checkBrackets(key);
         userInputMap.get(key).add(result);
         addCloseBrackets(key);
+
     }
 
+    public Unit findOppositeKey(Unit key) {
+        if(key == (Unit.UP)) {
+            return Unit.DOWN;
+        }
+
+        return Unit.UP;
+    }
 
     public void checkBrackets(Unit key) {
         checkStackIsEmpty(key);
