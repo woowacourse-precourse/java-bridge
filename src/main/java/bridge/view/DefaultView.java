@@ -36,6 +36,7 @@ public class DefaultView implements View {
 
     private void inputMove() {
         outputView.printReadMove();
+        String move = inputView.readMove();
     }
 
 }

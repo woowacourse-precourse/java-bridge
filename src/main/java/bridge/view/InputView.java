@@ -22,7 +22,8 @@ public class InputView implements Validatable<String> {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMove() {
-        return null;
+        String input = getInput();
+        return input;
     }
 
     /**
