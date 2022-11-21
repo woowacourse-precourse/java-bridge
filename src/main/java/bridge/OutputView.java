@@ -73,10 +73,13 @@ public class OutputView {
     public void printResult(Bridge bridge) {
         System.out.println("최종 게임 결과");
         printMap(bridge);
-        if (bridgeGame.isClearGame(bridge))
-            System.out.println("게임 성공 여부: 성공");
-        if (!bridgeGame.isClearGame(bridge))
-            System.out.println("게임 성공 여부: 실패");
+        System.out.println(makeResultString(bridge));
         System.out.println("총 시도한 횟수: " + bridge.getAttemptNumber());
+    }
+
+    private String makeResultString(Bridge bridge) {
+        if (bridgeGame.isClearGame(bridge))
+            return "게임 성공 여부: 성공";
+        return "게임 성공 여부: 실패";
     }
 }
