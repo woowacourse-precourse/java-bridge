@@ -34,18 +34,7 @@ public class OutputView {
         for (int idx = 0; idx < size; idx++) {
             addOToMap(bridge, bridgeStatus, idx);
             continueOrFinishMap(bridgeStatus, size, idx);
-
-            if (bridgeStatus.get(idx) == "X") {
-                if (bridge.get(idx) == "U") {
-                    upperMap += "   ]";
-                    lowerMap += " X ]";
-                }
-
-                if (bridge.get(idx) == "D") {
-                    upperMap += " X ]";
-                    lowerMap += "   ]";
-                }
-            }
+            addXAndFinishMap(bridge, bridgeStatus, idx);
         }
     }
 
@@ -73,6 +62,20 @@ public class OutputView {
             if (idx == size - 1) {
                 upperMap += " ]";
                 lowerMap += " ]";
+            }
+        }
+    }
+
+    private void addXAndFinishMap(List<String> bridge, List<String> bridgeStatus, int idx) {
+        if (bridgeStatus.get(idx) == "X") {
+            if (bridge.get(idx) == "U") {
+                upperMap += "   ]";
+                lowerMap += " X ]";
+            }
+
+            if (bridge.get(idx) == "D") {
+                upperMap += " X ]";
+                lowerMap += "   ]";
             }
         }
     }
