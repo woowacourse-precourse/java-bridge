@@ -21,6 +21,14 @@ public class PlayerTest {
         player.record(BridgeMark.DOWN);
     }
 
+    @DisplayName("플레이어의 게임 기록을 반환")
+    @Test
+    void getGameRecord() {
+        GameRecord gameRecord = player.toResponseDto();
+        assertThat(gameRecord.getAttempt()).isEqualTo(1);
+        assertThat(gameRecord.getRecord()).containsExactly(BridgeMark.UP, BridgeMark.DOWN);
+    }
+
     @DisplayName("플레이어가 움직인 마크 기록 확인")
     @Test
     void record() {
@@ -40,6 +48,7 @@ public class PlayerTest {
         assertThat(record.size()).isEqualTo(0);
     }
 
+    @DisplayName("플레이어의 게임 시도 횟수 증가")
     @Test
     void increaseAttempt() {
         player.increaseAttempt();
