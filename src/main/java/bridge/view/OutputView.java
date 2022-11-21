@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.constant.BridgeConstant;
+import bridge.constant.ResultConstant;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -33,10 +34,10 @@ public class OutputView {
     }
     private void checkDirection(boolean pass, String Direction){
         if(pass){
-            addSignal(Direction,"O");
+            addSignal(Direction, ResultConstant.SUCCESS.getMark());
             return;
         }
-        addSignal(Direction,"X");
+        addSignal(Direction,ResultConstant.FAIL.getMark());
     }
     public void printMap(boolean pass, String Direction) {
         checkDirection(pass,Direction);

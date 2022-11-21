@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.BridgeConstant;
+import bridge.constant.ResultConstant;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.view.InputView;
@@ -55,9 +56,9 @@ public class BridgeGameController {
 
     private void resultAtGame(){
         if(game.checkSuccess()){
-            outputView.printResult(game.getTryNumber(),"성공");
+            outputView.printResult(game.getTryNumber(), ResultConstant.SUCCESS.getKorean());
             return;
         }
-        outputView.printResult(game.getTryNumber(),"실패");
+        outputView.printResult(game.getTryNumber(),ResultConstant.FAIL.getKorean());
     }
 }
