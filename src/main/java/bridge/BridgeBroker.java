@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.domain.Bridge;
+
+import java.util.List;
+
 public class BridgeBroker {
     BridgeMaker bridgeMaker;
     BridgeBroker() {
@@ -9,12 +13,17 @@ public class BridgeBroker {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void makeBridge() {
+    public Bridge makeBridge(int size) {
+        List<String> bridge = reqeustBridge(size);
+        return packageBridge(bridge);
     }
 
-    private void reqeustBridge() {
+    private List<String> reqeustBridge(int size) {
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        return bridge;
     }
 
-    private void packageBridge() {
+    private Bridge packageBridge(List<String> bridge) {
+        return new Bridge(bridge);
     }
 }
