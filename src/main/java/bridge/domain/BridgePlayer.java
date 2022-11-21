@@ -28,7 +28,14 @@ public class BridgePlayer {
         validateBridgeSize(playerBridge);
         validateBridgeSize(bridgeMoveTypes);
         validateOverRange(bridgeMoveTypes);
+        if (isSameBridgeSizeWith(bridgeMoveTypes)) {
+            return false;
+        }
         return compareAllMoveTypesSame(bridgeMoveTypes);
+    }
+
+    private boolean isSameBridgeSizeWith(List<BridgeMoveType> bridgeMoveTypes) {
+        return playerBridge.size() != bridgeMoveTypes.size();
     }
 
     private boolean compareAllMoveTypesSame(List<BridgeMoveType> bridgeMoveTypes) {
