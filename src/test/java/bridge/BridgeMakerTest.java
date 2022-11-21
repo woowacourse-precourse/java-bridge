@@ -18,7 +18,7 @@ class BridgeMakerTest {
 	@Test
 	void makeBridgeTest() {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		for (int size = BridgeSize.MIN_NUMBER; size <= BridgeSize.MAX_NUMBER; size++) {
+		for (int size = BridgeSize.MIN.getSize(); size <= BridgeSize.MAX.getSize(); size++) {
 			List<String> bridges = bridgeMaker.makeBridge(size);
 			Set<String> nonDuplicateBridges = new HashSet<>(bridges);
 

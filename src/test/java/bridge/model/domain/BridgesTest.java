@@ -16,7 +16,7 @@ class BridgesTest {
 	@DisplayName("의도된 대로 사용 시 생성된 리스트의 길이가 makeBridge 메서드에 입력된 사이즈와 같다")
 	@Test
 	void normalCaseTest() {
-		for (int size = BridgeSize.MIN_NUMBER; size < BridgeSize.MAX_NUMBER; size++) {
+		for (int size = BridgeSize.MIN.getSize(); size < BridgeSize.MAX.getSize(); size++) {
 			Bridges bridges = new Bridges();
 			bridges.makeBridge(size);
 			List<String> result = bridges.getBridges();
