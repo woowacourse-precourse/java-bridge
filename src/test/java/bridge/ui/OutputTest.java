@@ -19,17 +19,17 @@ public class OutputTest {
     @DisplayName("사용자 요구사항에 맞는 디자인이 화면에 출력되는지 확인")
     @MethodSource("printMapParameters")
     @ParameterizedTest
-    public void printMap(boolean isSuccess, List<Boolean> bridge){
-        outputView.printMap(isSuccess, bridge);
+    public void printMap(boolean success, List<String> bridge){
+        outputView.printMap(success, bridge);
         System.out.println();
     }
 
     private static Stream<Arguments> printMapParameters(){
         return Stream.of(
-                Arguments.of(true, List.of(true, true, true)),
-                Arguments.of(true, List.of(true, true, false)),
-                Arguments.of(false, List.of(true, false, false)),
-                Arguments.of(false, List.of(true, false, true))
+                Arguments.of(true, List.of("U", "U", "U")),
+                Arguments.of(true, List.of("U", "U", "D")),
+                Arguments.of(false, List.of("U", "D", "D")),
+                Arguments.of(false, List.of("U", "D", "U"))
                 );
     }
 }
