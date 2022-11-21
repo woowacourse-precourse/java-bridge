@@ -46,8 +46,15 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String input) {
+        if (!validateMoveAlphabet(input)) {
+            throw new IllegalArgumentException(ExceptionHandler.MOVE_ALPHABET_EXCEPTION);
+        }
+        return input;
+    }
+
+    public boolean validateMoveAlphabet(String input) {
+        return input.equals("U") || input.equals("D");
     }
 
     /**
