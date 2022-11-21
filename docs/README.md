@@ -18,3 +18,27 @@
 - [ ] 최종 게임 결과 출력
 - [ ] 게임 성공 여부
 - [ ] 총 시도 횟수 계산 
+
+## 🚀 도메인
+
+### BridgeGame
+- move(): 사용자가 칸을 이동할 때 사용하는 메서드
+- retry(): 사용자가 게임을 다시 시도할 때 사용하는 메서드
+
+### BridgeMaker
+- makeBridge: BridgeNumberGenerator를 이용한 구현 
+
+### Direction
+- 위 아래 방향 Enum 클래스
+- number(1, 0), initial(U, D)
+  - getInitialByDirectionNumber(int directionNumber)
+
+### Player
+- 사용자 클래스 
+
+### Result
+- 사용자의 이동에 결과를 담는 클래스
+
+### BridgeGameStatus
+- 게임 진행 여부 Enum 클래스
+- PLAY("R"), QUIT("Q")
