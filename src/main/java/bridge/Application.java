@@ -24,13 +24,7 @@ public class Application {
             if(checkDirection){
                 if(gameIsOverByWinning(user, direction, size, bridge) == true) break;
             }else{
-                if(inputView.readGameCommand() == "R") {
-                    user.addUserAttempt();
-                    bridgeGame.retry(user);
-                }else{
-                    outputView.printResult(user, direction, false, bridge, false);
-                    break;
-                }
+                if(RetryOrQuitGame(user, direction, bridge) == false) break;
             }
         }
     }
@@ -48,6 +42,16 @@ public class Application {
             outputView.printResult(user, direction, true, bridge, true);
             return true;
         }
+        return false;
+    }
+
+    public static boolean RetryOrQuitGame(User user, String direction, List<String> bridge){
+        if(inputView.readGameCommand() == "R") {
+            user.addUserAttempt();
+            bridgeGame.retry(user);
+            return true;
+        }
+        outputView.printResult(user, direction, false, bridge, false);
         return false;
     }
 }
