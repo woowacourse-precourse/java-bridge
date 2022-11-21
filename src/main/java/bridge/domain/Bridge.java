@@ -24,7 +24,7 @@ public class Bridge {
     private void validate(String input){
         for (int i = 0; i < input.length(); i++) {
             if (!Character.isDigit(input.charAt(i)))
-                throw new IllegalArgumentException(BridgeException.NOT_DISIT.getErrorMessage());
+                throw new IllegalArgumentException(BridgeException.NOT_NUMERIC.getErrorMessage());
         }
 
         int intInput = Integer.parseInt(input);
