@@ -11,16 +11,12 @@ import java.util.List;
 public class Bridge {
     private final List<Plate> bridge;
 
-    public Bridge() {
-        bridge = new ArrayList<>();
-    }
-
     public Bridge(int bridgeLength) {
         validateLength(bridgeLength);
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> makeBridge = bridgeMaker.makeBridge(bridgeLength);
-        this.bridge = bridgeStringToPlate(makeBridge);
+        bridge = bridgeStringToPlate(makeBridge);
     }
 
     private List<Plate> bridgeStringToPlate(List<String> bridge) {
@@ -43,12 +39,8 @@ public class Bridge {
     }
 
     public boolean possibleNextStep(int nextBridgeIndex, Plate nextPlate) {
-        Plate bridgePlate = this.bridge.get(nextBridgeIndex);
+        Plate bridgePlate = bridge.get(nextBridgeIndex);
         return nextPlate.equals(bridgePlate);
-    }
-
-    public int getBridgeLastIndex() {
-        return bridge.size() - 1;
     }
 
     public boolean sameAs(List<Plate> otherBridge) {

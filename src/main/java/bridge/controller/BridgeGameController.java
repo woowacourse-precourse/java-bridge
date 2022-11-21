@@ -52,7 +52,7 @@ public class BridgeGameController {
     // 3-1. 한 라운드를 진행 시키는 메소드를 호출 그 결과 성공하지 못했다면 재시작 여부 확인
     public void playGame() {
         playRound();
-        if (!(bridgeGame.isVictory())) {
+        if (!(bridgeGame.isSuccessCrossingBridge())) {
             askRetry();
         }
     }
@@ -66,8 +66,8 @@ public class BridgeGameController {
     }
 
     private boolean isSuccessAndNotVictory() {
-        return (!bridgeGame.isVictory())
-                && (bridgeGame.isSuccess());
+        return (!bridgeGame.isSuccessCrossingBridge())
+                && (bridgeGame.isSuccessNextStep());
     }
 
     // 3-3. 다리를 선택(입력)
@@ -84,7 +84,7 @@ public class BridgeGameController {
     // 3-4. 선택한 다리로 이동 후 경로 표시(출력)
     public void moveBridge(String nextStep) {
         bridgeGame.move(nextStep);
-        outputView.printMap(bridgeGame.isSuccess(), bridgeGame.getPlayerPath());
+        outputView.printMap(bridgeGame.isSuccessNextStep(), bridgeGame.getPlayerPath());
     }
 
     // 3-5. 게임 재시작 여부 선택(입력)
@@ -107,10 +107,10 @@ public class BridgeGameController {
     }
 
     /**
-     * 4. 결과 출력
+     * 4. 결과(출력)
      */
     public void gameResult() {
-        boolean isVictory = bridgeGame.isVictory();
+        boolean isVictory = bridgeGame.isSuccessCrossingBridge();
         int tryCount = bridgeGame.getTryCount();
         List<Plate> playerPath = bridgeGame.getPlayerPath();
         outputView.printResult(isVictory, tryCount, playerPath);

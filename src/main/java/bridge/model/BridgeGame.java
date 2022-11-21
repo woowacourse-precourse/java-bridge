@@ -1,46 +1,47 @@
 package bridge.model;
 
-import bridge.util.Rules;
-
 import java.util.List;
 
 public class BridgeGame {
     private Bridge bridge;
-    private Player player;
+    private PlayerPath playerPath;
+    private TryCount tryCount;
 
     public BridgeGame() {
-        this.player = new Player();
+        playerPath = new PlayerPath();
+        tryCount = new TryCount();
     }
 
     public void newBridge(int bridgeLength) {
-        this.bridge = new Bridge(bridgeLength);
-    }
-
-    public List<Plate> getPlayerPath() {
-        return player.getPlayerPath();
+        bridge = new Bridge(bridgeLength);
     }
 
     public void move(String nextStep) {
         Plate nextPlate = Plate.findBySymbol(nextStep);
-        player.nextStep(nextPlate);
+        playerPath.nextStep(nextPlate);
     }
 
     public void retry() {
-        player.newTry();
+        playerPath = new PlayerPath();
+        tryCount.retry();
     }
 
-    public boolean isVictory() {
-        List<Plate> playerPath = player.getPlayerPath();
+    public boolean isSuccessCrossingBridge() {
+        List<Plate> playerPath = this.playerPath.getPlayerPath();
         return bridge.sameAs(playerPath);
     }
 
-    public boolean isSuccess() {
-        int currentIndex = player.getPlayerPosition();
-        Plate currentPlate = player.getCurrentPlate();
+    public boolean isSuccessNextStep() {
+        int currentIndex = playerPath.currentPosition();
+        Plate currentPlate = playerPath.currentPlate();
         return bridge.possibleNextStep(currentIndex, currentPlate);
     }
 
     public int getTryCount() {
-        return player.getGameTryCount();
+        return tryCount.getTryCount();
+    }
+
+    public List<Plate> getPlayerPath() {
+        return playerPath.getPlayerPath();
     }
 }

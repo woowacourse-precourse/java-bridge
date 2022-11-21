@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerPath {
-    private List<Plate> playerPath;
+    private final List<Plate> playerPath;
 
     public PlayerPath() {
         playerPath = new ArrayList<>();
     }
 
     public List<Plate> getPlayerPath() {
-        return this.playerPath;
+        return playerPath;
     }
 
     public void nextStep(Plate nextPlate) {

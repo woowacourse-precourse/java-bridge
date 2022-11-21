@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.model.Plate;
-import bridge.util.Rules;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +31,7 @@ public class BridgeMaker {
     }
 
     private String decidePlate(int zeroOrOne) {
-        return Plate
-                .findByRandomNumber(zeroOrOne)
-                .getSymbol();
+        Plate plateByRandomNumber = Plate.findByRandomNumber(zeroOrOne);
+        return plateByRandomNumber.getSymbol();
     }
 }

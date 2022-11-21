@@ -18,8 +18,8 @@ public enum Plate {
     private final static Map<Integer, Plate> BY_RANDOM_NUMBER = Stream.of(values())
             .collect(Collectors.toMap(Plate::getRandomNumber, Function.identity()));
 
-    private String symbol;
-    private int randomNumber;
+    private final String symbol;
+    private final int randomNumber;
 
     Plate(String symbol, int randomNumber) {
         this.symbol = symbol;
@@ -27,11 +27,11 @@ public enum Plate {
     }
 
     public String getSymbol() {
-        return this.symbol;
+        return symbol;
     }
 
     public int getRandomNumber() {
-        return this.randomNumber;
+        return randomNumber;
     }
 
     public static Plate findBySymbol(String symbol) {
