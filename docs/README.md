@@ -9,6 +9,8 @@
 - [ ] Application에서 BridgeScenario를 생성하여 전체 프로그램 흐름을 제어
     - BridgeScenario에서 입출력 호출
 
+- [ ] 예외에 따라 재시도 로직 구현
+
 <br/>
 
 <hr>
