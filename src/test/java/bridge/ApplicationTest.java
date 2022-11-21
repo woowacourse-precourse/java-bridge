@@ -59,11 +59,10 @@ class ApplicationTest extends NsTest {
     class exceptionTest {
 
         @Nested
-        @DisplayName("다리길이 입력 예외")
+        @DisplayName("잘못된 다리길이 입력")
         class bridgeSize {
-
-            @DisplayName("숫자가 아닌값 입력")
-            @ParameterizedTest(name = "{0} : 숫자가 아니면 예외")
+            @DisplayName(" (숫자가 아닌값이면 예외)")
+            @ParameterizedTest(name = "입력값: {0}")
             @CsvSource({"a", "1000j", "hwll", "13L"})
             void invalidInput(String input) {
                 assertSimpleTest(() -> {
@@ -72,8 +71,8 @@ class ApplicationTest extends NsTest {
                 });
             }
 
-            @DisplayName("3 ~ 20 범위 외 숫자 입력")
-            @ParameterizedTest(name = "{0} : 3 ~ 20 사이의 숫자가 아니면 예외")
+            @DisplayName(" (3 ~ 20 범위 내 숫자가 아니면 예외)")
+            @ParameterizedTest(name = "입력값: {0}")
             @CsvSource({"1", "-2", "1233", "21"})
             void wrongBridgeSize(String input) {
                 assertSimpleTest(() -> {
@@ -83,8 +82,8 @@ class ApplicationTest extends NsTest {
             }
         }
 
-        @DisplayName("이동에 잘못된 입력")
-        @ParameterizedTest(name = "{0} : 이동할 칸이 U, D가 아니면 예외")
+        @DisplayName("이동에 잘못된 입력 (입력값이 U, D가 아니면 예외)")
+        @ParameterizedTest(name = "입력값: {0}")
         @CsvSource({"a", "Uu", "d", "u", "1"})
         void invalidMoving(String input) {
             assertSimpleTest(() -> {
@@ -93,8 +92,8 @@ class ApplicationTest extends NsTest {
             });
         }
 
-        @DisplayName("게임 재시작 잘못된 입력")
-        @ParameterizedTest(name = "{0} : 게임 재시작 여부가 R, Q가 아니면 예외")
+        @DisplayName("게임 재시작에 잘못된 입력 (입력값이 R, Q가 아니면 예외)")
+        @ParameterizedTest(name = "입력값: {0}")
         @CsvSource({"Rr", "r", "Quit", "q"})
         void invalidGameCommand(String input) {
             assertRandomNumberInRangeTest(() -> {
