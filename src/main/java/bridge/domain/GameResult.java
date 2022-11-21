@@ -10,4 +10,12 @@ public class GameResult {
         this.moveResult = moveResult;
         this.bridgeStates = bridgeStates;
     }
+
+    public List<BridgeState> getBridgeStates() {
+        return bridgeStates;
+    }
+
+    public MoveResult getMoveResult() {
+        return moveResult;
+    }
 }
