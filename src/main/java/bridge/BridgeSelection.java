@@ -26,12 +26,12 @@ public class BridgeSelection {
 
     public List<List<String>> insertBridgeSelection(String result, String selection) {
         if (selection.equals("U")) {
-            selections.get(1).add(result);
-            selections.get(0).add(" ");
-        }
-        if (selection.equals("D")) {
             selections.get(1).add(" ");
             selections.get(0).add(result);
+        }
+        if (selection.equals("D")) {
+            selections.get(1).add(result);
+            selections.get(0).add(" ");
         }
         return selections;
     }
