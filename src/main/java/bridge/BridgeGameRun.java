@@ -28,9 +28,8 @@ public class BridgeGameRun {
     private int getBridgeSizeByValidation() {
         while (true) {
             try {
-                int size = getNumberToBridgeSize(inputView.readBridgeSize());
-                inputValidation.readBridgeSizeValidation(size);
-                return size;
+                String bridgeSize = inputView.readBridgeSize();
+                return inputValidation.readBridgeSizeValidation(bridgeSize);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -119,13 +118,5 @@ public class BridgeGameRun {
             return "성공";
         }
         return "실패";
-    }
-
-    private int getNumberToBridgeSize(String bridgeSize) {
-        try {
-            return Integer.parseInt(bridgeSize);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
     }
 }
