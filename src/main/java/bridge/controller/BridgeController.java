@@ -5,6 +5,9 @@ import bridge.model.Column;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class BridgeController {
 
@@ -14,6 +17,7 @@ public class BridgeController {
     private final BridgeGame bridgeGame;
     private final ValidateInput validate;
     private int totalCount;
+    private List<List<String>> buffer;
     BridgeController(){
         inputView = new InputView();
         outputView = new OutputView();
@@ -30,7 +34,6 @@ public class BridgeController {
     private int playing(int size){
         for(int step = 0; step < size; step++){
             if(checkAnswer(step)){
-                addToBuffer(step);
                 continue;
             }
             return judgeGameOver(step,size);
@@ -38,10 +41,17 @@ public class BridgeController {
         return 0;
     }
 
+    private void initializeBuffer(){
+        buffer = new ArrayList<>();
+        buffer.get(0).add(GameMessage.START);
+        buffer.get(1).add(GameMessage.START);
+    }
     private boolean checkAnswer(int step){
         String letter = inputView.readMoving();
         Column.validateLetter(letter);
-        if(bridgeGame.move(step,letter)!= Column.NONE){
+        Column answer = bridgeGame.move(step,letter);
+        if(answer != Column.NONE){
+            addBridgeBuffer(answer);
             return true;
         }
         return false;
@@ -55,9 +65,10 @@ public class BridgeController {
        // return moveGame(size);
         return 0;
     }
-    private void addToBuffer(int step){
-
+    private void addBridgeBuffer(Column answer){
+        answer.getIndex();
     }
+
 
 
 }
