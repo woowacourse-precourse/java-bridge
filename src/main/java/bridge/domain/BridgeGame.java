@@ -14,13 +14,20 @@ public class BridgeGame {
     }
 
     public boolean retry(BridgeGameManager bridgeGameManager, UserBridge userBridge, String retry) {
-        if (GameCommand.isRetry(retry)) {
-            userBridge.reset();
-            bridgeGameManager.increaseCount();
+        if (continueGame(bridgeGameManager, userBridge, retry)) {
             return false;
         }
 
         if (GameCommand.isQuit(retry)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean continueGame(BridgeGameManager bridgeGameManager, UserBridge userBridge, String retry) {
+        if (GameCommand.isRetry(retry)) {
+            userBridge.reset();
+            bridgeGameManager.increaseCount();
             return true;
         }
         return false;
