@@ -152,13 +152,13 @@ class BridgeGameTest {
         void should_BeOnWay_When_Input_Retry() {
             // given
             bridgeGame.move(LOWER_SIDE);
-            boolean isFail = bridgeGame.isFail();
+            boolean gameStatusBefore = bridgeGame.isFail();
             // when
             bridgeGame.retry(RETRY);
-            boolean isOnWay = bridgeGame.isOnWay();
+            boolean gameStatusAfter = bridgeGame.isOnWay();
             // then
-            assertThat(isFail).isTrue();
-            assertThat(isOnWay).isTrue();
+            assertThat(gameStatusBefore).isTrue();
+            assertThat(gameStatusAfter).isTrue();
         }
 
         @DisplayName("게임을 종료하는 경우")
@@ -166,13 +166,13 @@ class BridgeGameTest {
         void should_BeEnd_When_Input_Quit() {
             // given
             bridgeGame.move(LOWER_SIDE);
-            boolean isFail = bridgeGame.isFail();
+            boolean gameStatusBefore = bridgeGame.isFail();
             // when
             bridgeGame.retry(QUIT);
-            boolean isEnd = bridgeGame.isEnd();
+            boolean gameStatusAfter = bridgeGame.isEnd();
             // then
-            assertThat(isFail).isTrue();
-            assertThat(isEnd).isTrue();
+            assertThat(gameStatusBefore).isTrue();
+            assertThat(gameStatusAfter).isTrue();
         }
 
         @DisplayName("올바르지 않은 게임 재시작 여부 입력 -> 예외 발생")
