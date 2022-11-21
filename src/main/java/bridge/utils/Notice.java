@@ -1,4 +1,4 @@
-package bridge;
+package bridge.utils;
 
 public enum Notice {
 	ERROR("[ERROR] 다시 입력해주세요."),
