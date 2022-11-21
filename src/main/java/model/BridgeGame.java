@@ -35,6 +35,7 @@ public class BridgeGame {
     public static void retry(List<String> bridge, List<List<String>> bothSide) {
         String retryOrQuit = BridgeController.getGameCommand();
         BridgeController.printRetryOrQuit(retryOrQuit);
+
         if (BridgeGameValidator.isUserInputRetry(retryOrQuit)) {
             countTryNumber();
             CleanerUtil.clearBothSide(bothSide);
@@ -42,7 +43,7 @@ public class BridgeGame {
         }
     }
 
-    public static void countTryNumber(){
+    private static void countTryNumber() {
         tryNumber++;
     }
 
@@ -50,7 +51,7 @@ public class BridgeGame {
         tryNumber = NumberConstant.FIRST_TRY.getConstant();
     }
 
-    public static void initUserBridge() {
+    private static void initUserBridge() {
         userBridge = new ArrayList<>();
     }
 
