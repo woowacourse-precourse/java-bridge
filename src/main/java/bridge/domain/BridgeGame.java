@@ -34,30 +34,31 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeCorrects = new ArrayList<>();
     }
-    public void up(List<String> bridgeCorrect,String bridge,String user){
+    private void up(List<String> bridgeCorrect,String bridge,String user){
         if(user.equals(MessageStorage.UP.getMessage())){
             if(bridge.equals(user)){
-                bridgeCorrect.add(MessageStorage.UP.getMessage());
-                bridgeCorrect.add(MessageStorage.CORRECT.getMessage());
+                addBridgeCorrect(bridgeCorrect,MessageStorage.UP.getMessage(),MessageStorage.CORRECT.getMessage());
             }
             if(!bridge.equals(user)){
-                bridgeCorrect.add(MessageStorage.UP.getMessage());
-                bridgeCorrect.add(MessageStorage.INCORRECT.getMessage());
+                addBridgeCorrect(bridgeCorrect,MessageStorage.UP.getMessage(),MessageStorage.INCORRECT.getMessage());
             }
         }
     }
 
-    public void down(List<String> bridgeCorrect,String bridge,String user){
+    private void down(List<String> bridgeCorrect,String bridge,String user){
         if(user.equals(MessageStorage.DOWN.getMessage())){
             if(bridge.equals(user)){
-                bridgeCorrect.add(MessageStorage.DOWN.getMessage());
-                bridgeCorrect.add(MessageStorage.CORRECT.getMessage());
+                addBridgeCorrect(bridgeCorrect,MessageStorage.DOWN.getMessage(),MessageStorage.CORRECT.getMessage());
             }
             if(!bridge.equals(user)){
-                bridgeCorrect.add(MessageStorage.DOWN.getMessage());
-                bridgeCorrect.add(MessageStorage.INCORRECT.getMessage());
+                addBridgeCorrect(bridgeCorrect,MessageStorage.DOWN.getMessage(),MessageStorage.INCORRECT.getMessage());
             }
         }
+    }
+
+    private void addBridgeCorrect(List<String> bridgeCorrect,String location,String isCorrect){
+        bridgeCorrect.add(location);
+        bridgeCorrect.add(isCorrect);
     }
 
 
@@ -94,5 +95,4 @@ public class BridgeGame {
         }
         return true;
     }
-
 }
