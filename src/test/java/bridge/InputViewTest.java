@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
 
-    private InputView inputView = new InputView();
+    private InputView inputView = InputView.getInstance();
 
     @Nested
     @DisplayName("다리 길이 입력 테스트")
