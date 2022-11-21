@@ -1,4 +1,6 @@
-package bridge.util;
+package bridge.model;
+
+import bridge.util.BridgeGameInfo;
 
 public class BridgeMap {
 

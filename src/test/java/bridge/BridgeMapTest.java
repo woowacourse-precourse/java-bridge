@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.util.BridgeMap;
+import bridge.model.BridgeMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

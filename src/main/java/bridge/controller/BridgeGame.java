@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.model.Player;
-import bridge.util.BridgeMap;
+import bridge.model.BridgeMap;
 
 import java.util.List;
 
