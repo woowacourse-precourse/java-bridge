@@ -7,6 +7,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.Constants.CommandMark.*;
@@ -22,9 +23,9 @@ public class GameController {
         outputView.printStart();
         int bridgeSize = inputBridgeSize();
         List<String> correctBridge = prepareBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(correctBridge);
-        boolean isSuccess = play(bridgeSize, bridgeGame);
-        outputView.printResult(bridgeGame.getBridgeMap(), isSuccess, this.tryCount);
+        BridgeGame bridgeGame = new BridgeGame();
+        List<List<String>> bridgeMap = play(bridgeSize, bridgeGame, correctBridge);
+        outputView.printResult(bridgeMap, bridgeGame.isCorrectMove(), this.tryCount);
     }
 
     private List<String> prepareBridge(int bridgeSize) {
@@ -33,17 +34,17 @@ public class GameController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private boolean play(int bridgeSize, BridgeGame bridgeGame) {
-        boolean isCorrect = false;
+    private List<List<String>> play(int bridgeSize, BridgeGame bridgeGame, List<String> correctBridge) {
+        List<List<String>> bridgeMap = new ArrayList<>();
         while (bridgeNum < bridgeSize && gaming) {
             String moving = inputMoving();
-            isCorrect = bridgeGame.move(bridgeNum, moving);
-            outputView.printMap(bridgeGame.getBridgeMap());
+            bridgeMap = bridgeGame.move(bridgeNum, moving, correctBridge);
+            outputView.printMap(bridgeMap);
 
-            if (!isCorrect) failed(bridgeGame);
-            if (isCorrect) bridgeNum++;
+            if (bridgeGame.isCorrectMove()) bridgeNum++;
+            if (!bridgeGame.isCorrectMove()) failed(bridgeGame);
         }
-        return isCorrect;
+        return bridgeMap;
     }
 
     private void failed(BridgeGame bridgeGame) {
