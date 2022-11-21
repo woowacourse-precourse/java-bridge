@@ -48,4 +48,8 @@ public class OutputView {
     public static void printError(String errorMessage) {
         System.out.println(errorMessage);
     }
+
+    public static void printBlankLine() {
+        System.out.println();
+    }
 }
