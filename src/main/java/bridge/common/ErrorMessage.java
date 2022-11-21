@@ -1,4 +1,4 @@
-package bridge.global.dto;
+package bridge.common;
 
 public class ErrorMessage {
     private static final String PREFIX = "[ERROR]";
