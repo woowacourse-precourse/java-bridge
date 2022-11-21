@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
+    private static final String BRIDGE_START = "[ ";
+    private static final String BRIDGE_END = " ]\n";
+    private static final String BRIDGE_MIDDLE = " | ";
+
     private final Bridge bridge;
     private final User user;
     private final List<ResultFlag> upper = new ArrayList<>();
@@ -22,9 +26,7 @@ public class Map {
         }
         upper.clear();
         lower.clear();
-        List<UpDownFlag> userUpDowns = user.getMovedPosition();
-        List<UpDownFlag> bridgeUpDowns = bridge.getBridge();
-        draw(userUpDowns, bridgeUpDowns);
+        draw(user.getMovedPosition(), bridge.getBridge());
     }
 
     private void draw(List<UpDownFlag> userUpDowns, List<UpDownFlag> bridgeUpDowns) {
@@ -78,11 +80,21 @@ public class Map {
         lower.add(ResultFlag.FAIL);
     }
 
-    public List<ResultFlag> getUpper() {
-        return List.copyOf(upper);
+    @Override
+    public String toString() {
+        return render(upper) + render(lower);
     }
 
-    public List<ResultFlag> getLower() {
-        return List.copyOf(lower);
+    private String render(List<ResultFlag> list) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(BRIDGE_START);
+        for (int i = 0; i < list.size(); i++) {
+            if (i > 0) {
+                stringBuilder.append(BRIDGE_MIDDLE);
+            }
+            stringBuilder.append(list.get(i));
+        }
+        stringBuilder.append(BRIDGE_END);
+        return stringBuilder.toString();
     }
 }

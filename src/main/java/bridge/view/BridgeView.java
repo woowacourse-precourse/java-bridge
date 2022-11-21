@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.controller.GameFlag;
 import bridge.domain.ResultFlag;
-import bridge.domain.Map;
 import bridge.domain.UpDownFlag;
 
 public class BridgeView {
@@ -41,7 +40,7 @@ public class BridgeView {
         }
     }
 
-    public void printMap(Map map) {
+    public void printMap(String map) {
         outputView.printMap(map);
     }
 
@@ -57,7 +56,7 @@ public class BridgeView {
         }
     }
 
-    public void printResult(Map map, ResultFlag result, int tryCount) {
+    public void printResult(String map, ResultFlag result, int tryCount) {
         outputView.printResult(map, result, tryCount);
     }
 }

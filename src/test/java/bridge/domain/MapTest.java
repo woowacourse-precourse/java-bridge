@@ -2,7 +2,6 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -43,10 +42,8 @@ class MapTest {
         // when
         map.update();
         // then
-        assertThat(map.getUpper())
-                .isEqualTo(List.of(ResultFlag.SUCCESS, ResultFlag.NOTHING, ResultFlag.SUCCESS));
-        assertThat(map.getLower())
-                .isEqualTo(List.of(ResultFlag.NOTHING, ResultFlag.FAIL, ResultFlag.NOTHING));
+        assertThat(map.toString())
+                .isEqualTo("[ O |   | O ]\n[   | X |   ]\n");
     }
 
     @Test
@@ -59,10 +56,8 @@ class MapTest {
         // when
         map.update();
         // then
-        assertThat(map.getUpper())
-                .isEqualTo(List.of(ResultFlag.SUCCESS, ResultFlag.SUCCESS, ResultFlag.SUCCESS));
-        assertThat(map.getLower())
-                .isEqualTo(List.of(ResultFlag.NOTHING, ResultFlag.NOTHING, ResultFlag.NOTHING));
+        assertThat(map.toString())
+                .isEqualTo("[ O | O | O ]\n[   |   |   ]\n");
     }
 
     @Test
@@ -74,9 +69,7 @@ class MapTest {
         map.update();
 
         // then
-        assertThat(map.getUpper())
-                .isEqualTo(Collections.emptyList());
-        assertThat(map.getLower())
-                .isEqualTo(Collections.emptyList());
+        assertThat(map.toString())
+                .isEqualTo("[  ]\n[  ]\n");
     }
 }

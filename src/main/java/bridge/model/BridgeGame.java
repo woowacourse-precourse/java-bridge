@@ -62,8 +62,8 @@ public class BridgeGame {
         user.reset();
     }
 
-    public Map getMap() {
-        return map;
+    public String getMap() {
+        return map.toString();
     }
 
     public int getTryCount() {
