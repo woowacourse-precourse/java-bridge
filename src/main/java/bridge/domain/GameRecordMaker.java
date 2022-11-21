@@ -61,4 +61,12 @@ public class GameRecordMaker {
         return formattedResult.toString();
     }
 
+    public String getRecord() {
+        StringBuilder record = new StringBuilder();
+        for(List<String> result: TOTAL_RESULT){
+            record.append(makeMapFormat(result));
+        }
+        return record.toString();
+    }
+
 }
