@@ -3,6 +3,9 @@ package bridge.game;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.convertor.InputConvertor;
+import bridge.validation.BridgeMoveValidator;
+import bridge.validation.BridgeSizeValidator;
+import bridge.validation.RetryValidator;
 import java.util.List;
 
 /**
@@ -10,16 +13,18 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridge;
-    private final Function function = new Function();
-    private final BridgeStatus status = new BridgeStatus();
+    private static final BridgeStatus STATUS = new BridgeStatus();
+    private static final RetryValidator RETRY_VALIDATOR = new RetryValidator();
+    private static final BridgeSizeValidator SIZE_VALIDATOR = new BridgeSizeValidator();
+    private static final BridgeMoveValidator MOVE_VALIDATOR = new BridgeMoveValidator();
     private static String MOVE;
+    private final List<String> bridge;
 
     public BridgeGame() {
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator())
                 .makeBridge(
                         InputConvertor.inputParseNumber(
-                                function.sizeValidation()
+                                SIZE_VALIDATOR.sizeValidator()
                         )
                 );
         clearMap();
@@ -31,7 +36,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move() {
-        MOVE = function.moveValidation();
+        MOVE = MOVE_VALIDATOR.moveValidator();
         crossingSuccess();
         boolean b = crossingFailure();
         if (checkFinish()) {
@@ -41,8 +46,8 @@ public class BridgeGame {
     }
 
     private boolean checkFinish() {
-        status.checkGameOver(bridge.size());
-        if (status.getClear()) {
+        STATUS.checkGameOver(bridge.size());
+        if (STATUS.getClear()) {
             gameOver();
             return true;
         }
@@ -65,7 +70,7 @@ public class BridgeGame {
     }
 
     private boolean confirmRetry() {
-        String retry = function.retryValidation();
+        String retry = RETRY_VALIDATOR.retryValidator();
         if (retry.equals("R")) {
             retry();
             return true;
@@ -75,15 +80,14 @@ public class BridgeGame {
     }
 
     private void drawingBridge(String division) { // 이동 경로에 맞게 현재 다리 상황을 그린다.
-        status.drawingBridge(MOVE, division);
+        STATUS.drawingBridge(MOVE, division);
         printBridgeStatus();
     }
 
 
     private void gameOver() {
-        status.checkGameOver(bridge.size());
-        status.printGameOver();
-
+        STATUS.checkGameOver(bridge.size());
+        STATUS.printGameOver();
     }
 
     /**
@@ -99,28 +103,28 @@ public class BridgeGame {
 
 
     public boolean compare(String move) {
-        return bridge.get(status.getCurrentLocation()).equals(move);
+        return bridge.get(STATUS.getCurrentLocation()).equals(move);
     }
 
     private void plusCurrentLocation() { // 상태 업데이트
-        status.plusCurrentLocation();
+        STATUS.plusCurrentLocation();
     }
 
     private void plusRetryCount() { //  // 상태 업데이트
-        status.plusRetryCount();
+        STATUS.plusRetryCount();
     }
 
     private void clearCurrentLocation() { // retry 관련
-        status.clearCurrentLocation();
+        STATUS.clearCurrentLocation();
     }
     // retry 관련
 
     private void clearMap() { // retry 관련
-        status.clearMap();
+        STATUS.clearMap();
     }
 
 
     private void printBridgeStatus() { // 현 다리 상태 프린팅
-        status.printBridgeStatus();
+        STATUS.printBridgeStatus();
     }
 }

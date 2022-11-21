@@ -1,13 +1,26 @@
 package bridge.validation;
 
 import bridge.convertor.InputConvertor;
-import bridge.message.ErrorMessage;
+import bridge.resource.ErrorMessage;
+import bridge.view.InputView;
 
-public class BridgeSizeValidation {
+public class BridgeSizeValidator {
     private static final int BRIDGE_MIN_SIZE = 3;
     private static final int BRIDGE_MAX_SIZE = 20;
+    private static final InputView INPUT_VIEW = new InputView();
 
-    public void bridgeSizeValidation(String value) {
+    public String sizeValidator() {
+        try {
+            String input = INPUT_VIEW.readBridgeSize();
+            bridgeSizeValidation(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return sizeValidator();
+        }
+    }
+
+    private void bridgeSizeValidation(String value) {
         if (checkBridgeSize(convertInputToNumber(value))) {
             return;
         }
