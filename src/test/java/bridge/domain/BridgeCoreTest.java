@@ -1,17 +1,20 @@
-package bridge;
+package bridge.domain;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.Application;
 import bridge.constant.GameState;
-import bridge.controller.BridgeGame;
+import bridge.util.Validate;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
-public class BridgeGameCoreTest extends NsTest{
+public class BridgeCoreTest extends NsTest{
 
 
     private final boolean moveStop = false;
@@ -129,6 +132,17 @@ public class BridgeGameCoreTest extends NsTest{
             result = GameState.GAME_SUCCESS;
         }
         Assertions.assertThat(result).isEqualTo(GameState.GAME_FAIL);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"E", "123", "J"})
+    @DisplayName("게임 재시작 종료 판별, 종료시 예외 입력시 오류 발생")
+    void judgeRestartOrOverException(String input) {
+        Validate validate = new Validate();
+        Assertions.assertThatThrownBy(() -> {
+            validate.validateGameDefinition(input);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
 
