@@ -5,17 +5,16 @@ package bridge.user;
  */
 public class User {
 
-    private boolean isPlayingGame;
     private int userGameStatus;
     private int numberOfMoves;
     private int numberOfGameTrials;
 
     public enum GameStatus {
-        NONE(0),
+        PLAYING(0),
         SUCCEED(1),
         FAILED(2);
 
-        int statusNumber;
+        private final int statusNumber;
 
         GameStatus(int statusNumber) {
             this.statusNumber = statusNumber;
@@ -30,7 +29,7 @@ public class User {
         RETRY("R"),
         QUIT("Q");
 
-        private String command;
+        private final String command;
 
         GameCommand(String command) {
             this.command = command;
@@ -41,17 +40,12 @@ public class User {
         }
     }
 
-    public User(boolean isPlayingGame, int userGameStatus, int numberOfGameTrials) {
-        this.isPlayingGame = isPlayingGame;
+    public User(int userGameStatus, int numberOfGameTrials) {
         this.userGameStatus = userGameStatus;
         this.numberOfGameTrials = numberOfGameTrials;
     }
 
     // getter
-    public boolean isPlayingGame() {
-        return isPlayingGame;
-    }
-
     public int getUserGameStatus() {
         return userGameStatus;
     }
@@ -65,10 +59,6 @@ public class User {
     }
 
     // setter
-    public void setNotPlayingGame() {
-        isPlayingGame = false;
-    }
-
     public void setUserGameStatus_succeed() {
         userGameStatus = GameStatus.SUCCEED.getStatusNumber();
     }

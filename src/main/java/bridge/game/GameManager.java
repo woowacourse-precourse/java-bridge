@@ -25,7 +25,7 @@ public class GameManager {
      */
     public GameManager() {
         bridgeGame = new BridgeGame();
-        player = new User(true, User.GameStatus.NONE.getStatusNumber(), 1);
+        player = new User(User.GameStatus.PLAYING.getStatusNumber(), 1);
     }
 
     /**
@@ -59,11 +59,11 @@ public class GameManager {
      * 게임 진행
      */
     public void playBridgeGame() {
-        while (player.isPlayingGame()) {
+        while (player.getUserGameStatus() == User.GameStatus.PLAYING.getStatusNumber()) {
             moveUser();
             printBridge_userPredict();
             if (isEndOfTheGame()) break;
-            if (player.getUserGameStatus() != User.GameStatus.NONE.getStatusNumber() && player.isPlayingGame())
+            if (player.getUserGameStatus() != User.GameStatus.PLAYING.getStatusNumber())
                 retryGame();
         }
         printGameResult();
@@ -105,7 +105,6 @@ public class GameManager {
         boolean isGameSucceed = bridgeGame.checkIfGameIsSucceed(userNumberOfMoves);
         if (isGameSucceed) {
             player.setUserGameStatus_succeed();
-            player.setNotPlayingGame();
         }
         return isGameSucceed;
     }
@@ -122,7 +121,6 @@ public class GameManager {
         while (userGameCommand.compareTo("") == 0) userGameCommand = askGameCommand();
         if (userGameCommand.compareTo(User.GameCommand.QUIT.getCommand()) == 0) {
             player.setUserGameStatus_failed();
-            player.setNotPlayingGame();
             return true;
         }
         return false;
