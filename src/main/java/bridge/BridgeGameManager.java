@@ -1,7 +1,4 @@
-package bridge.domain;
-
-import bridge.InputView;
-import bridge.OutputView;
+package bridge;
 
 import java.util.List;
 
@@ -11,8 +8,8 @@ public class BridgeGameManager {
     private final InputView inputView;
     private final OutputView outputView;
     private List<String> bridge;
-    String gameResult = "실패";
-    int gameTryCount = 0;
+    private String gameResult = "실패";
+    private int gameTryCount = 0;
 
    public BridgeGameManager(BridgeMaker bridgeMaker, BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
        this.bridgeMaker = bridgeMaker;
@@ -24,10 +21,8 @@ public class BridgeGameManager {
     public void start() {
         outputView.printStart();
 
-        int bridgeSize = inputView.readBridgeSize();;
-
+        int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge);             // TODO: 지워야됨
 
         tryGame(bridgeSize);
 
