@@ -7,8 +7,6 @@ import java.util.List;
 
 public class Player {
 
-    private static final String SUCCESS = "성공";
-    private static final String FAIL = "실패";
     private final List<String> moveInfo;
     private int totalTry;
     private boolean isMove;
@@ -16,7 +14,7 @@ public class Player {
     public Player() {
         moveInfo = new ArrayList<>();
         totalTry = 0;
-        isMove = false;
+        isMove = true;
     }
 
     public void initRetryPlayer() {
@@ -25,7 +23,7 @@ public class Player {
         validateTotalTry();
         totalTry++;
 
-        isMove = false;
+        isMove = true;
     }
 
     private void validateTotalTry() {
@@ -38,18 +36,14 @@ public class Player {
         moveInfo.add(move);
     }
 
-    public void setMoveResult(boolean result) {
-        this.isMove = result;
-    }
-
     public boolean isPlayerMove(Bridge bridge) {
         int now = moveInfo.size() - 1;
-        return (moveInfo.get(now))
-                .equals(bridge.getNowSpace(now));
+        isMove = (moveInfo.get(now)).equals(bridge.nowSpace(now));
+        return isMove;
     }
 
     public boolean isClearGame(Bridge bridge) {
-        return (((moveInfo.size()) == (bridge.getBridgeLength())) && isMove);
+        return (((moveInfo.size()) == (bridge.bridgeLength())) && isMove);
     }
 
     public List<String> getMoveInfo() {
@@ -58,13 +52,6 @@ public class Player {
 
     public boolean getIsMove() {
         return isMove;
-    }
-
-    public String getMoveResultString() {
-        if (getIsMove()) {
-            return SUCCESS;
-        }
-        return FAIL;
     }
 
     public int getTotalTry() {

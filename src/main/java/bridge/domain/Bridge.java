@@ -8,13 +8,9 @@ public class Bridge {
 
     private static final int BRIDGE_LOWER_NUMBER = 3;
     private static final int BRIDGE_UPPER_NUMBER = 20;
-    private List<String> bridge;
+    private final List<String> bridge;
 
-    public Bridge() {
-        this.bridge = null;
-    }
-
-    public void setBridge(List<String> bridge) {
+    public Bridge(List<String> bridge) {
         validate(bridge);
         this.bridge = bridge;
     }
@@ -26,11 +22,11 @@ public class Bridge {
         }
     }
 
-    public String getNowSpace(int now) {
+    public String nowSpace(int now) {
         return bridge.get(now);
     }
 
-    public int getBridgeLength() {
+    public int bridgeLength() {
         return bridge.size();
     }
 }

@@ -24,11 +24,10 @@ public class BridgeGameTest {
 
     @BeforeEach
     void beforeEach() {
-        bridgeGame = new BridgeGame();
-        BridgeNumberGenerator numberGenerator = new BridgeMakerTest.TestNumberGenerator(
-                newArrayList(1, 1, 0, 1, 1, 0, 1, 1, 0, 1
-                        , 1, 0, 1, 1, 0, 1, 1, 0, 1, 1));
-        bridgeGame.makeBridge(20, numberGenerator);
+        Player player = new Player();
+        Bridge bridge = new Bridge(List.of("U", "U", "D", "U", "U", "D", "U", "U", "D", "U"
+                , "U", "D", "U", "U", "D", "U", "U", "D", "U", "U"));
+        bridgeGame = new BridgeGame(player, bridge);
     }
 
     @DisplayName("move 함수가 잘못된 값이 들어올시 예외를 발생한다.")
@@ -40,30 +39,42 @@ public class BridgeGameTest {
                 .hasMessageContaining(EXCEPTION_MESSAGE_INVALID_MOVE);
     }
 
-    @DisplayName("move 함수가 정상적으로 true를 반환한다.")
+    @DisplayName("move 함수가 정상적으로 작동해서 moveResult 함수가 true 반환한다.")
     @ParameterizedTest
     @CsvSource({"U, U, D, U, U, D"})
     void executeMoveToTrue(String input1, String input2, String input3,
                            String input4, String input5, String input6) {
-        assertThat(true).isEqualTo(bridgeGame.move(input1));
-        assertThat(true).isEqualTo(bridgeGame.move(input2));
-        assertThat(true).isEqualTo(bridgeGame.move(input3));
-        assertThat(true).isEqualTo(bridgeGame.move(input4));
-        assertThat(true).isEqualTo(bridgeGame.move(input5));
-        assertThat(true).isEqualTo(bridgeGame.move(input6));
+        bridgeGame.move(input1);
+        assertThat(true).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input2);
+        assertThat(true).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input3);
+        assertThat(true).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input4);
+        assertThat(true).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input5);
+        assertThat(true).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input6);
+        assertThat(true).isEqualTo(bridgeGame.moveResult());
     }
 
-    @DisplayName("move 함수가 정상적으로 false를 반환한다.")
+    @DisplayName("move 함수가 정상적으로 작동해서 moveResult 함수가 false를 반환한다.")
     @ParameterizedTest
     @CsvSource({"D, D, U, D, D, U"})
     void executeMoveToFalse(String input1, String input2, String input3,
                             String input4, String input5, String input6) {
-        assertThat(false).isEqualTo(bridgeGame.move(input1));
-        assertThat(false).isEqualTo(bridgeGame.move(input2));
-        assertThat(false).isEqualTo(bridgeGame.move(input3));
-        assertThat(false).isEqualTo(bridgeGame.move(input4));
-        assertThat(false).isEqualTo(bridgeGame.move(input5));
-        assertThat(false).isEqualTo(bridgeGame.move(input6));
+        bridgeGame.move(input1);
+        assertThat(false).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input2);
+        assertThat(false).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input3);
+        assertThat(false).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input4);
+        assertThat(false).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input5);
+        assertThat(false).isEqualTo(bridgeGame.moveResult());
+        bridgeGame.move(input6);
+        assertThat(false).isEqualTo(bridgeGame.moveResult());
     }
 
     @DisplayName("retry 함수가 잘못된 값이 들어올시 예외를 발생한다.")

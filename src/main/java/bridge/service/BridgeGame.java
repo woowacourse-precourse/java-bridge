@@ -1,8 +1,5 @@
 package bridge.service;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.exception.MoveValueException;
@@ -17,38 +14,36 @@ public class BridgeGame {
     private static final String DOWN = "D";
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
-    private final Bridge bridge;
     private final Player player;
+    private final Bridge bridge;
 
-    public BridgeGame() {
-        this.bridge = new Bridge();
-        this.player = new Player();
-    }
-
-    public void makeBridge(int size, BridgeNumberGenerator bridgeNumberGenerator) {
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        bridge.setBridge(bridgeMaker.makeBridge(size));
+    public BridgeGame(Player player, Bridge bridge) {
+        this.player = player;
+        this.bridge = bridge;
     }
 
     public void initPlayer() {
         player.initRetryPlayer();
     }
 
-    public boolean isClearGame() {
-        return player.isClearGame(bridge);
-    }
-
-    public boolean move(String move) {
+    public void move(String move) {
         validateMove(move);
         player.updateMoveInfo(move);
-        player.setMoveResult(player.isPlayerMove(bridge));
-        return player.getIsMove();
+        isPlayerMove();
     }
 
     private void validateMove(String move) {
         if (!(move.equals(UP) || move.equals(DOWN))) {
             throw new MoveValueException(UP, DOWN);
         }
+    }
+
+    public boolean isClearGame() {
+        return player.isClearGame(bridge);
+    }
+
+    public boolean isPlayerMove() {
+        return player.isPlayerMove(bridge);
     }
 
     public boolean retry(String gameCommand) {
