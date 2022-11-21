@@ -1,3 +1,14 @@
+- 비즈니스 로직 흐름
+    - Application : 프로그램 시작
+    - BridgeController : 비즈니스 로직 흐름 관리
+    - BridgeService : 비즈니스 로직 흐름 정의
+      - InputView : 재시작 여부, 이동할 칸, 다리의 길이 입력
+      - OutputView : 결과 출력
+    - BridgeGame : 다리 건너기 게임을 관리
+    - BridgeMoving : 다리 건너기 위한 조건 정의
+    - BridgeMaker : 다리의 길이를 입력받아서 다리를 생성
+      - BridgeNUmberGenerator : 랜덤 값 추출
+      - BridgeRandomNumberGenerator : 0,1 중 랜덤 값 추출
 1. 다리의 길이 입력 기능
     - 빈 값이 입력되었는지 확인하기
     - 숫자인지 아닌지 확인하기
