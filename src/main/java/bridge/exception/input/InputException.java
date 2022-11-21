@@ -39,4 +39,10 @@ public class InputException {
             throw new IllegalArgumentException("not proper moving input");
         }
     }
+    public static void validateGameCommandInput(String gameCommand){
+        if(isNotProperInput(gameCommand, GAME_COMMAND_INPUT_PATTERN)){
+            throw new IllegalArgumentException("not proper game command input");
+        }
+    }
+
 }
