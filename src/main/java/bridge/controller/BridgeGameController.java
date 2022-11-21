@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.domain.MovingResult;
+import bridge.generators.MessageGenerator;
 import bridge.service.BridgeGame;
 import bridge.views.InputView;
 import bridge.views.OutputView;
@@ -35,7 +37,11 @@ public class BridgeGameController {
     }
 
     private void responseMovingResult() {
+        MovingResult movingResult = bridgeGameService.createMovingResult();
+        outputView.printMovingResult(MessageGenerator.createMovedMessage(movingResult));
+        if (movingResult.isFailToMove()) {
 
+        }
     }
 
     private String requestBridgeSize() {

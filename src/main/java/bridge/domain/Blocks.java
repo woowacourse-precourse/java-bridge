@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.domain.enums.BlockStatus;
 import bridge.domain.enums.CrossStatus;
+import java.util.Collections;
 import java.util.List;
 
 public class Blocks {
@@ -22,5 +23,9 @@ public class Blocks {
             return CrossStatus.SUCCESS;
         }
         return CrossStatus.FAIL;
+    }
+
+    public List<BlockStatus> getBlocks() {
+        return Collections.unmodifiableList(blocks);
     }
 }

@@ -2,6 +2,8 @@ package bridge.views;
 
 import static bridge.messages.OutputMessage.START_MESSAGE;
 
+import bridge.generators.MessageGenerator;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -32,4 +34,7 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
+    public void printMovingResult(final String movingResultMap) {
+        System.out.println(movingResultMap);
+    }
 }
