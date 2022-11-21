@@ -39,4 +39,14 @@ class BridgeGameTest {
         assertThat(bridgeGame.move(bridge, "D")).isEqualTo(true);
         assertThat(bridgeGame.move(bridge, "D")).isEqualTo(false);
     }
+
+    @Test
+    void 게임_다시_시작_테스트_다시시작() {
+        assertThat(bridgeGame.retry("R")).isEqualTo(true);
+    }
+
+    @Test
+    void 게임_다시_시작_테스트_종료() {
+        assertThat(bridgeGame.retry("Q")).isEqualTo(false);
+    }
 }
