@@ -1,29 +1,20 @@
-package bridge;
+package bridge.service;
 
-import bridge.BridgeGame;
-import bridge.BridgeInit;
+import bridge.information.GameInInformation;
+import bridge.view.OutputView;
 
 import java.util.List;
 
 public class BridgeService {
 
     private int attemp;
-    private final BridgeInit bridgeInit;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
-    private final BridgePainting bridgePainting;
-    private List<String> bridge;
 
-    BridgeService(BridgeInit bridgeInit, BridgeGame bridgeGame, BridgePainting bridgePainting){
+    public BridgeService(OutputView outputView, BridgeGame bridgeGame){
         attemp = 1;
-        this.outputView = new OutputView();
+        this.outputView = outputView;
         this.bridgeGame = bridgeGame;
-        this.bridgeInit = bridgeInit;
-        this.bridgePainting = bridgePainting;
-    }
-
-    public void gameInit(){
-        bridge = bridgeInit.makeGame();
     }
 
     public void start(){
@@ -32,59 +23,78 @@ public class BridgeService {
 
     private void gameLoop(){
         while(true){
-            boolean isSuccess = gameStart();
-            if(isSuccess){
+            if(gameStart()){
                 outputView.printSuccessResult(attemp);
                 return;
             }
-            String nextGameMode = bridgeInit.getNextGameMode();
-            if(nextGameMode.equals(Position.QUIT)){
-                outputView.printInformation(bridgePainting.getLine1(), bridgePainting.getLine2());
-                outputView.printFailureResult(attemp);
-                break;
-            }
+            if (isGameOver()) break;
             attemp++;
         }
     }
 
-    private boolean gameStart() {
-        int index = 0;
-        bridgePainting.init();
-        while (true) {
-            if (index == bridge.size()) return true;
-            String nextStep = bridgeInit.getNextStep();
-            if (possibleNextStep(index, nextStep)) {
-                outputView.printResult(bridgePainting.getLine1(), bridgePainting.getLine2());
-                return false;
-            }
-            printSuccess(nextStep);
-            index++;
-            printBound(index);
-            outputView.printMap(bridgePainting.getLine1(), bridgePainting.getLine2());
+    private boolean isGameOver() {
+        String nextGameMode = bridgeGame.getBridgeInit().getNextGameMode();
+        if(nextGameMode.equals(GameInInformation.QUIT)){
+            stopGame();
+            return true;
         }
+        return false;
     }
 
     private boolean possibleNextStep(int index, String nextStep) {
-        if(!bridgeGame.move(bridge, index, nextStep)) {
+        if(!bridgeGame.move(index, nextStep)) {
             printFail(nextStep);
             return true;
         }
         return false;
     }
 
-    private void printBound(int index){
-        if(index == bridge.size()){
-            bridgePainting.pushCloseBRACKET();
+    private void stopGame() {
+        outputView.printInformation(bridgeGame.getBridgePainting().getLine1(), bridgeGame.getBridgePainting().getLine2());
+        outputView.printFailureResult(attemp);
+    }
+
+    private boolean gameStart() {
+        int index = readyForGame();
+        while (true) {
+            if (index == bridgeGame.getBridge().size()) return true;
+            String nextStep = bridgeGame.getBridgeInit().getNextStep();
+            if (possibleNextStep(index, nextStep)) {
+                outputView.printResult(bridgeGame.getBridgePainting().getLine1(), bridgeGame.getBridgePainting().getLine2());
+                return false;
+            }
+            index = gameProgress(index, nextStep);
+        }
+    }
+
+    private int readyForGame() {
+        int index = 0;
+        List<String> bridge = bridgeGame.getBridge();
+        bridgeGame.retry();
+        return index;
+    }
+
+    private int gameProgress(int index, String nextStep) {
+        nextStepSuccess(nextStep);
+        index++;
+        pushSideSign(index);
+        outputView.printMap(bridgeGame.getBridgePainting().getLine1(), bridgeGame.getBridgePainting().getLine2());
+        return index;
+    }
+
+    private void pushSideSign(int index){
+        if(index == bridgeGame.getBridge().size()){
+            bridgeGame.getBridgePainting().pushCloseBRACKET();
             return;
         }
-        bridgePainting.pushBoundary();
+        bridgeGame.getBridgePainting().pushBoundary();
     }
 
     private void printFail(String step){
-        bridgePainting.inCorrectStep(step);
+        bridgeGame.getBridgePainting().inCorrectStep(step);
     }
 
-    private void printSuccess(String step){
-        bridgePainting.correctStep(step);
+    private void nextStepSuccess(String step){
+        bridgeGame.getBridgePainting().correctStep(step);
     }
 }
