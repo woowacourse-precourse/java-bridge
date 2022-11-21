@@ -7,9 +7,7 @@ public class Application {
         // TODO: 프로그램 구현
         try {
 
-            InputView inputView = new InputView();
-            inputView.readBridgeSize();
-            inputView.readMoving();
+
         }catch(IllegalArgumentException illegalArgumentException){
             System.out.println(ERROR_MESSAGE + illegalArgumentException.getMessage());
         }
