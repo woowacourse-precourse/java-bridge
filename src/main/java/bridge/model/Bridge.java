@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.view.MessageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,56 +30,50 @@ public class Bridge {
         }};
     }
 
-    private void isFirstBridgeUpToDown(String markWithOX) {
-        upBridge.add(1, makeSpace(markWithOX));
-        downBridge.add(1, "   ");
+    private void isFirstBridgeUpToDown(String mark) {
+        upBridge.add(1, makeSpace(mark));
+        downBridge.add(1, MessageView.SPACE.getMessage());
     }
 
-    private void isFirstBridgeDownToUp(String markWithOX) {
-        downBridge.add(1, makeSpace(markWithOX));
-        upBridge.add(1, "   ");
+    private void isFirstBridgeDownToUp(String mark) {
+        downBridge.add(1, makeSpace(mark));
+        upBridge.add(1, MessageView.SPACE.getMessage());
     }
 
-    public void setUpBridge(String markWithOX) {
+    public void setUpBridge(String mark) {
         if (Player.currentLocation == 0) {
-            isFirstBridgeUpToDown(markWithOX);
+            isFirstBridgeUpToDown(mark);
             return;
         }
-        if (isContains(markWithOX)) {
-            checkBridgeSequence(markWithOX, upBridge, downBridge);
-            return;
-        }
-        checkBridgeSequence(markWithOX, upBridge, downBridge);
+        isContains(mark);
+        checkBridgeSequence(mark, upBridge, downBridge);
     }
 
-    private void checkBridgeSequence(String markWithOX, ArrayList<String> upBridge, ArrayList<String> downBridge) {
-        moreThanFirstBridge(markWithOX, upBridge);
+    public void setDownBridge(String mark) {
+        if (Player.currentLocation == 0) {
+            isFirstBridgeDownToUp(mark);
+            return;
+        }
+        isContains(mark);
+        checkBridgeSequence(mark, downBridge, upBridge);
+    }
+
+    private void checkBridgeSequence(String mark, ArrayList<String> upBridge, ArrayList<String> downBridge) {
+        moreThanFirstBridge(mark, upBridge);
         moreThanFirstBridgeSpace(downBridge);
     }
 
-    public void setDownBridge(String markWithOX) {
-        if (Player.currentLocation == 0) {
-            isFirstBridgeDownToUp(markWithOX);
-            return;
-        }
-        if (isContains(markWithOX)) {
-            checkBridgeSequence(markWithOX, downBridge, upBridge);
-            return;
-        }
-        checkBridgeSequence(markWithOX, downBridge, upBridge);
-    }
-
-    private boolean isContains(String markWithOX) {
-        return markWithOX.contains(" O ");
+    private boolean isContains(String mark) {
+        return mark.contains(MessageView.O.getMessage());
     }
 
     private void moreThanFirstBridgeSpace(ArrayList<String> bridge) {
-        bridge.add(Player.currentLocation * 2, "|");
-        bridge.add(Player.currentLocation * 2 + 1, "   ");
+        bridge.add(Player.currentLocation * 2, MessageView.INTERVAL.getMessage());
+        bridge.add(Player.currentLocation * 2 + 1, MessageView.SPACE.getMessage());
     }
 
     private void moreThanFirstBridge(String markWithOX, ArrayList<String> bridge) {
-        bridge.add(Player.currentLocation * 2, "|");
+        bridge.add(Player.currentLocation * 2, MessageView.INTERVAL.getMessage());
         bridge.add(Player.currentLocation * 2 + 1, makeSpace(markWithOX));
     }
 
@@ -99,19 +94,19 @@ public class Bridge {
     }
 
     private Boolean checkAnswerRoadForO() {
-        if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
-            setDownBridge("O");
-        } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
-            setUpBridge("O");
+        if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals(MessageView.DOWN.getMessage())) {
+            setDownBridge(MessageView.O.getMessage());
+        } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals(MessageView.UP.getMessage())) {
+            setUpBridge(MessageView.O.getMessage());
         }
         return true;
     }
 
     private Boolean checkAnswerRoadForX() {
-        if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
-            setUpBridge("X");
-        } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
-            setDownBridge("X");
+        if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals(MessageView.DOWN.getMessage())) {
+            setUpBridge(MessageView.X.getMessage());
+        } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals(MessageView.UP.getMessage())) {
+            setDownBridge(MessageView.X.getMessage());
         }
         return false;
     }
@@ -132,8 +127,8 @@ public class Bridge {
         return size;
     }
 
-    private String makeSpace(String markWithOX) {
-        return " " + markWithOX + " ";
+    private String makeSpace(String mark) {
+        return " " + mark + " ";
     }
 }
 
