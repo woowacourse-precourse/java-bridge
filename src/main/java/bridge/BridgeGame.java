@@ -51,11 +51,6 @@ public class BridgeGame {
         return GameStatus.CONTINUE;
     }
 
-    public Side getCurrentAvailableSide() {
-        String sideSymbol = bridge.getMovableSide(player.getCurrentPosition());
-        return Side.getPosition(sideSymbol);
-    }
-
     public String getTrial() {
         return Integer.toString(this.trial);
     }
@@ -65,7 +60,10 @@ public class BridgeGame {
     }
 
     public void updateMap() {
-        this.map.add(getCurrentAvailableSide(), isPlayerInRightSide());
+        this.map.add(
+                Side.get(player.getLastMoving()),
+                isPlayerInRightSide()
+        );
     }
 
     public Map getMap() {

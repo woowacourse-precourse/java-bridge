@@ -24,10 +24,6 @@ public class Bridge {
         return movableSides.get(position).equals(selectedSides);
     }
 
-    public String getMovableSide(int bridgeIndex) {
-        return movableSides.get(bridgeIndex);
-    }
-
     public boolean isLastPosition(int playerPosition) {
         return getLastIndex() == playerPosition;
     }
