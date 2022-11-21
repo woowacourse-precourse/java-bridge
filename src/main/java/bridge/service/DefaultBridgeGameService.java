@@ -37,7 +37,7 @@ public class DefaultBridgeGameService implements BridgeGameService {
     }
 
     @Override
-    public boolean retryGame(Command command) {
-        return game.retry(command);
+    public boolean retryGame() {
+        return game.retry();
     }
 }

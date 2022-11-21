@@ -31,7 +31,7 @@ public class BridgeGameController {
     public boolean runCommand(String input) {
         Command command = Command.getCommand(input);
         if (command == Command.RETRY) {
-            return service.retryGame(command);
+            return service.retryGame();
         }
         return false;
     }

@@ -64,7 +64,6 @@ class BridgeGameTest {
         game.move(BridgeCell.DOWN);
 
         // when, then
-        assertThat(game.retry(Command.RETRY)).isTrue();
-        assertThat(game.retry(Command.QUIT)).isFalse();
+        assertThat(game.retry()).isTrue();
     }
 }
