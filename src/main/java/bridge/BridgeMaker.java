@@ -24,8 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            int randomNumber = this.bridgeNumberGenerator.generate();
-            String letter = BridgeStatus.convertNumberToLetter(randomNumber);
+            String letter = BridgeStatus.convertNumberToLetter(this.bridgeNumberGenerator.generate());
             bridge.add(letter);
         }
 
