@@ -42,4 +42,9 @@ public class BridgeGame {
         secondRoad.append(X);
     }
 
+    public void retry() {
+        firstRoad = new StringBuilder();
+        secondRoad = new StringBuilder();
+        roundCount++;
+    }
 }
