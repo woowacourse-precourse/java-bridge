@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.BridgeNumberGenerator;
 import bridge.commom.constant.GameState;
 import bridge.model.BridgeHistory;
-import bridge.model.BridgeManager;
+import bridge.BridgeManager;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

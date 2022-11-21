@@ -1,7 +1,5 @@
-package bridge.model;
+package bridge;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.commom.validation.BridgeValidator;
 
 import java.util.List;
