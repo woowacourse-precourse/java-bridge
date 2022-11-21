@@ -15,7 +15,7 @@ public class Validator {
     private static final int GAME_CHECK_LENGTH=1;
 
     public static void validateBridgeRandomNum(int num){
-        if (num != BRIDGE_RANDOM_NUMBER_ZERO || num != BRIDGE_RANDOM_NUMBER_ONE)
+        if (num != BRIDGE_RANDOM_NUMBER_ZERO && num != BRIDGE_RANDOM_NUMBER_ONE)
             ErrorGenerator.errorGenerate("다리 생성 랜덤 숫자가 0또는 1이 아닙니다");
     }
     public static void validateNumber(String str){
@@ -42,7 +42,7 @@ public class Validator {
     public static void validateMoving(String str){
         validateMovingLen(str);
         char bridgeChoose = str.charAt(0);
-        if (bridgeChoose!= MOVING_UP || bridgeChoose != MOVING_DOWN)
+        if (bridgeChoose!= MOVING_UP && bridgeChoose != MOVING_DOWN)
             ErrorGenerator.errorGenerate("이동할 칸이 위 또는 아래가 아닙니다");
     }
 
@@ -53,7 +53,7 @@ public class Validator {
     public static void validateGameCheck(String str){
         validateGameCheckInputLen(str);
         char gameCheck = str.charAt(0);
-        if (gameCheck != GAME_RESTART || gameCheck != GAME_QUIT)
+        if (gameCheck != GAME_RESTART && gameCheck != GAME_QUIT)
             ErrorGenerator.errorGenerate("게임 재시작 또는 종료 키가 아닙니다");
     }
 

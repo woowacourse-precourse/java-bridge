@@ -1,16 +1,34 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private BridgeMaker bridgeMaker;
+    private List<String> bridge;
+    private Record movingRecord;
+    private Judgement judgement;
+
+    BridgeGame() {
+        movingRecord = new Record();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        judgement = new Judgement();
+    }
+
+    public void setBridge(int size){
+        this.bridge = bridgeMaker.makeBridge(size);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String movingDirection) {
+        movingRecord.add(movingDirection);
     }
 
     /**
@@ -18,6 +36,27 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+
+    public boolean checkRetry(String RetryInput){
+        return RetryInput.equals("R");
+    }
     public void retry() {
+        movingRecord.addRetryCount();
+        movingRecord.reset();
+    }
+
+    public boolean checkArrival(){
+        return judgement.checkArrival(movingRecord,bridge);
+    }
+
+    public boolean isPlay(String movingDirection){
+        move(movingDirection);
+        movingRecord.show(bridge);
+        if (checkArrival()) return false;
+        return judgement.checkDirection(movingRecord,movingDirection,bridge);
+    }
+
+    public void printResult() {
+        movingRecord.printResult(bridge,checkArrival());
     }
 }

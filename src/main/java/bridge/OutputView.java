@@ -2,16 +2,60 @@ package bridge;
 
 import static bridge.OutputMsg.*;
 
+import java.awt.desktop.SystemEventListener;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    public static void printBridgeLengthMsg(){
+        System.out.println(BRIDGE_LENGTH_MSG.getMsg());
+    }
+    public static void printStartGameMsg(){
+        System.out.println(START_MSG.getMsg());
+    }
+    public static void printRetryQuitMsg(){
+        System.out.println(CHOOSE_RETRY_QUIT_MSG.getMsg());
+    };
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(List<String> movingRecord, List<String> bridge) {
+        for (int i  = 0 ; i< movingRecord.size(); i++) {
+            System.out.print(movingRecord.get(i));
+        }
+        System.out.println();
+
+        for (int i  = 0 ; i< bridge.size(); i++) {
+            System.out.print(bridge.get(i));
+        }
+        System.out.println();
+        System.out.print("[ ");
+        for (int i  = 0 ; i< movingRecord.size(); i++) {
+            if (movingRecord.get(i).equals("D") && bridge.get(i).equals("D"))
+                System.out.print(" ");
+            if (movingRecord.get(i).equals("U") && bridge.get(i).equals("U"))
+                System.out.print("O");
+            if (bridge.get(i).equals("U") && movingRecord.get(i).equals("D"))
+                System.out.print("X");
+            if (i != movingRecord.size()-1) System.out.print("|");
+        }
+        System.out.println(" ]");
+        System.out.print("[ ");
+        for (int i  = 0 ; i< movingRecord.size(); i++) {
+            if (movingRecord.get(i).equals("D") && bridge.get(i).equals("D"))
+                System.out.print("O");
+            if (bridge.get(i).equals("D") && movingRecord.get(i).equals("U"))
+                System.out.print("X");
+            if (movingRecord.get(i).equals("U") && bridge.get(i).equals("U"))
+                System.out.print(" ");
+            if (i != movingRecord.size()-1) System.out.print("|");
+        }
+        System.out.println(" ]");
     }
 
     /**
@@ -19,9 +63,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(Record movingRecord, List<String> bridge, boolean successFlag) {
         System.out.println(RESULT_MSG.getMsg());
-        System.out.println(ISSUCCESS_MSG.getMsg());
+        printMap(movingRecord.getRecord(),bridge);
+        System.out.print(ISSUCCESS_MSG.getMsg());
+        if(successFlag) System.out.println("성공");
+        if(!successFlag)System.out.println("실패");
         System.out.print(SUM_OF_RETRY_COUNT.getMsg());
+        System.out.println(movingRecord.getRetryCount());
     }
 }
