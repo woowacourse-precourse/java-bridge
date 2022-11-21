@@ -76,6 +76,7 @@ public class Application {
 
     private void checkApproachLast() {
         boolean isApproachLast = bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
+        
         if (playing && isApproachLast) {
             player.setSuccess(true);
             playing = false;
