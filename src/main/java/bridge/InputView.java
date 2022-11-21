@@ -16,21 +16,21 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(Message.BRIDGE_SIZE);
-        String input = Console.readLine();
-        validateSize(input);
-        return Integer.valueOf(input);
-    }
-
-    private void validateSize(String input) {
         try {
-            checkOnlyNumber(input);
-            checkSize(input);
+            System.out.println(Message.BRIDGE_SIZE);
+            String input = Console.readLine();
+            validateSize(input);
+            return Integer.valueOf(input);
         }
         catch (IllegalArgumentException ex){
             OutputView.printError(ex.getMessage());
-            readBridgeSize();
+            return readBridgeSize();
         }
+    }
+
+    private void validateSize(String input) {
+        checkOnlyNumber(input);
+        checkSize(input);
     }
 
     private void checkSize(String input) {
@@ -53,20 +53,20 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(Message.MOVING);
-        String input = Console.readLine();
-        ValidateMove(input);
-        return input;
-    }
-
-    private void ValidateMove(String input) {
         try {
-            checkUpOrDown(input);
+            System.out.println(Message.MOVING);
+            String input = Console.readLine();
+            ValidateMove(input);
+            return input;
         }
         catch (IllegalArgumentException ex){
             OutputView.printError(ex.getMessage());
-            readMoving();
+            return readMoving();
         }
+    }
+
+    private void ValidateMove(String input) {
+        checkUpOrDown(input);
     }
 
     private void checkUpOrDown(String input) {
@@ -80,20 +80,20 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(Message.GAME_COMMAND);
-        String input = Console.readLine();
-        ValidateGameCommand(input);
-        return input;
-    }
-
-    private void ValidateGameCommand(String input) {
-        try{
-            checkRetryAndQuit(input);
+        try {
+            System.out.println(Message.GAME_COMMAND);
+            String input = Console.readLine();
+            ValidateGameCommand(input);
+            return input;
         }
         catch (IllegalArgumentException ex){
             OutputView.printError(ex.getMessage());
-            readGameCommand();
+            return readGameCommand();
         }
+    }
+
+    private void ValidateGameCommand(String input) {
+        checkRetryAndQuit(input);
     }
 
     private void checkRetryAndQuit(String input) {
