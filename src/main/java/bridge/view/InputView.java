@@ -50,16 +50,28 @@ public class InputView {
             break;
         }
 
-        return Console.readLine();
+        return input;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input;
 
-        return Console.readLine();
+        while (true) {
+            try {
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                input = Console.readLine();
+                validateGameCommand(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+
+        return input;
     }
 
     private void validateBridgeSize(String input) {
@@ -72,9 +84,20 @@ public class InputView {
         validateCorrectBlock(input);
     }
 
+    private void validateGameCommand(String input) {
+        validateLength(input);
+        validateCorrectCommand(input);
+    }
+
+    private void validateCorrectCommand(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시작/종료 여부는 R 또는 Q 중 하나의 문자여야 합니다.");
+        }
+    }
+
     private void validateLength(String input) {
         if (input.length() != 1) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸의 문자길이가 1을 넘을 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 값의 길이는 1이어야 합니다.");
         }
     }
 
