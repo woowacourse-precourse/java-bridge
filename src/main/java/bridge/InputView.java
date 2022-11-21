@@ -24,7 +24,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
         int input = Integer.valueOf(Console.readLine());
-        if (!validation.SizeRangeValidate(input, BRIDGE_SIZE_RANGE1, BRIDGE_SIZE_RANGE2)) {
+        if (!(validation.SizeRangeValidate(input, BRIDGE_SIZE_RANGE1, BRIDGE_SIZE_RANGE2))) {
             throw new IllegalArgumentException();
         }
         return input;

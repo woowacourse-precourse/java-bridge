@@ -6,7 +6,7 @@ public class Validation {
      * 다리 길이 유효성 검사
      */
     public boolean SizeRangeValidate(int subject, int range1, int range2) {
-        if (subject >= range1 || subject <= range2) return true;
+        if (subject >= range1 && subject <= range2) return true;
         return false;
     }
 
