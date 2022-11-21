@@ -2,6 +2,7 @@ package bridge;
 
 public class Application {
 
+    public static InputView inputView = new InputView();
     /*
     확인 사항
     1.총 시도 횟수 입력 예외처리
@@ -41,7 +42,7 @@ public class Application {
         //1)R이면 재시작
         //2)Q이면 중단, 세임 결과 출력
         //5.출력: 게임 성공 여부, 총 시도한 횟수
-
+        int bridgeSize = inputView.readBridgeSize();
 
     }
 }
