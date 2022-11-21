@@ -12,6 +12,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    public String getRows(List<String> record, boolean success, String target) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < record.size(); i ++) {
+            if (record.get(i).equals(target)) {
+                result = appendElement(result, success, record.size() -1 == i);
+            } else {
+                result.append("   |");
+            }
+        }
+        return "[" + result.substring(0, result.length() - 1) + "]";
+    }
+
     public void printMap(List<String> record, boolean success) {
         System.out.println(getRows(record, success, "U"));
         System.out.println(getRows(record, success, "D") + "\n");
