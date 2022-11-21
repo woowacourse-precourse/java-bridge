@@ -6,9 +6,6 @@ public class Bridge {
 
     private static List<String> bridge;
 
-    public Bridge() {
-    }
-
     public static void setBridge(List<String> bridge) {
         Bridge.bridge = bridge;
     }

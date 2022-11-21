@@ -24,11 +24,11 @@ public class BridgeGameHost {
     public void progress() {
         outputView.printOpeningPhrase();
         prepare();
-        mainPartOfTheGame();
+        mainPartOfGame();
         outputView.printResult();
     }
 
-    private void mainPartOfTheGame() {
+    private void mainPartOfGame() {
         while (gameInProgress) {
             moving();
             isPlayerDead();
