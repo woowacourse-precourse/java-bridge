@@ -39,7 +39,7 @@ public class OutputView {
                 }
             }
             else{
-                if(!standard.equals(bridge.get(position))){
+                if(standard.equals(bridge.get(position))){
                     System.out.print(" X ");
                 }
                 else{

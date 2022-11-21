@@ -42,14 +42,18 @@ public class Controller {
             boolean gameStatus = bridgeGame.gamePlayOnce(position);
             if(!gameStatus){
                 //실패한 맵 표시
+                outputView.printMap(bridgeGame.mySelectBridge, false, bridgeGame.mySelectBridge.size()-1);
                 String gameCommand = inputView.readGameCommand();
                 gameContinue = bridgeGame.retry(gameCommand);
                 continue;
             }
             //성공한 맵 표시
+            outputView.printMap(bridgeGame.mySelectBridge, true, bridgeGame.mySelectBridge.size()-1);
             gameContinue = bridgeGame.move();
         }
 
+        System.out.println("최종 게임 결과");
+        outputView.printMap(bridgeGame.mySelectBridge, !gameContinue, bridgeGame.mySelectBridge.size()-1);
         //결과 출력
         outputView.printResult(bridgeGame.gameSuccess, bridgeGame.gameTryCount);
     }

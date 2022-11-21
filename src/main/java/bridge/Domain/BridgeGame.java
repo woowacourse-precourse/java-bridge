@@ -13,7 +13,7 @@ public class BridgeGame {
 
     public int gameTryCount = 1;
     public boolean gameSuccess = false;
-    List<String> mySelectBridge = new ArrayList<>();
+    public List<String> mySelectBridge = new ArrayList<>();
 
     List<String> bridge;
     int bridgeLen;
@@ -39,8 +39,10 @@ public class BridgeGame {
      */
     public boolean move() {
         int len = mySelectBridge.size();
-        if(len == bridgeLen)
+        if(len == bridgeLen) {
+            gameSuccess = true;
             return false;
+        }
         return true;
     }
 
