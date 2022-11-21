@@ -64,7 +64,7 @@ public class BasicBridgeValidator implements BridgeValidator {
                 return;
             }
         }
-        String errMessage = "[ERROR] 이동 명령은 정해진 문자만 가능합니다.";
+        String errMessage = "[ERROR] 이동 명령은 정해진 문자만 가능합니다. INPUT : " + command;
         System.out.println(errMessage);
         throw new IllegalArgumentException();
     }

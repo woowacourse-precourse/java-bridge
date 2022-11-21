@@ -4,25 +4,25 @@ import java.util.List;
 import java.util.Objects;
 
 public class Bridge {
-    List<String> bridge;
+    List<String> route;
 
     public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+        this.route = bridge;
     }
 
-    public List<String> getBridge() {
-        return bridge;
+    public List<String> getRoute() {
+        return route;
     }
 
     public boolean checkCorrectRoute(final List<String> route) {
         validateRoute(route);
-        return bridge.equals(route);
+        return this.route.equals(route);
     }
 
     public boolean checkDifferentRoute(final List<String> route) {
         validateRoute(route);
         for (int i =0; i < route.size(); i++) {
-            if (!Objects.equals(route.get(i), bridge.get(i))) {
+            if (!Objects.equals(route.get(i), this.route.get(i))) {
                 return true;
             }
         }
@@ -30,7 +30,7 @@ public class Bridge {
     }
 
     private void validateRoute(final List<String> route) {
-        if (route.size() > this.bridge.size()) {
+        if (route.size() > this.route.size()) {
             throw new IllegalArgumentException("");
         }
     }
