@@ -2,6 +2,7 @@ package view;
 
 import bridge.Bridge;
 import bridge.BridgeGame;
+import bridge.MoveCommand;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,8 +13,6 @@ import java.util.Objects;
 public class OutputView {
     public static final String IS_CLEAR = "게임 성공 여부 : ";
     public static final String TOTAL_NUMBER_ATTEMPTS  = "총 시도한 횟수: ";
-    public static final String UP = "U";
-    public static final String DOWN = "D";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -23,8 +22,8 @@ public class OutputView {
     public static void printMap(BridgeGame bridgeGame) {
         List<String> movingPosition = bridgeGame.getMovingPositions();
         List<String> result = bridgeGame.getResult();
-        printTopBridge(movingPosition, result, UP);
-        printTopBridge(movingPosition, result, DOWN);
+        printTopBridge(movingPosition, result, MoveCommand.UP.getCommand());
+        printTopBridge(movingPosition, result, MoveCommand.DOWN.getCommand());
         System.out.println();
     }
 

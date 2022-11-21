@@ -68,21 +68,25 @@ public class BridgeGame {
      */
     public void retry(String command) {
         commandValidation(command);
-        if (Objects.equals(command, "R")) {
+        if (Objects.equals(command, RestartCommand.RESTART.getCommand())) {
             setMovingPositions(new ArrayList<>());
             setResult(new ArrayList<>());
             setFailure(false);
             setClear(false);
             count++;
         }
-        if (Objects.equals(command, "Q")) {
+        if (Objects.equals(command, RestartCommand.QUIT.getCommand())) {
             setClear(true);
         }
     }
 
     private void commandValidation(String command) {
-        if (!Objects.equals(command, "R") && (!Objects.equals(command, "Q"))) {
-            throw new IllegalArgumentException("재시도는 \"R\" , 종료는 \"Q\"를 누르셔야 합니다.");
+        if (!Objects.equals(command, RestartCommand.RESTART.getCommand())
+                && (!Objects.equals(command, RestartCommand.QUIT.getCommand()))) {
+            throw new IllegalArgumentException("재시도는 \""
+                    + RestartCommand.RESTART.getCommand()
+                    + "\" , 종료는 \""
+                    + RestartCommand.QUIT.getCommand() + "\"를 누르셔야 합니다.");
         }
     }
 
