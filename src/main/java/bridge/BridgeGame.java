@@ -30,4 +30,8 @@ public class BridgeGame {
     public boolean isGameDone(){
         return bridgeGameController.isSuccess();
     }
+
+    public boolean isGameQuit(){
+        return bridgeGameController.readFinalCommand().equals(QUIT.getCommand());
+    }
 }
