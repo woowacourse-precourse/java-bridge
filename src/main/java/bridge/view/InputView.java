@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.Command;
+
 import static bridge.view.OutputView.*;
 import static camp.nextstep.edu.missionutils.Console.*;
 
@@ -36,7 +38,15 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static Command readGameCommand() {
+        String command = readLine();
+
+        if (!(command.equals("R") || command.equals("Q")))
+            throw new IllegalArgumentException("재시작 옵션 대한 입력이 잘못되었습니다.");
+
+        if (command.equals("R"))
+            return Command.RESTART;
+
+        return Command.QUIT;
     }
 }
