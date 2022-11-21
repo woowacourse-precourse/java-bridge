@@ -109,11 +109,11 @@
 
 ## Enum
 
-### 명령어(Command)
-- [ ] UP("U"), DOWN("D"), RETRY("R"), QUIT("Q")
+### 명령어(Commands)
+- [x] UP("U"), DOWN("D"), RETRY("R"), QUIT("Q")
 
-### 이동 결과(MoveResult)
-- [ ] SUCCESS(true, "O"), FAILURE(false, "X")
+### 이동 결과(MoveResults)
+- [x] SUCCESS(true, "O"), FAILURE(false, "X")
 
-### 반대 이동(ReverseMove)
-- [ ] REVERSEUP("U", "D"), REVERSEDOWN("D", "U")
+### 반대 이동(ReverseMoves)
+- [x] REVERSE_UP("U", "D"), REVERSE_DOWN("D", "U")
