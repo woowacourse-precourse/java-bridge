@@ -15,27 +15,23 @@ public class Bridge {
         return nowIndex;
     }
 
-    public int getBridgeSize() {
-        return this.bridge.size();
-    }
-
-    public void setNowIndex(int index) {
-        this.nowIndex = index;
-    }
-
     public void nowIndexUpdate() {
-        setNowIndex(this.nowIndex + 1);
+        this.nowIndex += 1;
     }
 
     public void resetGame() {
-        setNowIndex(0);
+        nowIndex = 0;
     }
 
-    public List<String> getBridge() {
-        return bridge;
+    private int getBridgeIndexOfEnd() {
+        return bridge.size() - 1;
+    }
+
+    public boolean isEndOfIndex() {
+        return nowIndex == getBridgeIndexOfEnd();
     }
 
     public boolean isCorrectMoveDirection(String moveDirection) {
-        return getBridge().get(nowIndex).equals(moveDirection);
+        return bridge.get(nowIndex).equals(moveDirection);
     }
 }
