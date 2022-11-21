@@ -7,7 +7,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgePrinterTest extends NsTest {
 
@@ -16,7 +15,7 @@ class BridgePrinterTest extends NsTest {
 
 
     @Test
-    public void bridgePrinterTest() throws Exception{
+    public void bridgePrinterTest() {
         //given
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
@@ -24,7 +23,6 @@ class BridgePrinterTest extends NsTest {
         bridgeGame.setUser();
         bridgeGame.getUser().addUserMoving("U");
         bridgeGame.getUser().addUserMoving("D");
-//        bridgeGame.getUser().addUserMoving("U");
 
         //when
         bridgePrinter.printLine(bridgeGame.getUser(), bridgeGame.getBridge());
