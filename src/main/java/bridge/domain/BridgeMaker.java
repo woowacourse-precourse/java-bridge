@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BridgeMaker {
@@ -20,7 +21,7 @@ public class BridgeMaker {
             int bridgeNumber = bridgeNumberGenerator.generate();
             bridge.add(convertNumberToString(bridgeNumber));
         }
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 
     private String convertNumberToString(int number) {

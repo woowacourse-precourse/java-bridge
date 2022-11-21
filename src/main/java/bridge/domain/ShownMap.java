@@ -14,10 +14,7 @@ public class ShownMap {
     }
 
     public List<List<Character>> getShownMap() {
-        List<List<Character>> mergedMap = new ArrayList<>();
-        mergedMap.add(upperMap);
-        mergedMap.add(lowerMap);
-        return mergedMap;
+        return List.of(upperMap, lowerMap);
     }
 
     public void clear() {
