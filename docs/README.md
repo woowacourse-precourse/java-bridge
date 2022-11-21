@@ -2,7 +2,7 @@
 
 ## 구현할 기능 목록
 
-- [ ] 다리의 길이를 입력받는다.
+- [x] 다리의 길이를 입력받는다.
   - InputView$readBridgeSize()
 - [ ] 입력 받은 다리의 길이 만큼 다리를 생성한다.
   - Bridge$createBridge()
