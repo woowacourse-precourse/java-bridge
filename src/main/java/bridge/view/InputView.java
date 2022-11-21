@@ -1,24 +1,17 @@
 package bridge.view;
 
-import bridge.constants.Command;
-import bridge.constants.ExceptionMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final String REGULAR_PATTERN = "^\\d+$";
-    private static final int STARTING_POINT_CONDITION = 3;
-    private static final int LAST_POINT_CONDITION = 20;
-    private static final String EMPTY_VALUE = "";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String bridgeInput = Console.readLine();
-        bridgeSizeVerification(bridgeInput);
         return Integer.parseInt(bridgeInput);
     }
 
@@ -27,7 +20,6 @@ public class InputView {
      */
     public String readMoving() {
         String playerMoving = Console.readLine();
-        ValidateUpAndDownCharacter(playerMoving);
         return playerMoving;
     }
 
@@ -36,7 +28,6 @@ public class InputView {
      */
     public String readGameCommand() {
         String restartInput = Console.readLine();
-        ValidateRestartAndEndCharacter(restartInput);
         return restartInput;
     }
 
