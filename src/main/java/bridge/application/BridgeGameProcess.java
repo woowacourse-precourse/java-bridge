@@ -19,12 +19,11 @@ public class BridgeGameProcess {
     public static void run() {
         ConsoleOut.GAME_START_MESSAGE.print();
         int bridgeSize = inputView.readBridgeSize(processHelper);
-        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(
-            bridgeSize);
-        repeatTheGame(bridgeSize, bridge);
+        gameStartLoop(bridgeSize, new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(
+            bridgeSize));
     }
 
-    private static void repeatTheGame(int bridgeSize, List<String> bridge) {
+    private static void gameStartLoop(int bridgeSize, List<String> bridge) {
         while (true) {
             BridgeGame bridgeGame = new BridgeGame();
             MatchResult matchResult = new MatchResult();
@@ -37,7 +36,6 @@ public class BridgeGameProcess {
             if (isRetry(bridgeGame, matchResult, outputView, gameCommand)) {
                 break;
             }
-
         }
     }
 
@@ -67,9 +65,7 @@ public class BridgeGameProcess {
     private static void moveOrNot(int bridgeSize, List<String> bridge, BridgeGame bridgeGame,
         MatchResult matchResult, OutputView outputView) {
         for (int index = 0; index < bridgeSize; index++) {
-
             String moving = inputView.readMoving(processHelper); // u or d 입력
-
             if (!bridgeGame.move(bridge, moving, index)) {
                 outputView.printMap(matchResult, bridgeGame.currentUserInput(), false);
                 break;
