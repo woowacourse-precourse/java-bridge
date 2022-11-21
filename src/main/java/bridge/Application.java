@@ -38,18 +38,18 @@ public class Application {
 
         checkGameStatus(movement);
 
-        outputView.printMap(game.bridge, game.userInput);
+        outputView.printMap(game);
         gameProcess();
     }
 
     private static void checkGameStatus(String movement) {
         if (!game.move(movement)) {
-            outputView.printMap(game.bridge, game.userInput);
+            outputView.printMap(game);
             gameCommandProcess();
         }
 
         if (game.userInput.size() == game.bridge.size()) {
-            outputView.printMap(game.bridge, game.userInput);
+            outputView.printMap(game);
             outputView.printResult(game, true);
             throw new GameException();
         }
