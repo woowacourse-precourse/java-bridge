@@ -16,7 +16,7 @@ public class GameCommand {
         this.gameCommand = gameCommand;
     }
 
-    private boolean isRetryOrQuit(String gameCommand) {
+    private boolean isRetryOrQuit(final String gameCommand) {
         return gameCommand.equals(RETRY) || gameCommand.equals(QUIT);
     }
 

@@ -17,7 +17,7 @@ public class BridgeSize {
         this.size = size;
     }
 
-    private boolean isSizeOfBoundary(int size) {
+    private boolean isSizeOfBoundary(final int size) {
         return MIN_BRIDGE_SIZE <= size && size <= MAX_BRIDGE_SIZE;
     }
 

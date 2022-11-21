@@ -7,7 +7,7 @@ import bridge.domain.resources.converter.ConvertBridgeMap;
 
 public class BridgeStateService {
 
-    public void compare(Move move, Bridge bridge, BridgeMap bridgeMap) {
+    public void compare(final Move move, final Bridge bridge, final BridgeMap bridgeMap) {
         String upOrDown = move.getMove();
         bridgeMap.add(upOrDown);
         if (bridge.isStepOk(upOrDown, bridgeMap.getInputCount() - 1)) {
@@ -18,7 +18,7 @@ public class BridgeStateService {
         }
     }
 
-    public String mapService(BridgeMap bridgeMap) {
+    public String mapService(final BridgeMap bridgeMap) {
         ConvertBridgeMap convertBridgeMap = new ConvertBridgeMap(bridgeMap);
         return convertBridgeMap.makePrinted(bridgeMap);
     }

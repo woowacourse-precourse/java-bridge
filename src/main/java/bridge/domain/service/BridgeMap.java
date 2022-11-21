@@ -21,7 +21,7 @@ public class BridgeMap {
         flagUp();
     }
 
-    public void add(String upOrDown) {
+    public void add(final String upOrDown) {
         bridgeMap.add(upOrDown);
     }
 

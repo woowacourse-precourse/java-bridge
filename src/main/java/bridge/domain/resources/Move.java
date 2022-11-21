@@ -17,7 +17,7 @@ public class Move {
         this.move = move;
     }
 
-    private boolean isUpOrDown(String move) {
+    private boolean isUpOrDown(final String move) {
         return move.equals(UP) || move.equals(DOWN);
     }
 

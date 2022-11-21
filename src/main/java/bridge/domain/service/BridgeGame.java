@@ -21,12 +21,12 @@ public class BridgeGame {
         this.totalAttempts = 0;
     }
 
-    public void move(Bridge bridge, Move move) {
+    public void move(final Bridge bridge, final Move move) {
         bridgeMap.countUp();
         bridgeStateService.compare(move, bridge, bridgeMap);
     }
 
-    public boolean retry(GameCommand gameCommand) {
+    public boolean retry(final GameCommand gameCommand) {
         String retryOrQuit = gameCommand.getGameCommand();
         if (Objects.equals(retryOrQuit, "R")) {
             return RETRY;
@@ -49,7 +49,7 @@ public class BridgeGame {
         return bridgeMap.getFlag();
     }
 
-    public void isRetry(boolean button) {
+    public void isRetry(final boolean button) {
         if (button == RETRY) {
             bridgeMap.clearBridgeMap();
         }

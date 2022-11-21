@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.utils.converter.ConvertBridge;
+import bridge.domain.resources.converter.ConvertBridge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,9 @@ public class BridgeMaker {
             int number = bridgeNumberGenerator.generate();
             String footHold = convertBridge.toUpOrDown(number);
             bridge.add(footHold);
-            count --;
+            count--;
         }
+        System.out.println("bridge = " + bridge);
         return bridge;
     }
 }

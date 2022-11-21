@@ -17,20 +17,20 @@ public class ConvertBridgeMap {
     private final List<String> printedUp;
     private final List<String> printedDown;
 
-    public ConvertBridgeMap(BridgeMap bridgeMap) {
+    public ConvertBridgeMap(final BridgeMap bridgeMap) {
         this.printedUp = new ArrayList<>();
         this.printedDown = new ArrayList<>();
         this.counter = bridgeMap.getInputCount();
     }
 
-    public String makePrinted(BridgeMap bridgeMap) {
+    public String makePrinted(final BridgeMap bridgeMap) {
         classifyCase(bridgeMap);
         return String.join("\n",
             printedUp.toString().replace(", ", DELIMITER),
             printedDown.toString().replace(", ", DELIMITER));
     }
 
-    private void classifyCase(BridgeMap bridgeMap) {
+    private void classifyCase(final BridgeMap bridgeMap) {
         if (bridgeMap.getFlag()) {
             correctCase(bridgeMap);
         }
@@ -39,13 +39,13 @@ public class ConvertBridgeMap {
             wrongCase(bridgeMap);
         }
     }
-    private void correctCase(BridgeMap bridgeMap) {
+    private void correctCase(final BridgeMap bridgeMap) {
         bridgeMap.getBridgeMap().stream()
             .limit(counter)
             .forEach(this::transform);
     }
 
-    private void wrongCase(BridgeMap bridgeMap) {
+    private void wrongCase(final BridgeMap bridgeMap) {
         if (Objects.equals(bridgeMap.getBridgeMap().get(counter), "U")) {
             correctCase(bridgeMap);
             printedUp.add(WRONG);
@@ -58,7 +58,7 @@ public class ConvertBridgeMap {
         }
     }
 
-    private void transform(String input) {
+    private void transform(final String input) {
         if (Objects.equals(input, "U")) {
             printedUp.add(CORRECT);
             printedDown.add(WHITE_SPACE);

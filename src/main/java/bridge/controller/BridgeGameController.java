@@ -56,7 +56,7 @@ public class BridgeGameController {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
     }
 
-    private void gameProcess(BridgeSize bridgeSize, Bridge bridge, BridgeGame bridgeGame) {
+    private void gameProcess(final BridgeSize bridgeSize, final Bridge bridge, final BridgeGame bridgeGame) {
         do {
             escape = moveUpOrDown(bridgeGame, bridge, bridgeSize);
             button = retryOrQuit(bridgeGame);
@@ -67,7 +67,7 @@ public class BridgeGameController {
         } while (button == RETRY);
     }
 
-    private boolean moveUpOrDown(BridgeGame bridgeGame, Bridge bridge, BridgeSize bridgeSize) {
+    private boolean moveUpOrDown(final BridgeGame bridgeGame, final Bridge bridge, final BridgeSize bridgeSize) {
         bridgeGame.incrementTotalAttempts();
         while (bridgeGame.checkFlag() && untilTheEnd(bridgeGame, bridgeSize)) {
             move(bridgeGame, bridge);
@@ -76,16 +76,16 @@ public class BridgeGameController {
         return !untilTheEnd(bridgeGame, bridgeSize);
     }
 
-    public boolean untilTheEnd(BridgeGame bridgeGame, BridgeSize bridgeSize) {
+    public boolean untilTheEnd(final BridgeGame bridgeGame, final BridgeSize bridgeSize) {
         return bridgeGame.getStepDistance() != bridgeSize.getSize();
     }
 
-    private void move(BridgeGame bridgeGame, Bridge bridge) {
+    private void move(final BridgeGame bridgeGame, final Bridge bridge) {
         Move move = readMoving();
         bridgeGame.move(bridge, move);
     }
 
-    private void printMap(BridgeGame bridgeGame) {
+    private void printMap(final BridgeGame bridgeGame) {
         outputView.printMap(bridgeGame);
     }
 
@@ -93,7 +93,7 @@ public class BridgeGameController {
         return inputView.readMoving();
     }
 
-    private boolean retryOrQuit(BridgeGame bridgeGame) {
+    private boolean retryOrQuit(final BridgeGame bridgeGame) {
         if (!bridgeGame.checkFlag()) {
             GameCommand gameCommand = readGameCommand();
             return bridgeGame.retry(gameCommand);
@@ -105,12 +105,12 @@ public class BridgeGameController {
         return inputView.readGameCommand();
     }
 
-    private void printFinalGameResult(BridgeGame bridgeGame) {
+    private void printFinalGameResult(final BridgeGame bridgeGame) {
         outputView.print(BridgePhrase.GAME_RESULT);
         outputView.printResult(bridgeGame);
     }
 
-    private void printSuccessOrNot(BridgeGame bridgeGame) {
+    private void printSuccessOrNot(final BridgeGame bridgeGame) {
         if (bridgeGame.checkFlag()) {
             outputView.print(BridgePhrase.GAME_SUCCESS);
         } else if (!bridgeGame.checkFlag()) {
@@ -118,7 +118,7 @@ public class BridgeGameController {
         }
     }
 
-    private void printTotalAttempts(BridgeGame bridgeGame) {
+    private void printTotalAttempts(final BridgeGame bridgeGame) {
         outputView.print(BridgePhrase.GAME_TRY_COUNT, bridgeGame.totalAttempts());
     }
 

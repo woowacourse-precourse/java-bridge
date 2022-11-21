@@ -3,7 +3,7 @@ package bridge.domain.resources.converter;
 public class ConvertBridge implements Converter<Integer, String> {
 
     @Override
-    public String toUpOrDown(Integer input) {
+    public String toUpOrDown(final Integer input) {
         if (input == 1)
             return "U";
         if (input == 0)
