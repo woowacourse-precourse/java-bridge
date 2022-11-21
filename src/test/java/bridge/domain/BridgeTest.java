@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeTest {
     Bridge bridge = new Bridge(List.of("U","D","U"));
-    
+
     @DisplayName("정확한 길이가 반환되는 지 테스트 한다.")
     @Test
     void bridgeSizeTest() {
