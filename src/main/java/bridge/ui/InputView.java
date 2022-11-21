@@ -1,9 +1,9 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.Expression.DOWN;
-import static bridge.Expression.UP;
-import static bridge.UserInterface.RANGE_OUT_OF_EXCEPTION;
-import static bridge.UserInterface.SELECT_RE_TRY;
+import static bridge.ui.Expression.DOWN;
+import static bridge.ui.Expression.UP;
+import static bridge.ui.UserInterface.RANGE_OUT_OF_EXCEPTION;
+import static bridge.ui.UserInterface.SELECT_RE_TRY;
 import static java.lang.Integer.parseInt;
 
 import camp.nextstep.edu.missionutils.Console;
