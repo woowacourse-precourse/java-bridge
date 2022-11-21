@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.type.ErrorType;
 import bridge.valid.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -16,7 +17,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
-        return convertToInt(Console.readLine());
+        int size = 0;
+        try {
+            size = convertToInt(Console.readLine());
+            return size;
+        } catch (IllegalArgumentException e) {
+            printError(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -24,7 +32,14 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(SELECT_MOVING);
-        return Console.readLine();
+        String command = Console.readLine();
+        try {
+            Validation.inputMoveSquareValid(command);
+            return command;
+        } catch (IllegalArgumentException e) {
+            printError(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
+            return readMoving();
+        }
     }
 
     /**
@@ -32,14 +47,21 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(RESUME_GAME);
-        return Console.readLine();
+        String command = Console.readLine();
+        try {
+            Validation.inputResumeCommandValid(command);
+            return command;
+        } catch (IllegalArgumentException e) {
+            printError(ErrorType.INPUT_RESUME_COMMAND_ERROR_TYPE.getText());
+            return readGameCommand();
+        }
     }
 
     public void printError(String text) {
         System.out.println(text);
     }
 
-    private int convertToInt(String input) {
+    public int convertToInt(String input) {
         Validation.inputNumberValid(input);
         return Integer.parseInt(input);
     }
