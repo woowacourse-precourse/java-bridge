@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.repository.BridgeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,6 @@ public class BridgeMaker {
 
     private static final int BRIDGE_MIN_SIZE = 3;
     private static final int BRIDGE_MAX_SIZE = 20;
-    private static final String UP_BRIDGE_LETTER = "U";
-    private static final String DOWN_BRIDGE_LETTER = "D";
-    private static final int UP_BRIDGE_NUMBER = 1;
-    private static final int DOWN_BRIDGE_NUMBER = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -27,14 +24,6 @@ public class BridgeMaker {
 
     public static int getBridgeMaxSize() {
         return BRIDGE_MAX_SIZE;
-    }
-
-    public static String getUpBridgeLetter() {
-        return UP_BRIDGE_LETTER;
-    }
-
-    public static String getDownBridgeLetter() {
-        return DOWN_BRIDGE_LETTER;
     }
 
     /**
@@ -61,10 +50,10 @@ public class BridgeMaker {
     }
 
     private String convertNumberToLetter(int bridgeNumber) {
-        if (bridgeNumber == UP_BRIDGE_NUMBER) {
-            return UP_BRIDGE_LETTER;
+        if (bridgeNumber == BridgeInfo.UP_BRIDGE.getNumber()) {
+            return BridgeInfo.UP_BRIDGE.getLetter();
         }
-        return DOWN_BRIDGE_LETTER;
+        return BridgeInfo.DOWN_BRIDGE.getLetter();
     }
 
 }

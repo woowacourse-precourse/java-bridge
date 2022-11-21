@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.repository.BridgeInfo;
 import bridge.repository.BridgeResultData;
 import bridge.repository.MovingData;
 import java.util.List;
@@ -38,8 +39,8 @@ public class BridgeGame {
     public void move(String moving) {
         MovingData.add(moving);
         BridgeResultData.add(
-                convertMovingToAnswer(moving, BridgeMaker.getUpBridgeLetter()),
-                convertMovingToAnswer(moving, BridgeMaker.getDownBridgeLetter())
+                convertMovingToAnswer(moving, BridgeInfo.UP_BRIDGE.getLetter()),
+                convertMovingToAnswer(moving, BridgeInfo.DOWN_BRIDGE.getLetter())
         );
     }
 

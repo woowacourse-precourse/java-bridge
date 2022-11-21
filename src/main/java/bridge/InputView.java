@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.repository.BridgeInfo;
 import bridge.systemMessage.ErrorMessage;
 import bridge.util.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
@@ -33,8 +34,8 @@ public class InputView {
     public static String readMoving() {
         System.out.printf(
                 INPUT_MOVING_POSITION_MESSAGE,
-                BridgeMaker.getUpBridgeLetter(),
-                BridgeMaker.getDownBridgeLetter()
+                BridgeInfo.UP_BRIDGE.getLetter(),
+                BridgeInfo.DOWN_BRIDGE.getLetter()
         );
         String input = getInput();
         InputValidator.validateMoving(input);

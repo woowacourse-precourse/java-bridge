@@ -2,6 +2,7 @@ package bridge.util;
 
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
+import bridge.repository.BridgeInfo;
 import bridge.systemMessage.ErrorMessage;
 
 public class InputValidator {
@@ -19,7 +20,7 @@ public class InputValidator {
     }
 
     public static void validateMoving(String input) {
-        if (!input.equals(BridgeMaker.getUpBridgeLetter()) && !input.equals(BridgeMaker.getDownBridgeLetter())) {
+        if (!input.equals(BridgeInfo.UP_BRIDGE.getLetter()) && !input.equals(BridgeInfo.DOWN_BRIDGE.getLetter())) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
         }
     }
