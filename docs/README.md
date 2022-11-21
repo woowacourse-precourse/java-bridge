@@ -1,6 +1,7 @@
 모든 예외 처리 후, 예외 처리 된 부분 부터 재입력 받기
 
-## InputView - 입력
+## View
+### InputView - 입력
 
 - `readline()` 사용 (여기서만)
 - [x]  생성할 다리 길이를 입력받는다
@@ -10,7 +11,7 @@
 - [x]  게임 재시작/종료 여부를 입력받는다. (R 재시작, Q 종료)
     - [ ]  [ERROR] R 이나 Q가 아닐 경우
 
-## OutputView - 출력
+### OutputView - 출력
 
 - [ ]  게입 시작 문구를 출력한다.
     - `다리 건너기 게임을 시작합니다.`
@@ -29,7 +30,8 @@
     - [ ]  총 시도한 횟수를 출력한다.
         - `총 시도한 횟수:`
 
-## BridgeGame - 다리 건너기 게임
+## Domain
+### BridgeGame - 다리 건너기 게임
 
 - InputView 와 OutputView를 사용하지 말것
 - [ ]  이동한다.
@@ -42,28 +44,40 @@
     - [ ]  다리를 끝까지 건널 경우
     - [ ]  건너기를 실패한 후 종료한 경우
 
-## BridgeMaker - 다리 생성
+### BridgeMaker - 다리 생성
 
 - [x]  다리를 생성한다.
    - [x]  해당 방향으로 이동할 수 있는지 여부를 랜덤으로 생성한다.
       - 랜덤값 0 - 아래칸(D)
       - 랜덤값 1 - 위칸(U)
-- [ ]  다리를 저장한다.
 
-## BridgeRandomNumberGenerator 
-### 다리 이동 가능 여부 랜덤 생성
+### BridgeRandomNumberGenerator 
+#### 다리 이동 가능 여부 랜덤 생성
 • Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 
 • `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
-## 재시도 횟수 객체
+### Bridge
+- [ ] 생성된 다리를 저장한다.
+
+### 재시도 횟수 객체
 
 - [ ]  재시도 횟수를 저장한다.
 
-## 이동 가능 여부 객체
+### 이동 결과 
+- [ ] 현재 이동 칸과 현재 결과를 저장한다.
 
-- [ ]  이동 가능 여부 (랜덤값)을 저장한다.
+## Controller
+### BridgeGameController
+- [ ] Game Start
+- [ ] Game Run
+  - [ ] Bridge size 입력
+  - [ ] 이동할 칸 입력
+  - [ ] 재시도 여부 입력
+- [ ] Game Over
+  - 최종 게임 결과 출력
+  - 게임 성공 여부 출력
+  - 총 시도한 횟수 출력
+### InputController
 
-## 이동 History 객체
-
-- [ ]  현재까지 건넌 다리 history를 저장한다.
+### OutputController
