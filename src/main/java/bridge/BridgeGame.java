@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.exception.CheckBridgeLengthException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class BridgeGame {
     private static final String QUIT = "Q";
 
     private static final String IS_ERROR = "e";
+    private static final int ERROR = 99;
     public static List<String> bridgeDraw = new ArrayList<>();
 
     /**
@@ -46,9 +49,13 @@ public class BridgeGame {
         outputView.printRetry();
         String inputRetry = inputView.readGameCommand();
         isRestart(inputRetry);
-        if (inputRetry.equals(RETRY))
-            if (run() == ONE)
+        if (inputRetry.equals(RETRY)) {
+            int runReturn = run();
+            if (runReturn == ONE)
                 return ONE;
+            if (runReturn == ERROR)
+                return ERROR;
+        }
         if (inputRetry.equals(QUIT))
             return TWO;
         return ZERO;
@@ -63,14 +70,17 @@ public class BridgeGame {
         outputView.printInputBridgeLength();
         bridgeDraw.clear();
         int bridgeSize = inputView.readBridgeSize();
-        bridgeDraw.addAll(bridgeMaker.makeBridge(bridgeSize));
-        if (bridgeDraw.contains(IS_ERROR)) {
-            return ONE;
+        if (bridgeSize != ZERO) {
+            bridgeDraw.addAll(bridgeMaker.makeBridge(bridgeSize));
+            if (bridgeDraw.contains(IS_ERROR)) {
+                return ONE;
+            }
+            return ZERO;
         }
-        return ZERO;
+        return ERROR;
     }
 
-    public void callFinalPrint(){
+    public void callFinalPrint() {
         bridgeDraw.remove(IS_ERROR);
         OutputView outputView = new OutputView();
         outputView.printMap(bridgeDraw);

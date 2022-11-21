@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Application {
     private static final int ZERO = 0;
-    private static final int ONE = 1;
+    private static final int ERROR = 99;
     private static final int TWO = 2;
 
     public static void main(String[] args) {
@@ -14,28 +14,31 @@ public class Application {
         OutputView outputView = new OutputView();
         int runCount = ZERO;
         int run = bridgeGame.run();
-        if(run == ZERO) {
+        if (run == ZERO) {
             bridgeGame.callFinalPrint();
             System.out.println();
             outputView.printWin();
+            outputView.printRunCycle(runCount);
         }
-        while(run != ZERO){
-            int isWin = bridgeGame.retry();
+        while (run != ZERO && run != ERROR) {
             runCount++;
-            if( isWin == ZERO) {
+            int isWin = bridgeGame.retry();
+            if (isWin == ZERO) {
                 bridgeGame.callFinalPrint();
                 System.out.println();
                 outputView.printWin();
-                break;
+                outputView.printRunCycle(runCount);
+                return;
             }
-            if(isWin == TWO){
+            if (isWin == TWO) {
                 bridgeGame.callFinalPrint();
                 System.out.println();
                 outputView.printLose();
                 runCount--;
+                outputView.printRunCycle(runCount);
                 break;
             }
         }
-        outputView.printRunCycle(runCount);
     }
 }
+
