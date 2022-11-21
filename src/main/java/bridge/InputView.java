@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    // TODO: Error메시지 Enum으로 출력
 
     public int readBridgeSize() {
         String inputBridgeSize = Console.readLine();
@@ -29,7 +30,19 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String inputMoving = Console.readLine();
+        validMoving(inputMoving);
+        return inputMoving;
+    }
+
+    private void validMoving(String inputMoving) {
+        // TODO: U, O를 상수로 관리
+        if (!inputMoving.contains("U") && !inputMoving.contains("O")) {
+            throw new IllegalArgumentException();
+        }
+        if (inputMoving.length() != 1) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
