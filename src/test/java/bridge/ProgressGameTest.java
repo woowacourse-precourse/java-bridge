@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.controller.ProgressGame;
 import bridge.model.BridgeGame;
+import bridge.view.OutputView;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,24 +25,33 @@ public class ProgressGameTest {
         bridge = Arrays.asList("D","U","D");
     }
 
-    @DisplayName("progress 단위 테스트(인풋값 ㅣ 정답)")
+    @DisplayName("progress 단위 테스트(인풋값 , 최종 인풋값ㅣ정답)")
     @ParameterizedTest
     @MethodSource("provideFirstAndSecond")
     void checkCorrect(String input, String lastInput, String answer) {
         BridgeGame game = new BridgeGame(bridge);
-        InputStream in = createInputStream(input, lastInput);
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        System.setIn(in);
+        OutputStream out = setOutput();
+        setInput(input, lastInput);
         new ProgressGame(game);
         assertThat(out.toString()).contains(answer);
     }
 
-    public static InputStream generateUserInput(String input) {
+    private OutputStream setOutput() {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        return out;
+    }
+
+    private void setInput(String input, String lastInput) {
+        InputStream in = createInputStream(input, lastInput);
+        System.setIn(in);
+    }
+
+    private static InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
 
-    public static Stream<Arguments> provideFirstAndSecond() {
+    private static Stream<Arguments> provideFirstAndSecond() {
         return Stream.of(
                 Arguments.of("D\nU\n", "D", "최종 게임 결과\n" +
                                                                 "[   | O |   ]\n" +
@@ -70,5 +80,4 @@ public class ProgressGameTest {
         );
         return new SequenceInputStream(Collections.enumeration(streams));
     }
-
 }
