@@ -48,7 +48,7 @@ public class OutputView {
 
     private void printUpperBlock(Record record, List<String> bridge, int index) {
         String direction = Direction.getFirstLetterByName(Direction.UP);
-        String contentToPrint = getContent(Direction.isEqualToUp(bridge.get(index)),
+        String contentToPrint = getContent(Direction.equals(bridge.get(index), Direction.UP),
                 compareToBoard(record, direction, index));
         printChoiceResult(contentToPrint);
         if (index < record.getBoardSize() - 1) {
@@ -80,7 +80,7 @@ public class OutputView {
 
     private void printLowerBlock(Record record, List<String> bridge, int index) {
         String direction = Direction.getFirstLetterByName(Direction.DOWN);
-        String contentToPrint = getContent(Direction.isEqualToDown(bridge.get(index)),
+        String contentToPrint = getContent(Direction.equals(bridge.get(index), Direction.DOWN),
                 compareToBoard(record, direction, index));
         printChoiceResult(contentToPrint);
         if (index < record.getBoardSize() - 1) {

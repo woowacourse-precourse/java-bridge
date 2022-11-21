@@ -67,7 +67,8 @@ public class InputController {
     }
 
     private void isValidDirection(String directionInput) throws IllegalArgumentException {
-        if (!Direction.isEqualToUp(directionInput) && !Direction.isEqualToDown(directionInput)) {
+        if (!Direction.equals(directionInput, Direction.UP)
+                && !Direction.equals(directionInput, Direction.DOWN)) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
                     + ExceptionMessage.INVALID_DIRECTION);
         }
