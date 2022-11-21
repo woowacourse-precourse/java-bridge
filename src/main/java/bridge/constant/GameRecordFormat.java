@@ -17,5 +17,14 @@ public enum GameRecordFormat {
     public String generate(String gameResult){
         return this.maker.apply(gameResult);
     }
+    private static boolean isFirstLocation(GameRecordFormat gameRecordFormat, boolean isFirst){
+        return gameRecordFormat.isFirst==isFirst;
+    }
+    public static GameRecordFormat findLocation(boolean isFirst){
+        return Arrays.stream(GameRecordFormat.values())
+                .filter(gameRecordFormat -> GameRecordFormat.isFirstLocation(gameRecordFormat, isFirst))
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+    }
 
 }
