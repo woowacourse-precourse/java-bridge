@@ -38,12 +38,17 @@ public class BridgeController {
         boolean isMovableStatus = true;
         while (isMovableStatus) {
             MoveResultDto moveResultDto = moveOneBridge();
-            isMovableStatus = moveResultDto.isMovableStatus();
-            if (!moveResultDto.isRightLastBridgePick()) {
-                String gameCommand = inputView.readGameCommand();
-                isMovableStatus = bridgeService.retry(gameCommand);
-            }
+            isMovableStatus = requestRestartGame(moveResultDto);
         }
+    }
+
+    private boolean requestRestartGame(MoveResultDto moveResultDto) {
+        boolean isMovableStatus = moveResultDto.isMovableStatus();
+        if (!moveResultDto.isRightLastBridgePick()) {
+            String gameCommand = inputView.readGameCommand();
+            isMovableStatus = bridgeService.retry(gameCommand);
+        }
+        return isMovableStatus;
     }
 
     private MoveResultDto moveOneBridge() {
