@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     private void makeLineMap(BridgeGame bridgeGame, List<String> topLineMap, List<String> bottomLineMap) {
-        for (int index = 0; index < bridgeGame.getCountOfMovingResults(); index++) {
+        for (int index = 0; index < bridgeGame.getMovingCount(); index++) {
             if (Objects.equals(bridgeGame.findMovingByIndex(index), UP.getCommand())) {
                 topLineMap.add(markMovingSuccessOrFail(bridgeGame.findMovingResultByIndex(index)));
                 bottomLineMap.add(NOTHING_MARKING);

@@ -49,7 +49,7 @@ public class BridgeGame {
         return movingResults.get(index);
     }
 
-    public int getCountOfMovingResults() {
+    public int getMovingCount() {
         return movingResults.size();
     }
 
