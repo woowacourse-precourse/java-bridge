@@ -14,7 +14,7 @@ public class BridgesTest {
         assertThat(bridges.isCompletedGame(player)).isFalse();
         player.move("U");
         assertThat(bridges.isCompletedGame(player)).isFalse();
-        player.move("U");
+        player.move("D");
         player.move("U");
         assertThat(bridges.isCompletedGame(player)).isTrue();
     }
