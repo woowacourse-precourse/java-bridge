@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeBlock;
 import bridge.domain.bridge.Phase;
-import bridge.domain.bridge.RetryCommand;
+import bridge.domain.result.RetryCommand;
 import bridge.domain.result.BridgeResult;
 import bridge.domain.result.GameState;
 import bridge.domain.result.MovingResult;

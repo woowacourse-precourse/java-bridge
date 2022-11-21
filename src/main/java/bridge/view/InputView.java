@@ -1,11 +1,8 @@
 package bridge.view;
 
 import bridge.domain.bridge.BridgeBlock;
-import bridge.domain.bridge.RetryCommand;
+import bridge.domain.result.RetryCommand;
 import bridge.system.Validation;
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.NoSuchElementException;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 import static java.lang.Integer.*;
