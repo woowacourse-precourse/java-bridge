@@ -36,10 +36,14 @@ public class BridgeGame {
         String retryOrQuit = BridgeController.getGameCommand();
         BridgeController.printRetryOrQuit(retryOrQuit);
         if (BridgeGameValidator.isUserInputRetry(retryOrQuit)) {
-            tryNumber++;
+            countTryNumber();
             CleanerUtil.clearBothSide(bothSide);
             move(bridge, bothSide);
         }
+    }
+
+    public static void countTryNumber(){
+        tryNumber++;
     }
 
     public static void cleanTryNumber() {
