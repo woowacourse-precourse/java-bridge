@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.ui.InputValue;
+import bridge.domain.utils.Space;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import static bridge.domain.utils.Space.*;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static final int UP_NUMBER = 1;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -34,9 +35,9 @@ public class BridgeMaker {
 
     private void addToStringList(int answerSpace, List<String> answerBridge) {
         if (answerSpace == DOWN.getIndex()) {
-            answerBridge.add(InputValue.DOWN.getValue());
-        } else if (answerSpace == UP.getIndex()) {
-            answerBridge.add(InputValue.UP.getValue());
+            answerBridge.add(DOWN.getRepresented());
+        } else if (answerSpace == UP_NUMBER) {
+            answerBridge.add(UP.getRepresented());
         }
     }
 }

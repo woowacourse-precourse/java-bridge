@@ -1,14 +1,13 @@
 package bridge.domain.ui;
 
-public enum InputValue {
-    UP("U"),
-    DOWN("D"),
-    RESTART("R"),
+public enum RetryOrQuit {
+
+    RETRY("R"),
     QUIT("Q");
 
     private final String value;
 
-    InputValue(String value) {
+    RetryOrQuit(String value) {
         this.value = value;
     }
 

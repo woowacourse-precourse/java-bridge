@@ -11,7 +11,7 @@ import bridge.domain.ui.OutputView;
 import java.util.List;
 
 import static bridge.domain.user.CurrentBridgeElement.*;
-import static bridge.domain.ui.InputValue.RESTART;
+import static bridge.domain.ui.RetryOrQuit.RETRY;
 
 public class NewGame {
     private static final OutputView outputView = new OutputView();
@@ -74,7 +74,7 @@ public class NewGame {
     private void handleFailedSituation() {
         outputView.printMessageAfterFailure();
         String response = inputView.readGameCommand();
-        if (response.equals(RESTART.getValue())) {
+        if (response.equals(RETRY.getValue())) {
             bridgeGame.retry(user);
             play();
             return;
