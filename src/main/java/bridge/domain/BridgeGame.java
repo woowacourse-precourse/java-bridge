@@ -39,4 +39,9 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+
+    public List<String> getBridgeProgress() {
+        return bridgeProgress;
+    }
 }
