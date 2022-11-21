@@ -53,6 +53,12 @@ public class GameController {
         }
         return false;
     }
+    public String moveChoice() {
+        outputView.choiceUpDown();
+        String userMove = inputView.readMoving();
+        System.out.println(userMove);
+        return userMove;
+    }
 
 }
 
