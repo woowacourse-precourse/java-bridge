@@ -9,7 +9,6 @@ import bridge.view.OutputView;
 
 public class BridgeController {
 
-
     private final BridgeMap bridgeMap = new BridgeMap();
     private final BridgeGame game;
     private final BridgeServices service;
@@ -23,7 +22,8 @@ public class BridgeController {
     public void play() {
         OutputView.printGameStart();
         attemptGameClear();
-        OutputView.printResult(bridgeMap.getBridgeMap(), game.successOrNot(), game.getNumberOfAttempts());
+        OutputView.printResult(bridgeMap.getBridgeMap(),
+                game.successOrNot(), game.getNumberOfAttempts());
     }
 
     private void attemptGameClear() {
@@ -35,11 +35,11 @@ public class BridgeController {
     }
 
     private void move() {
-        do {
+        while (game.inProgress()) {
             String direction = service.decideDirection();
             game.move(direction);
             bridgeMap.update(direction, game.over());
             OutputView.printMap(bridgeMap.getBridgeMap());
-        } while (game.inProgress());
+        }
     }
 }
