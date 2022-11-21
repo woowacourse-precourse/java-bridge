@@ -10,28 +10,27 @@ import java.util.List;
 import java.util.Objects;
 
 public class Controller {
-    private BridgeMaker bridgeMaker;
-    private int numberOfAttempts;
+    private int numberOfAttempts = 0;
     private List<Integer> movingSuccess;
     private boolean presentResult;
     private boolean restart = true;
 
     public void run() {
-        initialize();
+        BridgeMaker bridgeMaker = initialize();
         gameStageStart(bridgeMaker.makeBridge(Getter.getBridgeSize()));
-        OutputView.printResult(movingSuccess, numberOfAttempts);
+        OutputView.printResult(this.movingSuccess, this.numberOfAttempts);
     }
 
-    private void initialize() {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        this.bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        this.numberOfAttempts = 0;
+    private BridgeMaker initialize() {
         OutputView.printStartMessage();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        return bridgeMaker;
     }
 
     private void gameStageStart(List<String> bridge) {
         while (this.restart) {
-            numberOfAttempts++;
+            this.numberOfAttempts++;
             movingStart(bridge);
             if (this.movingSuccess.size() == bridge.size() && this.presentResult) {
                 break;
@@ -43,7 +42,7 @@ public class Controller {
         this.movingSuccess = new ArrayList<>();
         for (int indexOfBridge = 0; indexOfBridge < bridge.size(); indexOfBridge++) {
             moveOneSpace(bridge, indexOfBridge);
-            if (BridgeGame.retry(presentResult)) {
+            if (BridgeGame.retry(this.presentResult)) {
                 this.restart = checkRestart(Getter.getGameCommand());
                 break;
             }
