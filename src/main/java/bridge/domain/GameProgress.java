@@ -1,2 +1,8 @@
-package bridge.domain;public enum GameProgress {
+package bridge.domain;
+
+public enum GameProgress {
+    START,
+    PLAY,
+    END,
+    EXIT;
 }

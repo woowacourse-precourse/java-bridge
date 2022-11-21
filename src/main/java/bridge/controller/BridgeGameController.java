@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.GameProgress;
 import bridge.domain.GameStatus;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
@@ -8,15 +9,36 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     BridgeGame bridgeGame = new BridgeGame();
     GameStatus gameStatus = GameStatus.PLAYING;
+    GameProgress gameProgress = GameProgress.START;
 
     public void run() {
-        start();
-        play();
-        end();
+        OutputView.printStart();
+
+        while (gameProgress != GameProgress.EXIT) {
+            try {
+                choiceGameMode();
+            } catch (IllegalArgumentException ex) {
+                OutputView.printError(ex.getMessage());
+            }
+        }
+    }
+
+    private void choiceGameMode() {
+        if (gameProgress == GameProgress.START) {
+            start();
+        }
+        if (gameProgress == GameProgress.PLAY) {
+            play();
+        }
+        if (gameProgress == GameProgress.END) {
+            end();
+        }
     }
 
     private void end() {
         OutputView.printResult(bridgeGame.getPlayer(), GameStatus.decideGameResult(gameStatus));
+
+        gameProgress = GameProgress.EXIT;
     }
 
     private void play() {
@@ -26,6 +48,8 @@ public class BridgeGameController {
                 askRetry();
             }
         }
+
+        gameProgress = GameProgress.END;
     }
 
     private void askRetry() {
@@ -38,7 +62,7 @@ public class BridgeGameController {
     }
 
     private void start() {
-        OutputView.printStart();
         bridgeGame.createBridge(InputView.readBridgeSize());
+        gameProgress = GameProgress.PLAY;
     }
 }
