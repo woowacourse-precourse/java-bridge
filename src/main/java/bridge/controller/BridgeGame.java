@@ -59,4 +59,8 @@ public class BridgeGame {
         if (retryCommand == QUIT) return false;
         throw new IllegalArgumentException(INPUT_WRONG_COMMAND.getMessage());
     }
+
+    public void addRunCount() {
+        this.runCount++;
+    }
 }
