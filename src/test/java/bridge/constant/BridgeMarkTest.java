@@ -42,6 +42,15 @@ class BridgeMarkTest {
                 .hasMessage("[ERROR] 이동할 칸의 입력의 경우 U와 D 뿐이어야 합니다.");
     }
 
+    @DisplayName("BridgeMark 1, 0이 주어지면 U, D를 반환")
+    @Test
+    void mapToString() {
+        String upMark = BridgeMark.mapToString(1);
+        String downMark = BridgeMark.mapToString(0);
+        assertThat(upMark).isEqualTo("U");
+        assertThat(downMark).isEqualTo("D");
+    }
+
     @DisplayName("BridgeMark가 업인지 다운인지 묻는 메소드 검증")
     @Test
     void isUpAndIsDown() {
