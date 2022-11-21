@@ -20,6 +20,7 @@ public class BridgeMaker {
     private static final int ONE = 1;
     private static final int TWO = 2;
     private static final String IS_ERROR = "e";
+    private static final String BRIDGE_ERROR = "E";
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -36,7 +37,7 @@ public class BridgeMaker {
         List<String> bridgeD = new ArrayList<>();
         List<String> joined = new ArrayList<>();
         List<String> randomCollect = makeRandomUpDown(size);
-        errorBridge.add(IS_ERROR);
+        errorBridge.add(BRIDGE_ERROR);
         int countCycle = ONE;
         for (int i = ZERO; i < size; i++)
             System.out.println(randomCollect.get(i));//
@@ -44,6 +45,8 @@ public class BridgeMaker {
         String moveUpOrDown;
         for (int i = ZERO; i < size; i++) {
             moveUpOrDown = bridgeGame.move();
+            if(moveUpOrDown == BRIDGE_ERROR)
+                return errorBridge;
             if (moveUpOrDown.equals(ICON_UP)) {
                 bridgeU = isEqual(randomCollect.get(i), bridgeU, moveUpOrDown);
                 /*if (randomCollect.get(i).equals(moveUpOrDown))

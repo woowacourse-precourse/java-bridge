@@ -23,6 +23,8 @@ public class Application {
         while (run != ZERO && run != ERROR) {
             runCount++;
             int isWin = bridgeGame.retry();
+            if (isWin == ERROR)
+                break;
             if (isWin == ZERO) {
                 bridgeGame.callFinalPrint();
                 System.out.println();

@@ -19,6 +19,7 @@ public class BridgeGame {
     private static final String QUIT = "Q";
 
     private static final String IS_ERROR = "e";
+    private static final String BRIDGE_ERROR = "E";
     private static final int ERROR = 99;
     public static List<String> bridgeDraw = new ArrayList<>();
 
@@ -33,7 +34,9 @@ public class BridgeGame {
         outputView.printInputMovement();
         String inputMove = inputView.readMoving();
         //System.out.println(inputMove);
-        isUpDown(inputMove);
+        int checkUpDown = isUpDown(inputMove);
+        if (checkUpDown == ERROR)
+            return BRIDGE_ERROR;
         //System.out.println("입력완료");
         return inputMove;
     }
@@ -48,7 +51,9 @@ public class BridgeGame {
         OutputView outputView = new OutputView();
         outputView.printRetry();
         String inputRetry = inputView.readGameCommand();
-        isRestart(inputRetry);
+        int checkRetryQuit = isRestart(inputRetry);
+        if (checkRetryQuit == ERROR)
+            return ERROR;
         if (inputRetry.equals(RETRY)) {
             int runReturn = run();
             if (runReturn == ONE)
@@ -70,8 +75,12 @@ public class BridgeGame {
         outputView.printInputBridgeLength();
         bridgeDraw.clear();
         int bridgeSize = inputView.readBridgeSize();
+        if (bridgeSize == ERROR)
+            return ERROR;
         if (bridgeSize != ZERO) {
             bridgeDraw.addAll(bridgeMaker.makeBridge(bridgeSize));
+            if (bridgeDraw.contains(BRIDGE_ERROR))
+                return ERROR;
             if (bridgeDraw.contains(IS_ERROR)) {
                 return ONE;
             }
