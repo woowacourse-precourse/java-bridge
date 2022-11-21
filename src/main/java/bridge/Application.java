@@ -71,5 +71,15 @@ public class Application {
         }
     }
 
+    // Termination condition: 실패(X)
+    private static boolean checkGameOver(List<List<String>> result) {
+        for (List<String> items : result) {
+            String marker = items.get(0);
+            if (marker.equals("X")) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
