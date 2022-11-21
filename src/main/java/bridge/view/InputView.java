@@ -18,11 +18,11 @@ public class InputView {
         String userInput = Console.readLine();
         try {
             UserInputException.checkUserInputBridgeSize(userInput);
+            User.setBridgeSize(userInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readBridgeSize();
         }
-        User.setBridgeSize(userInput);
     }
 
     /**
@@ -33,11 +33,11 @@ public class InputView {
         String userInput = Console.readLine();
         try {
             UserInputException.isCorrectMovingCommand(userInput);
+            User.recordUserMoving(userInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readMoving();
         }
-        User.recordUserMoving(userInput);
     }
 
     /**
@@ -48,10 +48,10 @@ public class InputView {
         String userInput = Console.readLine();
         try {
             UserInputException.isCorrectGameCommand(userInput);
+            return userInput;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readGameCommand();
+            return readGameCommand();
         }
-        return userInput;
     }
 }
