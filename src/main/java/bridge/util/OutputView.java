@@ -16,6 +16,7 @@ public class OutputView {
         for (String s : map) {
             System.out.println("[ " + s + " ]");
         }
+        System.out.println();
     }
 
     /**
