@@ -49,7 +49,25 @@ public class OutputView {
         return lines.get(1) + "|" + downLine;
     }
 
+    private String constructTopLine(List<String> item) {
+        String topLine = "";
+        if (item.get(1).equals("U")) {
+            topLine += addLine(item);
+            return topLine;
+        }
+        topLine += addBlank();
+        return topLine;
+    }
 
+    private String constructDownLine(List<String> item) {
+        String downLine = "";
+        if (item.get(1).equals("U")) {
+            downLine += addBlank();
+            return downLine;
+        }
+        downLine += addLine(item);
+        return downLine;
+    }
 
 
 
