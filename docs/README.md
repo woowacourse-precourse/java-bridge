@@ -45,15 +45,13 @@
 ## BridgeMaker - 다리 생성
 
 - [ ]  다리를 생성한다.
+   - [ ]  해당 방향으로 이동할 수 있는지 여부를 랜덤으로 생성한다.
+      - 랜덤값 0 - 아래칸(D)
+      - 랜덤값 1 - 위칸(U)
 - [ ]  다리를 저장한다.
 
 ## BridgeRandomNumberGenerator 
 ### 다리 이동 가능 여부 랜덤 생성
-
-- [ ]  해당 방향으로 이동할 수 있는지 여부를 랜덤으로 생성한다.
-    - 랜덤값 0 - 아래칸(D)
-    - 랜덤값 1 - 위칸(U)
-
 • Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 
 • `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
