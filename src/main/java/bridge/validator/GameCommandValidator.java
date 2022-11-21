@@ -2,7 +2,7 @@ package bridge.validator;
 
 import static bridge.util.BridgeGameConstant.QUIT_SIGN;
 import static bridge.util.BridgeGameConstant.RESTART_SIGN;
-import static bridge.validator.ErrorStatus.DIRECTION_SIGN_ERROR;
+import static bridge.validator.ErrorStatus.GAME_COMMAND_SIGN_ERROR;
 
 public class GameCommandValidator implements Validator {
     public GameCommandValidator() {
@@ -11,7 +11,7 @@ public class GameCommandValidator implements Validator {
     @Override
     public void validate(String gameCommand) {
         if (!RESTART_SIGN.equals(gameCommand) && !QUIT_SIGN.equals(gameCommand)) {
-            throw new IllegalArgumentException(DIRECTION_SIGN_ERROR.getMessage());
+            throw new IllegalArgumentException(GAME_COMMAND_SIGN_ERROR.getMessage());
         }
     }
 }
