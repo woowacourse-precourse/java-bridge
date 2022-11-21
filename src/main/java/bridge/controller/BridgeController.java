@@ -13,7 +13,7 @@ public class BridgeController {
         try{
             BridgeGame bridgeGame = createBridgeGame();
             Result result = movePlayer(bridgeGame);
-            printResult(result);
+            printResult(result,bridgeGame);
         } catch (IllegalArgumentException e){
 
         }
@@ -34,14 +34,14 @@ public class BridgeController {
     private int move(BridgeGame bridgeGame, int index){
         if(!bridgeGame.move(InputView.readMoving(),index)){
             OutputView.printMapFail(index,bridgeGame.getBridge());
-            return bridgeGame.retry(InputView.readGameCommand());
+            return bridgeGame.retry(InputView.readGameCommand(),index);
         }
         OutputView.printMap(index,bridgeGame.getBridge());
         return index;
     }
 
 
-    private void printResult(Result result){
-        OutputView.printResult(result);
+    private void printResult(Result result, BridgeGame bridgeGame){
+        OutputView.printResult(result,bridgeGame);
     }
 }

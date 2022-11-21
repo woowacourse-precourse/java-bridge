@@ -10,7 +10,8 @@ public class BridgeGame {
     private final int length;
     private final List<String> bridge;
     private boolean isDone = false;
-    private int attemptCount = 0;
+    private int attemptCount = 1;
+    private int playerFinalIndex;
     public BridgeGame(int length){
         this.length = length;
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -36,11 +37,20 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int retry(String input) {
-        if(input.equals("R"))
+    public int retry(String input,int index) {
+        if(input.equals("R")) {
+            this.attemptCount++;
             return -1;
-        this.attemptCount++;
+        }
+        setPlayerFinalIndex(index);
         return length+1;
+    }
+
+    public void setPlayerFinalIndex(int index){
+        playerFinalIndex=index;
+    }
+    public int getPlayerFinalIndex(){
+        return playerFinalIndex;
     }
 
     public int getLength(){

@@ -27,10 +27,10 @@ public class OutputView {
         StringBuffer Up = new StringBuffer();StringBuffer Down = new StringBuffer();
         Up.append(map[0]);Down.append(map[1]);
         if(Up.charAt(Up.length()-3) != 'O'){
-            Up.replace(Up.length()-3,Up.length()-2,"X");
+            Up.replace(Up.length()-3,Up.length()-2,"X");Down.replace(Down.length()-3,Down.length()-2," ");
         }
         if(Down.charAt(Down.length()-3) != 'O'){
-            Down.replace(Down.length()-3,Down.length()-2,"X");
+            Down.replace(Down.length()-3,Down.length()-2,"X");Up.replace(Up.length()-3,Up.length()-2," ");
         }
         System.out.println(Up);System.out.println(Down);
     }
@@ -55,12 +55,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(Result result) {
+    public static void printResult(Result result,BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printFinalMap(result,bridgeGame);
         System.out.print("게임 성공 여부: ");
         System.out.println(checkIsDone(result.getIsDone()));
         System.out.println("총 시도한 횟수: "+result.getAttemptCount());
 
 
+    }
+    private static void printFinalMap(Result result,BridgeGame bridgeGame){
+        if (result.getIsDone()){
+            printMap(bridgeGame.getLength()-1,bridgeGame.getBridge());
+            return;
+        }
+        printMapFail(bridgeGame.getPlayerFinalIndex(),bridgeGame.getBridge());
     }
     private static String checkIsDone(boolean isDone){
         if(isDone)
