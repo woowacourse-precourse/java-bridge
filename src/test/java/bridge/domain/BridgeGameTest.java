@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -35,8 +36,9 @@ class BridgeGameTest {
         assertEquals(3, BridgeGame.move(bridge, 0, "U"));
     }
 
-    @DisplayName("")
+    @DisplayName("이동한 칸을 건널 수 없는 경우 재시작하도록 한다")
     @Test
     void retry() {
+        assertTrue(BridgeGame.retry(false));
     }
 }
