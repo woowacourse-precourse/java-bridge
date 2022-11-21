@@ -3,7 +3,7 @@ package bridge.mock;
 import bridge.controller.BridgeController;
 import bridge.controller.GameController;
 import bridge.service.BridgeGame;
-import bridge.system.util.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.view.inputview.InputViewExceptionHandlingProxy;
 import bridge.view.inputview.InputViewInterface;

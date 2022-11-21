@@ -1,7 +1,7 @@
 package bridge.mock;
 
 import bridge.mock.exception.MockInputNotFoundException;
-import bridge.system.util.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.Iterator;
 import java.util.List;

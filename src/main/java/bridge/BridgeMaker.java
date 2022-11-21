@@ -1,4 +1,4 @@
-package bridge.system.util;
+package bridge;
 
 import bridge.vo.Step;
 

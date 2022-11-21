@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.system.util.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.view.inputview.InputViewInterface;
 import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;

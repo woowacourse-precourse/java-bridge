@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.mock.MockNumberGenerator;
-import bridge.system.util.BridgeMaker;
-import bridge.system.util.BridgeNumberGenerator;
 import bridge.vo.Step;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;

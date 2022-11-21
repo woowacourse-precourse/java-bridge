@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.mock.MockNumberGenerator;
-import bridge.system.util.BridgeMaker;
-import bridge.system.util.BridgeRandomNumberGenerator;
 import bridge.vo.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
