@@ -13,10 +13,12 @@ import java.util.List;
 public class BridgeGame {
 
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private ComputerBridge computerBridge;
+    private UserBridge userBridge;
 
-    public List<String> createBridge(String length) {
+    public void createBridge(String length) {
         new BridgeMakerValidator(length);
-        return bridgeMaker.makeBridge(Utils.convertToInt(length));
+        computerBridge.setBridge(bridgeMaker.makeBridge(Utils.convertToInt(length)));
     }
 
     /**
@@ -26,7 +28,7 @@ public class BridgeGame {
      */
     public void move(String location) {
         new BridgeMoveValidator(location);
-
+        userBridge.addBridge(location);
     }
 
     /**
@@ -35,5 +37,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public ComputerBridge getComputerBridge() {
+        return computerBridge;
+    }
+
+    public UserBridge getUserBridge() {
+        return userBridge;
     }
 }

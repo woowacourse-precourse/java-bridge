@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.service.UserBridge;
 import bridge.util.Constants;
 
 /**
@@ -16,7 +17,59 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap() {
+    public static boolean printMap(UserBridge userBridge, String location) {
+        printMapUpper(userBridge, location);
+        printMapLower(userBridge, location);
+
+        return (userBridge.getBridgeLast() == location);
+    }
+
+    private static void printMapUpper(UserBridge userBridge, String location) {
+        System.out.print("[");
+        for (int index = 0; index < userBridge.getBridgeLength() - 1; index++) {
+            if (userBridge.getBridgeInfo(index) == "U") {
+                System.out.print(" O |");
+                continue;
+            }
+            System.out.print("   |");
+        }
+        printMapUpperLast(userBridge.getBridgeLast(), location);
+    }
+
+    private static void printMapLower(UserBridge userBridge, String location) {
+        System.out.print("[");
+        for (int index = 0; index < userBridge.getBridgeLength() - 1; index++) {
+            if (userBridge.getBridgeInfo(index) == "D") {
+                System.out.print(" O |");
+                continue;
+            }
+            System.out.print("   |");
+        }
+        printMapLowerLast(userBridge.getBridgeLast(), location);
+    }
+
+    private static void printMapUpperLast(String userBridgeLast, String location) {
+        if ((userBridgeLast == location) && (location == "U")) {
+            System.out.println(" O ]");
+            return;
+        }
+        if ((userBridgeLast != location) && (location == "U")) {
+            System.out.println(" X ]");
+            return;
+        }
+        System.out.print("   ]");
+    }
+
+    private static void printMapLowerLast(String userBridgeLast, String location) {
+        if ((userBridgeLast == location) && (location == "D")) {
+            System.out.println(" O ]");
+            return;
+        }
+        if ((userBridgeLast != location) && (location == "D")) {
+            System.out.println(" X ]");
+            return;
+        }
+        System.out.print("   ]");
     }
 
     /**

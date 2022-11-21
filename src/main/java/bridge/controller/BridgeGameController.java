@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
 
@@ -9,6 +10,9 @@ public class BridgeGameController {
 
     public void start() {
         insertBridge();
+        while (insertBridgeToMove()) {
+
+        }
     }
 
     public void insertBridge() {
@@ -16,8 +20,10 @@ public class BridgeGameController {
         bridgeGame.createBridge(length);
     }
 
-    public void insertBridgeToMove() {
-        String length = InputView.readMoving();
-        bridgeGame.move(length);
+    public boolean insertBridgeToMove() {
+        String location = InputView.readMoving();
+        bridgeGame.move(location);
+        return OutputView.printMap(bridgeGame.getUserBridge(), bridgeGame.getComputerBridge().getBridgeLast());
     }
+
 }
