@@ -55,14 +55,14 @@ public class InputView {
     }
 
     private static void validateMoveInput(String input){
-        if(!input.equals("U") || !input.equals("D")){
+        if(!(input.equals("U") || input.equals("D"))){
             System.out.println("[ERROR] U 또는 D만 입력해야 합니다.");
             throw new IllegalArgumentException("[ERROR] U 또는 D만 입력해야 합니다.");
         }
     }
 
     private static void validateReStartInput(String input){
-        if(!input.equals("R") || !input.equals("Q")){
+        if(!(input.equals("R") || input.equals("Q"))){
             System.out.println("[ERROR] R 또는 Q만 입력해야 합니다.");
             throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력해야 합니다.");
         }
