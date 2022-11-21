@@ -8,6 +8,7 @@ public class Application {
         InputView inputView = new InputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         OutputView outputView = new OutputView();
+        boolean isSuccess = true;
 
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -22,11 +23,14 @@ public class Application {
                 String retryAnswer = inputView.readGameCommand();
 
                 if (retryAnswer.equals("Q")) {
+                    isSuccess = false;
                     break;
                 }
             }
         }
 
-        System.out.println("게임 성공");
+        if (isSuccess) {
+            System.out.println("게임 성공");
+        }
     }
 }
