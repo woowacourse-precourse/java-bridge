@@ -43,19 +43,17 @@ public class BridgeMaker {
         for (int i = ZERO; i < size; i++) {
             moveUpOrDown = bridgeGame.move();
             if (moveUpOrDown.equals(ICON_UP)) {
-                if (randomCollect.get(i).equals(moveUpOrDown))
+                bridgeU = isEqual(randomCollect.get(i), bridgeU, moveUpOrDown);
+                /*if (randomCollect.get(i).equals(moveUpOrDown))
                     bridgeU.add(ICON_COLLECT);
                 if (!randomCollect.get(i).equals(moveUpOrDown))
-                    bridgeU.add(ICON_FALSE);
+                    bridgeU.add(ICON_FALSE);*/
                 bridgeD.add(GAME_ICON_SPACE);
                 bridgeU.add(GAME_ICON_BAR);
                 bridgeD.add(GAME_ICON_BAR);
             }
             if (moveUpOrDown.equals(ICON_DOWN)) {
-                if (randomCollect.get(i).equals(moveUpOrDown))
-                    bridgeD.add(ICON_COLLECT);
-                if (!randomCollect.get(i).equals(moveUpOrDown))
-                    bridgeD.add(ICON_FALSE);
+                bridgeD = isEqual(randomCollect.get(i), bridgeD, moveUpOrDown);
                 bridgeU.add(GAME_ICON_SPACE);
                 bridgeU.add(GAME_ICON_BAR);
                 bridgeD.add(GAME_ICON_BAR);
@@ -101,5 +99,13 @@ public class BridgeMaker {
         for (int j = ZERO; j < countCycle; j++)
             System.out.print(bridgeDown.get(j));
         System.out.println(" ]");
+    }
+
+    private static List<String> isEqual(String randomCollect, List<String> bridge, String moveUpOrDown) {
+        if (randomCollect.equals(moveUpOrDown))
+            bridge.add(ICON_COLLECT);
+        if (!randomCollect.equals(moveUpOrDown))
+            bridge.add(ICON_FALSE);
+        return bridge;
     }
 }

@@ -1,6 +1,5 @@
 package bridge;
 
-import javax.sound.midi.SysexMessage;
 import java.util.List;
 
 import static bridge.ErrorCheck.isUpDown;
