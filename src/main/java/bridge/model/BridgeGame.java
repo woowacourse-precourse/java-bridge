@@ -61,15 +61,19 @@ public class BridgeGame {
     private List<String> makeEachBridge(String way, List<String> playerMove, List<String> answerMove) {
         List<String> result = new ArrayList<>();
         for (int index = 0; index < playerMove.size(); index++) {
-            result.add(checkEachStep(way, playerMove.get(index), answerMove.get(index)));
+            result.add(checkStep(way, playerMove.get(index), answerMove.get(index)));
         }
         return result;
     }
 
-    private String checkEachStep(String way, String playerStep, String answerStep) {
+    private String checkStep(String way, String playerStep, String answerStep) {
         if (!way.equals(playerStep)) {
             return STEP_EMPTY;
         }
+        return checkSameStep(playerStep, answerStep);
+    }
+
+    private String checkSameStep(String playerStep, String answerStep) {
         if (!answerStep.equals(playerStep)) {
             this.status = GameStatus.FAIL;
             return STEP_WRONG;
