@@ -30,7 +30,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        if (input != null && (input.equals(MOVE_UP) || input.equals(MOVE_DOWN))) {
+            return input;
+        }
+        throw new IllegalArgumentException("다리를 건너기 위한 입력값은 " + MOVE_UP + "또는 " +
+                MOVE_DOWN + " 문자여야 합니다.");
     }
 
     /**
