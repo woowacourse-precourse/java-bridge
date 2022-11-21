@@ -1,8 +1,9 @@
-package bridge;
+package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.model.Bridge;
 import bridge.model.BridgeShape;
 import bridge.model.GameControll;
 import bridge.service.Valification;
@@ -17,17 +18,14 @@ public class Game {
     private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame = new BridgeGame();
     private final BridgeShape bridgeShape = new BridgeShape();
-
     private final InputView inputView = new InputView();
-
     private final Valification valification = new Valification();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
 
 
     private int size;
     private String move;
     private String retryOrQuit;
-    private List<String> bridge;
 
     public void play() {
         try {
@@ -36,11 +34,9 @@ public class Game {
             resetGameStatus();
             gameControll.plusCnt();
             playBridgeGame();
-        } catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-
         }
-
     }
 
     private void viewBridgeSize() {
@@ -51,7 +47,7 @@ public class Game {
     }
 
     private void makeBridge() {
-        bridge = bridgeMaker.makeBridge(size);
+        bridge.setBridge(size);
     }
 
     public void playBridgeGame() {
@@ -72,7 +68,7 @@ public class Game {
     }
 
     public void checkMoveBridge() {
-        bridgeGame.move(move, gameControll.getIdx(), bridge);
+        bridgeGame.move(move, gameControll.getIdx(), bridge.getBridge());
     }
 
     public void makeBirdgeShape() {
