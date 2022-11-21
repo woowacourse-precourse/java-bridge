@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,60 +7,38 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    private static final String UP_MOVING_CHARACTER = "U";
+    private static final String DOWN_MOVING_CHARACTER = "D";
+    private static final String BLANK = " ";
     private static final String MAP_O_CHARACTER = "O";
     private static final String MAP_X_CHARACTER = "X";
     private static final String RETRY_COMMAND_CHARACTER = "R";
 
-    private OutputView outputView;
+    private int bridgeSize;
     private BridgeNumberGenerator bridgeNumberGenerator;
     private BridgeMaker bridgeMaker;
 
-    public BridgeGame() {
-        this.outputView = new OutputView();
+    public BridgeGame(int bridgeSize) {
+        this.bridgeSize = bridgeSize;
         this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
-    public void runGame() {
-        try {
-            startGame();
-        } catch (RuntimeException exception) {
-            System.out.println(exception.getMessage());
-        }
+    public List<String> makeBridge() {
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public void startGame() {
-        System.out.println(GAME_START_MESSAGE);
-        InputController inputController = new InputController();
-        int bridgeSize = inputController.getBridgeSize(InputView.readBridgeSize());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        int gameCount = 0;
-        while (true) {
-            boolean flag = false;
-            boolean success = true;
-            gameCount = countGame(gameCount);
-            List<List<String>> bridgeMap = new ArrayList<>();
-            if (!crossBridge(bridge, inputController, bridgeMap)) {
-                success = false;
-                String gameCommand = inputController.getGameCommand(InputView.readGameCommand());
-                flag = retry(gameCommand);
-            }
-            outputView.printResult(bridgeMap, success, gameCount);
-            if (!flag) {
-                break;
-            }
-        }
+    public int countGame(int gameCount) {
+        gameCount += 1;
+        return gameCount;
     }
 
-    public boolean crossBridge(List<String> bridge, InputController inputController, List<List<String>> bridgeMap) {
-        for (String bridgeBlock : bridge) {
-            String moving = inputController.getMoving(InputView.readMoving());
-            if (!move(moving, bridgeBlock, bridgeMap)) {
-                return false;
-            }
+    public static void makeMap(String moving, String str, List<List<String>> bridgeMap) {
+        if (moving.equals(UP_MOVING_CHARACTER)) {
+            bridgeMap.add(List.of(BLANK, str));
+        } else if (moving.equals(DOWN_MOVING_CHARACTER)) {
+            bridgeMap.add(List.of(str, BLANK));
         }
-        return true;
     }
 
     /**
@@ -71,12 +48,10 @@ public class BridgeGame {
      */
     public boolean move(String moving, String bridgeBlock, List<List<String>> bridgeMap) {
         if (moving.equals(bridgeBlock)) {
-            outputView.makeMap(moving, MAP_O_CHARACTER, bridgeMap);
-            outputView.printMap(bridgeMap);
+            makeMap(moving, MAP_O_CHARACTER, bridgeMap);
             return true;
         }
-        outputView.makeMap(moving, MAP_X_CHARACTER, bridgeMap);
-        outputView.printMap(bridgeMap);
+        makeMap(moving, MAP_X_CHARACTER, bridgeMap);
         return false;
     }
 
@@ -87,10 +62,5 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         return gameCommand.equals(RETRY_COMMAND_CHARACTER);
-    }
-
-    public int countGame(int gameCount) {
-        gameCount += 1;
-        return gameCount;
     }
 }

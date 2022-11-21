@@ -8,9 +8,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String UP_MOVING_CHARACTER = "U";
-    private static final String DOWN_MOVING_CHARACTER = "D";
-    private static final String BLANK = " ";
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String LEFT_SQUARE_BRACKET = "[ ";
     private static final String RIGHT_SQUARE_BRACKET = " ]";
     private static final String DELIMITER = " | ";
@@ -19,12 +17,8 @@ public class OutputView {
     private static final String GAME_FAILURE_MESSAGE = "게임 성공 여부: 실패";
     private static final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
 
-    public void makeMap(String moving, String str, List<List<String>> bridgeMap) {
-        if (moving.equals(UP_MOVING_CHARACTER)) {
-            bridgeMap.add(List.of(BLANK, str));
-        } else if (moving.equals(DOWN_MOVING_CHARACTER)) {
-            bridgeMap.add(List.of(str, BLANK));
-        }
+    public static void printGameStart() {
+        System.out.println(GAME_START_MESSAGE);
     }
 
     /**
@@ -32,7 +26,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<List<String>> bridgeMap) {
+    public static void printMap(List<List<String>> bridgeMap) {
         List<String> downBridge = new ArrayList<>();
         List<String> upperBridge = new ArrayList<>();
         for (List<String> map : bridgeMap) {
@@ -51,20 +45,7 @@ public class OutputView {
         System.out.println();
     }
 
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult(List<List<String>> bridgeMap, boolean success, int gameCount) {
-        System.out.println(GAME_RESULT_MESSAGE);
-        printMap(bridgeMap);
-        printSuccess(success);
-        printGameCount(gameCount);
-    }
-
-    public void printSuccess(boolean success) {
+    public static void printSuccess(boolean success) {
         if (success) {
             System.out.println(GAME_SUCCESS_MESSAGE);
         } else if (!success) {
@@ -72,7 +53,19 @@ public class OutputView {
         }
     }
 
-    public void printGameCount(int gameCount) {
+    public static void printGameCount(int gameCount) {
         System.out.println(GAME_COUNT_MESSAGE + gameCount);
+    }
+
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public static void printResult(List<List<String>> bridgeMap, boolean success, int gameCount) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        printMap(bridgeMap);
+        printSuccess(success);
+        printGameCount(gameCount);
     }
 }
