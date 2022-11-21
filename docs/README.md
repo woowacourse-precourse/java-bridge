@@ -45,3 +45,37 @@ JDK 11
   - [x] 다리길이가 3이상 20이하가 아닌 경우
   - [x] 이동할 칸 입력시 U나 D가 아닐 경우
   - [x] 게임 재시작 여부 입력 시 R나 Q가 아닐 경우
+
+## 고려사항
+- [] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현
+- [] 메서드의 파라미터 개수는 최대 3개까지만 허용
+- [] InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있음
+- [] BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않음
+- [] InputView, OutputView, BridgeGame, BridgeMaker, BridgeRandomNumberGenerator 클래스의 요구사항을 참고하여 구현
+  - [] InputView
+  - [] OutputView
+    - [] OutputView의 메서드의 이름은 변경할 수 없음
+  - [] BridgeGame
+    - [] BridgeGame의 메서드의 이름은 변경할 수 없음
+  - [] BridgeMaker
+    - [] BridgeMaker의 필드(인스턴스 변수)를 변경할 수 없음
+    - [] BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없음
+  - [] BridgeRandomNumberGenerator
+    - []BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스의 코드는 변경할 수 없음
+- [] camp.nextstep.edu.missionutils에서 제공하는 Console API를 사용하여 구현
+- [] JDK 11 버전에서 실행 가능
+- [] 프로그램 실행의 시작점은 Application의 main()
+- [] build.gradle 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않음
+- [] Java 코드 컨벤션 가이드를 준수
+- [] 프로그램 종료 시 System.exit()를 호출하지 않음
+- [] 프로그램 구현이 완료되면 ApplicationTest의 모든 테스트가 성공
+- [] 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않음
+- [] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현
+- [] 3항 연산자를 쓰지 않음
+- [] Unit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인
+- [] else 예약어를 쓰지 않음
+  - [] switch/case 허용하지 않음
+- [] 도메인 로직에 단위 테스트를 구현
+  - [] UI는 제외
+- [] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현
+- [] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
