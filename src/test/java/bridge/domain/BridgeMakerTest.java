@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeMakerTest {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    List<String> movingValues = List.of(UPPER_SIDE, LOWER_SIDE);
 
     @DisplayName("입력 길이에 맞는 다리를 생성한다.")
     @Nested
@@ -31,16 +32,10 @@ class BridgeMakerTest {
         @DisplayName("다리가 올바른 요소를 가지고 있는지 확인")
         @Test
         void should_HaveCorrectMoving_When_CreateBridge() {
-            int inputLength = 15;
-            List<String> movingValues = List.of(UPPER_SIDE, LOWER_SIDE);
-            boolean isMatch = true;
-            List<String> bridge = bridgeMaker.makeBridge(inputLength);
+            List<String> bridge = bridgeMaker.makeBridge(20);
             for (String moving: bridge) {
-                if (!movingValues.contains(moving)) {
-                    isMatch = false;
-                }
+                assertThat(moving).isIn(movingValues);
             }
-            assertThat(isMatch).isTrue();
         }
 
         @DisplayName("범위에 벗어난 다리 길이 입력 -> 예외 발생")
