@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 class BridgeMoveLogTest {
 
-    private final BridgeMoveLog bridgeMoveLog = new BridgeMoveLog(BridgeSizeRule.START.getSize());
+    private final BridgeMoveLog bridgeMoveLog = new BridgeMoveLog(10);
 
     @BeforeEach
     public void 초기화() {

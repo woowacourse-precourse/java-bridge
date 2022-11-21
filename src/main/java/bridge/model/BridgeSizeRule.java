@@ -11,7 +11,12 @@ public enum BridgeSizeRule {
         this.size = size;
     }
 
-    public int getSize() {
-        return size;
+    public static void validateRule(int inputSize) {
+        if (inputSize < BridgeSizeRule.START.size || BridgeSizeRule.END.size < inputSize) {
+            throw new IllegalArgumentException(
+                    String.format("다리의 길이는 %d부터 %d사이의 숫자여야 합니다.",
+                            BridgeSizeRule.START.size,
+                            BridgeSizeRule.END.size));
+        }
     }
 }
