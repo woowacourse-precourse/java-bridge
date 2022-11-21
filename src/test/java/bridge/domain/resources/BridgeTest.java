@@ -22,8 +22,6 @@ class BridgeTest {
     @ParameterizedTest
     void bridgeWrongSizeTest(int wrongInputSize) {
         Assertions.assertThatThrownBy(() -> bridge = Bridge.of(wrongInputSize))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(String.format("[ERROR] 다리 길이의 범위는 %d ~ %d 입니다.",
-                        Bridge.MIN_SIZE, Bridge.MAX_SIZE));
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

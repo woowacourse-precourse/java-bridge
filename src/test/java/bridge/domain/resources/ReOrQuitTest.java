@@ -23,7 +23,6 @@ class ReOrQuitTest {
     @ParameterizedTest
     void wrongInputRQTest(String wrongInput) {
         Assertions.assertThatThrownBy(() -> ReOrQuit.of(wrongInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(String.format("[ERROR] %s과 %s만 입력이 가능합니다.", ReOrQuit.RE_GAME, ReOrQuit.QUIT_GAME));
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

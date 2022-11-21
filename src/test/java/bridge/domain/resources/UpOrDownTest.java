@@ -13,8 +13,7 @@ class UpOrDownTest {
     @ParameterizedTest
     void upOrDownValidityTest(String inputs) {
         Assertions.assertThatThrownBy(() -> UpOrDown.of(inputs))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(String.format("[ERROR] %s과 %s만 입력이 가능합니다.", UpOrDown.UP, UpOrDown.DOWN));
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("input U, D가 잘 저장되는지 확인하는 테스트")
@@ -24,8 +23,8 @@ class UpOrDownTest {
         UpOrDown down = UpOrDown.of(UpOrDown.DOWN);
 
         Assertions.assertThat(up.getInputUD())
-            .isEqualTo(UpOrDown.UP);
+                .isEqualTo(UpOrDown.UP);
         Assertions.assertThat(down.getInputUD())
-            .isEqualTo(UpOrDown.DOWN);
+                .isEqualTo(UpOrDown.DOWN);
     }
 }
