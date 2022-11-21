@@ -1,9 +1,7 @@
 package bridge.domain;
 
 import bridge.type.GameStatusType;
-import bridge.type.MovingType;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BridgeGame {
@@ -22,8 +20,7 @@ public class BridgeGame {
 
     public void move(String moving) {
         movingRecord.add(moving);
-        stageCount++;
-        isClear();
+        checkFail(stageCount, moving);
     }
 
     public void retry() {
@@ -36,39 +33,35 @@ public class BridgeGame {
         this.gameStatus = GameStatusType.END;
     }
 
-    public void isClear() {
-        if (stageCount == bridgeInfo.size()) {
-            end();
-        }
+    public void quit() {
+        this.gameStatus = GameStatusType.FAIL;
     }
 
-    public List<List<String>> printPlayingMap() {
-        List<String> upBridge = new ArrayList<>();
-        List<String> downBridge = new ArrayList<>();
-        List<List<String>> playingMap = new ArrayList<>(Arrays.asList(downBridge, upBridge));
+    public void increaseStageCount() {
+        stageCount++;
+    }
 
-        for (int index = 0; index < movingRecord.size(); index++) {
-            playingMap.get(checkUpAndDown(movingRecord.get(index)).getValue())
-                    .add(checkPassOrFail(index, movingRecord.get(index)));
-            playingMap.get(1 - checkUpAndDown(movingRecord.get(index)).getValue())
-                    .add(" ");
-        }
-        return playingMap;
+    public List<String> getMovingRecord() {
+        return movingRecord;
+    }
+
+    public int getStageCount() {
+        return stageCount;
     }
 
     public GameStatusType getGameStatus() {
         return gameStatus;
     }
 
-    private String checkPassOrFail(int index, String moving) {
-        if (bridgeInfo.get(index).equals(moving)) {
-            return "O";
+    public void checkClear() {
+        if (stageCount == bridgeInfo.size() && gameStatus != GameStatusType.FAIL) {
+            end();
         }
-        gameStatus = GameStatusType.FAIL;
-        return "X";
     }
 
-    private MovingType checkUpAndDown(String moving) {
-        return MovingType.createMoving(moving);
+    private void checkFail(int index, String moving) {
+        if (!bridgeInfo.get(index).equals(moving)) {
+            gameStatus = GameStatusType.FAIL;
+        }
     }
 }

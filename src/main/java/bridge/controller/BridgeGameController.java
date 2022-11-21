@@ -1,11 +1,16 @@
 package bridge.controller;
 
+import static bridge.constant.BridgeConstant.QUIT;
+import static bridge.constant.BridgeConstant.RETRY;
+
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMovingResult;
 import bridge.service.BridgeMakerService;
 import bridge.type.GameStatusType;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeGameController {
 
@@ -13,19 +18,23 @@ public class BridgeGameController {
     private int gameCount;
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeMovingResult bridgeMovingResult;
 
     public BridgeGameController() {
-        this.bridgeGame = new BridgeGame(createBridge().getBridge());
-        this.gameCount = 1;
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+        List<String> bridgeInfo = createBridge().getBridge();
+        bridgeGame = new BridgeGame(bridgeInfo);
+        gameCount = 1;
+        inputView = new InputView();
+        outputView = new OutputView();
+        bridgeMovingResult = new BridgeMovingResult(bridgeInfo);
     }
 
     public void start() {
         while (bridgeGame.getGameStatus().isPlaying()) {
             move();
+            checkEnd();
             if (checkFail()) {
-                restartOrEnd();
+                requestRestartOrQuit();
             }
         }
         printGameResult();
@@ -33,48 +42,51 @@ public class BridgeGameController {
 
     private void move() {
         bridgeGame.move(inputView.readMoving());
-        outputView.printMap(bridgeGame.printPlayingMap());
+        bridgeMovingResult.updatePlayingMap(bridgeGame.getMovingRecord(), bridgeGame.getStageCount());
+        printPlayingMap();
+        bridgeGame.increaseStageCount();
+    }
+
+    private void restart() {
+        gameCount++;
+        bridgeGame.retry();
+        bridgeMovingResult.initialize();
+    }
+
+    private void quit() {
+        bridgeGame.quit();
+    }
+
+    private void requestRestartOrQuit() {
+        String status = inputView.readGameCommand();
+        if (status.equals(RETRY)) {
+            restart();
+        }
+        if (status.equals(QUIT)) {
+            quit();
+        }
     }
 
     private boolean checkFail() {
         return bridgeGame.getGameStatus() == GameStatusType.FAIL;
     }
 
-    private boolean checkEnd() {
-        return bridgeGame.getGameStatus() == GameStatusType.END;
+    private void checkEnd() {
+        bridgeGame.checkClear();
     }
 
-    private void restartOrEnd() {
-        String status = inputView.readGameCommand();
-        if (status.equals("R")) {
-            restart();
-        }
-        if (status.equals("Q")) {
-            end();
-        }
-    }
-
-    private void restart() {
-        gameCount++;
-        bridgeGame.retry();
-    }
-
-    private void end() {
-        bridgeGame.end();
+    private void printPlayingMap() {
+        outputView.printMap(bridgeMovingResult.getPlayingMap());
     }
 
     private void printGameResult() {
-        if (checkEnd()) {
-            outputView.printResult(bridgeGame.printPlayingMap(), bridgeGame.getGameStatus(), gameCount);
-        }
+        outputView.printResult(bridgeMovingResult.getPlayingMap(), bridgeGame.getGameStatus(), gameCount);
     }
 
     private Bridge createBridge() {
         while (true) {
             try {
-                InputView inputView = new InputView();
-                int size = inputView.readBridgeSize();
-                return BridgeMakerService.createBridge(size);
+                return BridgeMakerService.createBridge(new InputView().readBridgeSize());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

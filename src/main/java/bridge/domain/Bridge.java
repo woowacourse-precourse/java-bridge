@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import static bridge.constant.BridgeConstant.BRIDGE_LENGTH_MAXIMUM;
+import static bridge.constant.BridgeConstant.BRIDGE_LENGTH_MINIMUM;
+
 import bridge.type.ErrorType;
 import java.util.List;
 
@@ -17,7 +20,7 @@ public class Bridge {
     }
 
     private void validateBridgeSize(int size) throws IllegalArgumentException {
-        if (size < 3 || size > 20) {
+        if (size < BRIDGE_LENGTH_MINIMUM || size > BRIDGE_LENGTH_MAXIMUM) {
             throw new IllegalArgumentException(ErrorType.BRIDGE_SIZE_ERROR.printError());
         }
     }
