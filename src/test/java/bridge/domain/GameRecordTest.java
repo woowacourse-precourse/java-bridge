@@ -33,4 +33,17 @@ class GameRecordTest {
 		//then
 		assertThat(nextRecord).isEqualTo("[  ]"+"\n"+"[  ]");
 	}
+
+	@Test
+	@DisplayName("재시작할 경우 시도횟수가 증가한다.")
+	void 재시작_시도횟수_증가_테스트() {
+		//given
+		GameRecord gameRecord = new GameRecord();
+		int currentTryAttempts = gameRecord.getTryAttempts();
+		//when
+		gameRecord.retry();
+		int nextTryAttempts = gameRecord.getTryAttempts();
+		//then
+		assertThat(nextTryAttempts).isEqualTo(currentTryAttempts + 1);
+	}
 }
