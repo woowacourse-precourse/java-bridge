@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final int FIRST_COUNT = 1;
+    private static final int NEXT_COUNT = 1;
+
     private int gameCount;
     private List<BridgeResult> bridgeResults;
     private Bridge bridge;
@@ -17,7 +20,7 @@ public class BridgeGame {
     public BridgeGame(List<BridgeResult> bridgeResults, Bridge bridge) {
         this.bridgeResults = bridgeResults;
         this.bridge = bridge;
-        this.gameCount = 1;
+        this.gameCount = FIRST_COUNT;
         this.exit = false;
     }
 
@@ -47,7 +50,7 @@ public class BridgeGame {
     public void retry() {
         this.bridgeResults = new ArrayList<>();
         this.bridge.resetStep();
-        this.gameCount += 1;
+        this.gameCount += NEXT_COUNT;
     }
 
     public void exit() {

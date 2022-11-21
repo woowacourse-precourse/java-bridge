@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.utils.Constant.UP;
+
 public class BridgeResult {
 
     private final String nowMove;
@@ -11,7 +13,7 @@ public class BridgeResult {
     }
 
     public boolean isUpMove() {
-        if (this.nowMove.equals("U")) {
+        if (this.nowMove.equals(UP)) {
             return true;
         }
         return false;

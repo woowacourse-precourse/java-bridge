@@ -4,6 +4,8 @@ import bridge.utils.validator.GameCommandValidator;
 
 public class GameCommand {
 
+    private static final String RESTART = "R";
+
     private final boolean gameCommand;
 
     public GameCommand(String gameCommand) {
@@ -12,7 +14,7 @@ public class GameCommand {
     }
 
     private boolean isRetry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(RESTART)) {
             return true;
         }
         return false;

@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import static bridge.utils.Constant.ZERO;
 import static bridge.utils.Util.getInt;
 
 import bridge.BridgeNumberGenerator;
@@ -10,6 +9,10 @@ import java.util.List;
 
 public class Bridge {
 
+    private static final int FIRST_STEP = 0;
+    private static final int RESET_STEP = -1;
+    private static final int NEXT_STEP = 1;
+
     private final int size;
     private List<String> bridge;
     private int step;
@@ -18,7 +21,7 @@ public class Bridge {
         new BridgeValidator(size);
         this.size = getInt(size);
         makeBridgeBySize(this.size);
-        this.step = ZERO;
+        this.step = FIRST_STEP;
     }
 
     private void makeBridgeBySize(int size) {
@@ -45,7 +48,7 @@ public class Bridge {
     }
 
     public void resetStep() {
-        this.step = -1;
+        this.step = RESET_STEP;
     }
 
     public boolean notOverStep() {
@@ -56,7 +59,7 @@ public class Bridge {
     }
 
     public void goToNextStep() {
-        this.step += 1;
+        this.step += NEXT_STEP;
     }
 
 }

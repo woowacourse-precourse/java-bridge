@@ -12,6 +12,12 @@ import java.util.StringJoiner;
  */
 public class OutputView {
 
+    private static final String DELIMITER = " | ";
+    private static final String PRE_FIX = "[ ";
+    private static final String SUF_FIX = " ]";
+    private static final String SUCCESS_MOVE = "O";
+    private static final String FAIL_MOVE = "X";
+    private static final String OTHER_SIDE_MOVE = " ";
     private static final String PRINT_FINAL_RESULT = "최종 게임 결과";
     private static final String PRINT_IS_SUCCESS = "게임 성공 여부: ";
     private static final String PRINT_SUCCESS = "성공";
@@ -29,7 +35,7 @@ public class OutputView {
     }
 
     public static void printUpMap(List<BridgeResult> bridgeResults) {
-        StringJoiner upResultView = new StringJoiner(" | ", "[ ", " ]");
+        StringJoiner upResultView = new StringJoiner(DELIMITER, PRE_FIX, SUF_FIX);
 
         for (int i = ZERO; i < bridgeResults.size(); i++) {
             upResultView.add(drawUpMap(bridgeResults.get(i)));
@@ -40,7 +46,7 @@ public class OutputView {
     }
 
     public static void printDownMap(List<BridgeResult> bridgeResults) {
-        StringJoiner downResultView = new StringJoiner(" | ", "[ ", " ]");
+        StringJoiner downResultView = new StringJoiner(DELIMITER, PRE_FIX, SUF_FIX);
 
         for (int i = ZERO; i < bridgeResults.size(); i++) {
             downResultView.add(drawDownMap(bridgeResults.get(i)));
@@ -52,22 +58,22 @@ public class OutputView {
 
     private static String drawUpMap(BridgeResult bridgeResult) {
         if (bridgeResult.isUpMove() && bridgeResult.isSuccessMove()) {
-            return "O";
+            return SUCCESS_MOVE;
         }
         if (bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()) {
-            return "X";
+            return FAIL_MOVE;
         }
-        return " ";
+        return OTHER_SIDE_MOVE;
     }
 
     private static String drawDownMap(BridgeResult bridgeResult) {
         if (!bridgeResult.isUpMove() && bridgeResult.isSuccessMove()) {
-            return "O";
+            return SUCCESS_MOVE;
         }
         if (!bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()) {
-            return "X";
+            return FAIL_MOVE;
         }
-        return " ";
+        return OTHER_SIDE_MOVE;
     }
 
     /**
