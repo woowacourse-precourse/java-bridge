@@ -47,7 +47,7 @@ public class BridgeGame {
         bridgeResult.resetBridgeResult();
         player.resetPlayerLocation();
         player.setCross(true);
-        gameStatus.plusAttempt();
+        gameStatus.setAttempt(gameStatus.getAttempt()+1);
     }
 
     private void handleAfterMove(boolean passable) {

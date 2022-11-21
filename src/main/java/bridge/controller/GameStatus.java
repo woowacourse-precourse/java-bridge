@@ -32,7 +32,7 @@ public class GameStatus {
         return attempt;
     }
 
-    public void plusAttempt() {
-        attempt++;
+    public void setAttempt(int attempt) {
+        this.attempt = attempt;
     }
 }
