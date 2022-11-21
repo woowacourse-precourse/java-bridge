@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.validator.Validate;
+import bridge.validator.Validator;
 import bridge.validator.ValidateBridgeSize;
 import bridge.validator.ValidateCommand;
 import bridge.validator.ValidateMove;
@@ -48,11 +48,11 @@ public class InputView {
         return getInputValue(new ValidateCommand());
     }
 
-    private String getInputValue(Validate validate) {
+    private String getInputValue(Validator validator) {
         String readValue = Console.readLine();
         while (true) {
             try {
-                validate.validate(readValue);
+                validator.validate(readValue);
                 return readValue;
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e);

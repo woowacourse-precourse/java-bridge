@@ -1,6 +1,6 @@
 package bridge.validator;
 
-public class ValidateCommand implements Validate {
+public class ValidateCommand implements Validator {
     public final String GAME_RETRY_KEY = "R";
     public final String GAME_QUIT_KEY = "Q";
 

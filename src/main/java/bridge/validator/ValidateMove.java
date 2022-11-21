@@ -3,7 +3,7 @@ package bridge.validator;
 import static bridge.util.BridgeConstant.DOWN_KEY;
 import static bridge.util.BridgeConstant.UP_KEY;
 
-public class ValidateMove implements Validate {
+public class ValidateMove implements Validator {
     @Override
     public void validate(String readInput) {
         if (!validateMoveRange(readInput)) {

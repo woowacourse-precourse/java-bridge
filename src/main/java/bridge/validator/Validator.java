@@ -1,5 +1,5 @@
 package bridge.validator;
 
-public interface Validate {
+public interface Validator {
     void validate(String readInput);
 }

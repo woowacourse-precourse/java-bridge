@@ -1,6 +1,6 @@
 package bridge.validator;
 
-public class ValidateBridgeSize implements Validate {
+public class ValidateBridgeSize implements Validator {
     public final int MINIMUM_BRIDGE_SIZE = 3;
     public final int MAXIMUM_BRIDGE_SIZE = 20;
 
