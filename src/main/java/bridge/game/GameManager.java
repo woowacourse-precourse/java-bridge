@@ -34,11 +34,11 @@ public class GameManager {
     public void startBridgeGame() {
         OutputView.printGameStartMessage();
         int bridgeSize = -1;
-        while (bridgeSize == -1) bridgeSize = askBridgeSize();
-        generateBridge(bridgeSize);
+        while (bridgeSize == -1) bridgeSize = setBridgeSize();
+        makeBridge(bridgeSize);
     }
 
-    private int askBridgeSize() {
+    private int setBridgeSize() {
         OutputView.askBridgeSize();
         int bridgeSize = -1;
         try {
@@ -49,7 +49,7 @@ public class GameManager {
         return bridgeSize;
     }
 
-    private void generateBridge(int bridgeSize) {
+    private void makeBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridgeAnswer = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.setBridgeAnswer(bridgeAnswer);
