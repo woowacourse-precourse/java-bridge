@@ -58,10 +58,10 @@ public class BridgeGame {
         }
         if (!Objects.equals(bridgeValue, movingPosition)) {
             result.add("X");
-            failure = true;
+            setFailure(true);
         }
         if (!failure && bridge.getBridge().size() == movingPositions.size()) {
-            clear = true;
+            setClear(true);
         }
     }
 
@@ -114,19 +114,19 @@ public class BridgeGame {
         return result;
     }
 
-    public void setMovingPositions(List<String> movingPositions) {
+    private void setMovingPositions(List<String> movingPositions) {
         this.movingPositions = movingPositions;
     }
 
-    public void setResult(List<String> result) {
+    private void setResult(List<String> result) {
         this.result = result;
     }
 
-    public void setClear(boolean clear) {
+    private void setClear(boolean clear) {
         this.clear = clear;
     }
 
-    public void setFailure(boolean failure) {
+    private void setFailure(boolean failure) {
         this.failure = failure;
     }
 
