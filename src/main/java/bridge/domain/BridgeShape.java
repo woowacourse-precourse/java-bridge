@@ -1,16 +1,14 @@
 package bridge.domain;
 
+import bridge.constants.Move;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class BridgeShape {
 
-    private final String UP_BRIDGE = "U";
-    private final String DOWN_BRIDGE = "D";
-    private final String OPEN = "[";
-    private final String CLOSE = "]";
-    private final String CONNECT = "|";
+
     private final String PASS_STEP = " O ";
     private final String FAIL_STEP = " X ";
     private final String EMPTY_STEP = "   ";
@@ -24,11 +22,11 @@ public class BridgeShape {
     }
 
     private void moveNextStep(String whereBridge, boolean checkBridge) {
-        if (Objects.equals(whereBridge, UP_BRIDGE)) {
+        if (Objects.equals(whereBridge, Move.UP_BRIDGE.getValue())) {
             moveUpBridge(checkBridge);
             notMoveDownBridge();
         }
-        if (Objects.equals(whereBridge, DOWN_BRIDGE)) {
+        if (Objects.equals(whereBridge, Move.DOWN_BRIDGE.getValue())) {
             moveDownBridge(checkBridge);
             notMoveUpBridge();
         }
@@ -74,6 +72,9 @@ public class BridgeShape {
     }
 
     private StringBuilder printBridge(List<String> bridgeShape) {
+        final String OPEN = "[";
+        final String CLOSE = "]";
+
         StringBuilder bridge = new StringBuilder();
 
         return bridge.append(OPEN)
@@ -82,6 +83,7 @@ public class BridgeShape {
     }
 
     private String getCONNECT(List<String> bridgeShape) {
+        final String CONNECT = "|";
         return String.join(CONNECT, bridgeShape);
     }
 }
