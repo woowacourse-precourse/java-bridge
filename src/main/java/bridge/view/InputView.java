@@ -1,17 +1,20 @@
 package bridge.view;
 
+import bridge.validator.InputValidator;
+import bridge.validator.Validatable;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-public class InputView {
+public class InputView implements Validatable<String> {
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = getInput();
+        validate(input, InputValidator.IS_NUMBER);
         return Integer.parseInt(input);
     }
 
