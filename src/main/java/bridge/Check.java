@@ -16,4 +16,8 @@ public class Check {
       throw illegalArgumentException;
     }
   }
+  
+  public static String checkBridgeStep(String in) throws IllegalArgumentException{
+    return null;
+  }
 }
