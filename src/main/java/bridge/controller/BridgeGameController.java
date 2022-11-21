@@ -44,9 +44,7 @@ public class BridgeGameController {
     private boolean isPassBridge() {
         List<Result> results = new ArrayList<>();
         for (String correctStep : bridge) {
-            boolean isMoveSuccess = oneStepMove(results, correctStep);
-
-            if (!isMoveSuccess){
+            if (!oneStepMove(results, correctStep)){
                 return false;
             }
         }
