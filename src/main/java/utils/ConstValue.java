@@ -11,6 +11,9 @@ public class ConstValue {
     public static final String UPPER_BRIDGE = "U";
     public static final String LOWER_BRIDGE = "D";
 
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
+
     public static final String LINE_BREAK = "\n";
 
     public static final String SUCCESS = "성공";
