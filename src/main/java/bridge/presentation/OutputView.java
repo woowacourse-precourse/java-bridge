@@ -60,6 +60,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(Result result) {
+        System.out.println(Message.OUTPUT_GAME_RESULT + getGameResultToString(result));
+        System.out.println(Message.OUTPUT_GAME_COUNT + result.getGameCount());
+    }
 
+    private static String getGameResultToString(Result result) {
+        String gameResult = "실패";
+        if (result.isVictory()) {
+            gameResult = "성공";
+        }
+        return gameResult;
     }
 }
