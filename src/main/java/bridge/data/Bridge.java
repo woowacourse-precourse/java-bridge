@@ -14,5 +14,7 @@ public class Bridge {
         return saveBridge.get(order).equals(userInput);
     }
 
-    
+    public String getterOneBridgeState(int order) {
+        return saveBridge.get(order);
+    }
 }
