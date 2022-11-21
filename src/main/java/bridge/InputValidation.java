@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.ErrorMessage.INVALID_BRIDGE_SIZE_ERROR;
+import static bridge.ErrorMessage.INVALID_MOVING_ERROR;
 
 public class InputValidation {
 
@@ -23,4 +24,9 @@ public class InputValidation {
         return false;
     }
 
+    public static void validateReadMoving(String moving) {
+        if (moving != "U" && moving != "D") {
+            throw new IllegalArgumentException(INVALID_MOVING_ERROR.getMessage());
+        }
+    }
 }
