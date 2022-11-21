@@ -8,7 +8,7 @@ import util.validator.BridgeGameValidator;
 import util.CleanerUtil;
 
 public class BridgeGame {
-    private static final int firstIndex = NumberConstant.FIRST_INDEX.getConstant();
+    private static final int FIRST_INDEX = NumberConstant.FIRST_INDEX.getConstant();
     private static int tryNumber = NumberConstant.FIRST_TRY.getConstant();
     private static List<String> userBridge;
 
@@ -22,7 +22,7 @@ public class BridgeGame {
 
     public static void move(List<String> bridge, List<List<String>> bothSide) {
         initUserBridge();
-        for (int index = firstIndex; index < bridge.size(); index++) {
+        for (int index = FIRST_INDEX; index < bridge.size(); index++) {
             addMoveInUserBridge();
             isUserPathEqualsPath(bothSide, bridge, index);
             if (BridgeGameValidator.isMoveDone(bridge, bothSide)) {
@@ -85,7 +85,7 @@ public class BridgeGame {
     }
 
     private static void checkRetry(List<String> bridge, List<List<String>> bothSide) {
-        if (BridgeGameValidator.isContainWrongPath(bothSide)) {
+        if (BridgeGameValidator.isContainsWrongPath(bothSide)) {
             retry(bridge, bothSide);
         }
     }
