@@ -23,9 +23,7 @@ public class BridgeController {
         while (!continue_game.contains(Quit)){
             String moving = MovingCheck(InputView.readMoving());
             continue_game = OutputView.printMap(game.move(moving), moving);
-            GameSelectRetry(game);
-            GameRetry();
-            GameOverCheck(game);
+            Gaming(game);
         }
         OutputView.printCount(continue_game, count_try);
     }
@@ -38,9 +36,16 @@ public class BridgeController {
         return OutputView.MovingCheck(moving);
     }
 
+    private void Gaming(BridgeGame game) {
+        GameSelectRetry(game);
+        GameRetry();
+        GameOverCheck(game);
+    }
     private void GameSelectRetry(BridgeGame game) {
         if (continue_game.equals(Retry))
+        {
             continue_game = game.retry(OutputView.RetryCheck(InputView.readGameCommand()));
+        }
     }
 
     private void GameRetry() {
