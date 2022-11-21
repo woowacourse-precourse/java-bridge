@@ -1,8 +1,8 @@
 package bridge.Domain;
 
 public class History {
-    private UserBridge upperBridge;
-    private UserBridge lowerBridge;
+    private final UserBridge upperBridge;
+    private final UserBridge lowerBridge;
     private boolean success;
     private int tries;
 
@@ -43,7 +43,7 @@ public class History {
     }
 
     public void reset() {
-        upperBridge = new UserBridge();
-        lowerBridge = new UserBridge();
+        upperBridge.resetSpace();
+        lowerBridge.resetSpace();
     }
 }

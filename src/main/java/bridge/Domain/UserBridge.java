@@ -18,4 +18,8 @@ public class UserBridge {
         spaces.add(move);
     }
 
+    public void resetSpace() {
+        this.spaces = new ArrayList<>();
+    }
+
 }
