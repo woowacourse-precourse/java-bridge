@@ -39,6 +39,7 @@ public class InputView {
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
         }
+        System.out.println("move:" + move);
         return move;
     }
     public static void moveCheck(String move){
