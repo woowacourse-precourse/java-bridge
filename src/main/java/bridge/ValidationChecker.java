@@ -9,7 +9,12 @@ public class ValidationChecker {
     /**
      * 숫자가 범위 내에 있는지 확인한다.
      */
-    public void checkIntegerRange(int target, int start, int end){return;}
+    public void checkIntegerRange(int target, int start, int end) throws IllegalArgumentException{
+        if(start<=target && target<=end){
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
 
     /**
      * 입력 값이 숫자로 이루어져 있는지 확인한다.
