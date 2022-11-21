@@ -7,15 +7,17 @@ public class Application {
 
         int size = bridgeGameController.start();
         boolean retry = true;
+        int cnt = 0;
         while (retry) {
             boolean succeed = bridgeGameController.move(size);
+            cnt++;
             if (succeed) {
-                bridgeGameController.printResult();
+                bridgeGameController.printResult(true, cnt);
                 break;
             }
             retry = bridgeGameController.retry();
             if (!retry) {
-                bridgeGameController.printResult();
+                bridgeGameController.printResult(false, cnt);
             }
         }
     }
