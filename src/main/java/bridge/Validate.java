@@ -2,8 +2,6 @@ package bridge;
 
 public class Validate {
     private final String ERROR = "[ERROR]";
-    private final String UP = "U";
-    private final String DOWN = "D";
 
     public void validateNumberRange(String input, int min, int max) {
         if (!input.matches("[0-9]")) {
