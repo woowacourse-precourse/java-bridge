@@ -8,9 +8,11 @@ import java.util.Stack;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
     private final BridgeMap bridgeMap;
     private final List<String> bridge;
-    private int CurrentLocation = -1;
+    private int currentLocation = -1;
     private int cnt;
 
     public BridgeGame(List<String> bridge) {
@@ -24,7 +26,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public List<Stack> move(String movingValue, boolean moveResult) {
-        cnt++;
         MapType mapType = findMapType(movingValue, moveResult);
         return makeMap(mapType);
     }
@@ -57,11 +58,13 @@ public class BridgeGame {
     }
 
     public boolean isCorrect(String movingValue) {
-        if (bridge.get(CurrentLocation).equals(movingValue)) {
+        currentLocation++;
+        cnt++;
+        if (bridge.get(currentLocation).equals(movingValue)) {
             return true;
         }
-        if (!bridge.get(CurrentLocation).equals(movingValue)) {
-            return true;
+        if (!bridge.get(currentLocation).equals(movingValue)) {
+            return false;
         }
         throw new IllegalArgumentException("[ERROR] 사용자 입력 값이 잘못 되었습니다.");
     }
@@ -71,7 +74,16 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        return true;
+    public boolean retry(String tryCommand) {
+        if (tryCommand.equals(RETRY)) {
+            bridgeMap.init();
+            currentLocation = -1;
+            cnt = 0;
+            return true;
+        }
+        if (tryCommand.equals(QUIT)) {
+            return false;
+        }
+        throw new IllegalArgumentException("[ERROR] R과 Q중에 하나만 입력하세요.");
     }
 }
