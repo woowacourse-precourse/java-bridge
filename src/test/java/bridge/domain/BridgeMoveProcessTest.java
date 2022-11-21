@@ -1,11 +1,6 @@
 package bridge.domain;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import bridge.Application;
 import bridge.constant.GameState;
-import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -22,6 +17,8 @@ public class BridgeMoveProcessTest{
         List<Boolean> downState = List.of(false, false, true);
         BridgePrinting bridgePrinting = new BridgePrinting(upState, downState);
         bridgePrinting.addTraceLocation(GameState.UP_STATEMENT);
+        bridgePrinting.addTraceLocation(GameState.UP_STATEMENT);
+        bridgePrinting.addTraceLocation(GameState.DOWN_STATEMENT);
         bridgePrinting.makeBridge();
         Assertions.assertThat(bridgePrinting.getSize()).isEqualTo(3);
     }
@@ -46,7 +43,7 @@ public class BridgeMoveProcessTest{
         int getState = GameState.DOWN_STATEMENT;
         List<Boolean> upState = new ArrayList<>();
         List<Boolean> downState = new ArrayList<>();
-        if (getState == GameState.UP_STATEMENT) {
+        if (getState == GameState.DOWN_STATEMENT) {
             upState.add(false);
             downState.add(true);
         }
