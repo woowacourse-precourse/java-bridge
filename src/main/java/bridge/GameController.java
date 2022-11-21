@@ -56,12 +56,20 @@ public class GameController {
 
     private boolean isGameOver(String gameCommand) {
         if (gameCommand.equals("R")) {
-            bridgeGame.retry();
+            doRetry();
             tryCount.add();
         }
         if (gameCommand.equals("Q")) {
             return true;
         }
         return false;
+    }
+
+    public void doRetry() {
+        try {
+            bridgeGame.retry();
+        } catch (IllegalStateException exception) {
+            outputView.printError();
+        }
     }
 }

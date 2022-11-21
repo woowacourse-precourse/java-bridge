@@ -48,6 +48,10 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + tryCount);
     }
 
+    public void printError() {
+        System.out.println("[ERROR] 잘못된 위치에서 메소드가 호출 되었습니다.");
+    }
+
     private void printIsWin(boolean isWin) {
         if (isWin) {
             System.out.println("게임 성공 여부: 성공");

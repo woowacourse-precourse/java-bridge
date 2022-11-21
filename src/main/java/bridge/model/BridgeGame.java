@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Stack;
 
@@ -35,7 +36,7 @@ public class BridgeGame {
      */
     public String move(Direction direction) {
         movement.push(direction);
-        String message = makeMap.buildMessage(movement, bridge);
+        String message = makeMap.buildMap(movement, bridge);
         return message;
     }
 
@@ -44,9 +45,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry() throws IllegalStateException {
         //TODO: IllegalStatementException
-        movement.pop();
+        try {
+            movement.pop();
+        } catch (EmptyStackException exception) {
+            throw new IllegalStateException();
+        }
     }
 
     public boolean failToMove() {
