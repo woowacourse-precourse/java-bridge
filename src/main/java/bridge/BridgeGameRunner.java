@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.application.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.CommandType;
 import bridge.domain.Result;
 import bridge.presentation.InputView;
 import bridge.presentation.OutputView;
@@ -52,12 +53,19 @@ public class BridgeGameRunner {
 
     private void takeCommandAndExecute(Result result) {
         String command = InputView.readGameCommand();
-        if (command.equals("R")) {
+        validateCommand(command);
+        if (command.equals(CommandType.R.name())) {
             bridgeGame.retry();
             crossTheBridge();
         }
-        if (command.equals("Q")) {
+        if (command.equals(CommandType.Q.name())) {
             exit(result);
+        }
+    }
+
+    private void validateCommand(String command) {
+        if (!CommandType.getNames().contains(command)) {
+            throw new IllegalStateException("유효하지 않은 명령 타입입니다.");
         }
     }
 
