@@ -23,8 +23,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return IntStream.range(0, size).boxed().map(repeat -> {
-            int generatedNumber = bridgeNumberGenerator.generate();
-            if (generatedNumber == 1) {
+            if (bridgeNumberGenerator.generate() == 1) {
                 return "U";
             }
             return "D";
