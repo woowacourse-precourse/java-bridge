@@ -14,7 +14,15 @@ public class Application {
     private static List<String> bridge;
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        startGame();
+        preceedGame();
+        outputView.printResult(userMove,bridge,count);
+    }
+
+    public static void startGame(){
+        outputView.printGameStartMessage();
+        bridgesize = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgesize);
     }
 
     public static void preceedGame(){
