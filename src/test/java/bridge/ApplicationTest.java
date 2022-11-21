@@ -48,7 +48,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_음수() {
+    void 예외_테스트_다리길이_음수() {
         assertSimpleTest(() -> {
             runException("-5");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -56,7 +56,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_범위초과() {
+    void 예외_테스트_다리길이_범위초과() {
         assertSimpleTest(() -> {
             runException("22");
             assertThat(output()).contains(ERROR_MESSAGE);
