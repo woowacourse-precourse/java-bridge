@@ -12,10 +12,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         outputView.startGame();
-        int size = inputView.readBridgeSize();
-        if(size == -1){
-            System.exit(0);
-        }
+        int size = checkUserInputToQuitGame(inputView.readBridgeSize());
         List<String> bridge = bridgeMaker.makeBridge(size);
         user.addUserAttempt();
         while(true){
@@ -28,7 +25,12 @@ public class Application {
             }
         }
     }
-
+    public static int checkUserInputToQuitGame(int size){
+        if(size == -1){
+            System.exit(0);
+        }
+        return size;
+    }
     public static boolean progressGame(String direction, List<String> bridge){
         bridgeGame.move(user);
         boolean checkDirection = bridgeGame.checkBridgeValueInUserPosition(user, direction, bridge);
