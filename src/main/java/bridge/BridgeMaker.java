@@ -19,13 +19,16 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
         for(int i = 0; i < size; i++){
-            int random = bridgeNumberGenerator.generate();
-            Step step = Step.getStep(random);
-            bridge.add(step.name());
+            bridge.add(addBridge());
         }
 
         return bridge;
+    }
+
+    private String addBridge(){
+        int random = bridgeNumberGenerator.generate();
+        Step step = Step.getStep(random);
+        return step.name();
     }
 }
