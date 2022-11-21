@@ -21,7 +21,7 @@ public class InputViewTest {
     }
 
     /**
-     * readBridgeSize - 다리의 길이 입력
+     * readBridgeSize - 다리의 길이 입력받기
      */
     @DisplayName("다리의 길이는 3 이상 ~ 20 이하의 숫자")
     @ValueSource(strings = {"3", "15", "20"})
@@ -42,7 +42,7 @@ public class InputViewTest {
     }
 
     /**
-     * readMoving - 사용자가 이동할 칸 입력
+     * readMoving - 사용자가 이동할 칸 입력받기
      */
     @DisplayName("사용자가 이동할 수 있는 칸은 U 또는 D")
     @ValueSource(strings = {"U", "D"})
@@ -63,7 +63,7 @@ public class InputViewTest {
     }
 
     /**
-     * readGameCommand - 사용자의 게임 재시작 또는 종료 여부 입력
+     * readGameCommand - 사용자의 게임 재시작 또는 종료 여부 입력받기
      */
     @DisplayName("사용자의 게임 재시작 또는 종료 여부 입력은 R 또는 Q")
     @ValueSource(strings = {"R", "Q"})

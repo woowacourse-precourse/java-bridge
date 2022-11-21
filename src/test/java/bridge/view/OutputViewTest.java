@@ -5,7 +5,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.Application;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.game.BridgeGame;
 import bridge.user.User;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,7 +16,6 @@ import java.util.List;
 
 public class OutputViewTest extends NsTest {
 
-    private static BridgeGame bridgeGame = new BridgeGame();
     private static List<String> bridge;
     private static final int bridgeLength = 3;
 
@@ -45,7 +43,7 @@ public class OutputViewTest extends NsTest {
     }
 
     /**
-     * printResult : 게임의 최종 결과 출력
+     * printResult : 인
      */
     @DisplayName("printResult 출력 테스트 - 게임 성공한 경우")
     @Test
@@ -61,7 +59,6 @@ public class OutputViewTest extends NsTest {
         User player = new User(User.GameStatus.PLAYING.getStatusNumber(), 1);
         OutputView.printResult(player, bridge, bridge_userMove);
     }
-
 
     @Override
     protected void runMain() {

@@ -16,7 +16,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 public class BridgeGameTest extends NsTest {
 
     private static BridgeGame bridgeGame;
-    private static List<String> bridge;
     private static final int bridgeLength = 2;
 
     @BeforeEach
@@ -24,12 +23,12 @@ public class BridgeGameTest extends NsTest {
         bridgeGame = new BridgeGame();
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(BridgeGame.BridgeShape.DOWN.getIntegerValue(), BridgeGame.BridgeShape.DOWN.getIntegerValue()));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        bridge = bridgeMaker.makeBridge(bridgeLength);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
         bridgeGame.setBridgeAnswer(bridge);
     }
 
     /**
-     * move - 사용자 위치 이동
+     * move - 사용자의 다리 칸 이동
      */
     @DisplayName("사용자의 이동 위치 저장 테스트 - 아래 칸")
     @Test
@@ -46,7 +45,7 @@ public class BridgeGameTest extends NsTest {
     }
 
     /**
-     * checkIfGameIsSucceed - 게임 성공 유무 확인
+     * checkIfGameIsSucceed - 게임 성공 여부 확인
      */
     @DisplayName("게임 성공 확인 테스트")
     @Test
@@ -58,14 +57,14 @@ public class BridgeGameTest extends NsTest {
 
     @DisplayName("게임 미성공 확인 테스트")
     @Test
-    void checkIfGameIsSucceed_not_seccess_테스트() {
+    void checkIfGameIsSucceed_not_success_테스트() {
         bridgeGame.move(BridgeGame.BridgeShape.DOWN.getStringValue());
         bridgeGame.move(BridgeGame.BridgeShape.UP.getStringValue());
         assertThat(false).isEqualTo(bridgeGame.checkIfGameIsSucceed(bridgeLength));
     }
 
     /**
-     * checkIfGameIsFailed - 게임 실패 유무 확인
+     * checkIfGameIsFailed - 게임 실패 여부 확인
      */
     @DisplayName("게임 실패 확인 테스트")
     @Test
@@ -82,7 +81,6 @@ public class BridgeGameTest extends NsTest {
         bridgeGame.move(BridgeGame.BridgeShape.DOWN.getStringValue());
         assertThat(false).isEqualTo(bridgeGame.checkIfGameIsFailed(bridgeLength));
     }
-
 
     @Override
     protected void runMain() {
