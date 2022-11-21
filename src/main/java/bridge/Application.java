@@ -5,10 +5,13 @@ import java.util.List;
 
 public class Application {
 
+    static InputView inputView = new InputView();
+    
+    static BridgeGame bridgeGame = new BridgeGame();
+    static OutputView outputView = new OutputView();
+
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        BridgeGame bridgeGame = new BridgeGame();
-        OutputView outputView = new OutputView();
+        
 
         System.out.println("다리 건너기 게임을 시작합니다");
 
@@ -24,26 +27,22 @@ public class Application {
             gameCount++;
             boolean matchingFlag = true;
             Bridge userBridge = new Bridge(new ArrayList<>(), new ArrayList<>());
+            PlayerStatus playerStatus = null;
 
             for (String s : bridge) {
 
-                String nextStep = inputView.readMoving();
+                playerStatus = isMatchingWithBridge(userBridge, s);
 
-                if (!nextStep.equals(s)) {
-                    matchingFlag = false;
-                }
-
-                bridgeGame.move(userBridge, nextStep, matchingFlag);
+                bridgeGame.move(userBridge, playerStatus);
 
                 outputView.printMap(userBridge);
 
-                if (!matchingFlag) {
+                if (!playerStatus.isMatchingFlag()) {
                     break;
                 }
-
             }
 
-            if (matchingFlag) {
+            if (!playerStatus.isMatchingFlag()) {
                 outputView.printResult(userBridge, gameCount, matchingFlag);
                 break;
             }
@@ -55,5 +54,15 @@ public class Application {
                 break;
             }
         }
+    }
+
+    private static PlayerStatus isMatchingWithBridge(Bridge bridge, String currentStep) {
+        String nextStep = inputView.readMoving();
+
+        if (currentStep.equals(nextStep)) {
+            return new PlayerStatus(nextStep, true);
+        }
+
+        return new PlayerStatus(nextStep, false);
     }
 }
