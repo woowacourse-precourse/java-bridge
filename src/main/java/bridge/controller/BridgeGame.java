@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.BridgeGameStatus;
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
 import bridge.service.BridgeMaker;
@@ -26,6 +27,10 @@ public class BridgeGame {
     public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         runCount = 0;
+    }
+
+    public BridgeGameStatus getBridgeGameStatus() {
+        return new BridgeGameStatus(playerMove, gameBridge, runCount);
     }
 
     /**
