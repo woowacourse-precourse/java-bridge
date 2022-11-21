@@ -12,7 +12,7 @@
   - BridgeGame$move()
 - [ ] 현재까지 이동한 다리의 상태를 출력한다.
   - OutputView$printMap()
-- [ ] 사용자가 게임을 재시작할지 입력 받는다.
+- [x] 사용자가 게임을 재시작할지 입력 받는다.
   - InputView$readGameCommand()
 - [ ] 게임을 재시작하거나 종료한다.
   - BridgeGame$retry()
