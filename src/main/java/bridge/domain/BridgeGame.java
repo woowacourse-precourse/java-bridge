@@ -56,6 +56,10 @@ public class BridgeGame {
         return BridgeConstants.SPACE;
     }
 
+    private boolean equalsAt(int index) {
+        return path.get(index).equals(bridge.get(index));
+    }
+
     public boolean isOngoing() {
         if (path.isEmpty()) {
             return true;
