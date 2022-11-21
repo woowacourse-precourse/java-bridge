@@ -10,7 +10,7 @@ import java.util.List;
 public class Bridge extends BridgeMaker {
     private final InputView userView;
     private final Comparator comparator;
-    private static List<String> bridge;
+    private final List<String> bridge;
 
     public Bridge() {
         super(new BridgeRandomNumberGenerator());
