@@ -17,7 +17,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리의 길이를 입력해주세요.");
-        String input = getInput(validationType.BRIDGE_SIZE);
+        String input = readInput(validationType.BRIDGE_SIZE);
         return Integer.parseInt(input);
     }
 
@@ -26,7 +26,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return getInput(validationType.MOVING);
+        return readInput(validationType.MOVING);
     }
 
     /**
@@ -34,21 +34,25 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return getInput(validationType.GAME_COMMAND);
+        return readInput(validationType.GAME_COMMAND);
     }
 
-    private String getInput(Validation.validationType type) {
+    private String readInput(Validation.validationType type) {
         String input;
         while (true) {
             try {
-                input = readLine();
-                Validation.validate(type, input);
+                input = readAndValidateInput(type);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
-            break;
+            return input;
         }
+    }
+
+    private String readAndValidateInput(Validation.validationType type) {
+        String input = readLine();
+        Validation.validate(type, input);
         return input;
     }
 }
