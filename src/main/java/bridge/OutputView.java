@@ -24,8 +24,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void bridgeGameStart(){
-        System.out.println(Message.GAME_START_MESSAGE.getMessage());
+    public static void bridgeGameStart(){System.out.println(Message.GAME_START_MESSAGE.getMessage());
     }
     public static void bridgeLengthMessage(){System.out.println(Message.BRIDGE_LENGTH_REQUEST.getMessage());}
     public static void moveStepMessage(){
