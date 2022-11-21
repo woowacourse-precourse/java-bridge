@@ -60,6 +60,6 @@ public class Game {
 
     private boolean isStartOrEnd() {
         OutputView.printStartOrEnd();
-
+        return bridgeGame.retry(InputView.readGameCommand());
     }
 }

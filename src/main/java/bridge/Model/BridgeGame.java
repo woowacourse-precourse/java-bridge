@@ -28,7 +28,8 @@ public class BridgeGame {
         return false;
     }
 
-    public void retry() {
+    public boolean retry(final String input) {
+        return (BridgeValue.RESTART.value()).equals(input);
     }
 
 

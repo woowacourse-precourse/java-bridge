@@ -8,7 +8,8 @@ public enum BridgeValue {
     UP("U"),
     DOWN("D"),
     OLD(", "),
-    NEW("|");
+    NEW("|"),
+    RESTART("R");
 
     private final String value;
 
