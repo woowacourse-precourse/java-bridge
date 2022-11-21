@@ -21,13 +21,13 @@ public class Valification {
     }
 
     public void verifyUorD(String move) {
-        if (!(Objects.equals(move, Move.UPBRIDGE) || Objects.equals(move, Move.DOWNBRIDGE))) {
+        if (!(Objects.equals(move, Move.UP_BRIDGE.getValue()) || Objects.equals(move, Move.DOWN_BRIDGE.getValue()))) {
             throw new IllegalArgumentException(ERROR_MOVE_UD);
         }
     }
 
     public void verifyQorR(String retry) {
-        if (!(Objects.equals(retry, Command.RETRY) || Objects.equals(retry, Command.QUIT))) {
+        if (!(Objects.equals(retry, Command.RETRY.getCommandGame()) || Objects.equals(retry, Command.QUIT.getCommandGame()))) {
             throw new IllegalArgumentException(ERROR_RETRY_RQ);
         }
     }
