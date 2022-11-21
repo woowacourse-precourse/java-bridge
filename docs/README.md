@@ -2,9 +2,8 @@
 ![Generic badge](https://img.shields.io/badge/precourse-week4-brightgreen)
 
 ## 기능 구현
-- [ ] 다리 생성
-  - [ ] random 생성 0,1에 따른 U,D 입력 구현
-  - [ ] random 생성이 제대로 이루어지지 않았을 때 예외처리
+- [x] 다리 생성
+  - [x] random 생성 0,1에 따른 U,D 입력 구현
 - [ ] 플레이어 입력(U,D)
 - [ ] 플레이어 입력 검증(O,X)
 - [ ] 플레이어 입력 결과 출력
