@@ -7,12 +7,12 @@ public class Bridge {
     private int bridgeSize;
 
     public void bridge(String bridgeSize){
-        validate(bridgeSize);
+        this.bridgeSize = validate(bridgeSize);
     }
-    private void validate(String bridgeSize){
+    private int validate(String bridgeSize){
         int bridgeSizeNumber = stringToNumber(bridgeSize);
         validateBridgeSize(bridgeSizeNumber);
-        this.bridgeSize = bridgeSizeNumber;
+        return bridgeSizeNumber;
     }
     private void validateBridgeSize(int bridgeSize){
         if(bridgeSize>MAX_BRIDGE_SIZE||bridgeSize<MIN_BRIDGE_SIZE){
