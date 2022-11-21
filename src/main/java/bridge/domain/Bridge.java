@@ -35,8 +35,8 @@ public class Bridge {
         return BRIDGE_MIN_SIZE;
     }
 
-    public List<String> getBridge() {
-        return bridge;
+    public int getBridgeSize(){
+        return bridge.size();
     }
 
     public String getBridgeValue(int index){

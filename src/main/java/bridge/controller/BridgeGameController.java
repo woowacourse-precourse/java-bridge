@@ -8,6 +8,9 @@ import bridge.domain.GameCommand;
 import bridge.domain.Moving;
 
 public class BridgeGameController {
+    private static final String SUCCESS_RESULT = "성공";
+    private static final String FAIL_RESULT = "실패";
+
     private int trial = 0;
     private boolean isRestart = true;
     private Moving moving;
@@ -20,6 +23,11 @@ public class BridgeGameController {
             move();
             if (!bridgeGame.isRightResult(moving.getValue())){
                 restartOrQuit();
+            }
+
+            if (bridgeGame.isSuccess(moving.getValue())){
+                isRestart = false;
+                OutputView.printResult();
             }
         }
     }

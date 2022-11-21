@@ -16,6 +16,10 @@ public class MovingData {
         return movings.size() - 1 ;
     }
 
+    public static int getMovingDataSize(){
+        return movings.size();
+    }
+
     public static void reset() {
         movings.clear();
     }

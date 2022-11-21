@@ -61,4 +61,15 @@ public class BridgeGame {
         MovingData.reset();
         BridgeResultData.reset();
     }
+
+    /**
+     * '입력 받은 칸'과 '건널 수 있는 칸' 비교 결과 값 얻는 메소드
+     */
+    public boolean isSuccess(String movingValue) {
+        return isRightResult(movingValue) && isLastMoving();
+    }
+
+    private boolean isLastMoving(){
+        return bridge.getBridgeSize() == MovingData.getMovingDataSize();
+    }
 }
