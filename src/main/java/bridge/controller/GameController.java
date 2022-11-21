@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.Progress;
 import bridge.constant.BridgePattern;
+import bridge.constant.Command;
 import bridge.constant.GameCondition;
 import bridge.model.BridgeGame;
 import bridge.BridgeMaker;
@@ -52,6 +53,12 @@ public class GameController {
     }
 
     private boolean checkRetry(BridgeGame bridgeGame) {
+        outputView.printRetryMsg();
+        if (inputView.readGameCommand() == Command.DO_QUIT) {
+            return true;
+        }
+
+        bridgeGame.retry();
         return false;
     }
 }
