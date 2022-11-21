@@ -3,7 +3,7 @@ package bridge;
 public class GameResult {
     private int tryCount = 0;
     private boolean isGameClear = false;
-    private BridgeMap bridgeMap = new BridgeMap();
+    private final BridgeMap bridgeMap = new BridgeMap();
 
     public void retry() {
         countUp();

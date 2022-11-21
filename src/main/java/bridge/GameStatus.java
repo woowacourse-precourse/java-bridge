@@ -2,10 +2,10 @@ package bridge;
 
 public class GameStatus {
     private static final int DEFAULT_POSITION = 0;
-    private BridgeGame bridgeGame;
-
-    private GameResult gameResult = new GameResult();
     private final int bridgeSize;
+    private final BridgeGame bridgeGame;
+    private final GameResult gameResult = new GameResult();
+
     private int pivot = 0;
 
     public GameStatus(int bridgeSize) {

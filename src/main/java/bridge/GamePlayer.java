@@ -17,23 +17,20 @@ public class GamePlayer {
         while (isExit != Command.QUIT) {
             gameStatus.retry();
             cross();
-            if(gameStatus.getResult().getGameClear()) {
+            if (gameStatus.getResult().getGameClear()) {
                 break;
             }
             isExit = inputView.readGameCommand();
         }
     }
 
-
     private void cross() {
         while (!gameStatus.getResult().getGameClear()) {
-            Command moveCommand = inputView.readMoving();
-            boolean crossResult = gameStatus.cross(moveCommand);
+            boolean crossResult = gameStatus.cross(inputView.readMoving());
             outputView.printMap(gameStatus.getResult().getBridgeMap());
-            if(!crossResult) {
+            if (!crossResult) {
                 break;
             }
         }
     }
-
 }
