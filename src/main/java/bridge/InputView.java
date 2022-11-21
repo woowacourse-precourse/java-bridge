@@ -29,17 +29,16 @@ public class InputView {
         System.out.println(readBridgeSizeMs);
         try {
             input = getInput();
-            if (ThisIsNumber(input)) getSize(); //숫자가 아니라면
+            if (ThisIsNumber(input) || RangeOfNumber(input)) getSize(); //숫자가 아니라면, 또는 3~20 사이의 범위가 아닐경우
             size = Integer.parseInt(input);
-            if (RangeOfNumber()) getSize(); //숫자의 범위가 3~20이 아니라면
         } catch (IllegalArgumentException e) {
             size = readBridgeSize();
         }
         return size;
     }
 
-    private boolean RangeOfNumber() {
-        return size < 3 || size > 20;
+    private boolean RangeOfNumber(String input) {
+        return Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20;
     }
 
     void getSize() {

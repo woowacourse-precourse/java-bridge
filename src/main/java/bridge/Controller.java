@@ -25,11 +25,16 @@ public class Controller {
             return;
         }
         String input = processMove(movingIndex); //입력을 받고 진행 사항을 출력
-        if (bridgeGame.move(bridgeList.get(movingIndex), input)) { //입력이 정답과 다를 경우
-            askRetry(movingIndex, input); //게임 재시작 혹은 종료를 묻는다.
-            return;
-        }
+        if (diffentInput(movingIndex, input)) return; //틀린 답을 입력했을 경우
         Game(movingIndex + 1, input); //입력이 정답이면서 아직 게임이 남아있는 경우
+    }
+
+    private boolean diffentInput(int movingIndex, String input) {
+        if (bridgeGame.move(bridgeList.get(movingIndex), input)) {
+            askRetry(movingIndex, input);
+            return true;
+        }
+        return false;
     }
 
     private boolean Same(int movingIndex, int size) {
