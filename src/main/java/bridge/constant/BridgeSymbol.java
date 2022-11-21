@@ -1,6 +1,6 @@
 package bridge.constant;
 
-public enum Bridge {
+public enum BridgeSymbol {
     O(" O "),
     X(" X "),
     BLANK("   "),
@@ -10,7 +10,7 @@ public enum Bridge {
 
     private final String state;
 
-    private Bridge(String state) {
+    private BridgeSymbol(String state) {
         this.state = state;
     }
 
