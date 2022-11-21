@@ -10,16 +10,16 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String gameStartMessage = "다리 건너기 게임을 시작합니다.";
-    private static final String askBridgeSizeMessage = "다리의 길이를 입력해주세요.\n";
-    private static final String askUserMoveDirectionMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
-    private static final String askGameCommandMessage = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String ASK_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.\n";
+    private static final String ASK_USER_MOVE_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
+    private static final String ASK_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
 
-    private static final String gameResultMessage = "최종 게임 결과";
-    private static final String isGameSucceedMessage = "\n게임 성공 여부: ";
-    private static final String gameSucceed = "성공\n";
-    private static final String gameFailed = "실패\n";
-    private static final String numberOfGameTrialsMessage = "총 시도한 횟수: ";
+    private static final String GAME_RESULT_TITLE_MESSAGE = "최종 게임 결과";
+    private static final String GAME_RESULT_IS_GAME_SUCCEED_MESSAGE = "\n게임 성공 여부: ";
+    private static final String GAME_RESULT_STATUS_SUCCEED_MESSAGE = "성공\n";
+    private static final String GAME_RESULT_STATUS_FAILED_MESSAGE = "실패\n";
+    private static final String GAME_RESULT_NUMBER_OF_GAME_TRIALS_MESSAGE = "총 시도한 횟수: ";
 
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_END = " ]";
@@ -30,22 +30,22 @@ public class OutputView {
 
     // 게임 시작 문구 출력
     public static void printGameStartMessage() {
-        System.out.println(gameStartMessage);
+        System.out.println(GAME_START_MESSAGE);
     }
 
     // 다리 길이 입력 문구 출력
     public static void askBridgeSize() {
-        System.out.println(askBridgeSizeMessage);
+        System.out.println(ASK_BRIDGE_SIZE_MESSAGE);
     }
 
     // 이동할 칸 입력 문구 출력
     public static void askUserMoveDirection() {
-        System.out.println(askUserMoveDirectionMessage);
+        System.out.println(ASK_USER_MOVE_DIRECTION_MESSAGE);
     }
 
     // 재시작 여부 입력 문구 출력
     public static void askGameCommand() {
-        System.out.println(askGameCommandMessage);
+        System.out.println(ASK_GAME_COMMAND_MESSAGE);
     }
 
     /**
@@ -64,7 +64,7 @@ public class OutputView {
             map[BridgeGame.BridgeShape.UP.getIntegerValue()] += userFootprint[BridgeGame.BridgeShape.UP.getIntegerValue()];
             checkIsLastBridge(map, (i == bridge_userMove.size() - 1));
         }
-        System.out.println(map[BridgeGame.BridgeShape.UP.getIntegerValue()] + "\n" + map[BridgeGame.BridgeShape.DOWN.getIntegerValue()]);
+        System.out.println(map[BridgeGame.BridgeShape.UP.getIntegerValue()] + "\n" + map[BridgeGame.BridgeShape.DOWN.getIntegerValue()] + "\n");
     }
 
     /**
@@ -134,12 +134,12 @@ public class OutputView {
      * @param bridge_userMove 사용자가 현재까지 다리 상에서 이동한 위치
      */
     public static void printResult(User player, List<String> bridge_answer, List<String> bridge_userMove) {
-        System.out.println(gameResultMessage);
+        System.out.println(GAME_RESULT_TITLE_MESSAGE);
         printMap(bridge_answer, bridge_userMove);
 
-        String gameResult = isGameSucceedMessage;
-        gameResult += checkIfGameSucceed(player.isGameSucceed());
-        gameResult += numberOfGameTrialsMessage + player.getNumberOfGameTrials();
+        String gameResult = GAME_RESULT_IS_GAME_SUCCEED_MESSAGE;
+        gameResult += getGameStatusMessage(player.isGameSucceed());
+        gameResult += GAME_RESULT_NUMBER_OF_GAME_TRIALS_MESSAGE + player.getNumberOfGameTrials();
         System.out.println(gameResult);
     }
 
@@ -147,11 +147,11 @@ public class OutputView {
      * @param isGameSucceed 게임에 성공했을 경우 true / 실패했을 경우 false
      * @return 게임 성공 여부에 따른 String 반환
      */
-    private static String checkIfGameSucceed(boolean isGameSucceed) {
+    private static String getGameStatusMessage(boolean isGameSucceed) {
         if (isGameSucceed) {
-            return gameSucceed;
+            return GAME_RESULT_STATUS_SUCCEED_MESSAGE;
         }
-        return gameFailed;
+        return GAME_RESULT_STATUS_FAILED_MESSAGE;
     }
 
 }
