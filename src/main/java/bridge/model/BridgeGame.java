@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static final int INIT_LOCATION=-1;
-    private static final int INIT_RETRY_COUNT=1;
-    private static final int COUNT_NUM=1;
-    private static final int INDEX_PLUS=1;
+    private static final int INIT_LOCATION = -1;
+    private static final int INIT_RETRY_COUNT = 1;
+    private static final int COUNT_NUM = 1;
+    private static final int INDEX_PLUS = 1;
     private final List<String> bridge;
     private final BridgeComparator bridgeComparator;
     private static BridgeMap bridgeMap;
@@ -29,7 +29,7 @@ public class BridgeGame {
         bridgeMap = BridgeMap.createBridgeMap(size);
     }
 
-    public static BridgeGame createBridgeGame(int size){
+    public static BridgeGame createBridgeGame(int size) {
         return new BridgeGame(size);
     }
 
@@ -81,7 +81,7 @@ public class BridgeGame {
     public void retry(int size) {
         countRetry();
         initLocation();
-        bridgeMap =  BridgeMap.createBridgeMap(size);
+        bridgeMap = BridgeMap.createBridgeMap(size);
     }
 
     private void initLocation() {
