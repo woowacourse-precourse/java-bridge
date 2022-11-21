@@ -1,17 +1,18 @@
 package bridge.domain;
 
 import bridge.common.ErrorMessage;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Round {
     public static final int LOWER_BOUND = 1;
     public static final int UPPER_BOUND = 20;
-    private static final List<Round> CACHE = new ArrayList<>();
+    private static final Map<Integer, Round> CACHE = new HashMap<>();
 
     static {
         for (int i = LOWER_BOUND; i <= UPPER_BOUND; i++) {
-            CACHE.add(new Round(i));
+            CACHE.put(i, new Round(i));
         }
     }
 
