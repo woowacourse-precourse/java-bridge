@@ -4,20 +4,27 @@ import java.util.List;
 
 public class Application {
 
+    private static final InputView inputView = new InputView(new BridgeValidator());
+    private static final OutputView outputView = new OutputView();
+
     public static void main(String[] args) {
-        InputView inputView = new InputView(new BridgeValidator());
-        OutputView outputView = new OutputView();
-
         outputView.printGameStart();
-        BridgeGame bridgeGame = initBridgeGame(inputView, outputView);
-        bridgeGame.start();
+        BridgeGame bridgeGame = initBridgeGame();
+
+        startGame(bridgeGame);
     }
 
-    private static BridgeGame initBridgeGame(InputView inputView, OutputView outputView) {
-        return new BridgeGame(makeBridge(inputView, outputView), inputView);
+    private static void startGame(BridgeGame bridgeGame) {
+        for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
+            String direction = inputView.readMoving();
+        }
     }
 
-    private static List<String> makeBridge(InputView inputView, OutputView outputView) {
+    private static BridgeGame initBridgeGame() {
+        return new BridgeGame(makeBridge(), inputView);
+    }
+
+    private static List<String> makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         outputView.printGuideForBridgeSize();
