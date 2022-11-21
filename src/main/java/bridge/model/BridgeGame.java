@@ -19,15 +19,14 @@ public class BridgeGame {
      */
     public static ArrayList<String> move(int count, String upAndDown, List<String> bridges) {
         //String upAndDown = readMoving();
-        //ArrayList<String> equalsCheck = new ArrayList<>();
-            String bridge = bridges.get(count);
-            if(upAndDown.equals(bridge)){ // u u / u d / d d/ d u
-                equalsCheck.add("O");
-            }
+        String bridge = bridges.get(count);
+        if(upAndDown.equals(bridge)){ // u u / u d / d d/ d u
+            equalsCheck.add("O");
+        }
 
-            if(!upAndDown.equals(bridge)){
-                equalsCheck.add("X");
-            }
+        if(!upAndDown.equals(bridge)){
+            equalsCheck.add("X");
+        }
 
 
         System.out.println("equalsCheck:" + equalsCheck);
@@ -35,7 +34,6 @@ public class BridgeGame {
     }
 
     public static void moveResult(int index, String upAndDown, List<String> bridges, List<String> move){
-        //ArrayList<String> equalsCheck = new ArrayList<>();
         String first = "";
         String second = "";
         equalsCheck = move(index, upAndDown, bridges);
