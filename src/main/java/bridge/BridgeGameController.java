@@ -16,7 +16,7 @@ public class BridgeGameController {
     public void playGame() {
         try {
             outputView.printGameStart();
-            BridgeGame bridgeGame = initBridgeGame();
+            BridgeGame bridgeGame = createBridgeGame();
             startGame(bridgeGame);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
@@ -36,7 +36,7 @@ public class BridgeGameController {
         }
     }
 
-    private BridgeGame initBridgeGame() {
+    private BridgeGame createBridgeGame() {
         return new BridgeGame(makeBridge());
     }
 
