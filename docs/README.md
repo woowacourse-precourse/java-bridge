@@ -73,9 +73,9 @@
 >+ `BridgeMaker` 의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
 
 + [ ] 기능 목록
-  + [ ] 주어진 길이에 맞게 "U"와 "D"로 이루어진 무작위 배열을 만들어 반환
-    + [ ] `BridgeRandomNumberGenerator`의 `generate()`를 통해 반환된 정수를 `String`으로 변환
-    + [ ] 주어진 다리의 길이가 3미만, 20초과인 경우 예외 처리
+  + [X] 주어진 길이에 맞게 "U"와 "D"로 이루어진 무작위 배열을 만들어 반환
+    + [X] `BridgeRandomNumberGenerator`의 `generate()`를 통해 반환된 정수를 `String`으로 변환
+    + [X] 주어진 다리의 길이가 3미만, 20초과인 경우 예외 처리
 
 #### BridgeRandomNumberGenerator
 > **제한사항**
