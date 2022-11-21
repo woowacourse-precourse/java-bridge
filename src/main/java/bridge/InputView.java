@@ -59,7 +59,21 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        try {
+            OutputView.printChoiceRetry();
+            String quick = Console.readLine();
+            validateCorrectRetry(quick);
+            return quick;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
+    }
+
+    private static void validateCorrectRetry(String choice) {
+        if (!(choice.equals("R")) && !(choice.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q 문자만 입력해주세요");
+        }
     }
 }
