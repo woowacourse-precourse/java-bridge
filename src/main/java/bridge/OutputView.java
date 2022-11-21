@@ -50,7 +50,8 @@ public class OutputView {
         System.out.print("[ ");
         for (int i = 0; i < bridgeGame.getNextIndex(); i++) {
             boolean match = bridgeGame.getBridge().get(i).equals(InputView.UP);
-            drawMapContent(bridgeGame, correct, i, match);
+            if (correct) drawMapContentCorrect(bridgeGame, i, match);
+            if (!correct) drawMapContentInCorrect(bridgeGame, i, match);
         }
         System.out.println(" ]");
     }
@@ -59,13 +60,20 @@ public class OutputView {
         System.out.print("[ ");
         for (int i = 0; i < bridgeGame.getNextIndex(); i++) {
             boolean match = bridgeGame.getBridge().get(i).equals(InputView.DOWN);
-            drawMapContent(bridgeGame, correct, i, match);
+            if (correct) drawMapContentCorrect(bridgeGame, i, match);
+            if (!correct) drawMapContentInCorrect(bridgeGame, i, match);
         }
         System.out.println(" ]");
     }
 
-    private void drawMapContent(BridgeGame bridgeGame, Boolean correct, int i, boolean match) {
-        if (i == bridgeGame.getNextIndex() - 1 && !correct) {
+    private void drawMapContentCorrect(BridgeGame bridgeGame, int i, boolean match) {
+        if (match) System.out.print(YES);
+        if (!match) System.out.print(EMPTY);
+        if (i < bridgeGame.getNextIndex() - 1) System.out.print(" | ");
+    }
+
+    private void drawMapContentInCorrect(BridgeGame bridgeGame, int i, boolean match) {
+        if (i == bridgeGame.getNextIndex() - 1) {
             if (!match) System.out.print(NO);
             if (match) System.out.print(EMPTY);
             return;
