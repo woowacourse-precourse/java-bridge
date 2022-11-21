@@ -1,6 +1,9 @@
 package bridge.controller;
 
 
+import static bridge.enums.GameCommand.QUIT;
+import static bridge.enums.GameCommand.RETRY;
+
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
@@ -11,8 +14,6 @@ import bridge.service.ViewService;
 import java.util.List;
 
 public class BridgeGameController {
-    private static final String RETRY = "R";
-    private static final String QUIT = "Q";
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private final ViewService viewService = new ViewService();
@@ -54,11 +55,11 @@ public class BridgeGameController {
     }
 
     public void runFailCase(Bridge bridge, User user, String gameCommand) {
-        if (gameCommand.equals(RETRY)) {
+        if (gameCommand.equals(RETRY.getCommand())) {
             viewService.clearMap();
             bridgeGame.retry(bridge, user);
         }
-        if (gameCommand.equals(QUIT)) {
+        if (gameCommand.equals(QUIT.getCommand())) {
             user.finishWithFail();
         }
     }
