@@ -9,6 +9,8 @@ import bridge.view.OutputView;
 
 import java.util.HashMap;
 
+import static bridge.commom.constant.GameCommand.isRestartCommand;
+
 public class BridgeController {
 
     private final InputView inputView;
@@ -45,7 +47,7 @@ public class BridgeController {
 
     public boolean figureOutToRestartGame() {
         String userCommand = inputView.readGameCommand();
-        return userCommand.equals("R");
+        return isRestartCommand(userCommand);
     }
 
     public void restartGame() {

@@ -1,12 +1,15 @@
 package bridge.model;
 
 import bridge.commom.constant.GameState;
-import bridge.commom.constant.LocationTable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static bridge.commom.constant.GameCommand.*;
+import static bridge.commom.constant.MarkShape.*;
+import static bridge.commom.constant.LocationTable.getAlternativeKey;
 
 public class BridgeHistory {
 
@@ -46,39 +49,41 @@ public class BridgeHistory {
     }
 
     public void resetHistory() {
-        history = new HashMap<>();
-        nowStage = 0;
-        retry++;
+        resetMap();
+        resetStage();
+        increaseRetryCount();
     }
 
     public void updateGameState(String command, boolean isSuccess) {
         updateHistory(command, isSuccess);
-        nowStage++;
+        increaseStageCount();
     }
 
     private void updateHistory(String command, boolean isSuccess) {
-        String alterCommand = LocationTable.getAlternativeKey(command);
+        String alterCommand = getAlternativeKey(command);
         String checkShape = getCheckShape(isSuccess);
         addPage(command, alterCommand, checkShape);
     }
 
-
     private void addPage(String key, String alterKey, String checkShape) {
-        List<String> target = getPages(key);
-        List<String> another = getPages(alterKey);
+        List<String> targetPages = getPages(key);
+        List<String> anotherPages = getPages(alterKey);
 
+        markInPage(checkShape, targetPages, anotherPages);
+        history.put(key, targetPages);
+        history.put(alterKey, anotherPages);
+    }
+
+    private void markInPage(String checkShape, List<String> target, List<String> another) {
         target.add(checkShape);
-        another.add(" ");
-        history.put(key, target);
-        history.put(alterKey, another);
+        another.add(EMPTY_MARK);
     }
 
     private String getCheckShape(boolean isSuccess) {
         if (isSuccess) {
-            return "O";
+            return SUCCESS_MARK;
         }
-
-        return "X";
+        return FAIL_MARK;
     }
 
     private List<String> getPages(String key) {
@@ -86,10 +91,27 @@ public class BridgeHistory {
     }
 
     private boolean isSuccess() {
-        return getPages("U").size() == bridgeLength;
+        return getPages(UPPER_COMMAND).size() == bridgeLength;
     }
 
     private boolean isFail() {
-        return getPages("D").contains("X") || getPages("U").contains("X");
+        return (getPages(DOWN_COMMAND).contains(FAIL_MARK) ||
+                getPages(UPPER_COMMAND).contains(FAIL_MARK));
+    }
+
+    private void resetMap() {
+        history = new HashMap<>();
+    }
+
+    private void resetStage() {
+        nowStage = 0;
+    }
+
+    private void increaseRetryCount() {
+        retry++;
+    }
+
+    private void increaseStageCount() {
+        nowStage++;
     }
 }

@@ -21,7 +21,7 @@ class InputValidatorTest {
     @ParameterizedTest(name = "이동 명령어 유효성 검사 테스트[{index}] => {0}은 U 혹은 D가 아니다.  ")
     @ValueSource(strings = {"A", "0", "-1", "B", "65.123", "-0.1", "abc", "u", "d"})
     void ifInputValueInMoveCommandIsNotUOrDThenThrowException(String actual) {
-        assertThatThrownBy(() -> InputValidator.isMoveCommand(actual))
+        assertThatThrownBy(() -> InputValidator.isMoveModeCommand(actual))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("U(위로 이동) 혹은 D(아래로 이동) 중 하나를 입력해야합니다.");
     }
@@ -30,7 +30,7 @@ class InputValidatorTest {
     @ParameterizedTest(name = "이동 명령어 유효성 검사 테스트[{index}] => {0}은 R 혹은 Q가 아니다.  ")
     @ValueSource(strings = {"A", "0", "-1", "B", "65.123", "-0.1", "abc", "u", "d"})
     void ifInputValueInRestartCommandIsNotROrQThenThrowException(String actual) {
-        assertThatThrownBy(() -> InputValidator.isRestartCommand(actual))
+        assertThatThrownBy(() -> InputValidator.isRestartModeCommand(actual))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("R(재시작) 혹은 Q(종료) 중 하나를 입력해야합니다.");
     }

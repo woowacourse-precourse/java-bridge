@@ -1,12 +1,10 @@
-package bridge.app;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.commom.constant.GameState;
 import bridge.controller.BridgeController;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import static bridge.commom.constant.GameMessage.Exception.ERROR_HEADER;
+
 public class BridgeGame {
 
     private final BridgeController bridgeController;
@@ -20,7 +18,7 @@ public class BridgeGame {
     public void run() {
         try {
             start();
-            while (isEnd()) {
+            while (isRunningMode()) {
                 move();
                 retry();
             }
@@ -30,32 +28,22 @@ public class BridgeGame {
         }
     }
 
+    public void retry() {
+        if (isRestartMode()) {
+            resetGame();
+        }
+    }
+
+    public void move() {
+        bridgeController.moveOneStep();
+    }
+
     public void start() {
         bridgeController.playGreeting();
         bridgeController.setupGame(bridgeNumberGenerator);
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
-        bridgeController.moveOneStep();
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-        if (isFail()) {
-            resetGame();
-        }
-    }
-
-    private void close() {
+    public void close() {
         bridgeController.showResult();
     }
 
@@ -66,15 +54,15 @@ public class BridgeGame {
         }
     }
 
-    private boolean isEnd() {
+    private boolean isRunningMode() {
         return bridgeController.getNowGameProgress() == GameState.RUNNING;
     }
 
-    private boolean isFail() {
+    private boolean isRestartMode() {
         return bridgeController.getNowGameProgress() == GameState.FAIL;
     }
 
     private void exceptionHandler(Exception err) {
-        System.out.println("[ERROR] " + err.getMessage());
+        System.out.println(ERROR_HEADER + err.getMessage());
     }
 }

@@ -1,41 +1,34 @@
 package bridge.view;
 
 import bridge.commom.validation.InputValidator;
+
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import static bridge.commom.constant.GameMessage.InputMessage.*;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        String input = readLineWithoutWhiteSpace();
+        String input = printMessageAndReadLine(READ_BRIDGE_SIZE);
         InputValidator.isPositiveInteger(input);
         return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String input = readLineWithoutWhiteSpace();
-        InputValidator.isMoveCommand(input);
+        String input = printMessageAndReadLine(READ_MOVEMENT);
+        InputValidator.isMoveModeCommand(input);
         return input;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String input = readLineWithoutWhiteSpace();
-        InputValidator.isRestartCommand(input);
+        String input = printMessageAndReadLine(READ_GAME_COMMAND);
+        InputValidator.isRestartModeCommand(input);
         return input;
+    }
+
+    private String printMessageAndReadLine(String message) {
+        System.out.println(message);
+        return readLineWithoutWhiteSpace();
     }
 
     private String readLineWithoutWhiteSpace() {

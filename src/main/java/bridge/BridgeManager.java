@@ -15,7 +15,7 @@ public class BridgeManager {
 
     public void setBridgeWithSize(int size) {
         BridgeValidator.isProperlyBridgeSize(size);
-        bridge = this.bridgeMaker.makeBridge(size);
+        bridge = bridgeMaker.makeBridge(size);
     }
 
     public boolean isMovable(String userCommand, int stage) {
