@@ -67,7 +67,7 @@ class UserTest {
         User user = new User();
 
         //when
-        user.finishWitFail();
+        user.finishWithFail();
 
         //then
         assertThat(user.isGameOver()).isEqualTo(true);
