@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.gameStatus;
+import bridge.domain.GameStatus;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 
@@ -29,13 +29,13 @@ public class BridgeGameController {
     }
 
     public void playGame() {
-        while (game.currentStatus.equals(gameStatus.CONTINUE)) {
+        while (game.currentStatus.equals(GameStatus.CONTINUE)) {
             movePosition();
-            if (game.currentStatus.equals(gameStatus.FAIL)) {
+            if (game.currentStatus.equals(GameStatus.FAIL)) {
                 output.printResult(game);
                 retryOrEndGame();
             }
-            if (game.currentStatus.equals(gameStatus.SUCCESS)) {
+            if (game.currentStatus.equals(GameStatus.SUCCESS)) {
                 output.printResult(game);
             }
         }

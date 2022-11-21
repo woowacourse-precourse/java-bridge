@@ -20,20 +20,20 @@ public class Bridge {
         initializeUserRoute();
     }
 
-    public gameStatus updateUserRoute(String direction) {
+    public GameStatus updateUserRoute(String direction) {
         userRoute.add(direction);
         int currentRound = userRoute.size() - 1;
 
         if (userRoute.get(currentRound).equals(bridge.get(currentRound)) == false) {
-            return gameStatus.FAIL;
+            return GameStatus.FAIL;
 
         } if (userRoute.get(currentRound).equals(bridge.get(currentRound)) == true) {
             if ((userRoute.size() == bridge.size())) {
-                return gameStatus.SUCCESS;
+                return GameStatus.SUCCESS;
             }
-            return gameStatus.CONTINUE;
+            return GameStatus.CONTINUE;
         }
-        return gameStatus.CONTINUE;
+        return GameStatus.CONTINUE;
     }
 
     public List<String> getUserRoute() {

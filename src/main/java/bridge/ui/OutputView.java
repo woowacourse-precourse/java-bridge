@@ -2,7 +2,7 @@ package bridge.ui;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.gameStatus;
+import bridge.domain.GameStatus;
 
 import java.util.List;
 
@@ -35,10 +35,10 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.bridge);
-        gameStatus gameResult = bridgeGame.currentStatus;
-        if (gameResult.equals(gameStatus.SUCCESS)) {
+        GameStatus gameResult = bridgeGame.currentStatus;
+        if (gameResult.equals(GameStatus.SUCCESS)) {
             System.out.println("게임 성공 여부: 성공");
-        } if (gameResult.equals(gameStatus.FAIL)) {
+        } if (gameResult.equals(GameStatus.FAIL)) {
             System.out.println("게임 성공 여부: 실패");
         }
 
