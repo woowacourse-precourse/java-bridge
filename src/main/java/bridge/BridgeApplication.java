@@ -85,7 +85,7 @@ public class BridgeApplication {
     private GameStatus executeGameCommand() {
         try {
             String command = inputView.readGameCommand();
-            return service.executeGameCommand(status, command);
+            return service.executeGameCommand(command);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return executeGameCommand();
