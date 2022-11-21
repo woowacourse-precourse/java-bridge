@@ -24,8 +24,6 @@ public class OutputView {
                         .collect(Collectors.joining(" | ","[ "," ]"));
         System.out.println(printUserUpBridge);
         System.out.println(printDownBridge+"\n");
-
-
     }
 
     /**
