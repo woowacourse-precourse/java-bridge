@@ -62,5 +62,4 @@ public class OutputView {
             System.out.println(toBridgeFormat(gameBridge));
         }
     }
-
 }
