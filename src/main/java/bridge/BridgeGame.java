@@ -67,7 +67,7 @@ public class BridgeGame {
     }
     public boolean isSuccess(){
         boolean result = false;
-        if (moveCount==bridge.size()-1 && !isFail()){
+        if (moveCount==bridge.size() && !isFail()){
             result = true;
             success=true;
         }
