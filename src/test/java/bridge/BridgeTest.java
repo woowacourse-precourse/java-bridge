@@ -30,7 +30,7 @@ class BridgeTest {
 	@DisplayName("다리를 생성한다.")
 	@Test
 	void make() {
-		assertThat(new Bridge(List.of("U", "D", "U")).toBridgeResponseDto().getPartOfBridge(3)).isEqualTo(
+		assertThat(new Bridge(List.of("U", "D", "U")).getBridge()).isEqualTo(
 			List.of("U", "D", "U"));
 	}
 }
