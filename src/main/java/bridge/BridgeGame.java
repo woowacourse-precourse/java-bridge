@@ -42,7 +42,7 @@ public class BridgeGame {
             outputView.printMoveMessage();
             boolean correct = inputView.readMoving().equals(bridge.get(pos));
 
-            outputView.printMap();
+            outputView.printMap(bridge, pos, correct);
             if(!correct)
                 return false;
         }
