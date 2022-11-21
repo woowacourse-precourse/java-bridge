@@ -1,6 +1,6 @@
 package bridge.command;
 
-import static bridge.config.ExceptionMessage.NOT_NUMBER_SIZE;
+import static bridge.config.ExceptionMessage.WRONG_SIZE_FORMAT;
 import static bridge.config.ExceptionMessage.NUMBER_OUT_OF_RANGE;
 
 public class Size {
@@ -33,7 +33,7 @@ public class Size {
         try {
             return Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_SIZE.toString());
+            throw new IllegalArgumentException(WRONG_SIZE_FORMAT.toString());
         }
     }
 }

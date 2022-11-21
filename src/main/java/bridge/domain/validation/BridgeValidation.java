@@ -1,22 +1,23 @@
 package bridge.domain.validation;
 
+import static bridge.config.ExceptionMessage.WRONG_BRIDGE_SQUARE;
+
 import bridge.command.enums.PlayerMove;
-import bridge.config.ExceptionMessage;
 import java.util.List;
 
 public class BridgeValidation {
 
     public static void validate(List<String> squares) {
-        validateSquaresElement(squares);
+        validateSquares(squares);
     }
 
-    private static void validateSquaresElement(List<String> squares) {
-        if (hasUnknownElement(squares)) {
-            throw new IllegalArgumentException(ExceptionMessage.WRONG_ELEMENT.toString());
+    private static void validateSquares(List<String> squares) {
+        if (hasUnknownSquare(squares)) {
+            throw new IllegalArgumentException(WRONG_BRIDGE_SQUARE.toString());
         }
     }
 
-    private static boolean hasUnknownElement(List<String> squares) {
+    private static boolean hasUnknownSquare(List<String> squares) {
         return !squares.stream().allMatch(PlayerMove::isInPlayerMove);
     }
 }
