@@ -12,7 +12,6 @@ public class BridgeGame {
     private final List<String> bridge;
     private int trials;
     private int currentPosition;
-    private final int bridgeSize;
     private boolean isCorrect;
     private final List<String> fullUpperMap;
     private final List<String> fullLowerMap;
@@ -21,7 +20,6 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.trials = 1;
-        this.bridgeSize = bridgeSize;
         this.currentPosition = 0;
         fullUpperMap = new ArrayList<>();
         fullLowerMap = new ArrayList<>();
@@ -59,7 +57,7 @@ public class BridgeGame {
     }
 
     public boolean isPlaying() {
-        return (currentPosition < bridgeSize);
+        return (currentPosition < bridge.size());
     }
 
     public List<String> getMap() {
