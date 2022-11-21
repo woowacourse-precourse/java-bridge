@@ -5,7 +5,13 @@ public class Application {
     public static void main(String[] args) {
         BridgeData bridgeData = new BridgeData(bridgeMaker.makeBridge(InputView.readBridgeSize()),0);
         while (bridgeData.getBridge().size() > bridgeData.getCurrentPosition() && BridgeGame.gameStatus){
-            BridgeGame.move(bridgeData, InputView.readMoving());
+            if (BridgeGame.move(bridgeData, InputView.readMoving())){
+                OutputView.printMap(bridgeData, true);
+                continue;
+            }
+            OutputView.printMap(bridgeData, false);
+            BridgeGame.retry(InputView.readGameCommand());
         }
+        OutputView.printResult(bridgeData, BridgeGame.gameStatus, BridgeGame.gameCount);
     }
 }

@@ -6,7 +6,6 @@ public class BridgeData {
     private final List<String> bridge;
     private int currentPosition;
 
-
     public BridgeData(List<String> bridge, int currentPosition){
         this.bridge = bridge;
         this.currentPosition = currentPosition;
