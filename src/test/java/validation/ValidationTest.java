@@ -35,4 +35,13 @@ public class ValidationTest {
                 .hasMessageContaining(ERROR_MESSAGE)
                 .hasMessageContaining("이동할 칸은 위는 U, 아래는 D로 입력해야 합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "r", "q", "RR", "QQ", "11R", "Q  "})
+    void 다시_시도_여부가_R_또는_Q가_아닐_경우_예외_처리(String input) {
+        assertThatThrownBy(() -> Validation.ofRestart(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE)
+                .hasMessageContaining("재시도는 R, 종료는 Q로 입력해야 합니다.");
+    }
 }

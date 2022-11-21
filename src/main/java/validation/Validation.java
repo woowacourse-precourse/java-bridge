@@ -24,4 +24,9 @@ public class Validation {
         if (!input.equals("U") && !input.equals("D"))
             throw new IllegalArgumentException(ERROR_MESSAGE + "이동할 칸은 위는 U, 아래는 D로 입력해야 합니다.");
     }
+
+    public static void ofRestart(String input) {
+        if (!input.equals("R") && !input.equals("Q"))
+            throw new IllegalArgumentException(ERROR_MESSAGE + "재시도는 R, 종료는 Q로 입력해야 합니다.");
+    }
 }
