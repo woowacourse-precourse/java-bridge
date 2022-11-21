@@ -28,20 +28,20 @@ public class BridgeController {
         }while(!reply.equals("Q"));
     }
 
-    public int inputSize(){
+    private int inputSize(){
         String size = inputView.readBridgeSize();
         bridgeSize.checkNumber(size);
         return Integer.parseInt(size);
     }
 
-    public void printResult(String fail, int attempt) {
+    private void printResult(String fail, int attempt) {
         OutputView.printResult(bridgeGame.toString());
         OutputView.printSuccessOrFail(fail);
         OutputView.printAttemptCount(attempt);
 
     }
 
-    public String crossBridge(List<String> bridge) {
+    private String crossBridge(List<String> bridge) {
         for(int i=0;i<bridge.size();i++) {
             String move = inputView.readMoving();
             List<List<String>> bridges = bridgeGame.move(bridge.get(i),move);
@@ -53,12 +53,12 @@ public class BridgeController {
         return "성공";
     }
 
-    public String crossingBridge(List<String> bridge){
+    private String crossingBridge(List<String> bridge){
         reset();
         return crossBridge(bridge);
     }
 
-    public String play(List<String> bridge){
+    private String play(List<String> bridge){
         int attempt = 0;
         String fail;
         String reply = "R";
@@ -72,7 +72,7 @@ public class BridgeController {
         return reply;
     }
 
-    public String endGame(List<List<String>> bridges){
+    private String endGame(List<List<String>> bridges){
         int last = bridges.get(0).size() -1;
         List<String> bridgeUp = bridges.get(0);
         List<String> bridgeDown = bridges.get(1);
@@ -85,15 +85,7 @@ public class BridgeController {
 
     }
 
-
-//    public void reply(String result) {
-//        if(result.contains("X")) {
-//            reset();
-//            sf = "실패";
-//        }
-//    }
-
-    public String replyQuit(String fail){
+    private String replyQuit(String fail){
         String reply;
         if(fail.equals("실패")) {
             reply = InputView.readGameCommand();
@@ -102,13 +94,8 @@ public class BridgeController {
         return "Q";
     }
 
-
-
-
-
-    public void reset() {
+    private void reset() {
         bridgeGame.reset();
-
     }
 
 

@@ -61,7 +61,7 @@ public class BridgeGame {
         return sb.toString();
     }
 
-    public String bridgeToString(List<String> bridge){
+    private String bridgeToString(List<String> bridge){
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<bridge.size();i++){
             sb.append(bridge.get(i));
