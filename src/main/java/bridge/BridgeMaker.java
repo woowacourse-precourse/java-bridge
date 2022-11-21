@@ -22,7 +22,6 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         int bridgePiece;
-
         for(int sizeCount = 0; sizeCount < size; sizeCount ++){
             bridgePiece = bridgeNumberGenerator.generate();
             bridge.add(makeBridgePiece(bridgePiece));
@@ -33,9 +32,9 @@ public class BridgeMaker {
 
     public String makeBridgePiece(int bridgePiece){
         if(bridgePiece == 0){
-            return BridgeData.UP;
+            return BridgeData.DOWN;
         }
 
-        return BridgeData.DOWN;
+        return BridgeData.UP;
     }
 }

@@ -22,4 +22,10 @@ public enum InputGuide {
     public void printGuideWithLine(){
         System.out.println(guider);
     }
+
+    public static void printWelcomeMessage(){
+        System.out.println(WELCOME.guider);
+        System.out.println();
+        System.out.println(SIZE.guider);
+    }
 }

@@ -1,4 +1,4 @@
-package bridge;
+package View;
 
 // 여기에서만 readLine()을 사용할 것.
 
@@ -23,7 +23,6 @@ public class InputView {
     public int readBridgeSize() {
         String rawData;
         while(true){
-            System.out.println("입력");
             try{
                 rawData = readLine();
                 return validateSize(rawData);
@@ -44,10 +43,10 @@ public class InputView {
             if(rawSize < 3 || rawSize > 20){
                 throw new IllegalArgumentException();
             }
+            return rawSize;
         }catch (Exception e){
             throw new IllegalArgumentException();
         }
-        return 0;
     }
 
     /**
