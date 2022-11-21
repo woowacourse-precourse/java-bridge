@@ -13,31 +13,49 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    private List<List<String>> mapList;
+
+    public OutputView() {
+        mapList = new ArrayList<>();
+        mapList.add(List.of());
+        mapList.add(List.of());
+        System.out.println("CHECK"+mapList);
+    }
+
     public void printMap(BirdgeMoveType isPossibleMove) {
 
         List<List<String>> move=checkIndex(isPossibleMove);
         List<String> resultList = printMapBorder(move);
         for (String result:
                 resultList) {
-            System.out.println(result);
+            System.out.print(result);
         }
+        System.out.println("\n");
     }
     public List<List<String>> checkIndex(BirdgeMoveType whereMove){
-        List<List<String>> mapList = new ArrayList<>();
+
+//        if(whereMove.getIndex()==0){
+//            mapList.add(List.of("| "+whereMove.getCode()+" "));
+//            mapList.add(List.of("|   "));
+//        } else if (whereMove.getIndex()==1) {
+//            mapList.add(List.of("|   "));
+//            mapList.add(List.of("| "+whereMove.getCode()+" "));
+//        }
         if(whereMove.getIndex()==0){
-            mapList.add(whereMove.getIndex(),List.of("| "+whereMove.getCode()+" "));
-            mapList.add(whereMove.getIndex()+1,List.of("|   "));
+            mapList.get(whereMove.getIndex()).add("| "+whereMove.getCode()+" ");
+            mapList.get(whereMove.getIndex()+1).add("|   ");
         } else if (whereMove.getIndex()==1) {
-            mapList.add(whereMove.getIndex()-1,List.of("|   "));
-            mapList.add(whereMove.getIndex(),List.of("| "+whereMove.getCode()+" "));
+            mapList.get(whereMove.getIndex()-1).add("|   ");
+            mapList.get(whereMove.getIndex()).add("| "+whereMove.getCode()+" ");
         }
         return mapList;
     }
     public List<String> printMapBorder(List<List<String>> mapView){
         List<String> result=new ArrayList<>();
-
+        System.out.println("C  "+mapView);
         for (List<String> map: mapView) {
             String resultText="";
+            System.out.println(map);
             for (String mapText: map) { resultText+=mapText; }
             String formatString="["+resultText.substring(1)+"]";
             result.add(formatString);
