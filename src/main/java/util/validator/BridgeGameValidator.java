@@ -16,12 +16,12 @@ public class BridgeGameValidator {
         return bridge.size() == bothSide.get(BothSideConstant.UP_SIDE_INDEX.getConstant()).size();
     }
 
-    public static boolean isBridgeEqualsD(String bridgeIndex) {
-        return bridgeIndex.equals(InputConstant.DOWN_SIDE.getConstant());
-    }
-
     public static boolean isBridgeEqualsU(String bridgeIndex) {
         return bridgeIndex.equals(InputConstant.UP_SIDE.getConstant());
+    }
+
+    public static boolean isBridgeEqualsD(String bridgeIndex) {
+        return bridgeIndex.equals(InputConstant.DOWN_SIDE.getConstant());
     }
 
     public static boolean isContainsWrongPath(List<List<String>> bothSide) {
