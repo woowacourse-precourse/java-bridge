@@ -27,6 +27,7 @@ public class Application {
             output.printMap(bridge);
 
             if (game.currentStatus == gameStatus.FAIL) {
+                output.printResult(game);
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String gameCommand = input.readGameCommand();
                 if (gameCommand.equals("R")) {
@@ -34,7 +35,7 @@ public class Application {
                 }
             }
             if (game.currentStatus == gameStatus.SUCCESS) {
-                // TODO: 게임 결과 출력
+                output.printResult(game);
                 break;
             }
         }

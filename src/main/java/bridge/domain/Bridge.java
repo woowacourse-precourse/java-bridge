@@ -24,10 +24,6 @@ public class Bridge {
         userRoute.add(direction);
         int currentRound = userRoute.size() - 1;
 
-        // TODO: 테스트용 출력문 제거
-        System.out.println("bridge in this round : "+bridge.get(currentRound));
-        System.out.println("userRoute in this round : "+userRoute.get(currentRound));
-
         if (userRoute.get(currentRound).equals(bridge.get(currentRound)) == false) {
             return gameStatus.FAIL;
 
