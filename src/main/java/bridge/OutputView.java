@@ -38,6 +38,29 @@ public class OutputView {
 
     }
 
+    public void printFailedMap(int movingTrials, int endOfBridges, String upOrDown){
+        if(upOrDown=="U"&& movingTrials==1) {
+            BridgeShapes.FIRST_X_BRIDGE.build();
+            BridgeShapes.FIRST_EMPTY_BRIDGE.build();
+            return;
+        }
+        if(upOrDown=="D"&& movingTrials==1){
+            BridgeShapes.FIRST_EMPTY_BRIDGE.build();
+            BridgeShapes.FIRST_X_BRIDGE.build();
+            return;
+        }
+        if(upOrDown=="U"&&movingTrials==endOfBridges){
+            BridgeShapes.LAST_X_BRIDGE.build();
+            BridgeShapes.LAST_EMPTY_BRIDGE.build();
+            return;
+        }
+        if(upOrDown=="D"&&movingTrials==endOfBridges){
+            BridgeShapes.LAST_EMPTY_BRIDGE.build();
+            BridgeShapes.LAST_X_BRIDGE.build();
+        }
+
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
