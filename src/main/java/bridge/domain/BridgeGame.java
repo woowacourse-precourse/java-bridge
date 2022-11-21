@@ -11,47 +11,48 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    GameResult gameResult = new GameResult();
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameResult move(List<String> bridgeShape, String input, GameResult gameResult) {
+    public GameResult move(List<String> bridgeShape, String input) {
         inputShapeValidate(input);
         for (int i = 0; i < bridgeShape.size(); i++) {
             if (input.equals(bridgeShape.get(i))) {
-                gameResult = setSuccessResult(gameResult, bridgeShape.get(i));
+                gameResult = setSuccessResult(bridgeShape.get(i));
                 break;
             }
-            gameResult = setFailResult(gameResult, bridgeShape.get(i));
-            gameResult.setBridgeGameResult(false);
+            gameResult = setFailResult(bridgeShape.get(i));
             break;
         }
         return gameResult;
     }
 
-    public GameResult setSuccessResult(GameResult gameResult, String bridgeShape) {
+    public GameResult setSuccessResult(String bridgeShape) {
         if (bridgeShape.equals("U")) {
-            gameResult.getUpBridgeResult().add("O");
-            gameResult.getDownBridgeResult().add(" ");
+            gameResult.setUpBridgeResult("O");
+            gameResult.setDownBridgeResult(" ");
             gameResult.setBridgeGameResult(true);
             return gameResult;
         }
-        gameResult.getUpBridgeResult().add(" ");
-        gameResult.getDownBridgeResult().add("O");
+        gameResult.setUpBridgeResult(" ");
+        gameResult.setDownBridgeResult("O");
         gameResult.setBridgeGameResult(true);
         return gameResult;
     }
 
-    public GameResult setFailResult(GameResult gameResult, String bridgeShape) {
+    public GameResult setFailResult(String bridgeShape) {
         if (bridgeShape.equals("U")) {
-            gameResult.getUpBridgeResult().add("X");
-            gameResult.getDownBridgeResult().add(" ");
+            gameResult.setUpBridgeResult("X");
+            gameResult.setDownBridgeResult(" ");
             gameResult.setBridgeGameResult(false);
             return gameResult;
         }
-        gameResult.getUpBridgeResult().add(" ");
-        gameResult.getDownBridgeResult().add("X");
+        gameResult.setUpBridgeResult(" ");
+        gameResult.setDownBridgeResult("X");
         gameResult.setBridgeGameResult(false);
         return gameResult;
     }
