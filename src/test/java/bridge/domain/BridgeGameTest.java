@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,12 +13,14 @@ import java.util.stream.Stream;
 import static bridge.domain.BridgeGameState.*;
 import static bridge.domain.BridgeMoveType.DOWN;
 import static bridge.domain.BridgeMoveType.UP;
+import static org.assertj.core.api.Assertions.*;
 
 class BridgeGameTest {
 
-    private final BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
 
-    public BridgeGameTest() {
+    @BeforeEach
+    void setUp() {
         this.bridgeGame = new BridgeGame(new BridgeGameRound(), new BridgePlayer(), new BridgeAnswer());
     }
 
@@ -35,7 +37,16 @@ class BridgeGameTest {
         BridgeGameState gameState = bridgeGame.move(moveTypes.get(moveTypes.size() - 1));
 
         // then
-        Assertions.assertThat(gameState).isIn(CONTINUE, FAIL, SUCCESS);
+        assertThat(gameState).isIn(CONTINUE, FAIL, SUCCESS);
+    }
+
+    @ParameterizedTest
+    @MethodSource("whenPlayerMoveMoreThanAnswerBridgeThenExceptionDummy")
+    @DisplayName("플레이어가 다리 정답 길이보다 더 많이 움직일 때 실패하여 예외처리한다.")
+    void whenPlayerMoveMoreThanAnswerBridgeThenExceptionTest(int bridgeSize, List<BridgeMoveType> moveTypes) {
+        bridgeGame.startGameWithBridgeSizeAs(bridgeSize);
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> moveTypes.forEach(bridgeGame::move));
     }
 
     static Stream<Arguments> whenStartGameAndMoveThenSuccessDummy() {
@@ -45,6 +56,16 @@ class BridgeGameTest {
                 Arguments.arguments(5, List.of(UP, DOWN, UP)),
                 Arguments.arguments(7, List.of(UP, UP, DOWN, UP)),
                 Arguments.arguments(10, List.of(UP, UP, DOWN, DOWN, DOWN, UP, DOWN, UP, UP, DOWN))
+        );
+    }
+
+    static Stream<Arguments> whenPlayerMoveMoreThanAnswerBridgeThenExceptionDummy() {
+        return Stream.of(
+                Arguments.arguments(3, List.of(UP, DOWN, DOWN, DOWN)),
+                Arguments.arguments(3, List.of(UP, DOWN, UP, UP, UP, UP, UP)),
+                Arguments.arguments(5, List.of(UP, DOWN, UP, UP, UP, UP, UP, UP)),
+                Arguments.arguments(7, List.of(UP, UP, DOWN, UP, UP, UP, UP, UP, UP, UP, UP, UP, UP, UP)),
+                Arguments.arguments(10, List.of(UP, UP, DOWN, DOWN, DOWN, UP, DOWN, UP, UP, UP, UP))
         );
     }
 }
