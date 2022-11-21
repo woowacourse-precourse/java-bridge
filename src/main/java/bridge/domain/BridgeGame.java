@@ -31,6 +31,7 @@ public class BridgeGame {
     public void move(String userCommand, int round) {
         if (userCommand.equals(bridge.get(round))) {
             this.results.addCurrentResult(new RoundResult(userCommand, "O"));
+            return;
         }
         this.results.addCurrentResult(new RoundResult(userCommand, "X"));
     }
