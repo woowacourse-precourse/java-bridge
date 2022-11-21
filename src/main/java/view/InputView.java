@@ -26,15 +26,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        while(true) {
-            try {
-                String move = Console.readLine();
-                checkReadMoving(move);
-                return move;
-            } catch(IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return readMoving();
-            }
+        try {
+            String move = Console.readLine();
+            checkReadMoving(move);
+            return move;
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
         }
     }
 
@@ -48,15 +46,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        while(true) {
-            try {
-                String command = Console.readLine();
-                checkReadCommand(command);
-                return command;
-            } catch(IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return readGameCommand();
-            }
+        try {
+            String command = Console.readLine();
+            checkReadCommand(command);
+            return command;
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
         }
     }
 
