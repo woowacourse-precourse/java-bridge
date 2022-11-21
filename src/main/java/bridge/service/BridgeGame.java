@@ -24,9 +24,14 @@ public class BridgeGame {
         return builtbridge;
     }
 
-    public boolean move() {
+    public boolean move(String userMove, int location, List<String> builtBridge) {
 
+        if (userMove.equals(builtBridge.get(location))) {
+            return true;
+        }
+        return false;
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
