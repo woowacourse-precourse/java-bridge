@@ -37,7 +37,7 @@ public class OutputView {
         System.out.println(upSb + "\n" + downSb);
     }
 
-    public void firstIndex(String userMove, String moveResult) {
+    private void firstIndex(String userMove, String moveResult) {
         if (userMove.equals("U")) {
             upSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
             downSb.append(START.getMessage() + "   " + END.getMessage());
@@ -48,7 +48,7 @@ public class OutputView {
         }
     }
 
-    public void afterFisrt(String userMove, String moveResult) {
+    private void afterFisrt(String userMove, String moveResult) {
         if (userMove.equals("U")) {
             upSb.deleteCharAt(upSb.length() - 1);
             upSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
@@ -95,7 +95,7 @@ public class OutputView {
         CHOICE_UP_DOWN_MESSAGE.printMessage();
     }
 
-    public String changeOX(boolean moveCheck) {
+    private String changeOX(boolean moveCheck) {
         if (moveCheck == true) {
             return "O";
         }
