@@ -12,17 +12,17 @@
 ## Validation logic
 - [] InputValidation
   - [x] validateBridgeSize
-  - [] validateMoving
-  - [] validateGameCommand
+  - [x] validateMoving
+  - [x] validateGameCommand
 
 - [] Error
   - [] errorMessage
 
 ## UI logic
-- [] InputView
-  - [] readBridgeSize
-  - [] readMoving
-  - [] readGameCommand
+- [x] InputView
+  - [x] readBridgeSize
+  - [x] readMoving
+  - [x] readGameCommand
 
 - [] OutputView
   - [] printMap
@@ -41,7 +41,7 @@
   - [] BridgeMaker
     - [] makeBridge
 
-- [] Validation logic
+- [x] Validation logic
   - [x] validateBridgeSize
-  - [] validateMoving
-  - [] validateGameCommand
+  - [x] validateMoving
+  - [x] validateGameCommand
