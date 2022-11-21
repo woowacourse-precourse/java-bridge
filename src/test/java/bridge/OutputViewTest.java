@@ -26,12 +26,12 @@ class OutputViewTest extends NsTest {
 
         assertThat(output()).isEqualTo("다리의 길이를 입력해주세요.");
     }
-    @DisplayName("칸 선택시 표시할 문구를 출력한다.")
+    @DisplayName("이동에 대한 입력을 요구하는 문구를 출력한다.")
     @Test
     void printChoice() {
         OutputView outputView = new OutputView();
 
-        outputView.printChoicePhrases();
+        outputView.printAskMovingPhrases();
 
         assertThat(output()).isEqualTo("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }

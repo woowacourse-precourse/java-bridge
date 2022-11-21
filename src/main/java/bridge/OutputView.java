@@ -7,12 +7,13 @@ public class OutputView {
 
     private static final String START_PHRASES = "다리 건너기 게임을 시작합니다.";
     private static final String ASK_LENGTH_PHRASES = "다리의 길이를 입력해주세요.";
-    private static final String CHOICE_PHRASES = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String ASK_MOVING_PHRASES = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     /**
      * 게임이 시작할 때의 문구를 출력한다.
      */
     public void printStartPhrases() {
         System.out.println(START_PHRASES);
+        System.out.println();
     }
 
     /**
@@ -23,10 +24,10 @@ public class OutputView {
     }
 
     /**
-     * 칸 선택을 받기 위한 문구를 출력한다.
+     * 이동에 대한 입력을 요구하는 문구를 출력한다.
      */
-    public void printChoicePhrases() {
-        System.out.println(CHOICE_PHRASES);
+    public void printAskMovingPhrases() {
+        System.out.println(ASK_MOVING_PHRASES);
     }
 
     /**
