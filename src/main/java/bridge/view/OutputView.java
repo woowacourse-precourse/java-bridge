@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.constant.Bridge;
+import bridge.constant.BridgePattern;
 import bridge.constant.Command;
 
 /**
@@ -27,8 +27,8 @@ public class OutputView {
 
     public void printSelectMsg() {
         printEmptyLine();
-        printMsg("이동할 칸을 선택해주세요. (" + Bridge.MOVE_UP.getDetail() + ": " + Bridge.MOVE_DOWN.getDetail() + ", " +
-                Bridge.MOVE_UP.getMove() + ": " + Bridge.MOVE_DOWN.getMove());
+        printMsg("이동할 칸을 선택해주세요. (" + BridgePattern.MOVE_UP.getDetail() + ": " + BridgePattern.MOVE_DOWN.getDetail() + ", " +
+                BridgePattern.MOVE_UP.getMove() + ": " + BridgePattern.MOVE_DOWN.getMove());
     }
 
     public void printRetryMsg() {
