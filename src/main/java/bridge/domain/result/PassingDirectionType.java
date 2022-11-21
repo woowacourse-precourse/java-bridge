@@ -4,6 +4,8 @@ import bridge.domain.bridgeInfo.Bridge;
 import bridge.domain.userInfo.Position;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public enum PassingDirectionType {
 
@@ -72,12 +74,14 @@ public enum PassingDirectionType {
         return type.direction.equals(DOWN);
     }
 
-    public String getIsMovable() {
-        return isMovable;
-    }
-
     public static boolean isContainNotMovable(List<PassingDirectionType> types) {
         return types.stream()
                 .anyMatch(type -> type.isMovable.contains(NOT_MOVABLE));
+    }
+
+    public static String reformat(List<PassingDirectionType> types) {
+        return types.stream()
+                .map(type -> type.isMovable)
+                .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 }

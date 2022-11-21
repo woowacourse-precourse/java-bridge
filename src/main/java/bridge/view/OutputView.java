@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.domain.result.PassingDirectionType;
 import bridge.domain.result.Result;
-import bridge.util.Formatter;
+//import bridge.util.Formatter;
 import java.util.List;
 
 /**
@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String START = " [ ";
-    private static final String END = " ] ";
     private static final String FINAL_RESULT = "최종 게임 결과";
     private static final String GAME_SUCCESS_OR_NOT = "게임 성공 여부: ";
     private static final String SUCCESS = "성공";
@@ -28,7 +26,7 @@ public class OutputView {
     public boolean printMap(Result result) {
         List<List<PassingDirectionType>> resultsGroup = result.getResultsGroup();
         for (List<PassingDirectionType> results : resultsGroup) {
-            System.out.println(Formatter.formatter(results));
+            System.out.println(PassingDirectionType.reformat(results));
         }
         System.out.println();
         return result.isContainWrongAnswer();
