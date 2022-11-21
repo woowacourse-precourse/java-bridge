@@ -1,6 +1,10 @@
 package bridge;
 
+import java.util.List;
+
 public class Check {
+  
+  private static Count count;
   
   private static final IllegalArgumentException illegalArgumentException = new IllegalArgumentException();
   
@@ -27,5 +31,13 @@ public class Check {
     catch(Exception e){
       throw illegalArgumentException;
     }
+  }
+  
+  public static boolean checkBridge(String in, List<String> bridge){
+    int step = count.getSteps();
+    if(in.equals(bridge.get(step))){
+      return true;
+    }
+    return false;
   }
 }
