@@ -45,7 +45,7 @@ public class InputView {
         try {
             validateInteger(bridgeSize);
             validateBridgeSizeRange(Integer.parseInt(bridgeSize));
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
