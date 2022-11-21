@@ -24,7 +24,7 @@ public enum BridgeGameState {
         return this == START || this == CONTINUE;
     }
 
-    public boolean isBridgeGameEnd() {
-        return this == SUCCESS || this == FAIL;
+    public boolean isFail() {
+        return this == FAIL;
     }
 }

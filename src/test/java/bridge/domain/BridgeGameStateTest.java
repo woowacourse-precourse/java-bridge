@@ -37,12 +37,12 @@ class BridgeGameStateTest {
     @ParameterizedTest(name = "[{index}] gameState = {0}")
     @MethodSource("gameStateSuccessOrFailDummy")
     @DisplayName("다리 게임이 종료됐는지 확인했을 때 종료 성공 테스트")
-    void whenCheckBridgeGameEndThenSuccessTest(BridgeGameState gameState) {
+    void whenCheckBridgeGameEndThenSuccessTest(BridgeGameState gameState, boolean isFail) {
         // given & when
-        boolean isBridgeGameEnd = gameState.isBridgeGameEnd();
+        boolean isBridgeGameEnd = gameState.isFail();
 
         // then
-        assertThat(isBridgeGameEnd).isTrue();
+        assertThat(isBridgeGameEnd).isEqualTo(isFail);
     }
 
     @ParameterizedTest(name = "[{index}] gameState = {0}")
@@ -50,7 +50,7 @@ class BridgeGameStateTest {
     @DisplayName("다리 게임이 종료됐는지 확인했을 때 종료 실패 테스트")
     void whenCheckBridgeGameEndThenFailTest(BridgeGameState gameState) {
         // given & when
-        boolean isBridgeGameEnd = gameState.isBridgeGameEnd();
+        boolean isBridgeGameEnd = gameState.isFail();
 
         // then
         assertThat(isBridgeGameEnd).isFalse();
@@ -65,8 +65,8 @@ class BridgeGameStateTest {
 
     static Stream<Arguments> gameStateSuccessOrFailDummy() {
         return Stream.of(
-                Arguments.arguments(SUCCESS),
-                Arguments.arguments(FAIL)
+                Arguments.arguments(FAIL, true),
+                Arguments.arguments(SUCCESS, false)
         );
     }
 }
