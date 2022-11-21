@@ -58,7 +58,7 @@
 
 ### 5. 게임 재시작 / 종료 하기
 
-- [ ] 다리를 끝까지 건너면 게임이 종료된다.
+- [x] 다리를 끝까지 건너면 게임이 종료된다.
 - [x] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다.
     - [x] 게임 재시작/종료 여부 안내 문구를 출력한다. (`게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)`)
 - [x] 게임 재시작/종료 여부를 입력 받는다.
@@ -80,20 +80,20 @@
 
 ## 🎯 프로그래밍 요구 사항
 
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-- [ ] 3항 연산자를 쓰지 않는다.
-- [ ] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
-- [ ] else 예약어를 쓰지 않는다.
-- [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [x] 3항 연산자를 쓰지 않는다.
+- [x] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
+- [x] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
+- [x] else 예약어를 쓰지 않는다.
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-- [ ] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
+- [x] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
     - 함수(또는 메서드)가 한 가지 일만 잘하도록 구현한다.
-- [ ] 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
-- [ ] `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
+- [x] 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
+- [x] `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
     - 각 클래스의 제약 사항은 아래 클래스별 세부 설명을 참고한다.
     - 이외 필요한 클래스(또는 객체)와 메서드는 자유롭게 구현할 수 있다.
-    - `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
-    - `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다
-    - Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
-    - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
+    - [x] `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
+    - [x] `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다
+    - [x] Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+    - [x] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
