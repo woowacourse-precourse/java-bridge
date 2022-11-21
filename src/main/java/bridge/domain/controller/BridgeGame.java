@@ -25,6 +25,7 @@ public class BridgeGame {
      */
     public boolean retry(String answer) {
         if (answer.equals("R")) {
+            crossBridge.setNewGame();
             return true;
         }
         return false;
