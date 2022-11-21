@@ -42,32 +42,44 @@ public class OutputView {
 
     private StringBuilder printMapOneLine(BridgeGame bridgeGame, String upOrDown) {
         StringBuilder output = new StringBuilder();
-        Bridge bridge = bridgeGame.getBridge();
-        UserPath userPath = bridgeGame.getUserPath();
 
         output.append(BRIDGE_PREFIX);
-        output.append(printGameState(upOrDown, bridge, userPath));
+        output.append(printGameState(bridgeGame, upOrDown));
         output.append(BRIDGE_SUFFIX);
         output.append("\n");
 
         return output;
     }
 
-    private StringBuilder printGameState(String upOrDown, Bridge bridge, UserPath userPath) {
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < userPath.size(); i++) {
-            if (userPath.find(i).equals(upOrDown)) {
-                if (bridge.compareWithPosition(i, upOrDown)) {
-                    output.append(PASS);
-                }
-                else output.append(NO_PASS);
-            }
-            else output.append(EMPTY);
+    private StringBuilder printGameState(BridgeGame bridgeGame, String upOrDown) {
+        UserPath userPath = bridgeGame.getUserPath();
 
-            if (i != userPath.size() - 1)
+        StringBuilder output = new StringBuilder();
+        for (int idx = 0; idx < userPath.size(); idx++) {
+            output.append(printOneSquare(bridgeGame, upOrDown, idx));
+
+            if (idx != userPath.size() - 1)
                 output.append(DELIMITER);
         }
         return output;
+    }
+
+    private String printOneSquare(BridgeGame bridgeGame, String upOrDown, int position) {
+        Bridge bridge = bridgeGame.getBridge();
+        UserPath userPath = bridgeGame.getUserPath();
+
+        if (userPath.find(position).equals(upOrDown)) {
+            return passOrNo(upOrDown, bridge, position);
+        }
+
+        return EMPTY;
+    }
+
+    private String passOrNo(String upOrDown, Bridge bridge, int position) {
+        if (bridge.compareWithPosition(position, upOrDown)) {
+            return PASS;
+        }
+        return NO_PASS;
     }
 
     /**
