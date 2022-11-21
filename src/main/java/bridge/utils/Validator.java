@@ -8,13 +8,13 @@ public class Validator {
     }
 
     public static void checkMoveInput(String moveInput) {
-        if(!moveInput.equals("U") && !moveInput.equals("D")) {
+        if(!MoveFormat.MOVE_UP.isEqual(moveInput) && !MoveFormat.MOVE_DOWN.isEqual(moveInput)) {
             throw new IllegalArgumentException("보기에 있는 값만 입력 가능합니다.");
         }
     }
 
     public static void checkRetryInput(String retryInput) {
-        if(!retryInput.equals("R") && !retryInput.equals("Q")) {
+        if(!RetryFormat.RETRY.isEqual(retryInput) && !RetryFormat.QUIT.isEqual(retryInput)) {
             throw new IllegalArgumentException("보기에 있는 값만 입력 가능합니다.");
         }
     }
