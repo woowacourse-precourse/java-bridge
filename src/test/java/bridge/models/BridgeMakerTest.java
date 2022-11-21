@@ -1,7 +1,9 @@
 package bridge.models;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.util.Lists.newArrayList;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
@@ -20,5 +22,28 @@ class BridgeMakerTest {
         assertThat(bridgeMaker.makeBridge(100))
                 .containsOnly("U", "D")
                 .doesNotContain("E");
+    }
+
+    @Test
+    void makeBridge_올바른_값_반환() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1,0,0,1,0,1));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        assertThat(bridgeMaker.makeBridge(6))
+                .isEqualTo(newArrayList("U", "D", "D", "U", "D", "U"));
+    }
+
+    static class TestNumberGenerator implements BridgeNumberGenerator {
+        private final List<Integer> numbers;
+        private int index = -1;
+
+        TestNumberGenerator(List<Integer> numbers) {
+            this.numbers = numbers;
+        }
+
+        @Override
+        public int generate() {
+            index++;
+            return numbers.get(index);
+        }
     }
 }
