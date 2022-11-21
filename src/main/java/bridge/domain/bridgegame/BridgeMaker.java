@@ -1,4 +1,4 @@
-package bridge.bridgegame;
+package bridge.domain.bridgegame;
 
 import bridge.BridgeNumberGenerator;
 
