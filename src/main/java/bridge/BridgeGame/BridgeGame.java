@@ -17,10 +17,14 @@ public class BridgeGame {
     OutputView outputView;
     public BridgeGame(){
         System.out.println("다리 건너기 게임을 시작 합니다.\n");
+        initBridge();
+        this.outputView = new OutputView(bridge);
+    }
+
+    private void initBridge() {
         System.out.println("다리의 길이를 입력해주세요.");
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        this.outputView = new OutputView(bridge);
     }
 
     /**
