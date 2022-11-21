@@ -19,7 +19,6 @@ public class BridgeController {
 
     public void playBridgeGame(List<String> bridge){
         while(bridgeGame.getSize() < bridge.size()){
-            outputView.printRequestUpDownMessage();
             String move = inputView.readMoving();
             String oneBridge = bridgeGame.move(bridge, move, bridgeGame.getSize());
             outputView.printMap(oneBridge);
