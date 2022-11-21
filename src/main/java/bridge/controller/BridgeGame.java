@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.constant.Error;
 import bridge.model.BridgeStatus;
 import bridge.constant.Game;
+import bridge.utils.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,22 +14,18 @@ import java.util.List;
 public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
     private BridgeStatus bridgeStatus = new BridgeStatus();
+    private InputValidator inputValidator = new InputValidator();
     public void setBridge (List<String> bridge) {
         this.bridge = bridge;
     }
     public boolean move(String movement, String space) {
-        validate(movement);
+        inputValidator.isMovementValid(movement);
         if(movement.equals(space)) {
             bridgeStatus.addStatus(Game.CROSS_SUCCESS);
             return true;
         }
         bridgeStatus.addStatus(Game.CROSS_FAIL);
         return false;
-    }
-    private void validate(String movement) {
-        if(!movement.equals(Game.BRIDGE_GENERATE_DOWN) && !movement.equals(Game.BRIDGE_GENERATE_UP)) {
-            throw new IllegalArgumentException(Error.MOVEMENT_VALID.getError());
-        }
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
