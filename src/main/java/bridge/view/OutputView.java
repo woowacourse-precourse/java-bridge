@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.OneSideResults;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -31,26 +32,39 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(int stepCount, List<String> upSideResult, List<String> downSideResult) {
-        StringJoiner upSideBridge = new StringJoiner(BLANK_SPACE);
-        StringJoiner downSideBridge = new StringJoiner(BLANK_SPACE);
+    public static void printMap(OneSideResults upsideResults, OneSideResults downsideResults) {
+        StringJoiner upsideMap = new StringJoiner(BLANK_SPACE);
+        StringJoiner downsideMap = new StringJoiner(BLANK_SPACE);
 
-        updateMap(upSideBridge, stepCount, upSideResult);
-        updateMap(downSideBridge, stepCount, downSideResult);
+        updateMap(upsideMap, upsideResults);
+        updateMap(downsideMap, downsideResults);
 
-        System.out.println(upSideBridge);
-        System.out.println(downSideBridge);
+        System.out.println(upsideMap);
+        System.out.println(downsideMap);
     }
 
-    private static void updateMap(StringJoiner oneSideBridge, int stepCount, List<String> result) {
-        oneSideBridge.add(BRIDGE_HEAD);
-        for (int i = 0; i <= stepCount; i++) {
-            oneSideBridge.add(result.get(i));
-            if (stepCount > 0 && i < stepCount) {
-                oneSideBridge.add(BRIDGE_PARTITION);
-            }
-        }
-        oneSideBridge.add(BRIDGE_TAIL);
+    private static void updateMap(StringJoiner oneSideMap, OneSideResults oneSideResults) {
+        oneSideMap.add(BRIDGE_HEAD);
+        addResults(oneSideMap, oneSideResults);
+        oneSideMap.add(BRIDGE_TAIL);
+    }
+
+    private static void addResults(StringJoiner oneSideMap, OneSideResults oneSideResults) {
+        List<String> results = oneSideResults.getResults();
+        results.forEach(result -> {
+                    oneSideMap.add(result);
+                    if (isNotEmpty(results) && isNotLastIndex(result, results)) {
+                        oneSideMap.add(BRIDGE_PARTITION);
+                }
+        });
+    }
+
+    private static boolean isNotEmpty(List<String> results) {
+        return results.size() > 0;
+    }
+
+    private static boolean isNotLastIndex(String result, List<String> results) {
+        return results.indexOf(result) != results.size() -1;
     }
 
     /**

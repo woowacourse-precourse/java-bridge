@@ -49,16 +49,4 @@ public class BridgeGame {
     public int retry(int trialCount) {
         return trialCount + 1;
     }
-
-    public boolean isMovingUp(String currentMoving) {
-        return CommandKeys.isSame(CommandKeys.UP, currentMoving);
-    }
-
-    public boolean isMovingDown(String currentMoving) {
-        return CommandKeys.isSame(CommandKeys.DOWN, currentMoving);
-    }
-
-    public void updateOneSideResults(List<String> oneSideResults, String moveResult) {
-        oneSideResults.add(moveResult);
-    }
 }
