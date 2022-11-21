@@ -10,30 +10,42 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeLength = "";
-        System.out.println("다리의 길이를 입력해주세요.");
-        bridgeLength = bridgeTypeCheck();
-        bridgeSizeCheck(Integer.parseInt(bridgeLength));
+        while(true){
+            System.out.println("다리의 길이를 입력해주세요.");
+            bridgeLength = Console.readLine();
+            if(bridgeTypeCheck(bridgeLength)&&bridgeNullCheck(bridgeLength)&&bridgeSizeCheck(Integer.parseInt(bridgeLength)))
+                break;
+        }
         return Integer.parseInt(bridgeLength);
     }
 
-    public String bridgeTypeCheck(){
-        String bridgeLength = "";
-        try{
-            bridgeLength = Console.readLine();
-            bridgeTypeException(bridgeLength);
-        }catch(IllegalArgumentException e) {
-            System.out.println("[ERROR] 숫자를 입력해주세요.");
-            readBridgeSize();
-        }
-        return bridgeLength;
+    public boolean bridgeTypeCheck(String bridgeLength) {
+            try {
+                bridgeTypeException(bridgeLength);
+                return true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 숫자를 입력해주세요.");
+                return false;
+            }
     }
 
-    public void bridgeSizeCheck(int bridgeLength){
-        try{
+    public boolean bridgeSizeCheck(int bridgeLength){
+        try {
             bridgeSizeException(bridgeLength);
-        }catch(IllegalArgumentException e){
+            return true;
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 3이상 20이하의 숫자를 입력해주세요.");
-            readBridgeSize();
+            return false;
+        }
+    }
+
+    public boolean bridgeNullCheck(String bridgeLength){
+        try{
+            bridgeNullException(bridgeLength);
+            return true;
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 아무 입력을 하지 않았습니다.");
+            return false;
         }
     }
 
@@ -44,8 +56,13 @@ public class InputView {
                 throw new IllegalArgumentException();
         }
     }
-    public static void bridgeSizeException(int bridgeLength){
+    public void bridgeSizeException(int bridgeLength){
         if(bridgeLength<3||bridgeLength>20)
+            throw new IllegalArgumentException();
+    }
+
+    public void bridgeNullException(String bridgeLength){
+        if(bridgeLength.equals("")||bridgeLength.equals(null))
             throw new IllegalArgumentException();
     }
 

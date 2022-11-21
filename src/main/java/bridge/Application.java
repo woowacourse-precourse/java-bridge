@@ -36,6 +36,7 @@ public class Application {
             if(i==bridge.size()-1){
                 outputView.printResult(currentUpState,currentDownState,bridge.size());
             }
+
             if(bridgeGame.move(bridge,i,upDown).equals("X")){
                 gameCommand = inputView.readGameCommand();
             }

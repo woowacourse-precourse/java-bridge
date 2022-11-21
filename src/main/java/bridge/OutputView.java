@@ -50,7 +50,7 @@ public class OutputView {
     public void printResult(List<String> currentUpState,List<String> currentDownState,int bridgeLength) {
         System.out.println("최종 게임 결과");
         printMap(currentUpState,currentDownState);
-        if(currentDownState.size()==bridgeLength){
+        if(currentDownState.size()==bridgeLength &&!currentDownState.contains("X")&&!currentUpState.contains("X")) {
             System.out.println("게임 성공 여부: 성공");
         }
 
