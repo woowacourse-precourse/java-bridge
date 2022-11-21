@@ -11,7 +11,7 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridgeWin = bridge;
         this.bridgeNow = new ArrayList<>();
-        System.out.println(bridgeWin);
+//        System.out.println(bridgeWin);
     }
 
     public boolean applyMove(String moveTo) {
@@ -46,6 +46,10 @@ public class Bridge {
 
     public void clearBridgeNow() {
         bridgeNow.clear();
+    }
+
+    public boolean checkFinish() {
+        return bridgeWin.equals(bridgeNow);
     }
 
     public List<String> getBridgeNow() {

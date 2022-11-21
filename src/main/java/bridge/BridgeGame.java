@@ -28,6 +28,10 @@ public class BridgeGame {
         if (!bridge.applyMove(moveTo)) {
             return retry(moveTo);
         };
+        if (bridge.checkFinish()) {
+            OutputView.printResult(bridge.getBridgeNow(), true, moveTo, bridge.getCountTotal());
+            return false;
+        }
         return true;
     }
 
