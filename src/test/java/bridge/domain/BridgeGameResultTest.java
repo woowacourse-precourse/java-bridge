@@ -41,7 +41,21 @@ public class BridgeGameResultTest {
         });
     }
 
+    @DisplayName("다리 건너기 결과를 반환한다.")
+    @ParameterizedTest
+    @MethodSource("generateResultByShape")
+    void getBridgeResultByShape(String shape, List<String> expected) {
+        assertThat(gameResult.getBridgeByShape(shape))
+                .usingRecursiveComparison()
+                .isEqualTo(expected);
+    }
 
+    static Stream<Arguments> generateResultByShape() {
+        return Stream.of(
+                arguments("U", List.of("O", "O", " ", " ", " ")),
+                arguments("D", List.of(" ", " ", "O", "O", "O"))
+        );
+    }
 
     static class GameResult extends BridgeGameResult {
         public void putMovingResult() {
