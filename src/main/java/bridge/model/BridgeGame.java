@@ -1,10 +1,10 @@
 package bridge.model;
 
-import static bridge.controller.InputController.getGameCommand;
-import static bridge.controller.InputController.getUserSelection;
 import static bridge.model.GameCommand.selectedRetry;
 import static bridge.model.Status.die;
 import static bridge.model.Status.findStatus;
+
+import bridge.view.InputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,6 +15,7 @@ public class BridgeGame {
     private int attempts = 1;
     private boolean success = false;
     private GameCommand command = GameCommand.RETRY;
+    private final InputView inputView = new InputView();
 
     public BridgeGame(Bridge bridge, Diagram diagram) {
         this.bridge = bridge;
@@ -27,7 +28,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Status move(int index) {
-        Position position = getUserSelection();
+        Position position = inputView.readMoving();
         Status status = findStatus(bridge.isSamePosition(index, position));
         diagram.updateDiagrams(position, status);
         return status;
@@ -64,7 +65,7 @@ public class BridgeGame {
                 continue;
             }
             if (die(status)) {
-                GameCommand gameCommand = getGameCommand();
+                GameCommand gameCommand = inputView.readGameCommand();
                 retry(gameCommand);
             }
             if (success || command == GameCommand.QUIT) {
