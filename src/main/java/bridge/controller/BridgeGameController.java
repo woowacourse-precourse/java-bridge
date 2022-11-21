@@ -26,17 +26,19 @@ public class BridgeGameController {
     }
 
     private void operate() {
+        boolean isRetry = true;
         do {
             boolean correct = playGame();
-            retryGame(correct);
-        } while (true);
+            isRetry = retryGame(correct);
+        } while (isRetry);
     }
 
-    private void retryGame(boolean correct) {
+    private boolean retryGame(boolean correct) {
         if (!correct) {
             String command = insertReGameCommand();
-            bridgeGame.retry(command);
+            return bridgeGame.retry(command);
         }
+        return true;
     }
 
     private String insertReGameCommand() {
