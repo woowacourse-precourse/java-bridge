@@ -60,6 +60,9 @@ public class BridgeGameController {
 
     public void restartGame(int lengthOfBridge) {
         bridgeGame.retry();
+        OutputView.upSide.clear();
+        OutputView.downSide.clear();
+        isCorrectList.clear();
         selectMoving(lengthOfBridge);
     }
 
