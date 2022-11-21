@@ -22,6 +22,7 @@ public class BridgeController {
 	private List<String> bridge_list;
 	private int TRY_COUNT=1;
 	private String RESULT_CONDITION=GameEnd.SUCCESS.toString();
+	private String GAME_RESULT;
 
 	public void BridgeGameStart(){
 		outputView.printStartGame();
@@ -39,6 +40,7 @@ public class BridgeController {
 	}
 
 	private void crossingTheBridge(){
+		System.out.println(bridge_list);
 		for (int index=0;index<bridge_list.size();index++){
 			String bridge_move_result = compareMove.compareInputAndIndex(bridgeMoveOutputAndInput(),
 																	bridge_list.get(index));
@@ -52,14 +54,16 @@ public class BridgeController {
 	}
 	private void retryOrSuccess(String user_input_condition){
 		if (user_input_condition.equals("SUCCESS")){
-			outputView.printResult();
+			GAME_RESULT="성공";
+			outputView.printResult(tryCountReturn(),gameResultReturn());
 		}
 		retryOrGiveUp(user_input_condition);
 	}
 
 	private void retryOrGiveUp(String user_input_condition){
 		if (user_input_condition.equals("Q")){
-			outputView.printResult();
+			GAME_RESULT="실패";
+			outputView.printResult(tryCountReturn(),gameResultReturn());
 		}
 
 		if (user_input_condition.equals("R")){
@@ -68,9 +72,7 @@ public class BridgeController {
 	}
 
 	private void retry(){
-		viewClear.viewClear(outputView);
-		TRY_COUNT++;
-		RESULT_CONDITION=GameEnd.SUCCESS.toString();
+		retryConfig();
 		crossingTheBridge();
 	}
 
@@ -84,5 +86,21 @@ public class BridgeController {
 		if (bridge_move_result.contains("X")) {
 			RESULT_CONDITION = GameEnd.FAIL.toString();
 		}
+	}
+
+	private int tryCountReturn(){
+		return TRY_COUNT;
+	}
+
+	private String gameResultReturn(){
+		System.out.println(GAME_RESULT);
+		return GAME_RESULT;
+	}
+
+	private void retryConfig(){
+		viewClear.viewClear(outputView);
+		TRY_COUNT++;
+		RESULT_CONDITION=GameEnd.SUCCESS.toString();
+		GAME_RESULT="";
 	}
 }
