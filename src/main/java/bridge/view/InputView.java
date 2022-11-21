@@ -24,7 +24,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String move = readLine();
 
         if (!(move.equals("D") || move.equals("U")))

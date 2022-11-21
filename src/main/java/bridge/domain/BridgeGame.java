@@ -1,7 +1,12 @@
 package bridge.domain;
 
-import bridge.view.InputView;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static bridge.view.InputView.*;
 import static bridge.view.OutputView.*;
 
 /**
@@ -18,9 +23,8 @@ public class BridgeGame {
     public void start() {
         printStart();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = Bridge.make(InputView.readBridgeSize());
-        printMoveOptionInput();
-
+        bridge = Bridge.make(readBridgeSize());
+        System.out.println(bridge);
     }
 
     /**
@@ -28,7 +32,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public Result move() {
+        List<String> user = new ArrayList<>();
+        while (bridge.isProceeding(user)) {
+            printMoveOptionInput();
+            user.add(readMoving());
+            if (bridge.compare(user).equals(Result.FAIL)) {
+                return Result.FAIL;
+            }
+        }
+        return Result.SUCCESS;
     }
 
     /**
