@@ -7,7 +7,7 @@ public class User {
     private boolean isSuccessComplete;
     private boolean gameOver;
 
-    public User(){
+    public User() {
         this.tryCount = DEFAULT_VALUE;
     }
 
@@ -23,9 +23,6 @@ public class User {
         setTryCount(this.tryCount + ADD_RETRY_COUNT);
     }
 
-    public void winGame() {
-        setSuccess();
-    }
 
     private void setSuccess() {
         isSuccessComplete = true;
@@ -35,15 +32,20 @@ public class User {
         return isSuccessComplete;
     }
 
-    public void finishGame() {
-        setGameOver();
-    }
-
     private void setGameOver() {
         gameOver = true;
     }
 
     public boolean isGameOver() {
         return gameOver;
+    }
+
+    public void finishWithWin() {
+        setSuccess();
+        setGameOver();
+    }
+
+    public void finishWitFail() {
+        setGameOver();
     }
 }
