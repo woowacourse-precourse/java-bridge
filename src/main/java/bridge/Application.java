@@ -26,7 +26,7 @@ public class Application {
             // 게임 종료 여부
         }
         // 최종게임 결과
-//        outputView.printResult();
+        outputView.printResult();
         // 게임 성공 여부 출력
     }
 }
