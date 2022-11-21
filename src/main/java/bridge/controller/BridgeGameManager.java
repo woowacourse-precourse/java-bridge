@@ -9,35 +9,50 @@ import bridge.view.OutputView;
 public class BridgeGameManager {
     public void run() {
         BridgeGame bridgeGame = makeGame();
+
         setGame(bridgeGame);
+
         printStart();
+
         int bridgeSize = inputBridgeSizeRepeat();
+
         Bridge targetBridge = bridgeGame.makeTargetBridge(bridgeSize);
 
-        int step = 0;
-        while (step < targetBridge.getSize()) {
-            String upDownInput = inputUpDownRepeat();
-            bridgeGame.move(upDownInput);
-            printStatus(bridgeGame, targetBridge);
+        inputMovingAndPrintMap(targetBridge, bridgeGame);
 
-            // 만약 새로 간 칸이 잘 못된 칸이라면
+        printResult(targetBridge, bridgeGame);
+    }
+
+    private void judgeRetry(BridgeGame bridgeGame, int step, String retryAnswer) {
+        if (retryAnswer.equals("R")) {
+            bridgeGame.back(step);
+            bridgeGame.retry();
+        }
+    }
+
+    private boolean judgeQuit(String retryAnswer) {
+        return retryAnswer.equals("Q");
+    }
+
+    private String inputAndMoveAndPrint(Bridge targetBridge, BridgeGame bridgeGame) {
+        String upDownInput = inputUpDownRepeat();
+        bridgeGame.move(upDownInput);
+        printStatus(bridgeGame, targetBridge);
+        return upDownInput;
+    }
+
+    private void inputMovingAndPrintMap(Bridge targetBridge, BridgeGame bridgeGame) {
+        int step = 0;
+        boolean isQuit = false;
+        while (step < targetBridge.getSize() || isQuit) {
+            String upDownInput = inputAndMoveAndPrint(targetBridge, bridgeGame);
             if (isFault(targetBridge, step, upDownInput)) {
                 String retryAnswer = inputRetryRepeat();
-
-                if (retryAnswer.equals("R")) {
-                    bridgeGame.back(step);
-                    bridgeGame.retry();
-                    continue;
-                }
-
-                if (retryAnswer.equals("Q")) {
-                    break;
-                }
+                judgeRetry(bridgeGame, step, retryAnswer);
+                isQuit = judgeQuit(retryAnswer);
             }
             step++;
         }
-
-        printResult(targetBridge, bridgeGame);
     }
 
     private boolean isFault(Bridge targetBridge, int tries, String upDownInput) {
