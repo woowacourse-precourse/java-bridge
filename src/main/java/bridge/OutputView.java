@@ -8,8 +8,8 @@ import java.util.Objects;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private final String START_POINT = "[ ";
-    private final String END_POINT = " ]";
+    private static final String START_POINT = "[ ";
+    private static final String END_POINT = " ]";
     private static final List<String> upBridge = new ArrayList<>();
     private static final List<String> downBridge = new ArrayList<>();
 
@@ -21,6 +21,8 @@ public class OutputView {
     public static void printMap(int idx, List<String> bridge, String nextMove) {
         boolean canNextMove = CheckNextMove(idx, bridge, nextMove);
         nextMoving(nextMove, canNextMove);
+        printUpBridge();
+        printDownBridge();
     }
 
     /**
@@ -31,6 +33,23 @@ public class OutputView {
     public void printResult() {
     }
 
+    public static void printUpBridge() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(START_POINT).append(JoinBridge(upBridge)).append(END_POINT);
+        System.out.print(sb);
+        System.out.println();
+    }
+
+    public static void printDownBridge() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(START_POINT).append(JoinBridge(downBridge)).append(END_POINT);
+        System.out.println(sb);
+    }
+
+    public static String JoinBridge(List<String> upBridge) {
+        return String.join(" | ", upBridge);
+    }
+
     public static void nextMoving(String nextMove, boolean canNextMove) {
         if(Objects.equals(nextMove, "U")) {
             MoveUpBridge(canNextMove);
@@ -39,14 +58,6 @@ public class OutputView {
         if(Objects.equals(nextMove, "D")) {
             MoveDownBridge(canNextMove);
             notMoveUpBridge();
-        }
-
-        for(int i=0; i<upBridge.size(); i++) {
-            System.out.print(upBridge.get(i) + " ");
-        }
-        System.out.println();
-        for(int i=0; i<downBridge.size(); i++) {
-            System.out.print(downBridge.get(i) + " ");
         }
     }
 
