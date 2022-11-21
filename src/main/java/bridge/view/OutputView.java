@@ -81,18 +81,22 @@ public class OutputView {
         List<String> historyDirection = new ArrayList<>();
         for (Round round : history) {
             if (round.getSelection().equals(direction)) {
-                if (round.isPass()) {
-                    historyDirection.add(PASS);
-                }
-                if (!round.isPass()) {
-                    historyDirection.add(FAIL);
-                }
+                addRoundResult(historyDirection, round);
                 continue;
             }
             historyDirection.add(NONE);
         }
 
         System.out.println(BRIDGE_START + String.join(BRIDGE_DELIMITER, historyDirection) + BRIDGE_END);
+    }
+
+    private void addRoundResult(List<String> historyDirection, Round round) {
+        if (round.isPass()) {
+            historyDirection.add(PASS);
+        }
+        if (!round.isPass()) {
+            historyDirection.add(FAIL);
+        }
     }
 
     public void printError(IllegalArgumentException iae) {
