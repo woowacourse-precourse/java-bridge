@@ -5,6 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -21,5 +22,11 @@ public class GameController {
 
     private String loadMoveDirection() {
         return InputView.readMoving();
+    }
+
+    private void playRound() {
+        String moveDirection = loadMoveDirection();
+        List<List<String>> bridgeRecord = bridgeGame.getRecordByMove(moveDirection);
+        OutputView.printMap(bridgeRecord);
     }
 }
