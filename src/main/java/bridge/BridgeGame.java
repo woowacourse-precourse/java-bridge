@@ -58,7 +58,12 @@ public class BridgeGame {
     }
 
     private int getBridgeSize() {
-        return 0;
+        try {
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBridgeSize();
+        }
     }
 
     private List<String> playGame(GameStatus gameStatus, List<String> realBridges) {
