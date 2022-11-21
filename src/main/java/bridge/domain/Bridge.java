@@ -30,4 +30,9 @@ public class Bridge {
 
         return bridgeMaker.makeBridge(size);
     }
+
+    public boolean checkPassable(String movePlace, int current) {
+
+        return bridge.get(current).equals(movePlace);
+    }
 }
