@@ -16,7 +16,7 @@ public class Player {
     private final String BRIDGE_UP = "U";
 
     public Player() {
-        numberOfTry = 0L;
+        numberOfTry = 1L;
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
     }
