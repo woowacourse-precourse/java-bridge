@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> moveResult = new ArrayList<>();
-    private int tryCount = 1;
+    private int tryCount = 0;
     private int retryCount = 1;
 
     /**
