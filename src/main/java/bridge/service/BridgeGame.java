@@ -16,6 +16,7 @@ public class BridgeGame {
     static final BridgeDrawer bridgeDrawer = new BridgeDrawer();
     static final CheckService checkService = new CheckServiceImpl();
     public static final List<String> userDirection = new ArrayList<>();
+    public static int tryCnt = 1;
 
 
     public boolean move(List<String> bridgeInfo, String direction) {
@@ -27,6 +28,7 @@ public class BridgeGame {
 
 
     public boolean retry() {
+        tryCnt ++;
         userDirection.clear();
         bridgeDrawer.initializeLists();
         return true;
@@ -54,4 +56,7 @@ public class BridgeGame {
         return userDirection.size();
     }
 
+    public static int getTryCnt() {
+        return tryCnt;
+    }
 }
