@@ -1,8 +1,8 @@
 package bridge.domain.history;
 
 
-import bridge.domain.position.BridgePosition;
-import bridge.domain.position.SurviveStatus;
+import bridge.domain.code.BridgePosition;
+import bridge.domain.code.SurviveStatus;
 
 public class StagedHistory {
     private final SurviveStatus surviveStatus;

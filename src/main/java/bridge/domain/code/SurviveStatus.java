@@ -1,4 +1,4 @@
-package bridge.domain.position;
+package bridge.domain.code;
 
 public enum SurviveStatus {
     SURVIVE("O", true),

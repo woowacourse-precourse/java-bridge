@@ -1,4 +1,4 @@
-package bridge.domain.position;
+package bridge.domain.code;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

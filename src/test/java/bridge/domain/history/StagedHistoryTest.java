@@ -2,8 +2,8 @@ package bridge.domain.history;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.position.BridgePosition;
-import bridge.domain.position.SurviveStatus;
+import bridge.domain.code.BridgePosition;
+import bridge.domain.code.SurviveStatus;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;

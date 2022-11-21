@@ -1,9 +1,9 @@
 package bridge.game;
 
 import bridge.domain.bridge.Bridge;
+import bridge.domain.code.BridgePosition;
+import bridge.domain.code.SurviveStatus;
 import bridge.domain.history.History;
-import bridge.domain.position.BridgePosition;
-import bridge.domain.position.SurviveStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

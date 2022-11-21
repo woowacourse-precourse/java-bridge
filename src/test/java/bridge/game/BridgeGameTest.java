@@ -6,7 +6,7 @@ import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeSize;
 import bridge.domain.bridge.maker.BridgeMaker;
 import bridge.domain.bridge.maker.BridgeMakerFake;
-import bridge.domain.position.BridgePosition;
+import bridge.domain.code.BridgePosition;
 import bridge.utils.TestUtils;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

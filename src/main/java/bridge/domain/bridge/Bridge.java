@@ -1,8 +1,8 @@
 package bridge.domain.bridge;
 
 import bridge.domain.bridge.maker.BridgeMaker;
-import bridge.domain.position.BridgePosition;
-import bridge.domain.position.SurviveStatus;
+import bridge.domain.code.BridgePosition;
+import bridge.domain.code.SurviveStatus;
 import java.util.List;
 
 public class Bridge {

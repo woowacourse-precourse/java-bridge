@@ -1,6 +1,6 @@
 package bridge.domain.bridge.maker;
 
-import bridge.domain.position.BridgePosition;
+import bridge.domain.code.BridgePosition;
 import java.util.ArrayList;
 import java.util.List;
 
