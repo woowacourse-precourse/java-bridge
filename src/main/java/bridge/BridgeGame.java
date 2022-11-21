@@ -3,11 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
-
     static List<String> result = new ArrayList<>();
     static List<String> bridge;
     static StringBuilder upResult;
@@ -17,31 +13,25 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * @param direction 사용자의 입력방향
-     * @param index 현재 건너는 칸 수
-     */
-    public static void move(String direction, int index) {
+    public static StringBuilder move(String direction, int index) {
         String answer = bridge.get(index);
         result.add(direction);
         if (direction.equals(answer)) {
-            printMove(result, true);
+            return (printMove(result, true));
         }
         if (!direction.equals(answer)) {
-            printMove(result,false);
-            // 재시작
+            return (printMove(result,false));
         }
+        return null;
     }
-    private static void printMove(List<String> result, boolean thisturn) {
+    private static StringBuilder printMove(List<String> result, boolean thisturn) {
         upResult = new StringBuilder("[");
         downResult = new StringBuilder("[");
         prePrint();
         nowPrint(thisturn);
         upResult.append("]");
         downResult.append("]");
-        System.out.println(upResult);
-        System.out.println(downResult);
+        return new StringBuilder((upResult + "\n" + downResult));
     }
     private static void prePrint() {
         for (int index=0; index<result.size()-1; index++) {
