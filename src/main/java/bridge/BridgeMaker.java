@@ -23,8 +23,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i=0; i<size; i++) {
             int input = this.bridgeNumberGenerator.generate();
-            if (input == 0) bridge.add("U");
-            else bridge.add("D");
+            if (input == 0) bridge.add("D");
+            if (input == 1) bridge.add("U");
         }
         return bridge;
     }
