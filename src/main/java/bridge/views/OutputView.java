@@ -46,6 +46,8 @@ public class OutputView {
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
+     * 윗줄과 아랫줄을 각각 출력한다.
+     * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> moves, List<String> bridge) {
@@ -54,6 +56,15 @@ public class OutputView {
         System.out.println();
     }
 
+    /**
+     * 현재까지 이동한 다리의 상태를 매개변수에 따라 윗줄이나 아랫줄을 출력한다.
+     * <p>
+     * 앞칸과 뒷칸을 나누는 '|' 구분자 때문에
+     * 마지막의 이동한 다리와 그 이전의 이동을 따로 출력한다.
+     * @param side
+     * @param moves
+     * @param bridge
+     */
     private void printOneSideMap(String side, List<String> moves, List<String> bridge) {
         int lastMovePosition = moves.size() - 1;
         System.out.print(mapPrefix);
@@ -94,6 +105,12 @@ public class OutputView {
         System.out.println(ResultMessage.TRY_COUNT_MESSAGE.getMessage() + tryCount);
     }
 
+    /**
+     * 게임의 최종 결과를 출력하기 위해 다리를 잘 건넜는지 확인한다.
+     * @param moves
+     * @param bridge
+     * @return 성공여부를 반환한다.
+     */
     private boolean isSucceeded(List<String> moves, List<String> bridge) {
         if (moves.size() != bridge.size()) {
             return notSucceed;
@@ -106,6 +123,11 @@ public class OutputView {
         return succeed;
     }
 
+    /**
+     * 게임의 최종 결과를 출력하기 위해 성공여부에 따른 메시지를 얻는다.
+     * @param succeeded
+     * @return 성공 여부에 따른 메시지를 반환한다.
+     */
     private String getSuccessOrFailMessage(boolean succeeded) {
         if (succeeded) {
             return ResultMessage.SUCCESS.getMessage();
