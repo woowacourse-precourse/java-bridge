@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.Constant.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +34,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public MoveResult move(String userInput) {
+        nowBridge.add(userInput);
         if (userInput.equals(bridge.get(nowBridge.size()))) {
-            nowBridge.add(userInput);
-            MoveResult moveResult = new MoveResult(1, nowBridge);
+            MoveResult moveResult = new MoveResult(MOVERESULT_FLAG_VALID, nowBridge);
             return moveResult;
         }
-        return new MoveResult(0, nowBridge);
+        return new MoveResult(MOVERESULT_FLAG_INVALID, nowBridge);
     }
 
     /**
