@@ -18,16 +18,11 @@ public class MovingStack {
 		}
 	}
 
-	public void clearMovingStack() {
-		movingStack.clear();
-	}
-
 	public List<String> getMovingStack() {
 		return movingStack;
 	}
 
 	public int getMovingCount() {
-		int movingCount = movingStack.size();
-		return movingCount;
+		return movingStack.size();
 	}
 }
