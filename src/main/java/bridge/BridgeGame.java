@@ -13,8 +13,8 @@ public class BridgeGame {
     }
 
     public void resetAllLine() {
-        this.firstLine = "";
-        this.secondLine = "";
+        this.firstLine = "[  ]";
+        this.secondLine = "[  ]";
     }
 
     public String getFirstLine() {
@@ -45,17 +45,17 @@ public class BridgeGame {
 
     public String determineSetString(String elementOfBridge, String input) {
         if (elementOfBridge.equals(input)) {
-            return "O";
+            return " O ";
         }
-        return "X";
+        return " X ";
     }
 
     public boolean checkAndSetLine(String setString, String input) {
         if (input.equals("U")) {
-            setLine("setString", " ");
+            setLine("setString", "   ");
             return true;
         }
-        setLine(" ", "setString");
+        setLine("   ", "setString");
         return false;
     }
 
