@@ -1,16 +1,15 @@
 package bridge.domain.enums;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum CrossStatus {
     SUCCESS, FAIL, YET;
 
     public static List<CrossStatus> createInitializationStatuses(final int bridgeSize) {
-        List<CrossStatus> crossStatuses = new ArrayList<>();
-        for (int bridgeIndex = 0; bridgeIndex < bridgeSize; bridgeIndex++) {
-            crossStatuses.add(YET);
-        }
-        return crossStatuses;
+        return Stream.generate(() -> YET)
+                .limit(bridgeSize)
+                .collect(Collectors.toList());
     }
 }
