@@ -28,12 +28,12 @@ public class GameTest extends NsTest {
 		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 		BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
 
-
 		gameStatus1 = bridgeGame.isClear();
 		bridgeGame.move(UP);
 		bridgeGame.move(DOWN);
 		bridgeGame.move(DOWN);
 		gameStatus2 = bridgeGame.isClear();
+
 		assertThat(gameStatus1).isEqualTo(GameStatus.PASS);
 		assertThat(gameStatus2).isEqualTo(GameStatus.CLEAR);
 	}

@@ -1,16 +1,13 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 import bridge.service.BridgeMaker;
-import bridge.service.BridgeNumberGenerator;
 import bridge.service.BridgeRandomNumberGenerator;
-import bridge.util.Logger;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -18,34 +15,15 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeTest extends NsTest {
 
-	private static final String ERROR_MESSAGE = "[ERROR]";
-
 	@Test
-	@DisplayName("다리 생성 예외 테스트 3~20인지 확인 (2)")
+	@DisplayName("다리 생성 예외 테스트 3~20인지 확인 (경계값)")
 	void 다리_생성예외_테스트() {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-		try {
-			Bridge bridge = new Bridge(bridgeMaker.makeBridge(2));
-		} catch (IllegalArgumentException e) {
-			Logger.error(e.getMessage());
-		}
-
-		assertThat(output()).contains(ERROR_MESSAGE);
-	}
-
-	@Test
-	@DisplayName("다리 생성 예외 테스트 3~20인지 확인 (21)")
-	void 다리_생성예외_테스트2() {
-		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-		try {
-			Bridge bridge = new Bridge(bridgeMaker.makeBridge(21));
-		} catch (IllegalArgumentException e) {
-			Logger.error(e.getMessage());
-		}
-
-		assertThat(output()).contains(ERROR_MESSAGE);
+		assertThatThrownBy(() -> new Bridge(bridgeMaker.makeBridge(21)))
+			.isInstanceOf(IllegalArgumentException.class);
+		assertThatThrownBy(() -> new Bridge(bridgeMaker.makeBridge(2)))
+			.isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
