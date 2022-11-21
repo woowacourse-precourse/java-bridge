@@ -9,12 +9,12 @@ public enum UserCommand {
     private String command;
     private String position;
     private int number;
-    private UserCommand(String command, String position,int number){
+    UserCommand(String command, String position,int number){
         this.command = command;
         this.position = position;
         this.number = number;
     }
-    private UserCommand(String command, String position){
+    UserCommand(String command, String position){
         this.command = command;
         this.position = position;
     }
@@ -23,6 +23,9 @@ public enum UserCommand {
     }
     public String getPosition(){
         return this.position;
+    }
+    public int getNumber(){
+        return number;
     }
 
 }
