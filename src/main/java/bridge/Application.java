@@ -25,8 +25,7 @@ public class Application {
 
         while(re.contains("R")) {
             success = try_cross(bridge, size);
-            if(success_info(size))
-                break;
+            if(success_info(size)) break;
             re = ask_retry();
             try_count = retry_cross(re, try_count);
         }

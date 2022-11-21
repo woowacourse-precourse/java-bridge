@@ -11,13 +11,8 @@ public class InputView {
     public static int readBridgeSize() {
         String input = Console.readLine();
         System.out.println("");
-        for(int i=0;i<input.length();i++){
-            if(!(input.charAt(i)>='0' && input.charAt(i)<='9'))
-                throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR.getErrormessage());
-        }
-        int size = Integer.parseInt(input);
-        if(size<3||size>20)
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_ERROR.getErrormessage());
+        int size = Exception.input_error(input);
+        Exception.valid_number(size);
         return size;
     }
 
@@ -26,8 +21,7 @@ public class InputView {
      */
     public static String readMoving() {
         String move_location = Console.readLine();
-        if(move_location.length()!=1 || (!move_location.contains("U") && !move_location.contains("D")))
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SELECT_ERROR.getErrormessage());
+        Exception.valid_bridge(move_location);
         return move_location;
     }
 
@@ -36,8 +30,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         String re_game = Console.readLine();
-        if(re_game.length()!=1 || (!re_game.contains("R") && !re_game.contains("Q")))
-            throw new IllegalArgumentException(ErrorMessage.RESTART_SELECT_ERROR.getErrormessage());
+        Exception.valid_restart(re_game);
         return re_game;
     }
 }

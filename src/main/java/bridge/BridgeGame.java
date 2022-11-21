@@ -19,10 +19,9 @@ public class BridgeGame {
             add_bridge(updown, "O");
             return true;
         }
-        else{
-            add_bridge(updown, "X");
-            return false;
-        }
+
+        add_bridge(updown, "X");
+        return false;
     }
     public static void add_bridge(String updown, String OX){
         if (updown.contains("U")) {
