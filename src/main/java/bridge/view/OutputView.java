@@ -8,7 +8,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static final String LOSE_SYMBOL = "X";
+    public static final String WRONG_WAY_SIGN = "X";
 
     private static final String LINE_SPACE = "";
     private static final String INTRO = "다리 건너기 게임을 시작합니다.";
@@ -64,16 +64,16 @@ public class OutputView {
         System.out.print(GAME_WIN_OR_LOSE_INTRO);
         System.out.println(printWinOrLose(bridgeGame));
         System.out.print(TRY_NUMBER_INTRO);
-        System.out.print(bridgeGame.attempt);
+        System.out.print(bridgeGame.getAttempt());
     }
 
     public static String printWinOrLose(BridgeGame bridgeGame) {
-        int bridgeIndex = bridgeGame.bridgeIndex - 1;
+        int bridgeIndex = bridgeGame.getBridgeIndex() - 1;
 
-        if (bridgeGame.upperBridge.get(bridgeIndex).equals(LOSE_SYMBOL)) {
+        if (bridgeGame.upperBridge.get(bridgeIndex).equals(WRONG_WAY_SIGN)) {
             return LOSE;
         }
-        if (bridgeGame.lowerBridge.get(bridgeIndex).equals(LOSE_SYMBOL)) {
+        if (bridgeGame.lowerBridge.get(bridgeIndex).equals(WRONG_WAY_SIGN)) {
             return LOSE;
         }
         return WIN;

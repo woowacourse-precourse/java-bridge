@@ -12,12 +12,13 @@ public class BridgeGame {
 
     public List<String> upperBridge;
     public List<String> lowerBridge;
-    public static int attempt = 1;
-    public static int bridgeIndex = 0;
+
+    private int attempt = 1;
+    private int bridgeIndex = 0;
 
     private final String BLANK = " ";
-    private final String RIGHT_WAY = "O";
-    private final String WRONG_WAY = "X";
+    private final String RIGHT_WAY_SIGN = "O";
+    private final String WRONG_WAY_SIGN = "X";
     private final String REGAME = "R";
 
 
@@ -65,9 +66,9 @@ public class BridgeGame {
 
     public String compareValue(String answer, String inputMoveValue) {
         if (answer.equals(inputMoveValue)) {
-            return RIGHT_WAY;
+            return RIGHT_WAY_SIGN;
         }
-        return WRONG_WAY;
+        return WRONG_WAY_SIGN;
     }
 
     /**
@@ -84,6 +85,14 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public int getAttempt() {
+        return attempt;
+    }
+
+    public int getBridgeIndex() {
+        return bridgeIndex;
     }
 
 

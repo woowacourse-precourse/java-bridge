@@ -33,12 +33,12 @@ public class GameController {
 
     public void makeUpperAndLowerBridge(List<String> rightBridgeWay, BridgeGame bridgeGame) {
         boolean keepGoing = true;
-        while (keepGoing && bridgeGame.bridgeIndex < rightBridgeWay.size()) {
+        while (keepGoing && bridgeGame.getBridgeIndex() < rightBridgeWay.size()) {
             String inputMoveValue = readMoving();
             bridgeGame.move(rightBridgeWay, inputMoveValue);
             printMap(bridgeGame.upperBridge, bridgeGame.lowerBridge);
 
-            if (bridgeGame.upperBridge.contains(OutputView.LOSE_SYMBOL) || bridgeGame.lowerBridge.contains(OutputView.LOSE_SYMBOL)) {
+            if (bridgeGame.upperBridge.contains(OutputView.WRONG_WAY_SIGN) || bridgeGame.lowerBridge.contains(OutputView.WRONG_WAY_SIGN)) {
                 keepGoing = retryGame(bridgeGame);
             }
         }
