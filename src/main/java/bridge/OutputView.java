@@ -55,18 +55,43 @@ public class OutputView {
         makeLowerBridge(bridgeGame);
     }
 
-    public void printMap(BridgeGame bridgeGame) {
-        makeBridgeMap(bridgeGame);
+    public void removeRecentBridge() {
+        upperBridge = upperBridge.substring(0, upperBridge.length() - 4);
+        lowerBridge = lowerBridge.substring(0, lowerBridge.length() - 4);
+    }
+
+    public void drawMap(BridgeGame bridgeGame, Boolean isRetry) {
+        if (!isRetry) {
+            makeBridgeMap(bridgeGame);
+        }
+        if (isRetry) {
+            removeRecentBridge();
+        }
+    }
+
+    public void printMap() {
         System.out.println(START_LINE.getMessage() + upperBridge + END_LINE.getMessage());
         System.out.println(START_LINE.getMessage() + lowerBridge + END_LINE.getMessage());
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println(GAME_RESULT.getMessage());
+        printMap();
+        printSuccessOrFail(bridgeGame);
+        printTryNumber(bridgeGame);
+    }
+
+    public void printSuccessOrFail(BridgeGame bridgeGame) {
+        if (bridgeGame.getIsMovable()){
+            System.out.println(NEW_LINE.getMessage() + String.format(SUCCESS_OR_FAIL.getMessage(), SUCCESS.getMessage()));
+        }
+        if (!bridgeGame.getIsMovable()) {
+            System.out.println(NEW_LINE.getMessage() + String.format(SUCCESS_OR_FAIL.getMessage(), FAIL.getMessage()));
+        }
+    }
+
+    public void printTryNumber(BridgeGame bridgeGame) {
+        System.out.println(String.format(TRY_NUMBER.getMessage(), bridgeGame.getTryNumber()));
     }
 
     public void printStartGame() {
