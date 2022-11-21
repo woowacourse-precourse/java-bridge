@@ -26,7 +26,7 @@ public class InputView {
         }
     }
 
-    private void validateBridgeSize(String input) {
+    public void validateBridgeSize(String input) {
         String regex = "^[0-9]+$";
         Matcher matcher = Pattern.compile(regex).matcher(input);
         if (!matcher.matches()) {
@@ -54,7 +54,7 @@ public class InputView {
         }
     }
 
-    private void validateMoving(String input) {
+    public void validateMoving(String input) {
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException("[ERROR] U, D 중 하나를 입력해주세요.");
         }
@@ -76,7 +76,7 @@ public class InputView {
         }
     }
 
-    private void validateGameCommand(String input) {
+    public void validateGameCommand(String input) {
         if (!input.equals("R") && !input.equals("Q")) {
             throw new IllegalArgumentException("[ERROR] R, Q 중 하나를 입력해주세요.");
         }

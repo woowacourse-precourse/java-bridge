@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
 
-    public static InputStream generateUserInput(String input){
+    private InputStream generateUserInput(String input){
         return new ByteArrayInputStream(input.getBytes());
     }
 
@@ -37,11 +37,9 @@ public class InputViewTest {
         InputView inputView = new InputView();
 
         // when
-        InputStream in = generateUserInput("22");
-        System.setIn(in);
 
         // then
-        assertThatThrownBy(inputView::readBridgeSize)
+        assertThatThrownBy(() -> inputView.validateBridgeSize("22"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
@@ -51,11 +49,9 @@ public class InputViewTest {
         InputView inputView = new InputView();
 
         // when
-        InputStream in = generateUserInput("15j");
-        System.setIn(in);
 
         // then
-        assertThatThrownBy(inputView::readBridgeSize)
+        assertThatThrownBy(() -> inputView.validateBridgeSize("15j"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -95,11 +91,9 @@ public class InputViewTest {
         InputView inputView = new InputView();
 
         // when
-        InputStream in = generateUserInput("F");
-        System.setIn(in);
 
         // then
-        assertThatThrownBy(inputView::readMoving)
+        assertThatThrownBy(() -> inputView.validateBridgeSize("F"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -138,11 +132,9 @@ public class InputViewTest {
         InputView inputView = new InputView();
 
         // when
-        InputStream in = generateUserInput("F");
-        System.setIn(in);
 
         // then
-        assertThatThrownBy(inputView::readGameCommand)
+        assertThatThrownBy(() -> inputView.validateBridgeSize("F"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -14,6 +14,8 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         int count = 1;
         int round = 0;
+        int resultRound = 0;
+        boolean resultMovable = true;
         boolean ongoing = true;
 
         int bridgeSize = inputView.readBridgeSize();
@@ -23,6 +25,8 @@ public class Application {
             String moving = inputView.readMoving();
             boolean movable = bridgeGame.move(bridge, round, moving);
             outputView.printMap(bridge, round, movable);
+            resultMovable = movable;
+            resultRound = round;
             if (movable) {
                 round++;
                 continue;
@@ -35,7 +39,7 @@ public class Application {
             }
         }
         System.out.println("\n최종 게임 결과");
-        outputView.printMap(bridge, bridgeSize - 1, true);
+        outputView.printMap(bridge, resultRound, resultMovable);
         outputView.printResult(ongoing, count);
 
     }
