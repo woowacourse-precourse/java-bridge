@@ -13,17 +13,13 @@ public enum GameCommand {
         this.command = command;
     }
 
+    public static void validateInput(String command) {
+        GameCommand.of(command);
+    }
+
     public static GameCommand of(String command) {
         return Arrays.stream(GameCommand.values())
                 .filter(bridgeMark -> bridgeMark.isEqualCommand(command))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_INPUT_COMMAND));
-    }
-
-    public static void validateInput(String command) {
-        Arrays.stream(GameCommand.values())
-                .map(GameCommand::getCommand)
-                .filter(s -> s.equals(command))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_INPUT_COMMAND));
     }
