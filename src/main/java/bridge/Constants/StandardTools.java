@@ -13,7 +13,9 @@ public class StandardTools {
     public static final boolean SUCCEED = true;
     public static final boolean POSSIBLE_ZONE = true;
     public static final boolean IMPOSSIBLE_ZONE = false;
-    public static final boolean RETRY = true;
+    public enum retry {
+        RETRY, QUIT, PROGRESSING
+    };
 
 
 }
