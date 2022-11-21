@@ -12,6 +12,9 @@ import java.util.List;
 import static bridge.util.Constant.QUIT_GAME;
 import static bridge.util.Constant.RETRY_GAME;
 
+/**
+ * 다리 건너기 게임 컨트롤러 클래스
+ */
 public class BridgeGameController {
 
     private final BridgeMaker bridgeMaker;
@@ -25,39 +28,33 @@ public class BridgeGameController {
     }
 
     public void run() {
-        try {
-            int bridgeSize = getBridgeSize();
-            Bridge bridge = makeBridge(bridgeMaker, bridgeSize);
-            BridgeGame bridgeGame = new BridgeGame(bridge);
-            int position;
+        int bridgeSize = getBridgeSize();
+        Bridge bridge = makeBridge(bridgeMaker, bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        int position;
 
-            do {
-                String block = getMovingInput();
-                position = bridgeGame.getPosition();
+        do {
+            String block = getMovingInput();
+            position = bridgeGame.getPosition();
 
-                if (bridge.isMovableBlock(position, block)) {
-                    outputView.printMap(bridgeGame, true);
-                    position = bridgeGame.move();
-                    continue;
-                }
-                outputView.printMap(bridgeGame, false);
-                String gameCommandInput = getGameCommandInput();
+            if (bridge.isMovableBlock(position, block)) {
+                outputView.printMap(bridgeGame, true);
+                position = bridgeGame.move();
+                continue;
+            }
+            outputView.printMap(bridgeGame, false);
+            String gameCommandInput = getGameCommandInput();
 
-                if (gameCommandInput.equals(RETRY_GAME)) {
-                    bridgeGame.retry();
-                    continue;
-                }
-                if (gameCommandInput.equals(QUIT_GAME)) {
-                    outputView.printResult(bridgeGame, false);
-                    return;
-                }
-
-            } while (position < bridgeSize);
-
-            outputView.printResult(bridgeGame, true);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+            if (gameCommandInput.equals(RETRY_GAME)) {
+                bridgeGame.retry();
+                continue;
+            }
+            if (gameCommandInput.equals(QUIT_GAME)) {
+                outputView.printResult(bridgeGame, false);
+                return;
+            }
+        } while (position < bridgeSize);
+        outputView.printResult(bridgeGame, true);
     }
 
     private int getBridgeSize() {
