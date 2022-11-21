@@ -11,14 +11,10 @@ public class Initialization {
 
     public static BridgeGame init() {
         OutputView.printStart();
-        inputBridgeSize();
-        createBridge();
-        return new BridgeGame();
-    }
-
-    public static void inputBridgeSize() {
         OutputView.printRequestSize();
         Application.size = InputView.readBridgeSize();
+        createBridge();
+        return new BridgeGame();
     }
 
     public static void createBridge() {
