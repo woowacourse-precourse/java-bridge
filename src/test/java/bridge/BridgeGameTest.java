@@ -50,4 +50,18 @@ class BridgeGameTest {
         assertThat(gameResult.getResult()).isEqualTo("성공");
         assertThat(gameResult.getRetryCount()).isEqualTo(1);
     }
+
+    @Test
+    void 마지막_다리에서_실패하면_게임_결과는_실패여야한다() {
+        bridgeGame.move(Direction.U);
+        bridgeGame.move(Direction.D);
+        bridgeGame.move(Direction.D);
+
+        assertThat(bridgeGame.quit()).isFalse();
+
+        GameResult gameResult = bridgeGame.gameResult();
+
+        assertThat(gameResult.getResult()).isEqualTo("실패");
+        assertThat(gameResult.getRetryCount()).isEqualTo(1);
+    }
 }
