@@ -12,7 +12,7 @@ public enum Range {
         this.range = range;
     }
 
-    public void validate(Integer range) {
+    public static void validate(Integer range) {
         if (Range.MIN.getRange() <= range
             && range <= Range.MAX.getRange()) {
             return;

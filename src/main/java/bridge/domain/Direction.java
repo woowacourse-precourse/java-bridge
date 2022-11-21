@@ -17,7 +17,7 @@ public enum Direction {
         this.isMatch = isMatch;
     }
 
-    public void validate(String directionInitial) {
+    public static void validate(String directionInitial) {
         if (directionInitial.equals(Direction.UP.getDirectionInitial())
             || directionInitial.equals(Direction.DOWN.getDirectionInitial())) {
             return;
