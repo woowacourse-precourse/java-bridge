@@ -40,16 +40,15 @@ public class Application {
         cnt += 1;
 
         // 4.
-        /*String regameStatus = "";
-        while (!regameStatus.equals("Q")) {
-            if (gameStatus.equals("실패")) {
-                regameStatus = inputView.readGameCommand();
-            }
+        String regameStatus = "";
+        while (gameStatus.equals("실패") && !regameStatus.equals("Q")) {
+            regameStatus = inputView.readGameCommand();
             if (regameStatus.equals("R")) {
-                gameStatus = bridgeGame.retry(bridge);
+                result = new ArrayList<>();
+                gameStatus = tryGame(bridgeGame, bridge, result);
                 cnt += 1;
             }
-        }*/
+        }
 
         // 5.
         //outputView.printResult(gameStatus, cnt, bridgeGame.getResult(), bridge);
