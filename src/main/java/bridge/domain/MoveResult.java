@@ -21,4 +21,8 @@ public enum MoveResult {
                 .orElse(null);
         return moveResult;
     }
+
+    public String getResult() {
+        return result;
+    }
 }
