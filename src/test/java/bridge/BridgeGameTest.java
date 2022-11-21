@@ -114,4 +114,32 @@ class BridgeGameTest {
         // then
         assertThat(bridgeGame.getCountOfRound()).isEqualTo(countOfRound + 1);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5})
+    void checkGameWinByNotWIng(int bridgeSize) {
+        // given
+        BridgeGame bridgeGame = new BridgeGame();
+
+        // when
+        bridgeGame.checkGameWin(bridgeSize);
+
+        // then
+        assertThat(bridgeGame.getBridgeGameStat().getGameStatus()).isEqualTo(GameStatus.FAIL);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3})
+    void checkGameWin(int bridgeSize) {
+        // given
+        BridgeGame bridgeGame = new BridgeGame();
+
+        // when
+        bridgeGame.nextRound();
+        bridgeGame.nextRound();
+        bridgeGame.checkGameWin(bridgeSize);
+
+        // then
+        assertThat(bridgeGame.getBridgeGameStat().getGameStatus()).isEqualTo(GameStatus.SUCCESS);
+    }
 }
