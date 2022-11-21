@@ -36,6 +36,17 @@ public class BridgeResult {
 
     @Override
     public String toString(){
-        return currentMap.toString();
+        return bridgeToString(UPPER_BRIDGE) + "\n" + bridgeToString(LOWER_BRIDGE);
+    }
+
+    private String bridgeToString(String bridgePosition){
+        StringBuilder sb = new StringBuilder("[ ");
+        for (String s : currentMap.get(bridgePosition)){
+            sb.append(s);
+            sb.append(" | ");
+        }
+        sb.setLength(sb.length() - " | ".length());
+        sb.append(" ]");
+        return sb.toString();
     }
 }
