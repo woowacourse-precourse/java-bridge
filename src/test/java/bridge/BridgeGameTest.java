@@ -44,4 +44,16 @@ class BridgeGameTest {
                 .isEqualTo(true);
     }
 
+    @DisplayName("이동 경로를 확인할 수 있다.")
+    @Test
+    void printMovingPath() {
+        for (int i = 0; i < 3; i++) {
+            bridgeGame.move("U");
+        }
+
+        Assertions.assertThat(bridgeGame.getPath())
+                .isEqualTo("[ O | O | O ]\n" +
+                        "[   |   |   ]");
+    }
+
 }
