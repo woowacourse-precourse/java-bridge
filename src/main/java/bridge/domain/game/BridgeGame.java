@@ -1,6 +1,7 @@
 package bridge.domain.game;
 
 import bridge.domain.GameStatus;
+import bridge.domain.Move;
 import bridge.domain.bridge.Bridge;
 
 import static bridge.domain.GameStatus.FAILED;
@@ -30,18 +31,13 @@ public class BridgeGame {
      */
     public void move(String moving) {
         boolean move = canMove(moving);
+        playing = move;
         gameProgress.add(moving, move);
     }
 
     private boolean canMove(String moving) {
-        int position = gameProgress.size();
-        playing = bridge.getBridgeBlock(position).equals(moving);
-        return playing;
-    }
-
-    private boolean isSuccessToCrossTotalBridge() {
-        return (gameProgress.size() == bridge.getSize() &&
-                gameProgress.isLastMoveSuccess());
+        int position = gameProgress.getPosition();
+        return bridge.getBridgeBlock(position).equals(moving);
     }
 
     public boolean isPlaying() {
@@ -49,7 +45,7 @@ public class BridgeGame {
     }
 
     public GameStatus getGameResult() {
-        if (isSuccessToCrossTotalBridge()) {
+        if (gameProgress.isSuccessToCrossBridge(bridge.getSize())) {
             playing = false;
             return SUCCESS;
         }
@@ -66,8 +62,6 @@ public class BridgeGame {
         gameProgress.clear();
         playing = true;
     }
-
-
 
     public GameProgress getGameProgress() {
         return gameProgress;

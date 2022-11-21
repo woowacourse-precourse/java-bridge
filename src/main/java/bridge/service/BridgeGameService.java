@@ -4,6 +4,7 @@ import bridge.domain.Command;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameProgress;
 import bridge.domain.GameStatus;
+import bridge.domain.game.MapManager;
 import bridge.dto.MapDto;
 import bridge.dto.ResultDto;
 
@@ -12,9 +13,11 @@ import static bridge.domain.Command.RETRY;
 public class BridgeGameService {
 
     private final BridgeGame bridgeGame;
+    private final MapManager mapManager;
 
     public BridgeGameService(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
+        this.mapManager = new MapManager();
     }
 
     public GameStatus crossBridgeUnit(String moving) {
@@ -45,6 +48,7 @@ public class BridgeGameService {
 
     public MapDto getMapDto() {
         GameProgress gameProgress = bridgeGame.getGameProgress();
-        return new MapDto(gameProgress.getMap());
+        String map = mapManager.getMap(gameProgress);
+        return new MapDto(map);
     }
 }
