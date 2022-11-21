@@ -30,6 +30,18 @@ public class Bridge {
         downBridge = new ArrayList<>();
     }
 
+    public List<String> getUpBridge() {
+        return upBridge;
+    }
+
+    public List<String> getDownBridge() {
+        return downBridge;
+    }
+
+    public String getLastBridge() {
+        return lastBridge;
+    }
+
     public void setLastBridge(String lastBridge) {
         this.lastBridge = lastBridge;
     }
