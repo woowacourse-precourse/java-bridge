@@ -6,7 +6,7 @@ public enum MovementStatusForm {
     DOWN_O(true),
     DOWM_X(false);
 
-    boolean isPass;
+    private final boolean isPass;
 
     MovementStatusForm(boolean isPass) {
         this.isPass = isPass;
