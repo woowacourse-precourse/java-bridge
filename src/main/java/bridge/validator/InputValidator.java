@@ -21,6 +21,10 @@ public enum InputValidator implements Validator<String> {
                             .map(i -> (char) i)
                             .allMatch(Character::isUpperCase)
     ),
+    IS_SINGLE_CHARACTER(
+            "입력값이 두글자 이상입니다.",
+            (String input) -> input.length() == 1
+    ),
     ;
 
     private final String errorMessage;

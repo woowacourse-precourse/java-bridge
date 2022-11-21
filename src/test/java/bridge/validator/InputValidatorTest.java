@@ -36,4 +36,17 @@ class InputValidatorTest {
         assertThat(InputValidator.IS_UPPERCASE_ALPHABET.test(alphabet)).isFalse();
     }
 
+    @DisplayName("입력이 한 글자이면 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "u", "1"})
+    void validInputIsSingleCharacter(String single) {
+        assertThat(InputValidator.IS_SINGLE_CHARACTER.test(single)).isTrue();
+    }
+
+    @DisplayName("입력이 한 글자가 아니면 false를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"Af", "lowercase", "123"})
+    void invalidInputIsSingleCharacter(String single) {
+        assertThat(InputValidator.IS_SINGLE_CHARACTER.test(single)).isFalse();
+    }
 }
