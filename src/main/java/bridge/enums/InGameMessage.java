@@ -27,4 +27,10 @@ public enum InGameMessage {
   public String getMessage() {
     return message;
   }
+
+  public static String findMessageBySuccessOrNot(boolean success) {
+    if(success) return SUCCESS.getMessage();
+    return FAILURE.getMessage();
+  }
+
 }
