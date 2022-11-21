@@ -16,6 +16,7 @@ public class BridgeGameService {
         bridgeGame = makeBridgeGame();
 
         move();
+        OutputView.printMap(bridgeGame);
     }
 
     public BridgeGame makeBridgeGame(){
