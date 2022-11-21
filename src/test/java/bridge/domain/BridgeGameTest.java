@@ -2,7 +2,7 @@ package bridge.domain;
 
 import static bridge.Constants.DOWN;
 import static bridge.Constants.UP;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
+
 	private BridgeGame bridgeGame;
 
 	@BeforeEach
@@ -31,7 +32,7 @@ class BridgeGameTest {
 		//then
 		assertThat(bridgeGame.getPlayer().getCurrentLocation()).isEqualTo(nextLocation);
 	}
-	
+
 	@Test
 	@DisplayName("게임 재시작시 플레이어는 초기화된다.")
 	void 재시작_플레이어_초기화_테스트() {
@@ -42,5 +43,17 @@ class BridgeGameTest {
 		Player nextPlayer = bridgeGame.getPlayer();
 		//then
 		assertThat(currentPlayer).isNotEqualTo(nextPlayer);
+	}
+
+	@Test
+	@DisplayName("게임 재시작시 다리는 그대로여야한다.")
+	void 재시작_다리_유지_테스트() {
+		//given
+		Bridge currentBridge = bridgeGame.getBridge();
+		//when
+		bridgeGame.retry();
+		Bridge nextBridge = bridgeGame.getBridge();
+		//then
+		assertThat(currentBridge).isEqualTo(nextBridge);
 	}
 }
