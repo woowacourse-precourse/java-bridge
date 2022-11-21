@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 import bridge.constant.BridgeConstants;

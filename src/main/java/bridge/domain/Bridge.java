@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.BridgeConstants;
 import bridge.constant.ExceptionConstants;
