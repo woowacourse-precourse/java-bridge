@@ -29,7 +29,7 @@ public class BridgeGameController {
 
     public void run() {
         int bridgeSize = getBridgeSize();
-        Bridge bridge = makeBridge(bridgeMaker, bridgeSize);
+        Bridge bridge = makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
         if (!doBridgeGame(bridgeSize, bridgeGame)) {
@@ -45,7 +45,7 @@ public class BridgeGameController {
         return bridgeSize;
     }
 
-    private Bridge makeBridge(BridgeMaker bridgeMaker, int bridgeSize) {
+    private Bridge makeBridge(int bridgeSize) {
         List<String> strings = bridgeMaker.makeBridge(bridgeSize);
         return new Bridge(strings);
     }
