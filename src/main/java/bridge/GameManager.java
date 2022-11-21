@@ -27,11 +27,16 @@ public class GameManager {
     }
 
     private boolean moveForward() {
-        while (bridgeGame.canMove()) {
-            bridgeGame.move(InputView.readMoving());
+        for(int i =0; i < bridge.size(); i++) {
+            bridgeGame.setPosition(i);
+            String input = InputView.readMoving();
+            bridgeGame.move(input);
             OutputView.printMap(bridgeGame);
+            if(!bridgeGame.isCorrect(input)) {
+                return false;
+            }
         }
-        return bridgeGame.isFail();
+        return false;
     }
 
     private boolean isRetry() {
