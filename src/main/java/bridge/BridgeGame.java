@@ -37,10 +37,10 @@ public class BridgeGame {
     }
 
     public void positionValidation(String position) {
-        if (!Objects.equals(position, MoveOption.UP.getCommand())
-                && !Objects.equals(position, MoveOption.DOWN.getCommand())) {
-            throw new IllegalArgumentException("이동하는 칸은 \"" + MoveOption.UP.getCommand()
-                    + "\"(위칸), \"" + MoveOption.DOWN.getCommand() + "\"(아래칸) 만 가능합니다.");
+        if (!Objects.equals(position, MoveCommand.UP.getCommand())
+                && !Objects.equals(position, MoveCommand.DOWN.getCommand())) {
+            throw new IllegalArgumentException("이동하는 칸은 \"" + MoveCommand.UP.getCommand()
+                    + "\"(위칸), \"" + MoveCommand.DOWN.getCommand() + "\"(아래칸) 만 가능합니다.");
         }
     }
 

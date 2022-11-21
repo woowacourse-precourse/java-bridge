@@ -1,13 +1,13 @@
 package bridge;
 
-public enum MoveOption {
+public enum MoveCommand {
     UP(1, "U"),
     DOWN(0, "D");
 
     private final int value;
     private final String command;
 
-    MoveOption(int value, String command) {
+    MoveCommand(int value, String command) {
         this.value = value;
         this.command = command;
     }
