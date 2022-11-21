@@ -68,3 +68,30 @@
 
 ### 게임 재시작 여부 입력받기
 - [x] `R`이나 `Q`가 아닌 경우
+
+## 프로젝트 구조
+
+```
+bridge
+  │
+  ├─📁constant
+  │    ├─ BridgeConstants
+  │    ├─ ExceptionConstants
+  │    └─ ViewConstants
+  │
+  ├─📁controller
+  │    └─ BridgeController
+  │
+  ├─📁domain
+  │    ├─ Bridge
+  │    └─ BridgeGame
+  │
+  ├─📁view
+  │    ├─ InputView
+  │    └─ OutputView
+  │
+  ├─ Application
+  ├─ BridgeMaker
+  ├─ BridgeNumberGenerator
+  └─ BridgeRandomNumberGenerator
+```
