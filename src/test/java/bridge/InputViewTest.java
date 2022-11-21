@@ -63,6 +63,15 @@ class InputViewTest {
         String result = INPUT_VIEW.readGameCommand();
         assertThat(result).isEqualTo(input);
     }
+    @DisplayName("readGameCommand 예외 사항 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"r","q", " ", "bbas"})
+    void readGameCommand_exception_test(String input){
+        byte[] buf = input.getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+        assertThatThrownBy(()->INPUT_VIEW.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     @DisplayName("tryParse 예외 사항 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"1000j", "", " ", "1 3", "1a3", "1,2,3", " 1", "1 "})
