@@ -15,15 +15,18 @@ class BridgeMapTest {
         BridgeMap bridgeMap = new BridgeMap(3);
         BridgeStatus[][] bridgeStatuses = bridgeMap.bridgeStatuses;
         IntStream.range(0, bridgeStatuses.length)
-                .forEach(first -> IntStream.range(0, 3)
-                        .forEach(second -> assertEquals(bridgeStatuses[first][second], BridgeStatus.INIT)));
+                .forEach(first ->
+                        IntStream.range(0, 3).forEach(second ->
+                                assertEquals(BridgeStatus.INIT, bridgeStatuses[first][second])
+                        )
+                );
 
         bridgeMap.reflectAtMap("U", 0, BridgeStatus.SUCCESS);
         bridgeMap.reflectAtMap("D", 1, BridgeStatus.FAIL);
 
-        assertEquals(bridgeStatuses[0][0], BridgeStatus.SUCCESS);
-        assertNotEquals(bridgeStatuses[0][0], BridgeStatus.FAIL);
-        assertEquals(bridgeStatuses[1][1], BridgeStatus.FAIL);
+        assertEquals(BridgeStatus.SUCCESS, bridgeStatuses[0][0]);
+        assertNotEquals(BridgeStatus.FAIL, bridgeStatuses[0][0]);
+        assertEquals(BridgeStatus.FAIL, bridgeStatuses[1][1]);
     }
 
 }

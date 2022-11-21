@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
@@ -26,7 +26,13 @@ class BridgeGameTest {
         bridgeGame.move("U");
 
         Result result = bridgeGame.getResult();
-        assertEquals("[ O |   | O ]\n" + "[   | O |   ]\n", result.getBridgeMap());
+
+        BridgeStatus[][] expectedBridgeStatuses = {
+                {BridgeStatus.SUCCESS, BridgeStatus.INIT, BridgeStatus.SUCCESS},
+                {BridgeStatus.INIT, BridgeStatus.SUCCESS, BridgeStatus.INIT}
+        };
+
+        assertArrayEquals(expectedBridgeStatuses, result.getBridgeMap().bridgeStatuses);
         assertEquals("성공", result.getWinning());
         assertEquals(1, result.getGameCount());
         assertEquals(1, result.getGameCount());
@@ -37,10 +43,14 @@ class BridgeGameTest {
     void moveBridgeFailTest() {
         bridgeGame.move("U");
         bridgeGame.move("U");
-        bridgeGame.retry("Q");
 
         Result result = bridgeGame.getResult();
-        assertEquals("[ O | X ]\n" + "[   |   ]\n", result.getBridgeMap());
+
+        BridgeStatus[][] expectedBridgeStatuses = {
+                {BridgeStatus.SUCCESS, BridgeStatus.FAIL},
+                {BridgeStatus.INIT, BridgeStatus.INIT}
+        };
+        assertNotEquals(expectedBridgeStatuses, result.getBridgeMap().bridgeStatuses);
         assertEquals("실패", result.getWinning());
         assertEquals(1, result.getGameCount());
     }
@@ -50,13 +60,17 @@ class BridgeGameTest {
     void retryGameTest() {
         bridgeGame.move("U");
         bridgeGame.move("U");
-        bridgeGame.retry("R");
+        bridgeGame.retry();
         bridgeGame.move("U");
         bridgeGame.move("U");
-        bridgeGame.retry("Q");
 
         Result result = bridgeGame.getResult();
-        assertEquals("[ O | X ]\n" + "[   |   ]\n", result.getBridgeMap());
+
+        BridgeStatus[][] expectedBridgeStatuses = {
+                {BridgeStatus.SUCCESS, BridgeStatus.FAIL},
+                {BridgeStatus.INIT, BridgeStatus.INIT}
+        };
+        assertNotEquals(expectedBridgeStatuses, result.getBridgeMap().bridgeStatuses);
         assertEquals("실패", result.getWinning());
         assertEquals(2, result.getGameCount());
     }
