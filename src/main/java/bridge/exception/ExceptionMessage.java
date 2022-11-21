@@ -12,7 +12,8 @@ public enum ExceptionMessage {
         this.message = message;
     }
 
-    public String getMessage() {
+    @Override
+    public String toString() {
         return ERROR_MESSAGE_PREFIX.message + this.message;
     }
 }
