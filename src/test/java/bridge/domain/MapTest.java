@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.constant.Bridge;
+import bridge.constant.BridgeSymbol;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class MapTest {
     @DisplayName("O 결과를 위쪽 다리에 추가한다.")
     @Test
     void createOInUpBridge() {
-        String result = Bridge.O.getState();
+        String result = BridgeSymbol.O.getState();
 
         map.makeUpMap(result);
         String upExpected = "[ O ]";
@@ -31,7 +31,7 @@ public class MapTest {
     @DisplayName("X 결과를 위쪽 다리에 추가한다.")
     @Test
     void createXInUpBridge() {
-        String result = Bridge.X.getState();
+        String result = BridgeSymbol.X.getState();
 
         map.makeUpMap(result);
         String upExpected = "[ X ]";
@@ -44,7 +44,7 @@ public class MapTest {
     @DisplayName("O 결과를 아래쪽 다리에 추가한다.")
     @Test
     void createOInDownBridge() {
-        String result = Bridge.O.getState();
+        String result = BridgeSymbol.O.getState();
 
         map.makeDownMap(result);
         String upExpected = "[   ]";
@@ -57,7 +57,7 @@ public class MapTest {
     @DisplayName("X 결과를 아래쪽 다리에 추가한다.")
     @Test
     void createXInDownBridge() {
-        String result = Bridge.X.getState();
+        String result = BridgeSymbol.X.getState();
 
         map.makeDownMap(result);
         String upExpected = "[   ]";

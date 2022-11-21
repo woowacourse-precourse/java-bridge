@@ -2,7 +2,7 @@ package bridge.service;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.constant.Bridge;
+import bridge.constant.BridgeSymbol;
 import bridge.BridgeMaker;
 import bridge.domain.GameResult;
 import bridge.domain.Map;
@@ -54,9 +54,9 @@ public class BridgeGame {
 
     private String compareUserAndAnswer(String user, String answer) {
         if (user.equals(answer)) {
-            return Bridge.O.getState();
+            return BridgeSymbol.O.getState();
         }
-        return Bridge.X.getState();
+        return BridgeSymbol.X.getState();
     }
 
     /**

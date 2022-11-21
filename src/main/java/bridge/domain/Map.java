@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.constant.Bridge;
+import bridge.constant.BridgeSymbol;
 
 public class Map {
 
@@ -8,30 +8,30 @@ public class Map {
     private String downMap;
 
     public Map() {
-        this.upMap = Bridge.OPEN.getState();
-        this.downMap = Bridge.OPEN.getState();
+        this.upMap = BridgeSymbol.OPEN.getState();
+        this.downMap = BridgeSymbol.OPEN.getState();
     }
 
     public void makeUpMap(String result) {
-        upMap += result + Bridge.MIDDLE.getState();
-        downMap += Bridge.BLANK.getState() + Bridge.MIDDLE.getState();
+        upMap += result + BridgeSymbol.MIDDLE.getState();
+        downMap += BridgeSymbol.BLANK.getState() + BridgeSymbol.MIDDLE.getState();
     }
 
     public void makeDownMap(String result) {
-        upMap += Bridge.BLANK.getState() + Bridge.MIDDLE.getState();
-        downMap += result + Bridge.MIDDLE.getState();
+        upMap += BridgeSymbol.BLANK.getState() + BridgeSymbol.MIDDLE.getState();
+        downMap += result + BridgeSymbol.MIDDLE.getState();
     }
 
     public void resetMap() {
-        upMap = Bridge.OPEN.getState();
-        downMap = Bridge.OPEN.getState();
+        upMap = BridgeSymbol.OPEN.getState();
+        downMap = BridgeSymbol.OPEN.getState();
     }
 
     public String getUpMap() {
-        return upMap.substring(0, upMap.length() - 1) + Bridge.CLOSE.getState();
+        return upMap.substring(0, upMap.length() - 1) + BridgeSymbol.CLOSE.getState();
     }
 
     public String getDownMap() {
-        return downMap.substring(0, downMap.length() - 1) + Bridge.CLOSE.getState();
+        return downMap.substring(0, downMap.length() - 1) + BridgeSymbol.CLOSE.getState();
     }
 }
