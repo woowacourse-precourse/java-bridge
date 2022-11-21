@@ -31,7 +31,16 @@ public class InputView {
     public String readMoving() {
         new OutputView().printMoveDirection();
         String direction = Console.readLine();
+        try {
+            if (!direction.equals("U") & !direction.equals("D")) {
+                new OutputView().printError("[ERROR] 이동할 칸은 U 또는 D 여야만 합니다.");
+                throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D 여야만 합니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            return readMoving();
+        }
         return direction;
+
     }
 
     /**
