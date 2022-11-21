@@ -16,7 +16,7 @@ public class InputView {
         try {
             int integerA = Integer.parseInt(strA);
             return integerA;
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) { // 다리 길이가 숫자가 아닌 경우
             System.out.println("[ERROR] 다리 길이는 숫자로 입력하세요.");
             return 0;
         }
