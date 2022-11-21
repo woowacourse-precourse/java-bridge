@@ -108,7 +108,7 @@ BUILD SUCCESSFUL in 0s
     - **Class Methods**
         - [x] public void printMap(List<String> bridge, int currentUserPosition, boolean isFail)
         - [x] public void printResult(List<String> bridge, int currentUserPosition, boolean isFail)
-        - [ ] public void printResultMessage(boolean getGameWinStatus, int totalTryCount)
+        - [ ] public void printResultMessage(boolean gameWinStatus, int totalTryCount)
         - [ ] public void printGameStartMessage()
         - [ ] public void printReadBridgeSizeMessage()
         - [ ] public void printReadMovingMessage()
@@ -118,6 +118,7 @@ BUILD SUCCESSFUL in 0s
         - [x] private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
         - [x] private String compareBridgeBlock(String bridgeBlock, String comparetorBridgeBlock)
         - [x] private String compareFailBridgeBlock(String bridgeBlock, String comparetorBridgeBlock, boolean isFail)
+        - [ ] private String getGameWinStatusMessage(boolean gameWinStatus)
 
 ### 입출력 요구 사항
 
