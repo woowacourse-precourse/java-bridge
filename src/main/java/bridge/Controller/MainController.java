@@ -1,5 +1,7 @@
 package bridge.Controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.Enum.GameStatus;
 import bridge.Model.BridgeGame;
 import bridge.Model.WrappingType.BridgeSize;
@@ -8,15 +10,19 @@ import bridge.Model.WrappingType.Command;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
+import java.util.List;
+
 public class MainController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
 
     public void initGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         BridgeSize bridgeSize = inputView.readBridgeSize();
-        bridgeGame = new BridgeGame(bridgeSize);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
+        bridgeGame = new BridgeGame(bridge);
     }
 
     public void run() {

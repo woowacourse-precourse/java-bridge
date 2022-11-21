@@ -14,18 +14,11 @@ public class BridgeGame {
     private Bridge bridge;
     private int tryCount;
 
-    public BridgeGame(BridgeSize bridgeSize) {
-        choiceDirections = new ChoiceDirections();
-        crossResults = new CrossResults();
-        bridge = new Bridge(makeBridge(bridgeSize));
-        tryCount = 1;
-    }
-
-    private List<String> makeBridge(BridgeSize bridgeSize) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        int size = bridgeSize.getSize();
-        return bridgeMaker.makeBridge(size);
+    public BridgeGame(List<String> bridge) {
+        this.choiceDirections = new ChoiceDirections();
+        this.crossResults = new CrossResults();
+        this.bridge = new Bridge(bridge);
+        this.tryCount = 1;
     }
 
     public void move(ChoiceDirection choiceDirection) {
