@@ -28,7 +28,7 @@ public class BridgeGame {
     }
 
     public boolean isSuccess() {
-        return bridges.isSuccess(this.player);
+        return this.bridges.isSuccess(this.player);
     }
 
 
