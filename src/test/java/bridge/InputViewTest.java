@@ -60,6 +60,8 @@ class InputViewTest {
     }
 
 
+
+
     @DisplayName("이동할 칸을 정상적으로 입력 받는 케이스")
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
@@ -77,6 +79,28 @@ class InputViewTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class);
+        System.setIn(sysInBackup);
+    }
+
+
+    @DisplayName("게임 재시작 여부 선택시 정상적으로 입력받는 케이스")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void 게임_재시작_여부를_정상적으로_입력받는_경우(String input){
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readGameCommand()).isNotIn(Retry.values());
+        System.setIn(sysInBackup);
+    }
+
+    @DisplayName("게임 재시작 여부 선택시 R,Q 제외하고 다른 문자가 입력되는 경우 예외 처리")
+    @ValueSource(strings = {"Q ", "RR", "U" , "D", ","})
+    @ParameterizedTest
+    void 게임_재시작_여부를_정상적으로_입력받지_못하는_경우(String input){
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(() -> inputView.readGameCommand())
                 .isInstanceOf(IllegalArgumentException.class);
         System.setIn(sysInBackup);
     }
