@@ -36,7 +36,4 @@ public class MessageGenerator {
         }
         return NO_SELECT + SEPARATE;
     }
-
-
-
 }

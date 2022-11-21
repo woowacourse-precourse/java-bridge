@@ -26,6 +26,7 @@ public class BridgeGame {
 
     private Blocks createBlocks(final int bridgeSize) {
         List<String> symbolBlocks = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(symbolBlocks);
         return new Blocks(BlockStatus.convertToBlockStatues(symbolBlocks));
     }
 
@@ -43,10 +44,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(final String inputBlock) {
+    public void move(final String inputBlock) {
         InputValidator.validateBlock(inputBlock);
         getBridge().moveNextBlock(inputBlock);
-        return true;
     }
 
     private Bridge getBridge() {

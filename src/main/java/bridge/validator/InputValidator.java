@@ -8,6 +8,10 @@ import bridge.messages.ErrorMessage;
 public class InputValidator {
     private static final int MINIMUM_SIZE = 3;
     private static final int MAXIMUM_SIZE = 20;
+    public static final String UP = "U";
+    public static final String DOWN = "D";
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
 
     public static int validateBridgeSize(String inputBridgeSize) {
         int bridgeSize = getAnInt(inputBridgeSize);
@@ -26,8 +30,15 @@ public class InputValidator {
     }
 
     public static void validateBlock(final String inputBlock) {
-        if (!inputBlock.equals("U") && !inputBlock.equals("D")) {
+        if (!inputBlock.equals(UP) && !inputBlock.equals(DOWN)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BLOCK_COMMAND_ERROR);
         }
+    }
+
+    public static String validateGameCommand(final String inputGameCommand) {
+        if (!inputGameCommand.equals(RETRY) && !inputGameCommand.equals(QUIT)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_GAME_COMMAND_ERROR);
+        }
+        return inputGameCommand;
     }
 }
