@@ -37,9 +37,7 @@ public class BridgeGameSystem {
             if(isSuccess(bridgeSize, index)){
                 return successView(bridge, block);
             }
-            if(!flag){
-                outputView.printResultMap(toCrossBridgeResult(bridge, block));
-            }
+            isFail(flag, bridge, block);
         }
         return false;
     }
@@ -50,6 +48,11 @@ public class BridgeGameSystem {
         return true;
     }
 
+    public static void isFail(boolean flag, List<String> bridge, Bridge block){
+        if(!flag){
+            outputView.printResultMap(toCrossBridgeResult(bridge, block));
+        }
+    }
 
     public static StringBuilder toCrossBridgeResult(List<String> bridge, Bridge block){
         return outputView.makeSide(bridge, block, index);
@@ -90,6 +93,5 @@ public class BridgeGameSystem {
     public static boolean isSuccess(int bridgeSize, int index){
         return bridgeSize == index;
     }
-
 
 }
