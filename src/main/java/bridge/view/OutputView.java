@@ -13,6 +13,10 @@ public class OutputView {
         System.out.println(Message.READ_BRIDGE_SIZE.getMessage());
     }
 
+    public void printReadMove() {
+        System.out.println(Message.READ_MOVE.getMessage());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

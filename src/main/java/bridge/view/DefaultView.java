@@ -20,6 +20,7 @@ public class DefaultView implements View {
     public void render() {
         outputWelcome();
         inputBridgeSize();
+        inputMove();
     }
 
     private void outputWelcome() {
@@ -31,6 +32,10 @@ public class DefaultView implements View {
         outputView.printReadBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
         controller.createBridge(bridgeSize);
+    }
+
+    private void inputMove() {
+        outputView.printReadMove();
     }
 
 }
