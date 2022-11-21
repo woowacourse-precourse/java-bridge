@@ -37,4 +37,18 @@ public class ViewValidator {
     private static boolean isValidPanel (String input) {
         return Pattern.matches(ValidationRegex.VALID_PANEL.get(), input);
     }
+
+    public static void validateRetryOptionInput (String input) {
+        if (isEmpty(input)) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_VALUE.get());
+        }
+
+        if (!isValidRetryOption(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RETRY_OPTION.get());
+        }
+    }
+
+    private static boolean isValidRetryOption (String input) {
+        return Pattern.matches(ValidationRegex.VALID_RETRY_OPTION.get(), input);
+    }
 }
