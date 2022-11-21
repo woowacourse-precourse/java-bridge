@@ -11,7 +11,7 @@ public class BridgeGame {
 
     private final List<String> bridge;
 
-    private List<List<String>> bridgeStatus;
+    private List<Cell> bridgeStatus;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -26,10 +26,10 @@ public class BridgeGame {
      */
     public void move(String direction, int bridgeIndex) {
         if (!compareDirection(direction, bridgeIndex)) {
-            bridgeStatus.add(List.of("X", direction));
+            bridgeStatus.add(new Cell("X", direction));
             throw new CannotCrossBridgeException();
         }
-        bridgeStatus.add(List.of("O", direction));
+        bridgeStatus.add(new Cell("O", direction));
     }
 
     public boolean compareDirection(String direction, int bridgeIndex) {
@@ -49,4 +49,7 @@ public class BridgeGame {
         return bridge;
     }
 
+    public List<Cell> getBridgeStatus() {
+        return bridgeStatus;
+    }
 }
