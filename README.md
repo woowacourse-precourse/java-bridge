@@ -517,4 +517,40 @@ int number=bridgeNumberGenerator.generate();
 
 ### 테스트 코드
 
+1. BridgeGameTest
+    * move - 사용자의 다리 칸 이동위치 저장 확인
+        1. 아래 칸 (D)
+        2. 위 칸 (U)
+    * checkIfGameIsSucceed - 게임 성공 여부를 제대로 확인하는가?
+        1. 게임 성공 확인
+        2. 게임 미성공 확인
+    * checkIfGameIsFailed - 게임 실패 여부를 제대로 확인하는가?
+        1. 게임 실패 확인
+        2. 게임 미실패 확인
+
+
+2. BridgeMakerTest
+    * makeBridge - 다리 생성 확인
+
+
+3. InputViewTest
+    * readBridgeSize - 다리의 길이 입력
+        1. 정상 입력 (3 ~ 20 숫자)
+        2. 예외처리 확인
+    * readMoving - 사용자가 이동할 칸 입력
+        1. 정상 입력 (U 또는 D)
+        2. 예외처리 확인
+    * readGameCommand - 사용자의 게임 재시작 또는 종료 여부 입력
+        1. 정상 입력 (R 또는 Q)
+        2. 예외처리 확인
+
+
+4. OutputViewTest
+    * printMap - 현재까지 이동한 다리의 상태 출력 확인
+        1. 이동할 수 있는 칸을 선택한 경우 (O 출력)
+        2. 이동할 수 없는 칸을 선택한 경우 (X 출력)
+    * printResult - 현재까지 이동한 다리의 상태 출력 확인
+        1. 게임 성공 여부: 성공
+        2. 게임 성공 여부: 실패
+
 ---
