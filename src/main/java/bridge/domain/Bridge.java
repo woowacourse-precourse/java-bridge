@@ -10,4 +10,8 @@ public class Bridge {
         this.bridge = bridge;
     }
 
+    public boolean canMove(BridgeCell cell, int position) {
+        return BridgeCell.getBridgeCell(bridge.get(position)) == cell;
+    }
+
 }
