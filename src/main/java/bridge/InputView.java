@@ -14,17 +14,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String input;
-        do {
-            input = Console.readLine();
+        while (true) {
+            String input = Console.readLine();
             try {
                 inputValidator.checkBridgeSize(input);
-                break;
-            } catch (IllegalArgumentException e){
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        } while (true);
-        return Integer.parseInt(input);
+        }
     }
 
     /**
