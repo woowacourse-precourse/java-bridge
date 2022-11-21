@@ -16,6 +16,7 @@ public class OutputView {
         int limit = currentSize + 1;
         bridgePrint(upBridge, limit);
         bridgePrint(downBridge, limit);
+        System.out.println();
     }
 
     /**
