@@ -14,55 +14,6 @@ public class BridgeMap {
         return map;
     }
 
-    /*public String makeUpSide(List<String> bridge, List<String> moves) {
-        String upSide = "";
-        for (String currentMove : upSideList(bridge, moves)) {
-            if (upSide.equals("")) {
-                upSide = "[ " + currentMove + " ";
-                continue;
-            }
-            upSide += "| " + currentMove + " ";
-        }
-        upSide += "]";
-        return upSide;
-    }
-
-    public List<String> upSideList(List<String> bridge, List<String> moves) {
-        List<String> upSideList = new ArrayList<>();
-        for (int currentStep = 0; currentStep < moves.size(); currentStep++) {
-            if (moves.get(currentStep).equals(bridge.get(currentStep))) {
-                upSideList.add("O");
-                continue;
-            }
-            upSideList.add(" ");
-        }
-        return upSideList;
-    }
-
-    public String makeDownSide(List<String> bridge, List<String> moves) {
-        String downSide = "";
-        for (String currentMove : downSideList(bridge,moves)) {
-            if (downSide.equals("")) {
-                downSide = "[ " + currentMove + " ";
-                continue;
-            }
-            downSide += "| " + currentMove + " ";
-        }
-        downSide += "]";
-        return downSide;
-    }
-    public List<String> downSideList(List<String> bridge, List<String> moves) {
-        List<String> downSideList = new ArrayList<>();
-        for (int currentStep = 0; currentStep < moves.size(); currentStep++) {
-            if (!moves.get(currentStep).equals(bridge.get(currentStep))) {
-                downSideList.add("O");
-                continue;
-            }
-            downSideList.add(" ");
-        }
-        return downSideList;
-    }*/
-
     public List<String> makeBridgeSide(List<String> bridge, List<String> moves) {
         List<String> bridgeSide = new ArrayList<>();
         for (int currentStep = 0; currentStep < moves.size(); currentStep++) {
@@ -139,5 +90,4 @@ public class BridgeMap {
         }
         return side + "|   ";
     }
-
 }
