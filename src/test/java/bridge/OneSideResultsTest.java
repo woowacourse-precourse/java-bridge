@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.util.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class OneSideResultsTest {
-    private static final char COLON = ':';
     private OneSideResults upsideResults;
     private OneSideResults downsideResults;
 
