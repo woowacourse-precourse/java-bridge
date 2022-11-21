@@ -31,7 +31,11 @@ public class InputView {
      */
     public String readMoving() {
         String Moving = Console.readLine();
-        validationChecker.checkInputIsSpecificString(Moving, List.of("U","D"));
+        try {
+            validationChecker.checkInputIsSpecificString(Moving, List.of("U","D"));
+        }catch (IllegalArgumentException e){ outputView.printMovingError();
+            return readMoving();
+        }
         return Moving;
     }
 
