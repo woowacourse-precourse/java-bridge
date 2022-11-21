@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.util.Lists.newArrayList;
 
 public class BridgeTest {
 
@@ -40,6 +41,36 @@ public class BridgeTest {
         bridgeGame.move(List.of("U", "D", "D"), "U");
         bridgeGame.move(List.of("U", "D", "D"), "U");
         boolean failGame = bridgeGame.isFailGame();
+
+        assertThat(failGame).isTrue();
+    }
+
+    @Test
+    @DisplayName("다리 게임 최종 결과 성공")
+    void 다리_게임_최종_결과_성공_테스트() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move(bridge, "U");
+        bridgeGame.move(bridge, "D");
+        bridgeGame.move(bridge, "D");
+        boolean failGame = bridgeGame.isFailFinalGame(bridge);
+
+        assertThat(failGame).isFalse();
+    }
+
+    @Test
+    @DisplayName("다리 게임 최종 결과 실패")
+    void 다리_게임_최종_결과_실패_테스트() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move(bridge, "U");
+        bridgeGame.move(bridge, "U");
+        bridgeGame.move(bridge, "U");
+        boolean failGame = bridgeGame.isFailFinalGame(bridge);
 
         assertThat(failGame).isTrue();
     }
