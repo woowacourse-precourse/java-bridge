@@ -1,4 +1,4 @@
-package bridge.enums;
+package bridge.model.domain;
 
 public enum BridgeSign {
     MOVABLE("O"),

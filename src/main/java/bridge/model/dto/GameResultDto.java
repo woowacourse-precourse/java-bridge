@@ -1,6 +1,6 @@
 package bridge.model.dto;
 
-import bridge.enums.SuccessOrFail;
+import bridge.model.domain.SuccessOrFail;
 import java.util.List;
 
 public class GameResultDto {

@@ -3,7 +3,7 @@ package bridge.view;
 import bridge.constant.Constant;
 import bridge.constant.ErrorMessage;
 import bridge.constant.Message;
-import bridge.enums.Bridge;
+import bridge.model.domain.Bridge;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;

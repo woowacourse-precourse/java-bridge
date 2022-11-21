@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.constant.Constant;
-import bridge.enums.Bridge;
+import bridge.model.domain.Bridge;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

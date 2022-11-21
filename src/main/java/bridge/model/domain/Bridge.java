@@ -1,4 +1,4 @@
-package bridge.enums;
+package bridge.model.domain;
 
 import java.util.Arrays;
 

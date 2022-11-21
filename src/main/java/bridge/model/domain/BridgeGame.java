@@ -1,8 +1,6 @@
 package bridge.model.domain;
 
 import bridge.constant.Constant;
-import bridge.enums.Bridge;
-import bridge.enums.SuccessOrFail;
 import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;
 import java.util.List;

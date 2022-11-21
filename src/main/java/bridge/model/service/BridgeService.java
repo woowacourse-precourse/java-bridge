@@ -3,7 +3,7 @@ package bridge.model.service;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Constant;
-import bridge.enums.Bridge;
+import bridge.model.domain.Bridge;
 import bridge.model.domain.BridgeGame;
 import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;

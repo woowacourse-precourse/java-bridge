@@ -2,8 +2,8 @@ package bridge.view;
 
 import bridge.constant.Constant;
 import bridge.constant.Message;
-import bridge.enums.BridgeSign;
-import bridge.enums.SuccessOrFail;
+import bridge.model.domain.BridgeSign;
+import bridge.model.domain.SuccessOrFail;
 import java.util.ArrayList;
 import java.util.List;
 
