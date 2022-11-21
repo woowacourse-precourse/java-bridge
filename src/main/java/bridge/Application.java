@@ -11,7 +11,7 @@ public class Application {
         System.out.println(GuideMessage.START_MESSAGE);
         AppConfig appConfig = new AppConfig();
         GameManager gameManager = appConfig.gameManager();
-        gameManager.startGame();
+        //gameManager.startGame();
 
     }
 }

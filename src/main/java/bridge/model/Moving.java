@@ -1,22 +1,22 @@
 package bridge.model;
 
 public enum Moving {
-    down(0, "D"),
-    up(1, "U");
+    cant(0, "X"),
+    can(1, "O");
 
     final private Integer movingNum;
-    final private String movingCommand;
+    final private String movingResult;
 
     public Integer getMovingNum() {
         return movingNum;
     }
 
-    public String getMovingCommand() {
-        return movingCommand;
+    public String getMovingResult() {
+        return movingResult;
     }
 
-    Moving(Integer movingNum, String movingCommand) {
+    Moving(Integer movingNum, String movingResult) {
         this.movingNum = movingNum;
-        this.movingCommand = movingCommand;
+        this.movingResult = movingResult;
     }
 }

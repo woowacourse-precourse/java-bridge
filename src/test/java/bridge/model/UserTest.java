@@ -2,11 +2,14 @@ package bridge.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,29 +20,20 @@ class UserTest {
         return new ByteArrayInputStream(input.getBytes());
     }
 
-    @ParameterizedTest
+    @Test
     @DisplayName("사용자 방향 입력")
-    @ValueSource(strings = {"U"})
-    void userCommandTest(String input) {
-        InputStream in = getPlayerInput(input);
-        System.setIn(in);
-
+    void userCommandTest() {
         User user = new User();
-        user.addUserCommand();
-        Assertions.assertThat(user.getUserCommand().get(0)).isEqualTo(input);
+        Assertions.assertThat(user.addUserCommand("U")).isEqualTo(new ArrayList<>(List.of("U")));
     }
 
-    @ParameterizedTest
+    @Test
     @DisplayName("사용자 입력 초기화")
-    @ValueSource(strings = {"U"})
-    void cleanCommandTest(String input) {
-        InputStream in = getPlayerInput(input);
-        System.setIn(in);
-
+    void cleanCommandTest() {
         User user = new User();
-        user.addUserCommand();
-        user.cleanUserCommand();
-        Assertions.assertThat(user.getUserCommand().isEmpty()).isEqualTo(true);
+        user.addUserCommand("U");
+        Assertions.assertThat(user.cleanUserCommand()).isEmpty();
+
     }
 
 }

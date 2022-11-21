@@ -9,17 +9,19 @@ import java.util.List;
 public class User {
     private List<String> userCommand = new ArrayList<>();
 
-    public void addUserCommand() {
-        InputView inputView = new InputView(new ValidationException());
+    public List<String> addUserCommand(String command) {
+        userCommand.add(command);
 
-        userCommand.add(inputView.readMoving());
-    }
-
-    public void cleanUserCommand() {
-        userCommand.clear();
-    }
-
-    public List<String> getUserCommand() {
         return userCommand;
     }
+
+    public List<String> cleanUserCommand() {
+        userCommand.clear();
+
+        return userCommand;
+    }
+
+    /*public List<String> getUserCommand() {
+        return userCommand;
+    }*/
 }

@@ -1,3 +1,4 @@
+/*
 package bridge.model;
 
 import org.assertj.core.api.Assertions;
@@ -31,4 +32,4 @@ class BridgeTest {
         Assertions.assertThat(bridge.getBridge().size()).isEqualTo(Integer.parseInt(input));
 
     }
-}
+}*/
