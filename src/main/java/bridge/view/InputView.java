@@ -8,9 +8,10 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    InputValidator inputValidator = new InputValidator();
     public int readBridgeSize() {
         System.out.println(IOMessage.BRIDGE_SIZE);
-        int size = InputValidator.isBridgeSizeNumeric(Console.readLine());
+        int size = inputValidator.isBridgeSizeNumeric(Console.readLine());
         System.out.println();
         return size;
     }

@@ -16,7 +16,7 @@ class InputValidatorTest {
     @ValueSource(strings={"33", "abc", "ㅇㅇㅇ", "0"})
     void bridgeSizeExceptionTest(String size) {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.isBridgeSizeNumeric(size);
+            inputValidator.isBridgeSizeNumeric(size);
         });
     }
     @ParameterizedTest(name="재시작 여부 입력 시 R이나 Q가 아니면 예외 처리")
