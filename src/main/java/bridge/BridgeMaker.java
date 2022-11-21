@@ -39,7 +39,7 @@ public class BridgeMaker {
     }
 
     public String numberToString(int number){
-        if(number==0)
+        if(number==1)
             return "U";
         return "D";
     }
