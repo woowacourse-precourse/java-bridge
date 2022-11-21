@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain;
+
+import bridge.utils.BridgeDirection;
+import bridge.utils.Mark;
 
 import java.util.LinkedList;
 import java.util.List;

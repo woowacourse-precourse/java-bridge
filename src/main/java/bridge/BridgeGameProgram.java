@@ -1,19 +1,23 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
 import bridge.io.InputView;
 import bridge.io.Message;
 import bridge.io.OutputView;
 import bridge.utils.GameStatus;
+import bridge.utils.Mark;
 
 import java.util.List;
 
-public class BridgeProgram {
+public class BridgeGameProgram {
     private final InputView input;
     private final OutputView output;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
 
-    public BridgeProgram(InputView input, OutputView output, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
+    public BridgeGameProgram(InputView input, OutputView output, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
         this.input = input;
         this.output = output;
         this.bridgeMaker = bridgeMaker;

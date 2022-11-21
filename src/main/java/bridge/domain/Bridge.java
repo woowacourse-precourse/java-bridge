@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.utils.Mark;
 
 import java.util.List;
 
