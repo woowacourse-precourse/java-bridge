@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Game {
     public void start(){
         InputView inputView=new InputView();
@@ -9,10 +11,25 @@ public class Game {
         int bridgeSize=inputView.readBridgeSize();
 
         BridgeGame bridgeGame=new BridgeGame(bridgeSize);
+        List<String> answerBridge=bridgeGame.getAnswerBridge();
+        List<String> userBridge;
         while(true){
             String moving=inputView.readMoving();
             bridgeGame.move(moving);
-
+            userBridge=bridgeGame.getUserBridge();
+            outputView.printMap(userBridge,answerBridge);
+            if(outputView.checkSuccess(userBridge,answerBridge)){
+                break;
+            }
+            int nowIndex=userBridge.size();
+            if(!outputView.checkSameMove(userBridge,answerBridge,nowIndex)){
+                String gameCommand=inputView.readGameCommand();
+                if(gameCommand=="Q"){
+                    break;
+                }
+                bridgeGame.retry();
+            }
         }
+        outputView.printResult(userBridge,answerBridge,1);
     }
 }
