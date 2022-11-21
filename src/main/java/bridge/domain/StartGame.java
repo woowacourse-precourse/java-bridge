@@ -6,17 +6,17 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class StartGame {
-    public static int totalTrial = 1;
+    public static int totalTrial;
     public static String movingInput;
 
     public static boolean startGame(BridgeGame bridgeGame) {
         requestMove();
         bridgeGame.move();
         OutputView.printMap(bridgeGame);
-        if (isWrongWay()) {
+        if (bridgeGame.isWrongWay()) {
             return chooseWhenWrong(bridgeGame);
         }
-        Application.movingTurn++;
+        bridgeGame.movingTurn++;
         return true;
     }
 
@@ -38,14 +38,5 @@ public class StartGame {
         OutputView.printRetry();
         String retryOrNot = InputView.readGameCommand();
         return retryOrNot.equals(OutputConstants.RETRY);
-    }
-
-    public static boolean isRightWay() {
-        String rightWay = Application.bridge.get(Application.movingTurn);
-        return rightWay.equals(movingInput);
-    }
-
-    public static boolean isWrongWay() {
-        return !isRightWay();
     }
 }

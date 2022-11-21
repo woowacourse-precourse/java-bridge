@@ -8,9 +8,10 @@ import bridge.data.way.UpSide;
 public class BridgeGame {
     public UpSide upSide = new UpSide();
     public DownSide downSide = new DownSide();
+    public int movingTurn = 0;
 
     public void move() {
-        if (StartGame.isRightWay()) {
+        if (isRightWay()) {
             rightWayMove();
             return;
         }
@@ -20,7 +21,7 @@ public class BridgeGame {
     public void retry() {
         this.upSide = new UpSide();
         this.downSide = new DownSide();
-        Application.movingTurn = 0;
+        this.movingTurn = 0;
         StartGame.totalTrial++;
     }
 
@@ -44,5 +45,14 @@ public class BridgeGame {
             this.upSide.upSideArr.add(OutputConstants.BLANK);
             this.downSide.downSideArr.add(OutputConstants.WRONG);
         }
+    }
+
+    public boolean isRightWay() {
+        String rightWay = Application.bridge.get(this.movingTurn);
+        return rightWay.equals(StartGame.movingInput);
+    }
+
+    public boolean isWrongWay() {
+        return !isRightWay();
     }
 }

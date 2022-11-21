@@ -11,13 +11,13 @@ public class Application {
 
     public static int size;
     public static List<String> bridge;
-    public static int movingTurn = 0;
     public static boolean success;
 
     public static void main(String[] args) {
+        StartGame.totalTrial = 1;
         BridgeGame bridgeGame = Initialization.init();
         while (StartGame.startGame(bridgeGame)) {
-            if (movingTurn == size) {
+            if (bridgeGame.movingTurn == size) {
                 success = true;
                 break;
             }
