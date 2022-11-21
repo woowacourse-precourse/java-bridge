@@ -16,6 +16,7 @@ public class GameController {
     OutputView outputView = new OutputView();
     private boolean gaming = true;
     private int bridgeNum = 0;
+    private int tryCount = 1;
 
     public void start() {
         outputView.printStart();
@@ -23,7 +24,7 @@ public class GameController {
         List<String> correctBridge = prepareBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(correctBridge);
         boolean isSuccess = play(bridgeSize, bridgeGame);
-        outputView.printResult(bridgeGame.getBridgeMap(), isSuccess, bridgeGame.getTryCount());
+        outputView.printResult(bridgeGame.getBridgeMap(), isSuccess, this.tryCount);
     }
 
     private List<String> prepareBridge(int bridgeSize) {
@@ -49,6 +50,7 @@ public class GameController {
         String command = inputCommand();
         if (command.equals(RETRY.mark())) {
             bridgeGame.retry();
+            tryCount += 1;
             bridgeNum = 0;
         }
         if (command.equals(QUIT.mark())) {

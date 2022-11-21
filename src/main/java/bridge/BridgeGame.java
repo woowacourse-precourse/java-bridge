@@ -7,7 +7,6 @@ import static bridge.Constants.MapMark.*;
 import static bridge.Constants.MoveMark.*;
 
 public class BridgeGame {
-    private int tryCount = 1;
     private final List<String> correctBridge;
     private final List<List<String>> bridgeMap = new ArrayList<>();
 
@@ -31,13 +30,8 @@ public class BridgeGame {
         return this.bridgeMap;
     }
 
-    public int getTryCount() {
-        return tryCount;
-    }
-
     public void retry() {
         newBridgePattern();
-        this.tryCount += 1;
     }
 
     private void mapIfCorrect(String moving) {
