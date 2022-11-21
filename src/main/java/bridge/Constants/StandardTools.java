@@ -10,5 +10,7 @@ public class StandardTools {
 
     public static final boolean FAILED = false;
     public static final boolean SUCCEED = true;
+    public static final boolean POSSIBLE_ZONE = true;
+    public static final boolean IMPOSSIBLE_ZONE = false;
 
 }
