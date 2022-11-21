@@ -3,6 +3,10 @@ package bridge.model;
 import bridge.resource.InputType;
 
 public class Path {
+    private static final String correctBlock = " O ]";
+    private static final String incorrectBlock = " X ]";
+    private static final String unselectedBlock = "   ]";
+
     private String upperPath;
     private String lowerPath;
 
@@ -47,22 +51,22 @@ public class Path {
     }
 
     private void addCorrectBlockForUpperPath() {
-        upperPath += " O ]";
-        lowerPath += "   ]";
+        upperPath += correctBlock;
+        lowerPath += unselectedBlock;
     }
 
     private void addIncorrectBlockForUpperPath() {
-        upperPath += " X ]";
-        lowerPath += "   ]";
+        upperPath += incorrectBlock;
+        lowerPath += unselectedBlock;
     }
 
     private void addCorrectBlockForLowerPath() {
-        upperPath += "   ]";
-        lowerPath += " O ]";
+        upperPath += unselectedBlock;
+        lowerPath += correctBlock;
     }
 
     private void addIncorrectBlockForLowerPath() {
-        upperPath += "   ]";
-        lowerPath += " X ]";
+        upperPath += unselectedBlock;
+        lowerPath += incorrectBlock;
     }
 }
