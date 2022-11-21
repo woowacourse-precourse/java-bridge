@@ -12,8 +12,6 @@ public class OutputView {
     private static final String LAST_BRIDGE_RESULT ="최종 게임 결과";
     private static final String IS_GAME_PASS= "게임 성공 여부";
     private static final String TOTAL_TRY ="총 시도한 횟수";
-    private static final String SUCCESS = "성공";
-    private static final String FAIL ="실패";
     private static final String BRIDGE_LEFT = "[ ";
     private static final String BRIDGE_MIDDLE =" | ";
     private static final String BRIDGE_RIGHT = " ]";
@@ -54,7 +52,10 @@ public class OutputView {
     public void showLastBridgeResult(){
         System.out.println(LAST_BRIDGE_RESULT);
     }
-    public void showResult(){
-        System.out.println(IS_GAME_PASS);
+    public void showResult(String isPass){
+        System.out.println(IS_GAME_PASS+IS+isPass);
+    }
+    public void showTotalTry(int totalTry){
+        System.out.println(TOTAL_TRY+IS+totalTry);
     }
 }
