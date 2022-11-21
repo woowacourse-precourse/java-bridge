@@ -10,7 +10,9 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -24,6 +26,15 @@ class BridgeTest {
         @MethodSource("parameterProvider")
         void 브리지를_생성할때_유효한_값이_아니면_예외처리_하는지_테스트(List<String> target) {
             assertThatThrownBy(() -> new Bridge(target))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ExceptionMessage.BRIDGE_ELEMENT_INVALID);
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"u", "d", "", " ", "\n", "!", "UU", "DD"})
+        void 움직임_값이_U혹은_D가_아니라면_예외처리_하는지_테스트(String target) {
+            Bridge bridge = new Bridge(new ArrayList<>());
+            assertThatThrownBy(() -> bridge.addBlock(target))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.BRIDGE_ELEMENT_INVALID);
         }
