@@ -8,11 +8,15 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private List<Integer> user;
+    private List<String> user;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.user   = new ArrayList<>(bridge.size());
+        this.user   = new ArrayList<>();
+    }
+
+    public List<String> getUser() {
+        return user;
     }
 
     /**
@@ -20,7 +24,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<String> move(String command) {
+        String u = command;
+        if (!bridge.get(user.size()).equals(command)) {
+            u += "X";
+        }
+        user.add(u);
+        return this.getUser();
     }
 
     /**

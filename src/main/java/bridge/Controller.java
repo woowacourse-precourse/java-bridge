@@ -3,6 +3,8 @@ package bridge;
 import View.InputView;
 import View.OutputView;
 
+import java.util.List;
+
 public class Controller {
     private final InputView iView;
     private final OutputView oView;
@@ -30,7 +32,8 @@ public class Controller {
     public void move() {
         while (true) {
             String command = iView.readMoving();
-            break;
+            List<String> user = bridgeGame.move(command);
+            oView.printMap(user);
         }
     }
 
