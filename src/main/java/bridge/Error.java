@@ -20,12 +20,14 @@ public class Error {
     public static void validateBridgeAnswer(String answer) {
         if(!(answer.equals("U")||answer.equals("D"))) {
             System.out.println(ErrorMessage.RIGHT_BRIDGE_CHOICE.getError_letter());
+            throw new IllegalArgumentException();
         }
     }
 
     public static void validateCommend(String answer) {
         if(!(answer.equals("R")||answer.equals("Q"))) {
             System.out.println(ErrorMessage.RIGHT_COMMEND.getError_letter());
+            throw new IllegalArgumentException();
         }
     }
 
