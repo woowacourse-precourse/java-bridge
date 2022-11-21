@@ -23,7 +23,7 @@ public class Bridge {
     }
 
     public boolean canMove(BridgeLocation bridgeLocation, BridgeCharacter bridgeCharacter) {
-        BridgeValidation.validateBridgeMovable(isRange(bridgeLocation));
+        BridgeValidation.validateBridgeMovable(isRange(bridgeLocation.next()));
 
         return bridge.get(bridgeLocation.value()).equals(bridgeCharacter);
     }
