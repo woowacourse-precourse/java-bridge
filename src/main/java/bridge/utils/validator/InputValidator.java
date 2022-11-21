@@ -17,9 +17,7 @@ public class InputValidator {
     }
 
     private static boolean isValidBridgeType(String bridgeSize) {
-        return bridgeSize
-                .chars()
-                .allMatch(Character::isDigit);
+        return bridgeSize.length() >= 1 && bridgeSize.chars().allMatch(Character::isDigit);
     }
 
     private static boolean isValidBridgeRange(int bridgeSize) {
