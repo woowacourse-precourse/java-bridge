@@ -13,4 +13,12 @@ public class BridgeResultData {
         bridgeUpResults.add(bridgeUpResult);
         bridgeDownResults.add(bridgeDownResult);
     }
+
+    public static List<String> getBridgeUpResults() {
+        return bridgeUpResults;
+    }
+
+    public static List<String> getBridgeDownResults() {
+        return bridgeDownResults;
+    }
 }

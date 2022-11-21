@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.InputView;
 import bridge.OutputView;
+import bridge.data.BridgeResultData;
 import bridge.domain.BridgeGame;
 import bridge.domain.Moving;
 
@@ -42,6 +43,7 @@ public class BridgeGameController {
     private void move(){
         readMoving();
         bridgeGame.move(moving);
+        OutputView.printMap(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults());
     }
 
     private void readMoving(){
