@@ -28,16 +28,20 @@ public class BridgeGame {
     }
 
     public boolean move(String playerMoving) {
-        if (gameStages.size() <= numberOfMoving) return false;
-        if (isFirstMoving()) numberOfAttempt++;
-        return moveToBridgeBlock(playerMoving);
+        if (!hasNextBlock()) return false;
+        if (isFirstBlock()) numberOfAttempt++;
+        return moveToNextBlock(playerMoving);
     }
 
-    private boolean isFirstMoving() {
+    private boolean hasNextBlock() {
+        return numberOfMoving < gameStages.size();
+    }
+
+    private boolean isFirstBlock() {
         return numberOfMoving == 0;
     }
 
-    private boolean moveToBridgeBlock(String playerMoving) {
+    private boolean moveToNextBlock(String playerMoving) {
         BridgeGameStage currentGameStage = gameStages.get(numberOfMoving++);
         if (Objects.equals(currentGameStage.getBridgeBlock(), playerMoving)) {
             currentGameStage.crossBlock();

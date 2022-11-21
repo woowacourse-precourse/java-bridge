@@ -6,7 +6,7 @@ import static bridge.constant.BridgeGameConstant.*;
 
 public class InputView {
 
-    private static final String MOVING_REGEX = "[" + UP_BRIDGE + DOWN_BRIDGE + "]";
+    private static final String MOVING_REGEX = "[" + UP_BRIDGE_BLOCK + DOWN_BRIDGE_BLOCK + "]";
     private static final String GAME_COMMAND_REGEX = "[" + RETRY_COMMAND + QUIT_COMMAND + "]";
 
     public int readBridgeSize() throws IllegalArgumentException {

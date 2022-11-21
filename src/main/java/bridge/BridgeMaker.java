@@ -13,16 +13,16 @@ public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
-        bridgeBlocks.put(DOWN_BRIDGE_NUMBER, DOWN_BRIDGE);
-        bridgeBlocks.put(UP_BRIDGE_NUMBER, UP_BRIDGE);
+        bridgeBlocks.put(DOWN_BRIDGE_BLOCK_NUMBER, DOWN_BRIDGE_BLOCK);
+        bridgeBlocks.put(UP_BRIDGE_BLOCK_NUMBER, UP_BRIDGE_BLOCK);
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int bridgeSize = 0; bridgeSize < size; bridgeSize++) {
-            int bridgeNumber = bridgeNumberGenerator.generate();
-            bridge.add(bridgeBlocks.get(bridgeNumber));
+            int bridgeBlockNumber = bridgeNumberGenerator.generate();
+            bridge.add(bridgeBlocks.get(bridgeBlockNumber));
         }
         return bridge;
     }

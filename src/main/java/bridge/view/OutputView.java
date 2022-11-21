@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public void printMovingInputScript() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: " + UP_BRIDGE + ", 아래: " + DOWN_BRIDGE + ")");
+        System.out.println("\n이동할 칸을 선택해주세요. (위: " + UP_BRIDGE_BLOCK + ", 아래: " + DOWN_BRIDGE_BLOCK + ")");
     }
 
     public void printGameCommandInputScript() {
@@ -49,7 +49,7 @@ public class OutputView {
     }
 
     private String getUpBridgeBlockView(String bridgeBlock, Status blockStatus) {
-        if (Objects.equals(bridgeBlock, UP_BRIDGE)) {
+        if (Objects.equals(bridgeBlock, UP_BRIDGE_BLOCK)) {
             if (blockStatus == Status.CROSSED) return SUCCESS_BRIDGE_BLOCK_VIEW;
             return EMPTY_BRIDGE_BLOCK_VIEW;
         }
@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     private String getDownBridgeBlockView(String bridgeBlock, Status blockStatus) {
-        if (Objects.equals(bridgeBlock, DOWN_BRIDGE)) {
+        if (Objects.equals(bridgeBlock, DOWN_BRIDGE_BLOCK)) {
             if (blockStatus == Status.CROSSED) return SUCCESS_BRIDGE_BLOCK_VIEW;
             return EMPTY_BRIDGE_BLOCK_VIEW;
         }
