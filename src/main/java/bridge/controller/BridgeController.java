@@ -4,14 +4,12 @@ import bridge.domain.Bridge;
 import bridge.domain.User;
 import bridge.service.BridgeGame;
 import bridge.service.BridgeService;
-import bridge.service.InputService;
-import bridge.view.OutputView;
+import bridge.service.ViewService;
 
 public class BridgeController {
     private final BridgeService bridgeService = new BridgeService();
+    private final ViewService viewService = new ViewService();
     private final BridgeGame bridgeGame = new BridgeGame();
-    private final OutputView outputView = new OutputView();
-    private final InputService inputService = new InputService();
 
     public void start() {
         gameStartMessage();
@@ -21,16 +19,16 @@ public class BridgeController {
     }
 
     public void gameStartMessage() {
-        outputView.printGameStart();
+        viewService.printGameStart();
     }
 
     public void playGame(User user, Bridge bridge) {
         while (!user.isGameDoneStatus()) {
-            String moveDirection = inputService.requestMove();
-            outputView.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect(moveDirection, bridge));
+            String moveDirection = viewService.requestMove();
+            viewService.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect(moveDirection, bridge));
             processGame(bridge, user, isUserAnswerCorrect(moveDirection, bridge));
         }
-        outputView.printResult(user);
+        viewService.printResult(user);
     }
 
     public boolean isUserAnswerCorrect(String moveDirection, Bridge bridge) {
@@ -39,7 +37,7 @@ public class BridgeController {
 
     public void processGame(Bridge bridge, User user, boolean isUserAnswerCorrect) {
         if (!isUserAnswerCorrect) {
-            String gameStatus = inputService.requestStatusOfGame();
+            String gameStatus = viewService.requestStatusOfGame();
             doFailCase(bridge, user, gameStatus);
             return;
         }
@@ -49,7 +47,7 @@ public class BridgeController {
     public void doFailCase(Bridge bridge, User user, String gameStatus) {
         bridgeGame.handleFailCaseCommand(bridge, user, gameStatus);
         if (bridgeGame.isResetCase(gameStatus)) {
-            outputView.initMapView();
+            viewService.initMapView();
         }
     }
 

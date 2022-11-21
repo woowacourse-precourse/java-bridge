@@ -7,7 +7,7 @@ import bridge.domain.Bridge;
 import java.util.List;
 
 public class BridgeService {
-    private final InputService inputService = new InputService();
+    private final ViewService viewService = new ViewService();
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
@@ -18,7 +18,7 @@ public class BridgeService {
     }
 
     public int askBridgeSize() {
-        int bridgeSize = inputService.requestBridgeSize();
+        int bridgeSize = viewService.requestBridgeSize();
         return bridgeSize;
     }
 

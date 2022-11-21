@@ -1,9 +1,10 @@
 package bridge.service;
 
+import bridge.domain.User;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-public class InputService {
+public class ViewService {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
@@ -38,5 +39,21 @@ public class InputService {
             outputView.printError(exception.getMessage());
             return requestStatusOfGame();
         }
+    }
+
+    public void printMap(int indexOfNow, String moveDirection, boolean isUserCorrect) {
+        outputView.printMap(indexOfNow, moveDirection, isUserCorrect);
+    }
+
+    public void printResult(User user) {
+        outputView.printResult(user);
+    }
+
+    public void printGameStart() {
+        outputView.printGameStart();
+    }
+
+    public void initMapView() {
+        outputView.initMapView();
     }
 }
