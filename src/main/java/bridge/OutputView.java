@@ -32,4 +32,11 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    /**
+     * 게임을 재시작할지 물어보는 문구를 출력한다.
+     */
+    public void printAskingRetry() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
 }
