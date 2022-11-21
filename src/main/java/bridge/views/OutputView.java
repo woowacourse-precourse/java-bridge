@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
-public class OutputView {
+public class OutputView extends DefaultView{
 
     private static String MSG_WELCOME = "다리 건너기 게임을 시작합니다.";
     private static String FORMAT_MAP = "[ {0} ]";
@@ -26,11 +26,10 @@ public class OutputView {
     private static String MSG_GAME_SUCCESS = "성공";
     private static String MSG_GAME_FAILURE = "실패";
     private static String FORMAT_ATTEMPT_COUNT = "총 시도한 횟수: {0}";
-    private static String MSG_SEPARATOR = "";
 
     public void printWelcome() {
         System.out.println(MSG_WELCOME);
-        printSeparator();
+        printLineSeparator();
     }
 
     /**
@@ -42,7 +41,7 @@ public class OutputView {
         Map<Direction, List<String>> messageParts = makeMessagePartsByDirection(playerPath, isGameOver);
         System.out.println(applyMapFormat(messageParts.get(Direction.UP)));
         System.out.println(applyMapFormat(messageParts.get(Direction.DOWN)));
-        printSeparator();
+        printLineSeparator();
     }
 
     private Map<Direction, List<String>> makeMessagePartsByDirection(List<Direction> playerPath, boolean isGameOver){
@@ -113,9 +112,5 @@ public class OutputView {
                 FORMAT_ATTEMPT_COUNT,
                 countAttempt
         );
-    }
-
-    private void printSeparator() {
-        System.out.println(MSG_SEPARATOR);
     }
 }
