@@ -5,6 +5,7 @@ import bridge.util.InputConstant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class BridgeMaker {
 
@@ -18,14 +19,12 @@ public class BridgeMaker {
     
     public List<String> makeBridge(int size) {
         List<String> bridges = new ArrayList<>();
-        makeDirectionToMove(bridges, size);
+        makeDirectionToMovePossible(bridges, size);
         return Collections.unmodifiableList(bridges);
     }
 
-    public void makeDirectionToMove(List<String> bridges, int size) {
-        for(int i = 0; i < size; i++) {
-            changeNumberToDirection(bridges, getRandomNumber());
-        }
+    public void makeDirectionToMovePossible(List<String> bridges, int size) {
+        IntStream.range(0, size).forEach( e -> changeNumberToDirection(bridges, makeRandomNumber()));
     }
 
     public void changeNumberToDirection(List<String> bridges, int number) {
@@ -37,7 +36,7 @@ public class BridgeMaker {
         }
     }
     
-    public int getRandomNumber() {
+    public int makeRandomNumber() {
         return bridgeNumberGenerator.generate();
     }
 }
