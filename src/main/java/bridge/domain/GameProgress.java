@@ -1,5 +1,14 @@
 package bridge.domain;
 
 public enum GameProgress {
-    FAILURE, SUCCESS, PLAYING
+    FAILURE("실패"), SUCCESS("성공"), PLAYING("진행중");
+    private String progress;
+
+    GameProgress(String progress) {
+        this.progress = progress;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
 }
