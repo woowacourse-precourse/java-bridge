@@ -13,11 +13,11 @@ public class Bridge {
         return bridge.get(idx).equals(candidate);
     }
 
-    boolean isFinish(int idx) {
+    boolean isFinish(final int idx) {
         return bridge.size() - 1 == idx;
     }
 
-    public BridgeState getStateOf(int idx, String candidate) {
+    public BridgeState getStateOf(final int idx, final String candidate) {
         if (matchWithIndex(idx, candidate)) {
             return BridgeState.CORRECT;
         }

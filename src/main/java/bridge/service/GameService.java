@@ -12,12 +12,12 @@ public class GameService {
     private final BridgeGame bridgeGame;
     private final List<BridgeDto> cache;
 
-    public GameService(BridgeGame bridgeGame) {
+    public GameService(final BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
         this.cache = new ArrayList<>();
     }
 
-    public static GameService createNewGame(ViewService viewService) {
+    public static GameService createNewGame(final ViewService viewService) {
         viewService.printStartMessage();
         int size = viewService.askBridgeLength();
 
@@ -27,7 +27,7 @@ public class GameService {
         return new GameService(new BridgeGame(bridge));
     }
 
-    public MatchResult moveForward(String input) {
+    public MatchResult moveForward(final String input) {
         MatchResult move = bridgeGame.move(input);
         setBridgeDto(input);
         return move;
@@ -38,7 +38,7 @@ public class GameService {
         bridgeGame.retry();
     }
 
-    public GameResult setReGameOrQuit(String input) {
+    public GameResult setReGameOrQuit(final String input) {
         if (input.equals(Command.RETRY.getAbbreviation())) {
             setReGame();
             return GameResult.REGAME;
@@ -53,7 +53,7 @@ public class GameService {
         return cache.get(cache.size() - 1);
     }
 
-    private void setBridgeDto(String input) {
+    private void setBridgeDto(final String input) {
         BridgeDto recentDto = getRecentBridge();
 
         BridgeState state = bridgeGame.matchRecentInput();
