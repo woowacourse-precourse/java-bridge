@@ -1,4 +1,4 @@
-package bridge.domain.resources.bridge;
+package bridge.domain.service;
 
 import java.util.ArrayList;
 import java.util.List;

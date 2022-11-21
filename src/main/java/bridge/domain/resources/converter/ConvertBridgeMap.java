@@ -1,6 +1,6 @@
 package bridge.domain.resources.converter;
 
-import bridge.domain.resources.bridge.BridgeMap;
+import bridge.domain.service.BridgeMap;
 
 import java.util.ArrayList;
 import java.util.List;

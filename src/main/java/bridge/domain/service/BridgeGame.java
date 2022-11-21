@@ -1,6 +1,5 @@
 package bridge.domain.service;
 
-import bridge.domain.resources.bridge.BridgeMap;
 import bridge.domain.resources.GameCommand;
 import bridge.domain.resources.Move;
 import bridge.domain.resources.bridge.Bridge;
