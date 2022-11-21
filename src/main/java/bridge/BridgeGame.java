@@ -35,7 +35,7 @@ public class BridgeGame {
      */
     public boolean retry() {
         if (user.reTryGame()) {
-            setRegame();
+            setGame();
             return true;
         }
         return false;
@@ -60,7 +60,7 @@ public class BridgeGame {
         return false;
     }
 
-    public void setRegame() {
+    public void setGame() {
         tryCount++;
         this.user = new User(answer, bridgeLength);
     }
