@@ -95,9 +95,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge) { // TODO 수정 필요
+    public void printResult(BridgeGame bridgeGame) { // TODO 수정 필요
         System.out.println(Message.GAME_RESULT_PREV_MSG.getMessage());
-//        printMap(bridge);
+        printMap(bridgeGame);
+        System.out.println();
+        System.out.println(Message.GAME_RESULT_STATE_MSG );
     }
 
     public void printStatusResult() { // TODO 수정 필요

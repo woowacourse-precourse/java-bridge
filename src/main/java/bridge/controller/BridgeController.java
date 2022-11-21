@@ -20,10 +20,26 @@ public class BridgeController {
 		outputView.printMessage(Message.GAME_START_MSG);
 		List<String> bridge = initBridge();
 		bridgeGame = new BridgeGame(bridge);
+		gameProcess();
+		outputView.printResult(bridgeGame);
+	}
+
+	private void gameProcess() {
+		while (true) {
+			gameStart();
+			if (bridgeGame.isGameLoss() && isRestartInput()) {
+				bridgeGame.retry();
+				continue;
+			}
+			break;
+		}
+	}
+
+	private void gameStart() {
 		do {
 			bridgeGame.move(getDirection());
 			outputView.printMap(bridgeGame);
-		} while (bridgeGame.isMatchDirection());
+		} while (bridgeGame.isMatchDirection() && bridgeGame.isNotFinish());
 	}
 
 	private String getDirection() {
@@ -38,4 +54,12 @@ public class BridgeController {
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSizeInputValidator.getInputValue());
 		return bridge;
 	}
+
+	private boolean isRestartInput() {
+		final List<String> RESTART_VALUE = List.of("R", "Q");
+		InputStringValidator restartInputValidator = new InputStringValidator(inputView.readGameCommand());
+		restartInputValidator.isValidateAlphabet(RESTART_VALUE);
+		return restartInputValidator.getInputValue().equals("R");
+	}
+
 }
