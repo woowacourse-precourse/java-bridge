@@ -34,13 +34,6 @@ public class OutputView {
     }
     public List<List<String>> checkIndex(BirdgeMoveType whereMove){
 
-//        if(whereMove.getIndex()==0){
-//            mapList.add(List.of("| "+whereMove.getCode()+" "));
-//            mapList.add(List.of("|   "));
-//        } else if (whereMove.getIndex()==1) {
-//            mapList.add(List.of("|   "));
-//            mapList.add(List.of("| "+whereMove.getCode()+" "));
-//        }
         if(whereMove.getIndex()==0){
             mapList.get(whereMove.getIndex()).add("| "+whereMove.getCode()+" ");
             mapList.get(whereMove.getIndex()+1).add("|   ");
