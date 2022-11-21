@@ -51,4 +51,8 @@ public class OutputView {
 	private void printEmptyLine() {
 		System.out.println();
 	}
+
+	public void printErrorLog(IllegalArgumentException e) {
+		System.out.println(e.getMessage());
+	}
 }
