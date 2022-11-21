@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 /*
  * camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 /*
  * 제공된 OutputView 클래스를 활용해 구현해야 한다.
