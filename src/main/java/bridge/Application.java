@@ -1,12 +1,11 @@
 package bridge;
 
 public class Application {
-
     public static void main(String[] args) {
-        try{
+        try {
             new BridgeGame();
-        }catch(IllegalArgumentException e){
-            System.out.println("에러났숑");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
         }
     }
 }
