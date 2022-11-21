@@ -66,10 +66,10 @@ public class Application {
     public static void reGame() {
         enterGameCommand();
         attempt += bridgeGame.retry(GameCommand.getGameCommand());
-        if (GameCommand.getGameCommand().equals("Q")) {
-            result = "실패";
+        if (GameCommand.getGameCommand().equals(GameCommandResult.QUIT.getGameCommand())) {
+            result = GameCommandResult.QUIT.getResult();
         }
-        if (GameCommand.getGameCommand().equals("R")) {
+        if (GameCommand.getGameCommand().equals(GameCommandResult.RETRY.getGameCommand())) {
             map.resetMap();
             playGame();
         }
