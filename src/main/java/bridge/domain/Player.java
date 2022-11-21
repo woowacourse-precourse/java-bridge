@@ -7,15 +7,7 @@ public class Player {
     private int tryCount = 1;
     private int correctAnswerCount = 0;
     private List<String> bridgeRoute = new ArrayList<>();
-
-    public boolean move(String moving, List<String> bridge) {
-        bridgeRoute.add(moving);
-        if (bridge.get(correctAnswerCount).equals(moving)) {
-            correctAnswerCount++;
-            return true;
-        }
-        return false;
-    }
+    private List<String> bridgeMap = new ArrayList<>();
 
     public int getCorrectAnswerCount() {
         return correctAnswerCount;
@@ -33,9 +25,18 @@ public class Player {
         bridgeRoute.add(moving);
     }
 
+    public List<String> getBridgeMap() {
+        return bridgeMap;
+    }
+
+    public void insertBridgeMap(String answer) {
+        bridgeMap.add(answer);
+    }
+
     public void resetPlayer() {
         tryCount++;
         correctAnswerCount = 0;
         bridgeRoute = new ArrayList<>();
+        bridgeMap = new ArrayList<>();
     }
 }

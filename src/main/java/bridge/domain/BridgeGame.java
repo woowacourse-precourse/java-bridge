@@ -30,23 +30,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-//    public Boolean move(String moving) {
-//        while (true) {
-//            if (bridge.get(player.getCorrectAnswerCount()).equals(moving)){
-//                player.increaseCorrectAnswerCount();
-//                player.insertBridgeRoute(moving);
-//                continue;
-//            }
-//            return player.getCorrectAnswerCount() == bridge.size();
-//        }
-//    }
     public String move(String moving) {
+        player.insertBridgeRoute(moving);
         if (bridge.get(player.getCorrectAnswerCount()).equals(moving)) {
             player.increaseCorrectAnswerCount();
-            player.insertBridgeRoute(moving);
+            player.insertBridgeMap("O");
             if (player.getCorrectAnswerCount() == bridge.size()) return "SUCCESS";
             return "NEXT";
         }
+        player.insertBridgeMap("X");
         return "FAIL";
     }
 

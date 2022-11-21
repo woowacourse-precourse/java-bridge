@@ -2,6 +2,9 @@ package bridge.view;
 
 import bridge.domain.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  * 제공된 OutputView 클래스를 활용해 구현해야 한다.
@@ -17,7 +20,34 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Player player) {
+        String upBridge = makeUpBridge(player);
+        String downBridge = makeDownBridge(player);
+        System.out.println(upBridge);
+        System.out.println(downBridge);
+    }
 
+    private String makeUpBridge(Player player) {
+        List<String> upBridge = new ArrayList<>();
+        for (int i = 0; i < player.getBridgeRoute().size(); i++) {
+            if (player.getBridgeRoute().get(i).equals("U")) {
+                upBridge.add(player.getBridgeMap().get(i));
+                continue;
+            }
+            upBridge.add(" ");
+        }
+        return "[ " + String.join(" | ", upBridge) + " ]";
+    }
+
+    private String makeDownBridge(Player player) {
+        List<String> downBridge = new ArrayList<>();
+        for (int i = 0; i < player.getBridgeRoute().size(); i++) {
+            if (player.getBridgeRoute().get(i).equals("D")) {
+                downBridge.add(player.getBridgeMap().get(i));
+                continue;
+            }
+            downBridge.add(" ");
+        }
+        return "[ " + String.join(" | ", downBridge) + " ]";
     }
 
     /**

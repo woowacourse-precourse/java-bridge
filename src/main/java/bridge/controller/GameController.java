@@ -24,6 +24,7 @@ public class GameController {
     private String move() {
         while (true) {
             String moveState = bridgeGame.move(inputController.readMoving());
+            outputView.printMap(player);
             if (moveState.equals("NEXT")) continue;
             return moveState;
         }
