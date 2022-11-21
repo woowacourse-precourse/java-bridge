@@ -66,12 +66,13 @@ D
 ### 클래스 분리
 
 ### Controller
-1. 게임시작 
-   1. 다리 생성 - `BridgeGame.createBridge`, `createBridgeMap`
-3. 반복해서 다리 맞추기 - `BridgeGame.move()`
-   1. 결과 출력 - `checkResult()`
-5. 재시작() ->  `BridgeGame.retry()`
-6. 종료(정답) -> `BridgeGame.endGame()` 
+1. startGame() - 게임 시작
+2. createBridge() - 정답 생성
+3. moveBridge() - 사용자 다리 이동
+4. printState() - 현재 다리 상태 출력
+5. retry() - "X" 틀렸을 시 재시작
+6. success() - 모든 입력이 맞았으면 Quit()
+7. printResult() - 시도 횟수와 결과 출력
 
 ### BridgeGame
 1. move
@@ -116,7 +117,8 @@ D
 3. `readGameCommand()`
 
 ### BridgeMap
-
+1. `UpMap`
+2. `DownMap` 
 
 ### Bridge
 
@@ -126,11 +128,12 @@ D
 
 ### BridgeIngredient enum
 
-`[ `
-`| `
-`O `
-`X `
+`[`
+`|`
+`O`
+`X`
 `]`
+`" "`
 <br>
 다리를 만들기 위한 재료
 
@@ -162,6 +165,10 @@ D
   - InputView
   - OutputView
 - dto
+  - BridgeMapDto
+  - PlayerDto
+  - printResultDto
+  - RetryCountDto
 <hr>
 
 - controller
