@@ -88,19 +88,19 @@ public class OutputView {
         }
     }
 
-    public void printFirstOfBridge() {
+    private void printFirstOfBridge() {
         System.out.print(GuideMessage.FIRST_OF_BRIDGE);
     }
 
-    public void printMiddleOfBridge() {
+    private void printMiddleOfBridge() {
         System.out.print(GuideMessage.MIDDLE_OF_BRIDGE);
     }
 
-    public void printLastOfBridge() {
+    private void printLastOfBridge() {
         System.out.println(GuideMessage.LAST_OF_BRIDGE);
     }
 
-    public void printChoiceResult(String content) {
+    private void printChoiceResult(String content) {
         System.out.print(content);
     }
 
