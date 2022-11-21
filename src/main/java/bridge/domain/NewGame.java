@@ -75,7 +75,7 @@ public class NewGame {
         outputView.printMessageAfterFailure();
         String response = inputView.readGameCommand();
         if (response.equals(RETRY.getValue())) {
-            bridgeGame.retry(user);
+            bridgeGame.retry();
             play();
             return;
         }
