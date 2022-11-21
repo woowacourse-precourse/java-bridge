@@ -15,6 +15,9 @@ public class Application {
         outputView.printStart();
         bridgeGame = bridgeGameStart();
         bridgeGameContinue(bridgeGame);
+        outputView.printResult(bridgeGame);
+        outputView.printGameSuccess(checker.checkGameSuccess(bridgeGame));
+        outputView.printGameTry(bridgeGame);
     }
 
     private BridgeGame bridgeGameStart() {
