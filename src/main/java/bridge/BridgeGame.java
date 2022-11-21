@@ -41,7 +41,6 @@ public class BridgeGame {
             retry();
         }
         outputView.printResult(results,gameResult,tryCount);
-
     }
 
     private void judgeGame() {

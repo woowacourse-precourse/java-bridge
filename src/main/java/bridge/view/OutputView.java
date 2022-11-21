@@ -1,6 +1,5 @@
 package bridge.view;
 
-import java.lang.ref.PhantomReference;
 import java.util.List;
 
 /**
