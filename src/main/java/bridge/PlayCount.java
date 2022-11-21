@@ -3,7 +3,7 @@ package bridge;
 public class PlayCount {
 	private static final int INITIAL_VALUE = 1;
 
-	private static PlayCount playCount = new PlayCount();
+	private static final PlayCount playCount = new PlayCount();
 
 	private PlayCount() {
 		count = INITIAL_VALUE;
