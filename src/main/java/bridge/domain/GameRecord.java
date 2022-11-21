@@ -26,6 +26,12 @@ public class GameRecord {
 
     public void recordRetry() {
         tryCount += 1;
+        clearCrossedRecord();
+    }
+
+    private void clearCrossedRecord() {
+        upperCrossedRecord.clear();
+        lowerCrossedRecord.clear();
     }
 
     public int getTryCount() {
