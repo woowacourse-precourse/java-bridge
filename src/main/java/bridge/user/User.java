@@ -1,13 +1,14 @@
 package bridge.user;
 
 /**
- * 사용자 상태 관리
+ * 사용자의 상태값을 관리
  */
 public class User {
 
     private int userGameStatus;
     private int numberOfMoves;
     private int numberOfGameTrials;
+
 
     public enum GameStatus {
         PLAYING(0),
@@ -40,10 +41,13 @@ public class User {
         }
     }
 
+
+    // constructor
     public User(int userGameStatus, int numberOfGameTrials) {
         this.userGameStatus = userGameStatus;
         this.numberOfGameTrials = numberOfGameTrials;
     }
+
 
     // getter
     public int getUserGameStatus() {
@@ -58,6 +62,7 @@ public class User {
         return numberOfGameTrials;
     }
 
+
     // setter
     public void setUserGameStatus_succeed() {
         userGameStatus = GameStatus.SUCCEED.getStatusNumber();
@@ -67,17 +72,18 @@ public class User {
         userGameStatus = GameStatus.FAILED.getStatusNumber();
     }
 
-    // method
-    public void resetNumberOfMoves() {
-        numberOfMoves = 0;
+
+    // methods
+    public void increaseNumberOfMoves() {
+        numberOfMoves += 1;
     }
 
     public void increaseNumberOfGameTrials() {
         numberOfGameTrials += 1;
     }
 
-    public void increaseNumberOfMoves() {
-        numberOfMoves += 1;
+    public void resetNumberOfMoves() {
+        numberOfMoves = 0;
     }
 
 }
