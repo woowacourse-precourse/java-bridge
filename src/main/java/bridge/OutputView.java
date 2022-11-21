@@ -27,14 +27,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(User user, boolean checkDirection, List<String> bridge) {
+    public void printResult (User user, boolean checkDirection, List<String> bridge) {
         System.out.println("최종 게임 결과");
         printMap(user, checkDirection, bridge);
         printWinOrLose(checkDirection);
         printHowManyTimeTry(user);
     }
 
-    public void printWinOrLose(boolean win){
+    public void printWinOrLose (boolean win){
         if(win == true){
             System.out.println("게임 성공 여부: 성공");
             return;
@@ -42,11 +42,11 @@ public class OutputView {
         System.out.println("게임 성공 여부: 실패");
     }
 
-    public void printHowManyTimeTry(User user){
+    public void printHowManyTimeTry (User user){
         System.out.printf("총 시도한 횟수: %d", user.getAttempt());
     }
 
-    public void printUpperBridge(User user, boolean checkDirection, List<String> bridge){
+    public void printUpperBridge (User user, boolean checkDirection, List<String> bridge){
         printMapStart();
         for(int i = 0; i < user.getPosition(); i++){
             printOnePartOfUpperBridge(i, bridge);
@@ -56,7 +56,7 @@ public class OutputView {
         printMapEnd();
     }
 
-    public void printLowerBridge(User user, boolean checkDirection, List<String> bridge){
+    public void printLowerBridge (User user, boolean checkDirection, List<String> bridge){
         printMapStart();
         for(int i = 0; i < user.getPosition(); i++){
             printOnePartOfLowerBridge(i, bridge);
@@ -66,7 +66,7 @@ public class OutputView {
         printMapEnd();
     }
 
-    public void printWhetherUserDecisionIsCorrectInUpperBridge(User user, boolean checkDirection){
+    public void printWhetherUserDecisionIsCorrectInUpperBridge (User user, boolean checkDirection){
         if(user.getDirection().equals("U")){
             printWhetherCheckDirectionIsCorrect(checkDirection);
             return;
@@ -74,7 +74,7 @@ public class OutputView {
         System.out.print("   ");
     }
 
-    public void printWhetherUserDecisionIsCorrectInLowerBridge(User user, boolean checkDirection){
+    public void printWhetherUserDecisionIsCorrectInLowerBridge (User user, boolean checkDirection){
         if(user.getDirection().equals("D")){
             printWhetherCheckDirectionIsCorrect(checkDirection);
             return;
@@ -82,7 +82,7 @@ public class OutputView {
         System.out.print("   ");
     }
 
-    public void printWhetherCheckDirectionIsCorrect(boolean checkDirection){
+    public void printWhetherCheckDirectionIsCorrect (boolean checkDirection){
         if(checkDirection == true){
             System.out.print(" O ");
             return;
@@ -90,7 +90,7 @@ public class OutputView {
         System.out.print(" X ");
     }
 
-    public void printOnePartOfUpperBridge(int index, List<String> bridge){
+    public void printOnePartOfUpperBridge (int index, List<String> bridge){
         if(bridge.get(index).equals("U")){
             System.out.print(" O ");
             return;
@@ -99,7 +99,7 @@ public class OutputView {
         System.out.print("   ");
     }
 
-    public void printOnePartOfLowerBridge(int index, List<String> bridge){
+    public void printOnePartOfLowerBridge (int index, List<String> bridge){
         if(bridge.get(index).equals("D")){
             System.out.print(" O ");
             return;
@@ -108,15 +108,15 @@ public class OutputView {
         System.out.print("   ");
     }
 
-    public void printMapStart(){
+    public void printMapStart (){
         System.out.print("[");
     }
 
-    public void printSeparation(){
+    public void printSeparation (){
         System.out.print("|");
     }
 
-    public void printMapEnd(){
+    public void printMapEnd (){
         System.out.println("]");
     }
 

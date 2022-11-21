@@ -21,20 +21,20 @@ public class Application {
             if(checkDirectionToQuitOrRetryGameByLosing(checkDirection,user, bridge) == true) break; }
     }
 
-    public static boolean checkDirectionToQuitGameByWinning(boolean checkDirection, User user, List<String> bridge ){
+    public static boolean checkDirectionToQuitGameByWinning (boolean checkDirection, User user, List<String> bridge ){
         if(checkDirection == true && gameIsOverByWinning(user, checkDirection, bridge) == true){
             return true;
         }
         return false;
     }
 
-    public static boolean checkDirectionToQuitOrRetryGameByLosing(boolean checkDirection, User user, List<String> bridge){
+    public static boolean checkDirectionToQuitOrRetryGameByLosing (boolean checkDirection, User user, List<String> bridge){
         if(checkDirection == false && RetryOrQuitGame(user, checkDirection, bridge) == false){
             return true;
         }
         return false;
     }
-    public static boolean progressGame(User user, List<String> bridge){
+    public static boolean progressGame (User user, List<String> bridge){
         bridgeGame.move(user);
         boolean checkDirection = bridgeGame.checkBridgeValueInUserPosition(user, bridge);
         outputView.printMap(user, checkDirection, bridge);
@@ -42,7 +42,7 @@ public class Application {
         return checkDirection;
     }
 
-    public static boolean gameIsOverByWinning(User user,boolean checkDirection, List<String> bridge){
+    public static boolean gameIsOverByWinning (User user,boolean checkDirection, List<String> bridge){
         if(bridgeGame.checkGameIsOver(user, bridge)){
             outputView.printResult(user, checkDirection, bridge);
             return true;
@@ -50,7 +50,7 @@ public class Application {
         return false;
     }
 
-    public static boolean RetryOrQuitGame(User user, boolean checkDirection, List<String> bridge){
+    public static boolean RetryOrQuitGame (User user, boolean checkDirection, List<String> bridge){
         if(inputView.readGameCommand() == "R") {
             user.addAttempt();
             bridgeGame.retry(user);
