@@ -20,7 +20,7 @@
   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 입출력 요구사항
-- [ ] 메시지 상수 viewMessage
+- [x] 메시지 상수 viewMessage
 
 ### 입력
 - 자동으로 생성할 다리 길이를 입력 받는다.
