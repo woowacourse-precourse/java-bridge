@@ -21,7 +21,7 @@ public class BridgeGame {
     }
 
     public boolean retry(Command command) {
-        if (command.isRetry()) {
+        if (command.equals(Constant.RETRY)) {
             tryCount++;
             clearGame();
             return true;

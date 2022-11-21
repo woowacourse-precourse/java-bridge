@@ -3,6 +3,8 @@ package bridge.domain;
 import bridge.constant.Constant;
 import bridge.constant.ErrorMessage;
 
+import java.util.Objects;
+
 public class Command {
     private final String command;
 
@@ -17,8 +19,14 @@ public class Command {
         }
     }
 
-    public boolean isRetry() {
-        if (command.equals(Constant.RETRY)) {
+    @Override
+    public int hashCode() {
+        return Objects.hash(command);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (command.equals(obj)) {
             return true;
         }
         return false;
