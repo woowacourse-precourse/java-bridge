@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Console.InputView;
+import bridge.console.InputView;
 
 import java.util.List;
 

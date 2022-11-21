@@ -1,9 +1,9 @@
 package bridge;
 
-import bridge.Console.Input;
-import bridge.Console.InputView;
-import bridge.Console.Output;
-import bridge.Console.OutputView;
+import bridge.console.Input;
+import bridge.console.InputView;
+import bridge.console.Output;
+import bridge.console.OutputView;
 import bridge.command.DownCommand;
 import bridge.command.UpCommand;
 

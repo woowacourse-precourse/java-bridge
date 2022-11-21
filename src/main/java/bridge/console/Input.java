@@ -1,4 +1,4 @@
-package bridge.Console;
+package bridge.console;
 
 public interface Input {
     public int readBridgeSize();

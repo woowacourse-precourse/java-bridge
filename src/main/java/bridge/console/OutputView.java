@@ -1,4 +1,4 @@
-package bridge.Console;
+package bridge.console;
 
 import java.util.Iterator;
 import java.util.List;

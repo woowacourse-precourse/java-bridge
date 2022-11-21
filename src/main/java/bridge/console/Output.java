@@ -1,4 +1,4 @@
-package bridge.Console;
+package bridge.console;
 
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package bridge.Console;
+package bridge.console;
 
-import bridge.Validation.InputValidate;
+import bridge.validation.InputValidate;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
