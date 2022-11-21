@@ -16,7 +16,7 @@ public class RetryProcessing {
     //게임을 다시 시도하기 위해 입력을 받는 메소드다
     public boolean readRetry() {
         while (true) {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            OutputGameMessage.retryInputMessage.printMessage();
             String input = inputView.readGameCommand();
             if (input.length() == 0) {
                 continue;
