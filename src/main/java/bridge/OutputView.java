@@ -1,6 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -13,14 +15,72 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> map) {
+        StringBuilder printUp = new StringBuilder();
+        StringBuilder printDown = new StringBuilder();
         for(String bridge : map){
             if (bridge == "U"){
-                System.out.println("[ O ]\n[   ]");
+                printUp.append("[ O ]");
+                printDown.append("[   ]");
             }
             else if (bridge == "D"){
-                System.out.println("[   ]\n[ O ]");
+                printUp.append("[   ]");
+                printDown.append("[ O ]");
             }
         }
+        System.out.println(printUp);
+        System.out.println(printDown);
+    }
+
+    public static void print(List<String> map) {
+        String printUp = "";
+        String printDown = "";
+        if (Objects.equals(map.get(0), "U")){
+            printUp += "[ O ]";
+            printDown += "[   ]";
+        }
+        else {
+            printUp += "[   ]";
+            printDown += "[ O ]";
+        }
+
+        for(int i=1; i<map.size();i++){
+            if (Objects.equals(map.get(i), "U")){
+                printUp = printUp.replace("]"," | O ]");
+                printDown = printDown.replace("]"," |   ]");
+            }
+            else if (Objects.equals(map.get(i), "D")){
+                printUp = printUp.replace("]"," |   ]");
+                printDown = printDown.replace("]"," | O ]");
+            }
+        }
+        System.out.println(printUp);
+        System.out.println(printDown);
+    }
+
+    public static void printX(List<String> map) {
+        String printUp = "";
+        String printDown = "";
+        if (Objects.equals(map.get(0), "U")){
+            printUp += "[ X ]";
+            printDown += "[   ]";
+        }
+        else {
+            printUp += "[   ]";
+            printDown += "[ X ]";
+        }
+
+        for(int i=1; i<map.size();i++){
+            if (Objects.equals(map.get(i), "U")){
+                printUp = printUp.replace("]"," | X ]");
+                printDown = printDown.replace("]"," |   ]");
+            }
+            else if (Objects.equals(map.get(i), "D")){
+                printUp = printUp.replace("]"," |   ]");
+                printDown = printDown.replace("]"," | X ]");
+            }
+        }
+        System.out.println(printUp);
+        System.out.println(printDown);
     }
 
     /**
