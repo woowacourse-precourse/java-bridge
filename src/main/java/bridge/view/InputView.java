@@ -1,5 +1,8 @@
 package bridge.view;
 
+import static bridge.domain.Bridge.MAX_SIZE;
+import static bridge.domain.Bridge.MIN_SIZE;
+
 import bridge.util.Utils;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -12,7 +15,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return Utils.inputToNumber(Console.readLine());
+        int size = Utils.inputToNumber(Console.readLine());
+        if (size < MIN_SIZE || size > MAX_SIZE) {
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        return size;
     }
 
     /**
@@ -21,6 +29,7 @@ public class InputView {
     public String readMoving() {
         String movePlace=Console.readLine();
         if(!movePlace.equals("U") && !movePlace.equals("D") ){
+            System.out.println("[ERROR] U(위 칸)과 D(아래 칸) 중 하나를 선택하여야 합니다.");
             throw new IllegalArgumentException();
         }
         return movePlace;
@@ -37,6 +46,7 @@ public class InputView {
         }else if(command.equals("Q")){
             return false;
         }
+        System.out.println("[ERROR] R(재시작)과 Q(종료) 중 하나를 선택하여야 합니다.");
         throw new IllegalArgumentException();
     }
 }

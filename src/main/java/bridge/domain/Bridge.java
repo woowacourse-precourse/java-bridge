@@ -8,21 +8,14 @@ import java.util.List;
 public class Bridge {
 
     private final int size;
-    private final int MAX_SIZE = 20;
-    private final int MIN_SIZE = 3;
+    public static final int MAX_SIZE = 20;
+    public static final int MIN_SIZE = 3;
     private List<String> bridge;
 
     public Bridge(int size) {
-        validateSize(size);
         this.size = size;
         this.bridge = buildBridge();
         System.out.println(bridge);
-    }
-
-    private void validateSize(int size) {
-        if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public List<String> buildBridge() {
