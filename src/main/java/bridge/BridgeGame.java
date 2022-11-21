@@ -1,9 +1,18 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import java.util.List;
+
+
 public class BridgeGame {
+    private static List<String> bridge;
+    BridgeGame(int bridgeSize){
+        if(bridgeSize<3||bridgeSize>20)
+            OutputView.errorHandling("3~20 사이의 숫자를 입력해주세요.");
+        BridgeNumberGenerator bridgeNumberGenerator = null;
+        BridgeMaker bridgeMaker = new BridgeMaker (bridgeNumberGenerator);
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
