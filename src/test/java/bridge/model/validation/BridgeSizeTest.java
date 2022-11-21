@@ -22,9 +22,7 @@ class BridgeSizeTest {
 	@ParameterizedTest
 	@ValueSource(ints = {-1, 0, 1, 2, 21, 10000})
 	void notInRangeTest(int size) {
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			BridgeSize bridgeSize = new BridgeSize(size);
-		});
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> new BridgeSize(size));
 		assertEquals(Error.RANGE.getMessage(), exception.getMessage());
 	}
 }
