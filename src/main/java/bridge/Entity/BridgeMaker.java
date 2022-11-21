@@ -26,28 +26,10 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> userBridge = new ArrayList<>();
-        for (int i=0;i<size;i++) {
-            userBridge.add(checkedNumber());
+        for(int i=0;i<size;i++) {
+            System.out.println(bridgeNumberGenerator.generate());
         }
-        return userBridge;
-    }
-
-    private String checkedNumber() {
-        String input;
-        outputView.guideEnterBridgeSize();
-        while (!isValidate(input = inputView.readMoving()))
-            outputView.guideEnterMove();
-        return input;
-    }
-
-    private boolean isValidate(String input) {
-        try {
-            InputValidate inputValidate = new InputValidate();
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-        return true;
+        return null;
     }
 
 }

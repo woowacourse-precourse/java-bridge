@@ -7,4 +7,8 @@ public class ValidateSet extends InputValidate {
         IsOverRangeBridgeSize(size);
         IsNoneInputBridgeSize(size);
     }
+
+    public void Computer(int input) {
+        IsZeroOrOneComputerBridge(input);
+    }
 }

@@ -19,6 +19,4 @@ public enum Space {
     public int getNumber() {
         return number;
     }
-
-    public
 }

@@ -1,9 +1,10 @@
 package bridge.Controller;
 
-import bridge.BridgeRandomNumberGenerator;
-import bridge.Entity.BridgeMaker;
 import bridge.Service.GenerateBridgeSize;
-import bridge.View.InputView;
+import bridge.Service.GenerateComBridge;
+
+import java.util.List;
+
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,7 +15,8 @@ public class BridgeGame {
     public void start() {
         GenerateBridgeSize generateBridgeSize = new GenerateBridgeSize();
         int size = generateBridgeSize.getBridgeSize();
-
+        GenerateComBridge generateComBridge = new GenerateComBridge();
+        List<Integer> comBridge = generateComBridge.generate(size);
     }
 
     public void cycle(int size) {

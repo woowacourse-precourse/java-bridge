@@ -23,4 +23,10 @@ public class InputValidate {
             throw new IllegalArgumentException();
         }
     }
+
+    public void IsZeroOrOneComputerBridge(int input) {
+        if (input != 1 || input != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

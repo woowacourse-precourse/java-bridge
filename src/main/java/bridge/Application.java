@@ -1,6 +1,8 @@
 package bridge;
 
 import bridge.Controller.BridgeGame;
+import bridge.Service.GenerateBridgeSize;
+import bridge.Service.GenerateComBridge;
 
 public class Application {
 

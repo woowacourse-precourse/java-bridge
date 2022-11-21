@@ -13,6 +13,7 @@ public class GenerateBridgeSize {
     ValidateSet validateSet = new ValidateSet();
 
     public int getBridgeSize() {
+        outputView.guideStartGame();
         outputView.guideEnterBridgeSize();
         String size;
         while (!isValidate(size = inputView.readBridgeSize())) {
