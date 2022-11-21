@@ -57,7 +57,7 @@ class BridgeTest {
     void returnUnMatchedPathResult(int index, String expected) {
         Bridge bridge = Bridge.from(bridgeFrame);
         GameResult result = bridge.getUnMatchedPathResult(index + 1);
-        Assertions.assertThat(result.getResult().get(index)).isEqualTo(expected);
+        Assertions.assertThat(result.getResult().get(index)).isNotEqualTo(expected);
         Assertions.assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_CONTINUE);
     }
 }
