@@ -1,5 +1,8 @@
 package bridge.view;
 
+import static bridge.constants.ErrorConstant.SIZE_EXCEPTION;
+import static bridge.validator.Validate.vaildateBridgeSize;
+
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -7,15 +10,22 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+//    private OutputView outputView = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
 
-        int bridgeSizeInput;
-        bridgeSizeInput = Integer.parseInt(Console.readLine());
-
-        return bridgeSizeInput;
+        String bridgeSizeInput;
+        bridgeSizeInput = Console.readLine();
+        try {
+            vaildateBridgeSize(bridgeSizeInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(SIZE_EXCEPTION.getException());
+            return readBridgeSize();
+        }
+        return Integer.parseInt(bridgeSizeInput);
     }
 
     /**
@@ -35,4 +45,5 @@ public class InputView {
         command = Console.readLine().toUpperCase();
         return command;
     }
+
 }
