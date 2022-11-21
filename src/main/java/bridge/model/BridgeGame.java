@@ -17,43 +17,33 @@ public class BridgeGame {
     static List<List<String>> userMap = new ArrayList<>();
     static int tryCnt=1;
     static int size=0;
-    static String result = "";
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-    public void initialize(){
-        outputView.startPrint();
-        this.size = inputView.readBridgeSize();
+    public void initialize(int size){
+        this.size = size;
         this.map = bridgeMaker.makeBridge(size);
         userMap.add(new ArrayList<>());
         userMap.add(new ArrayList<>());
-        progress();
     }
 
-    public void progress(){
-        boolean retry = true;
-        int i=0;
-        result = Constant.SUCCESS;
-        while(retry && i<size){
-            if(!play(i)) { //실패시 재시작 이면 초기화, 종료면 while 탈출
-                retry = retry();
-                i=-1;
-            }
-            i++; }
-        outputView.printResult(tryCnt, result, userMap);
+    public static List<String> getMap() {
+        return map;
     }
-    public boolean play(int idx){
 
-        Move move = moveConstructor(inputView.readMoving());
-        boolean success = move(idx, move);
-        if(success){
-            outputView.printMap(idx+1, this.userMap.get(0), this.userMap.get(1));
-            return true;
-        }
-        outputView.printMap(idx+1, this.userMap.get(0), this.userMap.get(1));
-        return false;
+    public static List<List<String>> getUserMap() {
+        return userMap;
     }
+
+    public static int getTryCnt() {
+        return tryCnt;
+    }
+
+    public static int getSize() {
+        return size;
+    }
+
+
 
     public Move moveConstructor(String readMoving) {
         if(readMoving.equals(Constant.UP)){
@@ -88,8 +78,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        String command = inputView.readGameCommand();
+    public boolean retry(String command) {
         if(command.equals(Constant.RESTART)){
             tryCnt+=1;
             userMap = new ArrayList<>();
@@ -97,7 +86,6 @@ public class BridgeGame {
             userMap.add(new ArrayList<>());
             return true;
         }else if(command.equals(Constant.QUIT)) {
-            result = Constant.FAIL;
             return false;
         }
         throw new IllegalArgumentException("[ERROR] R또는 Q를 입력해주십시오.");
