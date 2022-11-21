@@ -5,6 +5,7 @@ import static bridge.constant.Constant.MIN_BRIDGE_SIZE;
 import static bridge.constant.ErrorMessage.BRIDGE_SIZE_IS_NOT_IN_RANGE;
 import static bridge.constant.ErrorMessage.BRIDGE_SIZE_IS_NOT_NUMBER;
 
+import bridge.domain.BridgeNumber;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -22,21 +23,17 @@ public class BridgeMaker {
     }
 
     public int inputBridgeSize() {
-        int bridgeSize;
+        OutputView outputView = new OutputView();
+        outputView.printRequestBridgeSize();
         while (true) {
-            OutputView.printRequestBridgeSize();
-            String bridgeSizeInput = InputView.readBridgeSize();
+            String bridgeSizeInput = new InputView().readBridgeSize();
             try {
-                validateIsNumber(bridgeSizeInput);
-                bridgeSize = Integer.parseInt(bridgeSizeInput);
-                validateBridgeSize(bridgeSize);
+                validate(bridgeSizeInput);
+                return Integer.parseInt(bridgeSizeInput);
             } catch (IllegalArgumentException exception) {
-                OutputView.printErrorMessage(exception);
-                continue;
+                outputView.printErrorMessage(exception);
             }
-            break;
         }
-        return bridgeSize;
     }
 
     /**
@@ -44,12 +41,18 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridgeNumbers = new ArrayList<>();
-        while (bridgeNumbers.size() < size) {
+        List<String> bridgeColumns = new ArrayList<>();
+        while (bridgeColumns.size() < size) {
             int randomValue = bridgeNumberGenerator.generate();
-            bridgeNumbers.add(BridgeNumber.getMark(randomValue));
+            bridgeColumns.add(BridgeNumber.getMark(randomValue));
         }
-        return bridgeNumbers;
+        return bridgeColumns;
+    }
+
+    private void validate(String bridgeSizeInput) {
+        validateIsNumber(bridgeSizeInput);
+        int bridgeSize = Integer.parseInt(bridgeSizeInput);
+        validateBridgeSizeIsInRange(bridgeSize);
     }
 
     private void validateIsNumber(String bridgeSize) {
@@ -58,7 +61,7 @@ public class BridgeMaker {
         }
     }
 
-    private void validateBridgeSize(int bridgeSize) throws IllegalArgumentException {
+    private void validateBridgeSizeIsInRange(int bridgeSize) throws IllegalArgumentException {
         if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException(BRIDGE_SIZE_IS_NOT_IN_RANGE);
         }
