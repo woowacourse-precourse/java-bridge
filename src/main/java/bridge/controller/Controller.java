@@ -30,7 +30,7 @@ public class Controller {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-        if(!bridgeMaker.validateBridgeSize(inputSize)){
+        if (!bridgeMaker.validateBridgeSize(inputSize)) {
             return createBridge();
         }
         int bridgeSize = Integer.parseInt(inputSize);
@@ -53,7 +53,7 @@ public class Controller {
 
     String inputMovement() {
         String movement = inputView.readMoving();
-        if(!bridgeGame.validateMoving(movement)){
+        if (!bridgeGame.validateMoving(movement)) {
             return inputMovement();
         }
         return movement;
@@ -61,16 +61,16 @@ public class Controller {
 
     boolean isAnswer() {
         if (!bridgeGame.getIsAnswer()) {
-           return checkCommand();
+            return checkCommand();
         }
         return false;
     }
 
-    boolean checkCommand(){
+    boolean checkCommand() {
         String command = inputView.readGameCommand();
-        if(!bridgeGame.validateGameCommand(command)){
-            return bridgeGame.isExit(command);
+        if (!bridgeGame.validateGameCommand(command)) {
+            return checkCommand();
         }
-        return false;
+        return bridgeGame.isExit(command);
     }
 }
