@@ -1,8 +1,11 @@
 package bridge.view;
 
+import static bridge.utils.command.GameCommand.QUIT;
+import static bridge.utils.command.GameCommand.RETRY;
 import static bridge.utils.command.MoveCommand.DOWN;
 import static bridge.utils.command.MoveCommand.UP;
 import static bridge.utils.message.FixedMessage.INPUT_BRIDGE_SIZE;
+import static bridge.utils.message.FixedMessage.INPUT_GAME_COMMAND;
 import static bridge.utils.message.FixedMessage.INPUT_MOVING;
 
 import bridge.validator.BridgeSizeValidator;
@@ -49,6 +52,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(
+                "\n" + String.format(INPUT_GAME_COMMAND.getMessage(), RETRY.getCommand(), QUIT.getCommand()));
+        String gameCommand = Console.readLine();
+        return gameCommand;
     }
 }
