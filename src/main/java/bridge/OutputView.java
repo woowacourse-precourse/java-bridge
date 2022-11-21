@@ -50,7 +50,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> curMap, List<String> answerMap, int count) {
+        System.out.println("최종 게임 결과");
+        printMap(curMap, answerMap);
+
+        boolean isSuccess = true;
+        for (int i = 0; i < curMap.size(); i++) {
+            if(matchInputAndAnswer(curMap.get(i), answerMap.get(i))%2 == 1){
+                isSuccess = false;
+            }
+        }
+        String success;
+        if (isSuccess)
+            success = "성공";
+        else
+            success = "실패";
+
+        System.out.println("게임 성공 여부 " + success);
+        System.out.println("총 시도한 횟수: " + count);
     }
 
     /**
