@@ -15,14 +15,18 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         List<String> bridge = new ArrayList<>();
-        while (size != 0) {
-            size--;
-            if (bridgeNumberGenerator.generate() == 1) {
-                bridge.add("U");
-                continue;
-            }
-            bridge.add("D");
+
+        for (int proc = 0; proc < size; proc++) {
+            String block = makeBlock(bridgeNumberGenerator);
+            bridge.add(block);
         }
         return bridge;
+    }
+
+    private String makeBlock(BridgeNumberGenerator bridgeNumberGenerator) {
+        if (bridgeNumberGenerator.generate() == 1) {
+            return "U";
+        }
+        return "D";
     }
 }
