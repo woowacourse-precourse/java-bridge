@@ -18,9 +18,9 @@ public class GameLauncher {
     public void launch() {
         Bridge bridge = init();
         do {
-            bridge.reGame();
+            bridgeGame.retry(bridge);
             game(bridge);
-        } while (!bridgeGame.isClearGame(bridge) && bridgeGame.retry(inputGameCommand()));
+        } while (!bridgeGame.isClearGame(bridge) && inputGameCommand().equals("R"));
         outputView.printResult(bridge);
     }
 

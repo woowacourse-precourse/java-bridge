@@ -32,9 +32,8 @@ public class BridgeGame {
         return isSurvive(bridge) && bridgeSize == moveShapeSize;
     }
 
-    public boolean retry(String operation) {
-        if(operation.equals("R"))
-            return true;
-        return false;
+    public void retry(Bridge bridge) {
+        bridge.getMoveTrace().clear();
+        bridge.increaseAttemptNumber();
     }
 }

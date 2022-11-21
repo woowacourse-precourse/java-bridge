@@ -24,8 +24,7 @@ public class Bridge {
         return this.moveTrace;
     }
 
-    public void reGame(){
-        moveTrace.clear();
+    public void increaseAttemptNumber(){
         ++attemptNumber;
     }
 }
