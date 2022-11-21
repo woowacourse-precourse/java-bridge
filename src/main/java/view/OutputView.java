@@ -12,9 +12,6 @@ public class OutputView {
     private static final String END = "]";
     private static final String MIDDLE = "|";
 
-    private HashMap<Integer, Boolean> upBridge = new HashMap<>();
-    private HashMap<Integer, Boolean> downBridge = new HashMap<>();
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -22,7 +19,7 @@ public class OutputView {
      *
      * @param endTurn : 마지막 턴에는 "|"를 출력하지 않도록 구분하기위해 사용
      */
-    public void printMap(int endTurn) {
+    public void printMap(int endTurn, HashMap upBridge, HashMap downBridge) {
         List<HashMap> bridge = List.of(upBridge, downBridge);
         for (HashMap bridgeSelect : bridge) {
             printBridge(endTurn, bridgeSelect);
@@ -50,17 +47,6 @@ public class OutputView {
             return "X";
         } catch (NullPointerException NPE) {
             return " ";
-        }
-    }
-
-    public void store(Boolean match, String move, int turn) {
-        if (move.equals("U")) {
-            upBridge.put(turn, match);
-            downBridge.put(turn, null);
-        }
-        if (move.equals("D")) {
-            upBridge.put(turn, null);
-            downBridge.put(turn, match);
         }
     }
 

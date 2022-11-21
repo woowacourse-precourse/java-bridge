@@ -4,6 +4,7 @@ import model.BridgeGame;
 import view.InputView;
 import view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PlayGame {
@@ -20,11 +21,9 @@ public class PlayGame {
         int turn = 0;
         int endTurn = inputView.setBridgeSize();
         while(turn < endTurn) {
-            String move = inputView.setMoving();
-            Boolean matchResult = crossAble.get(turn).equals(move);
-            outputView.store(matchResult, move, turn);
+            bridgeGame.move(crossAble, turn);
             turn++;
         }
-        outputView.printMap(endTurn);
+        outputView.printMap(endTurn, bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
     }
 }
