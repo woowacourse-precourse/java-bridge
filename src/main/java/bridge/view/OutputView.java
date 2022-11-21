@@ -24,6 +24,8 @@ public class OutputView {
     private static final String CORRECT_BRIDGE_RESULT = "O";
     private static final String WRONG_BRIDGE_RESULT = "X";
     private static final String EMPTY_BRIDGE = " ";
+    private static final String SUCCESS_GAME_RESULT = "성공";
+    private static final String FAIL_GAME_RESULT = "실패";
 
     public static void printStart() {
         System.out.println(START_GAME);
@@ -87,11 +89,11 @@ public class OutputView {
 
     private static String getGameResult(List<String> bridge, List<Boolean> getMovingResult) {
         if(bridge.size() != getMovingResult.size()) {
-            return "실패";
+            return FAIL_GAME_RESULT;
         }
         if(getMovingResult.get(getMovingResult.size()-1).equals(WRONG_BRIDGE)){
-            return "실패";
+            return FAIL_GAME_RESULT;
         }
-        return "성공";
+        return SUCCESS_GAME_RESULT;
     }
 }
