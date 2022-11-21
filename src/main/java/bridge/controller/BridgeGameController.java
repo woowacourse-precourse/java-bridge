@@ -76,8 +76,8 @@ public class BridgeGameController {
 
     private boolean oneGame() {
         currentBridge.clear();
-        for (int i = 0; i < bridge.size(); i++) {
-            boolean result = moveBridge(i);
+        for (int idx = 0; idx < bridge.size(); idx++) {
+            boolean result = moveBridge(idx);
             currentBridge.add(result);
             OutputView.printTopMap(currentBridge, bridge);
             OutputView.printBottomMap(currentBridge, bridge);
@@ -86,10 +86,10 @@ public class BridgeGameController {
         return true;
     }
 
-    private boolean moveBridge(int i) {
+    private boolean moveBridge(int idx) {
         BridgeGame bridgeGame = new BridgeGame();
 
         String moveCommand = initMoving();
-        return bridgeGame.move(i, moveCommand, bridge);
+        return bridgeGame.move(moveCommand, bridge.get(idx));
     }
 }
