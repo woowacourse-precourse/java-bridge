@@ -1,5 +1,18 @@
 package view;
 
+import static message.OutputMessage.BLANK_SYMBOL;
+import static message.OutputMessage.ERROR_FORMAT;
+import static message.OutputMessage.FINAL_RESULT_COMMENT;
+import static message.OutputMessage.GAME_FAIL_COMMENT;
+import static message.OutputMessage.GAME_INIT_COMMENT;
+import static message.OutputMessage.GAME_SUCCESS_COMMENT;
+import static message.OutputMessage.MOVE_FAIL_SYMBOL;
+import static message.OutputMessage.MOVE_SUCCESS_SYMBOL;
+import static message.OutputMessage.ROW_MOVE_RESULT_FORMAT;
+import static message.OutputMessage.SUCCESS_FORMAT;
+import static message.OutputMessage.SYMBOL_PARSER;
+import static message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
+
 import dto.GameResult;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +25,8 @@ import model.enums.MoveChoice;
  */
 public class OutputView {
 
-    private final String GAME_INIT_COMMENT = "다리 건너기 게임을 시작합니다.";
-    private final String FINAL_RESULT_COMMENT = "최종 게임 결과";
-    private final String SUCCESS_FORMAT = "게임 성공 여부: %s";
-    private final String TOTAL_TRY_COUNT_FORMAT = "총 시도한 횟수: %d";
-    private final String ROW_MOVE_RESULT_FORMAT = "[ %s ]";
-    private final Map<Boolean, String> gameSuccessMapper = Map.of(false, "실패", true, "성공");
-    private final Map<Boolean, String> moveSuccessMapper = Map.of(false, "X", true, "O");
-    private final String BLANK = " ";
-    private final String ERROR_FORMAT = "[ERROR] %s";
+    private final Map<Boolean, String> gameSuccessMapper = Map.of(false, GAME_FAIL_COMMENT.toString(), true, GAME_SUCCESS_COMMENT.toString());
+    private final Map<Boolean, String> moveSuccessMapper = Map.of(false, MOVE_FAIL_SYMBOL.toString(), true, MOVE_SUCCESS_SYMBOL.toString());
 
 
     public void printInitComment() {
@@ -56,9 +62,9 @@ public class OutputView {
                 formattedRow.add(moveSuccessMapper.get(bridgeMoveInformation.get(i).moveSucceed()));
                 continue;
             }
-            formattedRow.add(BLANK);
+            formattedRow.add(BLANK_SYMBOL.toString());
         }
-        return String.format(ROW_MOVE_RESULT_FORMAT,String.join(" | ", formattedRow));
+        return String.format(ROW_MOVE_RESULT_FORMAT.toString(),String.join(SYMBOL_PARSER.toString(), formattedRow));
     }
 
     /**
@@ -70,11 +76,11 @@ public class OutputView {
         System.out.println(FINAL_RESULT_COMMENT);
         printMap(gameResult);
 
-        System.out.println(String.format(SUCCESS_FORMAT, gameSuccessMapper.get(gameResult.getStatus().succeed())));
-        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT, gameResult.getTryCount()));
+        System.out.println(String.format(SUCCESS_FORMAT.toString(), gameSuccessMapper.get(gameResult.getStatus().succeed())));
+        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT.toString(), gameResult.getTryCount()));
     }
 
     public void printError(String message) {
-        System.out.println(String.format(ERROR_FORMAT, message));
+        System.out.println(String.format(ERROR_FORMAT.toString(), message));
     }
 }
