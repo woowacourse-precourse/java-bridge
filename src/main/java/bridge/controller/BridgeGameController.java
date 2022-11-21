@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.utils.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -19,9 +20,7 @@ public class BridgeGameController {
     public void start(){
         try {
             inputView.printHello();
-            size = inputView.readBridgeSize();
-            bridgeGame = new BridgeGame(size);
-
+            sizeLogic();
             gameLogic();
         }
         catch (IllegalArgumentException e){
@@ -43,6 +42,10 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame.getInputs(), restartResult, count);
     }
 
+    private void sizeLogic(){
+        size = inputView.readBridgeSize();
+        bridgeGame = new BridgeGame(size);
+    }
     private boolean moveLogic(){
         String userInput = inputView.readMoving();
         boolean movingResult = bridgeGame.move(userInput);
