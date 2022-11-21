@@ -27,7 +27,7 @@ public class BridgeGame {
     }
 
     private boolean isSameMoving(Moving moving) {
-        return bridge.isSameMovingAt(player.getCurrentPosition(), moving);
+        return bridge.isSameMovingAt(player.getPosition(), moving);
     }
 
     public Result getGameResult() {

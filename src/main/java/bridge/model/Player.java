@@ -5,11 +5,11 @@ public class Player {
     public static final int STARTING_POINT = 0;
     public static final int FIRST_TRIAL = 1;
 
-    private int currentPosition;
+    private int position;
     private int trialCount;
 
     private Player() {
-        currentPosition = STARTING_POINT;
+        position = STARTING_POINT;
         trialCount = FIRST_TRIAL;
     }
 
@@ -23,18 +23,18 @@ public class Player {
 
     public void retry() {
         trialCount++;
-        currentPosition = STARTING_POINT;
+        position = STARTING_POINT;
     }
 
     public boolean isAt(int endPoint) {
-        return currentPosition == endPoint;
+        return position == endPoint;
     }
 
     public void move() {
-        currentPosition++;
+        position++;
     }
 
-    public int getCurrentPosition() {
-        return currentPosition;
+    public int getPosition() {
+        return position;
     }
 }

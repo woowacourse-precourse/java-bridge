@@ -41,7 +41,7 @@ public class BridgeGameController {
     private Bridge makeBridge() {
         int bridgeSize = readBridgeSize();
 
-        return Bridge.of(makeBridgeDirections(bridgeSize));
+        return Bridge.of(makeDirections(bridgeSize));
     }
 
     private void progressGame(BridgeGame bridgeGame, MovingHistory movingHistory) {
@@ -90,10 +90,14 @@ public class BridgeGameController {
         if (movingResult.isFail()) {
             return askRestart(bridgeGame, movingHistory);
         }
-        if (bridgeGame.getGameResult().isSuccess()) {
+        if (isCompleted(bridgeGame)) {
             return GAME_OVER;
         }
         return IN_PROGRESS;
+    }
+
+    private boolean isCompleted(BridgeGame bridgeGame) {
+        return bridgeGame.getGameResult().isSuccess();
     }
 
     private boolean askRestart(BridgeGame bridgeGame, MovingHistory movingHistory) {
@@ -107,10 +111,15 @@ public class BridgeGameController {
         return GAME_OVER;
     }
 
-    private List<String> makeBridgeDirections(int bridgeSize) {
-        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+    private List<String> makeDirections(int bridgeSize) {
+        BridgeMaker bridgeMaker = getBridgeMaker();
 
         return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private BridgeMaker getBridgeMaker() {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+
+        return new BridgeMaker(numberGenerator);
     }
 }
