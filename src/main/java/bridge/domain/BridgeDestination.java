@@ -6,12 +6,10 @@ import bridge.view.OutputView;
 
 public class BridgeDestination {
 
-
+    private static final Boolean GAME_OVER = false;
+    private static final Boolean RESTART = true;
     private OutputView outputView = new OutputView();
-
     private InputView inputView = new InputView();
-    private final Boolean GAME_OVER = false;
-    private final Boolean RESTART = true;
 
     public boolean isReachFinal(int bridgeSize, int gameCount, BridgePrinting bridgePrinting) {
         if (!BridgePrinting.isMoveStop()) {
@@ -21,10 +19,10 @@ public class BridgeDestination {
         return false;
     }
 
-    public void setQuit(int bridgeSize,  int gameCount, BridgePrinting bridgePrinting) {
-        int nowUserBridgeSize=bridgePrinting.getSize();
+    public void setQuit(int bridgeSize, int gameCount, BridgePrinting bridgePrinting) {
+        int nowUserBridgeSize = bridgePrinting.getSize();
         if (bridgeSize == nowUserBridgeSize && !BridgePrinting.isMoveStop()) {
-            outputView.printResult(gameCount,  bridgePrinting,true);
+            outputView.printResult(gameCount, bridgePrinting, true);
             return;
         }
         outputView.printResult(gameCount, bridgePrinting, false);

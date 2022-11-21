@@ -10,7 +10,7 @@ public enum ERROR {
     private String exception;
 
     ERROR(String exception) {
-        this.exception=exception;
+        this.exception = exception;
     }
 
     public String getException() {

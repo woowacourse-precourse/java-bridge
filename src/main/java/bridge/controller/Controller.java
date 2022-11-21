@@ -10,10 +10,10 @@ import java.util.List;
 public class Controller {
 
     private InputView inputView = new InputView();
-    private int size = 0;
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private List<String> bridgeState = new ArrayList<>();
+    private int size = 0;
 
 
     public Controller() {

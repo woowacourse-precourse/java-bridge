@@ -9,10 +9,11 @@ public class BridgePrinting {
 
     private static List<Boolean> upState;
     private static List<Boolean> downState;
+
     private static List<Integer> traceLocation = new ArrayList<>();
-    private OutputView outputView = new OutputView();
     private static boolean stop = false;
-    
+    private OutputView outputView = new OutputView();
+
     public BridgePrinting(List<Boolean> upState, List<Boolean> downState) {
         this.upState = upState;
         this.downState = downState;
@@ -34,6 +35,7 @@ public class BridgePrinting {
     public void addTraceLocation(int nowLocation) {
         traceLocation.add(nowLocation);
     }
+
     public void makeBridge() {
         makeUpUserBridge();
         makeDownUserBridge();
@@ -58,7 +60,7 @@ public class BridgePrinting {
         String setBridge = "";
         for (int index = 0; index < bridgeState.size(); index++) {
             setBridge = setBridge + getState(bridgeState, index, upDown);
-            if (isIndexBetweenSpace(index, bridgeState.size()-1)) {
+            if (isIndexBetweenSpace(index, bridgeState.size() - 1)) {
                 continue;
             }
             setBridge = setBridge + GameState.betweenBridge;
@@ -90,10 +92,9 @@ public class BridgePrinting {
         return bridgeState.get(now) && traceLocation.get(now) == nowState;
     }
 
-    public int getSize(){
+    public int getSize() {
         return upState.size();
     }
-
 
 
 }

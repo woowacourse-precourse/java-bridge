@@ -27,7 +27,8 @@ public class OutputView {
         Validate validate = new Validate();
         System.out.println(ShowPrint.RESULT.getPrint());
         bridgePrinting.makeBridge();
-        System.out.println(ShowPrint.RESULT_IS_SUCCESS.getPrint() + validate.validateFinalSuccess(isSuccess));
+        System.out.println(
+            ShowPrint.RESULT_IS_SUCCESS.getPrint() + validate.validateFinalSuccess(isSuccess));
         System.out.println(ShowPrint.RESULT_GAME_COUNT.getPrint() + count);
     }
 
@@ -46,7 +47,6 @@ public class OutputView {
     public void printMove() {
         System.out.println(ShowPrint.MOVE.getPrint());
     }
-
 
     public void printRestart() {
         System.out.println(ShowPrint.RESTART.getPrint());

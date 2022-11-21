@@ -11,7 +11,7 @@ public class BridgeMoveProcess {
     private List<Boolean> upState = new ArrayList<>();
     private List<Boolean> downState = new ArrayList<>();
     private InputView inputView = new InputView();
-    int idx = 0;
+    private int idx = 0;
 
 
     public BridgePrinting moveProcess(List<String> bridgeState, int bridgeSize) {
@@ -34,12 +34,12 @@ public class BridgeMoveProcess {
     }
 
 
-    private void setPrintState(List<Boolean> upState, List<Boolean> downState, int upDown) {
-        if (upDown == GameState.UP_STATEMENT) {
+    private void setPrintState(List<Boolean> upState, List<Boolean> downState, int state) {
+        if (state == GameState.UP_STATEMENT) {
             upState.add(true);
             downState.add(false);
         }
-        if (upDown == GameState.DOWN_STATEMENT) {
+        if (state == GameState.DOWN_STATEMENT) {
             upState.add(false);
             downState.add(true);
         }
@@ -64,7 +64,5 @@ public class BridgeMoveProcess {
         }
         return GameState.DOWN_STATEMENT;
     }
-
-
 
 }
