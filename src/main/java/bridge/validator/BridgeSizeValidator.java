@@ -5,11 +5,12 @@ import static bridge.util.BridgeGameConstant.VALID_MIN_RANGE;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_RANGE_ERROR;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_TYPE_ERROR;
 
-public class BridgeSizeValidator {
+public class BridgeSizeValidator implements Validator {
 
     public BridgeSizeValidator() {
     }
 
+    @Override
     public void validate(String bridgeSize) {
         if (!hasValidType(bridgeSize)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_TYPE_ERROR.getMessage());
