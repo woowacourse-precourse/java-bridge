@@ -19,6 +19,10 @@ public class User {
         bridgeSize = Integer.parseInt(userInput);
     }
 
+    public void resetUserMoving() {
+        movingRecord = new ArrayList<String>();
+    }
+
     public static void recordUserMoving(String userInput) {
         movingRecord.add(userInput);
     }
