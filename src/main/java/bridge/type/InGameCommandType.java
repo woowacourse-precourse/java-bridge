@@ -7,22 +7,29 @@ import java.util.stream.Collectors;
 
 public enum InGameCommandType {
 
-    UP("U"),
-    DOWN("D");
-
-    private static final String COMMAND_NOT_FOUND = Arrays.stream(values())
-            .map(InGameCommandType::getCommand)
-            .collect(Collectors.joining(", ")) +
-            " 중 하나를 입력해야 합니다.";
+    MOVE_UP("U", "위"),
+    MOVE_DOWN("D", "아래");
 
     private final String command;
+    private final String name;
 
-    InGameCommandType(String command) {
+    InGameCommandType(String command, String name) {
         this.command = command;
+        this.name = name;
     }
 
     public String getCommand() {
         return command;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static String getDescription() {
+        return Arrays.stream(values())
+                .map(value -> value.getName() + ": " + value.getCommand())
+                .collect(Collectors.joining(", "));
     }
 
     private static final Map<String, InGameCommandType> commands =
@@ -30,10 +37,6 @@ public enum InGameCommandType {
                     .collect(Collectors.toUnmodifiableMap(InGameCommandType::getCommand, Function.identity()));
 
     public static InGameCommandType find(String command) {
-        InGameCommandType selectedCommand = commands.get(command);
-        if (selectedCommand == null) {
-            throw new NullPointerException(COMMAND_NOT_FOUND);
-        }
-        return selectedCommand;
+        return commands.get(command);
     }
 }
