@@ -8,12 +8,42 @@ import java.util.List;
  */
 public class OutputView {
 
+    String correct = " O ";
+    String notSelected = "   ";
+    String wrong = " X ";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> printMap(List<String> bridgeAnswer, List<String> currentResult, Boolean userChoice, int stage) {
+    public void printMap(List<String> bridgeAnswer, List<String> currentResult, Boolean userChoice, int stage) {
+        List<String> finalResult = designBridgeMap(bridgeAnswer, currentResult, userChoice, stage);
+        int size = finalResult.size();
+
+        System.out.printf("[");
+        for (int index = 0; index < size / 2; index++) {
+            System.out.printf(finalResult.get(index));
+            if(index<size/2-1){
+                System.out.printf("|");
+            }
+        }
+        System.out.println("]");
+
+
+        System.out.printf("[");
+        for (int index = size / 2; index < size; index++) {
+            System.out.printf(finalResult.get(index));
+            if(index<size-1){
+                System.out.printf("|");
+            }
+        }
+        System.out.println("]");
+    }
+
+
+
+    public List<String> designBridgeMap(List<String> bridgeAnswer, List<String> currentResult, Boolean userChoice, int stage) {
         if (userChoice) {
             currentResult = printMapCorrect(bridgeAnswer, currentResult, stage);
         }
@@ -44,8 +74,7 @@ public class OutputView {
     }
 
     public List<String> printMapUpsideCorrect(List<String> currentResult, int stage) {
-        String correct = "[ O ]";
-        String notSelected = "[   ]";
+
         currentResult.add(notSelected);
         currentResult.add(stage, correct);
 
@@ -53,17 +82,12 @@ public class OutputView {
     }
 
     public List<String> printMapDownsideCorrect(List<String> currentResult, int stage) {
-        String correct = "[ O ]";
-        String notSelected = "[   ]";
-
         currentResult.add(currentResult.size() - stage, notSelected);
         currentResult.add(correct);
         return currentResult;
     }
 
     public List<String> printMapUpsideWrong(List<String> currentResult, int stage) {
-        String wrong = "[ X ]";
-        String notSelected = "[   ]";
         currentResult.add(wrong);
         currentResult.add(stage, notSelected);
 
@@ -71,9 +95,6 @@ public class OutputView {
     }
 
     public List<String> printMapDownsideWrong(List<String> currentResult, int stage) {
-        String wrong = "[ X ]";
-        String notSelected = "[   ]";
-
         currentResult.add(currentResult.size() - stage, wrong);
         currentResult.add(notSelected);
         return currentResult;
