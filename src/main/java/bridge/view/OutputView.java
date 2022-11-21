@@ -16,6 +16,7 @@ public class OutputView {
 
     public static void printStartGame() {
         System.out.println(START_BRIDGE_GAME);
+        System.out.println();
     }
 
     public static void requestBridgeSize() {
@@ -34,6 +35,7 @@ public class OutputView {
         for (int i = 0; i < Constant.BRIDGE_WIDTH; i++) {
             System.out.println("[ " +String.join(" | ", map.get(i)) + " ]");
         }
+        System.out.println();
     }
 
     public static void printResult(List<List<String>> map, String result, int totalTry) {
