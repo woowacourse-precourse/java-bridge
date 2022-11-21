@@ -4,7 +4,7 @@
 
 ![Generic badge](https://img.shields.io/badge/precourse-week4-green.svg)
 ![Generic badge](https://img.shields.io/badge/test-6_passed-blue.svg)
-![Generic badge](https://img.shields.io/badge/version-1.1.1-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/version-1.2.0-brightgreen.svg)
 
 > 우테코 5기 4주차 미션 다리게임을 구현한 저장소입니다
 
@@ -85,14 +85,14 @@ ___
     - 루프: 두번 List를 돌며 출력(한번은 UP, 한번은 DOWN)
         * 한 줄 내에서: START -> HIT, MISS -> END
           (LOOP는 전달받은 현위치까지 출력)
-- [ ] 게임 종료
+- [X] 게임 종료
     * [X] 성공조건 : MAP-SIZE 다리길이 도달 && 마지막 VALUE는 TRUE
-    * [ ] 실패조건 : 재시작함수에서 Q눌렀을 때
+    * [X] 실패조건 : 재시작함수에서 Q눌렀을 때
 
 #### 7. 재시작 ( Class : BridgeGame )
 
 - 선 조치
-- [ ] 유효성 검사: RQ가 아님 (대소문자..는 고민)
+- [X] 유효성 검사: RQ가 아님 (대소문자..는 고민)
 - 추후 조치
-- [ ] R 선택 시 : 현 위치 초기화 -> 루프 선두(위치 이동)부터 재시작
-- [ ] Q 선택 시 : 결과 출력 후 게임 종료
+- [X] R 선택 시 : 현 위치 초기화 -> 루프 선두(위치 이동)부터 재시작
+- [X] Q 선택 시 : 결과 출력 후 게임 종료

@@ -11,10 +11,16 @@ public class Application {
     static Result totalResult = new Result();
 
     public static void failGame(Bridge bridge) {
+        String command;
         bridgeGame.initializeValues();
-        outputView.printRestart();
-        String command = inputView.readGameCommand();
-        bridgeGame.retry(bridge, command);
+        OutputView.afterFail = true;
+        do {
+            outputView.printRestart();
+            command = inputView.readGameCommand();
+            if (!InputView.commandFormatError) {
+                bridgeGame.retry(bridge, command);
+            }
+        } while (InputView.commandFormatError || bridgeGame.valueError);
     }
 
     public static void endGame(Bridge bridge, Boolean successGame) {
@@ -29,17 +35,22 @@ public class Application {
         return guessResult;
     }
 
-    public static void makeMove(int trial) {
-        outputView.printEnterMove(trial);
-        String direction = inputView.readMoving();
-        bridgeGame.move(direction);
+    public static void makeMove() {
+        String direction;
+        do {
+            outputView.printEnterMove();
+            direction = inputView.readMoving();
+            if (!InputView.moveFormatError) {
+                bridgeGame.move(direction);
+            }
+        } while (InputView.moveFormatError || bridgeGame.valueError);
     }
 
     public static boolean runGuessLoop(Bridge bridge) {
         boolean currentGuess = true;
         for (int currentPosition = 0; currentPosition < bridge.size() && currentGuess; currentPosition++) {
             BridgeGameDto bridgeGameDto = bridgeGame.sendDto();
-            makeMove(bridgeGameDto.totalTrial);
+            makeMove();
             currentGuess = judgeMove(bridge);
             outputView.printMap(bridge.sendDto(), totalResult.sendDto());
         }
@@ -55,12 +66,23 @@ public class Application {
         endGame(bridge, successGame);
     }
 
+    public static Bridge buildBridgeBody() {
+        Bridge bridge = null;
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        do {
+            outputView.printEnterBridgeSize();
+            int bridgeSize = inputView.readBridgeSize();
+            if (!InputView.sizeFormatError) {
+                bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+            }
+        } while (InputView.sizeFormatError || bridgeMaker.valueError);
+        return bridge;
+    }
+
     public static Bridge buildBridge() {
         outputView.printStart();
-        outputView.printEnterBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = buildBridgeBody();
+        return bridge;
     }
 
     public static void main(String[] args) {
