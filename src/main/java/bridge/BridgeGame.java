@@ -12,12 +12,12 @@ public class BridgeGame {
     private int size;
     private List<String> answers;
 
-    public static StringJoiner upperBridge = new StringJoiner("|", "[", "]");
-    public static StringJoiner underBridge = new StringJoiner("|", "[", "]");
+    private StringJoiner upperBridge = new StringJoiner("|", "[", "]");
+    private StringJoiner underBridge = new StringJoiner("|", "[", "]");
 
-    public static String success;
+    private String success;
 
-    public static int retryCount = 1;
+    private int retryCount = 1;
 
     public BridgeGame(InputView inputview, OutputView outputView) {
         this.inputView = inputview;
@@ -49,7 +49,7 @@ public class BridgeGame {
     public void move(String answer, String readMoving) {
         moveUpperBridge(answer, readMoving);
         moveUnderBridge(answer, readMoving);
-        outputView.printMap();
+        outputView.printMap(upperBridge.toString() + "\n" + underBridge.toString());
     }
 
     public void moveUpperBridge(String answer, String readMoving) {
@@ -96,7 +96,7 @@ public class BridgeGame {
         if (success.equals("실패")) {
             input = inputView.readGameCommand();
         }
-        outputView.printResult();
+        outputView.printResult(upperBridge.toString() + "\n" + underBridge.toString(), success, retryCount);
         return input;
     }
 
