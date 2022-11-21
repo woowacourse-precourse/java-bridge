@@ -40,4 +40,21 @@ public class UpOrDown {
             throw new IllegalArgumentException(Error.DIRECTION_INPUT_ERROR.getMessage());
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UpOrDown upOrDown = (UpOrDown) o;
+        return Objects.equals(value, upOrDown.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }
