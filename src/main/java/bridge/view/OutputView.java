@@ -54,12 +54,30 @@ public class OutputView {
         return "";
     }
 
-
     private void incorrectPrintMap(BridgeGame game) {
-        System.out.println(makeLine(game, "UP_FAIL"));
-        System.out.println(makeLine(game, "DOWN_FAIL"));
+        System.out.println(makeLineIncorrect(game, "UP"));
+        System.out.println(makeLineIncorrect(game, "DOWN"));
         System.out.println();
     }
+
+    private String makeLineIncorrect(BridgeGame game, String type) {
+        String line = PrintSentence.LEFT_WALL.getSentence();
+        for (int i = 0; i < game.getNowPosition(); i++) {
+            line += checkUpOrNot(game, i, type);
+            line += checkLast(game, i);
+        }
+        line += makeLineIncorrectLastValue(game, type);
+        line += PrintSentence.RIGHT_WALL.getSentence();
+        return line;
+    }
+
+     private String makeLineIncorrectLastValue(BridgeGame game, String type) {
+        if (type.equals("UP")) {
+            return checkUpOrNot(game, game.getNowPosition(), "UP_FAIL");
+        }
+        return checkUpOrNot(game, game.getNowPosition(), "DOWN_FAIL");
+    }
+
 
     public void printResult(BridgeGame game, int winType) {
         System.out.println(PrintSentence.GAME_RESULT.getSentence());
