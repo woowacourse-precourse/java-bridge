@@ -22,8 +22,8 @@ public class Validator {
         }
     }
 
-    public static void validateMoving(char moving) {
-        if (moving != 'U' && moving != 'D') {
+    public static void validateMoving(String moving) {
+        if (moving.charAt(0) != 'U' && moving.charAt(0) != 'D') {
             throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getMessage());
         }
     }
