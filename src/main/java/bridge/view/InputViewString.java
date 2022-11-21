@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.utils;
 
 public enum InputViewString {
     BRIDGE_SIZE_MESSAGE("다리의 길이를 입력해주세요."),
