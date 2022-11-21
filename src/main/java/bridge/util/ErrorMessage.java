@@ -8,7 +8,7 @@ public class ErrorMessage {
 
     public static final String IS_NOT_NUMBER = ERROR + "다리 길이는 숫자여야 합니다.";
     public static final String IS_NOT_RANGE_SIZE =
-            ERROR + "다리 길이의 범위는 " + BridgeConstatns.SIZE_MINIMUM + "부터 " + BridgeConstatns.SIZE_MAXIMUM
+            ERROR + "다리 길이의 범위는 " + BridgeSize.MINIMUM.getSize() + "부터 " + BridgeSize.MAXIMUM.getSize()
                     + " 사이의 숫자여야 합니다.";
 
     public static final String IS_NOT_MOVEMENT =

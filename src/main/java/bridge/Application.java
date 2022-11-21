@@ -10,7 +10,6 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-
         BridgeController bridgeController = new BridgeController(inputView, outputView, bridgeNumberGenerator);
 
         try {
@@ -18,6 +17,5 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 }

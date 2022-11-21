@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeMovement;
 import bridge.domain.GameCommand;
+import bridge.util.BridgeSize;
 import bridge.util.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -19,8 +20,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = input();
-        InputValidator.validateBridgeSize(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        InputValidator.validateNumber(bridgeSize);
+        return BridgeSize.findByRange(Integer.parseInt(bridgeSize));
     }
 
     /**
