@@ -13,7 +13,9 @@
   - `GameController.playRound()`메서드를 통해 라운드를 진행한다.
   - `inputView.readMoving()`를 호출하여 플레이어가 이동할 칸을 입력받는다.
 - 라운드마다 다음 라운드를 진행할지 확인한다.
-  - ``
+  - `playBridgeGame()`메서드를 통해 구현한다.
+  - `BridgeGame.checkLastMove()`를 호출하여 입력한 이동이 정답인지 확인한다.
+  - `GameContoller.manageRetry()`를 호출하여 재시작 요청을 처리한다.
 - 게임 재시작/종료 여부를 입력받는다.
 
 #### 출력
