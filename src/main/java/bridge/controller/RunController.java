@@ -3,7 +3,7 @@ package bridge.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.Bridge;
+import bridge.domain.Bridge;
 import bridge.service.BridgeGame;
 import bridge.service.MovingService;
 import bridge.utils.Notice;

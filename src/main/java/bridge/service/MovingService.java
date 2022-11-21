@@ -2,7 +2,7 @@ package bridge.service;
 
 import java.util.List;
 
-import bridge.Bridge;
+import bridge.domain.Bridge;
 
 public class MovingService {
 

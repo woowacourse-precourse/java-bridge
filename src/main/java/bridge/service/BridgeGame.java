@@ -3,7 +3,7 @@ package bridge.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.Bridge;
+import bridge.domain.Bridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
