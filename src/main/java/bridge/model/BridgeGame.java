@@ -1,7 +1,6 @@
 package bridge.model;
 
 import bridge.controller.GameController;
-import bridge.view.OutputView;
 import java.util.List;
 
 /**
@@ -30,8 +29,8 @@ public class BridgeGame {
             GameController.failOrSuccess = false;
             return true;
         }
-        OutputView.first = new StringBuilder();
-        OutputView.second = new StringBuilder();
+        GameController.first = new StringBuilder();
+        GameController.second = new StringBuilder();
         moveIndex = 0;
         GameController.gameCount++;
         return false;

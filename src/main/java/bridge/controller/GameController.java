@@ -13,6 +13,8 @@ public class GameController {
     public static int gameCount = 1;
     public static boolean failOrSuccess = true;
     public static List<String> bridgeResult = new ArrayList<>();
+    public static StringBuilder first = new StringBuilder();
+    public static StringBuilder second = new StringBuilder();
 
     public void gameStart() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
