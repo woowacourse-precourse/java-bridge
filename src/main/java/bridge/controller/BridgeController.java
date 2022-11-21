@@ -1,18 +1,21 @@
 package bridge.controller;
 
+import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private BridgeGame bridgeGame;
 
     public void run() {
         String size = inputView.readBridgeSize();
         validateBridgeSize(size);
 
         int bridgeSize = Integer.parseInt(size);
+        bridgeGame = new BridgeGame(bridgeSize);
 
     }
 
