@@ -58,34 +58,50 @@ public class OutputView {
         return bottomBridge.toString();
     }
 
+    /**
+     *  printTopBridgeStatus, printBottomBridgeStatus
+     *  - 사용자 입력에 맞게 그 결과 StringBuilder에 append
+     *  getTopStringByStatus, getBottomStringByStatus
+     *  - 사용자 입력과 실제 다리 비교해서 그 결과 String 반환
+     */
+
     private StringBuilder printTopBridgeStatus(BridgeGame game, StringBuilder topBridge) {
         for (int i = 0; i < game.getUserInput().size(); i++) {
-            if (game.getUserInput().get(i).equals("U")) {
-                if (game.getBridge().get(i).equals("U")) {
-                    topBridge.append(" O |");
-                    continue;
-                }
-                topBridge.append(" X |");
-                continue;
-            }
-            topBridge.append("   |");
+            String appendTarget = getTopStringByStatus(game.getBridge().get(i), game.getUserInput().get(i));
+
+            topBridge.append(appendTarget);
         }
         return topBridge;
     }
 
     private StringBuilder printBottomBridgeStatus(BridgeGame game, StringBuilder bottomBridge) {
         for (int i = 0; i < game.getUserInput().size(); i++) {
-            if (game.getUserInput().get(i).equals("D")) {
-                if (game.getBridge().get(i).equals("D")) {
-                    bottomBridge.append(" O |");
-                    continue;
-                }
-                bottomBridge.append(" X |");
-                continue;
-            }
-            bottomBridge.append("   |");
+            String appendTarget = getBottomStringByStatus(game.getBridge().get(i), game.getUserInput().get(i));
+
+            bottomBridge.append(appendTarget);
         }
         return bottomBridge;
+    }
+
+
+    private String getTopStringByStatus(String bridge, String user) {
+        if (user.equals("U") && bridge.equals("U")) {
+            return " O |";
+        }
+        if (user.equals("U") && bridge.equals("D")) {
+            return " X |";
+        }
+        return "   |";
+    }
+
+    private String getBottomStringByStatus(String bridge, String user) {
+        if (user.equals("D") && bridge.equals("D")) {
+            return " O |";
+        }
+        if (user.equals("D") && bridge.equals("U")) {
+            return " X |";
+        }
+        return "   |";
     }
 
     /**
