@@ -24,6 +24,7 @@ public class OutputView {
 
         System.out.println(Map.START.code() + String.join(Map.JOIN.code(), upperMap) + Map.END.code());
         System.out.println(Map.START.code() + String.join(Map.JOIN.code(), lowerMap) + Map.END.code());
+        System.out.println();
     }
 
     private List<String> partialMap(List<String> moves, boolean isFail, String code) {
