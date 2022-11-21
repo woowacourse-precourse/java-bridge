@@ -10,7 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     public static final String INPUT_FOR_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    public static final String INPUT_FOR_MOVING_BRIDGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String INPUT_FOR_MOVING_BRIDGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String INPUT_FOR_RETRY_OR_END = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
@@ -21,6 +21,7 @@ public class InputView {
             System.out.println(INPUT_FOR_BRIDGE_SIZE);
             int result = convertBridgeSizeToInteger(Console.readLine());
             validateBridgeSizeIsZero(result);
+            System.out.println();
             return result;
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
