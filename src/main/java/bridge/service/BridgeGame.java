@@ -18,8 +18,9 @@ public class BridgeGame {
     private final BridgeGameRepository bridgeGameRepository = BridgeGameRepository.getInstance();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-    public void generateRandomBridge(final int bridgeSize) {
-        bridgeGameRepository.storeBridge(new Bridge(createBlocks(bridgeSize), createCrossStatuses(bridgeSize)));
+    public Bridge generateRandomBridge(final String inputBridgeSize) {
+        int bridgeSize = InputValidator.validateBridgeSize(inputBridgeSize);
+        return bridgeGameRepository.storeBridge(new Bridge(createBlocks(bridgeSize), createCrossStatuses(bridgeSize)));
     }
 
     private Blocks createBlocks(final int bridgeSize) {

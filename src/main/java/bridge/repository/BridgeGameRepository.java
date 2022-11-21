@@ -22,7 +22,7 @@ public class BridgeGameRepository {
         return findBridge();
     }
 
-    private Bridge findBridge() {
+    public Bridge findBridge() {
         return store.get(BRIDGE_GET);
     }
 
