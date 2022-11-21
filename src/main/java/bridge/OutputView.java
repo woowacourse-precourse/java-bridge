@@ -1,17 +1,22 @@
 package bridge;
 
+import java.sql.SQLOutput;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
     private static final String start="[";
     private static final String end="]";
-    private static final String rightSpaceWithWall=" 0 |";
+    private static final String rightSpaceWithWall=" O |";
     private static final String wrongSpaceWithWall=" X |";
     private static final String emptySpaceWithWall="   |";
-    private static final String rightSpaceWithoutWall=" 0 ";
+    private static final String rightSpaceWithoutWall=" O ";
     private static final String wrongSpaceWithoutWall=" X ";
     private static final String emptySpaceWithoutWall="   ";
+    private static final String resultMessage="최종 게임 결과";
+    private static final String winningStatusMessage= "게임 성공 여부: ";
+    private static final String attemptMessage = "총 시도한 횟수: ";
 
 
     /**
@@ -58,6 +63,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Bridge bridge,Player player,String lastStep) {
+        System.out.println(resultMessage);
+        int curLocation = player.getCurrentLocation();
+        printBridge(bridge,"U",lastStep,curLocation);
+        printBridge(bridge,"D",lastStep,curLocation);
+        System.out.println(winningStatusMessage+checkWinOrLose(player));
+        System.out.println(attemptMessage+player.getAttempt());
+    }
+
+    public String checkWinOrLose(Player player){
+        if(player.isPlayerWin()){
+            return "성공";
+        }
+        return "실패";
     }
 }
