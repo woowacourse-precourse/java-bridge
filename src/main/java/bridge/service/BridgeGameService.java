@@ -33,4 +33,16 @@ public class BridgeGameService {
         bridgeGame = new BridgeGame(bridge);
         output.printEnterBridgeLength(); // 다리의 길이를 입력해주세요.
     }
+
+    private void moveCrossBridge() {
+        int moveIndex = 0;
+        boolean movingResult = true;
+        while (moveIndex < bridgeSize && movingResult) {
+            output.printSelectMoveDirection(); // 이동할 칸을 선택해주세요.
+            String movingInput = input.readMoving();
+            movingResult = bridgeGame.move(crossByBridge.get(moveIndex), movingInput);
+            bridgeGame.setMovingResult(crossByBridge.get(moveIndex++), movingInput);
+            output.printMap(bridge);
+        }
+    }
 }
