@@ -46,4 +46,8 @@ public class BridgeGame {
     public List<String> getBridge() {
         return this.bridge;
     }
+
+    public int getCurrentUserPosition() {
+        return this.currentUserPosition;
+    }
 }
