@@ -7,6 +7,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    boolean isPass;
     private int round = 0, total_round = 0;
     private List<String> computer = new ArrayList<>();
     InputView inputView = new InputView();
@@ -18,9 +19,25 @@ public class BridgeGame {
         computer = bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
+    public void run() {
+        for (int i = 0; i < computer.size(); i++) {
+            move();
+            outputView.printMap();
+            if (!isPass) {
+                break;
+            }
+        }
+        String retryCommand = inputView.readGameCommand();
+        if(retryCommand == "Q") return;
+        if(retryCommand != "R")
+            throw new IllegalArgumentException();
+        retry();
+        run();
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
+     *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
@@ -49,9 +66,11 @@ public class BridgeGame {
      */
     public String[] check(int round, String user) {
         if (computer.get(round) == user) {
+            isPass = true;
             if (user == "D") return new String[]{" ", "O"};
             return new String[]{"O", " "};
         }
+        isPass = false;
         if (user == "D") return new String[]{" ", "X"};
         return new String[]{"X", " "};
     }

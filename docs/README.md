@@ -33,8 +33,8 @@
 - [x] 이동한 결과를 출력한다. - OutputView#printMap()
   - [x] 플레이어가 이동한 결과를 비교한다. - BridgeGame#check()
   - [x] 결과를 저장한다. - OutputView#updateMap()
-- [ ] 다리를 끝까지 건너면 게임이 종료된다.
-- [ ] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다.
+- [x] 다리를 끝까지 건너면 게임이 종료된다. - BridgeGame#run()
+- [x] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다. - BridgeGame#run()
   - [x] 재시작해도 처음에 만든 다리로 재사용한다. BridgeGame#retry()
   - [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다. - BridgeGame#total_round
 
