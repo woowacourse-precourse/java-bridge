@@ -107,7 +107,6 @@ public class BridgeGame {
             resultFinal.add(first);
             resultFinal.add(second);
         }
-/*
         if(equalsCheck.get(index).equals("X")){
             String input = readGameCommand();
             if(input.equals("R")){
@@ -115,14 +114,13 @@ public class BridgeGame {
                 retry(bridgeLen, bridges, startCount);
             }
             if(input.equals("Q")){
-                gameReStartFinal(resultFinal,startCount);
+                //gameReStartFinal(resultFinal,startCount);
                 resultFinal.clear();
                 resultFinal.add(String.valueOf(bridgeLen));
             }
 
         }
 
- */
 
         return resultFinal;
     }
@@ -157,7 +155,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static int retry(int bridgeLen, ArrayList<String> bridges, int startCount) {
-       /*
         equalsCheck.clear();
         successCount = 0;
         ArrayList<String> resultFinal = new ArrayList<>();
@@ -183,8 +180,6 @@ public class BridgeGame {
 
         return count;
 
-        */
-        return 0;
     }
 /*
     public static void gameReStartFinal(ArrayList<String> resultFinal, int startCount){

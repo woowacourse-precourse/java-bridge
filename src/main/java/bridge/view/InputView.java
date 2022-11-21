@@ -52,7 +52,6 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        /*
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String replay = "";
         try{
@@ -63,16 +62,12 @@ public class InputView {
         System.out.println("replay:" + replay);
         return replay;
 
-         */
-        return null;
     }
-/*
     public static void replayCheck(String replay){
         if(!replay.equals("R") && !replay.equals("Q")){
             throw new IllegalArgumentException("[ERROR] 게임을 다시 시도시 R, 종료시 Q여야 합니다.");
         }
     }
 
- */
 
 }
