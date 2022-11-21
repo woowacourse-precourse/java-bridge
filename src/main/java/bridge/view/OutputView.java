@@ -18,11 +18,11 @@ public class OutputView {
     public void printGame(GameResult gameResult) {
         GameProgress nowProgress = gameResult.getProgress();
         if (nowProgress == GameProgress.PLAYING) {
-            printMap(gameResult.getBridge());
+            printMap(nowProgress, gameResult.getBridge());
         }
         if (nowProgress == GameProgress.SUCCESS || nowProgress == GameProgress.FAILURE) {
             System.out.println("최종 게임 결과");
-            printMap(gameResult.getBridge());
+            printMap(nowProgress, gameResult.getBridge());
             printResult(nowProgress, gameResult.getNumberOfAttempts());
         }
     }
@@ -32,11 +32,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge) {
+    public void printMap(GameProgress progress, Bridge bridge) {
         String firstRow = "";
         String secondRow = "";
 
-        //TODO 길이를 줄이자!
+        //TODO 길이를 줄이자! -> 이게 모두 한번씩 동일한 뭉탱이가 반복되니깐 그 뭉탱이(로우)를 한세트로 처리하게 하면 된다.
         for (String upDown : bridge.getBridge()) {
             if (upDown.equals(Move.UP.getDirection())) {
                 firstRow += "O";
@@ -48,6 +48,21 @@ public class OutputView {
             }
         }
 
+        // 현재 상태가 실패인 경우, 마지막 글자를 X로 바꾸는 로직 필요
+        if (progress == GameProgress.FAILURE) {
+            if (firstRow.charAt(firstRow.length() - 1) == 'O') {
+                firstRow = firstRow.substring(0, firstRow.length() - 1) + "X";
+            }
+            if (secondRow.charAt(secondRow.length() - 1) == 'O') {
+                secondRow = secondRow.substring(0, secondRow.length() - 1) + "X";
+            }
+        }
+
+        // 지정된 포맷으로 변환시켜주는 로직 필요
+        firstRow = "[ " + String.join(" | ", firstRow.split("")) + " ]";
+        secondRow = "[ " + String.join(" | ", secondRow.split("")) + " ]";
+
+        // 정제된 결과를 출력한다.
         System.out.println(firstRow);
         System.out.println(secondRow);
     }
