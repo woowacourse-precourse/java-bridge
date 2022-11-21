@@ -38,4 +38,8 @@ public class Bridge {
     public boolean isPass(String moveUpOrDown) {
         return bridge.get(location).equals(moveUpOrDown);
     }
+
+    public boolean isEndOfLocation() {
+        return this.location == bridge.size();
+    }
 }
