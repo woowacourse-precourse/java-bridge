@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import bridge.BridgeNumberGenerator;
 
@@ -21,5 +21,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private String convertUpDown(int random){
+        if(random == 1)
+            return "U";
+        return "D";
     }
 }
