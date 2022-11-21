@@ -15,8 +15,14 @@ public class BridgeGameController {
     }
 
     public void startGame() {
+        makeBridgeGame();
         while(true) {
 
         }
+    }
+
+    public void makeBridgeGame() {
+        int bridgeSize = inputView.readBridgeSize();
+        this.bridgeGame = new BridgeGame(bridgeSize);
     }
 }
