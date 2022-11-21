@@ -32,6 +32,16 @@ public class BridgeGame {
         fillOneBlcok(String.valueOf(resultStatus.charAt(0)),String.valueOf(resultStatus.charAt(1)));
         OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
         resetBridge();
+        resetStatus();
+    }
+
+    private static void resetStatus() {
+        for (int i = 0; i < resultStatus.length() / 2; i++) {
+            if (i != resultStatus.length() / 2 - 1) {
+                fillOneBlcok(resultStatus.charAt(i*2)+ " |",resultStatus.charAt(i*2+1)+" |");
+            }
+            fillOneBlcok(String.valueOf(resultStatus.charAt(i*2)),String.valueOf(resultStatus.charAt(i*2+1)));
+        }
     }
 
     private static void fillOneBlcok(String up, String down) {
