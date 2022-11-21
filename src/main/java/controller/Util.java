@@ -2,16 +2,31 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import view.ErrorMessage;
+import view.InputView;
 
 public class Util {
+    private InputView inputView;
+
+    public Util() {
+        inputView = new InputView();
+    }
+
     public int inputSize(){
+        inputView.readBridgeSize();
         int size = Integer.parseInt(inputValue());
         return size;
     }
 
     public String inputMoving(){
+        inputView.readMoving();
         String moving = inputValue();
         return moving;
+    }
+
+    public String inputRestart(){
+        inputView.readGameCommand();
+        String restart = inputValue();
+        return restart;
     }
 
     private String inputValue(){
@@ -28,5 +43,4 @@ public class Util {
         if(!moving.equals("U") || !moving.equals("D"))
             throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getErrorMessage());
     }
-
 }
