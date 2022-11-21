@@ -4,6 +4,8 @@ package bridge.structure;
 import java.util.List;
 
 public class Bridge {
+
+    private final int TURN_COUNT_MIN = 0;
     private final String WARM = "[ERROR]";
     private final String WARM_OVER_TURN = WARM + " 내부 오류 입니다. 다리 길이보다 많이 시도하였습니다.";
 
@@ -28,7 +30,7 @@ public class Bridge {
     }
 
     public void validateTurnCount(int turnCount) {
-        if (turnCount < 0 || bridge.size() < turnCount) {
+        if (turnCount < TURN_COUNT_MIN || bridge.size() < turnCount) {
             throw new IllegalArgumentException(WARM_OVER_TURN);
         }
     }
