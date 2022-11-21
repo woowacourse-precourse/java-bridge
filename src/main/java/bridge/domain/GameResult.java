@@ -1,10 +1,18 @@
 package bridge.domain;
 
 public class GameResult {
-    private int numberOfAttempts = 0;
-    private Bridge bridge;
+    private int numberOfAttempts = 1;
+    private Bridge bridge = new Bridge();
     private GameProgress progress = GameProgress.PLAYING;
 
+    public void retryGame() {
+        cleanBridge();
+        increaseAttempt();
+        setProgress(GameProgress.PLAYING);
+    }
+    public void cleanBridge() {
+        bridge = new Bridge();
+    }
     public void increaseAttempt() {
         numberOfAttempts++;
     }

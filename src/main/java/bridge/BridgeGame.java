@@ -20,7 +20,7 @@ public class BridgeGame {
 
         // 다리를 생성한다.
         int bridgeSize = inputView.readBridgeSize();
-        bridge = bridgeBroker.makeBridge(bridgeSize);;
+        bridge = bridgeBroker.makeBridge(bridgeSize);
     }
 
     /**
@@ -42,6 +42,7 @@ public class BridgeGame {
     public boolean retry() {
         GameCommand gameCommand = inputView.readGameCommand();
         if (gameCommand == GameCommand.RESTART) {
+            gameResult.retryGame();
             return true;
         }
         return false;
