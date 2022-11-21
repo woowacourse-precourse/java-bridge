@@ -4,7 +4,7 @@ import bridge.domain.enums.CrossStatus;
 
 public class Bridge {
     private final Blocks blocks;
-    private final CrossStatuses crossStatuses;
+    private CrossStatuses crossStatuses;
 
     public Bridge(final Blocks blocks, CrossStatuses crossStatuses) {
         this.blocks = blocks;
@@ -20,5 +20,9 @@ public class Bridge {
             return new MovingResult(blocks.getBlocks(), CrossStatus.FAIL, crossStatuses.findFailIndex());
         }
         return new MovingResult(blocks.getBlocks(), CrossStatus.SUCCESS, crossStatuses.findLastSuccessIndex());
+    }
+
+    public void clearCrossStatues() {
+        crossStatuses = new CrossStatuses(CrossStatus.createInitializationStatuses(blocks.getSize()));
     }
 }
