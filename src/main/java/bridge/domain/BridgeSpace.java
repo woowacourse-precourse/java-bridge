@@ -2,6 +2,7 @@ package bridge.domain;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,8 +45,8 @@ public enum BridgeSpace {
         return values.get(value);
     }
 
-    public static BridgeSpace findByType(String type) {
-        return types.get(type);
+    public static Optional<BridgeSpace> findByType(String type) {
+        return Optional.ofNullable(types.get(type));
     }
 
 }

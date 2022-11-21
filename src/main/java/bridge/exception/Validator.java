@@ -11,9 +11,10 @@ public class Validator {
         }
     }
 
-    public static void validBridgeSpaceType(String type) {
-        if (BridgeSpace.findByType(type) == null) {
-            throw new IllegalArgumentException(Error.WRONG_BRIDGE_SPACE_TYPE.getMessage());
+    public static BridgeSpace validBridgeSpaceType(String type) {
+        if (BridgeSpace.findByType(type).isPresent()) {
+            return BridgeSpace.findByType(type).get();
         }
+        throw new IllegalArgumentException(Error.WRONG_BRIDGE_SPACE_TYPE.getMessage());
     }
 }
