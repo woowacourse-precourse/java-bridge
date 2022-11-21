@@ -2,11 +2,13 @@ package bridge.model;
 
 import bridge.config.ErrorMessageConstant;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Bridge {
 
-    private List<Direction> allowMove;
+    private List<Direction> allowMove = new ArrayList<>();
 
     /**
      * 다리를 생성 및 초기화한다.
@@ -27,5 +29,16 @@ public class Bridge {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException(ErrorMessageConstant.INVALID_BRIDGE_SIZE);
         }
+    }
+
+    /**
+     * 테스트 및 로그를 위한 문자열 반환
+     * @return 다리 정보를 "U"와 "D"로 구성된 하나의 문자열로 반환
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        allowMove.forEach(d -> sb.append(d.getCode()));
+        return sb.toString();
     }
 }
