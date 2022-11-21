@@ -3,9 +3,6 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,18 +34,16 @@ class PlayerTest {
             BridgeMovement playerMovement = BridgeMovement.findByMovement(playerMove);
             player.crossOverBridge(playerMovement, isMoveble);
         }
-        Map<BridgeMovement, List<String>> movementStatus = player.getMovingRoute();
+        String[] result = player.toString().split("\n");
 
-        assertThat(movementStatus.get(BridgeMovement.UP).stream().collect(Collectors.joining()))
-                .isEqualTo(expectedUp);
-        assertThat(movementStatus.get(BridgeMovement.DOWN).stream().collect(Collectors.joining()))
-                .isEqualTo(expectedDown);
+        assertThat(result[0]).isEqualTo(expectedUp);
+        assertThat(result[1]).isEqualTo(expectedDown);
     }
 
     static Stream<Arguments> parametersProvider() {
         return Stream.of(
-                arguments("UDD", true, "O  ", " OO"),
-                arguments("D", false, " ", "X")
+                arguments("UDD", true, "[ O |   |   ]", "[   | O | O ]"),
+                arguments("D", false, "[   ]", "[ X ]")
         );
     }
 }

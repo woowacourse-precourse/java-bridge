@@ -23,10 +23,6 @@ public class Player {
         playerPosition = 0;
     }
 
-    public Map<BridgeMovement, List<String>> getMovingRoute() {
-        return Collections.unmodifiableMap(movingRoute);
-    }
-
     public int getPlayerPosition() {
         return playerPosition;
     }
@@ -48,7 +44,6 @@ public class Player {
         }
         return "X";
     }
-
 
     @Override
     public String toString() {
