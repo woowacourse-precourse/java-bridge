@@ -19,8 +19,22 @@ public class BridgeGame {
     private static Bridge bridge;
 
     public void createBridge() {
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = validateBridgeSize();
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    private int validateBridgeSize() {
+        boolean validation = false;
+        int bridgeSize = 0;
+        while (!validation) {
+            try {
+                bridgeSize = inputView.readBridgeSize();
+                validation = true;
+            } catch (IllegalArgumentException errorMessage) {
+                System.out.println(errorMessage);
+            }
+        }
+        return bridgeSize;
     }
 
     /**
@@ -29,12 +43,27 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(int position) {
-        String moving = inputView.readMoving();
-        boolean success = canCross(moving, position);
+        String moving = validateMoving();
+        boolean success = false;
+        success = canCross(moving, position);
         bridge.setUpsideBridge(UpsideBridgeRendering.renderUpsideBridge(moving, success));
         bridge.setDownBridge(DownBridgeRendering.renderDownBridge(moving, success));
         outputView.printMap(bridge);
         return success;
+    }
+
+    private String validateMoving() {
+        boolean validation = false;
+        String moving = "";
+        while(!validation) {
+            try {
+                moving = inputView.readMoving();
+                validation = true;
+            } catch (IllegalArgumentException errorMessage) {
+                System.out.println(errorMessage);
+            }
+        }
+        return moving;
     }
 
     /**
@@ -43,12 +72,26 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        String gameCommand = inputView.readGameCommand();
+        String gameCommand = validateGameCommand();
         if (gameCommand.equals("R")) {
             bridge.clear();
             return true;
         }
         return false;
+    }
+
+    private String validateGameCommand() {
+        boolean validation = false;
+        String gameCommand = "";
+        while (!validation) {
+            try {
+                gameCommand = inputView.readGameCommand();
+                validation = true;
+            } catch (IllegalArgumentException errorMessage) {
+                System.out.println(errorMessage);
+            }
+        }
+        return gameCommand;
     }
 
     public boolean canCross(String moving, int position) {
