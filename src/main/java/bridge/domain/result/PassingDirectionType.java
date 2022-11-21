@@ -41,14 +41,22 @@ public enum PassingDirectionType {
     }
 
     private static boolean findSelectedDir(PassingDirectionType type, Position position, Bridge bridge) {
-        if (bridge.compare(position)) {
-            if (position.getDirection().isSameUp()) {
-                return type.direction.equals("U") && type.isMovable.contains("O");
-            }
-            return type.direction.equals("D") && type.isMovable.contains("O");
-        }
         if (position.getDirection().isSameUp()) {
-            return type.direction.equals("U") && type.isMovable.contains("X");
+            return moveToUp(type, position, bridge);
+        }
+        return moveToDown(type, position, bridge);
+    }
+
+    private static boolean moveToUp(PassingDirectionType type, Position position, Bridge bridge) {
+        if (bridge.compare(position)) {
+            return type.direction.equals("U") && type.isMovable.contains("O");
+        }
+        return type.direction.equals("U") && type.isMovable.contains("X");
+    }
+
+    private static boolean moveToDown(PassingDirectionType type, Position position, Bridge bridge) {
+        if (bridge.compare(position)) {
+            return type.direction.equals("D") && type.isMovable.contains("O");
         }
         return type.direction.equals("D") && type.isMovable.contains("X");
     }
