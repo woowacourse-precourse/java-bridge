@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeMaker;
+import bridge.domain.result.ResultType;
 import java.util.List;
 
 public class Bridge {
@@ -17,12 +18,23 @@ public class Bridge {
         bridge = bridgeMaker.makeBridge(size);
     }
 
-    public Result move(MoveType moveType) {
-        String position = bridge.get(this.index++);
-        List<String> crossedBridge = bridge.subList(0, this.index);
-        if (moveType.isSame(position)) {
-            return Result.success(crossedBridge);
+    public ResultType move(MoveType moveType) {
+        if (isFinished()) {
+            return ResultType.FINISHED;
         }
-        return Result.fail(crossedBridge);
+        String position = bridge.get(this.index++);
+
+        if (!moveType.isSame(position)) {
+            return ResultType.FAIL;
+        }
+        return ResultType.SUCCESS;
+    }
+
+    private boolean isFinished() {
+        return index + 1 == bridge.size();
+    }
+
+    public void retry() {
+        this.index = 0;
     }
 }
