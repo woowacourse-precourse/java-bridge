@@ -26,6 +26,8 @@ public class OutputView {
      */
     public void printMap(boolean moveCheck, String userMove, int location) {
 
+        String moveResult = changeOX(moveCheck);
+
         if (location == 0) {
             if (userMove.equals("U")) {
                 upSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
@@ -53,6 +55,12 @@ public class OutputView {
         }
         System.out.println(upSb + "\n" + downSb);
     }
+
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
     public void printResult(boolean moveCheck, int cnt) {
         if (moveCheck == true) {
             RESULT_MESSAGE.printMessage();
@@ -66,13 +74,21 @@ public class OutputView {
             }
         }
     }
+
+
     public void startMessage() {
         START_MESSAGE.printMessage();
         SET_SIZE_BRIDGE_MESSAGE.printMessage();
     }
+
     public void choiceUpDown() {
         CHOICE_UP_DOWN_MESSAGE.printMessage();
     }
+
+    public void totalMap() {
+
+    }
+
     public String changeOX(boolean moveCheck) {
         if (moveCheck == true) {
             return "O";
@@ -80,3 +96,4 @@ public class OutputView {
         return "X";
     }
 }
+
