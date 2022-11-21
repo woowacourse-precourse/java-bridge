@@ -2,15 +2,15 @@ package bridge;
 
 public class Check {
   
-  private final IllegalArgumentException illegalArgumentException = new IllegalArgumentException();
+  private static final IllegalArgumentException illegalArgumentException = new IllegalArgumentException();
   
-  public boolean checkBridgeSize(String in) throws IllegalArgumentException{
+  public static int checkBridgeSize(String in) throws IllegalArgumentException{
     try{
       int num = Integer.valueOf(in);
       if(num < 21 && num > 2){
-        return true;
+        return num;
       }
-      return false;
+      throw illegalArgumentException;
     }
     catch(Exception e){
       throw illegalArgumentException;
