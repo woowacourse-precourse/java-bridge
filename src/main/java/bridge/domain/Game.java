@@ -2,26 +2,26 @@ package bridge.domain;
 
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
-
 import java.util.List;
 
 public class Game {
     private final int SUCCESS = 1;
     private final int FAILURE = 0;
+    private final int BRIDGE_SIZE;
+    private final List<String> BRIDGE;
+
     private OutputView outputView;
     private BridgeGame bridgeGame;
     private InputView inputView;
     private MapString mapString;
-    private List<String> bridge;
-    private int bridgeSize;
     private boolean move;
     public Game(List<String> bridge, int bridgeSize){
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
         this.inputView = new InputView();
         this.mapString = new MapString();
-        this.bridge = bridge;
-        this.bridgeSize= bridgeSize;
+        this.BRIDGE = bridge;
+        this.BRIDGE_SIZE= bridgeSize;
         MapString.downstairs = "";
         MapString.upstairs = "";
         this.move = true;
@@ -29,7 +29,7 @@ public class Game {
 
     public void start(){
         while (this.move){
-            if (oneMove() == bridgeSize) {
+            if (oneMove() == BRIDGE_SIZE) {
                 break ;
             }
         }
@@ -42,7 +42,7 @@ public class Game {
 
     private int oneMove(){
         String readMove = inputView.readMoving();
-        this.move = bridgeGame.move(bridge, readMove);
+        this.move = bridgeGame.move(BRIDGE, readMove);
         outputView.printMap(bridgeGame.makeMap(readMove, this.move));
         bridgeGame.index++;
         return (bridgeGame.index);
@@ -54,6 +54,6 @@ public class Game {
             outputView.printResult(FAILURE, mapString.makeMapString(MapString.upstairs, MapString.downstairs));
             return ;
         }
-        bridgeGame.retry(bridge, bridgeSize);
+        bridgeGame.retry(BRIDGE, BRIDGE_SIZE);
     }
 }

@@ -1,7 +1,5 @@
 package bridge.ui;
 
-import bridge.ui.OutputView;
-
 public class Validate {
     OutputView outputView = new OutputView();
 

@@ -1,10 +1,6 @@
 package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import static org.assertj.core.util.Lists.newArrayList;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
