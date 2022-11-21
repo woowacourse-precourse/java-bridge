@@ -53,6 +53,26 @@ public class BridgeGame {
         }
     }
 
+    /**
+     * 사용자가 칸을 이동할 때 사용하는 메서드
+     * <p>
+     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+
+
+    public String move(int size, List<String> bridge, String search) {
+        String result1 = sb1.substring(0,sb1.length()-1) + "]";
+        String result2 = sb2.substring(0, sb2.length()-1) + "]";
+
+        spliceMoveStart(size);
+        spliceMoverEnd(size, bridge);
+        spliceMiddle(size, bridge);
+        directionUp(size, bridge, search);
+        directionDown(size, bridge, search);
+
+        return result1 + System.getProperty("line.separator")+result2;
+    }
+
     public String OXjudge(int size, List<String> bridge, String search){
         String result = "";
         if(bridge.get(size).equals(search)){    //search는 검색하고자하는 한곳을 String으로 파악하는 기능
@@ -64,29 +84,7 @@ public class BridgeGame {
         return result;
     }
 
-    public String displayBridge(int size, List<String> bridge, String search){
-        String result1 = sb1.substring(0,sb1.length()-1) + "]";
-        String result2 = sb2.substring(0, sb2.length()-1) + "]";
 
-        spliceMoveStart(size);
-        spliceMoverEnd(size, bridge);
-        spliceMiddle(size, bridge);
-        directionUp(size, bridge, search);
-        directionDown(size, bridge, search);
-
-        return result1 + System.getProperty("line.separator")+result2;
-
-    }
-
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-
-
-    public void move() {
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -106,8 +104,19 @@ public class BridgeGame {
 
     }
 
+    public void startGame(){
+        ResultMessage();
+        System.out.println();
+    }
+    public List<String> makeBridge(int size) {
+        BridgeMaker brm = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return brm.makeBridge(size);
 
+    }
 
+    public void printResult(){
+        System.out.println("최종 게임 결과");
+    }
 
 }
 
