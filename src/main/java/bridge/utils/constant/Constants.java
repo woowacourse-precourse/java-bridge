@@ -10,6 +10,7 @@ public class Constants {
 
     public static final String COMMA = ",";
     public static final String DELIMITER = "|";
+    public static final String ENTER = "\n";
     public static final String EMPTY_BLOCK = "   ";
     public static final String OK_BLOCK = " O ";
     public static final String FAIL_BLOCK = " X ";

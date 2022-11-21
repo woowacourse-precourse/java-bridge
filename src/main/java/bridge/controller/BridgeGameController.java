@@ -21,6 +21,7 @@ public class BridgeGameController {
         while(bridgeGame.isNotFinished()) {
             String direction = inputView.readMoving();
             BridgeStatus bridgeStatus = bridgeGame.move(direction);
+            outputView.printMap(bridgeStatus);
         }
     }
 

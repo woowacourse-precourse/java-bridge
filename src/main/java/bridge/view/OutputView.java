@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.BridgeStatus;
+
 import static bridge.utils.constant.OutputMessage.*;
 
 /**
@@ -12,8 +14,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
-
+    public void printMap(BridgeStatus bridgeStatus) {
+        System.out.println(bridgeStatus);
     }
 
     /**
@@ -24,7 +26,7 @@ public class OutputView {
     public void printResult() {
     }
 
-    public static void printGameStart() {
+    public void printGameStart() {
         System.out.println(START_GAME_MESSAGE);
     }
 }

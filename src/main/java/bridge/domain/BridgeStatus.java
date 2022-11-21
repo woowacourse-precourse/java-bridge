@@ -40,4 +40,10 @@ public class BridgeStatus {
         upBridgeBlocks.add(upBlock);
         downBridgeBlocks.add(downBlock);
     }
+
+    @Override
+    public String toString() {
+        return upBridgeBlocks.toString().replaceAll(COMMA, DELIMITER) + ENTER +
+                downBridgeBlocks.toString().replaceAll(COMMA, DELIMITER);
+    }
 }
