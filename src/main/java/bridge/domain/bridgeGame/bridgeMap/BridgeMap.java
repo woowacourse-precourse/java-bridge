@@ -1,4 +1,4 @@
-package bridge.domain.bridgeGame;
+package bridge.domain.bridgeGame.bridgeMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,24 +9,29 @@ import java.util.stream.Collectors;
 import static bridge.BridgeMaker.LOWER_BRIDGE;
 import static bridge.BridgeMaker.UPPER_BRIDGE;
 
-public class GameMap {
+public class BridgeMap {
     private final static String BLOCK_SEPARATOR = " | ";
     private final static String BRIDGE_START_POINT = "[ ";
     private final static String BRIDGE_ENDPOINT = " ]";
 
-    private final HashMap<String, List<String>> gameMap;
+    private final HashMap<String, List<MapElement>> bridgeMap;
 
-    private GameMap(HashMap<String, List<String>> gameMap) {
-        this.gameMap = gameMap;
+    private BridgeMap(HashMap<String, List<MapElement>> bridgeMap) {
+        this.bridgeMap = bridgeMap;
     }
 
-    public static GameMap from(HashMap<String, List<String>> gameMap) {
-        return new GameMap(gameMap);
+    public static BridgeMap initMap() {
+        HashMap<String, List<MapElement>> bridgeMap = new HashMap<>();
+        bridgeMap.put(UPPER_BRIDGE, new ArrayList<>());
+        bridgeMap.put(LOWER_BRIDGE, new ArrayList<>());
+
+        return new BridgeMap(bridgeMap);
     }
 
     private String generateMapAt(String position) {
-        return gameMap.get(position)
+        return bridgeMap.get(position)
                 .stream()
+                .map(MapElement::toString)
                 .collect(Collectors.joining(BLOCK_SEPARATOR, BRIDGE_START_POINT, BRIDGE_ENDPOINT));
     }
 
@@ -37,24 +42,18 @@ public class GameMap {
         return UPPER_BRIDGE;
     }
 
-    private void addBlockMap(String position, String blockMap) {
-        List<String> bridgeMap = gameMap.get(position);
-        bridgeMap.add(blockMap);
-        gameMap.put(position, bridgeMap);
+    private void addBlockMap(String direction, MapElement blockMap) {
+        bridgeMap.get(direction).add(blockMap);
     }
 
-    public GameMap addGameResult(String direction, boolean success) {
-        addBlockMap(direction, GameMapElement.getMapElement(success));
-        addBlockMap(getOppositeDirection(direction), GameMapElement.getMapElement());
-
-        return new GameMap(gameMap);
+    public void addCrossResult(String direction, boolean success) {
+        addBlockMap(direction, MapElement.getMapElement(success));
+        addBlockMap(getOppositeDirection(direction), MapElement.getMapElement());
     }
 
-    public GameMap reset() {
-        gameMap.put(UPPER_BRIDGE, new ArrayList<>());
-        gameMap.put(LOWER_BRIDGE, new ArrayList<>());
-
-        return new GameMap(gameMap);
+    public void reset() {
+        bridgeMap.put(UPPER_BRIDGE, new ArrayList<>());
+        bridgeMap.put(LOWER_BRIDGE, new ArrayList<>());
     }
 
     @Override
