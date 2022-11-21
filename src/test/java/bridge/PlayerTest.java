@@ -10,9 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PlayerTest {
 
     Player player;
-
     @Before
-    void setUp(){
+    public void setUp(){
         player=new Player();
     }
 
