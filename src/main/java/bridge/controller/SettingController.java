@@ -19,14 +19,10 @@ public class SettingController {
     public BridgeGame setBridgeGame() {
         outputView.printStart();
         outputView.printInputSize();
-        int bridgeSize = inputBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
         outputView.printNewLine();
         BridgeMaker bridgeMaker = getRandomNumberBridgeMaker();
         return new BridgeGame(bridgeMaker, bridgeSize);
-    }
-
-    private int inputBridgeSize() {
-        return inputView.readBridgeSize();
     }
 
     private BridgeMaker getRandomNumberBridgeMaker() {
