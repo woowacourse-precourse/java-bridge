@@ -50,7 +50,7 @@ public class OutputViewTest extends NsTest {
     @DisplayName("printResult 출력 테스트 - 게임 성공한 경우")
     @Test
     void printResult_isGameSucceed_테스트() {
-        User player = new User(false, true, 1);
+        User player = new User(false, User.GameStatus.NONE.getStatusNumber(), 1);
         OutputView.printResult(player, bridge, bridge);
     }
 
@@ -58,7 +58,7 @@ public class OutputViewTest extends NsTest {
     @Test
     void printResult_isGameFailed_테스트() {
         List<String> bridge_userMove = new ArrayList<>(List.of("U", "D", "U"));
-        User player = new User(false, false, 1);
+        User player = new User(false, User.GameStatus.NONE.getStatusNumber(), 1);
         OutputView.printResult(player, bridge, bridge_userMove);
     }
 

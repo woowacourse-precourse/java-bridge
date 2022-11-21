@@ -6,13 +6,44 @@ package bridge.user;
 public class User {
 
     private boolean isPlayingGame;
-    private boolean isGameSucceed;
+    private int userGameStatus;
     private int numberOfMoves;
     private int numberOfGameTrials;
 
-    public User(boolean isPlayingGame, boolean isGameSucceed, int numberOfGameTrials) {
+    public enum GameStatus {
+        NONE(0),
+        SUCCEED(1),
+        FAILED(2);
+
+        int statusNumber;
+
+        GameStatus(int statusNumber) {
+            this.statusNumber = statusNumber;
+        }
+
+        public int getStatusNumber() {
+            return statusNumber;
+        }
+    }
+
+    public enum GameCommand {
+        RETRY("R"),
+        QUIT("Q");
+
+        private String command;
+
+        GameCommand(String command) {
+            this.command = command;
+        }
+
+        public String getCommand() {
+            return command;
+        }
+    }
+
+    public User(boolean isPlayingGame, int userGameStatus, int numberOfGameTrials) {
         this.isPlayingGame = isPlayingGame;
-        this.isGameSucceed = isGameSucceed;
+        this.userGameStatus = userGameStatus;
         this.numberOfGameTrials = numberOfGameTrials;
     }
 
@@ -21,8 +52,8 @@ public class User {
         return isPlayingGame;
     }
 
-    public boolean isGameSucceed() {
-        return isGameSucceed;
+    public int getUserGameStatus() {
+        return userGameStatus;
     }
 
     public int getNumberOfMoves() {
@@ -38,8 +69,12 @@ public class User {
         isPlayingGame = false;
     }
 
-    public void setGameSucceed() {
-        isGameSucceed = true;
+    public void setUserGameStatus_succeed() {
+        userGameStatus = GameStatus.SUCCEED.getStatusNumber();
+    }
+
+    public void setUserGameStatus_failed() {
+        userGameStatus = GameStatus.FAILED.getStatusNumber();
     }
 
     // method

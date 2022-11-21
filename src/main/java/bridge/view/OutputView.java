@@ -159,17 +159,17 @@ public class OutputView {
         printMap(bridge_answer, bridge_userMove);
 
         String gameResult = GAME_RESULT_IS_GAME_SUCCEED_MESSAGE;
-        gameResult += getGameStatusMessage(player.isGameSucceed());
+        gameResult += getGameStatusMessage(player.getUserGameStatus());
         gameResult += GAME_RESULT_NUMBER_OF_GAME_TRIALS_MESSAGE + player.getNumberOfGameTrials();
         System.out.println(gameResult);
     }
 
     /**
-     * @param isGameSucceed 게임에 성공했을 경우 true / 실패했을 경우 false
+     * @param userGameStatus 사용자의 현재 게임 상태 (1인 경우 succeed / 2인 경우 failed)
      * @return 게임 성공 여부에 따른 String 반환
      */
-    private static String getGameStatusMessage(boolean isGameSucceed) {
-        if (isGameSucceed) {
+    private static String getGameStatusMessage(int userGameStatus) {
+        if (userGameStatus == User.GameStatus.SUCCEED.getStatusNumber()) {
             return GAME_RESULT_STATUS_SUCCEED_MESSAGE;
         }
         return GAME_RESULT_STATUS_FAILED_MESSAGE;

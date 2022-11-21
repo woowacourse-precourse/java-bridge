@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.game.BridgeGame;
-import bridge.game.GameManager;
+import bridge.user.User;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Matcher;
@@ -21,7 +21,7 @@ public class InputView {
     private static final String USER_MOVE_DIRECTION_REGEX = "^[" + BridgeGame.BridgeShape.DOWN.getStringValue() + "|" + BridgeGame.BridgeShape.UP.getStringValue() + "]$";
 
     // R 또는 Q
-    private static final String USER_GAME_COMMAND_REGEX = "^[" + GameManager.GameStatus.RETRY.getStatus() + "|" + GameManager.GameStatus.QUIT.getStatus() + "]$";
+    private static final String USER_GAME_COMMAND_REGEX = "^[" + User.GameCommand.RETRY.getCommand() + "|" + User.GameCommand.QUIT.getCommand() + "]$";
 
 
     /**

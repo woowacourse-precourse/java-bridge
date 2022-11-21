@@ -20,27 +20,12 @@ public class GameManager {
     private static User player;
     private static BridgeGame bridgeGame;
 
-    public enum GameStatus {
-        RETRY("R"),
-        QUIT("Q");
-
-        private String status;
-
-        GameStatus(String status) {
-            this.status = status;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-    }
-
     /**
      * 다리 생성 게임, 사용자 생성
      */
     public GameManager() {
         bridgeGame = new BridgeGame();
-        player = new User(true, false, 1);
+        player = new User(true, User.GameStatus.NONE.getStatusNumber(), 1);
     }
 
     /**
@@ -77,9 +62,9 @@ public class GameManager {
         while (player.isPlayingGame()) {
             moveUser();
             printBridge_userPredict();
-            if (isGameSucceed()) break;
-            if (isGameFailed() && isQuitGame()) break;
-            if (!player.isGameSucceed() && player.isPlayingGame()) retryGame();
+            if (isEndOfTheGame()) break;
+            if (player.getUserGameStatus() != User.GameStatus.NONE.getStatusNumber() && player.isPlayingGame())
+                retryGame();
         }
         printGameResult();
     }
@@ -108,12 +93,18 @@ public class GameManager {
         OutputView.printMap(bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
     }
 
+    // 게임 종료 여부 확인
+    private boolean isEndOfTheGame() {
+        if (isGameSucceed()) return true;
+        return isGameFailed() && isQuitGame();
+    }
+
     // 성공 여부 확인
     private boolean isGameSucceed() {
         int userNumberOfMoves = player.getNumberOfMoves();
         boolean isGameSucceed = bridgeGame.checkIfGameIsSucceed(userNumberOfMoves);
         if (isGameSucceed) {
-            player.setGameSucceed();
+            player.setUserGameStatus_succeed();
             player.setNotPlayingGame();
         }
         return isGameSucceed;
@@ -125,11 +116,12 @@ public class GameManager {
         return bridgeGame.checkIfGameIsFailed(userNumberOfMoves);
     }
 
-    // 게임 종료 여부 확인
+    // 게임 종료 입력 여부 확인
     private boolean isQuitGame() {
         String userGameCommand = "";
         while (userGameCommand.compareTo("") == 0) userGameCommand = askGameCommand();
-        if (userGameCommand.compareTo(GameStatus.QUIT.getStatus()) == 0) {
+        if (userGameCommand.compareTo(User.GameCommand.QUIT.getCommand()) == 0) {
+            player.setUserGameStatus_failed();
             player.setNotPlayingGame();
             return true;
         }
