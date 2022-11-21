@@ -7,8 +7,8 @@ public class Application {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         OutputView.printMessage(GAME_START);
+
         InputView inputView = new InputView();
         int bridgeSize = inputView.getBridgeSize();
 
@@ -17,23 +17,7 @@ public class Application {
         System.out.println("bridge = " + bridge);
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        int nowBridgeIndex = 0;
-        int retryCount = 0; // 재시도 수
-        while (nowBridgeIndex < bridgeSize) {
-            boolean isMoved = bridgeGame.move(nowBridgeIndex, inputView.getMoving());
-            if (isMoved) {
-                nowBridgeIndex++;
-            } else {
-                retryCount++;
-                boolean isRetry = bridgeGame.retry(inputView.getGameCommand());
-                if (isRetry) {
-                    nowBridgeIndex = 0;
-                } else {
-                    break;
-                }
-            }
-        }
-        bridgeGame.end(nowBridgeIndex, retryCount);
+        bridgeGame.progress();
     }
 
 }

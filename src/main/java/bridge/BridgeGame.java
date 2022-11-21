@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,10 +9,32 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final OutputView outputView;
+    private final InputView inputView;
+    private int nowBridgeIndex = 0;
+    private int retryCount = 0;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         outputView = new OutputView(bridge);
+        inputView = new InputView();
+    }
+
+    public void progress() {
+        while (nowBridgeIndex < bridge.size()) {
+            boolean isMoved = move(nowBridgeIndex, inputView.getMoving());
+            if (isMoved) {
+                nowBridgeIndex++;
+            } else {
+                retryCount++;
+                boolean isRetry = retry(inputView.getGameCommand());
+                if (isRetry) {
+                    nowBridgeIndex = 0;
+                } else {
+                    break;
+                }
+            }
+        }
+        end(nowBridgeIndex, retryCount);
     }
 
     /**
