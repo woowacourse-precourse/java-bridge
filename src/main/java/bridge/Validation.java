@@ -6,19 +6,23 @@ package bridge;
 public class Validation {
 
     enum InputType {
-        MOVINGCOMMAND,
-        GAMECOMMAND,
-        BRIDGESIZE;
+        MOVINGCOMMAND("UD"),
+        GAMECOMMAND("RQ"),
+        BRIDGESIZE("NONE");
+
+        private final String correctInput;
+        InputType(String correctInput) { this.correctInput = correctInput; }
     }
 
     private final static int LOWERBOUND = 3;
     private final static int UPPERBOUND = 20;
 
+
     public Validation(String lineInput, InputType inputType) {
         isBlankInput(lineInput);
         if (inputType == InputType.BRIDGESIZE) validateBridgeSize(lineInput);
-        if (inputType == InputType.MOVINGCOMMAND) validateMovingCommand(lineInput);
-        if (inputType == InputType.GAMECOMMAND) validateGameCommand(lineInput);
+        if (inputType == InputType.MOVINGCOMMAND) validateMovingCommand(lineInput, inputType.correctInput);
+        if (inputType == InputType.GAMECOMMAND) validateGameCommand(lineInput, inputType.correctInput);
     }
 
     /**
@@ -42,17 +46,17 @@ public class Validation {
     /**
      * 이동 명령 입력 예외 1, 2를 확인하는 메소드를 호출함
      */
-    private void validateMovingCommand(String lineInput) {
+    private void validateMovingCommand(String lineInput, String correctInput) {
         checkCommandLengthLimit(lineInput);
-        validateCode(lineInput, "UD");
+        validateCode(lineInput, correctInput);
     }
 
     /**
      * 게임 재시작/종료 코드 입력 예외 1, 2를 확인하는 메소드를 호출함
      */
-    private void validateGameCommand(String lineInput) {
+    private void validateGameCommand(String lineInput, String correctInput) {
         checkCommandLengthLimit(lineInput);
-        validateCode(lineInput, "RQ");
+        validateCode(lineInput, correctInput);
     }
 
     /**
@@ -77,7 +81,7 @@ public class Validation {
      * 다리 길이 입력 - 예외 3: 십의 자리에 0이 있는지 확인하는 메소드
      */
     private void isTenthsPlaceZero(String lineInput) {
-        if (lineInput.charAt(0) == '0')
+        if (lineInput.length() == 2 && lineInput.charAt(0) == '0')
             throw new IllegalArgumentException("[ERROR] 십의 자리가 0일 수 없습니다.");
     }
 
