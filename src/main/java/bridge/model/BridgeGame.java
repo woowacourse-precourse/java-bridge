@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.model;
 
 import bridge.model.User;
 
