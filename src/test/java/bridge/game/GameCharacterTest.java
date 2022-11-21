@@ -2,6 +2,7 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.view.UserMove;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ class GameCharacterTest {
     void setNextMove(String input) {
         //given
         //when
-        character.setNextMove(input);
+        character.setNextMove(UserMove.getUserMove(input));
         //then
         String destination = character.showNextDestination();
         assertThat(destination).isEqualTo(input);

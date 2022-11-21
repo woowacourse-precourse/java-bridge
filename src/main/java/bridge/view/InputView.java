@@ -27,10 +27,10 @@ public class InputView {
         return move;
     }
 
-    public String reReadMovingWhenError() {
+    public UserMove reReadMovingWhenError() {
         while (true) {
             try {
-                return readMoving();
+                return UserMove.getUserMove(readMoving());
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e);
             }

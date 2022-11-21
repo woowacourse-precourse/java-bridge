@@ -1,6 +1,7 @@
 package bridge.game;
 
 import bridge.view.TotalView;
+import bridge.view.UserMove;
 
 public class BridgeGameMachine {
     private final TotalView totalView = new TotalView();
@@ -41,7 +42,7 @@ public class BridgeGameMachine {
 
     public Result moveOnce() {
         totalView.out().enterMove();
-        String moveInput = totalView.in().reReadMovingWhenError();
+        UserMove moveInput = totalView.in().reReadMovingWhenError();
         bridgeGame.moveCycle(moveInput);
         return bridgeGame.moveResult();
     }

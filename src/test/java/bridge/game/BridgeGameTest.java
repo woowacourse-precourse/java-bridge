@@ -2,6 +2,7 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.view.UserMove;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -53,7 +54,7 @@ class BridgeGameTest {
     @ParameterizedTest
     void showCurrentResult(String destination) {
         //given
-        bridgeGame.moveCycle(destination);
+        bridgeGame.moveCycle(UserMove.getUserMove(destination));
         String answer = bridgeGame.showRightDestinationInArea(0);
         //when
         List<Move> moves = bridgeGame.showCurrentMap();
@@ -67,8 +68,8 @@ class BridgeGameTest {
     @Test
     void retry() {
         //given
-        bridgeGame.moveCycle("D");
-        bridgeGame.moveCycle("U");
+        bridgeGame.moveCycle(UserMove.getUserMove("D"));
+        bridgeGame.moveCycle(UserMove.getUserMove("U"));
         //when
         bridgeGame.retry();
         //when
@@ -81,7 +82,7 @@ class BridgeGameTest {
     @ParameterizedTest
     void moveResult(String destination) {
         //given
-        bridgeGame.moveCycle(destination);
+        bridgeGame.moveCycle(UserMove.getUserMove(destination));
         String answer = bridgeGame.showRightDestinationInArea(0);
         //when
         Result result = bridgeGame.moveResult();
@@ -162,7 +163,7 @@ class BridgeGameTest {
         //given
         String answer = bridgeGame.showRightDestinationInArea(character.showNextArea());
         boolean expect = answer.equals(destination);
-        character.setNextMove(destination);
+        character.setNextMove(UserMove.getUserMove(destination));
         int nextArea = character.showNextArea();
         //when
         boolean ableToMove = bridgeGame.isAbleToMove(nextArea, destination);
@@ -188,7 +189,7 @@ class BridgeGameTest {
     @ParameterizedTest
     void saveNextMove(String destination) {
         //given
-        character.setNextMove(destination);
+        character.setNextMove(UserMove.getUserMove(destination));
         String answer = bridgeGame.showRightDestinationInArea(character.showNextArea());
         boolean moveResult = destination.equals(answer);
         //when
@@ -206,7 +207,7 @@ class BridgeGameTest {
     void moveCycle(String destination) {
         //given
         //when
-        bridgeGame.moveCycle(destination);
+        bridgeGame.moveCycle(UserMove.getUserMove(destination));
         //then
         assertThat(character.showNextDestination()).isEqualTo(destination);
         assertThat(character.showCurrentLocation()).isEqualTo(0);

@@ -2,6 +2,7 @@ package bridge.game;
 
 import bridge.generator.BridgeMaker;
 import bridge.generator.BridgeRandomNumberGenerator;
+import bridge.view.UserMove;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class BridgeGame {
         this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
     }
 
-    public void moveCycle(String destination) {
+    public void moveCycle(UserMove destination) {
         character.setNextMove(destination);
         saveNextMove();
         character.move();
