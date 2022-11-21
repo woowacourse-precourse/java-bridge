@@ -1,4 +1,4 @@
-package bridge.vo;
+package bridge.domain;
 
 import java.util.Arrays;
 
