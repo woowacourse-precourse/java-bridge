@@ -41,6 +41,8 @@ public class GamePlayer {
             outputView.printResult(success, this.gameCount);
             return;
         }
-        bridgeGame.retry(inputView.readGameCommand());
+        if(!bridgeGame.retry(inputView.readGameCommand())) {
+            outputView.printResult(success, this.gameCount);
+        }
     }
 }

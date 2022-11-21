@@ -27,11 +27,12 @@ public class BridgeGame {
         bridgeStatus.addStatus(movement, Game.CROSS_FAIL);
         return false;
     }
-    public void retry(String retryOrQuit) {
+    public boolean retry(String retryOrQuit) {
         inputValidator.isRetryValid(retryOrQuit);
         if (retryOrQuit.equals(Game.RETRY_GAME)) {
             GamePlayer gamePlayer = new GamePlayer();
             gamePlayer.play();
         }
+        return false;
     }
 }
