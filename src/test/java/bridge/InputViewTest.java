@@ -48,4 +48,19 @@ class InputViewTest {
         assertSimpleTest(() -> assertThatThrownBy(() -> inputView.readMoving(line))
                 .isInstanceOf(IllegalArgumentException.class));
     }
+
+    @Test
+    @DisplayName(value = "입력의 유효성 검사가 잘되는지 확인")
+    void readGameCommandTest1(){
+        assertSimpleTest(() -> assertThat(inputView.readGameCommand("R"))
+                .isEqualTo("R"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "", " ", "RQ", "R Q", "123"})
+    @DisplayName(value = "입력의 오류가 잘되는지 확인")
+    void readGameCommandExceptionTest1(String line) {
+        assertSimpleTest(() -> assertThatThrownBy(() -> inputView.readGameCommand(line))
+                .isInstanceOf(IllegalArgumentException.class));
+    }
 }

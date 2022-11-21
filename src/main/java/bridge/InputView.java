@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.Setting.BridgeLengthSetting;
+import bridge.Setting.BridgeRetryIndex;
 import bridge.Setting.BridgeSideIndex;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -39,8 +40,23 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String line) {
+        try{
+            validReadGameCommand(line);
+            return line;
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    private void validReadGameCommand(String line) {
+        List<BridgeRetryIndex> bridgeRetryIndices = List.of(BridgeRetryIndex.values());
+        for (BridgeRetryIndex bridgeRetryIndex : bridgeRetryIndices){
+            if (bridgeRetryIndex.getLabel().equals(line)){
+                return;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 
     private void validBridgeSize(int bridgeSize) {
