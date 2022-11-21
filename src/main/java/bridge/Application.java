@@ -1,44 +1,33 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
 
-    private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+    private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
 
     public static void main(String[] args) {
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         int gameCount = 1;
         boolean restart = true;
         boolean game = true;
 
-        List<String> upperLine = new ArrayList<>();
-        List<String> lowerLine= new ArrayList<>();
-        System.out.println(bridge);
-
         while (restart){
 
             game = true;
             int index = 0;
-            BridgeGame bridgeGame = new BridgeGame(bridge);
-            upperLine = bridgeGame.upperLine;
-            lowerLine = bridgeGame.lowerLine;
 
-            while (game && bridgeGame.lowerLine.size() != bridge.size()){
+            while (game && bridgeGame.getLowerLine().size() != bridge.size()){
 
                 game = bridgeGame.move(index, inputView.readMoving());
                 index++;
-                upperLine = bridgeGame.upperLine;
-                lowerLine = bridgeGame.lowerLine;
-
-                System.out.println(index);
-                System.out.println(bridgeGame.upperLine);
-                System.out.println(bridgeGame.lowerLine);
+                outputView.printMap(bridgeGame.getUpperLine(),bridgeGame.getLowerLine());
             }
 
             if (game){
@@ -46,12 +35,13 @@ public class Application {
                 break;
             }
             restart = bridgeGame.retry(inputView.readGameCommand());
+            bridgeGame.refresh();
             gameCount++;
 
         }
 
         outputView.printEndMessage();
-        outputView.printMap(upperLine,lowerLine);
+        outputView.printMap(bridgeGame.getUpperLine(),bridgeGame.getLowerLine());
         outputView.printResult(game,gameCount);
 
     }

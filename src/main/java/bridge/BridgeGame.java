@@ -14,8 +14,8 @@ public class BridgeGame {
 
     private final List<String> bridge;
 
-    public List<String> upperLine = new ArrayList<>();
-    public List<String> lowerLine = new ArrayList<>();
+    private final List<String> upperLine = new ArrayList<>();
+    private final List<String> lowerLine = new ArrayList<>();
 
     public BridgeGame(List<String> bridge){
         this.bridge = bridge;
@@ -52,6 +52,20 @@ public class BridgeGame {
             markIncorrect(userInput);
         }
     }
+
+    public void refresh(){
+        upperLine.clear();
+        lowerLine.clear();
+    }
+
+    public List<String> getUpperLine(){
+        return upperLine;
+    }
+
+    public List<String> getLowerLine(){
+        return lowerLine;
+    }
+
     public boolean move(int index,String userInput) {
         if(!bridge.get(index).equals(userInput)){
             makeMap(false,userInput);
