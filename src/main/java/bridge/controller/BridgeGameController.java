@@ -11,17 +11,21 @@ public class BridgeGameController {
 
     public BridgeGameController() {
         outputView.gameStartPrint();
-        bridgeGame = new BridgeGame(inputView.readBridgeSize());
+        int bridgeSize = inputView.readBridgeSize();
+        bridgeGame = new BridgeGame(bridgeSize);
+        outputView.printBridgeSize(bridgeSize);
     }
 
     public void gameStart() {
         while (shouldIMove(bridgeGame)) {
-
+            outputView.printMap(bridgeGame.getBridgeMap());
         }
+        outputView.printMap(bridgeGame.getBridgeMap());
     }
 
     public boolean shouldIMove(BridgeGame bridgeGame) {
         String moving = inputView.readMoving();
+        outputView.printMoving(moving);
         bridgeGame.createMap(moving);
         if (bridgeGame.isGameComplete(moving)) {
             return false;
