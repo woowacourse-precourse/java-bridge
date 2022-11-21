@@ -22,29 +22,29 @@ public class BridgeController {
     }
 
     public void setBridgeController() {
-        int size = inputView.readBridgeSize();
+        final int size = inputView.readBridgeSize();
         bridgeGame.setBridge(size);
     }
 
     public void moveController() {
-        String move = inputView.readMoving();
-        List<String> bridge = bridgeGame.move(move);
+        final String move = inputView.readMoving();
+        final List<String> bridge = bridgeGame.move(move);
         outputView.printMap(bridge);
         subMoveController(bridgeGame.getUserState());
     }
 
     private void subMoveController(String userState) {
-        if (userState.equals("Over")) {
+        if (userState.equals("실패")) {
             retry();
-        } else if (userState.equals("Playing")) {
+        } else if (userState.equals("진행중")) {
             moveController();
-        } else if (userState.equals("Success")) {
+        } else if (userState.equals("성공")) {
             outputView.printResult(bridgeGame.getBridgeState(), bridgeGame.getTryTime(), userState);
         }
     }
 
-    public void retry() {
-        String command = inputView.readGameCommand();
+    private void retry() {
+        final String command = inputView.readGameCommand();
         if (command.equals("R")) {
             bridgeGame.retry();
             moveController();

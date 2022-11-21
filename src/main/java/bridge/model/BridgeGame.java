@@ -3,18 +3,11 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
-enum GameState {
-    Over,
-    Playing,
-    Success
-}
-
 public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private List<String> bridge;
     private List<String> bridgeState;
     private String userState;
-    private int moveTime;
     private int tryTime;
 
     public BridgeGame() {
@@ -22,41 +15,38 @@ public class BridgeGame {
     }
 
     public List<String> move(String move) {
-        moveTime++;
         if (!checkMove(move)) {
-            userState = String.valueOf(GameState.Over);
+            userState = GameState.Over.getState();
             move = move + "X";
-        } else if (moveTime == bridge.size()) {
-            userState = String.valueOf(GameState.Success);
+        } else if (bridgeState.size() + 1 == bridge.size()) {
+            userState = GameState.Success.getState();
         }
         bridgeState.add(move);
         return bridgeState;
     }
 
     private boolean checkMove(String move) {
-        if (move.equals(bridge.get(moveTime - 1))) {
+        if (move.equals(bridge.get(bridgeState.size()))) {
             return true;
         }
         return false;
     }
 
     public void setBridge(int size) {
-        moveTime = 0;
         tryTime = 1;
         bridge = bridgeMaker.makeBridge(size);
-        userState = String.valueOf(GameState.Playing);
+        userState = GameState.Playing.getState();
+        bridgeState = new ArrayList<String>();
+    }
+
+    public void retry() {
+        tryTime++;
+        userState = GameState.Playing.getState();
         bridgeState = new ArrayList<String>();
     }
 
     public String getUserState() {
         return userState;
-    }
-
-    public void retry() {
-        tryTime++;
-        moveTime = 0;
-        userState = String.valueOf(GameState.Playing);
-        bridgeState = new ArrayList<String>();
     }
 
     public List<String> getBridgeState() {

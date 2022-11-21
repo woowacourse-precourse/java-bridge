@@ -5,26 +5,31 @@
 ### Model
 
 #### BridgeGame
+
 - [x] 다리를 생성하는 함수 setBridge()
 - [x] 사용자 위치를 이동시키는 함수 move()
 - [x] 사용자의 이동이 가능한지 체크하는 함수 checkMove()
 - [x] 게임을 재시작하는 함수 retry()
 
 #### BridgeMaker
+
 - [x] 다리를 만드는 함수 makeBridge()
 
 #### BridgeRandomNumberGenerator
+
 - [x] 0과 1중 랜덤값을 추출하는 함수 generate()
 
 ### View
 
 #### InputView
+
 - [x] 다리의 길이를 입력하는 함수 readBridgeSize()
 - [x] 이동할 칸을 입력하는 함수 readMoving()
 - [x] 게임 재시도 여부를 입력하는 함수 readGameCommand()
 - [x] 에러 메시지를 받아 에러를 발생시키는 함수 generateError()
 
 #### OutputView
+
 - [x] 게임 시작을 알리는 함수 printStart()
 - [x] 다리를 출력하는 함수 printMap()
 - [x] 결과를 출력하는 함수 printResult()
@@ -32,28 +37,36 @@
 ### Controller
 
 #### BridgeController
+
 ##### input
-- [x] 다리를 생성하는 함수 setBridgeController()
-- [x] 사용자를 이동시키는 컨트롤러 moveController() 
+
+- [x] 다리를 생성하는 컨트롤러 setBridgeController()
+- [x] 사용자를 이동시키는 컨트롤러 moveController()
 
 #### output
+
 - [x] 게임 시작을 알리는 컨트롤러 startController()
 
 ## 예외상황
+
 #### 다리길이 입력
+
 1. 숫자가 아닐 경우
 2. 3~20사이의 숫자가 아닐 경우
 3. null일 경우
 
 #### 이동할 칸 입력
+
 1. 'U'나 'D'가 아닐경우
 2. null일 경우
 
 #### 게임 재시도 여부 입력
+
 1. 'R'나 'Q'가 아닐경우
 2. null일 경우
 
 ## 기능 요구사항
+
 ### 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
 
 - 위아래 두 칸으로 이루어진 다리를 건너야 한다.

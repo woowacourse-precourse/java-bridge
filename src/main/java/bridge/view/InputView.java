@@ -3,11 +3,6 @@ package bridge.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
-    private String getInput(String prompt) {
-        System.out.println(prompt);
-        return readLine();
-    }
-
     public int readBridgeSize() {
         int size = 0;
         try {
@@ -24,7 +19,6 @@ public class InputView {
         if (!isNumeric(input)) {
             generateError("[ERROR] 다리길이는 숫자여야 합니다.");
         }
-
         num = Integer.parseInt(input);
         if (num < 3 || num > 20) {
             generateError("[ERROR] 다리길이는 3부터 20 사이의 숫자여여 합니다.");
@@ -68,13 +62,18 @@ public class InputView {
         return input;
     }
 
+    private String getInput(String prompt) {
+        System.out.println(prompt);
+        return readLine();
+    }
+
     private void generateError(String message) {
         throw new IllegalArgumentException(message);
     }
 
     private boolean isNumeric(String s) {
         try {
-            Double.parseDouble(s);
+            Integer.parseInt(s);
             return true;
         } catch (NumberFormatException e) {
             return false;

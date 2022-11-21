@@ -1,10 +1,11 @@
 package bridge.view;
 
-import java.util.*;
+import bridge.model.GameState;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class OutputView {
     public void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -23,7 +24,6 @@ public class OutputView {
     }
 
     private List<String> setItem(String move) {
-        Map map = new HashMap<String, String>();
         if (move.equals("U")) {
             return Arrays.asList("O", " ");
         } else if (move.equals("D")) {
@@ -50,11 +50,7 @@ public class OutputView {
         System.out.println("\n최종 게임 결과");
         printMap(bridgeState);
         System.out.print("\n게임 성공 여부: ");
-        if (userState.equals("Success")) {
-            System.out.println("성공");
-        } else if (userState.equals("Over")) {
-            System.out.println("실패");
-        }
+        System.out.println(userState);
         System.out.println("총 시도한 횟수: " + tryTime);
     }
 }
