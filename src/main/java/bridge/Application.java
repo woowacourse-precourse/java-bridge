@@ -33,6 +33,7 @@ public class Application {
             String bridgeInfo = bridgeList.get(size);
             String result = bridgeGame.move(moving, bridgeInfo);
             moveResults.add(result);
+            outputView.printMap(moveResults, size, userMove);
         }
 
     }
