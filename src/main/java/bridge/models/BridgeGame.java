@@ -2,7 +2,6 @@ package bridge.models;
 
 import java.util.List;
 
-// TODO 필드(인스턴스 변수)의 수를 줄이기 위해 노력한다!
 public class BridgeGame {
     private final List<String> bridge;
     private int currentIndex = -1;
@@ -53,6 +52,6 @@ public class BridgeGame {
     }
 
     public boolean isGameSuccess() {
-        return ((getCurrentIndex() == (this.bridge.size() - 1)) && isGameContinue());
+        return ((currentIndex == (bridge.size() - 1)) && gameContinue);
     }
 }
