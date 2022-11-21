@@ -12,9 +12,7 @@ public class Application {
         Announcement.start();
         size = InputView.readBridgeSize();
 
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(size);
+        List<String> bridge = make_bridge(size);
 
         while(re.contains("R")) {
             for (int i = 0; i < size; i++) {
@@ -39,5 +37,11 @@ public class Application {
         OutputView.printMap(BridgeGame.getUp_bridge(), BridgeGame.getDown_bridge());
         OutputView.printResult(success, try_count);
         // TODO: 프로그램 구현
+    }
+    public static List<String> make_bridge(int size){
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        return bridge;
     }
 }
