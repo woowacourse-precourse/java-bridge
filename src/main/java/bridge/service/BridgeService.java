@@ -104,6 +104,7 @@ public class BridgeService {
             }
             else if(input.equals("Q")){
                 OutputView.printResult(presentMoveBridge);
+                OutputView.printGameSuccess(false);
             }
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
