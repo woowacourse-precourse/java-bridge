@@ -3,13 +3,14 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.domain.GameResult;
 import bridge.domain.PositionTable;
+import bridge.domain.TryNumber;
 
 import java.util.stream.Stream;
 
 public class BridgeGame {
     private Bridge bridge;
     private PositionTable userTable;
-    private int tryNumber = 0;
+    private TryNumber tryNumber = TryNumber.zero();
 
     private BridgeGame(Bridge bridge, PositionTable userTable) {
         this.bridge = bridge;
@@ -34,7 +35,7 @@ public class BridgeGame {
                 .orElse(GameResult.KEEP);
     }
     public int getTryNumber() {
-        return tryNumber;
+        return tryNumber.getTryNumber();
     }
     public GameResult retry(GameResult gameResult) {
         while (gameResult.isKeep()) {
@@ -44,7 +45,7 @@ public class BridgeGame {
     }
 
     public GameResult startGame() {
-        tryNumber += 1;
+        tryNumber.increase();
         GameResult gameResult = move();
         return determineRetry(gameResult);
     }

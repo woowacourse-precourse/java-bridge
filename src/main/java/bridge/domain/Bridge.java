@@ -21,7 +21,7 @@ public class Bridge {
         return new Bridge(generatedBridge);
     }
 
-    public static Bridge makeBridge() throws IllegalArgumentException {
+    public static Bridge makeBridge() throws IllegalArgumentException, IllegalStateException {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return of(bridgeMaker.makeBridge(InputView.readBridgeSize()));
     }

@@ -2,6 +2,9 @@ package bridge.domain;
 
 import java.util.Objects;
 
+import static bridge.viewer.MoveCommand.DOWN;
+import static bridge.viewer.MoveCommand.UP;
+
 public class Position {
     private final String position;
 
@@ -13,10 +16,10 @@ public class Position {
     }
 
     public boolean isUp() {
-        return position.equals("U");
+        return position.equals(UP);
     }
     public boolean isDown() {
-        return position.equals("D");
+        return position.equals(DOWN);
     }
 
     @Override

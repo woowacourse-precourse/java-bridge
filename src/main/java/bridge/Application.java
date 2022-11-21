@@ -14,7 +14,7 @@ public class Application {
             GameResult gameResult = bridgeGame.startGame();
             gameResult = bridgeGame.retry(gameResult);
             BridgeGameManager.showResult(userTable, gameResult, bridgeGame.getTryNumber());
-        } catch(IllegalArgumentException e) {
+        } catch(IllegalArgumentException|IllegalStateException e) {
             System.out.println(e.getMessage());
         }
     }
