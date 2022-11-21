@@ -173,11 +173,21 @@ public class OutputView {
         printNumOfTry(numOfTrying);
     }
 
+    /**
+     * 게임 상태를 출력한다.
+     * 
+     * @param gameStatus 게임의 상태
+     */
     private void printGameStatus(String gameStatus) {
         System.out.print(GAME_STATUS_PHRASES);
         System.out.println(gameStatus);
     }
 
+    /**
+     * 게임 총 시도 횟수를 출력한다.
+     * 
+     * @param numOfTrying 게임 총 시도 횟수
+     */
     private void printNumOfTry(Integer numOfTrying) {
         System.out.print(NUMBER_OF_TRYING_PHRASES);
         System.out.println(numOfTrying);

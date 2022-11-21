@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 public class Application {
 
     private static final BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
