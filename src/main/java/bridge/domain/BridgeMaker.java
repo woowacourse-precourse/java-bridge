@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.service.constants.Move;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +26,8 @@ public class BridgeMaker {
 
     private String getPassAndFail() {
         if (bridgeNumberGenerator.generate() == 1) {
-            return "1";
+            return Move.UP_BRIDGE.getValue();
         }
-        return "0";
+        return Move.DOWN_BRIDGE.getValue();
     }
 }
