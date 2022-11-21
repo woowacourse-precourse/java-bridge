@@ -37,4 +37,14 @@ public class BridgeMap {
         saveState(BridgeValue.EMPTY.value(), BridgeValue.FALSE.value());
         return false;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Bridge bridge1 : bridge) {
+            sb.append(bridge1);
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
