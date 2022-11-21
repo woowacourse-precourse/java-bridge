@@ -1,26 +1,27 @@
 package bridge.view;
 
-import bridge.domain.Bridge;
+import static java.lang.Integer.parseInt;
+
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String INPUT_NOT_INTEGER_ERROR = "[ERROR] 생성할 다리의 길이는 정수만 입력이 가능합니다.";
+    private static final String INPUT_VALID_RANGE_OF_NUMBER_ERROR = "[ERROR] 3~20사이의 숫자만 입력이 가능합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public Bridge readBridgeSize() {
-        try {
-            System.out.println("다리의 길이를 입력해주세요.");
+    public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
+        String input = Console.readLine();
 
-            return new Bridge(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            readBridgeSize();
-        }
-        return null;
+        int bridgeSize = validateInteger(input);
+        validateRange(bridgeSize);
+
+        return bridgeSize;
     }
 
     /**
@@ -39,5 +40,21 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
         return Console.readLine();
+    }
+
+    private int validateInteger(String size) {
+        String regex = "^[0-9]+$";
+
+        if (!size.matches(regex)) {
+            throw new IllegalArgumentException(INPUT_NOT_INTEGER_ERROR);
+        }
+
+        return parseInt(size);
+    }
+
+    private void validateRange(int size) {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException(INPUT_VALID_RANGE_OF_NUMBER_ERROR);
+        }
     }
 }

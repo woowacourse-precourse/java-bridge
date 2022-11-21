@@ -22,6 +22,7 @@ public class BridgeResult {
     }
 
     public void addBlock(String blockToMove, String correct) {
+        //TODO: blockToMove에 대한 예외처리
         if (blockToMove.equals("U")) {
             upBlocks.add(correct);
             downBlocks.add(" ");
