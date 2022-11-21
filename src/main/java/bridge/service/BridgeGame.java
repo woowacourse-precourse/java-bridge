@@ -19,20 +19,20 @@ public class BridgeGame {
     private boolean moveSuccess;
 
     public void start(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
-        init();
+        init(bridgeNumberGenerator);
         tryGame();
-        OutputView.printResult(bridge.getPlayerMovingHistory(), isGameSuccess(),
+        OutputView.printResult(bridge.getPlayerMovingHistory(), isGameEndWithSuccess(),
                 statistics.getTryCount());
     }
 
     private void tryGame() {
-        while (!moveSuccess && isGameSuccess()) {
+        while (moveSuccess) {
             move();
+            if (isGameEndWithSuccess()) {
+                return;
+            }
         }
-        if (!isGameSuccess()) {
-            checkGameCommand();
-        }
+        checkGameCommand();
     }
 
     private void checkGameCommand() {
@@ -41,12 +41,14 @@ public class BridgeGame {
         }
     }
 
-    private void init() {
+    private void init(BridgeNumberGenerator bridgeNumberGenerator) {
         OutputView.startBridgeGame();
+        this.bridgeNumberGenerator = bridgeNumberGenerator;
         int size = readBridgeSize();
         List<String> bridges = makeBridge(size);
         this.bridge = new Bridge(size, bridges);
         this.statistics = new Statistics();
+        this.moveSuccess = true;
     }
 
     private int readBridgeSize() {
@@ -73,17 +75,16 @@ public class BridgeGame {
         try {
             OutputView.readMoving();
             String moving = InputView.readMoving();
-            this.moveSuccess = bridge.updateMoving(moving);
-            statistics.update();
-            OutputView.printMap(bridge.getPlayerMovingHistory(), this.moveSuccess);
+            moveSuccess = bridge.updateMoving(moving);
+            OutputView.printMap(bridge.getPlayerMovingHistory(), moveSuccess);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             move();
         }
     }
 
-    private boolean isGameSuccess() {
-        return bridge.reachEndOfBridge() && this.isGameSuccess();
+    private boolean isGameEndWithSuccess() {
+        return bridge.reachEndOfBridge() && moveSuccess;
     }
 
     private String readGameCommand() {
@@ -103,6 +104,7 @@ public class BridgeGame {
      */
     public void retry() {
         bridge.clearPlayerMovingHistory();
+        statistics.update();
         tryGame();
     }
 }

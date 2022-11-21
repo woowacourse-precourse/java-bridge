@@ -5,7 +5,7 @@ public class Statistics {
     private int tryCount;
 
     public Statistics() {
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     public void update() {
