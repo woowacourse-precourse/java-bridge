@@ -10,11 +10,13 @@ public class BridgeCommandController {
 	private final InputView inputView;
 	private final OutputView outputView;
 
-	public BridgeCommandController(BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
+	public BridgeCommandController(BridgeGame bridgeGame, InputView inputView,
+		OutputView outputView) {
 		this.bridgeGame = bridgeGame;
 		this.inputView = inputView;
 		this.outputView = outputView;
 	}
+
 	public String getRetryOrQuit(MoveCommandDto moveCommandDto) {
 		String gameCommand = checkMoveCommand(moveCommandDto);
 		return receiveGameResult(gameCommand, moveCommandDto);
@@ -24,7 +26,7 @@ public class BridgeCommandController {
 		if (isNotMove(moveCommandDto)) {
 			return getInputCommand();
 		}
-		return "R";
+		return CommandSymbols.RETRY;
 	}
 
 	private boolean isNotMove(MoveCommandDto moveCommandDto) {
@@ -35,7 +37,7 @@ public class BridgeCommandController {
 		String gameCommand;
 		do {
 			gameCommand = inputGameCommand();
-		} while (gameCommand.equals("Error"));
+		} while (isEqualToError(gameCommand));
 		return gameCommand;
 	}
 
@@ -44,7 +46,7 @@ public class BridgeCommandController {
 			return commandCheck();
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
-			return "Error";
+			return CommandSymbols.ERROR;
 		}
 	}
 
@@ -56,7 +58,7 @@ public class BridgeCommandController {
 	}
 
 	private void checkResetOutput(String gameCommand) {
-		if (gameCommand.equals("R")) {
+		if (isEqualToRetry(gameCommand)) {
 			outputView.resetOutputView();
 		}
 	}
@@ -64,12 +66,24 @@ public class BridgeCommandController {
 	private String receiveGameResult(String gameCommand, MoveCommandDto moveCommandDto) {
 		if (isQuit(gameCommand, moveCommandDto)) {
 			outputView.receiveGameResult(bridgeGame.sendGameResult());
-			return "Q";
+			return CommandSymbols.QUIT;
 		}
-		return "R";
+		return CommandSymbols.RETRY;
 	}
 
 	private boolean isQuit(String gameCommand, MoveCommandDto moveCommandDto) {
-		return gameCommand.equals("Q") || moveCommandDto.getGameClear();
+		return isEqualToQuit(gameCommand) || moveCommandDto.getGameClear();
+	}
+
+	private boolean isEqualToRetry(String gameCommand) {
+		return gameCommand.equals(CommandSymbols.RETRY);
+	}
+
+	private boolean isEqualToQuit(String gameCommand) {
+		return gameCommand.equals(CommandSymbols.QUIT);
+	}
+
+	private boolean isEqualToError(String gameCommand) {
+		return gameCommand.equals(CommandSymbols.ERROR);
 	}
 }
