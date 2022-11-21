@@ -26,4 +26,12 @@ class GameResultDtoTest {
     void getGameStatus() {
         assertThat(gameResult.getGameStatus()).isEqualTo(GameStatus.SUCCESS);
     }
+
+    @DisplayName("게임 결과 dto 게임 기록 반환 값 확인")
+    @Test
+    void getRecord() {
+        GameRecordDto gameRecord = gameResult.getGameRecord();
+        assertThat(gameRecord.getAttempt()).isEqualTo(3);
+        assertThat(gameRecord.getRecord()).containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
+    }
 }
