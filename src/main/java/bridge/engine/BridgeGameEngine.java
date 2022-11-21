@@ -7,6 +7,7 @@ import bridge.model.BridgeSize;
 import bridge.model.Crossing;
 import bridge.model.PassOrFail;
 import bridge.model.UpOrDown;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,5 +46,9 @@ public class BridgeGameEngine {
 
     public void retry(Crossing crossing) {
         bridgeGame.retry(crossing);
+    }
+
+    public Crossing createCrossing() {
+        return new Crossing(new ArrayList<>());
     }
 }
