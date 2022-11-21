@@ -27,24 +27,11 @@ public class BridgeController {
             bridgeGame.nextStep();
 
             if(isWrong(oneBridge)){
-                outputView.printRequestRetry();
-                String input = inputView.readGameCommand();
-                if(!isFinish(input)){
-                    break;
-                }
-                bridgeGame.clearResultRestart();
-                bridgeGame.initLevel();
+                bridgeGame.retry();
             }
         }
 
         outputView.printResult(bridge, bridgeGame);
-    }
-
-    public boolean isFinish(String str){
-        if(str.equals("Q")){
-            return false;
-        }
-        return true;
     }
 
     public boolean isWrong(String bridge){

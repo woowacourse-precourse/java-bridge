@@ -65,6 +65,19 @@ public class BridgeGame {
      */
     public void retry() {
         outputView.printRequestRetry();
+        String input = inputView.readGameCommand();
+        if(!isFinish(input)){
+            return;
+        }
+        clearResultRestart();
+        initLevel();
+    }
+
+    public boolean isFinish(String str){
+        if(str.equals("Q")){
+            return false;
+        }
+        return true;
     }
 
     public void printMapStart(){
@@ -94,7 +107,6 @@ public class BridgeGame {
 
     public void printGoUp(List<String> bridge, String input, int step){
         String result = printMoveUpDown(bridge, input, step);
-
         if(bridge.get(step).equals("U")) {
             if (result.equals(" O ")) {
                 sbUp.append(result);
