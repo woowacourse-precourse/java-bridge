@@ -56,6 +56,10 @@ public class BridgeGame {
         return true;
     }
 
+    public boolean winTheGame() {
+        return bridge.equals(movement);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
