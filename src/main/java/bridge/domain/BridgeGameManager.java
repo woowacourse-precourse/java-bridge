@@ -37,7 +37,6 @@ public class BridgeGameManager {
     }
 
     private void mainProgress(BridgeGame bridgeGame) {
-        initBrigeSize(bridgeGame);
         while (bridgeSize --> BRIDGE_SIZE_INIT) {
             moveProgress(bridgeGame);
             outputView.printMap(bridgeState);
