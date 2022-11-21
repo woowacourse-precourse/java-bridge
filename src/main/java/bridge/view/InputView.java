@@ -9,18 +9,13 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
+    private static final Pattern SINGLE_CHARACTER_PATTERN = Pattern.compile("[A-z]");
 
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         validateNumeric(input);
         return Integer.parseInt(input);
-    }
-
-    private void validateNumeric(String input) {
-        if (!NUMERIC_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("숫자가 아닙니다");
-        }
     }
 
     public String readMoving() {
@@ -31,8 +26,22 @@ public class InputView {
         return input;
     }
 
+    public String readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+        validateSingleCharacter(input);
+        validateCommand(input);
+        return input;
+    }
+
+    private void validateNumeric(String input) {
+        if (!NUMERIC_PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException("숫자가 아닙니다");
+        }
+    }
+
     private void validateSingleCharacter(String input) {
-        if (!Pattern.compile("[A-z]").matcher(input).matches()) {
+        if (!SINGLE_CHARACTER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException("한 글자가 아닙니다");
         }
     }
@@ -42,14 +51,6 @@ public class InputView {
                 .filter(direction -> direction.capitalLetter().equals(input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 방향입니다"));
-    }
-
-    public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String input = Console.readLine();
-        validateSingleCharacter(input);
-        validateCommand(input);
-        return input;
     }
 
     private void validateCommand(String input) {
