@@ -22,10 +22,7 @@ public class Application {
             String direction = inputView.readMoving();
             boolean checkDirection = progressGame(direction, bridge);
             if(checkDirection){
-                if(bridgeGame.checkGameIsOver(user, direction, size, bridge)){
-                    outputView.printResult(user, direction, true, bridge, true);
-                    break;
-                }
+                if(gameIsOverByWinning(user, direction, size, bridge) == true) break;
             }else{
                 if(inputView.readGameCommand() == "R") {
                     user.addUserAttempt();
@@ -44,5 +41,13 @@ public class Application {
         outputView.printMap(user.getUserPosition(), direction, checkDirection, bridge);
 
         return checkDirection;
+    }
+
+    public static boolean gameIsOverByWinning(User user, String direction, int size, List<String> bridge){
+        if(bridgeGame.checkGameIsOver(user, direction, size, bridge)){
+            outputView.printResult(user, direction, true, bridge, true);
+            return true;
+        }
+        return false;
     }
 }
