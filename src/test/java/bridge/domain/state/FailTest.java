@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 class FailTest {
-    private State fail;
+    private MoveResultState fail;
     
     @BeforeEach
     void setUp() {

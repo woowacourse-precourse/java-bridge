@@ -1,7 +1,7 @@
 package bridge.domain.state;
 
-public interface State {
-    State move(final int positionToMove, final String moving);
+public interface MoveResultState {
+    MoveResultState move(final int positionToMove, final String moving);
     
     boolean isMoveFailed();
     

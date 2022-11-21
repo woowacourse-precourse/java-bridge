@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeTest;
 import bridge.domain.state.Fail;
-import bridge.domain.state.State;
+import bridge.domain.state.MoveResultState;
 import bridge.domain.state.Success;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,9 +20,9 @@ class MoveResultDisplayTest {
         final MoveResultDisplay success = MoveResultDisplay.SUCCESS;
         final MoveResultDisplay fail = MoveResultDisplay.FAIL;
         
-        final List<State> moveStates = List.of(successState, failState, successState);
+        final List<MoveResultState> moveMoveResultStates = List.of(successState, failState, successState);
         final List<MoveResultDisplay> expectedMoveResults = List.of(success, fail, success);
         
-        assertThat(MoveResultDisplay.convertToMoveResult(moveStates)).isEqualTo(expectedMoveResults);
+        assertThat(MoveResultDisplay.convertToMoveResult(moveMoveResultStates)).isEqualTo(expectedMoveResults);
     }
 }

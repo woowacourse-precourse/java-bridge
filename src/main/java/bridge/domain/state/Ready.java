@@ -12,7 +12,7 @@ public class Ready extends Started {
     }
     
     @Override
-    public State move(final int positionToMove, final String moving) {
+    public MoveResultState move(final int positionToMove, final String moving) {
         if (isPartBridgeExist(positionToMove, moving)) {
             return new Success(bridge(), moving);
         }

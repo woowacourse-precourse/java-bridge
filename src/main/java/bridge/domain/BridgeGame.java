@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.domain.state.State;
+import bridge.domain.state.MoveResultState;
 import bridge.dto.MovingDTO;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class BridgeGame {
         return moveResultStates.isGameFinished();
     }
     
-    public List<State> moveStates() {
+    public List<MoveResultState> moveStates() {
         return moveResultStates.states();
     }
     

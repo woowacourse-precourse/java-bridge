@@ -13,7 +13,7 @@ public abstract class MoveComplete extends Started {
     }
     
     @Override
-    public State move(final int positionToMove, final String moving) {
+    public MoveResultState move(final int positionToMove, final String moving) {
         throw new IllegalStateException(MOVE_NOT_AVAILABLE);
     }
     
