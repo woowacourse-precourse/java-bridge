@@ -3,6 +3,8 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.util.BridgeConstant.UP_POSITION;
+
 public class BridgeMap {
     private static final BridgeMap bridgeMap = new BridgeMap();
     private static final List<String> upperBridgeMap = new ArrayList<>();
@@ -24,12 +26,12 @@ public class BridgeMap {
         return lowerBridgeMap;
     }
 
-    public void addUpperBridgeMap(String block) {
-        upperBridgeMap.add(block);
-        lowerBridgeMap.add(BLANK_BLOCK);
-    }
-
-    public void addLowerBridgeMap(String block) {
+    public void addBridgeMap(String block, int playerPosition) {
+        if (playerPosition == UP_POSITION) {
+            upperBridgeMap.add(block);
+            lowerBridgeMap.add(BLANK_BLOCK);
+            return;
+        }
         upperBridgeMap.add(BLANK_BLOCK);
         lowerBridgeMap.add(block);
     }

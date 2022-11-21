@@ -4,20 +4,14 @@ import bridge.model.BridgeMap;
 import bridge.model.Player;
 
 import static bridge.util.BridgeConstant.FALL_BLOCK;
-import static bridge.util.BridgeConstant.UP_POSITION;
 
 public class BridgeMapMaker {
     public final String SUCCESS_BLOCK = "O";
 
     public void addBridgeMapBlock(Player player, boolean success) {
-        BridgeMap bridgeMap = BridgeMap.getBridgeMap();
         String block = getBlock(success);
-
-        if (player.getYPosition() == UP_POSITION) {
-            bridgeMap.addUpperBridgeMap(block);
-            return;
-        }
-        bridgeMap.addLowerBridgeMap(block);
+        int playerYPosition = player.getYPosition();
+        BridgeMap.getBridgeMap().addBridgeMap(block, playerYPosition);
     }
 
     private String getBlock(boolean success) {
