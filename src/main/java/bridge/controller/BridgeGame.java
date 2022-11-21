@@ -37,8 +37,8 @@ public class BridgeGame {
         return tryNumber.getTryNumber();
     }
     public GameResult retry(GameResult gameResult) {
-        userTable.clear();
         while (gameResult.isKeep()) {
+            userTable.clear();
             gameResult = startGame();
         }
         return gameResult;

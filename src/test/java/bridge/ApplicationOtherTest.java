@@ -49,7 +49,7 @@ class ApplicationOtherTest extends NsTest {
     }
 
     @Test
-    void 재시도_Test() {
+    void 재시도_후_성공_Test() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D","R","U","D","U");
             assertThat(output()).contains(

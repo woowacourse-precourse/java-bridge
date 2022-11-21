@@ -37,13 +37,13 @@ public class OutputView {
     }
 
     public static void printResult(PositionTable userTable, GameResult gameResult) {
+        printMap(userTable, gameResult);
         if (gameResult.isLose()) {
             System.out.println(LOSE_MESSAGE);
         }
         if (gameResult.isWin()) {
             System.out.println(WIN_MESSAGE);
         }
-        printMap(userTable, gameResult);
     }
 
     private static void showMap(PositionTable userTable, Predicate<Position> p) {
