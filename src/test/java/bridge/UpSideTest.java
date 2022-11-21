@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.objects.UpSide;
+import bridge.ways.UpSide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

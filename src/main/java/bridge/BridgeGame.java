@@ -1,8 +1,8 @@
 package bridge;
 
 
-import bridge.objects.DownSide;
-import bridge.objects.UpSide;
+import bridge.ways.DownSide;
+import bridge.ways.UpSide;
 
 public class BridgeGame {
     public static UpSide upSide = new UpSide();
