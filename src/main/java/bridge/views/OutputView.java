@@ -3,7 +3,10 @@ package bridge.views;
 import bridge.identifiers.Direction;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +19,7 @@ public class OutputView {
     private static String FORMAT_MAP_DELIMITER = " | ";
     private static String MSG_CORRECT_DIRECTION = "O";
     private static String MSG_WRONG_DIRECTION = "X";
+    private static String MSG_NONE_DIRECTION = " ";
     private static String MSG_SEPARATOR = "";
 
     public void printWelcome() {
@@ -29,16 +33,49 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<Direction> playerPath, boolean isGameOver) {
-        List<String> directions = playerPath.stream()
-                .map((element) -> MSG_CORRECT_DIRECTION)
-                .collect(Collectors.toList());
-        if (isGameOver) {
-            directions.set(directions.size() - 1, MSG_WRONG_DIRECTION);
+        int pathLength = playerPath.size();
+
+        Map<Direction, List<String>> messageParts = makeMessagePartsByDirection(pathLength);
+
+        for (int index = 0; index < pathLength; ++index) {
+            modifyPathMessageParts(playerPath.get(index), isGameOver, pathLength, messageParts, index);
         }
-        String message = directions.stream()
-                .collect(Collectors.joining(FORMAT_MAP_DELIMITER));
-        System.out.println(MessageFormat.format(FORMAT_MAP, message));
-        printSeparator();
+        System.out.println(applyMapFormat(messageParts.get(Direction.UP)));
+        System.out.println(applyMapFormat(messageParts.get(Direction.DOWN)));
+    }
+
+    private Map<Direction, List<String>> makeMessagePartsByDirection(int pathLength){
+        Map<Direction, List<String>> messageParts = new HashMap<>();
+        messageParts.put(Direction.UP, makeNoneDirections(pathLength));
+        messageParts.put(Direction.DOWN, makeNoneDirections(pathLength));
+        return messageParts;
+    }
+
+
+    private void modifyPathMessageParts(Direction direction, boolean isGameOver, int pathLength, Map<Direction, List<String>> messageParts, int index) {
+        if (pathLength - 1 == index) {
+            if (isGameOver) {
+                messageParts.get(direction).set(index, MSG_WRONG_DIRECTION);
+                return;
+            }
+        }
+        messageParts.get(direction).set(index, MSG_CORRECT_DIRECTION);
+    }
+
+    private String applyMapFormat(List<String> messageParts){
+        return MessageFormat.format(
+                FORMAT_MAP,
+                messageParts.stream().collect(Collectors.joining(FORMAT_MAP_DELIMITER))
+                );
+    }
+
+
+    private List<String> makeNoneDirections(int size) {
+        List<String> directions = new ArrayList<>(size);
+        for (int index = 0; index < size; ++index) {
+            directions.add(MSG_NONE_DIRECTION);
+        }
+        return directions;
     }
 
     /**
