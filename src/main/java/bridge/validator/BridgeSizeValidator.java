@@ -3,7 +3,10 @@ package bridge.validator;
 public class BridgeSizeValidator {
     public static void validate(String input) {
         validateNumber(input);
-        validateRange(input);
+    }
+
+    public static void validate(int size){
+        validateRange(size);
     }
 
     private static void validateNumber(String input) {
@@ -13,9 +16,8 @@ public class BridgeSizeValidator {
         }
     }
 
-    private static void validateRange(String input) {
-        int number = Integer.parseInt(input);
-        if (number < 3 || number > 20) {
+    private static void validateRange(int size) {
+        if (size < 3 || size > 20) {
             System.out.println("[ERROR] 범위는 3 이상 20 이하여야 합니다.");
             throw new IllegalArgumentException();
         }
