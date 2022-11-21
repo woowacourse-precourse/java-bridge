@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameProcessor {
@@ -14,18 +15,15 @@ public class BridgeGameProcessor {
         this.outputView = outputView;
     }
 
-    public Integer start(List<String> bridge, List<String> route) {
+    public void start(List<String> bridge, List<String> route, List<Integer> gameRestartCount) {
         boolean gameContinue = true;
-        Integer gameRestartCount = 0;
         do {
             gameContinue = routing(bridge, route);
+            outputView.printMap(bridge, route);
         } while (gameContinue && !(route.size() == bridge.size()));
         if (!gameContinue) {
-            retry(bridge, route);
-            gameRestartCount += 1;
+            retry(bridge, route, gameRestartCount);
         }
-        return gameRestartCount;
-
     }
 
     private boolean routing(List<String> bridge, List<String> route) {
@@ -42,12 +40,15 @@ public class BridgeGameProcessor {
         return false;
     }
 
-    private void retry(List<String> bridge, List<String> route) {
+    private void retry(List<String> bridge, List<String> route, List<Integer> gameRestartCount) {
         outputView.printChoosingWhetherRestart();
         boolean isRetryWannted = bridgeGame.retry(inputView.readGameCommand());
         if (isRetryWannted) {
-            start(bridge, route);
+            gameRestartCount.set(0, gameRestartCount.get(0) + 1);
+            route.clear();
+            start(bridge, route, gameRestartCount);
         }
+
     }
 
 }
