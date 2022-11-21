@@ -12,7 +12,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        ValidateInput.bridgeSize(input);
+
+        try {
+            ValidateInput.bridgeSize(input);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
 
         return Integer.parseInt(input);
     }
@@ -22,7 +29,14 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        ValidateInput.moving(input);
+
+        try {
+            ValidateInput.moving(input);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            input = readMoving();
+        }
 
         return input;
     }
@@ -32,7 +46,14 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
-        ValidateInput.gameCommand(input);
+
+        try {
+            ValidateInput.gameCommand(input);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            input = readGameCommand();
+        }
 
         return input;
     }
