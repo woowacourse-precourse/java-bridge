@@ -50,7 +50,7 @@ public class BridgeGame {
         } else if (user.equals(Direction.DOWN.getDirection())) {
             map.makeDownMap(result);
         }
-        return List.of(map.getUpMap(), map.getDownMap());
+        return map.getAllMap();
     }
 
     private String compareUserAndAnswer(String user, String answer) {
@@ -76,8 +76,8 @@ public class BridgeGame {
         result.changeFail();
     }
 
-    public Map getMap() {
-        return map;
+    public List<String> getMap() {
+        return map.getAllMap();
     }
 
     public GameResult getResult() {

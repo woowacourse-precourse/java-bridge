@@ -2,6 +2,8 @@ package bridge.domain;
 
 import bridge.constant.BridgeSymbol;
 
+import java.util.List;
+
 public class Map {
     private static final String SPACE = " ";
     private StringBuilder upMap;
@@ -27,11 +29,15 @@ public class Map {
         downMap = new StringBuilder(BridgeSymbol.OPEN.getState() + SPACE);
     }
 
-    public String getUpMap() {
+    private String getUpMap() {
         return upMap.substring(0, upMap.length() - 2) + BridgeSymbol.CLOSE.getState();
     }
 
-    public String getDownMap() {
+    private String getDownMap() {
         return downMap.substring(0, downMap.length() - 2) + BridgeSymbol.CLOSE.getState();
+    }
+
+    public List<String> getAllMap() {
+        return List.of(getUpMap(), getDownMap());
     }
 }
