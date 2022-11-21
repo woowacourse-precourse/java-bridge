@@ -42,20 +42,26 @@ public class BridgeGame {
             boolean success = true;
             gameCount = countGame(gameCount);
             List<List<String>> bridgeMap = new ArrayList<>();
-            for (String bridgeBlock : bridge) {
-                String moving = inputController.getMoving(InputView.readMoving());
-                if (!move(moving, bridgeBlock, bridgeMap)) {
-                    success = false;
-                    String gameCommand = inputController.getGameCommand(InputView.readGameCommand());
-                    flag = retry(gameCommand);
-                    break;
-                }
+            if (!crossBridge(bridge, inputController, bridgeMap)) {
+                success = false;
+                String gameCommand = inputController.getGameCommand(InputView.readGameCommand());
+                flag = retry(gameCommand);
             }
             outputView.printResult(bridgeMap, success, gameCount);
             if (!flag) {
                 break;
             }
         }
+    }
+
+    public boolean crossBridge(List<String> bridge, InputController inputController, List<List<String>> bridgeMap) {
+        for (String bridgeBlock : bridge) {
+            String moving = inputController.getMoving(InputView.readMoving());
+            if (!move(moving, bridgeBlock, bridgeMap)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
