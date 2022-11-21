@@ -1,6 +1,8 @@
 package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -32,7 +34,7 @@ public class InputView {
                 + "사이의 정수이어야 합니다."),
         SINGLE_CHARACTER_VALIDATION_FAILED("입력한 명령의 형식이 올바르지 않습니다."),
         COMMAND_VALIDATION_FAILED("사용할 수 있는 명령이 아닙니다.");
-        
+
         private final String message;
 
         Message(String message) {
@@ -45,19 +47,33 @@ public class InputView {
     }
 
     public static enum Command {
-        MOVE_UP("U"),
-        MOVE_DOWM("D"),
-        QUIT("Q"),
-        RETRY("R");
+        MOVE_UP("U", 1),
+        MOVE_DOWM("D", 0),
+        QUIT("Q", 4),
+        RETRY("R", 3);
 
         private final String command;
+        private final int code;
 
-        Command(String command) {
+        Command(String command, int code) {
             this.command = command;
+            this.code = code;
         }
 
         public String getCommand() {
             return this.command;
+        }
+
+        public int getCode() {
+            return this.code;
+        }
+
+        public static int getCodeByCommand(String userCommand) {
+            Map<String, Integer> commandPool = new HashMap<>();
+            for (Command command : values()) {
+                commandPool.put(command.getCommand(), command.getCode());
+            }
+            return commandPool.get(userCommand);
         }
     }
 

@@ -81,8 +81,10 @@ public class OutputView {
     }
 
     private void printJoinerStatus(StringJoiner[] bridgeInfo) {
-        System.out.println(bridgeInfo[0].toString());
+        // index 0 - 아래쪽 다리
+        // index 1 - 위 쪽 다리
         System.out.println(bridgeInfo[1].toString());
+        System.out.println(bridgeInfo[0].toString());
     }
 
     private int getReverseNumber(int number) {
@@ -93,10 +95,7 @@ public class OutputView {
     }
 
     private int getIndex(String command) {
-        if (command.equals(Command.MOVE_UP.getCommand())) {
-            return 0;
-        }
-        return 1;
+        return Command.getCodeByCommand(command);
     }
 
     /**
