@@ -8,11 +8,9 @@ import bridge.validator.Unit;
 import bridge.view.Messages;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-
-import java.util.List;
 
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -23,8 +21,8 @@ public class BridgeControllerTest extends NsTest {
     BridgeConfig bridgeConfig = new BridgeConfig();
     BridgeController bridgeController = bridgeConfig.bridgeController();
 
-    @BeforeAll
-    static void reset() {
+    @BeforeEach
+    void reset() {
         BridgeStage.resetStage();
     }
 

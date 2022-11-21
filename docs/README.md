@@ -38,6 +38,7 @@
       -[x] Q를 입력하였을 때 게임을 종료한다.
       -[x] R을 입력하였을 때 BridgeGame의 retry()를 실행한다.
 - [x] 위 기능들을 조합해 전체적인 게임을 실행한다 - playWithExceptionCatch()
+
  
 
 ---

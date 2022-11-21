@@ -23,7 +23,7 @@ public class BridgeMaker {
     public List<String> convertNumbersToUpAndDown(List<Integer> numbers) {
         List<String> convertResult = new ArrayList<>();
 
-        for(int number : numbers) {
+        for (int number : numbers) {
             String result = numberToUpAndDown(number);
             convertResult.add(result);
         }
@@ -33,9 +33,9 @@ public class BridgeMaker {
     public String numberToUpAndDown(int number) {
         String result = "";
 
-        for(UpDown value : UpDown.values()) {
-            if(number == value.getNumber()) {
-                result = value.getResult();
+        for (UpDown upDown : UpDown.values()) {
+            if (number == upDown.getNumber()) {
+                result = upDown.getResult();
             }
         }
 

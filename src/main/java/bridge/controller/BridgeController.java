@@ -42,7 +42,7 @@ public class BridgeController {
             play();
         } catch (QuitGameException e) {
             quitGame();
-        }catch (SuccessGameException e) {
+        } catch (SuccessGameException e) {
             successGame();
         }
     }
@@ -52,7 +52,7 @@ public class BridgeController {
         initBridgeGame(bridge);
         outputView.printMessage(Messages.VIEW_START_GAME);
 
-        while(true) {
+        while (true) {
             processGame();
         }
     }
@@ -69,13 +69,13 @@ public class BridgeController {
 
 
     public void processResult(StageResult result) {
-        if(result == StageResult.PASS) {
+        if (result == StageResult.PASS) {
             bridgeGame.pass();
         }
-        if(result == StageResult.FAIL) {
+        if (result == StageResult.FAIL) {
             decideRetryOrQuit();
         }
-        if(result == StageResult.SUCCESS) {
+        if (result == StageResult.SUCCESS) {
             bridgeGame.success();
         }
     }
@@ -83,12 +83,12 @@ public class BridgeController {
     public void decideRetryOrQuit() {
         String userInput = inputView.readGameCommand();
 
-        if(userInput.equals(Unit.RETRY.getCommand())) {
+        if (userInput.equals(Unit.RETRY.getCommand())) {
             outputView.resetMap();
             bridgeGame.retry();
         }
 
-        if(userInput.equals(Unit.QUITE.getCommand())) {
+        if (userInput.equals(Unit.QUITE.getCommand())) {
             bridgeGame.quit();
         }
     }

@@ -23,8 +23,8 @@ public class BridgeGame {
         int currentStage = BridgeStage.currentStage();
         String stageAnswer = bridge.get(currentStage);
 
-        if(stageAnswer.equals(userInput)) {
-            if(BridgeStage.isFinalStage(bridge.size())) {
+        if (stageAnswer.equals(userInput)) {
+            if (BridgeStage.isFinalStage(bridge.size())) {
                 return StageResult.SUCCESS;
             }
             return StageResult.PASS;

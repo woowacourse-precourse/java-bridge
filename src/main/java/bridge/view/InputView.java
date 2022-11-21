@@ -22,7 +22,7 @@ public class InputView {
     }
 
     public String readBridgeSizeUntilCollectFormat(String userInput) {
-        while(true) {
+        while (true) {
             try {
                 userInput = readInput();
                 validator.validateBridgeSize(userInput);
@@ -44,7 +44,7 @@ public class InputView {
     }
 
     public String readMoveUntilCollectFormat(String userInput) {
-        while(true) {
+        while (true) {
             try {
                 userInput = readInput();
                 validator.validateMove(userInput);
@@ -67,7 +67,7 @@ public class InputView {
     }
 
     public String readGameCommandUntilCollectFormat(String userInput) {
-        while(true) {
+        while (true) {
             try {
                 userInput = readInput();
                 validator.validateGameCommand(userInput);

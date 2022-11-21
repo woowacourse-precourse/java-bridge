@@ -1,6 +1,7 @@
 package bridge.Exception;
 
-public class QuitGameException extends RuntimeException{
+public class QuitGameException extends RuntimeException {
 
-    public QuitGameException() {}
+    public QuitGameException() {
+    }
 }

@@ -1,8 +1,8 @@
 package bridge.generator;
 
 public enum UpDown {
-    UP(1,"U"),
-    DOWN(0,"D");
+    UP(1, "U"),
+    DOWN(0, "D");
 
     private int number;
     private String result;

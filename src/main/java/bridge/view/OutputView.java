@@ -37,14 +37,14 @@ public class OutputView {
     }
 
     public String decideOX(StageResult stageResult) {
-        if(stageResult == StageResult.PASS || stageResult == StageResult.SUCCESS) {
+        if (stageResult == StageResult.PASS || stageResult == StageResult.SUCCESS) {
             return Unit.O.getCommand();
         }
         return Unit.X.getCommand();
     }
 
     public Unit decideUpDown(String userInput) {
-        if(userInput.equals(Unit.UP.getCommand())) {
+        if (userInput.equals(Unit.UP.getCommand())) {
             return Unit.UP;
         }
         return Unit.DOWN;
@@ -68,7 +68,7 @@ public class OutputView {
     }
 
     public Unit findOppositeKey(Unit key) {
-        if(key == (Unit.UP)) {
+        if (key == (Unit.UP)) {
             return Unit.DOWN;
         }
 
@@ -79,7 +79,7 @@ public class OutputView {
         checkStackIsEmpty(key);
 
         Stack<String> inputRecord = userInputMap.get(key);
-        if(inputRecord.peek().equals(Unit.RIGHT_BRACKET.getCommand())) {
+        if (inputRecord.peek().equals(Unit.RIGHT_BRACKET.getCommand())) {
             inputRecord.pop();
             inputRecord.add(Unit.VERTICAL_BAR.getCommand());
         }
@@ -92,7 +92,7 @@ public class OutputView {
     public void checkStackIsEmpty(Unit key) {
         Stack<String> inputRecord = userInputMap.get(key);
 
-        if(inputRecord.isEmpty()) {
+        if (inputRecord.isEmpty()) {
             inputRecord.add(Unit.LEFT_BRACKET.getCommand());
         }
     }
@@ -100,9 +100,9 @@ public class OutputView {
     public String stackToString(Stack<String> stack) {
         StringBuilder sb = new StringBuilder();
 
-        List<String> userInput =  new ArrayList<>(stack);
+        List<String> userInput = new ArrayList<>(stack);
 
-        for(String input : userInput) {
+        for (String input : userInput) {
             sb.append(input);
         }
 
@@ -139,11 +139,11 @@ public class OutputView {
     }
 
     public void printSuccessOrFail(StageResult result) {
-        if(result == StageResult.FAIL) {
+        if (result == StageResult.FAIL) {
             printMessageWithValue(Messages.VIEW_END_WIN_OR_LOSE, Unit.FAIL.getCommand());
         }
 
-        if(result == StageResult.SUCCESS) {
+        if (result == StageResult.SUCCESS) {
             printMessageWithValue(Messages.VIEW_END_WIN_OR_LOSE, Unit.SUCCESS.getCommand());
         }
     }
