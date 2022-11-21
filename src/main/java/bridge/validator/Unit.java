@@ -8,7 +8,14 @@ public enum Unit {
     RETRY ("R"),
     QUITE ("Q"),
     END_SUCCESS("성공"),
-    END_FAIL("실패");
+    END_FAIL("실패"),
+    O("O"),
+    X("X"),
+    LEFT_BRACKET("[ "),
+    RIGHT_BRACKET(" ]"),
+    VERTICAL_BAR(" | "),
+    BLANK(" ");
+
 
     private int size;
     private String command;

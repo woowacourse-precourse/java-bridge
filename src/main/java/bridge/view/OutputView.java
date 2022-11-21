@@ -38,9 +38,9 @@ public class OutputView {
 
     public String decideOX(StageResult stageResult) {
         if(stageResult == StageResult.PASS || stageResult == StageResult.SUCCESS) {
-            return "O";
+            return Unit.O.getCommand();
         }
-        return "X";
+        return Unit.X.getCommand();
     }
 
     public Unit decideUpDown(String userInput) {
@@ -58,7 +58,7 @@ public class OutputView {
     public void saveOppositeSide(Unit key) {
         Unit oppositeKey = findOppositeKey(key);
 
-        save(oppositeKey, " ");
+        save(oppositeKey, Unit.BLANK.getCommand());
     }
 
     public void save(Unit key, String result) {
@@ -79,21 +79,21 @@ public class OutputView {
         checkStackIsEmpty(key);
 
         Stack<String> inputRecord = userInputMap.get(key);
-        if(inputRecord.peek().equals("]")) {
+        if(inputRecord.peek().equals(Unit.RIGHT_BRACKET.getCommand())) {
             inputRecord.pop();
-            inputRecord.add("|");
+            inputRecord.add(Unit.VERTICAL_BAR.getCommand());
         }
     }
 
     public void addCloseBrackets(Unit key) {
-        userInputMap.get(key).add("]");
+        userInputMap.get(key).add(Unit.RIGHT_BRACKET.getCommand());
     }
 
     public void checkStackIsEmpty(Unit key) {
         Stack<String> inputRecord = userInputMap.get(key);
 
         if(inputRecord.isEmpty()) {
-            inputRecord.add("[");
+            inputRecord.add(Unit.LEFT_BRACKET.getCommand());
         }
     }
 

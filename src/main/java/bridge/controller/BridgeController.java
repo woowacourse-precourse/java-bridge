@@ -87,10 +87,10 @@ public class BridgeController {
     }
 
     public void quitGame() {
-        System.out.println("quit game");
+        outputView.printResult(StageResult.FAIL);
     }
 
     public void successGame() {
-        System.out.println("success game");
+        outputView.printResult(StageResult.SUCCESS);
     }
 }

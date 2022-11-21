@@ -2,9 +2,14 @@ package bridge.domain;
 
 public class BridgeStage {
     private static int stage = 0;
+    private static int retry = 0;
 
     public static void nextStage() {
         stage++;
+    }
+
+    public static void increaseRetry() {
+        retry++;
     }
 
     public static int currentStage() {

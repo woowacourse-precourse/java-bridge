@@ -71,6 +71,7 @@ public class BridgeGame {
      */
     public void retry() {
         BridgeStage.resetStage();
+        BridgeStage.increaseRetry();
         BridgeRecord.resetRecord();
     }
 }
