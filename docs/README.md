@@ -27,7 +27,8 @@
 - [ ✅ ] 그 칸으로 이동한다 → Player.move
     - [ ✅ ] 이동한 칸에 발판이 있는지 확인한다 → Bridge.isBroken
     - [ ✅ ] 없으면 떨어진다.. → Player.fallOff   
-    - [ ✅ ] 이 과정에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다 
+    - [ ✅ ] 이 과정에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
+- [ ✅ ] 이동한 칸을 기록한다 → GameRecord.recordMove
 - [ ✅ ] 이동한 지점까지의 다리상태를 출력한다 → OutputView.printMap
 - [ ✅ ] 실패했는지 파악한다 → BridgeGame.isFailed
 
