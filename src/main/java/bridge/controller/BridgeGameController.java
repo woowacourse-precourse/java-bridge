@@ -4,7 +4,7 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.CommandType;
-import bridge.MovingType;
+import bridge.ResultType;
 import bridge.MoveLog;
 import bridge.util.Message;
 import bridge.view.InputView;
@@ -28,18 +28,18 @@ public class BridgeGameController {
     public void play(BridgeGame bridgeGame, int bridgeSize) {
         while (true) {
             String userMove = inputView.readMoving();
-            MovingType movingType = bridgeGame.move(userMove);
+            ResultType resultType = bridgeGame.move(userMove);
             outputView.printMap(bridgeGame.getMoveLog());
-            if (movingType.getState().equals(MovingType.FAIL.getState())) {
+            if (resultType.getState().equals(ResultType.FAIL.getState())) {
                 if (inputView.readGameCommand().equals(CommandType.QUIT.getCommands())) {
-                    outputView.printResult(bridgeGame, movingType);
+                    outputView.printResult(bridgeGame, resultType);
                     break;
                 }
                 bridgeGame.retry();
                 play(bridgeGame, bridgeSize);
             }
             if (bridgeGame.getIndex() == bridgeSize) {
-                outputView.printResult(bridgeGame, movingType);
+                outputView.printResult(bridgeGame, resultType);
                 break;
             }
         }

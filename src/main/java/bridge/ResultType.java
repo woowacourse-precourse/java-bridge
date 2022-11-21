@@ -1,13 +1,13 @@
 package bridge;
 
-public enum MovingType {
+public enum ResultType {
     SUCCESS("성공", "O"),
     FAIL("실패", "X");
 
     private final String state;
     private final String isSuccess;
 
-    MovingType(String state, String success) {
+    ResultType(String state, String success) {
         this.state = state;
         this.isSuccess = success;
     }

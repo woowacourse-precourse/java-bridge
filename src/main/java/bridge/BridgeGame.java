@@ -24,25 +24,25 @@ public class BridgeGame {
         this.moveLog = moveLog;
     }
 
-    public MovingType move(String userMove) {
-        MovingType movingType = userMoveToChoice(userMove, index);
+    public ResultType move(String userMove) {
+        ResultType resultType = userMoveToChoice(userMove, index);
         this.index += 1;
         if (userMove.equals(BridgeType.UP.getStringCode())) {
-            moveLog.updateMoveLog(BridgeType.UP, movingType.getIsSuccess());
+            moveLog.updateMoveLog(BridgeType.UP, resultType.getIsSuccess());
             moveLog.updateMoveLog(BridgeType.DOWN, NONE);
         }
         if (userMove.equals(BridgeType.DOWN.getStringCode())) {
             moveLog.updateMoveLog(BridgeType.UP, NONE);
-            moveLog.updateMoveLog(BridgeType.DOWN, movingType.getIsSuccess());
+            moveLog.updateMoveLog(BridgeType.DOWN, resultType.getIsSuccess());
         }
-        return movingType;
+        return resultType;
     }
 
-    public MovingType userMoveToChoice(String userMove, int index) {
+    public ResultType userMoveToChoice(String userMove, int index) {
         if (bridge.get(index).equals(userMove)) {
-            return MovingType.SUCCESS;
+            return ResultType.SUCCESS;
         }
-        return MovingType.FAIL;
+        return ResultType.FAIL;
     }
 
     public MoveLog getMoveLog() {
