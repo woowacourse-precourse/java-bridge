@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.information.PaintingInformation;
+import bridge.constant.PaintingInformation;
 
 import java.util.List;
 

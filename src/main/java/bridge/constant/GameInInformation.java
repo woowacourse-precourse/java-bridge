@@ -1,4 +1,4 @@
-package bridge.information;
+package bridge.constant;
 
 
 public final class GameInInformation {

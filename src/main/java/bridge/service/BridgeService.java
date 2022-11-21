@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.information.GameInInformation;
+import bridge.constant.GameInInformation;
 import bridge.view.OutputView;
 
 import java.util.List;
