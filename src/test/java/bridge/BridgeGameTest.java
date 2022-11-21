@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -39,50 +41,24 @@ class BridgeGameTest extends NsTest {
     }
 
     @Nested
-    @DisplayName("다리 길이로 올바른 입력이 들어오는지 테스트")
+    @DisplayName("다리 길이를 입력받을 때 테스트")
     class BridgeSizeTest {
-        @Test
-        @DisplayName("다리 길이로 0으로 시작하는 숫자가 입력될 때")
-        void case1() {
+        @DisplayName("올바르지 않은 다리 길이가 입력될 때")
+        @ValueSource(strings = {"012", "a", "1", "23"})
+        @ParameterizedTest
+        void case1(String input) {
             assertSimpleTest(() -> {
-                runException("012");
+                runException(input);
                 assertThat(output()).contains(error);
             });
         }
 
         @Test
-        @DisplayName("다리 길이로 숫자가 아닌 문자가 입력될 때")
+        @DisplayName("올바른 다리 길이가 입력될 때")
         void case2() {
             assertSimpleTest(() -> {
-                runException("a");
-                assertThat(output()).contains(error);
-            });
-        }
-
-        @Test
-        @DisplayName("다리 길이로 3보다 작은 숫자가 입력될 때")
-        void case3() {
-            assertSimpleTest(() -> {
-                runException("1");
-                assertThat(output()).contains(error);
-            });
-        }
-
-        @Test
-        @DisplayName("다리 길이로 20보다 큰 숫자가 입력될 때")
-        void case4() {
-            assertSimpleTest(() -> {
-                runException("100");
-                assertThat(output()).contains(error);
-            });
-        }
-
-        @Test
-        @DisplayName("다리 길이로 올바른 숫자가 입력될 때")
-        void case5() {
-            assertSimpleTest(() -> {
-                runException("4");
-                assertThat(output()).contains("이동할 칸을 선택해주세요.");
+               runException("4");
+               assertThat(output()).contains("이동할 칸을 선택해주세요.");
             });
         }
     }
