@@ -17,8 +17,6 @@ class BridgeGameTest {
     @DisplayName("이동 성공")
     @Test
     void move1() {
-//        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U", "U", "U"));
-
         boolean isMove = bridgeGame.move(0, "U");
 
         assertThat(isMove).isTrue();
@@ -27,8 +25,6 @@ class BridgeGameTest {
     @DisplayName("이동 실패")
     @Test
     void move2() {
-//        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U", "U", "U"));
-
         boolean isMove = bridgeGame.move(0, "D");
 
         assertThat(isMove).isFalse();
@@ -46,7 +42,7 @@ class BridgeGameTest {
     void end() {
         OutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
-        bridgeGame.end(0,0);
+        bridgeGame.end();
         assertThat(output.toString()).contains("최종 게임 결과",
                 "게임 성공 여부",
                 "총 시도한 횟수"

@@ -25,7 +25,7 @@ public class BridgeGame {
                 break;
             }
         }
-        end(nowBridgeIndex, retryCount);
+        end();
     }
 
     /**
@@ -58,7 +58,7 @@ public class BridgeGame {
         return false;
     }
 
-    public void end(int nowBridgeIndex, int retryCount) {
+    public void end() {
         outputView.printResult(isSucceed(nowBridgeIndex), retryCount);
     }
 
