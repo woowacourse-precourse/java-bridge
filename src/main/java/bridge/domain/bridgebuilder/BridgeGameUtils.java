@@ -1,6 +1,7 @@
 package bridge.domain.bridgebuilder;
 
-import bridge.domain.resources.ReOrQuit;
+import bridge.domain.oxbridgebuilder.OXBridge;
+import bridge.domain.resources.UpOrDown;
 import java.util.List;
 
 public class BridgeGameUtils {
@@ -9,7 +10,7 @@ public class BridgeGameUtils {
         return inputUD.equals(bridgeUD.get(oxBridgeSize));
     }
 
-    public static boolean retry(String inputRQ) {
-        return inputRQ.equals(ReOrQuit.RE_GAME);
+    public static void addUDToUserBridge(OXBridge oxBridge, UpOrDown upOrDown, boolean isInputCorrect) {
+        oxBridge.addUD(upOrDown, isInputCorrect);
     }
 }
