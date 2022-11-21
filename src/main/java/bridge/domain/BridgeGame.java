@@ -69,7 +69,8 @@ public class BridgeGame {
         validateRetrialCommand(retrialCommand);
         if (retrialCommand.equals(Command.RETRY.getCommand())) {
             currentBlockIndex = -1;
-            this.bridgeProgress = new ArrayList<>();
+            this.upperBlock = new ArrayList<>();
+            this.lowerBlock = new ArrayList<>();
             trialCount += 1;
             gameState = GameState.RUNNING;
             return;

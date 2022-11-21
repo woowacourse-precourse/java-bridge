@@ -56,7 +56,7 @@ public class Controller {
             outputView.printMoveInputRequest(Command.MOVE_UP.getCommand(), Command.MOVE_DOWN.getCommand());
             String moveCommand = inputView.readMoving();
             bridgeGame.move(moveCommand);
-            outputView.printMap(bridgeGame.getUpperBlock(), bridgeGame.getUpperBlock());
+            outputView.printMap(bridgeGame.getUpperBlock(), bridgeGame.getLowerBlock());
         }
         catch (IllegalArgumentException exception){
             outputView.printErrorMessage(exception.getMessage());
