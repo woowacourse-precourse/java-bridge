@@ -70,6 +70,23 @@ class BridgeGameTest {
                 .collect(Collectors.toList());
     }
 
+    @DisplayName("countRound 메소드를 호출하였을 때 게임 시도 횟수를 반환하는지 확인")
+    @ParameterizedTest(name = "{index} : 시도횟수 {0}")
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void countRound_test(int times) {
+        int count = playGameMultiple(times);
+
+        assertThat(count).isEqualTo(times);
+    }
+
+    private int playGameMultiple(int times) {
+        int count = 0;
+        for (int i = 0; i < times; i++) {
+            count = game.countRound();
+        }
+        return count;
+    }
+
     static Stream<Arguments> provideArgumentsForMoveTest() {
         return Stream.of(
                 Arguments.of(List.of("U", "U", "D", "U", "D")),
