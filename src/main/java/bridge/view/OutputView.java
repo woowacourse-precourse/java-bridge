@@ -18,7 +18,7 @@ public class OutputView {
                 String.join(PrintMessage.MAP_SEPARATOR.getString(), halfMap)));
     }
 
-    public void printResult(boolean isSuccess, int trials, List<String> map) {
+    public void printResult(boolean isSuccess, List<String> map, int trials) {
         PrintMessage resultInKor = PrintMessage.FAIL_IN_KOR;
         if (isSuccess) {
             resultInKor = PrintMessage.SUCCEED_IN_KOR;
