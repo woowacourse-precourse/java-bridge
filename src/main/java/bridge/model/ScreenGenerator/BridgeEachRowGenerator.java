@@ -5,7 +5,6 @@ import java.util.List;
 
 public class BridgeEachRowGenerator {
 
-    static final List<String> zeroAndBlank = List.of(" O ", "   ");
     private final List<String> answer;
     private final int current;
 
@@ -23,12 +22,11 @@ public class BridgeEachRowGenerator {
     }
 
     private String addOkOrBlank(List<String> answer, int index, int divisor) {
+        List<String> zeroAndBlank = List.of(" O ", "   ");
         StringBuilder sb = new StringBuilder();
         if (answer.get(index).equals("U")) {
-            sb.append(zeroAndBlank.get( (divisor+1)% 2));
-        } else if (answer.get(index).equals("D")) {
-            sb.append(zeroAndBlank.get( (divisor)% 2));
+            return sb.append(zeroAndBlank.get((divisor + 1) % 2)).toString();
         }
-        return sb.toString();
+        return sb.append(zeroAndBlank.get((divisor) % 2)).toString();
     }
 }
