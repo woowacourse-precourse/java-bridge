@@ -12,7 +12,7 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeUDBridge(int size) {
+    public List<String> makeBridge(int size) {
         return BridgeConverter.createRealBridge(makeBinaryBridge(size, new ArrayList<>()));
     }
 

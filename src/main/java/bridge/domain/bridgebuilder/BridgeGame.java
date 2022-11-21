@@ -11,7 +11,7 @@ public class BridgeGame {
 
     public static List<String> buildAnswerBridge(int input) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return bridgeMaker.makeUDBridge(input);
+        return bridgeMaker.makeBridge(input);
     }
 
     public static boolean move(Bridge answerBridge, OXBridge oxBridge, UpOrDown upOrDown) {
