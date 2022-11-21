@@ -34,27 +34,24 @@ public class BridgeGameController {
 	private void startBridgeGame(BridgeGame bridgeGame) {
 		boolean startGame = true;
 		while (startGame && bridgeGame.isNotFinish(progressMap)) {
-			crossBridge(bridgeGame);
+			moveBridgeOneTime(bridgeGame);
 			if (progressMap.isMoveFailed()) {
-				startGame = bridgeGame.retry(inputController.askRetry());
+				startGame = isRestart(bridgeGame);
 			}
 		}
 	}
 
-	private void crossBridge(BridgeGame bridgeGame) {
-		progressMap = initGameMap();
-		while (!progressMap.isMoveFailed() && bridgeGame.isNotFinish(progressMap)) {
-			moveBridgeOneTime(bridgeGame);
-			OutputView.printMap(progressMap);
+	private boolean isRestart(BridgeGame bridgeGame) {
+		if (inputController.askRetry()) {
+			progressMap = bridgeGame.retry();
+			return true;
 		}
-	}
-
-	private ProgressMap initGameMap() {
-		return new ProgressMap();
+		return false;
 	}
 
 	private void moveBridgeOneTime(BridgeGame bridgeGame) {
 		String moving = inputController.receiveMoveCommand();
 		bridgeGame.move(moving, progressMap);
+		OutputView.printMap(progressMap);
 	}
 }
