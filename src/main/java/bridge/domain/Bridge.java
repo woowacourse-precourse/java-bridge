@@ -59,4 +59,8 @@ public class Bridge {
         }
         return result;
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
 }
