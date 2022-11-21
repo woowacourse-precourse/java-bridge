@@ -1,18 +1,23 @@
 package bridge;
 
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 public class GameData {
-    private int totalTry = 1;
     public LinkedList<String> topStatus = new LinkedList<>();
     public LinkedList<String> bottomStatus = new LinkedList<>();
+    private int totalTry = 1;
 
-    public LinkedList<String> getTopStatus() { return this.topStatus; }
-    public LinkedList<String> getBottomStatus() { return this.bottomStatus; }
+    public LinkedList<String> getTopStatus() {
+        return this.topStatus;
+    }
 
-    public int getTotalTry() { return this.totalTry; }
+    public LinkedList<String> getBottomStatus() {
+        return this.bottomStatus;
+    }
+
+    public int getTotalTry() {
+        return this.totalTry;
+    }
 
     public String restartGame() {
         clearStatus();
@@ -37,6 +42,8 @@ public class GameData {
         }
     }
 
-    public void increaseTotalTry() { this.totalTry += 1; }
+    public void increaseTotalTry() {
+        this.totalTry += 1;
+    }
 
 }

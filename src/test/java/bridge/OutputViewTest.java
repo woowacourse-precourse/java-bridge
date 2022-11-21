@@ -9,7 +9,7 @@ import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class OutputViewTest{
+public class OutputViewTest {
 
     static ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private static GameData gameData = new GameData();

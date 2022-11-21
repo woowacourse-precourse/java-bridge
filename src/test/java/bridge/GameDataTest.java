@@ -20,6 +20,7 @@ public class GameDataTest {
         assertThat(gameData.getTopStatus().size()).isEqualTo(0);
         assertThat(gameData.getBottomStatus().size()).isEqualTo(0);
     }
+
     @DisplayName("게임 재시작 횟수를 카운트한다.")
     @Test
     void checkRetryCount() {
@@ -29,6 +30,7 @@ public class GameDataTest {
         }
         assertThat(gameData.getTotalTry()).isEqualTo(retryCount);
     }
+
     @DisplayName("이동 위치에 따라 게임 현황을 업데이트한다.")
     @ValueSource(strings = {"U"})
     @ParameterizedTest

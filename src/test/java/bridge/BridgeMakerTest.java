@@ -4,18 +4,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeMakerTest {
 
+    private static final int bridgeSize = 10;
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    private static final int bridgeSize = 10;
     private static List<String> bridge;
 
     @BeforeAll
