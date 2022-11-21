@@ -11,24 +11,20 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("BridgeGameStatus 클래스")
+@DisplayName("BridgeGameStatus Enum")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BridgeGameStatusTest {
 
     @ParameterizedTest
     @CsvSource({"PLAY, true", "STOP, false"})
     void isPlayable_메서드는_게임의_진행가능여부를_반환한다(BridgeGameStatus bridgeGameStatus, boolean result) {
-        boolean playable = bridgeGameStatus.isPlayable();
-
-        assertThat(playable).isEqualTo(result);
+        assertThat(bridgeGameStatus.isPlayable()).isEqualTo(result);
     }
 
     @ParameterizedTest
     @CsvSource({"PLAY, false", "STOP, true"})
     void isNotPlayable_메서드는_게임의_진행_불가능여부를_반환한다(BridgeGameStatus bridgeGameStatus, boolean result) {
-        boolean playable = bridgeGameStatus.isNotPlayable();
-
-        assertThat(playable).isEqualTo(result);
+        assertThat(bridgeGameStatus.isNotPlayable()).isEqualTo(result);
     }
 
     @Test
