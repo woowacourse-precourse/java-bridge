@@ -16,17 +16,17 @@ public class BridgeMakerTest extends NsTest {
 
     @Test
     void 기능_테스트() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).containsExactly("U", "D", "D");
+        assertThat(bridgeMaker.makeBridge(3)).hasSize(3);
     }
 
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        bridgeMaker.makeBridge(3);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).containsExactly("U", "D", "D");
     }
 
     @Test
