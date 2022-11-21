@@ -1,12 +1,12 @@
 package bridge.type;
 
-public enum CommandType {
+public enum RestartType {
     RESTART("R"),
     QUIT("Q");
 
     private final String commands;
 
-    CommandType(String commands) {
+    RestartType(String commands) {
         this.commands = commands;
     }
 

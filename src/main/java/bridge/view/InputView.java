@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.type.BridgeType;
-import bridge.type.CommandType;
+import bridge.type.RestartType;
 import bridge.util.Message;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -43,8 +43,8 @@ public class InputView {
     public String readGameCommand() {
         outputView.printMessage(Message.REGAME);
         String userInput = Console.readLine();
-        if (!(userInput.equals(CommandType.QUIT.getCommands()) || userInput.equals(
-                CommandType.RESTART.getCommands()))) {
+        if (!(userInput.equals(RestartType.QUIT.getCommands()) || userInput.equals(
+                RestartType.RESTART.getCommands()))) {
             throw new IllegalArgumentException(Message.ERROR_REGAME.getMessage());
         }
         return userInput;

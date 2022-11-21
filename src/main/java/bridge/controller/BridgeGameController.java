@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.type.CommandType;
+import bridge.type.RestartType;
 import bridge.type.ResultType;
 import bridge.MoveLog;
 import bridge.util.Message;
@@ -47,7 +47,7 @@ public class BridgeGameController {
 
     private boolean isGivedUp(BridgeGame bridgeGame, ResultType crossBridgeResult) {
         String userAnswer = inputView.readGameCommand();
-        if (userAnswer.equals(CommandType.QUIT.getCommands())) {
+        if (userAnswer.equals(RestartType.QUIT.getCommands())) {
             outputView.printResult(bridgeGame, crossBridgeResult);
             return true;
         }
