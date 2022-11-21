@@ -29,13 +29,15 @@ public class OutputView {
     }
 
     private String onPath(String line, String cell, boolean correct) {
-        String ret = "O";
-        if(!correct) {
-            ret = "X";
+        if(correct) {
+            if(line.equals(cell)) {
+                return "O";
+            }
+            return " ";
         }
 
-        if(line.equals(cell)) {
-            return ret;
+        if(!line.equals(cell)) {
+            return "X";
         }
         return " ";
     }
