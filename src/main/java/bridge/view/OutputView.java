@@ -2,10 +2,6 @@ package bridge.view;
 
 import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
-import bridge.domain.BridgeMovement;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -18,9 +14,6 @@ public class OutputView {
     private static final String INPUT_PLAYER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_PLAYER_COMMAND =
             "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + GameCommand.RETRY.getCode() + ", 종료: " + GameCommand.QUIT.getCode() + ")";
-
-    private static final String BRIDGE_START = "[ ";
-    private static final String BRIDGE_END = " ]";
 
     private static final String GAME_SUCCESS_OR_NOT = "게임 성공 여부: ";
     private static final String TOTAL_NUMBER_OF_ATTEMPTS = "총 시도한 횟수: ";
@@ -54,15 +47,9 @@ public class OutputView {
         print(INPUT_PLAYER_COMMAND);
     }
 
-    public void printMap(Map<BridgeMovement, List<String>> crossingResults) {
-        for (BridgeMovement movement : BridgeMovement.values()) {
-            print(toStingFormatMovement(crossingResults.get(movement)));
-        }
+    public void printMap(String result) {
+        print(result);
         printNewline();
-    }
-
-    private String toStingFormatMovement(List<String> resultStatus) {
-        return BRIDGE_START + resultStatus.stream().collect(Collectors.joining(" | ")) + BRIDGE_END;
     }
 
     public void printResult(GameStatus gameStatus, int numberOfAttempts) {

@@ -1,12 +1,11 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.util.BridgeLogger;
 import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
 import bridge.domain.BridgeMovement;
 import bridge.domain.Player;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -31,10 +30,9 @@ public class BridgeGame {
         return numberOfAttempts;
     }
 
-    public Map<BridgeMovement, List<String>> getResultCrossOver() {
-        return player.getMovementStatus();
+    public String logResult() {
+        return BridgeLogger.log(player.getMovingRoute());
     }
-
 
     public GameStatus move(BridgeMovement playerMove) {
         boolean playerCrossable = bridge.isCrossable(playerMove, player.getPlayerPosition());
@@ -51,6 +49,5 @@ public class BridgeGame {
         }
         return GameStatus.FAILED;
     }
-
 
 }

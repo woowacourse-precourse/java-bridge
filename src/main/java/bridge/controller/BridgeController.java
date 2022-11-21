@@ -47,7 +47,7 @@ public class BridgeController {
         outputView.inputPlayerMove();
         BridgeMovement playerMove = inputView.readMoving();
         gameStatus = bridgeGame.move(playerMove);
-        outputView.printMap(bridgeGame.getResultCrossOver());
+        outputView.printMap(bridgeGame.logResult());
     }
 
     private void retryGame() {
@@ -58,7 +58,7 @@ public class BridgeController {
 
     private void end() {
         outputView.printGameOver();
-        outputView.printMap(bridgeGame.getResultCrossOver());
+        outputView.printMap(bridgeGame.logResult());
         outputView.printResult(gameStatus, bridgeGame.getNumberOfAttempts());
     }
 }

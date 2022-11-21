@@ -37,7 +37,7 @@ class PlayerTest {
             BridgeMovement playerMovement = BridgeMovement.findByMovement(playerMove);
             player.crossOverBridge(playerMovement, isMoveble);
         }
-        Map<BridgeMovement, List<String>> movementStatus = player.getMovementStatus();
+        Map<BridgeMovement, List<String>> movementStatus = player.getMovingRoute();
 
         assertThat(movementStatus.get(BridgeMovement.UP).stream().collect(Collectors.joining()))
                 .isEqualTo(expectedUp);
