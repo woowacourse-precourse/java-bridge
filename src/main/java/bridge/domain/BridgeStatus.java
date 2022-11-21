@@ -27,18 +27,15 @@ public class BridgeStatus {
         return message;
     }
 
-
     public void updateBridgeMap(
             final String answer,
             final String userAnswer
     ) {
         if(answer.equals(userAnswer)) {
             addCorrect(userAnswer);
-            addDelimiter();
             return;
         }
         addWrong(userAnswer);
-        addDelimiter();
     }
 
     public void createMessage() {
@@ -58,12 +55,14 @@ public class BridgeStatus {
     private void addCorrect(final String idx) {
         bridgeStatus.get(idx).append("O");
         addBlank(idx);
+        addDelimiter();
     }
 
     private void addWrong(final String idx) {
         bridgeStatus.get(idx).append("X");
         addBlank(idx);
         switchSuccess();
+        addDelimiter();
     }
 
     private void addBlank(final String idx) {

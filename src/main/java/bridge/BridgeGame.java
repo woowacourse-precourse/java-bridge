@@ -3,6 +3,7 @@ package bridge;
 import bridge.controller.ConsoleController;
 import bridge.controller.DataAccessController;
 
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  * 필드를 추가 가능
@@ -16,6 +17,7 @@ public class BridgeGame {
     private final static DataAccessController DAO = new DataAccessController();
     private int round = 0;
     private int tryCount = 1;
+
 
     public void start() {
         DAO.makeBridge(CONSOLE.bridgeSizeConsole());

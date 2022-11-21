@@ -2,6 +2,7 @@ package bridge.service;
 
 import java.util.regex.Pattern;
 
+
 public class Validation {
     private final static String ERROR = "[ERROR] ";
     private final static String BLANK_MESSAGE = "값이 비어 있습니다.";

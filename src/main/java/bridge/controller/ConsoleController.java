@@ -4,9 +4,11 @@ import bridge.domain.BridgeStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+
 public class ConsoleController {
     private final static InputView INPUT_VIEW = new InputView();
     private final static OutputView OUTPUT_VIEW = new OutputView();
+
 
     public int bridgeSizeConsole() {
         OUTPUT_VIEW.printStart();

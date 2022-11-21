@@ -14,6 +14,4 @@ public enum Message {
     Message(String msg) {
         this.msg = msg;
     }
-
-
 }

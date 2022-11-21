@@ -6,6 +6,7 @@ public class Bridge {
     private static List<String> bridge;
     private int bridgeSize;
 
+
     public Bridge(List<String> lst) {
         bridge = lst;
         bridgeSize = lst.size();

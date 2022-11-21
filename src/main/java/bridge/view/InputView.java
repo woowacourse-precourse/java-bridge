@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.service.Validation.*;
 
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  * 패키지 변경 가능
@@ -19,7 +20,7 @@ public class InputView {
             int tmp = Integer.parseInt(input);
             isInRange(3, tmp, 20);
             return tmp;
-        } catch(NullPointerException | IllegalArgumentException e) {
+        } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
