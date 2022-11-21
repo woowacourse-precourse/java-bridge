@@ -14,8 +14,8 @@ public class Bridge {
         return bridge;
     }
 
-    public boolean isPassable(int userLocation, String userSelection) {
-        String bridgeShape = bridge.get(userLocation);
-        return bridgeShape.equals(userSelection);
+    public boolean isPassable(int playerLocation, String playerSelection) {
+        String bridgeShape = bridge.get(playerLocation);
+        return bridgeShape.equals(playerSelection);
     }
 }

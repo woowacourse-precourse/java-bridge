@@ -23,14 +23,14 @@ public class BridgeResult {
     }
 
 
-    public void addResult(boolean passable, int userLocation, String userSelection) {
-        if (userSelection.equals("U")) {
-            upBridge.add(userLocation, renderOX(passable));
-            downBridge.add(userLocation, "   ");
+    public void addResult(boolean passable, int playerLocation, String playerSelection) {
+        if (playerSelection.equals("U")) {
+            upBridge.add(playerLocation, renderOX(passable));
+            downBridge.add(playerLocation, "   ");
             return;
         }
-        downBridge.add(userLocation, renderOX(passable));
-        upBridge.add(userLocation, "   ");
+        downBridge.add(playerLocation, renderOX(passable));
+        upBridge.add(playerLocation, "   ");
     }
 
     public void resetBridgeResult() {
