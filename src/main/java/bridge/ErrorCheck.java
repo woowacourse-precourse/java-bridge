@@ -18,4 +18,12 @@ public class ErrorCheck {
         }
         return true;
     }
+
+    public static boolean isValidUpOrDown(String nextMove) {
+        if(!(nextMove.equals("U") || nextMove.equals("D"))) {
+            System.out.println("[ERROR] 위, 아래 중 하나만 선택해주세요.");
+            throw new IllegalArgumentException();
+        }
+        return true;
+    }
 }

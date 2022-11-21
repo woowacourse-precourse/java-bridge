@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,7 +12,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public static String move() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String nextMove = Console.readLine();
+        if(ErrorCheck.isValidUpOrDown(nextMove));
+        System.out.println("nextMove : " + nextMove);
+
+        return nextMove;
     }
 
     /**
