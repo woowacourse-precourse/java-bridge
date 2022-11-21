@@ -7,6 +7,7 @@ import static bridge.utils.message.GameMessagesUtil.START;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
+import bridge.utils.Move;
 import bridge.utils.console.InputView;
 import bridge.utils.console.OutputView;
 import java.util.List;
@@ -32,9 +33,8 @@ public class Application {
     }
 
     private static List<String> makeBridge() {
-        int bridgeSize = readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return bridgeMaker.makeBridge(bridgeSize);
+        return bridgeMaker.makeBridge(readBridgeSize());
     }
 
     private static int readBridgeSize() {
@@ -51,8 +51,7 @@ public class Application {
     private static BridgeGame play(List<String> bridge) {
         BridgeGame game = new BridgeGame(bridge);
         while (!game.isFinish()) {
-            String choiceMove = getChoiceMove();
-            showMoveResult(game.move(choiceMove));
+            showMoveResult(game.move(getChoiceMove()));
 
             if (game.isFail()) {
                 game.retry(getChoiceRetry());
@@ -61,7 +60,7 @@ public class Application {
         return game;
     }
 
-    private static String getChoiceMove() {
+    private static Move getChoiceMove() {
         while (true) {
             try {
                 output.printMessage(CHOICE_MOVE.getMessage());

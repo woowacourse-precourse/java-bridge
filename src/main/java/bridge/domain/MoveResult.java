@@ -1,5 +1,10 @@
 package bridge.domain;
 
+import static bridge.utils.Move.NO_MOVE;
+import static bridge.utils.Move.isMoveUp;
+import static bridge.utils.message.GameMessagesUtil.DELIMITER;
+
+import bridge.utils.Move;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,30 +17,30 @@ public class MoveResult {
         this.downMoves = new ArrayList<>();
     }
 
-    public void addMove(String moving, String result) {
-        if (moving.equals("U")) {
+    public void addMove(Move moving, Move result) {
+        if (isMoveUp(moving)) {
             addMoveUp(result);
             return;
         }
         addMoveDown(result);
     }
 
-    private void addMoveUp(String result) {
-        upMoves.add(result);
-        downMoves.add(" ");
+    private void addMoveUp(Move result) {
+        upMoves.add(result.getMoving());
+        downMoves.add(NO_MOVE.getMoving());
     }
 
-    private void addMoveDown(String result) {
-        downMoves.add(result);
-        upMoves.add(" ");
+    private void addMoveDown(Move result) {
+        downMoves.add(result.getMoving());
+        upMoves.add(NO_MOVE.getMoving());
     }
 
     public String getUpMovesString() {
-        return String.join(" | ", upMoves);
+        return String.join(DELIMITER.getMessage(), upMoves);
     }
 
     public String getDownMovesString() {
-        return String.join(" | ", downMoves);
+        return String.join(DELIMITER.getMessage(), downMoves);
     }
 
     public int getStep() {
@@ -43,6 +48,6 @@ public class MoveResult {
     }
 
     public boolean isFinish(int bridgeSize) {
-        return upMoves.size() == bridgeSize;
+        return getStep() == bridgeSize;
     }
 }

@@ -1,9 +1,12 @@
 package bridge.utils.console;
 
+
+import static bridge.utils.Move.getMove;
 import static bridge.utils.Move.validateMove;
 import static bridge.utils.message.ErrorMessagesUtil.RETRY_COMMAND;
 
 import bridge.utils.BridgeSize;
+import bridge.utils.Move;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -21,11 +24,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Move readMoving() {
         String move = Console.readLine();
         validateMove(move);
-
-        return move;
+        return getMove(move);
     }
 
     /**

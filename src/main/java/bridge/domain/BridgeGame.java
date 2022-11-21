@@ -1,8 +1,10 @@
 package bridge.domain;
 
-import static bridge.utils.message.ErrorMessagesUtil.MOVING;
+import static bridge.utils.Move.FAIL;
+import static bridge.utils.Move.SUCCESS;
 import static bridge.utils.message.ErrorMessagesUtil.RETRY_COMMAND;
 
+import bridge.utils.Move;
 import java.util.List;
 
 /**
@@ -28,33 +30,28 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MoveResult move(String moving) {
-        validateMoving(moving);
-
-        if (bridge.get(nowIndex()).equals(moving)) {
-            return moveSuccess(moving);
+    public MoveResult move(Move move) {
+        if (canMoveNext(move)) {
+            return moveSuccess(move);
         }
-        return moveFail(moving);
+        return moveFail(move);
     }
 
-    private void validateMoving(String moving) {
-        if (moving.equals("U") || moving.equals("D")) {
-            return;
-        }
-        throw new IllegalArgumentException(MOVING.getMessage());
+    private boolean canMoveNext(Move move) {
+        return bridge.get(nowIndex()).equals(move.getMoving());
     }
 
     private int nowIndex() {
         return moveResult.getStep();
     }
 
-    private MoveResult moveSuccess(String moving) {
-        moveResult.addMove(moving, "O");
+    private MoveResult moveSuccess(Move move) {
+        moveResult.addMove(move, SUCCESS);
         return moveResult;
     }
 
-    private MoveResult moveFail(String moving) {
-        moveResult.addMove(moving, "X");
+    private MoveResult moveFail(Move move) {
+        moveResult.addMove(move, FAIL);
         fail = true;
         return moveResult;
     }

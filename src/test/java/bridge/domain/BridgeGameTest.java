@@ -1,8 +1,10 @@
 package bridge.domain;
 
+import static bridge.utils.Move.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.utils.Move;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +21,7 @@ class BridgeGameTest {
     @DisplayName("이동할 수 있는 곳으로 움직이면 O를 표시한다.")
     @Test
     void 이동할_수_있는_곳으로_움직이면_O를_표시한다() {
-        MoveResult moveResult = bridgeGame.move("U");
+        MoveResult moveResult = bridgeGame.move(UP);
 
         // when
         String result = moveResult.getUpMovesString();
@@ -31,7 +33,7 @@ class BridgeGameTest {
     @DisplayName("이동할 수 없는 곳으로 움직이면 X를 표시한다.")
     @Test
     void 이동할_수_없는_곳으로_움직이면_X를_표시한다() {
-        MoveResult moveResult = bridgeGame.move("D");
+        MoveResult moveResult = bridgeGame.move(DOWN);
 
         // when
         String result = moveResult.getDownMovesString();
@@ -43,7 +45,7 @@ class BridgeGameTest {
     @DisplayName("잘못된 입력이 들어오면 예외가 발생한다.")
     @Test
     void 잘못된_입력이_들어오면_예외가_발생한다() {
-        assertThatThrownBy(() -> bridgeGame.move("A"))
+        assertThatThrownBy(() -> Move.validateMove("A"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -51,7 +53,7 @@ class BridgeGameTest {
     @Test
     void 재시작으로_R을_입력하면_게임을_초기화한다() {
         // when
-        bridgeGame.move("D");
+        bridgeGame.move(DOWN);
         bridgeGame.retry("R");
 
         // then
@@ -62,7 +64,7 @@ class BridgeGameTest {
     @Test
     void 재시작으로_Q를_입력하면_값을_초기화하지_않는다() {
         // when
-        bridgeGame.move("D");
+        bridgeGame.move(DOWN);
         bridgeGame.retry("Q");
 
         // then
