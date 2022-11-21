@@ -9,6 +9,7 @@ import bridge.domain.model.Bridge;
 import bridge.domain.model.GameResultInformation;
 import bridge.domain.view.InputView;
 import bridge.domain.view.OutputView;
+import bridge.exception.GameOperatorExceptionHandler;
 import java.util.List;
 
 public class BridgeGameOperator {
@@ -40,12 +41,28 @@ public class BridgeGameOperator {
     }
 
     private void setBridge() {
-        outputView.printInputBridgeLengthGuide();
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = getBridgeSize();
         outputView.printEmptyLine();
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         Bridge.setBridge(bridge);
+    }
+
+    private int getBridgeSize() {
+        while (true) {
+            try {
+                outputView.printInputBridgeLengthGuide();
+                return getBridgeSizeWithHandlingException();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBridgeSizeWithHandlingException() {
+        int bridgeSize = inputView.readBridgeSize();
+        GameOperatorExceptionHandler.handleBridgeSizeOutOfRangeException(bridgeSize);
+        return bridgeSize;
     }
 
     private void playGame() {
@@ -72,20 +89,37 @@ public class BridgeGameOperator {
     }
 
     private MovingPossibility moveOnce(int space) {
-        outputView.printInputMoveDirectionGuide();
-
         Direction MOVE_TO = getDirection();
 
         return bridgeGame.move(space, MOVE_TO);
     }
 
     private Direction getDirection() {
-        String moveTo = inputView.readMoving();
+        String moveTo = getDirectionInput();
 
         if (moveTo.equals(Direction.UP.getDirection())) {
             return Direction.UP;
         }
         return Direction.DOWN;
+    }
+
+    private String getDirectionInput() {
+        while (true) {
+            try {
+                outputView.printInputMoveDirectionGuide();
+                return getDirectionWithExceptionHandling();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getDirectionWithExceptionHandling() {
+        String moveTo = inputView.readMoving();
+
+        GameOperatorExceptionHandler.handleNotUOrDException(moveTo);
+
+        return moveTo;
     }
 
     private GameResult setAndReturnGameResult(MovingPossibility MOVING_POSSIBILITY) {
@@ -108,20 +142,34 @@ public class BridgeGameOperator {
     }
 
     private boolean selectRetryOrNot() {
-        outputView.printRetryGuide();
-
-        return isRetrySelected();
-    }
-
-    private boolean isRetrySelected() {
         final String RESTART = "R";
 
-        String retryInput = inputView.readGameCommand();
+        String retryInput = getRetryInput();
+
         if (retryInput.equals(RESTART)) {
             bridgeGame.retry();
             return true;
         }
         return false;
+    }
+
+    private String getRetryInput() {
+        while (true) {
+            try {
+                outputView.printRetryGuide();
+                return getRetryWithExceptionHandling();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getRetryWithExceptionHandling() {
+        String retryInput = inputView.readGameCommand();
+
+        GameOperatorExceptionHandler.handleNotROrQException(retryInput);
+
+        return retryInput;
     }
 
     private void printFinalResult() {
