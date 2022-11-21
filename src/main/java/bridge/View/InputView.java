@@ -29,6 +29,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(Message.CHOOSE_MOVE_DIRECTION);
         String direction = Console.readLine();
+        inputValidate.validateMoving(direction);
         return direction;
     }
 
