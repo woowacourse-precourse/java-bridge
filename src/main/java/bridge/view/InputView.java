@@ -18,8 +18,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final String INPUT_BRIDGE_SIZE_MSG ="다리의 길이를 입력해주세요.";
-    private final String INPUT_MOVING_MSG="이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String INPUT_BRIDGE_SIZE_MSG = "다리의 길이를 입력해주세요.";
+    private final String INPUT_MOVING_MSG = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**

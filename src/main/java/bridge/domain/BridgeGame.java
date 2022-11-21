@@ -44,12 +44,12 @@ public class BridgeGame {
         return false;
     }
 
-    public void canNotMove(String moving){
-        if(moving.equals(UP)) {
+    public void canNotMove(String moving) {
+        if (moving.equals(UP)) {
             userMoving.add(WRONG_WHEN_INPUT_UP);
         }
 
-        if(moving.equals(DOWN)){
+        if (moving.equals(DOWN)) {
             userMoving.add(WRONG_WHEN_INPUT_DOWN);
         }
     }
@@ -63,17 +63,17 @@ public class BridgeGame {
         return gameCommand.equals(RETRY);
     }
 
-    public void resetUserMoving(){
+    public void resetUserMoving() {
         this.userMoving.clear();
     }
 
-    public boolean isEndOfBridge(){
+    public boolean isEndOfBridge() {
         return bridge.size() == userMoving.size();
     }
 
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         //끝에 도착했으면서 마지막 입력이 틀리지 않을 때 성공
-        return isEndOfBridge() && (userMoving.get(userMoving.size()-1).equals(UP) || userMoving.get(userMoving.size()-1).equals(DOWN));
+        return isEndOfBridge() && (userMoving.get(userMoving.size() - 1).equals(UP) || userMoving.get(userMoving.size() - 1).equals(DOWN));
     }
 
     public List<String> getUserMoving() {

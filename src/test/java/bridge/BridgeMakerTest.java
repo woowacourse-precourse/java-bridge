@@ -13,7 +13,7 @@ class BridgeMakerTest {
     BridgeMaker bridgeMaker;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
@@ -27,14 +27,14 @@ class BridgeMakerTest {
 
     @DisplayName("1을 U로 변환")
     @Test
-    void convert1ToU(){
+    void convert1ToU() {
         String result = bridgeMaker.convertToBridge(1);
         assertThat(result).isEqualTo("U");
     }
 
     @DisplayName("0을 D로 변환")
     @Test
-    void convert0ToD(){
+    void convert0ToD() {
         String result = bridgeMaker.convertToBridge(0);
         assertThat(result).isEqualTo("D");
     }

@@ -9,7 +9,7 @@ public class GameCommandValidation {
     }
 
     public void validateROrQ(String gameCommand) {
-        if ( !(gameCommand.equals("R") || gameCommand.equals("Q"))){
+        if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NOT_R_OR_Q_ERROR_MESSAGE);
         }
     }

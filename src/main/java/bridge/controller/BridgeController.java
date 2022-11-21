@@ -29,7 +29,7 @@ public class BridgeController {
         proceedBridgeGame();
     }
 
-    public void proceedBridgeGame(){
+    public void proceedBridgeGame() {
         int count = START_OF_COUNT;
 
         while (true) {
@@ -38,18 +38,18 @@ public class BridgeController {
             //System.out.println(bridgeGame.getBridge());
             startMove();
 
-            if(proceedEndOfGame(count)) break;
+            if (proceedEndOfGame(count)) break;
         }
     }
 
-    public boolean proceedEndOfGame(int count){
+    public boolean proceedEndOfGame(int count) {
         if (bridgeGame.isSuccess()) {
-            outputView.printResult(bridgeGame.getUserMoving(),SUCCESS,count);
+            outputView.printResult(bridgeGame.getUserMoving(), SUCCESS, count);
             return true;
         }
         // 성공 하지도 못했는데 재시작도 안하면 실패
         if (bridgeGame.retry(inputView.readGameCommand()) == false) {
-            outputView.printResult(bridgeGame.getUserMoving(),FAILURE,count);
+            outputView.printResult(bridgeGame.getUserMoving(), FAILURE, count);
             return true;
         }
         return false;

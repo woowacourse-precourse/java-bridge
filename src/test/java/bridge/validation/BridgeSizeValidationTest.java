@@ -11,24 +11,24 @@ class BridgeSizeValidationTest {
     private BridgeSizeValidation bridgeSizeValidation;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         bridgeSizeValidation = new BridgeSizeValidation();
     }
 
     @DisplayName("숫자가 아닌 문자가 들어오면 예외처리")
     @Test
     void validateWhenInputNotNumber() {
-        assertThatThrownBy(()-> bridgeSizeValidation.validate("a"))
+        assertThatThrownBy(() -> bridgeSizeValidation.validate("a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("3~20 범위 이외의 숫자가 들어오면 예외처리")
     @Test
-    void validateOutOfRange(){
-        assertThatThrownBy(()-> bridgeSizeValidation.validate("1"))
+    void validateOutOfRange() {
+        assertThatThrownBy(() -> bridgeSizeValidation.validate("1"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(()-> bridgeSizeValidation.validate("21"))
+        assertThatThrownBy(() -> bridgeSizeValidation.validate("21"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

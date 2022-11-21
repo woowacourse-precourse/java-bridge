@@ -29,15 +29,15 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for(int numberOfSize = 0 ; numberOfSize < size ; numberOfSize++){
+        for (int numberOfSize = 0; numberOfSize < size; numberOfSize++) {
             bridge.add(convertToBridge(bridgeNumberGenerator.generate()));
         }
 
         return bridge;
     }
 
-    public String convertToBridge(int randomNumber){
-        if(randomNumber == 1) return UPPER_BRIDGE;
+    public String convertToBridge(int randomNumber) {
+        if (randomNumber == 1) return UPPER_BRIDGE;
         return LOWER_BRIDGE;
     }
 }

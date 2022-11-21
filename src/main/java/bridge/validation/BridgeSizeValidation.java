@@ -20,7 +20,7 @@ public class BridgeSizeValidation {
     }
 
     private void validateRange(int bridgeSize) {
-        if(bridgeSize<3 || bridgeSize >20){
+        if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(ERROR_MESSAGE + RANGE_ERROR_MSG);
         }
     }

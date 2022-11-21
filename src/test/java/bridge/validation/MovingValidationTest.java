@@ -13,7 +13,7 @@ class MovingValidationTest {
     void validate() {
         MovingValidation movingValidation = new MovingValidation();
 
-        assertThatThrownBy(()-> movingValidation.validate("u"))
+        assertThatThrownBy(() -> movingValidation.validate("u"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
