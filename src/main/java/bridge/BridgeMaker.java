@@ -29,11 +29,7 @@ public class BridgeMaker {
             else{
                 bridge.add("D");
             }
-
-
         }
-        System.out.println(bridge);
-
-        return null;
+        return bridge;
     }
 }
