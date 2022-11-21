@@ -3,7 +3,6 @@ package bridge.controller;
 import static bridge.domain.BridgeConstants.QUIT;
 import static bridge.domain.BridgeConstants.RETRY;
 
-import bridge.GameContext;
 import bridge.domain.Bridge;
 import bridge.BridgeGame;
 import bridge.ui.InputView;
@@ -46,7 +45,7 @@ public class GameController {
             try {
                 String choice = inputView.readMoving(inputView.userInput());
                 moveNextStep(choice);
-                retryOrQuitIfFailed(bridgeGame.lastMoveMatches());
+                retryOrQuit(bridgeGame.lastMoveMatches());
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }
@@ -58,25 +57,16 @@ public class GameController {
         outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
     }
 
-    private void retryOrQuitIfFailed(boolean success) {
+    private void retryOrQuit(boolean success) {
         if (!success) {
             outputView.printGameContinueOpening();
             try {
                 String cmd = inputView.readGameCommand(inputView.userInput());
-                transition(cmd);
+                bridgeGame.transitionTo(cmd);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
-                retryOrQuitIfFailed(success);
+                retryOrQuit(success);
             }
-        }
-    }
-
-    private void transition(String cmd) {
-        if (cmd.equals(RETRY)) {
-            bridgeGame.retry();
-        }
-        if (cmd.equals(QUIT)) {
-            bridgeGame.quit();
         }
     }
 

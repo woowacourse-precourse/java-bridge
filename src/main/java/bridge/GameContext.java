@@ -1,11 +1,10 @@
 package bridge;
 
-public class GameContext {
-    private static final int QUIT = 1;
-    private static final int PLAYING = 2;
+import static bridge.State.PLAYING;
 
+public class GameContext {
     private int retryCnt;
-    private int state;
+    private State state;
 
     public GameContext(){
         retryCnt = 1;
@@ -16,8 +15,8 @@ public class GameContext {
         retryCnt++;
     }
 
-    public void transition(){
-        state = QUIT;
+    public void transition(String cmd){
+        state = state.transitionTo(cmd);
     }
 
     public int getRetryCnt() {

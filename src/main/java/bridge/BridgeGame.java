@@ -72,8 +72,11 @@ public class BridgeGame {
         moveCount = 0;
     }
 
-    public void quit() {
-        gameContext.transition();
+    public void transitionTo(String cmd){
+        gameContext.transition(cmd);
+        if (onPlay()){
+            retry();
+        }
     }
 
     public boolean onPlay(){
