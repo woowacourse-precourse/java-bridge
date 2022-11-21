@@ -53,7 +53,7 @@ public class OutputView {
         if (pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(TOP)){
             return CORRECT;
         }
-        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()).equals(BOTTOM)){
+        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(BOTTOM)){
             return WRONG;
         }
         return SPACE;
@@ -76,7 +76,7 @@ public class OutputView {
         if (pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(BOTTOM)){
             return CORRECT;
         }
-        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()).equals(TOP)){
+        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(TOP)){
             return WRONG;
         }
         return SPACE;

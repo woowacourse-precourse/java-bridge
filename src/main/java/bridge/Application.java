@@ -10,7 +10,7 @@ public class Application {
                 continue;
             }
             OutputView.printMap(bridgeData, false);
-            BridgeGame.retry(InputView.readGameCommand());
+            BridgeGame.retry(bridgeData, InputView.readGameCommand());
         }
         OutputView.printResult(bridgeData, BridgeGame.gameStatus, BridgeGame.gameCount);
     }
