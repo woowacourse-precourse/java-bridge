@@ -3,6 +3,7 @@ package bridge;
 import bridge.Setting.BridgeLengthSetting;
 import bridge.Setting.BridgeRetryIndex;
 import bridge.Setting.BridgeSideIndex;
+import bridge.Setting.OutputViewPrintEnum;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
@@ -15,7 +16,47 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String line) throws IllegalArgumentException {
+    static final String ERROR_MESSAGE = "[ERROR]";
+    public int readBridgeSize(){
+        while (true){
+            try{
+                System.out.println(OutputViewPrintEnum.INPUT_BRIDGE_LENGTH.getMessage());
+                return getBridgeSize(Console.readLine());
+            } catch (IllegalArgumentException e){
+                System.out.println(ERROR_MESSAGE + e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() throws IllegalArgumentException {
+        while (true){
+            try{
+                System.out.println(OutputViewPrintEnum.INPUT_BRIDGE_MOVE.getMessage());
+                return getMoving(Console.readLine());
+            } catch (IllegalArgumentException e){
+                System.out.println(ERROR_MESSAGE + e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        while (true){
+            try{
+                System.out.println(OutputViewPrintEnum.INPUT_BRIDGE_RETRY.getMessage());
+                return getGameCommand(Console.readLine());
+            } catch (IllegalArgumentException e){
+                System.out.println(ERROR_MESSAGE + e.getMessage());
+            }
+        }
+    }
+
+    public int getBridgeSize(String line){
         try {
             int bridgeSize = Integer.parseInt(line);
             validBridgeSize(bridgeSize);
@@ -25,10 +66,7 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving(String line) throws IllegalArgumentException {
+    public String getMoving(String line) {
         try {
             validReadMoving(line);
             return line;
@@ -40,7 +78,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(String line) {
+    public String getGameCommand(String line) {
         try{
             validReadGameCommand(line);
             return line;
