@@ -38,7 +38,12 @@ public class InputView {
         return moveCount;
     }
 
-
+    // 사용자가 게임을 다시 시도할 지 여부 (재시도 : R, 종료 : Q)
+    public static String readGameCommand() {
+        OutputView.printGameRestart();
+        retryGame = Console.readLine();
+        return retryGame;
+    }
 
 
 }
