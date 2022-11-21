@@ -42,4 +42,8 @@ public class BridgeGameController {
             return ViewStatus.DETERMINE_CONTINUE;
         }
     }
+
+    public int getGameCount() {
+        return bridgeService.getGameCount();
+    }
 }

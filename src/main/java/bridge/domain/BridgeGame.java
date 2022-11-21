@@ -76,6 +76,10 @@ public class BridgeGame {
         return bridge.getUnMatchedPathResult(columnPosition);
     }
 
+    public int getGameCount() {
+        return this.gameCount;
+    }
+
     public static BridgeGame from(Bridge bridge) {
         return new BridgeGame(bridge);
     }

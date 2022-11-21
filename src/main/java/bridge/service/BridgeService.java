@@ -30,4 +30,8 @@ public class BridgeService {
     public ViewStatus retry(String retryCommand) {
         return bridgeGame.retry(retryCommand);
     }
+
+    public int getGameCount() {
+       return bridgeGame.getGameCount();
+    }
 }

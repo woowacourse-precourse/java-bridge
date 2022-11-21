@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.Directive;
 import bridge.constant.ViewStatus;
 import bridge.controller.BridgeGameController;
 import bridge.dto.GameResult;
@@ -17,7 +18,13 @@ public class OutputView {
     private final String WRONG = " X ";
     private final String SEPARATOR = "|";
     private final String SPACE = "   ";
+    private final String SUCCESS = "성공";
+    private final String FAIL = "실패";
     private final BridgeGameController bridgeGameController;
+
+    private StringBuilder topLine;
+    private StringBuilder bottomLine;
+
     public OutputView(BridgeGameController bridgeGameController) {
         this.bridgeGameController = bridgeGameController;
     }
@@ -28,8 +35,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(GameResult gameResult) {
-        StringBuilder topLine = new StringBuilder();
-        StringBuilder bottomLine = new StringBuilder();
+        topLine = new StringBuilder();
+        bottomLine = new StringBuilder();
 
         createMap(gameResult, topLine, bottomLine);
 
@@ -130,6 +137,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(ViewStatus status) {
+        System.out.println(Directive.FINAL_GAME_RESULT.getMessage());
+        System.out.println(topLine);
+        System.out.println(bottomLine);
+        printWinOrNot(status);
+        printCount();
+    }
+
+    private void printWinOrNot(ViewStatus status) {
+        System.out.print(Directive.WIN_OR_NOT.getMessage());
+        if(status == ViewStatus.WIN) {
+            System.out.println(SUCCESS);
+        }
+        if(status == ViewStatus.LOSE){
+            System.out.println(FAIL);
+        }
+    }
+
+    private void printCount() {
+        System.out.print(Directive.GAME_COUNT.getMessage());
+        System.out.println(bridgeGameController.getGameCount());
     }
 }

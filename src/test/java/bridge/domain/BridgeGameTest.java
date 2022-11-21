@@ -92,6 +92,14 @@ class BridgeGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("retry 횟수만큼 반환한다.")
+    @ValueSource(ints = {1, 2, 3, 4})
+    @ParameterizedTest
+    void returnRetryCount(int count) {
+        retryMultipleTime(count);
+        assertThat(bridgeGame.getGameCount()).isEqualTo(count+1);
+    }
+
     private GameResult moveUntilWin(BridgeGame bridgeGame) {
         boolean isMatch = true;
         for (String position : arr) {
@@ -99,4 +107,12 @@ class BridgeGameTest {
         }
         return bridgeGame.resultOfMove(isMatch);
     }
+
+    private void retryMultipleTime(int count) {
+        for(int retryCount=1; retryCount<=count; retryCount++) {
+            bridgeGame.retry("R");
+        }
+    }
+
+
 }

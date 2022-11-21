@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.Directive;
 import bridge.constant.ViewStatus;
 import bridge.dto.GameResult;
 
@@ -26,11 +27,19 @@ public class GameView {
     }
 
     public void move() {
-        while (status != ViewStatus.WIN && status != ViewStatus.DETERMINE_CONTINUE) {
+        while (status == ViewStatus.DETERMINE_MOVE) {
             GameResult gameResult = inputView.move();
             status = gameResult.getNextViewStatus();
-            outputView.printMap(gameResult);
+            printMapIfMoveInputValid(gameResult);
         }
+    }
+
+    private void printMapIfMoveInputValid(GameResult gameResult) {
+        if(gameResult.getNextViewStatus()==ViewStatus.INVALID_MOVE_INPUT) {
+            status = ViewStatus.DETERMINE_MOVE;
+            return;
+        }
+        outputView.printMap(gameResult);
     }
 
     public void retry() {
@@ -40,10 +49,17 @@ public class GameView {
     }
 
     public void doGame() {
+        System.out.println(Directive.GAME_START);
         while(status!=ViewStatus.WIN && status != ViewStatus.LOSE) {
             makeBridge();
             move();
             retry();
         }
+
+        printResult();
+    }
+
+    private void printResult() {
+        outputView.printResult(status);
     }
 }
