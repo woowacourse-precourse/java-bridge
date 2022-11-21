@@ -24,18 +24,26 @@ public class BridgeGameTest {
         BridgeGame.setBridge(bridge);
     }
 
-    @DisplayName("이동한 위치에 대한 결과를 저장한다")
+    @DisplayName("게임 시도 횟수를 리턴해준다")
     @Test
-    void addMovementTest() {
+    void getAttemptCountTest() {
+        assertThat(BridgeGame.getAttemptCount()).isEqualTo(0);
+    }
+
+
+
+//    @DisplayName("이동한 위치에 대한 결과를 저장한다")
+//    @Test
+//    void addMovementTest() {
 //        bridgeGame.addMovement(
 //                Arrays.asList(bridgeGame.getUpLineForm().split("|")),
 //                Arrays.asList(bridgeGame.getUpLineForm().split("|")),
 //                true
 //        );
-
-        assertThat(bridgeGame.getUpLineForm()).isEqualTo(" O ");
-        assertThat(bridgeGame.getDownLineForm()).isEqualTo("   ");
-    }
+//
+//        assertThat(bridgeGame.getUpLineForm()).isEqualTo(" O ");
+//        assertThat(bridgeGame.getDownLineForm()).isEqualTo("   ");
+//    }
 
     @DisplayName("입력한 방향과 해당 지점이 같으면 true를 다르면 false를 리턴한다")
     @Test
