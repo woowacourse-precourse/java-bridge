@@ -18,15 +18,16 @@ public class OutputView {
      */
     public void printMap(List<String> results) {
         System.out.print("[");
-        for(int i = 0; i < results.size(); i++) {
+        for (int i = 0; i < results.size(); i++) {
             System.out.println(results.get(i));
-            if(i == results.size() -1) {
+            if (i == results.size() - 1) {
                 break;
             }
             System.out.print("|");
         }
         System.out.print("]");
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -35,6 +36,7 @@ public class OutputView {
     public void printEnding() {
         System.out.println("최종 게임 결과");
     }
+
     public void printResult(String result, int tryNum) {
         System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + tryNum);
