@@ -16,12 +16,14 @@ public class InputView {
 	/**    * 사용자가 이동할 칸을 입력받는다.    */
 	public String readMoving() {
 		String userInputMove = Console.readLine();
+		checkReadMovingException(userInputMove);
 		return userInputMove;
 	}
 
 	/**    * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.    */
 	public String readGameCommand() {
 		String usertryOrEnd = Console.readLine();
+		checkReadGameCommandException(usertryOrEnd);
 		return usertryOrEnd;
 	}
 
@@ -32,5 +34,13 @@ public class InputView {
 	public void ReadBridgeSizException(String userInputSize) {
 		exception.checkBridgeSizeNumberMissMatch(userInputSize);
 		exception.checkBridgeSize(userInputSize);
+	}
+
+	public void checkReadMovingException(String userInputMove) {
+		exception.checkMissMatch(userInputMove);
+	}
+
+	public void checkReadGameCommandException(String usertryOrEnd) {
+		exception.checkMissMatch(usertryOrEnd);
 	}
 }

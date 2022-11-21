@@ -15,4 +15,10 @@ public class BridgeException {
 			throw new IllegalArgumentException(Constant.NUMBER_MISSMATCH_ERROR);
 		}
 	}
+
+	public void checkMissMatch(String userInputMove) throws IllegalArgumentException {
+		if (!Pattern.matches("^[A-Z]*$", userInputMove)) {
+			throw new IllegalArgumentException(Constant.SPELLING_MISSMATCH_ERROR);
+		}
+	}
 }
