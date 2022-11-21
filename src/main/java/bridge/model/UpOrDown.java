@@ -28,6 +28,10 @@ public class UpOrDown {
         return value.equals(DOWN_SIGN);
     }
 
+    public String getValue() {
+        return value;
+    }
+
     private void validate(String value) {
         if (value.length() != VALUE_LENGTH) {
             throw new IllegalArgumentException(Error.DIRECTION_INPUT_ERROR.getMessage());
