@@ -18,7 +18,7 @@ public class UserTest {
     }
 
     @Test
-    void 플레이어가_이동_2번_성공하고_3번쨰_방향이_맞는지_테스트(){
+    void 플레이어가_이동_2번_성공하고_3번쨰_방향이_맞는지_테스트() {
         User player = new User();
         assertThat(player.move(bridge, "U")).isEqualTo(true);
         assertThat(player.move(bridge, "D")).isEqualTo(true);
@@ -26,7 +26,7 @@ public class UserTest {
     }
 
     @Test
-    void 플레이어가_이동_2번_성공하고_3번쨰_방향이_틀린지_테스트(){
+    void 플레이어가_이동_2번_성공하고_3번쨰_방향이_틀린지_테스트() {
         User player = new User();
         assertThat(player.move(bridge, "U")).isEqualTo(true);
         assertThat(player.move(bridge, "D")).isEqualTo(true);
@@ -34,15 +34,30 @@ public class UserTest {
     }
 
     @Test
-    void 플레이어_게임_결과반환기능이_제대로_동작하는지(){
+    void 한번_움직이고_게임결과가_제대로_나오는지() {
         User player = new User();
+        List<Result> gameResults = List.of(new Result("U", true));
         player.move(bridge, "U");
-        assertThat(player.makeGameResult()).isEqualTo(List.of(true));
+        boolean isSame = isCorrectResult(player.makeGameResult(), gameResults);
+        assertThat(isSame).isEqualTo(true);
+    }
+
+    @Test
+    void 두번_움직이고_게임결과가_제대로_나오는지() {
+        User player = new User();
+        List<Result> gameResults = List.of(new Result("U", true), new Result("U", false));
         player.move(bridge, "U");
-        assertThat(player.makeGameResult()).isEqualTo(List.of(true,false));
-        player.move(bridge, "D");
-        assertThat(player.makeGameResult()).isEqualTo(List.of(true,true));
         player.move(bridge, "U");
-        assertThat(player.makeGameResult()).isEqualTo(List.of(true,true,true));
+        boolean isSame = isCorrectResult(player.makeGameResult(), gameResults);
+        assertThat(isSame).isEqualTo(true);
+    }
+
+    private boolean isCorrectResult(List<Result> testResults, List<Result> expectResults){
+        for (int i = 0; i < testResults.size(); i++){
+            if (!testResults.get(i).isSameResult(expectResults.get(i))){
+                return false;
+            }
+        }
+        return true;
     }
 }

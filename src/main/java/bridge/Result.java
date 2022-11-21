@@ -32,4 +32,8 @@ public class Result {
         }
         return " ";
     }
+
+    public boolean isSameResult(Result result){
+        return this.selectDirection.equals(result.selectDirection) && this.isSuccess == result.isSuccess;
+    }
 }
