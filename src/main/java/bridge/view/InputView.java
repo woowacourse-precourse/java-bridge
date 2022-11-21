@@ -19,7 +19,7 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
-    /**링
+    /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
