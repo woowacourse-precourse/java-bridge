@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.view.InputView;
@@ -15,10 +16,10 @@ public class BridgeGameManager {
         setGame(bridgeGame);
         printStart();
         int bridgeSize = inputBridgeSizeRepeat();
-        List<String> targetBridge = bridgeGame.makeTargetBridge(bridgeSize);
+        Bridge targetBridge = bridgeGame.makeTargetBridge(bridgeSize);
 
         int step = 0;
-        while (step < targetBridge.size()) {
+        while (step < targetBridge.getSize()) {
             String upDownInput = inputUpDownRepeat();
             bridgeGame.move(upDownInput);
             printStatus(bridgeGame, targetBridge);
@@ -43,11 +44,11 @@ public class BridgeGameManager {
         printResult(targetBridge, bridgeGame);
     }
 
-    private boolean isFault(List<String> targetBridge, int tries, String upDownInput) {
-        return !targetBridge.get(tries).equals(upDownInput);
+    private boolean isFault(Bridge targetBridge, int tries, String upDownInput) {
+        return !targetBridge.getBridgeShape().get(tries).equals(upDownInput);
     }
 
-    private void printStatus(BridgeGame bridgeGame, List<String> targetBridge) {
+    private void printStatus(BridgeGame bridgeGame, Bridge targetBridge) {
         List<String> preStatus = bridgeGame.getPreStatus();
         OutputView.printMap(targetBridge, preStatus);
     }
@@ -99,7 +100,7 @@ public class BridgeGameManager {
         return retryAnswer;
     }
 
-    private void printResult(List<String> targetBridge, BridgeGame bridgeGame) {
+    private void printResult(Bridge targetBridge, BridgeGame bridgeGame) {
         OutputView.printResult();
         OutputView.printMap(targetBridge, bridgeGame.getPreStatus());
         OutputView.printSuccessFailure(targetBridge, bridgeGame.getPreStatus());

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.constant.BridgeGameInfo;
+import bridge.model.Bridge;
 
 import java.util.List;
 
@@ -16,25 +17,26 @@ public class OutputView {
         System.out.println("실패");
     }
 
-    private static boolean isSameSize(List<String> target, List<String> pre) {
-        return target.size() == pre.size();
+    private static boolean isSameSize(Bridge target, List<String> pre) {
+        return target.getSize() == pre.size();
     }
 
-    private static boolean isSame(List<String> target, List<String> pre) {
+    private static boolean isSame(Bridge target, List<String> pre) {
         int size = pre.size();
         for (int i = 0; i < size; i++) {
-            if (!target.get(i).equals(pre.get(i))) {
+            if (!target.getBridgeShape().get(i).equals(pre.get(i))) {
                 return false;
             }
         }
         return true;
     }
 
-    private static void printTop(List<String> targetBridge, List<String> preStatus) {
+    private static void printTop(Bridge
+                                         targetBridge, List<String> preStatus) {
         System.out.print("[ ");
         for (int i = 0; i < preStatus.size(); i++) {
             if (preStatus.get(i).equals("U")) {
-                if (preStatus.get(i).equals(targetBridge.get(i))) {
+                if (preStatus.get(i).equals(targetBridge.getBridgeShape().get(i))) {
                     if (i == preStatus.size()-1) {
                         System.out.print("O ");
                         continue;
@@ -61,11 +63,11 @@ public class OutputView {
         System.out.println("]");
     }
 
-    private static void printBottom(List<String> targetBridge, List<String> preStatus) {
+    private static void printBottom(Bridge targetBridge, List<String> preStatus) {
         System.out.print("[ ");
         for (int i = 0; i < preStatus.size(); i++) {
             if (preStatus.get(i).equals("D")) {
-                if (preStatus.get(i).equals(targetBridge.get(i))) {
+                if (preStatus.get(i).equals(targetBridge.getBridgeShape().get(i))) {
                     if (i == preStatus.size()-1) {
                         System.out.print("O ");
                         continue;
@@ -93,7 +95,7 @@ public class OutputView {
     }
 
 
-    public static void printMap(List<String> targetBridge, List<String> preStatus) {
+    public static void printMap(Bridge targetBridge, List<String> preStatus) {
         printTop(targetBridge,  preStatus);
         printBottom(targetBridge,  preStatus);
     }
@@ -111,7 +113,7 @@ public class OutputView {
         System.out.println(number);
     }
 
-    public static void printSuccessFailure(List<String> targetBridge, List<String> preStatus) {
+    public static void printSuccessFailure(Bridge targetBridge, List<String> preStatus) {
         System.out.print(BridgeGameInfo.SUCSSES_FAILURE.message);
         if (!isSameSize(targetBridge, preStatus)) {
             printFailure();

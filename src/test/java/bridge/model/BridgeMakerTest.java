@@ -18,22 +18,22 @@ class BridgeMakerTest {
     @BeforeEach
     void setUp() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        bridgeMaker = new BridgeMaker();
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
     @DisplayName("다리가 잘 생성되었나 확인")
     @Test
     void 사이즈에_맞는_다리_생성_확인1() {
-        List<String> result = bridgeMaker.makeBridge(5);
+        Bridge result = bridgeMaker.makeBridge(5);
         System.out.println(result);
-        assertThat(result.size()).isEqualTo(5);
+        assertThat(result.getSize()).isEqualTo(5);
     }
 
     @DisplayName("다리가 잘 생성되었나 확인")
     @Test
     void 사이즈에_맞는_다리_생성_확인2() {
-        List<String> result = bridgeMaker.makeBridge(10);
+        Bridge result = bridgeMaker.makeBridge(10);
         System.out.println(result);
-        assertThat(result.size()).isEqualTo(10);
+        assertThat(result.getSize()).isEqualTo(10);
     }
 }

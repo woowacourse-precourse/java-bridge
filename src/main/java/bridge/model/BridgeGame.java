@@ -10,8 +10,8 @@ public class BridgeGame {
     private int tryNumber;
     private List<String> preStatus = new ArrayList<>();
 
-    public List<String> makeTargetBridge(int bridgeSize) {
-        BridgeMaker bridgeMaker = new BridgeMaker();
+    public Bridge makeTargetBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
