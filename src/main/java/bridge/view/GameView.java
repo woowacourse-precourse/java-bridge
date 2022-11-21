@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.config.Injector;
 import bridge.constant.ViewStatus;
 import bridge.dto.GameResult;
 
@@ -15,8 +14,8 @@ public class GameView {
 
     private ViewStatus status = ViewStatus.DETERMINE_BRIDGE_SIZE;
 
-    public GameView(OutputView outputView) {
-        inputView = Injector.getInputView();
+    public GameView(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
         this.outputView = outputView;
     }
 
