@@ -1,5 +1,6 @@
-package bridge.domain;
+package bridge.domain.util;
 
+import bridge.domain.util.Constant;
 import java.util.Objects;
 
 public class ValidationUtil {

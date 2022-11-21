@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.util.ValidationUtil;
 import java.util.List;
 import java.util.Objects;
 

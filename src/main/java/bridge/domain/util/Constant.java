@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.util;
 
 public class Constant {
     public final static String MOVED_POSITION_UP = "U";

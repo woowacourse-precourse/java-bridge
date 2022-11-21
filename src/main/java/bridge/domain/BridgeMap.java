@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.util.Constant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;

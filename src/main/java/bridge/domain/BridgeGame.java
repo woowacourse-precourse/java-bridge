@@ -1,7 +1,8 @@
 package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
-import java.util.Arrays;
+import bridge.domain.util.Constant;
+import bridge.domain.util.ValidationUtil;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
