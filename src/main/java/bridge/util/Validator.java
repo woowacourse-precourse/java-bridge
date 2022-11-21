@@ -7,25 +7,37 @@ public class Validator {
 
     public static void validateNumericInputType(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다");
+            throw new IllegalArgumentException(Constant.ALLOW_ONLY_NUM);
         }
     }
 
     public static void validateBridgeSize(int size) {
         if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException("3~20 이내로만 입력 가능합니다");
+            throw new IllegalArgumentException(Constant.ALLOW_3_TO_20);
         }
     }
 
     public static void validateMovingInput(String input) {
-        if (!input.equals("U") && !input.equals("D")) {
-            throw new IllegalArgumentException("U 또는 D만 입력 가능합니다");
+        if (!input.equals(Constant.UP) && !input.equals(Constant.DOWN)) {
+            throw new IllegalArgumentException(Constant.ALLOW_U_OR_D);
         }
     }
 
     public static void validateGameCommandInput(String input) {
-        if (!input.equals("R") && !input.equals("Q")) {
-            throw new IllegalArgumentException("R 또는 Q만 입력 가능합니다");
+        if (!input.equals(Constant.RESTART) && !input.equals(Constant.QUIT)) {
+            throw new IllegalArgumentException(Constant.ALLOW_R_OR_Q);
+        }
+    }
+
+    public static void validateLocationNum(int locationNum) {
+        if (locationNum != Constant.DOWN_NUMBER && locationNum != Constant.UP_NUMBER) {
+            throw new IllegalArgumentException(Constant.ALLOW_0_OR_1);
+        }
+    }
+
+    public static void validateTryCount(int tryCount) {
+        if (tryCount < Constant.MINIMUM_TRY) {
+            throw new IllegalArgumentException(Constant.NOT_ALLOW_UNDER_1);
         }
     }
 }
