@@ -23,7 +23,7 @@ public class MessageMaker implements MessageFactory{
     private final StringBuilder underBridge;
     private final List<String> steps;
 
-    public MessageMaker(List<String> steps){
+    public MessageMaker(final List<String> steps){
         this.upperBridge = new StringBuilder(findMessage(START_LINE));
         this.underBridge = new StringBuilder(findMessage(START_LINE));
         this.steps = steps;
@@ -50,14 +50,14 @@ public class MessageMaker implements MessageFactory{
     }
 
     @Override
-    public String finalMessage(StepResponseDto stepResponseDto) {
+    public String finalMessage(final StepResponseDto stepResponseDto) {
         if (stepResponseDto.isFinal()) {
             return findMessage(FINAL_SUCCESS) + NEW_LINE + RETRY_MESSAGE + stepResponseDto.getRetryCount();
         }
         return findMessage(FINAL_FAIL) + NEW_LINE + RETRY_MESSAGE + stepResponseDto.getRetryCount();
     }
 
-    private void judgeMessageLocation(int step, OutputMessage message) {
+    private void judgeMessageLocation(final int step, final OutputMessage message) {
         if (steps.get(step).equals(TOP_ROW)) {
             appendStepMessage(findMessage(message), findMessage(EMPTY));
             return;
@@ -65,7 +65,7 @@ public class MessageMaker implements MessageFactory{
         appendStepMessage(findMessage(EMPTY), findMessage(message));
     }
 
-    private void appendStepMessage(String upperMessage, String underMessage) {
+    private void appendStepMessage(final String upperMessage, final String underMessage) {
         upperBridge.append(upperMessage).append(findMessage(SPLIT));
         underBridge.append(underMessage).append(findMessage(SPLIT));
     }

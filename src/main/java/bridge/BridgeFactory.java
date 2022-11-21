@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface BridgeFactory {
 
-    List<String> makeBridge(int size);
+    List<String> makeBridge(final int size);
 }

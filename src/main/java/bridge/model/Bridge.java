@@ -18,22 +18,22 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public Bridge(BridgeFactory bridgeFactory, String size) {
+    public Bridge(final BridgeFactory bridgeFactory, final String size) {
         validation(size);
         this.bridge = bridgeFactory.makeBridge(Integer.parseInt(size));
     }
 
-    private void validation(String size) {
+    private void validation(final String size) {
         checkLength(size);
         checkIsDigit(size);
         checkRange(size);
     }
 
-    public boolean canGoOrNot(List<String> step, String userPick) {
+    public boolean canGoOrNot(final List<String> step, final String userPick) {
         return bridge.get(step.size() - 1).equals(userPick);
     }
 
-    public boolean isCrossing(int step) {
+    public boolean isCrossing(final int step) {
         if (step > this.bridge.size()) {
             throw new IllegalStateException(
                     makeErrorMessage(CHECK_OUTBOUND) + makeErrorMessage(step, this.bridge.toString()));

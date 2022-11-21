@@ -22,7 +22,7 @@ public enum OutputMessage {
         this.message = message;
     }
 
-    public static String getStepMessage(StepResponseDto stepResponseDto) {
+    public static String getStepMessage(final StepResponseDto stepResponseDto) {
         MessageFactory messageFactory = new AppConfig().messageFactory(stepResponseDto.getStep());
         if (stepResponseDto.isSuccess()) {
             return messageFactory.successMessage();
@@ -30,7 +30,7 @@ public enum OutputMessage {
         return messageFactory.failMessage();
     }
 
-    public static String getFinalMessage(StepResponseDto stepResponseDto) {
+    public static String getFinalMessage(final StepResponseDto stepResponseDto) {
         MessageFactory messageFactory = new AppConfig().messageFactory(stepResponseDto.getStep());
         if (stepResponseDto.isFinal()) {
             return messageFactory.successMessage() + NEW_LINE +messageFactory.finalMessage(stepResponseDto);

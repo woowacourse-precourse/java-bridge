@@ -9,7 +9,7 @@ public class Repetition {
         this.repetition = 1;
     }
 
-    private Repetition(int retryCount) {
+    private Repetition(final int retryCount) {
         this.repetition = retryCount + 1;
     }
 

@@ -20,37 +20,37 @@ public class InputValidator {
 
     private InputValidator(){}
 
-    public static void checkLength(String size) {
+    public static void checkLength(final String size) {
         if (size.length() < MIN_LENGTH || size.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(makeErrorMessage(CHECK_SIZE) + size);
         }
     }
 
-    public static void checkIsDigit(String size) {
+    public static void checkIsDigit(final String size) {
         for (String number : size.split("")) {
             validateDigit(number);
         }
     }
 
-    private static void validateDigit(String number) {
+    private static void validateDigit(final String number) {
         if (!Character.isDigit(number.charAt(0))) {
             throw new IllegalArgumentException(makeErrorMessage(CHECK_SIZE_DIGIT) + number);
         }
     }
 
-    public static void checkRange(String size) {
+    public static void checkRange(final String size) {
         if (MIN_SIZE > Integer.parseInt(size) || MAX_SIZE < Integer.parseInt(size)) {
             throw new IllegalArgumentException(makeErrorMessage(CHECK_SIZE) + size);
         }
     }
 
-    public static void checkMoving(String moving) {
+    public static void checkMoving(final String moving) {
         if (!TOP_ROW.equals(moving) && !UNDER_ROW.equals(moving)) {
             throw new IllegalArgumentException(makeErrorMessage(CHECK_MOVING) + moving);
         }
     }
 
-    public static void checkRetryWhether(String retry) {
+    public static void checkRetryWhether(final String retry) {
         if (!RETRY_SIGNAL.equals(retry) && !QUIT_SIGNAL.equals(retry)) {
             throw new IllegalArgumentException(makeErrorMessage(CHECK_RETRY) + retry);
         }

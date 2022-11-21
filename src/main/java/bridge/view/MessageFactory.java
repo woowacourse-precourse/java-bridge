@@ -8,5 +8,5 @@ public interface MessageFactory {
 
     String failMessage();
 
-    String finalMessage(StepResponseDto stepResponseDto);
+    String finalMessage(final StepResponseDto stepResponseDto);
 }

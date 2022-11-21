@@ -16,7 +16,7 @@ public class BridgeGame {
     private final Bridge bridge;
     private final Score score;
 
-    public BridgeGame(InputRequestDto sizeDto) {
+    public BridgeGame(final InputRequestDto sizeDto) {
         AppConfig appConfig = new AppConfig();
         this.bridge = new Bridge(appConfig.bridgeFactory(), sizeDto.getInput());
         this.score = new Score();
@@ -27,7 +27,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public StepResponseDto move(InputRequestDto movingDto) {
+    public StepResponseDto move(final InputRequestDto movingDto) {
         if (!score.goOneStep(this.bridge, movingDto.getInput())) {
             return new StepResponseDto(score, false);
         }
@@ -42,7 +42,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(InputRequestDto retryWhetherDto) {
+    public boolean retry(final InputRequestDto retryWhetherDto) {
         return RETRY_SIGNAL.equals(score.judgeRetry(retryWhetherDto.getInput()));
     }
 }

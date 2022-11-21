@@ -17,7 +17,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(StepResponseDto stepResponseDto) {
+    public void printMap(final StepResponseDto stepResponseDto) {
         System.out.println(getStepMessage(stepResponseDto));
     }
 
@@ -26,7 +26,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(StepResponseDto stepResponseDto) {
+    public void printResult(final StepResponseDto stepResponseDto) {
         System.out.println(FINAL_GAME_RESULT);
         System.out.println(getFinalMessage(stepResponseDto) + NEW_LINE);
     }

@@ -18,15 +18,15 @@ public enum ErrorMessage {
         this.errorMessage = errorMessage;
     }
 
-    public static String makeErrorMessage(ErrorMessage errorMessage) {
+    public static String makeErrorMessage(final ErrorMessage errorMessage) {
         return COMMON.errorMessage + errorMessage.errorMessage + INPUT.errorMessage;
     }
 
-    public static String makeErrorMessage(String cause, String input) {
+    public static String makeErrorMessage(final String cause, final String input) {
         return CAUSE.errorMessage + cause + INPUT.errorMessage + input;
     }
 
-    public static String makeErrorMessage(int cause, String input) {
+    public static String makeErrorMessage(final int cause, final String input) {
         return CAUSE.errorMessage + cause + COMPARE.errorMessage + input;
     }
 }

@@ -17,7 +17,7 @@ public class AppConfig {
         return new BridgeRandomNumberGenerator();
     }
 
-    public MessageFactory messageFactory(List<String> steps){
+    public MessageFactory messageFactory(final List<String> steps){
         return new MessageMaker(steps);
     }
 }

@@ -31,7 +31,7 @@ public class BridgeProgram {
         outputView.printResult(stepResponseDto);
     }
 
-    private boolean checkWhetherRetry(BridgeGame bridgeGame, StepResponseDto stepResponseDto) {
+    private boolean checkWhetherRetry(final BridgeGame bridgeGame, final StepResponseDto stepResponseDto) {
         if (!stepResponseDto.isSuccess()) {
             return inputGameCommand(bridgeGame);
         }

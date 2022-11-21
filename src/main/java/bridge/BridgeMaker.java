@@ -23,13 +23,13 @@ public class BridgeMaker implements BridgeFactory{
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     @Override
-    public List<String> makeBridge(int size) {
+    public List<String> makeBridge(final int size) {
         return IntStream.range(0, size)
                 .mapToObj(i -> makeBridgeShape(this.bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
     }
 
-    private String makeBridgeShape(int bridgeNumber) {
+    private String makeBridgeShape(final int bridgeNumber) {
         if (bridgeNumber == 0) {
             return UNDER_ROW;
         }

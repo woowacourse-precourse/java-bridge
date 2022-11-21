@@ -17,7 +17,7 @@ public class Score {
         this.repetition = new Repetition();
     }
 
-    public Score(UserStep userStep) {
+    public Score(final UserStep userStep) {
         this.userStep = userStep;
         this.repetition = new Repetition();
     }
@@ -30,15 +30,15 @@ public class Score {
         return repetition.getRepetition();
     }
 
-    public boolean goOneStep(Bridge bridge, String moving) {
+    public boolean goOneStep(final Bridge bridge, final String moving) {
         return userStep.goOneStep(bridge, moving);
     }
 
-    public boolean isCrossing(Bridge bridge) {
+    public boolean isCrossing(final Bridge bridge) {
         return this.userStep.isCrossing(bridge);
     }
 
-    public String judgeRetry(String retry) {
+    public String judgeRetry(final String retry) {
         checkRetryWhether(retry);
         if (RETRY_SIGNAL.equals(retry)) {
             this.userStep = this.userStep.setInit();

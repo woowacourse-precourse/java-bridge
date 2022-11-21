@@ -14,7 +14,7 @@ public class UserStep {
         this.userStep = new ArrayList<>();
     }
 
-    public UserStep(List<String> userStep) {
+    public UserStep(final List<String> userStep) {
         this.userStep = userStep;
     }
 
@@ -22,13 +22,13 @@ public class UserStep {
         return userStep;
     }
 
-    public boolean goOneStep(Bridge bridge, String moving) {
+    public boolean goOneStep(final Bridge bridge, final String moving) {
         checkMoving(moving);
         this.userStep.add(moving);
         return bridge.canGoOrNot(this.userStep, moving);
     }
 
-    public boolean isCrossing(Bridge bridge) {
+    public boolean isCrossing(final Bridge bridge) {
         return bridge.isCrossing(this.userStep.size());
     }
 

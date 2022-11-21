@@ -10,14 +10,14 @@ public class StepResponseDto {
     private boolean isSuccess;
     private boolean isFinal = false;
 
-    public StepResponseDto(Score score) {
+    public StepResponseDto(final Score score) {
         this.step = score.getUserStep();
         this.retryCount = score.getRepetition();
         this.isSuccess = true;
         this.isFinal = true;
     }
 
-    public StepResponseDto(Score score, boolean isSuccess) {
+    public StepResponseDto(final Score score, final boolean isSuccess) {
         this.step = score.getUserStep();
         this.retryCount = score.getRepetition();
         this.isSuccess = isSuccess;
