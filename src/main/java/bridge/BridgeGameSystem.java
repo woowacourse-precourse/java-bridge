@@ -23,6 +23,21 @@ public class BridgeGameSystem {
         inputView.printStartMessage();
     }
 
+    public static boolean playGame(List<String> bridge, int bridgeSize){
+        boolean flag = true;
+        while(flag){
+            Bridge block = toCrossBridge(bridge, BridgeGame.getMoveDirect(), index);
+            outputView.printMap(toCrossBridgeResult(bridge, block));
+            flag = isAvailableGame(block);
+            if(isSuccess(bridgeSize, index)){
+                --index;
+                outputView.printResultMap(toCrossBridgeResult(bridge, block));
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static StringBuilder toCrossBridgeResult(List<String> bridge, Bridge block){
         return outputView.makeSide(bridge, block, index);
     }
