@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
-
+    private static final int DOWN = 0;
+    private static final int UP = 1;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -15,9 +16,10 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int phase=0; phase<size; phase++) {
             int number = bridgeNumberGenerator.generate();
-            if(number==0){
+            if(number==DOWN){
                 bridge.add("D");
-            } else if (number==1) {
+            }
+            if (number==UP) {
                 bridge.add("U");
             }
         }
