@@ -21,6 +21,6 @@ public enum AvailableInput {
     }
 
     public static int getBridgeLengthRange(AvailableInput range) {
-        return Integer.valueOf(get(BRIDGE_MINUMUM_LENGTH));
+        return Integer.valueOf(get(range));
     }
 }
