@@ -75,6 +75,7 @@ public class BridgeGame {
         if (Objects.equals(bridgeData.getBridge(), bridgeData.getBridgeDesignByUser())) {
             isGameSucceed = SUCCEED;
             isGameFinished = true;
+            outputView.printResult(bridgeData, SUCCEED);
         }
     }
 
@@ -90,6 +91,7 @@ public class BridgeGame {
             bridgeData.increaseAttempts();
             return retry.RETRY;
         }
+        outputView.printResult(bridgeData, FAILED);
         return retry.QUIT;
     }
 
