@@ -1,9 +1,16 @@
 package bridge;
 
-import bridge.service.BridgeService;
+import bridge.domain.BridgeGame;
 
 public class BridgeController {
-    private final BridgeService bridgeService = new BridgeService();
+    private final BridgeGame bridgeGame = new BridgeGame();
+    void init(){
+        bridgeGame.makeBridge();
+        run();
+    }
     void run(){
+        bridgeGame.setPlayer();
+        bridgeGame.move();
+        bridgeGame.retry();
     }
 }
