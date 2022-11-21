@@ -8,6 +8,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
     private static final String ERROR = "[ERROR] ";
     private static final String BRIDGE_SIZE_ERROR = "3에서 20 사이의 정수 형태로 입력해주세요.";
+    private static final String BRIDGE_SPACE_ERROR = "U,D 형태로만 입력받을 수 있습니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -52,7 +53,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while (true) {
+            String nxtSpace = readLine();
+            try{
+                checkAvailableSpace(nxtSpace);
+                return nxtSpace;
+            }catch (IllegalArgumentException e){
+                printErrorMessage(BRIDGE_SIZE_ERROR);
+            }
+        }
+    }
+
+    private static void checkAvailableSpace(String nxtSpace) {
+        if(!nxtSpace.equals("U") || !nxtSpace.equals("D")){
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
