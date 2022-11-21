@@ -24,13 +24,13 @@ public class BridgeMaker {
         List<String> bridges = new ArrayList<>();
 
         for (int i = 1; i <= size; i++) {
-            bridges.add(setCrossingSpace(bridgeNumberGenerator.generate()));
+            bridges.add(getCrossableMoving(bridgeNumberGenerator.generate()));
         }
 
         return bridges;
     }
 
-    public String setCrossingSpace(int randomNumber) {
+    public String getCrossableMoving(int randomNumber) {
         return Moving.findByNumber(randomNumber).getExpression();
     }
 }
