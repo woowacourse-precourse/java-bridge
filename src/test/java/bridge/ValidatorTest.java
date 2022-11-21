@@ -71,5 +71,5 @@ public class ValidatorTest {
                     .isThrownBy(() -> Validator.validateContains(correctInputs, input));
         }
     }
-    
+
 }
