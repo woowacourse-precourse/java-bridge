@@ -1,6 +1,7 @@
 package bridge.utils;
 
 import bridge.constant.Error;
+import bridge.constant.Game;
 
 public class InputValidator {
     public static int isBridgeSizeNumeric(String input) {
@@ -13,8 +14,9 @@ public class InputValidator {
         }
     }
     public static int isSizeinRange(int size) {
-        if((size < MIN) || (size > MAX)) {
+        if((size < Game.BRIDGE_SIZE_MIN) || (size > Game.BRIDGE_SIZE_MAX)) {
             throw new IllegalArgumentException(Error.BRIDGE_SIZE_VALID.getError());
         }
+        return size;
     }
 }
