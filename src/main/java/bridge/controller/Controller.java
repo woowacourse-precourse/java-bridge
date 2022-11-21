@@ -4,10 +4,10 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.Getter;
+import bridge.domain.Judgement;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Controller {
     private int numberOfAttempts = 0;
@@ -43,7 +43,7 @@ public class Controller {
         for (int indexOfBridge = 0; indexOfBridge < bridge.size(); indexOfBridge++) {
             moveOneSpace(bridge, indexOfBridge);
             if (BridgeGame.retry(this.presentResult)) {
-                this.restart = checkRestart(Getter.getGameCommand());
+                this.restart = Judgement.checkRestart(Getter.getGameCommand());
                 break;
             }
         }
@@ -51,10 +51,7 @@ public class Controller {
 
     private void moveOneSpace(List<String> bridge, int indexOfBridge) {
         this.movingSuccess.add(BridgeGame.move(bridge, indexOfBridge, Getter.getMoving()));
-        this.presentResult = OutputView.printMap(this.movingSuccess);
-    }
-
-    private boolean checkRestart(String restart) {
-        return Objects.equals(restart, "R");
+        OutputView.printMap(this.movingSuccess);
+        this.presentResult = Judgement.checkResult(this.movingSuccess);
     }
 }
