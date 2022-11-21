@@ -18,14 +18,13 @@ public enum UIMessage {
     INFO_BRIDGE_MOVE_SUCCESS("O"),
     INFO_BRIDGE_MOVE_FAILED("X"),
     ERROR_PREFIX("[ERROR] "),
-    ERROR_BRIDGE_LENGTH_INCLUSIVE(ERROR_PREFIX.getValue() + " 다리의 길이는 "
+    ERROR_BRIDGE_LENGTH_INCLUSIVE(ERROR_PREFIX.getValue() + "다리의 길이는 "
             + BridgeLengthInclusive.START.getValue() + "이상 " + BridgeLengthInclusive.END.getValue() + " 이하입니다."),
-    ERROR_NUMBER_TYPE(ERROR_PREFIX.getValue() + " 다리의 길이를 숫자로 입력해주세요."),
-    ERROR_INPUT_MOVE_CELL("영어 대문자 1자를 입력해주세요. (위: " + BridgeGameRule.MOVE_UP.getValue() + ", 아래: "
-            + BridgeGameRule.MOVE_DOWN.getValue() + ")"),
-    ERROR_INPUT_RETRY_GAME("영어 대문자 1자를 입력해주세요. (재시도: " + BridgeGameRule.RETRY.getValue()
-            + ", 종료: "+ BridgeGameRule.QUIT.getValue() +")")
-    ;
+    ERROR_NUMBER_TYPE(ERROR_PREFIX.getValue() + "다리의 길이를 숫자로 입력해주세요."),
+    ERROR_INPUT_MOVE_CELL(ERROR_PREFIX.getValue() + "영어 대문자 1자를 입력해주세요. (위: "
+            + BridgeGameRule.MOVE_UP.getValue() + ", 아래: " + BridgeGameRule.MOVE_DOWN.getValue() + ")"),
+    ERROR_INPUT_RETRY_GAME(ERROR_PREFIX.getValue() + "영어 대문자 1자를 입력해주세요. (재시도: "
+            + BridgeGameRule.RETRY.getValue() + ", 종료: "+ BridgeGameRule.QUIT.getValue() +")");
 
     private String value;
     UIMessage(String value) {
