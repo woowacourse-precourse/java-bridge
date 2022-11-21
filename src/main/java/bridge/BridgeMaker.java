@@ -21,11 +21,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int count = 0; count < size ; count++) {
-            if (bridgeNumberGenerator.generate() == 0) {
-                bridge.add("D");
+            int randomNumber = bridgeNumberGenerator.generate();
+            if (Choice.UP.getCommandNumber() == randomNumber) {
+                bridge.add(Choice.UP.getGameCommand());
             }
-            if (bridgeNumberGenerator.generate() == 1) {
-                bridge.add("U");
+            if (Choice.DOWN.getCommandNumber() == randomNumber) {
+                bridge.add(Choice.DOWN.getGameCommand());
             }
         }
         return bridge;
