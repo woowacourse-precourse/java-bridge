@@ -5,9 +5,19 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.domain.Player;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ApplicationTest extends NsTest {
 
@@ -63,6 +73,29 @@ class ApplicationTest extends NsTest {
         @Override
         public int generate() {
             return numbers.remove(0);
+        }
+    }
+
+    @Nested
+    class PlayerTest {
+
+        Player player = new Player();
+
+        @AfterEach
+        @DisplayName("초기화")
+        void initializeTest() {
+            player.initialize();
+        }
+
+        @ParameterizedTest
+        @DisplayName("위치 이동, 반환")
+        @CsvSource({"3", "5", "9"})
+        void moveTest(int steps) {
+            for (int step = 0; step < steps; step++) {
+                player.move();
+            }
+
+            assertThat(player.getPosition()).isEqualTo(steps - 1 );
         }
     }
 }
