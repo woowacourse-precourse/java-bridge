@@ -58,9 +58,9 @@ public class OutputView {
 //        System.out.println(SystemMessage.BRIDGE_LENGTH_INPUT);
 //    }
 
-    public void printMovementInput() {
-        System.out.println(SystemMessage.MOVEMENT_INPUT);
-    }
+//    public void printMovementInput() {
+//       System.out.println(SystemMessage.MOVEMENT_INPUT);
+//    }
 
     public void printGameRestartEnd() {
         System.out.println(SystemMessage.GAME_RESTART_END);

@@ -45,8 +45,8 @@ public class BridgeGameMachine {
     }
 
     private String bridgeRestartAndEndInput() {
-        outputView.printGameRestartEnd();
-        return inputView.readGameCommand();
+        //outputView.printGameRestartEnd();
+        return inputView.inputGameCommand();
     }
 
     private String bridgeProgress(BridgeGame bridgeGame) {
@@ -64,8 +64,8 @@ public class BridgeGameMachine {
     }
 
     private String bridgeMovingInput() {
-        outputView.printMovementInput();
-        return inputView.readMoving();
+        //outputView.printMovementInput();
+        return inputView.inputMoving();
     }
 
     private List<String> randomBridge(int bridgeLength) {
