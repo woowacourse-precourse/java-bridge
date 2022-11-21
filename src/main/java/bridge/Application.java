@@ -35,16 +35,20 @@ public class Application {
             String move = inputView.getMove();
             // 다리를 출력합니다 --> output view
             bridgeGame.move(bridge, move);
-            if (bridge.size() > bridgeSize) {
-                // 게임 실패시 다시 시도 여부 --> bridge game, output view
-                game = inputView.readGameCommand();
-                // R 또는 Q 입력 --> input view
-                restartAfterFailure(bridge);
-                outputView.endAfterFailure(bridgeGame, game, count);
-            }
+            whenItFails(bridgeSize, bridge);
             // 마지막 칸 도착시,최종 게임 결과
             // 다리 출력, 게임 성공 여부 출력,시도 횟수 출력
             game = outputView.printResult(bridgeGame, bridgeSize, count, game);
+        }
+    }
+
+    private void whenItFails(int bridgeSize, List<String> bridge) {
+        if (bridge.size() > bridgeSize) {
+            // 게임 실패시 다시 시도 여부 --> bridge game, output view
+            game = inputView.readGameCommand();
+            // R 또는 Q 입력 --> input view
+            restartAfterFailure(bridge);
+            outputView.endAfterFailure(bridgeGame, game, count);
         }
     }
 
