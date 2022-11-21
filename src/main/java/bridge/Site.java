@@ -16,4 +16,8 @@ public enum Site {
         return bridge.add(movement_command);
     }
 
+    public boolean isSameCommand(String movement_command){
+        return this.movement_command.equals(movement_command);
+    }
+
 }
