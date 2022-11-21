@@ -11,14 +11,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해 주세요.");
         String input = Console.readLine();
         validateBridgeSize(input);
         return Integer.parseInt(input);
-    }
-
-    public int readBridgeSizeWithMessage() {
-        System.out.println("다리의 길이를 입력해 주세요.");
-        return readBridgeSize();
     }
 
     /**
