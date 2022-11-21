@@ -24,10 +24,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<String> crossAble, int turn) {
+    public Boolean move(List<String> crossAble, int turn) {
         String move = inputView.setMoving();
         Boolean matchResult = crossAble.get(turn).equals(move);
         store(matchResult, move, turn);
+        return matchResult;
     }
 
     public void store(Boolean match, String move, int turn) {
@@ -54,6 +55,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public Boolean retry() {
+        String gameCommand = inputView.setGameCommand();
+        if (gameCommand.equals("R")) {
+            return true;
+        }
+        return false;
     }
 }

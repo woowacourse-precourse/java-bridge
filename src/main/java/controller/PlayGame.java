@@ -19,9 +19,18 @@ public class PlayGame {
 
     public void playGame() {
         int turn = 0;
+        int tryCount = 0;
         int endTurn = inputView.setBridgeSize();
         while(turn < endTurn) {
-            bridgeGame.move(crossAble, turn);
+            Boolean matchResult = bridgeGame.move(crossAble, turn);
+            if(!matchResult) {
+                Boolean isRetry = bridgeGame.retry();
+                if(isRetry){
+                    tryCount++;
+                    continue;
+                }
+                break;
+            }
             turn++;
         }
         outputView.printMap(endTurn, bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
