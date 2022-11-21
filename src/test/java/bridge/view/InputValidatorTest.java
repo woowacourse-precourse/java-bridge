@@ -14,7 +14,7 @@ class InputValidatorTest {
     class ValidateBridgeSizeTest {
 
         @DisplayName("성공한 경우 예외를 발생시키지 않아야 한다.")
-        @ValueSource(ints = {3,10,20})
+        @ValueSource(ints = {3, 10, 20})
         @ParameterizedTest
         void success(int bridgeSize) {
             InputValidator inputValidator = new InputValidator();

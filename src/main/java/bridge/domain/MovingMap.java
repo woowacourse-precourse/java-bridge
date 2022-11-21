@@ -45,5 +45,4 @@ public class MovingMap {
     public List<MovingMapState> getStateList(String moving) {
         return movingMap.get(moving);
     }
-
 }

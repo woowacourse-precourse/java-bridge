@@ -12,7 +12,8 @@ public class BridgeGameMachine {
     private final OutputView outputView;
     private final BridgeGameService bridgeGameService;
 
-    public BridgeGameMachine(InputView inputView, OutputView outputView, BridgeGameService bridgeGameService) {
+    public BridgeGameMachine(InputView inputView, OutputView outputView,
+            BridgeGameService bridgeGameService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeGameService = bridgeGameService;
