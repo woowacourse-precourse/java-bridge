@@ -8,7 +8,7 @@ import java.util.List;
 public class BridgeGame {
     public static StringBuilder sb1 = new StringBuilder();
     public static StringBuilder sb2 = new StringBuilder();
-    Application api = new Application();
+    Application api = new Application();    //2 second
 
     public void startGame(){
         OutputView.bridgeGameStart();
@@ -30,7 +30,7 @@ public class BridgeGame {
     public static StringBuilder getSb1(){return sb1;}
     public static StringBuilder getSb2(){return sb2;}
 
-    public static void spliceMoveStart(int size){
+   /* public static void spliceMoveStart(int size){
         if(size == 0){
             sb1.append("[");
             sb2.append("[");
@@ -46,7 +46,7 @@ public class BridgeGame {
             sb1.append("|");
             sb2.append("|");
         }
-    }
+    } */
 
 
 
@@ -87,10 +87,10 @@ public class BridgeGame {
 
     public static String move(List<String> bridge, String search, int size) {
 
-        spliceMoveStart(size);
+        BridgeMaker.spliceMoveStart(size);
         directionUp(bridge, search, size);
         directionDown(bridge, search, size);
-        spliceMoverEnd(bridge, size);
+        BridgeMaker.spliceMoverEnd(bridge, size);
 
         String result1 = sb1.substring(0,sb1.length()-1) + "]";
         String result2 = sb2.substring(0, sb2.length()-1) + "]";
@@ -123,7 +123,7 @@ public class BridgeGame {
         if(size != 0 ){
             sb1.delete(0, sb1.length());
             sb2.delete(0, sb2.length());
-            api.size = 0;
+            api.size = 0;   //3번째
         }
 
     }

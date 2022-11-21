@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static bridge.BridgeGame.sb1;
+import static bridge.BridgeGame.sb2;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -40,6 +43,27 @@ public class BridgeMaker {
         return "U";
     }
 
+
+
+
+    public static void spliceMoveStart(int size){
+        if(size == 0){
+            sb1.append("[");
+            sb2.append("[");
+
+        }
+    }
+
+    public static void spliceMoverEnd(List<String> bridge, int size ){
+        if(bridge.size() - 1 == size){
+            sb1.append("]");
+            sb2.append("]");
+        }
+        if(bridge.size() - 1 != size){
+            sb1.append("|");
+            sb2.append("|");
+        }
+    }
     }
 
 

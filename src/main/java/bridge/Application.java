@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Application {
-    public static int size = 0;
+    public static int size = 0; //1 first
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
