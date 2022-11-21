@@ -24,4 +24,12 @@ public class Result {
         resultBridges.add(upperBridge);
         resultBridges.add(lowerBridge);
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public void increaseTryCount() {
+        tryCount++;
+    }
 }
