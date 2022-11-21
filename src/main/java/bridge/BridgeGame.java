@@ -1,11 +1,8 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.StringValue.*;
+import static bridge.Enums.StringValue.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
