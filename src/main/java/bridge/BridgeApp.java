@@ -11,4 +11,10 @@ public class BridgeApp {
         this.bridgeGame = bridgeGame;
     }
 
+    public void run() {
+        bridgeGame.createBridge(viewController.readBridgeSize());
+        viewController.printResult(playAndGetResult());
+
+    }
+
 }
