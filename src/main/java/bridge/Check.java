@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class Check {
@@ -39,5 +41,13 @@ public class Check {
       return true;
     }
     return false;
+  }
+  
+  public static String checkFail(String in) throws IllegalArgumentException{
+    String temp = Console.readLine().strip();
+    if(temp.equals("R") || temp.equals("Q")){
+      return temp;
+    }
+    throw illegalArgumentException;
   }
 }

@@ -15,4 +15,8 @@ public class EndGame {
     }
     return false;
   }
+  
+  public void fail(){
+  
+  }
 }
