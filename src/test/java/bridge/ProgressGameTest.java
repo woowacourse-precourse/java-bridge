@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.controller.ProgressGame;
 import bridge.model.BridgeGame;
-import bridge.view.OutputView;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
