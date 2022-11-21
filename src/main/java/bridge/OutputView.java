@@ -25,6 +25,10 @@ public class OutputView {
             upSentence += printAnswer(answer, bridgeSize, up);
             downSentence += printAnswer(answer, bridgeSize, down);
         }
+        printRemovedDelimiter(upSentence, downSentence);
+    }
+
+    void printRemovedDelimiter(String upSentence, String downSentence){
         upSentence = removeDelimiter(upSentence) + "]";
         downSentence = removeDelimiter(downSentence) + "]";
         System.out.println(upSentence + '\n' + downSentence);
