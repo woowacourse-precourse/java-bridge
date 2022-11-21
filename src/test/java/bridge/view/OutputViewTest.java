@@ -17,6 +17,7 @@ public class OutputViewTest {
 		outputView.receiveMoveCommandResult(moveDownDto);
 		outputView.receiveMoveCommandResult(moveDownDto);
 		outputView.receiveMoveCommandResult(moveFinishDto);
+		outputView.receiveGameResult(new GameResultDto(1, true));
 
 		System.out.println(outputView);
 		Assertions.assertThat(outputView.toString())
@@ -31,6 +32,7 @@ public class OutputViewTest {
 		outputView.receiveMoveCommandResult(moveUpDto);
 		outputView.receiveMoveCommandResult(moveUpDto);
 		outputView.receiveMoveCommandResult(moveDownDto);
+		outputView.receiveGameResult(new GameResultDto(1, false));
 
 		System.out.println(outputView);
 		Assertions.assertThat(outputView.toString()).contains("[ O | O |   ]", "[   |   | X ]");
@@ -41,7 +43,7 @@ public class OutputViewTest {
 		MoveCommandDto moveUpDto = new MoveCommandDto("U", true, false);
 		MoveCommandDto moveDownDto = new MoveCommandDto("D", true, false);
 		MoveCommandDto moveFinishDto = new MoveCommandDto("U", true, false);
-		GameResultDto gameResultDto = new GameResultDto(5, true);
+		GameResultDto gameResultDto = new GameResultDto(1,  true);
 
 		outputView.receiveMoveCommandResult(moveUpDto);
 		outputView.receiveMoveCommandResult(moveUpDto);
@@ -52,6 +54,7 @@ public class OutputViewTest {
 
 		System.out.println(outputView);
 		Assertions.assertThat(outputView.toString())
-			.contains("[ O | O |   |   | O ]", "[   |   | O | O |   ]", "게임 성공 여부: 성공", "총 시도한 횟수: 5");
+			.contains("[ O | O |   |   | O ]", "[   |   | O | O |   ]", "게임 성공 여부: 성공",
+				"총 시도한 횟수: 1");
 	}
 }

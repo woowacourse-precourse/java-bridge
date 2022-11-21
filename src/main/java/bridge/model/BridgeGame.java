@@ -14,16 +14,20 @@ public class BridgeGame {
 	private int totalTry;
 	private boolean gameClear;
 
-	public void initializeBridge(String bridgeSize) {
-		if (UserInputExceptions.isNotValidSize(bridgeSize)) {
-			throw new IllegalArgumentException(ErrorMessages.errorLength);
-		}
+	public void start(String bridgeSize) {
+		checkBridgeSizeError(bridgeSize);
 
-		int convertedLength = Utils.convertBridgeLengthToNumber(bridgeSize);
-		this.bridge = GameSetting.setBridgeForStartGame(convertedLength);
-		currentStep = GameSetting.START_STEP;
+		int convertedSize = Utils.convertBridgeSize(bridgeSize);
+		this.bridge = GameSetting.makeBridge(convertedSize);
+		currentStep = GameSetting.FIRST_STEP;
 		totalTry = GameSetting.FIRST_TRY;
 		gameClear = GameSetting.GAME_FAIL;
+	}
+
+	private void checkBridgeSizeError(String bridgeSize) {
+		if (UserInputExceptions.isNotValidSize(bridgeSize)) {
+			throw new IllegalArgumentException(BridgeErrorMessages.lengthError);
+		}
 	}
 
 	/**
@@ -32,15 +36,18 @@ public class BridgeGame {
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public MoveCommandDto move(String moveCommand) {
-		if (UserInputExceptions.isNotValidMove(moveCommand)) {
-			throw new IllegalArgumentException(ErrorMessages.errorMovableCommand);
-		}
+		checkMoveCommandError(moveCommand);
 
 		boolean moveFlag = BridgeChecker.isMovableLocation(bridge, moveCommand, currentStep);
 		currentStep += addStepIfMove(moveFlag);
 		gameClear = BridgeChecker.isGameClear(bridge, currentStep);
-
 		return new MoveCommandDto(moveCommand, moveFlag, gameClear);
+	}
+
+	private void checkMoveCommandError(String moveCommand) {
+		if (UserInputExceptions.isNotValidMove(moveCommand)) {
+			throw new IllegalArgumentException(BridgeErrorMessages.errorMovableCommand);
+		}
 	}
 
 	/**
@@ -48,17 +55,23 @@ public class BridgeGame {
 	 * <p>
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public GameResultDto retry(String endCommand) {
-		if (UserInputExceptions.isNotValidEndCommand(endCommand)) {
-			throw new IllegalArgumentException(ErrorMessages.errorEndCommand);
-		}
+	public void retry(String endCommand) {
+		checkEndCommandError(endCommand);
 
 		if (endCommand.equals("R")) {
-			currentStep = GameSetting.START_STEP;
+			currentStep = GameSetting.FIRST_STEP;
 			totalTry++;
 		}
+	}
 
-		return GameSetting.setDataForRetryGame(totalTry, gameClear);
+	private void checkEndCommandError(String endCommand) {
+		if (UserInputExceptions.isNotValidEndCommand(endCommand)) {
+			throw new IllegalArgumentException(BridgeErrorMessages.errorEndCommand);
+		}
+	}
+
+	public GameResultDto sendGameResult() {
+		return new GameResultDto(totalTry, gameClear);
 	}
 
 	private int addStepIfMove(boolean moveFlag) {

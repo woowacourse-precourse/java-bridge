@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.dto.GameResultDto;
 import bridge.dto.MoveCommandDto;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
@@ -9,46 +8,125 @@ import bridge.view.StartView;
 
 public class BridgeGameController {
 	private static final StartView startView = new StartView();
-	private static final OutputView outputView = new OutputView();
 	private static final InputView inputView = new InputView();
+	private static final OutputView outputView = new OutputView();
 	private static final BridgeGame bridgeGame = new BridgeGame();
 
 	public void run() {
-		startView.printStart();	// "다리 건너기 게임을 시작합니다."
-		processBridgeSize();	// "다리의 길이를 입력해주세요."
-		processMoveCommand();	// "이동할 칸을 선택해주세요. (위: U, 아래: D)"
-
-
-		// "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
-		boolean endOrRetryError = false;
-		GameResultDto GameResultDto;
-		do {
-			try {
-				String endOrRetry = inputView.readGameCommand();
-				GameResultDto = bridgeGame.retry(endOrRetry);
-
-				endOrRetryError = false;
-			} catch (IllegalArgumentException exception) {
-				System.out.println(exception.getMessage());
-				endOrRetryError = true;
-			}
-		} while (endOrRetryError);
-
-		// "최종 게임 결과"
-		//printResult();
+		startView.printStart();
+		startBridgeMaking();
+		processBridgeGame();
+		outputView.printResult();
 	}
 
-	private void processBridgeSize() {
-		boolean sizeError;
+	private void startBridgeMaking() {
+		boolean isSizeError;
+
 		do {
-			sizeError = makeBridge();
-		} while (sizeError);
+			isSizeError = isMakingBridgeSuccess();
+		} while (isSizeError);
 	}
 
-	private boolean makeBridge() {
+	private void processBridgeGame() {
+		String gameCommand;
+
+		do {
+			gameCommand = processGame();
+		} while (gameCommand.equals("R"));
+	}
+
+	private String processGame() {
+		MoveCommandDto moveCommandDto;
+		moveCommandDto = processMove();
+		return checkCommandStatus(moveCommandDto);
+	}
+
+	private MoveCommandDto processMove() {
+		MoveCommandDto moveCommandDto;
+		do {
+			moveCommandDto = tryCatchReadMove();
+		} while (isContinueMove(moveCommandDto));
+		return moveCommandDto;
+	}
+
+	private MoveCommandDto tryCatchReadMove() {
 		try {
-			String bridgeSize = inputView.readBridgeSize();
-			bridgeGame.initializeBridge(bridgeSize);
+			return readMove();
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+		}
+		return new MoveCommandDto("", true, false);
+	}
+
+	private MoveCommandDto readMove() {
+		MoveCommandDto moveCommandDto = bridgeGame.move(inputView.readMoving());
+		outputView.receiveMoveCommandResult(moveCommandDto);
+		outputView.printMap();
+		return moveCommandDto;
+	}
+
+	private boolean isContinueMove(MoveCommandDto moveCommandDto) {
+		return moveCommandDto.getMoveFlag() && !moveCommandDto.getGameClear();
+	}
+
+	private String checkQuitGame(String gameCommand, MoveCommandDto moveCommandDto) {
+		if (isQuit(gameCommand, moveCommandDto)) {
+			outputView.receiveGameResult(bridgeGame.sendGameResult());
+			return "Q";
+		}
+		return "R";
+	}
+
+	private String checkCommandStatus(MoveCommandDto moveCommandDto) {
+		String gameCommand = getCommandStatus(moveCommandDto);
+		return checkQuitGame(gameCommand, moveCommandDto);
+	}
+
+	private String getCommandStatus(MoveCommandDto moveCommandDto) {
+		if (isNotMove(moveCommandDto)) {
+			return getGameCommand();
+		}
+		return "R";
+	}
+
+	private boolean isNotMove(MoveCommandDto moveCommandDto) {
+		return !moveCommandDto.getMoveFlag();
+	}
+
+	private String getGameCommand() {
+		String gameCommand;
+
+		do {
+			gameCommand = inputGameCommand();
+		} while (gameCommand.equals("Error"));
+		return gameCommand;
+	}
+
+	private String inputGameCommand() {
+		try {
+			return commandCheck();
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			return "Error";
+		}
+	}
+
+	private String commandCheck() {
+		String gameCommand = inputView.readGameCommand();
+		bridgeGame.retry(gameCommand);
+		checkResetOutput(gameCommand);
+		return gameCommand;
+	}
+
+	private void checkResetOutput(String gameCommand) {
+		if (gameCommand.equals("R")) {
+			outputView.resetOutputView();
+		}
+	}
+
+	private boolean isMakingBridgeSuccess() {
+		try {
+			bridgeGame.start(inputView.readBridgeSize());
 			return false;
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
@@ -56,20 +134,7 @@ public class BridgeGameController {
 		}
 	}
 
-	private void processMoveCommand() {
-		boolean moveError = false;
-		MoveCommandDto moveCommandDto;
-		do {
-			try {
-				String moving = inputView.readMoving();
-				moveCommandDto = bridgeGame.move(moving);
-				outputView.receiveMoveCommandResult(moveCommandDto);
-				outputView.printMap();
-				moveError = false;
-			} catch (IllegalArgumentException exception) {
-				System.out.println(exception.getMessage());
-				moveError = true;
-			}
-		} while (moveError);
+	private boolean isQuit(String gameCommand, MoveCommandDto moveCommandDto) {
+		return gameCommand.equals("Q") || moveCommandDto.getGameClear();
 	}
 }

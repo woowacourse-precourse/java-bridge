@@ -9,7 +9,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
 	private final BridgeNumberGenerator bridgeNumberGenerator;
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -24,13 +23,13 @@ public class BridgeMaker {
 		List<String> bridge = new ArrayList<>();
 
 		for (int length = 1; length <= size; length++) {
-			bridge.add(makeRandomMovableLocation());
+			bridge.add(getRandomLocation());
 		}
 
 		return bridge;
 	}
 
-	private String makeRandomMovableLocation() {
-		return MoveCommand.getMovableSymbolFromMovableNumber(bridgeNumberGenerator.generate());
+	private String getRandomLocation() {
+		return MoveCommand.getSymbolFromNumber(bridgeNumberGenerator.generate());
 	}
 }

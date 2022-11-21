@@ -1,7 +1,7 @@
 package bridge.model;
 
 public class Utils {
-	public static int convertBridgeLengthToNumber(String bridgeSize) {
+	public static int convertBridgeSize(String bridgeSize) {
 		return Integer.parseInt(bridgeSize);
 	}
 }
