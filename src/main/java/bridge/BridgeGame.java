@@ -8,11 +8,24 @@ import java.util.List;
 public class BridgeGame {
     private MovingProcessing movingProcessing;
     private final RetryProcessing retryProcessing;
-    private final int count;
+    private int count;
 
     public BridgeGame() {
         retryProcessing = new RetryProcessing();
         count = 1;
+    }
+
+    public void start() {
+        boolean doRetry = true;
+        while (doRetry) {
+            movingProcessing = new MovingProcessing();
+            if (movingProcessing.readMove()) {
+                break;
+            }
+            doRetry = retry();
+            count++;
+        }
+        endGame();
     }
 
     /**
