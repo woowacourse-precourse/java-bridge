@@ -3,6 +3,11 @@ package bridge.util;
 import bridge.domain.Error;
 
 public class Validation {
+    private static final String MOVE_UP = "U";
+    private static final String MOVE_DOWN = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+
 
     public boolean isInteger(String number) {
         try {
@@ -21,13 +26,13 @@ public class Validation {
     }
 
     public void validateInputMoving(String moving) {
-        if (!moving.equals("U") && !moving.equals("D")) {
+        if (!moving.equals(MOVE_UP) && !moving.equals(MOVE_DOWN)) {
             throw new IllegalArgumentException(Error.INPUT_MOVING_ERROR.getErrorMessage());
         }
     }
 
     public void validateInputRetry(String retryCommand) {
-        if (!retryCommand.equals("R") && !retryCommand.equals("Q")) {
+        if (!retryCommand.equals(RETRY) && !retryCommand.equals(QUIT)) {
             throw new IllegalArgumentException(Error.INPUT_RETRY_COMMAND.getErrorMessage());
         }
     }
