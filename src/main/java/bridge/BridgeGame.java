@@ -1,10 +1,22 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public void makeBridge() {
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+    BridgeBroker bridgeBroker = new BridgeBroker();
+    Bridge bridge;
+
+    public Bridge makeBridge() {
+        int bridgeSize = inputView.readBridgeSize();
+        bridge = bridgeBroker.makeBridge(bridgeSize);
+        return bridge;
     }
 
     /**
