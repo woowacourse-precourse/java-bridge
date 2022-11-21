@@ -16,6 +16,11 @@ public class OutputView {
     private static final String BLANK_MARK = "   ";
     private static final String RIGHT_MARK = " O ";
     private static final String WRONG_MARk = " X ";
+    private static final String WIN_MSG = "성공";
+    private static final String LOSE_MSG = "실패";
+    private static final String FINAL_RESULT_MSG = "최종 게임 결과";
+    private static final String GAME_WIN_LOSE_CASE_MSG = "게임 성공 여부: %s";
+    private static final String GAME_TRY_COUNT_MSG = "총 시도한 횟수: %d";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -64,6 +69,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int play_count, boolean isWin, Deque<MovementStatusForm> movementResult) {
+        System.out.println(FINAL_RESULT_MSG);
+        printMap(movementResult);
+
+        String winning_msg = LOSE_MSG;
+        if (isWin) winning_msg = WIN_MSG;
+        System.out.println(String.format(GAME_WIN_LOSE_CASE_MSG, winning_msg));
+        System.out.println(String.format(GAME_TRY_COUNT_MSG, play_count));
     }
 }
