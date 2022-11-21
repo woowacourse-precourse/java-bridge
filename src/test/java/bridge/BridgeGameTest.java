@@ -76,6 +76,15 @@ class BridgeGameTest extends NsTest {
                 assertThat(output()).contains(error);
             });
         }
+
+        @Test
+        @DisplayName("다리 길이로 올바른 숫자가 입력될 때")
+        void case5() {
+            assertSimpleTest(() -> {
+                runException("4");
+                assertThat(output()).contains("이동할 칸을 선택해주세요.");
+            });
+        }
     }
 
     @Nested
