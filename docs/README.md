@@ -151,6 +151,10 @@
 [] final 값을 적절히 사용했는가?
 [] 인스턴스 변수의 접근 제한을 private으로 했는가?
 [] 단위테스트하기 어려운 코드를 적절히 리팩터링 했는가?
+[] view가 domain을 모르는가?
+[] domain이 view를 모르는가?
+[] controller와 service가 dto를 통해 값을 주고 받는가?
+[] service가 view를 모르는가?
 
 ## 리펙터링 완료 클래스 체크
 - Application
