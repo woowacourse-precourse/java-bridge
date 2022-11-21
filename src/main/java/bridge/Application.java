@@ -20,20 +20,20 @@ public class Application {
     }
 
     public static void startGame() {
-        while (bridgeGame.isPlaying()) {
+        boolean isWillingToPlay = true;
+        while (bridgeGame.isPlaying() && isWillingToPlay) {
             isCorrect = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getMap(isCorrect));
             if (!isCorrect) {
-                wrongAnswerHandling();
-                return;
+                isWillingToPlay = wrongAnswerHandling();
             }
         }
     }
 
-    public static void wrongAnswerHandling() {
-        boolean isRetrying = bridgeGame.retry(inputView.readGameCommand());
-        if (isRetrying) {
-            startGame();
+    public static boolean wrongAnswerHandling() {
+        if (bridgeGame.retry(inputView.readGameCommand())) {
+            return true;
         }
+        return false;
     }
 }
