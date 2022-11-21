@@ -4,8 +4,6 @@ import bridge.domain.BridgeStatus;
 import bridge.domain.Player;
 import bridge.domain.Result;
 
-import java.util.List;
-
 public class GameResultResponseDto {
     private final BridgeStatus bridgeStatus;
     private final String gameSuccessOrFail;

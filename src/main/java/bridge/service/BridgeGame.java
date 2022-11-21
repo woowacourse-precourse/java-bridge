@@ -2,10 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.constance.GameConstance;
-import bridge.domain.BlockExpression;
-import bridge.domain.Bridge;
-import bridge.domain.Player;
-import bridge.domain.Result;
+import bridge.domain.*;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.GameRetryRequestDto;
 import bridge.service.dto.request.SelectBlockRequestDto;
