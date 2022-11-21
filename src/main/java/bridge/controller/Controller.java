@@ -27,14 +27,29 @@ public class Controller {
 
         crossBridgePlayer(playerId, bridge, getPlayerMoving());
 
-        GameResult result = bridgeGame.getGameResult(playerId, bridge.getSize());
+        while (!isGameClear(bridgeGame.getGameResult(playerId, bridge.getSize())) && isRetry(playerId)) {
+            crossBridgePlayer(playerId, bridge, getPlayerMoving());
+        }
+    }
+
+    private boolean isRetry(Long playerId) {
+        try {
+            return bridgeGame.retry(playerId, inputView.readGameCommand());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return isRetry(playerId);
+        }
+    }
+
+    private boolean isGameClear(GameResult gameResult) {
+        return gameResult.getResult();
     }
 
     private void crossBridgePlayer(Long playerId, Bridge bridge, String position) {
         MoveResult moveResult = bridgeGame.move(playerId, bridge, position);
         outputView.printMap(bridgeGame.getPathTravel(playerId));
 
-        if(moveResult.isGameOver()){
+        if (moveResult.isGameOver()) {
             return;
         }
 
@@ -42,9 +57,9 @@ public class Controller {
     }
 
     private String getPlayerMoving() {
-        try{
+        try {
             return inputView.readMoving();
-        } catch ( IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return getPlayerMoving();
         }
