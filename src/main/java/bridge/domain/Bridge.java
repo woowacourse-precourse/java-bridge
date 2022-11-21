@@ -14,7 +14,7 @@ public class Bridge {
 
     public Bridge(int size) {
         this.size = size;
-        this.bridge = new ArrayList<>(size);
+        this.bridge = new ArrayList<>();
     }
 
     public List<String> getBridge() {
@@ -28,6 +28,13 @@ public class Bridge {
     /**
      * 도메인 로직
      */
+    public boolean isCorrectLastElement(Bridge answer, int stage) {
+        String userLastInput = bridge.get(stage - 1);
+        String expected = answer.getBridge().get(stage - 1);
+
+        return expected.equals(userLastInput);
+    }
+
     public void moveNext(String moving, int stage) {
         this.bridge.add(stage, moving);
     }

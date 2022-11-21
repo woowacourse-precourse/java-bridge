@@ -9,6 +9,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final String UP = "U";
     private final String DOWN = "D";
+    private final String RESTART = "R";
+    private final String QUIT = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -36,15 +38,28 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q");
+
+        String input = Console.readLine();
+        validateRestartInput(input);
+
+        return input;
+    }
+
+    private void validateRestartInput(String input) {
+        if(input.length()!=1)
+            throw new IllegalArgumentException(InputError.INVALID_INPUT_SIZE.getMessage());
+
+        if(!input.equals(RESTART) && !input.equals(QUIT))
+            throw new IllegalArgumentException(InputError.INVALID_MOVING.getMessage());
     }
 
     private void validateMovingInput(String input) {
         if(input.length()!=1)
-            throw new IllegalStateException(InputError.INVALID_MOVING_LENGTH.getMessage());
+            throw new IllegalArgumentException(InputError.INVALID_INPUT_SIZE.getMessage());
 
         if(!input.equals(UP) && !input.equals(DOWN))
-            throw new IllegalArgumentException(InputError.INVALID_MOVING_INPUT.getMessage());
+            throw new IllegalArgumentException(InputError.INVALID_MOVING.getMessage());
     }
 
     private int parseToNumber(String input) {
