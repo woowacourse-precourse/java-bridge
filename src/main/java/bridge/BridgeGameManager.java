@@ -16,11 +16,13 @@ public class BridgeGameManager {
     private final OutputView output;
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
+    private String moveTo;
 
     public BridgeGameManager() {
         input = new InputView();
         output = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        moveTo = null;
     }
 
     public void progress() {
@@ -63,22 +65,39 @@ public class BridgeGameManager {
 
     private void progressBridgeGame() {
         while (!bridgeGame.isLastMoving()) {
-            output.printInputMoveToMessage();
-            String moveTo = input.readMoving();
+            inputMovingUntilNoError();
             boolean move = bridgeGame.move(moveTo);
             output.printMap(bridgeGame.getResult());
-            if (move) {
-                continue;
-            }
-            if (!inputRetryOrQuitUntilNoError()) {
+            if (!decideRetry(move)) {
                 break;
             }
         }
     }
 
+    private void inputMovingUntilNoError() {
+        while (true) {
+            if (checkMovingInputError()) {
+                break;
+            }
+        }
+    }
+
+    private boolean checkMovingInputError() {
+        output.printInputMoveToMessage();
+
+        try {
+            moveTo = input.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
     private boolean inputRetryOrQuitUntilNoError() {
         while (true) {
-            if (checkInputError()) {
+            if (checkRetryInputError()) {
                 break;
             }
         }
@@ -86,7 +105,7 @@ public class BridgeGameManager {
         return bridgeGame.getIsRunning();
     }
 
-    private boolean checkInputError() {
+    private boolean checkRetryInputError() {
         output.printInputRetryMessage();
 
         try {
@@ -106,5 +125,13 @@ public class BridgeGameManager {
         if (retryCommand.equals(QUIT_COMMAND)) {
             bridgeGame.isOver();
         }
+    }
+
+    private boolean decideRetry(boolean move) {
+        if (move) {
+            return true;
+        }
+
+        return inputRetryOrQuitUntilNoError();
     }
 }
