@@ -46,7 +46,7 @@ public class InputValidator {
     public static void moving(String input) {
         validateBlank(input);
         validateAlphabeticType(input);
-        if (!CommandKeys.isUp(input) && !CommandKeys.isDown(input)) {
+        if (!CommandKeys.isUp(input.toUpperCase()) && !CommandKeys.isDown(input.toUpperCase())) {
             throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
         }
     }
@@ -54,7 +54,7 @@ public class InputValidator {
     public static void gameCommand(String input) {
         validateBlank(input);
         validateAlphabeticType(input);
-        if (!CommandKeys.isRetry(input) && !CommandKeys.isQuit(input)) {
+        if (!CommandKeys.isRetry(input.toUpperCase()) && !CommandKeys.isQuit(input.toUpperCase())) {
             throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
         }
     }
