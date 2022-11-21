@@ -43,8 +43,9 @@ public class BridgeController {
         outputView.printMap(bridgeHistory);
     }
 
-    public void figureOutToRestartGame() {
-
+    public boolean figureOutToRestartGame() {
+        String userCommand = inputView.readGameCommand();
+        return userCommand.equals("R");
     }
 
     public void showResult() {

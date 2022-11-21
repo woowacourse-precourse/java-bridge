@@ -18,4 +18,10 @@ public class InputValidator {
             throw new IllegalArgumentException("U(위로 이동) 혹은 D(아래로 이동) 중 하나를 입력해야합니다.");
         }
     }
+
+    public static void isRestartCommand(String input) throws IllegalArgumentException {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("R(재시작) 혹은 Q(종료) 중 하나를 입력해야합니다.");
+        }
+    }
 }
