@@ -14,8 +14,7 @@ public class Bridge {
 
     private void validateUpOrDown(List<String> bridge) {
         bridge.stream()
-            .filter(str -> str.matches("U"))
-            .filter(str -> str.matches("D"))
+            .filter(str -> str.equals("U") || str.equals("D"))
             .findFirst()
             .orElseThrow(()-> new IllegalArgumentException("[ERROR]"));
     }
