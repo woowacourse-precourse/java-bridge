@@ -36,7 +36,11 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void readGameCommandTest() {
+    @DisplayName("게임 다시 시도 입력 예외처리 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={"123","!!","rdx","ㄱㄴㄷ","RQ","RR","QQ","QR"," "})
+    void checkGameCommandTest(String input) {
+        assertThatThrownBy(()->inputView.checkGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
