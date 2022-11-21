@@ -60,10 +60,7 @@ public class BridgeGameController {
 
     private void checkRetry() {
         outputView.printMap(bridgeGame.getResult());
-        if (bridgeGame.checkStatus() == Status.SUCCESS.getMessage()) {
-            return;
-        }
-        if (bridgeGame.canPlay()) {
+        if (bridgeGame.checkStatus().equals(Status.SUCCESS.getMessage()) || bridgeGame.canPlay()) {
             return;
         }
         if (getRetryCommand().equals(RETRY)) {
