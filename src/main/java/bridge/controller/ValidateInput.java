@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.model.Row;
+import bridge.model.Column;
 
 public class ValidateInput {
     int numeric(String input){
@@ -10,7 +10,7 @@ public class ValidateInput {
         return Integer.parseInt(input);
     }
     String letter(String input){
-        if(!Row.isValidateLetter(input)){
+        if(!Column.isValidateLetter(input)){
             throw new IllegalArgumentException();
         }
         return input;
