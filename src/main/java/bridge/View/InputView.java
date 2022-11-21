@@ -17,8 +17,18 @@ public class InputView extends OutputView {
         String inputSize = Console.readLine();
 
         try {
-            return validate.checkSizeReturnInt(inputSize);
-        } catch (Exception e) {
+            int size = validate.checkSizeReturnInt(inputSize);
+            return readBridgeSize(size);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+    }
+
+    private int readBridgeSize(int size) {
+        try {
+            return validate.checkRangeOfSizeReturnInt(size);
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
@@ -31,7 +41,7 @@ public class InputView extends OutputView {
         try {
             validate.checkProperDirection(direction);
             return direction;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
@@ -44,7 +54,7 @@ public class InputView extends OutputView {
         try {
             validate.checkGameCommandInput(retryInput);
             return retryInput;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }

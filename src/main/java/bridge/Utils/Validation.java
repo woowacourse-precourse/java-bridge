@@ -20,7 +20,7 @@ public class Validation {
         return checkRangeOfSizeReturnInt(parsedSize);
     }
 
-    private int checkRangeOfSizeReturnInt(int size) {
+    public int checkRangeOfSizeReturnInt(int size) {
         if (MIN_BRIDGE_LENGTH > size || size > MAX_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(OUT_OF_BRIDGE_ALLOWED_SIZE.getMessage());
         }
