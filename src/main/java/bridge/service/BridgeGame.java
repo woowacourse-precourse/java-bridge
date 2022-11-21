@@ -14,47 +14,57 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final int ZERO=0;
-    private static final int COUNT=1;
+    private static final int ZERO = 0;
+    private static final int COUNT = 1;
 
-    private GameAgent gameAgent;
+    private final GameAgent gameAgent;
     private GameRecordMaker gameRecordMaker;
-    private GameRecordGenerator gameRecordGenerator;
+    private final GameRecordGenerator gameRecordGenerator;
     private int numberOfTrial;
     private int currentBridgeLocation;
     private boolean gameState;
     private int bridgeLength;
-    public BridgeGame(){
-        this.bridgeLength=ZERO;
-        gameAgent=new GameAgent();
-        gameRecordGenerator=new GameRecordGenerator();
-        this.numberOfTrial=ZERO;
+
+    public BridgeGame() {
+        this.bridgeLength = ZERO;
+        gameAgent = new GameAgent();
+        gameRecordGenerator = new GameRecordGenerator();
+        this.numberOfTrial = ZERO;
     }
-    public void prepare(){
-        this.currentBridgeLocation=ZERO;
-        this.gameState=true;
-        this.gameRecordMaker=new GameRecordMaker();
+
+    public void prepare() {
+        this.currentBridgeLocation = ZERO;
+        this.gameState = true;
+        this.gameRecordMaker = new GameRecordMaker();
     }
-    public void constructBridge(int bridgeLength){
-        this.bridgeLength=bridgeLength;
+
+    public void constructBridge(int bridgeLength) {
+        this.bridgeLength = bridgeLength;
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridgeMade = bridgeMaker.makeBridge(bridgeLength);
 
         gameAgent.initialize(bridgeMade);
     }
+
     public void move(String playerWantedToGo) {
         gameState &= gameAgent.checkPossibleToCross(playerWantedToGo, currentBridgeLocation);
         List<String> currentCrossedResult = gameRecordGenerator.generate(gameState, gameAgent.getCurrentDirection(currentBridgeLocation));
         gameRecordMaker.updateCurrentRecord(currentCrossedResult);
         ++currentBridgeLocation;
     }
-    public String makeReport(){
+
+    public String makeReport() {
         gameRecordMaker.updateResult();
         return gameRecordMaker.getRecord();
     }
-    public String getFinalResult(){
+
+    public String getFinalResult() {
         return gameRecordMaker.getRecord();
+    }
+
+    public void updateTotalCount() {
+        numberOfTrial += COUNT;
     }
 
 
