@@ -64,10 +64,8 @@ public enum PassingDirectionType {
         return isMovable;
     }
 
-    public static boolean isContainX(List<PassingDirectionType> types) {
-        if (types.stream().anyMatch(type -> type.isMovable.contains("X"))) {
-            return true;
-        }
-        return false;
+    public static boolean isContainNotMovable(List<PassingDirectionType> types) {
+        return types.stream()
+                .anyMatch(type -> type.isMovable.contains("X"));
     }
 }

@@ -29,10 +29,9 @@ public class Result {
         return Collections.unmodifiableList(resultsGroup);
     }
 
-    // X 가 포함되어 있는지
     public boolean isContainWrongAnswer() {
         for (List<PassingDirectionType> results : resultsGroup) {
-            if (PassingDirectionType.isContainX(results)) {
+            if (PassingDirectionType.isContainNotMovable(results)) {
                 return true;
             }
         }
