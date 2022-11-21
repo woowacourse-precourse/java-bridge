@@ -2,7 +2,7 @@ package bridge.model;
 
 public class Move {
     private String move;
-    Move(String move) {
+    public Move(String move) {
         this.move = checkMove(move);
     }
 

@@ -6,7 +6,11 @@ import java.util.List;
 public class BridgeGame {
     private User user;
     private Bridge bridge;
+    BridgeMaker bridgeMaker;
 
+    public BridgeGame() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
     public List<String> move(String input) {
         String move = new Move(input).getMove();
         if (!checkMove(move)) {
@@ -29,6 +33,10 @@ public class BridgeGame {
     public void setBridge(String input) {
         bridge = new Bridge(input);
         user = new User();
+        setBridgeAnswer(bridgeMaker.makeBridge(bridge.getSize()));
+    }
+    public void setBridgeAnswer(List<String> answer) {
+        bridge.setAnswer(answer);
     }
 
     public void retry() {

@@ -63,6 +63,7 @@ public class BridgeController {
             retry();
         }
     }
+
     private void subRetry(String command) {
         if (command.equals("R")) {
             bridgeGame.retry();

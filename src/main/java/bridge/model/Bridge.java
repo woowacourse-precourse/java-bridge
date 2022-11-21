@@ -3,13 +3,17 @@ package bridge.model;
 import java.util.List;
 
 public class Bridge {
-    private BridgeMaker bridgeMaker;
     private final int size;
     private List<String> answer;
-    Bridge(String size) {
+    public Bridge(String size) {
         this.size = checkBridgeSize(size);
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.answer = bridgeMaker.makeBridge(this.size);
+    }
+    public void setAnswer(List<String> answer) {
+        this.answer = answer;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public List<String> getAnswer() {
