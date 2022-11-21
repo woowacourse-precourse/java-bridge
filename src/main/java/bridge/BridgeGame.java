@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.config.UserInput;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -102,6 +103,6 @@ public class BridgeGame {
         outputView.printAskRetryMessage();
         userInput = inputView.readGameCommand();
 
-        return userInput.equals("R");
+        return userInput.equals(UserInput.RETRY.getValue());
     }
 }
