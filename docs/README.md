@@ -13,7 +13,7 @@
 
 - [x]  다리 길이를 입력받는 기능 구현 - `InputView#readBridgeSize()`
 - [x]  사용자가 이동할 칸을 입력받는 기능 구현 - `InputView#readMoving()`
-- [ ]  사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는 기능 구현 - `InputView#readGameCommand()`
+- [x]  사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는 기능 구현 - `InputView#readGameCommand()`
 
 ## ****OutputView 클래스****
 

@@ -26,6 +26,26 @@ class InputViewReadMovingTest {
                 .hasMessageContaining("[ERROR] U(위 칸) 또는 D(아래 칸) 중 하나의 문자여야 합니다");
     }
 
+    @DisplayName("입력 받은 이동 칸이 소문자 u인 경우")
+    @Test
+    void movingValidErrorTestLowerU() {
+        String input = "u";
+
+        assertThatThrownBy(() -> inputView.movingValidation(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] U(위 칸) 또는 D(아래 칸) 중 하나의 문자여야 합니다");
+    }
+
+    @DisplayName("입력 받은 이동 칸이 소문자 d인 경우")
+    @Test
+    void movingValidErrorTestLowerD() {
+        String input = "d";
+
+        assertThatThrownBy(() -> inputView.movingValidation(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] U(위 칸) 또는 D(아래 칸) 중 하나의 문자여야 합니다");
+    }
+
     @DisplayName("입력 받은 이동 칸이 U인 경우")
     @Test
     void movingValidErrorTestU() {
