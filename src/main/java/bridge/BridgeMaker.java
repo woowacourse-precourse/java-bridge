@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final String UP_BRIDGE = "U";
+    private static final int BI_UP_BRIDGE = 0;
+    private static final String DOWN_BRIDGE = "D";
+    private static final int BI_DOWN_BRIDGE = 1;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -32,11 +36,11 @@ public class BridgeMaker {
     private String isUpOrDown(int upDown){
         String result = "";
 
-        if (upDown == 0){
-            result = "U";
+        if (upDown == BI_UP_BRIDGE){
+            result = UP_BRIDGE;
         }
-        else if(upDown == 1){
-            result = "D";
+        else if(upDown == BI_DOWN_BRIDGE){
+            result = DOWN_BRIDGE;
         }
 
         return result;
