@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.controller.BridgeController;
+import bridge.controller.BridgeGameController;
 import bridge.view.DefaultView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -12,7 +12,7 @@ public class ContextFactory {
 
     private final OutputView outputView;
     private final InputView inputView;
-    private final BridgeController controller;
+    private final BridgeGameController controller;
     private final View view;
 
     public static ContextFactory getInstance() {
@@ -26,7 +26,7 @@ public class ContextFactory {
     private ContextFactory() {
         this.outputView = new OutputView();
         this.inputView = new InputView();
-        this.controller = new BridgeController();
+        this.controller = new BridgeGameController();
         view = new DefaultView(
                 this.outputView,
                 this.inputView,

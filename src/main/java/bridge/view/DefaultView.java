@@ -1,17 +1,17 @@
 package bridge.view;
 
-import bridge.controller.BridgeController;
+import bridge.controller.BridgeGameController;
 
 public class DefaultView implements View {
 
     private final OutputView outputView;
     private final InputView inputView;
-    private final BridgeController controller;
+    private final BridgeGameController controller;
 
     public DefaultView(
             OutputView outputView,
             InputView inputView,
-            BridgeController controller) {
+            BridgeGameController controller) {
         this.outputView = outputView;
         this.inputView = inputView;
         this.controller = controller;
