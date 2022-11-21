@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.constant.ErrorMessage;
+
 public class UserBridge {
     private final String userInput;
 

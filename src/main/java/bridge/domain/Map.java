@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.constant.Bridge;
+
 public class Map {
     private String upMap;
     private String downMap;
