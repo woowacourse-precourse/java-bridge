@@ -17,14 +17,14 @@ public class BridgeReferee {
     }
 
     public GameStatus judge(String moving) {
-        if (!isCorrect(moving)) {
-            return FAIL;
+        if (isCorrect(moving)) {
+            this.location += 1;
+            if (isCrossCompletely()) {
+                return END;
+            }
+            return ON_WAY;
         }
-        this.location += 1;
-        if (isCrossCompletely()) {
-            return END;
-        }
-        return ON_WAY;
+        return FAIL;
     }
 
     public boolean isCrossCompletely() {
