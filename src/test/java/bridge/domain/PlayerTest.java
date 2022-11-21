@@ -15,20 +15,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 class PlayerTest {
-
-    private BridgeMaker bridgeMaker;
+    private List<String> bridge;
 
     @BeforeEach
     public final void initBridgeMaker() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
-        bridgeMaker = new BridgeMaker(numberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        bridge = bridgeMaker.makeBridge(3);
     }
 
     @DisplayName("플레이어가 다리 건너기를 성공한다.")
     @ValueSource(strings = {"U", "UD", "UDD"})
     @ParameterizedTest
     void userCrossBridgeSuccess(String command) {
-        List<String> bridge = bridgeMaker.makeBridge(3);
         Player player = new Player();
         for (int i = 0; i < command.length(); i++){
             boolean isSuccess = player.move(bridge, String.valueOf(command.charAt(i)));
@@ -40,7 +39,6 @@ class PlayerTest {
     @ValueSource(strings = {"D", "UU", "UDU"})
     @ParameterizedTest
     void userCrossBridgeFail(String command) {
-        List<String> bridge = bridgeMaker.makeBridge(3);
         Player player = new Player();
 
         List<Boolean> result = newArrayList();
@@ -49,5 +47,4 @@ class PlayerTest {
         }
         assertThat(result).contains(false);
     }
-
 }
