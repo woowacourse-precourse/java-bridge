@@ -19,18 +19,18 @@ public class BridgeMapMaker {
         this.bridge = bridge;
     }
 
-    public BridgeMap getSuccessBridgeMap() {
+    public PlayerMap getSuccessBridgeMap() {
         List<String> upSideMap = convertSideToMovingMap(UP_SIDE, MOVE_SUCCESS);
         List<String> downSideMap = convertSideToMovingMap(DOWN_SIDE, MOVE_SUCCESS);
 
-        return new BridgeMap(upSideMap, downSideMap);
+        return new PlayerMap(upSideMap, downSideMap);
     }
 
-    public BridgeMap getFailureBridgeMap() {
+    public PlayerMap getFailureBridgeMap() {
         List<String> upSideMap = convertSideToMovingMap(DOWN_SIDE, MOVE_FAILURE);
         List<String> downSideMap = convertSideToMovingMap(UP_SIDE, MOVE_FAILURE);
 
-        return new BridgeMap(upSideMap, downSideMap);
+        return new PlayerMap(upSideMap, downSideMap);
     }
 
     private List<String> convertSideToMovingMap(String side, String moveStatus) {

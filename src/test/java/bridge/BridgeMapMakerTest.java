@@ -8,12 +8,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeMapMakerTest {
-    BridgeMapMaker bridgeMapMaker = new BridgeMapMaker(List.of("U", "D", "D"));
+    private static final List<String> bridge = List.of("U", "D", "D");
+    private static final BridgeMapMaker bridgeMapMaker = new BridgeMapMaker(bridge);
 
     @DisplayName("건널 수 있는 부분을 나타낸 다리 지도를 반환한다")
     @Test
     void successBridgeMapTest() {
-        BridgeMap expected = new BridgeMap(
+        PlayerMap expected = new PlayerMap(
                 List.of("O", " ", " "),
                 List.of(" ", "O", "O")
         );
@@ -24,7 +25,7 @@ public class BridgeMapMakerTest {
     @DisplayName("건널 수 없는 부분을 나타낸 다리 지도를 반환한다")
     @Test
     void failureBridgeMapTest() {
-        BridgeMap expected = new BridgeMap(
+        PlayerMap expected = new PlayerMap(
                 List.of(" ", "X", "X"),
                 List.of("X", " ", " ")
         );
