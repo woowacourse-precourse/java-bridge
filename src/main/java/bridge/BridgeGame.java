@@ -26,6 +26,10 @@ public class BridgeGame {
         true, "O",
         false, "X"
     );
+    private final Map<String, String> REVERSE_MOVE = Map.of(
+        "U", "D",
+        "D", "U"
+    );
 
     public void initGame() {
         int bridgeSize = inputView.readBridgeSize();
@@ -77,6 +81,7 @@ public class BridgeGame {
         } else {
             presentBridge.put(moveCommand, List.of(MOVE_OX.get(moveCommand)));
         }
+        presentBridge.get(REVERSE_MOVE.get(moveCommand)).add(" ");
     }
 
     public boolean judgeMove(String moveCommand, int bridgeIndex) {
