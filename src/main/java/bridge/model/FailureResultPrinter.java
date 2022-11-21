@@ -14,8 +14,8 @@ public class FailureResultPrinter extends ResultPrinter {
     @Override
     String print() {
         StringBuilder result = new StringBuilder();
-        getFailureResult(getUpResult(), result, DIRECTION_UP);
-        getFailureResult(getDownResult(), result, DIRECTION_DOWN);
+        getFailureResult(getResult(DIRECTION_UP), result, DIRECTION_UP);
+        getFailureResult(getResult(DIRECTION_DOWN), result, DIRECTION_DOWN);
         return result.toString();
     }
 

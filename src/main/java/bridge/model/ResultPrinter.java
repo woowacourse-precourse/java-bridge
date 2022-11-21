@@ -29,27 +29,14 @@ abstract class ResultPrinter {
         return String.format(FORMAT_RESULT, result);
     }
 
-    protected String getDownResult() {
+    protected String getResult(String targetDirection) {
         return directions.stream()
-                .map(this::isDown)
+                .map(direction -> this.isSame(direction,targetDirection))
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
 
-    protected String getUpResult() {
-        return directions.stream()
-                .map(this::isUp)
-                .collect(Collectors.joining(RESULT_DELIMITER));
-    }
-
-    private String isDown(String direction) {
-        if (direction.equals(DIRECTION_DOWN)) {
-            return RIGHT_SIGN;
-        }
-        return DEFAULT_SIGN;
-    }
-
-    private String isUp(String direction) {
-        if (direction.equals(DIRECTION_UP)) {
+    private String isSame(String direction, String target) {
+        if (direction.equals(target)) {
             return RIGHT_SIGN;
         }
         return DEFAULT_SIGN;

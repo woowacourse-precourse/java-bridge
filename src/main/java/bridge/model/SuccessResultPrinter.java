@@ -11,7 +11,7 @@ class SuccessResultPrinter extends ResultPrinter {
 
     @Override
     public String print() {
-        return getResultFormat(getUpResult())
-                + getResultFormat(getDownResult());
+        return getResultFormat(getResult(DIRECTION_UP))
+                + getResultFormat(getResult(DIRECTION_DOWN));
     }
 }
