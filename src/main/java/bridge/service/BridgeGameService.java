@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.domain.Command;
-import bridge.domain.bridge.BridgeUnit;
+import bridge.domain.bridge.Move;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameProgress;
 import bridge.domain.game.GameStatus;
@@ -29,8 +29,7 @@ public class BridgeGameService {
     }
 
     public GameStatus crossBridgeUnit(String moving) {
-        BridgeUnit nextUnit = BridgeUnit.from(moving);
-        return bridgeGame.move(nextUnit);
+        return bridgeGame.move(moving);
     }
 
     public GameStatus executeGameCommand(String code) {
@@ -53,20 +52,20 @@ public class BridgeGameService {
     //gapeProgress 래핑하고 메서드 이동
     public MapDto getMapDto() {
         List<GameProgress> gameProgress = bridgeGame.getGameProgress();
-        String upSide = toMapSide(gameProgress, BridgeUnit.UP);
-        String downSide = toMapSide(gameProgress, BridgeUnit.DOWN);
+        String upSide = toMapSide(gameProgress, Move.UP);
+        String downSide = toMapSide(gameProgress, Move.DOWN);
         return new MapDto(String.format(MAP_FORMAT, upSide, downSide));
     }
 
-    private String toMapSide(List<GameProgress> gameProgress, BridgeUnit bridgeUnit) {
+    private String toMapSide(List<GameProgress> gameProgress, Move move) {
         List<String> results = gameProgress.stream()
-                .map(progress -> getMapSideUnit(progress, bridgeUnit))
+                .map(progress -> getMapSideUnit(progress, move))
                 .collect(Collectors.toList());
         return String.join(BRIDGE_UNIT_DELIMITER, results);
     }
 
-    private String getMapSideUnit(GameProgress progress, BridgeUnit bridgeUnit) {
-        if (bridgeUnit.equals(progress.getBridgeUnit())) {
+    private String getMapSideUnit(GameProgress progress, Move move) {
+        if (move.equals(progress.getMove())) {
             return String.format(SYMBOL_FORMAT, getSymbol(progress.isSuccess()));
         }
         return BLANK;

@@ -1,7 +1,6 @@
 package bridge.domain.bridge;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
 
@@ -9,15 +8,13 @@ public class Bridge {
 
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
-    private final List<BridgeUnit> bridge;
+    private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
-        this.bridge = bridge.stream()
-                .map(BridgeUnit::from)
-                .collect(Collectors.toList());
+        this.bridge = bridge;
     }
 
-    public BridgeUnit getUnit(int position) {
+    public String getBridgeBlock(int position) {
         return bridge.get(position);
     }
 

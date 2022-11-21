@@ -1,7 +1,6 @@
 package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
-import bridge.domain.bridge.BridgeUnit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,26 +30,26 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameStatus move(BridgeUnit nextUnit) {
-        GameStatus status = moveAndGetStatus(nextUnit);
+    public GameStatus move(String moving) {
+        GameStatus status = moveAndGetStatus(moving);
         if (isSuccessToCrossTotalBridge(status)) {
             status = SUCCESS;
         }
         return status;
     }
 
-    private GameStatus moveAndGetStatus(BridgeUnit nextUnit) {
-        if (canMove(nextUnit)) {
-            gameProgress.add(new GameProgress(nextUnit, true));
+    private GameStatus moveAndGetStatus(String moving) {
+        if (canMove(moving)) {
+            gameProgress.add(new GameProgress(moving, true));
             return PLAYING;
         }
-        gameProgress.add(new GameProgress(nextUnit, false));
+        gameProgress.add(new GameProgress(moving, false));
         return FAILED;
     }
 
-    private boolean canMove(BridgeUnit nextUnit) {
+    private boolean canMove(String moving) {
         int position = gameProgress.size();
-        return bridge.getUnit(position).equals(nextUnit);
+        return bridge.getBridgeBlock(position).equals(moving);
     }
 
     private boolean isSuccessToCrossTotalBridge(GameStatus status) {

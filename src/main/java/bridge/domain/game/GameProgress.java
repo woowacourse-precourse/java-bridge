@@ -1,18 +1,18 @@
 package bridge.domain.game;
 
-import bridge.domain.bridge.BridgeUnit;
+import bridge.domain.bridge.Move;
 
 public class GameProgress {
-    private final BridgeUnit bridgeUnit;
+    private final Move move;
     private final boolean success;
 
-    public GameProgress(BridgeUnit bridgeUnit, boolean success) {
-        this.bridgeUnit = bridgeUnit;
+    public GameProgress(String moving, boolean success) {
+        this.move = Move.from(moving);
         this.success = success;
     }
 
-    public BridgeUnit getBridgeUnit() {
-        return bridgeUnit;
+    public Move getMove() {
+        return move;
     }
 
     public boolean isSuccess() {

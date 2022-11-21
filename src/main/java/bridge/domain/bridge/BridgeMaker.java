@@ -9,7 +9,6 @@ import java.util.stream.Stream;
  */
 public class BridgeMaker {
 
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -22,7 +21,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return Stream.generate(bridgeNumberGenerator::generate)
-                .map(number -> BridgeUnit.from(number).getCode())
+                .map(number -> Move.from(number).getCode())
                 .limit(size)
                 .collect(Collectors.toList());
     }

@@ -2,7 +2,7 @@ package bridge.domain;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeMaker;
-import bridge.domain.bridge.BridgeUnit;
+import bridge.domain.bridge.Move;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static bridge.domain.bridge.BridgeUnit.DOWN;
-import static bridge.domain.bridge.BridgeUnit.UP;
+import static bridge.domain.bridge.Move.DOWN;
+import static bridge.domain.bridge.Move.UP;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Lists.newArrayList;
 
 class BridgeTest {
 
@@ -23,7 +24,7 @@ class BridgeTest {
     @BeforeEach
     void init() {
         bridgeSize = 3;
-        BridgeMaker bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(List.of(0, 1, 0)));
+        BridgeMaker bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(newArrayList(0, 1, 0)));
         List<String> rawBridge = bridgeMaker.makeBridge(bridgeSize);
         bridge = new Bridge(rawBridge);
     }
@@ -31,11 +32,13 @@ class BridgeTest {
     @Test
     void getUnit_위치에_맞는_BridgeUnit을_리턴한다() {
         //given
-        List<BridgeUnit> expect = List.of(DOWN, UP, DOWN);
+        List<String> expect = List.of(DOWN, UP, DOWN).stream()
+                .map(Move::getCode)
+                .collect(Collectors.toList());
 
         //when
-        List<BridgeUnit> res = Stream.iterate(0, i -> i < bridgeSize, i -> i + 1)
-                .map(position -> bridge.getUnit(position))
+        List<String> res = Stream.iterate(0, i -> i < bridgeSize, i -> i + 1)
+                .map(position -> bridge.getBridgeBlock(position))
                 .collect(Collectors.toList());
 
         //then

@@ -2,7 +2,7 @@ package bridge.service;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeMaker;
-import bridge.domain.bridge.BridgeUnit;
+import bridge.domain.bridge.Move;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameStatus;
 import bridge.support.FakeBridgeNumberGenerator;
@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static bridge.domain.bridge.Move.DOWN;
+import static bridge.domain.bridge.Move.UP;
 import static bridge.domain.game.GameStatus.FAILED;
 import static bridge.domain.game.GameStatus.PLAYING;
 import static bridge.domain.game.GameStatus.SUCCESS;
@@ -20,7 +22,6 @@ import static bridge.support.ErrorMessage.INVALID_COMMAND_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameServiceTest {
 
@@ -38,7 +39,7 @@ class BridgeGameServiceTest {
 
     @Nested
     @DisplayName("crossBridgeUnit 테스트")
-    class CrossBridgeUnitTest {
+    class CrossMoveTest {
 
         @Test
         void 다음_다리를_건너는데_성공하면_PLAYING을_리턴한다() {
@@ -67,8 +68,8 @@ class BridgeGameServiceTest {
         @Test
         void 다리를_끝까지_건너는데_성공하면_PLAYING을_리턴한다() {
             //given
-            bridgeGame.move(BridgeUnit.DOWN);
-            bridgeGame.move(BridgeUnit.UP);
+            bridgeGame.move(DOWN.getCode());
+            bridgeGame.move(UP.getCode());
             String moving = "D";
 
             //when

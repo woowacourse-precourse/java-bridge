@@ -1,15 +1,15 @@
 package bridge.domain;
 
-import bridge.domain.bridge.BridgeUnit;
+import bridge.domain.bridge.Move;
 import org.junit.jupiter.api.Test;
 
-import static bridge.domain.bridge.BridgeUnit.DOWN;
-import static bridge.domain.bridge.BridgeUnit.UP;
+import static bridge.domain.bridge.Move.DOWN;
+import static bridge.domain.bridge.Move.UP;
 import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class BridgeUnitTest {
+class MoveTest {
 
     @Test
     void from_0이_들어오는_경우_DOWN을_리턴한다() {
@@ -17,7 +17,7 @@ class BridgeUnitTest {
         int number = 0;
 
         //when
-        BridgeUnit res = BridgeUnit.from(number);
+        Move res = Move.from(number);
 
         //then
         assertThat(res).isEqualTo(DOWN);
@@ -29,7 +29,7 @@ class BridgeUnitTest {
         int number = 1;
 
         //when
-        BridgeUnit res = BridgeUnit.from(number);
+        Move res = Move.from(number);
 
         //then
         assertThat(res).isEqualTo(UP);
@@ -41,7 +41,7 @@ class BridgeUnitTest {
         int number = 3;
 
         //when then
-        assertThatThrownBy(() -> BridgeUnit.from(number))
+        assertThatThrownBy(() -> Move.from(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_BRIDGE_UNIT_CODE_ERROR);
     }
@@ -52,7 +52,7 @@ class BridgeUnitTest {
         String code = "D";
 
         //when
-        BridgeUnit res = BridgeUnit.from(code);
+        Move res = Move.from(code);
 
         //then
         assertThat(res).isEqualTo(DOWN);
@@ -64,7 +64,7 @@ class BridgeUnitTest {
         String code = "U";
 
         //when
-        BridgeUnit res = BridgeUnit.from(code);
+        Move res = Move.from(code);
 
         //then
         assertThat(res).isEqualTo(UP);
@@ -76,7 +76,7 @@ class BridgeUnitTest {
         String code = "q";
 
         //when then
-        assertThatThrownBy(() -> BridgeUnit.from(code))
+        assertThatThrownBy(() -> Move.from(code))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_BRIDGE_UNIT_CODE_ERROR);
     }

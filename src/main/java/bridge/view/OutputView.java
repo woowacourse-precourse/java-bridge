@@ -1,14 +1,7 @@
 package bridge.view;
 
-import bridge.domain.game.BridgeGame;
-import bridge.domain.bridge.BridgeUnit;
-import bridge.domain.game.GameStatus;
-import bridge.domain.game.GameProgress;
 import bridge.dto.MapDto;
 import bridge.dto.ResultDto;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

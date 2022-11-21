@@ -2,7 +2,7 @@ package bridge.domain;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeMaker;
-import bridge.domain.bridge.BridgeUnit;
+import bridge.domain.bridge.Move;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameStatus;
 import bridge.domain.game.GameProgress;
@@ -15,21 +15,22 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.bridge.BridgeUnit.DOWN;
-import static bridge.domain.bridge.BridgeUnit.UP;
+import static bridge.domain.bridge.Move.DOWN;
+import static bridge.domain.bridge.Move.UP;
 import static bridge.domain.game.GameStatus.FAILED;
 import static bridge.domain.game.GameStatus.PLAYING;
 import static bridge.domain.game.GameStatus.SUCCESS;
 import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.util.Lists.newArrayList;
 
 class BridgeGameTest {
     BridgeGame bridgeGame;
 
     @BeforeEach
     void init() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(List.of(0, 1, 0)));
+        BridgeMaker bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(newArrayList(0, 1, 0)));
         List<String> rawBridge = bridgeMaker.makeBridge(3);
         Bridge bridge = new Bridge(rawBridge);
         bridgeGame = new BridgeGame(bridge);
@@ -42,10 +43,10 @@ class BridgeGameTest {
         @Test
         void 이동에_성공하는_경우_PLAYING을_리턴한다() {
             //given
-            BridgeUnit nextUnit = DOWN;
+            String moving = DOWN.getCode();
 
             //when
-            GameStatus status = bridgeGame.move(nextUnit);
+            GameStatus status = bridgeGame.move(moving);
 
             //then
             assertThat(status).isEqualTo(PLAYING);
@@ -54,10 +55,10 @@ class BridgeGameTest {
         @Test
         void 떨어지는_경우_FAILED를_리턴한다() {
             //given
-            BridgeUnit nextUnit = UP;
+            String moving = UP.getCode();
 
             //when
-            GameStatus status = bridgeGame.move(nextUnit);
+            GameStatus status = bridgeGame.move(moving);
 
             //then
             assertThat(status).isEqualTo(FAILED);
@@ -66,11 +67,13 @@ class BridgeGameTest {
         @Test
         void 끝까지_이동하는_경우_SUCCESS를_리턴한다() {
             //given
-            bridgeGame.move(DOWN);
-            bridgeGame.move(UP);
+            bridgeGame.move(DOWN.getCode());
+            bridgeGame.move(UP.getCode());
+            String moving = DOWN.getCode();
+
 
             //when
-            GameStatus status = bridgeGame.move(DOWN);
+            GameStatus status = bridgeGame.move(moving);
 
             //then
             assertThat(status).isEqualTo(SUCCESS);
@@ -84,8 +87,8 @@ class BridgeGameTest {
         @Test
         void 재시작하면_시도_횟수가_올라가고_진행_상황을_초기화_하며_PLAYING을_리턴한다() {
             //given
-            bridgeGame.move(DOWN);
-            bridgeGame.move(UP);
+            bridgeGame.move(DOWN.getCode());
+            bridgeGame.move(UP.getCode());
 
             //when
             GameStatus status = bridgeGame.retry();
