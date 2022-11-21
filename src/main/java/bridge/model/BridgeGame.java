@@ -1,9 +1,6 @@
 package bridge.model;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeComparator;
-import bridge.model.BridgeMaker;
-import bridge.model.BridgeMap;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +14,15 @@ public class BridgeGame {
     private BridgeMap bridgeMap;
     private int location;
     private int retryCount;
+
+    public BridgeGame(int size) {
+        this.location = -1;
+        this.retryCount = 1;
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = bridgeMaker.makeBridge(size);
+        bridgeComparator = new BridgeComparator();
+        bridgeMap = new BridgeMap(size);
+    }
 
     public int getRetryCount() {
         return retryCount;
@@ -38,14 +44,7 @@ public class BridgeGame {
         return Collections.unmodifiableList(bridge);
     }
 
-    public BridgeGame(int size) {
-        this.location = -1;
-        this.retryCount = 1;
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = bridgeMaker.makeBridge(size);
-        bridgeComparator = new BridgeComparator();
-        bridgeMap = new BridgeMap(size);
-    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

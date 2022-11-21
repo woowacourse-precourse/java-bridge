@@ -10,9 +10,8 @@ public class BridgeMap {
     private List<String> bridgeDownMap;
 
     public BridgeMap(int size) {
-        bridgeUpMap = new ArrayList<>();
-        bridgeDownMap = new ArrayList<>();
-        initBridgeMap(size);
+        bridgeUpMap = new ArrayList<>(Collections.nCopies(size," "));
+        bridgeDownMap = new ArrayList<>(Collections.nCopies(size," "));
     }
 
     public List<String> getBridgeUpMap() {
@@ -43,10 +42,4 @@ public class BridgeMap {
     }
 
 
-    public void initBridgeMap(int size) {
-        for (int i = 0; i < size; i++) {
-            bridgeUpMap.add(" ");
-            bridgeDownMap.add(" ");
-        }
-    }
 }

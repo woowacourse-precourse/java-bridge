@@ -8,10 +8,6 @@ public class BridgeRetry {
         validateRetry(retry);
         this.retry = retry;
     }
-
-    public String getRetry() {
-        return retry;
-    }
     public boolean isRetry(){
         return retry.equals("R");
     }

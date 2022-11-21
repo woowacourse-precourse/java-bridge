@@ -9,10 +9,6 @@ public class BridgeMoving {
         this.moving = moving;
     }
 
-    public String getMoving() {
-        return moving;
-    }
-
     public void validateBridgeMoving(String moving) {
         if (isMovingFormatCorrect(moving)) {
             return;
