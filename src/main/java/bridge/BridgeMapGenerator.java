@@ -20,7 +20,7 @@ public enum BridgeMapGenerator {
         this.resultOfDown = resultOfDown;
     }
 
-    public List<List<String>> generateRightAnswerMap(String input, List<List<String>> bridgeMap) {
+    public static List<List<String>> generateRightAnswerMap(String input, List<List<String>> bridgeMap) {
         if (input.equals(Constant.UP)) {
             bridgeMap.get(0).add(RIGHT_ANSWER_INPUT_UP.resultOfUp);
             bridgeMap.get(1).add(RIGHT_ANSWER_INPUT_UP.resultOfDown);
@@ -31,7 +31,7 @@ public enum BridgeMapGenerator {
         return bridgeMap;
     }
 
-    public List<List<String>> generateWrongAnswerMap(String input, List<List<String>> bridgeMap) {
+    public static List<List<String>> generateWrongAnswerMap(String input, List<List<String>> bridgeMap) {
         if (input.equals(Constant.UP)) {
             bridgeMap.get(0).add(WRONG_ANSWER_INPUT_UP.resultOfUp);
             bridgeMap.get(1).add(WRONG_ANSWER_INPUT_UP.resultOfDown);
