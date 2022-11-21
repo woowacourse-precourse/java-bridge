@@ -1,6 +1,7 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.lang.IllegalArgumentException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -12,8 +13,16 @@ public class InputView {
      */
     public int readBridgeSize() {
         new OutputView().printStartGame();
-        int bridgeLength = Integer.parseInt(Console.readLine());
-        return bridgeLength;
+        String bridgeLength = Console.readLine();
+        try {
+            if (!bridgeLength.matches("[0-9]+") || (Integer.parseInt(bridgeLength) < 3 || Integer.parseInt(bridgeLength) > 20)) {
+                new OutputView().printError("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            return readBridgeSize();
+        }
+        return Integer.parseInt(bridgeLength);
     }
 
     /**
