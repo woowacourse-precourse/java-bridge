@@ -24,4 +24,9 @@ public class InputValidator {
             throw new IllegalArgumentException(Error.MOVEMENT_VALID.getError());
         }
     }
+    public void isRetryValid(String retry) {
+        if(!retry.equals(Game.RETRY_GAME) && !retry.equals(Game.QUIT_GAME)) {
+            throw new IllegalArgumentException(Error.RETRY_VALID.getError());
+        }
+    }
 }
