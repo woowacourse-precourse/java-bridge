@@ -24,16 +24,10 @@ public class OutputView extends IOPrinter {
      * @param clear
      * @param repeatCount
      */
-    public void printResult(String recordedHistory, boolean clear, Integer repeatCount) {
+    public void printResult(String recordedHistory, String status, Integer repeatCount) {
         this.println("최종 게임 결과");
         this.printMap(recordedHistory);
-
-        if (clear) {
-            this.println("게임 성공 여부: 성공");
-            this.println("총 시도한 횟수: " + repeatCount);
-            return;
-        }
-        this.println("게임 성공 여부: 실패");
+        this.println("게임 성공 여부: " + status);
         this.println("총 시도한 횟수: " + repeatCount);
     }
 

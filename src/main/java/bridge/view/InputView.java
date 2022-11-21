@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.domain.bridge.BridgeSize;
-import bridge.domain.position.BridgePosition;
-import bridge.domain.position.RestartCommand;
+import bridge.domain.code.BridgePosition;
+import bridge.domain.code.RestartCommand;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
 
