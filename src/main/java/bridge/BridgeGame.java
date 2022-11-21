@@ -44,4 +44,16 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
     }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public List<String> getUserInput() {
+        return this.userInput;
+    }
+
+    public int getTrialCount() {
+        return this.trialCount;
+    }
 }
