@@ -39,17 +39,20 @@ public class BridgeGameController {
             boolean check = crossTheBridge();
             outputView.printMap(gameStatus);
             askWhetherRetry(check);
-
-            if (copyBridge.getBridge().size() == 0) {
-                gameStatus.gameResult = "성공";
-                isFinish = true;
-            }
+            ifGoThroughTheBridge();
 
             if (isFinish) {
                 break;
             }
         }
         outputView.printResult(gameStatus);
+    }
+
+    private void ifGoThroughTheBridge() {
+        if (copyBridge.getBridge().size() == 0) {
+            gameStatus.gameResult = "성공";
+            isFinish = true;
+        }
     }
 
     private void askWhetherRetry(boolean check) {
