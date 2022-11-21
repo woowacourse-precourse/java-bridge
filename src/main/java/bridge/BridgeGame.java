@@ -60,4 +60,26 @@ public class BridgeGame {
     public void retry() {
         retryCount += 1;
     }
+
+    public void BridgeMark(String direct, boolean result) {
+        String mark = getMarkToResult(result);
+
+        if (direct.equals("U")) {
+            addBridgeMark(mark, "");
+            return;
+        }
+        addBridgeMark("", mark);
+    }
+
+    private String getMarkToResult(boolean result) {
+        if (result) {
+            return "O";
+        }
+        return "X";
+    }
+
+    private void addBridgeMark(String upMark, String downMark) {
+        upBridge.add(upMark);
+        downBridge.add(downMark);
+    }
 }
