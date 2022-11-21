@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private MovementStatusCalculator movementStatus;
-    private GameRetryChecker retryChecker;
+    private final MovementStatusCalculator movementStatus;
+    private final GameRetryChecker retryChecker;
 
     public BridgeGame(MovementStatusCalculator movementStatus, GameRetryChecker retryChecker) {
         this.movementStatus = movementStatus;
