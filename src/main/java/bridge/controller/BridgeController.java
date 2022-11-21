@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.enums.GameCommand;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -40,7 +41,7 @@ public class BridgeController {
     }
     private boolean gameFailCheck() {
         if (bridgeGame.isGameFail()) {
-            if (inputView.readGameCommand().equals("Q")) {
+            if (GameCommand.QUIT.isSame(inputView.readGameCommand())) {
                 gameEnd();
                 return true;
             }
