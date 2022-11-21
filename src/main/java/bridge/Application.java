@@ -1,14 +1,15 @@
 package bridge;
 
-import bridge.config.Injector;
-import bridge.view.InputView;
+import bridge.view.GameView;
+import bridge.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        InputView inputView = Injector.getInputView();
+        OutputView outputView = new OutputView();
+        GameView gameView = new GameView(outputView);
 
-        inputView.makeBridge();
-        inputView.move();
+        gameView.makeBridge();
+        gameView.move();
     }
 }

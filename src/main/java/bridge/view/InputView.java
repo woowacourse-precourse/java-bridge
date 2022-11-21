@@ -13,8 +13,6 @@ public class InputView {
 
     private final BridgeGameController bridgeGameController;
 
-    private ViewStatus status = ViewStatus.DETERMINE_BRIDGE_SIZE;
-
     public InputView(BridgeGameController bridgeGameController) {
         this.bridgeGameController = bridgeGameController;
     }
@@ -22,22 +20,17 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public void makeBridge() {
-        while (status == ViewStatus.DETERMINE_BRIDGE_SIZE) {
-            System.out.println(Directive.INPUT_SIZE_OF_BRIDGE.getMessage());
-            status = bridgeGameController.makeBridge(Console.readLine());
-        }
+    public ViewStatus makeBridge() {
+        System.out.println(Directive.INPUT_SIZE_OF_BRIDGE.getMessage());
+        return bridgeGameController.makeBridge(Console.readLine());
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public void move() {
-        while (status != ViewStatus.WIN && status != ViewStatus.DETERMINE_CONTINUE) {
-            System.out.println(Directive.INPUT_MOVE_COMMAND.getMessage());
-            GameResult result = bridgeGameController.move(Console.readLine());
-            status = result.getNextViewStatus();
-        }
+    public GameResult move() {
+        System.out.println(Directive.INPUT_MOVE_COMMAND.getMessage());
+        return bridgeGameController.move(Console.readLine());
     }
 
     /**
