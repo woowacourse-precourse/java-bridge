@@ -18,15 +18,16 @@ public class OutputView {
     private final String TRY_COUNT = "총 시도한 횟수: ";
     private final String SUCESS = "성공";
     private final String FAIL = "실패";
+    private final String EMPTY = "";
 
     public void printStart(){
         System.out.println(START_GAME);
-        System.out.println("");
+        emptyLine();
     }
 
     public void printRequestBridgeSize(){
         System.out.println(REQUEST_SIZE);
-        System.out.println("");
+        emptyLine();
     }
 
     public void printRequestMove(){
@@ -41,7 +42,7 @@ public class OutputView {
     public void printBridge(StringBuilder upBridge, StringBuilder downBridge) {
         System.out.println(upBridge);
         System.out.println(downBridge);
-        System.out.println("");
+        emptyLine();
     }
 
     public void printRequestRetry(){
@@ -71,6 +72,11 @@ public class OutputView {
 
     public void printErrorMessage(String message){
         System.out.println(ERROR_MESSAGE+ message);
+    }
+
+    public void emptyLine(){
+        System.out.println(EMPTY);
+
     }
 
 
