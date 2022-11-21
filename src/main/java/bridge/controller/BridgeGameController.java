@@ -76,6 +76,10 @@ public class BridgeGameController {
             bridgeGame.retry();
             trial++;
         }
+        if (isQuitResult()){
+            isRestart = false;
+            OutputView.printResult();
+        }
     }
 
     private void readGameCommand(){
@@ -91,5 +95,10 @@ public class BridgeGameController {
     private boolean isRestartResult(){
         String gameCommandValue = gameCommand.getValue();
         return gameCommandValue.equals(GameCommand.getRestartCharacter());
+    }
+
+    private boolean isQuitResult(){
+        String gameCommandValue = gameCommand.getValue();
+        return gameCommandValue.equals(GameCommand.getQuitCharacter());
     }
 }
