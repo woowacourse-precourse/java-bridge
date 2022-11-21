@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.utils.Converter;
+import bridge.utils.GameState;
 import bridge.utils.MoveFormat;
 import bridge.utils.MoveResults;
 
@@ -80,10 +81,10 @@ public class Record {
 
     private String getWinResult() {
         if (isWin()) {
-            return "성공";
+            return GameState.WIN.getLabel();
         }
 
-        return "실패";
+        return GameState.LOOSE.getLabel();
     }
 
     private boolean isWin() {
