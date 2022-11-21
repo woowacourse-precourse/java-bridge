@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,12 +24,25 @@ class InputViewTest {
         assertThatThrownBy(() -> INPUT_VIEW.tryParseInt(testInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("checkRange 예외 사항 테스트")
-    @ParameterizedTest(name = "{0} {1} {2}")
+    @ParameterizedTest
     @CsvSource({"1,3,20", "-10,3,30", "21,3,20", "2,3,20"})
     void checkRange_exception_test(ArgumentsAccessor arguments) {
         assertThatThrownBy(() -> INPUT_VIEW.checkRange(arguments.getInteger(0)
-                ,arguments.getInteger(1),arguments.getInteger(2)))
+                , arguments.getInteger(1), arguments.getInteger(2)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("isPermittedCommand 예외 사항 테스트")
+    @ParameterizedTest
+    @CsvSource({"u,U,D,R,Q", "d,U,D,R,Q", "r,U,D,R,Q", "q,U,D,R,Q", "a,U,D,R,Q"})
+    void isPermittedCommand_exception_test(ArgumentsAccessor arguments) {
+        assertThatThrownBy(() -> INPUT_VIEW.isPermittedCommand(arguments.getString(0)
+                , List.of(arguments.getString(1),
+                        arguments.getString(2),
+                        arguments.getString(3),
+                        arguments.getString(4))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
