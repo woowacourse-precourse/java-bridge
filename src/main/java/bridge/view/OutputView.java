@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.domain.State.*;
+
 import java.util.List;
 
 import bridge.domain.BridgeGame;
@@ -28,10 +30,10 @@ public class OutputView {
 	}
 
 	public static void printResult(ProgressMap result, BridgeGame bridgeGame) {
-		if (!bridgeGame.isNotFinish(result)) {
+		if (bridgeGame.getState() == CLEAR) {
 			printClearMap(result, bridgeGame.getRepeatCount());
 		}
-		if (bridgeGame.isNotFinish(result)) {
+		if (bridgeGame.getState() == FAILED_CLEAR) {
 			printFailedMap(result, bridgeGame.getRepeatCount());
 		}
 	}

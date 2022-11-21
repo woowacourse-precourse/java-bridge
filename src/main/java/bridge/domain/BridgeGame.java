@@ -39,7 +39,7 @@ public class BridgeGame {
 			state = PLAY;
 			return new ProgressMap();
 		}
-		state = STOP;
+		state = FAILED_CLEAR;
 		return progressMap;
 	}
 
