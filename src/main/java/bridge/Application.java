@@ -15,6 +15,7 @@ public class Application {
         }
         if (bridgeGame.getGameStatus().equals(GameStatus.LOSE)) {
             outputView.printRetryInputMessage();
+            bridgeGame.retry(inputView.readGameCommand());
         }
     }
 
