@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeOfUser;
+import java.util.Map;
 
 public class ConsoleView {
 
@@ -50,10 +51,10 @@ public class ConsoleView {
         }
     }
 
-    public void showResult(BridgeOfUser userMap, String failOrSuccess, int tryCount) {
+    public void showResult(BridgeOfUser userMap, Map<String,String> results) {
         outputView.printResultComment();
         outputView.printMap(userMap);
-        outputView.printResult(failOrSuccess, tryCount);
+        outputView.printResult(results.get("성공여부"), results.get("시도횟수"));
     }
 
 }

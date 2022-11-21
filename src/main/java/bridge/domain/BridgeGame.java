@@ -1,6 +1,8 @@
 package bridge.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -65,21 +67,31 @@ public class BridgeGame {
         this.fail = false;
     }
 
-    public boolean isDone() {
+    public Map<String, String> calculateDoneResults() {
+        Map<String, String> results = new HashMap<>();
+        calculateIsSuccess(results);
+        calculateTryCount(results);
+        return results;
+    }
+
+    private void calculateIsSuccess(Map<String, String> results) {
+        if (fail) {
+            results.put("성공여부", "실패");
+        }
+        if (!fail) {
+            results.put("성공여부", "성공");
+        }
+    }
+
+    private void calculateTryCount(Map<String, String> results) {
+        results.put("시도횟수", String.valueOf(tryCount));
+    }
+
+    public boolean checkFinish() {
         return done;
     }
 
     public boolean isFail() {
         return fail;
-    }
-    public String calculateDoneResult() {
-        if (fail) {
-            return "실패";
-        }
-        return "성공";
-    }
-
-    public int getTryCount() {
-        return tryCount;
     }
 }
