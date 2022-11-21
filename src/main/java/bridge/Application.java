@@ -97,6 +97,7 @@ public class Application {
 
         String checkCommand = Application.inputFinish();
         if (checkCommand.equals("R")) { gameCount = bridgeGame.retry(gameCount); return true; }
+        outputView.printResult(moveResult, bridgeSize, gameCount);
         
         return false;
     }
