@@ -1,10 +1,10 @@
-package bridge.Controller;
+package bridge.controller;
 
-import bridge.BridgeGame;
-import bridge.BridgeMaker;
+import bridge.service.BridgeGame;
+import bridge.domain.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.InputView;
-import bridge.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeController {
 

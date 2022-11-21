@@ -1,5 +1,7 @@
-package bridge;
+package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
+import bridge.domain.BridgeEnum;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

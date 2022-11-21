@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.BridgeEnum;
 import java.util.List;
 import java.util.StringJoiner;
 

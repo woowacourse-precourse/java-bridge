@@ -1,5 +1,6 @@
-package bridge;
+package bridge.service;
 
+import bridge.domain.BridgeEnum;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
