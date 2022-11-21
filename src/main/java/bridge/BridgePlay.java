@@ -1,8 +1,13 @@
 package bridge;
 
 public class BridgePlay {
+    private final InputView inputView;
+
+    public BridgePlay() {
+        inputView = new InputView();
+    }
+
     public String requestReadMoving() {
-        InputView inputView = new InputView();
         String moveCommand = inputView.readMoving();
         try {
             isValidMove(moveCommand);
@@ -20,7 +25,6 @@ public class BridgePlay {
     }
 
     public String requestReadRetry() {
-        InputView inputView = new InputView();
         String retryCommand = inputView.readGameCommand();
         try {
             isValidRetry(retryCommand);

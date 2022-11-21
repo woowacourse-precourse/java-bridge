@@ -116,12 +116,15 @@ public class OutputView {
         System.out.println("\n최종 게임 결과");
         printMap(bridgeGame);
         System.out.print("\n게임 성공 여부: ");
-        if (bridgeGame.isSuccess()) {
+        convertSuccessState(bridgeGame.isSuccess());
+        System.out.println("총 시도한 횟수: " + bridgeGame.getTotalTryCount());
+    }
+    public void convertSuccessState(boolean success) {
+        if (success) {
             System.out.println("성공");
         }
-        if (!bridgeGame.isSuccess()) {
+        if (!success) {
             System.out.println("실패");
         }
-        System.out.println("총 시도한 횟수: " + bridgeGame.getTotalTryCount());
     }
 }

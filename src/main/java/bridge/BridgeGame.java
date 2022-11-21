@@ -26,9 +26,8 @@ public class BridgeGame {
         String moveCommand = bridgePlay.requestReadMoving();
         if (!bridge.get(currentPosition).equals(moveCommand)) {
             success = false;
-            return;
         }
-        if (currentPosition == bridge.size() - 1) {
+        if (success && currentPosition == bridge.size() - 1) {
             complete = true;
         }
     }
