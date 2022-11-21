@@ -10,7 +10,7 @@ public class BridgeGame {
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     public boolean move(String movingPlace) {
