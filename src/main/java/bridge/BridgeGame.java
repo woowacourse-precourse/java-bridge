@@ -47,6 +47,8 @@ public class BridgeGame {
      */
     public void retry() {
         moves = new ArrayList<>();
+        results = new ArrayList<>();
+        index = 0;
     }
 
     public Checker getChecker() {
