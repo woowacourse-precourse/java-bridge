@@ -9,9 +9,11 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
     private BridgeGame game;
+    private BridgeMaker bridgeMaker ;
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final BridgeMaker bridgeMaker =new BridgeMaker(new BridgeRandomNumberGenerator());
+
     public void run(){
         prepareGame();
         while(true){
@@ -24,11 +26,14 @@ public class BridgeGameController {
         }
         resultAtGame();
     }
+
     private void prepareGame(){
         outputView.printStartMessages();
         int bridgeSize=inputView.readBridgeSize();
+        bridgeMaker =new BridgeMaker(new BridgeRandomNumberGenerator());
         game = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
     }
+
     private boolean startGame(){
         outputView.printMoveDirection();
         String userMovingInput = inputView.readMoving();
@@ -36,6 +41,7 @@ public class BridgeGameController {
         outputView.printMap(correct,userMovingInput);
         return correct;
     }
+
     private boolean restartGame(){
         outputView.printRetry();
         String retryCommand =inputView.readGameCommand();
@@ -46,6 +52,7 @@ public class BridgeGameController {
         }
         return false;
     }
+
     private void resultAtGame(){
         if(game.checkSuccess()){
             outputView.printResult(game.getTryNumber(),"성공");
