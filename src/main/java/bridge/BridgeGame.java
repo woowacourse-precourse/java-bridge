@@ -24,7 +24,7 @@ public class BridgeGame {
         updateMap(playerChoice, isRightAnswer);
     }
 
-    public String checkAnswer(List<String> bridge, String playerChoice) {
+    private String checkAnswer(List<String> bridge, String playerChoice) {
         String answer = "X";
 
         if (bridge.get(playerLocationIndex).equals(playerChoice)) {
@@ -36,7 +36,7 @@ public class BridgeGame {
         return answer;
     }
 
-    public void updateMap(String playerChoice, String isRightBridge) {
+    private void updateMap(String playerChoice, String isRightBridge) {
         if (playerChoice.equals(BridgeAnswer.UP.getName())) {
             upMap.add(playerLocationIndex, isRightBridge);
             downMap.add(playerLocationIndex, " ");
