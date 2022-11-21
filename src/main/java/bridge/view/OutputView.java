@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.Bridge;
 import bridge.constant.Moving;
+import bridge.constant.OutputMessage;
 import bridge.domain.Player;
 
 import java.util.ArrayList;
@@ -60,20 +61,20 @@ public class OutputView {
     public void printResult(Player player) {
         boolean success = player.getCorrectAnswerCount() == player.getBridgeRoute().size();
         String winLose = findWinLose(success);
-        System.out.println("최종 게임 결과");
+        System.out.println(OutputMessage.GAME_RESULT_TEXT);
         printMap(player);
-        System.out.println("게임 성공 여부: " + winLose);
-        System.out.println("총 시도한 횟수: " + player.getTryCount());
+        System.out.println(OutputMessage.GAME_WIN_LOSE_TEXT + winLose);
+        System.out.println(OutputMessage.TOTAL_TRY_COUNT_TEXT + player.getTryCount());
     }
 
     private String findWinLose(boolean success) {
         if (success) {
-            return "성공";
+            return OutputMessage.SUCCESS;
         }
-        return "실패";
+        return OutputMessage.FAIL;
     }
 
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(OutputMessage.START_TEXT);
     }
 }
