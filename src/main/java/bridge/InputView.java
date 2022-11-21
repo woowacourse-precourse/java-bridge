@@ -26,6 +26,11 @@ public class InputView {
         return bridgeSize;
     }
 
+    public String getMove() {
+        System.out.println("이동할 칸을 선택해주세요");
+        return readMoving();
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
