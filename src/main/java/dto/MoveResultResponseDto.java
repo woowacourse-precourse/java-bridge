@@ -2,11 +2,11 @@ package dto;
 
 import bridge.MoveResult;
 
-public class MapResponseDto {
+public class MoveResultResponseDto {
 	private final String map;
 	private final int numberOfCorrect;
 
-	public MapResponseDto(MoveResult moveResult) {
+	public MoveResultResponseDto(MoveResult moveResult) {
 		this.map = moveResult.getMap();
 		this.numberOfCorrect = moveResult.getNumberOfCorrect();
 	}

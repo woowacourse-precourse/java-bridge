@@ -1,6 +1,6 @@
 package view;
 
-import dto.MapResponseDto;
+import dto.MoveResultResponseDto;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -10,8 +10,8 @@ public class OutputView {
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
 	 */
-	public void printMap(MapResponseDto mapResponseDto) {
-		System.out.println(mapResponseDto.getMap());
+	public void printMap(MoveResultResponseDto moveResultResponseDto) {
+		System.out.println(moveResultResponseDto.getMap());
 		printEmptyLine();
 	}
 

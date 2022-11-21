@@ -13,7 +13,7 @@ import bridge.MovingStack;
 import dto.BridgeResponseDto;
 import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
-import dto.MapResponseDto;
+import dto.MoveResultResponseDto;
 import dto.MovingRequestDto;
 import bridge.PlayCount;
 
@@ -46,17 +46,17 @@ public class BridgeGame {
 		movingStack.addMoving(moving.isUpPosition());
 	}
 
-	private int calculateNumberOfCorrectMoving(MapResponseDto mapResponseDto) {
-		return (int)mapResponseDto.getMap().chars().filter(cell -> cell == 'O').count();
+	private int calculateNumberOfCorrectMoving(MoveResultResponseDto moveResultResponseDto) {
+		return (int)moveResultResponseDto.getMap().chars().filter(cell -> cell == 'O').count();
 	}
-	public boolean isEnd(BridgeResponseDto bridgeResponseDto, MapResponseDto mapResponseDto) {
+	public boolean isEnd(BridgeResponseDto bridgeResponseDto, MoveResultResponseDto moveResultResponseDto) {
 		List<String> bridge = bridgeResponseDto.getBridge();
-		return calculateNumberOfCorrectMoving(mapResponseDto) != movingStack.getMovingCount() || bridge.equals(movingStack.getMovingStack());
+		return calculateNumberOfCorrectMoving(moveResultResponseDto) != movingStack.getMovingCount() || bridge.equals(movingStack.getMovingStack());
 	}
 
-	public MapResponseDto renderMap(BridgeResponseDto bridgeResponseDto) {
+	public MoveResultResponseDto renderMap(BridgeResponseDto bridgeResponseDto) {
 		List<String> bridge = bridgeResponseDto.getBridge();
-		return new MapResponseDto(new MoveResult(bridge, movingStack.getMovingStack()));
+		return new MoveResultResponseDto(new MoveResult(bridge, movingStack.getMovingStack()));
 	}
 
 	/**
