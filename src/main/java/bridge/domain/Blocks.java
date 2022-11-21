@@ -28,4 +28,8 @@ public class Blocks {
     public List<BlockStatus> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }
+
+    public int getSize() {
+        return blocks.size();
+    }
 }

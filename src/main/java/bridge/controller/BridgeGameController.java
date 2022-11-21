@@ -59,13 +59,24 @@ public class BridgeGameController {
 
     private void requestPlayingAgain() {
         try {
-            if (InputValidator.validateGameCommand(inputView.readGameCommand()).equals(RETRY)) {
-                bridgeGameService.retry();
+            if (isRetry(inputView.readGameCommand())) {
+                requestBlockAgain();
+                return;
             }
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             requestPlayingAgain();
         }
+    }
+
+    private void requestBlockAgain() {
+        bridgeGameService.retry();
+        requestBlock();
+    }
+
+    private boolean isRetry(final String inputGameCommand) {
+        InputValidator.validateGameCommand(inputGameCommand);
+        return inputGameCommand.equals(RETRY);
     }
 
     private String requestBridgeSize() {
