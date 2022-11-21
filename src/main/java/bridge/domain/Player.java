@@ -15,4 +15,8 @@ public class Player {
         return choice.size();
     }
 
+    public void addChoice(String bridgeChoice) {
+        choice.add(bridgeChoice);
+    }
+
 }

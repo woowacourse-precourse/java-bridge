@@ -2,10 +2,9 @@ package bridge.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.BridgeUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static util.BridgeUtil.*;
 
 class PlayerTest {
 
@@ -13,8 +12,9 @@ class PlayerTest {
     @Test
     void getNumberOfChoice() {
         Player player = new Player();
+        player.addChoice(UP);
 
-        assertThat(player.getNumberOfChoice()).isEqualTo(0);
+        assertThat(player.getNumberOfChoice()).isEqualTo(1);
     }
 
 }

@@ -13,7 +13,7 @@
 - [x] 다리의 특정 인덱스번째 정답을 반환한다. #getBridgeByIndex
 
 ### Player: 사용자의 이동 선택
-- [ ] 사용자의 답을 추가한다. #addChoice
+- [x] 사용자의 답을 추가한다. #addChoice
 - [ ] 사용자의 특정 인덱스번째 답을 반환한다. #getChoiceIndex
 - [x] 사용자의 선택 수를 반환한다. #getNumberOfChoice
 - [ ] 사용자의 마지막 선택을 반환한다. #getLastChoice
