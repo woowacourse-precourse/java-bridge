@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.bridge.maker.BridgeMaker;
 import bridge.domain.bridge.maker.BridgeMakerFake;
-import bridge.domain.position.BridgePosition;
-import bridge.domain.position.SurviveStatus;
+import bridge.domain.code.BridgePosition;
+import bridge.domain.code.SurviveStatus;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
