@@ -29,4 +29,8 @@ public class BridgeGame {
     public void retry(Pedestrian pedestrian) {
         pedestrian.clearRecord();
     }
+
+    public int countRound() {
+        return this.attempt += 1;
+    }
 }
