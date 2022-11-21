@@ -25,20 +25,4 @@ public enum MapSkeleton {
         if (stepStatus) return this.secondRight;
         return this.secondWrong;
     }
-
-//    public String getFirstRight() {
-//        return this.firstRight;
-//    }
-//
-//    public String getSecondRight() {
-//        return this.secondRight;
-//    }
-//
-//    public String getFirstWrong() {
-//        return this.firstWrong;
-//    }
-//
-//    public String getSecondWrong() {
-//        return this.secondWrong;
-//    }
 }

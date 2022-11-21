@@ -9,11 +9,6 @@ public class OutputView {
         return map;
     }
 
-    private static void resetMap(StringBuilder[] map) {
-        map[0].setLength(0);
-        map[1].setLength(1);
-    }
-
     private static void addDelimiter(StringBuilder[] map) {
         map[0].append("|");
         map[1].append("|");
@@ -48,7 +43,6 @@ public class OutputView {
         System.out.println(map[0].toString());
         System.out.println(map[1].toString());
         System.out.println();
-        resetMap(map);
     }
 
     public static void printResult(BridgeGame bridgeGame) {
