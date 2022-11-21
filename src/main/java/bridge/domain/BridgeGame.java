@@ -39,10 +39,9 @@ public class BridgeGame {
             gameStatus = ON_WAY;
             tryCount += 1;
             bridgeDrawer.turnBackOnce();
+            return;
         }
-        if (gameCommand.equals(QUIT)) {
-            gameStatus = END;
-        }
+        gameStatus = END;
     }
 
     public boolean isOnWay() {
