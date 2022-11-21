@@ -30,4 +30,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    private void initMovePath(){
+        movePath.clear();
+    }
 }
