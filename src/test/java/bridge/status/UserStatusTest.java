@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class UserStatusTest {
 
@@ -48,28 +46,6 @@ class UserStatusTest {
         assertThat(userStatus.getMostRecentDirection()).isEqualTo("U");
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"U", "D"})
-    void 유저_방향에_따른_스코어_가져오기(String direction) {
-        UserStatus userStatus = new UserStatus(new ArrayList<>());
-        userStatus.addDirection(direction);
-
-        String text = userStatus.getUserScoreByDirectionOrElseSpace(direction, 0);
-
-        assertThat(text).isEqualTo(" O ");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"U", "D"})
-    void 유저_패배한_상황에서_방향에_따른_스코어_가져오기(String direction) {
-        UserStatus userStatus = new UserStatus(new ArrayList<>());
-        userStatus.addDirection(direction);
-        userStatus.lose();
-
-        String text = userStatus.getUserScoreByDirectionOrElseSpace(direction, 0);
-
-        assertThat(text).isEqualTo(" X ");
-    }
 
     @Test
     void 게임을_진행하지_않은_상태에서_유저_최근_방향_조회시_예외발생() {
@@ -78,25 +54,6 @@ class UserStatusTest {
         assertThatThrownBy(() -> userStatus.getMostRecentDirection())
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
-
-    @Test
-    void 유저가_게임에서_승리했을_시_성공_메세지_반환() {
-        UserStatus userStatus = new UserStatus(new ArrayList<>());
-        userStatus.addDirection("D");
-        userStatus.addDirection("D");
-
-        assertThat(userStatus.getStatusMessage()).contains("게임 성공 여부: 성공");
-    }
-
-    @Test
-    void 유저가_게임에서_패배시_실패_메세지_반환() {
-        UserStatus userStatus = new UserStatus(new ArrayList<>());
-        userStatus.addDirection("D");
-        userStatus.addDirection("D");
-
-        userStatus.lose();
-        assertThat(userStatus.getStatusMessage()).contains("게임 성공 여부: 실패");
-    }
-
+    
 
 }

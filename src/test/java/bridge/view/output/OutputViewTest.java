@@ -13,9 +13,6 @@ class OutputViewTest {
         userStatus.addDirection("U");
         userStatus.addDirection("U");
         userStatus.addDirection("D");
-        userStatus.addDirection("U");
-        userStatus.addDirection("D");
-        userStatus.addDirection("D");
 
         view.printMap(userStatus);
     }
@@ -26,9 +23,6 @@ class OutputViewTest {
         UserStatus userStatus = new UserStatus(new ArrayList<>());
         userStatus.addDirection("U");
         userStatus.addDirection("U");
-        userStatus.addDirection("D");
-        userStatus.addDirection("U");
-        userStatus.addDirection("D");
         userStatus.addDirection("D");
         userStatus.lose();
 
@@ -42,10 +36,6 @@ class OutputViewTest {
         UserStatus userStatus = new UserStatus(new ArrayList<>());
         userStatus.addDirection("U");
         userStatus.addDirection("U");
-        userStatus.addDirection("D");
-        userStatus.addDirection("U");
-        userStatus.addDirection("D");
-        userStatus.addDirection("D");
         userStatus.lose();
 
         view.printResult(userStatus);
@@ -57,28 +47,8 @@ class OutputViewTest {
         UserStatus userStatus = new UserStatus(new ArrayList<>());
         userStatus.addDirection("U");
         userStatus.addDirection("U");
-        userStatus.addDirection("D");
-        userStatus.addDirection("U");
-        userStatus.addDirection("D");
-        userStatus.addDirection("D");
 
         view.printResult(userStatus);
     }
 
-    @Test
-    void 시도횟수_UI_확인용_테스트() {
-        OutputView view = new OutputView();
-        UserStatus userStatus = new UserStatus(new ArrayList<>());
-        userStatus.addDirection("U");
-        userStatus.tryAgain();
-
-        userStatus.tryAgain();
-
-        userStatus.tryAgain();
-
-        userStatus.addDirection("U");
-        userStatus.addDirection("U");
-        
-        view.printResult(userStatus);
-    }
 }
