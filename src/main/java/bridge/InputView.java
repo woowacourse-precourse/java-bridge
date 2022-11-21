@@ -12,15 +12,12 @@ public class InputView {
      */
     public int readBridgeSize() {
         try {
-            String string = Console.readLine();
-            int result = Integer.parseInt(string);
+            int result = Integer.parseInt(Console.readLine());
             if (result < 1) {
-                OutputView.String("[ERROR] 입력된 값이 1보다 작습니다.");
                 throw new IllegalArgumentException("[ERROR] 입력된 값이 1보다 작습니다.");
             }
             return result;
         } catch (NumberFormatException e) {
-            OutputView.String("[ERROR] 입력된 값이 정수가 아닙니다.");
             throw new IllegalArgumentException("[ERROR] 입력된 값이 정수가 아닙니다.");
         }
     }
@@ -29,7 +26,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String string = Console.readLine();
+        string = string.toUpperCase();
+        if (!(string.equals("U") || string.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");
+        }
+        return string;
     }
 
     /**

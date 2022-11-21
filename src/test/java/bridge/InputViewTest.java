@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
-    @DisplayName("정수가 아닌 데이터를 입력한 경우 경우 예외가 발생한다.")
+    @DisplayName("정수가 아닌 데이터를 입력한 경우 예외가 발생한다.")
     @Test
     void readBridgeSizeTest1() {
         InputView inputView = new InputView();
@@ -20,7 +20,7 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("정수가 아닌 데이터를 입력한 경우 경우 예외가 발생한다.")
+    @DisplayName("정수가 아닌 데이터를 입력한 경우 예외가 발생한다.")
     @Test
     void readBridgeSizeTest2() {
         InputView inputView = new InputView();
@@ -32,7 +32,7 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("1보다 작은 숫자를 입력한 경우 경우 예외가 발생한다.")
+    @DisplayName("1보다 작은 숫자를 입력한 경우 예외가 발생한다.")
     @Test
     void readBridgeSizeTest3() {
         InputView inputView = new InputView();
