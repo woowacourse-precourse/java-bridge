@@ -56,4 +56,9 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR]: 범위 초과 3~20사이로 재입력");
         }
     }
+    public void isValidateUD(String value) {
+        if (!value.equals("U") && !value.equals("D")) {
+            throw new IllegalArgumentException("[ERROR]: U과 D만 입력");
+        }
+    }
 }
