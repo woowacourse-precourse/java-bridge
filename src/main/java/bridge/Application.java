@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Application {
-    static int bridgeSize;
     static List<String> bridge;
     static InputView inputview;
     static OutputView outputView;
@@ -35,12 +34,12 @@ public class Application {
     }
 
     private static void getBridge() {
-        getBridgeSize();
+        int bridgeSize = getBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private static void getBridgeSize() {
-        bridgeSize = inputview.readBridgeSize();
+    private static int getBridgeSize() {
+        return inputview.readBridgeSize();
     }
 
     public static void gameStart(){
