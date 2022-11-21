@@ -1,9 +1,9 @@
 package bridge;
 
-import dto.BridgeDto;
-import dto.IndexDto;
-import dto.MapDto;
-import dto.MovingDto;
+import java.util.List;
+
+import bridgeConstant.Constant;
+import dto.MapResponseDto;
 
 public class MapRenderer {
 	private static final String ENTRANCE = "[";
@@ -13,54 +13,53 @@ public class MapRenderer {
 	private static final String CROSS = " X ";
 	private static final String SPACE = "   ";
 	private static final String LINE_BREAK_CHARACTER = "\n";
-	private static final int ONE = 1;
 	private static final int FIRST_INDEX = 0;
+	private final List<String> bridge;
+	private final List<String> movingStack;
+	private final int lastIndex;
+	private StringBuilder upperRow;
+	private StringBuilder lowerRow;
+	private String map;
 
-	StringBuilder upperRow;
-	StringBuilder lowerRow;
-
-	String map;
-
-	public MapRenderer(BridgeDto bridgeDto, IndexDto indexDto, MovingDto movingDto) {
-		Bridge bridge = new Bridge(bridgeDto.getBridge());
-		int index = indexDto.getIndex();
-		Moving moving = new Moving(movingDto.getMoving());
+	public MapRenderer(List<String> bridge, List<String> movingStack) {
+		this.bridge = bridge;
+		this.movingStack = movingStack;
+		this.lastIndex = movingStack.size() - 1;
 
 		init();
 		addEntrance();
-		render(bridge, index, moving);
+		render();
 	}
 
-	private void render(Bridge bridge, int index, Moving moving) {
-		boolean isCorrectMoving = isCorrectMoving(bridge, index, moving);
-		if (isFirstCell(index)) {
-			map = renderWhenSizeIsOne(bridge, index, isCorrectMoving);
+	private void render() {
+		if (movingStack.size() == 1) {
+			map = renderWhenSizeIsOne();
 		}
-		if (!isFirstCell(index)) {
-			map = renderWhenSizeBiggerThanOne(bridge, index, isCorrectMoving);
+		if (movingStack.size() != 1) {
+			map = renderWhenSizeBiggerThanOne();
 		}
 	}
 
-	private boolean isCorrectMoving(Bridge bridge, int index, Moving moving) {
-		return bridge.isUpPositionAt(index) == moving.isUpPosition();
+	private boolean isCorrectMoving() {
+		return bridge.subList(0, movingStack.size()).equals(movingStack);
 	}
 
-	public MapDto toMapDto() {
-		return new MapDto(map);
+	public MapResponseDto toMapResponseDto() {
+		return new MapResponseDto(map);
 	}
 
-	private String renderWhenSizeIsOne(Bridge bridge, int index, boolean isCorrectMoving) {
-		addLastCell(bridge, index, isCorrectMoving);
+	private String renderWhenSizeIsOne() {
+		addLastCell();
 		addExit();
 		return upperRow.toString() + LINE_BREAK_CHARACTER + lowerRow.toString();
 	}
 
-	private String renderWhenSizeBiggerThanOne(Bridge bridge, int index, boolean isCorrectMoving) {
-		for (int idx = FIRST_INDEX; idx < index; idx++) {
-			addCircle(bridge, idx);
+	private String renderWhenSizeBiggerThanOne() {
+		for (int index = FIRST_INDEX; index < movingStack.size(); index++) {
+			addCircle();
 			addDivisionLine();
 		}
-		addLastCell(bridge, index, isCorrectMoving);
+		addLastCell();
 		addExit();
 		return upperRow.toString() + LINE_BREAK_CHARACTER + lowerRow.toString();
 	}
@@ -85,31 +84,27 @@ public class MapRenderer {
 		lowerRow.append(DIVISION_LINE);
 	}
 
-	private void addLastCell(Bridge bridge, int index, boolean isCorrectMoving) {
-		if (isCorrectMoving) {
-			addCircle(bridge, index);
+	private void addLastCell() {
+		if (isCorrectMoving()) {
+			addCircle();
 		}
-		if (!isCorrectMoving) {
-			addCross(bridge, index);
+		if (!isCorrectMoving()) {
+			addCross();
 		}
 	}
 
-	private boolean isFirstCell(int index) {
-		return index == FIRST_INDEX;
-	}
-
-	private void addCircle(Bridge bridge, int index) {
-		if (bridge.isUpPositionAt(index))
+	private void addCircle() {
+		if (movingStack.get(lastIndex).equals(Constant.UPPER_POSITION))
 			addCircleToUpperRow();
-		if (!bridge.isUpPositionAt(index))
+		if (movingStack.get(lastIndex).equals(Constant.LOWER_POSITION))
 			addCircleToLowerRow();
 	}
 
-	private void addCross(Bridge bridge, int index) {
-		if (bridge.isUpPositionAt(index)) {
+	private void addCross() {
+		if (movingStack.get(lastIndex).equals(Constant.LOWER_POSITION)) {
 			addCrossToLowerRow();
 		}
-		if (!bridge.isUpPositionAt(index)) {
+		if (movingStack.get(lastIndex).equals(Constant.UPPER_POSITION)) {
 			addCrossToUpperRow();
 		}
 	}
