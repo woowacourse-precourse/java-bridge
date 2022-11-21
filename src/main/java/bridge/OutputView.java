@@ -1,52 +1,52 @@
 package bridge;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.UpperCase;
+// 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
 
-import java.util.List;
-
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
-    static StringBuilder upperBridge = new StringBuilder("[");
-    static StringBuilder lowerBridge = new StringBuilder("[");
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    static StringBuilder upperBridge = new StringBuilder();
+    static StringBuilder lowerBridge = new StringBuilder();
+
+    final String deathStep = " X";
+    final String safeStep = " O";
+    final String notStep = "  ";
+
     public void printMap(String userDirection, boolean dead) {
-        if(userDirection.equals("U")) {
-            if(dead) upperBridge.append(" X |");
-            if(!dead) upperBridge.append(" O |");
-            lowerBridge.append("   |");
-        }
+        if (userDirection.equals("U")) upperMove(dead);
+        if (userDirection.equals("D")) lowerMove(dead);
 
-        if(userDirection.equals("D")) {
-            if(dead) lowerBridge.append(" X |");
-            if(!dead) lowerBridge.append(" O |");
-            upperBridge.append("   |");
-        }
-        System.out.println(upperBridge.substring(0,upperBridge.length()-1).toString() + "]");
-        System.out.println(lowerBridge.substring(0,upperBridge.length()-1).toString() + "]");
+        System.out.println("[" + upperBridge + " ]");
+        System.out.println("[" + lowerBridge + " ]");
 
-        if(dead)
-        {
-            upperBridge.setLength(1);
-            lowerBridge.setLength(1);
-        }
+        upperBridge.append(" |");
+        lowerBridge.append(" |");
 
-
-
-
+        if (dead) resetBridge();
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void upperMove(boolean dead) {
+        if (dead) upperBridge.append(deathStep);
+        if (!dead) upperBridge.append(safeStep);
+        lowerBridge.append(notStep);
+    }
+
+    public void lowerMove(boolean dead) {
+        if (dead) lowerBridge.append(deathStep);
+        if (!dead) lowerBridge.append(safeStep);
+        upperBridge.append(notStep);
+    }
+
+    public void resetBridge() {
+        upperBridge.setLength(0);
+        lowerBridge.setLength(0);
+    }
+
+    public void printResult(boolean success, int trial) {
+        System.out.println("최종 게임 결과");
+        System.out.println("[" + upperBridge + " ]");
+        System.out.println("[" + lowerBridge + " ]");
+        if (success) System.out.println("게임 성공 여부: 성공");
+        if (!success) System.out.println("게임 성공 여부: 실패");
+        System.out.println("총 시대한 횟수: " + trial);
     }
 }
