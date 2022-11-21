@@ -50,4 +50,14 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+    public int getStep() {
+        return this.step;
+    }
+    public BridgeGameStstus getStatus() {
+        return this.status;
+    }
 }
