@@ -1,27 +1,29 @@
 package bridge.view;
 
-import bridge.model.Bridge;
+import static bridge.view.message.PrintMessage.BRIDGE_FAIL;
+import static bridge.view.message.PrintMessage.BRIDGE_SPACE;
+import static bridge.view.message.PrintMessage.BRIDGE_SUCCESS;
+import static bridge.view.message.PrintMessage.EMPTY;
+import static bridge.view.message.PrintMessage.GAME_RESULT_MESSAGE;
+import static bridge.view.message.PrintMessage.GAME_RESULT_SUCCESS_MESSAGE;
+import static bridge.view.message.PrintMessage.GAME_RESULT_TRY_COUNT_MESSAGE;
+import static bridge.view.message.PrintMessage.GAME_START_MESSAGE;
+import static bridge.view.message.PrintMessage.INPUT_BRIDGE_LINE_MESSAGE;
+import static bridge.view.message.PrintMessage.INPUT_BRIDGE_MOVE_MESSAGE;
+import static bridge.view.message.PrintMessage.INPUT_GAME_RETRY_MESSAGE;
+import static bridge.view.message.PrintMessage.PRINT_BRIDGE_END;
+import static bridge.view.message.PrintMessage.PRINT_BRIDGE_SEPARATOR;
+import static bridge.view.message.PrintMessage.PRINT_BRIDGE_START;
+
 import bridge.model.BridgeStatus;
 import bridge.model.GameResult;
 import bridge.model.GameScore;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private static final String INPUT_BRIDGE_LINE_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_BRIDGE_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String INPUT_GAME_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
-    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
-    private static final String GAME_RESULT_SUCCESS_MESSAGE = "게임 성공 여부: %s";
-    private static final String GAME_RESULT_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
-    private static final String PRINT_BRIDGE_START = "[ ";
-    private static final String PRINT_BRIDGE_END = " ]";
-    private static final String PRINT_BRIDGE_SEPARATOR = " | ";
 
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
@@ -79,16 +81,16 @@ public class OutputView {
         if (index != size - 1) {
             return PRINT_BRIDGE_SEPARATOR;
         }
-        return "";
+        return EMPTY;
     }
 
     private String getTextByBridgeStatus(String nowText, String bridgeStatus, boolean isSuccess) {
         if (!nowText.equals(bridgeStatus) && !isSuccess) {
-            return "X";
+            return BRIDGE_FAIL;
         }
         if (nowText.equals(bridgeStatus)) {
-            return "O";
+            return BRIDGE_SUCCESS;
         }
-        return " ";
+        return BRIDGE_SPACE;
     }
 }
