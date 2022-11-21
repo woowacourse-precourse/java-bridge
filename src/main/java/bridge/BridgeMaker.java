@@ -37,8 +37,12 @@ public class BridgeMaker {
     private List<String> intBridgeToStringBridge(List<Integer> numberList) {
         List<String> bridgeStringList = new ArrayList<>();
         for(int num : numberList) {
-            if(num == 0) bridgeStringList.add("D");
-            if(num == 1) bridgeStringList.add("U");
+            if(num == 0) {
+                bridgeStringList.add("D");
+            }
+            if(num == 1) {
+                bridgeStringList.add("U");
+            }
         }
         return bridgeStringList;
     }
