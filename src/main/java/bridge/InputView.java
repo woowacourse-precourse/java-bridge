@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
-    PrintWriter out = new PrintWriter(System.out);
+    final PrintWriter out = new PrintWriter(System.out);
 
     /**
      * 다리의 길이를 입력받는다.
@@ -47,7 +47,7 @@ public class InputView {
                 result = validateMoving(Console.readLine());
                 break;
             } catch (Exception e) {
-                out.println("[ERROR] 다리의 길이는 3부터 20사이의 숫자여야 합니다.");
+                out.println("[ERROR] U,D 값 중 하나를 입력해야 합니다.");
             }
         }
         return result;
@@ -63,10 +63,22 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String result = "";
+        while(true){
+            try{
+                out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                result = validateGameCommand(Console.readLine());
+                break;
+            }catch(Exception e){
+                out.println("[ERROR] R,Q중 하나의 값을 입력해야 합니다.");
+            }
+        }
+        return result;
     }
 
     private String validateGameCommand(String input) {
-        return null;
+        if(!Pattern.matches("^\b?[RQ]{1}\b?$", input))
+            throw new IllegalArgumentException();
+        return input;
     }
 }
