@@ -2,8 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -22,44 +20,49 @@ public class InputView {
     }
 
     public void checkBridgeSizeValidation(String bridgeSize) {
-
-        checkBridgeSizeNull(bridgeSize);
-        checkBridgeSizeLength(bridgeSize);
-        checkBridgeSizeInteger(bridgeSize);
-        checkBridgeSizeNumber(bridgeSize);
-    }
-
-    private void checkBridgeSizeNull(String bridgeSize) {
-
-        if (bridgeSize == null) {
+        try {
+            checkNull(bridgeSize);
+            checkLengthOfBridgeSize(bridgeSize);
+            checkInteger(bridgeSize);
+            checkNumberOfBridgeSize(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+        } catch (NullPointerException e) {
             throw new NullPointerException("3 ~ 20 사이의 값을 입력해야 합니다.");
         }
     }
 
-    private void checkBridgeSizeNumber(String bridgeSize) {
+    private void checkNull(String bridgeSize) throws NullPointerException{
+
+        if (bridgeSize == null) {
+            throw new NullPointerException();
+        }
+    }
+
+    private void checkNumberOfBridgeSize(String bridgeSize) throws IllegalArgumentException{
 
         int translatedBridgeSize = Integer.parseInt(bridgeSize);
 
         if (translatedBridgeSize < 3 || translatedBridgeSize > 20) {
-            throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
-    private void checkBridgeSizeInteger(String bridgeSize) {
+    private void checkInteger(String bridgeSize) throws IllegalArgumentException{
 
         for (char argument : bridgeSize.toCharArray()) {
             if (argument < '0' || argument > '9') {
-                throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+                throw new IllegalArgumentException();
             }
         }
     }
 
-    private void checkBridgeSizeLength(String bridgeSize) {
+    private void checkLengthOfBridgeSize(String bridgeSize) throws IllegalArgumentException{
 
         int stringLength = bridgeSize.length();
 
         if (stringLength < 1 || stringLength > 2) {
-            throw new IllegalArgumentException("3 ~ 20 사이의 값을 입력해야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
