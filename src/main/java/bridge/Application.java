@@ -13,7 +13,7 @@ public class Application {
         int size = input.readBridgeSize();
 
         Bridge bridge = new Bridge(size);
-        BridgeGame game = new BridgeGame();
+        BridgeGame game = new BridgeGame(bridge);
 
         while (game.currentStatus == gameStatus.CONTINUE) {
             String direction = input.readMoving();

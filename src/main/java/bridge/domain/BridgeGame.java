@@ -4,6 +4,11 @@ public class BridgeGame {
     public Bridge bridge;
     public gameStatus currentStatus;
 
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
+        this.currentStatus = gameStatus.CONTINUE;
+    }
+
     public void move(String direction) {
         gameStatus moveResult = bridge.updateUserRoute(direction);
         this.currentStatus = moveResult;
