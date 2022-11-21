@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.config.UserInput;
 import bridge.message.OutputMessage;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, int pos, boolean correct) {
-        printMapLine(bridge.subList(0, pos+1), "U", correct);
-        printMapLine(bridge.subList(0, pos+1), "D", correct);
+        printMapLine(bridge.subList(0, pos+1), UserInput.UP.getValue(), correct);
+        printMapLine(bridge.subList(0, pos+1), UserInput.DOWN.getValue(), correct);
         System.out.println();
     }
 
