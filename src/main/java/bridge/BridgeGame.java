@@ -29,19 +29,23 @@ public class BridgeGame {
         }
     }
 
-    private boolean canMove(String move){
-        if(bridge.canGo(current, move)){
+    private boolean canMove(String move) {
+        if (bridge.canGo(current, move)) {
             current++;
             return true;
         }
         return false;
     }
 
-    public boolean gameResult(){
+    public boolean gameResult() {
         return current == bridge.size();
     }
 
     public boolean retry(String retry) {
         return retry.equals(RETRY.getSymbol());
+    }
+
+    public String getString() {
+        return moveRecord.getString();
     }
 }

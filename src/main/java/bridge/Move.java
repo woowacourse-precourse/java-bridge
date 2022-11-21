@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Arrays;
+
 public enum Move {
     NONE(0, " "),
     POSSIBLE(1, "O"),
@@ -26,5 +28,12 @@ public enum Move {
             return POSSIBLE;
         }
         return IMPOSSIBLE;
+    }
+
+    public static String convertToString(int number){
+        return Arrays.stream(Move.values())
+                .filter(x->x.number==number)
+                .findAny()
+                .orElse(NONE).getResult();
     }
 }
