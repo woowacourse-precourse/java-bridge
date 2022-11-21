@@ -1,4 +1,4 @@
-package util;
+package util.validator;
 
 import constant.BothSideConstant;
 import constant.InputConstant;
