@@ -4,20 +4,21 @@ import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.GameCommand;
+import bridge.exception.ExceptionHandler;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class BridgeGameController {
     public static final String START = "다리 건너기 게임을 시작합니다.";
-    public static final String ERROR_PREFIX = "[ERROR] ";
     private final InputView inputView;
     private final OutputView outputView;
+    private final ExceptionHandler exceptionHandler;
 
-    public BridgeGameController(InputView inputView, OutputView outputView) {
+    public BridgeGameController(InputView inputView, OutputView outputView, ExceptionHandler exceptionHandler) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.exceptionHandler = exceptionHandler;
     }
 
     public void start() {
@@ -37,7 +38,7 @@ public class BridgeGameController {
 
     private List<String> makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        Integer bridgeSize = handleException(inputView::readBridgeSize);
+        Integer bridgeSize = exceptionHandler.handleAndRetry(inputView::readBridgeSize);
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
@@ -53,26 +54,15 @@ public class BridgeGameController {
     }
 
     private void move(BridgeGame bridgeGame) {
-        bridgeGame.move(handleException(inputView::readMoving));
+        bridgeGame.move(exceptionHandler.handleAndRetry((inputView::readMoving)));
         outputView.printMap(bridgeGame);
     }
 
     private void RetryOrQuit(BridgeGame bridgeGame) {
-        GameCommand gameCommand = handleException(inputView::readGameCommand);
+        GameCommand gameCommand = exceptionHandler.handleAndRetry(inputView::readGameCommand);
         if (gameCommand == GameCommand.RETRY) {
             bridgeGame.retry();
             run(bridgeGame);
         }
-    }
-
-    private <T> T handleException(Supplier<T> readSomething) {
-        T input;
-        try {
-            input = readSomething.get();
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
-            input = handleException(readSomething);
-        }
-        return input;
     }
 }
