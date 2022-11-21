@@ -1,5 +1,9 @@
 package bridge.controller;
 
+import bridge.Progress;
+import bridge.constant.BridgePattern;
+import bridge.constant.GameCondition;
+import bridge.model.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
@@ -14,6 +18,8 @@ public class GameController {
         try {
             outputView.startMsg();
             List<String> bridge = generateBridge();
+            BridgeGame bridgeGame = new BridgeGame(bridge, new Progress(bridge.size()));
+            GameCondition gameCondition = startGame(bridgeGame);
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
         }
@@ -24,6 +30,12 @@ public class GameController {
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
+    private GameCondition startGame(BridgeGame bridgeGame) {
+        while (true) {
+            GameCondition gameCondition = bridgeGame.move(selectMove());
+            outputView.printMap(bridgeGame.exportProgress());
+        }
+    }
 
 }
 
