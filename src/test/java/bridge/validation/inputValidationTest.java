@@ -4,12 +4,10 @@ import bridge.view.validation.BridgeLengthValidator;
 import bridge.view.validation.InputMoveValidator;
 import bridge.view.validation.InputRestartValidator;
 import bridge.vo.ErrorMessage;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 
 public class inputValidationTest {
 
@@ -20,8 +18,7 @@ public class inputValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {" ", "22222222222222222222222222", "-1", "기", "aa", "2"})
     public void 잘못된_다리_길이_입력에_대한_예외_테스트(String input) {
-
-        assertThatThrownBy(() -> BridgeLengthValidator.validate(input))
+        Assertions.assertThatThrownBy(() -> BridgeLengthValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString(),
                         MIN_BRIDGE_LENGTH, MAX_BRDIGE_LENGTH));
@@ -31,7 +28,7 @@ public class inputValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {" ", "UU", "DD", "UD", "u", "d", "111111111111111111"})
     public void 잘못된_이동_방향_입력에_대한_예외_테스트(String input) {
-        assertThatThrownBy(() -> InputMoveValidator.validate(input))
+        Assertions.assertThatThrownBy(() -> InputMoveValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INPUT_NOT_U_AND_NOT_D_MESSAGE.toString());
     }
@@ -40,7 +37,7 @@ public class inputValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {" ", "RR", "QQ", "RQ", "r", "q", "111111111111111111"})
     public void 잘못된_게임_재시작_여부_입력_값에_대한_예외_테스트(String input) {
-        assertThatThrownBy(() -> InputRestartValidator.validate(input))
+        Assertions.assertThatThrownBy(() -> InputRestartValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INPUT_NOT_R_AND_NOT_Q_MESSAGE.toString());
     }

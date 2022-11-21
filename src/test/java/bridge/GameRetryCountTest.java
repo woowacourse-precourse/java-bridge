@@ -10,8 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 public class GameRetryCountTest {
 
     @DisplayName("게임을 재시작할 때마다, 게임 시도 횟수를 1 증가시킨다.")
@@ -30,7 +28,7 @@ public class GameRetryCountTest {
     public void 게임_시도_횟수_오버플로우_방지() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "D"));
 
-        assertThatThrownBy(() -> iterateGameTry(bridgeGame, Integer.MAX_VALUE))
+        Assertions.assertThatThrownBy(() -> iterateGameTry(bridgeGame, Integer.MAX_VALUE))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.GAME_TRY_COUNT_OVER_MESSAGE.toString());
     }
@@ -40,4 +38,5 @@ public class GameRetryCountTest {
             bridgeGame.retry("R");
         }
     }
+
 }

@@ -81,4 +81,5 @@ public class BridgeGameController {
     public void exceptionalGameEnd(String errorMessage) {
         outputView.printErrorMessage(errorMessage);
     }
+
 }

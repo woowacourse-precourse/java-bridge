@@ -9,7 +9,6 @@ public enum BridgeDrawing {
     BRIDGE_START_DRAWING("["),
     BRIDGE_END_DRAWING("]");
 
-
     private String drawing;
 
     BridgeDrawing(String drawing) {
@@ -20,4 +19,5 @@ public enum BridgeDrawing {
     public String toString() {
         return drawing;
     }
+
 }

@@ -14,4 +14,5 @@ public class InputRestartValidator {
     private static boolean inputIsNotRAndIsNotQ(String input) {
         return !(input.equals(RetryCommand.R.toString()) || input.equals(RetryCommand.Q.toString()));
     }
+
 }

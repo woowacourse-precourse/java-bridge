@@ -31,5 +31,4 @@ public class UserStatusTest {
         System.setIn(in);
     }
 
-
 }

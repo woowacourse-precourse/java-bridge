@@ -37,4 +37,5 @@ public class Bridge {
     public int getBridgeIndex() {
         return bridge.size() - 1;
     }
+
 }

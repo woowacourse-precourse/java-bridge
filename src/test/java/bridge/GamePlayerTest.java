@@ -106,5 +106,4 @@ public class GamePlayerTest {
         System.setIn(in);
     }
 
-
 }
