@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.domain.command.MoveCommand;
+
 public class BridgeMaker {
 
 	private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -21,9 +23,6 @@ public class BridgeMaker {
 	}
 
 	private String createBridgeBlock(int blockNumber) {
-		if (blockNumber == 1) {
-			return "U";
-		}
-		return "D";
+		return MoveCommand.of(blockNumber);
 	}
 }
