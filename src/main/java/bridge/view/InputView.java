@@ -17,6 +17,8 @@ public class InputView {
             return Integer.parseInt(inputSize);
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException(ExceptionString.NOTNULL.getPrint());
+        } catch (IllegalArgumentException e) {
+            return readBridgeSize();
         }
     }
 
@@ -27,6 +29,8 @@ public class InputView {
             return move;
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException(ExceptionString.NOTNULL.getPrint());
+        } catch (IllegalArgumentException e) {
+            return readMoving();
         }
     }
 
@@ -37,6 +41,8 @@ public class InputView {
             return retry;
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException(ExceptionString.NOTNULL.getPrint());
+        } catch (IllegalArgumentException e) {
+            return readGameCommand();
         }
     }
 }
