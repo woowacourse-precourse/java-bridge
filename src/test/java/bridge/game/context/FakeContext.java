@@ -5,10 +5,10 @@ import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
 
 public class FakeContext implements BridgeGameContext {
-    private GameStatus status;
+    private final GameStatus status;
 
     public FakeContext() {
-
+        this.status = GameStatus.CLEAR;
     }
 
     public FakeContext(GameStatus status) {
@@ -27,12 +27,12 @@ public class FakeContext implements BridgeGameContext {
 
     @Override
     public String getCachedHistory() {
-        return null;
+        return "";
     }
 
     @Override
     public Integer getRepeatCount() {
-        return null;
+        return 0;
     }
 
     @Override
