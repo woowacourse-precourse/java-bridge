@@ -30,4 +30,8 @@ public class OutputView {
         System.out.println(FINAL_GAME_RESULT);
         System.out.println(getFinalMessage(stepResponseDto) + NEW_LINE);
     }
+
+    public void printExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }
