@@ -9,5 +9,6 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다.");
 
         inputView.readBridgeSize();
+        inputView.readMoving();
     }
 }
