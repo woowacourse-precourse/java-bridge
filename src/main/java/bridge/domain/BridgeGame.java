@@ -53,10 +53,6 @@ public class BridgeGame {
         return bridge.getBridge().equals(mark);
     }
 
-    public int getCurrent() {
-        return current;
-    }
-
     public List<String> getMark() {
         return mark;
     }
