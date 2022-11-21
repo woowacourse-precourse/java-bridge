@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum Status {
     PROCEEDING("게임 진행 중"),

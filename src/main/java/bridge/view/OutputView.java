@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.Status;
 
 import java.util.Arrays;
 import java.util.List;
