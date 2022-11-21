@@ -1,7 +1,8 @@
-package bridge.Service.Game;
+package bridge.Domain;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.BridgeGame;
+import bridge.Domain.BridgeMaker;
 import bridge.UI.InputView;
 import bridge.UI.OutputView;
 

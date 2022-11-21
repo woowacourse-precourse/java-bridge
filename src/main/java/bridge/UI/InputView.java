@@ -1,7 +1,6 @@
 package bridge.UI;
 
-import bridge.UI.Exception.Exceptions;
-import bridge.Service.Validation.ValidCheck;
+import bridge.Domain.ValidCheck;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -9,7 +8,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private OutputView outputView = new OutputView();;
+    private OutputView outputView = new OutputView();
 
     /**
      * 다리의 길이를 입력받는다.
@@ -26,6 +25,7 @@ public class InputView {
             return askBridgeSize();
         }
     }
+
     public int readBridgeSize() {
         String size_str = readLine();
         if (!ValidCheck.isString_in_1to9(size_str))
@@ -51,6 +51,7 @@ public class InputView {
             return askMoving();
         }
     }
+
     public String readMoving() {
         String command = readLine();
         if (!ValidCheck.isUorD(command))
@@ -75,6 +76,7 @@ public class InputView {
             return askRestart();
         }
     }
+
     public String readGameCommand() {
         String command = readLine();
         if (!ValidCheck.isRorQ(command))
