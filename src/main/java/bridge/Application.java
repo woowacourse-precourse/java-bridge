@@ -30,4 +30,13 @@ public class Application {
 
         return bridge;
     }
+
+    static void moveOrRetry(BridgeGame bridgeGame, List<String> bridge) {
+        while (bridgeGame.getPlayerLocationIndex() < bridge.size() - 1) {
+            moveBundle(bridgeGame, bridge);
+            if (bridgeGame.getAskRetryMarker()) {
+                retryBundle(bridgeGame);
+            }
+        }
+    }
 }
