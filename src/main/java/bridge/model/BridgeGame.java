@@ -67,4 +67,9 @@ public class BridgeGame {
     public Boolean isPass() {
         return !isFail();
     }
+
+    public Boolean isFinalRound() {
+        int currentRoundNumber = bridge.getCurrentRoundNumber();
+        return bridge.isFinalRound(currentRoundNumber);
+    }
 }
