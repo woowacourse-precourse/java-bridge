@@ -101,7 +101,7 @@ BUILD SUCCESSFUL in 0s
     - **Class Methods**
         - [x] public InputView()
         - [x] public int readBridgeSize() throws IllegalArgumentException
-        - [ ] public String readMoving() throws IllegalArgumentException
+        - [x] public String readMoving() throws IllegalArgumentException
         - [ ] public String readGameCommand() throws IllegalArgumentException
         - [x] private boolean isDigit(String size)
 - [ ] **CLASS5. OutputView**

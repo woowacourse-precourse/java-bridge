@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -37,8 +39,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving() throws IllegalArgumentException {
+        String command = Console.readLine();
+        List<String> validCommands = List.of("U", "D");
+        if (!validCommands.contains(command)) {
+            throw new IllegalArgumentException(MOVING_INPUT_NOT_VALID);
+        }
+        return command;
     }
 
     /**
