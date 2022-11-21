@@ -23,14 +23,6 @@ public class OutputView {
         System.out.println();
     }
 
-    private String renderMap(List<String> bridge) {
-        StringBuilder map = new StringBuilder();
-        for (int i = 0; i < bridge.size() - 1; i++) {
-            map.append(bridge.get(i)).append("|");
-        }
-        return map + bridge.get(bridge.size() - 1);
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -41,6 +33,14 @@ public class OutputView {
         printMap(bridgeResult);
         System.out.println("게임 성공 여부: " + toKorean(gameStatus.isSuccess()));
         System.out.println("총 시도한 횟수: " + gameStatus.getAttempt());
+    }
+
+    private String renderMap(List<String> bridge) {
+        StringBuilder map = new StringBuilder();
+        for (int i = 0; i < bridge.size() - 1; i++) {
+            map.append(bridge.get(i)).append("|");
+        }
+        return map + bridge.get(bridge.size() - 1);
     }
 
     private String toKorean(boolean success) {

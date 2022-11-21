@@ -27,16 +27,6 @@ public class InputView {
         }
     }
 
-    private void validateBridgeSizeInput(String bridgeSize) throws IllegalArgumentException {
-        if (!bridgeSize.matches(REGEX_NUMBER)) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
-        }
-        int bridgeSizeNumber = Integer.parseInt(bridgeSize);
-        if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
-        }
-    }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -51,12 +41,6 @@ public class InputView {
         }
     }
 
-    private void validateMoving(String moving) throws IllegalArgumentException {
-        if (!moving.matches(REGEX_MOVING)) {
-            throw new IllegalArgumentException(ErrorMessage.MOVING);
-        }
-    }
-
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
@@ -68,6 +52,22 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
+        }
+    }
+
+    private void validateBridgeSizeInput(String bridgeSize) throws IllegalArgumentException {
+        if (!bridgeSize.matches(REGEX_NUMBER)) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
+        }
+        int bridgeSizeNumber = Integer.parseInt(bridgeSize);
+        if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
+        }
+    }
+
+    private void validateMoving(String moving) throws IllegalArgumentException {
+        if (!moving.matches(REGEX_MOVING)) {
+            throw new IllegalArgumentException(ErrorMessage.MOVING);
         }
     }
 

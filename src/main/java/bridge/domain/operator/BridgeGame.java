@@ -38,16 +38,6 @@ public class BridgeGame {
         handleAfterMove(passable);
     }
 
-    private void handleAfterMove(boolean passable) {
-        if (!passable) {
-            player.setCross(false);
-            gameStatus.setSuccess(false);
-            return;
-        }
-        player.movePlayerLocation();
-        player.setCross(true);
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -58,6 +48,16 @@ public class BridgeGame {
         player.resetPlayerLocation();
         player.setCross(true);
         gameStatus.plusAttempt();
+    }
+
+    private void handleAfterMove(boolean passable) {
+        if (!passable) {
+            player.setCross(false);
+            gameStatus.setSuccess(false);
+            return;
+        }
+        player.movePlayerLocation();
+        player.setCross(true);
     }
 
     public boolean isClear() {

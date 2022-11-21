@@ -49,15 +49,6 @@ public class BridgeGameController {
         return inputView.readBridgeSize();
     }
 
-    private void checkRetry(GameStatus gameStatus, BridgeGame bridgeGame) {
-        outputView.printMessage(OutputMessage.REQUEST_GAME_COMMAND);
-        if (inputView.readGameCommand().equals("R")) {
-            bridgeGame.retry();
-            return;
-        }
-        gameStatus.setRunning(false);
-    }
-
     private void tryCross(Player player, BridgeGame bridgeGame) {
         while (player.isCross()) {
             outputView.printMessage(OutputMessage.REQUEST_MOVING);
@@ -67,5 +58,14 @@ public class BridgeGameController {
                 return;
             }
         }
+    }
+
+    private void checkRetry(GameStatus gameStatus, BridgeGame bridgeGame) {
+        outputView.printMessage(OutputMessage.REQUEST_GAME_COMMAND);
+        if (inputView.readGameCommand().equals("R")) {
+            bridgeGame.retry();
+            return;
+        }
+        gameStatus.setRunning(false);
     }
 }

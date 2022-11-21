@@ -17,9 +17,6 @@ public class Player {
     public void movePlayerLocation() {
         playerLocation++;
     }
-    public void resetPlayerLocation() {
-        playerLocation = 0;
-    }
 
     public boolean isCross() {
         return cross;
@@ -27,5 +24,9 @@ public class Player {
 
     public void setCross(boolean cross) {
         this.cross = cross;
+    }
+
+    public void resetPlayerLocation() {
+        playerLocation = 0;
     }
 }
