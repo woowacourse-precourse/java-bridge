@@ -32,4 +32,13 @@ class GameCommandTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 게임 재시작/종료 여부 입력의 경우 R과 Q 뿐이어야 합니다.");
     }
+
+    @DisplayName("GameCommand가 재시작인지 종료인지 묻는 메소드 검증")
+    @Test
+    void isRestartAndQuit() {
+        GameCommand restart = GameCommand.RESTART;
+        GameCommand quit = GameCommand.QUIT;
+        assertThat(restart.isRestart()).isTrue();
+        assertThat(quit.isQuit()).isTrue();
+    }
 }
