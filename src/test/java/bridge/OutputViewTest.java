@@ -41,4 +41,26 @@ public class OutputViewTest {
         //then
         assertThat(out.toString()).isEqualTo("[ O ]\n");
     }
+    @DisplayName("최종 게임 결과 출력 함수 테스트")
+    @Test
+    void printResult() {
+        //given
+        List<List<String>> userMap = new ArrayList<>(2);
+        userMap.add(List.of(" "));
+        userMap.add(List.of("O"));
+        int cnt = 1;
+        boolean exitCode = false;
+        OutputView outputView = new OutputView();
+        OutputStream out = new ByteArrayOutputStream();
+        //when
+        System.setOut(new PrintStream(out));
+        outputView.printResult(userMap, cnt, exitCode);
+        //then
+        assertThat(out.toString().contains("최종 게임 결과") &&
+                out.toString().contains("[   ]") &&
+                out.toString().contains("[ O ]") &&
+                out.toString().contains("게임 성공 여부: 성공") &&
+                out.toString().contains("총 시도한 횟수: 1")
+        ).isTrue();
+    }
 }
