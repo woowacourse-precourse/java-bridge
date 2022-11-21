@@ -12,7 +12,15 @@ public class BridgeGameEngine {
         this.bridgeFactory = bridgeFactory;
     }
 
-    public void playGame(List<String> bridge) {
+    public List<String> initBridge() {
+        int bridgeSize = ConsoleUtil.inputBridgeSize();
+
+        return bridgeFactory.makeBridgeByBridgeMaker(bridgeSize);
+    }
+
+    public void playGame() {
+        List<String> bridge = initBridge();
+
         int gameCount = 0;
 
         while (true) {
