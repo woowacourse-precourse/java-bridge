@@ -10,19 +10,13 @@ public class BridgeGameContextImpl implements BridgeGameContext {
     private Integer repeatCount = 1;
     private String cachedHistory;
 
+    private void plusRepeatCount() {
+        this.repeatCount += 1;
+    }
 
     @Override
     public void generateBridge(Bridge madeBridge) {
         this.bridgeGame = new BridgeGame(madeBridge);
-    }
-
-    @Override
-    public BridgeGame getBridgeGame() {
-        return bridgeGame;
-    }
-
-    private void plusRepeatCount() {
-        this.repeatCount += 1;
     }
 
     @Override

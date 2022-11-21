@@ -8,7 +8,7 @@ public class ResultVerificationStatus implements BridgeGameStatus {
     @Override
     public BridgeGameStatus next(BridgeGameContext context, InputView inputView, OutputView outputView) {
         var gameHistory = context.getCachedHistory();
-        var gameStatus = context.getBridgeGame().getGameStatus();
+        var gameStatus = context.gameStatus();
         var gameRepeatCount = context.getRepeatCount();
 
         outputView.printResult(gameHistory, gameStatus.getCode(), gameRepeatCount);
