@@ -5,6 +5,7 @@ import static bridge.constant.GameCommand.RETRY;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.constant.Direction;
 import bridge.constant.GameCommand;
 import bridge.domain.BridgeGame;
 import bridge.domain.maker.BridgeMaker;
@@ -36,9 +37,8 @@ public class Controller {
 
     private BridgeGame makeGame() {
         try {
-            int bridgeSize = inputView.readBridgeSize();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+            List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
             return BridgeGame.from(bridge);
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
@@ -50,10 +50,10 @@ public class Controller {
         if (game.isFinished()) {
             return INITIAL_TRIAL_COUNT;
         }
-        if (!move().wasSuccessful()) {
-            return retryOrExit();
+        if (tryToMove().wasSuccessful()) {
+            return doGame();
         }
-        return doGame();
+        return retryOrExit();
     }
 
     private int retryOrExit() {
@@ -65,16 +65,20 @@ public class Controller {
         return INITIAL_TRIAL_COUNT;
     }
 
-    private TrialResult move() {
+    private TrialResult tryToMove() {
         try {
-            TrialResult trialResult = game.move(inputView.readDirection());
-            trialResults.add(trialResult);
-            outputView.printMap(trialResults);
-            return trialResult;
+            return move(inputView.readDirection());
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
-            return move();
+            return tryToMove();
         }
+    }
+
+    private TrialResult move(Direction direction) {
+        TrialResult trialResult = new TrialResult(direction, game.move(direction));
+        trialResults.add(trialResult);
+        outputView.printMap(trialResults);
+        return trialResult;
     }
 
     private GameCommand askForRetry() {
