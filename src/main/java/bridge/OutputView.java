@@ -40,8 +40,8 @@ public class OutputView {
     public void printMap(BridgeGame bridgeGame) {
         String upLineForm = bridgeGame.getUpLineForm();
         String downLineForm = bridgeGame.getDownLineForm();
-        System.out.println(BridgeShape.START_LINE + upLineForm + BridgeShape.END_LINE);
-        System.out.println(BridgeShape.START_LINE + downLineForm + BridgeShape.END_LINE);
+        System.out.println(upLineForm);
+        System.out.println(downLineForm);
     }
 
     /**
