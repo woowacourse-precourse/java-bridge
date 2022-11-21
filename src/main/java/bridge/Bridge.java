@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
+    public static final String ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3 이상 20 이하입니다.";
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;

@@ -14,13 +14,18 @@ public class BridgeMaker {
     public static final String ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3 이상 20 이하입니다.";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
+    public static boolean valueError = false;
+
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(int size) throws IllegalArgumentException {
-        checkRangeValidity(size);
+    public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+        valueError = checkBridgeError(size);
+        if (valueError) {
+            return null;
+        }
         for (int time = 0; time < size; time++) {
             String direction = toDirection(bridgeNumberGenerator.generate());
             bridge.add(direction);
@@ -28,8 +33,19 @@ public class BridgeMaker {
         return bridge;
     }
 
+    private boolean checkBridgeError(int size) {
+        try {
+            checkRangeValidity(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
     private void checkRangeValidity(int size) throws IllegalArgumentException {
         if (size < MIN_SIZE || size > MAX_SIZE) {
+            valueError = true;
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
     }
