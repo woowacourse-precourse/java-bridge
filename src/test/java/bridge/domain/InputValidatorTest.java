@@ -31,4 +31,19 @@ public class InputValidatorTest {
     void inputBridgeSizeAppropriate() {
         assertThatNoException().isThrownBy(() -> inputValidator.validateBridgeSize("10"));
     }
+
+    @DisplayName("입력값이 U, D 중 하나가 아닌 경우 예외가 발생한다")
+    @Test
+    void inputMovingNotMove() {
+        assertThatThrownBy(() -> inputValidator.validateMoving("a"))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] U, D 중 하나를 입력해야 합니다.");
+    }
+
+    @DisplayName("입력값이 U, D 중 하나인 경우 예외가 발생하지 않는다")
+    @Test
+    void inputMovingAppropriate() {
+        assertThatNoException().isThrownBy(() -> inputValidator.validateMoving("U"));
+        assertThatNoException().isThrownBy(() -> inputValidator.validateMoving("D"));
+    }
+
 }
