@@ -35,7 +35,7 @@ public class Result {
     }
 
     public boolean isSuccess(int bridgeSize, String bridgeIndexOf){
-        return false;
+        return isSuccess = moves.size() == bridgeSize && compare(bridgeIndexOf);
     }
 
     public boolean compare(String bridgeIndexOf){
