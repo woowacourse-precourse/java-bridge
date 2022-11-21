@@ -8,15 +8,14 @@ public class Validator {
     private final static String WRONG_SIZE = "다리 길이는 3부터 20 사이의 정수입니다.";
     public static String inputNum = null;
 
-
     public static void checkBridgeSizeInputInteger(String input) {
-        try{
-            if(input != null && !input.matches("-?\\d+")){
+        try {
+            if (input != null && !input.matches("-?\\d+")) {
                 System.out.println("다리길이를 다시 입력하세요");
                 throw new IllegalArgumentException(ERROR + PUT_INTEGER);
 
             }
-        }catch(IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(ERROR + PUT_INTEGER + "다리길이를 다시 입력하세요");
             inputNum = Console.readLine();
         }
@@ -27,11 +26,9 @@ public class Validator {
             if (input < 3 || input > 20) {
                 throw new IllegalArgumentException(ERROR + " " + WRONG_SIZE);
             }
-        }catch(IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(ERROR + " " + WRONG_SIZE);
         }
 
     }
-
-
 }

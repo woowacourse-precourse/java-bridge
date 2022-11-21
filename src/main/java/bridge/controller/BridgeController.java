@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.model.BridgeMaker;
-import bridge.model.BridgeNumberGenerator;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.CompareBridge;
 import bridge.view.InputView;
@@ -16,6 +15,7 @@ public class BridgeController {
     private static BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
     public static int compareBridgeNum = 0;
     public static int howManyGame = 1;
+
     public static void BridgeGameStart() {
         //게임 시작 선언
         OutputView.printGameStart();
