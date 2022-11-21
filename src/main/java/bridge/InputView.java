@@ -19,7 +19,7 @@ public class InputView {
          */
         while (true) {
             bridgeLength = Integer.valueOf(Console.readLine());
-            if (!checkBridgeLength(bridgeLength)){
+            if (checkBridgeLength(bridgeLength)){
                 break;
             }
         }
@@ -32,7 +32,14 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(Constants.INPUT_MOVING_INFO);
-        String movingCommand = Console.readLine();
+        String movingCommand;
+
+        while (true) {
+            movingCommand = Console.readLine();
+            if (!checkCommand(movingCommand)){
+                break;
+            }
+        }
         return movingCommand;
     }
 
@@ -52,6 +59,18 @@ public class InputView {
         }
     }catch(IllegalArgumentException e){
             System.out.println(Constants.ERROR_RANGE_INFO);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkCommand(String command){
+        try{
+            if (command.equals("U") || command.equals("D")){
+                throw new IllegalArgumentException();
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println(Constants.ERROR_COMMAND_INFO);
             return false;
         }
         return true;
