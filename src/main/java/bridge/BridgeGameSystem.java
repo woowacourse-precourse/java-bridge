@@ -16,10 +16,16 @@ public class BridgeGameSystem {
         List<String> bridge = BridgeGame.getBridge(bridgeSize);
         boolean success = playGame(bridge, bridgeSize);
         outputView.printResult(tryCount, success);
+        initGame();
     }
 
     public static void startGame(){
         inputView.printStartMessage();
+    }
+
+    public static void initGame(){
+        tryCount = 1;
+        index = 0;
     }
 
     public static boolean playGame(List<String> bridge, int bridgeSize){
