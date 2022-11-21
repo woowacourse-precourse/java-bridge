@@ -2,8 +2,7 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.Check.checkBridgeSize;
-import static bridge.Check.checkBridgeStep;
+import static bridge.Check.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -33,6 +32,6 @@ public class InputView {
      */
     public String readGameCommand() {
         String in = Console.readLine().strip();
-        return null;
+        return checkFail(in);
     }
 }
