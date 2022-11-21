@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         /*  - 1. 자동으로 생성할 다리 길이를 입력 받는다.
@@ -25,7 +26,6 @@ public class Application {
         int cnt = 0;
 
         // 1.
-        InputView inputView = new InputView();
         int bridgeSize = inputView.readBridgeSize();
 
         // 2.
@@ -34,13 +34,13 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         // 3.
-        OutputView outputView = new OutputView();
-        BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
-        String gameStatus = bridgeGame.move(bridge);
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> result = new ArrayList<>();
+        String gameStatus = tryGame(bridgeGame, bridge, result);
         cnt += 1;
 
         // 4.
-        String regameStatus = "";
+        /*String regameStatus = "";
         while (!regameStatus.equals("Q")) {
             if (gameStatus.equals("실패")) {
                 regameStatus = inputView.readGameCommand();
@@ -49,9 +49,22 @@ public class Application {
                 gameStatus = bridgeGame.retry(bridge);
                 cnt += 1;
             }
-        }
+        }*/
 
         // 5.
-        outputView.printResult(gameStatus, cnt, bridgeGame.getResult(), bridge);
+        //outputView.printResult(gameStatus, cnt, bridgeGame.getResult(), bridge);
+    }
+
+    private static String tryGame(BridgeGame bridgeGame, List<String> bridge, List<String> result) {
+        for (int i = 0; i < bridge.size(); i++) {
+            String movingValue = inputView.readMoving();
+            String movingResult = bridgeGame.move(movingValue, bridge.get(i));
+            result.add(movingResult);
+            outputView.printMap(result, bridge);
+            if (result.contains("X")) {
+                return "실패";
+            }
+        }
+        return "성공";
     }
 }
