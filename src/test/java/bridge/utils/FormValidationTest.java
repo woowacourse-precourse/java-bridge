@@ -2,7 +2,6 @@ package bridge.utils;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -26,7 +25,11 @@ class FormValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void validateGameCommandInputForm() {
+    @DisplayName("게임을 재시작 혹은 종료하는 문자열으로 R,Q 이외에 다른 문자열를 입력하면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @CsvSource({"r", "q", "RR", "QQ", "A", "1", "1R"})
+    void validateGameCommandInputForm(String input) {
+        Assertions.assertThatThrownBy(() -> formValidation.validateGameCommandInputForm(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
