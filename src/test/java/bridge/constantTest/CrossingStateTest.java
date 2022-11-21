@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CrossingStateTest {
     @ParameterizedTest
     @MethodSource("provideStringsForFindByCrossedStateInstance")
-    @DisplayName("다리 건넌 상태에 따른 객체를 출력하는지 확인한다.")
+    @DisplayName("다리 건넌 상태에 따른 객체를 반환하는지 확인한다.")
     public void findCrossingStateInstanceByCrossingState(boolean crossedState, CrossingState instance){
         assertThat(CrossingState.findByCrossingResult(crossedState)).isEqualTo(instance);
     }
@@ -27,5 +27,11 @@ public class CrossingStateTest {
                 Arguments.of(true, CrossingState.POSSIBLE),
                 Arguments.of(false, CrossingState.IMPOSSIBLE)
         );
+    }
+    @ParameterizedTest
+    @DisplayName("다리 건넌 상태에 따른 기호를 반환하는지 확인한다.")
+    @CsvSource(value = {"true:  O ", "false:  X "}, delimiter = ':')
+    public void findByCrossingState(boolean crossedState, String transformResult){
+        assertThat(CrossingState.transform(crossedState)).isEqualTo(transformResult);
     }
 }
