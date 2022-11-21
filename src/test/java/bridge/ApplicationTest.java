@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.view.InputView.moveCheck;
+import static bridge.view.InputView.*;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static java.lang.System.in;
@@ -54,8 +54,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-
-
     @Test
     void 다리길이_숫자_범위_테스트() {
         int input = 21;
@@ -72,6 +70,17 @@ class ApplicationTest extends NsTest {
         System.setIn(in);
         Throwable exception = assertThrows(IllegalArgumentException.class, () ->{
            moveCheck(input);
+        });
+        assertThat(exception.getMessage()).contains("[ERROR]");
+
+    }
+
+    @Test
+    void 재시작_및_종료_예외_테스트() {
+        String input = "r";
+        System.setIn(in);
+        Throwable exception = assertThrows(IllegalArgumentException.class, () ->{
+            replayCheck(input);
         });
         assertThat(exception.getMessage()).contains("[ERROR]");
 

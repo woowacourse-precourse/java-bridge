@@ -13,10 +13,13 @@ public class BridgeGameController {
     public static void bridgeGame(){
         ArrayList<String> bridges = new ArrayList<>();
         ArrayList<String> inputMove = new ArrayList<>();
+        ArrayList<Integer> input = new ArrayList<>();
         int startCount = 1;
         int check = 0;
+        int bridgeLen = 0;
+        int c = 0;
 
-        int bridgeLen = readBridgeSize();
+        bridgeLen = readBridgeSize();
 
         bridgeLenRangeCheck(bridgeLen);
         bridges = makeBridge(bridgeLen);

@@ -12,20 +12,27 @@ public class InputView {
      */
     public static int readBridgeSize() {
         int bridgeLen = 0;
+
         System.out.println("다리의 길이를 입력해주세요.");
         try{
             bridgeLen = Integer.valueOf(readLine());
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            //throw new IllegalArgumentException(e);
         }
         return bridgeLen;
+
     }
+
+
+
 
     public static void bridgeLenRangeCheck(int bridgeLen){
         if(bridgeLen >= 21 || bridgeLen <= 2){
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
+
 
 
 
@@ -38,7 +45,8 @@ public class InputView {
         try{
             move = readLine();
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
+            //System.out.println("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
         }
         System.out.println("move:" + move);
         return move;
