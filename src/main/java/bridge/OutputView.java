@@ -33,10 +33,10 @@ public class OutputView {
         String upLetter = "[ ";
         String downLetter = "[ ";
          for(int i =0; i<choice.size(); i++) {
-            if(bridge.get(i).equals(choice.get(i)) && bridge.get(i).equals("U")) {upLetter += "O"; downLetter += " ";}
-            if(bridge.get(i).equals(choice.get(i)) && bridge.get(i).equals("D")) {downLetter += "O"; upLetter += " ";}
-            if(!bridge.get(i).equals(choice.get(i)) && bridge.get(i).equals("U")) {upLetter += "X"; downLetter += " ";}
-            if(!bridge.get(i).equals(choice.get(i)) && bridge.get(i).equals("D")) {downLetter += "X"; upLetter += " ";}
+            if(bridge.get(i).equals(choice.get(i)) && choice.get(i).equals("U")) {upLetter += "O"; downLetter += " ";}
+            if(bridge.get(i).equals(choice.get(i)) && choice.get(i).equals("D")) {downLetter += "O"; upLetter += " ";}
+            if(!bridge.get(i).equals(choice.get(i)) && choice.get(i).equals("U")) {upLetter += "X"; downLetter += " ";}
+            if(!bridge.get(i).equals(choice.get(i)) && choice.get(i).equals("D")) {downLetter += "X"; upLetter += " ";}
             if(i==choice.size()-1) {upLetter+=" ]"; downLetter+=" ]"; break;}
             upLetter+=" | "; downLetter+=" | ";
         }
@@ -49,6 +49,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult() {
+    public static void printResult(int count, boolean isBridgeSuccess) {
+        String result = "";
+        if(isBridgeSuccess) {result="성공";}
+        if(!isBridgeSuccess) {result="실패";}
+        System.out.println("게임 성공 여부 : " + result);
+        System.out.println("총 시도한 횟수 : " + count);
     }
+
 }

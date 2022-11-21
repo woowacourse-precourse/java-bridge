@@ -1,23 +1,38 @@
 package bridge;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+    private static final int count = 0;
+    private static int bridgeSize = getBridgeSize();
+    static List<String> bridge = getBridge(bridgeSize);
+    static BridgeGame bridgeGame = new BridgeGame(bridge);
 
     public static void main(String[] args) {
-        int birdgeSize = getBridgeSize();
-        List<String> bridge = getBridge(birdgeSize);
-        System.out.println("bridge : " + bridge); /////////
-
-        List<String> choice = getMoving();
-        OutputView.printMap();
-        if(BridgeGame.isRightChoice(bridge, choice)) {
-            BridgeGame.move();
+        System.out.println("bridge: " + bridge);
+        while (!bridgeGame.isBridgeSuccess()) {
+            bridgeGame.move(getMove());
+            OutputView.printMap(bridge, bridgeGame.getChoice());
+            if(!isRetry()) {
+                break;
+            }
         }
-        BridgeGame.retry();
+        printResult(bridgeGame.getCount(), bridgeGame.isBridgeSuccess());
 
+    }
+
+    public static boolean isRetry() {
+        if(!bridgeGame.isRightChoice()) {
+            String answer = getRetry();
+            if (answer.equals("R")) {
+                bridgeGame.retry();
+                return true;
+            }
+            if (answer.equals("Q")) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static int getBridgeSize() {
@@ -35,15 +50,27 @@ public class Application {
         return bridge;
     }
 
-    public static List<String> getMoving() {
-        List<String> choice = new ArrayList<>();
+    public static String getMove() {
         String answer = "";
-        while (!(answer.equals("U")||answer.equals("D"))) {
+        while (!(answer.equals("U") || answer.equals("D"))) {
             OutputView.getMove();
             answer = InputView.readMoving();
         }
-        System.out.println("answer : " + answer);
-        choice.add(answer);
-        return choice;
+        return answer;
     }
+
+    public static String getRetry() {
+        OutputView.getRetry();
+        String answer = InputView.readGameCommand();
+        return answer;
+    }
+    
+    public static void printResult(int count, boolean isBridgeSuccess) {
+        System.out.println("최종 게임 결과");
+        OutputView.printMap(bridge, bridgeGame.getChoice());
+        System.out.println();
+        OutputView.printResult(count, isBridgeSuccess);
+    }
+
+
 }
