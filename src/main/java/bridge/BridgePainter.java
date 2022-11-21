@@ -3,8 +3,8 @@ package bridge;
 import java.util.List;
 
 public class BridgePainter {
-    StringBuilder sb1;
-    StringBuilder sb2;
+    StringBuilder upBridge;
+    StringBuilder downBridge;
 
     private String bridgePainting;
 
@@ -17,13 +17,13 @@ public class BridgePainter {
         paintBefore(bridge, bridgeIdx);
         paintCurrent(bridge, bridgeIdx, result);
         combineStr();
-        bridgePainting = sb1.toString();
+        bridgePainting = upBridge.toString();
         return bridgePainting;
     }
 
     public void sbInit() {
-        sb1 = new StringBuilder("[");
-        sb2 = new StringBuilder("[");
+        upBridge = new StringBuilder("[");
+        downBridge = new StringBuilder("[");
     }
 
     public void paintBefore(List<String> bridge, int bridgeIdx) {
@@ -35,18 +35,18 @@ public class BridgePainter {
 
     public void paint(String uOrD) {
         if (uOrD.equals("U")) {
-            sb1.append(" O ");
-            sb2.append(("   "));
+            upBridge.append(" O ");
+            downBridge.append(("   "));
         }
         if (uOrD.equals(("D"))) {
-            sb1.append("   ");
-            sb2.append(" O ");
+            upBridge.append("   ");
+            downBridge.append(" O ");
         }
     }
 
     public void divide() {
-        sb1.append("|");
-        sb2.append("|");
+        upBridge.append("|");
+        downBridge.append("|");
     }
 
     public void paintCurrent(List<String> bridge, int bridgeIdx, boolean result) {
@@ -60,29 +60,29 @@ public class BridgePainter {
 
     public void currentO(List<String> bridge, int bridgeIdx) {
         if (bridge.get(bridgeIdx).equals("U")) {
-            sb1.append(" O ]");
-            sb2.append("   ]");
+            upBridge.append(" O ]");
+            downBridge.append("   ]");
         }
         if (bridge.get(bridgeIdx).equals("D")) {
-            sb1.append("   ]");
-            sb2.append(" O ]");
+            upBridge.append("   ]");
+            downBridge.append(" O ]");
         }
     }
 
     public void currentX(List<String> bridge, int bridgeIdx) {
         if (bridge.get(bridgeIdx).equals("U")) {
-            sb1.append("   ]");
-            sb2.append(" X ]");
+            upBridge.append("   ]");
+            downBridge.append(" X ]");
         }
         if (bridge.get(bridgeIdx).equals("D")) {
-            sb1.append(" X ]");
-            sb2.append("   ]");
+            upBridge.append(" X ]");
+            downBridge.append("   ]");
         }
     }
 
     public void combineStr() {
-        sb1.append("\n");
-        sb1.append(sb2);
+        upBridge.append("\n");
+        upBridge.append(downBridge);
     }
 
 }
