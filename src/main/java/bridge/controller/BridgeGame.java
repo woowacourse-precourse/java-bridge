@@ -1,21 +1,10 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.Util;
-import bridge.enums.Message;
-import bridge.enums.UpDown;
-import bridge.model.Player;
-import bridge.view.InputNumValidator;
-import bridge.view.InputStringValidator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
