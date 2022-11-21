@@ -49,7 +49,5 @@ class OutputFormMakerTest {
         List<String> bridge = List.of("U", "U", "D", "U", "D");
         assertThat(outputFormMaker.createResult(user, bridge))
                 .isEqualTo("성공");
-        assertThat(outputFormMaker.createResult(user, bridge))
-                .isEqualTo("실패");
     }
 }
