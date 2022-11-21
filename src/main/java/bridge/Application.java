@@ -7,7 +7,7 @@ import bridge.ui.OutputView;
 
 public class Application {
 
-    private long gameCount = 1;
+    private static long gameCount = 1;
     private static final InputView INPUT_VIEW = new InputView();
     private static final OutputView OUTPUT_VIEW = new OutputView();
     private static BridgeGame bridgeGame;
@@ -44,10 +44,9 @@ public class Application {
     }
 
     private static boolean askRetry(Player player) {
-        boolean answerRetry = INPUT_VIEW.readGameCommand().equals(RETRY);
-
-        if (answerRetry) {
+        if (INPUT_VIEW.readGameCommand().equals(RETRY)) {
             bridgeGame.retry(player);
+            gameCount++;
             return true;
         }
 
