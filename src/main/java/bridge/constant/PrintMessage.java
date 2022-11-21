@@ -18,7 +18,7 @@ public enum PrintMessage {
     MAP_RIGHT("O"),
     MAP_WRONG("X"),
     MAP_BLANK(" "),
-    MAP_FORMAT("[ %s ]"),
+    MAP_FORMAT("[ %s ]\n"),
     MAP_SEPARATOR(" | ");
 
 

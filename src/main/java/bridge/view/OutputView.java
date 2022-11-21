@@ -14,8 +14,8 @@ public class OutputView {
     }
 
     private void printHalfMap(List<String> halfMap) {
-        System.out.println(String.format(PrintMessage.MAP_FORMAT.getString(),
-                String.join(PrintMessage.MAP_SEPARATOR.getString(), halfMap)));
+        System.out.printf((PrintMessage.MAP_FORMAT.getString()),
+                String.join(PrintMessage.MAP_SEPARATOR.getString(), halfMap));
     }
 
     public void printResult(boolean isSuccess, List<String> map, int trials) {
