@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 게임을 진행하는 역할 (사용자와 다리 건너기 게임을 연결하는 클래스)
- * 1. 사용자의 상태를 변경하기 위하여 User 메소드 호출
+ * 1. 사용자의 상태값을 변경하기 위하여 User 메소드 호출
  * 2. 다리 건너기 게임을 위하여 BridgeMaker 메소드 호출
  * 3. 사용자에게서 입력을 받기 위하여 InputViewer 메소드 호출
  * 4. 사용자의 콘솔 화면에 내용을 출력하기 위하여 OutputViewer 메소드 호출
@@ -20,16 +20,18 @@ public class GameManager {
     private static User player;
     private static BridgeGame bridgeGame;
 
+
     /**
-     * 다리 생성 게임, 사용자 생성
+     * TODO: 다리 생성 게임, 사용자 생성
      */
     public GameManager() {
         bridgeGame = new BridgeGame();
         player = new User(User.GameStatus.PLAYING.getStatusNumber(), 1);
     }
 
+
     /**
-     * 게임 초기화
+     * TODO: 게임 초기화
      */
     public void startBridgeGame() {
         OutputView.printGameStartMessage();
@@ -55,13 +57,14 @@ public class GameManager {
         bridgeGame.setBridgeAnswer(bridgeAnswer);
     }
 
+
     /**
-     * 게임 진행
+     * TODO: 게임 진행
      */
     public void playBridgeGame() {
         while (player.getUserGameStatus() == User.GameStatus.PLAYING.getStatusNumber()) {
             moveUser();
-            printBridge_userPredict();
+            printBridge_userMove();
             if (isEndOfTheGame()) break;
             if (player.getUserGameStatus() != User.GameStatus.PLAYING.getStatusNumber())
                 retryGame();
@@ -69,15 +72,15 @@ public class GameManager {
         printGameResult();
     }
 
-    // 칸 이동
+    // 사용자 칸 이동
     private void moveUser() {
         String userMoveDirection = "";
-        while (userMoveDirection.compareTo("") == 0) userMoveDirection = askUserMoveDirection();
+        while (userMoveDirection.compareTo("") == 0) userMoveDirection = setUserMoveDirection();
         bridgeGame.move(userMoveDirection);
         player.increaseNumberOfMoves();
     }
 
-    private String askUserMoveDirection() {
+    private String setUserMoveDirection() {
         OutputView.askUserMoveDirection();
         String userMoveDirection = "";
         try {
@@ -88,18 +91,18 @@ public class GameManager {
         return userMoveDirection;
     }
 
-    // 현재까지 건넌 다리 출력
-    private void printBridge_userPredict() {
+    // 사용자가 현재까지 건넌 다리 출력
+    private void printBridge_userMove() {
         OutputView.printMap(bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
     }
 
     // 게임 종료 여부 확인
     private boolean isEndOfTheGame() {
         if (isGameSucceed()) return true;
-        return isGameFailed() && isQuitGame();
+        return isGameFailed() && isQuitOfTheGame();
     }
 
-    // 성공 여부 확인
+    // 게임 성공 여부 확인
     private boolean isGameSucceed() {
         int userNumberOfMoves = player.getNumberOfMoves();
         boolean isGameSucceed = bridgeGame.checkIfGameIsSucceed(userNumberOfMoves);
@@ -109,16 +112,16 @@ public class GameManager {
         return isGameSucceed;
     }
 
-    // 실패 여부 확인
+    // 게임 실패 여부 확인
     private boolean isGameFailed() {
         int userNumberOfMoves = player.getNumberOfMoves();
         return bridgeGame.checkIfGameIsFailed(userNumberOfMoves);
     }
 
-    // 게임 종료 입력 여부 확인
-    private boolean isQuitGame() {
+    // 사용자의 게임 종료 입력 여부 확인
+    private boolean isQuitOfTheGame() {
         String userGameCommand = "";
-        while (userGameCommand.compareTo("") == 0) userGameCommand = askGameCommand();
+        while (userGameCommand.compareTo("") == 0) userGameCommand = setGameCommand();
         if (userGameCommand.compareTo(User.GameCommand.QUIT.getCommand()) == 0) {
             player.setUserGameStatus_failed();
             return true;
@@ -126,7 +129,7 @@ public class GameManager {
         return false;
     }
 
-    private String askGameCommand() {
+    private String setGameCommand() {
         OutputView.askGameCommand();
         String gameCommand = "";
         try {
@@ -137,15 +140,16 @@ public class GameManager {
         return gameCommand;
     }
 
-    private void printGameResult() {
-        OutputView.printResult(player, bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
-    }
-
-    // 게임 재시작
+    // 게임 재시작을 위한 상태값 변경
     private void retryGame() {
         bridgeGame.retry();
         player.increaseNumberOfGameTrials();
         player.resetNumberOfMoves();
+    }
+
+    // 게임 종료 문구 출력
+    private void printGameResult() {
+        OutputView.printResult(player, bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
     }
 
 }
