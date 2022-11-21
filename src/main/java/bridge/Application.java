@@ -33,6 +33,10 @@ public class Application {
                 if (gameCommand.equals("R")) {
                     game.retry();
                 }
+                if (gameCommand.equals("Q")) {
+                    output.printResult(game);
+                    break;
+                }
             }
             if (game.currentStatus == gameStatus.SUCCESS) {
                 output.printResult(game);
