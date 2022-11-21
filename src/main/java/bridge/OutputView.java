@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -31,5 +33,9 @@ public class OutputView {
 
     public void printMoveDirection() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printError(String message) {
+        System.out.println(message);
     }
 }
