@@ -195,7 +195,7 @@
 
 <br>
 
-### CurrentBridgePlot
+### CurrentBridgeMap
 
 > 사용자의 이동에 따른 현재 다리의 그림을 만들어주는 클래스
 
