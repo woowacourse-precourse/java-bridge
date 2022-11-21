@@ -1,7 +1,7 @@
 package enumCollections;
 
 public enum AvailableInput {
-    BRIDGE_MINUMUM_LENGTH("3"),
+    BRIDGE_MINIMUM_LENGTH("3"),
     BRIDGE_MAXIMUM_LENGTH("20"),
     QUIT_GAME("Q"),
     RETRY_GAME("R");
