@@ -20,7 +20,7 @@ public class BridgeGame {
 
     private void isComplete(Bridge bridge, User user) {
         if (bridge.isEndOfLocation()) {
-           user.finishWithWin();
+            user.finishWithWin();
         }
     }
 
