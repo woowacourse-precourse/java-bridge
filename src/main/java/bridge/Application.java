@@ -13,9 +13,11 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         int bridgeSize = inputView.readBridgeSize();
+        
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        String moving = inputView.readMoving();
 
+        BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridge);
+        String moving = inputView.readMoving();
 
     }
 
