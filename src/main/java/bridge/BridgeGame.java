@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.BridgeMaker.bridge;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -12,19 +14,29 @@ public class BridgeGame {
     public static boolean end = false;
 
     public void gameStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
 
         InputView inputView = new InputView();
         int bridgeLength = inputView.readBridgeSize();
         BridgeMaker.makeBridge(bridgeLength);
+        System.out.println(bridge); //sout
 
         OutputView outputView = new OutputView();
-        outputView.printMap(BridgeMaker.bridge);
+        outputView.printMap(bridge);
 
         boolean end = false;
-        end = move(BridgeMaker.bridge);
+        boolean success = move(bridge);
         retry();
         System.out.println(userBridge);
+
+        if (success){
+            System.out.println("게임 성공 여부 : 성공");
+        }
+        else{
+            System.out.println("게임 성공 여부 : 실패");
+        }
+        int count = 0;
+        System.out.println("총 시도한 횟수" + count);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -54,7 +66,7 @@ public class BridgeGame {
     public void retry() {
         InputView inputView = new InputView();
         String retryCommand = inputView.readGameCommand();
-        if (retryCommand=="Q"){
+        if (Objects.equals(retryCommand, "Q")){
             end = true;
         }
     }

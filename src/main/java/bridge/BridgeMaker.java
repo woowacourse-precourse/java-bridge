@@ -32,7 +32,6 @@ public class BridgeMaker {
                 bridge.add("D");
             }
         }
-        System.out.println(bridge); //sout
         return bridge;
     }
 }
