@@ -32,29 +32,31 @@ public class BridgeController {
         return inputView.readGameCommand();
     }
 
-    public boolean bridgeGame() {
+    public boolean bridgeRound() {
         String movePlace = requestMovingPoint();
         boolean passable = bridgeGame.move(movePlace, bridge);
 
         return !bridgeGame.getComplete() && passable;
     }
 
-    public void start() {
-        outputView.printIntro();
-        int size = getBridgeSize();
-        setGame(size);
+    public void bridgeGame(){
+        while (bridgeRound()) {
+            outputView.printMap(bridgeGame.getMark(), true);
+        }
+    }
 
+    private void playGame() {
         do {
             bridgeGame.retry();
-
-            while (bridgeGame()) {
-                outputView.printMap(bridgeGame.getMark(), true);
-            }
-            ;  // O 면 반복
+            bridgeGame();
             outputView.printMap(bridgeGame.getMark(), bridgeGame.getComplete());
-            // 다 건너면 탈출
-
         } while (!bridgeGame.getComplete() && requestRetry());
-        outputView.printResult(bridgeGame, bridgeGame.getComplete());
+    }
+
+    public void start() {
+        outputView.printIntro();
+        setGame(getBridgeSize());
+        playGame();
+        outputView.printResult(bridgeGame);
     }
 }

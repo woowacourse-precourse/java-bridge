@@ -48,11 +48,6 @@ public class BridgeGame {
         challenge++;
     }
 
-    public boolean getGameResult() {
-
-        return bridge.getBridge().equals(mark);
-    }
-
     public List<String> getMark() {
         return mark;
     }
