@@ -7,14 +7,22 @@ import bridge.view.OutputView;
 public class GamePlayer {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
     private int retryCount;
 
     public GamePlayer() {
         this.inputView = new InputViewAdapter();
         this.outputView = new OutputView();
-        this.bridgeGame = new BridgeGame(readBridgeSize());
         retryCount = 1;
+    }
+
+    public void init() {
+        int bridgeSize = inputView.readBridgeSize();
+        init(bridgeSize);
+    }
+
+    public void init(int bridgeSize) {
+        this.bridgeGame = new BridgeGame(bridgeSize);
     }
 
     public void run() {
@@ -52,9 +60,5 @@ public class GamePlayer {
     private void retry() {
         bridgeGame.retry();
         retryCount++;
-    }
-
-    private int readBridgeSize() {
-        return inputView.readBridgeSize();
     }
 }
