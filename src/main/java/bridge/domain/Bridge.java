@@ -5,7 +5,7 @@ import java.util.List;
 final class Bridge {
     private final List<String> positions;
 
-    public Bridge(List<String> positions) {
+    public Bridge(final List<String> positions) {
         this.positions = positions;
     }
 
@@ -13,7 +13,7 @@ final class Bridge {
         return positions.size();
     }
 
-    public boolean isEqualAtIndex(int index, Position position) {
+    public boolean isEqualAtIndex(final int index, final Position position) {
         return position == Position.from(positions.get(index));
     }
 }

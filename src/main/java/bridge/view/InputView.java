@@ -16,13 +16,13 @@ public final class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = Console.readLine();
+        final String input = Console.readLine();
         if (!NUMBERS.matcher(input).matches()) {
             throw new IllegalArgumentException(NOT_NUMBER_MESSAGE);
         }
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             throw new IllegalArgumentException(OVER_RANGE_MESSAGE);
         }
     }

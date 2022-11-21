@@ -10,7 +10,7 @@ public class BridgeValidator {
     private BridgeValidator() {
     }
 
-    public static void validateBridgeSize(int size) {
+    public static void validateBridgeSize(final int size) {
         if (size < BRIDGE_MIN_LENGTH) {
             throw new IllegalArgumentException(UNDER_SIZE_MESSAGE);
         }

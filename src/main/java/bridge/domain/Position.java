@@ -9,11 +9,11 @@ enum Position {
 
     private final String bridgeType;
 
-    Position(String bridgeType) {
+    Position(final String bridgeType) {
         this.bridgeType = bridgeType;
     }
 
-    public static Position from(String move) {
+    public static Position from(final String move) {
         return Arrays.stream(Position.values())
                 .filter(it -> Objects.equals(it.bridgeType, move))
                 .findFirst()

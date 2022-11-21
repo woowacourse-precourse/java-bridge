@@ -6,11 +6,11 @@ public enum GameResult {
 
     private final String resultMessage;
 
-    GameResult(String resultMessage) {
+    GameResult(final String resultMessage) {
         this.resultMessage = resultMessage;
     }
 
-    public static GameResult from(boolean success) {
+    public static GameResult from(final boolean success) {
         if (success) {
             return GameResult.SUCCESS;
         }

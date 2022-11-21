@@ -9,11 +9,11 @@ enum ControllerCommand {
 
     private final String key;
 
-    ControllerCommand(String key) {
+    ControllerCommand(final String key) {
         this.key = key;
     }
 
-    public static ControllerCommand from(String key) {
+    public static ControllerCommand from(final String key) {
         return Arrays.stream(ControllerCommand.values())
                 .filter(it -> Objects.equals(it.key, key))
                 .findFirst()

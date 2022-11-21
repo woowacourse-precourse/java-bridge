@@ -13,7 +13,7 @@ final class Visited {
         logger = new Logger();
     }
 
-    public void move(Position moving, Bridge bridge) {
+    public void move(final Position moving, final Bridge bridge) {
         logger.put(moving, bridge.isEqualAtIndex(positions.size(), moving));
         positions.add(moving);
     }
@@ -22,23 +22,23 @@ final class Visited {
         return logger.calculateLog();
     }
 
-    public boolean isRemained(Bridge bridge) {
+    public boolean isRemained(final Bridge bridge) {
         if (isEnd(bridge)) {
             return false;
         }
         return isAllStepCorrect(bridge);
     }
 
-    private boolean isEnd(Bridge bridge) {
+    private boolean isEnd(final Bridge bridge) {
         return positions.size() == bridge.size();
     }
 
-    private boolean isAllStepCorrect(Bridge bridge) {
+    private boolean isAllStepCorrect(final Bridge bridge) {
         return IntStream.range(0, positions.size())
                 .allMatch(index -> bridge.isEqualAtIndex(index, positions.get(index)));
     }
 
-    public GameResult result(Bridge bridge) {
+    public GameResult result(final Bridge bridge) {
         if (!isEnd(bridge)) {
             return GameResult.FAILURE;
         }

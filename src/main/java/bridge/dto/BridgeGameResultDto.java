@@ -10,7 +10,7 @@ public final class BridgeGameResultDto {
     private final PlayLogDto logDto;
     private final GameResult gameResult;
 
-    public BridgeGameResultDto(int triedCount, PlayLogDto logDto, GameResult gameResult) {
+    public BridgeGameResultDto(final int triedCount, final PlayLogDto logDto, final GameResult gameResult) {
         validateTriedCount(triedCount);
         validatePlayLogDto(logDto);
         validateGameResult(gameResult);
@@ -20,19 +20,19 @@ public final class BridgeGameResultDto {
     }
 
 
-    private void validateTriedCount(int triedCount) {
+    private void validateTriedCount(final int triedCount) {
         if (triedCount < 1) {
             throw new IllegalArgumentException(SMALLER_THAN_ONE_MESSAGE);
         }
     }
 
-    private void validatePlayLogDto(PlayLogDto playLogDto) {
+    private void validatePlayLogDto(final PlayLogDto playLogDto) {
         if (playLogDto == null) {
             throw new IllegalArgumentException(LOG_NOT_NULL_MESSAGE);
         }
     }
 
-    private void validateGameResult(GameResult gameResult) {
+    private void validateGameResult(final GameResult gameResult) {
         if (gameResult == null) {
             throw new IllegalArgumentException(GAME_RESULT_NOT_NULL_MESSAGE);
         }

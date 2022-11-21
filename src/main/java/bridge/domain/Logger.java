@@ -8,7 +8,7 @@ final class Logger {
     private final StringBuilder up = new StringBuilder("[");
     private final StringBuilder down = new StringBuilder("[");
 
-    public void put(Position moving, boolean correct) {
+    public void put(final Position moving, final boolean correct) {
         validateMoving(moving);
         if (moving == Position.UP) {
             addOneCheck(up, down, correct);
@@ -17,13 +17,13 @@ final class Logger {
         addOneCheck(down, up, correct);
     }
 
-    private void validateMoving(Position moving) {
+    private void validateMoving(final Position moving) {
         if (moving == null) {
             throw new IllegalArgumentException(NOT_NULL_MESSAGE);
         }
     }
 
-    private void addOneCheck(StringBuilder addSign, StringBuilder addSpace, boolean correct) {
+    private void addOneCheck(final StringBuilder addSign, final StringBuilder addSpace, final boolean correct) {
         addSpace.append(BLANK_SIGN);
         if (correct) {
             addSign.append(CORRECT_SIGN);
@@ -33,8 +33,8 @@ final class Logger {
     }
 
     public String calculateLog() {
-        StringBuilder firstLine = new StringBuilder(up);
-        StringBuilder secondLine = new StringBuilder(down);
+        final StringBuilder firstLine = new StringBuilder(up);
+        final StringBuilder secondLine = new StringBuilder(down);
         firstLine.setCharAt(firstLine.length() - 1, ']');
         secondLine.setCharAt(secondLine.length() - 1, ']');
         return firstLine + "\n" + secondLine;
