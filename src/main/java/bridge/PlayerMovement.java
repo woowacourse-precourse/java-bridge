@@ -16,6 +16,10 @@ public class PlayerMovement {
         return movement;
     }
 
+    public int getMovementCount() {
+        return movement.size();
+    }
+
     public void addMovement(String move) {
         validate(move);
         movement.add(move);
