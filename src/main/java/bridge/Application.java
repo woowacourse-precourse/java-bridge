@@ -29,11 +29,14 @@ public class Application {
                 progress++;
             }
             numTrial++;
-            if (!correct) {
-                retry = bg.retry(input.readGameCommand());
-            }
+            retry = correct = runRetry(correct);
         }
         output.printResult(correct, numTrial, output.makeMap(bridge, moves));
-
+    }
+    public static boolean runRetry(boolean correct) {
+        if (!correct) {
+            return bg.retry(input.readGameCommand());
+        }
+        return false;
     }
 }
