@@ -37,7 +37,14 @@ public class InputView {
     }
 
     public static String readGameCommand() {
-        String userInput = getUserInput(REQUEST_RETRY_COMMAND_MESSAGE.getGuideMessage());
-        return userInput;
+        while (true) {
+            try {
+                String userInput = getUserInput(REQUEST_RETRY_COMMAND_MESSAGE.getGuideMessage());
+                Validator.validateRetryCommand(userInput);
+                return userInput;
+            } catch (IllegalArgumentException e) {
+                System.out.println(INVALID_RETRY_COMMAND_MESSAGE.getErrorMessage());
+            }
+        }
     }
 }
