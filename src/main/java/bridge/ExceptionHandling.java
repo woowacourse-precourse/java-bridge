@@ -16,4 +16,11 @@ public class ExceptionHandling {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void upDownChecking(String input){
+        if(!input.equals("U") && !input.equals("D")){
+            System.out.println("[ERROR] 입력하는 문자는 'U' 혹은 'D' 여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
 }
