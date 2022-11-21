@@ -97,10 +97,10 @@
     + [X] 입력을 BridgeGame으로 건넴
     + [X] BridgeGame) 현재 진행 상황을 받아오기
     + [X] OutputView) 현재 진행 상황을 출력
-  + [ ] (실패 시)게임 재시도 여부 확인
-    + [ ] OutputView) 입력 요청 메시지 출력
-    + [ ] InputView) 입력 받음
-    + [ ] 입력을 BridgeGame으로 건넴
+  + [X] (실패 시)게임 재시도 여부 확인
+    + [X] OutputView) 입력 요청 메시지 출력
+    + [X] InputView) 입력 받음
+    + [X] 입력을 BridgeGame으로 건넴
   + [ ] (게임 종료 시) 최종 결과 확인
     + [ ] BridgeGame) 게임 성공 여부와 총 시도 횟수 받음
     + [ ] OutputView) 최종 결과 출력
