@@ -22,7 +22,7 @@ public class BridgeGame {
     }
 
     public void move(final Bridge bridge, final Move move) {
-        bridgeMap.countUp();
+        bridgeMap.setCountUp();
         bridgeStateService.compare(move, bridge, bridgeMap);
     }
 
@@ -38,7 +38,7 @@ public class BridgeGame {
     }
 
     public void incrementTotalAttempts() {
-        totalAttempts++;
+        ++totalAttempts;
     }
 
     public int getStepDistance(){

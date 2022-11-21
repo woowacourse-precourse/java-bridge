@@ -35,7 +35,7 @@ public class ConvertBridgeMap {
             correctCase(bridgeMap);
         }
         if (!bridgeMap.getFlag()) {
-            counter--;
+            --counter;
             wrongCase(bridgeMap);
         }
     }

@@ -14,10 +14,10 @@ public class GameCommandInputParser {
 
     private static <T> T parseWithCheckingEmpty(final String input, final Function<String, T> function) {
         EmptyAndNullChecker.check(input);
-        return parse(input, function);
+        return parseWithApply(input, function);
     }
 
-    private static <T> T parse(final String input, final Function<String, T> function) {
+    private static <T> T parseWithApply(final String input, final Function<String, T> function) {
         return Stream.of(input)
             .map(String::trim)
             .filter(str -> str.matches("^[A-Z]*$"))

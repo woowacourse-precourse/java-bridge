@@ -14,38 +14,32 @@ public class InputView {
 
     public BridgeSize readBridgeSize() {
         String bridgeSizeInput = inputWithMessage(BridgePhrase.INPUT_BRIDGE_SIZE);
-        BridgeSize bridgeSize;
         try {
-            bridgeSize = BridgeSizeInputParser.parseBridgeSize(bridgeSizeInput);
+            return BridgeSizeInputParser.parseBridgeSize(bridgeSizeInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
-        return bridgeSize;
     }
 
     public Move readMoving() {
         String moveInput = inputWithMessage(BridgePhrase.INPUT_MOVE);
-        Move move;
         try {
-            move = MoveInputParser.parseMove(moveInput);
+            return MoveInputParser.parseMove(moveInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
-        return move;
     }
 
     public GameCommand readGameCommand() {
         String gameCommandInput = inputWithMessage(BridgePhrase.INPUT_GAME_COMMAND);
-        GameCommand gameCommand;
         try {
-            gameCommand = GameCommandInputParser.parseGameCommand(gameCommandInput);
+            return GameCommandInputParser.parseGameCommand(gameCommandInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
-        return gameCommand;
     }
 
     private String inputWithMessage(final BridgePhrase message) {

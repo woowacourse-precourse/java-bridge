@@ -13,14 +13,12 @@ import bridge.domain.resources.bridge.BridgeSize;
 import bridge.domain.resources.GameCommand;
 import bridge.domain.resources.Move;
 
-import bridge.domain.service.BridgeStateService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private static final boolean RETRY = true;
-    private static final boolean QUIT = false;
+    private static final boolean ONE_MORE_TRY = true;
     private final InputView inputView;
     private final OutputView outputView;
     private boolean button;
@@ -52,7 +50,7 @@ public class BridgeGameController {
         return inputView.readBridgeSize();
     }
 
-    private Bridge makeBridge(BridgeMaker bridgeMaker, BridgeSize bridgeSize) {
+    private Bridge makeBridge(final BridgeMaker bridgeMaker, final BridgeSize bridgeSize) {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
     }
 
@@ -64,7 +62,7 @@ public class BridgeGameController {
                 break;
             }
             bridgeGame.isRetry(button);
-        } while (button == RETRY);
+        } while (button == ONE_MORE_TRY);
     }
 
     private boolean moveUpOrDown(final BridgeGame bridgeGame, final Bridge bridge, final BridgeSize bridgeSize) {

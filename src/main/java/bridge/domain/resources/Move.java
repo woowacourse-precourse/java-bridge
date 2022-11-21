@@ -13,7 +13,6 @@ public class Move {
         if (!isUpOrDown(move)) {
             throw new InvalidMoveException();
         }
-
         this.move = move;
     }
 

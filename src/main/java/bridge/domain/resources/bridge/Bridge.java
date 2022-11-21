@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Bridge {
 
+    private static final String UP = "U";
+    private static final String DOWN = "D";
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
@@ -15,7 +17,7 @@ public class Bridge {
 
     private void validateUpOrDown(final List<String> bridge) {
         bridge.stream()
-            .filter(str -> str.equals("U") || str.equals("D"))
+            .filter(str -> str.equals(UP) || str.equals(DOWN))
             .findFirst()
             .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_BRIDGE_GENERATION.getMessage()));
     }

@@ -18,22 +18,22 @@ public class BridgeMap {
     public void clearBridgeMap() {
         bridgeMap.clear();
         inputCount = 0;
-        flagUp();
+        setFlagUp();
     }
 
     public void add(final String upOrDown) {
         bridgeMap.add(upOrDown);
     }
 
-    public void countUp() {
-        inputCount++;
+    public void setCountUp() {
+        ++inputCount;
     }
 
-    public void flagUp() {
+    public void setFlagUp() {
         flag = true;
     }
 
-    public void flagDown() {
+    public void setFlagDown() {
         flag = false;
     }
 
