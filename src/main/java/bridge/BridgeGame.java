@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 /**
