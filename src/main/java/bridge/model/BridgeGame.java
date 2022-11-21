@@ -36,10 +36,14 @@ public class BridgeGame {
     }
 
     public Result getGameResult() {
-        if (bridge.size() == currentPosition) {
+        if (isCompleted()) {
             return Result.SUCCESS;
         }
         return Result.FAIL;
+    }
+
+    private boolean isCompleted() {
+        return bridge.size() == currentPosition;
     }
 
     public int getTrialCount() {
