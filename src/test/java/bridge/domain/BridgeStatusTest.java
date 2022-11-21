@@ -22,7 +22,8 @@ class BridgeStatusTest {
     public void test(
             String answer,
             String userAnswer,
-            String output) {
+            String output
+    ) {
         BRIDGE_MAP.updateBridgeMap(answer, userAnswer);
         BRIDGE_MAP.createMessage();
         String[] tmp = output.split(",");
