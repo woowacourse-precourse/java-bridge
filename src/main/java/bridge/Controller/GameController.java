@@ -5,9 +5,6 @@ import bridge.Domain.BridgeMaker;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameController {
     InputView inputView;
     OutputView outputView;

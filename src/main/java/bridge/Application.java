@@ -14,15 +14,19 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         OutputView outputView = new OutputView();
         GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker,outputView);
+
         try {
             gameController.GAMESTART();
+
             do {
                 gameController.RUNPROCESS();
                 if (bridgeGame.isSuccecss()) {
                     break;
                 }
             } while (gameController.SELECTRESTART());
+
             gameController.STOPGAME();
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
