@@ -11,7 +11,6 @@ public class BridgeGame {
     private List<String> bridge_answer;
     private List<String> bridge_userMove = new ArrayList<>();
 
-
     public enum BridgeShape {
         DOWN(0, "D"),
         UP(1, "U");
@@ -33,7 +32,6 @@ public class BridgeGame {
         }
     }
 
-
     // getter
     public List<String> getBridge_answer() {
         return bridge_answer;
@@ -43,14 +41,10 @@ public class BridgeGame {
         return bridge_userMove;
     }
 
-
     // setter
     public void setBridgeAnswer(List<String> bridge_answer) {
         this.bridge_answer = bridge_answer;
     }
-
-
-    // methods
 
     /**
      * TODO: 사용자가 칸을 이동할 때 사용하는 메서드

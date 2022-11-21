@@ -9,7 +9,6 @@ public class User {
     private int numberOfMoves;
     private int numberOfGameTrials;
 
-
     public enum GameStatus {
         PLAYING(0),
         SUCCEED(1),
@@ -41,13 +40,11 @@ public class User {
         }
     }
 
-
     // constructor
     public User(int userGameStatus, int numberOfGameTrials) {
         this.userGameStatus = userGameStatus;
         this.numberOfGameTrials = numberOfGameTrials;
     }
-
 
     // getter
     public int getUserGameStatus() {
@@ -62,7 +59,6 @@ public class User {
         return numberOfGameTrials;
     }
 
-
     // setter
     public void setUserGameStatus_succeed() {
         userGameStatus = GameStatus.SUCCEED.getStatusNumber();
@@ -71,7 +67,6 @@ public class User {
     public void setUserGameStatus_failed() {
         userGameStatus = GameStatus.FAILED.getStatusNumber();
     }
-
 
     // methods
     public void increaseNumberOfMoves() {
