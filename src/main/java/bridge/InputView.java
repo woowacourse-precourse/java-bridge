@@ -28,27 +28,22 @@ public class InputView {
         if (!(commend.equals("R") || commend.equals("Q"))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_COMMEND);
         }
-
         return commend;
     }
 
     private int validateSize(String size) {
-        int result;
-        for (int i = 0; i < size.length(); i++)
-        {
-            if (!(size.charAt(i) <= '9' && size.charAt(i) >= '0'))
+        for (int i = 0; i < size.length(); i++) {
+            if (!(size.charAt(i) <= '9' && size.charAt(i) >= '0')) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NUMBER);
+            }
         }
-
-        result = Integer.parseInt(size);
-        return result;
+        return Integer.parseInt(size);
     }
 
     private String validateMoving(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_DIRECTION);
         }
-
         return moving;
     }
 }

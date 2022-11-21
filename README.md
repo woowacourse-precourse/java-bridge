@@ -38,9 +38,9 @@
 * [ ] java 컨벤션 지키기
 * [ ] BridgeMaker - makeBridge : 10줄 이하로 리팩토링하기
 * [ ] BridgeGame - retry : controller에서 in&output 관리. retry 함수 자체에서는 boolean 반 
-* [ ] InputView - validateSize : 리팩토링 필요
-* [ ] OutputView - printMap : forEach 리팩토링
-* [ ] OutputView - printSuccess : else 사용 리팩토링
+* [x] InputView - validateSize : 리팩토링 필요
+* [x] OutputView - printMap : forEach 리팩토링
+* [x] OutputView - printSuccess : else 사용 리팩토링
 
 ## 🔍 진행 방식
 
