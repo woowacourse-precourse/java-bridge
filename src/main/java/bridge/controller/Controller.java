@@ -21,19 +21,19 @@ public class Controller {
 
     public void initGame() {
         outputView.printStartGame();
-        makeBridgeGame();
+        int bridgeSize = getBridgeSize();
+        List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridgeList);
+        start(bridgeGame);
     }
 
-    private void makeBridgeGame() {
-        try{
+    private int getBridgeSize() {
+        try {
             outputView.printInputBridgeLength();
-            int bridgeSize = inputView.readBridgeSize();
-            List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
-            BridgeGame bridgeGame = new BridgeGame(bridgeList);
-            start(bridgeGame);
+            return inputView.readBridgeSize();
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            makeBridgeGame();
+            return getBridgeSize();
         }
     }
 
@@ -48,14 +48,23 @@ public class Controller {
 
     private void playGame(BridgeGame bridgeGame, Bridge bridge) {
         do {
-            outputView.printSelectMove();
-            String inputMove = inputView.readMoving();
+            String inputCommand = getCommand();
             int index = bridgeGame.getIndex();
-            if (index == 0 && checkInitMoveBridge(bridgeGame, bridge, inputMove)) return;
-            if (index != 0 && checkMoveBridge(bridgeGame, bridge, inputMove)) return;
+            if (index == 0 && checkInitMoveBridge(bridgeGame, bridge, inputCommand)) return;
+            if (index != 0 && checkMoveBridge(bridgeGame, bridge, inputCommand)) return;
         } while (!checkBridgeIndex(bridgeGame));
 
         gameEnd(bridge);
+    }
+
+    private String getCommand() {
+        try {
+            outputView.printSelectMove();
+            return inputView.readMoving();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getCommand();
+        }
     }
 
     private boolean checkMoveBridge(BridgeGame bridgeGame, Bridge bridge, String inputMove) {
