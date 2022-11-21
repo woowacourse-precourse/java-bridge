@@ -20,7 +20,7 @@ public class StartGameTest {
         StartGame runGame = new StartGame();
         List<String> checkList;
         InputStream in = generateUserInput("5");
-        System.setIn(System.in);
+        System.setIn(in);
         checkList = runGame.setBridgeSize().getBridge();
         assertThat(check(checkList)).isTrue();
     }
@@ -43,11 +43,10 @@ public class StartGameTest {
     void checkLength() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         StartGame runGame = new StartGame();
         List<String> checkList;
-        int lenght = 5;
-
-        Method method = runGame.getClass().getDeclaredMethod("getBridge", int.class);
-        method.setAccessible(true);
-        checkList = (List<String>)method.invoke(runGame,lenght);
+        int lenght = 10;
+        InputStream in = generateUserInput(String.valueOf(lenght));
+        System.setIn(in);
+        checkList = runGame.setBridgeSize().getBridge();
         assertThat(checkList).hasSize(lenght);
     }
 }
