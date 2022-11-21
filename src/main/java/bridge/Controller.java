@@ -20,13 +20,18 @@ public class Controller {
     }
 
     private void Game(int movingIndex, String lastInput) {
-        if (Same(movingIndex, bridgeList.size())) { //다리를 무사히 모두 맞힌 경우
-            printingResult(movingIndex - 1, lastInput);
-            return;
-        }
+        if (reachRightPoint(movingIndex, lastInput)) return; //정답을 모두 맞춘 경우
         String input = processMove(movingIndex); //입력을 받고 진행 사항을 출력
         if (diffentInput(movingIndex, input)) return; //틀린 답을 입력했을 경우
         Game(movingIndex + 1, input); //입력이 정답이면서 아직 게임이 남아있는 경우
+    }
+
+    private boolean reachRightPoint(int movingIndex, String lastInput) {
+        if (Same(movingIndex, bridgeList.size())) {
+            printingResult(movingIndex - 1, lastInput);
+            return true;
+        }
+        return false;
     }
 
     private boolean diffentInput(int movingIndex, String input) {
