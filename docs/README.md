@@ -10,8 +10,9 @@
   - [X] 최종 결과를 출력
 - [X] 에러 정의
 - [X] 길이에 따라 다리 생성
-- [X] 방향 Enum 추가
+- [X] 방향 enum 추가
 - [ ] BridgeGame 정의
 
 ## 프로그래밍 요구 사항
 - [ ] OutputView#printResult else문 제거
+- [ ] BridgeGame#addHistroy 10줄 이하로 줄이기
