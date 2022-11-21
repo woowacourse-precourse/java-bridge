@@ -24,11 +24,19 @@ public class BridgeGame {
     public void move(String moving) {
         if (!this.bridge.get(currentIndex).equals(moving)) {
 
-            return;
+            return; // currentIndex 반환하도록 수정예정, currentIndex와 bridge를 OuputView에 전달해서 현재상태를 출력할 수 있게 할 예정
         }
 
         currentIndex += 1;
         System.out.println(currentIndex);
+    }
+
+    public boolean isEndGame() {
+        if (this.currentIndex == this.bridgeSize) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
