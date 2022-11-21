@@ -16,6 +16,7 @@ public class StartGame {
         if (isWrongWay()) {
             return chooseWhenWrong(bridgeGame);
         }
+        Application.movingTurn++;
         return true;
     }
 
