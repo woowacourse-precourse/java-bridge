@@ -32,4 +32,12 @@ public class Application {
 
         return bridgeSize;
     }
+
+    private static boolean moveBridge() {
+        String moving = inputView.readMoving();
+        boolean crossedBridge = bridgeGame.move(moving);
+        result.storeResultBridges(moving, crossedBridge);
+        outputView.printMap(result);
+        return crossedBridge;
+    }
 }
