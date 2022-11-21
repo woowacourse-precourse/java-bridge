@@ -70,11 +70,7 @@ public class OutputView {
     public void continueOrFinishMap(List<String> bridgeStatus, int size, int idx) {
         if (bridgeStatus.get(idx) == "O") {
             continueMap(size, idx);
-
-            if (idx == size - 1) {
-                upperMap += " ]";
-                lowerMap += " ]";
-            }
+            finishMap(size, idx);
         }
     }
 
@@ -82,6 +78,13 @@ public class OutputView {
         if (idx != size - 1) {
             upperMap += " |";
             lowerMap += " |";
+        }
+    }
+
+    private void finishMap(int size, int idx) {
+        if (idx == size - 1) {
+            upperMap += " ]";
+            lowerMap += " ]";
         }
     }
 
