@@ -46,8 +46,4 @@ public class OutputView {
     public void printReTry(){
         System.out.println(PrintStatus.ReTryStart.getDes());
     }
-
-    public void printGameSuccessOrNot(){
-        System.out.println(PrintStatus.GameSuccessOrNot.getDes());
-    }
 }

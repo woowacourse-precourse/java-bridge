@@ -3,9 +3,15 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.model.BridgeMaker;
+import bridge.model.InputValidation;
+import bridge.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.util.IllformedLocaleException;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +52,6 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
     @Override
     protected void runMain() {
         Application.main(new String[]{});
