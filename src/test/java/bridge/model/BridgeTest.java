@@ -64,11 +64,8 @@ class BridgeTest {
         void bridgeAccessWithInvalidIndex(final int invalidIndex) {
             List<String> expected = new ArrayList<>(List.of("U", "U", "U"));
             Bridge bridge = new Bridge(expected);
-            for (int i = 0; i < expected.size(); ++i) {
-                assertThatThrownBy(() -> bridge.getResult("U", invalidIndex))
-                        .isInstanceOf(IndexOutOfBoundsException.class);
-            }
-
+            assertThatThrownBy(() -> bridge.getResult("U", invalidIndex))
+                    .isInstanceOf(IndexOutOfBoundsException.class);
         }
     }
 }

@@ -104,7 +104,7 @@ public class BridgeGame {
     }
 
     private String getMoving() {
-        while(true) {
+        while (true) {
             try {
                 return BridgeGameCommandValidator.checkMovingCommandCharacter(this.inputView.readMoving());
             } catch (IllegalStateException illegalStateException) {
@@ -114,7 +114,7 @@ public class BridgeGame {
     }
 
     private String getGameRetry() {
-        while(true) {
+        while (true) {
             try {
                 return BridgeGameCommandValidator.checkRetryGameCommandCharacter(this.inputView.readGameCommand());
             } catch (IllegalStateException illegalStateException) {

@@ -49,10 +49,8 @@ public class UserInputValidator {
         try {
             Integer.parseInt(userInput);
             return true;
-        } catch(NumberFormatException numberFormatException){
+        } catch (NumberFormatException numberFormatException) {
             return false;
         }
     }
-
-
 }
