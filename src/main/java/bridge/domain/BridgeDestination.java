@@ -12,7 +12,7 @@ public class BridgeDestination {
     private List<Boolean> upState = new ArrayList<>();
     private List<Boolean> downState = new ArrayList<>();
 
-    private BridgeProcess bridgeProcess = new BridgeProcess();
+    private BridgeMoveProcess bridgeMoveProcess = new BridgeMoveProcess();
     private OutputView outputView = new OutputView();
 
     private InputView inputView = new InputView();
@@ -29,7 +29,7 @@ public class BridgeDestination {
 
     public void setQuit(int bridgeSize, int idx, int gameCount) {
         final int final_idx=idx-1;
-        int nowIndex = convertNowIndex(bridgeProcess.getMoving().get(final_idx));
+        int nowIndex = convertNowIndex(bridgeMoveProcess.getMoving().get(final_idx));
         BridgePrinting resultBridgePrinting = new BridgePrinting(upState, downState, nowIndex);
         if (bridgeSize == idx && !BridgePrinting.isMoveStop()) {
             outputView.printResult(gameCount, resultBridgePrinting, true);

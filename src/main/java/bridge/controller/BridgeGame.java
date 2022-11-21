@@ -1,10 +1,8 @@
 package bridge.controller;
 
 import bridge.domain.BridgeDestination;
-import bridge.domain.BridgeProcess;
+import bridge.domain.BridgeMoveProcess;
 import bridge.domain.BridgePrinting;
-import bridge.view.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private BridgeProcess bridgeProcess = new BridgeProcess();
+    private BridgeMoveProcess bridgeMoveProcess = new BridgeMoveProcess();
     private BridgeDestination bridgeDestination = new BridgeDestination();
     private int gameCount = 1;
 
@@ -28,7 +26,7 @@ public class BridgeGame {
     }
 
     public int move(List<String> bridgeState, int bridgeSize) {
-        int idx = bridgeProcess.moveProcess(bridgeState, bridgeSize);
+        int idx = bridgeMoveProcess.moveProcess(bridgeState, bridgeSize);
         return idx;
     }
 

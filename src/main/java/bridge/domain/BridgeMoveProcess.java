@@ -2,11 +2,10 @@ package bridge.domain;
 
 import bridge.constant.GameState;
 import bridge.view.InputView;
-import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeProcess {
+public class BridgeMoveProcess {
 
     private static List<String> moving = new ArrayList<>();
     private List<Boolean> upState = new ArrayList<>();
