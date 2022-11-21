@@ -49,7 +49,7 @@ public class BridgeGame {
         return judgement.checkArrival(movingRecord,bridge);
     }
 
-    public boolean isPlay(String movingDirection){
+    public boolean checkPlay(String movingDirection){
         move(movingDirection);
         movingRecord.printMap(bridge);
         if (checkArrival()) return false;

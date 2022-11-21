@@ -24,24 +24,21 @@ public class BridgeGameController {
         setBridge();
     }
 
-    void setBridge(){
+    public void setBridge(){
         bridgeGame.setBridge(readBridgeSize());
     }
 
-    void playGame(){
-        if (bridgeGame.isPlay(InputView.readMoving())) playGame();
+    public void playGame(){
+        if (bridgeGame.checkPlay(InputView.readMoving())) playGame();
         if (bridgeGame.checkArrival()) return;
         if (bridgeGame.checkRetry(InputView.readGameCommand())) retryGame();
     }
-
-    void endGame(){
-        bridgeGame.printResult();
-    }
-
-    void retryGame() {
+    public void retryGame() {
         bridgeGame.retry();
         playGame();
     }
 
-
+    public void endGame(){
+        bridgeGame.printResult();
+    }
 }
