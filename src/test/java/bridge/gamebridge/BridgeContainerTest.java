@@ -1,6 +1,7 @@
 package bridge.gamebridge;
 
 import static bridge.command.util.MoveTestUtils.convertStringListToMoveList;
+import static bridge.config.ExceptionMessage.ERROR;
 import static bridge.result.GameStatus.FAIL;
 import static bridge.result.GameStatus.PROGRESS;
 import static bridge.result.GameStatus.SUCCESS;
@@ -11,10 +12,8 @@ import bridge.domain.Bridge;
 import bridge.command.Move;
 import bridge.result.Result;
 import java.util.List;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.Arguments;
 
 public class BridgeContainerTest {
 
@@ -59,16 +58,20 @@ public class BridgeContainerTest {
     void insertMoveBeforeGenerateAnswerBridge() {
         BridgeContainer bridgeContainer = new BridgeContainer();
         assertThatThrownBy(() -> bridgeContainer.insertMove(new Move("U")))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR);
     }
 
-    private static Stream<Arguments> generateTestMoveInput() {
-        return Stream.of(
-            Arguments.of(List.of("U")),
-            Arguments.of(List.of("U", "D", "D", "U")),
-            Arguments.of(List.of("D", "U", "D", "U"))
-        );
+    @DisplayName("정답 브릿지는 생성된 상태로 한번더 생성하면 예외가 발생한다.")
+    @Test
+    void generateAnswerBridgeOneMoreTime() {
+        BridgeContainer bridgeContainer = new BridgeContainer();
+        bridgeContainer.generateAnswerBridge(new Bridge(List.of("U")));
+        assertThatThrownBy(() -> bridgeContainer.generateAnswerBridge(new Bridge(List.of("D", "U"))))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR);
     }
+
 
     private void insertMovesForTest(List<String> inputMoves, BridgeContainer bridgeContainer) {
         List<Move> moves = convertStringListToMoveList(inputMoves);
