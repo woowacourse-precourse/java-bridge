@@ -19,7 +19,11 @@ public class Bridge {
         return CrossResult.FAIL;
     }
 
-    public int length() {
+    public boolean isEndPoint(int length){
+        return this.length() - length == 0;
+    }
+
+    private int length() {
         return bridge.size();
     }
 }

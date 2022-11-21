@@ -28,17 +28,13 @@ public class BridgeGame {
 
     public GameStatus checkGameStatus() {
         GameStatus status = GameStatus.RUNNING;
-        if (isEndPoint(bridge.length(), choiceDirections.length())) {
+        if (bridge.isEndPoint(choiceDirections.length())) {
             status = GameStatus.SUCCESS;
         }
         if (isFailed(crossResults)) {
             status = GameStatus.FAIL;
         }
         return status;
-    }
-
-    private boolean isEndPoint(int bridgeLength, int currentPosition) {
-        return bridgeLength - currentPosition == 0;
     }
 
     private boolean isFailed(CrossResults crossResults) {
