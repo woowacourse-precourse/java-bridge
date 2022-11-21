@@ -2,6 +2,7 @@ package bridge.application;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeType;
+import bridge.domain.GameResult;
 import bridge.domain.Result;
 import java.util.List;
 
@@ -68,6 +69,15 @@ public class BridgeGame {
         terminate = false;
     }
 
+    public GameResult exitGame() {
+        if (bridge.size() == position) {
+            Result result = new Result(bridge.subList(0, position - 1), true, true);
+            return GameResult.of(result, gameCount);
+        }
+        Result result = new Result(bridge.subList(0, position), false, false);
+        return GameResult.of(result, gameCount);
+    }
+
     private void validateGame() {
         if (terminate) {
             throw new IllegalStateException("종료된 게임은 더이상 진행할 수 없습니다.");
@@ -89,7 +99,7 @@ public class BridgeGame {
         if (bridge.size() == position + 1) {
             terminate = true;
         }
-        position++; // terminate 가 true 라면, position 은 더이상 의미가 없다.
+        position++; // terminate 가 true 라면 position 의 크기가 성공의 여부로 작용할 수 있다.
     }
 
     private void terminateGame() {
