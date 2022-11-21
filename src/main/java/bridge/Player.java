@@ -1,5 +1,7 @@
 package bridge;
 
+import exceptionHandler.BridgeGenerationException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,12 @@ public class Player {
         this.footprints = footprints;
     }
 
+    private void validate(String movableSide) {
+        BridgeGenerationException.validate(movableSide);
+    }
+
     public void move(String movedSide) {
+        validate(movedSide);
         footprints.add(movedSide);
     }
 
