@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.utils.GameState;
 import bridge.utils.Validator;
 
 import java.util.List;
@@ -21,8 +22,11 @@ public class BridgeGame {
         return checkMoveSuccess();
     }
 
-    public boolean checkFinish() {
-        return user.getMoveCount() == answerBridge.size();
+    public String getPlayResult() {
+        boolean moveSuccess = checkMoveSuccess();
+        boolean gameEnd = checkFinish();
+
+        return getGameState(moveSuccess, gameEnd);
     }
 
     public void retry() {
@@ -40,5 +44,21 @@ public class BridgeGame {
 
     private void validateMoveInput(String moveInput) {
         Validator.checkMoveInput(moveInput);
+    }
+
+    private boolean checkFinish() {
+        return user.getMoveCount() == answerBridge.size();
+    }
+
+    private String getGameState(boolean moveSuccess, boolean gameEnd) {
+        if (!moveSuccess) {
+            return GameState.LOOSE.name();
+        }
+
+        if (gameEnd) {
+            return GameState.WIN.name();
+        }
+
+        return GameState.PLAYING.name();
     }
 }
