@@ -5,7 +5,6 @@ import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 
 import bridge.constant.GameStatus;
-import bridge.constant.Moving;
 
 public class BridgeMonitor {
     private StringBuilder upperLine;
