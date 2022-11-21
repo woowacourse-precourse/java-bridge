@@ -23,14 +23,14 @@ public enum GameCommands {
         this.command = command;
     }
 
-    public static GameCommands of(String command) {
+    public static GameCommands of(final String command) {
         if (!GAME_COMMANDS.containsKey(command)) {
             throw new IllegalArgumentException("R 또는 Q만 입력해 주세요. (R:재시작, Q:종료)");
         }
         return GAME_COMMANDS.get(command);
     }
 
-    public boolean is(GameCommands gameCommand) {
+    public boolean is(final GameCommands gameCommand) {
         return this == gameCommand;
     }
 }

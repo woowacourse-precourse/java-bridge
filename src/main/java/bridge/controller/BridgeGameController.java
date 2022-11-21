@@ -20,7 +20,6 @@ public class BridgeGameController {
 
     private static final int INIT_VALUE_OF_POSITION = 0;
     private static final int INIT_VALUE_OF_CHALLENGES = 1;
-    public static final String GAME_SUCCESS = "성공";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -33,13 +32,13 @@ public class BridgeGameController {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void run() {
+    public void startBridgeGame() {
         outputView.printStartMessage();
 
         BridgeSize bridgeSize = inputView.bridgeSize();
         BridgeGame bridgeGame = bridgeGame(bridgeSize);
 
-        startBridgeGame(bridgeGame);
+        playBridgeGame(bridgeGame);
         outputView.printResult(bridgeGame);
     }
 
@@ -54,7 +53,7 @@ public class BridgeGameController {
         return new BridgeGame(bridge, player, new MoveResults());
     }
 
-    private void startBridgeGame(final BridgeGame bridgeGame) {
+    private void playBridgeGame(final BridgeGame bridgeGame) {
         GameCommands gameCommand = NOTHING;
 
         while (bridgeGame.isNotOver(gameCommand)) {

@@ -15,11 +15,11 @@ public class Position {
 
     private final int value;
 
-    private Position(int value) {
+    private Position(final int value) {
         this.value = value;
     }
 
-    public static Position of(int key) {
+    public static Position of(final int key) {
         validateKeyOfPosition(key);
         return POSITIONS.get(key);
     }
@@ -33,7 +33,7 @@ public class Position {
         return POSITIONS.get(0);
     }
 
-    boolean isLessThan(int size) {
+    boolean isLessThan(final int size) {
         return value < size;
     }
 
@@ -41,7 +41,7 @@ public class Position {
         return value;
     }
 
-    private static void validateKeyOfPosition(int key) {
+    private static void validateKeyOfPosition(final int key) {
         if (!POSITIONS.containsKey(key)) {
             throw new IllegalArgumentException("Player의 위치 값은 0~19까지만 가능합니다.");
         }

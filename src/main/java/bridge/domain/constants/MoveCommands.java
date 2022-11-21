@@ -21,18 +21,18 @@ public enum MoveCommands {
         this.command = command;
     }
 
-    public static MoveCommands of(String command) {
+    public static MoveCommands of(final String command) {
         if (!MOVE_COMMANDS.containsKey(command)) {
             throw new IllegalArgumentException("U 또는 D만 입력해 주세요. (U:위, D:아래)");
         }
         return MOVE_COMMANDS.get(command);
     }
 
-    public boolean is(String command) {
+    public boolean is(final String command) {
         return this.command.equals(command);
     }
 
-    public boolean is(MoveCommands moveCommands) {
+    public boolean is(final MoveCommands moveCommands) {
         return this == moveCommands;
     }
 }

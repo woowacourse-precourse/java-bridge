@@ -38,7 +38,7 @@ public class InputView {
         return readLine();
     }
 
-    private <T> T repeatInputUntilSuccess(Supplier<T> supplier) {
+    private <T> T repeatInputUntilSuccess(final Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

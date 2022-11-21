@@ -16,7 +16,7 @@ public class Bridge {
         return moveCommand.is(bridgeCommand);
     }
 
-    boolean isLongerThan(Position position) {
+    boolean isLongerThan(final Position position) {
         return position.isLessThan(bridge.size());
     }
 }

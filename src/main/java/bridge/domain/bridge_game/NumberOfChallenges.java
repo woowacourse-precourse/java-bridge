@@ -4,7 +4,7 @@ public class NumberOfChallenges {
 
     private final int value;
 
-    public NumberOfChallenges(int value) {
+    public NumberOfChallenges(final int value) {
         this.value = value;
     }
 

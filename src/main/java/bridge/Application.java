@@ -19,6 +19,6 @@ public class Application {
                 outputView,
                 bridgeMaker);
 
-        bridgeGameController.run();
+        bridgeGameController.startBridgeGame();
     }
 }

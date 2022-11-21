@@ -7,7 +7,7 @@ public class OutputView {
 
     private final OutputViewFormatter outputViewFormatter;
 
-    public OutputView(OutputViewFormatter outputViewFormatter) {
+    public OutputView(final OutputViewFormatter outputViewFormatter) {
         this.outputViewFormatter = outputViewFormatter;
     }
 
