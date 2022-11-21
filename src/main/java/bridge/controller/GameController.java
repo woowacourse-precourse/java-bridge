@@ -8,27 +8,25 @@ import bridge.view.OutputView;
 
 public class GameController {
     private static final String RETRY_COMMAND = "R";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final Bridge bridge;
 
     public GameController(InputView inputView, OutputView outputView, BridgeNumberGenerator bridgeNumberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-        bridge = this.generateBridge();
         outputView.printGameStart();
     }
 
     public void execute() {
         BridgeGameStatus status = new BridgeGameStatus(RETRY_COMMAND);
         while (status.isRunning()) {
-            BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
-            Result result = playGame(bridge, bridgeGame);
-            result.increaseTryCount();
+            BridgeGame bridgeGame = new BridgeGame(this.generateBridge(), new BridgeGameReferee());
+            Result result = this.playGame(bridgeGame);
             if (bridgeGame.retry(result)) {
-                readGameCommand(status);
+                this.changeGameStatus(status);
                 outputView.printResult(result);
                 continue;
             }
@@ -37,7 +35,8 @@ public class GameController {
         }
     }
 
-    private Result playGame(Bridge bridge, BridgeGame bridgeGame) {
+    private Result playGame(BridgeGame bridgeGame) {
+        Bridge bridge = bridgeGame.getBridge();
         Result result = new Result();
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
             bridgeGame.move(result, this.readMoving(), i);
@@ -45,6 +44,7 @@ public class GameController {
                 return result;
             }
         }
+        result.increaseTryCount();
         return result;
     }
 
@@ -74,7 +74,7 @@ public class GameController {
         }
     }
 
-    private void readGameCommand(BridgeGameStatus status) {
+    private void changeGameStatus(BridgeGameStatus status) {
         outputView.printInputGameCommand();
         status.changeStatus(inputView.readGameCommand());
     }
