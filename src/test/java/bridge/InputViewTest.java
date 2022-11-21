@@ -36,6 +36,16 @@ class InputViewTest extends NsTest {
         });
     }
 
+    @DisplayName("이동값이 U또는 D가 아닐 때의 예외처리")
+    @ValueSource(strings = {"", "UD", "DU", "ABC", "u", "d"})
+    @ParameterizedTest
+    void 이동_문자열_테스트(String input) {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> new InputView().validateMove(input)).isInstanceOf(IllegalArgumentException.class);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
