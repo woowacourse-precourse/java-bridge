@@ -1,5 +1,10 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -26,8 +31,48 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> mark, boolean passable) {
+        List<String> upperBridge = new ArrayList<>();
+        List<String> loserBridge = new ArrayList<>();
+        setBridge(upperBridge, mark,"U");
+        setBridge(loserBridge, mark,"D");
+
+        if (!passable){
+            setImpassable(upperBridge,loserBridge);
+        }
+        printBridge(upperBridge);
+        printBridge(loserBridge);
     }
+
+    private void printBridge(List<String> bridge) {
+        System.out.print("[ ");
+        for(String spot : bridge){
+            System.out.print(spot);
+        }
+        System.out.println(" ]");
+    }
+
+    private void setImpassable(List<String> upperBridge, List<String> loserBridge) {
+        if(upperBridge.get(upperBridge.size()-1).equals("O")){ // upper 가 마지막 O
+            upperBridge.set(upperBridge.size()-1,"X");
+            return;
+        }
+        loserBridge.set(loserBridge.size()-1,"X");
+    }
+
+    private void setBridge(List<String> bridge, List<String> mark, String which) {
+        for(String i :mark){
+            if(i.equals(which)){
+                bridge.add("O");
+                bridge.add(" | ");
+                continue;
+            }
+            bridge.add(" ");
+            bridge.add(" | ");
+        }
+        bridge.remove(bridge.size()-1);
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

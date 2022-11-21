@@ -16,11 +16,14 @@ public class BridgeController {
         int size = inputView.readBridgeSize();
         Bridge bridge = new Bridge(size);
 
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame();
 
+        boolean passable = false;
         do {
             outputView.printRequestMove();
-        } while (bridgeGame.move(inputView.readMoving()));
+            passable = bridgeGame.move(inputView.readMoving(), bridge);
+            outputView.printMap(bridgeGame.getMark(), passable);
+        } while (passable);
 
         outputView.printRequestGameCommand();
         inputView.readGameCommand();
