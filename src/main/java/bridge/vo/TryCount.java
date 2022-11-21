@@ -3,7 +3,7 @@ package bridge.vo;
 import java.util.Objects;
 
 public class TryCount {
-    private int tryCount;
+    private final int tryCount;
 
     public TryCount() {
         tryCount = 0;
@@ -14,7 +14,7 @@ public class TryCount {
     }
 
     public TryCount addCount() {
-        return new TryCount(++tryCount);
+        return new TryCount(tryCount + 1);
     }
 
     @Override

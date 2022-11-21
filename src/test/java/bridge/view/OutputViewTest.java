@@ -163,9 +163,9 @@ class OutputViewTest {
                     new StepResult(Step.D, true),
                     new StepResult(Step.U, false)
             );
-            TryCount tryCount = new TryCount();
-            tryCount.addCount();
-            tryCount.addCount();
+            TryCount tryCount = new TryCount()
+                    .addCount()
+                    .addCount();
 
             return new GameResult(stepResults, tryCount);
         }
