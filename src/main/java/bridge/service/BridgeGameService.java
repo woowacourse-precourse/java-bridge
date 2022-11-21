@@ -48,7 +48,7 @@ public class BridgeGameService {
     * */
     public Status proceedGame(List<String> bridge) {
         userMoving = new ArrayList<>();
-        while (bridge.size() >= userMoving.size()) {
+        while (bridge.size() > userMoving.size()) {
             userMoving.add(getMoving());
             OutputView.printMap(bridge, userMoving);
             if (!isSuccess(bridge, userMoving)) {
