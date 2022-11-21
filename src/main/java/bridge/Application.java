@@ -1,13 +1,13 @@
 package bridge;
 
-import bridge.controller.BridgeGame;
+import bridge.controller.BridgeGameController;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame=new BridgeGame();
+        BridgeGameController bridgeGameController=new BridgeGameController();
         try {
-            bridgeGame.gameStart();
+            bridgeGameController.gameStart();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
