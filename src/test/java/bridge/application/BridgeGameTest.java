@@ -34,7 +34,7 @@ class BridgeGameTest {
             Result nextResult = Result.of(bridgeGame, true, false);
             Result result = bridgeGame.move("D");
 
-            assertThat(result).isEqualTo(nextResult);
+            assertThat(result).usingRecursiveComparison().isEqualTo(nextResult);
         }
 
         @Test
@@ -49,7 +49,7 @@ class BridgeGameTest {
             Result nextResult = Result.of(bridgeGame, true, true);
             Result result = bridgeGame.move("D");
 
-            assertThat(result).isEqualTo(nextResult);
+            assertThat(result).usingRecursiveComparison().isEqualTo(nextResult);
         }
 
         @Test
@@ -63,7 +63,7 @@ class BridgeGameTest {
             Result nextResult = Result.of(bridgeGame, false, false);
             Result result = bridgeGame.move("U");
 
-            assertThat(result).isEqualTo(nextResult);
+            assertThat(result).usingRecursiveComparison().isEqualTo(nextResult);
         }
 
         @Test
@@ -78,7 +78,7 @@ class BridgeGameTest {
             Result nextResult = Result.of(bridgeGame, true, false);
             Result result = bridgeGame.move("D");
 
-            assertThat(result).isEqualTo(nextResult);
+            assertThat(result).usingRecursiveComparison().isEqualTo(nextResult);
             assertThat(result.getGameCount()).isEqualTo(2);
         }
 
@@ -93,7 +93,7 @@ class BridgeGameTest {
             Result nextResult = Result.of(bridgeGame, true, false);
             Result result = bridgeGame.move("D");
 
-            assertThat(result).isEqualTo(nextResult);
+            assertThat(result).usingRecursiveComparison().isEqualTo(nextResult);
             assertThat(result.getGameCount()).isEqualTo(2);
         }
 
@@ -113,7 +113,7 @@ class BridgeGameTest {
             Result result = bridgeGame.move("D");
 
             assertThat(victoryResult.isVictory()).isTrue();
-            assertThat(result).isEqualTo(nextResult);
+            assertThat(result).usingRecursiveComparison().isEqualTo(nextResult);
             assertThat(result.getGameCount()).isEqualTo(2);
         }
     }
