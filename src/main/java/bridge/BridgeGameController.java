@@ -68,10 +68,15 @@ public class BridgeGameController {
     }
 
     List<List<String>> move (BridgeGame bridgeGame, int index){
-        outputView.printReadMoving();
-        String movingBlock = inputView.readMoving();
-        List<List<String>> movedBridge = bridgeGame.move(movingBlock, index);
-        outputView.printMap(movedBridge);
-        return movedBridge;
+        while(true){
+            outputView.printReadMoving();
+            try{
+                List<List<String>> movedBridge = bridgeGame.move(inputView.readMoving(), index);
+                outputView.printMap(movedBridge);
+                return movedBridge;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
