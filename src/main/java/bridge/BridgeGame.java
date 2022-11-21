@@ -21,7 +21,7 @@ public class BridgeGame {
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.moves = new ArrayList<>();
-        this.retries = 0;
+        this.retries = 1;
         this.state = STATE.MOVING;
     }
 
