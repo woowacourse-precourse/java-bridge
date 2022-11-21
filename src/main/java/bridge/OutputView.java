@@ -17,18 +17,21 @@ public class OutputView {
         }
         String upSide = "[";
         String downSide = "[";
-        String square = "O";
+        String correctSquare = "O";
+        String failureSquare = " ";
+        System.out.println(Application.currentLocation);
         for(int i = 0; i < Application.currentLocation; i++){
             if(!Application.success && i == Application.currentLocation - 1){
-                square = " X ";
+                correctSquare = " ";
+                failureSquare = "X";
             }
             if(Application.bridge.get(i).equals("U")){
-                upSide += (" "+ square +" |");
-                downSide += ("   |");
+                upSide += (" "+ correctSquare +" |");
+                downSide += (" "+ failureSquare +" |");
                 continue;
             }
-            upSide += ("   |");
-            downSide += (" "+ square +" |");
+            upSide += (" "+ failureSquare +" |");
+            downSide += (" "+ correctSquare +" |");
         }
 
         upSide = upSide.substring(0, upSide.length() - 1);
