@@ -36,12 +36,11 @@ public class Controller {
             try {
                 inputBridgeSize = inputView.readBridgeSize();
                 validation.validateBridgeSize(inputBridgeSize);
-                break;
+                return inputBridgeSize;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
         }
-        return bridgeSize;
     }
 
     private void createBridge(int bridgeSize) {
@@ -116,11 +115,10 @@ public class Controller {
             try {
                 inputCommand = inputView.readGameCommand();
                 validation.validateCommand(inputCommand);
-                break;
+                return inputCommand;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("재시도 여부는 R 또는 Q여야 합니다.");
             }
         }
-        return inputCommand;
     }
 }
