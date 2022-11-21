@@ -36,10 +36,9 @@ class PlayResultTest {
     @Test
     void 재시작_시_시도_횟수_증가() {
         playResult.updateResult(MoveStatus.DOWN_FAIL);
-        int tryCountBeforeRetry = playResult.getTryCount();
         playResult.deletePreviousResult();
 
-        assertThat(playResult.getTryCount()).isEqualTo(tryCountBeforeRetry + 1);
+        assertThat(playResult.getTryCount().toString()).isEqualTo("2");
     }
 
     @DisplayName("재시작 시 실패 결과 삭제")

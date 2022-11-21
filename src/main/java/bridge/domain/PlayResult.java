@@ -6,14 +6,14 @@ import java.util.List;
 public class PlayResult {
 
     private final List<MoveStatus> playResult = new ArrayList<>();
-    private int tryCount = 1;
+    private final TryCount tryCount = new TryCount();
 
     public void updateResult(MoveStatus moveStatus) {
         playResult.add(moveStatus);
     }
 
     public void deletePreviousResult() {
-        tryCount++;
+        tryCount.updateTryCount();
         playResult.remove(playResult.size() - 1);
     }
 
@@ -21,7 +21,7 @@ public class PlayResult {
         return playResult;
     }
 
-    public int getTryCount() {
+    public TryCount getTryCount() {
         return tryCount;
     }
 }

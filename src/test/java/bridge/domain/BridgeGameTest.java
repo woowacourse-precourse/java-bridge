@@ -80,7 +80,7 @@ class BridgeGameTest {
         bridgeGame.move("D");
         bridgeGame.retry("R");
 
-        assertThat(bridgeGame.getPlayer().getPlayResult().getTryCount())
-                .isEqualTo(2);
+        assertThat(bridgeGame.getPlayer().getPlayResult().getTryCount().toString())
+                .isEqualTo("2");
     }
 }
