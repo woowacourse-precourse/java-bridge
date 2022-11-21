@@ -14,7 +14,7 @@ public class InputView {
                 ExceptionHandler.checkBridgeSize(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException illegalArgumentException) {
-                throw illegalArgumentException;
+                OutputView.printError(illegalArgumentException);
             }
         }
     }
@@ -27,19 +27,21 @@ public class InputView {
                 ExceptionHandler.checkMoving(input);
                 return input;
             } catch (IllegalArgumentException illegalArgumentException) {
-                throw illegalArgumentException;
+                OutputView.printError(illegalArgumentException);
             }
         }
     }
 
     public static String readRetryCommand() {
         OutputView.printInputRetryCommand();
-        try {
-            String input = readLine();
-            ExceptionHandler.checkRetryCommand(input);
-            return input;
-        } catch (IllegalArgumentException illegalArgumentException) {
-            throw illegalArgumentException;
+        while (true) {
+            try {
+                String input = readLine();
+                ExceptionHandler.checkRetryCommand(input);
+                return input;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printError(illegalArgumentException);
+            }
         }
     }
 }
