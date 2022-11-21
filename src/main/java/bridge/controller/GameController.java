@@ -7,40 +7,40 @@ import bridge.view.OutputView;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeGame bridgeGame;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridgeGame = initBridgeGame();
     }
 
     public void start() {
+        final BridgeGame bridgeGame = initBridgeGame();
         outputView.printNewLine();
+
         do {
-            play();
-        } while (retry());
+            play(bridgeGame);
+        } while (retry(bridgeGame));
 
         outputView.printResult(bridgeGame.resultOfFinishedGame());
     }
 
-    public void play() {
+    private void play(final BridgeGame bridgeGame) {
         do {
             bridgeGame.move(getValidBridgeMove());
             outputView.printMap(bridgeGame.resultOfMoving().getMoveStatuses());
         } while (!bridgeGame.isEnd());
     }
 
-    private BridgeGame initBridgeGame() {
-        return new BridgeGame(getValidBridgeSize());
-    }
-
-    private boolean retry() {
+    private boolean retry(final BridgeGame bridgeGame) {
         if (bridgeGame.isSuccess()) {
             return false;
         }
 
         return bridgeGame.retry(getValidGameRetryCommand());
+    }
+
+    private BridgeGame initBridgeGame() {
+        return new BridgeGame(getValidBridgeSize());
     }
 
     private int getValidBridgeSize() {
