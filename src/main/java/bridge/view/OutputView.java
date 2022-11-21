@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.dto.GameResult;
 import bridge.dto.PathTravel;
 
 import java.util.List;
@@ -12,6 +13,11 @@ public class OutputView {
     private final String BRIDGE_START = "[";
     private final String BRIDGE_END = "]";
     private final String BRIDGE_DIVIDING_LINE = "|";
+    private final String FINAL_GAME_RESULT = "최종 게임 결과";
+    private final String SUCCESS = "성공";
+    private final String FAIL = "실패";
+    private final String GAME_SUCCESS_OR_FAIL = "게임 성공 여부: ";
+    private final String TOTAL_NUMBER_OF_SUCCESS = "총 시도한 횟수: ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -48,7 +54,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameResult gameResult) {
+        System.out.println(FINAL_GAME_RESULT);
+        printPlayerMap(gameResult.getUpperBridge());
+        printPlayerMap(gameResult.getLowerBridge());
+        printPlayerGameResult(gameResult.getResult());
+        printTotalNumberOfTry(gameResult.getNumberOfTry());
+    }
+
+    private void printTotalNumberOfTry(Long numberOfTry) {
+        System.out.println(TOTAL_NUMBER_OF_SUCCESS + numberOfTry);
+    }
+
+    private void printPlayerGameResult(Boolean result) {
+        if (result) {
+            System.out.println(GAME_SUCCESS_OR_FAIL + SUCCESS);
+            return;
+        }
+        System.out.println(GAME_SUCCESS_OR_FAIL + FAIL);
     }
 
     public void printGameStart() {

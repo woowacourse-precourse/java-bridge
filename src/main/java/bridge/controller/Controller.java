@@ -30,6 +30,7 @@ public class Controller {
         while (!isGameClear(bridgeGame.getGameResult(playerId, bridge.getSize())) && isRetry(playerId)) {
             crossBridgePlayer(playerId, bridge, getPlayerMoving());
         }
+        outputView.printResult(bridgeGame.getGameResult(playerId, bridge.getSize()));
     }
 
     private boolean isRetry(Long playerId) {
