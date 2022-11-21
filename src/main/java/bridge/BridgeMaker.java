@@ -20,8 +20,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        // TODO: U/D 상수 선언
-        List<String> upDown = List.of("D", "U");
+        List<String> upDown = List.of(BridgeSides.DOWN, BridgeSides.UP);
         return generateNumbers(size).stream()
                 .map(upDown::get)
                 .collect(Collectors.toList());
