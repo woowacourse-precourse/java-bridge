@@ -26,4 +26,8 @@ public class Pedestrian {
     public int findLocation() {
         return movingRecord.size();
     }
+
+    public void clearRecord() {
+        movingRecord.clear();
+    }
 }

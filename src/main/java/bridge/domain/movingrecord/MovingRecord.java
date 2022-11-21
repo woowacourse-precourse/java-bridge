@@ -27,6 +27,10 @@ public class MovingRecord {
         return record.size();
     }
 
+    public void clear() {
+        record.clear();
+    }
+
     @Override
     public String toString() {
         return "MovingRecord{" +
