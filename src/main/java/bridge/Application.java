@@ -13,19 +13,27 @@ public class Application {
     public static void main(String[] args) {
         output.printStart();
         List<String> bridge = bm.makeBridge(input.readBridgeSize());
-        List<String> moves = new ArrayList<>();
         System.out.println(bridge);
-        boolean retry = true, correct = true;
+        List<String> moves = new ArrayList<>();;
         int progress = 0;
-        while (retry) {
-            while (correct) {
+        int numTrial = 0;
+        boolean retry = true, correct = true;
+        while (retry && progress < bridge.size()) {
+            progress = 0;
+            moves = new ArrayList<>();
+            while (correct && progress < bridge.size()) {
                 String move = input.readMoving();
                 moves.add(move);
-                progress++;
                 output.printMap(output.makeMap(bridge, moves));
                 correct = bg.move(bridge.get(progress),move);
+                progress++;
             }
-            retry = bg.retry(input.readGameCommand());
+            numTrial++;
+            if (!correct) {
+                retry = bg.retry(input.readGameCommand());
+            }
         }
+        output.printResult(correct, numTrial, output.makeMap(bridge, moves));
+
     }
 }
