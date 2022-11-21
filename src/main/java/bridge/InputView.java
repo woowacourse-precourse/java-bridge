@@ -14,7 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(EventMessage.INPUT_BRIDGE_SIZE);
         String input = getNumberInput();
 
@@ -27,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(EventMessage.INPUT_MOVING_SIZE);
         String moving = getInput();
 
@@ -37,38 +37,38 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         return null;
     }
 
-    private String getInput(){
+    private static String getInput(){
         String input = Console.readLine().trim();
         validateInput(input);
         return input;
     }
 
-    private void validateInput(String input){
+    private static void validateInput(String input){
         validateEmptyInput(input);
     }
 
-    private String getNumberInput(){
+    private static String getNumberInput(){
         String input = Console.readLine().trim();
         validateNumberInput(input);
         return input;
     }
 
-    private void validateNumberInput(String input){
+    private static void validateNumberInput(String input){
         validateEmptyInput(input);
         validateHasCharacterInput(input);
     }
 
-    private void validateEmptyInput(String input){
+    private static void validateEmptyInput(String input){
         if (Validator.isEmpty(input)){
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY_ERROR.getMessage());
         }
     }
 
-    private void validateHasCharacterInput(String input){
+    private static void validateHasCharacterInput(String input){
         if (!Validator.hasNotCharacter(input)){
             throw new IllegalArgumentException(ErrorMessage.INPUT_HAS_CHARACTER_ERROR.getMessage());
         }
