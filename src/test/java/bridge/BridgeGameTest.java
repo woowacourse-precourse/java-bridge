@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BridgeGameTest {
     private static BridgeGame bridgeGame;
     private static OutputView outputView;
@@ -22,7 +20,7 @@ class BridgeGameTest {
         String[] ss = "UDUDUUUDD".split("");
         int count = 1;
         for (String s : ss){
-            if(bridgeGame.isFail()) break;
+            if(bridgeGame.isFailed()) break;
             bridgeGame.move(s, "U");
             System.out.println(count++ + "회차");
             outputView.printMap(bridgeGame.getLines());
