@@ -6,6 +6,7 @@ package bridge.domain.bridgegame;
 public class BridgeGame {
     private final StringBuilder upBridge;
     private final StringBuilder downBridge;
+    private boolean winOrLose = true;
 
     public BridgeGame() {
         upBridge = new StringBuilder();
@@ -16,7 +17,30 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String movement, boolean isMatch, int index) {
+        setFence(index);
+        setWinOrLose(isMatch);
+        if (movement.equals(BridgeType.UP_VALUE.getUpOrDown())) {
+            upBridge.append(String.format("%s", UserChoice.findGame(true, isMatch).getGameValue()));
+            downBridge.append(String.format("%s", UserChoice.findGame(false, isMatch).getGameValue()));
+        }
+        if (movement.equals(BridgeType.DOWN_VALUE.getUpOrDown())) {
+            upBridge.append(String.format("%s", UserChoice.findGame(false, isMatch).getGameValue()));
+            downBridge.append(String.format("%s", UserChoice.findGame(true, isMatch).getGameValue()));
+        }
+    }
+
+    private void setWinOrLose(boolean isMatch) {
+        if (!isMatch) {
+            winOrLose = false;
+        }
+    }
+
+    public void setFence(int index) {
+        if (index > 0) {
+            upBridge.append(" | ");
+            downBridge.append(" | ");
+        }
     }
 
     /**
