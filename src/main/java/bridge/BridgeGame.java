@@ -61,4 +61,8 @@ public class BridgeGame {
         }
         bridgeLineOne.add(" ");
     }
+
+    public List<String> getBridgeLineOne() {
+        return bridgeLineOne;
+    }
 }
