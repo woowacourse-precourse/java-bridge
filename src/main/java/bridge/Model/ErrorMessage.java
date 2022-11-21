@@ -8,7 +8,7 @@ public enum ErrorMessage {
     INPUT_COMMAND_ERROR(ERROR_HEADER.getMessage() + " R(재시작) 또는 Q(종료)만 입력 가능합니다."),
     BRIDGE_CONTENT_ERROR(ERROR_HEADER.getMessage() + " 다리에 잘못된 값이 포함되어 있습니다. 다리는 U 또는 D로만 표현 가능합니다.");
 
-    private String message;
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = message;
