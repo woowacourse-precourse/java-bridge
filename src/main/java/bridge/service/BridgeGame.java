@@ -4,6 +4,8 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.repository.BridgeMakerRepository;
 import bridge.repository.CompareBridgeRepository;
+import bridge.service.enums.GameCommand;
+import bridge.service.enums.GameResult;
 import java.util.List;
 
 /**
@@ -39,11 +41,11 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         attempts++;
-        return gameCommand.equals("R");
+        return gameCommand.equals(GameCommand.RETRY.getType());
     }
 
     public boolean isEnd(String gameCommand, List<String> movingChoices, List<String> bridge) {
-        if (gameCommand.equals("Q")) {
+        if (gameCommand.equals(GameCommand.QUIT.getType())) {
             return true;
         }
         if (movingChoices.size() == bridge.size()) {
@@ -53,11 +55,11 @@ public class BridgeGame {
     }
 
     public String getSuccessOrNot(String gameCommand, List<String> movingChoices, List<String> bridge) {
-        if (gameCommand.equals("Q")) {
-            return "실패";
+        if (gameCommand.equals(GameCommand.QUIT.getType())) {
+            return GameResult.FAIL.getType();
         }
         if (movingChoices.size() == bridge.size()) {
-            return "성공";
+            return GameResult.SUCCESS.getType();
         }
         return null;
     }
