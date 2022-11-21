@@ -4,6 +4,7 @@ import static bridge.model.RoundStatus.FAIL;
 import static bridge.util.BridgeGameConstant.ACCESSIBLE_SIGN;
 import static bridge.util.BridgeGameConstant.DOWN_SIGN;
 import static bridge.util.BridgeGameConstant.INACCESSIBLE_SIGN;
+import static bridge.util.BridgeGameConstant.START_INDEX;
 import static bridge.util.BridgeGameConstant.UP_SIGN;
 
 import bridge.model.RoundStatus;
@@ -44,7 +45,7 @@ public class MapAdapter {
     }
 
     private static String getMapsWhenFail(String selected, List<String> course, RoundStatus roundStatus) {
-        String result = IntStream.range(0, course.size() - 1).mapToObj(i -> getMap(course.get(i), selected))
+        String result = IntStream.range(START_INDEX, course.size() - 1).mapToObj(i -> getMap(course.get(i), selected))
                 .collect(Collectors.joining(SPLITTER));
         if (result.length() == 0) {
             return getMapWhenFail(course.get(course.size() - 1), selected);

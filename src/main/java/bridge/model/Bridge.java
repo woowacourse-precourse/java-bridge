@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.util.BridgeGameConstant.START_INDEX;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,7 +16,7 @@ public class Bridge {
     }
 
     public List<Integer> getAccessibleIndexes(String direction) {
-        return IntStream.range(0, path.size())
+        return IntStream.range(START_INDEX, path.size())
                 .filter(i -> path.get(i).equals(direction))
                 .boxed().collect(Collectors.toList());
     }
