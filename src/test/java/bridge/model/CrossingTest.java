@@ -1,6 +1,7 @@
 package bridge.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -93,6 +94,62 @@ class CrossingTest {
 
             //when
             int actual = crossing.getNextStep();
+
+            //then
+            Assertions.assertThat(actual).isEqualTo(expected);
+        }
+    }
+
+    @Nested
+    @DisplayName("isFinish 메서드는")
+    class DescribeIsFinish {
+
+        @ParameterizedTest
+        @NullSource
+        @DisplayName("인자로 Null을 받으면 IllegalArgumentException을 반환")
+        void throwIllegalArgumentExceptionWhenReceiveNull(BridgeSize bridgeSize) {
+            //given
+            Crossing crossing = new Crossing(new ArrayList<>());
+
+            //then
+            Assertions.assertThatThrownBy(() -> crossing.isFinish(bridgeSize))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        @DisplayName("인자로 받은 BridgeSize의 값이 현재 횡단한 길이가 다르다면 false반환")
+        void returnFalseWhenReceiveNotEqualBridgeSize() {
+            //given
+            boolean expected = false;
+            BridgeSize bridgeSize = new BridgeSize(3);
+
+            Crossing crossing = new Crossing(List.of(
+                    new PassOrFail(true),
+                    new PassOrFail(false)
+            ));
+
+            //when
+            boolean actual = crossing.isFinish(bridgeSize);
+
+            //then
+            Assertions.assertThat(actual).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("인자로 받은 BridgeSize의 값과 현재 횡단한 길이가 같다면 true반환")
+        void returnTrueWhenReceiveEqualBridgeSize() {
+            //given
+            boolean expected = true;
+            BridgeSize bridgeSize = new BridgeSize(3);
+
+            Crossing crossing = new Crossing(List.of(
+                    new PassOrFail(true),
+                    new PassOrFail(false),
+                    new PassOrFail(false)
+            ));
+
+            //when
+            boolean actual = crossing.isFinish(bridgeSize);
 
             //then
             Assertions.assertThat(actual).isEqualTo(expected);
