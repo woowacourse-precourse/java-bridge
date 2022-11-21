@@ -5,16 +5,18 @@ import View.OutputView;
 
 public class Application {
 
-    public static void inputFunctions(OutputView outputView, IFunction f) {
+    public static int inputFunctions(OutputView outputView, IFunction f) {
         boolean flag = true;
+        int res = 0;
         while (flag) {
             try{
-                f.execute();
+                res = f.execute();
                 flag = false;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
+        return res;
     }
 
     public static void main(String[] args) {
@@ -24,9 +26,17 @@ public class Application {
         Controller controller = new Controller(inputView, outputView);
 
         inputFunctions(outputView, controller::start);
-        while (true) {
-            inputFunctions(outputView, controller::move);
-            inputFunctions(outputView, controller::askRetry);
+        boolean flag = true;
+        while (flag) {
+            int moveFlag = inputFunctions(outputView, controller::move);
+            if(moveFlag == 1) {
+                flag = inputFunctions(outputView, controller::askRetry) == 1;
+            }
+            if(moveFlag == 2) {
+                break;
+            }
         }
+        controller.result();
+
     }
 }

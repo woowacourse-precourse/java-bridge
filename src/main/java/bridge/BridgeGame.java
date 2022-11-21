@@ -25,11 +25,18 @@ public class BridgeGame {
         return tryCounts;
     }
 
-    public boolean getEndGame() {
+    /**
+     * get end game whether
+     * @return 0 - not end, 1 - failure, 2 - success
+     */
+    public int getEndGame() {
         if (user.get(user.size()-1).length() > 1) {
-            return true;
+            return 1;
         }
-        return user.size() == bridge.size();
+        if (user.size() == bridge.size()) {
+            return 2;
+        }
+        return 0;
     }
 
     /**
