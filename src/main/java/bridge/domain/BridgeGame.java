@@ -23,12 +23,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String direction) {
-        check();
+        validateStatus();
         movementRecord.add(Direction.getDirection(direction));
     }
 
     public String[][] getCurrentMap() {
-        check();
+        validateStatus();
         String[][] map = getEmptyMap();
         for (int i = 0; i < movementRecord.size(); i++) {
             Direction dir = movementRecord.get(i);
@@ -38,7 +38,7 @@ public class BridgeGame {
     }
 
     public boolean isFailed() {
-        check();
+        validateStatus();
         String direction = movementRecord.get(movementRecord.size() - 1).getCommand();
         if (!bridge.get(movementRecord.size() - 1).equals(direction)) {
             return true;
@@ -47,7 +47,7 @@ public class BridgeGame {
     }
 
     public boolean isSuccessful() {
-        check();
+        validateStatus();
         if (!isFailed() && movementRecord.size() == bridge.size()) {
             return true;
         }
@@ -86,17 +86,16 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        check();
+        validateStatus();
         movementRecord.clear();
         count++;
     }
 
     public int getAttempts() {
-        check();
         return count;
     }
 
-    private void check() {
+    private void validateStatus() {
         if (movementRecord == null) {
             throw new IllegalStateException("게임이 진행 중이지 않습니다.");
         }
