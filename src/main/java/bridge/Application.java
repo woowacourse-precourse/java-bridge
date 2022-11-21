@@ -12,8 +12,8 @@ import bridge.utils.console.OutputView;
 import java.util.List;
 
 public class Application {
-    private static InputView input = new InputView();
-    private static OutputView output = new OutputView();
+    private static final InputView input = new InputView();
+    private static final OutputView output = new OutputView();
 
     public static void main(String[] args) {
         List<String> bridge = getBridge();

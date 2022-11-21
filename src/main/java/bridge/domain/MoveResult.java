@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoveResult {
-    private List<String> upMoves;
-    private List<String> downMoves;
+    private final List<String> upMoves;
+    private final List<String> downMoves;
 
     public MoveResult() {
         this.upMoves = new ArrayList<>();

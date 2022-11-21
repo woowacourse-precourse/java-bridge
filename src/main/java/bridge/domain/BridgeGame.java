@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private MoveResult moveResult;
-    private List<String> bridge;
+    private final List<String> bridge;
     private boolean fail;
     private boolean finish;
     private int totalCount;
