@@ -2,8 +2,9 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.User;
+import bridge.validater.BridgeValidater;
 import bridge.view.InputView;
-import bridge.view.Message;
+import bridge.constant.MessageOutput;
 import bridge.view.OutputView;
 
 /**
@@ -26,9 +27,9 @@ public class BridgeGame {
     }
 
     public void makeBridge() {
-        OutputView.printLine(Message.INTRO);
+        OutputView.printLine(MessageOutput.INTRO);
         OutputView.printLine("");
-        OutputView.printLine(Message.INQUIRE_BRIDGE_LENGTH);
+        OutputView.printLine(MessageOutput.INQUIRE_BRIDGE_LENGTH);
         int size = InputView.readBridgeSize();
         this.bridge = new Bridge(size);
         this.user = new User();
@@ -36,10 +37,10 @@ public class BridgeGame {
     }
 
     public void attemptCross() {
-        boolean tryAcross = true;
-        while(tryAcross) {
+        boolean aRound = true;
+        while(aRound) {
             inOrderAcross();
-            tryAcross = retry();
+            aRound = retry();
         }
         OutputView.printResult();
     }
@@ -47,8 +48,9 @@ public class BridgeGame {
 
 
     public void inOrderAcross() {
+        boolean movingResult;
         for(int i=0 ; i<bridge.getSize() ; i++) {
-            boolean movingResult = move(i);
+            movingResult = move(i);
             if(!movingResult) break;
         }
         // 성공로직
@@ -60,19 +62,14 @@ public class BridgeGame {
      */
     public boolean move(int index) {
         // move를 boolean을 return 하도록 해도 될까
-        OutputView.printLine(Message.INQUIRE_MOVE_BLOCK);
+        OutputView.printLine(MessageOutput.INQUIRE_MOVE_BLOCK);
         String input = InputView.readMoving();
-        boolean isSuccess = compareInputAndResult(input, bridge.getIndexResult(index));
+        boolean isSuccess = BridgeValidater.compareInputAndResult(input, bridge.getIndexResult(index));
         OutputView.printMap(bridge, user);
         return isSuccess;
     }
 
-    public boolean compareInputAndResult(String input, String result) {
-        if(input.equals(result)) {
-            return true;
-        }
-        return false;
-    }
+
 
 
     /**
@@ -80,7 +77,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        OutputView.printLine(Message.INQUIRE_REGAIN_GAME);
+        OutputView.printLine(MessageOutput.INQUIRE_REGAIN_GAME);
         String decision = InputView.readGameCommand();
         if(decision.equals("Q")) {
             return false;
