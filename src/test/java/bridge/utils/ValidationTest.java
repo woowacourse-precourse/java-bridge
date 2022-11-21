@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidationTest {
     @Test
+    @DisplayName("다리 길이에 숫자가 아닌 문자 입력하면 예외 발생")
     void 다리길이에_숫자_아닌_문자_입력() {
         String input = "4a";
         try {
@@ -23,6 +24,7 @@ class ValidationTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "21", "30"})
+    @DisplayName("다리 길이에 3 미만, 20 초과의 값을 입력하면 예외 발생")
     void 다리길이_3_미만_20_초과_길이_입력(String input) {
         try {
             Validation.validateBridgeSize(input);
