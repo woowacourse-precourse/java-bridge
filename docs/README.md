@@ -40,7 +40,12 @@
         - 검증 실패 시 IllegalArgumentException
     - [ ] 게임 재시도 여부 검증
         - 검증 실패 시 IllegalArgumentException
-    
+
+- [ ] InputValidationError : Input 검증 에러를 정의한 Enum
+  - [ ] 오류 정의
+    - ERROR_BRIDGE_SIZE 다리 길이 에러
+    - ERROR_MOVE 잘못된 움직임 입력
+    - ERROR_GAME_COMMAND 잘못된 진행 명령 입력
 
 - [ ] OutputView : 사용자에게 게임 진행 상황과 결과를 출력하는 클래스
   - [ ] 생성자 추가
