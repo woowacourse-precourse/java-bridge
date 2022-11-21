@@ -46,16 +46,7 @@ public class Controller {
         }
 
         if (!moveSuccess) {
-            String retryInput = requestRetryInput();
-
-            if (retryInput.equals("Q")) {
-                printFinalResult();
-            }
-
-            if (retryInput.equals("R")) {
-                service.resetForRetry();
-                playGame();
-            }
+            decideRetry();
         }
     }
 
@@ -90,6 +81,18 @@ public class Controller {
         outputView.printResult(finalResult);
     }
 
+    private void decideRetry() {
+        String retryInput = requestRetryInput();
+
+        if (retryInput.equals("Q")) {
+            printFinalResult();
+        }
+
+        if (retryInput.equals("R")) {
+            retry();
+        }
+    }
+
     private String requestRetryInput() {
         try {
             String retryInput = inputView.readGameCommand();
@@ -99,5 +102,10 @@ public class Controller {
             outputView.printErrorMessage(exception.getMessage());
             return requestRetryInput();
         }
+    }
+
+    private void retry() {
+        service.resetForRetry();
+        playGame();
     }
 }
