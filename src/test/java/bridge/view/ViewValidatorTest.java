@@ -63,4 +63,24 @@ public class ViewValidatorTest {
                         "U(위), D(아래) 중 하나만 입력해주세요."
                 );
     }
+
+    @DisplayName("올바른 재시작 옵션의 입력 (R, Q)에 대해 에러를 발생시키지 않는다.")
+    @ParameterizedTest(name = "{index}) Panel Input = {0}")
+    @ValueSource(strings = { "R", "Q" })
+    void When_InputValidRetryOption_Expect_NoException(String input) {
+        assertThatCode(() -> ViewValidator.validateRetryOptionInput(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("올바르지 않은 재시작 옵션의 입력에 대해 IllegalArgumentException 에러를 발생시킨다.")
+    @ParameterizedTest(name = "{index}) Panel Input = {0}")
+    @ValueSource(strings = { "E", "U", "D", "1", "r", "q" })
+    void When_InputInvalidRetryOption_Expect_IllegalArgumentException(String input) {
+        assertThatThrownBy(() -> ViewValidator.validateRetryOptionInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(
+                        "[ERROR]",
+                        "R(재시작), Q(종료) 중 하나만 입력해주세요."
+                );
+    }
 }
