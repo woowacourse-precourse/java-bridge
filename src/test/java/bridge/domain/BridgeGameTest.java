@@ -201,18 +201,15 @@ class BridgeGameTest {
             assertThat(tryCount).isEqualTo(1);
         }
 
-        @DisplayName("시도 횟수가 3번인 경우")
+        @DisplayName("시도 횟수가 2번인 경우")
         @Test
         void should_Be3_When_SuccessToCrossWith3TimesTry() {
+            bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.retry(RETRY);
             bridgeGame.move(LOWER_SIDE);
-            bridgeGame.retry(RETRY);
             bridgeGame.move(UPPER_SIDE);
-            bridgeGame.move(LOWER_SIDE);
-            bridgeGame.move(UPPER_SIDE);
-            int tryCount = bridgeGame.getTryCount();
-            assertThat(tryCount).isEqualTo(3);
+            assertThat(bridgeGame.getTryCount()).isEqualTo(2);
         }
     }
 }
