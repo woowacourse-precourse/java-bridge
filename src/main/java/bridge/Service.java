@@ -9,10 +9,25 @@ public class Service {
 	private int count = 1;
 	private boolean successOrFail = true;
 
+	public int checkUserCommend() {
+		String userCommend = checkUserInputCommend();
+		if (bridgeGame.retry(userCommend)) {
+			outputView.resetBridgeMap();
+			addCount();
+			return Constant.INDEX_RESET_NUMBER;
+		}
+		setFail();
+		return bridgeSize.getBridgeSize();
+	}
+
 	public void settingGame() {
 		int userInputSize = checkUserInputBridgeSize();
 		bridgeSize = new BridgeSize(userInputSize);
 		bridgeGame.setBridge(userInputSize);
+	}
+
+	public void printResult() {
+		outputView.printResult(getSuccessOrFail(), getCount());
 	}
 
 	public boolean getSuccessOrFail() {
