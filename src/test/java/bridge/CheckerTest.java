@@ -40,6 +40,36 @@ public class CheckerTest  extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_이동_다른문자() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> {
+                new Checker().checkMoveValidate("A");
+            }).isInstanceOf(IllegalArgumentException.class);
+            output().contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_이동_숫자() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> {
+                new Checker().checkMoveValidate("5");
+            }).isInstanceOf(IllegalArgumentException.class);
+            output().contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_이동_공백() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> {
+                new Checker().checkMoveValidate(" ");
+            }).isInstanceOf(IllegalArgumentException.class);
+            output().contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
