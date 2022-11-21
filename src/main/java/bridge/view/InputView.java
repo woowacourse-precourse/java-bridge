@@ -65,7 +65,7 @@ public class InputView {
 
     private void isRorQ(String pickPart) throws IllegalArgumentException {
         if(!pickPart.equals("R") && !pickPart.equals("Q")){
-            throw new IllegalArgumentException(Error.NOT_U_OR_D.getMessage());
+            throw new IllegalArgumentException(Error.NOT_R_OR_Q.getMessage());
         }
     }
 

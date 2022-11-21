@@ -19,10 +19,10 @@ public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     static int bridgeSize;
-    static String userInput;
-    static List<String> bridge;
-    static int round;
-    static String mark;
+     static String userInput;
+    public static List<String> bridge;
+    public static int round;
+    static List<String> mark = new ArrayList<>();
 
     public void setting() { //입력값받기
         Print.gameStartMessage();
@@ -75,14 +75,13 @@ public class BridgeGame {
         CheckCrossBridge checkCrossBridge = new CheckCrossBridge();
         boolean crossPossible = checkCrossBridge.check(userInput, bridge, round);
         if (crossPossible == false){
-            mark = "X";
+            mark.add("X");
         }
         if(crossPossible == true){
-            mark = "O";
+            mark.add("O");
         }
-        //String roundResult = String.valueOf(crossPossible)+round;
-        //System.out.println(roundResult);
-        outputView.printMap(userInput, mark, round);
+        System.out.println("mark"+ mark);
+        outputView.printMap(bridge, mark, round);
         return crossPossible;
     }
     /**

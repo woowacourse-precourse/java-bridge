@@ -29,7 +29,7 @@ public class BridgeMaker {
             bridge.add("D");
         }
         //TODO : 최종 확인 시 32라인 삭제
-        System.out.println(bridge);
+        System.out.println("bridge "+bridge);
         return bridge;
     }
 
