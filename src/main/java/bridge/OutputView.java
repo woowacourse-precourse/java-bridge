@@ -14,6 +14,7 @@ import java.util.List;
  * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class OutputView {
+    BridgeGame bg = new BridgeGame();
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -36,35 +37,25 @@ public class OutputView {
             System.out.print(row[idx]+ " ");
         }
     }
-    public String[][] makeMap(List<Boolean> bridgeTranslated, List<Boolean> moves) {
+    public String[][] makeMap(List<String> bridge, List<String> moves) {
         int progress = moves.size();
         String[][] map = new String[2][progress];
         for (int idx = 0; idx < progress; idx++) {
-            if (moves.get(idx)) {
-                map[0][idx] = checkCell(bridgeTranslated.get(idx), moves.get(idx));
+            if (moves.get(idx).equals("U")) {
+                map[0][idx] = translateCell(bg.move(bridge.get(idx), moves.get(idx)));
                 continue;
             }
-            map[1][idx] = checkCell(bridgeTranslated.get(idx), moves.get(idx));
+            map[1][idx] = translateCell(bg.move(bridge.get(idx), moves.get(idx)));
         }
         return map;
     }
-    public String checkCell(boolean bridge, boolean move) {
-        if (Boolean.compare(bridge,move)==0) {
+    public String translateCell(boolean move) {
+        if (move) {
             return "O";
         }
         return "X";
     }
-    public List<Boolean> translateBridge(List<String> bridge) {
-        List<Boolean> translated = new ArrayList<>();
-        for (String cell : bridge) {
-            if (cell.equals("U")) {
-                translated.add(true);
-                continue;
-            }
-            translated.add(false);
-        }
-        return translated;
-    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
