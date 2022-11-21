@@ -30,6 +30,6 @@ public class BridgeGameController {
         if (bridgeGame.isGameComplete(moving)) {
             return false;
         }
-        return bridgeGame.move(moving) || bridgeGame.retry(moving);
+        return bridgeGame.move(moving) || bridgeGame.retry(outputView.printGameCommand(inputView.readGameCommand()));
     }
 }

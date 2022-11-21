@@ -9,6 +9,7 @@ public class InputView {
     private final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요";
     private final String NUMBER_FORMAT_ERROR = "[ERROR] 다리의 길이는 숫자입니다.";
     private final String SELECT_CELL_MESSAGE = "이동할 칸을 선택해주세요";
+    private final String SELECT_RESTART_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -34,6 +35,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(SELECT_RESTART_MESSAGE);
+        return Console.readLine();
     }
 }
