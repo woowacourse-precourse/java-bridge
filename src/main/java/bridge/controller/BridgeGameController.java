@@ -1,4 +1,11 @@
-package bridge;
+package bridge.controller;
+
+import bridge.*;
+import bridge.model.BridgeGame;
+import bridge.model.TotalResult;
+import bridge.model.utils.GameCommands;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 

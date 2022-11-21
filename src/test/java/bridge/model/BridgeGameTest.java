@@ -1,5 +1,8 @@
-package bridge;
+package bridge.model;
 
+import bridge.model.BridgeGame;
+import bridge.model.PlayerMap;
+import bridge.model.TotalResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

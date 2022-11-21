@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.utils.BridgeSides;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

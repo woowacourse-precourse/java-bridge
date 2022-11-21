@@ -1,5 +1,6 @@
-package bridge;
+package bridge.model;
 
+import bridge.model.MapFormat;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

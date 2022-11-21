@@ -1,6 +1,6 @@
-package bridge.valid;
+package bridge.model.valid;
 
-import bridge.GameCommands;
+import bridge.model.utils.GameCommands;
 
 import java.util.List;
 

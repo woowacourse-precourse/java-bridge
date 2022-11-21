@@ -1,7 +1,6 @@
-package bridge.valid;
+package bridge.model.valid;
 
-import bridge.BridgeSides;
-import bridge.valid.InputValidator;
+import bridge.model.utils.BridgeSides;
 
 import java.util.List;
 

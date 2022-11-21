@@ -1,4 +1,4 @@
-package bridge.valid;
+package bridge.model.valid;
 
 import camp.nextstep.edu.missionutils.Console;
 

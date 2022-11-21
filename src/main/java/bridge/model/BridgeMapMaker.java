@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model;
+
+import bridge.model.utils.MapStates;
 
 import java.util.List;
 import java.util.Map;

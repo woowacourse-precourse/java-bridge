@@ -1,7 +1,6 @@
-package bridge;
+package bridge.model;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import bridge.model.utils.MapStates;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package bridge.valid;
+package bridge.model.valid;
 
 public class BridgeSizeValidator implements InputValidator {
     private static final int MIN_BRIDGE_SIZE = 3;

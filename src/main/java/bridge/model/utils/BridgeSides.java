@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model.utils;
 
 public class BridgeSides {
 
