@@ -30,6 +30,8 @@ public class BridgeController {
                 check = bridgeGame.retry(inputView.readGameCommand());
             }
         }
+        outputView.printResult();
+        System.out.println(outputView.printMap(bridgeGame.currentBridge()));
     }
     private static BridgeGame createBridgeGame(InputView inputView) {
         return new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())
