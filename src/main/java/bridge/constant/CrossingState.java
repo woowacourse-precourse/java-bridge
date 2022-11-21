@@ -18,10 +18,17 @@ public enum CrossingState {
     private static boolean isSameBridgeState(CrossingState crossingState, boolean crossingResult){
         return crossingState.crossingResult==crossingResult;
     }
-    private static CrossingState findByCrossingResult(boolean crossingResult){
+    public static CrossingState findByCrossingResult(boolean crossingResult){
         return Arrays.stream(CrossingState.values())
                 .filter(crossingState -> isSameBridgeState(crossingState,crossingResult))
                 .findAny().orElseThrow(NoSuchElementException::new);
     }
 
+    public static String transform(boolean crossingResult){
+        CrossingState crossingState = findByCrossingResult(crossingResult);
+        if(crossingState ==null){
+            throw new NullPointerException();
+        }
+        return crossingState.successStateSymbol;
+    }
 }
