@@ -28,25 +28,33 @@ public class BridgeController {
         outputView = new OutputView();
     }
 
-    public void play() {
+    public void startGame() {
         Length length = createLengthLoop();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
         Bridge bridge = createBridge(bridgeNumbers);
         PassingPositions passingPositions = createPassingPositions(bridge);
-        Result result = null;
+        Result result = playGame(length, passingPositions);
+        outputView.printResult(result, bridgeGame.getAttemptCount());
+    }
 
+    private Result playGame(Length length, PassingPositions passingPositions) {
+        Result result = null;
         while (true) {
             result = playEachRound(length, passingPositions, result);
             if (result.isSameDistanceAndLength(length)) {
                 break;
             }
-            GameCommand gameCommand = createGameCommandLoop();
-            if (gameCommand.isSameQuit()) {
+            if (isUserWantQuit()) {
                 break;
             }
             bridgeGame.retry(passingPositions);
         }
-        outputView.printResult(result, bridgeGame.getAttemptCount());
+        return result;
+    }
+
+    private boolean isUserWantQuit() {
+        GameCommand gameCommand = createGameCommandLoop();
+        return gameCommand.isSameQuit();
     }
 
     private Result playEachRound(Length length, PassingPositions passingPositions, Result result) {
