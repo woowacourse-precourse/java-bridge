@@ -46,7 +46,7 @@ public class BridgeGame {
      */
     public boolean retry(String input) {
         if (input.equals(RetryCommand.R.toString())) {
-            checkGameTryCountOverIntegerMaxValue();
+            checkGameTryCountOverMaxTryCount();
             gameTryCount++;
             userStatus.clear();
             return true;
@@ -54,8 +54,10 @@ public class BridgeGame {
         return false;
     }
 
-    public void checkGameTryCountOverIntegerMaxValue() {
-        if (gameTryCount == Integer.MAX_VALUE) {
+    public void checkGameTryCountOverMaxTryCount() {
+        final int MAX_TRY_COUNT = 100000;
+
+        if (gameTryCount == MAX_TRY_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.GAME_TRY_COUNT_OVER_MESSAGE.toString());
         }
     }

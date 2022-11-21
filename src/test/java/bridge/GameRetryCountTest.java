@@ -12,6 +12,8 @@ import java.util.List;
 
 public class GameRetryCountTest {
 
+    private static final int MAX_TRY_COUNT = 100000;
+
     @DisplayName("게임을 재시작할 때마다, 게임 시도 횟수를 1 증가시킨다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4})
@@ -23,12 +25,12 @@ public class GameRetryCountTest {
         Assertions.assertThat(bridgeGame.getGameTryCount()).isEqualTo(targetTryCount + 1);
     }
 
-    @DisplayName("오버플로우가 발생할 수 있을 정도로 게임을 시도하면, 예외를 발생시킨다.")
+    @DisplayName("100000번 이상 게임을 시도하면, 예외를 발생시킨다(오버플로우 사전에 방지).")
     @Test
     public void 게임_시도_횟수_오버플로우_방지() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "D"));
 
-        Assertions.assertThatThrownBy(() -> iterateGameTry(bridgeGame, Integer.MAX_VALUE))
+        Assertions.assertThatThrownBy(() -> iterateGameTry(bridgeGame, MAX_TRY_COUNT))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.GAME_TRY_COUNT_OVER_MESSAGE.toString());
     }
