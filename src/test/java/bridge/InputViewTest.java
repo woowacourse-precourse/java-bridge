@@ -38,7 +38,7 @@ class InputViewTest {
 
     @ValueSource(strings = {"12", "A", "u", "d", "가"})
     @ParameterizedTest
-    void 이동명령_예외테스트(String move) {
+    void 이동명령_입력_예외테스트(String move) {
         //given
         InputView inputView = new InputView();
 
@@ -50,7 +50,7 @@ class InputViewTest {
 
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
-    void 이동명령_테스트(String move) {
+    void 이동명령_입력_테스트(String move) {
         //given
         InputView inputView = new InputView();
 
