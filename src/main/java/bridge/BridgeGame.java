@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.util.Lists.newArrayList;
@@ -30,9 +31,30 @@ public class BridgeGame {
     public void retry(List<String> bridge, int bridgeSize) {
         index = 0;
         gameCount += 1;
-        OutputView.downstairs = "";
-        OutputView.upstairs = "";
         Game reGame = new Game();
         reGame.Start(bridge, bridgeSize);
+    }
+
+    public List<String> makeMap(String input, boolean move){
+        List<String> mapString = new ArrayList<>();
+        if (input.equals("U") && move){
+            MapString.upstairs += "O";
+            MapString.downstairs += " ";
+        }
+        else if (input.equals("U")){
+            MapString.upstairs += "X";
+            MapString.downstairs += " ";
+        }
+        else if (input.equals("D") && move){
+            MapString.upstairs += " ";
+            MapString.downstairs += "O";
+        }
+        else if (input.equals("D")){
+            MapString.upstairs += " ";
+            MapString.downstairs += "X";
+        }
+        mapString.add(MapString.upstairs);
+        mapString.add(MapString.downstairs);
+        return (mapString);
     }
 }

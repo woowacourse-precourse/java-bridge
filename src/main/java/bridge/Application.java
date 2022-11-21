@@ -16,6 +16,5 @@ public class Application {
         System.out.println(bridge);
         game.Start(bridge, bridgeSize);
         }
-
     }
 

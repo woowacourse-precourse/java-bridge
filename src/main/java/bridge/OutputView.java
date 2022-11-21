@@ -1,11 +1,11 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static String upstairs = "";
-    public static String downstairs = "";
     private final String ERROR = "[ERROR] ";
 
     /**
@@ -13,25 +13,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String input, boolean move) {
-        if (input.equals("U") && move){
-            upstairs += "O";
-            downstairs += " ";
+    public void printMap(List<String> mapString) {
+        int index = 0;
+        System.out.print("[ ");
+        for (index = 0; index < mapString.get(0).length() - 1; index++){
+            System.out.print(mapString.get(0).charAt(index));
+            System.out.print(" | ");
         }
-        else if (input.equals("U")){
-            upstairs += "X";
-            downstairs += " ";
+        System.out.println(mapString.get(0).charAt(index) + " ]");
+        index = 0;
+        System.out.print("[ ");
+        for (index = 0; index < mapString.get(1).length() - 1; index++){
+            System.out.print(mapString.get(1).charAt(index));
+            System.out.print(" | ");
         }
-        else if (input.equals("D") && move){
-            upstairs += " ";
-            downstairs += "O";
-        }
-        else if (input.equals("D")){
-            upstairs += " ";
-            downstairs += "X";
-        }
-        System.out.println("[" + upstairs + "]");
-        System.out.println("[" + downstairs + "]");
+        System.out.println(mapString.get(1).charAt(index) + " ]");
     }
 
     /**
@@ -39,11 +35,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int result) {
+    public void printResult(int result, List<String> mapString) {
         String[] strResult = {"실패", "성공"};
         System.out.println("최종 게임 결과");
-        System.out.println("[" + upstairs + "]");
-        System.out.println("[" + downstairs + "]");
+        printMap(mapString);
         System.out.println();
         System.out.println("게임 성공 여부: " + strResult[result]);
         System.out.println("총 시도한 횟수: " + BridgeGame.gameCount);

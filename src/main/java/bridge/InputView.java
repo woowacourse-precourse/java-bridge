@@ -41,10 +41,11 @@ public class InputView {
      */
     public String readGameCommand() {
         while (true){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String input = Console.readLine();
-        if (validate.isValidRetryCommand(input)){
-            return (input);
+            System.out.println("");
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            String input = Console.readLine();
+            if (validate.isValidRetryCommand(input)){
+                return (input);
         }
     }
 }}
