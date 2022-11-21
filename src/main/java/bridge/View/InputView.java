@@ -1,6 +1,7 @@
 package bridge.View;
 
 import bridge.Controller.BridgeSizeValidator;
+import bridge.Controller.MovingCommandValidator;
 import bridge.Controller.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -10,6 +11,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String GET_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String GET_MOVING_COMMAND = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     private Validator validator;
 
@@ -32,7 +34,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(GET_MOVING_COMMAND);
+        String input = Console.readLine();
+        validator = new MovingCommandValidator();
+        try{
+            validator.validate(input);
+        }catch(IllegalArgumentException e){
+            readMoving();
+        }
+        return input;
     }
 
     /**
