@@ -1,7 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class Valid {
 
     public void validBridgeSize(String value) {
