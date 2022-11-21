@@ -22,28 +22,36 @@ public class OutputView {
     public static void printMap(BridgeGame bridgeGame) {
         List<String> movingPosition = bridgeGame.getMovingPositions();
         List<String> result = bridgeGame.getResult();
-        printTopBridge(movingPosition, result, MoveCommand.UP.getCommand());
-        printTopBridge(movingPosition, result, MoveCommand.DOWN.getCommand());
+        printPositionBridge(movingPosition, result, MoveCommand.UP.getCommand());
+        printPositionBridge(movingPosition, result, MoveCommand.DOWN.getCommand());
         System.out.println();
     }
 
-    private static void printTopBridge(List<String> movingPosition, List<String> result, String POSITION) {
+    private static void printPositionBridge(List<String> movingPosition, List<String> result, String POSITION) {
         for(int i = 0; i< result.size(); i++){
-            if(i == 0){
-                System.out.print("[");
-            }
+            printFrame(result, i);
             if(Objects.equals(movingPosition.get(i), POSITION)){
                 System.out.print(" " + result.get(i) + " ");
             }
             if(!Objects.equals(movingPosition.get(i), POSITION)){
                 System.out.print(" " + " " + " ");
             }
-            if(i != result.size()-1){
-                System.out.print("|");
-            }
-            if(i == result.size()-1){
-                System.out.println("]");
-            }
+            printSeparator(result, i);
+        }
+    }
+
+    private static void printSeparator(List<String> result, int i) {
+        if(i != result.size()-1){
+            System.out.print("|");
+        }
+    }
+
+    private static void printFrame(List<String> result, int i) {
+        if(i == 0){
+            System.out.print("[");
+        }
+        if(i == result.size()-1){
+            System.out.println("]");
         }
     }
 
@@ -55,6 +63,11 @@ public class OutputView {
     public static void printResult(BridgeGame bridgeGame) {
         System.out.println(FINAL_RESULT);
         printMap(bridgeGame);
+        successStatus(bridgeGame);
+        System.out.println(TOTAL_NUMBER_ATTEMPTS + bridgeGame.getCount());
+    }
+
+    private static void successStatus(BridgeGame bridgeGame) {
         System.out.print(IS_CLEAR);
         if(bridgeGame.isFailure()){
             System.out.println("실패");
@@ -62,6 +75,5 @@ public class OutputView {
         if(!bridgeGame.isFailure()){
             System.out.println("성공");
         }
-        System.out.println(TOTAL_NUMBER_ATTEMPTS + bridgeGame.getCount());
     }
 }
