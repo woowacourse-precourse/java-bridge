@@ -30,4 +30,12 @@ public class GameSystem {
 
     }
 
+    private void printBridgeState(UserBridege userBridege) {
+        outputView.printMap(userBridege.getUpBridge());
+        outputView.printMap(userBridege.getDownBridge());
+    }
+
+    private String updateState() {
+        return "C";
+    }
 }
