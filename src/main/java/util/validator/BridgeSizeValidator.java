@@ -1,9 +1,10 @@
-package util;
+package util.validator;
 
 import constant.BridgeConstant;
 import constant.BridgeRegexConstant;
 import constant.ErrorConstant;
 import constant.NumberConstant;
+import util.ConverterUtil;
 
 public class BridgeSizeValidator {
 
