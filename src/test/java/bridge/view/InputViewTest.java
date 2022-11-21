@@ -44,5 +44,13 @@ class InputViewTest {
         assertThat(out.toString()).contains("[ERROR] U 또는 D를 입력하세요.");
     }
 
+    @Test
+    @DisplayName("움직일 방향 입력값이 잘못되면 오류메시지 출력 후 재입력 받는다.")
+    void readGameCommand_InputByInvalidValue_ReInputUntilValidValue() {
+        System.setIn(new ByteArrayInputStream(
+                ("q" + System.lineSeparator() + "U" + System.lineSeparator() + "Q").getBytes()));
 
+        assertThat(inputView.readGameCommand()).isEqualTo("Q");
+        assertThat(out.toString()).contains("[ERROR] R 또는 Q를 입력하세요.");
+    }
 }
