@@ -3,6 +3,7 @@ package bridge.game;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.convertor.InputConvertor;
+import bridge.resource.GameConstant;
 import bridge.validation.BridgeMoveValidator;
 import bridge.validation.BridgeSizeValidator;
 import bridge.validation.RetryValidator;
@@ -38,11 +39,11 @@ public class BridgeGame {
     public boolean move() {
         MOVE = MOVE_VALIDATOR.moveValidator();
         crossingSuccess();
-        boolean b = crossingFailure();
+        boolean checkGaming = crossingFailure();
         if (checkFinish()) {
             return false;
         }
-        return b;
+        return checkGaming;
     }
 
     private boolean checkFinish() {
@@ -55,14 +56,14 @@ public class BridgeGame {
     }
 
     private void crossingSuccess() { // 다리 건너기 성공
-        if (compare(MOVE)) {
-            drawingBridge("O");
+        if (compare()) {
+            drawingBridge(GameConstant.SUCCESS);
         }
     }
 
     private boolean crossingFailure() { // 다리 건너기 실패
-        if (!compare(MOVE)) {
-            drawingBridge("X");
+        if (!compare()) {
+            drawingBridge(GameConstant.BAD);
             return confirmRetry();
         }
         plusCurrentLocation();
@@ -71,7 +72,7 @@ public class BridgeGame {
 
     private boolean confirmRetry() {
         String retry = RETRY_VALIDATOR.retryValidator();
-        if (retry.equals("R")) {
+        if (retry.equals(GameConstant.RE)) {
             retry();
             return true;
         }
@@ -83,7 +84,6 @@ public class BridgeGame {
         STATUS.drawingBridge(MOVE, division);
         printBridgeStatus();
     }
-
 
     private void gameOver() {
         STATUS.checkGameOver(bridge.size());
@@ -101,25 +101,23 @@ public class BridgeGame {
         clearMap();
     }
 
-
-    public boolean compare(String move) {
-        return bridge.get(STATUS.getCurrentLocation()).equals(move);
+    public boolean compare() {
+        return bridge.get(STATUS.getCurrentLocation()).equals(MOVE);
     }
 
-    private void plusCurrentLocation() { // 상태 업데이트
+    private void plusCurrentLocation() {
         STATUS.plusCurrentLocation();
     }
 
-    private void plusRetryCount() { //  // 상태 업데이트
+    private void plusRetryCount() {
         STATUS.plusRetryCount();
     }
 
-    private void clearCurrentLocation() { // retry 관련
+    private void clearCurrentLocation() {
         STATUS.clearCurrentLocation();
     }
-    // retry 관련
 
-    private void clearMap() { // retry 관련
+    private void clearMap() {
         STATUS.clearMap();
     }
 
