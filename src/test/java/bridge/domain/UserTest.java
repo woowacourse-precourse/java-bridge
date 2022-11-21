@@ -1,24 +1,17 @@
 package bridge.domain;
 
-import bridge.controller.BridgeGame;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.utils.BridgeState;
 import bridge.domain.utils.GameState;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
@@ -26,7 +19,7 @@ class UserTest {
 
     @BeforeEach
     void beforeEach() {
-        bridgeGame = new BridgeGame(new InputView(), new OutputView());
+        bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
     }
 
     @ParameterizedTest
@@ -34,10 +27,8 @@ class UserTest {
     void 유저가_간곳이_저장되는지_확인(String bridgePosition, String input, Boolean isAlive) {
         List<String> bridgeData = new ArrayList<>(Arrays.stream(bridgePosition.split(",")).collect(Collectors.toList()));
         Bridge bridge = new Bridge(bridgeData);
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
         User user = new User();
-        bridgeGame.move(user, bridge);
+        bridgeGame.move(user, bridge, input);
 
         Assertions.assertThat(user.getBridgeGames().get(0)).isEqualTo(BridgeState.convertToBridgeState(input, isAlive));
     }
@@ -47,10 +38,8 @@ class UserTest {
     void 유저가_끝까지_건넜는지_확인(String bridgePosition, String input, Boolean isAlive) {
         List<String> bridgeData = new ArrayList<>(Arrays.stream(bridgePosition.split(",")).collect(Collectors.toList()));
         Bridge bridge = new Bridge(bridgeData);
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
         User user = new User();
-        bridgeGame.move(user, bridge);
+        bridgeGame.move(user, bridge, input);
 
         Assertions.assertThat(bridgeGame.isGameEnd(user,bridge,isAlive)).isEqualTo(GameState.END);
     }

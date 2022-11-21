@@ -1,11 +1,13 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
 import bridge.domain.User;
 import bridge.domain.message.ErrorMessage;
 import bridge.domain.utils.BridgeState;
 import bridge.view.InputView;
-import bridge.view.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,24 +28,28 @@ class BridgeGameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a", " "})
+    @ValueSource(strings = {"a,1", " ,3"})
     void 잘못된_다리의크기_입력시_예외발생(String input) {
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        final byte[] buf = String.join("\n", input.split(",")).getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(newConsole));
 
-        Assertions.assertThatThrownBy(() -> inputView.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.INPUT_IS_NUMERIC);
+        inputView.readBridgeSize();
+        Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.INPUT_IS_NUMERIC);
+
     }
 
     @Test
     void 다리의크기는_0이될수_없다() {
-        InputStream inputStream = new ByteArrayInputStream("0".getBytes());
-        System.setIn(inputStream);
+        String[] input = {"0", "1"};
+        final byte[] buf = String.join("\n", input).getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(newConsole));
 
-        Assertions.assertThatThrownBy(() -> inputView.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.BRIDGE_SIZE_NOT_ZERO);
+        inputView.readBridgeSize();
+        Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.BRIDGE_SIZE_NOT_ZERO);
     }
 
     @ParameterizedTest
@@ -77,7 +83,7 @@ class BridgeGameTest {
         ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
         System.setOut(new PrintStream(newConsole));
 
-        new InputView().readGameCommand();
+        inputView.readGameCommand();
 
         Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.INPUT_ONLY_RETRY_OR_END);
     }
@@ -87,9 +93,8 @@ class BridgeGameTest {
     void 각_방향에따라_GameState가_제대로_동작해서_살았는지_죽었는지_반영하는지(String bridgePosition, String position, boolean isAlive) {
         Bridge bridge = new Bridge(List.of(bridgePosition));
         User user = new User();
-        BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
-        System.setIn(new ByteArrayInputStream(position.getBytes()));
-        bridgeGame.move(user, bridge);
+        BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
+        bridgeGame.move(user, bridge, position);
 
         Assertions.assertThat(user.getUserCrossing(0)).isEqualTo(BridgeState.convertToBridgeState(position, isAlive));
     }
