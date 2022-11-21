@@ -8,25 +8,25 @@ import bridge.domain.referee.Referee;
 
 public class BridgeGame {
 
-    private final Pedestrian pedestrian;
     private final Bridge bridge;
+    private int attempt;
 
-    private BridgeGame(Pedestrian pedestrian, Bridge bridge) {
-        this.pedestrian = pedestrian;
+    private BridgeGame(Bridge bridge) {
+        this.attempt = 0;
         this.bridge = bridge;
     }
 
-    public static BridgeGame of(Pedestrian pedestrian, Bridge bridge) {
-        return new BridgeGame(pedestrian, bridge);
+    public static BridgeGame from(Bridge bridge) {
+        return new BridgeGame(bridge);
     }
 
-    public void move(Direction direction) {
+    public void move(Pedestrian pedestrian, Direction direction) {
         Referee referee = new Referee();
         Judgement judgement = referee.checkDirection(bridge, direction, pedestrian.findLocation());
         pedestrian.move(judgement, direction);
     }
 
-    public void retry() {
+    public void retry(Pedestrian pedestrian) {
+        pedestrian.clearRecord();
     }
-
 }
