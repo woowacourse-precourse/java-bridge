@@ -9,17 +9,15 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static List<Integer> result = new ArrayList<>();
+    private static List<String> result = new ArrayList<String>();
 
     private static final String Retry = "Retry";
-    private static final String Quit = "Quit";
+    private static final String SuccessSignal = "S";
     private static final String Move = "Move";
     private static final String error = "[ERROR]";
     private static final String LenError = "다리 길이는 3부터 20사이의 숫자여야 합니다.";
-
     private static final String MovingCheck = "UD";
     private static final String MovingError = "U 또는 D로만 다리를 건널 수 있습니다.";
-
     private static final String ReQuCheck = "RQ";
     private static final String RetryQuitError = "R 또는 Q로만 게임을 제어할 수 있습니다.";
     private static final String start = "다리 건너기 게임을 시작합니다.";
@@ -27,35 +25,49 @@ public class OutputView {
     private static final String count = "총 시도한 횟수: ";
     private static final String success = "성공";
     private static final String failure = "실패";
+    private static final String yes = "O";
+    private static final String no = "X";
+    private static final String up = "U";
+    private static final String down = "D";
+    private static final String left = "[ ";
+    private static final String mid = " | ";
+    private static final String right = " ]";
+    private static final String empty = " ";
 
     private static final String last = "최종 게임 결과";
 
-    public static void printStart() { System.out.println(start); }
+    public static void printStart() {
+        System.out.println(start);
+    }
 
     public static int BridgeLengthCheck(String val) {
-        int len = toInt(val);
-        if (len < 3 || len > 20)
-            System.out.println(error + LenError);
-        return len;
+        return PrintLenError(toInt(val));
+    }
+
+    private static int PrintLenError(int len) {
+        if (len >= 3 && len <= 20) {
+            return len;
+        }
+        System.out.println(error + LenError);
+        return 0;
     }
 
     private static int toInt(String val) {
         try {
             return Integer.parseInt(val);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println(error + e);
             return 0;
         }
     }
 
-    public static String MovingCheck(String moving){
+    public static String MovingCheck(String moving) {
         if (!MovingCheck.contains(moving))
             System.out.println(error + MovingError);
         return moving;
     }
 
-    public static String RetryCheck (String retry) {
+    public static String RetryCheck(String retry) {
         if (!ReQuCheck.contains(retry))
             throw new IllegalArgumentException(error + RetryQuitError);
         return retry;
@@ -63,12 +75,15 @@ public class OutputView {
 
     public static void printCount(String result, int count_try) {
         printResult();
-        if (result.contains("S")) {
-            System.out.println(end + success);
-            System.out.println(count + count_try);
+        if (result.contains(SuccessSignal)) {
+            PrintSorF(success, count_try);
             return;
         }
-        System.out.println(end + failure);
+        PrintSorF(failure, count_try);
+    }
+
+    private static void PrintSorF(String result, int count_try) {
+        System.out.println(end + result);
         System.out.println(count + count_try);
     }
 
@@ -79,30 +94,31 @@ public class OutputView {
      */
     public static String printMap(String res, String moving) {
         loadingMap(res, moving);
-        if (res.equals("O")){
-            Map();
+        Map();
+        if (res.equals(yes)) {
             return Move;
         }
-        Map();
         return Retry;
     }
 
-    public static void MapReset(){
+    public static void MapReset() {
         result.clear();
     }
 
-    private static void loadingMap(String res, String moving){
-        if (moving.equals("U")){
-            if (res.equals("X"))
-                result.add(3);
-            else
-                result.add(1);
+    private static void loadingMap(String res, String moving) {
+        if (moving.equals(up)) {
+            storeMap(res, up);
             return;
         }
-        if (res.equals("X"))
-            result.add(4);
-        else
-            result.add(2);
+        storeMap(res, down);
+    }
+
+    private static void storeMap(String res, String signal) {
+        if (res.equals(yes)) {
+            result.add(yes + signal);
+            return;
+        }
+            result.add(no + signal);
     }
 
     /**
@@ -116,23 +132,23 @@ public class OutputView {
     }
 
     private static void Map() {
-        System.out.print("[ ");
-        for (int i = 0; i < result.size(); i++){
-            if (i != 0) System.out.print(" | ");
-            if (result.get(i) == 1) System.out.print("O");
-            else if (result.get(i) == 3) { System.out.print("X"); }
-            else System.out.print(" ");
-        }
-        System.out.println(" ] ");
-
-        System.out.print("[ ");
-        for (int i = 0; i < result.size(); i++){
-            if (i != 0) System.out.print(" | ");
-            if (result.get(i) == 2) System.out.print("O");
-            else if (result.get(i) == 4) { System.out.print("X"); }
-            else System.out.print(" ");
-        }
-        System.out.println(" ] ");
+        Mapping(up);
+        Mapping(down);
         System.out.println();
+    }
+
+    private static void Mapping(String signal) {
+        System.out.print(left);
+
+        for (int i = 0; i < result.size(); i++) {
+            if (i != 0) System.out.print(mid);
+            if (result.get(i).contains(signal)) {
+                System.out.print(result.get(i).charAt(0));
+                continue;
+            }
+            System.out.print(empty);
+        }
+
+        System.out.println(right);
     }
 }

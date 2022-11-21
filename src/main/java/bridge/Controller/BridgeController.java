@@ -17,10 +17,11 @@ public class BridgeController {
         OutputView.printStart();
         count_try = 1;
     }
-    public void run(){
+
+    public void run() {
         BridgeGame game = new_BridgeGame();
 
-        while (!continue_game.contains(Quit)){
+        while (!continue_game.contains(Quit)) {
             String moving = MovingCheck(InputView.readMoving());
             continue_game = OutputView.printMap(game.move(moving), moving);
             Gaming(game);
@@ -28,11 +29,11 @@ public class BridgeController {
         OutputView.printCount(continue_game, count_try);
     }
 
-    private BridgeGame new_BridgeGame(){
+    private BridgeGame new_BridgeGame() {
         return new BridgeGame(OutputView.BridgeLengthCheck(InputView.readBridgeSize()));
     }
 
-    private String MovingCheck(String moving){
+    private String MovingCheck(String moving) {
         return OutputView.MovingCheck(moving);
     }
 
@@ -41,16 +42,15 @@ public class BridgeController {
         GameRetry();
         GameOverCheck(game);
     }
+
     private void GameSelectRetry(BridgeGame game) {
-        if (continue_game.equals(Retry))
-        {
+        if (continue_game.equals(Retry)) {
             continue_game = game.retry(OutputView.RetryCheck(InputView.readGameCommand()));
         }
     }
 
     private void GameRetry() {
-        if (continue_game.equals(Retry))
-        {
+        if (continue_game.equals(Retry)) {
             count_try++;
             OutputView.MapReset();
         }
