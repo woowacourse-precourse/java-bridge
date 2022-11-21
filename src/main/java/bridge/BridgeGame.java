@@ -22,7 +22,7 @@ public class BridgeGame {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private GameStatus move() {
+    public GameStatus move() {
         player.move();
         if (bridge.getLastIndex() == player.getNextPosition()) {
             return GameStatus.SUCCESS;
