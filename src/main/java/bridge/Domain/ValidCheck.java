@@ -1,7 +1,7 @@
 package bridge.Domain;
 
 public class ValidCheck {
-    public static boolean isString_in_1to9(String str) {
+    public static boolean isString_in_0to9(String str) {
         return str.matches("[0-9.]+");
     }
 

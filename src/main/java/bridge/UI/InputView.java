@@ -28,7 +28,7 @@ public class InputView {
 
     public int readBridgeSize() {
         String size_str = readLine();
-        if (!ValidCheck.isString_in_1to9(size_str))
+        if (!ValidCheck.isString_in_0to9(size_str))
             throw new IllegalArgumentException(Exceptions.NotInteger.getMessage());
         int size = Integer.parseInt(size_str);
         if (!ValidCheck.isRange_3to20(size))
