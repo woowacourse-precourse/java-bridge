@@ -1,11 +1,13 @@
 package bridge.controller;
 
-import bridge.type.GameOptionType;
+import bridge.service.GameServiceImpl;
+import bridge.service.impl.GameService;
 import bridge.type.ResultType;
 import bridge.view.OutputView;
 
 
 public class GameController extends AbstractGameController{
+    GameService gameService = new GameServiceImpl();
 
     public GameController() {
         bridgeInfo = bridgeMaker.makeBridge(inputView.readBridgeSize());
@@ -14,42 +16,25 @@ public class GameController extends AbstractGameController{
 
 
     public boolean run() {
-        if (!passThisRound()) {
-            return askOption();
+        if (gameService.passThisRound(bridgeInfo)) {
+            return true;
         }
-        if (bridgeGame.isSucceed(bridgeInfo)) {
-            end(ResultType.SUCCESS);
-            return false;
+        if (gameService.getEndType() != ResultType.SUCCESS) {
+            tryCnt++;
+            retryGame();
         }
-        return true;
+        return endGame(gameService.getEndType());
     }
 
-    public boolean askOption() {
-        if (inputView.readGameCommand() == GameOptionType.Q) {
-            end(ResultType.FAIL);
-            return false;
-        }
-        addTryCnt();
-        return bridgeGame.retry();
+    public boolean retryGame() {
+        return gameService.askOption();
     }
 
 
-    public void end(ResultType resultType) {
+    public boolean endGame(ResultType resultType) {
         OutputView.printGameEndMsg();
-        bridgeGame.drawFinal(resultType, tryCnt);
-    }
-
-
-    public boolean passThisRound() {
-        System.out.println(bridgeInfo);
-        if (!bridgeGame.move(bridgeInfo, inputView.readMoving())) {
-            return false;
-        }
-        return true;
-    }
-
-    public void addTryCnt() {
-        tryCnt++;
+        bridgeGame.drawFinalResult(resultType, tryCnt);
+        return false;
     }
 
 }
