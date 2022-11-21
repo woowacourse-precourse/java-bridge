@@ -61,6 +61,8 @@ public class BridgeController {
         if(retry){
             bridgeGame.switchResult();
             startGame();
+            return;
         }
+        outputView.printMap();
     }
 }
