@@ -7,14 +7,17 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> bridgeAnswer;
+    private final List<String> BRIDGEANSWER;
     private Integer tryCount = 0;
+    private Integer count = 0;
 
-    public BridgeGame(List<String> bridgeAnswer) {
-        this.bridgeAnswer = bridgeAnswer;
+    public BridgeGame(List<String> BRIDGEANSWER) {
+        this.BRIDGEANSWER = BRIDGEANSWER;
+        this.tryCount = tryCount;
+
         Boolean keepPlay = true;
         while (keepPlay) {
-            Play();
+            keepPlay = Play();
         }
     }
 
@@ -23,7 +26,27 @@ public class BridgeGame {
         Boolean retry = true;
 
         while (retry) {
-            Proceed();
+            retry = Proceed(playerList);
+        }
+
+        return retry();
+    }
+
+    private Boolean Proceed(List<String> playerList) {
+        try {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            InputView.readMoving();
+            if (BRIDGEANSWER.get(count).equals(playerList.get(count))) {
+                move();
+                count ++;
+                return true;
+            }
+            if (!BRIDGEANSWER.get(count).equals(playerList.get(count))) {
+                return false;
+            }
+            return false;
+        } catch (IllegalArgumentException e) {
+            return true;
         }
     }
 
@@ -40,6 +63,6 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public Boolean retry() {
     }
 }
