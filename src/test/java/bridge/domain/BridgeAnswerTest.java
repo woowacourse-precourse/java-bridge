@@ -13,6 +13,7 @@ import static bridge.domain.BridgeGameState.*;
 import static bridge.domain.BridgeMoveType.DOWN;
 import static bridge.domain.BridgeMoveType.UP;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BridgeAnswerTest {
 
@@ -105,6 +106,20 @@ class BridgeAnswerTest {
         BridgeGameState gameState = bridgeAnswer.compareWith(bridgePlayer);
         // then
         assertThat(gameState).isIn(SUCCESS);
+    }
+
+    @ParameterizedTest(name = "[{index}] moveTypes = {0}")
+    @MethodSource("moveTypeDummy")
+    @DisplayName("다리가 비어있을 경우에 비교 실패하여 예외 처리 된다.")
+    void whenCompareEmptyBridgeThenExceptionTest(List<BridgeMoveType> moveTypes) {
+        // given & when
+        BridgeAnswer bridgeAnswer = new BridgeAnswer();
+        BridgePlayer bridgePlayer = new BridgePlayer();
+        moveTypes.forEach(bridgePlayer::moveTo);
+
+        //  then
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> bridgeAnswer.compareWith(bridgePlayer));
     }
 
     static Stream<Arguments> moveTypeDummy() {
