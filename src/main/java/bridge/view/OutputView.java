@@ -1,8 +1,12 @@
 package bridge.view;
 
 import static bridge.constants.OutputConstants.END;
+import static bridge.constants.OutputConstants.Fail;
 import static bridge.constants.OutputConstants.MIDDLE;
+import static bridge.constants.OutputConstants.RESULT_MESSAGE;
 import static bridge.constants.OutputConstants.START;
+import static bridge.constants.OutputConstants.SUCCEES;
+import static bridge.constants.OutputConstants.TOTAL_TRY;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -45,5 +49,18 @@ public class OutputView {
             }
         }
         System.out.println(upSb + "\n" + downSb);
+    }
+    public void printResult(boolean moveCheck, int cnt) {
+        if (moveCheck == true) {
+            RESULT_MESSAGE.printMessage();
+            System.out.println(upSb + "\n" + downSb + "\n");
+            System.out.println(SUCCEES.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
+
+            if (moveCheck == false) {
+                RESULT_MESSAGE.printMessage();
+                System.out.println(upSb + "\n" + downSb + "\n");
+                System.out.println(Fail.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
+            }
+        }
     }
 }
