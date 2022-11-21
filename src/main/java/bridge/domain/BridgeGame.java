@@ -48,68 +48,69 @@ public class BridgeGame {
 
     public void makePrintResultIfUp(int bridgeIdx){
         if(bridgeIdx == 0) {
-            appendPlayerMoveUpResultAtFirstMove(bridgeIdx , true);
+            appendPlayerMoveUpResultAtFirstMove(bridgeIdx);
             return;
         }
-        appendPlayerMoveUpResultNotFirstMove(bridgeIdx , true);
+        appendPlayerMoveUpResultNotFirstMove(bridgeIdx);
 
     }
 
     public void makePrintResultIfDown(int bridgeIdx){
         if(bridgeIdx == 0) {
-            appendPlayerMoveDownResultAtFirstMove(bridgeIdx ,false);
+            appendPlayerMoveDownResultAtFirstMove(bridgeIdx);
             return;
         }
-        appendPlayerMoveDownResultNotFirstMove(bridgeIdx ,false);
+        appendPlayerMoveDownResultNotFirstMove(bridgeIdx);
     }
 
-    private void appendPlayerMoveUpResultNotFirstMove(int bridgeIdx , boolean isUpMove) {
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_TRUE)) {
+    private void appendPlayerMoveUpResultNotFirstMove(int bridgeIdx) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_TRUE)) {
             printPlayerMoveUp.append("| O ");
             return;
         }
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_FALSE)) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_FALSE)) {
             printPlayerMoveUp.append("| X ");
+            return;
+        }
+        printPlayerMoveUp.append("|   ");
+    }
+
+    private void appendPlayerMoveUpResultAtFirstMove(int bridgeIdx ) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_TRUE)) {
+            printPlayerMoveUp.append(" O ");
+            return;
+        }
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_FALSE)) {
+            printPlayerMoveUp.append(" X ");
             return;
         }
         printPlayerMoveUp.append("   ");
     }
 
-    private void appendPlayerMoveDownResultNotFirstMove(int bridgeIdx , boolean isUpMove) {
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_TRUE)) {
+    private void appendPlayerMoveDownResultNotFirstMove(int bridgeIdx ) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_TRUE)) {
             printPlayerMoveDown.append("| O ");
             return;
         }
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_FALSE)) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_FALSE)) {
             printPlayerMoveDown.append("| X ");
             return;
         }
-        printPlayerMoveDown.append("   ");
+        printPlayerMoveDown.append("|   ");
     }
 
-    private void appendPlayerMoveDownResultAtFirstMove(int bridgeIdx , boolean isUpMove) {
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_TRUE)) {
+    private void appendPlayerMoveDownResultAtFirstMove(int bridgeIdx) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_TRUE)) {
             printPlayerMoveDown.append(" O ");
             return;
         }
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.DOWN_FALSE)) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_FALSE)) {
             printPlayerMoveDown.append(" X ");
             return;
         }
         printPlayerMoveDown.append("   ");
     }
 
-    private void appendPlayerMoveUpResultAtFirstMove(int bridgeIdx , boolean isUpMove) {
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_TRUE)) {
-            printPlayerMoveUp.append(" O ");
-            return;
-        }
-        if(playerMoveWhetherAnswer.get(bridgeIdx).isAnswer.equals(MoveAnswer.UP_FALSE)) {
-            printPlayerMoveUp.append(" X ");
-            return;
-        }
-        printPlayerMoveUp.append("   ");
-    }
 
 
     public void playerMoveWhetherAnswer(){
@@ -154,7 +155,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String gameRetryCommand) {
+        if(gameRetryCommand.equals(GameRetry.R.command)){
+            initializePlayerMoveRecord();
+            return true;
+        }
+        return false;
     }
 
     public void gameSuccess(){
