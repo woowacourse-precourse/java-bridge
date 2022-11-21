@@ -109,7 +109,7 @@
 ## Enum
 
 ### 명령어(Commands)
-- [x] UP("U"), DOWN("D"), RETRY("R"), QUIT("Q")
+- [x] UP(1, "U"), DOWN(0, "D"), RETRY(-1, "R"), QUIT(-1, "Q")
 
 ### 이동 결과(MoveResults)
 - [x] SUCCESS(true, "O"), FAILURE(false, "X")
