@@ -34,4 +34,16 @@ class BridgeGameTest {
         Assertions.assertThat(upBridge).isEqualTo(List.of("O"));
         Assertions.assertThat(downBridge).isEqualTo(List.of(" "));
     }
+
+    @DisplayName("이동 성공 여부를 판단한다.")
+    @Test
+    void isFailTest() {
+        bridgeGame.getRecordByMove("U");
+
+        Boolean isFail = bridgeGame.isFail();
+        Boolean isPass = bridgeGame.isPass();
+
+        Assertions.assertThat(isFail).isFalse();
+        Assertions.assertThat(isPass).isTrue();
+    }
 }
