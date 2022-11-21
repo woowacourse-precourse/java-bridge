@@ -18,7 +18,13 @@ public class Game {
         this.isPlaying = true;
     }
 
-    public void makeBridgeGame(){
+    public void start(){
+        this.makeBridgeGame();
+        this.play();
+        this.printGameResult();
+    }
+
+    private void makeBridgeGame(){
         outputController.printComment(Comment.START_GAME);
         outputController.printComment(Comment.INPUT_SIZE_OF_BRIDGE);
         int size = inputController.readBridgeSize();
@@ -26,14 +32,11 @@ public class Game {
         this.bridgeGame = new BridgeGame(bridge);
     }
 
-    public void play(){
+    private void play() {
         while(!this.bridgeGame.isEndOfBridge() && this.isPlaying){
-            outputController.printComment(Comment.INPUT_MOVEMENT);
-            String playerMovement = inputController.readMoving();
-            this.bridgeGame.move(playerMovement);
+            String playerMovement = movePlayer();
             boolean isPlayerSafe = this.bridgeGame.checkBridgeAndPlayer();
-            this.map.update(playerMovement, isPlayerSafe);
-            outputController.printMap(this.map);
+            updateAndPrintMap(playerMovement, isPlayerSafe);
 
             this.checkGameState(isPlayerSafe);
         }
@@ -41,6 +44,18 @@ public class Game {
 
     public void printGameResult(){
         outputController.printResult(this.map, this.bridgeGame.isEndOfBridge(), this.bridgeGame.getTotalAttempts());
+    }
+
+    private String movePlayer() {
+        outputController.printComment(Comment.INPUT_MOVEMENT);
+        String playerMovement = inputController.readMoving();
+        this.bridgeGame.move(playerMovement);
+        return playerMovement;
+    }
+
+    private void updateAndPrintMap(String playerMovement, boolean isPlayerSafe) {
+        this.map.update(playerMovement, isPlayerSafe);
+        outputController.printMap(this.map);
     }
 
     public void checkGameState(boolean isPlayerSafe) { // 플레이어가 죽었는지 확인
