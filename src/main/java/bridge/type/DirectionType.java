@@ -1,16 +1,6 @@
 package bridge.type;
 
-public enum DirectionType {
-    UP("U"),
-    DOWN("D");
-
-    private final String direction;
-
-    DirectionType(String direction) {
-        this.direction = direction;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
+public class DirectionType {
+    public static final String UP = "U";
+    public static final String DOWN = "D";
 }
