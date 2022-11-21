@@ -41,4 +41,13 @@ class BridgeMarkTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이동할 칸의 입력의 경우 U와 D 뿐이어야 합니다.");
     }
+
+    @DisplayName("BridgeMark가 업인지 다운인지 묻는 메소드 검증")
+    @Test
+    void isUpAndIsDown() {
+        BridgeMark upMark = BridgeMark.UP;
+        BridgeMark downMark = BridgeMark.DOWN;
+        assertThat(upMark.isUp()).isTrue();
+        assertThat(downMark.isDown()).isTrue();
+    }
 }
