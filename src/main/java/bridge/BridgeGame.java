@@ -1,23 +1,46 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
     private List<String> answerBridge ;
+    private List<String> userBridge = new ArrayList<>();
+
+    private GameResult gameResult = new GameResult();
 
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void makeAnswerBridge(int size){
         this.answerBridge = bridgeMaker.makeBridge(size);
     }
-    public void move() {
+    public void move(String moveChoice, int idx) {
+        userBridge.add(moveChoice);
+        setMoveResult(moveChoice, idx);
+    }
+    public void setMoveResult(String userChoice, int i) {
+        if (checkIsWrong(i)) {
+            setGameStatus(GameStatus.LOSE);
+        }
+        setResultBridge(MoveType.DOWN, userChoice, checkIsWrong(i));
+        setResultBridge(MoveType.UP, userChoice, checkIsWrong(i));
+    }
+    public boolean checkIsWrong(int i) {
+        return !getAnswerBridge().get(i).equals(getUserBridge().get(i));
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void setGameStatus(GameStatus gameStatus){
+        gameResult.setGameStatus(gameStatus);
+    }
+    public void setResultBridge(MoveType type, String userChoice, boolean isWrong){
+        if(type == MoveType.UP){
+            gameResult.setUpBridge(userChoice, isWrong);
+        }
+        if(type == MoveType.DOWN){
+            gameResult.setDownBridge(userChoice,isWrong);
+        }
+    }
+
     public void retry() {
     }
 
@@ -27,7 +50,9 @@ public class BridgeGame {
     public List<String> getAnswerBridge() {
         return answerBridge;
     }
-
+    public List<String> getUserBridge(){
+        return userBridge;
+    }
     public void setAnswerBridge(List<String> answerBridge) {
         this.answerBridge = answerBridge;
     }

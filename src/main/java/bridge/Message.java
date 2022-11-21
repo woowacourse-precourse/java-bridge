@@ -2,6 +2,9 @@ package bridge;
 
 public class Message {
 
+    public static final String WRONG = "X";
+    public static final String CORRECT="O";
+    public static final String PASS=" ";
     //input
     static final String BRIDGE_LENTH_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     static final String BRIDGE_MOVE_INPUT_MESSAGE="이동할 칸을 선택해주세요. (위: U, 아래: D)";
