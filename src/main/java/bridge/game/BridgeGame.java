@@ -2,6 +2,7 @@ package bridge.game;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.code.BridgePosition;
+import bridge.domain.code.GameStatus;
 import bridge.domain.code.SurviveStatus;
 import bridge.domain.history.History;
 
@@ -11,8 +12,9 @@ import bridge.domain.history.History;
 public class BridgeGame {
 
     private final Bridge bridge;
+    private GameStatus gameStatus = GameStatus.RUNNING;
     private History history;
-    private SurviveStatus surviveStatus = SurviveStatus.SURVIVE;
+    private SurviveStatus surviveStatus;
 
     public BridgeGame(Bridge madeBridge) {
         this.bridge = madeBridge;
@@ -27,6 +29,7 @@ public class BridgeGame {
     public History move(BridgePosition movePosition) {
         this.surviveStatus = bridge.next(movePosition);
         history.record(surviveStatus, movePosition);
+        this.gameStatus = GameStatus.generateGameStatus(surviveStatus, bridge);
         return this.history;
     }
 
@@ -38,14 +41,10 @@ public class BridgeGame {
     public void retry() {
         this.bridge.reset();
         this.history = new History();
-        this.surviveStatus = SurviveStatus.SURVIVE;
+        this.gameStatus = GameStatus.RUNNING;
     }
 
-    public boolean canPlayerMove() {
-        return surviveStatus.isAlive() && bridge.canMove();
-    }
-
-    public boolean isClear() {
-        return surviveStatus.isAlive() && bridge.canNotMove();
+    public GameStatus getGameStatus() {
+        return gameStatus;
     }
 }
