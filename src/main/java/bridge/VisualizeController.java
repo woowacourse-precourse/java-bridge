@@ -1,77 +1,82 @@
 package bridge;
 
 import bridge.Model.BridgeGame;
+import bridge.View.UiMessage;
 
 public class VisualizeController {
-    public VisualizeController(int idx) { // 지금 몇번째 판떼기에 있는지 받아와서 갱신하는 방식으로 바꾸기
-        StringBuilder upperSubstring = new StringBuilder(BridgeGame.upperResult.replaceFirst("]", ""));
-        StringBuilder lowerSubstring = new StringBuilder(BridgeGame.lowerResult.replaceFirst("]", ""));
-        drawGraph(idx, upperSubstring, lowerSubstring);
-        BridgeGame.upperResult = upperSubstring.toString();
-        BridgeGame.lowerResult = lowerSubstring.toString();
+    private VisualizeController(BridgeGame bridgeGame) {
+        StringBuilder upperSubstring = new StringBuilder(bridgeGame.upperResult.replaceFirst("]", ""));
+        StringBuilder lowerSubstring = new StringBuilder(bridgeGame.lowerResult.replaceFirst("]", ""));
+        drawGraph(bridgeGame, upperSubstring, lowerSubstring);
+        bridgeGame.upperResult = upperSubstring.toString();
+        bridgeGame.lowerResult = lowerSubstring.toString();
     }
 
-    private static void drawGraph(int idx, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
-        if (idx > 0) {
-            drawGraphAfterFirstProgress(idx, upperSubstring, lowerSubstring);
+    private static void drawGraph(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+        if (bridgeGame.idx > 0) {
+            drawGraphAfterFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
             return;
         }
-        drawGraphOfFirstProgress(idx, upperSubstring, lowerSubstring);
+        drawGraphOfFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
     }
 
-    private static void drawGraphOfFirstProgress(int idx, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
-        if (BridgeGame.user.get(idx).equals(BridgeGame.bridge.get(idx))) {
-            addCorrectToGraphFirstProgress(idx, upperSubstring, lowerSubstring);
+    private static void drawGraphOfFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+        if (bridgeGame.user.get(bridgeGame.idx).equals(bridgeGame.bridge.get(bridgeGame.idx))) {
+            addCorrectToGraphFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
             return;
         }
-        addIncorrectToGraphFirstProgress(idx, upperSubstring, lowerSubstring);
+        addIncorrectToGraphFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
     }
 
-    private static void addIncorrectToGraphFirstProgress(int idx, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
-        if (BridgeGame.user.get(idx).equals("U")) {
-            upperSubstring.append(" X ]");
-            lowerSubstring.append("   ]");
+    private static void addIncorrectToGraphFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+        if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
+            upperSubstring.append(UiMessage.FIRST_X.getValue());
+            lowerSubstring.append(UiMessage.FIRST_BLANK.getValue());
             return;
         }
-        upperSubstring.append("   ]");
-        lowerSubstring.append(" X ]");
+        upperSubstring.append(UiMessage.FIRST_BLANK.getValue());
+        lowerSubstring.append(UiMessage.FIRST_X.getValue());
     }
 
-    private static void addCorrectToGraphFirstProgress(int idx, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
-        if (BridgeGame.user.get(idx).equals("U")) {
-            upperSubstring.append(" O ]");
-            lowerSubstring.append("   ]");
+    private static void addCorrectToGraphFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+        if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
+            upperSubstring.append(UiMessage.FIRST_O.getValue());
+            lowerSubstring.append(UiMessage.FIRST_BLANK.getValue());
             return;
         }
-        upperSubstring.append("   ]");
-        lowerSubstring.append(" O ]");
+        upperSubstring.append(UiMessage.FIRST_BLANK.getValue());
+        lowerSubstring.append(UiMessage.FIRST_O.getValue());
     }
 
-    private static void drawGraphAfterFirstProgress(int idx, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
-        if (BridgeGame.user.get(idx).equals(BridgeGame.bridge.get(idx))) {
-            addCorrectToGraphAfterFirstProgress(idx, upperSubstring, lowerSubstring);
+    private static void drawGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+        if (bridgeGame.user.get(bridgeGame.idx).equals(bridgeGame.bridge.get(bridgeGame.idx))) {
+            addCorrectToGraphAfterFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
             return;
         }
-        addIncorrectToGraphAfterFirstProgress(idx, upperSubstring, lowerSubstring);
+        addIncorrectToGraphAfterFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
     }
 
-    private static void addIncorrectToGraphAfterFirstProgress(int idx, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
-        if (BridgeGame.user.get(idx).equals("U")) {
-            upperSubstring.append("| X ]");
-            lowerSubstring.append("|   ]");
+    private static void addIncorrectToGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+        if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
+            upperSubstring.append(UiMessage.X_AFTER_FIRST.getValue());
+            lowerSubstring.append(UiMessage.BLACK_AFTER_FIRST.getValue());
             return;
         }
-        upperSubstring.append("|   ]");
-        lowerSubstring.append("| X ]");
+        upperSubstring.append(UiMessage.BLACK_AFTER_FIRST.getValue());
+        lowerSubstring.append(UiMessage.X_AFTER_FIRST.getValue());
     }
 
-    private static void addCorrectToGraphAfterFirstProgress(int idx, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
-        if (BridgeGame.user.get(idx).equals("U")) {
-            upperSubstring.append("| O ]");
-            lowerSubstring.append("|   ]");
+    private static void addCorrectToGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+        if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
+            upperSubstring.append(UiMessage.O_AFTER_FIRST.getValue());
+            lowerSubstring.append(UiMessage.BLACK_AFTER_FIRST.getValue());
             return;
         }
-        upperSubstring.append("|   ]");
-        lowerSubstring.append("| O ]");
+        upperSubstring.append(UiMessage.BLACK_AFTER_FIRST.getValue());
+        lowerSubstring.append(UiMessage.O_AFTER_FIRST.getValue());
+    }
+
+    public static void getVisualizeController(BridgeGame bridgeGame){
+        new VisualizeController(bridgeGame);
     }
 }
