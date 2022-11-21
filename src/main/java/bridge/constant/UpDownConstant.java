@@ -3,17 +3,19 @@ package bridge.constant;
 import java.util.Objects;
 
 public enum UpDownConstant {
-    UP("위", "U", 1),
-    DOWN("아래", "D", 0);
+    UP("위", "U", 1, 0),
+    DOWN("아래", "D", 0, 1);
 
     private final String location;
     private final String symbol;
     private final int numericSymbol;
+    private final int row;
 
-    UpDownConstant(String location, String symbol, int numericSymbol) {
+    UpDownConstant(String location, String symbol, int numericSymbol, int row) {
         this.location = location;
         this.symbol = symbol;
         this.numericSymbol = numericSymbol;
+        this.row = row;
     }
 
     public static UpDownConstant of(String symbol) {
@@ -45,9 +47,17 @@ public enum UpDownConstant {
     public int getNumericSymbol() {
         return numericSymbol;
     }
+    private int getRow() {
+        return row;
+    }
+
+    public boolean isSameRow(int row) {
+        return row == getRow();
+    }
 
     public static boolean contains(String symbol) {
         return Objects.equals(symbol, UP.getSymbol()) || Objects.equals(symbol, DOWN.getSymbol());
     }
+
 
 }

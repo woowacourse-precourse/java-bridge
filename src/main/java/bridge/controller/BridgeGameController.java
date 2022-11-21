@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.constant.AfterMovingStatusConstant;
-import bridge.constant.GameProcedureStringConstant;
 import bridge.domain.Bridge;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
@@ -15,10 +14,20 @@ public class BridgeGameController {
     public void start() {
         final List<String> bridge = bridgeGame.createBridge(bridgeLengthInputView());
         Bridge randomCreateBridge = new Bridge(bridge);
-        Bridge thisTurnBridge = new Bridge();
-        AfterMovingStatusConstant moveStatus = bridgeGame.move(randomCreateBridge, thisTurnBridge,
-                thisTurnMoveBridgeInputView());
+        while (true) {
+            Bridge thisTurnBridge = new Bridge();
+            while (true) {
+                AfterMovingStatusConstant afterMovingStatusConstant = movingProcedure(randomCreateBridge,
+                        thisTurnBridge);
+                String bridgeStatus = thisTurnBridge.toString(randomCreateBridge);
+            }
+        }
 
+    }
+
+    private AfterMovingStatusConstant movingProcedure(Bridge randomCreateBridge, Bridge thisTurnBridge) {
+        return bridgeGame.move(randomCreateBridge, thisTurnBridge,
+                thisTurnMoveBridgeInputView());
     }
 
     private String thisTurnMoveBridgeInputView() {
