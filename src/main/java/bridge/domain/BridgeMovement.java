@@ -37,7 +37,7 @@ public enum BridgeMovement {
     }
 
     public static BridgeMovement findByMovement(String move) {
-        if(!BY_MOVE.containsKey(move)) {
+        if (!BY_MOVE.containsKey(move)) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_MOVEMENT);
         }
         return BY_MOVE.get(move);

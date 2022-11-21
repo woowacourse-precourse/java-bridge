@@ -24,7 +24,7 @@ public enum GameCommand {
     }
 
     public static GameCommand findByCommand(String code) {
-        if(!BY_CODE.containsKey(code)) {
+        if (!BY_CODE.containsKey(code)) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_COMMAND_VALUE);
         }
         return BY_CODE.get(code);

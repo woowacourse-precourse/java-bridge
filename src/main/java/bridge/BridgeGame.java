@@ -42,7 +42,7 @@ public class BridgeGame {
     }
 
     public GameStatus retry(GameCommand command) {
-        if(command == GameCommand.RETRY) {
+        if (command == GameCommand.RETRY) {
             player.reset();
             numberOfAttempts += 1;
             return GameStatus.PLAYING;

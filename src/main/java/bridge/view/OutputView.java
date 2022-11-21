@@ -13,7 +13,8 @@ public class OutputView {
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_PLAYER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_PLAYER_COMMAND =
-            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + GameCommand.RETRY.getCode() + ", 종료: " + GameCommand.QUIT.getCode() + ")";
+            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + GameCommand.RETRY.getCode() + ", 종료: " + GameCommand.QUIT.getCode()
+                    + ")";
 
     private static final String GAME_SUCCESS_OR_NOT = "게임 성공 여부: ";
     private static final String TOTAL_NUMBER_OF_ATTEMPTS = "총 시도한 횟수: ";

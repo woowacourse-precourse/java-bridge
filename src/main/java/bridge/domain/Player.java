@@ -31,9 +31,9 @@ public class Player {
     }
 
     public void crossOverBridge(BridgeMovement playerMove, boolean crossable) {
-        for(Map.Entry<BridgeMovement, List<String>> route: movingRoute.entrySet()) {
+        for (Map.Entry<BridgeMovement, List<String>> route : movingRoute.entrySet()) {
             String status = " ";
-            if(route.getKey() == playerMove) {
+            if (route.getKey() == playerMove) {
                 status = toStatusAfterCrossOver(crossable);
             }
             route.getValue().add(status);
@@ -41,8 +41,8 @@ public class Player {
         playerPosition += 1;
     }
 
-    public String toStatusAfterCrossOver(boolean isMoveble){
-        if(isMoveble) {
+    public String toStatusAfterCrossOver(boolean isMoveble) {
+        if (isMoveble) {
             return "O";
         }
         return "X";

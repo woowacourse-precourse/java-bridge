@@ -23,7 +23,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for(int index = 0; index < size; index++) {
+        for (int index = 0; index < size; index++) {
             int code = bridgeNumberGenerator.generate();
             bridge.add(BridgeMovement.findByCode(code).getMove());
         }

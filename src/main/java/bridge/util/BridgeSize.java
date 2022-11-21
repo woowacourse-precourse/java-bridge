@@ -5,6 +5,7 @@ public enum BridgeSize {
     MAXIMUM(20);
 
     private int size;
+
     BridgeSize(int size) {
         this.size = size;
     }

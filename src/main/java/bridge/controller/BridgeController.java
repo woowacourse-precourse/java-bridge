@@ -38,7 +38,7 @@ public class BridgeController {
 
     private void playGame() {
         movePlayer();
-        if(gameStatus == GameStatus.FAILED) {
+        if (gameStatus == GameStatus.FAILED) {
             retryGame();
         }
     }
