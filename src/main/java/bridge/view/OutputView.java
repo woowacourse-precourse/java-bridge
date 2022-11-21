@@ -1,5 +1,8 @@
 package bridge.view;
 
+import java.util.List;
+import java.util.Stack;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -28,5 +31,14 @@ public class OutputView {
 
     public void printPlay() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printStairs(List<Stack> stairs) {
+        for (Stack stair : stairs) {
+            for (Object o : stair) {
+                System.out.print(o+"");
+            }
+            System.out.println();
+        }
     }
 }
