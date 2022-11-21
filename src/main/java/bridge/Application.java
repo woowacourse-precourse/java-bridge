@@ -54,14 +54,21 @@ public class Application {
         bridgeGame.move(inputMove());
         outputMove(bridgeGame);
         boolean isContinue=true;
-        isContinue=
+        isContinue=checker.checkBridgeGameResult(bridgeGame);
+        if(!isContinue){
+            isContinue=inputRetry();
+        }
+        if(isContinue){
+            bridgeGameContinue(bridgeGame);
+        }
     }
 
     private void outputMove(BridgeGame bridgeGame) {
         outputView.printMap(bridgeGame);
     }
 
-    private void bridgeGameResult(BridgeGame bridgeGame) {
-        checker.
+    private boolean inputRetry() {
+        outputView.printSelectRetry();
+        return checker.checkRetry(inputView.readGameCommand());
     }
 }
