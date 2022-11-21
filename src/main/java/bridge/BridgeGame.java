@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.valid.ValidateBridgeGame;
+
 import java.util.List;
 
 /**
@@ -56,6 +58,8 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public int getPlayCount(){return playCount;}
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

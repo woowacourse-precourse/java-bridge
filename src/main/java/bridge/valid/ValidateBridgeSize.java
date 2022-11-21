@@ -1,4 +1,6 @@
-package bridge;
+package bridge.valid;
+
+import bridge.Constant;
 
 public class ValidateBridgeSize {
     public int validateBridgeSize(String size){
@@ -8,10 +10,10 @@ public class ValidateBridgeSize {
 
     private void validate(String size){
         if(!validateConsistOfNumber(size)){
-            throw new IllegalArgumentException("다리의 길이는 숫자를 입력해야합니다.");
+            throw new IllegalArgumentException(Constant.ERROR_MESSAGE+" 다리의 길이는 숫자를 입력해야합니다.");
         }
         if(validateOutOfRange(Integer.parseInt(size))){
-            throw new IllegalArgumentException("다리의 길이는 3부터 20까지 입니다.");
+            throw new IllegalArgumentException(Constant.ERROR_MESSAGE+" 다리의 길이는 3부터 20까지 입니다.");
         }
     }
 

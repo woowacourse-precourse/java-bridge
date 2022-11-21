@@ -5,7 +5,7 @@ public class SingleMap {
     BridgeGame bridgeGame;
     String recentMove;
 
-    SingleMap(BridgeGame bridgeGame,String recentMove){
+    public SingleMap(BridgeGame bridgeGame,String recentMove){
         this.bridgeGame=bridgeGame;
         this.recentMove=recentMove;
     }

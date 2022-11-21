@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.valid.ValidateBridgeGame;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -64,7 +65,8 @@ public class BridgeGameTest extends NsTest {
         @DisplayName("칸 건너기를 성공한 경우. 1번 케이스")
         @Test
         public void successOneMove() {
-            assertThat(bridgeGame.move("U"))
+            bridgeGame.move("U");
+            assertThat(bridgeGame.isSuccess())
                     .isTrue();
         }
 
@@ -72,14 +74,16 @@ public class BridgeGameTest extends NsTest {
         @Test
         public void successTwoMove() {
             bridgeGame.move("U");
-            assertThat(bridgeGame.move("D"))
+            bridgeGame.move("D");
+            assertThat(bridgeGame.isSuccess())
                     .isTrue();
         }
 
         @DisplayName("칸 건너기를 실패한 경우. 1번케이스")
         @Test
         public void failOneMove() {
-            assertThat(bridgeGame.move("D"))
+            bridgeGame.move("D");
+            assertThat(bridgeGame.isSuccess())
                     .isFalse();
         }
 
@@ -87,7 +91,8 @@ public class BridgeGameTest extends NsTest {
         @Test
         public void failTwoMove() {
             bridgeGame.move("U");
-            assertThat(bridgeGame.move("U"))
+            bridgeGame.move("U");
+            assertThat(bridgeGame.isSuccess())
                     .isFalse();
         }
 
@@ -96,7 +101,8 @@ public class BridgeGameTest extends NsTest {
         public void successAllMove(){
             bridgeGame.move("U");
             bridgeGame.move("D");
-            assertThat(bridgeGame.move("U"))
+            bridgeGame.move("U");
+            assertThat(bridgeGame.checkNotGoal())
                     .isFalse();
         }
 
