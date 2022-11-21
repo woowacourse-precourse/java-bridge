@@ -58,6 +58,7 @@ public class OutputView {
     private void printMap() {
         System.out.println(map.get(VerticalPositionValue.UP.getNumber()).toString());
         System.out.println(map.get(VerticalPositionValue.DOWN.getNumber()).toString());
+        System.out.println();
     }
 
     /**
@@ -167,7 +168,6 @@ public class OutputView {
     public void printResult(String gameStatus, Integer numOfTrying) {
         System.out.println(GAME_RESULT_PHRASES);
         printMap();
-        System.out.println();
         printGameStatus(gameStatus);
         printNumOfTry(numOfTrying);
     }
