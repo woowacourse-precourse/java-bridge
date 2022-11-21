@@ -16,7 +16,8 @@ public class Application implements InstanceCollection {
     public static void main(String[] args) {
         output.printStart();
         try {
-            maker.makeBridge(input.readBridgeSize());
+            input.readBridgeSize();
+            maker.makeBridge(InputView.bridge_size);
             bridgeGameStart();
         } catch (IllegalArgumentException e){
         } finally {
@@ -46,11 +47,8 @@ public class Application implements InstanceCollection {
     }
 
     private static boolean isEndingCase(String result) {
-        if (result.equals("O")) {
-            if (BridgeMaker.bridge_index == InputView.bridge_size) {
-                output.printResult(up_bridge, down_bridge, 1);
-                return true;
-            }
+        if (result.equals("O") && isLastPick()) {
+            return true;
         }
         if (result.equals("X")) {
             if (checkQuit()) {
@@ -58,6 +56,10 @@ public class Application implements InstanceCollection {
             }
         }
         return false;
+    }
+
+    private static boolean isLastPick() {
+        return BridgeMaker.bridge_index == InputView.bridge_size;
     }
 
     private static boolean checkQuit() {
