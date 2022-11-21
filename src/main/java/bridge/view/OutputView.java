@@ -39,14 +39,18 @@ public class OutputView {
         for (int i = 0 ; i < userSelectList.size(); i++) {
             String ox = compareOX(makeBridgeList.get(i),userSelectList.get(i));
             if (userSelectList.get(i).equals("U")) {
-                upList.add(ox);
-                downList.add(" ");
+                addOX(ox, " ");
             }
             if (userSelectList.get(i).equals("D")) {
-                upList.add(" ");
-                downList.add(ox);
+                addOX(" ", ox);
             }
         }
+    }
+
+    // ox와 빈칸을 저장하는 기능
+    private void addOX(String addUp, String addDown) {
+            upList.add(addUp);
+            downList.add(addDown);
     }
 
     // 유저 List와 정답 List를 비교하여 OX를 저장하는 기능
