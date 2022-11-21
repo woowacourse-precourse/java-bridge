@@ -27,7 +27,7 @@ public enum MovePosition {
         Arrays.stream(values())
                 .filter(condition -> condition.hasPosition(inputPosition))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_IN_MOVE_CONDITION.printMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_IN_MOVE_POSITION.printMessage()));
     }
 
     public String getPosition() {

@@ -21,7 +21,7 @@ public class GameController {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        initializeGame();
+        startNewGame();
     }
 
     public void play() {
@@ -33,7 +33,7 @@ public class GameController {
         printFinalResult();
     }
 
-    private void initializeGame() {
+    private void startNewGame() {
         printGameStart();
         bridgeGame = new BridgeGame(createNewBridge());
         isPlaying = true;

@@ -18,7 +18,7 @@ class MovePositionTest {
 
         assertThatThrownBy(() -> MovePosition.validateNextMove(inputPosition))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NOT_IN_MOVE_CONDITION.printMessage())
+                .hasMessageContaining(ErrorMessage.NOT_IN_MOVE_POSITION.printMessage())
                 .hasMessageStartingWith(ERROR_HEAD);
     }
 
