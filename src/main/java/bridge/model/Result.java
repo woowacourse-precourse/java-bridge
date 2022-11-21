@@ -58,4 +58,15 @@ public class Result {
             lowerBridge.add(ox.get(crossedBridge));
         }
     }
+
+    public String getResultBridges() {
+        StringBuilder result = new StringBuilder();
+        for (List<String> resultBridge : resultBridges) {
+            result.append(String.valueOf(resultBridge)
+                    .replace(", ", " | ")
+                    .replace("[", "[ ")
+                    .replace("]", " ]\n"));
+        }
+        return result.toString();
+    }
 }
