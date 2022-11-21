@@ -12,7 +12,7 @@ import bridge.domain.Position;
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
 import bridge.domain.make_bridge.BridgeMaker;
-import bridge.domain.move_result.MoveResults;
+import bridge.domain.MoveResults;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

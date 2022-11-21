@@ -7,7 +7,6 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
-import bridge.domain.move_result.MoveResults;
 
 public class BridgeGame {
 

@@ -1,4 +1,4 @@
-package bridge.domain.move_result;
+package bridge.domain;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
@@ -8,15 +8,15 @@ import java.util.List;
 
 public class MoveResults {
 
-    private final ResultsPerLine upLineResults = new ResultsPerLine(MOVE_UP_COMMAND);
-    private final ResultsPerLine downLineResults = new ResultsPerLine(MOVE_DOWN_COMMAND);
+    private final MoveResultsPerLine upLineResults = new MoveResultsPerLine(MOVE_UP_COMMAND);
+    private final MoveResultsPerLine downLineResults = new MoveResultsPerLine(MOVE_DOWN_COMMAND);
 
     public void addResults(final MoveCommands moveCommand, final String moveResult) {
         upLineResults.addMoveResults(moveCommand, moveResult);
         downLineResults.addMoveResults(moveCommand, moveResult);
     }
 
-    public void reset() {
+    void reset() {
         upLineResults.clear();
         downLineResults.clear();
     }

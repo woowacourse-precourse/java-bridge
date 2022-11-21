@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.move_result.MoveResults;
+import bridge.domain.MoveResults;
 import java.util.List;
 import java.util.StringJoiner;
 

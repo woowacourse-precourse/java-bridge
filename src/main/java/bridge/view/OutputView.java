@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.move_result.MoveResults;
+import bridge.domain.MoveResults;
 
 public class OutputView {
 

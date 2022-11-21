@@ -1,18 +1,18 @@
-package bridge.domain.move_result;
+package bridge.domain;
 
 import bridge.domain.constants.MoveCommands;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ResultsPerLine {
+public class MoveResultsPerLine {
 
     public static final String BLANK = " ";
 
     private final MoveCommands moveCommands;
     private final List<String> results = new ArrayList<>();
 
-    public ResultsPerLine(final MoveCommands moveCommands) {
+    public MoveResultsPerLine(final MoveCommands moveCommands) {
         this.moveCommands = moveCommands;
     }
 

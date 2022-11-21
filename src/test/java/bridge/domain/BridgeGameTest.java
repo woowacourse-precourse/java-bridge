@@ -6,7 +6,6 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.constants.GameCommands;
-import bridge.domain.move_result.MoveResults;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

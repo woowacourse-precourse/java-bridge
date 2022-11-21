@@ -1,9 +1,10 @@
-package bridge.domain.move_result;
+package bridge.domain;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.MoveResults;
 import bridge.domain.constants.MoveCommands;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
