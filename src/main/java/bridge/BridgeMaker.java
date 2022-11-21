@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final int MIN_RANGE = 3;
+    private static final int MAX_RANGE = 20;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -33,7 +35,7 @@ public class BridgeMaker {
     }
 
     private void validate(int number) throws IllegalArgumentException {
-        if (number < 3 || 20 < number) {
+        if (number < MIN_RANGE || MAX_RANGE < number) {
             throw new IllegalArgumentException("[ERROR] 다리길이는 3이상 20이하 입니다.");
         }
     }
@@ -44,12 +46,10 @@ public class BridgeMaker {
 
     private String parseZeroOrOneToUorD(int number) {
         String movement = "";
-        //TODO: 1과 U enum으로 묶어보기
-        if (number == 1) {
-            movement = "U";
-        }
-        if (number == 0) {
-            movement = "D";
+        for (BridgeStatus bridgeStatus : BridgeStatus.values()) {
+            if (number == bridgeStatus.getNumber()) {
+                movement = bridgeStatus.getMovement();
+            }
         }
         return movement;
     }
