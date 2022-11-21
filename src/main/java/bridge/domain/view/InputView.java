@@ -7,7 +7,7 @@ public class InputView {
 
     InputException inputException = new InputException();
 
-    public int readBridgeSize() {
+    public int readBridgeLength() {
         String input = Console.readLine();
         inputException.inputBridgeLengthException(input);
         return Integer.parseInt(input);

@@ -4,7 +4,7 @@
 ### 💡실행 목록
 - [x] 게임 시작 문구를 출력한다. -OutputView#printGuideMessage()
 - [x] 다리의 길이를 입력 받는 문구를 출력한다. -OutputView#printGuideMessage()
-- [x] 다리의 길이를 입력 받는다. -InputView#readBridgeSize()
+- [x] 다리의 길이를 입력 받는다. -InputView#readBridgeLength()
   - [x] 다리의 길이는 3부터 20 사이만 입력 받을 수 있다.
 - [x] 다리의 길이만큼 다리를 랜덤 값으로 생성한다. -BridgeMaker#makeBridge()
   - [x] 0이면 아래 칸, 1이면 위의 칸이 유효한 칸이다.
@@ -29,11 +29,11 @@
 
 
 - [ ] 이동한 칸이 마지막 칸이라면?
-  - [ ] 게임 종료 문구를 출력한다. -OutputView#printResult()
+  - [x] 게임 종료 문구를 출력한다. -OutputView#printResult()
     - [x] 최종 게임 결과 문구를 출력한다. -OutputView#printGuideMessage()
-    - [ ] 최종 게임 결과(현재까지 건넌 다리)를 출력한다.
-    - [ ] 게임 성공 여부를 출력한다. -OutputView#printSuccessOrFailure()
-    - [ ] 총 시도한 횟수를 출력한다. -OutputView#printTotalTry()
+    - [x] 최종 게임 결과(현재까지 건넌 다리)를 출력한다.
+    - [x] 게임 성공 여부를 출력한다. -OutputView#printSuccessOrFailure()
+    - [x] 총 시도한 횟수를 출력한다. -OutputView#printTotalTry()
 
 ### ❗️예외 목록
 #### controller
