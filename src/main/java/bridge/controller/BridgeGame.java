@@ -7,7 +7,7 @@ import bridge.service.GameService;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static GameService gameService;
+    private static final GameService gameService = new GameService();
 
     public Game start() {
         return gameService.initializeGame();

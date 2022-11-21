@@ -5,7 +5,13 @@ import bridge.view.OutputView;
 
 public class BridgeService {
     private int getLength() {
-        OutputView.messageLengthInput();
-        return InputView.readBridgeSize();
+        while (true) {
+            try {
+                OutputView.messageLengthInput();
+                return InputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
