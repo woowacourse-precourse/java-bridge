@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.WordType.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -68,18 +70,18 @@ public class BridgeGame {
     public void bridgeMark(String direct, boolean result) {
         String mark = getMarkToResult(result);
 
-        if (direct.equals("U")) {
-            addBridgeMark(mark, " ");
+        if (direct.equals(UP.getWord())) {
+            addBridgeMark(mark, NOT_CHOICE_MOVE_CHECK.getWord());
             return;
         }
-        addBridgeMark(" ", mark);
+        addBridgeMark(NOT_CHOICE_MOVE_CHECK.getWord(), mark);
     }
 
     private String getMarkToResult(boolean result) {
         if (result) {
-            return "O";
+            return MOVE_CHECK.getWord();
         }
-        return "X";
+        return NOT_MOVE_CHECK.getWord();
     }
 
     private void addBridgeMark(String upMark, String downMark) {
