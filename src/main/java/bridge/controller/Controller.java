@@ -3,17 +3,12 @@ package bridge.controller;
 import bridge.game.BridgeGame;
 import bridge.io.OutputView;
 
+import static bridge.game.GameState.*;
 import static bridge.io.InputView.*;
 import static bridge.MSG.INPUT_START;
 
 public class Controller {
 
-    /**
-     * [Game state]
-     * 0 - on game
-     * 1 - game over
-     * 2 - game clear
-     * */
     private final BridgeGame bridgeGame;
     private int gameState;
     public Controller() {
@@ -23,6 +18,7 @@ public class Controller {
         System.out.println();
     }
 
+
     public void run() {
         gameState = bridgeGame.move(readMoving());
         OutputView.printMap();
@@ -30,20 +26,19 @@ public class Controller {
         clearedState();
     }
     private void nonClearedState() {
-        while (gameState == 0 || gameState==1) {
-            if (gameState == 0) {
+        while (gameState == GAME_ON_STATE.value || gameState == GAME_OVER_STATE.value) {
+            if (gameState == GAME_ON_STATE.value) {
                 gameState = bridgeGame.move(readMoving());
                 OutputView.printMap();
             }
-            if (gameState == 1) {
+            if (gameState == GAME_OVER_STATE.value) {
                 gameState = bridgeGame.retry(readGameCommand());
             }
         }
     }
     private void clearedState() {
-        if (gameState == 2) {
+        if (gameState == GAME_CLEAR_STATE.value) {
             OutputView.printResult();
         }
     }
-
 }

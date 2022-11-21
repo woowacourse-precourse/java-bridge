@@ -24,7 +24,6 @@ public class InputView {
     }
 
 
-
     public static String readMoving() {
         System.out.println(MSG.INPUT_MOVING.message);
         String movingCommand = Console.readLine();
@@ -42,7 +41,6 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
-
 
 
     public static String readGameCommand() {

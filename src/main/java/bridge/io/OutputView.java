@@ -25,7 +25,6 @@ public class OutputView {
     }
 
 
-
     public static void printResult() {
         System.out.println(MSG.OUTPUT_GAME_RESULT.message);
         printMap();
