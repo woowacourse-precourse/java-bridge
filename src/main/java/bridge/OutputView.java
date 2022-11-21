@@ -86,4 +86,8 @@ public class OutputView {
         }
         return true;
     }
+
+    public void printSuccess(boolean check){
+
+    }
 }

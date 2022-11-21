@@ -44,7 +44,14 @@ class OutputViewTest {
         assertThat(check).isEqualTo(false);
     }
 
+    @DisplayName("게임 성공 여부 테스트")
     @Test
-    void printResultTest() {
+    void checkSuccessTest() {
+        boolean check=outputView.checkSuccess(answer,answer);
+        assertThat(check).isEqualTo(true);
+        check=outputView.checkSuccess(input,answer);
+        assertThat(check).isEqualTo(false);
+        check=outputView.checkSuccess(List.of("U","D"),answer);
+        assertThat(check).isEqualTo(false);
     }
 }
