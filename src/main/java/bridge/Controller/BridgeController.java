@@ -2,6 +2,7 @@ package bridge.Controller;
 
 import bridge.*;
 import bridge.Domain.Bridge;
+import bridge.Domain.UserBridge;
 import bridge.Domain.UserBridges;
 import bridge.Domain.Status;
 import bridge.View.InputView;
@@ -25,14 +26,14 @@ public class BridgeController {
         while (status == Status.PLAYING) {
 
             tries += 1;
-            Status now = run(bridge, userBridges);
+            Status currentStatus = run(bridge, userBridges);
 
-            if (now == Status.END_OF_BRIDGE) {
+            if (currentStatus == Status.END_OF_BRIDGE) {
                 success = true;
                 break;
             }
 
-            if (now == Status.WRONG_CHOICE) {
+            if (currentStatus == Status.WRONG_CHOICE) {
                 String retry = InputView.readGameCommand();
                 status = BridgeGame.retry(retry, userBridges);
             }
@@ -53,20 +54,20 @@ public class BridgeController {
     }
 
     public Status run(Bridge bridge, UserBridges userBridges) {
-
         for(int location=0; location< bridge.getSize(); location++) {
 
-            String moveTo = InputView.readMoving();
-
-            String space = bridge.getSpaceByLocation(location);
-            Status now = BridgeGame.move(moveTo, space, userBridges);
-
+            Status result = moveMap(bridge, userBridges, location);
             OutputView.printMap(userBridges);
 
-            if(now == Status.WRONG_CHOICE)
-                return now;
+            if(result == Status.WRONG_CHOICE)
+                return result;
         }
-
         return Status.END_OF_BRIDGE;
+    }
+
+    public Status moveMap(Bridge bridge, UserBridges userBridges, int location) {
+        String moving = InputView.readMoving();
+        String space = bridge.getSpaceByLocation(location);
+        return BridgeGame.move(moving, space, userBridges);
     }
 }
