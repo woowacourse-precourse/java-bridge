@@ -34,16 +34,14 @@ public class Controller {
         return BridgeGame.from(bridge);
     }
 
-    private void doGame() {
+    private int doGame() {
         if (game.isFinished()) {
-            // TODO: EXIT
-            return;
+            return 0;
         }
         if (!move().wasSuccessful()) {
-            retryOrExit();
-            return;
+            return retryOrExit();
         }
-        doGame();
+        return doGame();
     }
 
     private TrialResult move() {
@@ -54,13 +52,13 @@ public class Controller {
         return trialResult;
     }
 
-    private void retryOrExit() {
+    private int retryOrExit() {
         if (askForRetry()) {
             game.retry();
             trialResults.clear();
-            doGame();
+            return doGame() + 1;
         }
-        // TODO: Exit
+        return 0;
     }
 
     private boolean askForRetry() {
