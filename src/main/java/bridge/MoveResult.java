@@ -1,13 +1,12 @@
 package bridge;
 
-import java.util.List;
+import java.util.Map;
 
 public class MoveResult {
 
-    private final List<String> moveResult;
+    private final Map<String, String> moveResult;
 
-    public MoveResult(List<String> moveResult) {
+    public MoveResult(Map<String, String> moveResult) {
         this.moveResult = moveResult;
     }
-
 }
