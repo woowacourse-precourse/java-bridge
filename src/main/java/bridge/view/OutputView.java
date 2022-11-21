@@ -35,6 +35,10 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + gameStatus.getAttempt());
     }
 
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
+
     private String renderMap(List<String> bridge) {
         StringBuilder map = new StringBuilder();
         for (int i = 0; i < bridge.size() - 1; i++) {
@@ -48,9 +52,5 @@ public class OutputView {
             return "성공";
         }
         return "실패";
-    }
-
-    public void printMessage(String message) {
-        System.out.println(message);
     }
 }

@@ -50,6 +50,15 @@ public class BridgeGame {
         gameStatus.setAttempt(gameStatus.getAttempt()+1);
     }
 
+    public boolean isClear() {
+        if (player.getPlayerLocation() >= bridge.getBridge().size()) {
+            player.setCross(false);
+            gameStatus.setSuccess(true);
+            return true;
+        }
+        return false;
+    }
+
     private void handleAfterMove(boolean passable) {
         if (!passable) {
             player.setCross(false);
@@ -58,14 +67,5 @@ public class BridgeGame {
         }
         player.movePlayerLocation();
         player.setCross(true);
-    }
-
-    public boolean isClear() {
-        if (player.getPlayerLocation() >= bridge.getBridge().size()) {
-            player.setCross(false);
-            gameStatus.setSuccess(true);
-            return true;
-        }
-        return false;
     }
 }
