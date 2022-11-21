@@ -6,6 +6,24 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class GameOperatorHandlerTest {
 
+    @DisplayName("다리 길이 입력 과정 - 입력된 값의 범위가 3~20 이내가 아닐 경우, 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 21})
+    void handleBridgeSizeOutOfRangeExceptionTest(int bridgeSize) {
+        TotalExceptionHandler sizeOutOfRangeException = overrideToBridgeSizeOutOfRangeException();
+
+        ExceptionTestHelper.testIllegalArgumentException(sizeOutOfRangeException, bridgeSize);
+    }
+
+    TotalExceptionHandler overrideToBridgeSizeOutOfRangeException() {
+        return new TotalExceptionHandler() {
+            @Override
+            public void handleException(int input) {
+                GameOperatorExceptionHandler.handleBridgeSizeOutOfRangeException(input);
+            }
+        };
+    }
+
     @DisplayName("방향 입력 과정 - 입력된 값이 U 혹은 D가 아닐 경우, 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"12", "A", "R", "Q"})
