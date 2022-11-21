@@ -33,7 +33,7 @@ public class InputView {
     public String readMoving() {
         String moving = Console.readLine();
         if(!moving.equals("U") && !moving.equals("D")) {
-            System.out.println("[ERROR]U 또는 D를 입력하세요");
+            System.out.println("[ERROR]U 또는 D를 입력하세요.");
             throw new IllegalArgumentException();
         }
         return moving;
@@ -43,6 +43,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        if (!command.equals("R") && !command.equals("Q")) {
+            System.out.println("[ERROR]R 또는 Q를 입력하세요.");
+            throw new IllegalArgumentException();
+        }
+        return command;
     }
 }
