@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 public class BridgeGameController {
     public static final String START = "다리 건너기 게임을 시작합니다.";
-    public static final String RETRY = "R";
     public static final String ERROR_PREFIX = "[ERROR] ";
     private final InputView inputView;
     private final OutputView outputView;
@@ -54,8 +53,8 @@ public class BridgeGameController {
     }
 
     private void RetryOrQuit(BridgeGame bridgeGame) {
-        String gameCommand = handleException(inputView::readGameCommand);
-        if (gameCommand.equals(RETRY)) {
+        GameCommand gameCommand = handleException(inputView::readGameCommand);
+        if (gameCommand == GameCommand.RETRY) {
             bridgeGame.retry();
             run(bridgeGame);
         }
