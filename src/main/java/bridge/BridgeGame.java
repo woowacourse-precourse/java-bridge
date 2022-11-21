@@ -31,10 +31,9 @@ public class BridgeGame {
 	public boolean move(int round, boolean status) {
 		while (round < bridge.getSize() && status) {
 			String userInput = input.requestMove();
-			String movement = checkMovable(round, userInput);
-			status = checkX(movement);
+			status = checkX(checkMovable(round, userInput));
 			output.printMap(round, bridge, userInput);
-			round = checkO(round, movement, status);
+			round = checkO(round, checkMovable(round, userInput), status);
 			status = retry(status);
 		}
 		return status;
