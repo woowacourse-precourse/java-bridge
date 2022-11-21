@@ -7,13 +7,12 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static bridge.ErrorMessage.IS_NOT_NUMBER;
+import static bridge.ErrorMessage.OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
     private static InputView inputView;
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @BeforeAll
     static void init(){
@@ -28,17 +27,17 @@ class InputViewTest {
         System.setIn(is);
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
+                .hasMessage(IS_NOT_NUMBER.returnMessage());
     }
 
     @Test
     @DisplayName("3~20 사이가 아닌 수 예외처리한다.")
     void 유효한_범위가_아닌_값_예외처리() {
-        InputStream is = new ByteArrayInputStream("1515125".getBytes());
+        InputStream is = new ByteArrayInputStream("1515".getBytes());
         System.setIn(is);
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
+                .hasMessage(OUT_OF_RANGE.returnMessage());
 
     }
 
