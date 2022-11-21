@@ -5,6 +5,7 @@
   - `camp.nextstep.edu.missionutils.Console`에서 제공하는 `readLine` 함수를 이용
   - 잘못된 값을 입력 받으면 `IllegalArgumentException` 발생 후 에러 메시지 출력 후 다시 입력 받음
 - 건널 수 있는 칸을 0과 1 중 랜덤으로 설정
+  - 'BridgeNumberGenerator'의 'generate' 함수를 이용해서 생성
 - 값이 0인 경우 아래 칸, 1인 경우 위 칸을 건널 수 있게 설정
 
 ## 플레이어 이동
