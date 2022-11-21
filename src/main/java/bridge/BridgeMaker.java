@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,18 @@ public class BridgeMaker {
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+    }
+
+    /**
+     * @param size 다리의 길이
+     * @return 입력받은 길이만큼 0과 1 중 무작위 값을 생성한 리스트
+     */
+    private List<Integer> makeRandomNumberList(int size) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            result.add(bridgeNumberGenerator.generate());
+        }
+        return result;
     }
 
     /**

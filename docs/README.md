@@ -65,7 +65,7 @@
 ## 기능 목록 작성
 - [x] 게임 시작 문구와 함께 사용자로부터 다리의 길이를 입력받는다. - InputView#readBridgeSize
     - 3이상 20이하의 자연수가 아닌 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지 출력 후 입력을 다시 받는다.
-- [ ] 입력받은 길이만큼 0과 1 중 무작위 값을 생성한다. - BridgeRandomNumberGenerator#generate
+- [x] 입력받은 길이만큼 0과 1 중 무작위 값을 생성한다. - BridgeMaker#makeRandomNumberList
 - [ ] 무작위 값이 0일 경우 아래 칸(D), 1인 경우 위 칸(U)을 건널 수 있는 다리를 생성한다. - BridgeMaker#makeBridge
 - [ ] 플레이어로부터 이동할 칸을 입력받는다. - InputView#readMoving
     - U(위 칸)나 D(아래 칸)가 아닌 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지 출력 후 입력을 다시 받는다.
