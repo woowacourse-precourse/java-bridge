@@ -29,4 +29,6 @@ public class UserStatus {
     public void addUserLocation() {
         this.userLocation++;
     }
+
+    public void resetUserLocation() {this.userLocation = 0;}
 }
