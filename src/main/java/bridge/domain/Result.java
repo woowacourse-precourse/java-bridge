@@ -13,4 +13,8 @@ public enum Result {
     public boolean isEnd() {
         return isLose()||isWin();
     }
+
+    public boolean isKeep() {
+        return this.equals(KEEP);
+    }
 }

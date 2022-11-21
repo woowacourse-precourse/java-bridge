@@ -28,5 +28,9 @@ public class Bridge {
         }
         return Result.LOSE;
     }
+
+    public int size() {
+        return bridgeTable.size();
+    }
 }
 

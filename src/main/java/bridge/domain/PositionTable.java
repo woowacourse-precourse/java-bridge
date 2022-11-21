@@ -49,4 +49,8 @@ public class PositionTable {
     public List<Position> getTable() {
         return positionTable;
     }
+
+    public int size() {
+        return positionTable.size();
+    }
 }
