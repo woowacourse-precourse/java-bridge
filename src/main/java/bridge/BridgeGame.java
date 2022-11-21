@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,6 +50,25 @@ public class BridgeGame {
             userMap.get(1).add(value);
         }
         return userMap;
+    }
+    public List<List<String>> getCopyList(List<List<String>> userMap) {
+        List<List<String>> copyMap = new ArrayList<>();
+        deepCopy(userMap,copyMap);
+        return copyMap;
+    }
+
+    public void deepCopy(List<List<String>> userMap,List<List<String>> copyMap) {
+        List<String> upList = new ArrayList<>();
+        List<String> downList = new ArrayList<>();
+        copyList(userMap.get(0), upList);
+        copyList(userMap.get(1), downList);
+        copyMap.add(upList);
+        copyMap.add(downList);
+    }
+    public void copyList(List<String> src, List<String> dst) {
+        src.forEach(value ->{
+            dst.add(value);
+        });
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
