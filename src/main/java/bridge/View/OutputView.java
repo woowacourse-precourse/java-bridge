@@ -73,8 +73,8 @@ public class OutputView {
     }
 
     private String chooseLastRoad(String bridge, String answer, String location) {
-        if (bridge.equals(location)) {
-            if (bridge.equals(answer)) {
+        if (answer.equals(location)) {
+            if (bridge.equals(location)) {
                 return CORRECT_WORD;
             }
             return NOT_CORRECT_WORD;
