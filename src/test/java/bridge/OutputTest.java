@@ -35,10 +35,11 @@ public class OutputTest extends NsTest{
     void 위쪽다리에서_사용자결정_유효한지_테스트() {
         assertSimpleTest(() -> {
             OutputView outputView = new OutputView();
-            String userDecision = "U";
+            User user = new User();
+            user.setDirection("U");
             boolean checkDirection = true;
 
-            outputView.printWhetherUserDecisionIsCorrectInUpperBridge(userDecision,checkDirection);
+            outputView.printWhetherUserDecisionIsCorrectInUpperBridge(user,checkDirection);
             assertThat(output()).contains("O");
         });
     }

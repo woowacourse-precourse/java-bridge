@@ -25,15 +25,15 @@ public class BridgeGame {
         user.addUserAttempt();
     }
 
-    public boolean checkBridgeValueInUserPosition(User user, String moving, List<String> bridge){
-        if(bridge.get(user.getUserPosition()).equals(moving)){
+    public boolean checkBridgeValueInUserPosition(User user, List<String> bridge){
+        if(bridge.get(user.getUserPosition()).equals(user.getDirection())){
             return true;
         }
         return false;
     }
 
-    public boolean checkGameIsOver(User user, String moving, List<String> bridge){
-        if(checkBridgeValueInUserPosition(user, moving, bridge) && user.getUserPosition() == bridge.size() -1){
+    public boolean checkGameIsOver(User user, List<String> bridge){
+        if(checkBridgeValueInUserPosition(user, bridge) && user.getUserPosition() == bridge.size() -1){
             return true;
         }
         return false;

@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.*;
+import bridge.BridgeGame;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -16,9 +17,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int userPosition, String userDecision, boolean checkDirection, List<String> bridge) {
-        printUpperBridge(userPosition, userDecision, checkDirection, bridge);
-        printLowerBridge(userPosition, userDecision, checkDirection, bridge);
+    public void printMap(User user, boolean checkDirection, List<String> bridge) {
+        printUpperBridge(user, checkDirection, bridge);
+        printLowerBridge(user, checkDirection, bridge);
     }
 
     /**
@@ -26,10 +27,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(User user, String direction, boolean checkDirection, List<String> bridge, boolean win) {
+    public void printResult(User user, boolean checkDirection, List<String> bridge) {
         System.out.println("최종 게임 결과");
-        printMap(user.getUserPosition(), direction, checkDirection, bridge);
-        printWinOrLose(win);
+        printMap(user, checkDirection, bridge);
+        printWinOrLose(checkDirection);
         printHowManyTimeTry(user);
     }
 
@@ -45,36 +46,36 @@ public class OutputView {
         System.out.printf("총 시도한 횟수: %d", user.getUserAttempt());
     }
 
-    public void printUpperBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
+    public void printUpperBridge(User user, boolean checkDirection, List<String> bridge){
         printMapStart();
-        for(int i = 0; i < userPosition; i++){
+        for(int i = 0; i < user.getUserPosition(); i++){
             printOnePartOfUpperBridge(i, bridge);
             printSeparation();
         }
-        printWhetherUserDecisionIsCorrectInUpperBridge(userDecision, checkDirection);
+        printWhetherUserDecisionIsCorrectInUpperBridge(user, checkDirection);
         printMapEnd();
     }
 
-    public void printLowerBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
+    public void printLowerBridge(User user, boolean checkDirection, List<String> bridge){
         printMapStart();
-        for(int i = 0; i < userPosition; i++){
+        for(int i = 0; i < user.getUserPosition(); i++){
             printOnePartOfLowerBridge(i, bridge);
             printSeparation();
         }
-        printWhetherUserDecisionIsCorrectInLowerBridge(userDecision, checkDirection);
+        printWhetherUserDecisionIsCorrectInLowerBridge(user, checkDirection);
         printMapEnd();
     }
 
-    public void printWhetherUserDecisionIsCorrectInUpperBridge(String userDecision, boolean checkDirection){
-        if(userDecision.equals("U")){
+    public void printWhetherUserDecisionIsCorrectInUpperBridge(User user, boolean checkDirection){
+        if(user.getDirection().equals("U")){
             printWhetherCheckDirectionIsCorrect(checkDirection);
             return;
         }
         System.out.print("   ");
     }
 
-    public void printWhetherUserDecisionIsCorrectInLowerBridge(String userDecision, boolean checkDirection){
-        if(userDecision.equals("D")){
+    public void printWhetherUserDecisionIsCorrectInLowerBridge(User user, boolean checkDirection){
+        if(user.getDirection().equals("D")){
             printWhetherCheckDirectionIsCorrect(checkDirection);
             return;
         }

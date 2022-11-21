@@ -19,8 +19,9 @@ public class BridgeGameTest {
     @Test
     void 게임_종료_테스트() {
         bridge.add("U");
+        user.setDirection("U");
         bridgeGame.move(user);
-        if(bridgeGame.checkBridgeValueInUserPosition(user, moving, bridge) && user.getUserPosition() == size-1){
+        if(bridgeGame.checkBridgeValueInUserPosition(user, bridge) && user.getUserPosition() == size-1){
             testResult = true;
         }
         assertThat(testResult).isEqualTo(true);

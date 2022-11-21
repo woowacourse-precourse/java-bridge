@@ -44,13 +44,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public String readMoving(User user) {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         try{
             String moving = checkInputOfMoving(Console.readLine());
+            user.setDirection(moving);
             return moving;
         }catch (IllegalStateException e){
-            return readMoving();
+            return readMoving(user);
         }
     }
 
@@ -81,7 +82,7 @@ public class InputView {
             String gameCommand = checkInputOfGameCommand(Console.readLine());
             return gameCommand;
         }catch (IllegalStateException e){
-            return readMoving();
+            return readGameCommand();
         }
     }
 
