@@ -38,8 +38,4 @@ public class Player {
         currentSpaceIndex = 0;
         alive = true;
     }
-
-    public int getCurrentSpaceIndex() {
-        return currentSpaceIndex;
-    }
 }

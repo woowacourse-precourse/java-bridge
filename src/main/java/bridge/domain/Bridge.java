@@ -17,10 +17,6 @@ public class Bridge {
         }
     }
 
-    public List<String> getMovableSpaces() {
-        return movableSpaces;
-    }
-
     public int size() {
         return movableSpaces.size();
     }

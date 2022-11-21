@@ -66,14 +66,6 @@ public class BridgeGame {
         gameRecord.recordRetry();
     }
 
-    public List<String> getMovableSpaces() {
-        return bridge.getMovableSpaces();
-    }
-
-    public int getPlayerLocation() {
-        return player.getCurrentSpaceIndex();
-    }
-
     public int getTryCount() {
         return gameRecord.getTryCount();
     }
