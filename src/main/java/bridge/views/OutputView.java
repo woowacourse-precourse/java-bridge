@@ -85,30 +85,30 @@ public class OutputView {
             throw new IllegalArgumentException("[ERROR] 허용되지 않은 출력이 발생했습니다");
         }
 
-        private String progress(BridgeType bridgeLocation) {
+        private String progress(BridgeType target) {
             StringBuilder message = new StringBuilder("[");
             for (int i = 0; i < location; i++) {
-                message.append(progressAdapter(bridge.get(i), bridgeLocation));
+                message.append(progressAdapter(bridge.get(i), target));
             }
             return message.toString();
         }
 
-        private String fail(BridgeType bridgeLocation) {
-            if (bridge.get(location) == bridgeLocation) {
+        private String fail(BridgeType target) {
+            if (bridge.get(location) == target) {
                 return "   ]\n";
             }
             return " X ]\n";
         }
 
-        private String pass(BridgeType bridgeLocation) {
-            if (bridge.get(location) == bridgeLocation) {
+        private String pass(BridgeType target) {
+            if (bridge.get(location) == target) {
                 return " O ]\n";
             }
             return "   ]\n";
         }
 
-        private String progressAdapter(BridgeType cur, BridgeType comp) {
-            if (cur == comp) {
+        private String progressAdapter(BridgeType current, BridgeType target) {
+            if (current == target) {
                 return " O |";
             }
             return "   |";
