@@ -43,4 +43,18 @@ class ValidateTest {
         assertThat(Validate.invalidDirection(direction)).isEqualTo(false);
         assertThat(Validate.invalidDirection(direction1)).isEqualTo(false);
     }
+
+    @Test
+    void 재시작_코드_올바르지_않은_입력() {
+        String code = "B";
+        assertThat(Validate.invalidRestartCode(code)).isEqualTo(true);
+    }
+
+    @Test
+    void 재시작_코드_올바른_입력() {
+        String quit = "Q";
+        String restart = "Q";
+        assertThat(Validate.invalidRestartCode(quit)).isEqualTo(false);
+        assertThat(Validate.invalidRestartCode(restart)).isEqualTo(false);
+    }
 }
