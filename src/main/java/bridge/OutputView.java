@@ -17,7 +17,7 @@ public class OutputView {
     public void printMap(List<String> bridgeAnswer, int bridgeSize, List<String> userMove) {
         String upSentence = "[";
         String downSentence = "[";
-        for(int size = 0; size < bridgeSize; size++){
+        for(int size = 0; size <= bridgeSize; size++){
             String move = userMove.get(size);
             String answer = bridgeAnswer.get(size);
             boolean up = isUp(move);
@@ -42,7 +42,7 @@ public class OutputView {
             answer = " ";
         }
         String combinedAnswer = " " + answer + " ";
-        if(bridgeSize > 1){
+        if(bridgeSize > 0){
             combinedAnswer += "|";
         }
         return combinedAnswer;
@@ -79,7 +79,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> bridgeAnswer, List<String> userMove, int tryCount) {
-        int bridgeSize = bridgeAnswer.size();
+        int bridgeSize = bridgeAnswer.size() - 1;
         System.out.println("최종 게임 결과");
         printMap(bridgeAnswer, bridgeSize, userMove);
 
