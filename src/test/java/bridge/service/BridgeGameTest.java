@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static bridge.dto.GameResultDto.GameRecord;
+import static bridge.dto.GameResultDto.GameRecordDto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -61,7 +61,7 @@ class BridgeGameTest {
         bridgeGame.move(2, "U");
         GameResultDto gameResultDto = bridgeGame.move(3, "D");
 
-        GameRecord gameRecord = gameResultDto.getGameRecord();
+        GameRecordDto gameRecord = gameResultDto.getGameRecord();
 
         assertThat(gameRecord.getAttempt()).isEqualTo(1);
         assertThat(gameRecord.getRecord())
@@ -75,7 +75,7 @@ class BridgeGameTest {
         bridgeGame.retry();
 
         GameResultDto gameResultDto = bridgeGame.move(3, "D");
-        GameRecord gameRecord = gameResultDto.getGameRecord();
+        GameRecordDto gameRecord = gameResultDto.getGameRecord();
 
         assertThat(gameRecord.getAttempt()).isEqualTo(3);
     }

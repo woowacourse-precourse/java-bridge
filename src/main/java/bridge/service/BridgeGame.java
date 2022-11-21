@@ -8,7 +8,7 @@ import bridge.constant.GameStatus;
 import bridge.Player;
 import bridge.dto.GameResultDto;
 
-import static bridge.dto.GameResultDto.GameRecord;
+import static bridge.dto.GameResultDto.GameRecordDto;
 
 
 /**
@@ -44,11 +44,11 @@ public class BridgeGame {
         player.record(movingMark);
         GameStatus gameStatus = bridge.cross(round, movingMark);
 
-        GameRecord gameRecord = player.toResponseDto();
+        GameRecordDto gameRecord = player.toResponseDto();
         return createGameResultDto(gameStatus, gameRecord);
     }
 
-    private GameResultDto createGameResultDto(GameStatus gameStatus, GameRecord gameRecord) {
+    private GameResultDto createGameResultDto(GameStatus gameStatus, GameRecordDto gameRecord) {
         return new GameResultDto(gameStatus, gameRecord);
     }
 

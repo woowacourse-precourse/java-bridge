@@ -8,14 +8,14 @@ import java.util.List;
 public class GameResultDto {
 
     private final GameStatus gameStatus;
-    private final GameRecord gameRecord;
+    private final GameRecordDto gameRecord;
 
-    public static class GameRecord {
+    public static class GameRecordDto {
 
         private final List<BridgeMark> record;
         private final int attempt;
 
-        public GameRecord(List<BridgeMark> record, int attempt) {
+        public GameRecordDto(List<BridgeMark> record, int attempt) {
             this.record = record;
             this.attempt = attempt;
         }
@@ -29,7 +29,7 @@ public class GameResultDto {
         }
     }
 
-    public GameResultDto(GameStatus gameStatus, GameRecord gameRecord) {
+    public GameResultDto(GameStatus gameStatus, GameRecordDto gameRecord) {
         this.gameStatus = gameStatus;
         this.gameRecord = gameRecord;
     }
@@ -38,7 +38,7 @@ public class GameResultDto {
         return gameStatus;
     }
 
-    public GameRecord getGameRecord() {
+    public GameRecordDto getGameRecord() {
         return gameRecord;
     }
 }

@@ -5,7 +5,7 @@ import bridge.constant.BridgeMark;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.dto.GameResultDto.GameRecord;
+import static bridge.dto.GameResultDto.GameRecordDto;
 
 public class Player {
 
@@ -31,7 +31,7 @@ public class Player {
         attempt++;
     }
 
-    public GameRecord toResponseDto() {
-        return new GameRecord(new ArrayList<>(record), attempt);
+    public GameRecordDto toResponseDto() {
+        return new GameRecordDto(new ArrayList<>(record), attempt);
     }
 }

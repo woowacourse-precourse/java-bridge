@@ -3,7 +3,7 @@ package bridge.view;
 import bridge.constant.GameStatus;
 import bridge.dto.GameResultDto;
 
-import static bridge.dto.GameResultDto.GameRecord;
+import static bridge.dto.GameResultDto.GameRecordDto;
 import static bridge.view.BridgeMapViewCreator.BridgeMap;
 
 /**
@@ -44,7 +44,7 @@ public class OutputView {
      */
     public static void printMap(GameResultDto gameResult) {
         GameStatus gameStatus = gameResult.getGameStatus();
-        GameRecord gameRecord = gameResult.getGameRecord();
+        GameRecordDto gameRecord = gameResult.getGameRecord();
 
         BridgeMap bridgeMap = BridgeMapViewCreator.create(gameStatus, gameRecord.getRecord());
         System.out.println(bridgeMap.getUpBridge());
@@ -63,7 +63,7 @@ public class OutputView {
         printBlank();
 
         GameStatus gameStatus = gameResult.getGameStatus();
-        GameRecord gameRecord = gameResult.getGameRecord();
+        GameRecordDto gameRecord = gameResult.getGameRecord();
         System.out.printf(GAME_RESULT_MESSAGE, gameStatus.getMessage());
         System.out.printf(GAME_RESULT_ATTEMPT_MESSAGE, gameRecord.getAttempt());
     }
