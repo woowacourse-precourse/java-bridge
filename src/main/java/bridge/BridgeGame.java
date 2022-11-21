@@ -30,6 +30,9 @@ public class BridgeGame {
         Move(String status) {
             this.status = status;
         }
+        public String get() {
+            return status;
+        }
     }
 
     private final List<String> bridge;
