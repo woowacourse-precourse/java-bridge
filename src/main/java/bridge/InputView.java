@@ -7,6 +7,19 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static InputView inputView;
+
+    private InputView() {
+    }
+
+    public static InputView getInstance() {
+        if(inputView == null) {
+            inputView = new InputView();
+        }
+
+        return inputView;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */

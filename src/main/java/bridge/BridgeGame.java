@@ -11,8 +11,18 @@ public class BridgeGame {
     private final List<String> userLog;
     private static int retryCount = 1;
 
-    public BridgeGame() {
+    private static BridgeGame bridgeGame;
+
+    private BridgeGame() {
         this.userLog = new ArrayList<>();
+    }
+
+    public static BridgeGame getInstance() {
+        if(bridgeGame == null) {
+            bridgeGame = new BridgeGame();
+        }
+
+        return bridgeGame;
     }
 
     public List<String> getUserLog() {

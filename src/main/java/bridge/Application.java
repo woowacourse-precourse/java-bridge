@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Application {
 
-    private static InputView inputView = new InputView();
-    private static OutputView outputView = new OutputView();
-    BridgeGame bridgeGame = new BridgeGame();
+    private static InputView inputView = InputView.getInstance();
+    private static OutputView outputView = OutputView.getInstance();
+    BridgeGame bridgeGame = BridgeGame.getInstance();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
