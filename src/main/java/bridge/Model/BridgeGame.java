@@ -1,7 +1,5 @@
 package bridge.Model;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 import bridge.GameController;
@@ -23,7 +21,6 @@ public class BridgeGame {
     public BridgeGame() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         GameController.callReadBridgeSize();
-        new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(BridgeGame.size);
         run(runCount);
         lowerResult = "[]";
         upperResult = "[]";
