@@ -98,9 +98,9 @@ BUILD SUCCESSFUL in 0s
     - [x] private final String GAME_COMMAND_NOT_VALID
   - **Class Methods**
     - [x] public InputView() 
-    - [ ] public int readBridgeSize()
-    - [ ] public String readMoving()
-    - [ ] public String readGameCommand()
+    - [ ] public int readBridgeSize() throws IllegalArgumentException
+    - [ ] public String readMoving() throws IllegalArgumentException
+    - [ ] public String readGameCommand() throws IllegalArgumentException
     - [x] private boolean isDigit(String size)
 - [ ] **CLASS5. OutputView**
   - **Class Methods**
