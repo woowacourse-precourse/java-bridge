@@ -23,9 +23,13 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         while (bridge.size() != 3) {
-            int input = bridgeNumberGenerator.generate();
-            String number = String.valueOf(input);
-            bridge.add(number);
+            int number = bridgeNumberGenerator.generate();
+            if (number == 0) {
+                bridge.add("D");
+            }
+            if (number == 1) {
+                bridge.add("U");
+            }
         }
         return bridge;
     }
