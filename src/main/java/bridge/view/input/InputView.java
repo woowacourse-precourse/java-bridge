@@ -3,6 +3,7 @@ package bridge.view.input;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.domain.Constants.*;
+import static bridge.domain.exception.ErrorMessage.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -16,7 +17,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_READ_BRIDGE_SIZE);
         }
     }
 
@@ -31,7 +32,7 @@ public class InputView {
 
     private void validateMovingValueLength(String moving) {
         if (moving.length() > BRIDGE_ARROW_VALUE_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_READ_MOVING_VALUE);
         }
     }
 
@@ -46,7 +47,7 @@ public class InputView {
 
     private void validateCommandValueLength(String command) {
         if (command.length() > BRIDGE_GAME_COMMAND_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_READ_GAME_COMMAND);
         }
     }
 }
