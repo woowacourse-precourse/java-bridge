@@ -19,6 +19,7 @@ public class OutputView {
 
     public static void printStartGameMessage() {
         System.out.println(START_GAME);
+        System.out.print(System.lineSeparator());
     }
 
     /**
