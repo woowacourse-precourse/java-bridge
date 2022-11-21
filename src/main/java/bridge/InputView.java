@@ -21,6 +21,29 @@ public class InputView {
         startGame(bridge); // 반복
     }
 
+    /**
+     * 다리의 길이를 입력받는다.
+     */
+    public int readBridgeSize() {
+        Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
+        while (true) {
+            String value = Console.readLine();
+            if (isBridgeSizeNumber(value)) {
+                return Integer.parseInt(value);
+            } // end if
+        } // end while
+    }
+
+    // 3 이상 20 이하의 숫자인지 검사
+    public boolean isBridgeSizeNumber(String value) {
+        final String REGEX = "^[3-9]{1}$|^[1]{1}[0-9]{1}$|^2{1}[0]{1}$";
+        if (!Pattern.matches(REGEX, value)) {
+            ErrorMessage.inputBridgeNumber();
+            return false;
+        }
+        return true;
+    }
+
     public void startGame(List<String> bridgeList){
         OutputView outputView = new OutputView();
         loopGame(bridgeList); // 게임 재시도 여부에 따라 반복
@@ -52,51 +75,6 @@ public class InputView {
         String moving = readMoving(); // 이동할 칸 입력 요구
         boolean isMove = bridgeGame.move(bridge, moving); // 이동에 성공했는지
         return isMove;
-    }
-
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
-        while (true) {
-            String value = Console.readLine();
-            if (isBridgeSizeNumber(value)) {
-                return Integer.parseInt(value);
-            } // end if
-        } // end while
-    }
-
-    // 3 이상 20 이하의 숫자인지 검사
-    public boolean isBridgeSizeNumber(String value) {
-        final String REGEX = "^[3-9]{1}$|^[1]{1}[0-9]{1}$|^2{1}[0]{1}$";
-        if (!Pattern.matches(REGEX, value)) {
-            ErrorMessage.inputBridgeNumber();
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        Message.inputMoveBridgeMessage();
-        while (true) {
-            String moving = Console.readLine();
-            if (isReadMoving(moving)) {
-                return moving;
-            } // end if
-        } // end while
-    }
-
-    // 입력 값이 U 또는 D 인지 검사
-    public boolean isReadMoving(String moving) {
-        if (moving.equals("U") || moving.equals("D")) {
-            return true;
-        }
-        ErrorMessage.inputMoveBridgeError();
-        return false;
     }
 
     // 재시도 검사
@@ -131,6 +109,29 @@ public class InputView {
 
     public void initGameResult() {
         bridge.setGame(true);
+    }
+
+
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() {
+        Message.inputMoveBridgeMessage();
+        while (true) {
+            String moving = Console.readLine();
+            if (isReadMoving(moving)) {
+                return moving;
+            } // end if
+        } // end while
+    }
+
+    // 입력 값이 U 또는 D 인지 검사
+    public boolean isReadMoving(String moving) {
+        if (moving.equals("U") || moving.equals("D")) {
+            return true;
+        }
+        ErrorMessage.inputMoveBridgeError();
+        return false;
     }
 
 }
