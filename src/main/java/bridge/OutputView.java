@@ -50,6 +50,7 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         printSuccess(bridgeGame.getGameStatus());
+        printTryCount(bridgeGame.getTryCount());
     }
 
     private void printSuccess(GameStatus gameStatus) {
@@ -60,6 +61,10 @@ public class OutputView {
         if (gameStatus.equals(GameStatus.WIN)) {
             System.out.println(base.append("성공"));
         }
+    }
+
+    private void printTryCount(int tryCount) {
+        System.out.println("총 시도한 횟수: " + tryCount);
     }
 
     public void printGreeting() {
