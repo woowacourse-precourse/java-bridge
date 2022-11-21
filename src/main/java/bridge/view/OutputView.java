@@ -28,10 +28,10 @@ public class OutputView {
 	}
 
 	public static void printResult(ProgressMap result, BridgeGame bridgeGame) {
-		if (result.getMapSize() == bridgeGame.getBridgeSize()) {
+		if (!bridgeGame.isNotFinish(result)) {
 			printClearMap(result, bridgeGame.getRepeatCount());
 		}
-		if (result.getMapSize() != bridgeGame.getBridgeSize()) {
+		if (bridgeGame.isNotFinish(result)) {
 			printFailedMap(result, bridgeGame.getRepeatCount());
 		}
 	}
