@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputValidatorTest {
     InputValidator inputValidator = new InputValidator();
@@ -17,13 +19,11 @@ public class InputValidatorTest {
     }
 
     @DisplayName("입력값이 3 에서 20 사이가 아닌 경우 예외가 발생한다.")
-    @Test
-    void inputBridgeSizeNotInRange() {
-        assertThatThrownBy(() -> inputValidator.validateBridgeSize("21"))
+    @ValueSource(strings = {"-10", "2", "21", "100"})
+    @ParameterizedTest
+    void inputBridgeSizeNotInRange(String input) {
+        assertThatThrownBy(() -> inputValidator.validateBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 다리 길이는 3 에서 20 사이의 숫자여야 합니다.");
-        assertThatThrownBy(() -> inputValidator.validateBridgeSize("2"))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 다리 길이는 3 에서 20 사이의 숫자여야 합니다.");
-
     }
 
     @DisplayName("입력값이 3-20 사이의 숫자인 경우 예외가 발생하지 않는다")
@@ -40,10 +40,10 @@ public class InputValidatorTest {
     }
 
     @DisplayName("입력값이 U, D 중 하나인 경우 예외가 발생하지 않는다")
-    @Test
-    void inputMovingAppropriate() {
-        assertThatNoException().isThrownBy(() -> inputValidator.validateMoving("U"));
-        assertThatNoException().isThrownBy(() -> inputValidator.validateMoving("D"));
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void inputMovingAppropriate(String input) {
+        assertThatNoException().isThrownBy(() -> inputValidator.validateMoving(input));
     }
 
     @DisplayName("입력값이 R, Q 중 하나가 아닌 경우 예외가 발생한다")
@@ -54,10 +54,9 @@ public class InputValidatorTest {
     }
 
     @DisplayName("입력값이 R, Q 중 하나인 경우 예외가 발생하지 않는다")
-    @Test
-    void inputGameCommandAppropriate() {
-        assertThatNoException().isThrownBy(() -> inputValidator.validateGameCommand("R"));
-        assertThatNoException().isThrownBy(() -> inputValidator.validateGameCommand("Q"));
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void inputGameCommandAppropriate(String input) {
+        assertThatNoException().isThrownBy(() -> inputValidator.validateGameCommand(input));
     }
-
 }
