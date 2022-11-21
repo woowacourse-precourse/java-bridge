@@ -17,4 +17,8 @@ public enum UserInterfaceSymbol {
     public static String get(UserInterfaceSymbol occasion) {
         return occasion.symbol;
     }
+
+    public static String getBlank() {
+        return BLANK.symbol;
+    }
 }

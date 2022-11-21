@@ -1,6 +1,5 @@
 package bridge;
 
-import enumCollections.GameStatus;
 import enumCollections.Side;
 import enumCollections.UserInterfaceSymbol;
 
@@ -16,10 +15,13 @@ public class Map {
     }
 
     private void add(Side side, String isSucceed) {
+        addSymbolToMap(side, isSucceed);
+        addSymbolToMap(Side.getOppositePosition(side), UserInterfaceSymbol.getBlank());
+    }
+
+    private void addSymbolToMap(Side side, String symbol) {
         this.bridgeUserInterface.get(Side.getIndex(side))
-                .add(isSucceed);
-        this.bridgeUserInterface.get((Side.getIndex(side) + 1 ) % 2)
-                .add(UserInterfaceSymbol.get(UserInterfaceSymbol.BLANK));
+                .add(symbol);
     }
 
     public List<List<String>> get() {
