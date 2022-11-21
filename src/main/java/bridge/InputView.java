@@ -12,7 +12,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize () {
         System.out.println("다리의 길이를 입력해주세요.");
         try{
             int textCheckedSize = checkBridgeSizeText(Console.readLine());
@@ -23,7 +23,7 @@ public class InputView {
         }
     }
 
-    public int checkBridgeSize(int size) throws IllegalArgumentException{
+    public int checkBridgeSize (int size) throws IllegalArgumentException{
         if(size >= 3 && size <= 20){
             return size;
         }
@@ -31,7 +31,7 @@ public class InputView {
         throw new IllegalArgumentException();
     }
 
-    public int checkBridgeSizeText(String size) throws IllegalArgumentException{
+    public int checkBridgeSizeText (String size) throws IllegalArgumentException{
         try{
             int sizeToInt = Integer.parseInt(size);
             return sizeToInt;
@@ -44,32 +44,32 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(User user) {
+    public String readMoving (User user) {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         try{
             String moving = checkInputOfMoving(Console.readLine());
             user.setDirection(moving);
             return moving;
-        }catch (IllegalStateException e){
+        }catch (IllegalArgumentException e){
             return readMoving(user);
         }
     }
 
-    public String checkInputOfMoving(String moving) throws IllegalStateException{
+    public String checkInputOfMoving (String moving) throws IllegalArgumentException{
         try{
             List<String> command = new ArrayList<>();
             command.add("U");
             command.add("D");
             return checkInputInCommend(moving, command);
-        }catch (IllegalStateException e){
+        }catch (IllegalArgumentException e){
             System.out.print("[ERROR]: 유효하지 않은 이동입니다.");
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
         }
     }
 
-    public String checkInputInCommend(String moving, List<String> command) throws IllegalStateException {
+    public String checkInputInCommend (String moving, List<String> command) throws IllegalArgumentException{
         if(command.contains(moving)) return moving;
-        throw new IllegalStateException();
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -81,20 +81,20 @@ public class InputView {
         try{
             String gameCommand = checkInputOfGameCommand(Console.readLine());
             return gameCommand;
-        }catch (IllegalStateException e){
+        }catch (IllegalArgumentException e){
             return readGameCommand();
         }
     }
 
-    public String checkInputOfGameCommand(String moving) throws IllegalStateException{
+    public String checkInputOfGameCommand(String moving) throws IllegalArgumentException{
         try{
             List<String> command = new ArrayList<>();
             command.add("Q");
             command.add("R");
             return checkInputInCommend(moving, command);
-        }catch (IllegalStateException e){
+        }catch (IllegalArgumentException e){
             System.out.print("[ERROR]: 유효하지 않은 입력 값입니다.");
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
         }
     }
 }
