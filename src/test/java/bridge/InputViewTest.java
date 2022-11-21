@@ -52,4 +52,17 @@ public class InputViewTest {
         //then
         assertThat(move).isEqualTo("D");
     }
+    @DisplayName("게임 재시작 및 종료 입력 테스트 Q")
+    @ParameterizedTest
+    @ValueSource(strings = {"Q"})
+    void readGameCommandQ(String input) {
+        //given
+        InputView inputView = new InputView();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        //when
+        System.setIn(in);
+        String move = inputView.readGameCommand();
+        //then
+        assertThat(move).isEqualTo("Q");
+    }
 }
