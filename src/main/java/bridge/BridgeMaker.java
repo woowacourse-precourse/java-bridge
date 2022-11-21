@@ -23,7 +23,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for (int i = 0; i < size; i++) {
+        while (bridge.size() < size) {
             bridge.add(randomNumberToStep(bridgeNumberGenerator.generate()));
         }
 

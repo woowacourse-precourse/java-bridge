@@ -2,14 +2,19 @@ package bridge.domain;
 
 public class Player {
 
+    private static final int INITIAL_PLAYER_POSITION = -1;
+    private static final int INITIAL_PLAYER_NUMBER_OF_RETRY = 1;
+    private static final boolean INITIAL_PLAYER_ALIVE = true;
+
+
     private static int numberOfRetry;
     private static int index;
     private static boolean alive;
 
     public static void set() {
-        numberOfRetry = 1;
-        index = -1;
-        alive = true;
+        index = INITIAL_PLAYER_POSITION;
+        alive = INITIAL_PLAYER_ALIVE;
+        numberOfRetry = INITIAL_PLAYER_NUMBER_OF_RETRY;
     }
 
     public static boolean getAlive() {
@@ -33,8 +38,12 @@ public class Player {
     }
 
     public static void revive() {
-        index = -1;
-        alive = true;
+        index = INITIAL_PLAYER_POSITION;
+        alive = INITIAL_PLAYER_ALIVE;
         numberOfRetry++;
+    }
+
+    public static boolean playerCanGo(int inputPlayerIndex, String direction) {
+        return Bridge.getStepInBridge(inputPlayerIndex).equals(direction);
     }
 }

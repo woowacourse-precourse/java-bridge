@@ -12,7 +12,7 @@ public class PlayerTest {
 
     @BeforeEach
     void beforeEach() {
-        BridgeGameHost bridgeGameHost = new BridgeGameHost();
+        Player.set();
     }
 
     @Test

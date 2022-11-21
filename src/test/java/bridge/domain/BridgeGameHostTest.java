@@ -20,7 +20,8 @@ public class BridgeGameHostTest {
     @BeforeEach
     void beforeEach() {
         bridgeGameHost = new BridgeGameHost();
-        bridgeGameHost.setBridge(testBridge);
+        Bridge.setBridge(testBridge);
+        Player.set();
     }
 
     @DisplayName("Index 가 주어지면 해당 다리의 부분을 반환하는 기능")
@@ -28,7 +29,7 @@ public class BridgeGameHostTest {
     @ValueSource(ints = {0, 1, 2})
     void stepOfIndexInBridge(int index) {
         // then
-        assertThat(bridgeGameHost.stepOfIndexInBridge(index)).isEqualTo(testBridge.get(index));
+        assertThat(Bridge.getStepInBridge(index)).isEqualTo(testBridge.get(index));
     }
 
     @Test
