@@ -31,7 +31,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String command, int currentPosition) {
-//        validateMoveCommand(command);
         int index = getIndex(command);
         if (command.equals(bridge.get(currentPosition))) {
             bridgeMap.get(index).set(currentPosition, " O ");
@@ -70,14 +69,6 @@ public class BridgeGame {
             return UP_INDEX;
         }
         return DOWN_INDEX;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public List<String> getBridge() {
-        return bridge;
     }
 
     public List<List<String>> getBridgeMap() {
