@@ -13,4 +13,10 @@ public class User {
         this.bridgeLength = bridgeLength;
         this.answer = answer;
     }
+
+    public void userMove() {
+        String direction = new InputView().readMoving();
+        this.userBridge.add(direction);
+        new OutputView().printMap(answer,userBridge);
+    }
 }
