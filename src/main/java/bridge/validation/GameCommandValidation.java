@@ -11,10 +11,16 @@ public class GameCommandValidation {
     public GameCommandValidation() {
     }
 
-    public void isValidate(String gameCommand) {
-        isNull(gameCommand);
-        isBlank(gameCommand);
-        isUpperCaseRQ(gameCommand);
+    public boolean isValidate(String gameCommand) {
+        try {
+            isNull(gameCommand);
+            isBlank(gameCommand);
+            isUpperCaseRQ(gameCommand);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return true;
+        }
+        return false;
     }
 
     public void throwError(String message) {
@@ -24,7 +30,7 @@ public class GameCommandValidation {
     public void isNull(String gameCommand) {
         if (gameCommand.isEmpty()) {
             message = ErrorMessage.valueOf("COMMAND_NULL_EXCEPTION");
-            throw new NullPointerException(message.getMessage());
+            throwError(message.getMessage());
         }
     }
 
