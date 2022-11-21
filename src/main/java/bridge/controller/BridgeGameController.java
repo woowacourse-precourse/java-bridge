@@ -21,6 +21,7 @@ public class BridgeGameController {
             outputView.printMap(bridgeGame.getBridgeMap());
         }
         outputView.printMap(bridgeGame.getBridgeMap());
+        outputView.printResult(bridgeGame.getBridgeMap(),bridgeGame.getIsGame(),bridgeGame.getRetry());
     }
 
     public boolean shouldIMove(BridgeGame bridgeGame) {
