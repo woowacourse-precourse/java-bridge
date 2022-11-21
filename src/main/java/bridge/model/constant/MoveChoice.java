@@ -1,4 +1,4 @@
-package bridge.model.enums;
+package bridge.model.constant;
 
 import java.util.Arrays;
 

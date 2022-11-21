@@ -1,4 +1,4 @@
-package bridge.model.enums;
+package bridge.model.constant;
 
 import static bridge.message.ErrorMessage.NOT_A_RETRY_INTENTION;
 

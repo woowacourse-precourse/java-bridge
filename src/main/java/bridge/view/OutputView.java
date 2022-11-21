@@ -14,7 +14,7 @@ import static bridge.message.OutputMessage.SYMBOL_PARSER;
 import static bridge.message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
 
 import bridge.model.GameResult;
-import bridge.model.enums.MoveChoice;
+import bridge.model.constant.MoveChoice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

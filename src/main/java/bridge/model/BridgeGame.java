@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.model.enums.MoveChoice;
+import bridge.model.constant.MoveChoice;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

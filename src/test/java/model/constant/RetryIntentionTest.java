@@ -1,9 +1,9 @@
-package model;
+package model.constant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.model.enums.RetryIntention;
+import bridge.model.constant.RetryIntention;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

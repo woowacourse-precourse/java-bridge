@@ -4,8 +4,8 @@ import static bridge.message.ErrorMessage.NOT_A_MOVE_CHOICE;
 import static bridge.message.ErrorMessage.NOT_A_RETRY_INTENTION;
 import static bridge.message.ErrorMessage.OUT_OF_RANGE;
 
-import bridge.model.enums.MoveChoice;
-import bridge.model.enums.RetryIntention;
+import bridge.model.constant.MoveChoice;
+import bridge.model.constant.RetryIntention;
 import java.util.Arrays;
 
 public class InputValidator {

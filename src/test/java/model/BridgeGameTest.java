@@ -8,7 +8,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.GameResult;
-import bridge.model.enums.MoveChoice;
+import bridge.model.constant.MoveChoice;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
 import java.util.List;

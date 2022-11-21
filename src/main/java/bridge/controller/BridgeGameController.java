@@ -4,7 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.InputValidator;
-import bridge.model.enums.RetryIntention;
+import bridge.model.constant.RetryIntention;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
