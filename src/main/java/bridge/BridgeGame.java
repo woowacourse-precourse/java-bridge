@@ -12,6 +12,7 @@ public class BridgeGame {
     public int gameCount = 0;
     public boolean gameOver = false;
     public boolean retry = true;
+    OutputView bridgeShape = new OutputView();
     public void makeBridge(int size) {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
@@ -34,8 +35,9 @@ public class BridgeGame {
         if (!Objects.equals(this.bridge.get(gameCount), this.currentCoordinate.get(gameCount))){
             this.gameOver = true;
         }
-        System.out.println(this.gameCount+"게임카운트");
+        bridgeShape.printMap(this.gameCount,this.currentCoordinate);
         this.gameCount += 1;
+        System.out.println(this.gameCount+"게임카운트");
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
