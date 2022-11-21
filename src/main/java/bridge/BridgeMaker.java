@@ -4,7 +4,9 @@ import bridge.utils.Convert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static bridge.domain.BridgeGameConstant.START_INDEX;
 
@@ -24,8 +26,8 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>();
-        IntStream.range(START_INDEX, size).forEach(value -> bridge.add(String.valueOf(bridgeNumberGenerator.generate())));
+        List<Integer> bridge = new ArrayList<>();
+        IntStream.range(START_INDEX, size).forEach(value -> bridge.add(bridgeNumberGenerator.generate()));
         return Convert.toUpAndDownBridge(bridge);
     }
 }
