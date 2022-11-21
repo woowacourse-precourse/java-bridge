@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeGameResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,45 +16,35 @@ public class BridgeGameController {
     public void GameRun() {
         outputView.printGameStart();
         int bridgeSize = inputView.readBridgeSize();
-        BridgeGameResult bridgeGameResult = play(bridgeSize);
-        outputView.printResult(bridgeGameResult);
+        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+        bridgeGame.increaseGameCount();
+        int movingIndex = 0;
+
+        while (movingIndex < bridgeSize) {
+            movingIndex = play(bridgeGame, movingIndex);
+        }
+        outputView.printResult(bridgeGame.getBridgeGameResult());
     }
 
-    private BridgeGameResult play(int bridgeSize) {
-        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
-        int movingIndex = 0;
-        bridgeGame.increaseGameCount();
+    private int play(BridgeGame bridgeGame, int movingIndex) {
+        String movingResult = move(bridgeGame, movingIndex);
+        outputView.printMap(bridgeGame.getBridgeGameResult());
+        return updateMovingIndex(bridgeGame, movingResult, movingIndex);
+    }
 
-        while(movingIndex < bridgeSize) {
-            String movingResult = move(bridgeGame, movingIndex);
-            boolean isMove = bridgeGame.isMove(movingResult);
-            movingIndex = updateMovingIndex(isMove, movingIndex);
-            if (!isContinue(bridgeGame, isMove)) {
-                break;
-            }
+    private int updateMovingIndex(BridgeGame bridgeGame, String movingResult, int movingIndex){
+        if (bridgeGame.isMove(movingResult)) {
+            return movingIndex + 1;
         }
-        return bridgeGame.getBridgeGameResult();
+        if (isRetry(bridgeGame)) {
+            return 0;
+        }
+        return Integer.MAX_VALUE;
     }
 
     private String move(BridgeGame bridgeGame, int movingIndex) {
-         String moving = inputView.readMoving();
-         String movingResult = bridgeGame.move(moving, movingIndex);
-         outputView.printMap(bridgeGame.getBridgeGameResult());
-         return movingResult;
-    }
-
-    private int updateMovingIndex(boolean isMove, int movingIndex) {
-        if (isMove) {
-            return movingIndex + 1;
-        }
-        return 0;
-    }
-
-    private boolean isContinue(BridgeGame bridgeGame, boolean isMove) {
-        if (isMove) {
-            return true;
-        }
-        return isRetry(bridgeGame);
+        String moving = inputView.readMoving();
+        return bridgeGame.move(moving, movingIndex);
     }
 
     private boolean isRetry(BridgeGame bridgeGame) {
