@@ -26,9 +26,16 @@ public class Validator {
         }
     }
 
-    public static void validateCharacter(String input){
+    public static void validateStringIsEnglish(String input){
         if(!input.matches("^[a-zA-Z]*$")){
             throw new IllegalArgumentException("[ERROR] 입력 값은 영어여야 합니다.");
+        }
+    }
+
+    public static void validateRestartOption(String input){
+        String upperInput = input.toUpperCase();
+        if(!upperInput.equals("Q") && !upperInput.equals("R")){
+            throw new IllegalArgumentException("[ERROR] 입력된 재시작 옵션 값이 유효한 옵션이 아닙니다.");
         }
     }
 }

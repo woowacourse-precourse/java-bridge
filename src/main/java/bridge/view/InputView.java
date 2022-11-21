@@ -17,13 +17,16 @@ public class InputView {
 
     public String readMoving() {
         String userInput = getUserInput();
-        Validator.validateCharacter(userInput);
+        Validator.validateStringIsEnglish(userInput);
         Validator.validateMovingType(userInput);
         return userInput.toUpperCase();
     }
 
     public String readGameCommand() {
-        return null;
+        String userInput = getUserInput();
+        Validator.validateStringIsEnglish(userInput);
+        Validator.validateRestartOption(userInput);
+        return userInput.toUpperCase();
     }
 
     private String getUserInput(){
