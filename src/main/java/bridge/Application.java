@@ -7,17 +7,36 @@ public class Application {
         InputView inputView = new InputView();
         outputView.printGreeting();
         BridgeGame bridgeGame = initialize(inputView, outputView);
-        run(inputView, outputView, bridgeGame);
+        do {
+            run(inputView, outputView, bridgeGame);
+        } while (retry(inputView, outputView, bridgeGame));
     }
 
     private static void run(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         while (bridgeGame.getGameStatus().equals(GameStatus.ONGOING)) {
             move(inputView, outputView, bridgeGame);
         }
+    }
+
+    private static boolean retry(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         if (bridgeGame.getGameStatus().equals(GameStatus.LOSE)) {
-            outputView.printRetryInputMessage();
-            String command = inputView.readGameCommand();
+            if (checkRetry(inputView, outputView)) {
+                bridgeGame.retry();
+                return true;
+            }
         }
+        return false;
+    }
+
+    private static boolean checkRetry(InputView inputView, OutputView outputView) {
+        do {
+            try {
+                outputView.printRetryInputMessage();
+                return inputView.readGameCommand().equals("R");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
     }
 
     private static void move(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
