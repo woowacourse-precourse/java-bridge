@@ -28,8 +28,11 @@ public class BridgeGameController {
         return service.createMap();
     }
 
-    public boolean retryGame(String input) {
+    public boolean runCommand(String input) {
         Command command = Command.getCommand(input);
-        return service.retryGame(command);
+        if (command == Command.RETRY) {
+            return service.retryGame(command);
+        }
+        return false;
     }
 }

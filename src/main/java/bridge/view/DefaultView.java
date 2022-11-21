@@ -58,7 +58,7 @@ public class DefaultView implements View {
     private void inputGameCommand() {
         outputView.printRetry();
         String input = inputView.readGameCommand();
-        boolean isRetry = controller.retryGame(input);
+        boolean isRetry = controller.runCommand(input);
         if (isRetry) {
             playGame();
         }
