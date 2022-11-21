@@ -22,7 +22,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 다리_생성_테스트2() {
+    void 다리_생성_테스트_모두_위칸인_경우() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 1));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
@@ -30,7 +30,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 다리_생성_테스트3() {
+    void 다리_생성_테스트_모두_아래칸인_경우() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
@@ -56,7 +56,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트2() {
+    void 기능_테스트_1번_재시도() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "R", "U", "D", "D");
             assertThat(output()).contains(
@@ -74,7 +74,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트3() {
+    void 기능_테스트_다리를_한_번_건너고_게임_실패() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "D", "Q");
             assertThat(output()).contains(
@@ -92,7 +92,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트4() {
+    void 기능_테스트_시작하자마자_게임_실패() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "D", "Q");
             assertThat(output()).contains(
@@ -110,7 +110,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트5() {
+    void 기능_테스트_길이가_5인_다리() {
         assertRandomNumberInRangeTest(() -> {
             run("5", "U", "U", "R", "U", "D", "D", "U", "U");
             assertThat(output()).contains(
@@ -128,7 +128,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트6() {
+    void 기능_테스트_4번_재시도() {
         assertRandomNumberInRangeTest(() -> {
             run("5", "U", "U", "R", "D", "R", "D", "R", "U", "D", "D", "U", "U");
             assertThat(output()).contains(
@@ -146,7 +146,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트7() {
+    void 기능_테스트_길이가_7인_다리() {
         assertRandomNumberInRangeTest(() -> {
             run("7", "U", "U", "R", "D", "R", "D", "R", "U", "D", "D", "U", "D", "R", "U", "D", "D", "U", "U", "D", "U");
             assertThat(output()).contains(
@@ -164,7 +164,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트8() {
+    void 기능_테스트_길이가_7인_다리지만_5번째를_건너지_못해서_게임_실패() {
         assertRandomNumberInRangeTest(() -> {
             run("7", "U", "U", "R", "D", "R", "D", "R", "U", "D", "D", "U", "D", "Q");
             assertThat(output()).contains(
