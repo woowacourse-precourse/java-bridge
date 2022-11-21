@@ -1,13 +1,17 @@
 package bridge.model;
 
+import bridge.constant.Score;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+    private Referee referee;
     private Bridge bridge;
     private User user;
-
+    private Record record = new Record();
+    private Result result = new Result();
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -16,6 +20,15 @@ public class BridgeGame {
     public void move(String moveDirection) {
         user = new User(moveDirection);
         bridge.addCurrentRoundNumber();
+    }
+
+    public void judgeMove(String moveDirection) {
+        int currentRoundNumber = bridge.getCurrentRoundNumber();
+        referee = new Referee(bridge, currentRoundNumber);
+
+        Score score = referee.judgeMove(moveDirection);
+        result.setScore(score);
+        record.updateBridgeRecord(score, moveDirection);
     }
 
     /**
