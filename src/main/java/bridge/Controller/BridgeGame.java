@@ -83,6 +83,6 @@ public class BridgeGame {
     }
 
     public void showResult(){
-
+        outputView.printResult();
     }
 }
