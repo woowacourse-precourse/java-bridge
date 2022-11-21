@@ -30,10 +30,7 @@ public class BridgeGame {
     }
 
     public boolean isFailed() {
-        if (player.isDead()) {
-            return true;
-        }
-        return false;
+        return player.isDead();
     }
 
     /**
