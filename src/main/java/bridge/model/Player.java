@@ -2,6 +2,7 @@ package bridge.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Player {
     private final List<String> passingRout;
@@ -40,6 +41,11 @@ public class Player {
     }
 
     public boolean isSuccess(List<String> bridges) {
-        return SuccessRoutValidator.isSuccess(bridges, getPassingRout());
+        return IntStream.range(0, passingRout.size())
+                .allMatch(index -> isEquals(bridges, index));
+    }
+
+    private boolean isEquals(List<String> bridges, int index) {
+        return passingRout.get(index).equals(bridges.get(index));
     }
 }
