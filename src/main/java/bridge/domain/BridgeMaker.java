@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.vo.Direction;
+import bridge.vo.Command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,8 @@ public class BridgeMaker {
 
     private String makeAnswerDirection(int generate) {
         if (generate == 1) {
-            return Direction.UP;
+            return Command.UP;
         }
-        return Direction.DOWN;
+        return Command.DOWN;
     }
 }

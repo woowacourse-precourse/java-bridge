@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.vo.Direction;
+import bridge.vo.Command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,27 +9,24 @@ public class BridgePrinter {
     private static final String START = "[";
     private static final String BORDER = "|";
     private static final String END = "]";
-    private static final String CORRECT = " O ";
-    private static final String WRONG = " X ";
-    private static final String BLANK = "   ";
 
     User user;
     Bridge bridge;
 
-    public void print(User user, Bridge bridge) {
+    public void printLine(User user, Bridge bridge) {
         this.user = user;
         this.bridge = bridge;
-        printLine(Direction.UP);
-        printLine(Direction.DOWN);
+        bridgeLine(Command.UP);
+        bridgeLine(Command.DOWN);
     }
 
-    public void printLine(String direction) {
+    public void bridgeLine(String direction) {
         StringBuilder sb = new StringBuilder();
         sb.append(START);
         for (String s : makeBridgeLine(direction)) {
             sb.append(s).append(BORDER);
         }
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length() - 1);
         sb.append(END);
         System.out.println(sb.toString());
     }
@@ -44,13 +41,13 @@ public class BridgePrinter {
 
     private void compareBridgeLine(List<String> bridgeLine, String direct, int i) {
         if (!user.getUserMovings().get(i).equals(direct)) {
-            bridgeLine.add(BLANK);
+            bridgeLine.add(Command.BLANK);
             return;
         }
         if (user.getUserMovings().get(i).equals(bridge.getAnswerBridge().get(i)))
-            bridgeLine.add(CORRECT);
+            bridgeLine.add(Command.CORRECT);
         if (!user.getUserMovings().get(i).equals(bridge.getAnswerBridge().get(i)))
-            bridgeLine.add(WRONG);
+            bridgeLine.add(Command.WRONG);
     }
 
 }

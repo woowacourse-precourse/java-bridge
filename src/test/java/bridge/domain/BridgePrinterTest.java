@@ -27,7 +27,7 @@ class BridgePrinterTest extends NsTest {
 //        bridgeGame.getUser().addUserMoving("U");
 
         //when
-        bridgePrinter.print(bridgeGame.getUser(), bridgeGame.getBridge());
+        bridgePrinter.printLine(bridgeGame.getUser(), bridgeGame.getBridge());
 
         //then
         assertThat(output()).contains("[ O |   ]");
