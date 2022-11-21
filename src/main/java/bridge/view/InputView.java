@@ -1,5 +1,7 @@
 package bridge.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.regex.Pattern;
 
 /**
@@ -10,16 +12,31 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String readSize) {
-        validForSize(readSize);
+    public int readBridgeSize() {
+        String readSize = Console.readLine();
+
+        while (hasErrorInSize(readSize)) {
+            validForSize(readSize);
+            readSize = Console.readLine();
+        }
         return Integer.parseInt(readSize);
     }
 
     private void validForSize(String readSize) {
-        if (!Pattern.matches(Regex.RANGE.getPattern(), readSize)) {
+        try {
+            if (hasErrorInSize(readSize)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            throw new IllegalArgumentException();
         }
+    }
+
+    private boolean hasErrorInSize(String readSize) {
+        if (!Pattern.matches(Regex.RANGE.getPattern(), readSize)) {
+            return true;
+        }
+        return false;
     }
 
     /**
