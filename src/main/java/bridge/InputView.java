@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.NoSuchElementException;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -10,7 +12,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException {
+    public int readBridgeSize() {
         OutputView.printStart();
         System.out.println("\n다리의 길이를 입력해주세요.");
         try {
@@ -25,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException {
+    public String readMoving() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving = Console.readLine();
         checkMovingException(moving);
@@ -35,7 +37,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() throws IllegalArgumentException {
+    public String readGameCommand() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String game_command = Console.readLine();
         if (!(game_command.equals("R")) && !(game_command.equals("Q"))){
@@ -45,17 +47,19 @@ public class InputView {
         return game_command;
     }
 
-    private static void checkBridgeSizeException(int bridge_size) throws IllegalArgumentException{
+    private static void checkBridgeSizeException(int bridge_size) {
         if (bridge_size < 3 || bridge_size > 20){
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }
-    private static void changeExceptionType() throws IllegalArgumentException{
+
+    private static void changeExceptionType() {
         System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         throw new IllegalArgumentException();
     }
-    private static void checkMovingException(String moving) throws IllegalArgumentException{
+
+    private static void checkMovingException(String moving) {
         if (!(moving.equals("U")) && !(moving.equals("D"))){
             System.out.println("[ERROR] 이동할 칸은 U/D 중 하나를 입력해야 합니다.");
             throw new IllegalArgumentException();
