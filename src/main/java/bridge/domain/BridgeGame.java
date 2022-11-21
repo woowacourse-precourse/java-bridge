@@ -1,6 +1,13 @@
 package bridge.domain;
 
-import static bridge.domain.BridgeMapConstant.START_INDEX;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static bridge.domain.BridgeGameConstant.START_INDEX;
+import static bridge.domain.BridgeStatus.FAIL;
+import static bridge.domain.BridgeStatus.SUCCESS;
+import static bridge.ui.ViewConstant.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -8,14 +15,16 @@ import static bridge.domain.BridgeMapConstant.START_INDEX;
 public class BridgeGame {
     private static final String RESTART = "R";
 
-    private final Bridge bridge;
+    private final List<String> bridge;
+    private final BridgeMap bridgeMap;
     private final GameCount gameCount;
 
     private boolean status;
-    private int mapCoordinate = START_INDEX;
+    private int mapCoordinate;
 
-    public BridgeGame(Bridge bridge) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.bridgeMap = new BridgeMap(bridge.size());
         gameCount = GameCount.start();
     }
 
@@ -24,11 +33,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public BridgeMap move(String direction) {
-        if (checkCrossBridge(direction)) {
-            return getCurrentMap(this.status = true);
+    public void move(String direction) {
+        if (isPossibleCrossBridge(direction)) {
+            bridgeMap.reflectAtMap(direction, mapCoordinate, SUCCESS);
         }
-        return getCurrentMap(this.status = false);
+        if (!isPossibleCrossBridge(direction)) {
+            bridgeMap.reflectAtMap(direction, mapCoordinate, FAIL);
+        }
+        mapCoordinate++;
+    }
+
+    private boolean isPossibleCrossBridge(String direction) {
+        return this.status = bridge.get(mapCoordinate).equals(direction);
     }
 
     /**
@@ -38,22 +54,19 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         if (gameCommand.equals(RESTART)) {
-            gameInit();
+            setUpRetry();
             return true;
         }
         return false;
     }
 
-    private void gameInit() {
-        initializeMapCount();
+    private void setUpRetry() {
+        setUpCoordinate();
+        bridgeMap.setUpMap();
         this.gameCount.increase();
     }
 
-    private boolean checkCrossBridge(String direction) {
-        return this.bridge.getBridge().get(this.mapCoordinate++).equals(direction);
-    }
-
-    private void initializeMapCount() {
+    private void setUpCoordinate() {
         this.mapCoordinate = START_INDEX;
     }
 
@@ -61,15 +74,28 @@ public class BridgeGame {
         return this.status;
     }
 
+    public String getMap() {
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(bridgeMap.bridgeStatuses).forEach(row -> {
+            sb.append(START_BRIDGE_SHAPE);
+            sb.append(buildBridge(row));
+            sb.append(END_BRIDGE_SHAPE);
+        });
+        return sb.toString();
+    }
+
+    private String buildBridge(BridgeStatus[] row) {
+        return Arrays.asList(row).subList(START_INDEX, mapCoordinate)
+                .stream()
+                .map(bridgeBlockStatus -> bridgeBlockStatus.buildBridge)
+                .collect(Collectors.joining(JOINING_DELIMITER));
+    }
+
     public boolean checkWinning() {
         return Result.checkWinning(mapCoordinate, bridge) && this.status;
     }
 
     public Result getResult() {
-        return new Result(getCurrentMap(status), this.status, gameCount.getGameCount());
-    }
-
-    private BridgeMap getCurrentMap(boolean status) {
-        return new BridgeMap(bridge, mapCoordinate, status);
+        return new Result(getMap(), this.status, gameCount.getGameCount());
     }
 }

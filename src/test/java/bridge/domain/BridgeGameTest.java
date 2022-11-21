@@ -15,9 +15,7 @@ class BridgeGameTest {
     @DisplayName("다리 이동 테스트")
     @Test
     void moveBridgeTest() {
-        Bridge bridge = new Bridge(3);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.move("U");
+
     }
 
 }

@@ -1,3 +1,4 @@
+/*
 package bridge.domain;
 
 import org.junit.jupiter.api.DisplayName;
@@ -28,4 +29,4 @@ class BridgeMapTest {
         assertTrue(bridgeMap.getMap().contains("X"));
         assertNotNull(bridgeMap.getMap());
     }
-}
+}*/
