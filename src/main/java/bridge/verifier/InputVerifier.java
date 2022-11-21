@@ -1,14 +1,13 @@
 package bridge.verifier;
 
+import bridge.constant.Bridge;
 import bridge.constant.ExceptionMessage;
 import bridge.constant.GameCommand;
 import bridge.constant.Moving;
 
 public class InputVerifier {
-    private static final String REGEX_BRIDGE_SIZE_RANGE = "^[3-9]{1}$|^1{1}[0-9]{1}$|^2{1}0{1}$";
-
     public static void BridgeSize(String bridgeSize) {
-        if (!bridgeSize.matches(REGEX_BRIDGE_SIZE_RANGE)) {
+        if (!bridgeSize.matches(Bridge.REGEX__RANGE)) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_BRIDGE_LENGTH);
         }
     }

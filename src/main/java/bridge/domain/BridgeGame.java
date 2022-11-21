@@ -2,6 +2,8 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.Bridge;
+import bridge.constant.GameCommand;
 import bridge.constant.MoveState;
 
 import java.util.ArrayList;
@@ -35,11 +37,11 @@ public class BridgeGame {
         player.insertBridgeRoute(moving);
         if (bridge.get(player.getCorrectAnswerCount()).equals(moving)) {
             player.increaseCorrectAnswerCount();
-            player.insertBridgeMap("O");
+            player.insertBridgeMap(Bridge.CORRECT_ANSWER);
             if (player.getCorrectAnswerCount() == bridge.size()) return MoveState.SUCCESS_TEXT;
             return MoveState.NEXT_TEXT;
         }
-        player.insertBridgeMap("X");
+        player.insertBridgeMap(Bridge.FAIL_ANSWER);
         return MoveState.FAIL_TEXT;
     }
 
@@ -49,7 +51,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(GameCommand.RESTART)) {
             player.resetPlayer();
             return true;
         }

@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.Bridge;
 import bridge.constant.Moving;
 import bridge.domain.Player;
 
@@ -34,9 +35,9 @@ public class OutputView {
                 upBridge.add(player.getBridgeMap().get(i));
                 continue;
             }
-            upBridge.add(" ");
+            upBridge.add(Bridge.EMPTY);
         }
-        return "[ " + String.join(" | ", upBridge) + " ]";
+        return Bridge.OPEN + String.join(Bridge.SPLIT, upBridge) + Bridge.CLOSE;
     }
 
     private String makeDownBridge(Player player) {
@@ -46,9 +47,9 @@ public class OutputView {
                 downBridge.add(player.getBridgeMap().get(i));
                 continue;
             }
-            downBridge.add(" ");
+            downBridge.add(Bridge.EMPTY);
         }
-        return "[ " + String.join(" | ", downBridge) + " ]";
+        return Bridge.OPEN + String.join(Bridge.CLOSE, downBridge) + Bridge.CLOSE;
     }
 
     /**
