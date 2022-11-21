@@ -7,15 +7,15 @@ public enum Result {
     NONE("   ", "해당없음");
 
     private final String print;
-    private final String korean;
+    private final String message;
 
-    Result(String print, String korean) {
+    Result(String print, String message) {
         this.print = print;
-        this.korean = korean;
+        this.message = message;
     }
 
-    public String getKorean() {
-        return korean;
+    public String getMessage() {
+        return message;
     }
 
     @Override
