@@ -15,7 +15,8 @@ public class InputView {
     private static List<String> bridge;
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    public void inputBridgeSize(){
+
+    public void inputBridgeSize() {
         bridgeSize = Integer.parseInt(Console.readLine());
         validateSizeNumber(bridgeSize);
         bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -40,7 +41,7 @@ public class InputView {
     }
 
     public void validateSizeNumber(int size) {
-        if (size < 3 || size > 20  ) {
+        if (size < 3 || size > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3 이상 20 이하만 가능합니다.");
         }
     }

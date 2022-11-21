@@ -20,16 +20,16 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new LinkedList<>();
-        for(int i=0;i<size;i++){
+        for (int i = 0; i < size; i++) {
             bridge.add(makerUpDownBridge());
         }
 
         return bridge;
     }
 
-    public String makerUpDownBridge(){
+    public String makerUpDownBridge() {
         int bridgeRandomNumber = bridgeNumberGenerator.generate();
-        if(bridgeRandomNumber==1){
+        if (bridgeRandomNumber == 1) {
             return "U";
         }
         return "D";
