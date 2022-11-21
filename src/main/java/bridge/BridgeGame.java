@@ -46,7 +46,7 @@ public class BridgeGame {
     }
 
     public boolean isEndBridge() {
-        return bridge.size() == position;
+        return bridge.size() == position + 1;
     }
 
     /**
@@ -69,10 +69,10 @@ public class BridgeGame {
         String mark = getMarkToResult(result);
 
         if (direct.equals("U")) {
-            addBridgeMark(mark, "");
+            addBridgeMark(mark, " ");
             return;
         }
-        addBridgeMark("", mark);
+        addBridgeMark(" ", mark);
     }
 
     private String getMarkToResult(boolean result) {
@@ -89,5 +89,9 @@ public class BridgeGame {
 
     public List<List<String>> getBridgeMap() {
         return bridgeMap;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
     }
 }
