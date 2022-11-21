@@ -75,6 +75,15 @@ public class OutputView {
         System.out.println(mapPostfix);
     }
 
+    /**
+     * 마지막 이동을 제외한 이동의 출력 형식을 반한환다.
+     * <p>
+     * 이전의 이동들은 제대로된 이동인지 검사했기 때문에
+     * 단순하게 길을 표시하는 형식을 반환할 수 있다.
+     * @param side
+     * @param direction
+     * @return 다리 한칸의 출력 형식
+     */
     private String getOneBlockFormat(String side, String direction) {
         if (side.equals(direction)) {
             return oneSpace + correctMark + oneSpace;
@@ -82,6 +91,13 @@ public class OutputView {
         return oneSpace + oneSpace + oneSpace;
     }
 
+    /**
+     * 마지막으로 이동한 칸의 출력형식을 반환한다.
+     * @param side
+     * @param movedDirection
+     * @param answerDirection
+     * @return 마지막 칸의 이동 출력 형식
+     */
     private String getLastBlockFormat(String side, String movedDirection, String answerDirection) {
         if (!side.equals(movedDirection)) {
             return oneSpace + oneSpace + oneSpace;
