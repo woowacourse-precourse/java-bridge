@@ -1,6 +1,11 @@
 package bridge.model;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Score;
+
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -12,6 +17,14 @@ public class BridgeGame {
     private User user;
     private Record record = new Record();
     private Result result = new Result();
+
+    public void createBridge(int bridgeSize) {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> randomBridge = bridgeMaker.makeBridge(bridgeSize);
+        bridge = new Bridge(randomBridge);
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
