@@ -23,22 +23,23 @@ public class GameController {
 
     private void startGame(List<String> bridge, User user) {
         UserService.initUser(user);
-        move(bridge, user);
+        controlMove(bridge, user);
 
         if (user.sameBridgeSize(bridge.size())) {
             return;
         }
+
         retry(bridge, user);
     }
 
-    private void move(List<String> bridge, User user) {
+    private void controlMove(List<String> bridge, User user) {
         while (user.lessThanBridgeSize(bridge.size())) {
             String position = InputView.readMoving();
-            boolean result = BridgeGame.move(position, bridge, user);
+            boolean isPermitted = BridgeGame.move(position, bridge, user);
 
             OutputView.printMap(user);
 
-            if(result){
+            if(isPermitted){
                 return;
             }
         }
