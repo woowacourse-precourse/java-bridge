@@ -21,6 +21,7 @@ public class BridgeGameController {
             OutputView.showStartMessage(); // 1. 게임 시작 메세지 출력 완료
             createBridge();
             moveBridge();
+            printResult();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage()); // 수정 필요
         }
@@ -40,13 +41,28 @@ public class BridgeGameController {
     }
 
     private void moveBridge() {
-        mapMaker = new MapMaker();
+        do {
+            bridgeGameSet();
+            count++;
+        }while (gameProceeding());
+    }
 
-        while (count < bridge.size()) {
-            OutputView.showInputMove(); // 이동할 칸 선택
-            mapMaker.printMap(); // 맵을 보여준다
-            count++; // 움직인다
+    private boolean gameProceeding(){
+        mapMaker = new MapMaker(bridge);
+        while(true){
+            OutputView.showInputMove();
+            boolean proceeding = bridgeGame.move(InputView.readMoving());
+            mapMaker.addMap(proceeding);
+            OutputView.printMap(mapMaker);
 
+            if(!proceeding){ // 여기까진 맞음
+                OutputView.showGameStatus();
+                return bridgeGame.retry(InputView.readGameCommand());
+            }
+            if (bridgeGame.isEscape()){
+                return false;
+            }
         }
     }
+
 }
