@@ -13,10 +13,17 @@ public class InputView {
             System.out.println("다리의 길이를 입력해주세요.");
             int bridgeSize = Integer.parseInt(Console.readLine());
             return bridgeSize;
-        }catch(Exception e){
+        }catch(IllegalArgumentException e){
             System.out.print("[ERROR]");
-            return -1;
+            return readBridgeSize();
         }
+    }
+
+    public int checkBridgeSize(int size){
+        if(size >= 3 && size <= 20){
+            return size;
+        }
+        throw new IllegalArgumentException("[ERROR]: 다리의 크기가 유효하지 않습니다.");
     }
 
     /**
