@@ -1,40 +1,38 @@
 package bridge.model;
 
 public class BridgeGame {
-    private final Bridge bridge;
+    private final Round round;
     private final PassingSpace passingSpace;
     private int numberOfTry;
-    private int position;
-    private boolean isRightSpace;
 
-    public BridgeGame(Bridge bridge, PassingSpace passingSpace) {
-        this.bridge = bridge;
+    public BridgeGame(Round round, PassingSpace passingSpace) {
+        this.round = round;
         this.passingSpace = passingSpace;
         numberOfTry = 1;
-        reset();
     }
 
     private void reset() {
-        position = 0;
         passingSpace.reset();
-        isRightSpace = true;
+        round.reset();
     }
 
     public void move(String selectedSpace) {
         Space space = Space.valueOf(selectedSpace);
-        Movable movable = bridge.compareSpace(position, selectedSpace);
+        Movable movable = round.canMovable(selectedSpace);
         passingSpace.add(space, movable);
-        judgeSuccessMoving(selectedSpace);
-        position += 1;
+        round.next();
     }
 
     public String drawPassingSpace() {
         return passingSpace.toString();
     }
 
-    private void judgeSuccessMoving(String selectedSpace) {
-        Movable movable = bridge.compareSpace(position, selectedSpace);
-        isRightSpace =  movable.isMovable();
+    public boolean selectRightSpace() {
+        return round.isSuccessSelectingRightSpace();
+    }
+
+    public boolean isSuccessCrossingBridge() {
+        return round.isSuccessLastRound();
     }
 
     public boolean retry(String selectRetry) {
@@ -47,17 +45,9 @@ public class BridgeGame {
         return retry.isRetry();
     }
 
-    public boolean isSuccessCrossingBridge() {
-        return bridge.size() == position && isRightSpace;
-    }
-
     public GameResultDto getGameResult() {
         String passingSpace = drawPassingSpace();
         boolean isSuccess = isSuccessCrossingBridge();
         return new GameResultDto(passingSpace, isSuccess, numberOfTry);
-    }
-
-    public boolean isRightSpace() {
-        return isRightSpace;
     }
 }
