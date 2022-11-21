@@ -33,18 +33,27 @@ public class OutputView {
         System.out.printf(BRIDGE_START);
         List<BridgeState> userStates = gameResult.getBridgeStates();
         for (int i = 0; i < userStates.size() - 1; i++) {
-            printTile(MoveResult.SAME, userStates.get(i), bridgeState);
+            printPreviousTile(userStates.get(i), bridgeState);
         }
-        printTile(gameResult.getMoveResult(), userStates.get(userStates.size() - 1), bridgeState);
-        System.out.printf(BRIDGE_END);
+        printCurrentTile(gameResult.getMoveResult(), userStates.get(userStates.size() - 1), bridgeState);
+        System.out.println(BRIDGE_END);
     }
 
-    public void printTile(MoveResult moveResult, BridgeState userState, BridgeState bridgeState) {
+    public void printPreviousTile(BridgeState userState, BridgeState bridgeState) {
         if (userState == bridgeState) {
+            System.out.printf(MoveResult.SAME.getResult() + BRIDGE_PARTITION);
+            return;
+        }
+        System.out.printf(BRIDGE_BLANK+BRIDGE_PARTITION);
+    }
+
+    public void printCurrentTile(MoveResult moveResult, BridgeState userState, BridgeState bridgeState) {
+        if ((userState == bridgeState && moveResult.equals(MoveResult.SAME)) ||
+                (userState != bridgeState && moveResult.equals(MoveResult.DIFFERENT))) {
             System.out.printf(moveResult.getResult());
             return;
         }
-        System.out.printf(BRIDGE_BLANK + BRIDGE_PARTITION);
+        System.out.printf(BRIDGE_BLANK);
     }
 
     /**
@@ -52,6 +61,6 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean isSuccess, int totalTryCount) {
     }
 }
