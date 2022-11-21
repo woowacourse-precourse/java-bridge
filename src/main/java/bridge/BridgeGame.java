@@ -96,7 +96,7 @@ public class BridgeGame {
 
     public void quit() {
         isQuit = true;
-        outputView.printMap(bridge, position - 1, isSuccess);
+        outputView.printLastMap(bridge, position - 1, isSuccess);
         outputView.printResult(isSuccess, totalTry);
     }
 }
