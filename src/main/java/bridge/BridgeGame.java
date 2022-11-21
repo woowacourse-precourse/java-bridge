@@ -26,17 +26,17 @@ public class BridgeGame {
         if (checkingMoving(userWantedDirection)) {
             checkingEnding();
         }
-        nowLocation ++;
+        nowLocation++;
     }
 
     //방금 이동한 칸이 마지막 칸인경우 게임을 종료한다.
     private void checkingEnding() {
-        if (nowLocation == bridge.size()-1) {
+        if (nowLocation == bridge.size() - 1) {
             status = Status.ENDING;
         }
     }
 
-    //다음칸으로 이동이 가능한지 확인한다.(이동이 불가능 하다면 게임상황을
+    //다음칸으로 이동이 가능한지 확인한다.(이동이 불가능 하다면 게임상황을 FAIL 로 변경한다)
     private boolean checkingMoving(String userWantedDirection) {
         if (bridge.get(nowLocation).equals(userWantedDirection)) {
             return true;

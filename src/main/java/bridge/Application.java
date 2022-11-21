@@ -19,9 +19,9 @@ public class Application {
     }
 
     private static void startGame(BridgeGame bridgeGame) {
-        while(true){
+        while (true) {
             play(bridgeGame);
-            if(userWantedQuit(bridgeGame.getStatus())){
+            if (userWantedQuit(bridgeGame.getStatus())) {
                 break;
             }
             bridgeGame.retry();
@@ -38,7 +38,7 @@ public class Application {
     }
 
     private static boolean userWantedQuit(Status status) {
-        //다리 끝까지 와서 게임이 끝난경우
+        //다리 끝까지 와서 게임이 끝난경우(유저의 입력을 받지 않고 종료 시킨다)
         if (status == Status.ENDING) {
             return true;
         }

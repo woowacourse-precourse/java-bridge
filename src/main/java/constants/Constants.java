@@ -1,8 +1,8 @@
 package constants;
 
 public final class Constants {
-    public static final int GAME_SETTING_MOVED_UP = 1;
-    public static final int GAME_SETTING_MOVED_DOWN = 0;
+    public static final int BRIDGE_SETTING_MOVED_UP = 1;
+    public static final int BRIDGE_SETTING_MOVED_DOWN = 0;
     public static final int GAME_SETTING_BRIDGE_RANGE_START = 3;
     public static final int GAME_SETTING_BRIDGE_RANGE_END = 20;
 

@@ -1,6 +1,5 @@
 package bridge;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -43,7 +42,7 @@ class BridgeGameTest {
         assertThat(bridgeGame.getChallengesCnt()).isEqualTo(2);
     }
 
-    BridgeGame setUpBridge(){
+    BridgeGame setUpBridge() {
         return new BridgeGame(Arrays.asList("U", "D", "U"));
     }
 

@@ -9,6 +9,7 @@ import static constants.Constants.*;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    public static final String FUNCTION_ERROR_RANDOM_NUMBER = "[ERROR] 브릿지 생성 랜덤숫자에 오류가 있습니다.";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -29,9 +30,12 @@ public class BridgeMaker {
     }
 
     public String settingValue(int random) {
-        if (random == GAME_SETTING_MOVED_UP) {
+        if (random == BRIDGE_SETTING_MOVED_UP) {
             return GAME_COMMAND_UP;
         }
-        return GAME_COMMAND_DOWN;
+        if (random == BRIDGE_SETTING_MOVED_DOWN) {
+            return GAME_COMMAND_DOWN;
+        }
+        throw new IllegalArgumentException(FUNCTION_ERROR_RANDOM_NUMBER);
     }
 }

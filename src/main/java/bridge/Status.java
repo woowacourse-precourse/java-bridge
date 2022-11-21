@@ -6,5 +6,5 @@ package bridge;
  * ENDING : 다리를 끝까지 도달해서 게임을 종료하는경우
  */
 public enum Status {
-    PLAYING , FAIL, ENDING
+    PLAYING, FAIL, ENDING
 }
