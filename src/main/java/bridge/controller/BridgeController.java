@@ -16,7 +16,7 @@ public class BridgeController {
 
     public void play() {
         BridgeGame bridgeGame = constructBridge(); // 게임 끝까지 사용
-        while (!bridgeGame.gameOver()){
+        while (!bridgeGame.gameOver()) {
             movePlayer(bridgeGame);
             printResult(bridgeGame);
             isRestart(bridgeGame);
@@ -34,12 +34,12 @@ public class BridgeController {
         bridgeGame.move(playerMoving);
     }
 
-    private void printResult(BridgeGame bridgeGame){
+    private void printResult(BridgeGame bridgeGame) {
         outputView.printMap(bridgeGame);
     }
 
     private void isRestart(BridgeGame bridgeGame) {
-        if (bridgeGame.gameOver()) {
+        if (bridgeGame.getGamestatus()) {
             String gameCommand = inputView.readGameCommand();
             bridgeGame.retry(gameCommand);
         }
