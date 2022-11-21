@@ -49,7 +49,7 @@ public class BridgeGame {
             userMove.clear();
             moveResults.clear();
             tryCount++;
-            bridgeSize = 0;
+            bridgeSize = -1; //for문을 통해 +되기 때문에 0이 되기 위함
             return bridgeSize;
         }
         //TODO: 종료
