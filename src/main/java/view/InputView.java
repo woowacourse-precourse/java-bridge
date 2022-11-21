@@ -7,9 +7,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    static final String GET_BRIDE_LENGTH = "다리 길이를 입력해주세요.";
-    static final String GET_MOVE_POSITION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    static final String GET_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String GET_BRIDE_LENGTH = "다리 길이를 입력해주세요.";
+    public static final String GET_MOVE_POSITION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String GET_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.

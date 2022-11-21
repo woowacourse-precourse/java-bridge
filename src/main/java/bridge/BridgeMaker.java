@@ -9,10 +9,10 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    static final int UP_NUMBER = 1;
-    static final int DOWN_NUMBER = 0;
-    static final String UP = "U";
-    static final String DOWN = "D";
+    public static final int UP_NUMBER = 1;
+    public static final int DOWN_NUMBER = 0;
+    public static final String UP = "U";
+    public static final String DOWN = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 

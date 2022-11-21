@@ -10,10 +10,10 @@ import java.util.Objects;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    static final String IS_CLEAR = "게임 성공 여부 : ";
-    static final String TOTAL_NUMBER_ATTEMPTS  = "총 시도한 횟수: ";
-    static final String UP = "U";
-    static final String DOWN = "D";
+    public static final String IS_CLEAR = "게임 성공 여부 : ";
+    public static final String TOTAL_NUMBER_ATTEMPTS  = "총 시도한 횟수: ";
+    public static final String UP = "U";
+    public static final String DOWN = "D";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
