@@ -55,7 +55,8 @@ public class BridgeGameController {
     }
 
     public void end() {
-        OutputView.printResult(bridgeStatus.toString(), gameResult, gameCount);
+        OutputView.printBridgeResult(bridgeStatus.toString());
+        OutputView.printResult(gameResult, gameCount);
     }
 
     private boolean isPassBridge() {
