@@ -30,9 +30,7 @@ class BridgeGameTest {
     @Test
     @DisplayName("움직임에 대한 현재 상태를 생성한다.")
     void creatingMovementMap() {
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("U");
+        Arrays.asList("U", "D", "U").forEach(movement -> bridgeGame.move(movement));
         String movementMap = bridgeGame.createMovementMap();
         assertThat(movementMap).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
     }
@@ -40,10 +38,7 @@ class BridgeGameTest {
     @Test
     @DisplayName("다리를 완전히 건넜는지 확인한다.")
     void crossingBridge() {
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("D");
-        bridgeGame.move("U");
+        Arrays.asList("U", "D", "D", "U").forEach(movement -> bridgeGame.move(movement));
         assertThat(bridgeGame.crossedBridge()).isTrue();
     }
 
