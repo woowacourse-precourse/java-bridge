@@ -37,27 +37,35 @@ public class OutputView {
 
     private void NotGoUpDown(int movedPosition, String moving, List<String> bridge) {
         if (!bridgeGame.move(movedPosition, moving, bridge)) {
-            if (moving.equals("U")) {
-                if (!upOutputBoard.isEmpty()) printWhenNotGoUp();
-                if (upOutputBoard.isEmpty()) printWhenFirstNotGoUp();
-            }
-            if (moving.equals("D")) {
-                if (!upOutputBoard.isEmpty()) printWhenNotGoDown();
-                if (upOutputBoard.isEmpty()) printWhenFirstNotGoDown();
-            }
+            enterCommandNotGoUp(moving);
+        }
+    }
+
+    private void enterCommandNotGoUp(String moving) {
+        if (moving.equals("U")) {
+            if (!upOutputBoard.isEmpty()) printWhenNotGoUp();
+            if (upOutputBoard.isEmpty()) printWhenFirstNotGoUp();
+        }
+        if (moving.equals("D")) {
+            if (!upOutputBoard.isEmpty()) printWhenNotGoDown();
+            if (upOutputBoard.isEmpty()) printWhenFirstNotGoDown();
         }
     }
 
     private void goUpDown(int movedPosition, String moving, List<String> bridge) {
         if (bridgeGame.move(movedPosition, moving, bridge)) {
-            if (bridge.get(movedPosition).equals(moving) && moving.equals("U")) {
-                if (!upOutputBoard.isEmpty()) printWhenGoUp();
-                if (upOutputBoard.isEmpty()) printWhenFirstGoUp();
-            }
-            if (bridge.get(movedPosition).equals(moving) && moving.equals("D")) {
-                if (!upOutputBoard.isEmpty()) printWhenGoDown();
-                if (upOutputBoard.isEmpty()) printWhenFirstGoDown();
-            }
+            enterCommandGoUp(movedPosition, moving, bridge);
+        }
+    }
+
+    private void enterCommandGoUp(int movedPosition, String moving, List<String> bridge) {
+        if (bridge.get(movedPosition).equals(moving) && moving.equals("U")) {
+            if (!upOutputBoard.isEmpty()) printWhenGoUp();
+            if (upOutputBoard.isEmpty()) printWhenFirstGoUp();
+        }
+        if (bridge.get(movedPosition).equals(moving) && moving.equals("D")) {
+            if (!upOutputBoard.isEmpty()) printWhenGoDown();
+            if (upOutputBoard.isEmpty()) printWhenFirstGoDown();
         }
     }
 
