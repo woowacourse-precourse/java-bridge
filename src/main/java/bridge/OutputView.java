@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ public class OutputView {
     private static final String SUCCESS_TEXT = "게임 성공 여부: 성공";
     private static final String FAILURE_TEXT = "게임 성공 여부: 실패";
     private static final String TRY_COUNT_TEXT = "총 시도한 횟수: ";
+    private static final List<String> BRIDGE_LINE = List.of("U", "D");
 
     public void printStartingText() {
         System.out.println(STARTING_TEXT);
@@ -22,15 +24,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge) {
-        int bridgeSize = bridge.size() / 2;
+    public void printMap(HashMap<String, List<String>> presentBridge) {
+        int bridgeSize = presentBridge.get(BRIDGE_LINE.get(0)).size() / 2;
 
-        for (int i = 0; i < bridgeSize * 2; i += 3) {
+        for (int i = 0; i < 2; i++) {
             System.out.printf("[ ");
             for (int j = 0; j < bridgeSize - 1; j++) {
-                System.out.printf(bridge.get(i + j) + " | ");
+                System.out.printf(presentBridge.get(BRIDGE_LINE.get(i)).get(j) + " | ");
             }
-            System.out.println(bridge.get(i + bridgeSize - 1) + " ]");
+            System.out.println(presentBridge.get(bridgeSize - 1) + " ]");
         }
     }
 
@@ -39,9 +41,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge, boolean result, int tryCount) {
+    public void printResult(HashMap<String, List<String>> presentBridge, boolean result, int tryCount) {
         System.out.println(RESULT_TEXT);
-        printMap(bridge);
+        printMap(presentBridge);
         if (result) {
             System.out.println(SUCCESS_TEXT);
         } else {
