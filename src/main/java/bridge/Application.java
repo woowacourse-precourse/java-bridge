@@ -19,24 +19,28 @@ public class Application {
         List<Boolean> movingResults = new ArrayList<>();
         int tryCount = 1;
 
-        while(!bridgeGame.isEnd()) {
-            String moving = inputView.readMoving();
-            Boolean movingResult = bridgeGame.move(moving, movingResults, bridge);
-            movingResults.add(movingResult);
-            outputView.printMap(movingResults, bridge);
-            if (movingResult == true) {
-                continue;
-            }
-            String gameCommand = inputView.readGameCommand();
-            if (gameCommand == "R") {
-                movingResults = new ArrayList<>();
-                tryCount++;
-                continue;
-            }
-            if (gameCommand == "Q") {
-                break;
-            }
-        }
-        outputView.printResult(movingResults, bridge, tryCount);
+//        for(int i = 0; i < bridge.size(); i++) {
+//            System.out.print(bridge.get(i) + " ");
+//        }
+//
+//        while(!bridgeGame.isEnd()) {
+//            String moving = inputView.readMoving();
+//            Boolean movingResult = bridgeGame.move(moving, movingResults, bridge);
+//            movingResults.add(movingResult);
+//            outputView.printMap(movingResults, bridge);
+//            if (movingResult == true) {
+//                continue;
+//            }
+//            String gameCommand = inputView.readGameCommand();
+//            if (gameCommand == "R") {
+//                movingResults = new ArrayList<>();
+//                tryCount++;
+//                continue;
+//            }
+//            if (gameCommand == "Q") {
+//                break;
+//            }
+//        }
+//        outputView.printResult(movingResults, bridge, tryCount);
     }
 }
