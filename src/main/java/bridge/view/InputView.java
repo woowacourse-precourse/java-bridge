@@ -1,17 +1,13 @@
-package bridge.View;
+package bridge.view;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
     private static int bridgeSize;
+    private static String moveDirection;
 
     public int readBridgeSize() {
         bridgeSize = Integer.parseInt(Console.readLine());
@@ -19,11 +15,10 @@ public class InputView {
         return bridgeSize;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        moveDirection = Console.readLine();
+        validateMoveDirection(moveDirection);
+        return moveDirection;
     }
 
     /**
@@ -36,6 +31,12 @@ public class InputView {
     public void validateSizeNumber(int size) {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3 이상 20 이하만 가능합니다.");
+        }
+    }
+
+    public void validateMoveDirection(String direction) {
+        if (!direction.equals("U") && !direction.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 이동 방향은 위(U), 아래(D)만 가능합니다.");
         }
     }
 
