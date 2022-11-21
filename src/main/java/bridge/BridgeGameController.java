@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameController {
-    private BridgeGame bridgeGame;
-    private InputView inputView;
-    private OutputView outputView;
+    private final BridgeGame bridgeGame;
+    private final InputView inputView;
+    private final OutputView outputView;
     private int bridgeSize, attepmtCnt;
-    private BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker;
     private boolean isSucess;
-    private List<String> playerBridgeMap,RandomBridgeMap;
+    private List<String> playerBridgeMap, RandomBridgeMap;
 
     public BridgeGameController() {
         bridgeGame = new BridgeGame();
@@ -36,11 +36,8 @@ public class BridgeGameController {
         }
     }
 
-    private boolean checkSameInBridgeAlogorithm(int idx,String playerStep) {
-        if (!bridgeGame.checkSame(RandomBridgeMap, idx, playerStep)) {
-            return true;
-        }
-        return false;
+    private boolean checkSameInBridgeAlogorithm(int idx, String playerStep) {
+        return !bridgeGame.checkSame(RandomBridgeMap, idx, playerStep);
     }
 
     private String bridgeAlgorithm(int idx) {
@@ -58,9 +55,9 @@ public class BridgeGameController {
     public void constructBridgeAlgorithm() {
         bridgeAlgorithmSetting();
         int idx;
-        for (idx = 0; idx < bridgeSize; idx++) {
+        for (idx = 0; idx < bridgeSize; idx += Constant.MOVE_DISTANCE.getConstant()) {
             String playerStep = bridgeAlgorithm(idx);
-            if (checkSameInBridgeAlogorithm(idx,playerStep)) {
+            if (checkSameInBridgeAlogorithm(idx, playerStep)) {
                 break;
             }
         }
@@ -75,7 +72,7 @@ public class BridgeGameController {
     public void showRestart() {
         String restartInput = inputView.readGameCommand();
         if (bridgeGame.retry(restartInput)) {
-            playerBridgeMap = new ArrayList<String>();
+            playerBridgeMap = new ArrayList<>();
             constructBridgeAlgorithm();
         }
     }
