@@ -15,6 +15,7 @@ public class BridgeGame {
     private final Bridge bridge;
     private final Stack<PieceMove> moveTrace = new Stack<>();
     private GameStatus status = GameStatus.RUNNING;
+    private int trialCount = 1;
 
     public BridgeGame(final Bridge bridge) {
         this.bridge = bridge;
@@ -39,6 +40,10 @@ public class BridgeGame {
 
     public String getPrintable(BridgePrinter printer) {
         return printer.getPrintable(this.moveTrace);
+    }
+
+    public int getTrialCount() {
+        return this.trialCount;
     }
 
     private void checkMoveValidation() {
@@ -72,6 +77,7 @@ public class BridgeGame {
      */
     public void retry() {
         status = GameStatus.RUNNING;
+        trialCount++;
         moveTrace.clear();
     }
 }
