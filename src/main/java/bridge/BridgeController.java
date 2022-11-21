@@ -28,7 +28,13 @@ public class BridgeController {
             String moveCommand = bridgeView.inputMoveCommandMessage();
             ResultSymbol resultSymbol = bridgeGame.move(moveCommand);
             if (ResultSymbol.FAIL == resultSymbol) {
-                bridgeView.inputRetryCommandMessage();
+                String retryCommand = bridgeView.inputRetryCommandMessage();
+                if (retryCommand.equals("R")) {
+                    bridgeGame.retry();
+                }
+                if (retryCommand.equals("Q")) {
+                    break;
+                }
             }
             if (bridgeGame.allTry()) {
                 break;
