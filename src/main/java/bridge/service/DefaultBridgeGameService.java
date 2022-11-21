@@ -4,6 +4,7 @@ import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.BridgeCell;
 
 import java.util.List;
 
@@ -24,4 +25,8 @@ public class DefaultBridgeGameService implements BridgeGameService {
         this.game = new BridgeGame(bridge);
     }
 
+    @Override
+    public boolean moveBridge(BridgeCell cell) {
+        return game.move(cell);
+    }
 }
