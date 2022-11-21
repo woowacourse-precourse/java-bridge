@@ -4,7 +4,6 @@ import javax.swing.text.Position;
 import java.util.StringJoiner;
 
 public class ResultInformation {
-    private static final int BLANK = 32;
     private static final char O_SIGN = 'O';
     private final char[] upBridge;
     private final char[] downBridge;
@@ -36,8 +35,8 @@ public class ResultInformation {
     }
     void clear() {
         for (int i = 0; i < bridgeSize; i++) {
-            upBridge[i] = (char) BLANK;
-            downBridge[i] = (char) BLANK;
+            upBridge[i] = '\u0000';
+            downBridge[i] = '\u0000';
         }
         tryCount++;
     }
