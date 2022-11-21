@@ -37,12 +37,10 @@ public class OutputView {
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      */
     public void printResult(List<String> path, List<String> bridge, int numberOfTry) {
-        printNewLine();
-        printMessage("최종 게임 결과");
+        printMessage("\n최종 게임 결과");
         printMap(path, bridge);
         String passOrFail = getPassOrFail(path.equals(bridge));
-        printNewLine();
-        printMessage("게임 성공 여부: " + passOrFail);
+        printMessage("\n게임 성공 여부: " + passOrFail);
         printMessage(String.format("총 시도한 횟수: %d", numberOfTry));
     }
 
