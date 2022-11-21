@@ -28,7 +28,8 @@ public class Application {
 
 
     public static void main(String[] args) {
-
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리의 길이를 입력해주세요.");
         InputView input = new InputView();
         int BridgeSize = 0;
         while (BridgeSize == 0){
@@ -44,17 +45,20 @@ public class Application {
         BridgeGame game = new BridgeGame();
         Information info = new Information(0,Boolean.TRUE,"-");
         int trial = 1;
+        Boolean win = Boolean.TRUE;
         while (Boolean.TRUE){
             info = instruction_on_bridge(game, BridgeSize, new_bridge, info);
             if (info.index == BridgeSize-1){
-                break;
-            }
+                win = info.retry;
+                break;}
             String retry = game.retry();
             if (retry.equals("quit")){
-                break;
-            }
-            trial += 1;
-        }
+                win = Boolean.FALSE;
+                break;}
+            trial += 1;}
+        OutputView output = new OutputView();
+        output.printResult(info.index, info.instruction, new_bridge, win, trial);
+
         // 여기서부터 끝맺음
 
         // TODO: 프로그램 구현
