@@ -24,8 +24,9 @@ public class InputView {
         }
     }
 
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        String userInput = getUserInput(REQUEST_MOVE_COMMAND_MESSAGE.getGuideMessage());
+        return userInput;
     }
 
     public String readGameCommand() {
