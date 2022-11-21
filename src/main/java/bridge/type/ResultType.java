@@ -1,4 +1,4 @@
-package bridge;
+package bridge.type;
 
 public enum ResultType {
     SUCCESS("성공", "O"),

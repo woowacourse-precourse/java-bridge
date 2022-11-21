@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.BridgeGame;
-import bridge.BridgeType;
-import bridge.ResultType;
+import bridge.type.BridgeType;
+import bridge.type.ResultType;
 import bridge.MoveLog;
 import bridge.util.Message;
 

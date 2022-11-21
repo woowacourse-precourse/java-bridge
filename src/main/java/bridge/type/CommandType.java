@@ -1,4 +1,4 @@
-package bridge;
+package bridge.type;
 
 public enum CommandType {
     RESTART("R"),

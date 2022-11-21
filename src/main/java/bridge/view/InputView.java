@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.BridgeType;
-import bridge.CommandType;
+import bridge.type.BridgeType;
+import bridge.type.CommandType;
 import bridge.util.Message;
 import camp.nextstep.edu.missionutils.Console;
 

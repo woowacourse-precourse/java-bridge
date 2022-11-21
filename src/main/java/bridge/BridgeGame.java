@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.type.BridgeType;
+import bridge.type.ResultType;
 import java.util.List;
 
 /**
