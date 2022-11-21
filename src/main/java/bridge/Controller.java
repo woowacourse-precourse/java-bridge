@@ -10,10 +10,8 @@ public class Controller {
     private final BridgeStatus bridgeStatus;
 
     private BridgeGame bridgeGame;
-    private List<String> bridgeShape;
     private String success = OutputMessage.SUCCESS.get();
-    private int position = 0;
-    private int trial = 1;
+
 
     public Controller() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -25,34 +23,16 @@ public class Controller {
 
     public void makeBridgeWithSize() {
         int size = inputView.readBridgeSize();
-        this.bridgeShape = bridgeMaker.makeBridge(size);
-        this.bridgeGame = new BridgeGame(bridgeShape);
+        List<String> bridgeShape = bridgeMaker.makeBridge(size);
+        this.bridgeGame = new BridgeGame(bridgeShape, bridgeStatus);
     }
 
     public String moveToStatus() {
         String moving = inputView.readMoving();
-        String status = bridgeGame.move(position, moving);
-        makeStatusBridge(status);
+        String status = bridgeGame.move(moving);
+        bridgeGame.makeStatusBridge(status);
 
         return status;
-    }
-
-    public void makeStatusBridge(String status) {
-        if (!isCorrectMove(status)) {
-            bridgeStatus.incorrectToBridge(status);
-        }
-
-        if (isCorrectMove(status)) {
-            bridgeStatus.correctToBridge(status);
-            position += 1;
-        }
-    }
-
-    public boolean isCorrectMove(String status) {
-        if (status.contains("Incorrect")) {
-            return false;
-        }
-        return true;
     }
 
     public boolean isRetry() {
@@ -60,25 +40,19 @@ public class Controller {
         return bridgeGame.retry(command);
     }
 
-    public void setRetryCondition() {
-        bridgeStatus.clearBridgeStatus();
-        position = 0;
-        trial += 1;
-    }
-
     public boolean isContinueMove(boolean correction) {
         if (!correction) {
             if (!isRetry()){
                 return false;
             }
-            setRetryCondition();
+            bridgeGame.setRetryCondition();
         }
         return true;
     }
 
     public void bridgeRound() {
-        while (position < bridgeShape.size()) {
-            boolean correction = isCorrectMove(moveToStatus());
+        while (!bridgeGame.isEndBridge()) {
+            boolean correction = bridgeGame.isCorrectMove(moveToStatus());
             outputView.printMap(bridgeStatus.getBridgeStatusLayers());
 
             if (!isContinueMove(correction)) {
@@ -94,6 +68,6 @@ public class Controller {
 
         bridgeRound();
 
-        outputView.printResult(bridgeStatus.getBridgeStatusLayers(), success, trial);
+        outputView.printResult(bridgeStatus.getBridgeStatusLayers(), success, bridgeGame.getTrial());
     }
 }
