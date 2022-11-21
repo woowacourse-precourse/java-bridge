@@ -8,10 +8,14 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String INPUT_BRIDGE_LENGTH_GUIDE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_MOVE_COMMAND_GUIDE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     private static final String WRONG_INPUT_BRIDGE_LENGTH_MESSAGE = "\n[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n";
+    private static final String WRONG_INPUT_MOVE_COMMAND_MESSAGE = "\n[ERROR] 이동 가능한 칸은 U 또는 D입니다.\n";
 
     private static final String ONLY_NUMBERS_REGEX = "^[0-9]*$";
+    private static final String UP_COMMAND = "U";
+    private static final String DOWN_COMMAND = "D";
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final int MIN_BRIDGE_SIZE = 3;
 
@@ -46,7 +50,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            System.out.println(INPUT_MOVE_COMMAND_GUIDE_MESSAGE);
+            String input = Console.readLine();
+            validateMoveCommand(input);
+            return input;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+    }
+
+    private void validateMoveCommand(String input) {
+        if (!input.equals(UP_COMMAND) && !input.equals(DOWN_COMMAND)) {
+            throw new IllegalArgumentException(WRONG_INPUT_MOVE_COMMAND_MESSAGE);
+        }
     }
 
     /**
