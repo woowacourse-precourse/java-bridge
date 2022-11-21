@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.domain.Player;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -9,8 +8,8 @@ import bridge.domain.Player;
 public class BridgeGame {
     private final Bridge bridge;
 
-    public BridgeGame(int bridgeSize) {
-        bridge = new Bridge(bridgeSize);
+    public BridgeGame() {
+        bridge = new Bridge();
     }
 
     /**
