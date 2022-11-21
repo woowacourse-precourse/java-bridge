@@ -34,8 +34,11 @@ public class BridgeMaker {
     }
 
     private void validateSize(int size) {
-        if (size < MINIMUM_SIZE || size > MAXIMUM_SIZE) {
-            throw new IllegalArgumentException();
+        if (size < MINIMUM_SIZE) {
+            throw new IllegalArgumentException("다리 길이는 " + MINIMUM_SIZE + "이상입니다");
+        }
+        if (size > MAXIMUM_SIZE) {
+            throw new IllegalArgumentException("다리 길이는 " + MAXIMUM_SIZE + "이하입니다");
         }
     }
 
