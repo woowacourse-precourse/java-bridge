@@ -19,6 +19,7 @@ public class BridgeGame {
         int bridgeSize = inputView.readBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         move();
+        retry();
     }
 
     public void move() {
@@ -27,5 +28,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        System.out.println("게임 재시작 유무");
+        String answer = inputView.readGameCommand();
     }
 }
