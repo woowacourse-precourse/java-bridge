@@ -67,7 +67,7 @@ public class Player {
     private Boolean isPathCorrect() {
         int currentPosition = getCurrentPosition();
 
-        if (upperBridge.get(currentPosition).equals(POSSIBLE) || lowerBridge.get(currentPosition).equals(POSSIBLE)) {
+        if (upperBridge.get(currentPosition - 1).equals(POSSIBLE) || lowerBridge.get(currentPosition - 1).equals(POSSIBLE)) {
             return true;
         }
         return false;
@@ -76,7 +76,7 @@ public class Player {
     private Boolean canKeepMoving() {
         int currentPosition = getCurrentPosition();
 
-        if (upperBridge.get(currentPosition).equals(POSSIBLE) || lowerBridge.get(currentPosition).equals(POSSIBLE)) {
+        if (upperBridge.get(currentPosition - 1).equals(POSSIBLE) || lowerBridge.get(currentPosition - 1).equals(POSSIBLE)) {
             return true;
         }
         return false;
@@ -107,11 +107,7 @@ public class Player {
     }
 
     private int getCurrentPosition() {
-        int currentPosition = upperBridge.size();
-        if (currentPosition == START_POSITION) {
-            return currentPosition;
-        }
-        return currentPosition - 1;
+        return upperBridge.size();
     }
 
 }
