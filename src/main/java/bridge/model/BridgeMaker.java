@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bridge.utils.BridgeNumberGenerator;
-import camp.nextstep.edu.missionutils.Randoms;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -23,7 +21,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for(int i = 0 ; i<size;i++){
+        for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
             bridge.add(Integer.toString(number));
         }
