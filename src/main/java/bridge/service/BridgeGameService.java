@@ -2,9 +2,11 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Status;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameService {
@@ -30,5 +32,42 @@ public class BridgeGameService {
             }
         }
         return size;
+    }
+
+    public Status proceedGame(List<String> bridge) {
+        List<String> userMoving = new ArrayList<>();
+        while (bridge.size() >= userMoving.size()) {
+            userMoving.add(getMoving());
+            OutputView.printMap(bridge, userMoving);
+            if (!isSuccess(bridge, userMoving)) {
+                return Status.FAIL;
+            }
+        }
+        return Status.SUCCESS;
+    }
+
+    private String getMoving() {
+        String moving = "";
+        while (moving.equals("")) {
+            try {
+                OutputView.printInputMoving();
+                moving = InputView.readMoving();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        return moving;
+    }
+
+    private boolean isSuccess(List<String> bridge, List<String> userMoving) {
+        for (int index = 0; index < userMoving.size(); index++) {
+            String bridgeValue = bridge.get(index);
+            String userValue = userMoving.get(index);
+
+            if (!bridgeValue.equals(userValue)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

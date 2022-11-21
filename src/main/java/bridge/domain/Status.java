@@ -1,7 +1,6 @@
 package bridge.domain;
 
 public enum Status {
-    PROCEEDING("게임 진행 중"),
     SUCCESS("성공"),
     FAIL("실패");
 
@@ -9,10 +8,6 @@ public enum Status {
 
     Status(String message) {
         this.message = message;
-    }
-
-    public boolean isProceeding() {
-        return this == PROCEEDING;
     }
 
     public String getMessage() {
