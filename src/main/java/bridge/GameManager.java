@@ -9,52 +9,64 @@ import java.util.Objects;
  * 게임을 관리해주는 역할을 한다.
  */
 public class GameManager {
-    private final InputView inputView;
-    private final OutputView ouputView;
+    private List<List<String>> result;
+    private int round;
+    private int tryCount;
+    boolean activation;
 
-    public GameManager(InputView input, OutputView output) {
-        this.inputView = input;
-        this.ouputView = output;
+    public GameManager() {
+        this.result = new ArrayList<>();
+        this.round = 0;
+        this.tryCount = 1;
+        this.activation = true;
     }
 
     public void start() {
-        ouputView.printGameStart();
-        int bridgeSize = getBridgeSize();
+        OutputView.printGameStart();
+        int bridgeSize = InputView.getBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
-        boolean activation = true;
-        int round = 0;
-        int tried = 1;
-        List<String> upResult = new ArrayList<>();
-        List<String> downResult = new ArrayList<>();
+        tryGame(bridgeGame, bridgeSize);
+        OutputView.printResult(Arrays.asList(result.get(0), result.get(1)), isSuccess(result.get(0), result.get(1)), tryCount);
+    }
 
+    public void tryGame(BridgeGame bridgeGame, int bridgeSize) {
         while (activation) {
-            String moving = getMoving();
-            List<List<String>> result = bridgeGame.move(round, moving);
-            upResult = result.get(0);
-            downResult = result.get(1);
-            ouputView.printMap(upResult);
-            ouputView.printMap(downResult);
-            round++;
-
-            if (upResult.contains(" X ") || downResult.contains(" X ")) {
-                activation = isRetried();
-                bridgeGame.retry();
-                round = 0;
-                if (activation) {
-                    tried++;
-                }
-            }
-
-            if (round == bridgeSize) {
-                activation = false;
-            }
+            playRound(bridgeGame);
+            roundOver(bridgeGame);
+            isOver(bridgeSize);
         }
+    }
 
-        ouputView.printResult(Arrays.asList(upResult, downResult), isSuccess(upResult, downResult), tried);
+    public void playRound(BridgeGame bridgeGame) {
+        String moving = InputView.getMoving();
+        result = bridgeGame.move(round, moving);
+        OutputView.printMap(result.get(0));
+        OutputView.printMap(result.get(1));
+        round++;
+    }
+
+    public void roundOver(BridgeGame bridgeGame) {
+        if (result.get(0).contains(" X ") || result.get(1).contains(" X ")) {
+            activation = isRetried();
+            bridgeGame.retry();
+            upTryCount();
+        }
+    }
+
+    public void upTryCount() {
+        if (activation) {
+            tryCount++;
+        }
+    }
+
+    public void isOver(int bridgeSize) {
+        if (round == bridgeSize) {
+            activation = false;
+        }
     }
 
     public boolean isRetried() {
-        String command = getGameCommand();
+        String command = InputView.getGameCommand();
         return Objects.equals(command, "R");
     }
 
@@ -66,32 +78,5 @@ public class GameManager {
         }
 
         return success;
-    }
-
-    public int getBridgeSize() {
-        try {
-            return inputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            ouputView.printException(e.getMessage());
-            return getBridgeSize();
-        }
-    }
-
-    public String getMoving() {
-        try {
-            return inputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            ouputView.printException(e.getMessage());
-            return getMoving();
-        }
-    }
-
-    public String getGameCommand() {
-        try {
-            return inputView.readGameCommand();
-        } catch (IllegalArgumentException e) {
-            ouputView.printException(e.getMessage());
-            return getGameCommand();
-        }
     }
 }
