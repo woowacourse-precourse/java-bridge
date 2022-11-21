@@ -1,18 +1,15 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.ProgressMap;
-import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-	private final BridgeGameService bridgeGameService;
+	private final InputController inputController = new InputController();
 	private ProgressMap progressMap;
-
-	public BridgeGameController() {
-		this.bridgeGameService = new BridgeGameService();
-	}
 
 	public void start() {
 		InputView.printIntroMessage();
@@ -22,19 +19,14 @@ public class BridgeGameController {
 	}
 
 	private BridgeGame settingBridgeGame() {
-		int bridgeSize = receiveBridgeSize();
+		int bridgeSize = inputController.receiveBridgeSize();
 		progressMap = new ProgressMap();
-		return bridgeGameService.initBridgeGame(bridgeSize);
+		return initBridgeGame(bridgeSize);
 	}
 
-	private int receiveBridgeSize() {
-		try {
-			int size = InputView.readBridgeSize();
-			return bridgeGameService.checkBridgeSize(size);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return receiveBridgeSize();
-		}
+	private BridgeGame initBridgeGame(int bridgeSize) {
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		return new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
 	}
 
 	private void startBridgeGame(BridgeGame bridgeGame) {
@@ -42,41 +34,25 @@ public class BridgeGameController {
 		while (startGame && bridgeGame.isNotFinish(progressMap)) {
 			crossBridge(bridgeGame);
 			if (progressMap.isMoveFailed()) {
-				startGame = bridgeGame.retry(askRetry());
+				startGame = bridgeGame.retry(inputController.askRetry());
 			}
 		}
 	}
 
 	private void crossBridge(BridgeGame bridgeGame) {
-		progressMap = bridgeGameService.initGameMap();
+		progressMap = initGameMap();
 		while (!progressMap.isMoveFailed() && bridgeGame.isNotFinish(progressMap)) {
 			moveBridgeOneTime(bridgeGame);
 			OutputView.printMap(progressMap);
 		}
 	}
 
+	private ProgressMap initGameMap() {
+		return new ProgressMap();
+	}
+
 	private void moveBridgeOneTime(BridgeGame bridgeGame) {
-		String moving = receiveMoveCommand();
+		String moving = inputController.receiveMoveCommand();
 		bridgeGame.move(moving, progressMap);
-	}
-
-	private String receiveMoveCommand() {
-		try {
-			String moving = InputView.readMoving();
-			return bridgeGameService.checkMoveCommand(moving);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return receiveMoveCommand();
-		}
-	}
-
-	private boolean askRetry() {
-		try {
-			String retryInput = InputView.readGameCommand();
-			return bridgeGameService.retryOrEnd(retryInput);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return askRetry();
-		}
 	}
 }
