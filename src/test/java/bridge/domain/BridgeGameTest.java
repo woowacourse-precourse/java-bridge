@@ -30,10 +30,10 @@ class BridgeGameTest {
     @DisplayName("재시도 선택 시 변수 값을 변화한다.")
     @Test
     void retry_테스트2() {
-        Application.movingTurn = 3;
+        bridgeGame.movingTurn = 3;
         StartGame.totalTrial = 6;
         bridgeGame.retry();
-        assertEquals(Application.movingTurn, 0);
+        assertEquals(bridgeGame.movingTurn, 0);
         assertEquals(StartGame.totalTrial, 7);
     }
 
@@ -57,5 +57,22 @@ class BridgeGameTest {
         }
         assertEquals(bridgeGame.upSide.upSideArr, Arrays.asList("X", " "));
         assertEquals(bridgeGame.downSide.downSideArr, Arrays.asList(" ", "X"));
+    }
+    @DisplayName("정답 시 True 를 반환한다.")
+    @Test
+    void isRightWay_테스트() {
+        Application.bridge = Arrays.asList("U", "D", "U");
+        StartGame.movingInput = "U";
+        bridgeGame.movingTurn = 0;
+        assertTrue(bridgeGame.isRightWay());
+    }
+
+    @DisplayName("오답 시 True 를 반환한다.")
+    @Test
+    void isWrongWay_테스트() {
+        Application.bridge = Arrays.asList("U", "D", "U");
+        StartGame.movingInput = "D";
+        bridgeGame.movingTurn = 0;
+        assertTrue(bridgeGame.isWrongWay());
     }
 }
