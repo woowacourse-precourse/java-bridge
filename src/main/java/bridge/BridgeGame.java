@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.exception.CannotCrossBridgeException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,8 +11,11 @@ public class BridgeGame {
 
     private final List<String> bridge;
 
+    private List<List<String>> bridgeStatus;
+
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.bridgeStatus = new ArrayList<>();
     }
 
     /**
@@ -22,8 +26,10 @@ public class BridgeGame {
      */
     public void move(String direction, int bridgeIndex) {
         if (!compareDirection(direction, bridgeIndex)) {
+            bridgeStatus.add(List.of("X", direction));
             throw new CannotCrossBridgeException();
         }
+        bridgeStatus.add(List.of("O", direction));
     }
 
     public boolean compareDirection(String direction, int bridgeIndex) {
