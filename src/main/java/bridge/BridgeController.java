@@ -20,8 +20,7 @@ public class BridgeController {
     private void init() {
         bridgeView.gameStartMessage();
         int bridgeSize = bridgeView.inputBridgeSizeMessage();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridges = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame.create(bridgeSize);
     }
 
     private void loop() {
