@@ -48,4 +48,16 @@ public class Application {
         bridgeGame.move(bridge, movingChoice);
         OutputView.printMap(bridgeGame.getUpMap(), bridgeGame.getDownMap());
     }
+
+    static void retryBundle(BridgeGame bridgeGame) {
+        String gameCommand;
+
+        OutputView.printRetryMessage();
+        gameCommand = InputView.readGameCommand();
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
+        } else if (gameCommand.equals("Q")) {
+            bridgeGame.quit();
+        }
+    }
 }
