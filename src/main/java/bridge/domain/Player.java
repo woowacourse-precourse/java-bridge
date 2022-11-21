@@ -19,11 +19,13 @@ public class Player {
     public String getCommand(){
         return command;
     }
+    public boolean commandTypeCheck(int index){
+        return command.equals("D");
+    }
     private boolean isCorrectMoving(){
         return true;
     }
     private boolean isCorrectCommand(){
         return true;
     }
-
 }

@@ -4,13 +4,16 @@ import bridge.domain.BridgeGame;
 
 public class BridgeController {
     private final BridgeGame bridgeGame = new BridgeGame();
+    private int size;
     void init(){
-        bridgeGame.makeBridge();
+        size = bridgeGame.makeBridge();
         run();
     }
     void run(){
-        bridgeGame.setPlayer();
-        bridgeGame.move();
+        for (int i = 0 ;i<size;i++) {
+            bridgeGame.setPlayer();
+            bridgeGame.move(i);
+        }
         bridgeGame.retry();
     }
 }
