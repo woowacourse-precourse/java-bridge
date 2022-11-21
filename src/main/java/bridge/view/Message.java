@@ -15,6 +15,8 @@ public final class Message {
     public static final String MAP_START = "[ ";
     public static final String MAP_MIDDLE = " | ";
     public static final String MAP_END = " ]";
-
+    public static final String FINAL_GAME_RESULT = "\n최종 게임 결과";
+    public static final String IS_GAME_SUCCESS = "게임 성공 여부: ";
+    public static final String TOTAL_GAME_COUNT = "총 시도한 횟수: ";
 
 }
