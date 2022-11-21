@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BridgeTest {
 
@@ -17,9 +18,10 @@ class BridgeTest {
 
         // when
         Bridge bridge = new Bridge(size);
+        boolean lastBridgeSection = bridge.isLastBridgeSection(5);
 
         // then
-        assertEquals(5, bridge.getBridgeLength());
+        assertTrue(lastBridgeSection);
     }
 
     @Test
