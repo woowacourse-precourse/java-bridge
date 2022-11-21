@@ -18,7 +18,7 @@ class BridgeSizeTest {
 	}
 
 	@DisplayName("다리 길이를 검증한다.")
-	@ValueSource(ints = {3, 20})
+	@ValueSource(ints = {3, 5, 20})
 	@ParameterizedTest
 	void bridgeSizeTestNormal(int number) {
 		assertDoesNotThrow(() -> {
