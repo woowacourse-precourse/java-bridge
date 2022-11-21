@@ -13,11 +13,4 @@ public class BridgeGameService {
         return bridge;
     }
 
-    public static int initTryCount() {
-        return 1;
-    }
-
-    public static int initCount() {
-        return 0;
-    }
 }
