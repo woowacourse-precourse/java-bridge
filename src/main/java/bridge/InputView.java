@@ -32,8 +32,7 @@ public class InputView {
         try {
             String moving = Console.readLine();
             return checkMovingEnum(isBlank(moving));
-        }
-        catch (IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException){
             System.out.println(ERROR_MESSAGE + illegalArgumentException.getMessage());
             return readMoving();
         }
@@ -42,8 +41,14 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand()throws IllegalArgumentException {
+        try {
+            String gameCommand = Console.readLine();
+            return checkGameCommand(isBlank(gameCommand));
+        } catch (IllegalArgumentException illegalArgumentException){
+            System.out.println(ERROR_MESSAGE + illegalArgumentException.getMessage());
+            return readMoving();
+        }
     }
 
     public int toInts(String bridgeSize) {
@@ -72,5 +77,11 @@ public class InputView {
         throw new IllegalArgumentException(" 이동할 칸은 U 혹은 D 만 입력해야만합니다.");
         // "U" -> 변수선언 가능성
         // enum class 이용 가능
+    }
+    public String checkGameCommand(String gameCommand) throws IllegalArgumentException {
+        if(gameCommand.equals("R") || gameCommand.equals("Q")){
+            return gameCommand;
+        }
+        throw new IllegalArgumentException(" 게임 재시도 여부는 R 혹은 Q만 입력해야만합니다.");
     }
 }

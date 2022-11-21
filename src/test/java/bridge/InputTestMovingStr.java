@@ -29,6 +29,7 @@ class InputTestMovingStr extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    //Todo 다리길이에 영향을 받지 않는 방향으로는 못 짜는 것인가.
 
     @Override
     protected void runMain() {
