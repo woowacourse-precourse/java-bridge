@@ -1,5 +1,6 @@
 package bridge.domain.bridge;
 
+import bridge.BridgeMaker;
 import bridge.domain.player.Player;
 
 import java.util.List;
