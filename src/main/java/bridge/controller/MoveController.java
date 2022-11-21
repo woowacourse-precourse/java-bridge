@@ -21,6 +21,8 @@ public class MoveController {
 
     public MoveController() {
         this.database = Slabs.getInstance();
+        this.database.getAll()
+                .forEach(dto -> dto.setTread(false));
     }
 
     public MoveController(Slabs database) {
@@ -31,11 +33,16 @@ public class MoveController {
         return this.inputView.readMoving();
     }
 
-    public void moveToDestination(PositionType destinationPosition) {
+    public boolean moveToDestination(PositionType destinationPosition) {
         int step = this.getLastTreadStep() + 1;
+        SlabDTO destinationSlab = this.getDestinationSlab(step, destinationPosition);
+        boolean canContinue = this.isTemperedGlass(destinationSlab);
 
-        this.updateTread(this.getDestinationSlab(step, destinationPosition));
-        this.printSlabMap(step);
+        this.updateTread(destinationSlab);
+        this.printSlabMap(step, canContinue);
+
+
+        return canContinue;
     }
 
     public SlabDTO getDestinationSlab(int step, PositionType position) {
@@ -63,14 +70,23 @@ public class MoveController {
         }
     }
 
-    private void printSlabMap(int step) {
+    private boolean isTemperedGlass(SlabDTO slab) {
+        return slab.getGlass() == GlassType.TEMPERED;
+    }
+
+    private void printSlabMap(int step, boolean canContinue) {
+        if (canContinue) {
+            this.outputView.printMap(this.getSlapMaps(step));
+        }
+    }
+
+    public List<List<String>> getSlapMaps(int step) {
         List<SlabDTO> slabs = this.database.findByStep(step);
-        List<List<String>> slabMaps = List.of(
+
+        return List.of(
                 this.getSlabStatus(slabs, PositionType.UP),
                 this.getSlabStatus(slabs, PositionType.DOWN)
         );
-
-        this.outputView.printMap(slabMaps);
     }
 
     private List<String> getSlabStatus(List<SlabDTO> slabs, PositionType position) {
@@ -87,5 +103,9 @@ public class MoveController {
         }
 
         return glass.getTypeName();
+    }
+
+    public boolean getResult() {
+        return true;
     }
 }
