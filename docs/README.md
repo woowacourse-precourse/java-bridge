@@ -33,7 +33,7 @@
       - 검증 실패 시 IllegalArgumentException
 
 - [ ] InputValidator : 사용자 입력을 검증하는 클래스
-    - [ ] 생성자 추가
+    - [x] 생성자 추가
     - [ ] 다리 길이 검증
         - 검증 실패 시 IllegalArgumentException
     - [ ] 이동할 칸 검증
