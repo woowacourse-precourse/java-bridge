@@ -55,6 +55,7 @@
 
 - [x] U와 D 중 하나의 문자인지 유효성 검사
 - [x] 올바른 값이 아니면 `IllegalArgumentException` 발생
+- [x] 문자를 숫자로 숫자를 문자로 변환
 
 ### validation / [ExitOption]
 
@@ -132,6 +133,7 @@
 
 - [x] `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다.
 - [x] `makeBridge` 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+- [x] `Stair` Enum 사용하여 숫자를 문자로 변환
 
 ### [BridgeRandomNumberGenerator] & [BridgeNumberGenerator]
 
