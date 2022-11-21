@@ -1,11 +1,11 @@
 package bridge.view;
 
 import bridge.utils.BridgeSizeValidator;
+import bridge.utils.GameCommandValidator;
 import bridge.utils.MoveValidator;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.view.ViewEnum.INPUT_BRIDGE_LENGTH_MESSAGE;
-import static bridge.view.ViewEnum.INPUT_USER_MOVE_BRIDGE_MESSAGE;
+import static bridge.view.ViewEnum.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -51,7 +51,18 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String getGameCommand() {
+        System.out.println(INPUT_WANT_RE_GAME_MESSAGE.getMessage());
+        return readGameCommand(Console.readLine());
+    }
+
+    private static String readGameCommand(String gameCommand){
+        try{
+            GameCommandValidator.checkGameCommand(gameCommand);
+            return gameCommand;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readGameCommand(Console.readLine());
+        }
     }
 }
