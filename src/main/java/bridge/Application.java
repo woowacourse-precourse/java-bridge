@@ -15,6 +15,8 @@ public class Application {
         List<String> result = new ArrayList<>();
         BridgeGame bridgeGame = new BridgeGame();
         result.add(bridgeGame.move(moveTarget, bridge, result.size()));
+        OutputView outputView = new OutputView();
+        outputView.printMap(result, bridge);
         // TODO: 프로그램 구현
     }
 }
