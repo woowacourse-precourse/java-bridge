@@ -49,12 +49,8 @@ public class BridgeGameController {
 
     public boolean selectQuitOrRestart(int lengthOfBridge) {
         String restartOrQuit = InputView.readGameCommand();
-        if (restartOrQuit.equals("R")) {
-            restartGame(lengthOfBridge);
-        }
-        if (restartOrQuit.equals("Q")) {
-            return false;
-        }
+        if (restartOrQuit.equals("R")) restartGame(lengthOfBridge);
+        if (restartOrQuit.equals("Q")) return false;
         return false;
     }
 
