@@ -52,15 +52,17 @@ public class BridgeGame {
     public int gameState() {
         String upperLastElement = lastElementOfList(upperBridgeMap);
         String lowerLastElement = lastElementOfList(lowerBridgeMap);
-        if (upperLastElement.equals(X.msg) || lowerLastElement.equals(X.msg)) {
+        return calculateGameState(upperLastElement, lowerLastElement);
+    }
+    private int calculateGameState(String upperElement, String lowerElement) {
+        if (upperElement.equals(X.msg) || lowerElement.equals(X.msg)) {
             return GAME_OVER_STATE.value;
         }
-        if ((upperLastElement.equals(O.msg) || lowerLastElement.equals(O.msg)) && indexOfBridge == bridge.size()) {
+        if ((upperElement.equals(O.msg) || lowerElement.equals(O.msg)) && indexOfBridge == bridge.size()) {
             return GAME_CLEAR_STATE.value;
         }
         return GAME_ON_STATE.value;
     }
-
     private String lastElementOfList(List<String> list) {
         return list.get(list.size()-1);
     }

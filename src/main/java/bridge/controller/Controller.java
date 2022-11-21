@@ -14,30 +14,36 @@ public class Controller {
     public Controller() {
         System.out.println(INPUT_START.msg);
         System.out.println();
-        bridgeGame = new BridgeGame(readBridgeSize());
+        this.bridgeGame = new BridgeGame(readBridgeSize());
         System.out.println();
     }
 
 
     public void run() {
-        gameState = bridgeGame.move(readMoving());
+        this.gameState = this.bridgeGame.move(readMoving());
         OutputView.printMap();
         nonClearedState();
         clearedState();
     }
     private void nonClearedState() {
-        while (gameState == GAME_ON_STATE.value || gameState == GAME_OVER_STATE.value) {
-            if (gameState == GAME_ON_STATE.value) {
-                gameState = bridgeGame.move(readMoving());
-                OutputView.printMap();
+        while (this.gameState == GAME_ON_STATE.value || this.gameState == GAME_OVER_STATE.value) {
+            if (this.gameState == GAME_ON_STATE.value) {
+                nonClearedState_on();
             }
-            if (gameState == GAME_OVER_STATE.value) {
-                gameState = bridgeGame.retry(readGameCommand());
+            if (this.gameState == GAME_OVER_STATE.value) {
+                nonClearedState_over();
             }
         }
     }
+    private void nonClearedState_on() {
+        this.gameState = this.bridgeGame.move(readMoving());
+        OutputView.printMap();
+    }
+    private void nonClearedState_over() {
+        this.gameState = this.bridgeGame.retry(readGameCommand());
+    }
     private void clearedState() {
-        if (gameState == GAME_CLEAR_STATE.value) {
+        if (this.gameState == GAME_CLEAR_STATE.value) {
             OutputView.printResult();
         }
     }
