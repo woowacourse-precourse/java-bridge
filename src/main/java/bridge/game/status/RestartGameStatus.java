@@ -7,8 +7,14 @@ import bridge.view.OutputView;
 public class RestartGameStatus implements BridgeGameStatus {
     @Override
     public BridgeGameStatus next(BridgeGameContext context, InputView inputView, OutputView outputView) {
-        context.getBridgeGame().retry();
-        return new PlayerUnitMoveStatus();
+        var restartCommand = inputView.readGameCommand();
+
+        if (restartCommand.isContinue()) {
+            context.retry();
+            return new PlayerUnitMoveStatus();
+        }
+
+        return new ResultVerificationStatus();
     }
 
     @Override
