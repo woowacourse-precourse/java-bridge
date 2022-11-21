@@ -15,9 +15,6 @@ import bridge.domain.bridge.BridgePasser;
 import bridge.domain.game.GameResult;
 import bridge.value.BridgeCharacter;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private final BridgePasser bridgePasser;

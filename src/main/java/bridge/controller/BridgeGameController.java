@@ -32,6 +32,16 @@ public class BridgeGameController {
     }
 
     public void start() {
+        try {
+            process();
+        } catch(Exception e) {
+            outputView.println(e.getMessage());
+        }
+    }
+//TODO 1. 예외 메시지 enum 처리
+//TODO 2. 기타 수정사항 있는지 확인하기
+//TODO 3. 동작 정확한지 확인하기.
+    private void process() {
         outputView.printMessage(GAME_START);
         outputView.lineSeparate();
         initGame();
@@ -67,7 +77,6 @@ public class BridgeGameController {
         }
 
         outputView.printMap(makeGameStatusView(bridgeGame.status()));
-//        outputView.lineSeparate();
     }
 
     private void processFor(GameCommand gameCommand) {
