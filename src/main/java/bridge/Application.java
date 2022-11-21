@@ -29,7 +29,25 @@ public class Application {
     }
 
     private static void playGame(BridgeGame bridgeGame) {
-        
+        do {
+            run(bridgeGame);
+            final BridgeGameStatus bridgeGameStatus = bridgeGame.getBridgeGameStatus();
+            if (bridgeGameStatus.isGameSuccessfulEnd()) break;
+        } while (bridgeGame.retry(inputRetryCommand()));
+    }
+
+    private static void run(BridgeGame bridgeGame) {
+        bridgeGame.addRunCount();
+        do {
+            final Moving nowMoving = inputView.readMoving();
+            bridgeGame.move(nowMoving);
+            final BridgeGameStatus bridgeGameStatus = bridgeGame.getBridgeGameStatus();
+            outputView.printMap(bridgeGameStatus);
+        } while (bridgeGame.canMoveContinue());
+    }
+
+    private static GameCommand inputRetryCommand() {
+        return inputView.readGameCommand();
     }
 
     private static void terminateGame(BridgeGame bridgeGame) {
