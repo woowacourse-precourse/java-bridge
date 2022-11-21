@@ -9,7 +9,7 @@ import bridge.domain.ProgressMap;
 public class BridgeGameService {
 	private static final int MIN_SIZE = 3;
 	private static final int MAX_SIZE = 20;
-	private static final String BRIDGE_SIZE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+	private static final String BRIDGE_SIZE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3이상, 20이하 입니다.";
 	private final BridgeMaker bridgeMaker;
 
 	public BridgeGameService() {
