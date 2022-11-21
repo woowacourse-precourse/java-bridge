@@ -13,15 +13,19 @@ public class BridgeSizeValidation {
 
     public boolean isValidate(String bridgeSize) {
         try {
-            isNull(bridgeSize);
-            isBlank(bridgeSize);
-            isNumber(bridgeSize);
-            isCorrectRange(bridgeSize);
+            totalValidate(bridgeSize);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return true;
         }
         return false;
+    }
+
+    public void totalValidate(String bridgeSize) {
+        isNull(bridgeSize);
+        isBlank(bridgeSize);
+        isNumber(bridgeSize);
+        isCorrectRange(bridgeSize);
     }
 
     public void throwError(String message) {
