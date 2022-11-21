@@ -1,7 +1,7 @@
-package bridge;
+package bridge.InputValidator;
 
+import bridge.InputValidator.BridgeSize;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -11,10 +11,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeSizeTest {
     private BridgeSize bridgeSize;
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @ValueSource(strings = {"abc", "1abc", "$bb12"})
     @ParameterizedTest
