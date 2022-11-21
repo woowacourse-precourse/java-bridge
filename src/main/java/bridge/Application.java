@@ -89,16 +89,16 @@ public class Application {
     /**
      * 게임을 종료하는 메서드
      */
-    static Boolean gameEnd(List<List<String>> moveResult, int bridgeSize) {
+    static Boolean gameEnd(List<List<String>> moveResult) {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
 
-        if (moveResult.get(0).size() == bridgeSize) { outputView.printResult(moveResult, bridgeSize, gameCount); return false; }
+        if (!moveResult.get(0).contains("X") && !moveResult.get(1).contains("X")) { outputView.printResult(moveResult, gameCount); return false; }
 
         String checkCommand = Application.inputFinish();
         if (checkCommand.equals("R")) { gameCount = bridgeGame.retry(gameCount); return true; }
-        outputView.printResult(moveResult, bridgeSize, gameCount);
-        
+        outputView.printResult(moveResult, gameCount);
+
         return false;
     }
 
@@ -110,7 +110,7 @@ public class Application {
             List<String> bridge = Application.makeBridge(bridgeSize);
             while (wholeTry) {
                 List<List<String>> moveResult = Application.moveBridge(bridge);
-                wholeTry = Application.gameEnd(moveResult, bridgeSize);
+                wholeTry = Application.gameEnd(moveResult);
             }
         } catch (IllegalArgumentException e) {}
     }

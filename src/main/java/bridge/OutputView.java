@@ -72,7 +72,6 @@ public class OutputView {
      * 게임을 끝낼건지 묻는 문구를 출력한다.
      */
     public void printWantFinish() {
-        System.out.println();
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
@@ -97,12 +96,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> moveResult, int bridgeSize, int gameCount) {
+    public void printResult(List<List<String>> moveResult, int gameCount) {
         System.out.println("최종 게임 결과");
         printUpMap(moveResult.get(0));
         printDownMap(moveResult.get(1));
 
-        if (moveResult.get(0).size() == bridgeSize) {
+        if (!moveResult.get(0).contains("X") && !moveResult.get(1).contains("X")) {
             printSuccessResult(gameCount);
             return;
         }
