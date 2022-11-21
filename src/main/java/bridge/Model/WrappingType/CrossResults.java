@@ -11,10 +11,6 @@ public class CrossResults {
         this.crossResults = crossResults;
     }
 
-    public int nextPosition() {
-        return crossResults.size();
-    }
-
     public void add(CrossResult crossResult) {
         crossResults.add(crossResult);
     }

@@ -11,19 +11,19 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public CrossResult cross(ChoiceDirection choiceDirection, int nextPosition) {
-        String nextBridgeDirection = bridge.get(nextPosition);
-        if (choiceDirection.compare(nextBridgeDirection)) {
+    public CrossResult cross(ChoiceDirection choiceDirection, int position) {
+        String bridgeDirection = bridge.get(position);
+        if (choiceDirection.compare(bridgeDirection)) {
             return CrossResult.SUCCESS;
         }
         return CrossResult.FAIL;
     }
 
-    public boolean isEndPoint(int length){
-        return this.length() - length == 0;
+    public boolean isEndPoint(int position){
+        return endPoint() - position == 0;
     }
 
-    private int length() {
-        return bridge.size();
+    private int endPoint() {
+        return bridge.size() - 1;
     }
 }
