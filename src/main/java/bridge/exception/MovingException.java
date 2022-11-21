@@ -8,6 +8,8 @@ public class MovingException extends UserException {
         isEmpty(userInput);
         isBlank(userInput);
         hasBlank(userInput);
+        isNotLengthOne(userInput);
+        isLowerCase(userInput);
         isNotMoving(userInput);
     }
 

@@ -27,4 +27,11 @@ public abstract class UserException {
             throw new IllegalArgumentException(ExceptionCode.IS_NOT_LENGTH_ONE.getMessage());
         }
     }
+
+    void isLowerCase(String input) {
+        char letter = input.charAt(0);
+        if (letter > 96 && letter < 123) {
+            throw new IllegalArgumentException(ExceptionCode.IS_LOWER_CASE.getMessage());
+        }
+    }
 }

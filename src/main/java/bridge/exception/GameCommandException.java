@@ -8,6 +8,8 @@ public class GameCommandException extends UserException {
         isEmpty(userInput);
         isBlank(userInput);
         hasBlank(userInput);
+        isNotLengthOne(userInput);
+        isLowerCase(userInput);
         isNotGameCommand(userInput);
     }
 
