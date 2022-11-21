@@ -23,4 +23,14 @@ class BridgeGameTest {
         BridgeGame game = new BridgeGame(List.of("U","D","U"));
         assertThat(false).isEqualTo(game.move("D"));
     }
+    @DisplayName("다리 건너기를 성공했다면, 시도 횟수와 true를 리턴")
+    @Test
+    void 다리건너기_성공(){
+        BridgeGame game = new BridgeGame(List.of("U","D","U"));
+        game.move("U");
+        game.move("D");
+        game.move("U");
+        assertThat(true).isEqualTo(game.checkSuccess());
+        assertThat(1).isEqualTo(game.getTryNumber());
+    }
 }
