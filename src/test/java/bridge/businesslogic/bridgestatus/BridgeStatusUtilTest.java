@@ -53,4 +53,49 @@ class BridgeStatusUtilTest {
             assertThat(testBuilder.toString()).isEqualTo("");
         }
     }
+
+
+    @Nested
+    class CheckLastAndPackingTest{
+
+        @DisplayName("비어 있는 StringBuilder 를 String 으로 내보낼 때, [  ] 이다.")
+        @Test
+        void checkLastAndPacking_case1(){
+            StringBuilder testBuilder = new StringBuilder();
+            statusUtil.checkLastAndPacking(testBuilder, true);
+            assertThat(testBuilder.toString()).isEqualTo("[  ]");
+        }
+
+        @DisplayName("한개의 데이터만 들어 있고 그 데이터가 정답데이터이면, [ O ] 이다.")
+        @Test
+        void checkLastAndPacking_case2(){
+            StringBuilder testBuilder = new StringBuilder("O");
+            statusUtil.checkLastAndPacking(testBuilder, true);
+            assertThat(testBuilder.toString()).isEqualTo("[ O ]");
+        }
+
+        @DisplayName("두개 이상의 데이터가 들어 있고 마지막 데이터가 정답데이터일때")
+        @Test
+        void checkLastAndPacking_case3(){
+            StringBuilder testBuilder = new StringBuilder("O | O");
+            statusUtil.checkLastAndPacking(testBuilder, true);
+            assertThat(testBuilder.toString()).isEqualTo("[ O | O ]");
+        }
+
+        @DisplayName("한개의 데이터만 들어 있고 그 데이터가 정답데이터가 아니면, [ X ] 이다.")
+        @Test
+        void checkLastAndPacking_case4(){
+            StringBuilder testBuilder = new StringBuilder("O");
+            statusUtil.checkLastAndPacking(testBuilder, false);
+            assertThat(testBuilder.toString()).isEqualTo("[ X ]");
+        }
+
+        @DisplayName("두개 이상의 데이터가 들어 있고 마지막 데이터가 정답데이터가 아닐 때")
+        @Test
+        void checkLastAndPacking_case5(){
+            StringBuilder testBuilder = new StringBuilder("O | O");
+            statusUtil.checkLastAndPacking(testBuilder, false);
+            assertThat(testBuilder.toString()).isEqualTo("[ O | X ]");
+        }
+    }
 }
