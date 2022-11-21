@@ -2,27 +2,29 @@ package bridge.model.validation;
 
 import bridge.model.constant.Error;
 
-public class BridgeSize {
-	public static final int MIN_NUMBER = 3;
-	public static final int MAX_NUMBER = 20;
+public enum BridgeSize {
+	MIN(3),
+	MAX(20),
+	;
+
 	private final int bridgeSize;
 
-	public BridgeSize(int value) {
-		validateRange(value);
-		this.bridgeSize = value;
+	BridgeSize(int bridgeSize) {
+		this.bridgeSize = bridgeSize;
 	}
 
 	public int getSize() {
 		return bridgeSize;
 	}
 
-	private void validateRange(int value) {
-		if (!isInRange(value)) {
+	public static int validateRange(int size) {
+		if (!isInRange(size)) {
 			throw new IllegalArgumentException(Error.RANGE.getMessage());
 		}
+		return size;
 	}
 
-	private static boolean isInRange(int value) {
-		return MIN_NUMBER <= value && value <= MAX_NUMBER;
+	private static boolean isInRange(int size) {
+		return MIN.bridgeSize <= size && size <= MAX.bridgeSize;
 	}
 }
