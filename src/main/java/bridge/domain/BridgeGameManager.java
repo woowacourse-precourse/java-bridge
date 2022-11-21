@@ -3,7 +3,7 @@ package bridge.domain;
 import bridge.view.input.InputView;
 import bridge.view.output.OutputView;
 
-import static bridge.domain.Constants.BRIDGE_LENGTH_INIT;
+import static bridge.domain.Constants.*;
 
 public class BridgeGameManager {
 
@@ -51,7 +51,7 @@ public class BridgeGameManager {
 
     private boolean isQuit(BridgeGame bridgeGame) {
         outputView.printInputRetryOrNot();
-        if (inputView.readGameCommand().equals("R")) {
+        if (inputView.readGameCommand().equals(RETRY)) {
             bridgeGame.retry();
             initBrigeLength(bridgeGame);
             return false;
