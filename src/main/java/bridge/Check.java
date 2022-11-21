@@ -12,7 +12,7 @@ public class Check {
             Integer.parseInt(input);
         }
         catch (NumberFormatException ex) {
-            IllegalArgumentException exception = new NotNumeric(ERROR_MESSAGE);
+            IllegalArgumentException exception = new NotNumeric(ERROR_MESSAGE+NOT_NUMERIC_ERROR_MESSAGE);
             System.out.println(exception);
             return false;
         }
@@ -21,7 +21,7 @@ public class Check {
 
     public static boolean checkBridgeLengthOutOfRange(int bridgeLength){
         if(!(bridgeLength>=MIN_BRIDGE_LENGTH && bridgeLength<=MAX_BRIDGE_LENGTH)){
-            IllegalArgumentException exception = new BridgeLengthOutOfRange(ERROR_MESSAGE);
+            IllegalArgumentException exception = new BridgeLengthOutOfRange(ERROR_MESSAGE+BRIDGE_LENGTH_OUT_OF_RANGE_ERROR_MESSAGE);
             System.out.println(exception);
             return false;
         }
@@ -30,7 +30,7 @@ public class Check {
 
     public static boolean checkMoveValid(String input){
         if(!(input.equals(Move.UP.getMoveType()) || input.equals(Move.DOWN.getMoveType()))){
-            IllegalArgumentException exception = new MoveValid(ERROR_MESSAGE);
+            IllegalArgumentException exception = new MoveValid(ERROR_MESSAGE+MOVE_VALID_ERROR_MESSAGE);
             System.out.println(exception);
             return false;
         }
@@ -39,7 +39,7 @@ public class Check {
 
     public static boolean checkReGameOrNotValid(String input){
         if(!(input.equals(REGAME) || input.equals(QUIT))){
-            IllegalArgumentException exception = new MoveValid(ERROR_MESSAGE);
+            IllegalArgumentException exception = new MoveValid(ERROR_MESSAGE+REGAME_OR_NOT_VALID_ERROR_MESSAGE);
             System.out.println(exception);
             return false;
         }
