@@ -10,5 +10,6 @@ public class Constant {
     public final static String LESS_THAN_MIN_SIZE_MESSAGE = "다리의 크기는 0보다 커야합니다";
     public final static String POOR_CONSTRUCTION = "Broken Bridge";
     public final static String POOR_CONSTRUCTION_MESSAGE = "양쪽다 건널 수 없는 다리입니다.";
+    public final static String WRONG_INSERT_POSITION_MESSAGE = "U, D 이외에 값은 이동할 수 없습니다.";
     public final static int BRIDGE_MIN_SIZE = 1;
 }
