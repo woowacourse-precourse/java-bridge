@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.Bridge;
 import bridge.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,12 +13,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class BridgeSizeTest {
 
     @DisplayName("올바른 다리 길이 입력시 정상적으로 값을 리턴한다.")
-    @ValueSource(strings = {"3", "4", "5", "6", "7", "8", "9", "10", "11",
-            "12", "13", "14", "15", "16", "17", "18", "19", "20"})
-    @ParameterizedTest
-    void createRightSize(String size) {
-        BridgeSize bridgeSize = new BridgeSize(size);
-        assertThat(bridgeSize.getBridgeSize()).isEqualTo(Integer.parseInt(size));
+    @Test
+    void createRightSize() {
+        for (int size = Bridge.MIN.getNumber(); size <= Bridge.MAX.getNumber(); size++) {
+            BridgeSize bridgeSize = new BridgeSize(Integer.toString(size));
+            assertThat(bridgeSize.getBridgeSize()).isEqualTo(size);
+        }
     }
 
     @DisplayName("다리 길이가 문자일 경우 에러가 발생한다.")
