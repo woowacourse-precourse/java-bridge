@@ -7,13 +7,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private final Player player;
+    private String playerCurrentDirection;
     private int playerCurrentStep;
     private int totalAttempts;
 
     BridgeGame(List<String> bridge){
         this.bridge = bridge;
-        this.player = new Player();
+        this.playerCurrentDirection = "";
         this.playerCurrentStep = 0;
         this.totalAttempts = 1;
     }
@@ -24,8 +24,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String direction) {
-        this.player.moveTo(direction);
-        this.playerCurrentStep++;
+        playerCurrentDirection = direction;
+        playerCurrentStep++;
     }
 
     /**
@@ -34,22 +34,21 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        this.playerCurrentStep = 0;
-        this.totalAttempts++;
+        playerCurrentStep = 0;
+        totalAttempts++;
     }
 
     public boolean checkBridgeAndPlayer(){
-        String safeDirection = this.bridge.get(this.playerCurrentStep - 1);
-        String playerCurrentDirection = this.player.getCurrentDirection();
+        String safeDirection = bridge.get(playerCurrentStep - 1);
 
         return safeDirection.equals(playerCurrentDirection);
     }
 
     public boolean isEndOfBridge(){
-        return this.playerCurrentStep >= this.bridge.size();
+        return playerCurrentStep >= bridge.size();
     }
 
     public int getTotalAttempts(){
-        return this.totalAttempts;
+        return totalAttempts;
     }
 }
