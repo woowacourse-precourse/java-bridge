@@ -6,11 +6,11 @@ public class Moving {
     private static final String MOVING_UP_CHARACTER = "U";
     private static final String MOVING_DOWN_CHARACTER = "D";
 
-    private final String moving;
+    private final String value;
 
     public Moving(String moving){
         validateMoving(moving);
-        this.moving = moving;
+        this.value = moving;
     }
 
     private void validateMoving(String moving){
@@ -27,7 +27,7 @@ public class Moving {
         return MOVING_DOWN_CHARACTER;
     }
 
-    public String getMoving() {
-        return moving;
+    public String getValue() {
+        return value;
     }
 }
