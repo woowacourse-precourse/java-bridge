@@ -3,6 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,14 +23,19 @@ public class Application {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridgeAnswer = bridgeMaker.makeBridge(userBridgeSize);
+        System.out.println(bridgeAnswer);
         for (int index = 0; index < userBridgeSize; index++) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D");
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String userUpOrDownInput = InputView.readMoving();
             userInputAdd(userUpOrDownInput);
             boolean passFail = move(bridgeAnswer, userInput);
             printMap(userInput, passFail);
-
+            if (!passFail) {
+                break;
+            }
         }
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String userGameCommandInput = InputView.readGameCommand();
     }
 
     public static void userBridgeSizeInputValidation (String userBridgeSizeInput) {
@@ -65,7 +71,7 @@ public class Application {
 
     public static String[][] bridgeResult(List<String> userInput, boolean passFail) {
         Map<String, Integer> upDownAndNumber = Map.of("U", 0, "D", 1);
-        String[][] bridgeOutput = new String[userInput.size()][userInput.size()];
+        String[][] bridgeOutput = new String[2][userInput.size()];
         for (int index = 0 ; index< userInput.size()-1 ; index++) {
             bridgeOutput[upDownAndNumber.get(userInput.get(index))][index] = "O";
             bridgeOutput[1-upDownAndNumber.get(userInput.get(index))][index] = " ";
