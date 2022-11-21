@@ -14,6 +14,7 @@ public class InputView {
         do {
             System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
             bridgeSize = Console.readLine();
+            System.out.println();
         } while (!Validator.isValidBridgeSize(bridgeSize));
 
         return Integer.parseInt(bridgeSize);
