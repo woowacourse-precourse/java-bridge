@@ -1,5 +1,9 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,6 +14,12 @@ package bridge;
 //게임 진행을 위해 필요한 메서드 추가, 변경 가능
 // InputView, OutputView 사용 불가
 public class BridgeGame {
+
+    public void start() {
+        InputView inputView = new InputView();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize(Console.readLine()));
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
