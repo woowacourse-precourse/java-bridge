@@ -6,10 +6,10 @@
 
 ## 시나리오 실행
 
-- [ ] Application에서 BridgeScenario를 생성하여 전체 프로그램 흐름을 제어
+- [x] Application에서 BridgeScenario를 생성하여 전체 프로그램 흐름을 제어
     - BridgeScenario에서 입출력 호출
 
-- [ ] 예외에 따라 재시도 로직 구현
+- [x] 예외에 따라 재시도 로직 구현
 
 <br/>
 
@@ -37,14 +37,14 @@
             - [x] 해당 상태가 아닐 경우 IllegalStateException 처리
 
 
-- [ ] 재시도 retry()
+- [x] 재시도 retry()
     - 현재 진행 상태 초기화
     - 초기화 후 시도 횟수 + 1
-    - [ ] 검증
+    - [x] 검증
         - BridgeStatus STOP인 경우만 가능
-            - [ ] 해당 상태가 아닐 경우 IllegalStateException 처리
+            - [x] 해당 상태가 아닐 경우 IllegalStateException 처리
         - 입력된 값이 R 또는 Q 검사
-            - [ ] 해당 값이 아닐 경우 IllegalArgumentException 처리
+            - [x] 해당 값이 아닐 경우 IllegalArgumentException 처리
 
 
 - [x] 현재 상태 종류 반환 status()
@@ -53,7 +53,7 @@
 - [x] 현재 다리 진행도 반환 progress()
 
 
-- [ ] 현재 총 시도 횟수 반환 tryTimes()
+- [x] 현재 총 시도 횟수 반환 tryTimes()
 
 <br/>
 
