@@ -32,19 +32,29 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(final List<String> bridgeAnswer) { //이동
-            if(position == bridgeAnswer.size()) {
-                result.setResult(true, trial);
-                return false; //성공
-            }
-            if( bridgeAnswer.get(position).equals( inputView.readMoving() ) ){ // 맞는 경우
-                outputView.printMap();
-                position++;
-                return true;
-            }
-            retry(); // 틀리면 -> 틀린 다리 상태 출력 & RETRY() 호
-            return false;
+    public void move() { //이동
+        while(true) {
+            if( setResultWhenSuccess() ) break;
+            if ( showWhenCorrect() ) continue;
+            retry();
+        }
     }
+
+    private boolean setResultWhenSuccess(){
+        if (position == bridgeAnswer.size()) {
+            result.setResult(true, trial);
+            return true;
+        } return false;
+    }
+
+    private boolean showWhenCorrect(){
+        if ( bridgeAnswer.get(position).equals(inputView.readMoving()) ) { // 맞는 경우
+            outputView.printMap();
+            position++;
+            return true;
+        } return false;
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -60,15 +70,11 @@ public class BridgeGame {
             outputView.printResult(result);
             return;
         }
-        start();
     }
 
     public void start() {
-        while(flag){
-            flag = move(bridgeAnswer);
-        }
+        move();
         outputView.printResult(result);
-
     }
 
     public void setUp(){
