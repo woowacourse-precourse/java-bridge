@@ -25,4 +25,8 @@ public class Bridge {
             throw new IllegalArgumentException();
         }
     }
+
+    public BridgeSize getBridgeSize() {
+        return new BridgeSize(bridge.size());
+    }
 }
