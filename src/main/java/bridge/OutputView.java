@@ -16,6 +16,7 @@ public class OutputView {
         List<String> map = formatMap(userPath, gameStatus);
         System.out.println("[ " + String.join(" | ", map.get(0).split("")) + " ]");
         System.out.println("[ " + String.join(" | ", map.get(1).split("")) + " ]");
+        System.out.println();
     }
 
     private List<String> formatMap(List<String> userPath, GameStatus gameStatus) {
@@ -71,6 +72,7 @@ public class OutputView {
 
     public void printGreeting() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     public void printBridgeSizeInputMessage() {
@@ -83,5 +85,9 @@ public class OutputView {
 
     public void printRetryInputMessage() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    public void printEmptyLine() {
+        System.out.println();
     }
 }

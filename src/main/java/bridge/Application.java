@@ -67,6 +67,8 @@ public class Application {
     private static List<String> makeBridge(InputView inputView, OutputView outputView) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         outputView.printBridgeSizeInputMessage();
-        return bridgeMaker.makeBridge(inputView.readBridgeSize());
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        outputView.printEmptyLine();
+        return bridge;
     }
 }
