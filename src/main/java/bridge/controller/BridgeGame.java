@@ -1,5 +1,7 @@
-package bridge;
+package bridge.controller;
 
+import bridge.service.BridgeGenerateService;
+import bridge.domain.GameCommand;
 import java.util.List;
 
 /**
@@ -7,10 +9,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridge;
+    private static List<String> bridge;
 
-    public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
+    private final BridgeGenerateService bridgeGenerateService;
+
+    public BridgeGame(BridgeGenerateService bridgeGenerateService) {
+        this.bridgeGenerateService = bridgeGenerateService;
+    }
+
+    public List<String> generateBridge(int size) {
+        return bridgeGenerateService.generateBridgeBySize(size);
     }
 
     /**
@@ -27,6 +35,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String gameCommand) {
+        return gameCommand.equals(GameCommand.RESTART.getCommand());
     }
 }
