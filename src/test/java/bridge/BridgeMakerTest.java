@@ -23,11 +23,6 @@ class BridgeMakerTest {
     @ParameterizedTest
     void makeBridge_U_D_만_포함하는지_확인(Integer size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        for (int i = 0; i < size; i++) {
-            if (!(bridge.get(i).equals("U") || bridge.get(i).equals("D"))) {
-                throw new IllegalArgumentException();
-            }
-        }
+        assertThat(bridgeMaker.makeBridge(size)).contains("U", "D");
     }
 }
