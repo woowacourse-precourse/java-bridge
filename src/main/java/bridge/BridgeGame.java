@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.MoveType.X;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -79,6 +81,13 @@ public class BridgeGame {
             moveResult[directionType.getNumber()] = MoveType.O;
         }
         return moveResult;
+    }
+
+    public boolean isFailed() {
+        if (upBridge.contains(X.getValue()) || downBridge.contains(X.getValue())) {
+            return true;
+        }
+        return false;
     }
 
     /**
