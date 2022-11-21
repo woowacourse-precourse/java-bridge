@@ -18,6 +18,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        validateSize(size);
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
             String step = "U";
@@ -26,5 +27,10 @@ public class BridgeMaker {
             bridge.add(step);
         }
         return bridge;
+    }
+
+    private void validateSize(int boardSize){
+        if(boardSize < 3 || boardSize > 20)
+            throw new IllegalArgumentException();
     }
 }

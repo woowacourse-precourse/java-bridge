@@ -13,16 +13,11 @@ public class BridgeGame {
     public boolean result;
 
     public BridgeGame(int boardSize){
-        validateSize(boardSize);
         BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
         board = new BridgeMaker(randomGenerator).makeBridge(boardSize);
         step = 0;
         retryNum = 0;
         result = true;
-    }
-    private void validateSize(int boardSize){
-        if(boardSize < 3 || boardSize > 20)
-            throw new IllegalArgumentException();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
