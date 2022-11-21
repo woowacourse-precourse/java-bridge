@@ -14,7 +14,7 @@ public class BridgeGame {
         bridgeGameController = new BridgeGameController();
     }
     public void move() {
-        while(!bridgeGameController.isSuccess() || !bridgeGameController.isPaused()){
+        while(!(bridgeGameController.isSuccess() || bridgeGameController.isPaused())){
             bridgeGameController.moveAStep();
         }
     }
