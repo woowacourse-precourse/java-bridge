@@ -2,10 +2,14 @@ package bridge;
 
 public class EndGame {
   
-  private final Count count;
   
-  public EndGame(Count count) {
+  
+  private final Count count;
+  private final InputView inputView;
+  
+  public EndGame(Count count, InputView inputView) {
     this.count = count;
+    this.inputView = inputView;
   }
   
   public boolean endGame(int size){
@@ -16,7 +20,11 @@ public class EndGame {
     return false;
   }
   
-  public void fail(){
-  
+  public boolean fail(){
+    String temp = inputView.readGameCommand();
+    if(temp.equals("Q")){
+      return true;
+    }
+    return false;
   }
 }
