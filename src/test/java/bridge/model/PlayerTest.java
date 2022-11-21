@@ -21,4 +21,10 @@ class PlayerTest {
         MoveResult move = player.move(bridge, Direction.D);
         assertThat(move.getDrawType().getDrawCharacter()).isEqualTo("X");
     }
+
+    @Test
+    void 존재하는_다리로_이동하면_지도에_O를_그려야한다() {
+        MoveResult move = player.move(bridge, Direction.U);
+        assertThat(move.getDrawType().getDrawCharacter()).isEqualTo("O");
+    }
 }
