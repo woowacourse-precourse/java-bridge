@@ -47,29 +47,32 @@ public class Application {
     }
 
     private static int getValidBridgeInput() {
-        try {
-            return inputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + "\n");
-            return getValidBridgeInput();
+        while (true) {
+            try {
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + "\n");
+            }
         }
     }
 
     private static String getValidDirectionInput() {
-        try {
-            return inputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + "\n");
-            return getValidDirectionInput();
+        while (true) {
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + "\n");
+            }
         }
     }
 
     private static String getValidCommandInput() {
-        try {
-            return inputView.readGameCommand();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + "\n");
-            return getValidCommandInput();
+        while (true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + "\n");
+            }
         }
     }
 }
