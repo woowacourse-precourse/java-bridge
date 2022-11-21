@@ -9,6 +9,8 @@ import java.util.Objects;
  */
 public class BridgeGame {
     public static List<String> userBridge = new ArrayList<>();
+    public static boolean end = false;
+
     public void gameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
 
@@ -19,24 +21,23 @@ public class BridgeGame {
         OutputView outputView = new OutputView();
         outputView.printMap(BridgeMaker.bridge);
 
-        boolean end = move2(BridgeMaker.bridge);
-        //System.out.println(end);
+        boolean end = false;
+        end = move(BridgeMaker.bridge);
+        retry();
         System.out.println(userBridge);
-        //outputView.print(userBridge);
-
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+
     public boolean move(List<String> bridge) {
-        //int count = 0;
         for(int i=0;i<bridge.size();i++){
             InputView inputView = new InputView();
             String MovingSquare = inputView.readMoving();
             userBridge.add(MovingSquare);
-            System.out.println(bridge.get(i));
+            OutputView.print(userBridge);
             if (!Objects.equals(MovingSquare, bridge.get(i))) {
                 return false;
             }
@@ -44,38 +45,6 @@ public class BridgeGame {
         return true;
     }
 
-    public boolean move2(List<String> bridge) {
-        //int count = 0;
-        for(int i=0;i<bridge.size();i++){
-            boolean correct = true;
-            InputView inputView = new InputView();
-            String MovingSquare = inputView.readMoving();
-            userBridge.add(MovingSquare);
-            if (Objects.equals(MovingSquare, "U") && Objects.equals(bridge.get(i), "U")){
-                OutputView.print(userBridge);
-            }
-            else if(Objects.equals(MovingSquare, "U")){
-                OutputView.printX(userBridge);
-            }
-            else if(Objects.equals(MovingSquare, "D") && Objects.equals(bridge.get(i), "D")){
-                OutputView.print(userBridge);
-            }
-            else{
-                OutputView.printX(userBridge);
-            }
-            if (!Objects.equals(MovingSquare, bridge.get(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public String user(int count, String user){
-        if (count==1) {
-            String userMap = "[ O ]";
-        }
-        return user;
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -83,5 +52,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        InputView inputView = new InputView();
+        String retryCommand = inputView.readGameCommand();
+        if (retryCommand=="Q"){
+            end = true;
+        }
     }
 }

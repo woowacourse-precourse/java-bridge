@@ -31,52 +31,53 @@ public class OutputView {
         System.out.println(printDown);
     }
 
-    public static void print(List<String> map) {
+    public static List<String> initialPrint(String init){
+        List<String> inits = new ArrayList<>();
         String printUp = "";
         String printDown = "";
-        if (Objects.equals(map.get(0), "U")){
-            printUp += "[ O ]";
+        if (Objects.equals(init, "U")){
             printDown += "[   ]";
+            if(Objects.equals(BridgeMaker.bridge.get(0),init)){
+                printUp += "[ O ]";
+            }
+            else{
+                printUp += "[ X ]";
+            }
         }
-        else {
+        else if (Objects.equals(init, "D")) {
             printUp += "[   ]";
-            printDown += "[ O ]";
-        }
-
-        for(int i=1; i<map.size();i++){
-            if (Objects.equals(map.get(i), "U")){
-                printUp = printUp.replace("]"," | O ]");
-                printDown = printDown.replace("]"," |   ]");
-            }
-            else if (Objects.equals(map.get(i), "D")){
-                printUp = printUp.replace("]"," |   ]");
-                printDown = printDown.replace("]"," | O ]");
+            if (Objects.equals(BridgeMaker.bridge.get(0), init)) {
+                printDown += "[ O ]";
+            } else {
+                printDown += "[ X ]";
             }
         }
-        System.out.println(printUp);
-        System.out.println(printDown);
+        inits.add(printUp);
+        inits.add(printDown);
+        return inits;
     }
-
-    public static void printX(List<String> map) {
-        String printUp = "";
-        String printDown = "";
-        if (Objects.equals(map.get(0), "U")){
-            printUp += "[ X ]";
-            printDown += "[   ]";
-        }
-        else {
-            printUp += "[   ]";
-            printDown += "[ X ]";
-        }
+    public static void print(List<String> map) {
+        String printUp = initialPrint(map.get(0)).get(0);
+        String printDown = initialPrint(map.get(0)).get(1);
 
         for(int i=1; i<map.size();i++){
             if (Objects.equals(map.get(i), "U")){
-                printUp = printUp.replace("]"," | X ]");
                 printDown = printDown.replace("]"," |   ]");
+                if(Objects.equals(BridgeMaker.bridge.get(i),map.get(i))){
+                    printUp=printUp.replace("]"," | O ]");
+                }
+                else{
+                    printUp=printUp.replace("]"," | X ]");
+                }
             }
             else if (Objects.equals(map.get(i), "D")){
                 printUp = printUp.replace("]"," |   ]");
-                printDown = printDown.replace("]"," | X ]");
+                if(Objects.equals(BridgeMaker.bridge.get(i),map.get(i))){
+                    printDown=printDown.replace("]"," | O ]");
+                }
+                else{
+                    printDown=printDown.replace("]"," | X ]");
+                }
             }
         }
         System.out.println(printUp);
