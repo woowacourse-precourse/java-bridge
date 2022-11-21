@@ -1,7 +1,9 @@
 package bridge.view;
 
+import static bridge.constant.Message.FAIL;
 import static bridge.constant.Message.FINAL_GAME_RESULT;
 import static bridge.constant.Message.GAME_SUCCESS_OR_NOT;
+import static bridge.constant.Message.SUCCESS;
 import static bridge.constant.Message.TOTAL_COUNT_OF_TRY;
 
 import bridge.BridgeGame;
@@ -15,12 +17,9 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String BEGINNING_BRIDGE = "[ ";
-    private static final String END_BRIDGE = " ]";
-    private static final String BLOCK_SEPARATOR = " | ";
-
-    private static final String SUCCESS = "성공";
-    private static final String FAIL = "실패";
+    private static final String BRIDGE_BEGINNING = "[ ";
+    private static final String BRIDGE_END = " ]";
+    private static final String BRIDGE_BLOCK_SEPARATOR = " | ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -32,31 +31,28 @@ public class OutputView {
         printBridge(gameResult.getUpperBridge(), gameResult.getLowerBridge());
     }
 
-    private String makeBridgeFormat(List<String> bridgeResult) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(BEGINNING_BRIDGE);
-//        int i = 0;
-//        while(i < bridgeResult.size() - 1) {
-//            stringBuilder.append(bridgeResult.get(i));
-//            stringBuilder.append(BLOCK_SEPARATOR);
-//            i++;
-//        }
-//        stringBuilder.append(END_BRIDGE);
-        for (int i = 0; i < bridgeResult.size(); i++) {
-            stringBuilder.append(bridgeResult.get(i));
-            if (i == bridgeResult.size() - 1) {
-                stringBuilder.append(END_BRIDGE);
-                break;
-            }
-            stringBuilder.append(BLOCK_SEPARATOR);
-        }
-        return stringBuilder.toString();
-    }
-
     private void printBridge(List<String> upperBridge, List<String> lowerBridge) {
         System.out.println(makeBridgeFormat(upperBridge));
         System.out.println(makeBridgeFormat(lowerBridge));
         printNewLine();
+    }
+
+    private String makeBridgeFormat(List<String> bridgeResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(BRIDGE_BEGINNING);
+        appendMiddleElement(bridgeResult, stringBuilder);
+        stringBuilder.append(BRIDGE_END);
+        return stringBuilder.toString();
+    }
+
+    private void appendMiddleElement(List<String> bridgeResult, StringBuilder stringBuilder) {
+        for (int i = 0; i < bridgeResult.size(); i++) {
+            stringBuilder.append(bridgeResult.get(i));
+            if (i == bridgeResult.size() - 1) {
+                break;
+            }
+            stringBuilder.append(BRIDGE_BLOCK_SEPARATOR);
+        }
     }
 
     /**
@@ -76,9 +72,9 @@ public class OutputView {
 
     private String getResultMessage(BridgeGame bridgeGame) {
         if (bridgeGame.getMoveState()) {
-            return SUCCESS;
+            return SUCCESS.getMessage();
         }
-        return FAIL;
+        return FAIL.getMessage();
     }
 
     public void printMessageWithNewLine(Message message) {

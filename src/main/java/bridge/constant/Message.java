@@ -7,6 +7,8 @@ public enum Message {
     ENTER_RETRY_OR_QUIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     FINAL_GAME_RESULT("최종 게임 결과"),
     GAME_SUCCESS_OR_NOT("게임 성공 여부: {0}"),
+    SUCCESS("성공"),
+    FAIL("실패"),
     TOTAL_COUNT_OF_TRY("총 시도한 횟수: {1}");
     private final String message;
     private final String newLine = "\n";
