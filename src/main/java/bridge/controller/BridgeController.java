@@ -121,8 +121,8 @@ public class BridgeController {
         return null;
     }
 
-    private Position createPosition(int pos, Direction direction) {
-        return new Position(pos, direction);
+    private Position createPosition(int distance, Direction direction) {
+        return new Position(distance, direction);
     }
 
     private GameCommand createGameCommandLoop() {
