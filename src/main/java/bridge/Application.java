@@ -34,6 +34,14 @@ public class Application {
             String result = bridgeGame.move(moving, bridgeInfo);
             moveResults.add(result);
             outputView.printMap(moveResults, size, userMove);
+            //TODO: 틀릴 경우 재시도 여부 입력받고 재시도진행
+            if(result.equals(CANNOT_CROSS)){
+                outputView.printRetry();
+                String command = inputView.readGameCommand();
+                HashMap<String, Integer> retryInfo = bridgeGame.retry(command, bridgeSize, tryCount);
+                size = retryInfo.get("bridge");
+                tryCount = retryInfo.get("count");
+            }
         }
 
     }
