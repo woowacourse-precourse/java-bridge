@@ -30,3 +30,9 @@
   * 사용자가 게임을 다시 시도할 때 사용하는 메서드
 
 ### OutputView
+* printMap
+  * 현재까지 이동한 다리의 상태를 출력하는 기능
+* printResult
+  * 게임의 최종 결과를 출력하는 기능
+
+### BridgeGameManager
