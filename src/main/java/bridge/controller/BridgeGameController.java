@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
+import bridge.model.SuccessOrFail;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -38,7 +39,7 @@ public class BridgeGameController {
         return success;
     }
 
-    private boolean canCross(String moving, int position) {
+    public boolean canCross(String moving, int position) {
         if (moving.equals(bridge.getShape(position))) {
             return true;
         }
@@ -83,7 +84,16 @@ public class BridgeGameController {
         return false;
     }
 
-    public void gameExit(String successOrFail, int count) {
-        outputView.printResult(bridge, successOrFail, count);
+    public void playGame() {
+        int count = 0;
+        int position;
+        do {
+            position = 0;
+            count++;
+            while (!complete(position) && moveControl(position)) {
+                position++;
+            }
+        } while (!complete(position) && retryControl());
+        outputView.printResult(bridge, SuccessOrFail.getSuccessOrFailMessage(complete(position)), count);
     }
 }
