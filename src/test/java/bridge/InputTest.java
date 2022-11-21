@@ -26,4 +26,14 @@ class InputTest {
         assertThat(false).isEqualTo(Validation.moveDirectionTest("u"));
         assertThat(false).isEqualTo(Validation.moveDirectionTest("x"));
     }
+    @DisplayName("게임을 다시 진행 할지에 대한 입력에 따른 기능 테스트")
+    @Test
+    void 재시도에_대한_테스트(){
+        assertThat(true).isEqualTo(Validation.retryTest("R"));
+        assertThat(true).isEqualTo(Validation.retryTest("Q"));
+        assertThat(false).isEqualTo(Validation.retryTest("9"));
+        assertThat(false).isEqualTo(Validation.retryTest("70"));
+        assertThat(false).isEqualTo(Validation.retryTest("r"));
+        assertThat(false).isEqualTo(Validation.retryTest("X"));
+    }
 }
