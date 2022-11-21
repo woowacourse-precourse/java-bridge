@@ -1,5 +1,7 @@
 package bridge.Model;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -10,7 +12,22 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String input) {
+    public int readBridgeSize() {
+        int size;
+        while (true) {
+            System.out.println("다리의 길이를 입력해주세요.");
+            try {
+                size = bridgeNumberAsk(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+        return size;
+    }
+
+    private int bridgeNumberAsk(String input) {
         // 예외처리
         checkNumber(input);
         checkRange(input);
@@ -21,7 +38,18 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String input) {
+    public String readMoving() {
+        String userDirection = "";
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        try {
+            userDirection = moveAsk();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return userDirection;
+    }
+    private String moveAsk() {
+        String input = Console.readLine();
         // 예외처리
         checkDirection(input);
 
@@ -31,7 +59,21 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(String input) {
+    public String readGameCommand() {
+        String cont = "";
+        while (true) {
+            try {
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                cont = retryAsk();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return cont;
+        }
+    }
+    private String retryAsk() {
+        String input = Console.readLine();
         // 예외 처리
         checkProgress(input);
 
