@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static bridge.Constants.StandardTools.FAILED;
-import static bridge.Constants.StandardTools.RETRY;
+import static bridge.Constants.StandardTools.retry;
 import static bridge.Constants.StandardTools.SUCCEED;
 import static bridge.Constants.StandardTools.POSSIBLE_ZONE;
 import static bridge.Constants.StandardTools.IMPOSSIBLE_ZONE;
@@ -29,6 +29,7 @@ public class BridgeGame {
 
     public final OutputView outputView = new OutputView();
     private boolean isGameSucceed;
+    private boolean isGameFinished = false;
 
     public BridgeGame() {
         System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
@@ -61,6 +62,7 @@ public class BridgeGame {
     private boolean validateNextStep(String nextStep, int indexOfBridge) {
         if (!Objects.equals(bridgeData.getBridge().get(indexOfBridge), nextStep)) {
             isGameSucceed = FAILED;
+            isGameFinished = true;
             bridgeData.getBridgeDesignByUser().set(indexOfBridge, "X");
             outputView.printMap(bridgeData);
             return IMPOSSIBLE_ZONE;
@@ -72,6 +74,7 @@ public class BridgeGame {
     public void validateGameSuccessfullyFinished() {
         if (Objects.equals(bridgeData.getBridge(), bridgeData.getBridgeDesignByUser())) {
             isGameSucceed = SUCCEED;
+            isGameFinished = true;
         }
     }
 
@@ -80,14 +83,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
+    public retry retry() {
         String gameCommand = inputView.readGameCommand();
         if (Objects.equals(gameCommand, "R")) {
             initializeBridgeDesignByUser();
             bridgeData.increaseAttempts();
-            return RETRY;
+            return retry.RETRY;
         }
-        return !RETRY;
+        return retry.QUIT;
     }
 
     public void initializeBridgeDesignByUser() {
@@ -96,5 +99,9 @@ public class BridgeGame {
 
     public boolean getIsGameSucceed() {
         return this.isGameSucceed;
+    }
+
+    public boolean getIsGameFinished() {
+        return this.isGameFinished;
     }
 }
