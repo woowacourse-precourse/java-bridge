@@ -3,16 +3,14 @@ package view;
 import bridge.BridgeGame;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
+import enumCollections.UserInterfaceSymbol;
 
 import java.util.List;
 
 public class OutputView {
     public void printMap(List<List<String>> map) {
-        map.stream()
-                .forEach(line -> {
-                    System.out.print("[ ");
-                    System.out.print(String.join(" | ", line));
-                    System.out.print(" ]\n");
+        map.stream().forEach(line -> {
+                    printBridge(String.join(" | ", line));
                 });
     }
 
@@ -46,5 +44,13 @@ public class OutputView {
 
     public void printException(Exception exception) {
         System.out.println(exception.getMessage());
+    }
+
+    private void printBridge(String line) {
+        System.out.println(
+                UserInterfaceSymbol.get(UserInterfaceSymbol.START_OF_BRIDGE)
+                        .concat(line)
+                        .concat(UserInterfaceSymbol.get(UserInterfaceSymbol.END_OF_BRIDGE))
+        );
     }
 }

@@ -1,8 +1,8 @@
 package enumCollections;
 
 public enum UserInterfaceSymbol {
-    START_OF_BRIDGE("["),
-    END_OF_BRIDGE("]\n"),
+    START_OF_BRIDGE("[ "),
+    END_OF_BRIDGE(" ]"),
     BLANK(" "),
     BRIDGE_DELIMITER("|"),
     AVAILABLE_TO_MOVE("O"),
