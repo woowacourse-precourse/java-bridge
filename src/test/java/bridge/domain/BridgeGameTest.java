@@ -31,6 +31,7 @@ class BridgeGameTest {
         assertEquals(1, result.getGameCount());
         assertEquals(1, result.getGameCount());
     }
+
     @DisplayName("다리 이동 실패 테스트")
     @Test
     void moveBridgeFailTest() {
@@ -42,6 +43,22 @@ class BridgeGameTest {
         assertEquals("[ O | X ]\n" + "[   |   ]\n", result.getBridgeMap());
         assertEquals("실패", result.getWinning());
         assertEquals(1, result.getGameCount());
+    }
+
+    @DisplayName("게임 재시작 테스트")
+    @Test
+    void retryGameTest() {
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.retry("R");
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.retry("Q");
+
+        Result result = bridgeGame.getResult();
+        assertEquals("[ O | X ]\n" + "[   |   ]\n", result.getBridgeMap());
+        assertEquals("실패", result.getWinning());
+        assertEquals(2, result.getGameCount());
     }
 
 }
