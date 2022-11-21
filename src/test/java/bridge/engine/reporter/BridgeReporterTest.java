@@ -1,6 +1,5 @@
-package bridge.engine;
+package bridge.engine.reporter;
 
-import bridge.engine.reporter.BridgeReporter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
