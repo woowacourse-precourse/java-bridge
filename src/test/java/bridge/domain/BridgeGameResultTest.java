@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -21,6 +22,26 @@ class BridgeGameResultTest {
         BridgeGameResult expected = new BridgeGameResult(expectedBridge, expectedBooleans);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("게임 결과에 사용된 사다리를 가져온다.")
+    @Test
+    void bridge() {
+        List<Boolean> playerMoveResult = List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
+        Bridge bridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP));
+        BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, playerMoveResult);
+
+        assertThat(bridgeGameResult.bridge()).isEqualTo(bridge);
+    }
+
+    @DisplayName("게임 결과의 사용자 이동 결과를 가져온다.")
+    @Test
+    void playerMoveResult() {
+        Bridge bridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP));
+        BridgeGameResult bridgeGameResult
+                = new BridgeGameResult(bridge, List.of(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
+
+        assertThat(bridgeGameResult.playerMoveResult()).containsExactly(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
     }
 
     public static Stream<Arguments> provideForIsFail() {
