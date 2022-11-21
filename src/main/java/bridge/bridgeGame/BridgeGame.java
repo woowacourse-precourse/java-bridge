@@ -1,9 +1,10 @@
-package bridge;
+package bridge.bridgeGame;
+
+import bridge.enums.GameStatus;
+import bridge.enums.UpDown;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

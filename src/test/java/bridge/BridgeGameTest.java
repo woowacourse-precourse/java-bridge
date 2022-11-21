@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.bridgeGame.BridgeGame;
+import bridge.bridgeGame.BridgeGameResultDto;
+import bridge.enums.UpDown;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

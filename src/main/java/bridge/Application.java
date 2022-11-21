@@ -1,5 +1,13 @@
 package bridge;
 
+import bridge.bridgeGame.BridgeGame;
+import bridge.bridgeGame.BridgeGameResultDto;
+import bridge.bridgeMaker.BridgeMaker;
+import bridge.enums.GameStatus;
+import bridge.util.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 public class Application {
@@ -22,7 +30,7 @@ public class Application {
                 if (moveResult.getGameStatus().equals(GameStatus.FAIL)) {
                     String s = inputView.readGameCommand();
                     if (s.equals("Q")) {
-                        outputView.printResult(moveResult.getGradingBoard(),moveResult.getGameStatus(), moveResult.getTotalAttemptNum());
+                        outputView.printResult(moveResult.getGradingBoard(), moveResult.getGameStatus(), moveResult.getTotalAttemptNum());
                         break;
                     }
                     if (s.equals("R")) {
@@ -30,13 +38,16 @@ public class Application {
                     }
                 }
                 if (moveResult.getGameStatus().equals(GameStatus.SUCCESS)) {
-                    outputView.printResult(moveResult.getGradingBoard(),moveResult.getGameStatus(), moveResult.getTotalAttemptNum());
+                    outputView.printResult(moveResult.getGradingBoard(), moveResult.getGameStatus(), moveResult.getTotalAttemptNum());
                     break;
                 }
             }
         } catch (IllegalArgumentException iae) {
             return;
         }
-
     }
+
+
+
+
 }

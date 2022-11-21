@@ -1,4 +1,6 @@
-package bridge;
+package bridge.bridgeGame;
+
+import bridge.enums.UpDown;
 
 public class StepStatus {
     private UpDown upDown;

@@ -1,7 +1,8 @@
-package bridge;
+package bridge.bridgeGame;
+
+import bridge.enums.GameStatus;
 
 import java.util.List;
-import java.util.Map;
 
 public class BridgeGameResultDto {
     private List<StepStatus> gradingBoard;
