@@ -20,12 +20,8 @@ public class BridgeGame {
      */
     public void move() {
         player.moveFrontSpace();
-
     }
 
-    public boolean isSuccess(String nxtStep){
-        return bridge.isSuccess(player.getCurrentSpace(), nxtStep);
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -35,6 +31,18 @@ public class BridgeGame {
     public void retry() {
         player.moveBackSpace();
         player.increaseAttempt();
+    }
+
+    public boolean isSuccess(String nxtStep){
+        return bridge.isSuccess(player.getCurrentLocation(), nxtStep);
+    }
+
+    public void lose(){
+        player.lose();
+    }
+
+    public void win(){
+        player.win();
     }
 
     public boolean isFinish(){
