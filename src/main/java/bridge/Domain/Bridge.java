@@ -5,11 +5,22 @@ import bridge.BridgeMaker;
 import java.util.List;
 
 public class Bridge {
-    private final List<String> spaces;
+    private List<String> spaces;
     private final BridgeMaker bridgeMaker;
 
-    public Bridge(BridgeMaker bridgeMaker, int size){
+    public Bridge(BridgeMaker bridgeMaker){
         this.bridgeMaker = bridgeMaker;
+    }
+
+    public void makeBridge(int size){
         spaces = bridgeMaker.makeBridge(size);
+    }
+
+    public int getSize(){
+        return spaces.size();
+    }
+
+    public List<String> getSpaces() {
+        return spaces;
     }
 }
