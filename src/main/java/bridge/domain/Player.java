@@ -47,6 +47,10 @@ public class Player {
         return result;
     }
 
+    public boolean isFail() {
+        return this.result.equals(Result.FAIL);
+    }
+
     public enum Result {
         SUCCESS("성공"),
         FAIL("실패"),

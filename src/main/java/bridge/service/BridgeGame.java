@@ -20,10 +20,10 @@ public class BridgeGame {
     private final Player player;
     private BridgeStatus bridgeStatus;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player) {
         this.bridgeMaker = bridgeMaker;
         this.bridge = bridge;
-        this.player = new Player();
+        this.player = player;
         this.bridgeStatus = new BridgeStatus();
     }
 
@@ -75,8 +75,8 @@ public class BridgeGame {
         return player.isPlaying();
     }
 
-    public boolean isFail() {
-        return player.getResult().equals(Player.Result.FAIL);
+    public boolean isGameFailed() {
+        return player.isFail();
     }
 
     public void addTryCount() {
@@ -89,12 +89,20 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(GameRetryRequestDto dto) {
-        if (dto.getRetry().equals(GameConstance.RETRY)) {
-            this.player.init();
-            bridgeStatus = new BridgeStatus();
+        if (canGameRetry(dto.getRetry())) {
+            gameInit();
             return true;
         }
         return false;
+    }
+
+    private boolean canGameRetry(String retry) {
+        return retry.equals(GameConstance.RETRY);
+    }
+
+    private void gameInit() {
+        player.init();
+        bridgeStatus = new BridgeStatus();
     }
 
     public GameResultResponseDto result() {
