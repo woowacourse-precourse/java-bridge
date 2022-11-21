@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.exception.CannotCrossBridgeException;
 import java.util.List;
 
 public class Application {
@@ -15,13 +16,41 @@ public class Application {
     }
 
     private static void startGame(BridgeGame bridgeGame) {
-        for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
-            String direction = inputView.readMoving();
+        try {
+            crossBridge(bridgeGame);
+        } catch (CannotCrossBridgeException exception) {
+            outputView.printGuideForGameCommand();
+            String gameCommand = inputView.readGameCommand();
+            retry(bridgeGame, gameCommand);
         }
     }
 
+    private static void retry(BridgeGame bridgeGame, String gameCommand) {
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
+            startGame(bridgeGame);
+        }
+
+        if (gameCommand.equals("Q")) {
+            //TODO: 게임 끝내기
+        }
+    }
+
+    private static void crossBridge(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        for (int bridgeIndex = 0; bridgeIndex < bridge.size(); bridgeIndex++) {
+            String direction = inputMoveDirection();
+            bridgeGame.move(direction, bridgeIndex);
+        }
+    }
+
+    private static String inputMoveDirection() {
+        outputView.printGuideForMoveDirection();
+        return inputView.readMoving();
+    }
+
     private static BridgeGame initBridgeGame() {
-        return new BridgeGame(makeBridge(), inputView);
+        return new BridgeGame(makeBridge());
     }
 
     private static List<String> makeBridge() {

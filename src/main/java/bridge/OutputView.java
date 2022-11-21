@@ -13,8 +13,12 @@ public class OutputView {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
-    public void printGuideForMove() {
+    public void printGuideForMoveDirection() {
         System.out.println("이동한 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printGuideForGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요.");
     }
 
     /**
