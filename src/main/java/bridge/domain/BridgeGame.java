@@ -1,115 +1,123 @@
 package bridge.domain;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
-import bridge.BridgeRandomNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.domain.BridgeGame.endType.FAIL_QUIT;
+import static bridge.domain.BridgeGame.endType.SUCCESS;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    final InputView inputView;
-    final OutputView outputView;
+    public enum endType {
+        SUCCESS(false, true), FAIL_RETRY(true, false), FAIL_QUIT(false, false);
+         final boolean retry;
+         final boolean success;
+
+        endType(boolean retry, boolean success) {
+            this.retry = retry;
+            this.success = success;
+        }
+
+        public boolean getRetry() {
+            return this.retry;
+        }
+
+        public boolean getSuccess() {
+            return this.success;
+        }
+    }
+
     List<String> bridge;
     int trial;
     int position;
     String lastMoving;
-    boolean correct;
-    boolean success;
-    boolean gameOn;
 
     public BridgeGame() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.trial = 1;
+        this.trial = 0;
         this.position = 0;
         this.bridge = new ArrayList<>();
         this.lastMoving = null;
-        this.correct = false;
-        this.success = false;
-        this.gameOn = false;
-    }
-
-    public void start() {
-        int size = inputView.readBridgeSize();
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        bridge = bridgeMaker.makeBridge(size);
-        //System.out.println(bridge);
-        position = 0;
-        gameOn = true;
     }
 
     private void getMoving() {
-        lastMoving = inputView.readMoving();
-    }
-
-    private boolean isCorrectMoving(String moving) {
-        return bridge.get(position - 1).equals(moving);
+        lastMoving = GameUtils.getMoving();
     }
 
     public boolean isLastMovingCorrect() {
-        return isCorrectMoving(lastMoving);
-    }
-
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
-        getMoving();
-        position++;
-        boolean correct = isLastMovingCorrect();
-        outputView.printMap(bridge, position, correct);
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean retry() {
-        String input = inputView.readGameCommand();
-        if (input.equals("R")) {
-            trial++;
-            position = 0;
-            return true;
-        } else if (input.equals("Q")) {
-            endGame(false);
-        }
-        return false;
+        return bridge.get(position - 1).equals(lastMoving);
     }
 
     public boolean gameSuccess() {
         return ((position == bridge.size()) && isLastMovingCorrect());
     }
 
-    public void endGame(boolean success) {
-        outputView.printResult(bridge, position, success);
-        outputView.printSuccessOrFail(success, trial);
+    public void start() {
+        bridge = GameUtils.buildBridge();
+        //System.out.println(bridge);
+        trial = 1;
+        position = 0;
+    }
+
+    public void move() {
+        getMoving();
+        position++;
+        boolean correct = isLastMovingCorrect();
+        GameUtils.printMoveResult(bridge, position, correct);
+    }
+
+    private void moveUntilGameOver() {
+        do {
+            move();
+        } while (isLastMovingCorrect() && !gameSuccess());
+    }
+
+    public void printResult(boolean success) {
+        GameUtils.printGameResult(bridge, position, success);
+        GameUtils.printSuccessResult(success, trial);
+    }
+
+    private void successEnd() {
+        printResult(SUCCESS.getSuccess());
+    }
+
+    private void failEnd(endType type) {
+        if (type.equals(endType.FAIL_RETRY)) {
+            trial++;
+            position = 0;
+        } else if (type.equals(endType.FAIL_QUIT)) {
+            printResult(FAIL_QUIT.getSuccess());
+        }
+    }
+
+    private endType gameEnded() {
+        if (gameSuccess()) {
+            return SUCCESS;
+        }
+        String input = GameUtils.getGameCommand();
+        if (input.equals("R")) {
+            return endType.FAIL_RETRY;
+        }
+        return endType.FAIL_QUIT;
+    }
+
+    private boolean successEndOrFailEnd(endType type) {
+        if (type.equals(SUCCESS)) {
+            successEnd();
+            return type.getRetry();
+        }
+        failEnd(type);
+        return type.getRetry();
     }
 
     public void playGame() {
         start();
-        while (gameOn) {
-            do {
-                move();
-                correct = isLastMovingCorrect();
-                success = gameSuccess();
-            } while (correct && !success);
-
-            if (success) {
-                endGame(true);
-                gameOn = false;
-            } else {
-                gameOn = retry();
-            }
-        }
+        boolean replay;
+        do {
+            moveUntilGameOver();
+            endType type = gameEnded();
+            replay = successEndOrFailEnd(type);
+        } while (replay);
     }
-
-
 }
