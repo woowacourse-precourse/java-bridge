@@ -28,8 +28,9 @@ public class BridgeGame {
     }
 
     public void retry(String playerChoice) {
-        if(playerChoice.equals(YES))
-        this.player = new Player();
+        if (playerChoice.equals(YES)) {
+            this.player = new Player();
+        }
         this.trialCount++;
         this.stage = 0;
     }
@@ -42,7 +43,7 @@ public class BridgeGame {
     }
 
     public boolean isFinalStage() {
-        return bridge.get().size() == player.getPosition();
+        return bridge.isFinal(stage);
     }
 
     public boolean isPlayerAlive() {
@@ -52,7 +53,7 @@ public class BridgeGame {
     public void nextRound() {
         if (player.isAlive()) {
             player.updatePosition();
-            stage = player.getPosition();
+            stage++;
         }
     }
 
@@ -70,7 +71,8 @@ public class BridgeGame {
 
     public int getStageNumber() {
         if (isFinalStage()) {
-            stage = player.getPosition() - 1;
+            // 마지막 스테이지 다음 단계는 없음
+            return stage - 1;
         }
         return stage;
     }
