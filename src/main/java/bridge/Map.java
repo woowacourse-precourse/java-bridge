@@ -16,7 +16,8 @@ public class Map {
     }
 
     private void addSymbolToMap(Side side, String symbol) {
-        this.bridgeUserInterface.get(Side.getIndex(side))
+        this.bridgeUserInterface
+                .get(side.getIndex())
                 .add(symbol);
     }
 
@@ -26,7 +27,7 @@ public class Map {
 
     public void add(Side playerMovedSide, boolean movable) {
         addSymbolToMap(playerMovedSide, UserInterfaceSymbol.getMovableSymbol(movable));
-        addSymbolToMap(Side.getOppositePosition(playerMovedSide), UserInterfaceSymbol.getBlank());
+        addSymbolToMap(playerMovedSide.getOppositePosition(), UserInterfaceSymbol.getBlank());
     }
 
     public void initialize() {

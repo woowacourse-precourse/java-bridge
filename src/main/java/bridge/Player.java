@@ -16,9 +16,9 @@ public class Player {
         BridgeGenerationException.validate(movableSide);
     }
 
-    public void move(String movedSide) {
-        validate(movedSide);
-        footprints.add(movedSide);
+    public void move(String movingSide) {
+        validate(movingSide);
+        footprints.add(movingSide);
     }
 
     public int getCurrentPosition() {

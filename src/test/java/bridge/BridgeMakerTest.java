@@ -26,7 +26,7 @@ public class BridgeMakerTest {
     @Test
     void DOWN_매핑_테스트() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        assertThat(bridgeMaker.getAvailablePosition(0))
+        assertThat(bridgeMaker.getMovableSide(0))
                 .isEqualTo("D");
     }
 
@@ -34,7 +34,7 @@ public class BridgeMakerTest {
     @Test
     void UP_매핑_테스트() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        assertThat(bridgeMaker.getAvailablePosition(1))
+        assertThat(bridgeMaker.getMovableSide(1))
                 .isEqualTo("U");
     }
 }

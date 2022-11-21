@@ -5,17 +5,17 @@ public enum Side {
     DOWN("D", 0, 1);
 
     private final String bridgeSavingFormat;
-    private final int number;
-    private final int index;
+    private final int generationNumber;
+    private final int mapIndex;
 
-    Side(String bridgeSavingFormat, int number, int index) {
+    Side(String bridgeSavingFormat, int generationNumber, int mapIndex) {
         this.bridgeSavingFormat = bridgeSavingFormat;
-        this.number = number;
-        this.index = index;
+        this.generationNumber = generationNumber;
+        this.mapIndex = mapIndex;
     }
 
-    public static String getBridgeSavingFormat(int number) {
-        if (UP.number == number) {
+    public static String getBridgeSavingFormat(int generationNumber) {
+        if (UP.generationNumber == generationNumber) {
             return UP.bridgeSavingFormat;
         }
         return DOWN.bridgeSavingFormat;
@@ -28,21 +28,21 @@ public enum Side {
         return true;
     }
 
-    public static int getIndex(Side side) {
-        return side.index;
-    }
-
     public static Side get(String bridgeSavingFormat) {
-        if (Side.UP.bridgeSavingFormat.equals(bridgeSavingFormat)) {
-            return Side.UP;
+        if (UP.bridgeSavingFormat.equals(bridgeSavingFormat)) {
+            return UP;
         }
-        return Side.DOWN;
+        return DOWN;
     }
 
-    public static Side getOppositePosition(Side side) {
-        if (side == Side.UP) {
-            return Side.DOWN;
+    public int getIndex() {
+        return this.mapIndex;
+    }
+
+    public Side getOppositePosition() {
+        if (this == UP) {
+            return DOWN;
         }
-        return Side.UP;
+        return UP;
     }
 }

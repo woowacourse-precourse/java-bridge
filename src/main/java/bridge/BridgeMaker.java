@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -16,12 +15,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
-            bridge.add(getAvailablePosition(bridgeNumberGenerator.generate()));
+            bridge.add(getMovableSide(bridgeNumberGenerator.generate()));
         }
         return bridge;
     }
 
-    public String getAvailablePosition(int positionNumber) {
-        return Side.getBridgeSavingFormat(positionNumber);
+    public String getMovableSide(int generationNumber) {
+        return Side.getBridgeSavingFormat(generationNumber);
     }
 }
