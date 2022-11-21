@@ -26,4 +26,23 @@ public class BridgeController {
             isFinish = bridgeGame.isFinish(bridgeSide);
         }
     }
+
+    public boolean restartBridgeGame() {
+        outputView.printGameCommand();
+        String gameCommand = inputView.readGameCommand();
+        BridgeGameCommandType gameCommandType = BridgeGameCommandType.getFindByGameCommand(gameCommand);
+
+        bridgeGame.retry(gameCommandType);
+
+        return gameCommandType.getIsRestart();
+    }
+
+    public void executeBridgeGame() {
+        startBridgeGame();
+        boolean isRestart = true;
+        while(isRestart) {
+            moveBridge();
+            isRestart = restartBridgeGame();
+        }
+    }
 }

@@ -10,7 +10,7 @@ public class BridgeGame {
     private int compareCount = 0;
 
     private final static Bridge bridge = new Bridge();
-    private final BridgeMap bridgeMap = new BridgeMap();
+    private BridgeMap bridgeMap = new BridgeMap();
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -28,8 +28,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-
+    public void retry(BridgeGameCommandType gameCommandType) {
+        if(gameCommandType.getIsRestart()) {
+            bridgeMap = new BridgeMap();
+            compareCount = 0;
+            return;
+        }
+        //TODO: 이부분은 최종 게임 결과를 반환해야함
     }
 
     public boolean isFinish(String bridgeSide) {
@@ -49,7 +54,7 @@ public class BridgeGame {
     }
 
     private void addBridgeMap(String bridgeSide) {
-        if(bridgeSide.equals(BridgeSideType.UP_STAIRS.getSide())) {
+        if(bridgeSide.equals(BridgeSideType.UPPER_SIDE.getSide())) {
             bridgeMap.addUpperBridge(bridge.isMatchBothIndexAndString(bridgeSide, compareCount));
             return;
         }
