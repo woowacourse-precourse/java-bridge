@@ -1,9 +1,15 @@
 package bridge;
 
+import bridge.controller.BridgeGameController;
+import bridge.domain.util.AppConfig;
+
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGamePlay bridgeGamePlay = new BridgeGamePlay();
-        bridgeGamePlay.execute();
+        AppConfig appConfig = new AppConfig();
+        BridgeGameController bridgeGameController = appConfig.bridgeGameController();
+
+        bridgeGameController.makeBridge();
+        bridgeGameController.playGame();
     }
 }

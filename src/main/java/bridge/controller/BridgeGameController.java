@@ -1,20 +1,23 @@
 package bridge.controller;
 
-import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.service.BridgeGameService;
 
 public class BridgeGameController {
     private BridgeGameService bridgeGameService;
-    private InputView inputView;
     private OutputView outputView;
-    private String retry;
-    private String moving;
+    private InputController inputController;
 
-    public BridgeGameController(BridgeGameService bridgeGameService, InputView inputView, OutputView outputView) {
+    public BridgeGameController(BridgeGameService bridgeGameService, OutputView outputView,
+                                InputController inputController) {
         this.bridgeGameService = bridgeGameService;
-        this.inputView = inputView;
         this.outputView = outputView;
+        this.inputController = inputController;
+    }
+
+    public void makeBridge() {
+        outputView.printStart();
+        bridgeGameService.makeBridge(inputController.suggestBridgeSize());
     }
 
     public void playGame() {
@@ -30,7 +33,6 @@ public class BridgeGameController {
 
     private boolean playFail(String moving) {
         if (bridgeGameService.fail(moving)) {
-            getGameCommand();
             if (playQuit()) {
                 return true;
             }
@@ -38,19 +40,8 @@ public class BridgeGameController {
         return false;
     }
 
-    private void getGameCommand() {
-        while (true) {
-            try {
-                outputView.printRetry();
-                retry = inputView.readGameCommand();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
-            }
-        }
-    }
-
     private boolean playQuit() {
+        String retry = inputController.suggestGameCommand();
         if (bridgeGameService.isQuit(retry)) {
             outputView.printResult(bridgeGameService, false);
             return true;
@@ -59,22 +50,10 @@ public class BridgeGameController {
     }
 
     private String playMove() {
-        getMoving();
+        String moving = inputController.suggestMoving();
         bridgeGameService.move(moving);
         outputView.printMap(bridgeGameService.getUserBridge());
         return moving;
-    }
-
-    private void getMoving() {
-        while (true) {
-            try {
-                outputView.printMove();
-                moving = inputView.readMoving();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
-            }
-        }
     }
 
     private void playEnd() {

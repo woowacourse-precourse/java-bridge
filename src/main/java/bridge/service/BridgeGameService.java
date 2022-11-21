@@ -1,23 +1,25 @@
 package bridge.service;
 
-import bridge.BridgeGame;
-import bridge.BridgeGameManager;
-import bridge.constant.Direction;
-import bridge.UserBridge;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameManager;
+import bridge.domain.BridgeMaker;
+import bridge.domain.Direction;
+import bridge.domain.UserBridge;
 import java.util.List;
 
 public class BridgeGameService {
-    private BridgeMakerService bridgeMakerService;
     private BridgeGameManager bridgeGameManager;
     private BridgeGame bridgeGame;
     private UserBridge userBridge;
+    private BridgeMaker bridgeMaker;
+    private List<String> bridge;
 
-    public BridgeGameService(BridgeMakerService bridgeMakerService, BridgeGameManager bridgeGameManager,
-                             BridgeGame bridgeGame, UserBridge userBridge) {
-        this.bridgeMakerService = bridgeMakerService;
+    public BridgeGameService(BridgeGameManager bridgeGameManager, BridgeGame bridgeGame, UserBridge userBridge,
+                             BridgeMaker bridgeMaker) {
         this.bridgeGameManager = bridgeGameManager;
         this.bridgeGame = bridgeGame;
         this.userBridge = userBridge;
+        this.bridgeMaker = bridgeMaker;
     }
 
     private static Direction findDirection(List<String> bridge, BridgeGameManager bridgeGameManager) {
@@ -26,14 +28,14 @@ public class BridgeGameService {
     }
 
     public UserBridge move(String moving) {
-        Direction direction = findDirection(bridgeMakerService.getBridge(), bridgeGameManager);
+        Direction direction = findDirection(bridge, bridgeGameManager);
         Direction now = Direction.valueOf(moving);
         bridgeGame.move(userBridge, direction, now);
         return userBridge;
     }
 
     public boolean fail(String moving) {
-        Direction direction = findDirection(bridgeMakerService.getBridge(), bridgeGameManager);
+        Direction direction = findDirection(bridge, bridgeGameManager);
         Direction now = Direction.valueOf(moving);
 
         if (!direction.equals(now)) {
@@ -44,7 +46,7 @@ public class BridgeGameService {
     }
 
     public boolean play() {
-        return userBridge.size() < bridgeMakerService.getBridgeSize();
+        return userBridge.size() < bridge.size();
     }
 
     public boolean isQuit(String retry) {
@@ -61,5 +63,9 @@ public class BridgeGameService {
 
     public UserBridge getUserBridge() {
         return userBridge;
+    }
+
+    public void makeBridge(int suggestBridgeSize) {
+        this.bridge = bridgeMaker.makeBridge(suggestBridgeSize);
     }
 }
