@@ -70,15 +70,16 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
+        System.out.println("\n" + GAME_RESULT.getMessage());
         printMap(bridgeGame);
     }
 
-    public void printGameSuccess(BridgeCase bridgeCase) {
-        System.out.println("\n" + String.format(GAME_SUCCESS.getMessage(), bridgeCase.getMessage()));
+    public void printGameSuccess(boolean result) {
+        System.out.println("\n" + String.format(GAME_SUCCESS.getMessage(), BridgeCase.findByResult(result).getMessage()));
     }
 
-    public void printGameTry(int tryCount) {
-        System.out.println("\n" + String.format(GAME_TRY.getMessage(), tryCount));
+    public void printGameTry(BridgeGame bridgeGame) {
+        System.out.println(String.format(GAME_TRY.getMessage(), bridgeGame.getGameTry()));
     }
 
     public void printErrorMessage(IllegalArgumentException illegalArgumentException) {
