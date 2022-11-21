@@ -18,7 +18,7 @@ public class BridgeGame {
         user = new User();
     }
 
-    public void setBridge(List<String> makeBridge){
+    public void setBridge(List<String> makeBridge) {
         bridge = new Bridge(makeBridge);
     }
 
@@ -26,7 +26,7 @@ public class BridgeGame {
         return bridge;
     }
 
-    public void setUser(){
+    public void setUser() {
         user = new User();
     }
 
@@ -48,9 +48,26 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String restartInput) {
-        if(restartInput.equals("R")){
-            user.clearUserMoving();
-        }
+    public void retry() {
+        user.clearUserMoving();
     }
+
+    public boolean gameClear() {
+        if (!roundClear()) {
+            return false;
+        }
+        if (user.getUserMovings().size() != bridge.getAnswerBridge().size()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean roundClear() {
+        int userLastMove = user.getUserMovings().size() - 1;
+        if (!user.getUserMovings().get(userLastMove).equals(bridge.getAnswerBridge().get(userLastMove))) {
+            return false;
+        }
+        return true;
+    }
+
 }
