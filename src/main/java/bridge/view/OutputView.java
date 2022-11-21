@@ -22,10 +22,11 @@ public class OutputView {
     public void printMap(String userInput, StageResult stageResult) {
         String result = decideOX(stageResult);
         Unit key = decideUpDown(userInput);
+        saveUserInput(key, result);
     }
 
     public String decideOX(StageResult stageResult) {
-        if(stageResult == StageResult.PASS) {
+        if(stageResult == StageResult.PASS || stageResult == StageResult.SUCCESS) {
             return "O";
         }
         return "X";
@@ -38,6 +39,31 @@ public class OutputView {
         return Unit.DOWN;
     }
 
+    public void saveInput(Unit key, String result) {
+        checkBrackets(key);
+        userInputMap.get(key).add(result);
+        addCloseBrackets(key);
+    }
+
+
+    public void checkBrackets(Unit key) {
+        checkStackIsEmpty(key);
+
+        if(userInputMap.get(key).peek().equals("]")) {
+            userInputMap.get(key).pop();
+            userInputMap.get(key).add("|");
+        }
+    }
+
+    public void addCloseBrackets(Unit key) {
+        userInputMap.get(key).add("]");
+    }
+
+    public void checkStackIsEmpty(Unit key) {
+        if(userInputMap.get(key).empty()) {
+            userInputMap.get(key).add("[");
+        }
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
