@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,13 +9,26 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> bridge;
+    private final List<List<String>> bridgeMap;
+    private List<String> upBridge;
+    private List<String> downBridge;
+
     private int position;
     private int retryCount;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.bridgeMap = new ArrayList<>();
+        bridgeMapGenerate();
         this.position = 0;
         this.retryCount = 1;
+    }
+
+    private void bridgeMapGenerate() {
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
+        bridgeMap.add(upBridge);
+        bridgeMap.add(downBridge);
     }
 
     /**
