@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.validation.BridgeGameValidation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +31,18 @@ public class BridgeGame {
             currPosition++;
             bridgeCurrStatus.add("O");
         }
+
+        BridgeGameValidation bridgeGameValidation = new BridgeGameValidation();
+        bridgeGameValidation.validateMoveWhenAvailable(movingCommand, currBox, bridgeCurrStatus);
     }
 
     public void addXWhenUnequal(String movingCommand, String currBox) {
         if (! movingCommand.equals(currBox)) {
             bridgeCurrStatus.add("X");
         }
+
+        BridgeGameValidation bridgeGameValidation = new BridgeGameValidation();
+        bridgeGameValidation.validateNotMoveWhenUnavailable(movingCommand, currBox, bridgeCurrStatus);
     }
 
     /**
