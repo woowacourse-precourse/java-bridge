@@ -1,7 +1,8 @@
 ## 기능 구현 목록
 - Model
   - [X] Bridge 저장 객체 생성
-  - [ ] User 입력값 저장 객체 생성
+  - [X] User 입력값 저장 객체 생성
+  - [ ] Result 저장 객체 생성
 - Controller
   - Input
     - [X] 다리 길이를 입력 받는다.
