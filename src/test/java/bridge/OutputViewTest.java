@@ -15,30 +15,32 @@ import static org.junit.jupiter.api.Assertions.*;
 class OutputViewTest {
 
     OutputView outputView;
+    BridgePlayerCheck bridgePlayerCheck;
 
     @BeforeEach
     void setUp() {
         outputView = new OutputView();
+        bridgePlayerCheck = new BridgePlayerCheck();
     }
 
     @Test
     void isOTrueTest() {
-        assertThat(outputView.isO("U", "U", "U")).isTrue();
+        assertThat(bridgePlayerCheck.isO("U", "U", "U")).isTrue();
     }
 
     @Test
     void isOFalseTest() {
-        assertThat(outputView.isO("U", "U", "D")).isFalse();
+        assertThat(bridgePlayerCheck.isO("U", "U", "D")).isFalse();
     }
 
     @Test
     void isXTrueTest() {
-        assertThat(outputView.isX("D", "U", "U")).isTrue();
+        assertThat(bridgePlayerCheck.isX("D", "U", "U")).isTrue();
     }
 
     @Test
     void isXFalseTest() {
-        assertThat(outputView.isX("U", "U", "D")).isFalse();
+        assertThat(bridgePlayerCheck.isX("U", "U", "D")).isFalse();
     }
 
     @Test
@@ -55,19 +57,7 @@ class OutputViewTest {
 
     @Test
     void printMapTest() {
-        outputView.printMap(List.of("U", "D", "D"), List.of("U", "U"));
-        assertThatNoException();
-    }
-
-    @Test
-    void printResultSuccessTest() {
-        outputView.printResult(true, 5);
-        assertThatNoException();
-    }
-
-    @Test
-    void printResultFailTest() {
-        outputView.printResult(false, 10);
+        outputView.printMap(List.of("U", "U", "D"), List.of("U", "U"));
         assertThatNoException();
     }
 }
