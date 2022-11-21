@@ -14,7 +14,7 @@ public class GameUser {
     }
 
     public boolean getOffFrom(Bridge otherBridge) {
-        return !userBridge.isPartOfBridge(otherBridge);
+        return !userBridge.isPartOfBridgeInOrder(otherBridge);
     }
 
     public boolean isOnTheFinalBlock(Bridge otherBridge) {

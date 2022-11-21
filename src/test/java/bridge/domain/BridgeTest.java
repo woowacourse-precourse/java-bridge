@@ -52,12 +52,12 @@ class BridgeTest {
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
-    @DisplayName("isPartOfBridge 메소드 테스트")
-    class IsPartOfBridge {
+    @DisplayName("isPartOfBridgeInOrder 메소드 테스트")
+    class IsPartOfBridgeInOrder {
         @ParameterizedTest
         @MethodSource("parameterProvider")
-        void 한_브리지가_다른_브리지의_일부분인지_체크하는_기능을_테스트(Bridge source, Bridge target) {
-            assertThat(source.isPartOfBridge(target)).isTrue();
+        void 한_브리지가_순서대로_다른_브리지의_일부분인지_체크하는_기능을_테스트(Bridge source, Bridge target) {
+            assertThat(source.isPartOfBridgeInOrder(target)).isTrue();
         }
 
 
@@ -74,12 +74,12 @@ class BridgeTest {
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
-    @DisplayName("containsAll 메소드 테스트")
-    class ContainsAll {
+    @DisplayName("containsAllInOrder 메소드 테스트")
+    class ContainsAllInOrder {
         @ParameterizedTest
         @MethodSource("parameterProvider")
         void 한_브리지가_다른_리스트의_값을_포함하는지_체크하는_기능을_테스트(Bridge source, List<String> target) {
-            assertThat(source.containsAll(target)).isTrue();
+            assertThat(source.containsAllInOrder(target)).isTrue();
         }
 
 

@@ -25,11 +25,11 @@ public class Bridge {
         return bridge.size();
     }
 
-    public boolean isPartOfBridge(Bridge otherBridge) {
-        return otherBridge.containsAll(bridge);
+    public boolean isPartOfBridgeInOrder(Bridge otherBridge) {
+        return otherBridge.containsAllInOrder(bridge);
     }
 
-    public boolean containsAll(List<String> other) {
+    public boolean containsAllInOrder(List<String> other) {
         List<String> temp = bridge.subList(0, other.size());
         return temp.equals(other);
     }
