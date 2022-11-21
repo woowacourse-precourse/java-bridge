@@ -32,12 +32,10 @@ public class BridgeGameController {
 
     public void start() {
         makeBridge(getBridgeLength());
-
         outputView.printStart();
-
         while (true) {
-            String moving = getSpaceToMove();
-            boolean check = bridgeGame.move(gameStatus, copyBridge, moving);
+            boolean check = crossTheBridge();
+
             String retry = "R";
             outputView.printMap(gameStatus);
 
@@ -60,6 +58,12 @@ public class BridgeGameController {
             }
         }
         outputView.printResult(gameStatus);
+    }
+
+    private boolean crossTheBridge() {
+        String moving = getSpaceToMove();
+        boolean check = bridgeGame.move(gameStatus, copyBridge, moving);
+        return check;
     }
 
     private void makeBridge(int bridgeLength) {
