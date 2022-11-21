@@ -19,6 +19,8 @@
 
 4. **해당 칸으로 플레이어를 이동시킨다** [ ]
     - BridgeGame - move() 구현 [ ]
+    - BridgeGame - getResult() 구현(이동한 칸이 건널 수 있는 칸인지) [ ]
+    - BridgeGame - selectUpperBridge(), selectLowerBridge() 구현(어떤 다리를 건너려 했는지) [ ]
   
 
 5. **현재까지 이동한 다리의 상태를 출력한다** [ ]
