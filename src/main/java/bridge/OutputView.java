@@ -42,13 +42,17 @@ public class OutputView {
     }
 
     private String printUpString(int movingIdx, List<String> bridgeList, String input) {
+        return "[" +
+                printMiddleUpString(movingIdx, bridgeList) +
+                printEndedUpString(movingIdx, bridgeList, input);
+    }
+
+    private String printMiddleUpString(int movingIdx, List<String> bridgeList) {
         StringBuilder upString = new StringBuilder();
-        upString.append("[");
         for (int i = 0; i < movingIdx; i++) {
             if (SameWithU(bridgeList.get(i))) upString.append(" O |");
             else if (SameWithD(bridgeList.get(i))) upString.append("   |");
         }
-        upString.append(printEndedUpString(movingIdx, bridgeList, input));
         return upString.toString();
     }
 
@@ -61,13 +65,17 @@ public class OutputView {
     }
 
     private String printDownString(int movingIdx, List<String> bridgeList, String input) {
+        return "[" +
+                printMiddleDownString(movingIdx, bridgeList) +
+                printEndedDownString(movingIdx, bridgeList, input);
+    }
+
+    private String printMiddleDownString(int movingIdx, List<String> bridgeList) {
         StringBuilder downString = new StringBuilder();
-        downString.append("[");
         for (int i = 0; i < movingIdx; i++) {
             if (SameWithD(bridgeList.get(i))) downString.append(" O |");
             else if (SameWithU(bridgeList.get(i))) downString.append("   |");
         }
-        downString.append(printEndedDownString(movingIdx, bridgeList, input));
         return downString.toString();
     }
 
