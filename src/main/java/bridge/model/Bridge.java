@@ -1,13 +1,17 @@
 package bridge.model;
 
+import bridge.config.Direction;
 import bridge.config.ErrorMessageConstant;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * 다리에 속한 칸들을 관리하고 특정 칸으로 이동 가능 여부를 파악하는 클래스
+ */
 public class Bridge {
 
-    private List<Direction> allowMove = new ArrayList<>();
+    private final List<Direction> allowMove;
 
     /**
      * 다리를 생성 및 초기화한다.
@@ -16,8 +20,31 @@ public class Bridge {
      */
     public Bridge(List<String> dirs) throws IllegalArgumentException {
         bridgeSizeValidation(dirs.size());
-        dirs.forEach(d -> allowMove.add(Direction.of(d)));
+        allowMove = dirs.stream()
+                .map(Direction::of)
+                .collect(Collectors.toUnmodifiableList());
     }
+
+    /**
+     * 다리의 한 칸에서 특정 방향으로 이동이 가능한지 반환
+     * <p>
+     * 다리가 가진 칸을 벗어나는 입력은 false 로 반환
+     * @param position 칸의 위치
+     * @param direction 이동할 방향
+     * @return 이동 가능 여부
+     */
+    public boolean isAllow(int position, Direction direction) {
+        try {
+            return allowMove.get(position) == direction;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
+    public int getNumOfCells() {
+        return this.allowMove.size();
+    }
+
 
     /**
      * 다리의 길이를 검증
