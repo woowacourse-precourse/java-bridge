@@ -18,6 +18,10 @@ public class InputView {
             }
             return result;
         } catch (NumberFormatException e) {
+            OutputView.String("[ERROR] 입력된 값이 정수가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 정수가 아닙니다.");
+        } catch (IllegalArgumentException e) {
+            OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 입력된 값이 정수가 아닙니다.");
         }
     }
@@ -28,6 +32,7 @@ public class InputView {
     public static String readMoving() {
         String string = Console.readLine().toUpperCase();
         if (!(string.equals("U") || string.equals("D"))) {
+            OutputView.String("[ERROR] 유효한 값이 아닙니다.");
             throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다."); }
         return string;
     }
@@ -39,6 +44,7 @@ public class InputView {
         Boolean result = null;
         String string = Console.readLine().toUpperCase();
         if (!(string.equals("R") || string.equals("Q"))) {
+            OutputView.String("[ERROR] 유효한 값이 아닙니다.");
             throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다."); }
         if (string.equals("R")) { return result = true; }
         if (string.equals("Q")) { return result = false; }
