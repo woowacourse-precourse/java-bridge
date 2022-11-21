@@ -11,9 +11,7 @@ public class InputView {
      */
     public String readBridgeSize() {
         System.out.println(InputMessage.BRIDGE_SIZE.message());
-        String bridgeSize = Console.readLine();
-
-        return bridgeSize;
+        return Console.readLine();
     }
 
     /**
@@ -21,9 +19,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(InputMessage.MOVING.message());
-        String moving = Console.readLine();
-
-        return moving;
+        return Console.readLine();
     }
 
     /**
@@ -31,8 +27,6 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(InputMessage.GAME_COMMAND.message());
-        String gameCommand = Console.readLine();
-
-        return gameCommand;
+        return Console.readLine();
     }
 }
