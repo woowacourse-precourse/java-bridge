@@ -53,7 +53,7 @@ public class OutputView {
         printMap(player.getChoices(), compareResults);
 
         System.out.println(Message.SUCCESS_OR_FAIL + booleanToString(player.getIsSuccess()));
-        System.out.println(Message.TOTAL_TRY_COUNT + player.getTotalTryCount());
+        System.out.println(Message.TOTAL_TRY_COUNT_IS + player.getTryCount());
     }
 
     private static String booleanToString(boolean isSuccess) {

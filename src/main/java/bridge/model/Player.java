@@ -6,25 +6,25 @@ import java.util.List;
 public class Player {
 
     private List<String> choices;
-    private int totalTryCount;
+    private int tryCount;
     private boolean isSuccess;
 
     public Player() {
         this.choices = new ArrayList<>();
-        totalTryCount = 1;
+        tryCount = 1;
         isSuccess = false;
     }
 
-    public void setSuccess(boolean success) {
-        isSuccess = success;
+    public List<String> getChoices() {
+        return choices;
     }
 
     public void addChoice(final String choice) {
         this.choices.add(choice);
     }
 
-    public List<String> getChoices() {
-        return choices;
+    public void setSuccess(boolean success) {
+        isSuccess = success;
     }
 
     public void resetChoices() {
@@ -32,15 +32,15 @@ public class Player {
     }
 
     public void addTryCount() {
-        totalTryCount++;
+        tryCount++;
     }
 
     public int getStep() {
         return choices.size() - 1;
     }
 
-    public int getTotalTryCount() {
-        return totalTryCount;
+    public int getTryCount() {
+        return tryCount;
     }
 
     public int getChoicesSize() {
