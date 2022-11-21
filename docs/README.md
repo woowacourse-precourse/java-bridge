@@ -49,3 +49,11 @@
 
 ### MovingResult
 - 사용자 이동에 따른 결과를 담는 클래스
+
+### BridgeGameAnswer
+- Bridge Game Answer 클래스
+- 사용자 moving 입력을 기반으로 MovingResult 반환
+- 사용자 게임 성공 여부 반환 (라운드 size 기반)
+
+### BridgeGameResult
+- 라운드 별 게임 결과를 추가하여 게임결과 클래스 
