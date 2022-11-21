@@ -15,7 +15,7 @@ public class Application {
             outputView.printMap(outputView.makeMove(bridgeGame.getMove(), bridgeGame.canMove(move)));
         } while (bridgeGame.canMove(move) && !bridgeGame.success());
 
-        
+
 
     }
 }
