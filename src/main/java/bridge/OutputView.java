@@ -21,15 +21,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String upMap, String downMap) {
-        System.out.println(GameMessage.GAME_RESULT.getMessage());
+        System.out.println("\n" + GameMessage.GAME_RESULT.getMessage());
         System.out.println(upMap);
         System.out.println(downMap);
-        System.out.println("\n");
     }
 
 
     public void printSuccessOrFail(String result) {
-        System.out.println(GameMessage.SUCCESS_OR_FAIL.getMessage() + result);
+        System.out.println("\n" + GameMessage.SUCCESS_OR_FAIL.getMessage() + result);
     }
 
     public void printAttempt(int attempt) {
