@@ -22,6 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridgeAnswers = new ArrayList<>();
+
         for (int i = 0; i < size; i++) {
             if(bridgeNumberGenerator.generate() == 0) {
                 bridgeAnswers.add(DOWN_SIGN);
