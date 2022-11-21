@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.config.Direction;
-import bridge.model.BridgePrinter;
-import bridge.model.PieceMove;
+import bridge.domain.BridgePrinter;
+import bridge.domain.PieceMove;
 
 import java.util.Stack;
 

@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.domain;
 
 import bridge.config.Direction;
 import bridge.config.ErrorMessageConstant;

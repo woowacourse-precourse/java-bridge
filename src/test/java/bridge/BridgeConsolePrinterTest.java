@@ -1,8 +1,8 @@
 package bridge;
 
 import bridge.config.Direction;
-import bridge.model.Bridge;
-import bridge.model.BridgeGame;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import bridge.view.BridgeConsolePrinter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
