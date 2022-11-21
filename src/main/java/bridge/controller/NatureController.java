@@ -1,8 +1,8 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
+import bridge.mediator.Mediator;
 import bridge.dto.BridgeStatusDto;
-import bridge.view.ViewFaçade;
 
 import java.util.HashMap;
 import java.util.function.Function;
@@ -10,18 +10,21 @@ import java.util.function.Function;
 public class NatureController implements Controller {
 
     private BridgeGame bridgeGame;
-    private ViewFaçade viewFaçade;
+    private Mediator mediator;
     private Function<Integer, BridgeGame> function;
 
-    public NatureController(Function<Integer, BridgeGame> function) {
+    public NatureController(Function<Integer, BridgeGame> function,Mediator mediator) {
+        this.mediator=mediator;
         this.function = function;
     }
 
-    @Override
-    public Runnable generateBridge(ViewFaçade viewFaçade, int size) {
+    public void initBridgeGame(int size){
         bridgeGame = function.apply(size);
-        this.viewFaçade = viewFaçade;
-        return () -> viewFaçade.moveBride();
+    }
+    @Override
+    public Runnable generateBridge(int size) {
+        initBridgeGame(size);
+        return () -> mediator.moveBridge();
     }
 
     @Override
@@ -30,20 +33,20 @@ public class NatureController implements Controller {
         map.put("bridge", bridgeStatusDto.getBridge());
 
         if (bridgeGame.isOverallSuccess()) {
-            return () -> viewFaçade.end(bridgeStatusDto);
+            return () -> mediator.end(bridgeStatusDto);
         }
-        if (bridgeGame.isUnitSuccess()) return () -> viewFaçade.moveBride();
-        return () -> viewFaçade.reply();
+        if (bridgeGame.isUnitSuccess()) return () -> mediator.moveBridge();
+        return () -> mediator.replay();
     }
 
     @Override
     public Runnable replay(String restartCommand) {
         if (bridgeGame.retry(restartCommand)) {
             bridgeGame.clearFootprints();
-            return () -> viewFaçade.moveBride();
+            return () -> mediator.moveBridge();
         }
 
         BridgeStatusDto bridgeStatusDto = bridgeGame.makeFailBridgeStatusDto();
-        return () -> viewFaçade.end(bridgeStatusDto);
+        return () -> mediator.end(bridgeStatusDto);
     }
 }

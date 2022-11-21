@@ -1,23 +1,26 @@
-package bridge;
+package bridge.mediator;
 
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
 import bridge.controller.Controller;
 import bridge.controller.NatureController;
 import bridge.dto.BridgeStatusDto;
 import bridge.generator.BridgeRandomNumberGenerator;
+import bridge.mediator.Mediator;
 import bridge.view.ViewFaçade;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ConcreteMediator{
+public class ConcreteMediator implements Mediator {
     private Controller controller=new NatureController((i->createBridgeGame(i)),this);
     private ViewFaçade viewFaçade=new ViewFaçade(this);
 
     public void start(){
         viewFaçade.start();
     }
-    public void generateBridge(int i) {
-        Runnable runnable = controller.generateBridge(i);
+    public void generateBridge(int size) {
+        Runnable runnable = controller.generateBridge(size);
         runnable.run();
     }
 
@@ -25,16 +28,16 @@ public class ConcreteMediator{
         Runnable runnable = viewFaçade.moveBride();
         runnable.run();
     }
-    public Runnable moveBridge(String s, HashMap<String, String> map) {
-        return controller.moveBridge(s, map);
+    public Runnable moveBridge(String direction, HashMap<String, String> map) {
+        return controller.moveBridge(direction, map);
     }
 
     public void replay() {
         viewFaçade.reply();
     }
 
-    public void replay(String readGameCommand) {
-        Runnable replay = controller.replay(readGameCommand);
+    public void replay(String restartCommand) {
+        Runnable replay = controller.replay(restartCommand);
         replay.run();
     }
 

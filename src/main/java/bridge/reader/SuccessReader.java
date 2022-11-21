@@ -19,5 +19,4 @@ public class SuccessReader {
     public boolean isOverallSuccess(UserCharacters userCharacters, List<String> bridge) {
         return !isNotCrossBridgeSuccess(bridge.size(), userCharacters.getFootPrintSize()) && isUnitSuccess(userCharacters, bridge);
     }
-
 }
