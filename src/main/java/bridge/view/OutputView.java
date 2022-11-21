@@ -36,6 +36,7 @@ public class OutputView {
 		if (board[0].equals(GameRule.UP_BOARD)) {
 			upMap.append(String.format(BRIDGE_DIVISION_FORMAT, board[1]));
 			downMap.append(String.format(BRIDGE_DIVISION_FORMAT, " "));
+
 		} else if (board[0].equals(GameRule.DOWN_BOARD)) {
 			downMap.append(String.format(BRIDGE_DIVISION_FORMAT, board[1]));
 			upMap.append(String.format(BRIDGE_DIVISION_FORMAT, " "));
