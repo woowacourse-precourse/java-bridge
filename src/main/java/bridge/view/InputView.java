@@ -13,15 +13,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static void readBridgeSize() {
-        OutputView.printGameStart();
         OutputView.printInputSize();
         String userInput = Console.readLine();
         try {
             UserInputException.checkUserInputBridgeSize(userInput);
             User.setBridgeSize(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            readBridgeSize();
+            OutputView.printReadBridgeSizeError(e);
         }
     }
 
@@ -35,8 +33,7 @@ public class InputView {
             UserInputException.isCorrectMovingCommand(userInput);
             User.recordUserMoving(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            readMoving();
+            OutputView.printReadMovingError(e);
         }
     }
 
@@ -50,8 +47,7 @@ public class InputView {
             UserInputException.isCorrectGameCommand(userInput);
             return userInput;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readGameCommand();
+            return OutputView.printReadGameCommandError(e);
         }
     }
 }

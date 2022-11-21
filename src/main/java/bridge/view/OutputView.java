@@ -62,6 +62,30 @@ public class OutputView {
         }
     }
 
+    public static void printSuccessOrNot(boolean result) {
+        if (result) {
+            printGameSuccessOrNot(Constant.SUCCESS.getValue());
+        }
+        if (!result) {
+            printGameSuccessOrNot(Constant.FAIL.getValue());
+        }
+    }
+
+    public static void printReadBridgeSizeError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        InputView.readBridgeSize();
+    }
+
+    public static void printReadMovingError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        InputView.readMoving();
+    }
+
+    public static String printReadGameCommandError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        return InputView.readGameCommand();
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -86,12 +110,7 @@ public class OutputView {
     public static void printResult(boolean result, int attempts) {
         printGameResultMessage();
         printMap();
-        if (result) {
-            printGameSuccessOrNot(Constant.SUCCESS.getValue());
-        }
-        if (!result) {
-            printGameSuccessOrNot(Constant.FAIL.getValue());
-        }
+        printSuccessOrNot(result);
         printTotalAttempts(attempts);
     }
 }
