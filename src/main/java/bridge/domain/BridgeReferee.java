@@ -13,7 +13,7 @@ public class BridgeReferee {
 
     public BridgeReferee(List<String> bridge) {
         this.bridge = bridge;
-        this.location = 0;
+        resetLocation();
     }
 
     public GameStatus judge(String moving) {
@@ -30,6 +30,10 @@ public class BridgeReferee {
     public boolean isCrossCompletely() {
         int bridgeSize = bridge.size();
         return bridgeSize == location;
+    }
+
+    public void resetLocation() {
+        this.location = 0;
     }
 
     private boolean isCorrect(String moving) {

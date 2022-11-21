@@ -36,9 +36,7 @@ public class BridgeGame {
     public void retry(String gameCommand) {
         validateGameCommand(gameCommand);
         if (gameCommand.equals(RETRY)) {
-            gameStatus = ON_WAY;
-            tryCount += 1;
-            bridgeDrawer.turnBackOnce();
+            resetGame();
             return;
         }
         gameStatus = END;
@@ -66,6 +64,13 @@ public class BridgeGame {
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    private void resetGame() {
+        gameStatus = ON_WAY;
+        tryCount += 1;
+        bridgeReferee.resetLocation();
+        bridgeDrawer.turnBackOnce();
     }
 
     private void validateMoving(String moving) {

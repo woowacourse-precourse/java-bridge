@@ -66,6 +66,7 @@
 
 ### BridgeReferee
 - [x] 이동 결과 반환
+- [x] 위치 초기화
 
 ### BridgeDrawer
 - [x] 한 턴의 이동 후 현황 기록
