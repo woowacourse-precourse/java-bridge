@@ -31,7 +31,6 @@ public class GameController {
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             boolean match = bridgeGame.move(inputView,outputView,i);
             if (!match) { break; }
-            if (i == bridgeGame.getBridgeSize() - 1) { bridgeGame.gameSuccecs(); }
         }
     }
 

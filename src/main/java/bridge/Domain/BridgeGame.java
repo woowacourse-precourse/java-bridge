@@ -12,7 +12,6 @@ public class BridgeGame {
     private List<String> bridge;
     private List<Boolean> matchResult = new ArrayList<>();
     private int gameCount = 0;
-    private boolean succecss = false;
 
     public boolean move(InputView inputView, OutputView outputView, int i) {
         String input = inputView.readMoving();
@@ -55,9 +54,7 @@ public class BridgeGame {
     public void increaseGameCount() {
         this.gameCount++;
     }
-    public boolean isSuccecss() { return succecss; }
-    public void gameSuccecs() {
-        this.succecss = true;
-    }
+    public boolean isSuccecss() { return matchResult.get(matchResult.size()-1); }
+
 }
 
