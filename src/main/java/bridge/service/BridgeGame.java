@@ -104,6 +104,7 @@ public class BridgeGame {
      */
     public void retry() {
         bridge.clearPlayerMovingHistory();
+        moveSuccess = true;
         statistics.update();
         tryGame();
     }
