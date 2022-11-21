@@ -5,8 +5,11 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import bridge.domain.BridgeLength;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
+import bridge.domain.MovingCommand;
+import bridge.domain.RetryCommand;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +29,7 @@ class BridgeGameTest {
         when(bridgeMaker.makeBridge(anyInt())).thenReturn(List.of("U", "D", "U"));
 
         // when
-        bridgeGame.createBridge(3);
+        bridgeGame.createBridge(new BridgeLength(3));
 
         // then
         assertThat(bridgeStatusSaver.getBridgeStatus()).isNotNull();
@@ -37,11 +40,11 @@ class BridgeGameTest {
     void persistBridgeStatusWhenRequestMovingCommand() {
         // given
         when(bridgeMaker.makeBridge(anyInt())).thenReturn(List.of("U", "D", "U"));
-        bridgeGame.createBridge(3);
+        bridgeGame.createBridge(new BridgeLength(3));
         BridgeStatus original = bridgeStatusSaver.getBridgeStatus();
 
         // when
-        bridgeGame.move("U");
+        bridgeGame.move(MovingCommand.UP);
 
         // then
         assertThat(bridgeStatusSaver.getBridgeStatus()).isNotNull();
@@ -55,10 +58,11 @@ class BridgeGameTest {
     void returnTrueWhenRequestRorReturnFalseWhenRequestQ(String input, boolean result) {
         // given
         when(bridgeMaker.makeBridge(anyInt())).thenReturn(List.of("U", "D", "U"));
-        bridgeGame.createBridge(3);
+        bridgeGame.createBridge(new BridgeLength(3));
+        RetryCommand retryCommand = RetryCommand.nameOf(input);
 
         // when
-        boolean retry = bridgeGame.retry(input);
+        boolean retry = bridgeGame.retry(retryCommand);
 
         // then
         assertThat(retry).isEqualTo(result);
@@ -69,10 +73,10 @@ class BridgeGameTest {
     void resetUserBridgeAndGameStatusWhenRetryEqualsTrue() {
         // given
         when(bridgeMaker.makeBridge(anyInt())).thenReturn(List.of("U", "D", "U"));
-        bridgeGame.createBridge(3);
+        bridgeGame.createBridge(new BridgeLength(3));
 
         // when
-        bridgeGame.retry("R");
+        bridgeGame.retry(RetryCommand.nameOf("R"));
 
         // then
         assertThat(bridgeStatusSaver.getBridgeStatus().getUserBridge()).isEmpty();

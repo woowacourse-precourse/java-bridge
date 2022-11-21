@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.BridgeLength;
 import bridge.domain.BridgeStatus;
 import bridge.domain.MovingCommand;
 import bridge.domain.RetryCommand;
@@ -15,22 +16,20 @@ public class BridgeGame {
         this.bridgeStatusSaver = bridgeStatusSaver;
     }
 
-    public void createBridge(int size) {
-        List<String> bridge = bridgeMaker.makeBridge(size);
+    public void createBridge(BridgeLength bridgeLength) {
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLength.intValue());
         BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
         bridgeStatusSaver.setBridgeStatus(bridgeStatus);
     }
 
-    public BridgeStatus move(String input) {
-        MovingCommand movingCommand = MovingCommand.nameOf(input);
+    public BridgeStatus move(MovingCommand movingCommand) {
         BridgeStatus bridgeStatus = bridgeStatusSaver.getBridgeStatus();
         bridgeStatus.addUserMovingCommand(movingCommand);
         bridgeStatusSaver.setBridgeStatus(bridgeStatus);
         return bridgeStatus;
     }
 
-    public boolean retry(String input) {
-        RetryCommand retryCommand = RetryCommand.nameOf(input);
+    public boolean retry(RetryCommand retryCommand) {
         if (retryCommand.equals(RetryCommand.RETRY)) {
             BridgeStatus bridgeStatus = bridgeStatusSaver.getBridgeStatus();
             bridgeStatus.clearUserBridge();
