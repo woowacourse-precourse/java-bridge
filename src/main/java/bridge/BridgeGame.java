@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.input.InputString.UP;
+
 public class BridgeGame {
     private StringBuilder firstRoad = new StringBuilder();
     private StringBuilder secondRoad = new StringBuilder();
@@ -18,6 +20,26 @@ public class BridgeGame {
 
     public int getRoundCount() {
         return roundCount;
+    }
+
+    public void move(String command, boolean isCorrect) {
+        if (isCorrect) {
+            if (command.equals(UP)) {
+                firstRoad.append(O);
+                secondRoad.append(SPACE);
+                return;
+            }
+            firstRoad.append(SPACE);
+            secondRoad.append(O);
+            return;
+        }
+        if (command.equals(UP)) {
+            firstRoad.append(X);
+            secondRoad.append(SPACE);
+            return;
+        }
+        firstRoad.append(SPACE);
+        secondRoad.append(X);
     }
 
 }
