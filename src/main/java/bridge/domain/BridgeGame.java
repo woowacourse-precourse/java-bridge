@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.enums.KeyboardCommand;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final int COUNT_INITIAL_VALUE = 0;
+    private final int ATTEMPTS_INITIAL_VALUE = 1;
     private BridgeMaker bridgeMaker;
     private BridgeNumberGenerator numberGenerator;
     private List<String> bridge;
@@ -19,8 +22,8 @@ public class BridgeGame {
     public BridgeGame() {
         this.numberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(numberGenerator);
-        this.count = 0;
-        this.totalNumberOfAttempts = 1;
+        this.count = COUNT_INITIAL_VALUE;
+        this.totalNumberOfAttempts = ATTEMPTS_INITIAL_VALUE;
     }
 
     public void setBridge(int size) {
@@ -45,6 +48,7 @@ public class BridgeGame {
             count++;
             return true;
         }
+        count++;
         return false;
     }
 
@@ -54,8 +58,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommand) {
-        count = 0;
-        if (gameCommand.equals("R")) {
+        count = COUNT_INITIAL_VALUE;
+        if (gameCommand.equals(KeyboardCommand.RESTART.getCommand())) {
             totalNumberOfAttempts++;
             return true;
         }

@@ -5,6 +5,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
+    private final boolean PASSABLE = true;
+    private final boolean IMPASSABLE = false;
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
@@ -27,10 +29,10 @@ public class BridgeGameController {
         while (bridgeGame.isGameContinue()) {
             String moving = inputView.readMoving();
             if (bridgeGame.move(moving)) {
-                outputView.printMap(bridgeGame.getCount(), moving, true);
+                outputView.printMap(bridgeGame.getCount(), moving, PASSABLE);
                 continue;
             }
-            outputView.printMap(bridgeGame.getCount() + 1, moving, false);
+            outputView.printMap(bridgeGame.getCount(), moving, IMPASSABLE);
             enterGameCommand();
             break;
         }
