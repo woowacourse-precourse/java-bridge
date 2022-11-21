@@ -51,4 +51,12 @@ public class BridgeGame {
     public int getRetryCount() {
         return retryCount;
     }
+
+    @Override
+    public String toString() {
+        return String.format("상태 : %s, 현재 위치 : %s, 재시도 횟수 : %d",
+                this.gameStatus.name(),
+                this.position,
+                this.retryCount);
+    }
 }
