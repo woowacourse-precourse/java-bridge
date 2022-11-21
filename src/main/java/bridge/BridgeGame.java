@@ -40,6 +40,16 @@ public class BridgeGame {
         }
         return userMap;
     }
+    public List<List<String>> exchangeValue(List<List<String>> userMap, String value, String userMove) {
+        if (userMove.equals("U")) {
+            userMap.get(0).add(value);
+            userMap.get(1).add(" ");
+        } else {
+            userMap.get(0).add(" ");
+            userMap.get(1).add(value);
+        }
+        return userMap;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
