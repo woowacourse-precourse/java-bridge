@@ -28,6 +28,7 @@ public class BridgeGame {
     }
 
     public void retryGameSetting() {
+        bridgeResult.addAttempt();
         map.reset();
     }
 
@@ -52,9 +53,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(int randomValue, Move move) {
-        boolean isCorrect = move.isEquals(randomValue, move);
-        List <String> roundTrace = RoundTrace.makeTrace(randomValue, isCorrect);
+    public void move(String randomKey, Move move) {
+        boolean isCorrect = move.isEquals(randomKey, move);
+        List <String> roundTrace = RoundTrace.makeTrace(randomKey, isCorrect);
         map.draw(roundTrace);
     }
 
@@ -63,7 +64,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String input) {
-        return Command.of(input).isRetry();
+    public boolean retry(Command input) {
+        return input.isRetry();
     }
 }

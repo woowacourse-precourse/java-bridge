@@ -20,9 +20,9 @@ public enum RoundTrace {
         return footPrint;
     }
 
-    private static List<String> makeTrace(int randomValue, boolean isCorrect){
+    public static List<String> makeTrace(String randomKey, boolean isCorrect){
         String trace = isClearRound(isCorrect);
-        return convertToList(randomValue, trace);
+        return convertToList(randomKey, trace);
     }
 
     public static String isClearRound(boolean isCorrect){
@@ -32,12 +32,10 @@ public enum RoundTrace {
         return ROUND_FAIL.footPrint;
     }
 
-    private static List<String> convertToList(int randomValue, String trace){
-        if(randomValue == 1){
+    private static List<String> convertToList(String randomKey, String trace){
+        if(randomKey.equals("U")){
             return Arrays.asList(trace, BLANK.footPrint);
         }
         return Arrays.asList(BLANK.footPrint, trace);
     }
-
-
 }
