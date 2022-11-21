@@ -1,7 +1,5 @@
 package bridge.Model;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.Enum.CrossResult;
 import bridge.Enum.GameStatus;
 import bridge.Model.WrappingType.*;
@@ -31,10 +29,10 @@ public class BridgeGame {
     public GameStatus checkGameStatus() {
         GameStatus status = GameStatus.RUNNING;
         if (isEndPoint(bridge.length(), choiceDirections.length())) {
-            status =  GameStatus.SUCCESS;
+            status = GameStatus.SUCCESS;
         }
         if (isFailed(crossResults)) {
-            status =  GameStatus.FAIL;
+            status = GameStatus.FAIL;
         }
         return status;
     }

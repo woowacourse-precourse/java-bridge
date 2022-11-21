@@ -5,11 +5,11 @@ import bridge.Enum.GameStatus;
 import bridge.Model.BridgeGame;
 import bridge.Model.WrappingType.ChoiceDirection;
 import bridge.Model.WrappingType.ChoiceDirections;
-import bridge.Model.WrappingType.CrossResults;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
@@ -21,14 +21,14 @@ public class BridgeGameTest {
     @DisplayName("checkGameStatus 메소드 테스트")
     @ParameterizedTest(name = "[{index}] {2} Test")
     @MethodSource("generateData")
-    void checkGameStatusTest(List<ChoiceDirection> choiceDirections, List<CrossResult> crossResults, GameStatus result){
+    void checkGameStatusTest(List<ChoiceDirection> choiceDirections, List<CrossResult> crossResults, GameStatus result) {
         BridgeGame bridgeGame = new BridgeGame(bridge, choiceDirections, crossResults);
         GameStatus actual = bridgeGame.checkGameStatus();
 
         assertThat(actual).isEqualTo(result);
     }
 
-    static Stream<Arguments> generateData(){
+    static Stream<Arguments> generateData() {
         List<List<ChoiceDirection>> choiceDirections = List.of(
                 ChoiceDirections.of(List.of("U", "U", "D")),
                 ChoiceDirections.of(List.of("U", "D")),

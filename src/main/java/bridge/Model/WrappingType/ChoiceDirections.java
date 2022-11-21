@@ -10,9 +10,9 @@ public class ChoiceDirections {
         this.ChoiceDirections = choiceDirections;
     }
 
-    public static List<ChoiceDirection> of(List<String> elements){
+    public static List<ChoiceDirection> of(List<String> elements) {
         List<ChoiceDirection> choiceDirections = new ArrayList<>();
-        for(String element : elements){
+        for (String element : elements) {
             choiceDirections.add(new ChoiceDirection(element));
         }
 

@@ -2,7 +2,6 @@ package bridge.Model.WrappingType;
 
 import bridge.Enum.CrossResult;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CrossResults {
