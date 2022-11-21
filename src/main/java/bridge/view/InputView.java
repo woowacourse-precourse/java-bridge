@@ -73,7 +73,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         try {
             System.out.println(INPUT_GAME_COMMAND_GUIDE_MESSAGE);
             String input = Console.readLine();
@@ -85,7 +85,7 @@ public class InputView {
         }
     }
 
-    private void validateGameCommand(String input) {
+    private static void validateGameCommand(String input) {
         if (!input.equals(RETRY_COMMAND) && !input.equals(QUITE_COMMAND)) {
             throw new IllegalArgumentException(WRONG_INPUT_GAME_COMMAND_MESSAGE);
         }
