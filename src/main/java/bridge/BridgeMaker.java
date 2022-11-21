@@ -22,14 +22,18 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         while(size > 0){
             int i = bridgeNumberGenerator.generate();
-            if (i == 0){
-                bridge.add("D");
-            }
-            else if (i == 1){
-                bridge.add("U");
-            }
+            addBridgeString(bridge, i);
             size--;
         }
         return bridge;
+    }
+
+    public void addBridgeString(List<String> bridge, int i){
+        if (i == 0){
+            bridge.add("D");
+        }
+        else if (i == 1){
+            bridge.add("U");
+        }
     }
 }
