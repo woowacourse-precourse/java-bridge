@@ -15,15 +15,13 @@ public class Map {
     private List<String> map;
 
     public Map() {
-        this.map = initializeMap();
+        initializeMap();
     }
 
-    private List<String> initializeMap() {
-        List<String> map = new ArrayList<>(
+    public void initializeMap() {
+        this.map = new ArrayList<>(
                 Arrays.asList(MAP_BEGINNING, MAP_BEGINNING)
         );
-
-        return map;
     }
 
     public void drawMap(String userPath, boolean isCorrectPath) {
