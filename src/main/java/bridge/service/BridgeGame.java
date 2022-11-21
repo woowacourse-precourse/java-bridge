@@ -53,6 +53,8 @@ public class BridgeGame {
      */
     public void retry() {
         user.init();
+        logger.clear();
+        this.status = PLAYING;
         this.tryCount++;
     }
 

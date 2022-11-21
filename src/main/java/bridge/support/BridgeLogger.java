@@ -60,4 +60,9 @@ public class BridgeLogger {
         UpLog.append(up).append(DIVISION);
         DownLog.append(down).append(DIVISION);
     }
+
+    public void clear() {
+        this.UpLog.delete(PREFIX.length(), UpLog.length());
+        this.DownLog.delete(PREFIX.length(), DownLog.length());
+    }
 }
