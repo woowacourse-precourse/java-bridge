@@ -77,5 +77,6 @@ public class BridgeGame {
     public void retry() {
         userPath.clear();
         tryCount += 1;
+        gameStatus = GameStatus.ONGOING;
     }
 }
