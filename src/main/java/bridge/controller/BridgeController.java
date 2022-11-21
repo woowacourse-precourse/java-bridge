@@ -54,7 +54,7 @@ public class BridgeController {
         String userInput = inputView.readMoving();
 
         StageResult stageResult = bridgeGame.processStage(userInput);
-
+        outputView.printMap(userInput, stageResult);
         processResult(stageResult);
     }
 

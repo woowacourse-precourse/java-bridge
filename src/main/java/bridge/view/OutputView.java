@@ -23,6 +23,8 @@ public class OutputView {
         makeMap(userInput, stageResult);
 
         String result = convertMapToString();
+
+        System.out.println(result);
     }
 
     public void makeMap(String userInput, StageResult stageResult) {
@@ -60,7 +62,7 @@ public class OutputView {
 
     public void save(Unit key, String result) {
         checkBrackets(key);
-        userInputMap.get(key).add(result)
+        userInputMap.get(key).add(result);
         addCloseBrackets(key);
     }
 
@@ -115,6 +117,11 @@ public class OutputView {
         sb.append(upSide).append("\n").append(downSide);
 
         return sb.toString();
+    }
+
+    public void resetMap() {
+        userInputMap.get(Unit.UP).clear();
+        userInputMap.get(Unit.DOWN).clear();
     }
 
     /**
