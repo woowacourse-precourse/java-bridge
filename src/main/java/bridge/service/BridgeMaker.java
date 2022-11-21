@@ -1,10 +1,8 @@
 package bridge.service;
 
 import bridge.domain.Bridge;
-import bridge.type.DirectionType;
 import utils.BridgeNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +11,6 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final int initialTryCnt = 0;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -25,25 +22,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         Bridge bridge = Bridge.getInstance();
-        bridge.init(getBridgeList(size), initialTryCnt);
+        bridge.init(BridgeMakeService.getBridgeInfoList(size, bridgeNumberGenerator));
         return bridge.getBridgeInfo();
     }
 
-
-    public List<String> getBridgeList(int size) {
-        List<String> bridge = new ArrayList<>();
-        for (int idx = 0; idx < size; idx++) {
-            bridge.add(getCrossable());
-        }
-        return bridge;
-    }
-
-
-    public String getCrossable () {
-        if (bridgeNumberGenerator.generate() == 0) {
-            return DirectionType.DOWN.getDirection();
-        }
-        return DirectionType.UP.getDirection();
-    }
 
 }
