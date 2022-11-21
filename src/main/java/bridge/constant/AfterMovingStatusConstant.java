@@ -2,17 +2,30 @@ package bridge.constant;
 
 public enum AfterMovingStatusConstant {
 
-    FAIL(0),
-    NEXT_TURN(1),
-    SUCCESS(2);
+    FAIL(false, true, false),
+    NEXT_TURN(true, false, false),
+    SUCCESS(false, true, true);
 
-    private final int status;
+    private final boolean continueThisTurn;
+    private final boolean isFinishThisTurn;
+    private final boolean isGameSuccess;
 
-    AfterMovingStatusConstant(int status) {
-        this.status = status;
+    AfterMovingStatusConstant(boolean continueThisTurn, boolean isFinishThisTurn, boolean isGameSuccess) {
+        this.continueThisTurn = continueThisTurn;
+        this.isFinishThisTurn = isFinishThisTurn;
+        this.isGameSuccess = isGameSuccess;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isContinueThisTurn() {
+        return continueThisTurn;
     }
+
+    public boolean isFinishThisTurn() {
+        return isFinishThisTurn;
+    }
+
+    public boolean isGameSuccess() {
+        return isGameSuccess;
+    }
+
 }

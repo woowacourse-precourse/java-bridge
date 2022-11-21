@@ -15,42 +15,40 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static BridgeGame bridgeGame;
-    private final List<String> bridge = new ArrayList<>();
+    private final Bridge thisGameBridge;
+    private Bridge thisTurnBridge;
     private final Validation validation = new Validation();
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    protected BridgeGame() {
-
-    }
-
-    public static BridgeGame getBridgeGame() {
-        if (bridgeGame == null) {
-            return new BridgeGame();
-        }
-        return bridgeGame;
-    }
-
-    public List<String> createBridge(String length) {
+    public BridgeGame(String length) {
         validation.bridgeLengthValidation(length);
-        this.bridge.addAll(bridgeMaker.makeBridge(Integer.parseInt(length)));
-        return this.bridge;
+        List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(length));
+        thisGameBridge = new Bridge(bridge);
     }
+
+    public void createThisTurnBridge() {
+        thisTurnBridge = new Bridge();
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public AfterMovingStatusConstant move(Bridge randomCreateBridge, Bridge thisTurnBridge, String upOrDownInput) {
+    public AfterMovingStatusConstant move(String upOrDownInput) {
         validation.bridgeMovingValidation(upOrDownInput);
         thisTurnBridge.addBridge(UpDownConstant.of(upOrDownInput));
-        if (thisTurnBridge.equals(randomCreateBridge, thisTurnBridge.length() - 1)) {
-            if (thisTurnBridge.equalsLength(randomCreateBridge)) {
+        if (thisTurnBridge.equals(thisGameBridge, thisTurnBridge.length() - 1)) {
+            if (thisTurnBridge.equalsLength(thisGameBridge)) {
                 return AfterMovingStatusConstant.SUCCESS;
             }
             return AfterMovingStatusConstant.NEXT_TURN;
         }
         return AfterMovingStatusConstant.FAIL;
+    }
+
+    public String thisTurnBridge() {
+        return thisTurnBridge.toString(thisGameBridge);
     }
 
     /**

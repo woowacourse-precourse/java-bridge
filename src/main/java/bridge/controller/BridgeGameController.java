@@ -10,37 +10,34 @@ import java.util.List;
 public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
-    private final BridgeGame bridgeGame = BridgeGame.getBridgeGame();
-    private static int gameCount = 0;
+
+    private int gameCount = 0;
     public void start() {
-        final List<String> bridge = bridgeGame.createBridge(bridgeLengthInputView());
-        Bridge randomCreateBridge = new Bridge(bridge);
+        BridgeGame bridgeGame = new BridgeGame(bridgeLengthInputView());
         while (true) {
-            Bridge thisTurnBridge = createThisTurnBridge();
-            while (true) {
-                AfterMovingStatusConstant afterMovingStatusConstant = movingBridgeWithReturnStatusWithView(randomCreateBridge,
-                        thisTurnBridge);
+            AfterMovingStatusConstant afterMovingStatusConstant = thisTurnGameStart(bridgeGame);
+            if (afterMovingStatusConstant.isGameSuccess()) {
+                return;
             }
         }
-
     }
 
-    private static Bridge createThisTurnBridge() {
+    private AfterMovingStatusConstant thisTurnGameStart(BridgeGame bridgeGame) {
         gameCount += 1;
-        return new Bridge();
+        bridgeGame.createThisTurnBridge();
+        while (true) {
+            AfterMovingStatusConstant movingStatus = bridgeGame.move(thisTurnMoveBridgeInputView());
+            thisTurnMovingResult(bridgeGame.thisTurnBridge());
+            if (movingStatus.isFinishThisTurn()) {
+                return movingStatus;
+            }
+        }
     }
 
-    private AfterMovingStatusConstant movingBridgeWithReturnStatusWithView(Bridge randomCreateBridge, Bridge thisTurnBridge) {
-        AfterMovingStatusConstant afterMovingStatusConstant = movingProcedure(randomCreateBridge,
-                thisTurnBridge);
-        outputView.printMap(thisTurnBridge.toString(randomCreateBridge));
-        return afterMovingStatusConstant;
+    private void thisTurnMovingResult(String thisTurnBridge) {
+        outputView.printMap(thisTurnBridge);
     }
 
-    private AfterMovingStatusConstant movingProcedure(Bridge randomCreateBridge, Bridge thisTurnBridge) {
-        return bridgeGame.move(randomCreateBridge, thisTurnBridge,
-                thisTurnMoveBridgeInputView());
-    }
 
     private String thisTurnMoveBridgeInputView() {
         outputView.printChooseWhereToGoBridgeMessage();
