@@ -12,9 +12,8 @@ public class BridgeGame {
     private int step;
     private BridgeGameStstus status;
 
-    public BridgeGame(int bridgeSize) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
         this.step = 0;
         this.status = BridgeGameStstus.PROCEEDING;
     }
