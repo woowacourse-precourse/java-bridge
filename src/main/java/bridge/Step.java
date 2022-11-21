@@ -17,6 +17,6 @@ public enum Step {
     }
 
     public static boolean validStep(String str){
-        return Arrays.stream(Step.values()).filter(c -> c.name().equals(str)).count() > 0 ? true : false;
+        return Arrays.stream(Step.values()).filter(c -> c.name().equals(str)).findAny().orElse(null) != null ? true : false;
     }
 }

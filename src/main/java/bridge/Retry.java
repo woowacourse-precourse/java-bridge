@@ -7,6 +7,6 @@ public enum Retry {
     Q;
 
     public static boolean validRetry(String str){
-        return Arrays.stream(Step.values()).filter(c -> c.name().equals(str)).count() > 0 ? true : false;
+        return Arrays.stream(Retry.values()).filter(c -> c.name().equals(str)).findAny().orElse(null) != null ? true : false;
     }
 }
