@@ -11,8 +11,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        Message.GAME_START.print();
         Message.SIZE_INPUT.print();
-        int size = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        int size = Integer.parseInt(input);
         if (size < Constant.MIN_SIZE_NUM || size > Constant.MAX_SIZE_NUM) {
             Message.ERROR_SIZE.print();
             throw new IllegalStateException(Message.ERROR_SIZE.getMessage());
@@ -24,7 +26,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        Message.MOVE_INPUT.print();
+        String command = Console.readLine();
+        if (!command.equals("U") && !command.equals("D")) {
+            Message.ERROR_MOVE.print();
+            throw new IllegalStateException(Message.ERROR_MOVE.getMessage());
+        }
+        return command;
     }
 
     /**

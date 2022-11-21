@@ -22,7 +22,7 @@ public enum Message {
     }
 
     public void print() {
-        System.out.println(message);
+        System.out.println("\n" + message);
     }
 
     public String getMessage() {

@@ -9,5 +9,7 @@ public class Application {
 
         int size = inputView.readBridgeSize();
         bridgeGame.start(size);
+        String command = inputView.readMoving();
+        bridgeGame.move(command);
     }
 }
