@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.GameCommand;
+import bridge.domain.command.GameCommand;
 import bridge.domain.ProgressMap;
 
 public class BridgeGameService {
