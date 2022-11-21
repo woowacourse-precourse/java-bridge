@@ -24,9 +24,8 @@ class BridgeMakerTest {
 
 			assertEquals(bridges.size(), size);
 			assertTrue(nonDuplicateBridges.size() == 1 || nonDuplicateBridges.size() == 2);
-			assertTrue(nonDuplicateBridges.containsAll(Set.of(Stairs.UP.getCommand(), Stairs.DOWN.getCommand()))
-				|| nonDuplicateBridges.contains(Stairs.UP.getCommand())
-				|| nonDuplicateBridges.contains(Stairs.DOWN.getCommand()));
+			assertTrue(nonDuplicateBridges.contains(Stairs.UP.getCommand()) || nonDuplicateBridges.contains(
+				Stairs.DOWN.getCommand()));
 		}
 	}
 }
