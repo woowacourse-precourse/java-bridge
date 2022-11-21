@@ -39,6 +39,10 @@ public class OXBridge {
         }
     }
 
+    public int sizeOfOXBridge() {
+        return upBridge.size();
+    }
+
     public String toString() {
         return OXBridgeUtils.makingResult(upBridge, downBridge);
     }
