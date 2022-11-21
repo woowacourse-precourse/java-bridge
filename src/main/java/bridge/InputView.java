@@ -61,8 +61,8 @@ public class InputView {
 
     public void readMovingCommandCheck(String userCommand){
         String moveCommandRegularExpression = "^[U|u|D|d]{1}$";
-        if(userCommand.matches(moveCommandRegularExpression)){
-
+        if(!userCommand.matches(moveCommandRegularExpression)){
+            throw new IllegalArgumentException("[ERROR] U와 R 중에 하나를 입력하세요.");
         }
     }
 }
