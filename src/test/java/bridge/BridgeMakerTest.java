@@ -22,19 +22,4 @@ class BridgeMakerTest {
 		//then
 		assertThat(bridge).containsExactly("U", "D", "U", "U");
 	}
-
-	@DisplayName("다리가 비정상적으로 생성되면 에러를 발생한다.")
-	@Test
-	void makeNoBridge() {
-		//given
-		BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 2));
-
-		//when
-		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-
-		//then
-		assertThatThrownBy(() -> {
-			List<String> bridge = bridgeMaker.makeBridge(3);
-		}).isInstanceOf(IllegalArgumentException.class);
-	}
 }
