@@ -21,28 +21,35 @@ public class OutputView {
                 if (userInput.get(i).equals(bridge.get(i))){
                     firstRow.append(" O ");
                     firstRow.append("|");
+                    secondRow.append("   ");
+                    secondRow.append("|");
                     continue;
                 }
                 firstRow.append(" X ");
                 firstRow.append("|");
+                secondRow.append("   ");
+                secondRow.append("|");
             } else if (userInput.get(i).equals("D")) {
                 if (userInput.get(i).equals(bridge.get(i))){
                     secondRow.append(" O ");
                     secondRow.append("|");
+                    firstRow.append("   ");
+                    firstRow.append("|");
                     continue;
                 }
                 secondRow.append(" X ");
                 secondRow.append("|");
+                firstRow.append("   ");
+                firstRow.append("|");
             }
         }
 
-        firstRow.deleteCharAt(userInput.size() - 1);
-        secondRow.deleteCharAt(userInput.size() - 1);
+        firstRow.deleteCharAt(firstRow.length()-1);
+        secondRow.deleteCharAt(secondRow.length()-1);
         firstRow.append("]");
         secondRow.append("]");
 
-        System.out.println(firstRow.toString());
-        System.out.println(secondRow.toString());
+        System.out.println(firstRow.toString()+"\n"+secondRow.toString());
     }
 
     /**
