@@ -1,9 +1,9 @@
 package bridge.Controller;
 
 import bridge.Domain.BridgeGame;
-import bridge.Domain.BridgeMaker;
-import bridge.Domain.BridgeNumberGenerator;
-import bridge.Domain.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -21,8 +21,7 @@ public class Controller {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView = new OutputView();
 
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println();
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
 
         //다리 길이 입력 받기
         int bridgeLen = inputView.readBridgeSize();
