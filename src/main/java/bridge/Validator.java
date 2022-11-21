@@ -62,4 +62,24 @@ public class Validator {
             throw exit_Program;
         }
     }
+
+    public static String isRorQ(String rOrQ){
+        if(rOrQ=="R"){
+            return rOrQ;
+        }
+        if(rOrQ=="Q"){
+            return rOrQ;
+        }
+        throw exit_Program;
+    }
+
+    public static String tryCatchIsRorQ(String input){
+        try{
+            return isRorQ(input);
+        }catch(IllegalArgumentException e){
+            outputView.printStatements(ErrorStatements.INVALID_RETRY_ERROR.warned());
+            outputView.printStatements("");
+            throw exit_Program;
+        }
+    }
 }
