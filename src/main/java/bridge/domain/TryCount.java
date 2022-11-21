@@ -15,6 +15,7 @@ public class TryCount {
 
     public TryCount(int count) {
         validateMin(count);
+
         this.count = count;
     }
 
@@ -41,11 +42,11 @@ public class TryCount {
             return false;
         }
         TryCount tryCount = (TryCount) o;
-        return count == tryCount.count;
+        return this.count == tryCount.count;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(count);
+        return Objects.hash(this.count);
     }
 }
