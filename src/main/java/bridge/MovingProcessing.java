@@ -12,7 +12,7 @@ public class MovingProcessing {
     private final OutputView outputView;
     private final List<String> upSide;
     private final List<String> downSide;
-
+    private int count;
     public MovingProcessing() {
         inputView = new InputView();
         randomBridge = new RandomBridge();
@@ -20,19 +20,20 @@ public class MovingProcessing {
         outputView = new OutputView();
         upSide = new ArrayList<>();
         downSide = new ArrayList<>();
+        count = 0;
     }
 
-    public void readMove() {
+    public boolean readMove() {
         List<String> bridge = randomBridge.getBridge();
         while (upSide.size() < bridge.size()) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String input = inputView.readMoving();
             if (input.length() == 0)
                 continue;
             if (!compareBridgeToInput(input, bridge)){
-                return;
+                return false;
             }
         }
+        return true;
     }
 
     //이부분 바꿀 수 있다면 노력해보자
@@ -78,6 +79,18 @@ public class MovingProcessing {
             upSide.add(" ");
             downSide.add("X");
         }
+    }
+
+    public List<String> getUpSide(){
+        return upSide;
+    }
+
+    public List<String> getDownSide(){
+        return downSide;
+    }
+
+    public int getCount(){
+        return count;
     }
 
 }
