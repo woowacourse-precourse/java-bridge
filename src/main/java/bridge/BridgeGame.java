@@ -32,6 +32,7 @@ public class BridgeGame {
             isMove = true;
             return;
         }
+        isMove = false;
     }
 
     /**
