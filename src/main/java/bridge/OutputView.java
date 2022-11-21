@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.Message.GuideMessage.*;
+
 public class OutputView {
     private static final String bridgeStart = "[ ";
     private static final String bridgeEnd = " ]";
@@ -26,6 +28,16 @@ public class OutputView {
         }
     }
 
-    public void printResult() {
+    public static void printResult(boolean isSuccess, int bridgeGameCount, List<List<String>> currentBridge) {
+        System.out.println(GAME_RESULT_MESSAGE.getGuideMessage());
+        printMap(currentBridge);
+        System.out.print(GAME_SUCCESS_OR_NOT_MESSAGE.getGuideMessage());
+        if (isSuccess) {
+            System.out.println(GAME_SUCCESS_MESSAGE.getGuideMessage());
+        }
+        if (!isSuccess) {
+            System.out.println(GAME_FAIL_MESSAGE.getGuideMessage());
+        }
+        System.out.println(TOTAL_GAME_COUNT_MESSAGE.getGuideMessage() + bridgeGameCount);
     }
 }
