@@ -45,7 +45,7 @@ public class BridgeGame {
         move();
 
         if(player.isSuccess(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
-            result.setSuccess(true);
+            result.setIsSuccess("성공");
             return;
         }
 
@@ -62,7 +62,7 @@ public class BridgeGame {
             String moveTo = inputView.readMoving();
             player.move(moveTo);
             result.makeMap(bridge.getSpaces(), player.getMoves());
-            outputView.printMap(result.getMap());
+            outputView.printMap(result);
         }
     }
 
@@ -86,6 +86,6 @@ public class BridgeGame {
     }
 
     public void showResult(){
-        outputView.printResult();
+        outputView.printResult(result);
     }
 }
