@@ -15,8 +15,10 @@ public class BridgeController {
     private static BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
     public static int compareBridgeNum = 0;
     public static int howManyGame = 1;
+    private static int quit = 0;
 
     public static void BridgeGameStart() {
+        howManyGame = 1;
         //게임 시작 선언
         OutputView.printGameStart();
         //다리 길이 입력
@@ -34,12 +36,12 @@ public class BridgeController {
         for (compareBridgeNum = 0; compareBridgeNum < CompareBridge.ranBridge.size(); ) {
             String compare = InputView.readMoving();
             CompareBridge.udCount++;
-
             CompareBridge.compareUp(compareBridgeNum, compare);
             CompareBridge.compareDown(compareBridgeNum, compare);
-
         }
-        completeMap();
+        if (compareBridgeNum == CompareBridge.ranBridge.size() && quit == 0) {
+            completeMap();
+        }
     }
 
     public static void retryGame() {
@@ -47,14 +49,16 @@ public class BridgeController {
         String retry = Console.readLine();
         restartMap(retry);
         finishMap(retry);
+
+        compareBridgeNum = CompareBridge.ranBridge.size();
     }
 
     // R 입력시 게임 재시작
     public static void restartMap(String input) {
         CompareBridge.udCount = 0;
         compareBridgeNum = 0;
-        howManyGame++;
         if (input.equals("R")) {
+            howManyGame++;
             CompareBridge.sbUp.delete(0, CompareBridge.sbUp.length());
             CompareBridge.sbDown.delete(0, CompareBridge.sbDown.length());
         }
@@ -70,16 +74,19 @@ public class BridgeController {
             System.out.println();
             System.out.println("게임 성공 여부: " + "실패");
             System.out.println("총 시도한 횟수: " + howManyGame);
+            quit++;
         }
     }
 
     public static void completeMap() {
-        System.out.println("최종 게임 결과");
-        System.out.println("[" + CompareBridge.sbUp + "]");
-        System.out.println("[" + CompareBridge.sbDown + "]");
-        System.out.println();
-        System.out.println("게임 성공 여부: " + "성공");
-        System.out.println("총 시도한 횟수: " + howManyGame);
+        if (compareBridgeNum == CompareBridge.ranBridge.size()) {
+            System.out.println("최종 게임 결과");
+            System.out.println("[" + CompareBridge.sbUp + "]");
+            System.out.println("[" + CompareBridge.sbDown + "]");
+            System.out.println();
+            System.out.println("게임 성공 여부: " + "성공");
+            System.out.println("총 시도한 횟수: " + howManyGame);
+        }
     }
 }
 

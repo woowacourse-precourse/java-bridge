@@ -11,7 +11,7 @@ public class BridgeGame {
     private static int gameCount = 1;
 
     public static void move() {
-//        InputView.moveCount = Console.readLine();
+
     }
 
     /**
