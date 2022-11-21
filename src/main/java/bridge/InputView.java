@@ -16,10 +16,10 @@ public class InputView {
         int bridgelength = 0;
         try {
             bridgelength = Integer.parseInt(Console.readLine());
+            validateOfBridgeLength(bridgelength);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 숫자를 입력하세요. (3~20)");
         }
-        validateOfBridgeLength(bridgelength);
         return bridgelength;
     }
 
