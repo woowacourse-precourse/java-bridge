@@ -1,7 +1,5 @@
 package bridge;
 
-import static bridge.BridgeMaker.DOWN_STAIRS;
-import static bridge.BridgeMaker.UP_STAIRS;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,7 +34,7 @@ class BridgeMakerTest {
         //when
         List<String> bridge = bridgeMaker.makeBridge(userInput);
         //then
-        assertThat(bridge).containsAnyOf(UP_STAIRS,DOWN_STAIRS);
+        assertThat(bridge).containsAnyOf(BridgeDirect.UP.getDirection(),BridgeDirect.DOWN.getDirection());
 
     }
 

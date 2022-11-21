@@ -8,8 +8,6 @@ import util.ErrorMessage;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    public static final String UP_STAIRS="U";
-    public static final String DOWN_STAIRS="D";
     private static final int MIN_BRIDGE_SIZE=3;
     private static final int MAX_BRIDGE_SIZE=20;
 
@@ -33,11 +31,7 @@ public class BridgeMaker {
 
     private void makeOneStairs(List<String> bridge) {
         int generateNum = bridgeNumberGenerator.generate();
-        if (generateNum == 1) {
-            bridge.add(UP_STAIRS);
-        }else{
-            bridge.add(DOWN_STAIRS);
-        }
+        bridge.add(BridgeDirect.numToDirection(generateNum));
     }
 
     public static void validateBridgeSize(int bridgeSize){
