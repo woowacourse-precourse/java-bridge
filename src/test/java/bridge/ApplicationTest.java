@@ -97,5 +97,23 @@ class ApplicationTest extends NsTest {
 
             assertThat(player.getPosition()).isEqualTo(steps - 1 );
         }
+
+        @ParameterizedTest
+        @DisplayName("저장 기능")
+        @CsvSource({"U, D, U, true, true, false", "U, U, D, false, false, true"})
+        void saveTest(String one, String two, String three, boolean first, boolean second, boolean third) {
+            String[] choices = {one, two, three};
+            boolean[] results = {first, second, third};
+
+            for (int step = 0; step < 3; step++) {
+                player.saveLastChoice(choices[step], results[step]);
+                player.saveHistory();
+            }
+
+            assertThat(player.getResult()).isEqualTo(third);
+            assertThat(player.getLastChoice()).isEqualTo(three);
+            assertThat(player.getGameHistory()).isEqualTo(new ArrayList<>(Arrays.asList(choices)));
+
+        }
     }
 }
