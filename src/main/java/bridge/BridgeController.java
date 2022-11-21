@@ -28,7 +28,7 @@ public class BridgeController {
     }
 
     private void initGame() {
-        OutputView.askSize();
+        outputView.askSize();
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
         bridgeGame.setBridge(bridge);
@@ -44,7 +44,7 @@ public class BridgeController {
     }
 
     private void askRetry() {
-        OutputView.askRetry();
+        outputView.askRetry();
         Command command = inputView.readGameCommand();
         command.exec(bridgeGame);
     }
