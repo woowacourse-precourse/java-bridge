@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameService {
+
     private final OutputView outputView;
     private final InputView inputView;
     private final BridgeMaker bridgeMaker;
@@ -41,7 +42,7 @@ public class BridgeGameService {
             return;
         }
         bridgeGame.move(move);
-        gameScore.setGameScore(bridgeGame.isSuccess(), bridgeGame.getCount(), bridgeGame.getBridge().getBrdige());
+        gameScore.setGameScore(bridgeGame.isSuccess(), bridgeGame.getCount(), bridgeGame.getPlayerBridge().getBrdige());
         outputView.printMap(gameScore);
     }
 
