@@ -4,12 +4,14 @@ import bridge.InputView;
 import bridge.OutputView;
 import bridge.data.BridgeResultData;
 import bridge.domain.BridgeGame;
+import bridge.domain.GameCommand;
 import bridge.domain.Moving;
 
 public class BridgeGameController {
     private int trial = 0;
     private boolean isRestart = true;
     private Moving moving;
+    private GameCommand gameCommand;
     private BridgeGame bridgeGame;
 
     public void run(){
@@ -59,6 +61,23 @@ public class BridgeGameController {
         }catch (IllegalArgumentException i){
             System.out.println(i.getMessage());
             readMoving();
+        }
+    }
+
+    /**
+     * 재시작 여부
+     */
+    private void restartOrQuit(){
+        readGameCommand();
+    }
+
+    private void readGameCommand(){
+        try {
+            String gameCommandValue = InputView.readGameCommand();
+            gameCommand = new GameCommand(gameCommandValue);
+        }catch (IllegalArgumentException i){
+            System.out.println(i.getMessage());
+            readGameCommand();
         }
     }
 }
