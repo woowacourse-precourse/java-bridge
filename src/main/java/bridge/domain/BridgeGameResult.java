@@ -21,11 +21,11 @@ public class BridgeGameResult {
     }
 
     public boolean isFail() {
-        return playerMoveResult.contains(Boolean.FALSE);
+        return this.playerMoveResult.contains(Boolean.FALSE);
     }
 
     public boolean isSuccess() {
-        return !playerMoveResult.contains(Boolean.FALSE) && bridge.sizeEqual(playerMoveResult.size());
+        return !this.playerMoveResult.contains(Boolean.FALSE) && bridge.sizeEqual(this.playerMoveResult.size());
     }
 
     @Override
@@ -37,11 +37,11 @@ public class BridgeGameResult {
             return false;
         }
         BridgeGameResult that = (BridgeGameResult) o;
-        return Objects.equals(bridge, that.bridge) && Objects.equals(playerMoveResult, that.playerMoveResult);
+        return Objects.equals(bridge, that.bridge) && Objects.equals(this.playerMoveResult, that.playerMoveResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bridge, playerMoveResult);
+        return Objects.hash(bridge, this.playerMoveResult);
     }
 }
