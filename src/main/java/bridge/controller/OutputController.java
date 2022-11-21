@@ -23,7 +23,6 @@ public class OutputController {
         if (record.equalsToResultBoard(Constant.SUCCESS_OR_FAIL, 1)) {
             result = GuideMessage.SUCCESS;
         }
-
         outputView.endOfGame();
         getChoiceResult(record, bridge);
         outputView.printResult(result, record.getValueByKey(Constant.NUMBER_OF_ATTEMPTS));

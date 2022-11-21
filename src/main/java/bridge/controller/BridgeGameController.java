@@ -34,13 +34,11 @@ public class BridgeGameController {
     }
 
     private void play(Record record, List<String> bridge) {
-        int result;
         while (isContinue(record, bridge)) {
             bridgeGame.move(record, inputController.getMovingDirection());
             outputController.getChoiceResult(record, bridge);
         }
-        result = bridgeGame.isSuccess(record, bridge);
-        record.putInResultBoard(Constant.SUCCESS_OR_FAIL, result);
+        record.putInResultBoard(Constant.SUCCESS_OR_FAIL, bridgeGame.isSuccess(record, bridge));
         outputController.getFinalResult(record, bridge);
     }
 
@@ -50,8 +48,7 @@ public class BridgeGameController {
             return true;
         }
         if (!record.equalsToBoard(index, bridge.get(index))) {
-            String command = inputController.getGameCommand();
-            return bridgeGame.retry(record, command);
+            return bridgeGame.retry(record, inputController.getGameCommand());
         }
         return record.getBoardSize() != bridge.size();
     }
