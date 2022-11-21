@@ -8,12 +8,11 @@ import bridge.view.OutputView;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.model.GameCommand.RETRY;
 import static bridge.model.GameResultState.LOSE;
 import static bridge.model.GameResultState.WIN;
 
 public class BridgeGameController {
-
-    private static final String RETRY_SIGN = "R";
 
     private static int totalTries = 1;
     private static int currentPosition = 0;
@@ -93,7 +92,7 @@ public class BridgeGameController {
     }
 
     private static boolean isRetryCommand(final String gameCommand) {
-        return Objects.equals(gameCommand, RETRY_SIGN);
+        return Objects.equals(gameCommand, RETRY.getSign());
     }
 
     private void initialize() {
