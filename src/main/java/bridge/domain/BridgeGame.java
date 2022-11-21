@@ -11,19 +11,15 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private Integer currentBlockIndex = -1;
     private List<String> bridge = new ArrayList<>();
-    private List<String> bridgeProgress = new ArrayList<>();
     private Integer trialCount = 1;
     private GameState gameState = GameState.RUNNING;
-
     private List<String> upperBlock = new ArrayList<>();
     private List<String> lowerBlock = new ArrayList<>();
 
     public void move(String moveCommand) {
         validateMoveCommand(moveCommand);
         if (isMovable(moveCommand)) {
-            currentBlockIndex += 1;
             drawMap(moveCommand, "O");
             if (isClear()){
                 gameState = GameState.CLEAR;
@@ -35,7 +31,7 @@ public class BridgeGame {
     }
 
     private Boolean isMovable(String moveCommand){
-        return bridge.get(currentBlockIndex + 1).equals(moveCommand);
+        return bridge.get(upperBlock.size()).equals(moveCommand);
     }
 
     private Boolean isClear(){
@@ -54,7 +50,6 @@ public class BridgeGame {
     public void retry(String retrialCommand) {
         validateRetrialCommand(retrialCommand);
         if (retrialCommand.equals(Command.RETRY.getCommand())) {
-            currentBlockIndex = -1;
             this.upperBlock = new ArrayList<>();
             this.lowerBlock = new ArrayList<>();
             trialCount += 1;
