@@ -64,4 +64,11 @@ public class OutputView {
 		upBridgeMap.clear();
 		downBridgeMap.clear();
 	}
+
+	public void successOrFailView(boolean select) {
+		if (select)
+			System.out.println(Constant.SUCCESS_MESSAGE);
+		if (!select)
+			System.out.println(Constant.FAIL_MESSAGE);
+	}
 }
