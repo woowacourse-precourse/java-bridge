@@ -340,13 +340,13 @@ int number = bridgeNumberGenerator.generate();
 ### BridgeShape
   멤버변수: 다리모양 (List<List<String>)
   #### 기능목록
-  - [ ] 다리와 비교해 정답이면 다리 모양에 "O", "X", 또는 " " 추가
-  - [ ] 자신의 다리 모양을 초기화
+  - [x] 다리와 비교해 정답이면 다리 모양에 "O", "X", 또는 " " 추가
+  - [x] 자신의 다리 모양을 초기화
 
 
 ### InputMatcher (Enum)
   ### 기능목록
-  - [ ] 파라미터로 정답이 넘어오면 자신이 가지고 있는 객체와 비교해 이에 대응하는 String을 넘겨줌
+  - [x] 파라미터로 정답이 넘어오면 자신이 가지고 있는 객체와 비교해 이에 대응하는 String을 넘겨줌
 
 
 ### BridgeGameController
