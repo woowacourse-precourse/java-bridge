@@ -23,10 +23,13 @@ public class BridgeGame {
      */
     public boolean move(String moving, int position) {
         String actual = bridge.get(position);
-        if (actual.equals(moving)) {
-            return true;
+        if (validateMove(actual)) {
+            if (moving.equals(actual)) {
+                return true;
+            }
+            return false;
         }
-        return false;
+        throw new IllegalArgumentException(Error.U_OR_D.toString());
     }
 
     /**
@@ -42,6 +45,10 @@ public class BridgeGame {
             return false;
         }
         throw new IllegalArgumentException(Error.R_OR_Q.toString());
+    }
+
+    private boolean validateMove(String target) {
+        return target.equals(Input.UP.toString()) || target.equals(Input.DOWN.toString());
     }
 
     public int getSize() {

@@ -1,7 +1,6 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -25,9 +24,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input = readInput(Sentence.INPUT_SPACE);
-        validateMove(input);
-        return input;
+        return readInput(Sentence.INPUT_SPACE);
     }
 
     /**
@@ -50,12 +47,6 @@ public class InputView {
     private void validateNumber(String target) {
         if (!Pattern.matches(regex, target)) {
             throw new IllegalArgumentException(Error.INCLUDE_CAHRACTER.toString());
-        }
-    }
-
-    private void validateMove(String target) {
-        if (!Objects.equals(target, Input.UP.toString()) && !Objects.equals(target, Input.DOWN.toString())) {
-            throw new IllegalArgumentException(Error.U_OR_D.toString());
         }
     }
 }
