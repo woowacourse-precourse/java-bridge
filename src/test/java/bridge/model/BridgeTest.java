@@ -20,4 +20,26 @@ class BridgeTest {
     void isMoved_DirectionEqualsBridgeInSameIndex_True(int index) {
         assertThat(bridge.isMoved(Direction.D, index)).isTrue();
     }
+
+    @Nested
+    @DisplayName("다리를 건널 수 있는지 확인하는 테스트")
+    class CanMoveTest {
+        Stack<Direction> movement = new Stack<>();
+
+        @Test
+        @DisplayName("움직일 방향으로 다리를 건널 수 있으면 통과")
+        void canMove_MovementEqualsBridgeInSameIndex_True() {
+            movement.push(Direction.D);
+            assertThat(bridge.canMove(movement)).isTrue();
+        }
+
+        @Test
+        @DisplayName("movement가 비어있을 때 예외가 발생한다.")
+        void canMove__() {
+            movement.clear();
+            assertThatThrownBy(() -> new Bridge(List.of(Direction.D))
+                    .canMove(movement))
+                    .isInstanceOf(IndexOutOfBoundsException.class);
+        }
+    }
 }
