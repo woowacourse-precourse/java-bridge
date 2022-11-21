@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final Pattern BRIDGE_SIZE_REGX = Pattern.compile("\\d");
+    private final Pattern BRIDGE_SIZE_REGX = Pattern.compile("\\d+");
     private final String NOT_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private final String NOT_MOVING = "[ERROR] 이동할 칸은 \"U\" 또는 \"D\"만 가능합니다.";
     private final String BRIDGE_UP = "U";
@@ -19,6 +19,8 @@ public class InputView {
     private final String RETRY = "R";
     private final String QUIT = "Q";
     private final String NOT_GAME_COMMAND = "[ERROR] 재시도는 \"R\", 종료는 \"Q\"만 가능합니다.";
+    private final int START_RANGE = 3;
+    private final int END_RANGE = 20;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -28,6 +30,7 @@ public class InputView {
         String bridgeSize = Console.readLine();
 
         validateBridgeSize(bridgeSize);
+        validateBridgeRange(Integer.parseInt(bridgeSize));
 
         return Integer.parseInt(bridgeSize);
     }
@@ -67,6 +70,12 @@ public class InputView {
     private void validateMoving(String moving) {
         if (!(moving.equals(BRIDGE_UP) || moving.equals(BRIDGE_DOWN))) {
             throw new IllegalArgumentException(NOT_MOVING);
+        }
+    }
+
+    private void validateBridgeRange(int bridgeSize) {
+        if (!(bridgeSize >= START_RANGE && bridgeSize <= END_RANGE)) {
+            throw new IllegalArgumentException(NOT_BRIDGE_SIZE);
         }
     }
 }
