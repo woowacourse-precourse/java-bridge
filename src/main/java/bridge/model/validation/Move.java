@@ -22,6 +22,10 @@ public enum Move {
         return moveValue;
     }
 
+    public boolean isEquals(int randomValue, Move move){
+        return move.getMoveValue() == randomValue;
+    }
+
     // 사용자로부터 입력
     public static Move of(String input) {
         validate(input);
