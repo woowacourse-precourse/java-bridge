@@ -27,6 +27,15 @@ class InputViewTest {
         int result=INPUT_VIEW.readBridgeSize();
         assertThat(result).isEqualTo(Integer.parseInt(input));
     }
+    @DisplayName("readBridgeSize 예외 사항 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "5j", " 10", "1", "2", "-1", "21"})
+    void readBridgeSize_exception_test(String input){
+        byte[] buf = input.getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+        assertThatThrownBy(()->INPUT_VIEW.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("tryParse 예외 사항 테스트")
     @ParameterizedTest
