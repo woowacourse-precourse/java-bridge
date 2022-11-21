@@ -10,7 +10,6 @@ import bridge.model.Bridge;
 import bridge.model.BridgeMap;
 import bridge.model.Player;
 
-import static bridge.util.BridgeConstant.FALL_BLOCK;
 import static bridge.util.BridgeConstant.QUIT_GAME;
 
 /**
@@ -38,38 +37,10 @@ public class BridgeGame {
         while (isContinue) {
             move(player);
             check(player);
-            if (reachFinalLine(player)) {
-                gameSet(WIN);
-            }
+            judge(player);
         }
         bridgeResult.printResult(player, isWin);
     }
-
-    private void gameSet(boolean winOrLose) {
-        isWin = winOrLose;
-        isContinue = QUIT_GAME;
-    }
-
-    private void check(Player player) {
-        boolean moveSuccess = getMoveSuccess(player);
-        bridgeMapMaker.addBridgeMapBlock(player, moveSuccess);
-        bridgeResult.printMap();
-        if (!moveSuccess) {
-            retry(player);
-        }
-    }
-
-    private boolean reachFinalLine(Player player) {
-        return player.getXPosition() == bridge.getBridge()[0].length - 1
-                && getMoveSuccess(player);
-    }
-
-    private boolean getMoveSuccess(Player player) {
-        int positionX = player.getXPosition();
-        int positionY = player.getYPosition();
-        return !bridge.getBridge()[positionY][positionX].equals(FALL_BLOCK);
-    }
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -82,6 +53,15 @@ public class BridgeGame {
         bridgeMove.movePlayer(player);
     }
 
+    private void check(Player player) {
+        boolean moveSuccess = bridgeMove.getMoveSuccess(player, bridge);
+        bridgeMapMaker.addBridgeMapBlock(player, moveSuccess);
+        bridgeResult.printMap();
+        if (!moveSuccess) {
+            retry(player);
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -92,5 +72,20 @@ public class BridgeGame {
         if (continueCommand == QUIT_GAME) {
             gameSet(LOSE);
         }
+    }
+
+    private void gameSet(boolean winOrLose) {
+        isWin = winOrLose;
+        isContinue = QUIT_GAME;
+    }
+
+    private void judge(Player player) {
+        if (getReachFinalLine(player) && bridgeMove.getMoveSuccess(player, bridge)) {
+            gameSet(WIN);
+        }
+    }
+
+    private boolean getReachFinalLine(Player player) {
+        return player.getXPosition() == bridge.getBridge()[0].length - 1;
     }
 }
