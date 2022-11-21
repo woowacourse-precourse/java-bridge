@@ -22,6 +22,7 @@ public class InputView {
         int size = Integer.parseInt(readSize);
         if (size < 3 || 20 < size) {
             System.err.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
     private void isNumber(String size) {
