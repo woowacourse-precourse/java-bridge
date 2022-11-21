@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import model.User;
 import util.ErrorMessage;
 
 /**
@@ -8,6 +9,7 @@ import util.ErrorMessage;
  */
 public class InputView {
     private static final String NUMBER_REGEX = "^[0-9]*$";
+
 
     public int readBridgeSize() {
         String usersInput = Console.readLine();
@@ -20,15 +22,25 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String oneStairs = Console.readLine();
+        return oneStairs;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = Console.readLine();
+        validateCommand(gameCommand);
+        return gameCommand;
     }
+
+    private void validateCommand(String command) {
+        if (!command.equals(User.COMMAND_RETRY) && !command.equals(User.COMMAND_QUIT)) {
+            throw new IllegalArgumentException(ErrorMessage.COMMAND_R_OR_Q);
+        }
+    }
+
 
     public void validateDigit(String input){
         if (!isDigit(input)) {
@@ -42,11 +54,7 @@ public class InputView {
         }
         return true;
     }
-    
-    public String readOneStairs(){
-        String oneStairs = Console.readLine();
-        return oneStairs;
-    }
+
 
     public void validateCharacter(String oneStairs) {
         if (isDigit(oneStairs)) {
