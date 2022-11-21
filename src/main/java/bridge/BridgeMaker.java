@@ -1,7 +1,9 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static bridge.Enums.View.LOWER_POSITION;
 import static bridge.Enums.View.UPPER_POSITION;
@@ -16,15 +18,13 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+        Map<Integer, String> pathMap = new HashMap<>();
+        pathMap.put(0, LOWER_POSITION.toString());
+        pathMap.put(1, UPPER_POSITION.toString());
 
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-
-            if (randomNumber == 1) {
-                bridge.add(UPPER_POSITION.toString());
-            } else if (randomNumber == 0) {
-                bridge.add(LOWER_POSITION.toString());
-            }
+            bridge.add(pathMap.get(randomNumber));
         }
 
         return bridge;
