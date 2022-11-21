@@ -5,24 +5,12 @@ import java.util.List;
 import static bridge.Check.checkBridge;
 
 public class Application {
-    
     private static InputView inputView;
     private static BridgeMaker bridgeMaker;
-    private static GenerateMessage generateMessage;
-    private static EndGame endGame;
-    
 
     public static void main(String[] args) {
+        System.out.println("다리 건너기 게임을 시작합니다.");
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        String step = inputView.readMoving();
-        boolean check = checkBridge(step, bridge);
-        generateMessage.start(check, step);
-        if(!check){
-            boolean result = endGame.fail();
-            if(result){
-            
-            }
-        }
     }
 }
