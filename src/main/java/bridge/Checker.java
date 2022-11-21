@@ -2,7 +2,6 @@ package bridge;
 
 import static constant.Values.Message.*;
 
-import constant.Values.BridgeCase;
 import constant.Values.MoveCase;
 
 public class Checker {
@@ -56,4 +55,18 @@ public class Checker {
     public boolean checkBridgeGameResult(BridgeGame bridgeGame) {
         return bridgeGame.getResults().get(bridgeGame.getIndex() - 1).isResult();
     }
+
+    public String checkGameOption(String gameOption) {
+        if (!(gameOption.equals("R") | gameOption.equals("Q"))) {
+            throw new IllegalArgumentException(
+                    String.format(ERROR_INPUT_VALUE.getMessage(), gameOption) + ERROR_RETRY.getMessage()
+                            + ERROR_RE_INPUT.getMessage());
+        }
+        return gameOption;
+    }
+
+    public boolean checkRetry(String gameOption) {
+        return gameOption.equals("R");
+    }
+
 }
