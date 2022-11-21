@@ -41,4 +41,9 @@ public final class Constants {
         public static final String RETRY = "R";
         public static final String QUIT = "Q";
     }
+
+    public final class Result{
+        public static final String SUCCESS = "성공";
+        public static final String FAIL = "실패";
+    }
 }
