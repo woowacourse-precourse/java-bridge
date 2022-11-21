@@ -36,4 +36,8 @@ public class BridgeGameController {
         service.endGame();
         return false;
     }
+
+    public boolean checkGameProgress() {
+        return service.checkGameProgress();
+    }
 }

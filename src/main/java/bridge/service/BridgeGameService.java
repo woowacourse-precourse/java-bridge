@@ -11,4 +11,5 @@ public interface BridgeGameService {
     String createMap();
     boolean retryGame();
     boolean endGame();
+    boolean checkGameProgress();
 }

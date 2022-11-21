@@ -35,11 +35,15 @@ public class DefaultView implements View {
     }
 
     private void playGame() {
-        boolean isMove;
+        boolean isMove, isEnd;
         do {
             isMove = inputMove();
+            isEnd = controller.checkGameProgress();
             outputBridgeMap();
-        } while (isMove);
+        } while (isMove && !isEnd);
+        if (isEnd) {
+            return;
+        }
         inputGameCommand();
     }
 

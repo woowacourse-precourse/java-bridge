@@ -66,4 +66,16 @@ class BridgeGameTest {
         // when, then
         assertThat(game.retry()).isTrue();
     }
+
+    @DisplayName("다리를 모두 건너면 true가 반환된다.")
+    @Test
+    void isEndWhenBridgeEnd() {
+        // given
+        game.move(BridgeCell.UP);
+        game.move(BridgeCell.DOWN);
+        game.move(BridgeCell.UP);
+
+        // when, then
+        assertThat(game.isEnd()).isTrue();
+    }
 }

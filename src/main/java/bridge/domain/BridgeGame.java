@@ -57,4 +57,8 @@ public class BridgeGame {
     public boolean end() {
         return true;
     }
+
+    public boolean isEnd() {
+        return history.size() == bridge.size();
+    }
 }
