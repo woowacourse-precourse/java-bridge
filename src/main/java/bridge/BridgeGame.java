@@ -4,30 +4,24 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private String firstLine;
-    private String secondLine;
+    private String[] lines;
 
     public BridgeGame() {
-        this.firstLine = "";
-        this.secondLine = "";
+        this.lines = new String[2];
     }
 
     public void resetAllLine() {
-        this.firstLine = "";
-        this.secondLine = "";
+        this.lines[0] = "";
+        this.lines[1] = "";
     }
 
-    public String getFirstLine() {
-        return firstLine;
-    }
-
-    public String getSecondLine() {
-        return secondLine;
+    public String[] getLines() {
+        return this.lines;
     }
 
     public void setLine(String stringOfFirstLine, String stringOfSecondLine) {
-        firstLine += stringOfFirstLine;
-        secondLine += stringOfSecondLine;
+        this.lines[0] += stringOfFirstLine;
+        this.lines[1] += stringOfSecondLine;
     }
 
     /**
@@ -59,7 +53,7 @@ public class BridgeGame {
     }
 
     public boolean isFail(){
-        if(firstLine.contains("X") || secondLine.contains("X")){
+        if(this.lines[0].contains("X") || this.lines[1].contains("X")){
             return true;
         }
         return false;
