@@ -20,13 +20,8 @@ public class GameController {
         System.out.println(answer_bridge);
 
         BridgeGame bridgeGame = new BridgeGame(answer_bridge);
-        //boolean keepGoing = true;
-        while(true/*keepGoing*/) {
-            boolean isEnd = false;
-            while (!isEnd) {
-                moveStep(bridgeGame);
-                isEnd = bridgeGame.isEnd();
-            }
+        while(true) {
+            move( bridgeGame);
             if (bridgeGame.isSuccess()) {
                 outputView.printResult("성공", bridgeGame, trials);
                 return;
@@ -43,7 +38,14 @@ public class GameController {
             trials++;
         }
     }
-    private void moveStep(BridgeGame bridgeGame){
+    private void move(BridgeGame bridgeGame) {
+        boolean isEnd = false;
+        while (!isEnd) {
+            move1Step(bridgeGame);
+            isEnd = bridgeGame.isEnd();
+        }
+    }
+    private void move1Step(BridgeGame bridgeGame){
         //move message 출력
         outputView.moveMessage();
         //input move
