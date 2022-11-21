@@ -17,30 +17,33 @@ class OutputViewTest {
         OutputView outputView = new OutputView();
         bridgeGame.move("U");
         List<String> upBoardCheckList = bridgeGame.getUpBoardCheckList();
-        String upMap = outputView.getUpMap(upBoardCheckList);
-        Assertions.assertThat(upMap).isEqualTo("[ O ]\n");
+        List<String> downBoardCheckList = bridgeGame.getDownBoardCheckList();
+        String result = outputView.printMap(upBoardCheckList, downBoardCheckList);
+        Assertions.assertThat(result).isEqualTo("[ O ]\n[   ]\n");
     }
 
     @Test
     void Down_을_선택한_경우_출력_테스트() {
-        List<String> bridge = new ArrayList<>(List.of("U","U","D"));
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        OutputView outputView = new OutputView();
-        bridgeGame.move("U");
-        List<String> downBoardCheckList = bridgeGame.getDownBoardCheckList();
-        String upMap = outputView.getUpMap(downBoardCheckList);
-        Assertions.assertThat(upMap).isEqualTo("[   ]\n");
-    }
-
-    @Test
-    void 틀린_경우_Up_출력_테스트() {
-        List<String> bridge = new ArrayList<>(List.of("U","U","D"));
+        List<String> bridge = new ArrayList<>(List.of("D","U","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         OutputView outputView = new OutputView();
         bridgeGame.move("D");
         List<String> upBoardCheckList = bridgeGame.getUpBoardCheckList();
-        String upMap = outputView.getUpMap(upBoardCheckList);
-        Assertions.assertThat(upMap).isEqualTo("[   ]\n");
+        List<String> downBoardCheckList = bridgeGame.getDownBoardCheckList();
+        String result = outputView.printMap(upBoardCheckList, downBoardCheckList);
+        Assertions.assertThat(result).isEqualTo("[   ]\n[ O ]\n");
+    }
+
+    @Test
+    void 틀린_경우_Up_출력_테스트() {
+        List<String> bridge = new ArrayList<>(List.of("D","U","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        OutputView outputView = new OutputView();
+        bridgeGame.move("U");
+        List<String> upBoardCheckList = bridgeGame.getUpBoardCheckList();
+        List<String> downBoardCheckList = bridgeGame.getDownBoardCheckList();
+        String result = outputView.printMap(upBoardCheckList, downBoardCheckList);
+        Assertions.assertThat(result).isEqualTo("[ X ]\n[   ]\n");
     }
 
     @Test
@@ -49,8 +52,9 @@ class OutputViewTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         OutputView outputView = new OutputView();
         bridgeGame.move("D");
+        List<String> upBoardCheckList = bridgeGame.getUpBoardCheckList();
         List<String> downBoardCheckList = bridgeGame.getDownBoardCheckList();
-        String upMap = outputView.getUpMap(downBoardCheckList);
-        Assertions.assertThat(upMap).isEqualTo("[ X ]\n");
+        String result = outputView.printMap(upBoardCheckList, downBoardCheckList);
+        Assertions.assertThat(result).isEqualTo("[   ]\n[ X ]\n");
     }
 }
