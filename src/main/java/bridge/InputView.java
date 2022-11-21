@@ -74,7 +74,7 @@ public class InputView {
         while(true) {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             moveBridge = Console.readLine();
-            if(moveBridgeCheck(moveBridge))
+            if(moveBridgeCheck(moveBridge)&&moveBridgeNullCheck(moveBridge))
                 break;
         }
         return moveBridge;
@@ -90,11 +90,25 @@ public class InputView {
         }
     }
 
+    public boolean moveBridgeNullCheck(String moveBridge){
+        try{
+            moveBridgeNullException(moveBridge);
+            return true;
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 아무 입력을 하지 않았습니다.");
+            return false;
+        }
+    }
+
     public void moveBridgeException(String moveBridge){
         if(!moveBridge.equals("U")&&!moveBridge.equals("D"))
             throw new IllegalArgumentException();
     }
 
+    public void moveBridgeNullException(String moveBridge){
+        if(moveBridge.equals("")||moveBridge.equals(null))
+            throw new IllegalArgumentException();
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
