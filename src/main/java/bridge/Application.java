@@ -11,6 +11,7 @@ public class Application {
     private static User user = new User();
     public static void main(String[] args) {
         outputView.startGame();
+        user.initializeUserPosition();
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
         while(true){
