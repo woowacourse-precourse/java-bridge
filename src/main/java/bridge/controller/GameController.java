@@ -48,9 +48,6 @@ public class GameController {
             return processException(e.getMessage(), gameStatus);
         } catch (WrongGeneratorException | NotFoundViewException e) {
             return processException(e.getMessage(), GameStatus.APPLICATION_EXIT);
-        } catch (IndexOutOfBoundsException | NullPointerException e) {
-            return processException(ExceptionMessageUtils.WRONG_CONFIGURATION.getMessage(),
-                    GameStatus.APPLICATION_EXIT);
         }
     }
 

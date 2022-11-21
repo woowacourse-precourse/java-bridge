@@ -2,12 +2,15 @@ package bridge;
 
 import bridge.controller.GameController;
 import bridge.utils.game.GameStatus;
+import bridge.utils.message.ExceptionMessageUtils;
 import bridge.view.IOViewResolver;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.function.Consumer;
 
 public final class GameRunner {
+
+    private static final String DEFAULT_ERROR_FORMAT = "[ERROR] %s";
 
     private GameRunner() {
     }
@@ -17,7 +20,7 @@ public final class GameRunner {
         GameController controller = new GameController(ioViewResolver);
 
         while (gameStatus.playable()) {
-            gameStatus = controller.process(gameStatus);
+            gameStatus = processGameRunner(controller, gameStatus);
         }
     }
 
@@ -26,5 +29,16 @@ public final class GameRunner {
         OutputView outputView = new OutputView(print);
 
         return new IOViewResolver(inputView, outputView);
+    }
+
+    private static GameStatus processGameRunner(final GameController controller, final GameStatus gameStatus) {
+        try {
+            return controller.process(gameStatus);
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            String exceptionFullMessage = String
+                    .format(DEFAULT_ERROR_FORMAT, ExceptionMessageUtils.WRONG_CONFIGURATION.getMessage());
+            System.out.printf(exceptionFullMessage);
+            return GameStatus.APPLICATION_EXIT;
+        }
     }
 }
