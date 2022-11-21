@@ -43,10 +43,10 @@ public class InputView {
         return gameCommand;
     }
 
-    public String reReadGameCommandWhenError() {
+    public GameCommand reReadGameCommandWhenError() {
         while (true) {
             try {
-                return readGameCommand();
+                return GameCommand.getGameCommand(readGameCommand());
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e);
             }

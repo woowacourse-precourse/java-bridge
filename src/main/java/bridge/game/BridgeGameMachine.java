@@ -1,5 +1,6 @@
 package bridge.game;
 
+import bridge.view.GameCommand;
 import bridge.view.TotalView;
 import bridge.view.UserMove;
 
@@ -49,7 +50,7 @@ public class BridgeGameMachine {
 
     public boolean wantRetry() {
         totalView.out().enterGameCommand();
-        if (totalView.in().reReadGameCommandWhenError().equals(RETRY)) {
+        if (totalView.in().reReadGameCommandWhenError().equals(GameCommand.RETRY)) {
             return true;
         }
         return false;
