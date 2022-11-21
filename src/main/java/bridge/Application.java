@@ -43,7 +43,7 @@ public class Application {
                 tryCount = retryInfo.get("count");
             }
         }
-
+        outputView.printResult(moveResults, userMove, tryCount);
     }
 
 
