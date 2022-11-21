@@ -19,6 +19,9 @@ public class BridgeGameController {
         }
     }
 
+    /**
+     * 다리 건너기 게임 초기화
+     */
     private void init(){
         OutputView.printStart();
         initTrial();
@@ -40,6 +43,9 @@ public class BridgeGameController {
         }
     }
 
+    /**
+     * 다리 건너기
+     */
     private void move(){
         readMoving();
         bridgeGame.move(moving);
