@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.constant.Bridge;
+import bridge.constant.BridgePattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return new ArrayList<>(size) {{
             for (int cnt = 0; cnt < size; cnt++) {
-                add(Bridge.convertNumberToMove(bridgeNumberGenerator.generate()));
+                add(BridgePattern.convertNumberToMove(bridgeNumberGenerator.generate()));
             }
         }};
     }
