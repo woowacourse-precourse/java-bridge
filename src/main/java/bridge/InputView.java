@@ -59,8 +59,30 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
+    public boolean CHECK_READ_MOVING_ERROR(String Str_Input){
+        if(!((Str_Input.equals("U")) || (Str_Input.equals("D")) || (Str_Input.equals("u")) || (Str_Input.equals("d")))){
+            System.out.println("[ERROR] MOVE 입력은 u/U 이거나 d/D 만 가능 합니다.\n");
+            return false;
+        }
+        return true;
+    }
+    public String readMoving_SUB() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String Str_Input = Console.readLine();
+        if(!CHECK_READ_MOVING_ERROR(Str_Input)){
+            throw new IllegalArgumentException();
+        }
+        return Str_Input;
+    }
+
     public String readMoving() {
-        return null;
+        String STR_RESULT = "";
+        try {
+            STR_RESULT = readMoving_SUB();
+        } catch (IllegalArgumentException e) {
+            STR_RESULT = readMoving();
+        }
+        return STR_RESULT;
     }
 
     /**
