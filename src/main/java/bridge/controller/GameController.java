@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.view.OutputView;
+import bridge.constant.MoveState;
 
 public class GameController {
     private final InputController inputController = new InputController();
@@ -17,7 +18,7 @@ public class GameController {
 
     public void run() {
         do {
-            if (move().equals("SUCCESS")) break;
+            if (move().equals(MoveState.SUCCESS_TEXT)) break;
         } while (bridgeGame.retry(inputController.readGameCommand()));
 
         outputView.printResult(player);
@@ -27,7 +28,7 @@ public class GameController {
         while (true) {
             String moveState = bridgeGame.move(inputController.readMoving());
             outputView.printMap(player);
-            if (moveState.equals("NEXT")) continue;
+            if (moveState.equals(MoveState.NEXT_TEXT)) continue;
             return moveState;
         }
     }

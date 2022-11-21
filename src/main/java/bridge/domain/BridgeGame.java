@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.MoveState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,11 @@ public class BridgeGame {
         if (bridge.get(player.getCorrectAnswerCount()).equals(moving)) {
             player.increaseCorrectAnswerCount();
             player.insertBridgeMap("O");
-            if (player.getCorrectAnswerCount() == bridge.size()) return "SUCCESS";
-            return "NEXT";
+            if (player.getCorrectAnswerCount() == bridge.size()) return MoveState.SUCCESS_TEXT;
+            return MoveState.NEXT_TEXT;
         }
         player.insertBridgeMap("X");
-        return "FAIL";
+        return MoveState.FAIL_TEXT;
     }
 
     /**
