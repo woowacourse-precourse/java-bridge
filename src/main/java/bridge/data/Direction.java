@@ -1,8 +1,8 @@
 package bridge.data;
 
 public enum Direction {
-    Down("D"),
-    Up("U");
+    Up("U"),
+    Down("D");
 
     private final String string;
 

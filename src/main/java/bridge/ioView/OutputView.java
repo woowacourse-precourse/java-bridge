@@ -1,6 +1,7 @@
 package bridge.ioView;
 
 import bridge.BridgeGame;
+import bridge.data.Direction;
 
 import java.util.List;
 
@@ -34,8 +35,9 @@ public class OutputView {
      * @param bridge
      */
     public void printMap(List<String> userRoute, List<String> bridge) {
-        printFloor("U", userRoute, bridge);
-        printFloor("D", userRoute, bridge);
+        for (Direction direction : Direction.values()) {
+            printFloor(direction.toString(), userRoute, bridge);
+        }
     }
 
     private void printFloor(String direction, List<String> userRoute, List<String> bridge) {
@@ -76,7 +78,7 @@ public class OutputView {
     }
 
     private String convertSuccessToString(boolean success) {
-        if(success) {
+        if (success) {
             return "성공";
         }
 
