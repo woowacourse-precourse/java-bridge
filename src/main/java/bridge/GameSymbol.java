@@ -14,4 +14,14 @@ public enum GameSymbol {
     public String getSymbol() {
         return symbol;
     }
+
+    public static GameSymbol conversionString(String symbol) {
+        if (symbol.equals(RETRY.symbol)) {
+            return RETRY;
+        }
+        if (symbol.equals(QUIT.symbol)) {
+            return QUIT;
+        }
+        return NOTHING;
+    }
 }
