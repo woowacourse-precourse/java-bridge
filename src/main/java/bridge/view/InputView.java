@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(SystemMessage.BRIDGE_SIZE_INPUT_MESSAGE);
         String temp = Console.readLine();
         int size = Integer.parseInt(temp);
@@ -21,7 +21,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(SystemMessage.MOVING_SPACE_INPUT_MESSAGE);
         String moving_space = Console.readLine();
         //        validation
