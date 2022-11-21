@@ -39,4 +39,13 @@ public class Application {
             }
         }
     }
+
+    static void moveBundle(BridgeGame bridgeGame, List<String> bridge) {
+        String movingChoice;
+
+        OutputView.printMovingChoiceMessage();
+        movingChoice = InputView.readMoving();
+        bridgeGame.move(bridge, movingChoice);
+        OutputView.printMap(bridgeGame.getUpMap(), bridgeGame.getDownMap());
+    }
 }
