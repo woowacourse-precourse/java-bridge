@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.GameCommand;
 import bridge.domain.MovingCommand;
 import bridge.domain.SizeOfBridge;
 import bridge.utils.BridgeSizeInputParser;
@@ -32,7 +33,7 @@ public class InputView {
         try {
             String command = movingCommandInput();
 
-            return CommandInputParser.parseWithCheckingEmpty(command);
+            return CommandInputParser.parseMovingCommand(command);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
@@ -42,8 +43,15 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public GameCommand readGameCommand() {
+        try {
+            String command = GameCommandInput();
+
+            return CommandInputParser.parseGameCommand(command);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     public String bridgeSizeInput() {
@@ -54,6 +62,12 @@ public class InputView {
 
     public String movingCommandInput() {
         printForInputMessage(Messages.SCAN_MOVING_COMMAND);
+
+        return getInput();
+    }
+
+    public String GameCommandInput() {
+        printForInputMessage(Messages.SCAN_GAME_COMMAND);
 
         return getInput();
     }

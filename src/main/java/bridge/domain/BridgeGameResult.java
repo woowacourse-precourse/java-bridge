@@ -18,6 +18,10 @@ public class BridgeGameResult {
         downSide.append(downSideMark);
     }
 
+    public boolean isMissMatch() {
+        return upSide.isMissMatch() || downSide.isMissMatch();
+    }
+
     @Override
     public String toString() {
         return String.valueOf(upSide) + downSide;

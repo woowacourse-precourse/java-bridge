@@ -32,5 +32,8 @@ public class Constants {
     public static final String MAP_PREFIX = "[ ";
     public static final String MAP_DELIMITER = " | ";
     public static final String MAP_SUFFIX = " ]\n";
+    // Game Command
+    public static final String RESTART = "R";
+    public static final String QUIT = "Q";
 
 }

@@ -30,14 +30,14 @@ class BridgeGameResultTest extends NsTest {
     @Test
     void create_UDU_Bridge_print_X() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "D", "U", "D");
+            run("3", "D", "Q");
             assertThat(output()).contains(
-                "[   | X |   ]",
-                "[ X |   | X ]"
+                "[   ]",
+                "[ X ]"
             );
 
-            int upSideIndex = output().indexOf("[   | X |   ]");
-            int downSideIndex = output().indexOf("[ X |   | X ]");
+            int upSideIndex = output().indexOf("[   ]");
+            int downSideIndex = output().indexOf("[ X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
@@ -47,7 +47,7 @@ class BridgeGameResultTest extends NsTest {
     @Test
     void create_UDU_Bridge_print_O_X() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D");
+            run("3", "U", "D", "D", "Q");
             assertThat(output()).contains(
                 "[ O |   |   ]",
                 "[   | O | X ]"

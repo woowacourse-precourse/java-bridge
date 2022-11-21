@@ -1,5 +1,6 @@
 package bridge.utils;
 
+import bridge.domain.GameCommand;
 import bridge.domain.MovingCommand;
 import bridge.domain.exception.WrongMovingCommandException;
 import java.util.function.Function;
@@ -11,11 +12,15 @@ public class CommandInputParser {
 
     }
 
-    public static MovingCommand parseWithCheckingEmpty(final String input) {
-        return parseWithCheckingEmpty(input, MovingCommand::from);
+    public static MovingCommand parseMovingCommand(final String input) {
+        return parseWithEmptyCheck(input, MovingCommand::from);
     }
 
-    private static <T> T parseWithCheckingEmpty(final String input,
+    public static GameCommand parseGameCommand(final String input) {
+        return parseWithEmptyCheck(input, GameCommand::from);
+    }
+
+    private static <T> T parseWithEmptyCheck(final String input,
         final Function<String, T> creationFunction) {
         EmptyChecker.check(input);
 

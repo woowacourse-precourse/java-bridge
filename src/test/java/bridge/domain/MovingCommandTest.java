@@ -16,9 +16,9 @@ class MovingCommandTest {
     void create_legal_movingCommand(String input) {
         final String commandInput = input;
 
-        MovingCommand movingCommandEnum = CommandInputParser.parseWithCheckingEmpty(commandInput);
+        MovingCommand movingCommand = CommandInputParser.parseMovingCommand(commandInput);
 
-        assertThat(movingCommandEnum).isNotNull();
+        assertThat(movingCommand).isNotNull();
     }
 
     @DisplayName("대문자가 아닌, 잘못된 값을 입력한 경우 IllegalArgumentException 이 발생한다.")
@@ -27,7 +27,7 @@ class MovingCommandTest {
     void create_illegalValue(String input) {
         final String commandInput = input;
 
-        assertThatThrownBy(() -> CommandInputParser.parseWithCheckingEmpty(commandInput))
+        assertThatThrownBy(() -> CommandInputParser.parseMovingCommand(commandInput))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR]");
     }
@@ -38,7 +38,7 @@ class MovingCommandTest {
     void create_notExistCommand(String input) {
         final String commandInput = input;
 
-        assertThatThrownBy(() -> CommandInputParser.parseWithCheckingEmpty(commandInput))
+        assertThatThrownBy(() -> CommandInputParser.parseMovingCommand(commandInput))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR]");
     }

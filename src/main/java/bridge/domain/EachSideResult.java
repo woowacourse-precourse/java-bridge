@@ -16,6 +16,10 @@ public class EachSideResult {
         this.sideResults.add(sideResult);
     }
 
+    public boolean isMissMatch() {
+        return sideResults.contains(Constants.INCORRECT_MARK);
+    }
+
     @Override
     public String toString() {
         return sideResults.stream()
