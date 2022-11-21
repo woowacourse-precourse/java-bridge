@@ -46,14 +46,11 @@ public class OutputView {
     }
 
     public static void printGetRestartCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public static void printResult() {
+    public static void printResult(final String isSucceed, final int tries) {
+        final String result = String.format("\n게임 성공 여부: %s\n총 시도한 횟수: %d", isSucceed, tries);
+        System.out.println(result);
     }
 }

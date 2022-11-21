@@ -28,6 +28,7 @@ public class BridgeGame {
 
     public void retry() {
         userInputs.clear();
+        tries++;
     }
 
     public void success() {
