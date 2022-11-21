@@ -1,12 +1,15 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.DownsideResults;
 import bridge.OneSideResults;
 import bridge.UpsideResults;
 import bridge.util.CommandKeys;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class Controller {
     private static final int INITIAL_COUNT = 1;
@@ -14,13 +17,20 @@ public class Controller {
     private final static String SUCCESS = "성공";
     private final static String FAILURE = "실패";
 
-    private final int bridgeSize;
+    private final List<String> answerBridge;
     private final BridgeGame bridgeGame;
 
     public Controller() {
         OutputView.printGameStart();
-        bridgeSize = InputView.readBridgeSize();
-        bridgeGame = new BridgeGame(bridgeSize);
+        answerBridge = createAnswerBridge(InputView.readBridgeSize());
+        bridgeGame = new BridgeGame();
+    }
+
+    private List<String> createAnswerBridge(int bridgeSize) {
+        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(answerBridge); // 추후 삭제
+        return answerBridge;
     }
 
     public void play() {
@@ -31,9 +41,9 @@ public class Controller {
         final OneSideResults upsideResults = new UpsideResults();
         final OneSideResults downsideResults = new DownsideResults();
 
-        while (index < bridgeSize) {
+        while (index < answerBridge.size()) {
             final String playerMove = InputView.readMoving();
-            final String matchResult = bridgeGame.move(playerMove, index);
+            final String matchResult = bridgeGame.move(playerMove, answerBridge.get(index));
 
             upsideResults.update(playerMove, matchResult, BLANK_SPACE);
             downsideResults.update(playerMove, matchResult, BLANK_SPACE);

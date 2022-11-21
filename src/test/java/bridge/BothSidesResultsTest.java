@@ -21,8 +21,8 @@ class BothSidesResultsTest {
     @ParameterizedTest
     @CsvSource(value = {"U:O:blank"}, delimiter = ':')
     void case1(String currentMove, String moveResult, String blank) {
-        upsideResults.updateResults(currentMove, moveResult, blank);
-        downsideResults.updateResults(currentMove, moveResult, blank);
+        upsideResults.update(currentMove, moveResult, blank);
+        downsideResults.update(currentMove, moveResult, blank);
 
         assertThat(upsideResults.getResults().get(0)).isEqualTo("O");
         assertThat(downsideResults.getResults().get(0)).isEqualTo("blank");
@@ -32,8 +32,8 @@ class BothSidesResultsTest {
     @ParameterizedTest
     @CsvSource(value = {"D:X:blank"}, delimiter = ':')
     void case2(String currentMove, String moveResult, String blank) {
-        upsideResults.updateResults(currentMove, moveResult, blank);
-        downsideResults.updateResults(currentMove, moveResult, blank);
+        upsideResults.update(currentMove, moveResult, blank);
+        downsideResults.update(currentMove, moveResult, blank);
 
         assertThat(upsideResults.getResults().get(0)).isEqualTo("blank");
         assertThat(downsideResults.getResults().get(0)).isEqualTo("X");

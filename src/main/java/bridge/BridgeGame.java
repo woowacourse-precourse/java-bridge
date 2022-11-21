@@ -15,27 +15,13 @@ public class BridgeGame {
     private static final String CORRECT_MOVING = "O";
     private static final String WRONG_MOVING = "X";
 
-    private final List<String> answerBridge;
-
-    public BridgeGame(int bridgeSize) {
-        this.answerBridge = createAnswerBridge(bridgeSize);
-    }
-
-    private List<String> createAnswerBridge(int bridgeSize) {
-        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(answerBridge); // 추후 삭제
-        return answerBridge;
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String currentMoving, int index) {
-        final String answerMoving = answerBridge.get(index);
-        if (answerMoving.equals(currentMoving)) {
+    public String move(String playerMove, String answerMove) {
+        if (playerMove.equals(answerMove)) {
             return CORRECT_MOVING;
         }
         return WRONG_MOVING;
