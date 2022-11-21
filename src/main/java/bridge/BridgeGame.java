@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.enums.BridgeDisplay;
 import bridge.enums.BridgeGameCommand;
+import bridge.models.BridgeBluePrint;
+import bridge.models.BridgeResult;
 import java.util.Arrays;
 import java.util.List;
 

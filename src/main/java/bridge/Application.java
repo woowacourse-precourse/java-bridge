@@ -1,6 +1,7 @@
 package bridge;
 
 
+import bridge.models.BridgeResult;
 import java.util.List;
 
 public class Application {

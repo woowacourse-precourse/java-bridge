@@ -1,4 +1,4 @@
-package bridge;
+package bridge.models;
 
 import bridge.enums.BridgeDisplay;
 import bridge.enums.BridgeMoving;
