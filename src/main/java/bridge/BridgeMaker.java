@@ -23,7 +23,7 @@ public class BridgeMaker {
         for (int index = 0; index<size; index++) {
             bridge.add(createRandomBridgeShape());
         }
-        return null;
+        return bridge;
     }
 
     private String createRandomBridgeShape() {
