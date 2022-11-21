@@ -12,11 +12,11 @@ public class BridgeGame {
     private static final String GAME_FINISH_CHARACTER = "Q";
     
     private NumberOfTry numberOfTry;
-    private final MoveResultStates moveResultStates;
+    private final MovingResultStates movingResultStates;
     
     public BridgeGame() {
         numberOfTry = new NumberOfTry();
-        moveResultStates = new MoveResultStates();
+        movingResultStates = new MovingResultStates();
     }
     
     /**
@@ -25,11 +25,11 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(final MovingDTO movingDTO, final Bridge bridge) {
-        moveResultStates.move(movingDTO, bridge);
+        movingResultStates.move(movingDTO, bridge);
     }
     
     public boolean isMoveFail() {
-        return moveResultStates.isMoveFail();
+        return movingResultStates.isMoveFail();
     }
     
     public boolean selectGameFinish(final String gameCommand) {
@@ -47,7 +47,7 @@ public class BridgeGame {
     }
     
     private void initMovingStates() {
-        moveResultStates.initMovingStates();
+        movingResultStates.initMovingStates();
     }
     
     private void increaseNumberOfTry() {
@@ -55,15 +55,15 @@ public class BridgeGame {
     }
     
     public boolean isGameFinished() {
-        return moveResultStates.isGameFinished();
+        return movingResultStates.isGameFinished();
     }
     
     public List<MovingResultState> moveStates() {
-        return moveResultStates.states();
+        return movingResultStates.states();
     }
     
     public List<String> movings() {
-        return moveResultStates.movings();
+        return movingResultStates.movings();
     }
     
     public int numberOfTry() {
@@ -74,7 +74,7 @@ public class BridgeGame {
     public String toString() {
         return "BridgeGame{" +
                 "numberOfTry=" + numberOfTry +
-                ", movingResultStates=" + moveResultStates +
+                ", movingResultStates=" + movingResultStates +
                 '}';
     }
 }

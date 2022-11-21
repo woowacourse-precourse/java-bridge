@@ -9,10 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MoveResultStates {
+public class MovingResultStates {
     private final LinkedList<MovingResultState> movingResultStates;
     
-    public MoveResultStates() {
+    public MovingResultStates() {
         movingResultStates = new LinkedList<>();
     }
     
