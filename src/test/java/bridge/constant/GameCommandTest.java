@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -67,6 +68,30 @@ class GameCommandTest {
 
         // when
         boolean result = gameCommand.equalFirstLetterWithString(string);
+
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    void isMiss() {
+        // given
+        GameCommand gameCommand = GameCommand.MISS;
+
+        // when
+        boolean result = gameCommand.isMiss();
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    void isMissByNotMiss() {
+        // given
+        GameCommand gameCommand = GameCommand.RESTART;
+
+        // when
+        boolean result = gameCommand.isMiss();
 
         // then
         assertFalse(result);
