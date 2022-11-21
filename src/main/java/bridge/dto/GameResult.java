@@ -1,28 +1,28 @@
 package bridge.dto;
 
 import bridge.model.MoveInformation;
-import bridge.model.enums.GameStatus;
 import java.util.List;
 import java.util.Optional;
 
 public class GameResult {
 
     private Optional<Integer> tryCount;
-    private Optional<GameStatus> status;
+    private Optional<Boolean> succeed;
     private List<MoveInformation> bridgeMoveInformation;
 
-    public GameResult(Optional<Integer> tryCount, Optional<GameStatus> status, List<MoveInformation> bridgeMoveInformation) {
+    public GameResult(Optional<Integer> tryCount, Optional<Boolean> succeed,
+            List<MoveInformation> bridgeMoveInformation) {
         this.tryCount = tryCount;
-        this.status = status;
+        this.succeed = succeed;
         this.bridgeMoveInformation = bridgeMoveInformation;
     }
 
-    public Integer getTryCount() {
+    public Integer tryCount() {
         return tryCount.get();
     }
 
-    public GameStatus getStatus() {
-        return status.get();
+    public boolean succeed() {
+        return succeed.get();
     }
 
     public List<MoveInformation> getBridgeMoveInformation() {

@@ -13,7 +13,6 @@ import bridge.dto.GameResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import bridge.model.enums.GameStatus;
 import bridge.model.enums.MoveChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -71,7 +70,7 @@ public class BridgeGameTest extends NsTest {
         @DisplayName("getGameResult는 이동 기록만을 담아 반환한다.")
         void onlyContainsMoveResult() {
             GameResult gameResult = bridgeGame.getSimpleGameResult();
-            assertThatThrownBy(() -> gameResult.getTryCount()).isInstanceOf(NoSuchElementException.class);
+            assertThatThrownBy(() -> gameResult.tryCount()).isInstanceOf(NoSuchElementException.class);
             assertThatThrownBy(() -> gameResult.getStatus()).isInstanceOf(NoSuchElementException.class);
             List<MoveInformation> dummy = new ArrayList<>();
             assertThat(gameResult.getBridgeMoveInformation()).isEqualTo(dummy);
@@ -81,7 +80,7 @@ public class BridgeGameTest extends NsTest {
         @DisplayName("getFinalGameResult는 모든 정보를 담아 반환환다.")
         void containsAllData() {
             GameResult gameResult = bridgeGame.getGameResult();
-            assertThat(gameResult.getTryCount()).isEqualTo(1);
+            assertThat(gameResult.tryCount()).isEqualTo(1);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
             List<MoveInformation> dummy = new ArrayList<>();
             assertThat(gameResult.getBridgeMoveInformation()).isEqualTo(dummy);
@@ -98,7 +97,7 @@ public class BridgeGameTest extends NsTest {
             bridgeGame.move(UP);
             bridgeGame.retry();
             GameResult gameResult = bridgeGame.getGameResult();
-            assertThat(gameResult.getTryCount()).isEqualTo(2);
+            assertThat(gameResult.tryCount()).isEqualTo(2);
             assertThat(gameResult.getStatus()).isEqualTo(GameStatus.IN_PROCESS);
 
             assertThat(gameResult.getBridgeMoveInformation()).isEmpty();

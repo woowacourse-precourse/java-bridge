@@ -1,18 +1,17 @@
 package bridge.model;
 
 import bridge.dto.GameResult;
-import bridge.model.enums.GameStatus;
 import bridge.model.enums.MoveChoice;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import bridge.model.enums.MoveResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
     public static final int MINIMUM_BRIDGE_SIZE = 3;
     public static final int MAXIMUM_BRIDGE_SIZE = 20;
     private List<MoveInformation> bridgeMoveInformation;
@@ -46,25 +45,25 @@ public class BridgeGame {
     }
 
     public GameResult getGameResult() {
-        return new GameResult(Optional.of(tryCount), Optional.of(getGameStatus()), getBridgeMoveResults());
+        return new GameResult(Optional.of(tryCount), Optional.of(succeed()), getBridgeMoveResults());
     }
 
     public GameResult getSimpleGameResult() {
         return new GameResult(Optional.empty(), Optional.empty(), getBridgeMoveResults());
     }
 
-    public GameStatus getGameStatus() {
-        return GameStatus.getMatchStatus(succeed(), failed());
+    public boolean inProcess() {
+        return !succeed() && !failed();
     }
 
-    private boolean succeed() {
+    public boolean succeed() {
         if (failed() || bridge.size() != bridgeMoveInformation.size()) {
             return false;
         }
         return true;
     }
 
-    private boolean failed() {
+    public boolean failed() {
         int lastIndex = bridgeMoveInformation.size() - 1;
         if (lastIndex < 0) {
             return false;
@@ -73,14 +72,14 @@ public class BridgeGame {
     }
 
     private void updateMoveResults(MoveChoice moveChoice, boolean succeed) {
-        bridgeMoveInformation.add(new MoveInformation(MoveResult.getMatchResult(succeed), moveChoice));
+        bridgeMoveInformation.add(new MoveInformation(succeed, moveChoice));
     }
 
     private List<MoveInformation> getBridgeMoveResults() {
         return Collections.unmodifiableList(bridgeMoveInformation);
     }
 
-    private boolean movable(int position, String moveChoice){
+    private boolean movable(int position, String moveChoice) {
         return bridge.get(position).equals(moveChoice);
     }
 }

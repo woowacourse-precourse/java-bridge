@@ -32,7 +32,7 @@ public class BridgeGameController {
         while (true) {
             processOneGame();
 
-            if (bridgeGame.getGameStatus().succeed() || !RetryIntention.wantRetry(getRetryIntention())) {
+            if (bridgeGame.succeed() || !RetryIntention.wantRetry(getRetryIntention())) {
                 return;
             }
 
@@ -44,7 +44,7 @@ public class BridgeGameController {
         do {
             bridgeGame.move(getMoving());
             outputView.printMap(bridgeGame.getSimpleGameResult());
-        } while (bridgeGame.getGameStatus().in_process());
+        } while (bridgeGame.inProcess());
     }
 
 

@@ -76,8 +76,8 @@ public class OutputView {
         System.out.println(FINAL_RESULT_COMMENT);
         printMap(gameResult);
 
-        System.out.println(String.format(SUCCESS_FORMAT.toString(), gameSuccessMapper.get(gameResult.getStatus().succeed())));
-        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT.toString(), gameResult.getTryCount()));
+        System.out.println(String.format(SUCCESS_FORMAT.toString(), gameSuccessMapper.get(gameResult.succeed())));
+        System.out.println(String.format(TOTAL_TRY_COUNT_FORMAT.toString(), gameResult.tryCount()));
     }
 
     public void printError(String message) {
