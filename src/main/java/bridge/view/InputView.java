@@ -25,12 +25,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH_GUIDE_MESSAGE);
         return convertBridgeSize(Console.readLine());
     }
 
-    private int convertBridgeSize(String input) {
+    private static int convertBridgeSize(String input) {
         try {
             validateOnlyNumbers(input);
             return validateSizeOfNumber(input);
@@ -40,13 +40,13 @@ public class InputView {
         }
     }
 
-    private void validateOnlyNumbers(String input) {
+    private static void validateOnlyNumbers(String input) {
         if (!input.matches(ONLY_NUMBERS_REGEX)) {
             throw new IllegalArgumentException(WRONG_INPUT_BRIDGE_LENGTH_MESSAGE);
         }
     }
 
-    private int validateSizeOfNumber(String input) {
+    private static int validateSizeOfNumber(String input) {
         int number = Integer.parseInt(input);
 
         if (number < MIN_BRIDGE_SIZE || number > MAX_BRIDGE_SIZE) {
@@ -59,7 +59,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         try {
             System.out.println(INPUT_MOVE_COMMAND_GUIDE_MESSAGE);
             return validateMoveCommand(Console.readLine());
@@ -69,7 +69,7 @@ public class InputView {
         }
     }
 
-    private String validateMoveCommand(String input) {
+    private static String validateMoveCommand(String input) {
         if (!input.equals(UP_COMMAND) && !input.equals(DOWN_COMMAND)) {
             throw new IllegalArgumentException(WRONG_INPUT_MOVE_COMMAND_MESSAGE);
         }
@@ -80,7 +80,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         try {
             System.out.println(INPUT_GAME_COMMAND_GUIDE_MESSAGE);
             return validateGameCommand(Console.readLine());
@@ -90,7 +90,7 @@ public class InputView {
         }
     }
 
-    private String validateGameCommand(String input) {
+    private static String validateGameCommand(String input) {
         if (!input.equals(RETRY_COMMAND) && !input.equals(QUITE_COMMAND)) {
             throw new IllegalArgumentException(WRONG_INPUT_GAME_COMMAND_MESSAGE);
         }
