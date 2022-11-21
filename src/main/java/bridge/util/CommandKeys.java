@@ -16,7 +16,19 @@ public enum CommandKeys {
         return letter;
     }
 
-    public static boolean isSame(CommandKeys commandKey, String input) {
-        return commandKey.letter.equals(input);
+    public static boolean isUp(String input) {
+        return CommandKeys.UP.letter.equals(input);
+    }
+
+    public static boolean isDown(String input) {
+        return CommandKeys.DOWN.letter.equals(input);
+    }
+
+    public static boolean isRetry(String input) {
+        return CommandKeys.RETRY.letter.equals(input);
+    }
+
+    public static boolean isQuit(String input) {
+        return CommandKeys.QUIT.letter.equals(input);
     }
 }

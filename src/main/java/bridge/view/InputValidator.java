@@ -11,13 +11,20 @@ public class InputValidator {
     private static final String NON_ALPHABETIC_CHARACTER = "[^a-zA-Z]";
 
     public static void bridgeSize(String input) {
+        validateBlank(input);
         validateNumericType(input);
         validateRange(Integer.parseInt(input));
     }
 
+    private static void validateBlank(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_TITLE + EMPTY_INPUT);
+        }
+    }
+
     private static void validateNumericType(String input) {
         if (isNotNumeric(input)) {
-            throw new IllegalArgumentException(ERROR_TITLE + NON_NUMERIC_CHARACTER_FOUND);
+            throw new IllegalArgumentException(ERROR_TITLE + NON_DIGIT_CHARACTER_FOUND);
         }
     }
 
@@ -32,25 +39,22 @@ public class InputValidator {
 
     private static void validateRange(int size) {
         if (size < MINIMUM_BRIDGE_SIZE || size > MAXIMUM_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(ERROR_TITLE +
-                    String.format(
-                            BRIDGE_SIZE_FORMAT,
-                            MINIMUM_BRIDGE_SIZE,
-                            MAXIMUM_BRIDGE_SIZE
-                    ));
+            throw new IllegalArgumentException(ERROR_TITLE + BRIDGE_SIZE_FORMAT);
         }
     }
 
     public static void moving(String input) {
+        validateBlank(input);
         validateAlphabeticType(input);
-        if (!isUp(input) && !isDown(input)) {
+        if (!CommandKeys.isUp(input) && !CommandKeys.isDown(input)) {
             throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
         }
     }
 
     public static void gameCommand(String input) {
+        validateBlank(input);
         validateAlphabeticType(input);
-        if (!isRetry(input) && !isQuit(input)) {
+        if (!CommandKeys.isRetry(input) && !CommandKeys.isQuit(input)) {
             throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
         }
     }
@@ -68,21 +72,5 @@ public class InputValidator {
                 .anyMatch(element ->
                         element.matches(NON_ALPHABETIC_CHARACTER)
                 );
-    }
-
-    private static boolean isUp(String input) {
-        return CommandKeys.isSame(CommandKeys.UP, input.toUpperCase());
-    }
-
-    private static boolean isDown(String input) {
-        return CommandKeys.isSame(CommandKeys.DOWN, input.toUpperCase());
-    }
-
-    private static boolean isRetry(String input) {
-        return CommandKeys.isSame(CommandKeys.RETRY, input.toUpperCase());
-    }
-
-    private static boolean isQuit(String input) {
-        return CommandKeys.isSame(CommandKeys.QUIT, input.toUpperCase());
     }
 }

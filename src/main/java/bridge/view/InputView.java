@@ -26,59 +26,61 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        final String input = messageBox(ENTER_BRIDGE_SIZE);
-        System.out.println();
-        return toBridgeSizeValue(input);
-    }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public static String readMoving() {
-        final String input = messageBox(ENTER_DIRECTION);
-        return toMovingValue(input);
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public static String readGameCommand() {
-        final String input = messageBox(ENTER_RETRY_OR_QUIT);
-        return toGameCommandValue(input);
-    }
-
-    private static String messageBox(String message) {
-        System.out.println(message);
-        return Console.readLine();
-    }
-
-    private static int toBridgeSizeValue(String input) {
+        final String input = submitBoxWithLineFeed(ENTER_BRIDGE_SIZE);
         try {
             InputValidator.bridgeSize(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
-        return Integer.parseInt(input);
+        return extractNumber(input);
     }
 
-    private static String toMovingValue(String input) {
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public static String readMoving() {
+        final String input = submitBox(ENTER_DIRECTION);
         try {
             InputValidator.moving(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
-        return input.toUpperCase();
+        return capitalize(input);
     }
 
-    private static String toGameCommandValue(String input) {
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public static String readGameCommand() {
+        final String input = submitBox(ENTER_RETRY_OR_QUIT);
         try {
             InputValidator.gameCommand(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
+        return capitalize(input);
+    }
+
+    private static String submitBox(String message) {
+        System.out.println(message);
+        return Console.readLine();
+    }
+
+    private static String submitBoxWithLineFeed(String message) {
+        System.out.println(message);
+        final String input = Console.readLine();
+        System.out.println();
+        return input;
+    }
+
+    private static int extractNumber(String input) {
+        return Integer.parseInt(input);
+    }
+
+    private static String capitalize(String input) {
         return input.toUpperCase();
     }
 }
