@@ -1,6 +1,7 @@
 package view;
 
 import exception.BridgeException;
+import exception.MovingException;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -22,7 +23,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        MovingException movingException = new MovingException(readLine());
+
+        return movingException.getMoving();
     }
 
     /**
