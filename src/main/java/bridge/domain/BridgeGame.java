@@ -4,17 +4,15 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
+    private final GameUser gameUser = new GameUser();
+    private final Counter gameCounter = new Counter();
     private Bridge answerBridge;
-    private GameUser gameUser;
-    private Counter gameCounter;
 
-    public void initialize(int size) {
+    public void initAnswerBridge(int size) {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
         answerBridge = new Bridge(bridgeMaker.makeBridge(size));
-        gameUser = new GameUser();
-        gameCounter = new Counter();
     }
 
     public GameStatus getMovingResult(String moving) {

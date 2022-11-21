@@ -24,7 +24,7 @@ class BridgeGameTest {
         void 움직임에_따라_올바른_결과를_반환하는지_테스트(List<String> moveInfo, List<Integer> randomValues) {
             assertRandomNumberInRangeTest(() -> {
                 BridgeGame bridgeGame = new BridgeGame();
-                bridgeGame.initialize(moveInfo.size());
+                bridgeGame.initAnswerBridge(moveInfo.size());
                 GameStatus gameStatus = null;
 
                 for (String move : moveInfo) {
