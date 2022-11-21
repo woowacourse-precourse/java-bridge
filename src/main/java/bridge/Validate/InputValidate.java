@@ -1,6 +1,6 @@
-package bridge.Validate;
+package bridge.validate;
 
-import bridge.Message.Error;
+import bridge.message.Error;
 
 public class InputValidate {
     public void validateBridgeSize(String length) {

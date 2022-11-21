@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Controller.BridgeGameController;
+import bridge.controller.BridgeGameController;
 
 public class Application {
 
@@ -9,7 +9,7 @@ public class Application {
         try {
             BridgeGameController bridgeGameController = new BridgeGameController();
             bridgeGameController.playGame();
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

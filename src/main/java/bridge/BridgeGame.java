@@ -15,7 +15,6 @@ public class BridgeGame {
     private int tryCount;
 
 
-
     public BridgeGame() {
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
@@ -92,7 +91,7 @@ public class BridgeGame {
         lowerBridge.clear();
     }
 
-    public void increaseBridgeIndex(){
+    public void increaseBridgeIndex() {
         bridgeIndex++;
     }
 }

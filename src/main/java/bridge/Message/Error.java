@@ -1,4 +1,4 @@
-package bridge.Message;
+package bridge.message;
 
 public class Error {
     public static final String ERROR = "[ERROR] ";

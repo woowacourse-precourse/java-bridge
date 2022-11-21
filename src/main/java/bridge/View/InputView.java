@@ -1,8 +1,7 @@
-package bridge.View;
+package bridge.view;
 
-import bridge.Message.Error;
-import bridge.Message.Message;
-import bridge.Validate.InputValidate;
+import bridge.message.Message;
+import bridge.validate.InputValidate;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

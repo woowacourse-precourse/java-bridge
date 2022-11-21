@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Message.Error;
+import bridge.message.Error;
 
 import java.util.ArrayList;
 import java.util.List;
