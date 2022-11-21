@@ -4,27 +4,30 @@ import bridge.game.context.BridgeGameContext;
 import bridge.game.status.BridgeGameStatus;
 import bridge.game.status.GameEndStatus;
 import bridge.game.status.InitStatus;
-import bridge.view.BridgeGameView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameLauncher {
     private final BridgeGameContext context;
-    private final BridgeGameView view;
+    private final InputView inputView;
+    private final OutputView outputView;
     private BridgeGameStatus status = new InitStatus();
 
-    public BridgeGameLauncher(final BridgeGameContext context, final BridgeGameView view) {
+    public BridgeGameLauncher(final BridgeGameContext context, final InputView inputView, final OutputView outputView) {
         this.context = context;
-        this.view = view;
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void execute() {
         while (status.runnable()) {
             try {
-                status = status.next(context, view);
+                status = status.next(context, inputView, outputView);
             } catch (IllegalStateException exception) {
+                status = new GameEndStatus();
                 System.out.println(exception.getMessage());
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
-                status = new GameEndStatus();
             }
         }
     }

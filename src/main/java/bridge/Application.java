@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.game.BridgeGameLauncher;
 import bridge.game.context.BridgeGameContext;
-import bridge.view.BridgeGameView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -12,7 +11,8 @@ public class Application {
         // TODO: 프로그램 구현
         new BridgeGameLauncher(
                 new BridgeGameContext(),
-                new BridgeGameView(new InputView(), new OutputView())
+                new InputView(),
+                new OutputView()
         ).execute();
     }
 }

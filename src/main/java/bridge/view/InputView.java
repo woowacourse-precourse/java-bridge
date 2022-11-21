@@ -16,7 +16,7 @@ public class InputView extends IOPrinter {
      */
     public BridgeSize readBridgeSize() {
         this.printlnBeforeNextLine("다리의 길이를 입력해주세요.");
-        return new BridgeSize(Console.readLine());
+        return new BridgeSize(readLine());
     }
 
     /**
