@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.ExceptionTemplate;
 import bridge.domain.Bridge;
+import bridge.domain.Result;
 import bridge.service.BridgeGame;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
@@ -32,10 +33,9 @@ public class BridgeGameController implements GameController {
     private void play() {
         while (game.checkCross() && game.movable()) {
             output.printMove();
-            ExceptionTemplate template = input::readMoving;
-            String inputMove = (String) template.check();
-            game.move(inputMove, game.recentResult().stateSize());
-            output.printMap(game.recentResult());
+            ExceptionTemplate template = () -> game.move(input.readMoving(), game.recentResult().stateSize());
+            Result recentResult = (Result) template.check();
+            output.printMap(recentResult);
         }
         end(checkRestart());
     }
@@ -50,8 +50,8 @@ public class BridgeGameController implements GameController {
     private boolean checkRestart() {
         if (!game.recentResult().movable()) {
             output.printRestart();
-            ExceptionTemplate template = input::readGameCommand;
-            return game.retry((String) template.check());
+            ExceptionTemplate template = () -> game.retry(input.readGameCommand());
+            return (boolean) template.check();
         }
         return false;
     }

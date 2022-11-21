@@ -6,6 +6,7 @@ import bridge.domain.PlayState;
 import bridge.domain.Result;
 
 public class BridgeGame {
+    private static final String UP_DOWN_ERROR = "[ERROR] U 또는 D를 입력해주세요";
     private static final String RESTART_QUIT_ERROR = "[ERROR] Q 또는 R을 입력해주세요";
     private static final String NO_BRIDGE_ERROR = "[ERROR] 다리가 생성되지 않아 게임이 만들어 지지 않아요";
     private static final String NO_START_GAME_ERROR = "[ERROR] 비정상적인 접근이에요";
@@ -29,9 +30,10 @@ public class BridgeGame {
         this.count = new Count();
     }
 
-    public void move(String input, int count) {
+    public Result move(String input, int count) {
         checkUpDown(input);
         updateResult(input, count);
+        return result;
     }
 
     public boolean retry(String input) {
@@ -106,13 +108,13 @@ public class BridgeGame {
 
     private void checkUpDown(String input) {
         if (!input.equals(UP_COMMAND) && !input.equals(DOWN_COMMAND)) {
-            throw new IllegalStateException(RESTART_QUIT_ERROR);
+            throw new IllegalArgumentException(UP_DOWN_ERROR);
         }
     }
 
     private void checkRestartQuitCommand(String input) {
         if (!input.equals(RESTART_COMMAND) && !input.equals(QUIT_COMMAND)) {
-            throw new IllegalStateException(RESTART_QUIT_ERROR);
+            throw new IllegalArgumentException(RESTART_QUIT_ERROR);
         }
     }
 
