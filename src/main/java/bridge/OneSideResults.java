@@ -15,7 +15,7 @@ public abstract class OneSideResults {
         return results;
     }
 
-    public abstract void updateResults();
+    public abstract void updateResults(String currentMove, String moveResult, String blankSpace);
 
     public void reset(String input) {
         if (CommandKeys.isRetry(input)) {
