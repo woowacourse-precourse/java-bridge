@@ -3,17 +3,13 @@ package bridge.Domain;
 import java.util.Collections;
 import java.util.List;
 
-public class Result {
+public class UserBridges {
     private final UserBridge upperBridge;
     private final UserBridge lowerBridge;
-    private boolean success;
-    private int tries;
 
-    public Result() {
+    public UserBridges() {
         this.upperBridge = new UserBridge();
         this.lowerBridge = new UserBridge();
-        this.success = false;
-        this.tries = 0;
     }
 
     public List<String> getUpperSpaces() {
@@ -32,21 +28,5 @@ public class Result {
     public void resetSpaces() {
         upperBridge.resetSpace();
         lowerBridge.resetSpace();
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void gameSucceed() {
-        success = true;
-    }
-
-    public int getTries() {
-        return tries;
-    }
-
-    public void tryOneMore() {
-        tries += 1;
     }
 }

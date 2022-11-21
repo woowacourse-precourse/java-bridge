@@ -2,7 +2,7 @@ package bridge.Controller;
 
 import bridge.*;
 import bridge.Domain.Bridge;
-import bridge.Domain.Result;
+import bridge.Domain.UserBridges;
 import bridge.Domain.Status;
 import bridge.View.InputView;
 import bridge.View.OutputView;
@@ -18,14 +18,14 @@ public class BridgeController {
 
         Bridge bridge = makeBridge();
 
-        Result result = new Result();
+        UserBridges userBridges = new UserBridges();
 
         Status status = Status.PLAYING;
         while (status == Status.PLAYING) {      // 사용자가 Q를 입력하기 전까지 게임이 계속된다
 
             int location = 0;
 
-            result.tryOneMore();
+            userBridges.tryOneMore();
             Status now;
             while(true) {
                 // 이동할 칸을 입력받는다
@@ -33,16 +33,16 @@ public class BridgeController {
 
                 // 다리를 건넌다
                 String space = bridge.getSpaceByLocation(location);
-                now = BridgeGame.move(moveTo, space, result);
+                now = BridgeGame.move(moveTo, space, userBridges);
 
-                OutputView.printMap(result);
+                OutputView.printMap(userBridges);
 
                 if(now == Status.WRONG_CHOICE)
                     break;
 
                 location++;
                 if (location == bridge.getSize()) {
-                    result.gameSucceed();
+                    userBridges.gameSucceed();
                     now = Status.END_OF_BRIDGE;
                     break;
                 }
@@ -50,11 +50,11 @@ public class BridgeController {
             if (now.equals(Status.END_OF_BRIDGE)) break;
 
             // 이동할 수 없는 경우 재시작 여부를 입력받는다
-            status = BridgeGame.retry(result);
+            status = BridgeGame.retry(userBridges);
         }
 
         // 최종 결과를 출력한다
-        OutputView.printResult(result, bridge.getSize());
+        OutputView.printResult(userBridges, bridge.getSize());
     }
 
     public Bridge makeBridge() {
