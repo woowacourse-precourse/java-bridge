@@ -13,21 +13,26 @@ import java.util.List;
 public class BridgeGameController {
     private final InputController inputController;
     private final OutputController outputController;
+    private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
 
     public BridgeGameController() {
-        this.inputController = new InputController(new InputView(),
-                new BridgeMaker(new BridgeRandomNumberGenerator()));
+        this.inputController = new InputController(new InputView());
         this.outputController = new OutputController(new OutputView());
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridgeGame = new BridgeGame();
     }
 
     public void start(Record record) throws IllegalArgumentException {
         int size = inputController.getBridgeSize();
-        List<String> bridge = inputController.getBridge(size);
+        List<String> bridge = getBridge(size);
 
         bridgeGame.initialize(record);
         play(record, bridge);
+    }
+
+    private List<String> getBridge(int size) throws IllegalArgumentException {
+        return bridgeMaker.makeBridge(size);
     }
 
     private void play(Record record,
