@@ -13,10 +13,16 @@ public class InputView {
 
     public int readBridgeSize() {
         System.out.println(Constants.INPUT_LENGTH_INFO);
+        int bridgeLength = 0;
         /**
          * 다리의 길이를 입력받는다.
          */
-        int bridgeLength = Integer.valueOf(Console.readLine());
+        while (true) {
+            bridgeLength = Integer.valueOf(Console.readLine());
+            if (!checkBridgeLength(bridgeLength)){
+                break;
+            }
+        }
         System.out.println(bridgeLength);
         return bridgeLength;
     }
@@ -37,5 +43,17 @@ public class InputView {
         System.out.println(Constants.RESTART_INFO);
         String restartCommand = Console.readLine();
         return restartCommand;
+    }
+
+    public boolean checkBridgeLength(int length){
+        try{
+        if (length<2 || length >20){
+            throw new IllegalArgumentException();
+        }
+    }catch(IllegalArgumentException e){
+            System.out.println(Constants.ERROR_RANGE_INFO);
+            return false;
+        }
+        return true;
     }
 }
