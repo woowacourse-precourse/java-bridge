@@ -34,13 +34,16 @@
     - [x] 0번째 객체에는 " X ", 1번째 객체에는 "   "을 저장 - BridgeGame#successBridgeDown
 - [x] 매개 값이 R이면 시도 횟수를 증가하고 true를 반환하고 이 외에는 false를 반환 - BridgeGame#retry
 
+- [x] 입력받은 다리 길이만큼 다리 생성 - BridgeMaker#makeBridge
+  - [x] 다리의 랜덤 숫자를 생성 - BridgeMaker#makeBridgeNumber
+  - [x] 랜덤 숫자가 1이면 "U"를 반환하고 아닐 시 "D"를 반환 - BridgeMaker#makeBridgeWord 
+
 - [x] "다리 건너기 게임을 시작합니다."를 출력
 - [x] "다리의 길이를 입력해 주세요."를 출력
 - [x] 다리의 길이를 입력 - InputView#readBridgeSize
   - [x] 입력한 다리의 길이가 조건에 맞는지 검사(예외 사항 참고) - InputView#isBridgeSizeNumber
   - [x] String to int - InputView#toInts
-- [x] 입력받은 길이 만큼 2줄의 다리 생성 - BridgeMaker#makeBridgeList
-  - [x] 입력받은 다리 길이만큼 다리 생성 - BridgeMaker#makeBridge
+
 - [x] "이동할 칸을 선택해주세요. (위: U, 아레: D)"를 출력
 - [x] 이동할 칸을 입력받기 - InputView#readMoving
   - [x] 입력한 값이 U 또는 D 인지 검사 - InputView#isReadMoving
