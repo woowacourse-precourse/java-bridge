@@ -54,7 +54,8 @@ public class BridgeGame {
     }
 
     public void retry() {
-
+        player.clear();
+        player.plusTryCount();
     }
 
     public List<List<String>> getMap() {
