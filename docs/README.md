@@ -51,61 +51,69 @@
 
 ### Domain
 
-- [x]  MoveResult 성공, 실패 표현하는 Enum
-    - [x]  getInitialLetter -> initialLetter를 반환
-    - [x]  isFail -> 실패인지 확인
-- [x]  Round 각 라운드를 표현하는 클래스
-    - [x]  nextRound -> round 값을 1 증가시킨다.
-    - [x]  reset -> round 값을 1로 초기화
-    - [x]  naturalOrder -> Round를 오름차순으로 반환
-    - [x]  naturalOrderWithSize -> size까지의 Round를 오름차순으로 반환
-- [x]  Direction 위 아래 방향을 표현하는 Enum
-    - [x]  toInitialLetter -> 0과 1사이의 값을 받아 D와 U중 하나를 반환
-    - [x]  toEnum -> D와 U를 입력받아 Enum 인스턴스를 반환
-    - [x]  isNotSameDirection -> 다른 방향인지 확인
-- [x]  AnswerBridge 다리를 표현하는 클래스
-    - [x]  check -> 라운드와 방향을 입력받아 MoveResult를 반환
-    - [x]  isLastRound -> 마지막 라운드인지 확인
-- [x]  Player 사용자 클래스
-    - [x]  move -> 다리 건너기
-    - [x]  reset -> 해당 게임을 리셋
-    - [x]  getGameResult -> 게임 결과 확인
-    - [x]  getGamePlayCount -> 게임 실행 횟수를 반환
-    - [x]  checkGamePassed -> 다리 건너기 성공 유무 반환
-- [x]  BridgeGame 다리 건너기 게임을 관리하는 클래스
-    - [x]  move -> 움직이는 방향에 대한 결과 확인
-    - [x]  retry -> 게임 진행할지 결정
-    - [x]  isPlayable -> 게임 진행 여부를 확인
-- [x]  BridgeMaker 다리를 생성하는 클래스
-    - [x]  makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환
-- [x]  BridgeGameStatus 게임 진행 여부 Enum
-- [x]  GamePlayCount 시도 횟수를 표현하는 클래스
-- [x]  BridgeGameResult 게임 결과를 표현하는 클래스
-    - [x]  addResult -> 라운드와 게임 결과를 입력받아 추가
-    - [x]  getResult -> 1라운드 부터의 게임 결과를 반환
-    - [x]  retry -> 게임 결과를 초기화
-    - [x]  checkPassed -> 게임 결과에 실패가 없는지 확인
-- [x]  Victory 다리건너기 게임 최종 결과를 표현하는 enum
-    - [x]  getEnum -> 실패 갯수를 입력받아 이늄을 반환
-    - [x]  getResult -> Enum에 따라 성공 또는 실패 문자열을 반환
-    - [x]  isVictory -> 승리여부 반환
-- [x]  PlayerMove 사용자의 이동 방향과 결과를 표현하는 클래스
-    - [x]  isNotSameDirection -> 입력 방향과 비교하여 같은 방향이 아닌지 확인
-    - [x]  isFail -> 이동 결과가 실패인지 확인
+- [x]  MoveResult: 성공, 실패 표현하는 Enum
+    - [x]  getCommand: O, X를 반환
+    - [x]  isFail: 결과가 실패인지 확인
+- [x]  Round: 각 라운드를 표현하는 클래스
+    - [x]  valueOf: Round 인스턴스 반환
+    - [x]  nextRound: 다음 라운드를 반환
+    - [x]  firstRound: 1 라운드를 반환
+    - [x]  naturalOrder: Round를 오름차순으로 반환
+    - [x]  naturalOrderWithSize: Round를 입력한 라운드까지 오름차순으로 반환
+- [x]  Direction: 위 아래 방향을 표현하는 Enum
+    - [x]  toCommand: 0과 1사이의 값을 받아 D와 U중 하나를 반환
+    - [x]  toEnum: D와 U를 입력받아 Enum 인스턴스를 반환
+    - [x]  isNotSameDirection: 다른 방향인지 확인
+- [x]  AnswerBridge: 다리를 표현하는 클래스
+    - [x]  check: 라운드와 방향을 입력받아 MoveResult를 반환
+    - [x]  isLastRound: 마지막 라운드인지 확인
+- [x]  Player: 사용자 클래스
+    - [x]  move: 다리 건너기
+    - [x]  reset: 결과, 라운드를 리셋하고 gmaePlayCount를 1 증가
+    - [x]  getBridgeGameResult: 다리 건너기 게임 결과 반환
+    - [x]  getGamePlayCount: 게임 실행 횟수를 반환
+    - [x]  checkGamePassed: 다리 건너기 게임 성공 유무 반환
+- [x]  BridgeGame: 다리 건너기 게임을 관리하는 클래스
+    - [x]  move: 움직이는 방향에 대한 결과 확인
+    - [x]  retry: BridgeGameStatus를 Play로 설정
+    - [x]  isPlayable: 게임 진행 가능 여부를 확인
+- [x]  BridgeMaker: 다리를 생성하는 클래스
+    - [x]  makeBridge: 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환
+- [x]  BridgeGameStatus: 게임 진행 여부 Enum
+    - [x]  isPlayable: 진행 가능한지 확인
+    - [x]  isNotPlayable: 진행 불가능한지 확인
+    - [x]  gameStart: PLAY 인스턴스 반환
+    - [x]  getEnum: Command를 입력받아 BridgeGameStatus enum 반환
+- [x]  GamePlayCount: 시도 횟수를 표현하는 클래스
+    - [x]  firstGame: 시도 횟수 1의 인스턴스 반환
+    - [x]  nextGame: 시도 횟수 증가
+    - [x]  getCount: count 반환
+- [x]  BridgeGameResult: 게임 결과를 표현하는 클래스
+    - [x]  addResult: 라운드와 PlayerMove를 입력받아 결과에 추가
+    - [x]  getResult: 1라운드 부터의 게임 결과를 반환
+    - [x]  reset: 게임 결과를 초기화
+    - [x]  checkPassed: 최종 게임 결과 반환
+- [x]  Victory: 다리건너기 게임 최종 결과를 표현하는 enum
+    - [x]  getEnum: 실패 갯수를 입력받아 인스턴스를 반환
+    - [x]  isVictory: 최종 승리 여부 확인
+    - [x]  getMessage: 성공 또는 실패 문자열을 반환
+- [x]  PlayerMove: 사용자의 이동 방향과 결과를 표현하는 클래스
+    - [x]  isNotSameDirection: 입력 방향과 비교하여 같은 방향이 아닌지 확인
+    - [x]  isFail: 이동 결과가 실패인지 확인
 
 ### Other
 
-- [x]  BridgeGameController 요청 처리
-- [x]  BridgeGameService 비즈니스 로직 처리
-- [x]  InputView 입력 처리
-    - [x]  readBridgeSize -> 다리 길이 입력
-    - [x]  readMoving -> 사용자의 이동 방향 입력
-- [x]  OutputView 출력 처리
-    - [x]  printGameStart -> 게임 시작 메시지를 출력
-    - [x]  printMap -> 다리 출력
-    - [x]  printError -> 에러를 출력
-- [x]  InputValidator 입력 검증
-    - [x]  validateBridgeSize -> 다리 길이 검증
-    - [x]  validateMoving -> 이동 방향 검증
-- [x]  GameMoveDto 움직임 결과
-- [x]  GameResultDto 최종 결과
+- [x]  BridgeGameController: 요청 처리
+- [x]  BridgeGameService: 비즈니스 로직 처리
+- [x]  InputView: 입력 처리
+    - [x]  readBridgeSize: 다리 길이 입력
+    - [x]  readMoving: 사용자의 이동 방향 입력
+- [x]  OutputView: 출력 처리
+    - [x]  printGameStart: 게임 시작 메시지를 출력
+    - [x]  printMap: 다리 출력
+    - [x]  printError: 에러를 출력
+- [x]  InputValidator: 입력 검증
+    - [x]  validateBridgeSize: 다리 길이 검증
+    - [x]  validateMoving: 이동 방향 검증
+- [x]  GameMoveDto: 움직임 결과
+- [x]  GameResultDto: 최종 결과
