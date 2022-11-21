@@ -24,6 +24,10 @@ public class OutputView {
     public void printResult() {
     }
 
+    private void printBridgeResult(List<String> bridgeResult) {
+        System.out.println(String.join("|", bridgeResult));
+    }
+
     private List<String> getUpperBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail) {
         List<String> upperBridgeResult = new ArrayList<>();
         for (int bridgeIndex = 0; bridgeIndex < currentUserPosition - 1; bridgeIndex++) {
