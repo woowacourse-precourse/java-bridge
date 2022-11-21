@@ -10,6 +10,7 @@ public class BridgeScreenModeSelector {
     private final List<String> answer;
     private final int current;
     private final int printCase;
+
     private static final int REACHED_END = 1;
     private static final int COMPARE_SAME = 2;
     private static final int COMPARE_DIFFERENT = 3;
@@ -21,15 +22,13 @@ public class BridgeScreenModeSelector {
     }
 
     public ScreenGenerator generateOutputScreen() {
-        ScreenGenerator screenGenerator = correctGeneratorCase();
-        if (screenGenerator != null) {
-            return screenGenerator;
+        if (correctGeneratorCase() != null) {
+            return correctGeneratorCase();
         }
-        ScreenGenerator screenGenerator1 = wrongGeneratorCase();
-        if (screenGenerator1 != null) {
-            return screenGenerator1;
+        if (wrongGeneratorCase() != null) {
+            return wrongGeneratorCase();
         }
-        throw new IllegalArgumentException("screen mode is invalid");
+        return null;
     }
 
     private ScreenGenerator wrongGeneratorCase() {
