@@ -39,8 +39,7 @@ public class BridgeGameEngine {
         PlayerStatus playerStatus = null;
 
         for (String currentStep : bridge) {
-            playerStatus = isMatchingWithBridge(currentStep);
-            playerMove(userBridge, playerStatus);
+            playerStatus = playerMove(userBridge, playerStatus, currentStep);
             if (!playerStatus.isMatchingFlag()) {
                 break;
             }
@@ -58,9 +57,14 @@ public class BridgeGameEngine {
         return new PlayerStatus(nextStep, false);
     }
 
-    private void playerMove(final Bridge userBridge, final PlayerStatus playerStatus) {
+    private PlayerStatus playerMove(final Bridge userBridge,
+                            PlayerStatus playerStatus,
+                            final String currentStep) {
+        playerStatus = isMatchingWithBridge(currentStep);
         bridgeGame.move(userBridge, playerStatus);
         ConsoleUtil.outputBridge(userBridge);
+
+        return playerStatus;
     }
 
     public boolean isGameFinish(final int gameCount,
