@@ -15,4 +15,11 @@ public class BridgeGameRun {
         this.inputValidation = inputValidation;
         this.outputView = outputView;
     }
+
+    private void bridgeGameGenerate(int size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        bridgeGame = new BridgeGame(bridge);
+    }
 }
