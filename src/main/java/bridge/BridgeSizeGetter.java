@@ -9,7 +9,7 @@ public class BridgeSizeGetter {
         this.validator = new BridgeSizeValidator();
     }
 
-    public int getBridgeSize() throws IllegalArgumentException {
+    public int getBridgeSizeFromConsole() throws IllegalArgumentException {
         this.inputView.printPromptForBridgeSize();
         String input = inputView.readBridgeSize();
 
