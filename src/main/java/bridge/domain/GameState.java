@@ -1,5 +1,5 @@
 package bridge.domain;
 
 public enum GameState {
-    RUNNING, OVER, PAUSE;
+    RUNNING, PAUSE, CLEAR, FAIL;
 }

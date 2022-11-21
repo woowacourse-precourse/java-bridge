@@ -54,7 +54,7 @@ public class BridgeGame {
             gameState = GameState.RUNNING;
             return;
         }
-        gameState = GameState.OVER;
+        gameState = GameState.FAIL;
     }
 
     private void validateRetrialCommand(String command){
