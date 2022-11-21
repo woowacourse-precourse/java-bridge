@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.BridgeGame;
 import bridge.DownsideResults;
 import bridge.OneSideResults;
 import bridge.UpsideResults;
@@ -37,12 +38,12 @@ public class OutputView {
     public static void printMap(OneSideResults upsideResults, OneSideResults downsideResults) {
         final StringJoiner upsideMap = new StringJoiner(BLANK_SPACE);
         final StringJoiner downsideMap = new StringJoiner(BLANK_SPACE);
-
         updateMap(upsideMap, upsideResults);
         updateMap(downsideMap, downsideResults);
 
         System.out.println(upsideMap);
         System.out.println(downsideMap);
+        System.out.println();
     }
 
     private static void updateMap(StringJoiner oneSideMap, OneSideResults oneSideResults) {
@@ -84,12 +85,12 @@ public class OutputView {
     public static void printResult(
             OneSideResults upsideResults,
             OneSideResults downsideResults,
-            String gameResult
+            BridgeGame bridgeGame
     ) {
         System.out.println(FINAL_RESULT_TITLE);
         printMap(upsideResults, downsideResults);
-        System.out.println();
-        printSuccessOrFailure(gameResult);
+        printSuccessOrFailure(bridgeGame.getFinalResult());
+        printTotalTrialCount(bridgeGame.getTotalTrialCount());
     }
 
     private static void printSuccessOrFailure(String gameResult) {

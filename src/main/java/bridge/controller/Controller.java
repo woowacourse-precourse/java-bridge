@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.util.Constants.*;
+
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
@@ -12,25 +14,18 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class Controller {
-    private static final int INITIAL_COUNT = 1;
-    private static final String SUCCESS = "성공";
-    private static final String FAILURE = "실패";
-
     private final List<String> answerBridge;
     private final BridgeGame bridgeGame;
 
     private final OneSideResults upsideResults;
     private final OneSideResults downsideResults;
 
-    private int totalTrialCount;
     private String finalResult;
 
     public Controller() {
         OutputView.printGameStart();
         answerBridge = createAnswerBridge(InputView.readBridgeSize());
         bridgeGame = new BridgeGame();
-        totalTrialCount = INITIAL_COUNT;
-        finalResult = SUCCESS;
         upsideResults = new UpsideResults();
         downsideResults = new DownsideResults();
     }
@@ -49,12 +44,20 @@ public class Controller {
             updateResults(playerMove, matchResult);
             OutputView.printMap(upsideResults, downsideResults);
 
-            if (matchResult.equals("X")) {
-                index = setIndex(index);
+            if (wasWrongMove(matchResult)) {
+                final String playerCommand = InputView.readGameCommand();
+                if (CommandKeys.isRetry(playerCommand)) {
+                    index = -1;
+                    resetResults(playerCommand);
+                    bridgeGame.retry();
+                }
+                if (CommandKeys.isQuit(playerCommand)) {
+                    bridgeGame.quit();
+                    index = answerBridge.size() - 1;
+                }
             }
         }
-        OutputView.printResult(upsideResults, downsideResults, finalResult);
-        OutputView.printTotalTrialCount(totalTrialCount);
+        OutputView.printResult(upsideResults, downsideResults, bridgeGame);
     }
 
     private void updateResults(String playerMove, String matchResult) {
@@ -62,18 +65,8 @@ public class Controller {
         downsideResults.update(playerMove, matchResult);
     }
 
-    private int setIndex(int index) {
-        final String playerCommand = InputView.readGameCommand();
-        if (CommandKeys.isRetry(playerCommand)) {
-            index = -1;
-            resetResults(playerCommand);
-            totalTrialCount = bridgeGame.retry(totalTrialCount);
-        }
-        if (CommandKeys.isQuit(playerCommand)) {
-            finalResult = FAILURE;
-            index = answerBridge.size() - 1;
-        }
-        return index;
+    private static boolean wasWrongMove(String matchResult) {
+        return matchResult.equals(WRONG_MOVE);
     }
 
     private void resetResults(String playerCommand) {

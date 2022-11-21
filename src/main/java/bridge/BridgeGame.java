@@ -1,7 +1,6 @@
 package bridge;
 
-import bridge.util.CommandKeys;
-import java.util.List;
+import static bridge.util.Constants.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -12,8 +11,25 @@ import java.util.List;
  * 5. BridgeGame 클래스에서 InputView, OutputView 클래스를 사용하지 않는다.
  */
 public class BridgeGame {
-    private static final String CORRECT_MOVE = "O";
-    private static final String WRONG_MOVE = "X";
+    private static final int INITIAL_COUNT = 1;
+    private static final String SUCCESS = "성공";
+    private static final String FAILURE = "실패";
+
+    private String finalResult;
+    private int totalTrialCount;
+
+    public BridgeGame() {
+        finalResult = SUCCESS;
+        totalTrialCount = INITIAL_COUNT;
+    }
+
+    public String getFinalResult() {
+        return finalResult;
+    }
+
+    public int getTotalTrialCount() {
+        return totalTrialCount;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -32,7 +48,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int retry(int trialCount) {
-        return trialCount + 1;
+    public void retry() {
+        totalTrialCount++;
+    }
+
+    public void quit() {
+        finalResult = FAILURE;
     }
 }
