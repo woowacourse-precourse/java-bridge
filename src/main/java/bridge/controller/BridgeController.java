@@ -69,7 +69,7 @@ public class BridgeController {
     public boolean isCross(int size, Bridge bridge, List<PathDTO> pathDTO) {
         boolean end = false;
         for (int round = 0; round < size; round++) {
-            if (getPassable(bridge, pathDTO, round).equals(FAIL)) {
+            if (!isMove(bridge, pathDTO, round)) {
                 break;
             }
             end = isSuccess(size, round);
@@ -77,12 +77,12 @@ public class BridgeController {
         return end;
     }
 
-    private String getPassable(Bridge bridge, List<PathDTO> pathDTO, int round) {
+    private boolean isMove(Bridge bridge, List<PathDTO> pathDTO, int round) {
         String moving = inputMoving();
         String pass = getPass(bridge, round, moving);
         bridgeGame.move(pathDTO, moving, pass);
         outputView.printMap(new MapDTO(pathDTO));
-        return pass;
+        return pass.equals(PASS);
     }
 
     private boolean isSuccess(int size, int round) {
