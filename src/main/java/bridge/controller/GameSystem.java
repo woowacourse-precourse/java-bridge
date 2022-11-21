@@ -48,8 +48,8 @@ public class GameSystem {
     }
 
     private void printBridgeState(UserBridege userBridege) {
-        outputView.printMap(userBridege.getUpBridge());
-        outputView.printMap(userBridege.getDownBridge());
+        outputView.printMap(userBridege.getUpBridge(), "");
+        outputView.printMap(userBridege.getDownBridge(), "\n");
     }
 
     private String updateState() {

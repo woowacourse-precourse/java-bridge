@@ -40,8 +40,8 @@ public class OutputView {
      */
     public void printResult(String challenge, int attempt, UserBridege userBridge) {
         System.out.println("최종 게임 결과");
-        printMap(userBridge.getUpBridge());
-        printMap(userBridge.getDownBridge());
+        printMap(userBridge.getUpBridge(),"");
+        printMap(userBridge.getDownBridge(),"\n");
         System.out.print("\n게임 성공 여부: " + challenge) ;
         System.out.print("총 시도한 횟수: " + attempt);
     }
