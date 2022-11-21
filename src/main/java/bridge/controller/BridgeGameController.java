@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.GameException;
 import bridge.domain.GameProgress;
 import bridge.domain.GameStatus;
 import bridge.service.BridgeGame;
@@ -18,9 +19,19 @@ public class BridgeGameController {
             try {
                 choiceGameMode();
             } catch (IllegalArgumentException ex) {
-                OutputView.printError(ex.getMessage());
+                handleErrors(ex.getMessage());
             }
         }
+    }
+
+    private void handleErrors(String errorMessage) {
+        if (GameException.isSystemError(errorMessage)) {
+            OutputView.printSystemError(errorMessage);
+            gameProgress = GameProgress.EXIT;
+            return;
+        }
+
+        OutputView.printError(errorMessage);
     }
 
     private void choiceGameMode() {

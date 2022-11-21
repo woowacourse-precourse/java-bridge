@@ -14,11 +14,11 @@ public class OutputView {
     private static final String GAME_END = "최종 게임 결과";
     private static final String GAME_RESULT = "게임 성공 여부: ";
     private static final String GAME_TRY_COUNTS = "총 시도한 횟수: ";
-    private static final String GAME_ERROR = "[ERROR] ";
-
-
     private static final String COMMA_SPACE = ", ";
     private static final String VERTICAL_BAR = "|";
+
+    private static final String GAME_ERROR = "[ERROR] ";
+    private static final String SYSTEM_ERROR = "[SYSTEM ERROR] ";
 
     private OutputView() {
     }
@@ -59,5 +59,9 @@ public class OutputView {
 
     public static void printError(String errorMessage) {
         System.out.println(GAME_ERROR + errorMessage);
+    }
+
+    public static void printSystemError(String errorMessage) {
+        System.out.println(SYSTEM_ERROR + errorMessage);
     }
 }
