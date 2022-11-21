@@ -1,6 +1,6 @@
 package bridge.game.status;
 
-import bridge.game.context.BridgeGameContext;
+import bridge.game.context.BridgeGameContextImpl;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import org.assertj.core.api.Assertions;
@@ -14,7 +14,7 @@ class GameStartStatusTest {
 
     @Test
     void 게임시작상태_다음은_게임_다리_생성_상태입니다() {
-        var actual = new GameStartStatus().next(new BridgeGameContext(), new InputView(), new OutputView());
+        var actual = new GameStartStatus().next(new BridgeGameContextImpl(), new InputView(), new OutputView());
         Assertions.assertThat(actual)
                 .isInstanceOf(GenerateBridgeStatus.class);
     }

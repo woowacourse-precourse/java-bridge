@@ -1,6 +1,6 @@
 package bridge.game.status;
 
-import bridge.game.context.BridgeGameContext;
+import bridge.game.context.BridgeGameContextImpl;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -16,7 +16,7 @@ class GenerateBridgeStatusTest extends NsTest {
     @Test
     void 다리생성_상태_다음_플레이어_이동_상태입니다() {
         run("3");
-        var actual = new GenerateBridgeStatus().next(new BridgeGameContext(), new InputView(), new OutputView());
+        var actual = new GenerateBridgeStatus().next(new BridgeGameContextImpl(), new InputView(), new OutputView());
         Assertions.assertThat(actual).isInstanceOf(PlayerUnitMoveStatus.class);
     }
 
