@@ -2,7 +2,6 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.OutputView;
 import java.util.List;
 
 /**
@@ -40,7 +39,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String command) throws Exception {
+    public boolean retry(String command) {
 
         if (command.equals("Q")) {
             return false;
@@ -48,7 +47,7 @@ public class BridgeGame {
         if (command.equals("R")) {
             return true;
         }
-        throw new Exception();
-
+        return false;
     }
+
 }
