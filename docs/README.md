@@ -11,7 +11,7 @@
       - [ ] 다리가 있으면 이동한다. - BridgeGame.move()
         - [ ] 이동할 칸을 입력 받는다. - InputView.readMoving()
           - [ ] 올바른 값인지 검사한다. - CustomException.checkMove()
-            - [ ] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
+            - [x] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
           - [ ] 올바른 값이면 맵을 출력한다. - OutputView.printMap()
             - [ ] 다리를 건너다 실패했는지 검사한다. - BridgeGame.checkWrongMove()
               - [ ] 게임을 재시작 하거나 종료할 수 있다. - BridgeGame.retry()
@@ -22,7 +22,7 @@
   - [ ] 게임을 종료한다. - BridgeGame.finish()
     - [ ] 최종 게임 결과를 출력한다. - OutputView.printFinish()
       - [ ] 시도 횟수를 출력한다. - OutputView.printResult()
-- [ ] 메시지를 출력한다. - OutputView.printMessage()
+- [x] 메시지를 출력한다. - OutputView.printMessage()
 - [x] 각 예외 메시지를 구분한다. - ExceptionMessage
 
 ## 🚀 기능 요구 사항
