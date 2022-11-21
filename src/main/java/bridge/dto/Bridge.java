@@ -16,4 +16,13 @@ public class Bridge {
     public void setPositions(List<String> positions) {
         this.positions = positions;
     }
+
+    public String getPosition(int currentPosition) {
+        return positions.get(currentPosition);
+    }
+
+    public int getSize() {
+        return positions.size();
+    }
+
 }
