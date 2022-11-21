@@ -4,34 +4,42 @@ import bridge.domain.direction.Direction;
 import bridge.domain.movingrecord.MovingRecord;
 import bridge.domain.referee.Judgement;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class Pedestrian {
 
-    private final MovingRecord movingRecord;
+    private final Map<Judgement, Direction> movingRecords;
 
     public Pedestrian() {
-        this.movingRecord = new MovingRecord();
+        this.movingRecords = new LinkedHashMap<>();
     }
 
     public void move(Judgement judgement, Direction direction) {
-        movingRecord.write(judgement, direction);
-    }
-
-    public Stream<Map.Entry<Judgement, Direction>> readRecord() {
-        return movingRecord.read();
+        movingRecords.put(judgement, direction);
     }
 
     public int findLocation() {
-        return movingRecord.size();
+        return movingRecords.size();
     }
 
-    public void clearRecord() {
-        movingRecord.clear();
+    public void returnToStartPoint() {
+        movingRecords.clear();
     }
 
     public boolean hasIncorrectDirection() {
-        return movingRecord.hasFalseJudgement();
+        return movingRecords.keySet().stream()
+                .anyMatch(Judgement::isFalse);
+    }
+
+    public MovingRecord createMovingRecord() {
+        return new MovingRecord(movingRecords);
+    }
+
+    @Override
+    public String toString() {
+        return "Pedestrian{" +
+                "movingRecords=" + movingRecords +
+                '}';
     }
 }
