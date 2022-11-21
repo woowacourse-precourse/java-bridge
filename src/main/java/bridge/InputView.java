@@ -27,7 +27,12 @@ public class InputView {
         outputView.printResult(bridge); // 최종 결과 출력
     }
 
-
+    public void loopGame(List<String> bridgeList) {
+        boolean loopFlag = true;
+        while (loopFlag) { // 게임 재시도 여부에 따라 반복이 결정
+            loopFlag = loopBridge(bridgeList); // 다리 건너기
+        }
+    }
 
     /**
      * 다리의 길이를 입력받는다.
@@ -73,7 +78,6 @@ public class InputView {
         ErrorMessage.inputMoveBridgeError();
         return false;
     }
-
 
 
     /**
