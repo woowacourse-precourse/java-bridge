@@ -11,7 +11,11 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
 
-    public void printMap() {
+    public void printMap(List<String> bridge) {
+        for (String string : bridge) {
+            System.out.print(string);
+        }
+        System.out.println();
     }
 
     /**
