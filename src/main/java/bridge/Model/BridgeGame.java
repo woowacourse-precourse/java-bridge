@@ -44,15 +44,11 @@ public class BridgeGame {
         choiceDirections = new ChoiceDirections(new ArrayList<>());
         crossResults = new CrossResults(new ArrayList<>());
         position = initPosition();
-        increaseTryCount();
+        tryCount++;
     }
 
     private int initPosition(){
         return choiceDirections.length() - 1;
-    }
-
-    private void increaseTryCount() {
-        tryCount++;
     }
 
     public ChoiceDirections getChoiceDirections() {
