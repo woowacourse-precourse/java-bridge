@@ -75,6 +75,26 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @Test
+    void 잘못된_다리_길이를_입력했을_경우_다리_사이즈부터_재입력받아야한다() {
+        assertRandomNumberInRangeTest(() -> {
+            run("A", "25", "2", "1111111111111111111111111111111111111111111", "3", "U", "D", "U");
+            assertThat(output()).contains(
+                    "다리의 길이를 입력해주세요.",
+                    "다리의 길이는 3 이상 20 이하의 숫자여야 합니다.",
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
