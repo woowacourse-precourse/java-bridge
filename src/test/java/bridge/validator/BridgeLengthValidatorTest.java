@@ -3,6 +3,7 @@ package bridge.validator;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import bridge.constant.ValidatorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +16,7 @@ class BridgeLengthValidatorTest {
     void createNotNaturalNumber(String input) {
         assertThatThrownBy(() ->BridgeLengthValidator.validateNaturalNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BridgeLengthValidator.BRIDGE_LENGTH_MESSAGE);
+                .hasMessage(ValidatorMessage.BRIDGE_LENGTH_MESSAGE.toString());
 
     }
 
@@ -25,7 +26,7 @@ class BridgeLengthValidatorTest {
     void createNumberOutOfRange(String input) {
         assertThatThrownBy(() ->BridgeLengthValidator.validateRange(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BridgeLengthValidator.BRIDGE_LENGTH_MESSAGE);
+                .hasMessage(ValidatorMessage.BRIDGE_LENGTH_MESSAGE.toString());
 
     }
 }

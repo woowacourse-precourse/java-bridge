@@ -2,6 +2,7 @@ package bridge.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.constant.ValidatorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,7 +14,7 @@ class SpaceToMoveValidatorTest {
     void createNotUorD(String input) {
         assertThatThrownBy(() ->SpaceToMoveValidator.validateSpaceToMove(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(SpaceToMoveValidator.NEXT_SPACE_IS_U_OR_D);
+                .hasMessage(ValidatorMessage.NEXT_SPACE_IS_U_OR_D.toString());
 
     }
 }
