@@ -15,7 +15,6 @@ public class GameController {
         String bridgeSize = InputView.readBridgeSize();
 
         List<String> bridge = BridgeService.generateBridge(bridgeSize);
-        System.out.println(bridge);
         User user = UserService.generateUser();
 
         startGame(bridge, user);
@@ -58,9 +57,9 @@ public class GameController {
     private static void endGame(List<String> bridge, User user) {
         OutputView.printResult(user);
         if (user.sameBridgeSize(bridge.size())) {
-            OutputView.printSuccess();
+            OutputView.printSuccess(user);
             return;
         }
-        OutputView.printFail();
+        OutputView.printFail(user);
     }
 }

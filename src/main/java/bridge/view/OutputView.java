@@ -25,7 +25,7 @@ public class OutputView {
      */
     public static void printResult(User user) {
         System.out.println("최종 게임 결과");
-        System.out.println("총 시도한 횟수: " + user.getTryCount());
+        printMap(user);
     }
 
     public static void printException(String message) {
@@ -36,10 +36,15 @@ public class OutputView {
         System.out.println("게임을 다시 시작하시겠습니까 ? 재시작 :R 종료 :Q");
     }
 
-    public static void printSuccess() {
+    public static void printSuccess(User user) {
+        System.out.println("게임 성공 여부: 성공");
+        System.out.println("총 시도한 횟수: " + user.getTryCount());
+
     }
 
-    public static void printFail() {
+    public static void printFail(User user) {
+        System.out.println("게임 성공 여부: 실패");
+        System.out.println("총 시도한 횟수: " + user.getTryCount());
     }
 
     public static void printRunGame() {
