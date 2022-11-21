@@ -1,14 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.Result;
-import bridge.util.Constants;
-import bridge.util.Validator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
 import java.util.List;
 
 /**
