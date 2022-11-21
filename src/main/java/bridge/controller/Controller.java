@@ -56,12 +56,29 @@ public class Controller {
             outputView.printMoveInputRequest(Command.MOVE_UP.getCommand(), Command.MOVE_DOWN.getCommand());
             String moveCommand = inputView.readMoving();
             bridgeGame.move(moveCommand);
-            outputView.printMap(bridgeGame.getUpperBlock(), bridgeGame.getLowerBlock());
+            outputView.printMap(mapToString(bridgeGame.getUpperBlock()), mapToString(bridgeGame.getLowerBlock()));
         }
         catch (IllegalArgumentException exception){
             outputView.printErrorMessage(exception.getMessage());
             move();
         }
+    }
+
+    private String mapToString(List<String> map){
+        String ret = "";
+        for (int i = 0; i < map.size(); i++){
+            if (i == 0) {
+                ret += "[ ";
+            }
+            ret += map.get(i);
+            if (i != map.size() - 1){
+                ret += " | ";
+            }
+            if (i == map.size() - 1){
+                ret += " ]";
+            }
+        }
+        return ret;
     }
 
     private void retry(){
@@ -78,6 +95,7 @@ public class Controller {
 
     private void showResult(){
         outputView.printResult(gameStateToString(bridgeGame.getGameState()), bridgeGame.getTrialCount());
+        outputView.printMap(mapToString(bridgeGame.getUpperBlock()), mapToString(bridgeGame.getLowerBlock()));
     }
 
     private String gameStateToString(GameState gameState){

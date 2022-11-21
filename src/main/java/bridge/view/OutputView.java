@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printMap(List<String> upperBlock, List<String> lowerBlock) {
+    public void printMap(String upperBlock, String lowerBlock) {
         System.out.println(upperBlock);
         System.out.println(lowerBlock);
 

@@ -23,28 +23,14 @@ public class BridgeGame {
     public void move(String moveCommand) {
         validateMoveCommand(moveCommand);
         if (isMovable(moveCommand)) {
-            if (moveCommand.equals(Command.MOVE_UP.getCommand())){
-                upperBlock.add("O");
-                lowerBlock.add(" ");
-            }
-            if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
-                upperBlock.add(" ");
-                lowerBlock.add("O");
-            }
             currentBlockIndex += 1;
+            drawMap(moveCommand, "O");
             if (isClear()){
                 gameState = GameState.CLEAR;
             }
             return;
         }
-        if (moveCommand.equals(Command.MOVE_UP.getCommand())){
-            upperBlock.add("X");
-            lowerBlock.add(" ");
-        }
-        if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
-            upperBlock.add(" ");
-            lowerBlock.add("X");
-        }
+        drawMap(moveCommand, "X");
         gameState = GameState.PAUSE;
     }
 
@@ -53,7 +39,7 @@ public class BridgeGame {
     }
 
     private Boolean isClear(){
-        if (bridge.equals(bridgeProgress)){
+        if (upperBlock.size() == bridge.size()){
             return true;
         }
         return false;
@@ -84,9 +70,6 @@ public class BridgeGame {
         }
 
     }
-    public List<String> getBridgeProgress() {
-        return bridgeProgress;
-    }
 
     public GameState getGameState() {
         return gameState;
@@ -110,5 +93,18 @@ public class BridgeGame {
 
     public List<String> getLowerBlock() {
         return lowerBlock;
+    }
+
+    private void drawMap(String moveCommand, String symbol){
+        if (moveCommand.equals(Command.MOVE_UP.getCommand())){
+            upperBlock.add(symbol);
+            lowerBlock.add(" ");
+            return;
+        }
+        if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
+            upperBlock.add(" ");
+            lowerBlock.add(symbol);
+            return;
+        }
     }
 }
