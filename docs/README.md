@@ -16,3 +16,5 @@
 6. OutputView
     1. 게임 진행 상황을 보여주는 기능
     2. 게임의 최종 결과를 보여주는 기능
+7. BridgeMapGenerator
+   1.  bridgeMap을 생성하는 기능
