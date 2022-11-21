@@ -9,15 +9,17 @@ public class Application {
     public static void main(String[] args) {
         OutputView.printMessage(GAME_START);
 
-        InputView inputView = new InputView();
-        int bridgeSize = inputView.getBridgeSize();
-
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println("bridge = " + bridge);
-
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame(makeBridge());
         bridgeGame.progress();
     }
 
+    private static List<String> makeBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return bridgeMaker.makeBridge(getBridgeSize());
+    }
+
+    private static int getBridgeSize() {
+        InputView inputView = new InputView();
+        return inputView.getBridgeSize();
+    }
 }
