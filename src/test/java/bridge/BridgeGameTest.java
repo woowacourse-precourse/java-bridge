@@ -25,4 +25,14 @@ public class BridgeGameTest {
         user.userMove("D");
         assertThat(user.getUserSize()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("재시작시 객체 초기화 테스트")
+    void gameClearTest() {
+        User user = new User(List.of("D","U","D"),3);
+        user.userMove("D");
+        BridgeGame bg = new BridgeGame(3);
+        bg.setGame();
+        assertThat(user.getUserSize()==bg.getUserBridge().size()).isEqualTo(false);
+    }
 }
