@@ -58,7 +58,7 @@ public class BridgeGameManager {
     }
 
     private int inputBridgeSizeRepeat() {
-가        while (true) {
+        while (true) {
             try {
                 return InputView.readBridgeSize();
             } catch (IllegalArgumentException e) {

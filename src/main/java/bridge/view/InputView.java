@@ -31,9 +31,6 @@ public class InputView {
         return size;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public static String readMoving() throws IllegalArgumentException {
         System.out.println(BridgeGameInfo.SELECT_UP_DOWN.message);
         // 이동할 칸 입력받기
@@ -46,9 +43,6 @@ public class InputView {
         return input;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public static String readGameCommand() throws IllegalArgumentException {
         System.out.println(BridgeGameInfo.RESTART.message);
         // 다시 시도지 종료할지 입력받는다.
