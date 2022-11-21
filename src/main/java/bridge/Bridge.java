@@ -9,4 +9,8 @@ public class Bridge {
 	public void setBridge(List<String> makeBridge) {
 		bridge.addAll(makeBridge);
 	}
+
+	public boolean contains(String userMove, int index) {
+		return bridge.get(index).contains(userMove);
+	}
 }
