@@ -1,4 +1,4 @@
-package bridge.domain.constnce;
+package bridge.model.constnce;
 
 public class Text {
     public static final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";

@@ -1,4 +1,4 @@
-package bridge.domain.validation;
+package bridge.model.validation;
 
 import java.util.Arrays;
 

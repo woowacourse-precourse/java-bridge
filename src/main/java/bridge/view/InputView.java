@@ -1,6 +1,6 @@
 package bridge.view;
 
-import static bridge.domain.constnce.Text.*;
+import static bridge.model.constnce.Text.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**

@@ -1,4 +1,4 @@
-package bridge.domain.validation;
+package bridge.model.validation;
 
 public class BridgeSize {
     public static final int MAX = 20;
