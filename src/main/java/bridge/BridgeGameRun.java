@@ -16,7 +16,7 @@ public class BridgeGameRun {
     private int gameTryCount = 0;
 
     public void runBridgeGame() {
-        beginningPart();
+        setBridge();
 
         String judge;
         do {
@@ -28,7 +28,7 @@ public class BridgeGameRun {
         output.printResult(judge, gameTryCount);
     }
 
-    private void beginningPart() {
+    private void setBridge() {
         System.out.println(START_BRIDGE_GAME);
 
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
