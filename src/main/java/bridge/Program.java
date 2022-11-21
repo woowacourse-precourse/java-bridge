@@ -48,10 +48,11 @@ public class Program {
     private static void playGame() {
         while (true) {
             setupGame();
-            boolean isCompleted = proceedGame();
-            if (isCompleted) {
-                break;
+            boolean isContinue = proceedGame();
+            if (isContinue) {
+                continue;
             }
+            break;
         }
     }
 
@@ -63,10 +64,10 @@ public class Program {
     private static boolean proceedGame() {
         while (true) {
             if (!generateMovement()) {
-                return askToQuitGame();
+                return askToRetryGame();
             }
             if (bridgeGame.isSuccessFinish()) {
-                return true;
+                return false;
             }
         }
     }
@@ -91,10 +92,10 @@ public class Program {
         }
     }
 
-    private static boolean askToQuitGame() {
+    private static boolean askToRetryGame() {
         outputView.printInputRetryCommand();
         String command = getRetryCommand();
-        return !bridgeGame.retry(command);
+        return bridgeGame.retry(command);
     }
 
     private static String getRetryCommand() {
