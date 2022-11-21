@@ -1,6 +1,11 @@
 # [Application]
 
-	- 기능 목록
+1. startGame
+   - 게임 시작 기능(시작 메세지 출력, 다리 제작)
+2. preceedGame
+   - 게임 진행 기능([이동, 결과 출력] 반복)
+3. determineRetry
+   - 게임 재시작 기능
 
 # [BridgeGame]
 
@@ -11,11 +16,8 @@
 
 # [BridgeMaker]
 
-- 기능 목록
-
-# [BridgeRandomNumberGenerator]
-
-	- 기능 목록
+1. makeBridge
+   - 다리 만들기 기능(랜덤)
 
 # [InputView]
 
@@ -31,8 +33,21 @@
 
 1. printMap
     - 현재 다리 상태를 출력하는 기능
-2. printResult
-    - 게임 최종 결과를 출력하는 기능
+
+2. makemap
+   - 다리 지도(map) 제작 기능
+3. walk
+   - 다리 지도 위를 걷는 기능
+
+4. printResult
+   - 게임 최종 결과를 출력하는 기능
+
+___
+
+1. print~~Message
+    - 게임 메세지 출력 기능
+2. print~~Error
+    - 에러 메세지 출력 기능
 
 # [ValidationChecker]
 
