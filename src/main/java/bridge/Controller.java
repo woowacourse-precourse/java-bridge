@@ -19,4 +19,9 @@ public class Controller {
             }
         }
     }
+
+    public void move(BridgeGame bridgeGame) {
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getPlayer());
+    }
 }
