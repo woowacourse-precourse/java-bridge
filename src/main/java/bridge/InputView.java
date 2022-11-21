@@ -43,7 +43,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    private int stringToInteger(String input) {
+    protected int stringToInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -51,8 +51,8 @@ public class InputView {
         }
     }
 
-    private boolean isInRange(int size) {
-        if(size > BRIDGE_SIZE_MINIMUM || size < BRIDGE_SIZE_MAXIMUM) {
+    protected boolean isInRange(int size) {
+        if(size > BRIDGE_SIZE_MINIMUM && size <= BRIDGE_SIZE_MAXIMUM) {
             return true;
         }
         return false;

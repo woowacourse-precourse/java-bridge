@@ -39,14 +39,14 @@ public class Player {
         }
     }
 
-    private boolean validateMoving(String input) {
+    protected boolean validateMoving(String input) {
         if(input.equals(UP) || input.equals(DOWN)) {
             return true;
         }
         return false;
     }
 
-    private boolean validateRetry(String input) {
+    protected boolean validateRetry(String input) {
         if(input.equals(RETRY) || input.equals(QUIT)) {
             return true;
         }
