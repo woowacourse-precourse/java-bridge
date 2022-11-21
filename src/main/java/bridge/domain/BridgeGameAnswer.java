@@ -19,7 +19,7 @@ public class BridgeGameAnswer {
         return false;
     }
 
-    public List<List<String>> getResultByHistory(List<String> history) {
+    public List<List<String>> getMapByHistory(List<String> history) {
         List<List<String>> rvalue = new ArrayList<>();
         for (int i = 0; i < history.size(); i++) {
             if (isAnswer(history.get(i), i)) {

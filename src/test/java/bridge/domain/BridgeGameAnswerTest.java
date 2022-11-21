@@ -41,7 +41,7 @@ class BridgeGameAnswerTest {
         answer.add(List.of(" O |", "   |"));
         answer.add(List.of("   ", " O "));
         List<String> history = List.of("U", "D", "U", "D");
-        List<List<String>> return_answer = bridgeGameAnswer.getResultByHistory(history);
+        List<List<String>> return_answer = bridgeGameAnswer.getMapByHistory(history);
         assertEquals(answer,return_answer);
     }
 
@@ -54,7 +54,7 @@ class BridgeGameAnswerTest {
         answer.add(List.of(" O |", "   |"));
         answer.add(List.of(" X ", "   "));
         List<String> history = List.of("U", "D", "U", "U");
-        List<List<String>> return_answer = bridgeGameAnswer.getResultByHistory(history);
+        List<List<String>> return_answer = bridgeGameAnswer.getMapByHistory(history);
         assertEquals(answer,return_answer);
     }
 }

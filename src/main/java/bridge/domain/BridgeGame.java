@@ -44,7 +44,7 @@ public class BridgeGame {
     }
 
     public List<List<String>> getResult() {
-        return bridgeGameAnswer.getResultByHistory(bridgeGameHistory.getBridgeHistory());
+        return bridgeGameAnswer.getMapByHistory(bridgeGameHistory.getBridgeHistory());
     }
 
     public boolean canPlay() {
