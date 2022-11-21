@@ -23,7 +23,9 @@ abstract class ResultPrinter {
         return new FailureResultPrinter(directions);
     }
 
-    abstract String print();
+    String print() {
+        return getResultFormat(getResult(DIRECTION_UP)) + getResultFormat(getResult(DIRECTION_DOWN));
+    }
 
     protected String getResultFormat(String result) {
         return String.format(FORMAT_RESULT, result);
@@ -35,8 +37,8 @@ abstract class ResultPrinter {
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
 
-    private String isSame(String direction, String target) {
-        if (direction.equals(target)) {
+    private String isSame(String direction, String targetDirection) {
+        if (direction.equals(targetDirection)) {
             return RIGHT_SIGN;
         }
         return DEFAULT_SIGN;

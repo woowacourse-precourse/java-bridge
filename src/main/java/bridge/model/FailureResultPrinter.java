@@ -5,25 +5,28 @@ import java.util.List;
 public class FailureResultPrinter extends ResultPrinter {
 
     public static final String WRONG_SIGN = "X";
-    public static final int CHANGE_INDEX_ADD_ONE = 1;
+    public static final int LAST_INDEX_AND_SIZE_DIFFERENT = 1;
+    public static final int BEGIN_INDEX = 0;
 
     FailureResultPrinter(List<String> directions) {
         super(directions);
     }
 
     @Override
-    String print() {
-        StringBuilder result = new StringBuilder();
-        getFailureResult(getResult(DIRECTION_UP), result, DIRECTION_UP);
-        getFailureResult(getResult(DIRECTION_DOWN), result, DIRECTION_DOWN);
-        return result.toString();
+    public String getResult(String direction) {
+        String result = super.getResult(direction);
+        if (directions.get(getEndIndex(directions.size())).equals(direction)){
+            return replaceSignToX(result);
+        }
+        return result;
     }
 
-    private void getFailureResult(String rightUpResult, StringBuilder result, String U) {
-        result.append(getResultFormat(rightUpResult));
-        if (directions.get(directions.size() - 1).equals(U)) {
-            result.replace(result.lastIndexOf(RIGHT_SIGN), result.lastIndexOf(RIGHT_SIGN) + CHANGE_INDEX_ADD_ONE,
-                    WRONG_SIGN);
-        }
+    private static String replaceSignToX(String result) {
+        String substring = result.substring(BEGIN_INDEX, getEndIndex(result.length()));
+        return substring + WRONG_SIGN;
+    }
+
+    private static int getEndIndex(int size) {
+        return size - LAST_INDEX_AND_SIZE_DIFFERENT;
     }
 }
