@@ -9,17 +9,18 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
-    private List<String> bridge = new LinkedList<>();
+    private List<String> bridges;
+    private final List<String> userInputs = new LinkedList<>();
     private int games = 0;
 
     public BridgeGame(final BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void setBridge(final int size) {
-        bridge.clear();
-        bridge = bridgeMaker.makeBridge(size);
+    public void setGame(final int size) {
         games++;
+        bridges = bridgeMaker.makeBridge(size);
+        userInputs.clear();
     }
 
     /**

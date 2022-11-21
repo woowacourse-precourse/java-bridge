@@ -11,7 +11,7 @@ public class Application {
     public static void main(final String[] args) {
         bridgeGame = createBridgeGame();
         do {
-            setupBridge();
+            setupGame();
 
         } while (bridgeGame.retry());
     }
@@ -23,9 +23,9 @@ public class Application {
         return new BridgeGame(bridgeMaker);
     }
 
-    private static void setupBridge() {
+    private static void setupGame() {
         printGetBridgeSize();
         final int bridgeSize = readBridgeSize();
-        bridgeGame.setBridge(bridgeSize);
+        bridgeGame.setGame(bridgeSize);
     }
 }
