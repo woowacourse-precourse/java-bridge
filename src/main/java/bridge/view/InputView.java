@@ -45,20 +45,20 @@ public class InputView {
         return decision;
     }
 
-    public void validateIsNotEmpty(String size) {
+    private void validateIsNotEmpty(String size) {
         if(size.isBlank()) {
             throw new IllegalArgumentException(MessageConstant.ERROR_EMPTY.getValue());
         }
     }
 
-    public void validateIsNumber(String size) {
+    private void validateIsNumber(String size) {
         String regExp = "^[0-9]*$";
         if(!size.matches(regExp) || String.valueOf(size.charAt(0)).equals(ZERO)) {
             throw new IllegalArgumentException(MessageConstant.ERROR_BRIDGE_LENGTH.getValue());
         }
     }
 
-    public int validateIsLengthRange(String input) {
+    private int validateIsLengthRange(String input) {
         int size = Integer.parseInt(input);
         if(size < MIN_LENGTH || size > MAX_LENGTH) {
             throw new IllegalArgumentException(MessageConstant.ERROR_BRIDGE_LENGTH.getValue());
@@ -66,7 +66,7 @@ public class InputView {
         return size;
     }
 
-    public void validateDirection(String direction) {
+    private void validateDirection(String direction) {
         if(!isExistDirection(direction)) {
             throw new IllegalArgumentException(MessageConstant.ERROR_INPUT_DIRECTION.getValue());
         }
