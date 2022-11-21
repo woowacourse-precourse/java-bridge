@@ -46,6 +46,9 @@ public class BridgeGame {
     }
 
     private void printSuccessEnd(int tryCount) {
+        System.out.println();
+        System.out.println("최종 게임 결과");
+        outputView.printResult(this, this.currentIndex);
         System.out.println("게임 성공 여부: 성공");
         System.out.println(String.format("총 시도한 횟수: %d", tryCount));
     }
@@ -79,5 +82,9 @@ public class BridgeGame {
 
     public List<String> getBridge() {
         return this.bridge;
+    }
+
+    public OutputView getOutputView() {
+        return this.outputView;
     }
 }

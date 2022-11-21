@@ -27,8 +27,10 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public static void printFailEnd(BridgeGame bridgeGame) {
-        // 함수로 성공, 실패 함수 합치는거 고민해보기
+    public static void printFailEnd(BridgeGame bridgeGame, String moving) {
+        System.out.println();
+        System.out.println("최종 게임 결과");
+        bridgeGame.getOutputView().printWrongMap(bridgeGame, bridgeGame.getCurrentIndex(), moving);
         System.out.println("게임 성공 여부: 실패");
         System.out.println(String.format("총 시도한 횟수: %d", bridgeGame.getTryCount()));
     }
@@ -45,7 +47,7 @@ public class Application {
         String moving = inputView.readMoving();
         if (bridgeGame.move(moving)) {
             if (!bridgeGame.isRetry(inputView.readGameCommand())) {
-                printFailEnd(bridgeGame);
+                printFailEnd(bridgeGame, moving);
                 return true;
             }
         }
