@@ -1,7 +1,6 @@
 package bridge.game;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -41,6 +40,5 @@ class BridgeMakerTest {
                     .contains("U")
                     .contains("D");
         }
-
     }
 }
