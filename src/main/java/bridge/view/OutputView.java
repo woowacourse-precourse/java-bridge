@@ -10,7 +10,7 @@ public class OutputView {
      * @param nowResult 현재까지 이동한 다리의 상태
      */
     public static void printMap(String nowResult) {
-        System.out.println(nowResult);
+        System.out.println(nowResult+'\n');
     }
 
     /**
@@ -18,9 +18,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(String finalResult, boolean matchResult) {
+    public static void printResult(String finalResult, boolean matchResult, int matchNumb) {
         System.out.println("최종 게임 결과");
-        System.out.println(finalResult);
+        System.out.println(finalResult+'\n');
 
         if (matchResult) {
             System.out.println("게임 성공 여부: 성공");
@@ -28,5 +28,6 @@ public class OutputView {
         if (!matchResult) {
             System.out.println("게임 성공 여부: 실패");
         }
+        System.out.println("총 시도한 횟수: "+matchNumb);
     }
 }
