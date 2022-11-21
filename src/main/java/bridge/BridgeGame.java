@@ -23,13 +23,14 @@ public class BridgeGame {
      * <p>
      * 이동할 방향을 문자열로 받아 이동
      */
-    public void move(String dir) {
+    public BridgeGameStstus move(String dir) {
         BridgeGameStstus nextStatus = calcNextStatus(dir);
         if(nextStatus == BridgeGameStstus.PROCEEDING){
             step++;
-            return;
+            return nextStatus;
         }
         status = nextStatus;
+        return nextStatus;
     }
 
     private BridgeGameStstus calcNextStatus(String dir){
