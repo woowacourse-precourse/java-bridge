@@ -47,7 +47,7 @@ public class BridgeGame {
     }
 
     public int getTryCnt() {
-        return tryCnt;
+        return this.tryCnt;
     }
 
     public Boolean gameFinishedCheck() {
