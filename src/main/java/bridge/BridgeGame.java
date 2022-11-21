@@ -30,12 +30,12 @@ public class BridgeGame {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         OutputView.reset();
+        bridge();
     }
 
     public void start() {
         System.out.printf(OutputView.START_MESSAGE);
         setUp();
-        bridge();
         while (playGame) {
             move();
             if (successGame()) {
