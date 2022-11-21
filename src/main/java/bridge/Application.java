@@ -47,7 +47,7 @@ public class Application {
                 userBridge.get(BridgeGame.DOWNWARD).get(size - 1).equals("X")) {
             return false;
         }
-        if (userBridge.size() != bridgeSize) {
+        if (size != bridgeSize) {
             return false;
         }
         return true;
