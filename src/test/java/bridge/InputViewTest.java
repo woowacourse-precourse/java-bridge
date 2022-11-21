@@ -92,4 +92,18 @@ public class InputViewTest {
             assertThat(e.getMessage()).isEqualTo("[ERROR]: 정수로 변환될 수 없음");
         }
     }
+    @DisplayName("값이 유효한 범위가 아닐 경우 테스트")
+    @Test
+    void isValidateRange() {
+        //given
+        InputView inputView = new InputView();
+        String size = "25";
+        //when
+        try {
+            inputView.isValidateRange(size);
+        } catch (IllegalArgumentException e) {
+            //then
+            assertThat(e.getMessage()).isEqualTo("[ERROR]: 범위 초과 3~20사이로 재입력");
+        }
+    }
 }
