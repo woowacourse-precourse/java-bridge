@@ -13,37 +13,23 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerMapTest {
-    private static final PlayerMap successMap = new PlayerMap(
+    private static final PlayerMap playerMap1 = new PlayerMap(
             List.of("O", "O", "O"),
             List.of(" ", " ", " ")
     );
-
-    private static final PlayerMap failureMap = new PlayerMap(
-            List.of(" ", " ", " "),
-            List.of("X", "X", "X")
+    private static final PlayerMap playerMap2 = new PlayerMap(
+            List.of("O", "O", "O"),
+            List.of(" ", " ", " ")
     );
-
-    private static Stream<Arguments> subMapTestWithSuccessMapSource() {
-        return Stream.of(
-                Arguments.of(1, new PlayerMap(
-                        List.of("O"),
-                        List.of(" ")
-                )),
-                Arguments.of(2, new PlayerMap(
-                        List.of("O", "O"),
-                        List.of(" ", " ")
-                )),
-                Arguments.of(3, new PlayerMap(
-                        List.of("O", "O", "O"),
-                        List.of(" ", " ", " ")
-                ))
-        );
-    }
+    private static final PlayerMap failureMap = new PlayerMap(
+            List.of(" ", "O", " "),
+            List.of("O", " ", "X")
+    );
 
     @DisplayName("PlayerMap 객체를 알맞는 형식의 문자열로 반환한다")
     @Test
     void toStringsByFormatTest() {
-        assertThat(successMap.toStringsByFormat())
+        assertThat(playerMap1.toStringsByFormat())
                 .isEqualTo(List.of(
                         "[ O | O | O ]",
                         "[   |   |   ]"
@@ -59,53 +45,63 @@ public class PlayerMapTest {
     @DisplayName("X를 포함하지 않은 경로는 false를 반환한다")
     @Test
     void notFailureTest() {
-        assertThat(successMap.isFailure()).isFalse();
+        assertThat(playerMap1.isFailure()).isFalse();
     }
 
-
-    @DisplayName("같은 경로를 가진 두 객체는 동일하다")
-    @Test
-    void equalsTest() {
-        PlayerMap comparedMap = new PlayerMap(
-                List.of("O", "O", "O"),
-                List.of(" ", " ", " ")
-        );
-        assertThat(successMap).isEqualTo(comparedMap);
-    }
-
-    @DisplayName("다른 경로를 가진 두 객체는 동일하지 않다")
-    @Test
-    void notEqualsTest() {
-        assertThat(successMap).isNotEqualTo(failureMap);
-    }
-
-    @DisplayName("successMap의 n번째 칸까지의 subMap을 반환한다")
+    @DisplayName("playerMap1의 n번째 칸까지의 subMap을 반환한다")
     @ParameterizedTest
-    @MethodSource("subMapTestWithSuccessMapSource")
-    void subMapTestWithSuccessMap(int distance, PlayerMap expected) {
-        assertThat(successMap.subMapBy(distance))
+    @MethodSource("subMapTestSource")
+    void subMapTest(int distance, PlayerMap expected) {
+        assertThat(playerMap1.subMapBy(distance))
                 .isEqualTo(expected);
     }
 
-    @DisplayName("failureMap에서 n번째 칸의 element를 반환한다")
+    @DisplayName("playerMap1에서 n번째 칸의 element를 반환한다")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void elementTestWithFailureMap(int distance) {
-        PlayerMap expected = new PlayerMap(List.of(" "), List.of("X"));
-        assertThat(failureMap.getElementOf(distance))
+    void elementTest(int distance) {
+        PlayerMap expected = new PlayerMap(List.of("O"), List.of(" "));
+        assertThat(playerMap1.getElementOf(distance))
                 .isEqualTo(expected);
     }
-
 
     @DisplayName("successMap과 failureMap을 이어 붙인 객체를 반환한다")
     @Test
-    void joinSuccessMapAndFailureMapTest() {
+    void joinTest() {
         PlayerMap expected = new PlayerMap(
-                List.of("O", "O", "O", " ", " ", " "),
-                List.of(" ", " ", " ", "X", "X", "X")
+                List.of("O", "O", "O", " ", "O", " "),
+                List.of(" ", " ", " ", "O", " ", "X")
         );
-
-        assertThat(successMap.join(failureMap))
+        assertThat(playerMap1.join(failureMap))
                 .isEqualTo(expected);
+    }
+
+    @DisplayName("같은 경로를 가진 playerMap1과 playerMap2는 동일하다")
+    @Test
+    void equalsTest() {
+        assertThat(playerMap1).isEqualTo(playerMap2);
+    }
+
+    @DisplayName("다른 경로를 가진 playerMap1과 failureMap은 동일하지 않다")
+    @Test
+    void notEqualsTest() {
+        assertThat(playerMap1).isNotEqualTo(failureMap);
+    }
+
+    private static Stream<Arguments> subMapTestSource() {
+        return Stream.of(
+                Arguments.of(1, new PlayerMap(
+                        List.of("O"),
+                        List.of(" ")
+                )),
+                Arguments.of(2, new PlayerMap(
+                        List.of("O", "O"),
+                        List.of(" ", " ")
+                )),
+                Arguments.of(3, new PlayerMap(
+                        List.of("O", "O", "O"),
+                        List.of(" ", " ", " ")
+                ))
+        );
     }
 }
