@@ -42,7 +42,7 @@ public class Player {
     }
 
     public Boolean isGameOver(Bridge bridge) {
-        if (isReachedEnd(bridge) || canKeepMoving()) {
+        if (isReachedEnd(bridge.getSize()) || canKeepMoving()) {
             return true;
         }
         return false;
@@ -57,8 +57,8 @@ public class Player {
         return false;
     }
 
-    private Boolean isReachedEnd(Bridge bridge) {
-        if (bridge.getSize() == upperBridge.size()) {
+    private Boolean isReachedEnd(int bridgeSize) {
+        if (bridgeSize == upperBridge.size()) {
             return true;
         }
         return false;
