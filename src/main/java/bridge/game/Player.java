@@ -23,7 +23,7 @@ public class Player {
 
     public static String requestInputRetryToValidation() {
         try {
-            return RETRY_VALIDATOR.retryValidator(INPUT_VIEW.readBridgeSize());
+            return RETRY_VALIDATOR.retryValidator(INPUT_VIEW.readGameCommand());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return requestInputRetryToValidation();
@@ -32,7 +32,7 @@ public class Player {
 
     public static String requestInputMoveToValidation() {
         try {
-            return MOVE_VALIDATOR.moveValidator(INPUT_VIEW.readBridgeSize());
+            return MOVE_VALIDATOR.moveValidator(INPUT_VIEW.readMoving());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return requestInputMoveToValidation();
