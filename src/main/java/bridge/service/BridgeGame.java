@@ -26,6 +26,11 @@ public class BridgeGame {
         thisGameBridge = new Bridge(bridge);
     }
 
+    public BridgeGame(Bridge thisGameBridge, Bridge thisTurnBridge) {
+        this.thisGameBridge = thisGameBridge;
+        this.thisTurnBridge = thisTurnBridge;
+    }
+
     public void createThisTurnBridge() {
         thisTurnBridge = new Bridge();
     }
