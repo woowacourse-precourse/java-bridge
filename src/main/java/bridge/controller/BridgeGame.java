@@ -46,7 +46,7 @@ public class BridgeGame {
         MoveResult moveResult;
         do {
             moveResult = move();
-            output.printMap(judge.makeMap());
+            output.printMap(judge);
         } while (judge.isGameEnd(moveResult));
         if (moveResult == MoveResult.CORRECT) return GameResult.WIN;
         return GameResult.LOSE;

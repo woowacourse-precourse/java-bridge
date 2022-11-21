@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.Judge;
+
 public interface Output {
-    void printMap(String judgeResult);
+    void printMap(Judge judge);
 }

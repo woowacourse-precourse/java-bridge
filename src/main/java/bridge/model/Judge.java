@@ -30,57 +30,16 @@ public class Judge {
         return MoveResult.NOT_CORRECT;
     }
 
-    public String makeMap() {
-
-        String upLine = "";
-        String downLine = "";
-
-        for (int i = 0; i < userBridge.size(); i++) {
-
-            if (i == 0) {
-                upLine += "[ ";
-                downLine += "[ ";
-            }
-            if ("U".equals(userBridge.get(i))) {
-                if (bridge.get(i).equals(userBridge.get(i))) {
-                    upLine += "O";
-                    downLine += " ";
-                }
-                if (!bridge.get(i).equals(userBridge.get(i))) {
-                    upLine += "X";
-                    downLine += " ";
-                }
-            }
-
-            if ("D".equals(userBridge.get(i))) {
-                if (bridge.get(i).equals(userBridge.get(i))) {
-                    upLine += " ";
-                    downLine += "O";
-                }
-                if(!bridge.get(i).equals(userBridge.get(i))){
-                    upLine += " ";
-                    downLine += "X";
-                }
-            }
-
-            if(i!=userBridge.size()-1){
-                upLine += " | ";
-                downLine += " | ";
-            }
-
-            if (i == userBridge.size() - 1) {
-                upLine += " ]";
-                downLine += " ]";
-            }
-        }
-
-        return upLine + "\n" + downLine;
-    }
-
 
     public boolean isGameEnd(MoveResult moveResult) {
         return moveResult == MoveResult.CORRECT && userBridge.size() != bridge.size();
     }
 
+    public List<String> getUserBridge() {
+        return userBridge;
+    }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
 }
