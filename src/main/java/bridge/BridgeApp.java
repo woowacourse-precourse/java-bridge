@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.CommandType;
+import bridge.domain.result.Result;
 import bridge.view.ViewController;
 
 public class BridgeApp {
@@ -15,6 +17,29 @@ public class BridgeApp {
         bridgeGame.createBridge(viewController.readBridgeSize());
         viewController.printResult(playAndGetResult());
 
+    }
+    private Result playAndGetResult() {
+        while (true) {
+            Result result = moveBridge();
+            if (result.isSucceeded()) {
+                continue;
+            }
+            if (result.isFinished() || checkQuit()) {
+                return result;
+            }
+            bridgeGame.retry();
+        }
+    }
+
+    private Result moveBridge() {
+        Result result = bridgeGame.move(viewController.readMoving());
+        viewController.printMap(result.toMap());
+        return result;
+    }
+
+    private boolean checkQuit() {
+        CommandType commandType = viewController.readGameCommand();
+        return commandType.isQuit();
     }
 
 }
