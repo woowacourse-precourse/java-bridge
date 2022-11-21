@@ -27,4 +27,10 @@ public class User {
         }
         return false;
     }
+
+    public boolean isFailure() {
+        if (userBridge.size() > 0 && !answer.get(userBridge.size()-1).equals(userBridge.get(userBridge.size()-1)))
+            return true;
+        return false;
+    }
 }
