@@ -51,7 +51,7 @@ public class GameStart {
             countOfPlay++;
             for (countOfMove = 0; countOfMove < bridgeSize; countOfMove++) {
                 String moveBlock = move();
-                boolean isMove = bridgeGame.move(moveBlock);
+                boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
                 outputView.printMap(bridge, countOfMove, isMove);
                 if (!isMove) {
                     isRestart = readRestart();
