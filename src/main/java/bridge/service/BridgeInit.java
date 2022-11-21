@@ -1,4 +1,6 @@
-package bridge;
+package bridge.service;
+
+import bridge.view.InputView;
 
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class BridgeInit {
     private final InputView inputView;
     private final BridgeMaker bridgeMaker;
 
-    BridgeInit(InputView inputView, BridgeMaker bridgeMaker){
+    public BridgeInit(InputView inputView, BridgeMaker bridgeMaker){
         this.inputView = inputView;
         this.bridgeMaker = bridgeMaker;
     }
