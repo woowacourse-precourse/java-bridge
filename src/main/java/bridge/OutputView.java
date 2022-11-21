@@ -24,7 +24,7 @@ public class OutputView {
                 upperMap.append(" X");
             } else if (matchInputAndAnswer(curMap.get(i), answerMap.get(i)) == 2) {
                 lowerMap.append(" O");
-            } else {
+            } else if (matchInputAndAnswer(curMap.get(i), answerMap.get(i)) == 3) {
                 lowerMap.append(" X");
             }
         }
@@ -62,5 +62,7 @@ public class OutputView {
             }
             return 3;
         }
+
+        return 4;
     }
 }
