@@ -1,6 +1,6 @@
 package bridge.validator;
 
-public interface SizeValidator extends NumberValidator {
+public interface SizeValidator {
     boolean isSmallerThanMin(int target);
 
     boolean isBiggerThanMax(int target);

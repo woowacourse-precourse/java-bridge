@@ -1,13 +1,9 @@
 package bridge.validator;
 
-public class BridgeSizeValidator implements SizeValidator {
+public class BridgeSizeValidator implements SizeValidator, NumberValidator {
     static final int minLength = 3;
     static final int maxLength = 20;
 
-    @Override
-    public boolean isNumeric(String target) {
-        return SizeValidator.super.isNumeric(target);
-    }
 
     @Override
     public boolean isSmallerThanMin(int target) {
