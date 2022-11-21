@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.constants.OutputConstants.CHOICE_UP_DOWN_MESSAGE;
 import static bridge.constants.OutputConstants.END;
 import static bridge.constants.OutputConstants.Fail;
 import static bridge.constants.OutputConstants.MIDDLE;
@@ -68,5 +69,8 @@ public class OutputView {
     public void startMessage() {
         START_MESSAGE.printMessage();
         SET_SIZE_BRIDGE_MESSAGE.printMessage();
+    }
+    public void choiceUpDown() {
+        CHOICE_UP_DOWN_MESSAGE.printMessage();
     }
 }
