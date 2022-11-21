@@ -44,5 +44,13 @@ class BridgeStatusUtilTest {
             statusUtil.checkLast(testBuilder,true);
             assertThat(testBuilder.toString()).isEqualTo("O");
         }
+
+        @DisplayName("testBuilder 에 아무것도 들어있지 않으면, 여전히 비어있는 StringBuilder 를 반환한다.")
+        @Test
+        void checkLast_case5(){
+            StringBuilder testBuilder = new StringBuilder();
+            statusUtil.checkLast(testBuilder,true);
+            assertThat(testBuilder.toString()).isEqualTo("");
+        }
     }
 }
