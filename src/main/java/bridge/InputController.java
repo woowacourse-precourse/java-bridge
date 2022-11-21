@@ -49,7 +49,6 @@ public class InputController {
 			return userInput;
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
-			System.out.println(e.getMessage());
 			return getGameCommand();
 		}
 	}
