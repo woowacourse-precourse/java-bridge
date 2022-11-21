@@ -21,7 +21,7 @@ public class GamePlayer {
 
     private boolean playGame() {
         while (isExit != Command.QUIT) {
-            bridgeMap = new BridgeMap();
+            bridgeMap.reset();
             tryCount++;
             cross();
             if (checkSuccessCross()) break;

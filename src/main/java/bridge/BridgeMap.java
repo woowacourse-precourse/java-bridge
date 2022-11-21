@@ -34,6 +34,12 @@ public class BridgeMap {
         downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
     }
 
+    public void reset() {
+        upStair.clear();
+        downStair.clear();
+        init();
+    }
+
     public void moveFail(Command command) {
         inputDivision();
         if (command.equals(Command.UP)) {
