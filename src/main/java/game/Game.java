@@ -23,7 +23,7 @@ public class Game {
                 operate(stage, bridge);
                 stage = GameOver.isGameOver(gameData.getPassDataSet().get(stage), stage, bridge.size());
             } catch (UserInputException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 stage--;
             }
         }

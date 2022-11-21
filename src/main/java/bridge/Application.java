@@ -19,7 +19,7 @@ public class Application {
                 controller.run(0, bridge);
                 break;
             } catch (UserInputException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }
