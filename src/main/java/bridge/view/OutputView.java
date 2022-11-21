@@ -27,21 +27,6 @@ public class OutputView {
         System.out.println(GuideMessage.ENTER_RETRY_OR_QUIT);
     }
 
-    public void printFirstOfBridge() {
-        System.out.print(GuideMessage.FIRST_OF_BRIDGE);
-    }
-
-    public void printMiddleOfBridge() {
-        System.out.print(GuideMessage.MIDDLE_OF_BRIDGE);
-    }
-
-    public void printLastOfBridge() {
-        System.out.println(GuideMessage.LAST_OF_BRIDGE);
-    }
-
-    public void printChoiceResult(String content) {
-        System.out.print(content);
-    }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -56,15 +41,15 @@ public class OutputView {
     private void printUpperLine(Record record, List<String> bridge) {
         printFirstOfBridge();
         for (int index = 0; index < record.getBoardSize(); index++) {
-            printUpperBlock(record, index, bridge);
+            printUpperBlock(record, bridge, index);
         }
         printLastOfBridge();
     }
 
-    private void printUpperBlock(Record record, int index, List<String> bridge) {
+    private void printUpperBlock(Record record, List<String> bridge, int index) {
         String direction = Direction.getFirstLetterByName(Direction.UP);
         String contentToPrint = getContent(Direction.isEqualToUp(bridge.get(index)),
-                compareToBoard(record, index, direction));
+                compareToBoard(record, direction, index));
         printChoiceResult(contentToPrint);
         if (index < record.getBoardSize() - 1) {
             printMiddleOfBridge();
@@ -81,26 +66,42 @@ public class OutputView {
         return Constant.EMPTY;
     }
 
-    private boolean compareToBoard(Record record, int index, String direction) {
+    private boolean compareToBoard(Record record, String direction, int index) {
         return record.equalsToBoard(index, direction);
     }
 
     private void printLowerLine(Record record, List<String> bridge) {
         printFirstOfBridge();
         for (int index = 0; index < record.getBoardSize(); index++) {
-            printLowerBlock(record, index, bridge);
+            printLowerBlock(record, bridge, index);
         }
         printLastOfBridge();
     }
 
-    private void printLowerBlock(Record record, int index, List<String> bridge) {
+    private void printLowerBlock(Record record, List<String> bridge, int index) {
         String direction = Direction.getFirstLetterByName(Direction.DOWN);
         String contentToPrint = getContent(Direction.isEqualToDown(bridge.get(index)),
-                compareToBoard(record, index, direction));
+                compareToBoard(record, direction, index));
         printChoiceResult(contentToPrint);
         if (index < record.getBoardSize() - 1) {
             printMiddleOfBridge();
         }
+    }
+
+    public void printFirstOfBridge() {
+        System.out.print(GuideMessage.FIRST_OF_BRIDGE);
+    }
+
+    public void printMiddleOfBridge() {
+        System.out.print(GuideMessage.MIDDLE_OF_BRIDGE);
+    }
+
+    public void printLastOfBridge() {
+        System.out.println(GuideMessage.LAST_OF_BRIDGE);
+    }
+
+    public void printChoiceResult(String content) {
+        System.out.print(content);
     }
 
     public void endOfGame() {
