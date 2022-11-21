@@ -45,7 +45,7 @@ public class User {
         setGameOver();
     }
 
-    public void finishWitFail() {
+    public void finishWithFail() {
         setGameOver();
     }
 }
