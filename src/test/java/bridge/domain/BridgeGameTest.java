@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
 class BridgeGameTest {
-	List<String> bridge;
+	Bridge bridge;
 	BridgeGame bridgeGame;
 	ProgressMap gameProgress;
 	List<List<String>> expect;
@@ -20,17 +20,17 @@ class BridgeGameTest {
 
 	@BeforeEach
 	void setup() {
-		bridge = new ArrayList<>(List.of("U", "D", "U"));
+		bridge = new Bridge(List.of("U", "D", "U"));
 		bridgeGame = new BridgeGame(bridge);
 		gameProgress = new ProgressMap();
 		expect = new ArrayList<>();
 	}
 
-	@ParameterizedTest
+	@Test
 	@DisplayName("결과 반영 테스트")
 	void correctMoveTest() {
-		expect.add(List.of(" O ", "   ", " O "));
-		expect.add(List.of("   ", " O ", "   "));
+		expect.add(List.of("O", " ", "O"));
+		expect.add(List.of(" ", "O", " "));
 		bridgeGame.move(upInput, gameProgress);
 		bridgeGame.move(downInput, gameProgress);
 		bridgeGame.move(upInput, gameProgress);
@@ -40,8 +40,8 @@ class BridgeGameTest {
 	@Test
 	@DisplayName("게임을 통과하지 못했을 때 결과 테스트")
 	void incorrectMoveTest() {
-		expect.add(List.of(" O ", " X "));
-		expect.add(List.of("   ", "   "));
+		expect.add(List.of("O", "X"));
+		expect.add(List.of(" ", " "));
 		bridgeGame.move(upInput, gameProgress);
 		bridgeGame.move(upInput, gameProgress);
 		assertEquals(expect, gameProgress.getProgressMap());
