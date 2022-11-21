@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 public class Exception {
     private static final int MIX_SIZE = 3;

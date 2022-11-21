@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 public enum ErrorMessage {
     BRIDGE_SIZE_ERROR("[ERROR] 다리 길이는 3 ~ 20 사이의 숫자만 입력해주세요."),

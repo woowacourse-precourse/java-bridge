@@ -1,4 +1,8 @@
-package bridge;
+package bridge.domain;
+
+import bridge.domain.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.util.BridgeType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
