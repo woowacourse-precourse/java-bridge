@@ -36,7 +36,6 @@ public class StartGame {
 
     public static boolean wantRetry() {
         OutputView.printRetry();
-        String retryOrNot = InputView.readGameCommand();
-        return retryOrNot.equals(OutputConstants.RETRY);
+        return InputView.readGameCommand().equals(OutputConstants.RETRY);
     }
 }
