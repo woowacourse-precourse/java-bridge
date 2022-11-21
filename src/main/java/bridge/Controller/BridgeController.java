@@ -26,6 +26,9 @@ public class BridgeController {
         BridgeGame bridgeGame = createBridgeGame(inputView);
         while(check){
             check = inputMoving(inputView,outputView,bridgeGame);
+            if(check==false){
+                check = bridgeGame.retry(inputView.readGameCommand());
+            }
         }
     }
     private static BridgeGame createBridgeGame(InputView inputView) {
