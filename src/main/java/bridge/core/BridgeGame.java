@@ -6,6 +6,8 @@ import bridge.type.GameStatus;
 import bridge.type.PassCondition;
 import bridge.type.ProcessCondition;
 
+import java.util.List;
+
 
 public class BridgeGame {
 
@@ -49,10 +51,9 @@ public class BridgeGame {
         return finishCondition;
     }
 
-    public FinishCondition checkWhetherFinished() {
-        if (bridge.checkWhetherLastBlock(gameStatusOperator.getCurrentPosition())) {
-            return FinishCondition.FINISHED;
-        }
+    public FinishCondition checkWhetherFinished(ProcessCondition passCondition) {
+        if (bridge.checkWhetherLastBlock(gameStatusOperator.getCurrentPosition()) &&
+                passCondition == PassCondition.PASS) return FinishCondition.FINISHED;
         return FinishCondition.NOT_FINISHED;
     }
 
