@@ -35,6 +35,9 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
+        if(!isUpDown(input)){
+            throw  new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로만 입력가능 합니다");
+        }
         return input;
     }
 
