@@ -3,22 +3,23 @@ package bridge.view;
 import bridge.Application;
 import bridge.domain.BridgeGame;
 import bridge.data.constant.OutputConstants;
+import bridge.domain.StartGame;
 
 public class OutputView {
 
-    public static void printMap() {
-        BridgeGame.upSide.makeUpSide();
-        System.out.println(BridgeGame.upSide.getUpSide());
-        BridgeGame.downSide.makeDownSide();
-        System.out.println(BridgeGame.downSide.getDownSide());
+    public static void printMap(BridgeGame bridgeGame) {
+        bridgeGame.upSide.makeUpSide();
+        System.out.println(bridgeGame.upSide.getUpSide());
+        bridgeGame.downSide.makeDownSide();
+        System.out.println(bridgeGame.downSide.getDownSide());
         System.out.println();
     }
 
-    public static void printResult() {
+    public static void printResult(BridgeGame bridgeGame) {
         System.out.println(OutputConstants.RESULT);
-        printMap();
+        printMap(bridgeGame);
         printSuccess();
-        System.out.println(OutputConstants.TOTAL_TRY + BridgeGame.totalTrial);
+        System.out.println(OutputConstants.TOTAL_TRY + StartGame.totalTrial);
     }
 
     public static void printSuccess() {

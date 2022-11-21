@@ -9,10 +9,12 @@ import bridge.view.OutputView;
 
 public class Initialization {
 
-    public static void init() {
+    public static BridgeGame init() {
         OutputView.printStart();
         selectBridgeSize();
         createBridge();
+        BridgeGame bridgeGame = new BridgeGame();
+        return bridgeGame;
     }
 
     public static void selectBridgeSize() {
