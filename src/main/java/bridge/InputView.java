@@ -13,6 +13,7 @@ public class InputView {
     public static int readBridgeSize() {
         while (true) {
             try {
+                OutputView.String("다리의 길이를 입력해주세요.");
                 int result = Integer.parseInt(Console.readLine());
                 if (result < 3 || result > 20) {
                     OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");

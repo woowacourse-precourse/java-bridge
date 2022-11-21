@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.InputView.readGameCommand;
+import static bridge.InputView.*;
 import static bridge.OutputView.*;
 
 import java.util.ArrayList;
@@ -10,22 +10,21 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> BRIDGEANSWER;
+    private final List<String> BRIDGE_ANSWER;
     private List<String> playerList = new ArrayList<>();
     private Boolean success = false;
     private Integer tryCount = 0;
     private Integer count = 0;
 
-    public BridgeGame(List<String> BRIDGEANSWER) {
-        this.BRIDGEANSWER = BRIDGEANSWER;
+    public BridgeGame(List<String> BRIDGE_ANSWER) {
+        this.BRIDGE_ANSWER = BRIDGE_ANSWER;
 
         Boolean keepPlay = true;
         while (keepPlay) {
             keepPlay = Play();
         }
         printResult(success, tryCount);
-        printMap(playerList, BRIDGEANSWER);
-
+        printMap(playerList, BRIDGE_ANSWER);
     }
 
     private Boolean Play() {
@@ -43,12 +42,12 @@ public class BridgeGame {
         try {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String playerInput = InputView.readMoving();
-            if (BRIDGEANSWER.get(count).equals(playerList.get(count))) {
+            if (BRIDGE_ANSWER.get(count).equals(playerList.get(count))) {
                 move(playerInput);
                 count ++;
                 return true;
             }
-            if (!BRIDGEANSWER.get(count).equals(playerList.get(count))) {
+            if (!BRIDGE_ANSWER.get(count).equals(playerList.get(count))) {
                 move(playerInput);
                 return false;
             }
@@ -66,7 +65,7 @@ public class BridgeGame {
     public void move(String playerInput) {
         playerList.add(playerInput);
         System.out.println(playerInput);
-        printMap(playerList, BRIDGEANSWER);
+        printMap(playerList, BRIDGE_ANSWER);
     }
 
     /**
