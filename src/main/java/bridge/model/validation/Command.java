@@ -19,7 +19,7 @@ public enum Command {
     }
 
     public boolean isRetry() {
-        return isRetry;
+        return this == RETRY;
     }
 
     public static Command of(String input) {
