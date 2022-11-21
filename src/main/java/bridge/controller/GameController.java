@@ -1,7 +1,5 @@
 package bridge.controller;
 
-import java.util.List;
-
 import bridge.model.service.BridgeGame;
 import bridge.view.OutputView;
 
@@ -19,31 +17,27 @@ public class GameController {
 
 	public void run() {
 		outputView.printStartMessage();
-		List<String> bridges = bridgeGame.makeBridge(inputController.getBridgeSize());
-		playGame(bridges);
+		bridgeGame.makeBridge(inputController.getBridgeSize());
+		playGame();
 		outputView.printResult(bridgeGame.getMap(), bridgeGame.getResult());
 	}
 
-	private void playGame(List<String> bridges) {
+	private void playGame() {
 		do {
 			bridgeGame.setUpRound();
-			playRound(bridges);
+			playRound();
 		} while (isKeepGaming());
 	}
 
-	private void playRound(List<String> bridges) {
-		for (String stairs : bridges) {
-			printResultOfMove(stairs);
+	private void playRound() {
+		for (String stairs : bridgeGame.getBridges()) {
+			bridgeGame.move(stairs, inputController.getStairs());
+			outputView.printMap(bridgeGame.getMap());
 			if (!bridgeGame.isRightStairs()) {
 				bridgeGame.changeResultToFail();
 				break;
 			}
 		}
-	}
-
-	private void printResultOfMove(String stairs) {
-		bridgeGame.move(stairs, inputController.getStairs());
-		outputView.printMap(bridgeGame.getMap());
 	}
 
 	private boolean isKeepGaming() {
