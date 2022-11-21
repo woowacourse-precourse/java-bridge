@@ -11,8 +11,8 @@ public class BridgeGame {
     private final GameData gameData = new GameData();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    private List<String> bridge;
-    private int bridgeSize;
+    public List<String> bridge;
+    public int bridgeSize;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -21,13 +21,13 @@ public class BridgeGame {
      */
     public String move(String direction) {
         
-        if (bridge.get(this.bridgeIndex).equals(direction)) {
+        if (this.bridge.get(this.bridgeIndex).equals(direction)) {
             increaseBridgeIndex();
-            gameData.updateStatus(direction, "O");
+            this.gameData.updateStatus(direction, "O");
             return "O";
         }
 
-        gameData.updateStatus(direction, "X");
+        this.gameData.updateStatus(direction, "X");
         return "X";
     }
 

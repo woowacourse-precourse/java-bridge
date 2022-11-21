@@ -25,7 +25,7 @@ public class OutputViewTest{
     @Test
     void printCurrentGameStatus() {
         OutputView outputView = new OutputView();
-        outputView.printMap(gameData.getTopStatus(), gameData.getBottomStatus());
+        outputView.printMap(gameData);
         assertThat(outputStreamCaptor.toString().trim()).contains("[ O |   ]", "[   | O ]");
     }
 }
