@@ -30,7 +30,8 @@ public class BridgeGame {
      */
     public void move(Direction direction) {
         int nextIdx = history.size();
-        history.add(new Round(direction, direction.equals(bridge.get(nextIdx))));
+        boolean roundResult = direction.equals(bridge.get(nextIdx));
+        history.add(new Round(direction, roundResult));
     }
 
     /**
