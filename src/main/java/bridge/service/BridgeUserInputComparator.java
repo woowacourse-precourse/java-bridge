@@ -16,19 +16,19 @@ public class BridgeUserInputComparator {
         return isPrevUserMoveRight(bridge, user, userMove);
     }
 
-    private boolean isPrevUserMoveRight(List<String> bridge, List<String> user) {
+    public boolean isPrevUserMoveRight(List<String> bridge, List<String> user) {
         if (user.size() == 0) {
             return true;
         }
         return bridge.get(user.size() - 1).equals(user.get(user.size() - 1));
     }
 
-    private boolean isNextUserMoveRight(List<String> bridge, List<String> user, String userMove) {
+    public boolean isNextUserMoveRight(List<String> bridge, List<String> user, String userMove) {
         user.add(userMove);
         return bridge.get(user.size() - 1).equals(userMove);
     }
 
-    private boolean isPrevUserMoveRight(List<String> bridge, List<String> user, String userMove) {
+    public boolean isPrevUserMoveRight(List<String> bridge, List<String> user, String userMove) {
         user.set(user.size() - 1, userMove);
         return bridge.get(user.size() - 1).equals(userMove);
     }
@@ -39,11 +39,11 @@ public class BridgeUserInputComparator {
         return isUserInLastBridge(bridge, user) && isUserRightInLastBridge(bridge, user);
     }
 
-    private boolean isUserInLastBridge(List<String> bridge, List<String> user) {
+    public boolean isUserInLastBridge(List<String> bridge, List<String> user) {
         return user.size() == bridge.size();
     }
 
-    private boolean isUserRightInLastBridge(List<String> bridge, List<String> user) {
+    public boolean isUserRightInLastBridge(List<String> bridge, List<String> user) {
         return user.get(user.size() - 1).equals(bridge.get(bridge.size() - 1));
     }
 
