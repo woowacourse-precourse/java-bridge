@@ -24,4 +24,9 @@ public class Bridge {
         downBridge.add(MOVING_GAP + movingResult + MOVING_GAP);
         upBridge.add(EMPTY_GAP);
     }
+
+    public void initBridge() {
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
+    }
 }
