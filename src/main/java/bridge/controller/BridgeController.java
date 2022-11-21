@@ -43,7 +43,7 @@ public class BridgeController {
         int count = 1;
         while (true) {
             List<PathDTO> pathDTO = new ArrayList<>();
-            boolean end = getEnd(size, bridge, pathDTO);
+            boolean end = isCross(size, bridge, pathDTO);
             if (isEnd(end)) {
                 return new ResultDTO(new MapDTO(pathDTO), end, count);
             }
@@ -66,7 +66,7 @@ public class BridgeController {
         }
     }
 
-    public boolean getEnd(int size, Bridge bridge, List<PathDTO> pathDTO) {
+    public boolean isCross(int size, Bridge bridge, List<PathDTO> pathDTO) {
         boolean end = false;
         for (int round = 0; round < size; round++) {
             if (getPassable(bridge, pathDTO, round).equals(FAIL)) {
