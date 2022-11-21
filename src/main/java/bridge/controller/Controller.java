@@ -24,13 +24,12 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         System.out.println(GAME_START);
-
         Bridge answerBridge = makeAnswerBridge(bridgeMaker);
 
         Bridge playerBridge = new Bridge(new ArrayList<>());
         GameResult gameResult = new GameResult(true, 1);
         playerBridge = playingGame(playerBridge, answerBridge, gameResult);
-
+        endGame(answerBridge, playerBridge, gameResult);
     }
 
     private Bridge makeAnswerBridge(BridgeMaker bridgeMaker) {
@@ -125,5 +124,9 @@ public class Controller {
 
     private Bridge clearPlayerBridge() {
         return new Bridge(bridgeGame.retry());
+    }
+
+    private void endGame(Bridge answerBridge, Bridge playerBridge, GameResult gameResult) {
+        outputView.printResult(playerBridge, answerBridge, gameResult);
     }
 }
