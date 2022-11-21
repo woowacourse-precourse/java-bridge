@@ -40,14 +40,18 @@ public class BridgeGameController {
             return true;
         }
         if (crossBridgeResult.getState().equals(ResultType.FAIL.getState())) {
-            String reGame = inputView.readGameCommand();
-            if (reGame.equals(CommandType.QUIT.getCommands())) {
-                outputView.printResult(bridgeGame, crossBridgeResult);
-                return true;
-            }
-            bridgeGame.retry();
-            play(bridgeGame);
+            return isGivedUp(bridgeGame, crossBridgeResult);
         }
+        return false;
+    }
+
+    private boolean isGivedUp(BridgeGame bridgeGame, ResultType crossBridgeResult) {
+        String userAnswer = inputView.readGameCommand();
+        if (userAnswer.equals(CommandType.QUIT.getCommands())) {
+            outputView.printResult(bridgeGame, crossBridgeResult);
+            return true;
+        }
+        bridgeGame.retry();
         return false;
     }
 }
