@@ -40,9 +40,8 @@ public class GameController {
             bridgeMaker(inputView);
         }
     }
-
+    
     private Answer playOneCycle(){
-
         Answer answer = validMove();
         List<List<Answer>> currentBridge = bridgeGame.getCurrentBridge(answer);
         printMap(currentBridge);

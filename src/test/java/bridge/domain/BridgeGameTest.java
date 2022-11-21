@@ -22,7 +22,6 @@ public class BridgeGameTest {
     @DisplayName("잘못된 input 에러 테스트")
     @Test
     void 잘못된_input_에러_테스트(){
-
         assertThatThrownBy(() -> bridgeGame.move("이상한값"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
