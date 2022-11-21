@@ -2,13 +2,13 @@ package bridge.view;
 
 import static bridge.util.Constants.*;
 
-import bridge.util.CapitalLetter;
 import bridge.util.CommandKeys;
 import java.util.Arrays;
 
 public class InputValidator {
     private static final String NO_SPACE = "";
     private static final String NON_DIGIT_CHARACTER = "[^0-9]";
+    private static final String NON_ALPHABETIC_CHARACTER = "[^a-zA-Z]";
 
     public static void bridgeSize(String input) {
         validateNumericType(input);
@@ -42,36 +42,47 @@ public class InputValidator {
     }
 
     public static void moving(String input) {
-        final CapitalLetter letter = new CapitalLetter(input);
-        if (!isUp(letter) && !isDown(letter)) {
+        validateAlphabeticType(input);
+        if (!isUp(input) && !isDown(input)) {
             throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
         }
     }
 
-    private static boolean isUp(CapitalLetter letter) {
-        return isSame(CommandKeys.UP, letter.capitalize());
-    }
-
-    private static boolean isDown(CapitalLetter letter) {
-        return isSame(CommandKeys.DOWN, letter.capitalize());
-    }
-
     public static void gameCommand(String input) {
-        final CapitalLetter letter = new CapitalLetter(input);
-        if (!isRetry(letter) && !isQuit(letter)) {
+        validateAlphabeticType(input);
+        if (!isRetry(input) && !isQuit(input)) {
             throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
         }
     }
 
-    private static boolean isRetry(CapitalLetter letter) {
-        return isSame(CommandKeys.RETRY, letter.capitalize());
+    private static void validateAlphabeticType(String input) {
+        if (isNotAlphabetic(input)) {
+            throw new IllegalArgumentException(ERROR_TITLE + NON_ALPHABETIC_CHARACTER_FOUND);
+        }
     }
 
-    private static boolean isQuit(CapitalLetter letter) {
-        return isSame(CommandKeys.QUIT, letter.capitalize());
+    private static boolean isNotAlphabetic(String input) {
+        final String[] splitted = input.split(NO_SPACE);
+
+        return Arrays.stream(splitted)
+                .anyMatch(element ->
+                        element.matches(NON_ALPHABETIC_CHARACTER)
+                );
     }
 
-    private static boolean isSame(CommandKeys commandKey, String input) {
-        return commandKey.getLetter().equals(input);
+    private static boolean isUp(String input) {
+        return CommandKeys.isSame(CommandKeys.UP, input);
+    }
+
+    private static boolean isDown(String input) {
+        return CommandKeys.isSame(CommandKeys.DOWN, input);
+    }
+
+    private static boolean isRetry(String input) {
+        return CommandKeys.isSame(CommandKeys.RETRY, input);
+    }
+
+    private static boolean isQuit(String input) {
+        return CommandKeys.isSame(CommandKeys.QUIT, input);
     }
 }

@@ -1,9 +1,5 @@
 package bridge;
 
-import bridge.util.CapitalLetter;
-import bridge.util.CommandKeys;
-import bridge.view.InputView;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +12,8 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final int INITIAL_COUNT = 1;
+    private static final String CORRECT_MOVING = "O";
+    private static final String WRONG_MOVING = "X";
 
     int trialCount;
     private final List<String> answerBridge;
@@ -30,12 +28,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(CapitalLetter currentMoving, int index) {
+    public String move(String currentMoving, int index) {
         final String answerMoving = answerBridge.get(index);
-        if (answerMoving.equals(currentMoving.capitalize())) {
-            return CommandKeys.CORRECT.getLetter();
+        if (answerMoving.equals(currentMoving)) {
+            return CORRECT_MOVING;
         }
-        return CommandKeys.WRONG.getLetter();
+        return WRONG_MOVING;
     }
 
     /**

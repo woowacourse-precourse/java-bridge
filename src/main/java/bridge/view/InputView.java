@@ -1,13 +1,5 @@
 package bridge.view;
 
-import static bridge.util.Constants.BRIDGE_SIZE_FORMAT;
-import static bridge.util.Constants.EMPTY_INPUT;
-import static bridge.util.Constants.ERROR_TITLE;
-import static bridge.util.Constants.MAXIMUM_BRIDGE_SIZE;
-import static bridge.util.Constants.MINIMUM_BRIDGE_SIZE;
-
-import bridge.SafeBridge;
-import bridge.util.CapitalLetter;
 import bridge.util.CommandKeys;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -42,7 +34,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static CapitalLetter readMoving() {
+    public static String readMoving() {
         final String input = messageBox(ENTER_DIRECTION);
         return toMovingValue(input);
     }
@@ -50,7 +42,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static CapitalLetter readGameCommand() {
+    public static String readGameCommand() {
         final String input = messageBox(ENTER_RETRY_OR_QUIT);
         return toGameCommandValue(input);
     }
@@ -70,23 +62,23 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    private static CapitalLetter toMovingValue(String input) {
+    private static String toMovingValue(String input) {
         try {
             InputValidator.moving(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
-        return new CapitalLetter(input);
+        return input.toUpperCase();
     }
 
-    private static CapitalLetter toGameCommandValue(String input) {
+    private static String toGameCommandValue(String input) {
         try {
             InputValidator.gameCommand(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
-        return new CapitalLetter(input);
+        return input.toUpperCase();
     }
 }

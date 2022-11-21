@@ -17,4 +17,8 @@ public enum CommandKeys {
     public String getLetter() {
         return letter;
     }
+
+    public static boolean isSame(CommandKeys commandKey, String input) {
+        return commandKey.letter.equals(input);
+    }
 }
