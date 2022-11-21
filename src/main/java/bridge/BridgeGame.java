@@ -25,8 +25,4 @@ public class BridgeGame {
 
     public void retry() {
     }
-
-    public List<List<String>> getBridgeMap() {
-        return bridgeMap;
-    }
 }
