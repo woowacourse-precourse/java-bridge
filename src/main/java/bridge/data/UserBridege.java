@@ -15,6 +15,14 @@ public class UserBridege {
         downBridge.add(compareInput(userInput, "D", correct));
     }
 
+    public List<String> getUpBridge() {
+        return upBridge;
+    }
+
+    public List<String> getDownBridge() {
+        return downBridge;
+    }
+
     private String compareInput(String userInput, String standard, boolean correct) {
         if (standard.equals(userInput) && correct == true) {
             return "O";
