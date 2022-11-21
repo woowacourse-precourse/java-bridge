@@ -18,6 +18,8 @@ public class Application {
 
         BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridge);
 
+        System.out.println(bridge);
+
         while (!bridgeGame.isEndGame()) {
             bridgeGame.move(inputView.readMoving());
         }
