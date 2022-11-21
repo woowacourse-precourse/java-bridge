@@ -3,9 +3,11 @@ package bridge.service;
 import bridge.domain.Bridge;
 import bridge.domain.GameRecord;
 import bridge.domain.Player;
-
 import java.util.List;
 import java.util.Map;
+
+import static bridge.util.constants.MovableSpace.UP_SPACE;
+import static bridge.util.constants.MovableSpace.DOWN_SPACE;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -44,8 +46,8 @@ public class BridgeGame {
         gameRecord.recordMove(spaceToMove, player.isDead());
     }
 
-    private void validate(String spaceToMove) { // 플레이어의 무브에서 U도 D도 아니면 오류는 내는 식으로 고치기
-        if (!spaceToMove.equals("U") && !spaceToMove.equals("D")) {
+    private void validate(String spaceToMove) {
+        if (!spaceToMove.equals(UP_SPACE.getValue()) && !spaceToMove.equals(DOWN_SPACE.getValue())) {
             throw new IllegalArgumentException("[ERROR] 입력된 값이 U나 D가 아닙니다");
         }
     }

@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.List;
-
 public class Player {
     private int currentSpaceIndex;
     private boolean alive;

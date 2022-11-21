@@ -1,8 +1,12 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static bridge.util.constants.MovableSpace.UP_SPACE;
+import static bridge.util.constants.MovableSpace.DOWN_SPACE;
+import static bridge.util.constants.BridgeConstant.MIN_BRIDGE_SIZE;
+import static bridge.util.constants.BridgeConstant.MAX_BRIDGE_SIZE;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -31,7 +35,7 @@ public class BridgeMaker {
     }
 
     public void validateSize(int size) {
-        if (size < 3 || 20 < size) {
+        if (size < MIN_BRIDGE_SIZE.getValue() || MAX_BRIDGE_SIZE.getValue() < size) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3 ~ 20사이여야 합니다");
         }
     }
@@ -39,10 +43,10 @@ public class BridgeMaker {
     public void addMovableSpace(List<String> bridge, int bridgeNumber) {
         validateBridgeNumber(bridgeNumber);
         if (bridgeNumber == 1) {
-            bridge.add("U");
+            bridge.add(UP_SPACE.getValue());
             return;
         }
-        bridge.add("D");
+        bridge.add(DOWN_SPACE.getValue());
     }
 
     public void validateBridgeNumber(int bridgeNumber) {
