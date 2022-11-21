@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Domain.BridgeWidth;
+import bridge.Domain.BridgeRow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i=0; i<size; i++){
             int random = bridgeNumberGenerator.generate();
-
-            bridge.add(BridgeWidth.getRowUsingNumber(random));
-            /*if(random == 0)
-                bridge.add("D");
-            else
-                bridge.add("U");*/
+            bridge.add(BridgeRow.getRowUsingNumber(random));
         }
         return bridge;
     }
