@@ -13,8 +13,11 @@ public class Application {
         // TODO: 프로그램 구현
         outputView.startGame();
         int size = inputView.readBridgeSize();
+        if(size == -1){
+            System.exit(0);
+        }
         List<String> bridge = bridgeMaker.makeBridge(size);
-
+        user.addUserAttempt();
         while(true){
             String direction = inputView.readMoving();
             bridgeGame.move(user);
@@ -22,19 +25,18 @@ public class Application {
             outputView.printMap(user.getUserPosition(), direction, checkDirection, bridge);
             if(checkDirection){
                 if(bridgeGame.checkGameIsOver(user, direction, size, bridge)){
-                    outputView.printResult();
-                    System.out.print("DASDF");
+                    outputView.printResult(user, direction, true, bridge, true);
                     break;
                 }
             }else{
                 if(inputView.readGameCommand() == "R") {
+                    user.addUserAttempt();
                     bridgeGame.retry(user);
                 }else{
-                    outputView.printResult();
+                    outputView.printResult(user, direction, false, bridge, false);
                     break;
                 }
             }
-
         }
     }
 }
