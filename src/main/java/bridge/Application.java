@@ -12,15 +12,19 @@ public class Application {
     static BridgeGame bridgeGame = new BridgeGame();
     static OutputView outputView = new OutputView();
     static int Location = 0;
+    static int TryNumber = 1;
     static String Command;
+
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         init();
         System.out.println(Bridge);
         while (Location < Bridge.size() && bridgeGame.Ending()) {
+            System.out.println("Location : " + Location);
             Bridge_Move();
             Bridge_Check();
+            EndingCheck();
             Location++;
         }
     }
@@ -42,16 +46,24 @@ public class Application {
             Retry_Command = input.readGameCommand();
             RetryPrint(Retry_Command);
             Location = bridgeGame.retry(Retry_Command, Location);
-
         }
     }
 
     private static void RetryPrint(String Retry_Command) {
         if (Retry_Command.equals("R")) {
             outputView.Delete_Bridge();
+            TryNumber++;
+            return;
         }
         if (Retry_Command.equals("Q")) {
-            outputView.printResult();
+            String Fail = "실패";
+            outputView.printResult(TryNumber, Fail);
+        }
+    }
+    private static void EndingCheck(){
+        if(Location==(Bridge.size()-1)){
+            String Success = "성공";
+            outputView.printResult(TryNumber, Success);
         }
     }
 }
