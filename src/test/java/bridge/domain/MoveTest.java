@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static bridge.domain.Move.DOWN;
 import static bridge.domain.Move.UP;
-import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
+import static bridge.support.ErrorMessage.INVALID_MOVE_CODE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -45,7 +45,7 @@ class MoveTest {
         //when then
         assertThatThrownBy(() -> Move.from(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_BRIDGE_UNIT_CODE_ERROR);
+                .hasMessage(INVALID_MOVE_CODE_ERROR);
     }
 
     @Test
@@ -80,6 +80,6 @@ class MoveTest {
         //when then
         assertThatThrownBy(() -> Move.from(code))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_BRIDGE_UNIT_CODE_ERROR);
+                .hasMessage(INVALID_MOVE_CODE_ERROR);
     }
 }

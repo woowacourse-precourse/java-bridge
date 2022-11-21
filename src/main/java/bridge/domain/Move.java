@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
+import static bridge.support.ErrorMessage.INVALID_MOVE_CODE_ERROR;
 
 public enum Move {
     DOWN("D", 0),
@@ -29,7 +29,7 @@ public enum Move {
         return Arrays.stream(Move.values())
                 .filter(isEqualToField)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_BRIDGE_UNIT_CODE_ERROR));
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_MOVE_CODE_ERROR));
     }
 
     public static void validateMoving(String code) {

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
-import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
+import static bridge.support.ErrorMessage.INVALID_MOVE_CODE_ERROR;
 import static bridge.support.ErrorMessage.INVALID_COMMAND_ERROR;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -108,7 +108,7 @@ public class ApplicationFunctionalTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "T", "U", "Q");
             assertThat(output()).contains(
-                    ERROR_MESSAGE + " " + INVALID_BRIDGE_UNIT_CODE_ERROR,
+                    ERROR_MESSAGE + " " + INVALID_MOVE_CODE_ERROR,
                     "최종 게임 결과",
                     "[ X ]",
                     "[   ]",

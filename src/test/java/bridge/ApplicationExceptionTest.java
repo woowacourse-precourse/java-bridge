@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
-import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
+import static bridge.support.ErrorMessage.INVALID_MOVE_CODE_ERROR;
 import static bridge.support.ErrorMessage.INVALID_COMMAND_ERROR;
 import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -31,7 +31,7 @@ class ApplicationExceptionTest extends NsTest {
     void 이동_입력_시_D_또는_U_이외의_값이_들어오는_경우_예외가_발생한다() {
         assertSimpleTest(() -> {
             runException("3", "T");
-            assertThat(output()).contains(ERROR_MESSAGE + " " + INVALID_BRIDGE_UNIT_CODE_ERROR);
+            assertThat(output()).contains(ERROR_MESSAGE + " " + INVALID_MOVE_CODE_ERROR);
         });
     }
 
