@@ -47,6 +47,7 @@
 - [x] BridgeGameStatus 테스트
   - [x] 상태를 보고 게임의 성공, 실패 여부 확인 테스트
   - [x] 게임의 상태를 올바르게 출력하는지 여부 테스트
+- [x] BridgeGame 의 이동 가능여부 테스트
 
 > 리팩토링이 필요한 부분 정리
 - [x] BridgeSizeValidator 클래스 위치 수정
