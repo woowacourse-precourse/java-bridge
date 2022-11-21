@@ -59,4 +59,9 @@ public class OutputView {
 			downBridgeMap.add(Constant.CROSS);
 		}
 	}
+
+	public void resetBridgeMap() {
+		upBridgeMap.clear();
+		downBridgeMap.clear();
+	}
 }
