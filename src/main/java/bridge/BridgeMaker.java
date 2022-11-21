@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,6 +20,13 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        while (size > 0) {
+            bridge.add(String.valueOf(bridgeNumberGenerator.generate()));
+            size--;
+        }
+        Collections.replaceAll(bridge, "0", "D");
+        Collections.replaceAll(bridge, "1", "U");
+        return bridge;
     }
 }
