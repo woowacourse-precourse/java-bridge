@@ -53,7 +53,6 @@ public class OutputView {
     public static void printResult(List<String> bridgeUpResults, List<String> bridgeDownResults, String gameResult, int trial) {
         System.out.println(EventMessage.END_GAME_MAP.getMessage());
         printMap(bridgeUpResults, bridgeDownResults);
-        System.out.println();
 
         System.out.println(readGameResult(gameResult));
         System.out.println(readTrial(trial));
