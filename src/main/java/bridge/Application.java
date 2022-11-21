@@ -12,6 +12,7 @@ public class Application {
         // TODO: 프로그램 구현
         try {
             bridgeSize = inputView.readBridgeSize();
+            System.out.println();
             BridgeGame bridgeGame = new BridgeGame(bridgeSize);
             start(bridgeGame);
             outputView.printResult(bridgeGame);
