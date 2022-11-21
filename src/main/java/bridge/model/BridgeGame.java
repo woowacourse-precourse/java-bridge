@@ -18,11 +18,8 @@ public class BridgeGame {
     private Record record = new Record();
     private Result result = new Result();
 
-    public void createBridge(int bridgeSize) {
-        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> randomBridge = bridgeMaker.makeBridge(bridgeSize);
-        bridge = new Bridge(randomBridge);
+    public void createBridge(List<String> bridgeInput) {
+        bridge = new Bridge(bridgeInput);
     }
 
     /**
