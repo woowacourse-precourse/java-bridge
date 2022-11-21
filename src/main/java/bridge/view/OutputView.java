@@ -1,17 +1,17 @@
 package bridge.view;
 
+import static bridge.constant.OutputConstant.CHECK_CLEAR_FAIL;
+import static bridge.constant.OutputConstant.FINAL_GAME_RESULT;
+import static bridge.constant.OutputConstant.MAP_FINISHER;
+import static bridge.constant.OutputConstant.MAP_SEPARATOR;
+import static bridge.constant.OutputConstant.MAP_STARTER;
+import static bridge.constant.OutputConstant.TOTAL_GAME_COUNT;
+
 import bridge.type.GameStatusType;
 import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
-
-    private static final String MAP_STARTER = "[ ";
-    private static final String MAP_FINISHER = " ]";
-    private static final String MAP_SEPARATOR = " | ";
-    private static final String FINAL_GAME_RESULT = "최종 게임 결과";
-    private static final String CHECK_CLEAR_FAIL = "게임 성공 여부: ";
-    private static final String TOTAL_GAME_COUNT = "총 시도한 횟수: ";
 
     public void printMap(List<List<String>> playingMap) {
         for (List<String> playingBridge : playingMap) {

@@ -16,32 +16,26 @@ public class BridgeGameController {
 
     private final BridgeGame bridgeGame;
     private int gameCount;
-    private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeMovingResult bridgeMovingResult;
 
     public BridgeGameController() {
         List<String> bridgeInfo = createBridge().getBridge();
         bridgeGame = new BridgeGame(bridgeInfo);
         gameCount = 1;
-        inputView = new InputView();
-        outputView = new OutputView();
         bridgeMovingResult = new BridgeMovingResult(bridgeInfo);
     }
 
     public void start() {
         while (bridgeGame.getGameStatus().isPlaying()) {
             move();
+            checkFailed();
             checkEnd();
-            if (isFailed()) {
-                requestRestartOrQuit();
-            }
         }
         printGameResult();
     }
 
     private void move() {
-        bridgeGame.move(inputView.readMoving());
+        bridgeGame.move(new InputView().readMoving());
         bridgeMovingResult.updatePlayingMap(bridgeGame.getMovingRecord(), bridgeGame.getStageCount());
         printPlayingMap();
         bridgeGame.increaseStageCount();
@@ -57,8 +51,20 @@ public class BridgeGameController {
         bridgeGame.quit();
     }
 
+    private void checkEnd() {
+        if (bridgeGame.isEnd()) {
+            bridgeGame.end();
+        }
+    }
+
+    private void checkFailed() {
+        if(bridgeGame.getGameStatus() == GameStatusType.FAIL) {
+            requestRestartOrQuit();
+        }
+    }
+
     private void requestRestartOrQuit() {
-        String status = inputView.readGameCommand();
+        String status = new InputView().readGameCommand();
         if (status.equals(RETRY)) {
             restart();
         }
@@ -67,22 +73,12 @@ public class BridgeGameController {
         }
     }
 
-    private void checkEnd() {
-        if (bridgeGame.isEnd()) {
-            bridgeGame.end();
-        }
-    }
-
-    private boolean isFailed() {
-        return bridgeGame.getGameStatus() == GameStatusType.FAIL;
-    }
-
     private void printPlayingMap() {
-        outputView.printMap(bridgeMovingResult.getPlayingMap());
+        new OutputView().printMap(bridgeMovingResult.getPlayingMap());
     }
 
     private void printGameResult() {
-        outputView.printResult(bridgeMovingResult.getPlayingMap(), bridgeGame.getGameStatus(), gameCount);
+        new OutputView().printResult(bridgeMovingResult.getPlayingMap(), bridgeGame.getGameStatus(), gameCount);
     }
 
     private Bridge createBridge() {
