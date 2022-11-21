@@ -5,8 +5,18 @@ package bridge.view;
  */
 public class OutputView {
 
+    /**
+     * 게임 시작 메세지를 출력하는 메소드
+     */
     public static void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    /**
+     * 다리 길이 입력 문구를 출력하는 메소드
+     */
+    public static void printBridgeSizeInput() {
+        System.out.println("다리의 길이를 입력해주세요.");
     }
 
     /**
