@@ -15,7 +15,30 @@ public class OutputView {
      */
     public void printMap(List<String> input, List<String> answer) {
         int size = input.size();
-        // 윗부분 출력
+        printTop(input, answer, size);
+        printBottom(input, answer, size);
+    }
+
+    private void printBottom(List<String> input, List<String> answer, int size) {
+        System.out.print("[");
+        for (int i = 0; i < size; i++) {
+            if ("D".equals(input.get(i)) && "D".equals(answer.get(i))) {
+                System.out.print(" O ");
+            }
+            else if ("D".equals(input.get(i)) && "U".equals(answer.get(i))) {
+                System.out.print(" X ");
+            }
+            else {
+                System.out.print("   ");
+            }
+            if (i != size - 1) {
+                System.out.print("|");
+            }
+        }
+        System.out.print("]\n");
+    }
+
+    private void printTop(List<String> input, List<String> answer, int size) {
         System.out.print("[");
         for (int i = 0; i < size; i++) {
             if ("U".equals(input.get(i)) && "U".equals(answer.get(i))) {
@@ -33,24 +56,6 @@ public class OutputView {
         }
         System.out.print("]");
         System.out.println();
-
-        // 아랫부분 출력
-        System.out.print("[");
-        for (int i = 0; i < size; i++) {
-            if ("D".equals(input.get(i)) && "D".equals(answer.get(i))) {
-                System.out.print(" O ");
-            }
-            else if ("D".equals(input.get(i)) && "U".equals(answer.get(i))) {
-                System.out.print(" X ");
-            }
-            else {
-                System.out.print("   ");
-            }
-            if (i != size - 1) {
-                System.out.print("|");
-            }
-        }
-        System.out.print("]\n");
     }
 
     /**
