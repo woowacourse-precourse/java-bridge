@@ -6,9 +6,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = readLine();
@@ -21,11 +18,16 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String input = readLine();
+        try{
+            String moving = checkMoving(input);
+            return moving;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            return "null";
+        }
     }
 
     /**
@@ -45,5 +47,12 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자만 입력이 가능합니다.");
         }
         return bridgeSize;
+    }
+
+    public String checkMoving(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] U 혹은 D만 입력이 가능합니다.");
+        }
+        return input;
     }
 }
