@@ -11,6 +11,7 @@ import static bridge.enums.GameResult.FAIL;
 
 import bridge.enums.Direction;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,23 +20,27 @@ import java.util.Objects;
 public class BridgeGame {
 
     private final Bridge answerBridge;
-    private final Bridge upperBridge;
-    private final Bridge lowerBridge;
+    private final List<Bridge> outputBridge;
     private int tryCount;
 
     public BridgeGame(Bridge answerBridge) {
         this.answerBridge = answerBridge;
-        upperBridge = new Bridge(new ArrayList<>());
-        lowerBridge = new Bridge(new ArrayList<>());
+        outputBridge = new ArrayList<>();
+        outputBridge.add(new Bridge(new ArrayList<>()));
+        outputBridge.add(new Bridge(new ArrayList<>()));
         tryCount = 1;
     }
 
+    public List<Bridge> getOutputBridge() {
+        return outputBridge;
+    }
+
     public Bridge getUpperBridge() {
-        return upperBridge;
+        return outputBridge.get(UPWARD_DIRECTION.getValue());
     }
 
     public Bridge getLowerBridge() {
-        return lowerBridge;
+        return outputBridge.get(DOWNWARD_DIRECTION.getValue());
     }
 
     public int getTryCount() {
@@ -48,7 +53,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
-        int index = upperBridge.size();
+        int index = getUpperBridge().size();
         String answerDirection = answerBridge.get(index);
         boolean correct = answerDirection.equals(direction);
         Direction consistentEnum = Objects.requireNonNull(Direction.getEnum(direction));
@@ -74,6 +79,8 @@ public class BridgeGame {
     }
 
     public boolean gameWin() {
+        final Bridge lowerBridge = getLowerBridge();
+        final Bridge upperBridge = getUpperBridge();
         return (upperBridge.size() == answerBridge.size() &&
                 upperBridge.notContains(BRIDGE_IMPASSABLE_ELEMENT.toString()) &&
                 lowerBridge.notContains(BRIDGE_IMPASSABLE_ELEMENT.toString()));
@@ -87,6 +94,7 @@ public class BridgeGame {
     }
 
     private void setUpperBridge(boolean correct, Direction direction) {
+        final Bridge upperBridge = getUpperBridge();
         if (direction.equals(DOWNWARD_DIRECTION)) {
             upperBridge.add(BRIDGE_EMPTY_ELEMENT);
         }
@@ -99,6 +107,7 @@ public class BridgeGame {
     }
 
     private void setLowerBridge(boolean correct, Direction direction) {
+        final Bridge lowerBridge = getLowerBridge();
         if (direction.equals(UPWARD_DIRECTION)) {
             lowerBridge.add(BRIDGE_EMPTY_ELEMENT);
         }
@@ -111,7 +120,7 @@ public class BridgeGame {
     }
 
     private void clearOutputBridge() {
-        upperBridge.clear();
-        lowerBridge.clear();
+        getUpperBridge().clear();
+        getLowerBridge().clear();
     }
 }
