@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Status {
     private List<String> status;
+    private int tryNumber;
 
     public Status() {
         this.status = new ArrayList<>();
@@ -28,5 +29,21 @@ public class Status {
 
     public String pop() {
         return status.get(status.size()-1);
+    }
+
+    public void raiseTryNumber() {
+        tryNumber ++;
+    }
+
+    public void setZeroTryNumber() {
+        tryNumber = 0;
+    }
+
+    public void setOneTryNumber() {
+        tryNumber = 1;
+    }
+
+    public int getTryNumber() {
+        return tryNumber;
     }
 }

@@ -1,13 +1,8 @@
 package bridge.model;
 
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BridgeGame {
-    private int tryNumber;
     private Status preStatus;
 
     public BridgeGame() {
@@ -28,19 +23,19 @@ public class BridgeGame {
     }
 
     public void retry() {
-        this.tryNumber ++;
+        preStatus.raiseTryNumber();
     }
 
     public void setTryNumber() {
-        this.tryNumber = 1;
+        preStatus.setOneTryNumber();
     }
 
     public void resetTryNumber() {
-        this.tryNumber = 0;
+        preStatus.setZeroTryNumber();
     }
 
     public int getTryNumber() {
-        return this.tryNumber;
+        return preStatus.getTryNumber();
     }
 
     public Status getPreStatus() {
