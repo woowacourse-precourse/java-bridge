@@ -25,7 +25,7 @@ public class BridgeGame {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = new ArrayList<>();
         playerBridge = new ArrayList<>();
-        tryCount = 0;
+        tryCount = 1;
     }
 
     /**
@@ -106,6 +106,7 @@ public class BridgeGame {
             move();
             gameOverResult = checkGameOver();
             if (gameOverResult == 0) continue;
+            if (gameOverResult == 1) break;
             if (!retry()) break;
         }
         gameOver(gameOverResult);
