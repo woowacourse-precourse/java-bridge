@@ -120,6 +120,32 @@ public class BridgeGame {
         return isPlayerMoveSuccess;
     }
 
+    public void initializeBridgeGame(List<String> bridge){
+        this.bridge = bridge;
+        this.playerMoveRecord = new ArrayList<>();
+        this.printPlayerMove = new ArrayList<>();
+        this.playerMoveWhetherAnswer = new ArrayList<>();
+        this.printPlayerMoveUp = new StringBuilder();
+        this.printPlayerMoveDown = new StringBuilder();
+        this.tryCount = 1;
+        this.isSuccessGame = false;
+        bridgeIdx = 0;
+    }
+
+    public void initializePlayerMoveRecord(){
+        this.playerMoveRecord = new ArrayList<>();
+        this.bridgeIdx =0;
+        this.tryCount++;
+    }
+
+    public void initializeBuilder(){
+        this.printPlayerMove = new ArrayList<>();
+        this.printPlayerMoveUp = new StringBuilder();
+        this.printPlayerMoveDown = new StringBuilder();
+        this.bridgeIdx =0;
+        this.playerMoveWhetherAnswer = new ArrayList<>();
+    }
+
     public void setBridgeLength(int bridgeLength) {
         this.bridgeLength = bridgeLength;
     }
