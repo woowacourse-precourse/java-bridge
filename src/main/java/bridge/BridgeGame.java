@@ -15,17 +15,16 @@ public class BridgeGame {
         this.answerBridge = bridgeMaker.makeBridge(size);
     }
 
-    public void move(String moveChoice, int idx) {
+    public void move(String moveChoice) {
         userBridge.add(moveChoice);
-        setMoveResult(moveChoice, idx);
     }
 
-    public void setMoveResult(String userChoice, int i) {
+    public void setMoveResult(int i) {
         if (checkIsWrong(i)) {
             setGameStatus(GameStatus.LOSE);
         }
-        setResultBridge(MoveType.DOWN, userChoice, checkIsWrong(i));
-        setResultBridge(MoveType.UP, userChoice, checkIsWrong(i));
+        setResultBridge(MoveType.DOWN, getUserBridge().get(i), checkIsWrong(i));
+        setResultBridge(MoveType.UP, getUserBridge().get(i), checkIsWrong(i));
     }
 
     public boolean checkIsWrong(int i) {
@@ -59,6 +58,11 @@ public class BridgeGame {
     public List<String> getUserBridge() {
         return userBridge;
     }
+
+    public GameResult getGameResult() {
+        return gameResult;
+    }
+
 
     public GameStatus getGameStatus() {
         return gameResult.getGameStatus();

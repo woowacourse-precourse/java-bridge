@@ -31,7 +31,8 @@ public class BridgeGameService {
 
     public GameStatus moveBridge() {
         for (int i = 0; i < bridgeGame.getAnswerBridgeSize(); i++) {
-            bridgeGame.move(getMoving(), i);
+            bridgeGame.move(getMoving());
+            bridgeGame.setMoveResult(i);
             if (bridgeGame.getGameStatus() == GameStatus.LOSE) return bridgeGame.getGameStatus();
         }
         bridgeGame.setGameStatus(GameStatus.SUCCESS);
