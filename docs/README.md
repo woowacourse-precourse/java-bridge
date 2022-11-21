@@ -5,18 +5,28 @@
     - 프로그램 실행하는 클래스
     - 인스턴스 생성
         * BridgeGame 인스턴스 생성
+        * BridgeRandomNumberGenerator 인스턴스 생성
         * BridgeMaker 인스턴스 생성
         * InputView 인스턴스 생성
         * OutputView 인스턴스 생성
+        * User 인스턴스 생성
     - 게임 진행
         * OutputView.startGame() 실행
-        * InputView.readBridgeSize() 실행 -> BridgeMaker.makeBridge() 실행
-        * InputView.readMoving() 실행 -> BridgeGame.checkBridge() 실행 ->  BridgeGame.move() 실행 -> OutputView.printMap() 실행 
-        * InputView.readGameCommand() 실행 -> BridgeGame.retry() 실행 -> OutputView.printResult() 실행
+        * 사용자 위치 초기화
+        * 다리 크기 입력 및 다리 생성
+        * 반복
+            * 사용자 이동 방향 입력 및 이동
+            * 사용자 위치의 값과 사용자의 이동 방향 비교 -> checkDirection
+            * 맵 출력
+            * checkDirection이 true 이면서 사용자 위치가 다리의 끝이면 break
+                * 결과 출력 및 종료
+            * checkDirection이 false일 때
+                * 다시 -> 시도 횟수 증가, 사용자 위치 초기화
+                * 종료 -> 결과 출력 및 종료
 
 - #### User class
     - 유저 클래스
-    - 위치, 게임 진행 횟수 정보 저장
+    - 위치, 게임 진행 횟수, 사용자 현재 방향 정보 저장
 
 - #### BridgeGame class
     - 다리 건너기 게임을 관리하는 클래스
@@ -65,7 +75,7 @@
 - #### 메서드의 파라미터 개수는 3개까지 허용
 
 - #### camp.nextstep.edu.missionutils패키지의 Console.readLine() 이용
-    - 사용자 입력
+    - 사용자 입력을 위해
 
 
 
