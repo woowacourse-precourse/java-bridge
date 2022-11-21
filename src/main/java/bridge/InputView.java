@@ -9,10 +9,37 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeLength = 0;
         System.out.println("다리의 길이를 입력해주세요.");
-        bridgeLength = Integer.parseInt(Console.readLine());
-        return bridgeLength;
+        bridgeTypeCheck();
+        bridgeSizeCheck();
+        bridgeSizeException(Integer.parseInt(bridgeLength));
+        return Integer.parseInt(bridgeLength);
+    }
+
+    public void bridgeTypeCheck(){
+        try{
+            String bridgeLength = Console.readLine();
+            bridgeTypeException(bridgeLength);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            readBridgeSize();
+        }
+    }
+
+
+    public void bridgeTypeException(String bridgeLength){
+        char check[] = bridgeLength.toCharArray();
+        for(int i=0;i<check.length;i++){
+            if(!Character.isDigit(check[i]))
+                throw new IllegalArgumentException();
+        }
+    }
+
+
+
+    public static void bridgeSizeException(int bridgeLength){
+        if(bridgeLength<3||bridgeLength>20)
+            throw new IllegalArgumentException();
     }
 
     /**

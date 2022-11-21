@@ -53,8 +53,5 @@ public class Application {
             }
         }
         System.out.println("총 시도한 횟수: "+ count);
-
-
-
     }
 }
