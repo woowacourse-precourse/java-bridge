@@ -1,15 +1,12 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
 
@@ -28,12 +25,29 @@ class InputViewTest {
     void checkBridgeSizeValidationTest(String bridgeSize, String expectedValidationResult) {
 
         if (expectedValidationResult.equals("success")) {
-            assertThatCode(() -> inputView.checkBridgeSizeValidation(bridgeSize));
+            assertThatCode(() -> inputView.checkValidationOfBridgeSize(bridgeSize));
         } else if (expectedValidationResult.equals("fail")){
-            assertThatThrownBy(() -> inputView.checkBridgeSizeValidation(bridgeSize))
+            assertThatThrownBy(() -> inputView.checkValidationOfBridgeSize(bridgeSize))
                     .isInstanceOf(IllegalArgumentException.class);
         } else if (expectedValidationResult.equals("null")) {
-            assertThatThrownBy(() -> inputView.checkBridgeSizeValidation(bridgeSize))
+            assertThatThrownBy(() -> inputView.checkValidationOfBridgeSize(bridgeSize))
+                    .isInstanceOf(NullPointerException.class);
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력 받는 이동 명령어 유효성 검사 테스트")
+    @CsvSource(value = {"abc, fail", "u, fail", "d, fail", "U, success", "D, success", " , null",
+                            "12345, fail", "!@#!@#$, fail", " \\t, fail"})
+    void checkValidationOfMoveCommandTest(String inputMoveCommand, String expectedValidationResult) {
+
+        if (expectedValidationResult.equals("success")) {
+            assertThatCode(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand));
+        } else if (expectedValidationResult.equals("fail")){
+            assertThatThrownBy(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
+                    .isInstanceOf(IllegalArgumentException.class);
+        } else if (expectedValidationResult.equals("null")) {
+            assertThatThrownBy(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
                     .isInstanceOf(NullPointerException.class);
         }
     }
