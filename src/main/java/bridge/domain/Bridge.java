@@ -7,11 +7,7 @@ import java.util.stream.Collectors;
 public class Bridge {
     private final List<Direction> bridge;
 
-    public static Bridge from(List<String> bridge) {
-        return new Bridge(bridge);
-    }
-
-    private Bridge(List<String> bridge) {
+    public Bridge(List<String> bridge) {
         this.bridge = bridge.stream()
                 .map(Direction::from)
                 .collect(Collectors.toUnmodifiableList());

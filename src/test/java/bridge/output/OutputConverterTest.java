@@ -16,13 +16,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class OutputConverterTest {
 
-    private static List<Direction> toDirectionList(List<String> direction){
+    private static List<Direction> toDirectionList(List<String> direction) {
         return direction.stream()
                 .map(Direction::from)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private static Stream<Arguments> providePlayerDirectionsAndAnswer(){
+    private static Stream<Arguments> providePlayerDirectionsAndAnswer() {
         return Stream.of(
                 Arguments.of(
                         List.of("U", "U", "U", "D", "D", "D"),
@@ -42,11 +42,11 @@ public class OutputConverterTest {
     @ParameterizedTest
     @DisplayName("출력을 위한 변환이 정상적으로 실행되었는지 확인한다.")
     @MethodSource("providePlayerDirectionsAndAnswer")
-    public void resultToStrings(List<String> playerDirections, List<String> answer) throws Exception{
+    public void resultToStrings(List<String> playerDirections, List<String> answer) throws Exception {
         //given
         Result result = new Result();
         List<String> bridgeDirection = List.of("U", "U", "U", "D", "D", "D");
-        Bridge bridge = Bridge.from(bridgeDirection);
+        Bridge bridge = new Bridge(bridgeDirection);
         int UPSIDE_VALUE = Direction.UPSIDE.ordinal();
         int DOWNSIDE_VALUE = Direction.DOWNSIDE.ordinal();
 

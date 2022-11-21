@@ -17,7 +17,7 @@ public class BridgeGame {
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = Bridge.from(bridgeMaker.makeBridge(bridgeSize));
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         this.result = new Result();
         this.playCount = 1;
     }
