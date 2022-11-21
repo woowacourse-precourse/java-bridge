@@ -95,6 +95,14 @@ public class BridgeGameManager {
         return true;
     }
 
+    private boolean decideRetry(boolean move) {
+        if (move) {
+            return true;
+        }
+
+        return inputRetryOrQuitUntilNoError();
+    }
+
     private boolean inputRetryOrQuitUntilNoError() {
         while (true) {
             if (checkRetryInputError()) {
@@ -125,13 +133,5 @@ public class BridgeGameManager {
         if (retryCommand.equals(QUIT_COMMAND)) {
             bridgeGame.isOver();
         }
-    }
-
-    private boolean decideRetry(boolean move) {
-        if (move) {
-            return true;
-        }
-
-        return inputRetryOrQuitUntilNoError();
     }
 }
