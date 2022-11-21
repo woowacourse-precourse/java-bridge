@@ -28,4 +28,12 @@ public class BridgeGame {
 
     public void retry() {
     }
+
+    public int getBridgeIndex(){
+        return bridgeIndex;
+    }
+
+    public String getBridgePosition() {
+        return bridge.get(bridgeIndex);
+    }
 }
