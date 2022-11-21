@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import bridge.model.Bridge;
 import org.assertj.core.api.Assertions;
