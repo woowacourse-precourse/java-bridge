@@ -8,20 +8,18 @@ public class Bridge {
     private static final int MAX_BRIDGE_SIZE =20;
     private static final int bridgePositionNumber =2;
     private int bridgeSize;
-    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private List<String> bridgeMap = new ArrayList<>();
-    private List<Integer> crossAble = new ArrayList<>();
+    private List<String> crossAble = new ArrayList<>();
     public Bridge(String bridgeSize){
         this.bridgeSize = validate(bridgeSize);
         bridgeInit();
     }
-    public List<Integer> getCrossAble(){
+    public List<String> getCrossAble(){
         return crossAble;
     }
     private void bridgeInit(){
-        for(int i=0;i<this.bridgeSize;i++){
-            crossAble.add(bridgeRandomNumberGenerator.generate());
-        }
+        crossAble = bridgeMaker.makeBridge(bridgeSize);
         setBridgeMap();
     }
     private int validate(String bridgeSize){
@@ -44,8 +42,8 @@ public class Bridge {
                     ErrorResource.NOT_NUMBER);
         }
     }
-    public boolean ableToCross(int index,int userChoice){
-        if(crossAble.get(index)==userChoice){
+    public boolean ableToCross(int index,String userCommand){
+        if(crossAble.get(index)==userCommand){
             return true;
         }
         return false;
