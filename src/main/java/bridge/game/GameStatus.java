@@ -1,6 +1,10 @@
 package bridge.game;
 
 public class GameStatus {
+
+    private final int ADJUST_COUNT_NUMBER = 1;
+
+
     private boolean end;
     private int tryCount;
 
@@ -14,7 +18,7 @@ public class GameStatus {
     }
 
     public int getTryCount() {
-        return tryCount + 1;
+        return tryCount + ADJUST_COUNT_NUMBER;
     }
 
     public void end() {
