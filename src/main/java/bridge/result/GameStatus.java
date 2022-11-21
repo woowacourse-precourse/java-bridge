@@ -15,7 +15,7 @@ public enum GameStatus {
     }
 
     public boolean isStopGame() {
-        return isStopGame;
+        return !isStopGame;
     }
 
     GameStatus(String name, boolean isStopGame) {
