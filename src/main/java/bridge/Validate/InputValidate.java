@@ -14,9 +14,15 @@ public class InputValidate {
         }
     }
 
-    public void validateMoving(String direction){
-        if(direction != "U" || direction != "D"){
-            throw new IllegalArgumentException(Error.WRONG_MOVING_DISTANCE);
+    public void validateMoving(String direction) {
+        if (!direction.equals("U") && !direction.equals("D")) {
+            throw new IllegalArgumentException(Error.WRONG_INPUT);
+        }
+    }
+
+    public void validateRetry(String retry) {
+        if (!retry.equals("R") && !retry.equals("Q")) {
+            throw new IllegalArgumentException(Error.WRONG_INPUT);
         }
     }
 }
