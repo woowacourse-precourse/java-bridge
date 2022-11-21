@@ -8,7 +8,7 @@
      * 예외 처리 
        * [x] : 입력받은 다리 길이가 숫자가 아닐 경우 
        * [x] : 입력받은 다리 길이가 3이상 20 이하가 아닐 경우 
-     - [ ] 예외 처리 후 다시 입력을 받는다. (try-catch)
+     - [x] 예외 처리 후 다시 입력을 받는다. (try-catch)
    - [x] 입력받은 숫자만큼 다리 생성하기
      - [x] 0과 1 중 무작위 값을 이용하여 다리를 생성한다.
      - [x] 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이다.
@@ -54,9 +54,12 @@
 
 ## 테스트 목록
  - 검증 테스트
-   - Validator Test : InputView에서 사용자 입력값에 대한 검증
+   - Validator Test : InputView에서 사용자 입력값에 대한 검증 테스트
     
  - 기능 테스트
-   - BridgeMaker Test : 임의의 숫자에 대하여 1일 때 "U", 0일 때 "D"로 Bridge가 생성되는가
-   - BridgePrinter Test : 사용자의 입력값과 다리 정보를 비교하여 알맞은 형태로 출력되는가
+   - BridgeMaker Test : 다리 생성 테스트
+   - BridgePrinter Test : 다리 출력 테스트
+   - BridgeGame Test : 다리 건너기 게임을 관리하는 클래스의 세부 기능 테스트
+     - move(), retry() : User 정보 테스트
+     - roundClear(), gameClear() : 게임 결과 테스트
 
