@@ -34,6 +34,7 @@ public class BridgeGameController implements BridgeGameStarter {
             }
             bridgeGame.reset();
         }
+        outputView.printResult(bridgeGame.getGameStatus());
     }
 
     private boolean moveUser() {
