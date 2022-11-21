@@ -1,26 +1,30 @@
 package bridge.service;
 
-import java.util.ArrayList;
+import bridge.enums.BridgeStatus;
+import bridge.enums.GameCommand;
+
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public static int tryCount;
+    private static final int UP_INDEX = 0;
+    private static final int DOWN_INDEX = 1;
+    private static final int INIT_TRY_COUNT = 1;
+    private static final int INIT_CURRENT_INDEX = 0;
+    private static final int ONE = 1;
+
+    private int tryCount;
     private int currentIndex;
     private List<String> bridge;
-    private List<String>[] result;
-    private boolean isFail;
+    private GameResult gameResult;
+
     public BridgeGame(List<String> bridge) {
-        this.tryCount = 1;
-        this.currentIndex = 0;
+        this.tryCount = INIT_TRY_COUNT;
+        this.currentIndex = INIT_CURRENT_INDEX;
         this.bridge = bridge;
-        this.result = new ArrayList[2];
-        for (int i = 0; i < 2; i++) {
-            result[i] = new ArrayList<>();
-        }
-        this.isFail = false;
+        gameResult = new GameResult();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -30,36 +34,34 @@ public class BridgeGame {
     public boolean move(String direction) {
         int index = convertToIndex(direction);
         String answer = calculateAnswer(currentIndex, direction);
-        result[index].add(answer);
-        result[(index + 1) % 2].add(" ");
+        gameResult.add(index, answer);
         currentIndex++;
-        if (answer.equals("X")) {
+        if (BridgeStatus.UNAVAILABLE.equals(answer)) {
             return false;
         }
         return true;
     }
     private int convertToIndex(String direction) {
-        if (direction.equals("U")) {
-            return 0;
+        if (GameCommand.MOVE_UP.isSame(direction)) {
+            return UP_INDEX;
         }
-        return 1;
+        return DOWN_INDEX;
     }
     private String calculateAnswer(int tryCount, String direction) {
         if (bridge.get(tryCount).equals(direction)) {
-            return "O";
+            return BridgeStatus.AVAILABLE.getValue();
         }
-        return "X";
+        return BridgeStatus.UNAVAILABLE.getValue();
     }
     public boolean isGameFail() {
-        int lastIndex = currentIndex - 1;
-        if (result[0].get(lastIndex).equals("X") || result[1].get(lastIndex).equals("X")) {
-            this.isFail = true;
+        int lastIndex = currentIndex - ONE;
+        if (gameResult.isUnavailable(lastIndex)) {
             return true;
         }
         return false;
     }
     public List<String>[] getResult() {
-        return result;
+        return gameResult.getResult();
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -68,14 +70,16 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
-        result[0].clear();
-        result[1].clear();
-        currentIndex = 0;
+        gameResult.clear();
+        currentIndex = INIT_CURRENT_INDEX;
     }
     public boolean isEnd() {
         if (bridge.size() == currentIndex) {
             return true;
         }
         return false;
+    }
+    public int getTryCount() {
+        return tryCount;
     }
 }
