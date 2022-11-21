@@ -27,61 +27,86 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName(value = "생성자를 통해 잘 만들어졌는지 확인")
-    void constructorTest1() {
+    @DisplayName(value = "모두 맞췄을때 멈출수 있는가 확인")
+    void checkMatchBridgeTest1() {
         assertSimpleTest(() -> {
-            assertThat(bridgeGame.getBridge()).containsExactly("U", "D", "U", "D");
-            assertThat(bridgeGame.getBridgeCorrect()).isEmpty();
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.addBridgeCorrect("D");
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.addBridgeCorrect("D");
+
+            assertThat( bridgeGame.keepMove()).isEqualTo(false);
         });
     }
 
     @Test
-    @DisplayName(value = "정상적인 move()")
-    void moveTest1() {
+    @DisplayName(value = "최근에 틀렸을때 멈출수 있는가 확인")
+    void checkMatchBridgeTest2() {
         assertSimpleTest(() -> {
-            bridgeGame.move("U");
-            bridgeGame.move("D");
-            bridgeGame.move("D");
-            bridgeGame.move("U");
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.addBridgeCorrect("U");
 
-            assertThat(bridgeGame.getBridgeCorrect()).containsExactly(true, true, false, false);
-        });
-    }
-
-    @DisplayName(value = "move를 여러번 했을때")
-    @ParameterizedTest
-    @ValueSource(ints = {3, 4, 5, 100})
-    void moveTest2(int size) {
-        assertSimpleTest(() -> {
-            BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 1, 1, 1));
-            bridgeGame = new BridgeGame(numberGenerator, 4);
-            int correctTestSize = Math.min(size, 4);
-            List<Boolean> bridgeCorrectTest = makeBridgeCorrectTest(true, correctTestSize);
-            for (int index = 0; index < size; index++) {
-                bridgeGame.move("U");
-            }
-
-            assertThat(bridgeGame.getBridgeCorrect()).containsExactlyElementsOf(bridgeCorrectTest);
+            assertThat( bridgeGame.keepMove()).isEqualTo(false);
         });
     }
 
     @Test
-    @DisplayName(value = "정상적인 retry()")
+    @DisplayName(value = "중간까지 맞았을때 지속할수 있는가 확인")
+    void checkMatchBridgeTest3() {
+        assertSimpleTest(() -> {
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.addBridgeCorrect("D");
+
+            assertThat( bridgeGame.keepMove()).isEqualTo(true);
+        });
+    }
+
+    @Test
+    @DisplayName(value = "모두 맞았을때 출력이 잘 나오는가 확인")
+    void printMapTest1(){
+        assertSimpleTest(() -> {
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.addBridgeCorrect("D");
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.addBridgeCorrect("D");
+
+            assertThat(bridgeGame.getMapLines())
+                    .containsExactly("[ O |   | O |   ]"
+                            , "[   | O |   | O ]");
+        });
+    }
+
+    @Test
+    @DisplayName(value = "정상적인 doRetry()")
     void retryTest1() {
         assertSimpleTest(() -> {
-            bridgeGame.move("U");
-            bridgeGame.move("D");
-            bridgeGame.retry();
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.addBridgeCorrect("D");
+            bridgeGame.addBridgeCorrect("D");
+            bridgeGame.doRetry();
 
-            assertThat(bridgeGame.getBridgeCorrect()).containsExactly(true);
+            assertThat(bridgeGame.keepMove()).isEqualTo(true);
         });
     }
 
-    private List<Boolean> makeBridgeCorrectTest(boolean correct, int size) {
-        List<Boolean> bridgeCorrectTest = new ArrayList<>();
-        for (int index = 0; index < size; index++) {
-            bridgeCorrectTest.add(correct);
-        }
-        return bridgeCorrectTest;
+    @Test
+    @DisplayName(value = "비정상적인 doRetry()")
+    void retryTest2() {
+        assertSimpleTest(() -> {
+            bridgeGame.doRetry();
+
+            assertThat(bridgeGame.keepMove()).isEqualTo(true);
+        });
     }
+
+    @Test
+    @DisplayName(value = "비정상적인 doRetry()")
+    void retryTest3() {
+        assertSimpleTest(() -> {
+            bridgeGame.addBridgeCorrect("U");
+            bridgeGame.doRetry();
+            assertThat(bridgeGame.keepMove()).isEqualTo(true);
+        });
+    }
+
 }
