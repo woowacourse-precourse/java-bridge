@@ -26,8 +26,15 @@ public class Validation {
     }
 
     public static void validateMovingChoice(String userInput) {
-        if (!userInput.matches("[UD]")) {
+        if (!userInput.matches("[UD]") || userInput.length() != 1) {
             System.out.println("[ERROR] U 또는 D만 입력할 수 있습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateGameCommand(String userInput) {
+        if (!userInput.matches("[RQ]") || userInput.length() != 1) {
+            System.out.println("[ERROR] R 또는 Q만 입력할 수 있습니다.");
             throw new IllegalArgumentException();
         }
     }
