@@ -33,11 +33,11 @@ public class OutputView {
 
     private static String printBridge(List<String> bridgeResult) {
         return BRIDGE_START_DELIMITER
-                + readBridgeData(bridgeResult)
+                + convertDataToBridge(bridgeResult)
                 + BRIDGE_END_DELIMITER;
     }
 
-    private static String readBridgeData(List<String> bridgeResult) {
+    private static String convertDataToBridge(List<String> bridgeResult) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < bridgeResult.size(); i++) {
             stringBuilder.append(bridgeResult.get(i));

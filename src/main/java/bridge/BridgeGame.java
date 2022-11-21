@@ -44,16 +44,16 @@ public class BridgeGame {
     }
 
     private String getBridgeResult(String moving, String bridgeSide) {
-        if (!movingIsWrong(moving) && moving.equals(bridgeSide)) {
+        if (!lose(moving) && moving.equals(bridgeSide)) {
             return RIGHT_ANSWER;
         }
-        if (movingIsWrong(moving) && moving.equals(bridgeSide)) {
+        if (lose(moving) && moving.equals(bridgeSide)) {
             return WRONG_ANSWER;
         }
         return NOT_CHOSEN;
     }
 
-    public boolean movingIsWrong(String moving) {
+    public boolean lose(String moving) {
         return !bridge.get(MovingData.getLastIndex()).equals(moving);
     }
 
@@ -79,7 +79,7 @@ public class BridgeGame {
         MovingData.reset();
     }
 
-    public boolean winBridgeGame(String moving) {
-        return !movingIsWrong(moving) && bridge.size() == MovingData.getSize();
+    public boolean win(String moving) {
+        return !lose(moving) && bridge.size() == MovingData.getSize();
     }
 }
