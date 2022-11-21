@@ -1,7 +1,5 @@
 package bridge.service;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.vo.Bridge;
 import bridge.vo.ErrorMessage;
 import bridge.vo.RetryCommand;

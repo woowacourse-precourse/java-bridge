@@ -10,7 +10,6 @@ import bridge.view.validation.BridgeLengthValidator;
 import bridge.view.validation.InputMoveValidator;
 import bridge.view.validation.InputRestartValidator;
 import bridge.vo.GameProgressMessage;
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 

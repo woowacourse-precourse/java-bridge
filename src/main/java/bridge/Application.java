@@ -1,6 +1,5 @@
 package bridge;
 
-
 import bridge.config.NumberGeneratorDependencyContainer;
 import bridge.config.NumberGeneratorDependencyContainerImpl;
 import bridge.user.GamePlayer;

@@ -1,6 +1,5 @@
 package bridge.validation;
 
-import bridge.view.InputView;
 import bridge.view.validation.BridgeLengthValidator;
 import bridge.view.validation.InputMoveValidator;
 import bridge.view.validation.InputRestartValidator;
@@ -9,11 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 
 public class inputValidationTest {
 
