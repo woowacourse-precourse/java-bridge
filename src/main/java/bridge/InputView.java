@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.utils.ValidateUtils;
-import static bridge.utils.Constants.BridgeSize;
+import bridge.utils.constants.BridgeSize;
 
 import camp.nextstep.edu.missionutils.Console;
 

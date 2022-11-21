@@ -1,6 +1,7 @@
 package bridge.utils;
 
-import bridge.utils.Constants.BridgeSize;
+import bridge.utils.constants.BridgeSize;
+
 import java.util.regex.Pattern;
 
 public class ValidateUtils {

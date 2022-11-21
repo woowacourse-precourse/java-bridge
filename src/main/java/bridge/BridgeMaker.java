@@ -1,6 +1,7 @@
 package bridge;
 
-import bridge.utils.Constants;
+import bridge.utils.constants.BridgeRoute;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class BridgeMaker {
 
         for(int i = 0; i<size; i++){
             int randomPathCode = bridgeNumberGenerator.generate();
-            bridgeAnswerPath.add(Constants.BridgeRoute.getMatchRoute(randomPathCode).get().getRouth());
+            bridgeAnswerPath.add(BridgeRoute.getMatchRoute(randomPathCode).get().getRouth());
         }
 
         return bridgeAnswerPath;
