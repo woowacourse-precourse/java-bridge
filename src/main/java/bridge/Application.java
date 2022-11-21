@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class Application {
 
@@ -11,11 +10,11 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("다리 건너기 게임을 시작합니다.");
-        try{
+        try {
             BridgeGame bridgeGame = createBridgeGame();
             playGame(bridgeGame);
             outputView.printResult(bridgeGame.getAttempts(), bridgeGame.getUser(), bridgeGame.getBridge());
-        }catch (IllegalStateException illegalStateException){
+        } catch (IllegalStateException illegalStateException) {
             System.out.println(illegalStateException.getMessage());
         }
     }
@@ -26,11 +25,11 @@ public class Application {
         return new BridgeGame(bridge);
     }
 
-    public static void playGame(BridgeGame bridgeGame){
-        while(!bridgeGame.getUser().equals(bridgeGame.getBridge())){
+    public static void playGame(BridgeGame bridgeGame) {
+        while (!bridgeGame.getUser().equals(bridgeGame.getBridge())) {
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getUser(), bridgeGame.getBridge());
-            if (!bridgeGame.isCorrect() && !bridgeGame.retry(inputView.readGameCommand())){
+            if (!bridgeGame.isCorrect() && !bridgeGame.retry(inputView.readGameCommand())) {
                 break;
             }
         }

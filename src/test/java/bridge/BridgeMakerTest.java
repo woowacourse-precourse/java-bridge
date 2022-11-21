@@ -2,7 +2,6 @@ package bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,8 +19,8 @@ class BridgeMakerTest {
 
     @DisplayName("생성한 다리는 \"U\" 또는 \"D\"만 포함하고 있다.")
     @Test
-    void bridgeContentsTest(){
+    void bridgeContentsTest() {
         List<String> bridge = bridgeMaker.makeBridge(10);
-        assertThat(bridge).containsOnly("U","D");
+        assertThat(bridge).containsOnly("U", "D");
     }
 }
