@@ -12,7 +12,7 @@ public class BridgeGame {
 
     public BridgeGame (Bridge bridge) {
         attemptCount = 0;
-        panelOrder = 1;
+        panelOrder = 0;
         this.bridge = bridge;
     }
 
@@ -22,10 +22,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String userChoice) {
-        increaseAttemptCount();
-        boolean isUserChoiceCorrect = bridge.isCorrectPanel(panelOrder, userChoice);
         increaseOrder();
-        return isUserChoiceCorrect;
+        increaseAttemptCount();
+        return bridge.isCorrectPanel(panelOrder, userChoice);
     }
 
     /**
