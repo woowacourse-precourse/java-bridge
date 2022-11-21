@@ -15,6 +15,14 @@ public enum MapType {
         this.mark = mark;
     }
 
+    public Boolean canMove() {
+        return move;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
     public static String getMarkByBoolean(Boolean move) {
         return Arrays.stream(values())
                 .filter(type -> type.move == move)

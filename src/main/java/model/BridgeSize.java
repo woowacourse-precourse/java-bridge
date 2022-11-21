@@ -13,6 +13,10 @@ public class BridgeSize {
         this.size = size;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     private void validateRange(int size) {
         if (size < MIN_RANGE || size > MAX_RANGE) {
             throw new IllegalArgumentException(RANGE_ERROR);
