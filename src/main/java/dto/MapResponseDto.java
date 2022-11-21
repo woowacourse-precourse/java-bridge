@@ -1,11 +1,13 @@
 package dto;
 
+import bridge.MapRenderer;
+
 public class MapResponseDto {
 	private final String map;
 	private final int numberOfCorrect;
 
-	public MapResponseDto(String map) {
-		this.map = map;
+	public MapResponseDto(MapRenderer mapRenderer) {
+		this.map = mapRenderer.getMap();
 		this.numberOfCorrect = (int)map.chars().filter(cell -> cell == 'O').count();
 	}
 
