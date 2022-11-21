@@ -83,10 +83,4 @@ public class CrossRecordTest {
         CrossRecord.resetCrossedBridge();
         assertThat(CrossRecord.getCrossedBridge()).isEqualTo(expectedEmptyBridge);
     }
-
-    @DisplayName("기록 기능 예외 - 파라미터로 전달된 문자가 U 혹은 D가 아닐 경우 예외가 발생한다.")
-    @Test
-    void recordCrossedBridgeWithNotUOrDTest() {
-        // 예외 처리 과정에서 구현 예정
-    }
 }

@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class BridgeMakerTest {
 
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
     @DisplayName("다리 생성 - 생성된 다리 리스트의 길이는 입력된 숫자와 같아야 한다.")
     @ParameterizedTest
     @ValueSource(ints = {3, 20})
@@ -29,11 +30,5 @@ public class BridgeMakerTest {
         final String U = "U";
         final String D = "D";
         assertThat(madeBridge).containsOnly(U, D);
-    }
-
-    @DisplayName("예외 - 파라미터로 3~20이 아닌 수가 전달될 경우 예외가 발생한다.")
-    @Test
-    void passedBridgeSizeOutOfRangeTest() {
-        // 예외 처리 구현 과정에서 개발 예정
     }
 }
