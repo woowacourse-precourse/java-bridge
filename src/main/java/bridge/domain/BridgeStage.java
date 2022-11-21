@@ -8,20 +8,20 @@ public class BridgeStage {
         stage++;
     }
 
-    public static void increaseRetry() {
-        retry++;
-    }
-
-    public static int getRetry() {
-        return retry;
-    }
-
     public static int currentStage() {
         return stage;
     }
 
     public static void resetStage() {
         stage = 0;
+    }
+
+    public static void increaseRetry() {
+        retry++;
+    }
+
+    public static int getRetry() {
+        return retry;
     }
 
     public static boolean isFinalStage(int bridgeSize) {
