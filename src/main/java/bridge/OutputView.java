@@ -29,4 +29,10 @@ public class OutputView {
     public void printInputSizeMessage() {
 
     }
+
+    public void printMoveMessage() {
+    }
+
+    public void printRetryMessage() {
+    }
 }
