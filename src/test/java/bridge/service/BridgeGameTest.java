@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.support.BridgeLogger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -81,15 +82,43 @@ class BridgeGameTest {
         });
     }
 
-    @DisplayName("retry 함수를 호출하면 tryCount가 1 증가한다.")
-    @ParameterizedTest(name = "{0}회 호출")
-    @CsvSource(value = {"1:2", "3:4", "6:7"}, delimiter = ':')
-    void tryCountTest(int count, int result) {
-        for (int i = 0; i < count; i++) {
-            bridgeGame.retry();
+    @DisplayName("retry 함수 테스트")
+    @Nested
+    class retryTest {
+        @DisplayName("retry 함수를 호출하면 tryCount가 1 증가한다.")
+        @ParameterizedTest(name = "{0}회 호출")
+        @CsvSource(value = {"1:2", "3:4", "6:7"}, delimiter = ':')
+        void tryCountTest(int count, int result) {
+            for (int i = 0; i < count; i++) {
+                bridgeGame.retry();
+            }
+            assertEquals(bridgeGame.getTryCount(), result);
         }
-        assertEquals(bridgeGame.getTryCount(), result);
+
+        @DisplayName("retry 함수를 호출하면 status는 PLAYING이다.")
+        @Test
+        void retryStatusTest() {
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.retry();
+            assertEquals(bridgeGame.getStatus(), PLAYING);
+        }
+
+        @DisplayName("retry 함수를 호출하면 ResultMap은 비어있다.")
+        @Test
+        void retryResultMapTest() {
+            BridgeLogger bridgeLoggerInit = new BridgeLogger();
+            String initResultMap = bridgeLoggerInit.toString();
+
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.retry();
+            String resultMap = bridgeGame.getResultMap();
+            
+            assertEquals(initResultMap, resultMap);
+        }
     }
+
 
     @Nested
     @DisplayName("getResultMap 함수 테스트")
