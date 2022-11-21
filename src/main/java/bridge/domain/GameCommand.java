@@ -10,12 +10,12 @@ public class GameCommand {
     private final String gameCommand;
 
     public GameCommand(String gameCommand) {
-        checkInvalidGameCommand();
         this.gameCommand = gameCommand;
+        checkInvalidGameCommand();
     }
 
     private void checkInvalidGameCommand() {
-        if(gameCommand.equals(RESTART_GAME) || gameCommand.equals(END_GAME)){
+        if(!gameCommand.equals(RESTART_GAME) && !gameCommand.equals(END_GAME)){
             throw new ErrorException(BridgeError.INVALID_GAME_STATUS);
         };
     }
