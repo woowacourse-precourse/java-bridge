@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class GameStatusTest {
-    @DisplayName("현재 사용자가 다리를 건넜고, 끝까지 도달했다면 성공이다.")
+    @DisplayName("현재 사용자가 다리만 건넜으면 진행중, 끝까지도 도달했다면 성공이다.")
     @ParameterizedTest
     @MethodSource("parametersProvider")
     void 이동가능_여부에_따른_상태값_계산(boolean isCrossed, boolean isReached, GameStatus expected) {

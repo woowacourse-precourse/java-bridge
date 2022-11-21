@@ -21,7 +21,7 @@ public enum BridgeSize {
         return bridgeSize;
     }
 
-    public static boolean isRangeSize(int number) {
+    private static boolean isRangeSize(int number) {
         return MINIMUM.size <= number && number <= MAXIMUM.size;
     }
 }
