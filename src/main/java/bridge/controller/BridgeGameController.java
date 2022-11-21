@@ -18,6 +18,9 @@ public class BridgeGameController {
         init();
         while(isRestart){
             move();
+            if (!bridgeGame.isRightResult(moving.getValue())){
+                restartOrQuit();
+            }
         }
     }
 
@@ -69,6 +72,9 @@ public class BridgeGameController {
      */
     private void restartOrQuit(){
         readGameCommand();
+        if (isRestartResult()){
+            //
+        }
     }
 
     private void readGameCommand(){
@@ -79,5 +85,10 @@ public class BridgeGameController {
             System.out.println(i.getMessage());
             readGameCommand();
         }
+    }
+
+    private boolean isRestartResult(){
+        String gameCommandValue = gameCommand.getValue();
+        return gameCommandValue.equals(GameCommand.getRestartCharacter());
     }
 }
