@@ -21,7 +21,7 @@ class BridgeMakerTest {
     @Nested
     class MakeBridge {
 
-        @DisplayName("다리의 길이가 올바른지 확인")
+        @DisplayName("7 입력 -> 길이가 7인 리스트 생성")
         @Test
         void should_HaveCorrectLength_When_CreateBridge() {
             int inputLength = 7;
@@ -29,7 +29,7 @@ class BridgeMakerTest {
             assertThat(bridge).hasSize(inputLength);
         }
 
-        @DisplayName("다리가 올바른 요소를 가지고 있는지 확인")
+        @DisplayName("다리 생성 -> 각 요소가 올바른 값을 가지고 있음")
         @Test
         void should_HaveCorrectMoving_When_CreateBridge() {
             List<String> bridge = bridgeMaker.makeBridge(20);
