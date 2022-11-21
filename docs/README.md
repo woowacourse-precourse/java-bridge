@@ -65,7 +65,7 @@
     - 모든 원소가 "U"나 "D"인지
 
 - [ ] InputValidator 테스트
-    - [ ] 다리 길이 검증 테스트
+    - [x] 다리 길이 검증 테스트
         - 다리길이가 3~20을 벗어나면 IllegalArgumentException
         - 그 외에는 pass
     - [ ] 이동할 칸 검증 테스트
