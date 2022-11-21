@@ -7,6 +7,8 @@ import static bridge.util.constants.MovableSpace.UP_SPACE;
 import static bridge.util.constants.MovableSpace.DOWN_SPACE;
 import static bridge.util.constants.BridgeConstant.MIN_BRIDGE_SIZE;
 import static bridge.util.constants.BridgeConstant.MAX_BRIDGE_SIZE;
+import static bridge.util.constants.BridgeConstant.UPPER_BRIDGE_NUMBER;
+import static bridge.util.constants.BridgeConstant.LOWER_BRIDGE_NUMBER;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -42,7 +44,7 @@ public class BridgeMaker {
 
     public void addMovableSpace(List<String> bridge, int bridgeNumber) {
         validateBridgeNumber(bridgeNumber);
-        if (bridgeNumber == 1) {
+        if (bridgeNumber == UPPER_BRIDGE_NUMBER.getValue()) {
             bridge.add(UP_SPACE.getValue());
             return;
         }
@@ -50,7 +52,7 @@ public class BridgeMaker {
     }
 
     public void validateBridgeNumber(int bridgeNumber) {
-        if (bridgeNumber < 0 || 1 < bridgeNumber) {
+        if (bridgeNumber < LOWER_BRIDGE_NUMBER.getValue() || UPPER_BRIDGE_NUMBER.getValue() < bridgeNumber) {
             throw new IllegalStateException("[ERROR] 생성된 다리번호가 유효하지 않습니다");
         }
     }
