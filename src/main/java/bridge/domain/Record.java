@@ -1,14 +1,12 @@
 package bridge.domain;
 
 import bridge.utils.Converter;
+import bridge.utils.MoveResults;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Record {
-    private static final String SUCCESS = " O ";
-    private static final String FAIL = " X ";
-    private static final String NONE = "   ";
     private List<String> upBridgeResult;
     private List<String> downBridgeResult;
     private int tryCount = 1;
@@ -50,9 +48,9 @@ public class Record {
 
     private String getResultString(boolean moveSuccess) {
         if (moveSuccess) {
-            return SUCCESS;
+            return MoveResults.SUCCESS.getValue();
         }
-        return FAIL;
+        return MoveResults.FAIL.getValue();
     }
 
     private void resultRecord(String move, String result) {
@@ -67,12 +65,12 @@ public class Record {
 
     private void recordUpBridge(String result) {
         upBridgeResult.add(result);
-        downBridgeResult.add(NONE);
+        downBridgeResult.add(MoveResults.NONE.getValue());
     }
 
     private void recordDownBridge(String result) {
         downBridgeResult.add(result);
-        upBridgeResult.add(NONE);
+        upBridgeResult.add(MoveResults.NONE.getValue());
     }
 
     private String getResultMessage(List<String> bridgeResult) {
@@ -80,13 +78,18 @@ public class Record {
     }
 
     private String getWinResult() {
+        if (isWin()) {
+            return "성공";
+        }
+
+        return "실패";
+    }
+
+    private boolean isWin() {
         int lastIndex = upBridgeResult.size() - 1;
         String upLastValue = upBridgeResult.get(lastIndex);
         String downLastValue = downBridgeResult.get(lastIndex);
 
-        if (upLastValue.equals(SUCCESS) || downLastValue.equals(SUCCESS)) {
-            return "성공";
-        }
-        return "실패";
+        return MoveResults.SUCCESS.isEqualValue(upLastValue) || MoveResults.SUCCESS.isEqualValue(downLastValue);
     }
 }
