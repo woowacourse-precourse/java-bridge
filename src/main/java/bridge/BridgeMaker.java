@@ -1,6 +1,8 @@
 package bridge;
 
 import java.util.List;
+import bridge.InputView;
+
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -11,6 +13,7 @@ public class BridgeMaker {
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+
     }
 
     /**
@@ -19,5 +22,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    public List<String> transmitBridge(){
+        InputView inputView = new InputView();
+        int size = inputView.readBridgeSize();
+        return makeBridge(size);
     }
 }
