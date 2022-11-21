@@ -1,21 +1,19 @@
 package bridge;
 
-import bridge.generator.BridgeRandomNumberGenerator;
-import bridge.view.GameStartView;
+import bridge.controller.NatureController;
+import bridge.view.ErrorView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.view.ViewFaçade;
 
 public class Application {
 
-    private static final InputView inputView=new InputView();
-    private static final OutputView outputView=new OutputView();
-    private static BridgeGame bridgeGame;
-
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        new GameStartView().printStartMessage();
-        bridgeGame=new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(inputView.readBridgeSize()));
-
-        outputView.printMap(bridgeGame.move(inputView.readMoving()));
+        try{
+            ViewFaçade viewFaçade = new ViewFaçade(new InputView(), new OutputView(), new NatureController());
+            viewFaçade.start();
+        }catch (IllegalArgumentException e){
+            new ErrorView().printErrorMessage(e.getMessage());
+        }
     }
 }

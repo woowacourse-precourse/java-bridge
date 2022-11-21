@@ -1,7 +1,7 @@
 package bridge.view;
 
 public class View {
-    public void print(String message){
+    protected void print(String message){
         System.out.println(message);
     }
 }
