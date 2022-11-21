@@ -20,8 +20,8 @@ public class Bridge {
         return this.bridge.get(bridgePosition);
     }
 
-    public boolean moveCheck(String userPosition, int bridgePosition) {
-        return getCorrectPosition(bridgePosition).equals(userPosition);
+    public boolean moveCheck(String userPosition, BridgeGame bridgeGame) {
+        return getCorrectPosition(bridgeGame.getBridgePosition()).equals(userPosition);
     }
 
     public String getLastBridge() {

@@ -43,15 +43,20 @@ public class GameController {
     }
 
     public void activateUserTurn(BridgeGame bridgeGame, Bridge bridge) {
-        while(true) {  // 검증 로직 추가해야함
-            String userSelect = inputView.readMoving();
+        while(true) {
+            String userSelect = getMoveCommand();
             bridgeGame.move(userSelect);
             outputView.printMap(bridge.getBridge(), bridgeGame.getUserPath());
-            int bridgePosition = bridgeGame.getBridgePosition();
-            if(!bridge.moveCheck(userSelect, bridgePosition) || bridgeGame.checkGameClear(bridge)) {
+            if(!bridge.moveCheck(userSelect, bridgeGame) || bridgeGame.checkGameClear(bridge)) {
                 break;
             }
         }
+    }
+
+    public String getMoveCommand() {
+        String userSelect = inputView.readMoving();
+        Validation.validateMoveTo(userSelect);
+        return userSelect;
     }
 
     public void startGame(BridgeGame bridgeGame, Bridge bridge) {
