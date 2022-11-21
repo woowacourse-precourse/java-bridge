@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.Constant;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.lang.reflect.Array;
@@ -59,7 +60,7 @@ public class InputView {
      */
     private void validateSizeRange(String input) {
         int inputNumber = Integer.parseInt(input);
-        if (inputNumber < 3 || inputNumber > 20) {
+        if (inputNumber < Constant.minBridgeLength || inputNumber > Constant.maxBridgeLength) {
             System.out.println("[ERROR] 입력한 size의 범위가 유효하지 않습니다.");
             throw new IllegalArgumentException();
         }
