@@ -29,12 +29,14 @@ public class BridgeResult {
         return bridgeResult.stream()
                 .collect(Collectors.groupingBy(
                         SquareResult::getSquare,
-                        Collectors.mapping(SquareResult::getMoveResult, Collectors.toList())));
+                        Collectors.mapping(result -> result.getMoveResult().symbol(),
+                                Collectors.toList())));
     }
 
     public String getMoveSuccessResult() {
         return bridgeResult
-                .get(bridgeResult.size() - 1)
-                .getMoveResult();
+                .get(bridgeResult.size() - 2)
+                .getMoveResult()
+                .value();
     }
 }

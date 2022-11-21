@@ -31,7 +31,7 @@ public class BridgeGameController {
             outputView.printMap(gameService.getFormattedEachMoveResult(squareResult));
             gameService.isSuccessMoveBridge(squareResult);
             gameService.isEndOfBridgeExit();
-            isFailRestartOrExit();
+            isFailRestartOrExit(squareResult);
         }
         printFinalResult();
     }
@@ -52,9 +52,11 @@ public class BridgeGameController {
         return bridgeService.getOneSpaceMoveResult(move, curPosition);
     }
 
-    private void isFailRestartOrExit() {
-        String command = inputView.readGameCommand();
-        gameService.restartOrExitGame(command);
+    private void isFailRestartOrExit(SquareResult squareResult) {
+        if (squareResult.isMoveFail()) {
+            String command = inputView.readGameCommand();
+            gameService.restartOrExitGame(command);
+        }
     }
 
     private void printFinalResult() {

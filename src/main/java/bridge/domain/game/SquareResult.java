@@ -22,11 +22,15 @@ public class SquareResult {
         return moveResult.equals(MoveResult.SUCCESS);
     }
 
-    public String getMoveResult() {
-        return moveResult.symbol();
+    public boolean isMoveFail() {
+        return moveResult.equals(MoveResult.FAIL);
     }
 
     public Square getSquare() {
         return square;
+    }
+
+    public MoveResult getMoveResult() {
+        return moveResult;
     }
 }
