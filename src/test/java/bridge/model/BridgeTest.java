@@ -82,4 +82,13 @@ public class BridgeTest {
         assertThat(Bridge.checkMovingPossibility(space, Direction.UP)).isEqualTo(
                 MovingPossibility.CAN_NOT_MOVE);
     }
+
+    @DisplayName("다리 길이 반환 기능 - 다리의 길이를 반환한다.")
+    @Test
+    void getBridgeSizeTest() {
+        initializeBridge();
+        int expectedSize = 3;
+
+        assertThat(Bridge.getBridgeSize()).isEqualTo(expectedSize);
+    }
 }

@@ -28,4 +28,8 @@ public class Bridge {
         }
         return MovingPossibility.CAN_NOT_MOVE;
     }
+
+    public static int getBridgeSize() {
+        return Bridge.bridge.size();
+    }
 }
