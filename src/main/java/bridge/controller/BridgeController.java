@@ -8,9 +8,12 @@ import bridge.input.InputView;
 
 import java.util.List;
 
+import static bridge.controller.GameState.*;
+
 public class BridgeController {
     private final InputView inputView;
     private final BridgeMaker bridgeMaker;
+    private BridgeGame game;
 
     public BridgeController(InputView inputView, BridgeMaker bridgemaker) {
         this.inputView = inputView;
@@ -18,10 +21,19 @@ public class BridgeController {
     }
 
     public void start() {
-        BridgeGame game = init();
+        game = init();
+        play();
     }
 
-    public void end() {
+    private void play() {
+        do {
+            String moving = inputView.readMoving();
+            game.move(moving);
+        } while (game.checkGameState() == RUN);
+        confirm();
+    }
+
+    public void confirm() {
 
     }
 
