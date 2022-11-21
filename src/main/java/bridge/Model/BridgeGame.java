@@ -27,8 +27,11 @@ public class BridgeGame {
     }
 
     private String getResult(int index, String command){
-        // TODO: 사용자가 건널 수 있는 칸을 건너려고 했는지 결과 반환
-        return null;
+        String answer = bridge.get(index);
+        if (command.equals(answer)){
+            return "O";
+        }
+        return "X";
     }
 
     private void selectUpperBridge(){
