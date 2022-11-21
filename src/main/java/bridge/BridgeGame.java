@@ -9,15 +9,14 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    //인스턴스 변수 추가 가능
-    public final Bridge bridge;
+    private final Bridge bridge;
 
-    public  List<String> movingPositions;
-    public  List<String> result;
+    private   List<String> movingPositions;
+    private   List<String> result;
 
-    public int count;
-    public boolean clear;
-    public boolean failure;
+    private int count;
+    private boolean clear;
+    private boolean failure;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
