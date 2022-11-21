@@ -16,6 +16,7 @@
 
 - [x] 다리 길이(BridgeLength)
   - [x] 3에서 20사이의 숫자만 입력받아서 데이터 생성
+
 - 다리 게임 정보(BridgeStatus)
   - 브리지 게임의 정보를 담은 객체
   - [x] 정답 bridge, 사용자 입력 bridge, 시도 횟수, 게임 상태 대한 정보를 가짐
@@ -109,6 +110,9 @@
 - BridgeRandomNumberGenerator
   - 인터페이스, 구현부 클래스 코드 변경 X
 
+- [ ] 콘솔 리더(ConsoleReader)
+  - [ ] 콘솔 입력의 원시 객체타입 예외 전환
+    - int로 변환 실패의 경우 메시지 처리 및 IllegalArgumentException으로 예외 전환
 ## 사용 예시
 
 ```text
