@@ -39,10 +39,15 @@ public class Controller {
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
             if (!bridgeGame.isFailed()) continue;
-            String command = inputView.readGameCommand();
-            if (!isRetry(bridgeGame, command)) break;
-            bridgeGame.retry();
+            if (retryGame(bridgeGame)) break;
         }
+    }
+
+    private boolean retryGame(BridgeGame bridgeGame) {
+        String command = inputView.readGameCommand();
+        if (!isRetry(bridgeGame, command)) return true;
+        bridgeGame.retry();
+        return false;
     }
 
     private boolean isRetry(BridgeGame bridgeGame, String command) {
@@ -51,7 +56,6 @@ public class Controller {
             tryCount += 1;
             return true;
         }
-
         return false;
     }
 

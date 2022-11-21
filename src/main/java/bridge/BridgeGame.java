@@ -57,11 +57,11 @@ public class BridgeGame {
         MoveType[] moveResult = initializeMovingResult(validBridge, direction, directionType.getNumber());
         String downMove = moveResult[0].getValue();
         String upMove = moveResult[1].getValue();
-        addBridge(downMove, upMove, index);
+        addBridge(downMove, upMove);
         index += 1;
     }
 
-    private void addBridge(String downMove, String upMove, int index) {
+    private void addBridge(String downMove, String upMove) {
         downBridge.add(downMove);
         upBridge.add(upMove);
         if (!checkIsEnded()) {
