@@ -28,4 +28,22 @@ public class InputValidatorTest {
         InputValidator validator = new InputValidator();
         validator.validateBridgeSize(size);
     }
+
+    @DisplayName("움직임 입력 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"Q","E"})
+    void validateMoveTestIllegal(String cmd){
+        InputValidator validator = new InputValidator();
+        assertThatThrownBy(() -> validator.validateMove(cmd)).isEqualTo(
+                InputValidationError.ERROR_COMMAND_MOVE.exception
+        );
+    }
+
+    @DisplayName("움직임 입력 정상 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"U","D"})
+    void validateMoveTestPass(String cmd){
+        InputValidator validator = new InputValidator();
+        validator.validateMove(cmd);
+    }
 }
