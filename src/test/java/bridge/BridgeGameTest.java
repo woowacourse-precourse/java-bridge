@@ -35,9 +35,7 @@ class BridgeGameTest extends NsTest {
     }
 
     @Test
-    void 사용자_이동_입력_예외_테스트(){
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move();
+    void 입력_예외_테스트(){
         assertSimpleTest(() -> {
             runException("!@EAB");
             runException("21");
@@ -45,6 +43,7 @@ class BridgeGameTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
 
     protected void runMain() {
         Application.main(new String[]{});
