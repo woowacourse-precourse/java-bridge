@@ -18,6 +18,6 @@ class BridgeGameTest {
     @DisplayName("플레이어가 재시작할경우 플레이어의 결과가 리셋되는지 테스트")
     @Test
     void retry() {
-        assertThat(bridgeGame.retry(List.of("U"))).isEqualTo(List.of());
+        assertThat(bridgeGame.retry()).isEqualTo(List.of());
     }
 }
