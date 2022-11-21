@@ -33,7 +33,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String line = Console.readLine();
+        if (!validateMove(line)) {
+            throw new IllegalArgumentException("이동할 칸은 U(위 칸) 혹은 D(아래 칸) 중 하나의 문자 입니다.");
+        }
+        return line;
+    }
+
+    public boolean validateMove(String line) {
+        return Pattern.matches("^[U,D]$", line);
     }
 
     /**
