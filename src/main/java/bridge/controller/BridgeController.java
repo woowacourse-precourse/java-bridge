@@ -17,22 +17,22 @@ public class BridgeController {
         return inputView.readBridgeSize();
     }
 
-    public void setGame(int size){
+    public void setGame(int size) {
         bridge = new Bridge(size);
         bridgeGame = new BridgeGame(bridge);
     }
 
-    public String requestMovingPoint(){
+    public String requestMovingPoint() {
         outputView.printRequestMove();
         return inputView.readMoving();
     }
 
-    public boolean requestRetry(){
+    public boolean requestRetry() {
         outputView.printRequestGameCommand();
         return inputView.readGameCommand();
     }
 
-    public boolean bridgeGame(){
+    public boolean bridgeGame() {
         String movePlace = requestMovingPoint();
         boolean passable = bridgeGame.move(movePlace, bridge);
 
@@ -44,16 +44,17 @@ public class BridgeController {
         int size = getBridgeSize();
         setGame(size);
 
-        do{
+        do {
             bridgeGame.retry();
 
-            while (bridgeGame()){
+            while (bridgeGame()) {
                 outputView.printMap(bridgeGame.getMark(), true);
-            };  // O 면 반복
+            }
+            ;  // O 면 반복
             outputView.printMap(bridgeGame.getMark(), bridgeGame.getComplete());
             // 다 건너면 탈출
 
-        }while (!bridgeGame.getComplete() && requestRetry());
-        outputView.printResult(bridgeGame ,bridgeGame.getComplete());
+        } while (!bridgeGame.getComplete() && requestRetry());
+        outputView.printResult(bridgeGame, bridgeGame.getComplete());
     }
 }

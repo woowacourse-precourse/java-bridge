@@ -27,8 +27,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String movePlace=Console.readLine();
-        if(!movePlace.equals("U") && !movePlace.equals("D") ){
+        String movePlace = Console.readLine();
+        if (!movePlace.equals("U") && !movePlace.equals("D")) {
             System.out.println("[ERROR] U(위 칸)과 D(아래 칸) 중 하나를 선택하여야 합니다.");
             throw new IllegalArgumentException();
         }
@@ -39,11 +39,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public boolean readGameCommand() {
-        String command=Console.readLine();
+        String command = Console.readLine();
 
-        if(command.equals("R")){
+        if (command.equals("R")) {
             return true;
-        }else if(command.equals("Q")){
+        } else if (command.equals("Q")) {
             return false;
         }
         System.out.println("[ERROR] R(재시작)과 Q(종료) 중 하나를 선택하여야 합니다.");

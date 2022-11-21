@@ -34,11 +34,11 @@ public class OutputView {
     public void printMap(List<String> mark, boolean passable) {
         List<String> upperBridge = new ArrayList<>();
         List<String> loserBridge = new ArrayList<>();
-        setBridge(upperBridge, mark,"U");
-        setBridge(loserBridge, mark,"D");
+        setBridge(upperBridge, mark, "U");
+        setBridge(loserBridge, mark, "D");
 
-        if (!passable){
-            setImpassable(upperBridge,loserBridge);
+        if (!passable) {
+            setImpassable(upperBridge, loserBridge);
         }
         printBridge(upperBridge);
         printBridge(loserBridge);
@@ -46,7 +46,7 @@ public class OutputView {
 
     private void printBridge(List<String> bridge) {
         System.out.print("[ ");
-        for(String spot : bridge){
+        for (String spot : bridge) {
             System.out.print(spot);
         }
         System.out.println(" ]");
@@ -55,16 +55,16 @@ public class OutputView {
     private void setImpassable(List<String> upperBridge, List<String> loserBridge) {
         int size = upperBridge.size();
 
-        if(upperBridge.get(size-1).equals("O")){ // upper 가 마지막 O
-            upperBridge.set(size-1,"X");
+        if (upperBridge.get(size - 1).equals("O")) { // upper 가 마지막 O
+            upperBridge.set(size - 1, "X");
             return;
         }
-        loserBridge.set(size-1,"X");
+        loserBridge.set(size - 1, "X");
     }
 
     private void setBridge(List<String> bridge, List<String> mark, String which) {
-        for(String i :mark){
-            if(i.equals(which)){
+        for (String i : mark) {
+            if (i.equals(which)) {
                 bridge.add("O");
                 bridge.add(" | ");
                 continue;
@@ -72,7 +72,7 @@ public class OutputView {
             bridge.add(" ");
             bridge.add(" | ");
         }
-        bridge.remove(bridge.size()-1);
+        bridge.remove(bridge.size() - 1);
     }
 
 
@@ -83,12 +83,12 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame, boolean passable) {
         System.out.println("최종 게임 결과");
-        printMap(bridgeGame.getMark(),passable);
+        printMap(bridgeGame.getMark(), passable);
         String result = "실패";
-        if(bridgeGame.getGameResult()){
+        if (bridgeGame.getGameResult()) {
             result = "성공";
         }
-        System.out.println("\n게임 성공 여부: "+result);
+        System.out.println("\n게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + bridgeGame.getChallenge());
     }
 }
