@@ -14,7 +14,7 @@ public class Bridge {
     }
 
     public boolean matchBridge(String uOrD) {
-        correct();
+        increasePos();
         return bridge.get(pos).equals(uOrD);
     }
 
@@ -25,10 +25,10 @@ public class Bridge {
     public boolean checkResult() {
         return bridge.size() == pos+1;
     }
-    public void correct() {
+    public void increasePos() {
         this.pos++;
     }
-    public void incorrect() {
+    public void decreasePos() {
         this.pos--;
     }
 }
