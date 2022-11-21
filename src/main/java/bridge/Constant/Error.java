@@ -1,7 +1,8 @@
 package bridge.Constant;
 
 public enum Error {
-    NUMBER("[ERROR] 숫자만 입력해주세요.");
+    NUMBER("[ERROR] 숫자만 입력해주세요."),
+    THREE_TO_TWENTY("[ERROR] 3~20 사이의 숫자만 입력해주세요");
 
     private final String error;
 
