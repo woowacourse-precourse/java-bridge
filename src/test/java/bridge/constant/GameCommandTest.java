@@ -41,4 +41,13 @@ class GameCommandTest {
         assertThat(restart.isRestart()).isTrue();
         assertThat(quit.isQuit()).isTrue();
     }
+
+    @DisplayName("GameCommand가 가지고 있는 필드 값 검증")
+    @Test
+    void getCommand() {
+        GameCommand restart = GameCommand.RESTART;
+        GameCommand quit = GameCommand.QUIT;
+        assertThat(restart.getCommand()).isEqualTo("R");
+        assertThat(quit.getCommand()).isEqualTo("Q");
+    }
 }
