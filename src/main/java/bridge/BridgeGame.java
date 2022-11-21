@@ -8,10 +8,16 @@ import java.util.List;
 public class BridgeGame {
 
     private List<String> bridge;
+    private int stage;
 
     public BridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = bridgeMaker.makeBridge(size);
+        bridge = bridgeMaker.makeBridge(size);
+        stage = 0;
+    }
+
+    public int getStage() {
+        return stage;
     }
 
     /**
