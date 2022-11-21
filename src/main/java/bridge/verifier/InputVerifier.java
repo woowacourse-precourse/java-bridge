@@ -7,7 +7,7 @@ import bridge.constant.Moving;
 
 public class InputVerifier {
     public static void BridgeSize(String bridgeSize) {
-        if (!bridgeSize.matches(Bridge.REGEX__RANGE)) {
+        if (!bridgeSize.matches(Bridge.REGEX_RANGE)) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_BRIDGE_LENGTH);
         }
     }
