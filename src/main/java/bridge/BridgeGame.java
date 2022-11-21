@@ -74,7 +74,8 @@ public class BridgeGame {
     public void checkUserCommand(boolean isChecked,String userCommand){
         String input = InputBridgeElement.inputLetterChecked(isChecked);
         if (userCommand.equals("U")){
-
+            upBridge.add(input);
+            downBridge.add(" ");
         }
     }
 }
