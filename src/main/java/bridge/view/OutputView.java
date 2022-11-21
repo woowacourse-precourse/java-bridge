@@ -1,8 +1,5 @@
 package bridge.view;
 
-import static bridge.domain.BridgeGame.DOWN_BRIDGE;
-import static bridge.domain.BridgeGame.UP_BRIDGE;
-
 import bridge.domain.MovingMap;
 
 /**
@@ -26,21 +23,6 @@ public class OutputView {
 
     public void printStartGame() {
         println("다리 건너기 게임을 시작합니다.");
-    }
-
-    public void printEnterBridgeSize() {
-        println("다리의 길이를 입력해주세요.");
-    }
-
-    public void printEnterMoving() {
-        println("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", UP_BRIDGE, DOWN_BRIDGE);
-    }
-
-    public void printEnterGameCommand() {
-        final String RETRY = "R";
-        final String QUIT = "Q";
-
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RETRY, QUIT);
     }
 
     /**
@@ -77,9 +59,5 @@ public class OutputView {
         println();
         printIsClear(isClear);
         printTryCount(tryCount);
-    }
-
-    public void printError(String message) {
-        println("[ERROR] %s", message);
     }
 }

@@ -6,7 +6,6 @@ import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class BridgeGameMachine {
 
@@ -59,14 +58,12 @@ public class BridgeGameMachine {
         MovingMap movingMap = bridgeGame.getMovingMap();
         boolean isClear = bridgeGame.isGameClear();
         int tryCount = bridgeGame.getTryCount();
+
         outputView.printResult(movingMap, isClear, tryCount);
     }
 
     private String inputGameCommand() {
-        return repeatInputUntilSuccess(() -> {
-            outputView.printEnterGameCommand();
-            return inputView.readGameCommand();
-        });
+        return inputView.readGameCommand();
     }
 
     private void printMovingMap(BridgeGame bridgeGame) {
@@ -76,19 +73,13 @@ public class BridgeGameMachine {
     }
 
     private String inputMoving() {
-        return repeatInputUntilSuccess(() -> {
-            outputView.printEnterMoving();
-            return inputView.readMoving();
-        });
+        return inputView.readMoving();
     }
 
     private int inputBridgeSize() {
-        return repeatInputUntilSuccess(() -> {
-            outputView.printEnterBridgeSize();
-            int bridgeSize = inputView.readBridgeSize();
-            outputView.println();
-            return bridgeSize;
-        });
+        int bridgeSize = inputView.readBridgeSize();
+        outputView.println();
+        return bridgeSize;
     }
 
     private void printStartGame() {
@@ -104,16 +95,5 @@ public class BridgeGameMachine {
         Player player = new Player();
 
         return new BridgeGame(bridge, player);
-    }
-
-    private <T> T repeatInputUntilSuccess(
-            Supplier<T> callback) {
-        while (true) {
-            try {
-                return callback.get();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
     }
 }
