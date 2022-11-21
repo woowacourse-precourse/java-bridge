@@ -11,13 +11,22 @@ import java.util.stream.Collectors;
 public class OutputView {
     private final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private final String WHETHER_GAME_SUCCESS_MESSAGE = "게임 성공 여부: ";
-    private final String TOTAL_TRY = "총 시도한 횟수: ";
+    private final String TOTAL_TRY_MESSAGE = "총 시도한 횟수: ";
+
+    private final String SUCCESS_SYMBOL = "O";
+    private final String FAIL_SYMBOL = "X";
+    private final String EMPTY_SPACE = " ";
+    private final String NEW_LINE = "\n";
+
+    private final String FORMAT_DELIMITER = " | ";
+    private final String FORMAT_PREFIX = "[ ";
+    private final String FORMAT_SUFFIX = " ]";
 
     public void printResult(GameStatus gameStatus) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(gameStatus);
         System.out.println(WHETHER_GAME_SUCCESS_MESSAGE + gameStatus.getMessage());
-        System.out.println(TOTAL_TRY + gameStatus.getCount());
+        System.out.println(TOTAL_TRY_MESSAGE + gameStatus.getCount());
     }
 
     public void printMap(GameStatus gameStatus) {
@@ -33,24 +42,24 @@ public class OutputView {
         if (gameStatus.isFail()) {
             addFailSymbol(upperLine, lowerLine);
         }
-        return formatLine(upperLine) + "\n" + formatLine(lowerLine) + "\n";
+        return formatLine(upperLine) + NEW_LINE + formatLine(lowerLine) + NEW_LINE;
     }
 
     private void addFailSymbol(List<String> upperLine, List<String> lowerLine) {
-        int upperLineFinalSymbolIdx = upperLine.lastIndexOf("O");
-        int lowerLineFinalSymbolIdx = lowerLine.lastIndexOf("O");
+        int upperLineFinalSymbolIdx = upperLine.lastIndexOf(SUCCESS_SYMBOL);
+        int lowerLineFinalSymbolIdx = lowerLine.lastIndexOf(SUCCESS_SYMBOL);
 
         if (upperLineFinalSymbolIdx > lowerLineFinalSymbolIdx) {
-            upperLine.set(upperLineFinalSymbolIdx, "X");
+            upperLine.set(upperLineFinalSymbolIdx, FAIL_SYMBOL);
             return;
         }
-        lowerLine.set(lowerLineFinalSymbolIdx, "X");
+        lowerLine.set(lowerLineFinalSymbolIdx, FAIL_SYMBOL);
     }
 
     private String normalize(String gameHistory) {
         String commaDeleted = gameHistory.replaceAll(",", "");
-        String spaceDeleted = commaDeleted.replaceAll(" ", "");
-        String bracketDeleted = spaceDeleted.substring(1, spaceDeleted.length() - 1);
+        String emptySpaceDeleted = commaDeleted.replaceAll(" ", "");
+        String bracketDeleted = emptySpaceDeleted.substring(1, emptySpaceDeleted.length() - 1);
         return bracketDeleted;
     }
 
@@ -72,21 +81,21 @@ public class OutputView {
 
     private String getSymbolIfMovingIsUp(String moving) {
         if (GameMoving.isUp(moving)) {
-            return "O";
+            return SUCCESS_SYMBOL;
         }
-        return " ";
+        return EMPTY_SPACE;
     }
 
     private String getSymbolIfMovingIsDown(String moving) {
         if (GameMoving.isDown(moving)) {
-            return "O";
+            return SUCCESS_SYMBOL;
         }
-        return " ";
+        return EMPTY_SPACE;
     }
 
     private String formatLine(List<String> toJoin) {
         return toJoin.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(" | ", "[ ", " ]"));
+                .collect(Collectors.joining(FORMAT_DELIMITER, FORMAT_PREFIX, FORMAT_SUFFIX));
     }
 }
