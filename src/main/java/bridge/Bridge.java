@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.constant.BridgeMark;
 import bridge.constant.GameStatus;
+import bridge.valid.BridgeValidUtil;
 
 import java.util.List;
 

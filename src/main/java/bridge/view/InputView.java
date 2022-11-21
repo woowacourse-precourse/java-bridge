@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.BridgeValidUtil;
+import bridge.valid.BridgeValidUtil;
 import bridge.constant.BridgeMark;
 import bridge.constant.GameCommand;
 import camp.nextstep.edu.missionutils.Console;

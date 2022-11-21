@@ -1,4 +1,4 @@
-package bridge;
+package bridge.valid;
 
 public class BridgeValidUtil {
 
