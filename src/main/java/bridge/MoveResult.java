@@ -20,11 +20,13 @@ public class MoveResult {
 	private StringBuilder lowerRow;
 	private String map;
 	private int numberOfCorrect;
+	private boolean isSuccess;
 
 	public MoveResult(List<String> bridge, List<String> movingStack) {
 		this.bridge = bridge;
 		this.movingStack = movingStack;
 		this.lastIndex = movingStack.size() - 1;
+		this.isSuccess = bridge.equals(movingStack);
 
 		init();
 		addEntrance();
@@ -136,5 +138,9 @@ public class MoveResult {
 	public int getNumberOfCorrect() {
 		calculateNumberOfCorrect();
 		return numberOfCorrect;
+	}
+
+	public boolean getIsSuccess() {
+		return isSuccess;
 	}
 }
