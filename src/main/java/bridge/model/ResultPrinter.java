@@ -23,7 +23,7 @@ abstract class ResultPrinter {
     }
 
     String print() {
-        return getResultFormat(getResult(Position.UP)) + getResultFormat(getResult(Position.DOWN));
+        return this.getResultFormat(this.getResult(Position.UP)) + this.getResultFormat(this.getResult(Position.DOWN));
     }
 
     protected String getResultFormat(String result) {
@@ -31,7 +31,7 @@ abstract class ResultPrinter {
     }
 
     protected String getResult(Position targetPosition) {
-        return passingRout.stream()
+        return this.passingRout.stream()
                 .map(position -> this.isSamePosition(position, targetPosition))
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
