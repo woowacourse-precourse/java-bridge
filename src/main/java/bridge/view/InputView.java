@@ -19,13 +19,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         String number = Console.readLine();
-        int size = 0;
+        int bridgeSize = 0;
 
         if (validation.isInteger(number)) {
-            size = Integer.parseInt(number);
+            bridgeSize = Integer.parseInt(number);
         }
+        validation.validateInputBridgeSize(bridgeSize);
 
-        return size;
+        return bridgeSize;
     }
 
     /**

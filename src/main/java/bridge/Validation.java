@@ -14,6 +14,12 @@ public class Validation {
         return true;
     }
 
+    public void validateInputBridgeSize(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException(Error.BRIDGE_SIZE_ERROR.getErrorMessage());
+        }
+    }
+
     public void validateInputMoving(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException(Error.INPUT_MOVING_ERROR.getErrorMessage());
