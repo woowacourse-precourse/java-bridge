@@ -47,10 +47,14 @@ public void printResult()   (output.2)
 ### Controller
 ```
 // 요청 수행 method
-
-
-// 입력 method
-
+public BridgeGame prepareBridgeGame()
+public void startBridgeGame(BridgeGame bridgeGame)
+   ->
+   * SUCCESS - result 빼고 break
+   * FAIL - R : retry 호출
+   *      - Q : result 빼고 break
+   * ONGOING - 아무것도 안하고 그냥 감 
+private boolean chooseAfterFail(BridgeGame bridgeGame, BridgeGameResultDto moveResult)
 ```
 
 ### BridgeMaker - 게임에서 필요한 bridgeMap 을 만들어주는 기계
