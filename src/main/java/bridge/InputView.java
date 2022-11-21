@@ -34,6 +34,20 @@ public class InputView {
         }
     }
 
+    public boolean loopBridge(List<String> bridgeList) {
+        OutputView outputView = new OutputView();
+        for (String bridgeMove : bridgeList) {
+            boolean isMove = inputMoveBridge(bridgeMove); // 이동할 칸 입력 요구 & 이동에 성공했는지
+            bridge = outputView.initOutputBridge(bridgeMove, isMove); // 출력 값 초기화
+            if (!isMove) {
+                return isGameCommand(); // 재시도 입력
+            }
+        }
+        initGameResult(); // 게임 결과 '성공'으로 초기화
+        return false;
+    }
+
+
     /**
      * 다리의 길이를 입력받는다.
      */
