@@ -8,8 +8,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public static List<String> upCells = new ArrayList<>();
-    public static List<String> downCells = new ArrayList<>();
+    public List<String> upCells = new ArrayList<>();
+    public List<String> downCells = new ArrayList<>();
+
+    public List<String> getUpCells() {
+        return upCells;
+    }
+
+    public List<String> getDownCells() {
+        return downCells;
+    }
 
     public static String valueOfStatus(boolean status) {
         if (status) {
@@ -25,13 +33,13 @@ public class BridgeGame {
      */
     public boolean move(String moving, String cell) {
         boolean result = moving.equals(cell);
-        if (cell.equals(CellType.DOWN.getCell())){
+        if (moving.equals(CellType.DOWN.getCell())){
             downCells.add(valueOfStatus(result));
             upCells.add(" ");
         }
-        if (cell.equals(CellType.UP.getCell())){
-            downCells.add(" ");
+        if (moving.equals(CellType.UP.getCell())){
             upCells.add(valueOfStatus(result));
+            downCells.add(" ");
         }
         return result;
     }
