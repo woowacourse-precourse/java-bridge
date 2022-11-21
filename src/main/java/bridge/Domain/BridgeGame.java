@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.Constants.FrontMan;
 import bridge.Database.BridgeData;
 import bridge.UI.InputView;
+import bridge.UI.OutputView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,6 +26,8 @@ public class BridgeGame {
     public final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     public final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     public final InputView inputView = new InputView();
+
+    public final OutputView outputView = new OutputView();
     private boolean isGameSucceed;
 
     public BridgeGame() {
@@ -51,13 +54,15 @@ public class BridgeGame {
             if (validateNextStep(nextStep, bridgeRange) == IMPOSSIBLE_ZONE) {
                 break;
             }
+            outputView.printMap(bridgeData);
         }
     }
 
     private boolean validateNextStep(String nextStep, int indexOfBridge) {
         if (!Objects.equals(bridgeData.getBridge().get(indexOfBridge), nextStep)) {
             isGameSucceed = FAILED;
-            bridgeData.getBridgeDesignByUser().set(indexOfBridge, " X ");
+            bridgeData.getBridgeDesignByUser().set(indexOfBridge, "X");
+            outputView.printMap(bridgeData);
             return IMPOSSIBLE_ZONE;
         }
         validateGameSuccessfullyFinished();
