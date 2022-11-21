@@ -45,4 +45,8 @@ public class BridgeGame {
   public void showResult() {
     OutputView.printMap(user.getMoveStatus(), bridge);
   }
+
+  public List<String> getBridge(){
+    return this.bridge;
+  }
 }

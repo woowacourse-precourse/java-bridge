@@ -23,10 +23,12 @@ public class GameManager {
 
   private void gameStart() {
     int length = getLengthInput();
+    printBlankLine();
     do {
       bridgeGame.gameInit(length);
       tryMove(); // 시도가 끝날 때 까지 이동
     } while (!checkIsGameFinish());
+    printFinalResult(user.getMoveStatus(), bridgeGame.getBridge());
     // 최종 게임 결과, 시도횟수 출력
   }
 
