@@ -20,4 +20,20 @@ public class GameState {
         bridgeState = BridgeState.CROSSING;
         attempt++;
     }
+
+    public int nextLocation() {
+        return moves.size();
+    }
+
+    public boolean isFall() {
+        return bridgeState.equals(BridgeState.FALL);
+    }
+
+    public boolean isCrossed(){
+        return bridgeState.equals(BridgeState.CROSSED);
+    }
+
+    public boolean isCrossing() {
+        return bridgeState.equals(BridgeState.CROSSING);
+    }
 }
