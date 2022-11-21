@@ -36,7 +36,7 @@ public class Application {
             size = readValidBridgeSize();
         }
         if (ExceptionHandler.exeedLimit(limit)) {
-            throw new IllegalStateException("[ERROR] 잘못된 입력을 너무 많아 비정상 종료되었습니다.");
+            throw new IllegalStateException("[ERROR] 잘못된 입력이 너무 많아 비정상 종료되었습니다.");
         }
         return size;
     }
@@ -64,7 +64,7 @@ public class Application {
             moving = readValidMoving();
         }
         if (ExceptionHandler.exeedLimit(limit)) {
-            throw new IllegalStateException("[ERROR] 잘못된 입력을 너무 많아 비정상 종료되었습니다.");
+            throw new IllegalStateException("[ERROR] 잘못된 입력이 너무 많아 비정상 종료되었습니다.");
         }
         return moving;
     }
