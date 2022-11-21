@@ -36,6 +36,7 @@ public class InputView {
         try{
             readMovingCommandCheck(userAnswer);
         }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             userAnswer = readMoving();
         }
         return userAnswer.toUpperCase();
@@ -50,6 +51,7 @@ public class InputView {
         try{
             readGameCommandCheck(userCommand);
         }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
             userCommand = readGameCommand();
         }
         return userCommand;
