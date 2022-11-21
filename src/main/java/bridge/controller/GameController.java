@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
@@ -11,18 +10,16 @@ import java.util.List;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public void startNewGame() {
+    public void startNewGame(BridgeMaker bridgeMaker) {
         outputView.printStart();
-        bridgeGame = new BridgeGame(createNewBridge());
+        bridgeGame = new BridgeGame(createNewBridge(bridgeMaker));
     }
 
     public void play() {
@@ -32,16 +29,6 @@ public class GameController {
             checkGameEnd();
         }
         printFinalResult();
-    }
-
-    private Bridge createNewBridge() {
-        while (true) {
-            try {
-                return new Bridge(generateBridge());
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
     }
 
     private void move() {
@@ -55,7 +42,17 @@ public class GameController {
         }
     }
 
-    private List<String> generateBridge() {
+    private Bridge createNewBridge(BridgeMaker bridgeMaker) {
+        while (true) {
+            try {
+                return new Bridge(generateBridge(bridgeMaker));
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private List<String> generateBridge(BridgeMaker bridgeMaker) {
         return bridgeMaker.makeBridge(requestBridgeLength());
     }
 
