@@ -12,6 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTest {
+
     private OutputView outputView;
     private PrintStream standardOut;
     private ByteArrayOutputStream captor;
