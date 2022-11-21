@@ -46,14 +46,25 @@ public class BridgeGameRun {
 
     private void bridgeGameStart() {
         do {
-            String direct = inputView.readMoving();
-            inputValidation.readMovingValidation(direct);
+            String direct = getReadMovingByValidation();
             gameRun(direct);
 
             List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
             outputView.printMap(bridgeMap);
 
         } while (!isGameEnd());
+    }
+
+    private String getReadMovingByValidation() {
+        while (true) {
+            try {
+                String direct = inputView.readMoving();
+                inputValidation.readMovingValidation(direct);
+                return direct;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void gameRun(String direct) {
