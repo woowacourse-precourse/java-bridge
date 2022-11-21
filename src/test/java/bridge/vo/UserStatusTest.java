@@ -1,4 +1,4 @@
-package bridge;
+package bridge.vo;
 
 import bridge.view.InputView;
 import bridge.vo.UserStatus;
@@ -11,15 +11,14 @@ import java.io.InputStream;
 
 public class UserStatusTest {
 
+    private InputView inputView = new InputView();
+    private UserStatus userStatus = new UserStatus();
+
     @DisplayName("플레이어가 이동한 방향을 저장한다.")
     @Test
     void 플레이어의_이동_방향_저장() {
         String userDirectInputs = "U\nD\nU\nU\n";
-        InputStream in = new ByteArrayInputStream(userDirectInputs.getBytes());
-        System.setIn(in);
-
-        InputView inputView = new InputView();
-        UserStatus userStatus = new UserStatus();
+        initInputStream(userDirectInputs);
 
         for (int length = 0; length < userDirectInputs.length() / 2; length++) {
             userStatus.addCrossedHistory(inputView.readMoving());
@@ -27,4 +26,11 @@ public class UserStatusTest {
 
         Assertions.assertThat(userStatus.getCurrentCrossedBridge()).containsExactly("U", "D", "U", "U");
     }
+
+    void initInputStream(String userDirectInputs) {
+        InputStream in = new ByteArrayInputStream(userDirectInputs.getBytes());
+        System.setIn(in);
+    }
+
+
 }

@@ -1,5 +1,7 @@
-package bridge;
+package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.mock.MockBridgeNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BridgeMakerTest {
 
-    int bridgeLength = 5;
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    List<String> createdBridge = bridgeMaker.makeBridge(5);
+    private int bridgeLength = 5;
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private List<String> createdBridge = bridgeMaker.makeBridge(bridgeLength);
 
     @DisplayName("주어진 길이와 생성된 다리의 길이는 동일해야 한다.")
     @Test

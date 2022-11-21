@@ -1,6 +1,5 @@
-package bridge;
+package bridge.service;
 
-import bridge.service.CurrentBridgeStatusMaker;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class CurrentBridgeStatusMakerTest {
 
-    CurrentBridgeStatusMaker currentBridgeStatusMaker = new CurrentBridgeStatusMaker();
+    private CurrentBridgeStatusMaker currentBridgeStatusMaker = new CurrentBridgeStatusMaker();
 
     @DisplayName("플레이어가 지나온 다리를 문자열로 나타낼 수 있다.")
     @Test
