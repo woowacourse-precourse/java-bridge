@@ -16,6 +16,4 @@ public abstract class AbstractGameController {
     BridgeGame bridgeGame = new BridgeGame();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     int tryCnt;
-
-    boolean run() {return true;}
 }
