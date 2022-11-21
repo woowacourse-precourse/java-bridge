@@ -40,4 +40,9 @@ public class BridgeMapMaker {
                 .map(s -> status.getOrDefault(s, BLANK))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public String toString() {
+        return "<BridgeMapMaker of bridge " + bridge + ">";
+    }
 }
