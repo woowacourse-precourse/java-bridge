@@ -13,11 +13,11 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요");
+        printInputBridgeSize();
         String size = Console.readLine();
 
         while (handlingBridgeSizeException(size)) {
-            System.out.println("다리의 길이를 입력해주세요");
+            printInputBridgeSize();
             size = Console.readLine();
         }
 
@@ -35,14 +35,18 @@ public class InputView {
         return true;
     }
 
+    private void printInputBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요");
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        printInputPlayerMoving();
         String nextStep = Console.readLine();
         while (handlingPlayerMovingException(nextStep)) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            printInputPlayerMoving();
             nextStep = Console.readLine();
         }
         return nextStep;
@@ -58,14 +62,18 @@ public class InputView {
         return true;
     }
 
+    private void printInputPlayerMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        printInputGameCommand();
         String finish = Console.readLine();
         while (handlingRestartCommandException(finish)) {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            printInputGameCommand();
             finish = Console.readLine();
         }
         return finish;
@@ -79,5 +87,9 @@ public class InputView {
             System.out.println(retry.getMessage());
         }
         return true;
+    }
+
+    private void printInputGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }
