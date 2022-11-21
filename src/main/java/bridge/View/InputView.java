@@ -1,16 +1,24 @@
 package bridge.View;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
     private static int bridgeSize;
-
+    private static List<String> bridge;
+    private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     public void inputBridgeSize(){
         bridgeSize = Integer.parseInt(Console.readLine());
         validateSizeNumber(bridgeSize);
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     public int readBridgeSize() {

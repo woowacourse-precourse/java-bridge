@@ -6,6 +6,7 @@ package bridge.View;
 public class OutputView {
     private static final String PRINT_START_GAME_NOTICE = "다리 건너기 게임을 시작합니다.";
     private static final String PRINT_INPUT_BRIDGE_SIZE_NOTICE = "다리의 길이를 입력해주세요.";
+    private static InputView inputView = new InputView();
     public void printStartGameNotice(){
         System.out.println(PRINT_START_GAME_NOTICE);
         printNewLine();
@@ -13,6 +14,7 @@ public class OutputView {
 
     public void printInputBridgeSizeNotice(){
         System.out.println(PRINT_INPUT_BRIDGE_SIZE_NOTICE);
+        inputView.inputBridgeSize();
     }
 
     /**
