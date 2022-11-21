@@ -5,14 +5,15 @@ import bridge.view.OutputView;
 
 public class GameManager {
     private final BridgeGame bridgeGame;
+    private final Bridge bridge;
 
     public GameManager(BridgeMaker bridgeMaker) {
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(InputView.readBridgeSize()));
+        OutputView.printGameStartMessage();
+        bridge = new Bridge(bridgeMaker.makeBridge(InputView.readBridgeSize()));
         bridgeGame = new BridgeGame(bridge);
     }
 
     public void play() {
-        OutputView.printGameStartMessage();
         boolean status;
         do {
             status = moveForward();
