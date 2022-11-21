@@ -11,27 +11,30 @@ public class InputValidatorTest {
     @ValueSource(strings = {"dksehla", "d", "안돼", "@#"})
     @ParameterizedTest
     void onlyNumberBridgeSize(String bridgeSize) {
+        final String NOT_ONLY_NUMBER = "숫자만 입력이 가능합니다.";
         assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("숫자만 입력이 가능합니다.");
+                .hasMessageContaining(NOT_ONLY_NUMBER);
     }
 
     @DisplayName("다리 길이를 입력할 때 3미만이면 예외 처리")
     @ValueSource(strings = {"2", "-1", "2.5", "1"})
     @ParameterizedTest
     void minBridgeSize(String bridgeSize) {
+        final String NOT_MIN_SIZE = "다리의 길이는 최소 3이상이어야 합니다.";
         assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("다리의 길이는 최소 3이상이어야 합니다.");
+                .hasMessageContaining(NOT_MIN_SIZE);
     }
 
     @DisplayName("다리 길이를 입력할 때 20이상이라면 예외 처리")
     @ValueSource(strings = {"21", "50", "80", "100000"})
     @ParameterizedTest
     void maxBridgeSize(String bridgeSize) {
+        final String NOT_MAX_SIZE = "다리의 길이는 최대 20미만이어야 합니다.";
         assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("다리의 길이는 최대 20미만이어야 합니다.");
+                .hasMessageContaining(NOT_MAX_SIZE);
     }
 
     @DisplayName("다리 길이를 입력할 때 올바른 값 입력하면 int형으로 반환한다.")
