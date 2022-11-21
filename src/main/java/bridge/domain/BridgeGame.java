@@ -30,16 +30,13 @@ public class BridgeGame {
     }
 
     public void retry() {
+        user.clearUserMove();
     }
 
     public boolean checkMoveSuccess() {
         int lastIndex = user.getMoveCount() - 1;
         String lastMove = user.getLastMove();
         return lastMove.equals(answerBridge.get(lastIndex));
-    }
-
-    public void initialize() {
-        user.clearUserMove();
     }
 
     private void validateMoveInput(String moveInput) {
