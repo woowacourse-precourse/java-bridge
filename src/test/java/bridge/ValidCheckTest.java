@@ -15,4 +15,9 @@ public class ValidCheckTest {
     void isString_in_0to9Test(String input, boolean output) {
         assertThat(ValidCheck.isString_in_0to9(input)).isEqualTo(output);
     }
+    @ParameterizedTest
+    @CsvSource({"3,true","10,true","12,true","20,true","-1,false","99,false","0,false"})
+    void isRange_3to20Test(int input, boolean output) {
+        assertThat(ValidCheck.isRange_3to20(input)).isEqualTo(output);
+    }
 }
