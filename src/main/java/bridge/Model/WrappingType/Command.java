@@ -4,7 +4,7 @@ public class Command {
     private static final String QUIT = "Q";
     private static final String RETRY = "R";
 
-    private String command;
+    private final String command;
 
     public Command(String command) {
         validData(command);

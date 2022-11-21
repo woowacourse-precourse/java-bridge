@@ -5,7 +5,7 @@ public enum GameStatus {
     FAIL("실패"),
     SUCCESS("성공");
 
-    private String status;
+    private final String status;
 
     private GameStatus(String status) {
         this.status = status;

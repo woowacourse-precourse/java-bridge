@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
 
     public void initGame() {

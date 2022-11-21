@@ -4,7 +4,7 @@ public class BridgeSize {
     private final static int MIN_SIZE = 3;
     private final static int MAX_SIZE = 20;
 
-    private int size;
+    private final int size;
 
     public BridgeSize(int size) {
         validData(size);

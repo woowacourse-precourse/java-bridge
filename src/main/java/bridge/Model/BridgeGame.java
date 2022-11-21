@@ -12,7 +12,7 @@ import java.util.List;
 public class BridgeGame {
     private ChoiceDirections choiceDirections;
     private CrossResults crossResults;
-    private Bridge bridge;
+    private final Bridge bridge;
     private int tryCount;
 
     public BridgeGame(List<String> bridge, List<ChoiceDirection> choiceDirections, List<CrossResult> crossResults) {

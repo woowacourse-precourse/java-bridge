@@ -3,7 +3,7 @@ package bridge.Model.WrappingType;
 import bridge.Enum.Direction;
 
 public class ChoiceDirection {
-    private Direction choiceDirection;
+    private final Direction choiceDirection;
 
     public ChoiceDirection(String choiceDirection) {
         this.choiceDirection = validData(choiceDirection);
