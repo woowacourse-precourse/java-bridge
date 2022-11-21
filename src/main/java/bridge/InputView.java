@@ -27,6 +27,7 @@ public class InputView {
      */
     public String readMoving() {
         String direction = Console.readLine();
+        bridgeValidator.validateMovingDirection(direction);
         return direction;
     }
 

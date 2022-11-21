@@ -8,4 +8,7 @@ public class BridgeValidator {
             throw new IllegalArgumentException("[ERROR] 3~20사이의 숫자만 입력 가능합니다.");
         }
     }
+
+    public void validateMovingDirection(String direction) {
+    }
 }
