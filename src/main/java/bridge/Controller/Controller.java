@@ -7,7 +7,6 @@ import bridge.Domain.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -21,7 +20,7 @@ public class Controller {
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView = new OutputView();
-        
+
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
 
@@ -33,41 +32,13 @@ public class Controller {
 
         bridgeGame = new BridgeGame(bridge, bridgeLen);
         //게임 시작
-        int gameTryCount = 1;
-        boolean gameSuccess = false;
-        List<String> mySelectBridge = new ArrayList<>();
-        while(true){
-            int position = mySelectBridge.size();
-            String moving = inputView.readMoving();
-            mySelectBridge.add(moving);
-
-            if(mySelectBridge.get(position).equals(bridge.get(position))){
-                //성공
-                if(position == bridgeLen - 1){
-                    gameSuccess = true;
-                    System.out.println("최종 게임 결과");
-                    outputView.printMap(bridge, true, position);
-                    break;
-                }
-                outputView.printMap(bridge, true, position);
-            }
-            else{
-                //실패
-                outputView.printMap(bridge, false, position);
-                String gameCommand = inputView.readGameCommand();
-
-                if(gameCommand.equals("R")){
-                    gameTryCount += 1;
-                    mySelectBridge = new ArrayList<>();
-                }
-                else{
-                    break;
-                }
-            }
-        }
+        boolean gameContinue;
+        do{
+            gameContinue = bridgeGame.play();
+        }while(gameContinue);
 
         //결과 출력
-        outputView.printResult(gameSuccess, gameTryCount);
+        outputView.printResult(bridgeGame.gameSuccess, bridgeGame.gameTryCount);
     }
 
 }
