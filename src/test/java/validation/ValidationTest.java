@@ -26,4 +26,22 @@ public class ValidationTest {
         assertThatThrownBy(() -> validator.validateBridgeSize(doubleValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void validateMovingTest() {
+        String lowercaseInput = "u";
+        String wrongAlphabetInput = "C";
+        String numberInput = "1";
+
+        InputValidation validator = new InputValidation();
+
+        assertThatThrownBy(() -> validator.validateMoving(lowercaseInput))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.validateMoving(wrongAlphabetInput))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.validateMoving(numberInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
