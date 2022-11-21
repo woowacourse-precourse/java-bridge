@@ -41,7 +41,8 @@ public class OutputView {
         System.out.print(BRIDGE_END_SYMBOL);
     }
 
-    public static String printUpper(List<String> upperBridge) {;
+    public static String printUpper(List<String> upperBridge) {
+        ;
         return String.join(BRIDGE_SPACE_SIGN, upperBridge);
     }
 
