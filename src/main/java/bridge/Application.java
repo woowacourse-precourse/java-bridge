@@ -11,7 +11,7 @@ public class Application {
     private static User user = new User();
     public static void main(String[] args) {
         outputView.startGame();
-        user.initializeUserPosition();
+        user.initializePosition();
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
         while(true){
@@ -52,7 +52,7 @@ public class Application {
 
     public static boolean RetryOrQuitGame(User user, boolean checkDirection, List<String> bridge){
         if(inputView.readGameCommand() == "R") {
-            user.addUserAttempt();
+            user.addAttempt();
             bridgeGame.retry(user);
             return true;
         }

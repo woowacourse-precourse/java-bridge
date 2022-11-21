@@ -15,23 +15,23 @@ public class User {
     }
 
     public String getDirection(){return direction;}
-    public int getUserPosition(){
+    public int getPosition(){
         return position;
     }
 
-    public int getUserAttempt(){
+    public int getAttempt(){
         return attempt;
     }
 
-    public void addUserPosition(){
+    public void addPosition(){
         this.position += 1;
     }
 
-    public void addUserAttempt(){
+    public void addAttempt(){
         this.attempt += 1;
     }
 
-    public void initializeUserPosition(){
+    public void initializePosition(){
         this.position = -1;
     }
 

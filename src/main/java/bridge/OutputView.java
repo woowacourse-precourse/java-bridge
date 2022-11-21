@@ -43,12 +43,12 @@ public class OutputView {
     }
 
     public void printHowManyTimeTry(User user){
-        System.out.printf("총 시도한 횟수: %d", user.getUserAttempt());
+        System.out.printf("총 시도한 횟수: %d", user.getAttempt());
     }
 
     public void printUpperBridge(User user, boolean checkDirection, List<String> bridge){
         printMapStart();
-        for(int i = 0; i < user.getUserPosition(); i++){
+        for(int i = 0; i < user.getPosition(); i++){
             printOnePartOfUpperBridge(i, bridge);
             printSeparation();
         }
@@ -58,7 +58,7 @@ public class OutputView {
 
     public void printLowerBridge(User user, boolean checkDirection, List<String> bridge){
         printMapStart();
-        for(int i = 0; i < user.getUserPosition(); i++){
+        for(int i = 0; i < user.getPosition(); i++){
             printOnePartOfLowerBridge(i, bridge);
             printSeparation();
         }

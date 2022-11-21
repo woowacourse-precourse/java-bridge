@@ -12,7 +12,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(User user) {
-        user.addUserPosition();
+        user.addPosition();
     }
 
     /**
@@ -21,19 +21,19 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(User user) {
-        user.initializeUserPosition();
-        user.addUserAttempt();
+        user.initializePosition();
+        user.addAttempt();
     }
 
     public boolean checkBridgeValueInUserPosition(User user, List<String> bridge){
-        if(bridge.get(user.getUserPosition()).equals(user.getDirection())){
+        if(bridge.get(user.getPosition()).equals(user.getDirection())){
             return true;
         }
         return false;
     }
 
     public boolean checkGameIsOver(User user, List<String> bridge){
-        if(checkBridgeValueInUserPosition(user, bridge) && user.getUserPosition() == bridge.size() -1){
+        if(checkBridgeValueInUserPosition(user, bridge) && user.getPosition() == bridge.size() -1){
             return true;
         }
         return false;

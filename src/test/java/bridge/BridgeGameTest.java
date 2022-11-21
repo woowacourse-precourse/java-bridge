@@ -21,7 +21,7 @@ public class BridgeGameTest {
         bridge.add("U");
         user.setDirection("U");
         bridgeGame.move(user);
-        if(bridgeGame.checkBridgeValueInUserPosition(user, bridge) && user.getUserPosition() == size-1){
+        if(bridgeGame.checkBridgeValueInUserPosition(user, bridge) && user.getPosition() == size-1){
             testResult = true;
         }
         assertThat(testResult).isEqualTo(true);
