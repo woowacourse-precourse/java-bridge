@@ -40,9 +40,9 @@ public class BridgeControllerTest {
 
     @DisplayName("processGame 테스트 (true 경우)")
     @Test
-    public void processTrueTest() {
+    public void processTrueCaseTest() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "U" ,"U"));
+        Bridge bridge = new Bridge(List.of("U", "U", "U"));
         User user = new User();
         boolean isUserAnswerCorrect = true;
 
@@ -53,19 +53,48 @@ public class BridgeControllerTest {
         assertThat(bridge.getNowIndex()).isEqualTo(1);
     }
 
-    @DisplayName("isResetCase 테스트")
+    @DisplayName("doFailCase 테스트 (restart 경우)")
     @Test
-    public void isResetCaseTest() {
+    public void doFailCaseWithRestartTest() {
         // given
+        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        User user = new User();
         String gameStatus = "R";
-        String errorStatus = "C";
 
         // when
-        boolean result = bridgeController.isResetCase(gameStatus);
-        boolean error = bridgeController.isResetCase(errorStatus);
+        bridgeController.doFailCase(bridge, user, gameStatus);
 
         // then
-        assertThat(result).isEqualTo(true);
-        assertThat(error).isEqualTo(false);
+        assertThat(user.getGameTryCount()).isEqualTo(2);
+    }
+
+    @DisplayName("doFailCase 테스트 (Quit 경우)")
+    @Test
+    public void doFailCaseWithQuitTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        User user = new User();
+        String gameStatus = "Q";
+
+        // when
+        bridgeController.doFailCase(bridge, user, gameStatus);
+
+        // then
+        assertThat(user.isGameWin()).isEqualTo(false);
+        assertThat(user.isGameDoneStatus()).isEqualTo(true);
+    }
+
+    @DisplayName("doSuccessCase 테스트")
+    @Test
+    public void doSuccessCaseTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "U", "U"));
+        User user = new User();
+
+        // when
+        bridgeController.doSuccessCase(bridge, user);
+
+        // then
+        assertThat(bridge.getNowIndex()).isEqualTo(1);
     }
 }
