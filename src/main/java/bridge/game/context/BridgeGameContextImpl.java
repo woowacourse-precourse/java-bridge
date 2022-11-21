@@ -1,6 +1,9 @@
 package bridge.game.context;
 
 import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeSize;
+import bridge.domain.bridge.maker.BridgeMaker;
+import bridge.domain.bridge.maker.BridgeRandomNumberGenerator;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
 import bridge.game.BridgeGame;
@@ -15,8 +18,9 @@ public class BridgeGameContextImpl implements BridgeGameContext {
     }
 
     @Override
-    public void generateBridge(Bridge madeBridge) {
-        this.bridgeGame = new BridgeGame(madeBridge);
+    public void generateBridge(BridgeSize bridgeSize) {
+        var bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridgeGame = new BridgeGame(new Bridge(bridgeMaker, bridgeSize));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package bridge.game.context;
 
-import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeSize;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
 
@@ -15,9 +15,10 @@ public class FakeContext implements BridgeGameContext {
         this.status = status;
     }
 
-    @Override
-    public void generateBridge(Bridge madeBridge) {
 
+    @Override
+    public void generateBridge(BridgeSize bridgeSize) {
+        
     }
 
     @Override

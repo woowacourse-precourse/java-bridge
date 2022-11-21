@@ -1,11 +1,11 @@
 package bridge.game.context;
 
-import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeSize;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
 
 public interface BridgeGameContext {
-    void generateBridge(Bridge madeBridge);
+    void generateBridge(BridgeSize bridgeSize);
 
     void writeHistory(final String resultMap);
 
