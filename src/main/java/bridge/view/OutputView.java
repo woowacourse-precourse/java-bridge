@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.game.BridgeGame;
+import bridge.user.User;
 
 import java.util.List;
 
@@ -13,6 +14,12 @@ public class OutputView {
     private static final String askBridgeSizeMessage = "다리의 길이를 입력해주세요.\n";
     private static final String askUserMoveDirectionMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
     private static final String askGameCommandMessage = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
+
+    private static final String gameResultMessage = "최종 게임 결과";
+    private static final String isGameSucceedMessage = "\n게임 성공 여부: ";
+    private static final String gameSucceed = "성공\n";
+    private static final String gameFailed = "실패\n";
+    private static final String numberOfGameTrialsMessage = "총 시도한 횟수: ";
 
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_END = " ]";
@@ -118,11 +125,33 @@ public class OutputView {
     }
 
     /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * TODO: 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param player          사용자 상태
+     * @param bridge_answer   정답 다리
+     * @param bridge_userMove 사용자가 현재까지 다리 상에서 이동한 위치
      */
-    public static void printResult() {
+    public static void printResult(User player, List<String> bridge_answer, List<String> bridge_userMove) {
+        System.out.println(gameResultMessage);
+        printMap(bridge_answer, bridge_userMove);
+
+        String gameResult = isGameSucceedMessage;
+        gameResult += checkIfGameSucceed(player.isGameSucceed());
+        gameResult += numberOfGameTrialsMessage + player.getNumberOfGameTrials();
+        System.out.println(gameResult);
+    }
+
+    /**
+     * @param isGameSucceed 게임에 성공했을 경우 true / 실패했을 경우 false
+     * @return 게임 성공 여부에 따른 String 반환
+     */
+    private static String checkIfGameSucceed(boolean isGameSucceed) {
+        if (isGameSucceed) {
+            return gameSucceed;
+        }
+        return gameFailed;
     }
 
 }
