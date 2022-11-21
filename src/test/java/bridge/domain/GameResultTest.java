@@ -15,7 +15,7 @@ public class GameResultTest {
     private GameResult gameResult;
 
     @BeforeEach
-    void setUp() {
+    void setGameResult() {
         gameResult = new GameResult();
     }
 
