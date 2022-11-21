@@ -10,6 +10,9 @@ public class OutputView {
     private static final String START_PHRASES = "다리 건너기 게임을 시작합니다.";
     private static final String ASK_LENGTH_PHRASES = "다리의 길이를 입력해주세요.";
     private static final String ASK_MOVING_PHRASES = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GAME_RESULT_PHRASES = "최종 게임 결과";
+    private static final String GAME_STATUS_PHRASES = "게임 성공 여부: ";
+    private static final String NUMBER_OF_TRYING_PHRASES = "총 시도한 횟수: ";
     private final List<StringBuilder> map;
 
     public OutputView() {
@@ -46,6 +49,13 @@ public class OutputView {
      */
     public void printMap(List<String> bridge, List<String> inputs) {
         buildMap(bridge, inputs);
+        printMap();
+    }
+
+    /**
+     * 현재 갖고있는 다리의 상태를 그대로 출력한다.
+     */
+    private void printMap() {
         System.out.println(map.get(VerticalPositionValue.UP.getNumber()).toString());
         System.out.println(map.get(VerticalPositionValue.DOWN.getNumber()).toString());
     }
@@ -150,9 +160,25 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param gameStatus 게임 성공 여부
+     * @param numOfTrying 게임 시도 횟수
      */
-    public void printResult() {
+    public void printResult(String gameStatus, Integer numOfTrying) {
+        System.out.println(GAME_RESULT_PHRASES);
+        printMap();
+        System.out.println();
+        printGameStatus(gameStatus);
+        printNumOfTry(numOfTrying);
+    }
+
+    private void printGameStatus(String gameStatus) {
+        System.out.print(GAME_STATUS_PHRASES);
+        System.out.println(gameStatus);
+    }
+
+    private void printNumOfTry(Integer numOfTrying) {
+        System.out.print(NUMBER_OF_TRYING_PHRASES);
+        System.out.println(numOfTrying);
     }
 }
