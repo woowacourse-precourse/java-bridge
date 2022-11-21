@@ -21,6 +21,13 @@ public class BridgeGame {
         return crossDirection.equals(movingInput);
     }
 
+    private String getMovingResult(String crossDirection, String movingInput) {
+        if (checkCanMoving(crossDirection, movingInput)) {
+            return CAN_MOVING; // 이동 가능
+        }
+        return CAN_NOT_MOVING; // 이동 불가능
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
