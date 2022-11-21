@@ -50,4 +50,14 @@ class BridgeTest {
         bridge.moveDownBridgeCorrect();
         assertEquals(bridge.toString(), "[   |   ]" + "\n" + "[ O | O ]");
     }
+
+    @Test
+    @DisplayName("플레이어가 아랫 방향 다리에 올바르지 못하게 이동할 경우 아래의 다리에 X가 추가된다.")
+    void testMoveDownBridgeInCorrect() throws Exception {
+        //when
+        bridge.moveDownBridgeInCorrect();
+
+        //then
+        assertEquals(bridge.toString(), "[   ]" + "\n" + "[ X ]");
+    }
 }
