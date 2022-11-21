@@ -9,8 +9,6 @@ public class Bridge {
 
     private static final int BRIDGE_MAX_SIZE = 20;
     private static final int BRIDGE_MIN_SIZE = 3;
-    private static final int UP_NUMBER = 1;
-    private static final int DOWN_NUMBER = 0;
 
     private final List<String> bridgeSpace;
 
