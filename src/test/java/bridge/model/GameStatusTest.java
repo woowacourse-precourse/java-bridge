@@ -1,15 +1,15 @@
 package bridge.model;
 
-import bridge.domain.GameControll;
+import bridge.domain.GameStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GameControllTest {
+class GameStatusTest {
 
-    private GameControll gameControll = new GameControll();
+    private GameStatus gameStatus = new GameStatus();
 
     @Nested
     class IdxTest {
@@ -18,9 +18,9 @@ class GameControllTest {
         @Test
         void case1() {
             int answer = 2;
-            gameControll.plusIdx();
-            gameControll.plusIdx();
-            assertEquals(answer, gameControll.getIdx());
+            gameStatus.plusIdx();
+            gameStatus.plusIdx();
+            assertEquals(answer, gameStatus.getIdx());
         }
     }
 
@@ -31,9 +31,9 @@ class GameControllTest {
         @Test
         void case1() {
             int answer = 2;
-            gameControll.plusCnt();
-            gameControll.plusCnt();
-            assertEquals(answer, gameControll.getCnt());
+            gameStatus.plusCnt();
+            gameStatus.plusCnt();
+            assertEquals(answer, gameStatus.getCnt());
         }
     }
 
@@ -44,8 +44,8 @@ class GameControllTest {
         @Test
         void case1() {
             boolean answer = false;
-            gameControll.turnoffGamePower();
-            assertEquals(answer, gameControll.getGamePower());
+            gameStatus.turnoffGamePower();
+            assertEquals(answer, gameStatus.getGamePower());
 
         }
     }
@@ -57,8 +57,8 @@ class GameControllTest {
         @Test
         void case1() {
             boolean answer = true;
-            gameControll.sucessGame();
-            assertEquals(answer, gameControll.getGameSucess());
+            gameStatus.sucessGame();
+            assertEquals(answer, gameStatus.getGameSucess());
         }
     }
 
@@ -68,14 +68,14 @@ class GameControllTest {
         @DisplayName("idx와 gamePower를 초기화 시켜주는 메서드 테스트")
         @Test
         void case1() {
-            gameControll.plusIdx();
-            gameControll.turnoffGamePower();
+            gameStatus.plusIdx();
+            gameStatus.turnoffGamePower();
             int answerIdx = 0;
             boolean answerGamePowerWheter = true;
-            gameControll.initialize();
+            gameStatus.initialize();
 
-            assertEquals(answerIdx, gameControll.getIdx());
-            assertEquals(answerGamePowerWheter, gameControll.getGamePower());
+            assertEquals(answerIdx, gameStatus.getIdx());
+            assertEquals(answerGamePowerWheter, gameStatus.getGamePower());
         }
     }
 }

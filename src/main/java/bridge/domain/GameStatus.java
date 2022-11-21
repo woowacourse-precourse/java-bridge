@@ -1,8 +1,8 @@
 package bridge.domain;
 
-public class GameControll {
+public class GameStatus {
 
-    public GameControll() {
+    public GameStatus() {
     }
 
     private int idx;

@@ -5,7 +5,7 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeShape;
-import bridge.domain.GameControll;
+import bridge.domain.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -14,7 +14,7 @@ public class Game {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final static GameControll gameControll = new GameControll();
+    private final static GameStatus GAME_STATUS = new GameStatus();
     private final static BridgeGame bridgeGame = new BridgeGame();
     private final static BridgeShape bridgeShape = new BridgeShape();
     private final static Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
@@ -33,7 +33,7 @@ public class Game {
             outputView.printStart();
             viewBridgeSize();
             resetGameStatus();
-            gameControll.plusCnt();
+            GAME_STATUS.plusCnt();
             playBridgeGame();
 
     }
@@ -60,12 +60,12 @@ public class Game {
     }
 
     private void playBridgeGame() {
-        while (gameControll.getGamePower()) {
+        while (GAME_STATUS.getGamePower()) {
             viewMove();
             checkMoveBridge();
             makeBirdgeShape();
             showNowBridgeShape();
-            gameControll.plusIdx();
+            GAME_STATUS.plusIdx();
             controllMove();
         }
     }
@@ -83,7 +83,7 @@ public class Game {
     }
 
     private void checkMoveBridge() {
-        bridgeGame.move(move, gameControll.getIdx(), bridge.getBridge());
+        bridgeGame.move(move, GAME_STATUS.getIdx(), bridge.getBridge());
     }
 
     private void makeBirdgeShape() {
@@ -97,13 +97,13 @@ public class Game {
 
     /////
     private void controllMove() {
-        if (size == gameControll.getIdx() && bridgeGame.getCanMove()) {
-            gameControll.turnoffGamePower();
-            gameControll.sucessGame();
+        if (size == GAME_STATUS.getIdx() && bridgeGame.getCanMove()) {
+            GAME_STATUS.turnoffGamePower();
+            GAME_STATUS.sucessGame();
             printGameResult();
         }
         if (!(bridgeGame.getCanMove())) {
-            gameControll.turnoffGamePower();
+            GAME_STATUS.turnoffGamePower();
             retry();
         }
     }
@@ -133,7 +133,7 @@ public class Game {
 
     private void retryOrFinish() {
         if (bridgeGame.getDoRetry()) {
-            gameControll.plusCnt();
+            GAME_STATUS.plusCnt();
             resetGameStatus();
             playBridgeGame();
         }
@@ -143,7 +143,7 @@ public class Game {
     }
 
     private void resetGameStatus() {
-        gameControll.initialize();
+        GAME_STATUS.initialize();
         bridgeGame.initialize();
         bridgeShape.initializeBridgeShape();
     }
@@ -151,7 +151,7 @@ public class Game {
     private void printGameResult() {
         outputView.printFinalGame();
         showNowBridgeShape();
-        outputView.printResult(gameControll.getGameSucess(), gameControll.getCnt());
+        outputView.printResult(GAME_STATUS.getGameSucess(), GAME_STATUS.getCnt());
     }
 
 
