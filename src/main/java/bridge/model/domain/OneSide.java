@@ -37,7 +37,7 @@ public class OneSide {
             sb.append(SEPARATOR);
         }
 
-        sb.setLength(sb.length() - 2);
+        sb.setLength(Math.max(0, sb.length() - 2));
 
         return sb.toString();
     }
