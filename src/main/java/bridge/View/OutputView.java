@@ -1,9 +1,6 @@
 package bridge.View;
 
-import bridge.Controller.GameManager;
 import bridge.Model.BridgeDTO;
-
-import java.sql.SQLOutput;
 
 public class OutputView {
     private final String BRIDGESIZE = "다리의 길이를 입력해주세요.";
@@ -22,6 +19,7 @@ public class OutputView {
     private final String SUCCESSFUL = "게임 성공 여부: ";
     private final String SUCCESS = "성공";
     private final String TOTALTRY = "총 시도한 횟수: ";
+
     public void printMap(BridgeDTO bridgeDTO) {
         printFirstLine(bridgeDTO);
         printSecondLine(bridgeDTO);

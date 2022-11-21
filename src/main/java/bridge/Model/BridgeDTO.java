@@ -7,8 +7,8 @@ public class BridgeDTO {
     private List<String> bridge;
     private int size;
     private int movePoint = 0;
-    private List<String> saveFirstLine = new ArrayList<>();
-    private List<String> saveSecondLine = new ArrayList<>();
+    private final List<String> saveFirstLine = new ArrayList<>();
+    private final List<String> saveSecondLine = new ArrayList<>();
     private int retry = 1;
 
     public List<String> getBridge() {

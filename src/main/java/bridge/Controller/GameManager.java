@@ -4,12 +4,11 @@ import bridge.Model.BridgeDTO;
 import bridge.Model.BridgeGame;
 import bridge.View.InputView;
 import bridge.View.OutputView;
-
 public class GameManager {
-    private BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeGame bridgeGame = new BridgeGame();
     private BridgeDTO bridgeDTO = new BridgeDTO();
-    private static OutputView outputView = new OutputView();
-    private static InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
+    private static final InputView inputView = new InputView();
 
     public void runGame() {
         try {
@@ -19,14 +18,12 @@ public class GameManager {
             System.out.println(e.getMessage());
         }
     }
-
     public void execution() {
         boolean checkSame = runMovePoint();
         if (runResult(checkSame)) {
             totalResult(checkSame);
         }
     }
-
     public void makeBridgeGame() {
         outputView.printStartGame();
         outputView.printMakeBridgeSize();
@@ -92,12 +89,9 @@ public class GameManager {
         }
         return flag;
     }
-
     public void retryRoutine() {
         outputView.printRetry();
-        String retryWord = inputView.readGameCommand();
-        System.out.println(retryWord);
-        runRetry(retryWord);
+        runRetry(inputView.readGameCommand());
     }
     public void runRetry(String retryWord) {
         if (retryWord.equals("R")) {
@@ -111,12 +105,13 @@ public class GameManager {
             totalResult(false);
         }
     }
-
     public void totalResult(boolean sameWord) {
-        if (sameWord == false)
+        if (!sameWord) {
             outputView.printFail();
-        if (sameWord == true)
+        }
+        if (sameWord) {
             outputView.printSuccess();
+        }
         outputView.printTotalTry(bridgeDTO);
     }
 }

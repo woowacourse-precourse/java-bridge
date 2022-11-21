@@ -20,7 +20,6 @@ public class BridgeMaker {
             int bridgeNumber = bridgeNumberGenerator.generate();
             bridge.add(checkBridge(bridgeNumber));
         }
-        System.out.println(bridge);
         return bridge;
     }
 
