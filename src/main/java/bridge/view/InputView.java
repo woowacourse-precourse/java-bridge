@@ -58,7 +58,7 @@ public class InputView {
         validateInputNone(input);
         String pattern = "^U|D$";
         if(!Pattern.matches(pattern,input)){
-            throw new IllegalArgumentException(USER_INPUT_NOT_U_OR_D);
+            throw new IllegalArgumentException(USER_INPUT_NOT_U_OR_D_EXCEPTION);
         }
 
     }
@@ -67,7 +67,7 @@ public class InputView {
         validateInputNone(input);
         String pattern = "^R|Q$";
         if(!Pattern.matches(pattern,input)){
-            throw new IllegalArgumentException(USER_INPUT_NOT_R_OR_Q);
+            throw new IllegalArgumentException(USER_INPUT_NOT_R_OR_Q_EXCEPTION);
         }
 
     }

@@ -76,4 +76,8 @@ public class OutputView {
             return "성공";
         return "실패";
     }
+
+    public static void printException(Exception exception) {
+        System.out.printf(exception.getMessage() + System.lineSeparator());
+    }
 }
