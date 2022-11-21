@@ -10,4 +10,9 @@ public class Exception {
         }
         return Integer.valueOf(BridgeNumber);
     }
+    public static void checkMoving(String move){
+        if(!(move.equals("U")&&move.equals("D"))){
+            throw new IllegalArgumentException();
+        }
+    }
 }
