@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.bridge.BridgeBlock;
+import bridge.domain.bridge.RetryCommand;
 import bridge.system.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -43,8 +44,13 @@ public class InputView {
         return readMoving();
     }
 
-    public String readGameCommand() {
+    public RetryCommand readGameCommand() {
         System.out.println(RETRY_MESSAGE);
-        return readLine();
+        try {
+            return RetryCommand.convertTypeCommand(readLine());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return readGameCommand();
     }
 }

@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 public enum BridgeBlock {
     D(0), U(1);
 
-    public static final String ERROR_NOT_FOUND_POSITION_VALUE = "[ERROR] D,U 중 하나만 입력할 수 있습니다.";
+    public static final String ERROR_NOT_FOUND_BLOCK_VALUE = "[ERROR] D,U 중 하나만 입력할 수 있습니다.";
+    public static final String ERROR_NOT_FOUND = "[ERROR] 올바르지 않은 입력값입니다.";
 
     private final int block;
 
-    BridgeBlock(int phaseNum) {
+    BridgeBlock(final Integer phaseNum) {
         this.block = phaseNum;
     }
 
@@ -19,7 +20,7 @@ public enum BridgeBlock {
         return Arrays.stream(BridgeBlock.values())
                 .filter(value -> value.block == generateNum)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FOUND_POSITION_VALUE))
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FOUND))
                 .toString();
     }
 
@@ -36,6 +37,6 @@ public enum BridgeBlock {
         return Arrays.stream(BridgeBlock.values())
                 .filter(block -> block.name().equals(readLine))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FOUND_POSITION_VALUE));
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_FOUND_BLOCK_VALUE));
     }
 }
