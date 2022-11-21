@@ -31,7 +31,7 @@ public class Controller {
             String length = inputView.input();
             return inputView.readBridgeSize(length);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return inputBridgeLength();
         }
     }
@@ -41,7 +41,7 @@ public class Controller {
             String direction = inputView.input();
             return inputView.readMoving(direction);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return inputDirection();
         }
     }
@@ -81,7 +81,7 @@ public class Controller {
             String decision = inputView.input();
             compareDecision(inputView.readGameCommand(decision));
         } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             decisionGameContinuous();
         }
     }
@@ -90,7 +90,7 @@ public class Controller {
             play(player);
         } catch (IllegalArgumentException e) {
             outputView.printMap(result);
-            outputView.printSelectAgainMessage();
+            outputView.printErrorMessage(e.getMessage());
             decisionGameContinuous();
         }
     }

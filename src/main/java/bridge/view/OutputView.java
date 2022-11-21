@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println(MessageConstant.SELECT_DIRECTION.getValue());
     }
 
-    public void printSelectAgainMessage() {
-        System.out.println(MessageConstant.ERROR_INPUT_GAME_CONTINUOUS.getValue());
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
