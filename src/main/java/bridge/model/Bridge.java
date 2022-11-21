@@ -18,7 +18,7 @@ public class Bridge {
         bridge = bridgeMaker.makeBridge(size);
     }
 
-    public static List<String> getBridge() {
+    public List<String> getBridge() {
         return bridge;
     }
 }
