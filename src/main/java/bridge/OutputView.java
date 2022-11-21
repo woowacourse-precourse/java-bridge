@@ -25,7 +25,7 @@ public class OutputView {
         StringBuilder printResult = new StringBuilder("[");
 
         for(int i = 0; i < result.size(); i++){
-            if(bridge.get(i).equals(user.get(i))){
+            if(user.get(i).equals(BridgeCondition.UP.getDataValue())){
                 printResult.append(String.format(" %s |", result.get(i)));
                 continue;
             }
@@ -40,7 +40,7 @@ public class OutputView {
         StringBuilder printResult = new StringBuilder("[");
 
         for(int i = 0; i < result.size(); i++){
-            if(!bridge.get(i).equals(user.get(i))){
+            if(user.get(i).equals(BridgeCondition.DOWN.getDataValue())){
                 printResult.append(String.format(" %s |", result.get(i)));
                 continue;
             }
@@ -71,7 +71,7 @@ public class OutputView {
     }
 
     public void printInputAgain(){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q");
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
     public void printStartGame(){
@@ -83,7 +83,7 @@ public class OutputView {
     }
 
     public void printInputMoving(){
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
 

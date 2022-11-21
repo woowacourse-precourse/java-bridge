@@ -30,8 +30,8 @@ public class OutViewTest extends NsTest{
             outputView.printResult(false, 2, bridge, userBridge);
             assertThat(output()).contains(
                     "최종 게임 결과",
-                    "[ O |   ]",
-                    "[   | X ]",
+                    "[ O | X ]",
+                    "[   |   ]",
                     "게임 성공 여부: 실패",
                     "총 시도한 횟수: 2"
             );
