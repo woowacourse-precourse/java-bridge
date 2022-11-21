@@ -60,6 +60,9 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
             - 게임 재시작 상태
             - [X] 게임 재시작 명령어가 입력되면 장기말 이동 상태가 됩니다.
             - [X] 게임 종료 상태면 게임 결과 상태가 됩니다.
+        - ResultVerificationStatus
+            - 게임 결과 상태
+                - [X] 게임 최종 결과를 출력합니다.
 
 ## 도메인 요구사항
 
