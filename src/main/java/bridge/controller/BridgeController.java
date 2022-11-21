@@ -32,9 +32,11 @@ public class BridgeController {
     private void playGame() {
         BridgeGame game = initGame();
 
-        boolean keepPlay = true;
-        while (!game.isComplete() && keepPlay) {
-            keepPlay = playTurn(game);
+        while (!game.isComplete()) {
+            boolean keepPlay = play(game);
+            if(!keepPlay) {
+                break;
+            }
         }
         end(game);
     }
@@ -50,7 +52,7 @@ public class BridgeController {
         return new BridgeGame(bridge);
     }
 
-    public boolean playTurn(BridgeGame game) {
+    private boolean play(BridgeGame game) {
         boolean success = move(game);
 
         if(success) {
