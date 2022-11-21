@@ -18,7 +18,7 @@ public class BridgeGame {
     private int stepCount;
     private Result result;
 
-    public BridgeGame(List<String> bridge){
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.stepCount = 0;
         this.result = new Result();
@@ -46,51 +46,51 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         validateGameCommand(gameCommand);
-        if (gameCommand.equals("Q")){
+        if (gameCommand.equals("Q")) {
             return false;
         }
         initialize();
         return true;
     }
 
-    public List<Step> getSteps(){
+    public List<Step> getSteps() {
         return this.steps;
     }
 
-    public boolean isSuccess(){
-        if (steps.size() == bridge.size()){
+    public boolean isSuccess() {
+        if (steps.size() == bridge.size()) {
             result.setIsSuccess(true);
             return true;
         }
         return false;
     }
 
-    public Result getResult(){
+    public Result getResult() {
         return this.result;
     }
 
-    private boolean isSafe(){
+    private boolean isSafe() {
         return getLastStep().name().contains("SUCCESS");
     }
 
-    private Step getLastStep(){
-        return this.steps.get(steps.size()-1);
+    private Step getLastStep() {
+        return this.steps.get(steps.size() - 1);
     }
 
-    private void initialize(){
+    private void initialize() {
         this.stepCount = 0;
         this.steps.clear();
         result.clear();
     }
 
-    private void validateDirection(String direction){
-        if (!direction.equals("U") && !direction.equals("D")){
+    private void validateDirection(String direction) {
+        if (!direction.equals("U") && !direction.equals("D")) {
             throw new IllegalArgumentException(INVALID_MOVING.message);
         }
     }
 
-    private void validateGameCommand(String gameCommand){
-        if (!gameCommand.equals("R") && !gameCommand.equals("Q")){
+    private void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
             throw new IllegalArgumentException(INVALID_RETRY.message);
         }
     }

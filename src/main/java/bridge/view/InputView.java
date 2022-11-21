@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.utils.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.utils.ErrorMessage.*;
@@ -19,7 +18,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        if (!bridgeSize.matches(bridgeSizePattern)){
+        if (!bridgeSize.matches(bridgeSizePattern)) {
             throw new IllegalArgumentException(INVALID_BRIDGE_SIZE.message);
         }
         return Integer.parseInt(bridgeSize);
@@ -30,7 +29,7 @@ public class InputView {
      */
     public String readMoving() {
         String move = Console.readLine();
-        if (!move.matches(movingPattern)){
+        if (!move.matches(movingPattern)) {
             throw new IllegalArgumentException(INVALID_MOVING.message);
         }
         return move;
@@ -41,7 +40,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine();
-        if (!gameCommand.matches(commandPattern)){
+        if (!gameCommand.matches(commandPattern)) {
             throw new IllegalArgumentException(INVALID_RETRY.message);
         }
         return gameCommand;

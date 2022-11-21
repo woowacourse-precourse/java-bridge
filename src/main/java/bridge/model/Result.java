@@ -8,35 +8,35 @@ public class Result {
     private boolean isSuccess;
     private int trial;
 
-    public Result(){
+    public Result() {
         this.isSuccess = false;
         this.trial = 1;
     }
 
-    public List<Step> getSteps(){
+    public List<Step> getSteps() {
         return this.steps;
     }
 
-    public String getIsSuccess(){
-        if (this.isSuccess){
+    public String getIsSuccess() {
+        if (this.isSuccess) {
             return "성공";
         }
         return "실패";
     }
 
-    public int getTrial(){
+    public int getTrial() {
         return this.trial;
     }
 
-    public void setSteps(List<Step> steps){
+    public void setSteps(List<Step> steps) {
         this.steps = steps;
     }
 
-    public void setIsSuccess(boolean isSuccess){
+    public void setIsSuccess(boolean isSuccess) {
         this.isSuccess = isSuccess;
     }
 
-    public void clear(){
+    public void clear() {
         this.steps.clear();
         this.isSuccess = false;
         this.trial++;

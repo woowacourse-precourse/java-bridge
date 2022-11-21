@@ -1,7 +1,5 @@
 package bridge.model;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,14 +13,14 @@ public class BridgeMakerTest {
     private BridgeMaker bridgeMaker;
 
     @BeforeEach
-    void beforeAll(){
+    void beforeEach() {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
 
     @Test
     @DisplayName("다리 생성 성공")
-    void case1(){
+    void case1() {
         int bridgeSize = 13;
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         assertThat(bridge.size()).isEqualTo(bridgeSize);
@@ -30,9 +28,9 @@ public class BridgeMakerTest {
 
     @Test
     @DisplayName("다리 생성 실패: BridgeSize 유효하지 않음")
-    void case2(){
+    void case2() {
         int bridgeSize = 1_000;
-        assertThatThrownBy(()-> bridgeMaker.makeBridge(bridgeSize)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> bridgeMaker.makeBridge(bridgeSize)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

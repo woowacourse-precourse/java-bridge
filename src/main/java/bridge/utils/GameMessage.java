@@ -13,7 +13,7 @@ public enum GameMessage {
 
     public final String message;
 
-    GameMessage(String message){
+    GameMessage(String message) {
         this.message = message;
     }
 }
