@@ -15,9 +15,9 @@ public class BridgeController {
 	private final InputView inputView = new InputView();
 	private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 	private final BridgeMaker bridgeMaker=new BridgeMaker(bridgeNumberGenerator);
-	private final ResultController resultController=new ResultController();
 	private final CompareMove compareMove=new CompareMove();
 	private final ViewClear viewClear=new ViewClear();
+	private final BridgeGame bridgeGame = new BridgeGame();
 
 	private List<String> bridge_list;
 	private int TRY_COUNT=1;
@@ -40,7 +40,6 @@ public class BridgeController {
 	}
 
 	private void crossingTheBridge(){
-		System.out.println(bridge_list);
 		for (int index=0;index<bridge_list.size();index++){
 			String bridge_move_result = compareMove.compareInputAndIndex(bridgeMoveOutputAndInput(),
 																	bridge_list.get(index));
@@ -49,8 +48,7 @@ public class BridgeController {
 				break;
 			}
 		}
-		retryOrSuccess(resultController.resultControllerByResultCondition(RESULT_CONDITION,
-																inputView, outputView));
+		retryOrSuccess(bridgeGame.retry(RESULT_CONDITION,inputView,outputView));
 	}
 	private void retryOrSuccess(String user_input_condition){
 		if (user_input_condition.equals("SUCCESS")){
