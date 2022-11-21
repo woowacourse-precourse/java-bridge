@@ -48,8 +48,19 @@ public class BridgeGame {
     }
 
     private boolean countRetry(boolean retry) {
+        if (retry) {
+            userAnswer.clear();
+            numberOfTry++;
+        }
         return retry;
     }
+
+
+
+    public int getNumberOfTry() {
+        return numberOfTry;
+    }
+
     public boolean endGame() {
         return bridge.size() == userAnswer.size();
     }

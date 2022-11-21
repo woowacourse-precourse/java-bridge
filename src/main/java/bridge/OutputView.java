@@ -19,6 +19,7 @@ public class OutputView {
     public static final String GAME_FAIL = "실패";
 
     public static final String GAME_SUCCESS_CHECK = "\n게임 성공 여부: %s";
+    public static final String GAME_TOTAL_TRY = "총 시도한 횟수: %d";
     public static void printGameStart(){
         System.out.println(GAME_START_MESSAGE);
     }
@@ -56,5 +57,9 @@ public class OutputView {
         }
         return String.format(GAME_SUCCESS_CHECK,GAME_FAIL);
     }
+
+    public void printGameTotalTry(int count){
+       String gameTotalTry = String.format(GAME_TOTAL_TRY,count);
+       System.out.println(gameTotalTry);
     }
 }
