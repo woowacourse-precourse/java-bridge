@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.constant.ExceptionMessage.RETRY_COMMAND_EXCEPTION_MESSAGE;
+
 import java.util.Arrays;
 
 public enum GameCommand {
@@ -15,7 +17,7 @@ public enum GameCommand {
         return Arrays.stream(values())
                 .filter(retry -> retry.command.equals(inputLetter))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(RETRY_COMMAND_EXCEPTION_MESSAGE));
     }
 
     public static boolean hasCommand(String inputLetter) {

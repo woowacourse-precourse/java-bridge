@@ -37,7 +37,7 @@ public class InputView {
     public Direction readMoving() {
         System.out.println(CHOOSE_MOVE_BRIDGE_MESSAGE);
         try {
-            return Direction.from(validateMoving(Console.readLine()));
+            return Direction.from(Console.readLine());
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
             return readMoving();
@@ -50,7 +50,7 @@ public class InputView {
     public GameCommand readGameCommand() {
         System.out.println(RETRY_STATUS_MESSAGE);
         try {
-            return GameCommand.from(validateReplayGame(Console.readLine()));
+            return GameCommand.from(Console.readLine());
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
             return readGameCommand();
@@ -63,17 +63,4 @@ public class InputView {
         }
     }
 
-    private String validateMoving(String inputLetter) {
-        if (Direction.hasInputLetter(inputLetter)) {
-            return inputLetter;
-        }
-        throw new IllegalArgumentException(MOVING_DIRECTION_EXCEPTION_MESSAGE);
-    }
-
-    private String validateReplayGame(String inputLetter) {
-        if (GameCommand.hasCommand(inputLetter)) {
-            return inputLetter;
-        }
-        throw new IllegalArgumentException(RETRY_COMMAND_EXCEPTION_MESSAGE);
-    }
 }

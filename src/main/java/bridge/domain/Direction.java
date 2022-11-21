@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.constant.ExceptionMessage.MOVING_DIRECTION_EXCEPTION_MESSAGE;
+
 import java.util.Arrays;
 
 public enum Direction {
@@ -17,14 +19,14 @@ public enum Direction {
         return Arrays.stream(values())
                 .filter(direction -> direction.command.equals(inputLetter))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(MOVING_DIRECTION_EXCEPTION_MESSAGE));
     }
 
     public static Direction from(int number) {
         return Arrays.stream(values())
                 .filter(direction -> direction.directionNumber == number)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(MOVING_DIRECTION_EXCEPTION_MESSAGE));
     }
 
     public static boolean hasInputLetter(String inputLetter) {
