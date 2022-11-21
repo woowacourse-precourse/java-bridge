@@ -11,10 +11,14 @@ import bridge.util.validator.BridgeRetryValidator;
  */
 public class BridgeGame {
 
+    private static boolean gameSuccess = false;
+    private static int gameCount = 0;
+
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private ComputerBridge computerBridge = new ComputerBridge();
     private UserBridge userBridge = new UserBridge();
 
+    // 다리 생성
     public void createBridge(String length) {
         new BridgeMakerValidator(length);
         computerBridge.setBridge(bridgeMaker.makeBridge(Utils.convertToInt(length)));
@@ -25,9 +29,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String location) {
+    // 다리 이동 후 정답 판별 하기
+    public boolean move(String location) {
         new BridgeMoveValidator(location);
         userBridge.addBridge(location);
+        if (isGameSuccess()) {
+            return true;
+        }
+        if (isGameFail()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -35,6 +48,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    //
     public boolean retry(String retryMessage) {
         new BridgeRetryValidator(retryMessage);
         if (retryMessage == "Q") {
@@ -44,17 +58,16 @@ public class BridgeGame {
         return true;
     }
 
-    public boolean isCorrectLocation() {
-        if (computerBridge.getBridgeLast() == userBridge.getBridgeLast()) {
-            return true;
-        }
-        return false;
+    public boolean isGameFail() {
+        return computerBridge.checkInputBridge(userBridge.getBridge());
     }
 
-    public boolean isEndOfBridge() {
-        if (isCorrectLocation() && (computerBridge.getBridgeLength() == userBridge.getBridgeLength())) {
+    public boolean isGameSuccess() {
+        if (computerBridge.isEqual(userBridge.getBridge())) {
+            gameSuccess = true;
             return true;
         }
+
         return false;
     }
 

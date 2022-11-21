@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.service.ComputerBridge;
 import bridge.service.UserBridge;
 import bridge.util.Constants;
 
@@ -77,6 +78,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult() {
+    public static void printResult(boolean clear, int gameCount)  {
+        printSuccess(clear);
+        printGameCount(gameCount);
+    }
+
+    public static void printSuccess(boolean clear) {
+        System.out.print(Constants.OUTPUT_BRIDGE_GAME_SUCCESS);
+        if (clear) {
+            System.out.println(Constants.OUTPUT_SUCCESS);
+            return;
+        }
+        System.out.println(Constants.OUTPUT_FAIL);
+    }
+
+    public static void printGameCount(int gameCount) {
+        System.out.println(Constants.OUTPUT_BRIDGE_GAME_COUNT + gameCount);
     }
 }
