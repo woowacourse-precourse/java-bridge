@@ -32,8 +32,11 @@ public class GameController {
 
     public void move(BridgeGame bridgeGame, GameResult gameResult) {
         for (int idx = 0; idx < bridgeGame.getBridgeSize(); idx++) {
-            bridgeGame.move(idx, inputView.readMoving());
-            outputView.printMap();
+            boolean pass = bridgeGame.move(idx, inputView.readMoving());
+            outputView.printMap(gameResult);
+            if (!pass) {
+                return;
+            }
         }
     }
 
