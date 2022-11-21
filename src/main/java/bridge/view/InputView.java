@@ -20,6 +20,12 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    private void isNaturalNumber(String input) {
+        if (!Pattern.matches(ViewConstants.NATURAL_NUMBER_REGEX, input)) {
+            throw new IllegalArgumentException(ExceptionConstants.NOT_NATURAL_NUMBER.getMessage());
+        }
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -32,11 +38,5 @@ public class InputView {
      */
     public String readGameCommand() {
         return Console.readLine();
-    }
-
-    private void isNaturalNumber(String input) {
-        if (!Pattern.matches(ViewConstants.NATURAL_NUMBER_REGEX, input)) {
-            throw new IllegalArgumentException(ExceptionConstants.NOT_NATURAL_NUMBER.getMessage());
-        }
     }
 }
