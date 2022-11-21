@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.Constant;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class BridgeMapTest {
         BridgeMap bridgeMap = new BridgeMap();
         bridgeMap.addMap(new Moving(moving), canMove);
         List<String> topExpected = List.of(top);
-        List<String> bottomExpected = List.of(" ");
+        List<String> bottomExpected = List.of(Constant.BLANK);
 
         assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
     }
@@ -32,7 +33,7 @@ class BridgeMapTest {
     void addMapBottom(String moving, boolean canMove, String bottom) {
         BridgeMap bridgeMap = new BridgeMap();
         bridgeMap.addMap(new Moving(moving), canMove);
-        List<String> topExpected = List.of(" ");
+        List<String> topExpected = List.of(Constant.BLANK);
         List<String> bottomExpected = List.of(bottom);
 
         assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
