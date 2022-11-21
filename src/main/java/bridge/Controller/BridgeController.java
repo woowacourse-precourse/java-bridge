@@ -1,19 +1,15 @@
 package bridge.Controller;
 
-import bridge.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.*;
 import bridge.Domain.Bridge;
 import bridge.Domain.Result;
+import bridge.Domain.Status;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
 import java.util.List;
 
 public class BridgeController {
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     public void playBridgeGame() {
 
@@ -24,34 +20,37 @@ public class BridgeController {
 
         Result result = new Result();
 
-        boolean trying = true;
-        while (trying) {      // 사용자가 Q를 입력하기 전까지 게임이 계속된다
+        Status status = Status.PLAYING;
+        while (status == Status.PLAYING) {      // 사용자가 Q를 입력하기 전까지 게임이 계속된다
+
             int location = 0;
-            boolean playGame = true;
+
             result.tryOneMore();
-            while(playGame) {
+            Status now;
+            while(true) {
                 // 이동할 칸을 입력받는다
                 String moveTo = InputView.readMoving();
 
                 // 다리를 건넌다
                 String space = bridge.getSpaceByLocation(location);
-                playGame = BridgeGame.move(moveTo, space, result);
+                now = BridgeGame.move(moveTo, space, result);
 
                 OutputView.printMap(result);
 
-                if(!playGame)
+                if(now == Status.WRONG_CHOICE)
                     break;
+
                 location++;
                 if (location == bridge.getSize()) {
                     result.gameSucceed();
-                    playGame = false;
-                    trying = false;
+                    now = Status.END_OF_BRIDGE;
+                    break;
                 }
             }
-            if (!trying) break;
+            if (now.equals(Status.END_OF_BRIDGE)) break;
 
             // 이동할 수 없는 경우 재시작 여부를 입력받는다
-            trying = BridgeGame.retry(result);
+            status = BridgeGame.retry(result);
         }
 
         // 최종 결과를 출력한다
@@ -59,6 +58,8 @@ public class BridgeController {
     }
 
     public Bridge makeBridge() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         int bridgeSize = InputView.readBridgeSize();
         List<String> spaces = bridgeMaker.makeBridge(bridgeSize);
