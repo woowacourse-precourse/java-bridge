@@ -5,7 +5,11 @@ public enum Message {
     REQUEST_DIRECTION("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     RESTART_OR_EXIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     SPLIT(" | "),
-    ROUTE("[ %s ]\n");
+    ROUTE("[ %s ]\n"),
+    INPUT_ERROR("[ERROR] 올바른 입력 형식이 아닙니다."),
+    END("최종 게임 결과"),
+    RESULT("게임 성공 여부: %s\n총 시도한 횟수: %d");
+
 
     private final String message;
 

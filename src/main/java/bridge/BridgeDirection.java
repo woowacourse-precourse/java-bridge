@@ -3,8 +3,8 @@ package bridge;
 import java.util.stream.Stream;
 
 public enum BridgeDirection {
-    UP(0, "U"),
-    DOWN(1, "D");
+    UP(1, "U"),
+    DOWN(0, "D");
 
     private final int number;
     private final String direction;

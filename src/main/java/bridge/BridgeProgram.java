@@ -31,10 +31,12 @@ public class BridgeProgram {
             output.printMap(route);
 
             if (!mark.isRight()) {
-                restartOrStop();
+                restartOrStop(route);
             }
 
-            //if(다 맞춤) 결과출력
+            if (bridge.getSize() == bridgeGame.getMovingCount()) {
+                end(route, "성공");
+            }
         }
     }
 
@@ -48,9 +50,9 @@ public class BridgeProgram {
         return input.readMoving();
     }
 
-    private void restartOrStop() {
+    private void restartOrStop(List<List<String>> route) {
         if (getGameCommand().equals("Q")) {
-            GameStatus.quitGame();
+            end(route, "실패");
             return;
         }
         bridgeGame.retry();
@@ -59,5 +61,10 @@ public class BridgeProgram {
     private String getGameCommand() {
         output.printMessage(Message.RESTART_OR_EXIT);
         return input.readGameCommand();
+    }
+
+    private void end(List<List<String>> route, String result) {
+        GameStatus.quitGame();
+        output.printResult(route, result, bridgeGame.getGameCount());
     }
 }
