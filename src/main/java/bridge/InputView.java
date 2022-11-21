@@ -54,11 +54,21 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] U 혹은 D 를 입력해야합니다. (대,소문자 구분)");
         }
     }
+    private String  validateGameCommand(String rawInput) {
+        if (!Objects.equals(rawInput, "R") && !Objects.equals(rawInput, "Q")) {
+            throw new IllegalArgumentException("[ERROR] R 혹은 Q 를 입력해야합니다. (대,소문자 구분)");
+        }
+        return rawInput;
+    }
+
+
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        return validateGameCommand(Console.readLine());
     }
 }
