@@ -25,12 +25,16 @@ public class BridgeController {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void initBridgeGame() {
+    public void initBridgeGame(List<String> bridge) {
+        bridgeGame = new BridgeGame(bridge);
+    }
+
+    public List<String> createBridge() {
         int bridgeSize = inputView.readBridgeSize();
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        bridgeGame = new BridgeGame(bridge);
+        return bridge;
     }
 
     public void playWithExceptionCatch() {
@@ -44,7 +48,8 @@ public class BridgeController {
     }
 
     public void play() {
-        initBridgeGame();
+        List<String> bridge = createBridge();
+        initBridgeGame(bridge);
         outputView.printMessage(Messages.VIEW_START_GAME);
 
         while(true) {
