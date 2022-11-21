@@ -25,14 +25,11 @@ public class BridgeController {
     public void playGame(User user, Bridge bridge) {
         while (!user.isGameDoneStatus()) {
             String moveDirection = viewService.requestMove();
-            viewService.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect(moveDirection, bridge));
-            processGame(bridge, user, isUserAnswerCorrect(moveDirection, bridge));
+            boolean isUserAnswerCorrect = bridgeGame.isUserAnswerCorrect(moveDirection, bridge);
+            viewService.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect);
+            processGame(bridge, user, isUserAnswerCorrect);
         }
         viewService.printResult(user);
-    }
-
-    public boolean isUserAnswerCorrect(String moveDirection, Bridge bridge) {
-        return bridgeGame.isUserAnswerCorrect(moveDirection, bridge);
     }
 
     public void processGame(Bridge bridge, User user, boolean isUserAnswerCorrect) {
