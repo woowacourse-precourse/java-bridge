@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
+//BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 public class InputView {
 
     /**
@@ -41,15 +42,7 @@ public class InputView {
     public Move readMoving() {
         String userInput = Console.readLine();
 
-        isValidMoving(userInput);
-
-        return Move.valueOf(userInput);
-    }
-
-    private void isValidMoving(String userInput) {
-        if (!Pattern.matches("^[DU]{1}$", userInput)) {
-            throw new IllegalArgumentException("[ERROR] D 혹은 U 한 문자를 입력해야 합니다");
-        }
+        return Move.createMove(userInput);
     }
 
     /**
@@ -57,14 +50,13 @@ public class InputView {
      */
     public String readGameCommand() {
         String userInput = Console.readLine();
-
         isValidGameCommand(userInput);
         return userInput;
     }
 
     private void isValidGameCommand(String userInput) {
         if (!Pattern.matches("^[RQ]{1}$", userInput)) {
-            throw new IllegalArgumentException("[ERROR] D 혹은 U 한 문자를 입력해야 합니다");
+            throw new IllegalArgumentException("[ERROR] R 혹은 Q 한 문자를 입력해야 합니다");
         }
     }
 
