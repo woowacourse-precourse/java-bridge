@@ -41,7 +41,7 @@ public class OutputView {
         System.out.printf(TOTAL_ATTEMPTS, attempts);
     }
 
-    private void printUpperBridge(){
+    private static void printUpperBridge() {
         List<String> upperBridge = Bridge.getUpperBridge();
         for (int block = 0; block < upperBridge.size(); block++) {
             System.out.print(upperBridge.get(block));
@@ -51,7 +51,7 @@ public class OutputView {
         }
     }
 
-    private void printLowerBridge(){
+    private static void printLowerBridge() {
         List<String> lowerBridge = Bridge.getLowerBridge();
         for (int block = 0; block < lowerBridge.size(); block++) {
             System.out.print(lowerBridge.get(block));
@@ -66,7 +66,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap() {
         System.out.print("[ ");
         printUpperBridge();
         System.out.print(" ]");
@@ -82,10 +82,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String result, int attempts) {
+    public static void printResult(boolean result, int attempts) {
         printGameResultMessage();
         printMap();
-        printGameSuccessOrNot(result);
+        if (result) {
+            printGameSuccessOrNot("성공");
+        }
+        if (!result) {
+            printGameSuccessOrNot("실패");
+        }
         printTotalAttempts(attempts);
     }
 }
