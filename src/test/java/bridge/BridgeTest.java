@@ -22,9 +22,11 @@ class BridgeTest {
 	}
 
 	@DisplayName("다리를 검증한다.")
+	//given
 	@MethodSource("lists")
 	@ParameterizedTest
 	void validate(List<String> lists) {
+		//when, then
 		assertThatThrownBy(() -> {
 			Bridge bridge = new Bridge(lists);
 		}).isInstanceOf(IllegalArgumentException.class);
@@ -33,6 +35,7 @@ class BridgeTest {
 	@DisplayName("다리를 생성한다.")
 	@Test
 	void make() {
+		//given, when, then
 		assertThat(new Bridge(List.of("U", "D", "U")).getBridge()).isEqualTo(
 			List.of("U", "D", "U"));
 	}
