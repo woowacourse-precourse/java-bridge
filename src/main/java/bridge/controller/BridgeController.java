@@ -7,7 +7,6 @@ import static bridge.constant.Message.START_MESSAGE;
 
 import bridge.Bridge;
 import bridge.BridgeGame;
-import bridge.constant.Message;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

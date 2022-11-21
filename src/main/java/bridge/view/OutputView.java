@@ -19,9 +19,8 @@ public class OutputView {
     private static final String END_BRIDGE = " ]";
     private static final String BLOCK_SEPARATOR = " | ";
 
-    private static final String SUCCESS= "성공";
-    private static final String FAIL= "실패";
-    private static final String NEW_LINE= "\n";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -56,7 +55,8 @@ public class OutputView {
 
     private void printBridge(List<String> upperBridge, List<String> lowerBridge) {
         System.out.println(makeBridgeFormat(upperBridge));
-        System.out.println(makeBridgeFormat(lowerBridge) + NEW_LINE);
+        System.out.println(makeBridgeFormat(lowerBridge));
+        printNewLine();
     }
 
     /**
@@ -68,7 +68,9 @@ public class OutputView {
         printMessage(FINAL_GAME_RESULT);
         printBridge(bridgeGame.getGameResult().getUpperBridge(), bridgeGame.getGameResult()
                 .getLowerBridge());
-        String messageFormat = MessageFormat.format(GAME_SUCCESS_OR_NOT.toString() + TOTAL_COUNT_OF_TRY.getMessage(), getResultMessage(bridgeGame), Integer.toString(countTry));
+        String messageFormat = MessageFormat.format(
+                GAME_SUCCESS_OR_NOT + TOTAL_COUNT_OF_TRY.getMessage(),
+                getResultMessage(bridgeGame), Integer.toString(countTry));
         System.out.print(messageFormat);
     }
 
