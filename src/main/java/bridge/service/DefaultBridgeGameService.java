@@ -5,6 +5,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeCell;
+import bridge.domain.Command;
 
 import java.util.List;
 
@@ -33,5 +34,10 @@ public class DefaultBridgeGameService implements BridgeGameService {
     @Override
     public String createMap() {
         return game.getMap();
+    }
+
+    @Override
+    public boolean retryGame(Command command) {
+        return game.retry(command);
     }
 }

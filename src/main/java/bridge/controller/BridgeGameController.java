@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.BridgeCell;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.Command;
 import bridge.service.BridgeGameService;
 
 public class BridgeGameController {
@@ -25,5 +26,10 @@ public class BridgeGameController {
 
     public String createMap() {
         return service.createMap();
+    }
+
+    public boolean retryGame(String input) {
+        Command command = Command.getCommand(input);
+        return service.retryGame(command);
     }
 }

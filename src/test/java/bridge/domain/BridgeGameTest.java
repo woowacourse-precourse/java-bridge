@@ -55,4 +55,11 @@ class BridgeGameTest {
                         "[   | O |   ]"
         );
     }
+
+    @DisplayName("재시작 명령이 입력되면 게임을 재시작 한다.")
+    @Test
+    void retry() {
+        assertThat(game.retry(Command.RETRY)).isTrue();
+        assertThat(game.retry(Command.QUIT)).isFalse();
+    }
 }

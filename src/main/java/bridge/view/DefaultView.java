@@ -26,6 +26,7 @@ public class DefaultView implements View {
             isMove = inputMove();
             outputBridgeMap();
         } while (isMove);
+        inputGameCommand();
     }
 
     private void outputWelcome() {
@@ -49,5 +50,11 @@ public class DefaultView implements View {
         String map = controller.createMap();
         outputView.printMap(map);
         System.out.println();
+    }
+
+    private void inputGameCommand() {
+        outputView.printRetry();
+        String input = inputView.readGameCommand();
+        controller.retryGame(input);
     }
 }

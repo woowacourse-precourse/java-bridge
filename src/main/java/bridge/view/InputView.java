@@ -35,7 +35,13 @@ public class InputView implements Validatable<String> {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = getInput();
+        validate(
+                input,
+                InputValidator.IS_SINGLE_CHARACTER,
+                InputValidator.IS_UPPERCASE_ALPHABET
+        );
+        return input;
     }
 
     private String getInput() {
