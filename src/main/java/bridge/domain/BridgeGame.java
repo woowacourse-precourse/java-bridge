@@ -10,10 +10,12 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private List<Record> history;
+    private int trial;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.history = new ArrayList<>(bridge.size());
+        this.trial = 1;
     }
 
     /**
@@ -51,6 +53,7 @@ public class BridgeGame {
      */
     public boolean retry() {
         history.remove(history.size() - 1);
+        trial += 1;
         return true;
     }
 
@@ -63,6 +66,6 @@ public class BridgeGame {
     }
 
     public String getResult() {
-        return ResultGenerator.generateResult(isEnd());
+        return ResultGenerator.generateResult(isEnd(), trial);
     }
 }

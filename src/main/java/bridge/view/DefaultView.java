@@ -66,7 +66,9 @@ public class DefaultView implements View {
         boolean isRetry = controller.runCommand(input);
         if (isRetry) {
             playGame();
+            return;
         }
+        outputResult();
     }
 
     private void outputResult() {

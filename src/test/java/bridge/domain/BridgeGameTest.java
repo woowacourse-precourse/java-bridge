@@ -78,4 +78,19 @@ class BridgeGameTest {
         // when, then
         assertThat(game.isEnd()).isTrue();
     }
+
+    @DisplayName("현재 게임의 최종 결과를 알 수 있다.")
+    @Test
+    void getResult() {
+        // given
+        game.move(BridgeCell.UP);
+        game.move(BridgeCell.DOWN);
+        game.move(BridgeCell.UP);
+
+        // when, then
+        assertThat(game.getResult()).isEqualTo(
+                "게임 성공 여부: 성공\n" +
+                        "총 시도한 횟수: 1"
+        );
+    }
 }
