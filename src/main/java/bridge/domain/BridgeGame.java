@@ -3,9 +3,6 @@ package bridge.domain;
 import bridge.domain.bridgeenum.MovePosition;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final Bridge bridge;
     private final MoveResult moveResult;
@@ -19,7 +16,7 @@ public class BridgeGame {
     }
 
     public void move(String nextPosition) throws IllegalArgumentException {
-        MovePosition.validateNextMove(nextPosition); //검증 controller 에서?
+        MovePosition.validateNextMove(nextPosition);
         boolean isSuccess = bridge.checkMoveSuccess(nextPosition, currentBoardIndex);
         updateGameStatus(nextPosition, isSuccess);
     }
@@ -38,7 +35,7 @@ public class BridgeGame {
     }
 
     public boolean isGamePass() {
-        return !isGameOver && bridge.hasReachedEnd(currentBoardIndex); //마지막까지 갔지만, 그 칸에서 실패한 경우 테스트 케이스 추가 , 게임 중도 실패한 경우 추가, 끝까지 성공한 경우 추가
+        return !isGameOver && bridge.hasReachedEnd(currentBoardIndex);
     }
 
     private void initializeGame() {

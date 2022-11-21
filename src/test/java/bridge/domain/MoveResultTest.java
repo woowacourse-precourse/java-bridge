@@ -20,9 +20,6 @@ class MoveResultTest {
     @CsvSource(value = {"true:U:O: ", "false:U:X: ", "true:D: :O", "false:D: :X"}, delimiter = ':', ignoreLeadingAndTrailingWhitespace = false)
     void updateMoveResult(boolean isSuccess, String position, String upperResult, String lowerResult) {
         moveResult.updateMoveResult(isSuccess, position);
-        String upper = "U";
-        String lower = "D";
-
         List<List<String>> map = moveResult.getMap();
 
         assertAll(

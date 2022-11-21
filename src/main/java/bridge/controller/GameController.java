@@ -51,11 +51,9 @@ public class GameController {
     }
 
     private void move() {
-        String nextPosition;
         while (true) {
             try {
-                nextPosition = inputView.readMoving();
-                bridgeGame.move(nextPosition);
+                bridgeGame.move(inputView.readMoving());
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -90,11 +88,9 @@ public class GameController {
     }
 
     private void requestGameRestart() {
-        String restartCommand;
         while (true) {
             try {
-                restartCommand = inputView.readGameCommand();
-                checkGameRestart(restartCommand);
+                checkGameRestart(inputView.readGameCommand());
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
