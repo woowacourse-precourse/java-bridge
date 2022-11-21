@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static bridge.constant.BridgeRule.MAXIMUM_SIZE;
 import static bridge.constant.BridgeRule.MINIMUM_SIZE;
+import static bridge.constant.BridgeRule.RANDOM_UPPER_INCLUSIVE;
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 
@@ -29,7 +30,7 @@ public class BridgeMaker {
     }
 
     private String convertNumberToMoving(int number) {
-        if (number == 1) {
+        if (number == RANDOM_UPPER_INCLUSIVE) {
             return UPPER_SIDE;
         }
         return LOWER_SIDE;

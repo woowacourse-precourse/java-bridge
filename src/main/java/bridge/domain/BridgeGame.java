@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static bridge.constant.BridgeRule.INITIAL_TRY_COUNT;
 import static bridge.constant.GameCommand.QUIT;
 import static bridge.constant.GameCommand.RETRY;
 import static bridge.constant.GameStatus.END;
@@ -20,7 +21,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.gameStatus = ON_WAY;
-        this.tryCount = 1;
+        this.tryCount = INITIAL_TRY_COUNT;
         this.bridgeReferee = new BridgeReferee(bridge);
         this.bridgeDrawer = new BridgeDrawer();
     }

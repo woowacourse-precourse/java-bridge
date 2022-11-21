@@ -17,6 +17,7 @@ public class BridgeDrawer {
     private static final String WRONG_MOVING = " X ";
     private static final String BETWEEN_LINE = "|";
     private static final String SKETCH_FRAME = "%s\n%s";
+    private static final int GAP_BETWEEN_INDEX_AND_LENGTH = 1;
 
     public BridgeDrawer() {
         this.upperLine = new StringBuilder(BRACKETS);
@@ -63,7 +64,7 @@ public class BridgeDrawer {
     }
 
     private int getLastIndexOfLine() {
-        return upperLine.length() - 1;
+        return upperLine.length() - GAP_BETWEEN_INDEX_AND_LENGTH;
     }
 
     private void addLine() {

@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.constant.BridgeRule.INITIAL_LOCATION;
+import static bridge.constant.BridgeRule.MOVING_DISTANCE;
 import static bridge.constant.GameStatus.END;
 import static bridge.constant.GameStatus.FAIL;
 import static bridge.constant.GameStatus.ON_WAY;
@@ -18,7 +20,7 @@ public class BridgeReferee {
 
     public GameStatus judge(String moving) {
         if (isCorrect(moving)) {
-            this.location += 1;
+            this.location += MOVING_DISTANCE;
             if (isCrossCompletely()) {
                 return END;
             }
@@ -33,7 +35,7 @@ public class BridgeReferee {
     }
 
     public void resetLocation() {
-        this.location = 0;
+        this.location = INITIAL_LOCATION;
     }
 
     private boolean isCorrect(String moving) {
