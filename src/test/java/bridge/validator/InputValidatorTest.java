@@ -51,4 +51,20 @@ public class InputValidatorTest {
     void validateMovingTest_2(String input) {
         assertThat(InputValidator.validateMoving(input)).isEqualTo(input);
     }
+
+    @DisplayName("게임 재시작/종료 여부가 R, Q 가 아니라면 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "RR", "QQ", "RQ", "QR", "R ", "Q  ", " R", "r", "q", "wiiajd", "[23p1qwoek"})
+    void validateGameCommandTest_1(String input) {
+        assertThatThrownBy(() -> InputValidator.validateGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("게임 재시작/종료 여부가 R, Q 라면 해당 여부 반환")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void validateGameCommandTest_2(String input) {
+        assertThat(InputValidator.validateGameCommand(input)).isEqualTo(input);
+    }
 }
