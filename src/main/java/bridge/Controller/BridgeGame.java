@@ -24,7 +24,13 @@ public class BridgeGame {
     }
 
     public void run(){
+        outputView.printBridgeGameStart();
 
+        makeBridge();
+
+        crossBridge();
+
+        showResult();
     }
 
     public void makeBridge(){
