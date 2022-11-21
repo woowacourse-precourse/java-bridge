@@ -9,7 +9,8 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
+    private final int MINIMUM_BRIDGE_LENGTH = 3;
+    private final int MAXIMUM_BRIDGE_LENGTH = 20;
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private final List<String> DIRECTIONS = newArrayList(
             Direction.DOWN.toString(), Direction.UP.toString());
@@ -33,7 +34,7 @@ public class BridgeMaker {
     }
 
     private void validateLengthOfBridge(int size) {
-        if (size < 3 || size >20) {
+        if (size < MINIMUM_BRIDGE_LENGTH || size > MAXIMUM_BRIDGE_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
