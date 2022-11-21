@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.service.BridgeGenerateService;
 import bridge.domain.GameCommand;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 /**
@@ -12,16 +13,22 @@ public class BridgeGame {
 
     private static List<String> bridge;
 
+    private final OutputView outputView;
     private final InputView inputView;
     private final BridgeGenerateService bridgeGenerateService;
 
-    public BridgeGame(InputView inputView, BridgeGenerateService bridgeGenerateService) {
+    public BridgeGame(OutputView outputView,
+                      InputView inputView,
+                      BridgeGenerateService bridgeGenerateService) {
+        this.outputView = outputView;
         this.inputView = inputView;
         this.bridgeGenerateService = bridgeGenerateService;
     }
 
-    private List<String> generateBridge(int size) {
-        return bridgeGenerateService.generateBridgeBySize(size);
+    private List<String> generateBridge() {
+        outputView.printBridgeSizeInputNotice();
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
     private boolean move(String moving, int position) {
@@ -32,11 +39,6 @@ public class BridgeGame {
         return inputView.readGameCommand();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     private boolean retry(String gameCommand) {
         return gameCommand.equals(GameCommand.RESTART.getCommand());
     }
