@@ -2,7 +2,7 @@ package bridge.domain.bridge;
 
 public class BridgeSize {
 
-    private int size;
+    private final int size;
 
     public BridgeSize(int size) {
         validate(size);
