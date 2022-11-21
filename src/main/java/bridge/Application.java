@@ -26,7 +26,11 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        BridgeGame game = gameProcess(bridgeMaker, inputView, outputView);
-        outputView.printResult(game, game.getRetries());
+        try {
+            BridgeGame game = gameProcess(bridgeMaker, inputView, outputView);
+            outputView.printResult(game, game.getRetries());
+        } catch (IllegalArgumentException exception) {
+            System.out.printf("[ERROR] %s", exception.getMessage());
+        }
     }
 }
