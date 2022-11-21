@@ -16,16 +16,35 @@ public class Controller {
         outputView.printGameStart();
         tryInputBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
+        tryInputBridgeUpOrDown();
+    }
 
-        command = inputView.readMoving();
-        bridgeCount = 0;
-
+    private void tryInputBridgeUpOrDown() {
+        do {
+            command = inputView.readMoving();
+        } while (validateUpOrDown(command));
     }
 
     private void tryInputBridgeSize() {
         do {
             bridgeSize = inputView.readBridgeSize();
         } while (validateNumberAndRange(bridgeSize));
+    }
+
+    private boolean validateUpOrDown(String command) {
+        try {
+            isUpOrDown(command);
+        }catch(IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return true;
+        }
+        return false;
+    }
+
+    private void isUpOrDown(String command) {
+        if(!command.equals("U") && !command.equals("D")) {
+            throw Exceptions.U_OR_D_EXCEPTION.getException();
+        }
     }
 
     private boolean validateNumberAndRange(String bridgeSize) {
