@@ -41,7 +41,7 @@ public class BridgeGame {
     }
 
     public boolean retry(String gameCommand) {
-        if (gameCommand.equals(AvailableInput.get(AvailableInput.RETRY_GAME))) {
+        if (gameCommand.equals(AvailableInput.getRetryCommandValue())) {
             initialize_game();
             addTrial();
             return true;

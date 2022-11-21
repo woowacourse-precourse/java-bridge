@@ -1,14 +1,14 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import exceptionHandler.BridgeLengthException;
+import exceptionHandler.BridgeSizeException;
 import exceptionHandler.InputException;
 
 public class InputView {
 
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        BridgeLengthException.validate(bridgeSize);
+        BridgeSizeException.validate(bridgeSize);
         return stringToInteger(bridgeSize);
     }
 

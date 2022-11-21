@@ -10,7 +10,7 @@ import java.util.List;
 public class OutputView {
     public void printMap(List<List<String>> map) {
         map.stream().forEach(line -> {
-                    printBridge(String.join(" | ", line));
+                    printBridge(String.join(UserInterfaceSymbol.get(UserInterfaceSymbol.BRIDGE_DELIMITER), line));
                 });
     }
 

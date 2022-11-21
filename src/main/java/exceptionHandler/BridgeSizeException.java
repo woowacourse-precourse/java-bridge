@@ -20,7 +20,7 @@ public class BridgeSizeException {
     }
 
     private static void validateMinimumRange(int size) {
-        if (size < AvailableInput.getBridgeSizeRange(AvailableInput.BRIDGE_MINIMUM_SIZE)) {
+        if (size < AvailableInput.getBridgeMinimumSizeValue()) {
             throw new IllegalArgumentException(
                     ExceptionMessage.getMessage(ExceptionMessage.SMALLER_THAN_MINIMUM_BRIDGE_LENGTH)
             );
@@ -28,7 +28,7 @@ public class BridgeSizeException {
     }
 
     private static void validateMaximumRange(int size) {
-        if (size > AvailableInput.getBridgeSizeRange(AvailableInput.BRIDGE_MAXIMUM_SIZE)) {
+        if (size > AvailableInput.getBridgeMaximumSizeValue()) {
             throw new IllegalArgumentException(
                     ExceptionMessage.getMessage(ExceptionMessage.BIGGER_THAN_MAXIMUM_BRIDGE_LENGTH)
             );
