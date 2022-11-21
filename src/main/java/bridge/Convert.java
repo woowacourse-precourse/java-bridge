@@ -5,8 +5,13 @@ public class Convert {
   
   public static String convert(int in) throws IllegalArgumentException{
     try{
-      String temp = String.valueOf(in);
-      return temp;
+      if(in == 0){
+        return "D";
+      }
+      if(in == 1){
+        return "U";
+      }
+      throw illegalArgumentException;
     }
     catch(Exception e){
       throw illegalArgumentException;
