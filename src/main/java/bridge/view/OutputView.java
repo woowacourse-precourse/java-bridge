@@ -1,9 +1,9 @@
 package bridge.view;
 
+import bridge.model.BridgeGame;
 import bridge.model.Moving;
 import bridge.model.Player;
 import bridge.model.PlayerStatus;
-import bridge.service.BridgeGame;
 
 import java.util.List;
 
