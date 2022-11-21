@@ -14,7 +14,6 @@ public class BridgeGameSystem {
         startGame();
         int bridgeSize = BridgeGame.getBridgeSize();
         List<String> bridge = BridgeGame.getBridge(bridgeSize);
-        System.out.println(bridge);
         boolean success = playGame(bridge, bridgeSize);
         outputView.printResult(tryCount, success);
     }
