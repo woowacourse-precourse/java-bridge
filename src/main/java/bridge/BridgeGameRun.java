@@ -16,6 +16,18 @@ public class BridgeGameRun {
         this.outputView = outputView;
     }
 
+    public void run() {
+        outputView.printGameStart();
+
+        String bridgeSize = inputView.readBridgeSize();
+        int size = getNumberToBridgeSize(bridgeSize);
+        inputValidation.readBridgeSizeValidation(size);
+
+        bridgeGameGenerate(size);
+        bridgeGameStart();
+        bridgeGameEnd();
+    }
+
     private void bridgeGameGenerate(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
