@@ -1,11 +1,16 @@
 package bridge.domain;
 
+import static org.assertj.core.util.Lists.newArrayList;
+
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final List<String> PROGRESS_COMMANDS = newArrayList(
+            Progress.RETRY.toString(), Progress.QUIT.toString());
+
     private List<String> bridge;
     private Player player;
     private int trial;
@@ -54,7 +59,7 @@ public class BridgeGame {
      */
     public boolean retry(String command) {
         validateCommand(command);
-        if (command.equals("R")) {
+        if (Progress.RETRY.toString().equals(command)) {
             trial += 1;
             return true;
         }
@@ -62,7 +67,7 @@ public class BridgeGame {
     }
 
     private void validateCommand(String command) {
-        if (!List.of("R", "Q").contains(command)) {
+        if (!PROGRESS_COMMANDS.contains(command)) {
             throw new IllegalArgumentException("[ERROR] R(재시작) 또는 Q(종료)만 입력할 수 있습니다.");
         }
     }
