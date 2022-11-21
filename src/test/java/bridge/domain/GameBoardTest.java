@@ -18,14 +18,14 @@ class GameBoardTest extends NsTest {
 
     @BeforeEach
     void setup() {
-        gameBoard1 = new GameBoard(List.of(MOVING_PASS, EMPTY, MOVING_FAIL));
-        gameBoard2 = new GameBoard(List.of(EMPTY, MOVING_PASS, EMPTY));
-        gameBoard3 = new GameBoard(List.of(EMPTY, MOVING_FAIL, MOVING_PASS));
+        gameBoard1 = new GameBoard(List.of(MOVE_PASS, EMPTY, MOVE_FAIL));
+        gameBoard2 = new GameBoard(List.of(EMPTY, MOVE_PASS, EMPTY));
+        gameBoard3 = new GameBoard(List.of(EMPTY, MOVE_FAIL, MOVE_PASS));
     }
 
     @DisplayName("이동 결과 입력 테스트")
     @Test
-    void addMovingResultTest() {
+    void addMoveResultTest() {
         assertSimpleTest(() -> {
             run();
             assertThat(output()).contains("[ O |   | X ]");

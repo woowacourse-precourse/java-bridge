@@ -1,16 +1,16 @@
 package bridge.domain;
 
-import static bridge.constant.Constants.BridgeSign.MOVING_FAIL;
-import static bridge.constant.Constants.BridgeSign.MOVING_PASS;
+import static bridge.constant.Constants.BridgeSign.MOVE_FAIL;
+import static bridge.constant.Constants.BridgeSign.MOVE_PASS;
 
-public enum MovingResult {
-    PASS(MOVING_PASS, false),
-    FAIL(MOVING_FAIL, true);
+public enum MoveResult {
+    PASS(MOVE_PASS, false),
+    FAIL(MOVE_FAIL, true);
 
     private final String result;
     private final boolean isGameLose;
 
-    MovingResult(String result, boolean isGameLose) {
+    MoveResult(String result, boolean isGameLose) {
         this.result = result;
         this.isGameLose = isGameLose;
     }

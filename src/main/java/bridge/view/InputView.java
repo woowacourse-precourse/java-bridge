@@ -36,9 +36,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        String movingDirection = Console.readLine();
-        validateDirection(movingDirection);
-        return movingDirection;
+        String moveDirection = Console.readLine();
+        validateDirection(moveDirection);
+        return moveDirection;
     }
 
     /**

@@ -13,8 +13,8 @@ public class GameBoard {
         this.gameBoard = gameBoard;
     }
 
-    public void addMovingResult(String movingResult) {
-        gameBoard.add(movingResult);
+    public void addMoveResult(String moveResult) {
+        gameBoard.add(moveResult);
     }
 
     public StringJoiner createMap() {

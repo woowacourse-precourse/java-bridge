@@ -66,7 +66,7 @@ public class OutputView {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
-    public static void printInputMovingDirectionMessage() {
+    public static void printInputMoveDirectionMessage() {
         System.out.println(INPUT_DIRECTION_MESSAGE);
     }
 

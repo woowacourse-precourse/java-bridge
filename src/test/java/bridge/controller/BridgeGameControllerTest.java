@@ -8,8 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static bridge.constant.Constants.BridgeSign.DOWN;
-import static bridge.constant.Constants.Error.INPUT_VALUE_FORMAT_ERROR_MESSAGE;
-import static bridge.constant.Constants.Error.MOVE_DIRECTION_ERROR_MESSAGE;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,7 +46,7 @@ class BridgeGameControllerTest extends NsTest {
     @DisplayName("입력받은 이동방향이 U 또는 D가 아닌 경우")
     @ParameterizedTest
     @ValueSource(strings = {"z", "w", "ddd", "adawdaw", "AWDW"})
-    void movingDirectionErrorTest(String direction) {
+    void moveDirectionErrorTest(String direction) {
         assertRandomNumberInRangeTest(() -> {
             runException("3", direction);
             assertThat(output()).contains(ERROR_PREFIX);

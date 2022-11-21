@@ -28,7 +28,7 @@ public class BridgeGameController {
 
     private void moveOnBridge() {
         for (String correctDirection : bridge.getBridge()) {
-            boolean isGameLose = bridgeGame.move(correctDirection, inputMovingDirection());
+            boolean isGameLose = bridgeGame.move(correctDirection, inputMoveDirection());
             List<GameBoard> gameBoards = bridgeGame.getGameBoards();
             printMap(gameBoards.get(0), gameBoards.get(1));
 
@@ -73,17 +73,17 @@ public class BridgeGameController {
         return bridge;
     }
 
-    private String inputMovingDirection() {
-        printInputMovingDirectionMessage();
-        String movingDirection;
+    private String inputMoveDirection() {
+        printInputMoveDirectionMessage();
+        String moveDirection;
 
         try {
-            movingDirection = readMoving();
+            moveDirection = readMoving();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            movingDirection = inputMovingDirection();
+            moveDirection = inputMoveDirection();
         }
-        return movingDirection;
+        return moveDirection;
     }
 
     private boolean checkRetry() {
