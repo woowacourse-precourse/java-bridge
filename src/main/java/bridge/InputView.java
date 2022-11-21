@@ -26,8 +26,8 @@ public class InputView {
         return gameCommand;
     }
 
-    private void validateBridgeSize(String bridgeSize) throws IllegalArgumentException {
-        if (!Pattern.matches("[0-9]]+", bridgeSize)) {
+    private void validateBridgeSize(String bridgeSize) {
+        if (!Pattern.matches("[0-9]+", bridgeSize)) {
             throw new IllegalArgumentException();
         }
         if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {

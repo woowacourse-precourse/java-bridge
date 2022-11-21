@@ -59,3 +59,7 @@
 ## BridgeMaker
 
 - [x]  다리를 만든다.
+
+## BridgeGameProcessor
+
+- [x] 유효한 발판을 밟을 때 까지 게임을 실행시킨다.  
