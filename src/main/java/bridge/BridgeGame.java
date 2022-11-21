@@ -15,7 +15,6 @@ public class BridgeGame {
 	private final Bridge bridge;
 	private final int totalPhase;
 	private int currentPhase;
-	Pause pause = new Pause();
 
 	/**
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -36,7 +35,7 @@ public class BridgeGame {
 			return;
 		}
 		if (!isMovable(bridge, userSelectedCell)) {
-			pause.setPause();
+			Pause.setPause();
 		}
 	}
 
@@ -51,12 +50,12 @@ public class BridgeGame {
 	 */
 	public void retry() {
 		currentPhase = 0;
-		pause.unsetPause();
+		Pause.unsetPause();
 	}
 
 	public void end() {
 		currentPhase = totalPhase;
-		pause.unsetPause();
+		Pause.unsetPause();
 	}
 
 	public boolean isEnd() {

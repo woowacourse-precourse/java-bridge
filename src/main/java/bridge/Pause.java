@@ -3,27 +3,27 @@ package bridge;
 public class Pause {
 	private static boolean paused = false;
 
-	public void setPause() {
+	public static void setPause() {
 		if (whenNotPaused()) {
 			paused = true;
 		}
 	}
 
-	public void unsetPause() {
+	public static void unsetPause() {
 		if (whenPaused()) {
 			paused = false;
 		}
 	}
 
-	private boolean whenNotPaused() {
+	private static boolean whenNotPaused() {
 		return !paused;
 	}
 
-	private boolean whenPaused() {
+	private static boolean whenPaused() {
 		return paused;
 	}
 
-	public boolean isPaused() {
+	public static boolean isPaused() {
 		return paused;
 	}
 }

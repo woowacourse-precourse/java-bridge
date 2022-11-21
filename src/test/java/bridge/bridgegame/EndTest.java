@@ -17,7 +17,6 @@ public class EndTest {
 	Bridge bridgeLetters = new Bridge(List.of(UP, DOWN, UP, DOWN, UP));
 	int bridgeLength = 5;
 	BridgeGame bridgeGame = new BridgeGame(bridgeLetters, bridgeLength);
-	Pause pause = new Pause();
 
 	@DisplayName("게임 진행 중 게임 종료 여부 확인")
 	@Test
@@ -27,14 +26,14 @@ public class EndTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (pause.isPaused()) {
+		if (Pause.isPaused()) {
 			bridgeGame.end();
 		}
 
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isEnd()).isTrue(),
-			() -> assertThat(pause.isPaused()).isFalse()
+			() -> assertThat(Pause.isPaused()).isFalse()
 		);
 	}
 
@@ -54,14 +53,14 @@ public class EndTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (pause.isPaused()) {
+		if (Pause.isPaused()) {
 			bridgeGame.end();
 		}
 
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isEnd()).isTrue(),
-			() -> assertThat(pause.isPaused()).isFalse()
+			() -> assertThat(Pause.isPaused()).isFalse()
 		);
 	}
 }
