@@ -74,4 +74,16 @@ public class OutputView {
         printSuccess(check);
         System.out.println("총 시도한 횟수: "+gameCount);
     }
+
+    public boolean checkSuccess(List<String> userBridge, List<String> answerBridge){
+        if(userBridge.size()!=answerBridge.size()){
+            return false;
+        }
+        for(int index=0;index<userBridge.size();index++){
+            if(userBridge.get(index)!=answerBridge.get(index)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
