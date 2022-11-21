@@ -1,13 +1,13 @@
 package view;
 
 import bridge.Direction;
-
 import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
 
     public static void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -19,6 +19,13 @@ public class OutputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
+    public static void printRestartStatusMessage() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    public static void printFinalResultMessage() {
+
+    }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -26,10 +33,6 @@ public class OutputView {
      */
 
     public static void printMap(List<String> movingFloorDataSet, List<String> passDataSet, int dataSetSize) {
-        System.out.println(movingFloorDataSet);
-        System.out.println(passDataSet);
-        System.out.println(dataSetSize);
-
         StringBuilder firstFloorBridge = new StringBuilder("[");
         StringBuilder secondFloorBridge = new StringBuilder("[");
         for(int stage = 0; stage < dataSetSize; stage++) {
@@ -41,11 +44,13 @@ public class OutputView {
             }
         }
         addEndBridge(firstFloorBridge,secondFloorBridge);
-        System.out.println("//////");
+        printFloor(firstFloorBridge, secondFloorBridge);
+    }
+
+    private static void printFloor(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {
         System.out.println(firstFloorBridge);
         System.out.println(secondFloorBridge);
-
-        System.out.println("//////");
+        System.out.println();
     }
 
     private static void addBrinkBridge(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {

@@ -24,7 +24,8 @@ public class Controller {
                 stage--;
             }
         }
-        System.out.println(gameData.getPassDataSet());
-        System.out.println(gameData.getMovingFloorDataSet());
+
+
+        OutputView.printMap(gameData.getMovingFloorDataSet(),gameData.getPassDataSet(), gameData.getDataSetSize());
     }
 }
