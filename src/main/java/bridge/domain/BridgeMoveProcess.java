@@ -11,19 +11,18 @@ public class BridgeMoveProcess {
     private List<Boolean> upState = new ArrayList<>();
     private List<Boolean> downState = new ArrayList<>();
     private InputView inputView = new InputView();
-    int idx=0;
+    int idx = 0;
 
 
-    public int moveProcess(List<String> bridgeState, int bridgeSize){
+    public BridgePrinting moveProcess(List<String> bridgeState, int bridgeSize) {
         clearInfo();
         while (idx < bridgeSize && !BridgePrinting.isMoveStop()) {
-            System.out.println("bridgeState = " + bridgeState); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할, 제출 전 꼭 삭제!
             moving.add(inputView.readMoving());
             setPrintState(upState, downState, convertNowIndex(bridgeState.get(idx)));
             makeUserBridge(upState, downState, moving.get(idx));
             idx++;
         }
-        return idx;
+        return resultUserBridge(upState, downState);
     }
 
     public void clearInfo() {
@@ -46,10 +45,17 @@ public class BridgeMoveProcess {
         }
     }
 
-    private void makeUserBridge(List<Boolean> upState  , List<Boolean> downState,
+    public BridgePrinting makeUserBridge(List<Boolean> upState, List<Boolean> downState,
         String nowIndex) {
-        BridgePrinting bridgePrinting = new BridgePrinting(upState, downState, convertNowIndex(nowIndex));
+        BridgePrinting bridgePrinting = new BridgePrinting(upState, downState);
+        bridgePrinting.addTraceLocation(convertNowIndex(nowIndex));
         bridgePrinting.makeList();
+        return bridgePrinting;
+    }
+
+    public BridgePrinting resultUserBridge(List<Boolean> upState, List<Boolean> downState) {
+        BridgePrinting bridgePrinting = new BridgePrinting(upState, downState);
+        return bridgePrinting;
     }
 
     private int convertNowIndex(String nowIndex) {

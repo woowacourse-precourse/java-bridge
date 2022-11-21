@@ -21,25 +21,25 @@ public class BridgeGame {
      */
 
     public void start(List<String> bridgeState, int bridgeSize) {
-        int moveIndex = move(bridgeState, bridgeSize);
-        afterMove(bridgeState, bridgeSize,moveIndex);
+        BridgePrinting bridgePrinting = move(bridgeState, bridgeSize);
+        afterMove(bridgeState, bridgeSize, bridgePrinting);
     }
 
-    public int move(List<String> bridgeState, int bridgeSize) {
-        int idx = bridgeMoveProcess.moveProcess(bridgeState, bridgeSize);
-        return idx;
+    public BridgePrinting move(List<String> bridgeState, int bridgeSize) {
+        BridgePrinting bridgePrinting = bridgeMoveProcess.moveProcess(bridgeState, bridgeSize);
+        return bridgePrinting;
     }
 
 
-    public void afterMove(List<String> bridgeState, int bridgeSize, int index) {
-        if (bridgeDestination.isReachFinal(bridgeSize, index, gameCount)) {
+    public void afterMove(List<String> bridgeState, int bridgeSize, BridgePrinting bridgePrinting) {
+        if (bridgeDestination.isReachFinal(bridgeSize,  gameCount, bridgePrinting)) {
             return;
         }
         if (bridgeDestination.judgeRestartOrOver()) {
             retry(bridgeSize, bridgeState);
             return;
         }
-        bridgeDestination.setQuit(bridgeSize, index, gameCount);
+        bridgeDestination.setQuit(bridgeSize,  gameCount, bridgePrinting);
     }
 
 
