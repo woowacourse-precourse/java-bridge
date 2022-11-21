@@ -1,12 +1,12 @@
 package bridge;
 
-import bridge.condition.Condition;
 import bridge.condition.ConditionGenerator;
 import bridge.enums.SystemOperation;
+import bridge.exception.NotAllowedDirectionException;
+import bridge.exception.NotAllowedSystemOperationException;
+import bridge.exception.OutOfRangeException;
 import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.List;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -29,48 +29,42 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
-        String input = Console.readLine();
-        List<Condition> conditions = ConditionGenerator.getBridgeSizeCondition();
-
-        Condition notPassCondition = Validator.getNotPassCondition(conditions, input);
-
-        if (notPassCondition != null) {
-            throw new IllegalArgumentException();
+    public int readBridgeSize() {
+        try {
+            String input = Console.readLine();
+            Validator.validateConditions(ConditionGenerator.getBridgeSizeCondition(), input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(new OutOfRangeException(e));
+            return readBridgeSize();
         }
-
-        return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
-        String input = Console.readLine();
-        List<Condition> conditions = ConditionGenerator.getGameActionCondition();
-
-        Condition notPassCondition = Validator.getNotPassCondition(conditions, input);
-
-        if (notPassCondition != null) {
-            throw new IllegalArgumentException();
+    public String readMoving() {
+        try {
+            String input = Console.readLine();
+            Validator.validateConditions(ConditionGenerator.getGameActionCondition(), input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(new NotAllowedDirectionException(e));
+            return readMoving();
         }
-
-        return input;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static SystemOperation readGameCommand() {
-        String input = Console.readLine();
-        List<Condition> conditions = ConditionGenerator.getSystemActionCondition();
-
-        Condition notPassCondition = Validator.getNotPassCondition(conditions, input);
-
-        if (notPassCondition != null) {
-            throw new IllegalArgumentException();
+    public SystemOperation readGameCommand() {
+        try {
+            String input = Console.readLine();
+            Validator.validateConditions(ConditionGenerator.getSystemActionCondition(), input);
+            return SystemOperation.findByValue(input);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(new NotAllowedSystemOperationException(e));
+            return readGameCommand();
         }
-
-        return SystemOperation.valueOf(input);
     }
 }
