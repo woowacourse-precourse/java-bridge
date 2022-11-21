@@ -42,20 +42,20 @@ public class InputHandlerImpl implements InputHandler {
     }
 
     private void validateBridgeLength(int length) {
-        if (length < 2 || length > 20) {
+        if (length < 3 || length > 20) {
             throw new IllegalArgumentException(ErrorMessageConstant.INVALID_BRIDGE_LENGTH);
         }
     }
 
-    void validateMoving(String command) {
-        if (command.matches("^[UD]$")) {
+    private void validateMoving(String command) {
+        if (!command.matches("^[UD]$")) {
             throw new IllegalArgumentException(ErrorMessageConstant.INVALID_MOVING_COMMAND);
         }
     }
 
 
-    void validateGameCommand(String command) {
-        if (command.matches("^[RQ]$")) {
+    private void validateGameCommand(String command) {
+        if (!command.matches("^[RQ]$")) {
             throw new IllegalArgumentException(ErrorMessageConstant.INVALID_GAME_OVER_CONTROL_COMMAND);
         }
     }
