@@ -18,7 +18,7 @@ public class BridgeGame {
     }
 
     public boolean checkGameCompletion(Player player) {
-        return bridge.size() == player.getPosition();
+        return bridge.size() - 1 == player.getPosition();
     }
 
     /**
