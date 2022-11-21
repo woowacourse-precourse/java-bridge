@@ -20,7 +20,7 @@ public class Application {
                 if (bridgeGame.hasSucceeded()) {
                     break;
                 }
-                if (!bridgeGame.retry(InputView.readGameCommand())) { // 중간에 실패한 경우
+                if (!bridgeGame.retry(InputView.readGameCommand())) {
                     break;
                 }
                 bridgeGame.setPlayer(new Player());

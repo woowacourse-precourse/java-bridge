@@ -20,11 +20,11 @@ public class Map {
             mark = Mark.BLOCK.getMark();
         }
 
-        if (direction.equals("U")) {
+        if (direction.equals(Direction.UP.toString())) {
             upperPath.add(mark);
             lowerPath.add(Mark.UNKNOWN.getMark());
         }
-        if (direction.equals("D")) {
+        if (direction.equals(Direction.DOWN.toString())) {
             upperPath.add(Mark.UNKNOWN.getMark());
             lowerPath.add(mark);
         }

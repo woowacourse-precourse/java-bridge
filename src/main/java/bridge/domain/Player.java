@@ -1,10 +1,13 @@
 package bridge.domain;
 
+import static org.assertj.core.util.Lists.newArrayList;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private final List<String> DIRECTIONS = new ArrayList<>(List.of(Direction.D.toString(), Direction.U.toString()));
+    private final List<String> DIRECTIONS = newArrayList(
+            Direction.DOWN.toString(), Direction.UP.toString());
     private List<String> path;
     private Map map;
 

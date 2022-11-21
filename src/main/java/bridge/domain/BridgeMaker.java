@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static org.assertj.core.util.Lists.newArrayList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,8 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final List<String> DIRECTIONS = new ArrayList<>(List.of(Direction.D.toString(), Direction.U.toString()));
+    private final List<String> DIRECTIONS = newArrayList(
+            Direction.DOWN.toString(), Direction.UP.toString());
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
