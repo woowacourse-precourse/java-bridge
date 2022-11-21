@@ -36,17 +36,7 @@ public class Controller {
     private void playGame() {
         move();
         String playResult = service.getPlayResult();
-        if (playResult.equals(GameState.WIN.name())) {
-            printFinalResult();
-        }
-
-        if (playResult.equals(GameState.LOOSE.name())) {
-            decideRetry();
-        }
-
-        if (playResult.equals(GameState.PLAYING.name())) {
-            playGame();
-        }
+        proceedDependsOnResult(playResult);
     }
 
     private void move() {
@@ -98,5 +88,19 @@ public class Controller {
     private void retry() {
         service.resetForRetry();
         playGame();
+    }
+
+    private void proceedDependsOnResult(String playResult) {
+        if (GameState.WIN.isEqual(playResult)) {
+            printFinalResult();
+        }
+
+        if (GameState.LOOSE.isEqual(playResult)) {
+            decideRetry();
+        }
+
+        if (GameState.PLAYING.isEqual(playResult)) {
+            playGame();
+        }
     }
 }
