@@ -21,23 +21,25 @@ public class BridgeGame {
         this.bridge = bridge;
         this.top = new ArrayList<>();
         this.bottom = new ArrayList<>();
-        this.playCount = 0;
+        this.playCount = 1;
     }
 
-    public void move(int idx, String input) {
+    public boolean move(int idx, String input) {
         if (bridge.isMatch(idx, input)) {
             pass(input);
+            return true;
         }
         fail(input);
+        return false;
     }
 
     public boolean retry(String input) {
         if (input.equals(RETRY)) {
             top.clear();
             bottom.clear();
+            playCount += 1;
             return true;
         }
-        playCount += 1;
         return false;
     }
 
@@ -64,7 +66,9 @@ public class BridgeGame {
     }
 
     public boolean isClear() {
-        return top.size() == bridge.size();
+        long topCount = top.stream().filter(t -> t.equals(CROSSABLE)).count();
+        long bottomCount = this.bottom.stream().filter(b -> b.equals(CROSSABLE)).count();
+        return topCount + bottomCount == bridge.size();
     }
 
     public int getBridgeSize() {
