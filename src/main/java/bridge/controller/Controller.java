@@ -31,6 +31,10 @@ public class Controller {
             TrialResult trialResult = bridgeGame.move(moving);
             trialResults.add(trialResult);
             outputView.printMap(trialResults);
+
+            if (!trialResult.wasSuccessful()) {
+                String command = inputView.readGameCommand();
+            }
         }
     }
 
