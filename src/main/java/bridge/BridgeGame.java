@@ -14,18 +14,23 @@ public class BridgeGame {
     private Bridge bridge;
 
     public void run() {
-        try {
-            bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
-            runUntilGameEnds(true);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        outputView.printInitMessage();
+        assertAvailableBridge();
+        runUntilGameEnds(true);
     }
 
+    private void assertAvailableBridge() {
+        try  {
+            bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            assertAvailableBridge();
+        }
+    }
     private void runUntilGameEnds(boolean keepRunning) {
         while (keepRunning) {
-            if (!move()) {
-                keepRunning = retry();
+            if (!assertAvailableMove()) {
+                keepRunning = assertRetry();
             }
             if (bridge.gameWon()) {
                 outputView.printResult(bridge);
@@ -34,6 +39,27 @@ public class BridgeGame {
         }
     }
 
+    private boolean assertAvailableMove() {
+        boolean moveSuccessful;
+        try {
+            moveSuccessful = move();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            moveSuccessful = assertAvailableMove();
+        }
+        return moveSuccessful;
+    }
+
+    private boolean assertRetry() {
+        boolean retry;
+        try {
+            retry = retry();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            retry = assertRetry();
+        }
+        return retry;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
