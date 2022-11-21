@@ -27,4 +27,13 @@ class PlayerTest {
         MoveResult move = player.move(bridge, Direction.U);
         assertThat(move.getDrawType().getDrawCharacter()).isEqualTo("O");
     }
+
+    @Test
+    void 재시작을_네번하면_총_시도_횟수는_5번이여야_한다() {
+        assertThat(player.getTryCount()).isEqualTo(1);
+        for (int restartCount = 0; restartCount < 4; restartCount++) {
+            player.initialize();
+        }
+        assertThat(player.getTryCount()).isEqualTo(5);
+    }
 }
