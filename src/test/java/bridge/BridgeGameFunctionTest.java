@@ -1,10 +1,8 @@
 package bridge;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.controller.BridgeGameController;
 import bridge.model.BridgeGame;
 import bridge.model.Record;
+import bridge.view.InputValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -39,11 +37,10 @@ public class BridgeGameFunctionTest {
         }
 
         @DisplayName("유효한 범위 밖의 숫자를 입력하면 오류가 발생한다.")
-        @ValueSource(strings = {"-1", "100", "1000000000000000"})
+        @ValueSource(ints = {-1, 21, 1000})
         @ParameterizedTest
-        void failGetBridge(String input) {
-            BridgeGameController bridgeGameController = new BridgeGameController();
-            assertThatThrownBy(() -> bridgeGameController.start(input, record))
+        void failGetBridge(int input) {
+            assertThatThrownBy(() -> InputValidation.isValidBridgeSize(input))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -61,12 +58,13 @@ public class BridgeGameFunctionTest {
                     .isInstanceOf(AssertionError.class);  // 예외가 발생하지 않으므로 AssertionError 발생
         }
 
+
+
         @DisplayName("유효하지 않은 방향을 입력하면 오류가 발생한다.")
         @ValueSource(strings = {"u", "d", "KKK", "%%"})
-        @ParameterizedTest
+        @ParameterizedTest()
         void failMovingDirection(String moving) {
-            BridgeGame bridgeGame = new BridgeGame();
-            assertThatThrownBy(() -> bridgeGame.move(record, moving))
+            assertThatThrownBy(() -> InputValidation.isValidDirection(moving))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -89,8 +87,8 @@ public class BridgeGameFunctionTest {
         @ParameterizedTest
         void failGetCommandDirection(String command) {
             BridgeGame bridgeGame = new BridgeGame();
-            assertThatThrownBy(() -> bridgeGame.retry(record, command))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThat(bridgeGame.retry(record, command))
+                    .isEqualTo(false);
         }
     }
 }
