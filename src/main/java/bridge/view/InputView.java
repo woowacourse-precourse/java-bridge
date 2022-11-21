@@ -22,7 +22,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         requestInput(INPUT_BRIDGE_SIZE);
-        String input = readLine();
+        return validateSize(readLine());
+    }
+
+    private int validateSize(String input) {
         try {
             InputValidator.isValidSize(input);
             return Integer.parseInt(input);
@@ -38,7 +41,10 @@ public class InputView {
      */
     public String readMoving() {
         requestInput(INPUT_MOVING);
-        String inputMoving = readLine();
+        return validateMoving(readLine());
+    }
+
+    private String validateMoving(String inputMoving) {
         try {
             InputValidator.isValidMoving(inputMoving);
             return inputMoving;
@@ -53,7 +59,10 @@ public class InputView {
      */
     public String readGameCommand() {
         requestInput(INPUT_RETRY);
-        String inputRetry = readLine();
+        return validateGameCommand(readLine());
+    }
+
+    private String validateGameCommand(String inputRetry) {
         try {
             InputValidator.isValidRetry(inputRetry);
             return inputRetry;
