@@ -20,9 +20,9 @@ public class MapMaker {
 
     // boolean의 기본으 false다
     public void addMap(boolean answer){
-        if(answer){
+        if(upState.length()!=0&&downState.length()!=0){
             upState.append(MapView.MAP_MIDDLE);
-            upState.append(MapView.MAP_MIDDLE);
+            downState.append(MapView.MAP_MIDDLE);
         }
         if(answer)
             addMapO(bridge.remove());
@@ -44,12 +44,12 @@ public class MapMaker {
 
     public void addMapX(String input){
         if(input.equals("U")){
-            upState.append(MapView.MAP_X);
-            downState.append(MapView.MAP_BLANK);
-        }
-        if(input.equals("D")){
             upState.append(MapView.MAP_BLANK);
             downState.append(MapView.MAP_X);
+        }
+        if(input.equals("D")){
+            upState.append(MapView.MAP_X);
+            downState.append(MapView.MAP_BLANK);
         }
     }
 

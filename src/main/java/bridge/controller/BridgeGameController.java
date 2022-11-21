@@ -60,7 +60,7 @@ public class BridgeGameController {
                 return bridgeGame.retry(InputView.readGameCommand());
             }
             if (bridgeGame.isEscape()){
-                return false;
+                return gameResult = false;
             }
         }
     }
