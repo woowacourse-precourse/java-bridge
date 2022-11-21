@@ -11,12 +11,12 @@ public class InputView {
     }
     public String readMoving(String direction) {
         emptyCheck(direction);
-        movingCheck(direction);
+        keyWordCheck(direction,"U","D");
         return direction;
     }
     public String readGameCommand(String command) {
         emptyCheck(command);
-        commandCheck(command);
+        keyWordCheck(command,"Q","R");
         return command;
     }
     private void emptyCheck(String input){ //빈 값 확인
@@ -27,11 +27,8 @@ public class InputView {
         Matcher matcher=pattern.matcher(size);
         if(!matcher.matches())  throw new IllegalArgumentException("[ERROR] 입력 값이 숫자가 아닙니다.");
     }
-    private void commandCheck(String command){
-        if(!command.equals("R") && !command.equals("Q")) throw new IllegalArgumentException("[ERROR] 명령어를 잘못 입력했습니다.");
-    }
-    private void movingCheck(String direction){
-        if(!direction.equals("U") && !direction.equals("D")) throw new IllegalArgumentException("[ERROR] 잘못된 입력을 했습니다.");
+    private void keyWordCheck(String command,String checkKeyWordA, String checkKeyWordB){
+        if(!command.equals(checkKeyWordA) && !command.equals(checkKeyWordB)) throw new IllegalArgumentException("[ERROR] 잘못된 입력을 했습니다.");
     }
 }
 /*
