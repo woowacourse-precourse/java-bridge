@@ -11,6 +11,7 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public static final String RETRY_COMMAND = "R";
     private final BridgeMaker bridgeMaker;
     private final InputView inputView;
     private final OutputView outputView;
@@ -19,6 +20,36 @@ public class BridgeGame {
         this.bridgeMaker = bridgeMaker;
         this.inputView = inputView;
         this.outputView = outputView;
+    }
+
+    public void run() {
+        GameStatus gameStatus = GameStatus.startNewGame();
+        System.out.println(Message.INITIAL_MESSAGE.getMessage());
+
+        int bridgeSize = requestBridgeSize();
+        gameStatus.setRealBridge(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
+
+        Result result = playGame(gameStatus);
+        outputView.printResult(gameStatus, result);
+    }
+
+    private Result playGame(GameStatus gameStatus) {
+        Result result = playOneTry(gameStatus);
+        while (!result.isSuccess()) {
+            String gameCommand = requestGameCommand();
+            if (gameCommand.equals(RETRY_COMMAND)) result = retry(gameStatus);
+        }
+        return result;
+    }
+
+    public Result playOneTry(GameStatus gameStatus) {
+        Bridge realBridges = gameStatus.getRealBridge();
+        Bridge selectedBridges = gameStatus.getSelectedBridge();
+        for (int index = 0; index < realBridges.getSize(); index++) {
+            Result result = move(gameStatus);
+            if (!result.isSuccess()) return result;
+        }
+        return Result.success(selectedBridges);
     }
 
     /**
@@ -37,14 +68,6 @@ public class BridgeGame {
         return result;
     }
 
-    public String requestMove() {
-        try {
-            return inputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return requestMove();
-        }
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -57,25 +80,6 @@ public class BridgeGame {
         return playOneTry(gameStatus);
     }
 
-    private boolean requestRetryCommand() {
-        try {
-            return "R".equals(inputView.readGameCommand());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return requestRetryCommand();
-        }
-    }
-
-    public void run() {
-        GameStatus gameStatus = GameStatus.startNewGame();
-        System.out.println(Message.INITIAL_MESSAGE.getMessage());
-
-        int bridgeSize = requestBridgeSize();
-        gameStatus.setRealBridge(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
-
-        Result result = playGame(gameStatus);
-        outputView.printResult(gameStatus, result);
-    }
 
     private int requestBridgeSize() {
         try {
@@ -86,24 +90,21 @@ public class BridgeGame {
         }
     }
 
-    private Result playGame(GameStatus gameStatus) {
-        Result result = playOneTry(gameStatus);
-        while (!result.isSuccess()) {
-            if (requestRetryCommand()) {
-                result = retry(gameStatus);
-            }
+    public String requestMove() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestMove();
         }
-        return result;
     }
 
-
-    public Result playOneTry(GameStatus gameStatus) {
-        Bridge realBridges = gameStatus.getRealBridge();
-        Bridge selectedBridges = gameStatus.getSelectedBridge();
-        for (int index = 0; index < realBridges.getSize(); index++) {
-            Result result = move(gameStatus);
-            if (!result.isSuccess()) return result;
+    private String requestGameCommand() {
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestGameCommand();
         }
-        return Result.success(selectedBridges);
     }
 }
