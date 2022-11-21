@@ -17,11 +17,15 @@ public class InputView {
     private static final List<String> CORRECT_GAME_COMMAND = new ArrayList<>(Arrays.asList("R", "Q"));
     private boolean invalidGameCommand = true;
     private String nextGameCommand;
+    private static final String INITIATION_NOTIFICATION = "다리 건너기 게임을 시작합니다.\n\n다리의 길이를 입력해주세요.";
+    private static final String MOVING_NOTIFICATION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GAME_COMMAND_NOTIFICATION = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(INITIATION_NOTIFICATION);
         while (bridgeLength == null) {
             receiveLength();
         }
@@ -58,6 +62,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(MOVING_NOTIFICATION);
         invalidMoving = true;
         while (invalidMoving) {
             receiveMovingChoice();
@@ -88,6 +93,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        System.out.println(GAME_COMMAND_NOTIFICATION);
         invalidGameCommand = true;
         while (invalidGameCommand) {
             receiveGameCommand();
