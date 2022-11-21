@@ -1,8 +1,5 @@
 package bridge.Domain;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +13,8 @@ public class BridgeGame {
     public List<String> mySelectBridge = new ArrayList<>();
 
     List<String> bridge;
-    int bridgeLen;
 
-    public BridgeGame(List<String> bridge, int bridgeLen){
-        this.bridgeLen = bridgeLen;
+    public BridgeGame(List<String> bridge){
         this.bridge = bridge;
     }
 
@@ -39,7 +34,7 @@ public class BridgeGame {
      */
     public boolean move() {
         int len = mySelectBridge.size();
-        if(len == bridgeLen) {
+        if(len == bridge.size()) {
             gameSuccess = true;
             return false;
         }

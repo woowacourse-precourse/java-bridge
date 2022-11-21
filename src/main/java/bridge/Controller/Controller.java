@@ -33,7 +33,7 @@ public class Controller {
         //다리 생성하기
         List<String> bridge = bridgeMaker.makeBridge(bridgeLen);
 
-        bridgeGame = new BridgeGame(bridge, bridgeLen);
+        bridgeGame = new BridgeGame(bridge);
         //게임 시작
 
         boolean gameContinue = true;
