@@ -28,6 +28,18 @@ public class BridgeGame {
         userMap = compareValue(userMap, userMove, sizeUser);
         return userMap;
     }
+    public List<List<String>> compareValue(List<List<String>> userMap, String userMove, int sizeUser) {
+        if (userMove.equals(randomList.get(sizeUser))) {
+            userMap = exchangeValue(userMap, "O", userMove);
+            readPrintDto.printTable(userMap);
+        } else {
+            List<List<String>> copyMap = getCopyList(userMap);
+            userMap = exchangeValue(userMap, "X", userMove);
+            readPrintDto.printTable(userMap);
+            userMap = retry(copyMap, userMap);
+        }
+        return userMap;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
