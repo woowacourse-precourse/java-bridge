@@ -1,9 +1,8 @@
 package bridge.service;
 
-import bridge.dto.BridgeMapDto;
-import bridge.dto.PlayerDto;
-import bridge.dto.RetryCountDto;
 import bridge.model.entity.*;
+import bridge.model.value.Bridge;
+import bridge.model.value.Move;
 
 import java.util.List;
 
@@ -12,27 +11,24 @@ import static bridge.model.value.MatchMessage.*;
 import static bridge.model.value.RetryMessage.Quit;
 import static bridge.model.value.RetryMessage.Retry;
 
-/**
-
- */
 public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한다.
 
     private Player player;
     private BridgeMap bridgeMap;
-    private  Bridge bridge;
+    private Bridge bridge;
     private RetryCount retryCount;
 
-    public PlayerDto getPlayer() {
-        return PlayerDto.of(player);
+    public Player getPlayer() {
+        return player;
     }
-    public BridgeMapDto getBridgeMap() {
-        return BridgeMapDto.of(bridgeMap);
+    public BridgeMap getBridgeMap() {
+        return bridgeMap;
     }
     public Bridge getBridge() {
         return bridge;
     }
-    public RetryCountDto getRetryCount() {
-        return RetryCountDto.of(retryCount);
+    public RetryCount getRetryCount() {
+        return retryCount;
     }
 
 
@@ -115,7 +111,7 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
             return ;
         }
         player.setAnswer(retry);
-        this.bridgeMap = BridgeMap.of(); // TODO: Refactoring 예정
+        createBridgeMap();
         this.retryCount.upCount();
     }
 }

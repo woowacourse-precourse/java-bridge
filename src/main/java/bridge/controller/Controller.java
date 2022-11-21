@@ -40,7 +40,7 @@ public class Controller {
                 success();
             }
         }
-        printResult(game.success(), game.getBridgeMap(), game.getRetryCount());
+        printResult(game.success(), BridgeMapDto.of(game.getBridgeMap()), RetryCountDto.of(game.getRetryCount()));
         // TODO: Refactoring 해줄것 Dto클래스로 만들어 전달할 것
     }
 
@@ -60,7 +60,7 @@ public class Controller {
     }
 
     public void printState() { // TODO: Refactoring Service 계층에서 변환하여 전달해주자
-        out.printMap(game.getBridgeMap());
+        out.printMap(BridgeMapDto.of(game.getBridgeMap()));
     }
 
     public void retry() {
