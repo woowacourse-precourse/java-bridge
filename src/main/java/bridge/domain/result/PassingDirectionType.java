@@ -19,6 +19,9 @@ public enum PassingDirectionType {
     private static final String DOWN = "D";
     private static final String MOVABLE = "O";
     private static final String NOT_MOVABLE = "X";
+    private static final String DELIMITER = " | ";
+    private static final String PREFIX = "[ ";
+    private static final String SUFFIX = " ]";
     private final String direction;
     private final String isMovable;
     private final boolean isSelected;
@@ -81,6 +84,6 @@ public enum PassingDirectionType {
     public static String reformatTypes(List<PassingDirectionType> types) {
         return types.stream()
                 .map(type -> type.isMovable)
-                .collect(Collectors.joining(" | ", "[ ", " ]"));
+                .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX));
     }
 }
