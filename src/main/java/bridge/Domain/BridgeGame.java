@@ -41,32 +41,28 @@ public class BridgeGame {
         bridgeData.initializeTotalAttempt();
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void move() {
         List<String> bridgeDesignByUser = new ArrayList<>();
+        isGameFinished = false;
         while (!isGameFinished) {
+            retryOrQuit = retry.QUIT;
             String nextStep = inputView.readMoving();
             bridgeDesignByUser.add(nextStep);
             bridgeData.updateBridgeDesignByUser(bridgeDesignByUser);
-            validateNextStep(nextStep, bridgeDesignByUser.size()-1);
-            validateGameSuccessfullyFinished();
-            orderOutputToPrint();
+            validateNextStep(nextStep, bridgeDesignByUser.size() - 1);
+            printGameStatus();
         }
     }
 
-    private void orderOutputToPrint() {
-        if (!isGameSucceed && isGameFinished) { // 실패
-            outputView.printMap(bridgeData);
-        }
-        if (!isGameSucceed && !isGameFinished) { // 진행중
-            outputView.printMap(bridgeData);
-        }
-        if (isGameSucceed && isGameFinished) { // 성공
+    private void printGameStatus() {
+        if (isGameSucceed) { // 성공
             outputView.printResult(bridgeData, SUCCEED);
+        }
+        if (isGameFinished && isGameSucceed == FAILED && retryOrQuit == retry.QUIT) { // 포기
+            outputView.printResult(bridgeData, FAILED);
+        }
+        if (!isGameFinished && retryOrQuit != retry.RETRY && isGameSucceed != SUCCEED) { // 진행중
+            outputView.printMap(bridgeData);
         }
     }
 
@@ -75,10 +71,9 @@ public class BridgeGame {
             isGameSucceed = FAILED;
             isGameFinished = true;
             bridgeData.getBridgeDesignByUser().set(indexOfBridgeEnd, "X");
-            if (retry() == retry.QUIT) {
-                outputView.printResult(bridgeData, FAILED);
-            }
+            retry();
         }
+        validateGameSuccessfullyFinished();
     }
 
     public void validateGameSuccessfullyFinished() {
@@ -88,20 +83,16 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public retry retry() {
+    public void retry() {
         String gameCommand = inputView.readGameCommand();
         if (Objects.equals(gameCommand, "R")) {
             initializeBridgeDesignByUser();
             bridgeData.increaseAttempts();
-            isGameFinished = false;
-            return retry.RETRY;
+            retryOrQuit = retry.RETRY;
         }
-        return retry.QUIT;
+        if (Objects.equals(gameCommand, "Q")) {
+            retryOrQuit = retry.QUIT;
+        }
     }
 
     public void initializeBridgeDesignByUser() {
