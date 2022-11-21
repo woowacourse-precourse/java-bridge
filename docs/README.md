@@ -4,43 +4,45 @@
 
 ![프로그램 흐름 및 페이즈 구분 그림](./process.png)
 
-## 프로그램 흐름 및 이벤트 처리 관련 (Controller)
+## 프로그램 흐름 및 이벤트 처리 관련
 
-### Application
+### Application 
 
-- BridgeGameController 실행
+- 사용자의 어플리케이션 정상 사용 흐름을 정의하는 기능
 
-### BridgeGameController
+### BridgeGameController (Controller)
 
-- 전체 페이즈를 관리하는 기능
-- 시작 페이즈 관리 기능
-- 안전경로 생성 페이즈 관리 기능
-- 경로 이동 페이즈 관리 기능
-- 재시작 질문 페이즈 관리 기능
-- 종료 페이즈 관리 기능
+- 게임 시작 이벤트 관리 기능
+- 난이도 설정 이벤트 관리 기능
+- 사용자 경로 이동 이벤트 관리 기능
+- 게임 재시작/종료 이벤트 관리 기능
+- 게임 종료 이벤트 관리 기능
 
-## 데이터 처리 관련 (Model)
+## 데이터 처리 관련 (Business-Service Layer)
 
-### PlayerPath (Entity-Repository)
+### User (Domain Model)
 - 유효한 사용자의 이동 경로를 저장하는 기능
   - 유효성: 다리 길이와 이동 경로 리스트의 길이는 동일
+- 게임 시도 횟수 관리 기능
+- 다리 다음 칸으로 이동 기능
+- 생존 여부 확인 기능
+- 현재 이동경로 반환 기능
 
-### Bridge (Entity-Repository)
+### Bridge (Domain Model)
 - 다리의 안전경로를 유효하게 캡슐화하는 기능
   - 유효성: 다리 길이와 방향 리스트의 길이는 동일
 - 다리의 안전경로와 사용자의 이동경로의 일치 여부를 확인하는 기능
 
-### BridgeMaker (Random)
+### BridgeMaker (Dependency Injected Factory)
 
 - 주어진 다리 길이만큼 안전경로를 만드는 기능
 
 ### BridgeGame (Service)
 
-- 안전경로 및 사용자 이동 경로 초기화 기능
-- 사용자를 다리 다음 칸으로 이동하는 기능
-- 사용자의 생존 여부 확인 기능
-- 사용자의 현재 이동경로 반환 기능
-- 사용자의 총 시도 횟수 반환 기능
+- 난이도 설정 이벤트의 데이터 처리 기능
+- 사용자 경로 이동 이벤트의 데이터 처리 기능
+- 게임 재시작/종료 이벤트의 데이터 처리 기능
+- 게임 종료 이벤트의 데이터 처리 기능
 
 ### Direction (enum)
 
@@ -48,9 +50,9 @@
 
 ### GameRetry (enum)
 
-- 입출력과 데이터 처리의 재시작/종료 식별 기능
+- Controller와 Model의 재시작/종료 식별 기능
 
-## 입출력 관련 (View-Front)
+## 입출력 관련 (View)
 
 ### InputView
 
