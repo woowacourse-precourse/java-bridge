@@ -7,67 +7,70 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     /**
-     * 람다식을 true 값이 나올 때까지 반복시켜주는 메소드
-     * @param thing true 가 나올 때까지 반복하고 싶은 람다식(Loopable 인터페이스를 받는)
+     * readInput()을 통해 입력된 값을
+     * 인자로 받은 람다식에 대입하여 true 값이 나올 때까지 반복시켜주는 메소드
+     *
+     * @param lambda true 가 나올 때까지 반복하고 싶은 람다식(Loopable 인터페이스를 받는)
      * @return true 값이 나온 입력
      */
-    private static String loop(Loopable thing){
-        String s;
-        boolean a;
+    private String loopUntilValid(Loopable lambda) {
+        String rawInput;
+        boolean isRawInputValid;
         do {
-            s = readInput();
-            a = thing.check(s);
-        }while (!a);
-        return s;
+            rawInput = readInput();
+            isRawInputValid = lambda.check(rawInput);
+        } while (!isRawInputValid);
+        return rawInput;
     }
 
-    private static String readInput(){
+    /**
+     * 사용자의 입력을 받는 메소드
+     * @return 사용자가 입력한 String 값
+     */
+    private String readInput() {
         return Console.readLine();
     }
 
     /**
-     * 다리의 길이를 입력받는다.
+     * 사용자의 입력을 받아 다리 길이를 반환
      */
-    public static int readBridgeSize() {
-        Loopable checkBridgeSizeInput = (s) -> {
+    public int readBridgeSize() {
+        String size = loopUntilValid((input) -> {
             try {
-                return ValidateInput.isAllDigit(s) && ValidateInput.isInRange(s);
-            }catch (IllegalArgumentException e){
+                return ValidateInput.isAllDigit(input) && ValidateInput.isInRange(input);
+            } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
                 return false;
             }
-        };
-        String input = loop(checkBridgeSizeInput);
-        return Integer.parseInt(input);
+        });
+        return Integer.parseInt(size);
     }
 
     /**
-     * 사용자가 이동할 칸을 입력받는다.
+     * 사용자의 입력을 받아 이동할 방향 반환
      */
-    public static String readMoving() {
-        Loopable checkMovementInput = (s) -> {
-          try {
-              return ValidateInput.isUorD(s);
-          }catch (IllegalArgumentException e){
-              System.out.println("[ERROR] " + e.getMessage());
-              return false;
-          }
-        };
-        return loop(checkMovementInput);
+    public String readMoving() {
+        return loopUntilValid((input) -> {
+            try {
+                return ValidateInput.isUorD(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                return false;
+            }
+        });
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
-        Loopable checkGameCommandInput = (s) -> {
-          try {
-              return ValidateInput.isRorQ(s);
-          }catch (IllegalArgumentException e){
-              System.out.println("[ERROR] " + e.getMessage());
-              return false;
-          }
-        };
-        return loop(checkGameCommandInput);
+    public String readGameCommand() {
+        return loopUntilValid((input) -> {
+            try {
+                return ValidateInput.isRorQ(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                return false;
+            }
+        });
     }
 }
