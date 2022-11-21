@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.exception.domain.CompareBridgeSizeException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -56,7 +57,7 @@ public class Bridge {
     }
 
     public List<BridgeShape> bridgeShapes() {
-        return this.bridgeShapes;
+        return Collections.unmodifiableList(this.bridgeShapes);
     }
 
     @Override
