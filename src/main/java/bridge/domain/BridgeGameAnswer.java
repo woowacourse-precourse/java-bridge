@@ -20,6 +20,7 @@ public class BridgeGameAnswer {
         this.answer = convertAnswer(bridge);
     }
 
+    // == 생성 관련 메서드 ==
     private void validate(List<String> bridge) {
         int size = bridge.size();
         if (size < BRIDGE_LOWER_BOUND || size > BRIDGE_UPPER_BOUND) {
@@ -41,5 +42,20 @@ public class BridgeGameAnswer {
         return bridge.stream()
                 .map(Direction::of)
                 .collect(toList());
+    }
+
+    // == public 메서드 ==
+    public MovingResult check(Round round, Direction direction) {
+        validate(round);
+        if (answer.get(round).equals(direction)) {
+            return MovingResult.SUCCESS;
+        }
+        return MovingResult.FAIL;
+    }
+
+    private void validate(Round round) {
+        if (!answer.containsKey(round)) {
+            throw new IllegalArgumentException(ErrorMessage.isInvalidRoundRange());
+        }
     }
 }
