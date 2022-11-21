@@ -1,5 +1,7 @@
 package bridge.model;
 
+import java.util.Objects;
+
 public class TrialCount {
     private final int count;
 
@@ -7,7 +9,7 @@ public class TrialCount {
         this.count = count;
     }
 
-    public static TrialCount initialCount() {
+    public static TrialCount firstTrial() {
         return new TrialCount(1);
     }
 
@@ -17,5 +19,18 @@ public class TrialCount {
 
     public int getCount() {
         return count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TrialCount that = (TrialCount) o;
+        return count == that.count;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(count);
     }
 }

@@ -14,7 +14,7 @@ public class BridgeGame {
 
     public void initialize() {
         player = new Player();
-        trialCount = TrialCount.initialCount();
+        trialCount = TrialCount.firstTrial();
     }
 
     /**
