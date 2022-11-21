@@ -20,7 +20,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(FINAL_RESULT_MESSAGE);
         System.out.println(START_SUFFIX + getTopResult(bridgeGame) + END_SUFFIX);
-        System.out.println(START_SUFFIX + getBottomResult(bridgeGame) + END_SUFFIX + System.lineSeparator());
+        System.out.println(START_SUFFIX + getBottomResult(bridgeGame) + END_SUFFIX);
         System.out.println(SUCCESS_OR_FAILURE + successOrFailure(bridgeGame));
         System.out.println(TOTAL_PLAY_COUNT + bridgeGame.getPlayCount());
     }
