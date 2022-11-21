@@ -15,7 +15,8 @@ public class BridgeMaker {
         List<String> Bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int test = bridgeNumberGenerator.generate();
-            Bridge.add(String.valueOf(test));
+            if (test == 0) Bridge.add("D");
+            if (test == 1) Bridge.add("U");
         }
         return Bridge;
     }
