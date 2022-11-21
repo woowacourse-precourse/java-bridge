@@ -38,7 +38,7 @@ public class OutputView {
 
     private String getResultMessage(List<MoveResult> moveResults) {
         return format(MAP_MESSAGE_FORMAT, moveResults.stream()
-                .map(MoveResult::getInitialLetter)
+                .map(MoveResult::getCommand)
                 .collect(Collectors.joining(MAP_MESSAGE_DELIMITER))
         );
     }

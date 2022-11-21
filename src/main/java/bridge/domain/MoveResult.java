@@ -5,14 +5,14 @@ public enum MoveResult {
     FAIL("X"),
     NOT_MOVE(" ");
 
-    private final String initialLetter;
+    private final String command;
 
-    MoveResult(String initialLetter) {
-        this.initialLetter = initialLetter;
+    MoveResult(String command) {
+        this.command = command;
     }
 
-    public String getInitialLetter() {
-        return initialLetter;
+    public String getCommand() {
+        return command;
     }
 
     public boolean isFail() {
