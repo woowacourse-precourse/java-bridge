@@ -6,9 +6,9 @@ import bridge.service.BridgeGame;
 public class OutputView {
     private static final String UP = "U";
     private static final String BLANK = " ";
-    private static final String SEPARATOR = "|";
-    private static final String OPEN = "[";
-    private static final String CLOSE = "]";
+    private static final String SEPARATOR = " | ";
+    private static final String OPEN = "[ ";
+    private static final String CLOSE = " ]";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String SUCCESS_UI = "O";
@@ -70,22 +70,22 @@ public class OutputView {
 
     private void crossDownBridge(StringBuilder first, StringBuilder second, boolean state) {
         if (state) {
-            first.append(BLANK).append(BLANK).append(BLANK);
-            second.append(BLANK).append(SUCCESS_UI).append(BLANK);
+            first.append(BLANK);
+            second.append(SUCCESS_UI);
             return;
         }
-        first.append(BLANK).append(BLANK).append(BLANK);
-        second.append(BLANK).append(FAIL_UI).append(BLANK);
+        first.append(BLANK);
+        second.append(FAIL_UI);
     }
 
     private void crossUpBridge(StringBuilder first, StringBuilder second, boolean state) {
         if (state) {
-            first.append(BLANK).append(SUCCESS_UI).append(BLANK);
-            second.append(BLANK).append(BLANK).append(BLANK);
+            first.append(SUCCESS_UI);
+            second.append(BLANK);
             return;
         }
-        first.append(BLANK).append(FAIL_UI).append(BLANK);
-        second.append(BLANK).append(BLANK).append(BLANK);
+        first.append(FAIL_UI);
+        second.append(BLANK);
     }
 
     private static void makeSeparator(StringBuilder first, StringBuilder second, int index) {
