@@ -22,10 +22,14 @@
       - [ ] 음수
       - [ ] 0
       - [ ] 2
+      - [ ] 3
       - [ ] 19
+      - [ ] 20
+      - [ ] 21
     - [ ] 다리를 건널 때, 다른 값을 입력한 경우
       - [ ] U, R 외의 문자
       - [ ] 하나의 문자가 아닌 경우
+      - [ ] 공백
       - [ ] 소문자 u, r
       - [ ] 숫자
       - [ ] 한글
@@ -33,6 +37,7 @@
     - [ ] 게임 종료 / 재시도 입력값이 잘못돼었을 경우
       - [ ] R, Q 외의 문자
       - [ ] 하나의 문자가 아닌 경우
+      - [ ] 공백
       - [ ] 소문자 r, q
       - [ ] 숫자
       - [ ] 한글
@@ -118,7 +123,7 @@ public class BridgeMaker {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `bridge.generator.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
