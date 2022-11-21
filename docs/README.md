@@ -74,7 +74,7 @@
 
 ### BridgeAppConfig
 - [x] InputView 클래스 생성 및 반환
-- [ ] OutputView 클래스 생성 및 반환
+- [x] OutputView 클래스 생성 및 반환
 - [ ] BridgeNumberGenerator 인터페이스 구현체 반환
 - [ ] BridgeMaker 클래스 생성 및 반환
 - [ ] 길이에 맞는 Bridge 생성 및 반환
