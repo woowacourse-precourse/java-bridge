@@ -33,6 +33,7 @@ public class BridgeGameService {
         for (int i = 0; i < bridgeGame.getAnswerBridgeSize(); i++) {
             bridgeGame.move(getMoving());
             bridgeGame.setMoveResult(i);
+            showMoveResultMap();
             if (bridgeGame.getGameStatus() == GameStatus.LOSE) return bridgeGame.getGameStatus();
         }
         bridgeGame.setGameStatus(GameStatus.SUCCESS);
@@ -42,4 +43,9 @@ public class BridgeGameService {
     public String getMoving() {
         return inputView.readMoving();
     }
+
+    public void showMoveResultMap() {
+        outputView.printMap(bridgeGame.getGameResult());
+    }
+
 }
