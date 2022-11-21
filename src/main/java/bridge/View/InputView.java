@@ -14,7 +14,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
 
-        System.out.println("다리의 길이를 입력해주세요.");
+        OutputView.printEnterBridgeSize();
         int bridgeSize;
         try {
             bridgeSize = Integer.parseInt(Console.readLine());
@@ -33,7 +33,7 @@ public class InputView {
      */
     public static String readMoving() {
 
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        OutputView.printEnterMovingSpace();
         String moving;
         moving = Console.readLine();
 
@@ -48,7 +48,7 @@ public class InputView {
      */
     public static String readGameCommand() {
 
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        OutputView.printRetryOrQuit();
         String retry;
         retry = Console.readLine();
 
