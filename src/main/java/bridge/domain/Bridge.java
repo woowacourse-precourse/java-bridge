@@ -30,7 +30,7 @@ public class Bridge {
     }
 
     private void validate(List<String> blocks) {
-        if (isWrongSizeOfBlocks(blocks)) {
+        if (isWrongSize(blocks)) {
             throw new IllegalArgumentException();
         }
 
@@ -39,7 +39,7 @@ public class Bridge {
         }
     }
 
-    private boolean isWrongSizeOfBlocks(List<String> blocks) {
+    private boolean isWrongSize(List<String> blocks) {
         return blocks.size() < MIN_SIZE || blocks.size() > MAX_SIZE;
 
     }
