@@ -20,7 +20,7 @@ public enum BridgeOutputElement {
         BridgeOutputElement userInputBridge = findByUserMovingInput(userMovingInput);
         Integer otherNumber = Integer.valueOf(1-findByUserMovingInput(userMovingInput).bridgeRandomNumber);
         BridgeOutputElement otherBridge = findByBridgeRandomNumber(otherNumber);
-        userInputBridge.addBridge += userInputBridge.userMovingInput;
+        userInputBridge.addBridge += "O";
         otherBridge.addBridge += " ";
     }
 
