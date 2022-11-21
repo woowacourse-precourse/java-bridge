@@ -1,22 +1,27 @@
 package bridge;
 
 
+import java.util.List;
+
 public class BridgeGame {
     private int totalGameTrials;
     private int bridgeMovingTrials;
+    private int endOfBridges;
 
-    public BridgeGame(){
+    public BridgeGame(List<String> crossableBridges){
         this.totalGameTrials=0;
         this.bridgeMovingTrials=0;
+        this.endOfBridges = crossableBridges.size();
     }
 
-    public boolean checkWinOrFail(String crossableBridge, String uOrD){
+    public String checkWinOrFail(String crossableBridge, String uOrD){
         if(crossableBridge==uOrD){
             move();
-            return false;
+            checkGameFinished();
+            return "going";
         }
         retry();
-        return true;
+        return "fail";
     }
 
     private void move() {
@@ -27,4 +32,14 @@ public class BridgeGame {
         bridgeMovingTrials=0;
         totalGameTrials+=totalGameTrials;
     }
+
+    private void checkGameFinished(){
+        if(endOfBridges==bridgeMovingTrials){
+            finish();
+        }
+    }
+    private void finish() {
+
+    }
+
 }

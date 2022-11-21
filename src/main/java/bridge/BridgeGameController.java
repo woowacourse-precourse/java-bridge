@@ -33,12 +33,15 @@ public class BridgeGameController {
             return crossableBridges = bridgeMaker.makeBridge(bridgeLength);
     }
 
-    public static BridgeGame chooseToMoveOn(BridgeGame bridgeGame, List<String> crossableBridges){
+    public static BridgeGame chooseToMoveOn(List<String> crossableBridges){
             outputView.printStatements(NormalStatements.ASK_BRIDGE_TO_MOVE_ON.getNormalStatement());
-            for(int i=0; i<crossableBridges.size(); i++) {
+            BridgeGame bridgeGame = new BridgeGame(crossableBridges);
+            for(int i=1; i<crossableBridges.size()+1; i++) {
                 bridgeGame.checkWinOrFail(crossableBridges.get(i), inputView.readMoving());
-                if(bridgeGame.checkWinOrFail(crossableBridges.get(i), inputView.readMoving())==true){
-                    break;
+                if(bridgeGame.checkWinOrFail(crossableBridges.get(i), inputView.readMoving())=="fail"){
+                outputView.printFailedMap(i, crossableBridges.size(), crossableBridges.get(i));
+                outputView.printStatements(NormalStatements.ASK_RETRY.getNormalStatement());
+
                 }
                 outputView.printMap(i, crossableBridges.size(), crossableBridges.get(i));
             }
