@@ -29,7 +29,7 @@ public class BridgeData {
     }
 
     public void initializeTotalAttempt() {
-        this.totalAttempt = 0;
+        this.totalAttempt = 1;
     }
 
     public void updateBridgeDesignByUser(List<String> bridgeDesignByUser) {
