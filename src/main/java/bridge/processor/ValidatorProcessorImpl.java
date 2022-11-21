@@ -22,6 +22,9 @@ public class ValidatorProcessorImpl implements ValidatorProcessor{
 
     @Override
     public void validateCommandInput(String input) {
-
+        if (!CommandEnum.UP.getValue().equals(input) &&
+                !CommandEnum.DOWN.getValue().equals(input)) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력값 입니다.");
+        }
     }
 }

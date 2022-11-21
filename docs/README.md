@@ -47,4 +47,4 @@
 1. [x] README 작성
 2. [x] 다리를 만드는 기능과 테스트
 3. [x] Enum 작성
-4. [ ] Validator Processor 기능과 테스트
+4. [x] Validator Processor 기능과 테스트
