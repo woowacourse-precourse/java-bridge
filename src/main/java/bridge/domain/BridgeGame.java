@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -11,6 +12,7 @@ public class BridgeGame {
     private final int bridgeSize;
     private final MoveResultJudgement moveResultJudgement;
     private int currentDistance = 0;
+    private int retry = 1;
     private BridgeMap bridgeMap = new BridgeMap();
 
     public BridgeGame(int readBridgeSize) {
@@ -44,8 +46,16 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String moving) {
-        return true;
+    public boolean retry(String gameCommand) {
+        ValidationUtil.restartValidation(gameCommand);
+        bridgeInitialization();
+        retry++;
+        return Objects.equals(gameCommand, Constant.RESTART);
+    }
+
+    private void bridgeInitialization() {
+        currentDistance = 0;
+        bridgeMap.initialization();
     }
 
     public boolean isGameComplete(String moving) {

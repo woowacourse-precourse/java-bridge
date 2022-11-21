@@ -45,4 +45,9 @@ public class OutputView {
     public void printMoving(String moving) {
         System.out.println(moving);
     }
+
+    public String printGameCommand(String gameCommand){
+        System.out.println(gameCommand);
+        return gameCommand;
+    }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class BridgeMap {
-    private final LinkedHashMap<String, List<String>> bridgeMap = new LinkedHashMap<>() {{
+    private LinkedHashMap<String, List<String>> bridgeMap = new LinkedHashMap<>() {{
         put(Constant.MOVED_POSITION_UP, new ArrayList<>());
         put(Constant.MOVED_POSITION_DOWN, new ArrayList<>());
     }};
@@ -32,7 +32,14 @@ public class BridgeMap {
         bridgeMap.get(Constant.MOVED_POSITION_DOWN).add(cell);
     }
 
-    public LinkedHashMap<String, List<String>> getMap(){
+    public LinkedHashMap<String, List<String>> getMap() {
         return this.bridgeMap;
+    }
+
+    public void initialization() {
+        bridgeMap = new LinkedHashMap<>() {{
+            put(Constant.MOVED_POSITION_UP, new ArrayList<>());
+            put(Constant.MOVED_POSITION_DOWN, new ArrayList<>());
+        }};
     }
 }
