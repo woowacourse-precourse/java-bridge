@@ -9,6 +9,7 @@ public class Application {
     private static InputView inputView;
     private static BridgeMaker bridgeMaker;
     private static GenerateMessage generateMessage;
+    private static EndGame endGame;
     
 
     public static void main(String[] args) {
@@ -18,7 +19,10 @@ public class Application {
         boolean check = checkBridge(step, bridge);
         generateMessage.start(check, step);
         if(!check){
-        
+            boolean result = endGame.fail();
+            if(result){
+            
+            }
         }
     }
 }
