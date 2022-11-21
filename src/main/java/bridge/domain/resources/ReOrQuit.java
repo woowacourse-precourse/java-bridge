@@ -1,7 +1,5 @@
 package bridge.domain.resources;
 
-import bridge.domain.exception.RQIllegalArgumentException;
-
 public class ReOrQuit {
 
     public final static String RE_GAME = "R";
@@ -20,7 +18,7 @@ public class ReOrQuit {
 
     private static void validateRorQ(String inputRQ) {
         if (isInputRQ(inputRQ)) {
-            throw new RQIllegalArgumentException();
+            throw new IllegalArgumentException();
         }
     }
 

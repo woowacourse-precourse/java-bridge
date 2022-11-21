@@ -1,7 +1,6 @@
 package bridge.domain.resources;
 
 import bridge.domain.bridgebuilder.BridgeGame;
-import bridge.domain.exception.SizeIllegalArgumentException;
 import java.util.List;
 
 public class Bridge {
@@ -22,7 +21,7 @@ public class Bridge {
 
     private static void validateBridgeSize(int size) {
         if (size < MIN_SIZE || MAX_SIZE < size) {
-            throw new SizeIllegalArgumentException();
+            throw new IllegalArgumentException();
         }
     }
 

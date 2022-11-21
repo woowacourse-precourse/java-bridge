@@ -1,7 +1,5 @@
 package bridge.domain.resources;
 
-import bridge.domain.exception.UDIllegalArgumentException;
-
 public class UpOrDown {
 
     public final static String UP = "U";
@@ -20,7 +18,7 @@ public class UpOrDown {
 
     private static void validateRorQ(String inputUD) {
         if (isInputUD(inputUD)) {
-            throw new UDIllegalArgumentException();
+            throw new IllegalArgumentException();
         }
     }
 
