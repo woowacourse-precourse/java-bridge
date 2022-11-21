@@ -12,11 +12,12 @@ public class InputView {
     }
 
     public int reReadBridgeSizeWhenError() {
-        try {
-            return readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
-            return reReadBridgeSizeWhenError();
+        while (true) {
+            try {
+                return readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e);
+            }
         }
     }
 
@@ -27,11 +28,12 @@ public class InputView {
     }
 
     public String reReadMovingWhenError() {
-        try {
-            return readMoving();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
-            return reReadMovingWhenError();
+        while (true) {
+            try {
+                return readMoving();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e);
+            }
         }
     }
 
@@ -42,11 +44,12 @@ public class InputView {
     }
 
     public String reReadGameCommandWhenError() {
-        try {
-            return readGameCommand();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
-            return reReadGameCommandWhenError();
+        while (true) {
+            try {
+                return readGameCommand();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e);
+            }
         }
     }
 }
