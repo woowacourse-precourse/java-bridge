@@ -28,9 +28,11 @@ public class Result {
     public void update(String isCorrect, String moveTo) {
         if (moveTo.equals("U")) {
             up.add(isCorrect);
+            down.add(" ");
         }
         if (moveTo.equals("D")) {
             down.add(isCorrect);
+            up.add(" ");
         }
     }
 
