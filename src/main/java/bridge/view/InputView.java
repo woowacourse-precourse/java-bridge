@@ -14,10 +14,10 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public String readBridgeSize() {
         String input = Console.readLine();
         isNaturalNumber(input);
-        return Integer.parseInt(input);
+        return input;
     }
 
     private void isNaturalNumber(String input) {
