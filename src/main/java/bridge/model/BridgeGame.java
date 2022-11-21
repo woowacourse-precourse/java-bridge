@@ -9,10 +9,14 @@ public class BridgeGame {
     private final Bridge bridge;
     private int attempts = 1;
     private boolean success = false;
+    private Diagram diagram;
+
     private GameCommand command = GameCommand.RETRY;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        diagram = new Diagram();
+
     }
 
     /**
@@ -21,7 +25,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Status move(int index, Position position) {
-        return findStatus(bridge.isSamePosition(index, position));
+        Status status = findStatus(bridge.isSamePosition(index, position));
+        diagram.updateDiagrams(position, status);
+        return status;
     }
 
     /**
@@ -30,9 +36,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        diagram = new Diagram();
         attempts++;
     }
-
 
     public int getAttempts() {
         return attempts;
@@ -46,7 +52,8 @@ public class BridgeGame {
         this.success = true;
     }
 
-    public void setCommand(GameCommand command) {
-        this.command = command;
+    public Diagram getDiagram() {
+        return diagram;
     }
+
 }

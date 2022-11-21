@@ -2,13 +2,11 @@ package bridge.controller;
 
 import static bridge.model.GameCommand.selectedRetry;
 import static bridge.model.Status.die;
-import static bridge.model.Status.findStatus;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
-import bridge.model.Diagram;
 import bridge.model.GameCommand;
 import bridge.model.Position;
 import bridge.model.Status;
@@ -20,47 +18,43 @@ public class GameController {
     private final OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
     private Bridge bridge;
-    private Diagram diagram;
 
     public void play() {
         outputView.printStartGame();
-        diagram = new Diagram();
         bridge = createBridge();
         bridgeGame = new BridgeGame(bridge);
 
         attempt();
 
-        outputView.printResult(diagram, bridgeGame.isSuccess(), bridgeGame.getAttempts());
+        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.isSuccess(), bridgeGame.getAttempts());
     }
 
     public void attempt() {
-        int finalIndex = moving();
+        boolean isSuccess = moving();
 
-        if (bridge.survivedToTheLast(finalIndex)) {
+        if (isSuccess) {
             bridgeGame.setSuccess();
         }
 
-        if (!bridge.survivedToTheLast(finalIndex)) {
+        if (!isSuccess) {
             GameCommand gameCommand = inputView.readGameCommand();
             if (selectedRetry(gameCommand)) {
                 bridgeGame.retry();
-                diagram = new Diagram();
                 attempt();
             }
         }
     }
 
-    public int moving() {
+    public boolean moving() {
         for (int index = 0; index < bridge.getBridgeSize(); index++) {
             Position position = inputView.readMoving();
             Status status = bridgeGame.move(index, position);
-            diagram.updateDiagrams(position, status);
-            outputView.printMap(diagram);
+            outputView.printMap(bridgeGame.getDiagram());
             if (die(status)) {
-                return index;
+                return false;
             }
         }
-        return bridge.getBridgeSize();
+        return true;
     }
 
     private Bridge createBridge() {
