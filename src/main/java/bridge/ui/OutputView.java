@@ -22,7 +22,7 @@ public class OutputView {
      * @param bridgeGame 현재 진행되는 브릿지게임
      * @param lastMoveSuccess 마지막 스탭에서는 성공하였는지?
      */
-    public void printMap(final BridgeGame bridgeGame, boolean lastMoveSuccess) {
+    public void printMap(BridgeGame bridgeGame, boolean lastMoveSuccess) {
         printPlayLogOnPrintPosition(bridgeGame, "U", lastMoveSuccess);
         printPlayLogOnPrintPosition(bridgeGame, "D", lastMoveSuccess);
     }
@@ -33,7 +33,7 @@ public class OutputView {
      * @param printPosition 출력할 위치 (U : 위, D : 아래)
      * @param lastMoveSuccess 마지막 스탭에서는 성공하였는지?
      */
-    private void printPlayLogOnPrintPosition(final BridgeGame bridgeGame, final String printPosition, boolean lastMoveSuccess) {
+    private void printPlayLogOnPrintPosition(BridgeGame bridgeGame, String printPosition, boolean lastMoveSuccess) {
         System.out.print('[');
         int lastPlayLogIndex = bridgeGame.getPlayLogSize() - 1;
 
@@ -52,7 +52,7 @@ public class OutputView {
      * @param printPosition 출력할 위치 (U : 위, D : 아래)
      * @return 출력할 메서드를 반환
      */
-    private String checkOneStep(final String curPlayLog, String printPosition) {
+    private String checkOneStep(String curPlayLog, String printPosition) {
         if(curPlayLog.equals(printPosition))
             return " O ";
         return "   ";
@@ -65,7 +65,7 @@ public class OutputView {
      * @param lastMoveSuccess 마지막 스탭에서는 성공하였는지?
      * @return 출력할 메서드를 반환
      */
-    private String checkLastStep(final String curPlayLog, final String printPosition, boolean lastMoveSuccess) {
+    private String checkLastStep(String curPlayLog, String printPosition, boolean lastMoveSuccess) {
         if(curPlayLog.equals(printPosition)){
             if(!lastMoveSuccess)
                 return " X ";
@@ -79,7 +79,7 @@ public class OutputView {
      * @param bridgeGame 현재 진행되는 브릿지게임
      * @param lastMoveSuccess 마지막 스탭에서는 성공하였는지?
      */
-    public void printResult(final BridgeGame bridgeGame, boolean lastMoveSuccess){
+    public void printResult(BridgeGame bridgeGame, boolean lastMoveSuccess){
         System.out.println("최종 게임 결과");
         printMap(bridgeGame, lastMoveSuccess);
         System.out.println("\n게임 성공 여부: " + result.get(lastMoveSuccess));
