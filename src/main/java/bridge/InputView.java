@@ -16,6 +16,7 @@ public class InputView {
     		return inputbridgesize;
     	}
     	catch(IllegalArgumentException e) {
+    		System.out.println("[ERROR]");
     		return -1;
     	}
     }
