@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.ErrorMessage.BRIDGE_SIZE_OUT_OF_RANGE;
+import static bridge.ErrorMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -39,7 +39,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = printAndRead("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        validateUpOrDown(moving);
+        return moving;
+    }
+
+    public static void validateUpOrDown(String moving){
+        if (!moving.equals("U") && !moving.equals("D")) {
+            throw new IllegalArgumentException(MOVING_OUT_OF_RANGE.toString());
+        }
     }
 
     /**
