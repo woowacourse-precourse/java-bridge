@@ -9,8 +9,8 @@ public class Repetition {
         this.repetition = 1;
     }
 
-    private Repetition(final int retryCount) {
-        this.repetition = retryCount + 1;
+    public Repetition(final int retryCount) {
+        this.repetition = retryCount;
     }
 
     public int getRepetition() {
@@ -18,7 +18,7 @@ public class Repetition {
     }
 
     public Repetition increaseCount() {
-        return new Repetition(this.repetition);
+        return new Repetition(this.repetition + 1);
     }
 
     @Override
