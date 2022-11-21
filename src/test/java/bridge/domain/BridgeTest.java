@@ -44,21 +44,21 @@ class BridgeTest {
         );
     }
 
-    @ParameterizedTest(name = "플레이어가 이동한 칸과 다리를 비교한다.")
+    @ParameterizedTest(name = "비교할 다리와 원본 다리를 비교한다.")
     @MethodSource("provideForCompare")
-    void compare(List<BridgeShape> playerMoveBridgeShape, List<Boolean> booleans) {
-        Bridge playerMoveBridge = new Bridge(playerMoveBridgeShape);
+    void compare(List<BridgeShape> compareBridgeShapes, List<Boolean> booleans) {
+        Bridge compareBridge = new Bridge(compareBridgeShapes);
 
-        assertThat(upDownUpBridge.compare(playerMoveBridge)).isEqualTo(new BridgeGameResult(upDownUpBridge, booleans));
+        assertThat(upDownUpBridge.compare(compareBridge)).isEqualTo(new BridgeGameResult(upDownUpBridge, booleans));
     }
 
-    @DisplayName("플레이어가 이동한 칸이 다리보다 많을 경우 예외 처리한다.")
+    @DisplayName("비교할 다리가 원본 다리보다 많을 경우 예외 처리한다.")
     @Test
-    void compareMoveOverBridgeSize() {
+    void compareBridgeSizeOver() {
         Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
-        Bridge attempts = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP, BridgeShape.DOWN));
+        Bridge compareBridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP, BridgeShape.DOWN));
 
-        assertThatThrownBy(() -> bridge.compare(attempts)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> bridge.compare(compareBridge)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("사다리 사이즈 비교 기능 테스트")
