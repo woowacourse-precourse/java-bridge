@@ -15,7 +15,7 @@ public enum GameCommand {
         return Arrays.stream(values())
                 .filter(retry -> retry.command.equals(inputLetter))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public static boolean hasCommand(String inputLetter) {

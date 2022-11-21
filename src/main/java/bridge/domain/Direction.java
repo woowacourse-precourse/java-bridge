@@ -17,14 +17,14 @@ public enum Direction {
         return Arrays.stream(values())
                 .filter(direction -> direction.command.equals(inputLetter))
                 .findFirst()
-                .get();
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public static Direction from(int number) {
         return Arrays.stream(values())
                 .filter(direction -> direction.directionNumber == number)
                 .findFirst()
-                .get();
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public static boolean hasInputLetter(String inputLetter) {
