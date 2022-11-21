@@ -12,12 +12,14 @@ public class BridgeGameController implements BridgeGameStarter {
     private final OutputView outputView;
     private final InputView inputView;
     private final BridgeMaker bridgeMaker;
+    private final BridgeGame bridgeGame;
     private List<String> bridge;
 
     public BridgeGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridgeGame = new BridgeGame();
         this.bridge = new ArrayList<>();
     }
 
@@ -25,5 +27,29 @@ public class BridgeGameController implements BridgeGameStarter {
     public void start() {
         outputView.printStartMessage();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+
+        while (!moveUser()) {
+            if (!wantRetry()) {
+                break;
+            }
+            bridgeGame.reset();
+        }
+    }
+
+    private boolean moveUser() {
+        for (int index = 0; index < bridge.size(); index++) {
+            String movement = inputView.readMoving();
+            boolean flag = bridge.get(index).equals(movement);
+            bridgeGame.move(movement, flag, index);
+            outputView.printMap(bridgeGame.getGameStatus());
+            if (!flag) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean wantRetry() {
+        return bridgeGame.retry(inputView.readGameCommand());
     }
 }
