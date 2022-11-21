@@ -4,6 +4,7 @@ package bridge;
  * 필드 변수 추가 가능 패키지 변경 가능 메서드 이름 변경 불가 인자 변경 가능 타입 변경 가능 추가 메서드 구현 가능
  */
 
+import bridge.Constants.OutputState;
 import bridge.Constants.Result;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class BridgeGame {
     private List<String> upLine;
     private List<String> downLine;
     private int bridgeIndex;
-    public String result;
+    private String result;
 
     BridgeGame() {
         this.upLine = new ArrayList<String>();
@@ -34,6 +35,10 @@ public class BridgeGame {
 
     public static void increaseAttemptCount() {
         BridgeGame.attemptCount += 1;
+    }
+
+    public String resultToString() {
+        return OutputState.SUCCESS_OR_NOT + result;
     }
 
 
