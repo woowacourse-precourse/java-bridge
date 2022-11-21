@@ -21,7 +21,7 @@ class BridgeGameTest {
     class GetMovingResult {
         @ParameterizedTest
         @MethodSource("parameterProvider")
-        void 움직임에_따라_올바른_결과를_반환하는지_테스트(List<String> moveInfo, List<Integer> randomValues) {
+        void 움직임에_따라_올바른_결과를_반환하는지_테스트(List<String> moveInfo, int randomValue, List<Integer> randomValues) {
             assertRandomNumberInRangeTest(() -> {
                 BridgeGame bridgeGame = new BridgeGame();
                 bridgeGame.initAnswerBridge(moveInfo.size());
@@ -30,16 +30,16 @@ class BridgeGameTest {
                     gameStatus = bridgeGame.getMovingResult(move);
                 }
                 assertThat(gameStatus.isClear()).isTrue();
-            }, 1, randomValues.toArray(new Integer[0]));
+            }, randomValue, randomValues.toArray(new Integer[0]));
         }
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
-                    Arguments.of(List.of("U"), List.of()),
-                    Arguments.of(List.of("U", "D"), List.of(0)),
-                    Arguments.of(List.of("U", "D"), List.of(0)),
-                    Arguments.of(List.of("U", "D", "D"), List.of(0, 0)),
-                    Arguments.of(List.of("U", "D", "D", "U", "D"), List.of(0, 0, 1, 0))
+                    Arguments.of(List.of("U"), 1, List.of()),
+                    Arguments.of(List.of("D", "D"), 0, List.of(0)),
+                    Arguments.of(List.of("U", "D"), 1, List.of(0)),
+                    Arguments.of(List.of("U", "D", "D"), 1, List.of(0, 0)),
+                    Arguments.of(List.of("D", "D", "D", "U", "D"), 0, List.of(0, 0, 1, 0))
             );
         }
     }
