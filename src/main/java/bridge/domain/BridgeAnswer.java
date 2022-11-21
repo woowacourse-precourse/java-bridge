@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.BridgeGameState.*;
+import static bridge.exception.BridgeAnswerExceptionMessage.BRIDGE_ANSWER_EMPTY_EXCEPTION;
 
 public class BridgeAnswer {
 
@@ -22,6 +23,7 @@ public class BridgeAnswer {
     }
 
     public BridgeGameState compareWith(BridgePlayer bridgePlayer) {
+        validateBridgeEmpty();
         if (bridgePlayer.isLastMoveTypeNotSameAs(bridgeAnswer)) {
             return FAIL;
         }
@@ -29,6 +31,12 @@ public class BridgeAnswer {
             return SUCCESS;
         }
         return CONTINUE;
+    }
+
+    private void validateBridgeEmpty() {
+        if (this.bridgeAnswer.isEmpty()) {
+            throw new IllegalStateException(BRIDGE_ANSWER_EMPTY_EXCEPTION.getMessage());
+        }
     }
 
     private void clearBridgeAnswer() {
