@@ -1,0 +1,4 @@
+package bridge;
+
+class BridgeMakerTest {
+}
