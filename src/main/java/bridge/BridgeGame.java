@@ -18,8 +18,11 @@ public class BridgeGame {
     }
 
     public boolean playGame(String userInputToMove) {
-        move();
-        return bridge.judgeAnswer(userInputToMove, player.getCurrentLocation());
+        boolean isCorrect = bridge.judgeAnswer(userInputToMove, player.getCurrentLocation());
+        if (isCorrect) {
+            move();
+        }
+        return isCorrect;
     }
 
     /**
@@ -44,7 +47,7 @@ public class BridgeGame {
     }
 
     public boolean isUserReachedToEndOfTheBridge(int bridgeSize) {
-        return player.getCurrentLocation() + 1 == bridgeSize;
+        return player.getCurrentLocation() == bridgeSize;
     }
 
     /**

@@ -6,7 +6,7 @@ public class Player {
 
     Player () {
         this.countOfTry = 1;
-        this.currentLocation = -1;
+        this.currentLocation = 0;
     }
 
     public void move() {
@@ -14,7 +14,7 @@ public class Player {
     }
 
     public int getCurrentLocation() {
-        return Integer.valueOf(currentLocation);
+        return currentLocation;
     }
 
     public int getCountOfTry() {
@@ -22,7 +22,7 @@ public class Player {
     }
 
     public void retry() {
-        currentLocation = -1;
+        currentLocation = 0;
         countOfTry++;
     }
 }

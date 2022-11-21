@@ -10,7 +10,7 @@ public class BridgeShape {
 
     private final String CORRECT_SIGN = "O";
     private final String WRONG_SIGN = "X";
-    private final String NOT_CHOOSING_SIGH = " ";
+    private final String NOT_CHOOSING_SIGN = " ";
     private final int BRIDGE_VERTICAL_SIZE = 2;
 
 
@@ -25,11 +25,11 @@ public class BridgeShape {
     public boolean caseWhenUserInputIsUpSide(List<String> answer, int idx) {
         if (UPSIDE_OF_BRIDGE.isCorrect(answer.get(idx))) {
             bridgeShape.get(0).add(CORRECT_SIGN);
-            bridgeShape.get(1).add(NOT_CHOOSING_SIGH);
+            bridgeShape.get(1).add(NOT_CHOOSING_SIGN);
         }
         if (DOWNSIDE_OF_BRIDGE.isCorrect(answer.get(idx))) {
             bridgeShape.get(0).add(WRONG_SIGN);
-            bridgeShape.get(1).add(NOT_CHOOSING_SIGH);
+            bridgeShape.get(1).add(NOT_CHOOSING_SIGN);
             return false;
         }
         return true;
@@ -37,12 +37,12 @@ public class BridgeShape {
 
     public boolean caseWhenUserInputIsDownSide(List<String> answer, int idx) {
         if (UPSIDE_OF_BRIDGE.isCorrect(answer.get(idx))) {
-            bridgeShape.get(0).add(NOT_CHOOSING_SIGH);
+            bridgeShape.get(0).add(NOT_CHOOSING_SIGN);
             bridgeShape.get(1).add(WRONG_SIGN);
             return false;
         }
         if (DOWNSIDE_OF_BRIDGE.isCorrect(answer.get(idx))) {
-            bridgeShape.get(0).add(NOT_CHOOSING_SIGH);
+            bridgeShape.get(0).add(NOT_CHOOSING_SIGN);
             bridgeShape.get(1).add(CORRECT_SIGN);
         }
         return true;

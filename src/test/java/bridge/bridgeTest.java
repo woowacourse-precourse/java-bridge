@@ -79,6 +79,15 @@ public class bridgeTest {
                 bridge.judgeAnswer("ItHavaToThrowException", 0);
             }).isInstanceOf(IllegalArgumentException.class);
         }
+
+        @Test
+        void 인풋유디아니고그다음에정상입력() {
+            assertThatThrownBy(() -> {
+                bridge.judgeAnswer("u", 0);
+            }).isInstanceOf(IllegalArgumentException.class);
+
+            assertThat(bridge.judgeAnswer("U",0)).isEqualTo(true);
+        }
     }
 
     @Nested
