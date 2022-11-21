@@ -28,7 +28,7 @@ public class OutputView {
     public void printResult(BridgeLog log, boolean isSuccess, int retryCount) {
         printResultMap(log);
 
-        System.out.println("게임 성공 여부: " + convert(isSuccess));
+        System.out.println("게임 성공 여부: " + successOrFailure(isSuccess));
         System.out.println("총 시도한 횟수: " + retryCount);
     }
 
@@ -37,7 +37,7 @@ public class OutputView {
         printMap(log);
     }
 
-    private String convert(boolean isSuccess) {
+    private String successOrFailure(boolean isSuccess) {
         if (isSuccess) {
             return "성공";
         }
