@@ -7,21 +7,26 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Column {
-    TOP_ROW("U", 1),
-    DOWN_ROW("D", 0),
-    NONE("",-1);
+    TOP_ROW("U", 1,0),
+    DOWN_ROW("D", 0,1),
+    NONE("",-1, -1);
 
     private final int randomNumber;
     private final String capitalLetter;
+    private final int index;
 
 
     private int randomNumber() {
         return randomNumber;
     }
+    public int getIndex() {
+        return index;
+    }
 
-    Column(String capitalLetter, int randomNumber) {
+    Column(String capitalLetter, int randomNumber, int index) {
         this.randomNumber = randomNumber;
         this.capitalLetter = capitalLetter;
+        this.index = index;
     }
 
 
