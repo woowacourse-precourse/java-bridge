@@ -115,7 +115,7 @@ public class OutputView {
         String upSide = stackToString(userInputMap.get(Unit.UP));
         String downSide = stackToString(userInputMap.get(Unit.DOWN));
 
-        sb.append(upSide).append("\n").append(downSide);
+        sb.append(upSide).append(Unit.LINE_BREAK.getCommand()).append(downSide).append(Unit.LINE_BREAK.getCommand());
 
         return sb.toString();
     }

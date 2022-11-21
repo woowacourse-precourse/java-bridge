@@ -1,7 +1,6 @@
 package bridge.domainTest;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeRecord;
 import bridge.domain.BridgeStage;
 import bridge.domain.StageResult;
 import org.assertj.core.api.Assertions;

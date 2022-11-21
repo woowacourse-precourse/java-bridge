@@ -8,6 +8,7 @@ import bridge.domain.StageResult;
 import bridge.generator.BridgeMaker;
 import bridge.validator.Unit;
 import bridge.view.InputView;
+import bridge.view.Messages;
 import bridge.view.OutputView;
 
 import java.util.List;
@@ -44,6 +45,7 @@ public class BridgeController {
 
     public void play() {
         initBridgeGame();
+        outputView.printMessage(Messages.VIEW_START_GAME);
 
         while(true) {
             processGame();
@@ -53,7 +55,7 @@ public class BridgeController {
     public void processGame() {
         String userInput = inputView.readMoving();
 
-        StageResult stageResult = bridgeGame.processStage(userInput);
+        StageResult stageResult = bridgeGame.move(userInput);
 
         outputView.printMap(userInput, stageResult);
 

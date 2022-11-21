@@ -14,7 +14,8 @@ public enum Unit {
     LEFT_BRACKET("[ "),
     RIGHT_BRACKET(" ]"),
     VERTICAL_BAR(" | "),
-    BLANK(" ");
+    BLANK(" "),
+    LINE_BREAK("\n");
 
 
     private int size;

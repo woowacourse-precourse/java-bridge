@@ -27,8 +27,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String userInput) {
-        BridgeRecord.addUserInput(userInput);
+    public StageResult move(String userInput) {
+
+        StageResult stageResult = compareInputWithBridge(userInput);
+
+        return stageResult;
     }
 
     public StageResult compareInputWithBridge(String userInput) {
@@ -43,18 +46,9 @@ public class BridgeGame {
         return StageResult.FAIL;
     }
 
-    public StageResult processStage(String userInput) {
-        move(userInput);
-
-        StageResult stageResult = compareInputWithBridge(userInput);
-
-        return stageResult;
-    }
-
     public void pass() {
         BridgeStage.nextStage();
     }
-
 
     public void success() {
         throw new SuccessGameException();
@@ -72,6 +66,5 @@ public class BridgeGame {
     public void retry() {
         BridgeStage.resetStage();
         BridgeStage.increaseRetry();
-        BridgeRecord.resetRecord();
     }
 }
