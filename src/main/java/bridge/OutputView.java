@@ -101,11 +101,17 @@ public class OutputView {
         System.out.println(Result.get(1));
     }
 
-    public static void printResult(List<String> Result) {
+    public static void printResult(List<String> Result, boolean success) {
         System.out.println("\n최종 게임 결과");
         System.out.println(Result.get(0));
         System.out.println(Result.get(1));
-        System.out.println("게임 성공 여부 : 성공");
+        System.out.println("게임 성공 여부 : " + SuccessFail(success));
         System.out.println("총 시도한 횟수 : " + count);
+    }
+    public static String SuccessFail(boolean success){
+        if (success){
+            return "성공";
+        }
+        return "실패";
     }
 }
