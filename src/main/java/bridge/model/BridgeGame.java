@@ -10,8 +10,10 @@ import java.util.List;
 public class BridgeGame {
     private List<Column> bridge;
     private List<List<String>> buffer;
+    private int totalCount;
     public BridgeGame() {
         bridge = new ArrayList<>();
+        totalCount = 1;
         initializeBuffer();
     }
 
@@ -41,12 +43,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(int size) {
+    public void retry() {
         buffer.clear();
+        totalCount++;
         initializeBuffer();
-        start(size);
     }
 
+    public int getTotalCount(){
+        return totalCount;
+    }
 
 
     private void initializeBuffer(){
