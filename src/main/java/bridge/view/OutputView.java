@@ -10,6 +10,12 @@ import bridge.domain.MovingMap;
  */
 public class OutputView {
 
+    private final OutputFormatter formatter;
+
+    public OutputView(OutputFormatter formatter) {
+        this.formatter = formatter;
+    }
+
     private void println(String format, Object... args) {
         System.out.printf(format + "\n", args);
     }
@@ -43,7 +49,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(MovingMap movingMap) {
-        String map = OutputFormatter.formatMovingMap(movingMap);
+        String map = formatter.formatMovingMap(movingMap);
         println(map);
     }
 
