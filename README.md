@@ -113,8 +113,8 @@ BUILD SUCCESSFUL in 0s
         - [ ] public void printReadBridgeSizeMessage()
         - [ ] public void printReadMovingMessage()
         - [ ] public void printReadGameCommandMessage()
-        - [ ] private List<String> getUpperBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
-        - [ ] private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
+        - [x] private List<String> getUpperBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
+        - [x] private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
         - [x] private String compareBridgeBlock(String bridgeBlock, String comparetorBridgeBlock)
         - [x] private String compareFailBridgeBlock(String bridgeBlock, String comparetorBridgeBlock, boolean isFail)
 

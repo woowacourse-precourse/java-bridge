@@ -33,6 +33,15 @@ public class OutputView {
         return upperBridgeResult;
     }
 
+    private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail) {
+        List<String> lowerBridgeResult = new ArrayList<>();
+        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition - 1; bridgeIndex++) {
+            lowerBridgeResult.add(compareBridgeBlock(bridge.get(bridgeIndex), "D"));
+        }
+        lowerBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition - 1), "D", isFail));
+        return lowerBridgeResult;
+    }
+
     private String compareBridgeBlock(String bridgeBlock, String comparatorBridgeBlock) {
         if (bridgeBlock.equals(comparatorBridgeBlock)) {
             return "O";
