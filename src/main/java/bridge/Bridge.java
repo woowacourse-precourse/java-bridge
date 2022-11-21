@@ -88,4 +88,8 @@ public class Bridge {
         return "   ";
     }
 
+    public boolean isCompleted() {
+        return currentPosition == bridge.size();
+    }
+
 }

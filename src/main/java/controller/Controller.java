@@ -11,7 +11,8 @@ public class Controller {
     public void run() {
         Bridge bridge = createBridge();
         bridge.print();
-        while (true) {
+
+        while (!bridge.isCompleted()) {
             move(bridge);
         }
     }
