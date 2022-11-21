@@ -2,7 +2,8 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.MoveType;
-import bridge.domain.Result;
+import bridge.domain.result.Result;
+import bridge.domain.result.ResultType;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,9 +11,11 @@ import bridge.domain.Result;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private int tryCount = 0;
-    public BridgeGame(Bridge bridge) {
+    private final Result result;
+
+    public BridgeGame(Bridge bridge, Result result) {
         this.bridge = bridge;
+        this.result = result;
     }
 
     /**
@@ -21,7 +24,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Result move(MoveType moveType) {
-        return bridge.move(moveType);
+        ResultType resultType = bridge.move(moveType);
+
+        if (moveType.isSame("U")) {
+            result.addUpBlock(resultType);
+            return result;
+        }
+        result.addDownBlock(resultType);
+        return result;
     }
 
     /**
