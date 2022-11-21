@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.validater.InputValidater;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +11,7 @@ public class InputValidateTest {
     @ParameterizedTest
     @ValueSource(strings = {"15A"})
      void inputNotNumber(String input) {
-        Assertions.assertThatThrownBy(() -> InputValidate.isNumber(input))
+        Assertions.assertThatThrownBy(() -> InputValidater.isNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     
@@ -18,7 +19,7 @@ public class InputValidateTest {
     @ParameterizedTest
     @ValueSource(strings = {"3.4"})
     void inputNotInteger(String input) {
-        Assertions.assertThatThrownBy(() -> InputValidate.isInteger(input))
+        Assertions.assertThatThrownBy(() -> InputValidater.isInteger(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     
@@ -26,7 +27,7 @@ public class InputValidateTest {
     @ParameterizedTest
     @ValueSource(ints = {21})
     void inputImpossibleSize(int input) {
-        Assertions.assertThatThrownBy(() -> InputValidate.possibleBridgeSize(input))
+        Assertions.assertThatThrownBy(() -> InputValidater.possibleBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -34,7 +35,7 @@ public class InputValidateTest {
     @ParameterizedTest
     @ValueSource(strings = {"UE"})
     void inputImpossibleMoving(String input) {
-        Assertions.assertThatThrownBy(() -> InputValidate.possibleMovingSelect(input))
+        Assertions.assertThatThrownBy(() -> InputValidater.possibleMovingSelect(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +43,7 @@ public class InputValidateTest {
     @ParameterizedTest
     @ValueSource(strings = {"T"})
     void inputImpossibleDecision(String input) {
-        Assertions.assertThatThrownBy(() -> InputValidate.possibleRetryDecision(input))
+        Assertions.assertThatThrownBy(() -> InputValidater.possibleRetryDecision(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

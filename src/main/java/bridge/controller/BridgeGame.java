@@ -20,6 +20,11 @@ public class BridgeGame {
     public BridgeGame() {
     }
 
+    public void start() {
+        makeBridge();
+        attemptCross();
+    }
+
     public void makeBridge() {
         OutputView.printLine(Message.INTRO);
         OutputView.printLine("");
@@ -30,8 +35,7 @@ public class BridgeGame {
         OutputView.printLine("");
     }
 
-    public void start() {
-        makeBridge();
+    public void attemptCross() {
         boolean tryAcross = true;
         while(tryAcross) {
             inOrderAcross();
@@ -39,6 +43,8 @@ public class BridgeGame {
         }
         OutputView.printResult();
     }
+
+
 
     public void inOrderAcross() {
         for(int i=0 ; i<bridge.getSize() ; i++) {

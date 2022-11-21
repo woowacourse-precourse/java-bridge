@@ -1,6 +1,6 @@
-package bridge.view;
+package bridge.validater;
 
-public class InputValidate {
+public class InputValidater {
     public static boolean isNumber(String beforeChangeNum) {
         try {
             int num = Integer.parseInt(beforeChangeNum);
