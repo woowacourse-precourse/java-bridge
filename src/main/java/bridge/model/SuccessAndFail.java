@@ -15,9 +15,14 @@ public enum SuccessAndFail {
     }
 
     public static String getKoreanDisplay(boolean isSuccess) {
+        return SuccessAndFail.from(isSuccess).koreanDisplay;
+    }
+
+    public static SuccessAndFail from(boolean isSuccess){
         return Arrays.stream(SuccessAndFail.values())
-                .filter(element -> element.isSuccess == isSuccess).findFirst()
-                .orElse(null).koreanDisplay;
+                .filter(element -> element.isSuccess == isSuccess)
+                .findFirst()
+                .orElse(null);
     }
 
     public static boolean isSuccess(SuccessAndFail successAndFail) {
