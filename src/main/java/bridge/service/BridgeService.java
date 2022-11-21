@@ -1,10 +1,13 @@
 package bridge.service;
 
+import static bridge.rule.AnswerChecker.convert;
+
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.dto.BridgeResponseDto;
+import bridge.dto.BridgeResultResponseDto;
 import java.util.List;
 
 public class BridgeService {
@@ -35,16 +38,15 @@ public class BridgeService {
         return player.isFailToAnswer();
     }
 
-    public boolean isAllAnswer(int size){
-        return bridgeGame.isAllAnswer(size);
+    public boolean isAllAnswer(){
+        return bridgeGame.isAllAnswer();
     }
 
     public void retry(){
         bridgeGame.retry();
     }
 
-    public int quit(int size){
-        boolean isSuccess = player.isAllAnswer(size);
-        return bridgeGame.quit();
+    public BridgeResultResponseDto showResult() {
+        return new BridgeResultResponseDto(bridgeGame.showTryCount(), convert(bridgeGame.isAllAnswer()));
     }
 }
