@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.service.UserInput;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,5 +44,18 @@ public class Result {
             return "성공";
         }
         return "실패";
+    }
+
+    public void storeResultBridges(String moving, boolean crossedBridge) {
+        List<String> upperBridge = resultBridges.get(0);
+        List<String> lowerBridge = resultBridges.get(1);
+        if (moving.equals(UserInput.InputLetter.MOVING_UP.getLetter())) {
+            upperBridge.add(ox.get(crossedBridge));
+            lowerBridge.add(" ");
+        }
+        if (moving.equals(UserInput.InputLetter.MOVING_DOWN.getLetter())) {
+            upperBridge.add(" ");
+            lowerBridge.add(ox.get(crossedBridge));
+        }
     }
 }
