@@ -27,7 +27,7 @@ public class Validator {
     }
 
     public static void checkRetryOrQuit(String input) {
-        if (!(input.equals('R') || input.equals('Q'))) {
+        if (!(input.equals("R") || input.equals("Q"))) {
             throw new IllegalArgumentException(NOT_RETRY_OR_QUIT_ERROR_MESSAGE);
         }
     }
