@@ -59,10 +59,9 @@ public class OutputView {
     }
 
     private String format(List<String> strings) {
-        String ret = "";
         String joinedStrings = strings.stream()
                 .collect(Collectors.joining(" | "));
-        return ret.concat("[ ").concat(joinedStrings).concat(" ]");
+        return "".concat("[ ").concat(joinedStrings).concat(" ]");
     }
 
     /**
