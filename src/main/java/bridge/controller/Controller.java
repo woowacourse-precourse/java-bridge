@@ -24,7 +24,7 @@ public class Controller {
     private final List<TrialResult> trialResults = new ArrayList<>();
     private BridgeGame game;
 
-    public void play() {
+    public void run() {
         game = makeGame();
         int trialCount = doGame();
         OUTPUT_VIEW.printResult(trialResults, trialCount, game.isFinished());
