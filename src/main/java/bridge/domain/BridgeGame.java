@@ -13,7 +13,6 @@ public class BridgeGame {
 
     public void move(String direction) {
         gameStatus moveResult = bridge.updateUserRoute(direction);
-        System.out.println(moveResult);
         this.currentStatus = moveResult;
     }
 
