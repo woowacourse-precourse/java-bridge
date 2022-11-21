@@ -1,6 +1,7 @@
 package bridge.io;
 
-public enum IO_message {
+public enum IO_msg {
+    U("U"), D("D"), BLANK(" "), O("O"), X("X"), R("R"), Q("Q"),
 
     INPUT_START("다리 건너기 게임을 시작합니다."),
     INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
@@ -18,9 +19,9 @@ public enum IO_message {
     ERR_002("[ERROR] 이동할 칸은 U/D 중 하나를 입력해 주세요."),
     ERR_003("[ERROR] 게임 재시작 여부는 R/Q 중 하나를 입력해 주세요.");
 
-    public final String message;
+    public final String msg;
 
-    IO_message(String msg) {
-        this.message = msg;
+    IO_msg(String msg) {
+        this.msg = msg;
     }
 }

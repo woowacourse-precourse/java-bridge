@@ -6,15 +6,19 @@ import bridge.model.Model;
 public class OutputView {
 
     public static void printMap() {
-        String upperStep1 = replaceCommaToBar(Model.upperBridgeMap.toString());
-        String upperStep2 = extractInBracket(upperStep1);
-        System.out.println("[ " + upperStep2 + " ]");
-
-        String lowerStep1 = replaceCommaToBar(Model.lowerBridgeMap.toString());
-        String lowerStep2 = extractInBracket(lowerStep1);
-        System.out.println("[ " + lowerStep2 + " ]");
-
+        printCurrentUpperBridgeState();
+        printCurrentLowerBridgeState();
         System.out.println();
+    }
+    private static void printCurrentUpperBridgeState() {
+        String step1 = replaceCommaToBar(Model.upperBridgeMap.toString());
+        String step2 = extractInBracket(step1);
+        System.out.println("[ " + step2 + " ]");
+    }
+    private static void printCurrentLowerBridgeState() {
+        String step1 = replaceCommaToBar(Model.lowerBridgeMap.toString());
+        String step2 = extractInBracket(step1);
+        System.out.println("[ " + step2 + " ]");
     }
     private static String replaceCommaToBar(String string) {
         return string.replace(",", " |");
@@ -25,18 +29,18 @@ public class OutputView {
 
 
     public static void printResult() {
-        System.out.println(IO_message.OUTPUT_GAME_RESULT.message);
+        System.out.println(IO_msg.OUTPUT_GAME_RESULT.msg);
         printMap();
-        System.out.println(IO_message.OUTPUT_PASS_FAIL.message + printGameResult());
-        System.out.println(IO_message.OUTPUT_TOTAL_TRY_COUNT.message + BridgeGame.tryCount);
+        System.out.println(IO_msg.OUTPUT_PASS_FAIL.msg + printGameResult());
+        System.out.println(IO_msg.OUTPUT_TOTAL_TRY_COUNT.msg + BridgeGame.tryCount);
     }
     private static String printGameResult() {
         int lastIndexOfBridge = Model.upperBridgeMap.size()-1;
         String upperLast = Model.upperBridgeMap.get(lastIndexOfBridge);
         String lowerLast = Model.lowerBridgeMap.get(lastIndexOfBridge);
         if (upperLast.equals("O") || lowerLast.equals("O")) {
-            return IO_message.RESULT_SCECESS.message;
+            return IO_msg.RESULT_SCECESS.msg;
         }
-        return IO_message.RESULT_FAIL.message;
+        return IO_msg.RESULT_FAIL.msg;
     }
 }

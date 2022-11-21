@@ -5,14 +5,14 @@ import bridge.io.OutputView;
 
 import static bridge.game.GameState.*;
 import static bridge.io.InputView.*;
-import static bridge.io.IO_message.INPUT_START;
+import static bridge.io.IO_msg.INPUT_START;
 
 public class Controller {
 
     private final BridgeGame bridgeGame;
     private int gameState;
     public Controller() {
-        System.out.println(INPUT_START.message);
+        System.out.println(INPUT_START.msg);
         System.out.println();
         bridgeGame = new BridgeGame(readBridgeSize());
         System.out.println();
