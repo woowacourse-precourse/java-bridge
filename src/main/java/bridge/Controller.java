@@ -91,6 +91,9 @@ public class Controller {
     public void result(int inputCount) {
         if (inputCount != bridge.size()) {
             String command = getCommand();
+            if (bridgeGame.retry(command)) {
+                run();
+            }
         }
     }
 
