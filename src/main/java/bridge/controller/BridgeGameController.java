@@ -63,9 +63,7 @@ public class BridgeGameController {
     }
 
     private void printMap(BridgeGame bridgeGame) {
-        String output = bridgeGame.mapService();
-        BridgeStateService bridgeGameBridgeStateService = bridgeGame.getBridgeStateService();
-        outputView.printMap(output);
+        outputView.printMap(bridgeGame);
     }
 
     public boolean untilTheEnd(BridgeGame bridgeGame, BridgeSize bridgeSize) {
@@ -110,8 +108,7 @@ public class BridgeGameController {
 
     private void printFinalGameResult(BridgeGame bridgeGame) {
         outputView.print(BridgePhrase.GAME_RESULT);
-        String output = bridgeGame.mapService();
-        outputView.printResult(output);
+        outputView.printResult(bridgeGame);
     }
 
     private void printSuccessOrNot(BridgeGame bridgeGame) {

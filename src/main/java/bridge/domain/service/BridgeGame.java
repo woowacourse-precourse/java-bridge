@@ -64,7 +64,8 @@ public class BridgeGame {
         return bridgeStateService.mapService(bridgeMap);
     }
 
-    public BridgeStateService getBridgeStateService() {
-        return bridgeStateService;
+    @Override
+    public String toString() {
+        return mapService();
     }
 }
