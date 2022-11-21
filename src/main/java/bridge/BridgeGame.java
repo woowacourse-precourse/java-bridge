@@ -28,15 +28,15 @@ public class BridgeGame {
         this.outputView = outputView;
     }
 
-    public void startGameCatchingException() {
+    public void playGameCatchingException() {
         try {
-            startGame();
+            playGame();
         } catch(IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
     }
 
-    public void startGame() {
+    public void playGame() {
         trial = 0;
         outputView.printStartGameMessage();
 
