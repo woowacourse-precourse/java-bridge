@@ -4,8 +4,8 @@ import java.util.List;
 
 class SuccessResultPrinter extends ResultPrinter {
 
-    public SuccessResultPrinter(List<String> directions) {
-        super(directions);
+    public SuccessResultPrinter(List<Position> passingRout) {
+        super(passingRout);
     }
 
 }

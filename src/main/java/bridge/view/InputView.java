@@ -16,6 +16,7 @@ public class InputView {
     public static final String INPUT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private final Logger logger = Logger.getLogger(InputView.class.getName());
+
     /**
      * 다리의 길이를 입력받는다.
      */

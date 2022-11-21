@@ -22,12 +22,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String direction) {
-        player.move(direction);
+    public boolean move(Position position) {
+        player.move(position);
         return isSuccess();
     }
 
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         return bridges.isSuccess(player);
     }
 
@@ -57,5 +57,4 @@ public class BridgeGame {
     public boolean isCompletedGame() {
         return bridges.isCompletedGame(player);
     }
-
 }

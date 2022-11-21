@@ -21,14 +21,14 @@ public class InputValidatorTest {
     }
 
     @DisplayName("정확한 사이즈 입력시 정상 작동")
-    @ValueSource(strings = {"3", "20","12"})
+    @ValueSource(strings = {"3", "20", "12"})
     @ParameterizedTest
     void input_true_size(String inputSize) {
         assertThatCode(() -> InputValidator.isValidSize(inputSize)).doesNotThrowAnyException();
     }
 
     @DisplayName("잘못된 이동위치 입력시 예외발생")
-    @ValueSource(strings = {"", "E","123","%", "''"})
+    @ValueSource(strings = {"", "E", "123", "%", "''"})
     @ParameterizedTest
     void input_false_moving(String moving) {
         assertThatThrownBy(() -> InputValidator.isValidMoving(moving)).isInstanceOf(IllegalArgumentException.class)
@@ -43,7 +43,7 @@ public class InputValidatorTest {
     }
 
     @DisplayName("잘못된 게임 다시시작 문자 입력시 예외발생")
-    @ValueSource(strings = {"","32", "''","A","r"})
+    @ValueSource(strings = {"", "32", "''", "A", "r"})
     @ParameterizedTest
     void input_false_retry(String retry) {
         assertThatThrownBy(() -> InputValidator.isValidRetry(retry)).isInstanceOf(IllegalArgumentException.class)

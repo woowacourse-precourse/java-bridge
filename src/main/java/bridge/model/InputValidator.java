@@ -42,8 +42,8 @@ public class InputValidator {
         }
     }
 
-    private static void isNullOrBlank(String inputSize,String message) {
-        if ( inputSize == null || inputSize.isBlank()) {
+    private static void isNullOrBlank(String inputSize, String message) {
+        if (inputSize == null || inputSize.isBlank()) {
             throw new IllegalArgumentException(message);
         }
     }

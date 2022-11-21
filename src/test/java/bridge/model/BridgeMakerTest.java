@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class BridgeMakerTest {
 
     @Test
-    @DisplayName("다리의 길이는 받고 길이만큼 다리 생성,값은 U와D")
+    @DisplayName("다리의 길이를 받고 길이만큼 다리 생성,값은 U와D")
     void makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridges = bridgeMaker.makeBridge(10);

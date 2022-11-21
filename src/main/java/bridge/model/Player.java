@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private final List<String> passingRout;
+    private final List<Position> passingRout;
 
     Player() {
         this.passingRout = new ArrayList<>();
     }
 
-    int move(String direction) {
-        addDirection(direction);
+    int move(Position position) {
+        addDirection(position);
         return passingRout.size();
     }
 
-    private void addDirection(String direction) {
-        passingRout.add(direction);
+    private void addDirection(Position position) {
+        passingRout.add(position);
     }
 
     boolean isCompletedGame(int size) {
@@ -35,12 +35,14 @@ public class Player {
         return ResultPrinter.createResultPrinter(success, getPassingRout());
     }
 
-    private List<String> getPassingRout() {
+    private List<Position> getPassingRout() {
         return List.copyOf(passingRout);
     }
 
-    public boolean isSuccess(List<String> bridges) {
-        List<String> target = bridges.subList(0, passingRout.size());
+    public boolean isSuccess(List<Position> bridges) {
+        List<Position> target = bridges.subList(0, passingRout.size());
         return target.equals(passingRout);
     }
+
+
 }

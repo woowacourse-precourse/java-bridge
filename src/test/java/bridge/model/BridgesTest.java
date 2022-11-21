@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.model.Position.DOWN;
+import static bridge.model.Position.UP;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,10 +14,10 @@ public class BridgesTest {
         Bridges bridges = new Bridges(3, new BridgeFakeOneZeroLoopNumberGenerator());
         Player player = new Player();
         assertThat(bridges.isCompletedGame(player)).isFalse();
-        player.move("U");
+        player.move(UP);
         assertThat(bridges.isCompletedGame(player)).isFalse();
-        player.move("D");
-        player.move("U");
+        player.move(DOWN);
+        player.move(UP);
         assertThat(bridges.isCompletedGame(player)).isTrue();
     }
 

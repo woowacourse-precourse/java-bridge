@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.model.Position.DOWN;
+import static bridge.model.Position.UP;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +21,8 @@ public class BridgeGameTest {
 
     @DisplayName("이동한 칸이 이동가능한 칸인지 확인")
     @ParameterizedTest
-    @CsvSource(value = {"U:true","D:false"},delimiter = ':')
-    void check_move(String direction,boolean expected) {
+    @CsvSource(value = {"UP:true", "DOWN:false"}, delimiter = ':')
+    void check_move(Position direction, boolean expected) {
         assertThat(bridgeGame.move(direction)).isEqualTo(expected);
     }
 
@@ -29,9 +31,9 @@ public class BridgeGameTest {
     @Test
     void is_completed_move() {
         assertThat(bridgeGame.isCompletedGame()).isFalse();
-        bridgeGame.move("U");
+        bridgeGame.move(UP);
         assertThat(bridgeGame.isCompletedGame()).isFalse();
-        bridgeGame.move("D");
+        bridgeGame.move(DOWN);
         assertThat(bridgeGame.isCompletedGame()).isTrue();
     }
 
@@ -39,7 +41,7 @@ public class BridgeGameTest {
     @Test
     void test_retry() {
         assertThat(bridgeGame.isStartStatus()).isTrue();
-        bridgeGame.move("D");
+        bridgeGame.move(DOWN);
         assertThat(bridgeGame.isCompletedGame()).isFalse();
         bridgeGame.retry();
         assertThat(bridgeGame.isStartStatus()).isTrue();
@@ -56,9 +58,9 @@ public class BridgeGameTest {
     @DisplayName("결과 출력")
     @Test
     void print_result() {
-        bridgeGame.move("U");
+        bridgeGame.move(UP);
         assertThat(bridgeGame.printResult()).isEqualTo("[ O ]\n[   ]\n");
-        bridgeGame.move("U");
+        bridgeGame.move(UP);
         assertThat(bridgeGame.printResult()).isEqualTo("[ O | X ]\n[   |   ]\n");
     }
 }

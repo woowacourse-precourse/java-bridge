@@ -8,21 +8,21 @@ public class FailureResultPrinter extends ResultPrinter {
     public static final int INDEX_SIZE_DIFFERENT = 1;
     public static final int BEGIN_INDEX = 0;
 
-    FailureResultPrinter(List<String> directions) {
-        super(directions);
+    FailureResultPrinter(List<Position> passingRout) {
+        super(passingRout);
     }
 
     @Override
-    public String getResult(String direction) {
-        String result = super.getResult(direction);
-        if (getEndChar().equals(direction)){
+    public String getResult(Position targetPosition) {
+        String result = super.getResult(targetPosition);
+        if (getEndPosition().equals(targetPosition)) {
             return replaceSignOToX(result);
         }
         return result;
     }
 
-    private String getEndChar() {
-        return directions.get(getEndIndex(directions.size()));
+    private Position getEndPosition() {
+        return passingRout.get(getEndIndex(passingRout.size()));
     }
 
     private static String replaceSignOToX(String result) {

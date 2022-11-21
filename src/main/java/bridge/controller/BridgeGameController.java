@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.model.BridgeGame;
 import bridge.model.BridgeRandomNumberGenerator;
+import bridge.model.Position;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -32,11 +33,11 @@ public class BridgeGameController {
 
     private void play() {
         String moving = inputView.readMoving();
-        move(moving);
+        move(Position.create(moving));
     }
 
-    private void move(String moving) {
-        if (!isMoveSuccess(moving)) {
+    private void move(Position position) {
+        if (!isMoveSuccess(position)) {
             outputView.printMap(bridgeGame.printResult());
             retry();
             return;
@@ -44,8 +45,8 @@ public class BridgeGameController {
         continueOrSuccess();
     }
 
-    private boolean isMoveSuccess(String moving) {
-        return bridgeGame.move(moving);
+    private boolean isMoveSuccess(Position position) {
+        return bridgeGame.move(position);
     }
 
     private void continueOrSuccess() {
