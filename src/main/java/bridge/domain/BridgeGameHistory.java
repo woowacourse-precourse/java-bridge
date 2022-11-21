@@ -2,16 +2,26 @@ package bridge.domain;
 
 import java.util.List;
 
-public class BridgeHistory {
+public class BridgeGameHistory {
 
     private final BridgePlayer playerBridgeHistory;
     private final BridgeAnswer bridgeAnswer;
     private final BridgeGameRound bridgeGameRound;
 
-    public BridgeHistory(BridgePlayer playerBridgeHistory, BridgeAnswer bridgeAnswer, BridgeGameRound bridgeGameRound) {
+    private BridgeGameHistory(BridgePlayer playerBridgeHistory,
+                              BridgeAnswer bridgeAnswer,
+                              BridgeGameRound bridgeGameRound
+    ) {
         this.playerBridgeHistory = playerBridgeHistory;
         this.bridgeAnswer = bridgeAnswer;
         this.bridgeGameRound = bridgeGameRound;
+    }
+
+    public static BridgeGameHistory of(BridgePlayer playerBridgeHistory,
+                                       BridgeAnswer bridgeAnswer,
+                                       BridgeGameRound bridgeGameRound
+    ) {
+        return new BridgeGameHistory(playerBridgeHistory, bridgeAnswer, bridgeGameRound);
     }
 
     public List<BridgeMoveType> getPlayerBridge() {

@@ -5,12 +5,11 @@ package bridge.domain;
  */
 public class BridgeGame {
 
-    private final BridgeGameRound bridgeRound;
+    private final BridgeGameRound bridgeRound = new BridgeGameRound();
     private final BridgePlayer bridgePlayer;
     private final BridgeAnswer bridgeAnswer;
 
-    public BridgeGame(BridgeGameRound bridgeRound, BridgePlayer bridgePlayer, BridgeAnswer bridgeAnswer) {
-        this.bridgeRound = bridgeRound;
+    public BridgeGame(BridgePlayer bridgePlayer, BridgeAnswer bridgeAnswer) {
         this.bridgePlayer = bridgePlayer;
         this.bridgeAnswer = bridgeAnswer;
     }
@@ -40,7 +39,7 @@ public class BridgeGame {
         bridgePlayer.clearPlayerBridge();
     }
 
-    public BridgeHistory getHistory() {
-        return new BridgeHistory(bridgePlayer, bridgeAnswer, bridgeRound);
+    public BridgeGameHistory getGameHistory() {
+        return BridgeGameHistory.of(bridgePlayer, bridgeAnswer, bridgeRound);
     }
 }
