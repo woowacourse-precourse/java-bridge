@@ -28,7 +28,7 @@ public class BridgeGameController {
         isSuccess = true;
     }
 
-    public void playGame() {
+    public void playGame() throws IllegalArgumentException {
         outputView.printGameStart();
         List<String> bridge = makeAnswerBridge();
         pickMovingDirection(bridge);
@@ -65,7 +65,7 @@ public class BridgeGameController {
         }
     }
 
-    private List<String> makeAnswerBridge() {
+    private List<String> makeAnswerBridge() throws IllegalArgumentException {
         bridgeGame.setAnswerBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         List<String> bridge = bridgeGame.getAnswerBridge();
         return bridge;

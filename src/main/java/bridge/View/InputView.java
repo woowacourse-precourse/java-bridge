@@ -1,5 +1,6 @@
 package bridge.View;
 
+import bridge.Message.Error;
 import bridge.Message.Message;
 import camp.nextstep.edu.missionutils.Console;
 /**
@@ -10,11 +11,15 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize() throws IllegalArgumentException {
         System.out.println(Message.INPUT_BRIDGE_LENGTH);
         String length = Console.readLine();
         System.out.println();
-        return Integer.parseInt(length);
+        try {
+            return Integer.parseInt(length);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException(Error.WRONG_BRIDGE_NUMBER);
+        }
     }
 
     /**
