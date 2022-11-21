@@ -37,7 +37,8 @@ public class BridgeGame {
 			String restartOrQuit = inputView.readGameCommand();
 			//Q면, outputView.printResult()하고 끝낸다.
 			if (restartOrQuit.equals("Q")){
-				outputView.printResult();
+				outputView.printResult(generateBridge,i,block);
+				break;
 			}
 			//R이면 재시작. -> retry 호출한다.
 			if (restartOrQuit.equals("R")){
