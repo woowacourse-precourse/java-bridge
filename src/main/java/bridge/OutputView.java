@@ -22,9 +22,9 @@ public class OutputView {
 
     private void printPresentBridge(List<String> down_bridge) {
         System.out.print("[ ");
-        for (int i = 0;i<BridgeMaker.bridge_index;i++){
-            System.out.print(down_bridge.get(i));
-            if (i!=BridgeMaker.bridge_index-1){
+        for (int userpick = 0; userpick <BridgeMaker.bridge_index; userpick++){
+            System.out.print(down_bridge.get(userpick));
+            if (userpick!=BridgeMaker.bridge_index-1){
                 System.out.print(" | ");
             }
         }
