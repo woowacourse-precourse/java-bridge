@@ -70,6 +70,8 @@ BridgeGameController 클래스에 BridgeMaker, BridgeGame 클래스의 객체들
 
 ## 🏘️ 구현할 기능 목록 (version 1.2.0)
 
+## 0. 게임 진행을 위한 출력문 enum 작성 [V]
+
 ## 1. 게임 시작을 알리고 다리의 길이를 설정한다.
 - [] 게임 시작을 알린다
 - [] 다리의 길이를 입력받는다.
