@@ -126,6 +126,7 @@ public class GameManager {
     }
 
     private void printGameResult() {
+        OutputView.printResult(player, bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
     }
 
 }
