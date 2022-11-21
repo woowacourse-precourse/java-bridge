@@ -43,6 +43,7 @@ public class BridgeGame {
     public List<List<String>> getGameMap() {
         List<String> upMap = new ArrayList<>();
         List<String> downMap = new ArrayList<>();
+        
         for (int index = 0; index < playerMove.size(); index++) {
             if (playerMove.get(index).equals("U")) {
                 downMap.add(" ");

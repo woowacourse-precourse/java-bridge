@@ -21,7 +21,6 @@ public class BridgeGameController {
         inputView = new InputView();
         outputView = new OutputView();
         Bridge gameBridge = makeGameBridge();
-        //System.out.println(gameBridge.getBridge());
         this.bridgeGame = new BridgeGame(gameBridge);
         this.gameCount = 1;
         this.play = true;
@@ -29,14 +28,18 @@ public class BridgeGameController {
 
     public void start() {
         while (play) {
-            bridgeGame.move();
-            play = !bridgeGame.isEnd();
+            playerMove();
             showBridge(bridgeGame.getGameMap());
             if (!bridgeGame.getStatus().isLife()) {
                 askRetry();
             }
         }
         showResult(bridgeGame.getGameMap(), bridgeGame.getStatus(), this.gameCount);
+    }
+
+    private void playerMove() {
+        bridgeGame.move();
+        play = !bridgeGame.isEnd();
     }
 
     private Bridge makeGameBridge() {

@@ -12,13 +12,6 @@ public enum GameStatus {
         this.life = value;
     }
 
-    public static GameStatus resultPlaying(boolean life) {
-        if (life) {
-            return SUCCESS;
-        }
-        return FAIL;
-    }
-
     public String getDetail() {
         return this.detail;
     }
