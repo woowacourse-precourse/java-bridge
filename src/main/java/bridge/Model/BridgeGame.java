@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class BridgeGame {
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String NOTHING = " ";
+    private static final String RIGHT_POSITION = "O";
     private static int bridgeSize;
     private static List<String> bridgeAnswer;
     private static int gameCount = 0;
@@ -39,10 +43,21 @@ public class BridgeGame {
         String answerPosition = bridgeAnswer.get(currentBridgeSize);
         boolean isEqual = nextPosition.equals(answerPosition);
         if (isEqual) {
-
+            rightMove(nextPosition);
         }
         if (!isEqual) {
 
+        }
+    }
+
+    public static void rightMove(String nextPosition) {
+        if (nextPosition.equals(UP)) {
+            currentBridge.get(0).add(RIGHT_POSITION);
+            currentBridge.get(1).add(NOTHING);
+        }
+        if (nextPosition.equals(DOWN)) {
+            currentBridge.get(0).add(NOTHING);
+            currentBridge.get(1).add(RIGHT_POSITION);
         }
     }
 
