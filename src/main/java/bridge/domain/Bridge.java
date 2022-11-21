@@ -45,4 +45,12 @@ public class Bridge {
             lowerBridge.add(keyword);
         }
     }
+
+    public static List<String> getUpperBridge() {
+        return upperBridge;
+    }
+
+    public static List<String> getLowerBridge() {
+        return lowerBridge;
+    }
 }

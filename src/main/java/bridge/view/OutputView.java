@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
+import java.util.List;
 
 public class OutputView {
 
@@ -8,7 +10,7 @@ public class OutputView {
     private static final String SELECT_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
     private static final String RESTART_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
     private static final String FINAL_GAME_RESULT_MESSAGE = "최종 게임 결과\n";
-    private static final String GAME_SUCCESS_OR_NOT_MESSAGE = "게임 성공 여부: %s\n";
+    private static final String GAME_SUCCESS_OR_NOT_MESSAGE = "\n게임 성공 여부: %s\n";
     private static final String TOTAL_ATTEMPTS = "총 시도한 횟수: %d\n";
 
     public static void printGameStart() {
@@ -35,8 +37,28 @@ public class OutputView {
         System.out.printf(GAME_SUCCESS_OR_NOT_MESSAGE, result);
     }
 
-    public static void printGameSuccessOrNot(int attempts) {
+    public static void printTotalAttempts(int attempts) {
         System.out.printf(TOTAL_ATTEMPTS, attempts);
+    }
+
+    private void printUpperBridge(){
+        List<String> upperBridge = Bridge.getUpperBridge();
+        for (int block = 0; block < upperBridge.size(); block++) {
+            System.out.print(upperBridge.get(block));
+            if (block + 1 < upperBridge.size()) {
+                System.out.print(" | ");
+            }
+        }
+    }
+
+    private void printLowerBridge(){
+        List<String> lowerBridge = Bridge.getLowerBridge();
+        for (int block = 0; block < lowerBridge.size(); block++) {
+            System.out.print(lowerBridge.get(block));
+            if (block + 1 < lowerBridge.size()) {
+                System.out.print(" | ");
+            }
+        }
     }
 
     /**
@@ -45,6 +67,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
+        System.out.print("[ ");
+        printUpperBridge();
+        System.out.print(" ]");
+        System.out.println();
+        System.out.print("[ ");
+        printLowerBridge();
+        System.out.print(" ]");
+        System.out.println();
     }
 
     /**
@@ -52,6 +82,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String result, int attempts) {
+        printGameResultMessage();
+        printMap();
+        printGameSuccessOrNot(result);
+        printTotalAttempts(attempts);
     }
 }
