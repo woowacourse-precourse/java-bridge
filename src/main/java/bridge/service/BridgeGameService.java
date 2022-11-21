@@ -55,4 +55,13 @@ public class BridgeGameService {
             output.printMap(bridge);
         }
     }
+
+    private boolean checkRestartCondition(int movingCount) {
+        if (movingCount != crossByBridge.size() || bridgeGame.getLastMoving().equals("X")) {
+            bridgeGame = new BridgeGame(new ArrayList<>(), bridgeGame.getTotalGame(), bridge);
+            selectGameRestart();
+            return true;
+        }
+        return false;
+    }
 }
