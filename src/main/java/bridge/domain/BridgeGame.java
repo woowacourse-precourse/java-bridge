@@ -30,8 +30,7 @@ public class BridgeGame {
     }
 
     public void leaveFootPrint(String movingDirection, int upAndDown) {
-        if (directionToList.get(movingDirection) != upAndDown) {
-            footPrint.get(upAndDown).add(" ");
+        if (leaveNoFootPrint(movingDirection, upAndDown)) {
             return;
         }
         if (crossingStatus.equals(BridgeCrossingStatus.FAIL)) {
@@ -39,6 +38,14 @@ public class BridgeGame {
             return;
         }
         footPrint.get(upAndDown).add("O");
+    }
+
+    public boolean leaveNoFootPrint(String movingDirection, int upAndDown) {
+        if (directionToList.get(movingDirection) != upAndDown) {
+            footPrint.get(upAndDown).add(" ");
+            return true;
+        }
+        return false;
     }
 
     public BridgeCrossingDTO toResponseDto() {
