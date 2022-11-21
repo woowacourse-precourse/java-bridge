@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.enums.Inputs;
 import bridge.enums.OutMsg;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -24,11 +25,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Inputs readMoving() {
         System.out.println(OutMsg.MOVE_REQUEST.getMessage());
         String move = Console.readLine();
         inputValidator.validateMovement(move);
-        return move;
+        if (move.equals(Inputs.MOVE_UP.getMessage())) {
+            return Inputs.MOVE_UP;
+        }
+        return Inputs.MOVE_DOWN;
     }
 
     /**
