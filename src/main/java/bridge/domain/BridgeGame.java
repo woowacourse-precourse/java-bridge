@@ -1,22 +1,18 @@
 package bridge.domain;
 
-import bridge.BridgeRandomNumberGenerator;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private Bridge bridge;
+    private BridgeGameResult result;
 
-    public void tryFirstTime(int size) {
-        setBridge(size);
-    }
-
-    private void setBridge(int size) {
+    public void setBridge(BridgeSize size) {
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeSize bridgeSize = new BridgeSize(size);
-        this.bridge = maker.makeBridge(bridgeSize);
+        this.bridge = maker.makeBridge(size);
+        this.result = new BridgeGameResult();
     }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
