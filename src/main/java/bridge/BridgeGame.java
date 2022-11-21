@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ public class BridgeGame {
     public BridgeGame(int size){
         BridgeNumberGenerator bridgeNumberGenerator=new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker=new BridgeMaker(bridgeNumberGenerator);
+        userBridge=new ArrayList<>();
         this.gameCount=1;
         this.answerBridge=bridgeMaker.makeBridge(size);
     }
