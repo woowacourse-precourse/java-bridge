@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,9 +23,6 @@ public class StartGameTest {
         assertThat(check(checkList)).isTrue();
     }
 
-    public static InputStream generateUserInput(String input) {
-        return new ByteArrayInputStream(input.getBytes());
-    }
 
     private boolean check(List<String> checkList) {
         for (int i = 0; i < checkList.size(); i++) {
@@ -40,7 +35,7 @@ public class StartGameTest {
 
     @DisplayName("입력받은 length 기준으로 bridge가 생성되는지 테스트")
     @Test
-    void checkLength() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void checkLength() {
         StartGame runGame = new StartGame();
         List<String> checkList;
         int lenght = 10;
@@ -48,5 +43,9 @@ public class StartGameTest {
         System.setIn(in);
         checkList = runGame.setBridgeSize().getBridge();
         assertThat(checkList).hasSize(lenght);
+    }
+
+    public static InputStream generateUserInput(String input) {
+        return new ByteArrayInputStream(input.getBytes());
     }
 }
