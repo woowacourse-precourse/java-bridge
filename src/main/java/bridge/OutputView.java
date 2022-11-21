@@ -42,12 +42,20 @@ public class OutputView {
         }
         return bridgeMap;
     }
-    private void printBridge(List<String> bridge,String direction, boolean result){
-        System.out.println("최종 게임 결과");
-        printMap(bridge,direction,result);
+    public void printFinallyBridge(List<String> bridge){
+            List<List<String>> bridgeMap = bridgeDivision(bridge);
+            for (List<String> directions:bridgeMap) {
+                System.out.print("[");
+                printDirection(directions);
+                System.out.println("]");
+            }
+    }
+    public void printFinallyFailBridge(List<String> bridge,String direction) {
+        printMap(bridge,direction,false);
     }
     public void printResult(int count,String result) {
         System.out.println("게임 성공 여부: "+result);
         System.out.println("총 시도한 횟수: "+count);
     }
+
 }
