@@ -2,31 +2,43 @@ package bridge.View;
 
 import java.util.List;
 
+import static bridge.Instances.Setting.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    static final String START_MAP = "[";
+    static final String END_MAP = "]";
+    static final String IN_MAP_O = " O ";
+    static final String IN_MAP_X = " X ";
+    static final String IN_MAP_NOTHING = "   ";
+    static final String IN_MAP_DISTINCTION = "|";
+    static final String FINAL_RESULT = "최종 게임 결과\n";
+    static final String RESULT_SUCCESS = "게임 성공 여부: 성공\n";
+    static final String RESULT_FAIL = "게임 성공 여부: 실패\n";
+    static final String RESULT_TRIAL = "총 시도한 횟수: ";
 
     private String OorNothing(boolean print) {
         if (print) {
-            return " O ";
+            return IN_MAP_O;
         }
-        return "   ";
+        return IN_MAP_NOTHING;
     }
 
     private String OorX(boolean print) {
         if (print) {
-            return " O ";
+            return IN_MAP_O;
         }
-        return " X ";
+        return IN_MAP_X;
     }
 
     private String buildMapBeforePosition(List<String> bridge, int position, String printingLine) {
-        StringBuilder output = new StringBuilder("[");
+        StringBuilder output = new StringBuilder(START_MAP);
         for (int i = 0; i < position - 1; i++) {
             boolean print = bridge.get(i).equals(printingLine);
             output.append(OorNothing(print));
-            output.append("|");
+            output.append(IN_MAP_DISTINCTION);
         }
         return output.toString();
     }
@@ -35,10 +47,10 @@ public class OutputView {
         StringBuilder output = new StringBuilder();
         if (printingTurn) {
             output.append(OorX(correct));
-            output.append("]\n");
+            output.append(END_MAP + "\n");
             return output.toString();
         }
-        output.append("   ]\n");
+        output.append(IN_MAP_NOTHING + END_MAP + "\n");
         return output.toString();
     }
 
@@ -51,7 +63,7 @@ public class OutputView {
 
     public String buildMap(List<String> bridge, int position, boolean correct) {
         StringBuilder output = new StringBuilder();
-        for (String printingLine : new String[]{"U", "D"}) {
+        for (String printingLine : new String[]{MOVING_UP, MOVING_DOWN}) {
             output.append(buildMapBeforePosition(bridge, position, printingLine));
             boolean printingTurn = bridge.get(position - 1).equals(printingLine);
             printingTurn = changeTurnIfWrong(correct, printingTurn);
@@ -65,7 +77,7 @@ public class OutputView {
     }
 
     private String buildResult(List<String> bridge, int position, boolean success) {
-        return "최종 게임 결과\n" +
+        return FINAL_RESULT +
                 buildMap(bridge, position, success);
     }
 
@@ -76,11 +88,11 @@ public class OutputView {
     private String buildSuccessOrFail(boolean success, int trial) {
         StringBuilder output = new StringBuilder();
         if (success) {
-            output.append("게임 성공 여부: 성공\n");
-            output.append("총 시도한 횟수: ").append(trial);
+            output.append(RESULT_SUCCESS);
+            output.append(RESULT_TRIAL).append(trial);
             return output.toString();
         }
-        output.append("게임 성공 여부: 실패\n");
+        output.append(RESULT_FAIL);
         return output.toString();
     }
 
