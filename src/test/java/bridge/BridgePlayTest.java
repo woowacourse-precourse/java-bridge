@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class BridgePlayTest {
 
-    BridgePlay bridgePlay;
+    private BridgePlay bridgePlay;
     @BeforeEach
     void initiateBridgePlayTest() {
         bridgePlay = new BridgePlay();

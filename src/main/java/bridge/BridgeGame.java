@@ -25,7 +25,7 @@ public class BridgeGame {
     public void requestBridge() {
         int bridgeSize = bridgeMaker.requestReadBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge);
+        // System.out.println(bridge);
     }
 
     /**

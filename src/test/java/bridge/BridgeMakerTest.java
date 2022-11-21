@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
-    BridgeMaker bridgeMaker;
+    private BridgeMaker bridgeMaker;
 
     @BeforeEach
     void initiateBridgeMakerTest() {
