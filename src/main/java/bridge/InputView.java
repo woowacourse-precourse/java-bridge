@@ -27,7 +27,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+
+        System.out.println("다리의 길이를 입력해주세요.");
+        BRIDGE_SIZE = Integer.parseInt(Console.readLine());
+        if(!(BRIDGE_SIZE >= 3 && BRIDGE_SIZE <= 20)) {
+            throw new IllegalArgumentException();
+        }
+
+        return BRIDGE_SIZE;
     }
 
     /**
