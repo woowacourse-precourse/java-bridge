@@ -5,6 +5,7 @@ import static bridge.domain.bridge.Bridge.convert;
 import static bridge.domain.bridge.BridgeAndPasser.compress;
 import static bridge.domain.bridge.BridgePasser.makeBridgePasser;
 import static bridge.domain.game.GameResult.makeGameResult;
+import static bridge.validate.GameValidation.validateGameSuccess;
 
 import bridge.domain.bridge.BridgeSize;
 import bridge.domain.game.GameRecord;
@@ -41,9 +42,7 @@ public class BridgeGame {
     }
 
     public void move() {
-        if(isGameSuccess()) {
-            throw new IllegalStateException("게임이 종료되었습니다.");
-        }
+        validateGameSuccess(isGameSuccess());
 
         bridgePasser.move();
     }
