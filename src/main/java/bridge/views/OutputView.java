@@ -18,8 +18,8 @@ public class OutputView {
      */
     public void printMap(List<BridgeType> bridge, int location, MoveResult result) {
         Message message = new Message(bridge, location, result);
-        StringBuilder messenger = new StringBuilder();
-        messenger.append(message.create(BridgeType.U))
+        StringBuilder messenger = new StringBuilder()
+                .append(message.create(BridgeType.U))
                 .append(message.create(BridgeType.D));
         cache = messenger.toString();
         print(cache);
