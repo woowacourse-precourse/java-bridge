@@ -25,6 +25,7 @@ public class InputView extends DefaultView {
         System.out.println(MSG_REQUEST_BRIDGE_SIZE);
         String input = Console.readLine();
         validateBridgeSize(input);
+        printLineSeparator();
         return Integer.parseInt(input);
     }
 
