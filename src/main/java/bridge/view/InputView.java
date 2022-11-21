@@ -41,7 +41,6 @@ public class InputView {
             inputMoveCommand = Console.readLine();
             validMoveCommand = isValidMoveCommand(inputMoveCommand);
         }
-
         return inputMoveCommand;
     }
 
@@ -49,7 +48,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        boolean validFailCommand = false;
+        String inputFailCommand = null;
+
+        while (!validFailCommand) {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            inputFailCommand = Console.readLine();
+            validFailCommand = isValidFailCommand(inputFailCommand);
+        }
+        return inputFailCommand;
     }
 
     private boolean isValidBridgeSize(String bridgeSize) {
@@ -91,6 +98,15 @@ public class InputView {
         if (!moveCommand.equals(MOVE_COMMAND_UP) && !moveCommand.equals(MOVE_COMMAND_DOWN)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isValidFailCommand(String failCommand) {
+        try {
+            validateGameFailFormat(failCommand);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
     }
 
     private void validateGameFailFormat(String failCommand) {
