@@ -78,4 +78,18 @@ public class InputViewTest {
         //then
         assertThat(move).isEqualTo("R");
     }
+    @DisplayName("값이 정수가 아닐 경우 테스트")
+    @Test
+    void isValidateValue() {
+        //given
+        InputView inputView = new InputView();
+        String size = "3s";
+        //when
+        try {
+            inputView.isValidateValue(size);
+        } catch (IllegalArgumentException e) {
+            //then
+            assertThat(e.getMessage()).isEqualTo("[ERROR]: 정수로 변환될 수 없음");
+        }
+    }
 }
