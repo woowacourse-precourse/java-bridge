@@ -43,7 +43,7 @@ public class InputView {
     }
 
     public void checkMoving(String moving){
-        if(!moving.equals("U")||!moving.equals("D")){
+        if(!moving.equals("U")&&!moving.equals("D")){
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D만 입력하세요.");
         }
     }
