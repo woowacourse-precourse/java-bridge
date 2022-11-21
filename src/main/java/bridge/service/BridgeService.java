@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.controller.BridgeController;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -84,6 +85,34 @@ public class BridgeService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static void getInitRetryQuit(){
+
+        String input = InputView.readGameCommand();
+        try {
+            checkRetryQuit(input);
+            if(input.equals("R")){
+                BridgeGame.retry();
+                BridgeController.makeBridge();
+                BridgeController.initMoveRow();
+                BridgeController.compareMove();
+            }
+            else if(input.equals("Q")){
+                return;
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            getInitRetryQuit();
+        }
+
+    }
+
+    public static String checkRetryQuit(String input){
+        if (input.equals("R") || input.equals("Q")) {
+            return input;
+        }
+        throw new IllegalArgumentException(ERROR_NOT_RETRY_QUIT);
     }
 
     public static Character checkUpDown(String input) {
