@@ -23,10 +23,10 @@ public class Referee {
         do {
             String inputGoingBlock = inputView.readMoving();
             if (!bridgeGame.move(inputGoingBlock)){
+                outputView.printMap(bridgeGame, Constant.TOKEN_FAIL);
                 return inputView.readGameCommand();
             }
-            // TODO: 현재 다리의 상태를 출력해야함.
-            outputView.printMap(bridgeGame);
+            outputView.printMap(bridgeGame, Constant.TOKEN_CLEAR);
         } while (!bridgeGame.isClear());
         return Constant.GAME_CLEAR;
     }

@@ -2,6 +2,10 @@ package bridge.ui;
 
 import bridge.domain.BridgeGame;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -28,9 +32,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame bridgeGame) {
-        System.out.println(bridgeGame.getBridge() + " : " + bridgeGame.getCurrentPosition());
+    public void printMap(BridgeGame bridgeGame, String token) {
+        createPrintBridge(bridgeGame, "U", token);
+        createPrintBridge(bridgeGame, "D", token);
         printNewLine();
+    }
+
+    public void printResultBridge(BridgeGame bridgeGame, int flag) {
+        System.out.println("최종 게임 결과");
+        if (flag == Constant.GAME_CLEAR) {
+            printMap(bridgeGame, Constant.TOKEN_CLEAR);
+            return;
+        }
+        printMap(bridgeGame, Constant.TOKEN_FAIL);
     }
 
     /**
@@ -39,6 +53,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(int flag, BridgeGame bridgeGame) {
+        printResultBridge(bridgeGame, flag);
         if (flag == Constant.GAME_CLEAR) {
             System.out.println("게임 성공 여부: 성공");
         }
@@ -50,18 +65,43 @@ public class OutputView {
 
     public void printNewLine() { System.out.println(); }
 
-    private String createToken() {
-        String token = "O";
-        // 위, 아래, 참, 거짓을 판단해서 토큰을 반환해줌
-        return token;
+    private String createToken(BridgeGame bridgeGame, String floor, int index) {
+        if (Objects.equals(bridgeGame.getBridge().get(index), floor)){
+            return Constant.TOKEN_CLEAR;
+        }
+        return Constant.TOKEN_NULL;
     }
 
-    private String createPrintBridge(String upOrDown, String currentUpOrDown, String token) {
-        // 위, 아래를 입력받고,
-        String printBridge = "[";
-        printBridge = printBridge.concat(" " + token + " ");
+    // TODO: 리팩토링해서 10줄 이하로 만들기
+    private String createToken(BridgeGame bridgeGame, String floor, String token) {
+        if (Objects.equals(token, Constant.TOKEN_FAIL)) {
+            if (!Objects.equals(bridgeGame.getBridge().get(bridgeGame.getCurrentPosition() - 1), floor)){
+                return token;
+            }
+        }
+        if (Objects.equals(token, Constant.TOKEN_CLEAR)) {
+            if (Objects.equals(bridgeGame.getBridge().get(bridgeGame.getCurrentPosition() - 1), floor)) {
+                return token;
+            }
+        }
+        return Constant.TOKEN_NULL;
+    }
 
-        return printBridge;
+    private void createPrintBridge(BridgeGame bridgeGame, String floor, String token) {
+        List<String> temp = new ArrayList<>();
+        temp.add("[");
+        for (int i = 0; i < bridgeGame.getCurrentPosition() - 1; i++) {
+            temp.add(" " + createToken(bridgeGame, floor, i) + " |");
+        }
+        temp.add(" " + createToken(bridgeGame, floor, token) + " ]");
+        printBridge(temp);
+    }
+
+    private void printBridge(List<String> printBridge) {
+        for (String s : printBridge) {
+            System.out.print(s);
+        }
+        printNewLine();
     }
 
     // 여기부터 에러 메시지들
