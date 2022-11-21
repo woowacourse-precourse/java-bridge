@@ -24,6 +24,7 @@ public class BridgeGame {
     BridgeGame() {
         this.upLine = new ArrayList<String>();
         this.downLine = new ArrayList<String>();
+        this.result = Result.FAIL;
         this.bridgeIndex = 0;
     }
 
