@@ -24,11 +24,10 @@ public class Application {
     private static void playGame() {
         while (!game.isEnd()) {
             moveMap();
-            if (game.isStopped()) {
-                if (isAskedToQuit())
-                    return ;
+            if (isAskedToQuit(game.isStopped()))
+                return ;
+            if (game.isStopped())
                 game.retry();
-            }
         }
     }
 
@@ -37,7 +36,9 @@ public class Application {
         OutputView.printMap(game.getResult());
     }
 
-    private static boolean isAskedToQuit() {
+    private static boolean isAskedToQuit(boolean isStopped) {
+        if (!isStopped)
+            return false;
         return InputView.readGameCommand().equals(QUIT_COMMAND);
     }
 
