@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static bridge.ErrorMessage.IS_NOT_NUMBER;
-import static bridge.ErrorMessage.OUT_OF_RANGE;
+import static bridge.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
@@ -39,6 +38,16 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(OUT_OF_RANGE.returnMessage());
 
+    }
+
+    @Test
+    @DisplayName("유효하지 않은 이동 문자 예외처리한다.")
+    void 유효하지_않은_이동값_예외처리(){
+        InputStream is = new ByteArrayInputStream("X".getBytes());
+        System.setIn(is);
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_MOVE.returnMessage());
     }
 
 }
