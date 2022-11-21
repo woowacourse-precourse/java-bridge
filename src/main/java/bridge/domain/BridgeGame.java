@@ -65,4 +65,16 @@ public class BridgeGame {
     private void addGameCount() {
         this.totalGame++;
     }
+
+    public int getMovingCount() {
+        return movingCount;
+    }
+
+    public int getTotalGame() {
+        return totalGame;
+    }
+
+    public String getLastMoving() {
+        return lastMoving;
+    }
 }
