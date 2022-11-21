@@ -42,14 +42,7 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(MessageView.FINAL_GAME_RESULT.getMessage());
-        for (String value: bridge.getUpBridge()) {
-            System.out.print(value + "");
-        }
-        System.out.println();
-        for (String value: bridge.getDownBridge()) {
-            System.out.print(value + "");
-        }
-        System.out.println("\n");
+        printMap();
         System.out.println(MessageView.WHETHER_GAME_SUCCESS.getMessage() + gameStatistics.getGameResult());
         System.out.println(MessageView.TOTAL_ATTEMPTS.getMessage() + gameStatistics.getTotalTryCount());
     }
