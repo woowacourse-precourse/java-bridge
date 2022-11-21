@@ -25,7 +25,7 @@ import java.util.Map;
 public class OutputView {
 
     private final List<MoveChoice> displayOrder = List.of(MoveChoice.UP, MoveChoice.DOWN);
-    private final Map<Boolean, String> gameSuccessMapper = Map.of(false, "" + GAME_FAIL_COMMENT, true,
+    private final Map<Boolean, String> gameSuccessMapper = Map.of(false, GAME_FAIL_COMMENT.getValue(), true,
             GAME_SUCCESS_COMMENT.getValue());
     private final Map<Boolean, String> moveSuccessMapper = Map.of(false, MOVE_FAIL_SYMBOL.getValue(), true,
             MOVE_SUCCESS_SYMBOL.getValue());

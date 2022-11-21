@@ -1,9 +1,9 @@
 package bridge;
 
+import bridge.model.enums.MoveChoice;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import bridge.model.enums.MoveChoice;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
