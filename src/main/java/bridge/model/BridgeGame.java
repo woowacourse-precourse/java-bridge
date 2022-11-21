@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.model.User;
-
 public class BridgeGame {
 
     public void move(final User user, final String choice) {

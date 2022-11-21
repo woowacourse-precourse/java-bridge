@@ -21,9 +21,10 @@
 
 # 클래스 분리
 ## Controller
-- BridgeGame
+- Application
 
 ## Model
+- BridgeGame
 - BridgeMaker
 - BridgeRandomNumberGenerator
 - AnswerBridge
