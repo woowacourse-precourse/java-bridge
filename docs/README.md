@@ -71,7 +71,7 @@
     - U(위 칸)나 D(아래 칸)가 아닌 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지 출력 후 입력을 다시 받는다.
 - [x] 입력받은 값대로 다리를 건넌다. - BridgeGame#move
 - [x] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. - OutputView#printMap
-- [ ] 다리를 건너다 실패하면 게임을 다시 시도할지 종료할지 여부를 입력받는다. - InputView#readGameCommand
+- [x] 다리를 건너다 실패하면 게임을 다시 시도할지 종료할지 여부를 입력받는다. - InputView#readGameCommand
     - R(재시작)이나 Q(종료)가 아닌 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지 출력 후 입력을 다시 받는다.
-    - R(재시작)을 입력할 경우 처음에 만든 다리 그대로 게임을 다시 시도한다. - BridgeGame#retry
+- [ ] R(재시작)을 입력할 경우 처음에 만든 다리 그대로 게임을 다시 시도한다. - BridgeGame#retry
 - [ ] 게임이 끝나면 최종 게임 결과, 게임 성공 여부, 총 시도한 횟수를 출력한다. - OutputView#printResult
