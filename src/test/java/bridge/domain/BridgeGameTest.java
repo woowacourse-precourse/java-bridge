@@ -1,11 +1,7 @@
-package bridge;
+package bridge.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import bridge.domain.Answer;
-import bridge.domain.Bridge;
-import bridge.domain.BridgeDirection;
-import bridge.domain.GameStatus;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

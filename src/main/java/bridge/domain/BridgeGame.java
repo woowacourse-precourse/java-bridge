@@ -1,9 +1,5 @@
-package bridge;
+package bridge.domain;
 
-import bridge.domain.Answer;
-import bridge.domain.Bridge;
-import bridge.domain.BridgeDirection;
-import bridge.domain.GameStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
