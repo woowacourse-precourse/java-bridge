@@ -25,7 +25,6 @@ public class ProgressGame {
             }
             if (game.getNowPosition() == game.getBridge().size()) {
                 output.printResult(game, 1);
-                game.initializePosition();
                 break;
             }
         }
@@ -45,7 +44,6 @@ public class ProgressGame {
             return ;
         }
         output.printResult(game, 0);
-        game.initializePosition();
     }
 
     private String inputMove() {

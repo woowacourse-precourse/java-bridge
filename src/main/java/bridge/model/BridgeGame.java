@@ -17,12 +17,8 @@ public class BridgeGame {
         nowPosition += 1;
     }
     public void retry() {
-        initializePosition();
-        retryCount += 1;
-    }
-
-    public void initializePosition() {
         nowPosition = 0;
+        retryCount += 1;
     }
 
     public void backForResult() {
