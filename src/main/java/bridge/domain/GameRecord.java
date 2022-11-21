@@ -13,6 +13,17 @@ public class GameRecord {
         this.tryCount = 1;
     }
 
+    public void recordMove(String spaceToMove, boolean isDead) {
+        String marker = isDead ? "X" : "O";
+        if (spaceToMove.equals("U")) {
+            upperCrossedRecord.add(marker);
+            lowerCrossedRecord.add(" ");
+            return;
+        }
+        upperCrossedRecord.add(" ");
+        lowerCrossedRecord.add(marker);
+    }
+
     public void recordRetry() {
         tryCount += 1;
     }

@@ -46,6 +46,7 @@ public class BridgeGame {
     public void move(String spaceToMove) {
         validate(spaceToMove);
         player.move(bridge, spaceToMove);
+        gameRecord.recordMove(spaceToMove, player.isDead());
     }
 
     private void validate(String spaceToMove) { // 플레이어의 무브에서 U도 D도 아니면 오류는 내는 식으로 고치기
