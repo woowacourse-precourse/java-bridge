@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import static bridge.domain.Round.ROUND_LOWER_BOUND;
-import static bridge.domain.Round.ROUND_UPPER_BOUND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -20,7 +18,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class RoundTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {ROUND_LOWER_BOUND - 1, ROUND_UPPER_BOUND + 1, -1, 1000})
+    @ValueSource(ints = {0, 21, -1, 1000})
     void valueOf_메서드는_범위를_벗어난_값을_입력받으면_IllegalArugmentException을_던진다(int round) {
         Assertions.assertThatThrownBy(() -> Round.valueOf(round))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -28,7 +26,7 @@ public class RoundTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {ROUND_LOWER_BOUND, 10, ROUND_UPPER_BOUND})
+    @ValueSource(ints = {1, 10, 20})
     void valueOf_메서드는_범위_내_값을_입력받으면_해당_라운드_인스턴스를_반환한다(int round) {
         Round result = Round.valueOf(round);
 
@@ -52,7 +50,7 @@ public class RoundTest {
 
     @Test
     void naturalOrder_메서드는_Round를_오름차순으로_반환한다() {
-        List<Round> naturalOrderedRound = IntStream.rangeClosed(ROUND_LOWER_BOUND, ROUND_UPPER_BOUND)
+        List<Round> naturalOrderedRound = IntStream.rangeClosed(1, 20)
                 .mapToObj(Round::valueOf)
                 .collect(Collectors.toList());
 
@@ -61,7 +59,7 @@ public class RoundTest {
 
     @Test
     void naturalOrderWithSize_메서드는_size를_받아_Round를_오름차순으로_반환한다() {
-        List<Round> naturalOrderedRound = IntStream.rangeClosed(ROUND_LOWER_BOUND, 5)
+        List<Round> naturalOrderedRound = IntStream.rangeClosed(1, 5)
                 .mapToObj(Round::valueOf)
                 .collect(Collectors.toList());
 

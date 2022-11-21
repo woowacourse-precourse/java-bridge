@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 
 public class Round {
 
-    public static final int ROUND_LOWER_BOUND = 1;
-    public static final int ROUND_UPPER_BOUND = 20;
+    private static final int ROUND_LOWER_BOUND = 1;
+    private static final int ROUND_UPPER_BOUND = 20;
     private static final int ROUND_DIFFERENCE = 1;
     private static final Map<Integer, Round> CACHE = new HashMap<>();
     private static final String INVALID_ROUND_RANGE_MESSAGE = "허용된 라운드 범위를 벗어났습니다.";
