@@ -37,7 +37,7 @@ public class InputView {
     }
 
     public void checkReadMoving(String move) {
-        if( !(move.equals("U") || move.equals("D")) ) {
+        if( !(move.equals(Constants.UP) || move.equals(Constants.DOWN)) ) {
             throw new IllegalArgumentException(ErrorMessage.MOVE.getErrorMsg());
         }
     }
@@ -57,7 +57,7 @@ public class InputView {
     }
 
     public void checkReadCommand(String command) {
-        if( !(command.equals("R") || command.equals("Q")) ) {
+        if( !(command.equals(Constants.RESTART) || command.equals(Constants.EXIT)) ) {
             throw new IllegalArgumentException(ErrorMessage.COMMAND.getErrorMsg());
         }
     }
