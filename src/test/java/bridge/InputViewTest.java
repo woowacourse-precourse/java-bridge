@@ -39,4 +39,23 @@ public class InputViewTest {
         Assertions.assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    @DisplayName("다리의 다음 칸으로 이동하기 위한 입력값이 정상일 때 문자열을 반환하는지 확인한다.")
+    void readMoving(String input) {
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
+        Assertions.assertThat(inputView.readMoving()).isEqualTo(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"L", "100", "UD"})
+    @DisplayName("다리의 다음 칸으로 이동하기 위한 입력값이 비정일 때 예외가 발생하는지 확인한다.")
+    void readMovingByInvalidString(String input) {
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
+        Assertions.assertThatThrownBy(inputView::readMoving)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
