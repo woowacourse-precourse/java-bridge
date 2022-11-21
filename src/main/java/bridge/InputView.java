@@ -43,4 +43,10 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR]: 정수로 변환될 수 없음");
         }
     }
+    public void isValidateRange(String size) {
+        int bridgeSize = Integer.parseInt(size);
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException("[ERROR]: 범위 초과 3~20사이로 재입력");
+        }
+    }
 }
