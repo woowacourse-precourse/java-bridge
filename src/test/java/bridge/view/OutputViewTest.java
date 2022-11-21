@@ -37,5 +37,16 @@ public class OutputViewTest {
 
         Assertions.assertThat(outputView.getUpperMap()).isEqualTo("[ |");
     }
+
+    @DisplayName("다리의 끝에 도달했을 때 괄호가 잘 닫히는지 테스트")
+    @Test
+    public void finishMapTest() {
+        List<String> bridgeStatus = List.of("O");
+        int size = 1;
+        int idx = 0;
+        outputView.continueOrFinishMap(bridgeStatus, size, idx);
+
+        Assertions.assertThat(outputView.getUpperMap()).isEqualTo("[ ]");
+    }
 }
 
