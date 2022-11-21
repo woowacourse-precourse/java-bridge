@@ -31,4 +31,20 @@ class CustomExceptionTest {
         boolean bool = customException.checkBridgeSize(input);
         assertThat(bool).isEqualTo(false);
     }
+
+    @DisplayName("true case : move U")
+    @Test
+    void checkMove() {
+        String input = "U";
+        boolean bool = customException.checkMove(input);
+        assertThat(bool).isEqualTo(true);
+}
+
+    @DisplayName("false case : move u")
+    @Test
+    void checkMove2() {
+        String input = "u";
+        boolean bool = customException.checkMove(input);
+        assertThat(bool).isEqualTo(false);
+    }
 }
