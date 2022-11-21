@@ -42,4 +42,8 @@ public class OutputView {
         System.out.printf((RESULT_OF_SUCCESS_OR_FAIL), result);
         System.out.printf((TOTAL_TRY_COUNT), totalTry);
     }
+
+    public static void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
