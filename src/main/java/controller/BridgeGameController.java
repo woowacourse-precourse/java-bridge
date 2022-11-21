@@ -14,15 +14,16 @@ public class BridgeGameController {
     }
 
     public void gameStart() {
-        BridgeGame bridgeGame = getBridgeGame();
-        while (!bridgeGame.isClear()) {
+        GameStatus gameStatus = new GameStatus(false, false);
+        BridgeGame bridgeGame = getBridgeGame(gameStatus);
+        while (!gameStatus.isClear()) {
             moveAndCompare(bridgeGame);
             OutputView.printMap(bridgeGame);
-            if (bridgeGame.isFailure()) {
+            if (gameStatus.isFailure()) {
                 restart(bridgeGame);
             }
         }
-        OutputView.printResult(bridgeGame);
+        OutputView.printResult(bridgeGame, gameStatus);
     }
 
     private void moveAndCompare(BridgeGame bridgeGame) {
@@ -30,9 +31,9 @@ public class BridgeGameController {
         bridgeGame.comparedBridge();
     }
 
-    private BridgeGame getBridgeGame() {
+    private BridgeGame getBridgeGame(GameStatus gameStatus) {
         Bridge bridge = getBridge();
-        return new BridgeGame(bridge);
+        return new BridgeGame(bridge, gameStatus);
     }
 
     private void move(BridgeGame bridgeGame) {

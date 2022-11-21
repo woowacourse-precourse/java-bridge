@@ -16,15 +16,13 @@ public class BridgeGame {
     private List<String> movingPositions;
     private List<String> result;
     private int count;
-    private boolean clear;
-    private boolean failure;
+    private final GameStatus gameStatus;
 
-    public BridgeGame(Bridge bridge) {
+    public BridgeGame(Bridge bridge, GameStatus gameStatus) {
         this.bridge = bridge;
         this.movingPositions = new ArrayList<>();
         this.result = new ArrayList<>();
-        this.clear = false;
-        this.failure = false;
+        this.gameStatus = gameStatus;
         this.count = 1;
     }
 
@@ -62,15 +60,15 @@ public class BridgeGame {
     }
 
     private void successJudgment() {
-        if (!failure && bridge.getBridge().size() == movingPositions.size()) {
-            setClear(true);
+        if (!gameStatus.isFailure() && bridge.getBridge().size() == movingPositions.size()) {
+            gameStatus.setClear(true);
         }
     }
 
     private void differentJudgment(String bridgeValue, String movingPosition) {
         if (!Objects.equals(bridgeValue, movingPosition)) {
             result.add("X");
-            setFailure(true);
+            gameStatus.setFailure(true);
         }
     }
 
@@ -88,11 +86,11 @@ public class BridgeGame {
     public void retry(String command) {
         commandValidation(command);
         if (Objects.equals(command, RestartCommand.RESTART.getCommand())) {
-            init();
+            initialization();
             countAttempt();
         }
         if (Objects.equals(command, RestartCommand.QUIT.getCommand())) {
-            setClear(true);
+            gameStatus.setClear(true);
         }
     }
 
@@ -103,11 +101,11 @@ public class BridgeGame {
         count++;
     }
 
-    private void init() {
+    private void initialization() {
         setMovingPositions(new ArrayList<>());
         setResult(new ArrayList<>());
-        setFailure(false);
-        setClear(false);
+        gameStatus.setFailure(false);
+        gameStatus.setClear(false);
     }
 
     private void commandValidation(String command) {
@@ -124,16 +122,12 @@ public class BridgeGame {
         return movingPositions;
     }
 
-    public boolean isClear() {
-        return clear;
-    }
-
-    public boolean isFailure() {
-        return failure;
-    }
-
     public List<String> getResult() {
         return result;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     private void setMovingPositions(List<String> movingPositions) {
@@ -142,17 +136,5 @@ public class BridgeGame {
 
     private void setResult(List<String> result) {
         this.result = result;
-    }
-
-    private void setClear(boolean clear) {
-        this.clear = clear;
-    }
-
-    private void setFailure(boolean failure) {
-        this.failure = failure;
-    }
-
-    public int getCount() {
-        return count;
     }
 }

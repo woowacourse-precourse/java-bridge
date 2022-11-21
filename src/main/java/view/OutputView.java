@@ -1,6 +1,7 @@
 package view;
 
 import bridge.BridgeGame;
+import bridge.GameStatus;
 import bridge.command.MoveCommand;
 
 import java.util.List;
@@ -85,9 +86,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(BridgeGame bridgeGame) {
+    public static void printResult(BridgeGame bridgeGame, GameStatus gameStatus) {
         printFinalBridge(bridgeGame);
-        printSuccessStatus(bridgeGame);
+        printSuccessStatus(bridgeGame, gameStatus);
         System.out.println(TOTAL_NUMBER_ATTEMPTS + bridgeGame.getCount());
     }
 
@@ -96,12 +97,12 @@ public class OutputView {
         printMap(bridgeGame);
     }
 
-    private static void printSuccessStatus(BridgeGame bridgeGame) {
+    private static void printSuccessStatus(BridgeGame bridgeGame, GameStatus gameStatus) {
         System.out.print(IS_CLEAR);
-        if (bridgeGame.isFailure()) {
+        if (gameStatus.isFailure()) {
             System.out.println("실패");
         }
-        if (!bridgeGame.isFailure()) {
+        if (!gameStatus.isFailure()) {
             System.out.println("성공");
         }
     }
