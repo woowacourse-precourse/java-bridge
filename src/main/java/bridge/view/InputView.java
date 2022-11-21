@@ -28,7 +28,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving = readLine();
         try {
@@ -61,7 +61,7 @@ public class InputView {
         }
     }
 
-    private void validateMoving(String moving) {
+    private static void validateMoving(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException("[ERROR] U나 D 중 하나를 선택해주세요.");
         }
