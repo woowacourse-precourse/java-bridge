@@ -58,19 +58,20 @@ public class OutputView {
     public void printErrorMessage(String message) {
         System.out.println("[ERROR] " + message);
     }
+
     public void printStartGameMessage() {
         System.out.println(OutputMessage.START_GAME.value);
     }
 
-    public void printInputSizeMessage() {
+    public void printAskSizeMessage() {
         System.out.println(OutputMessage.ASK_BRIDGE_SIZE.value);
     }
 
-    public void printMoveMessage() {
+    public void printAskMoveMessage() {
         System.out.println(OutputMessage.ASK_MOVE.value);
     }
 
-    public void printRetryMessage() {
+    public void printAskRetryMessage() {
         System.out.println(OutputMessage.ASK_RETRY.value);
     }
 }

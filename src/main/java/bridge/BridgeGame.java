@@ -32,7 +32,7 @@ public class BridgeGame {
         outputView.printStartGameMessage();
         do {
             trial++;
-            outputView.printInputSizeMessage();
+            outputView.printAskSizeMessage();
             size = inputView.readBridgeSize();
             success = move(bridgeMaker.makeBridge(size));
         } while(!success && retry());
@@ -48,7 +48,7 @@ public class BridgeGame {
     public boolean move(List<String> bridge) {
         boolean correct = true;
         for(int pos = 0; pos < size; pos++) {
-            outputView.printMoveMessage();
+            outputView.printAskMoveMessage();
             correct = inputView.readMoving().equals(bridge.get(pos));
             outputView.printMap(bridge, pos, correct);
             if(!correct) {
@@ -66,7 +66,7 @@ public class BridgeGame {
     public boolean retry() {
         String userInput;
 
-        outputView.printRetryMessage();
+        outputView.printAskRetryMessage();
         userInput = inputView.readGameCommand();
 
         return userInput.equals("R");
