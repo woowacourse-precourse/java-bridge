@@ -52,12 +52,15 @@ public class BridgeLineView {
     protected void fillSquares(BridgeLocation currLocation) {
 
         while (!currLocation.equals(endLocation)) {
-
-            renderBuffer.append(squareCharacter(currLocation));
-            addSeparator();
+            fillSquare(currLocation);
 
             currLocation = currLocation.next();
         }
+    }
+
+    private void fillSquare(BridgeLocation currLocation) {
+        renderBuffer.append(squareCharacter(currLocation));
+        addSeparator();
     }
 
     protected void addSeparator() {
