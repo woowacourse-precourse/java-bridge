@@ -1,4 +1,4 @@
-package model;
+package model.bridge;
 
 import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;

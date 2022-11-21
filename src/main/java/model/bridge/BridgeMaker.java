@@ -1,4 +1,4 @@
-package model;
+package model.bridge;
 
 import bridge.BridgeNumberGenerator;
 

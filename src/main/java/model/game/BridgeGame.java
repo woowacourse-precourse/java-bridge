@@ -1,12 +1,9 @@
-package bridge;
+package model.game;
 
-import model.Bridge;
-import model.BridgeMaps;
-import model.BridgeType;
-import model.GameResult;
-import model.MoveMark;
-import model.ResultType;
-import model.TryCount;
+import model.bridge.Bridge;
+import model.bridge.BridgeType;
+import model.bridge.MoveMark;
+import model.map.BridgeMaps;
 
 import java.util.List;
 import java.util.Map;

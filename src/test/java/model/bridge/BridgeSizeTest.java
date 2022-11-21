@@ -1,4 +1,4 @@
-package model;
+package model.bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +20,7 @@ class BridgeSizeTest {
     }
 
     @DisplayName("다리 길이가 20보다 클 때 예외 처리")
-    @ValueSource(strings = {"21","1000"})
+    @ValueSource(strings = {"21", "1000"})
     @ParameterizedTest(name = "[{index}]  size : {0}")
     void excessSize(Integer size) {
         assertThatThrownBy(() ->

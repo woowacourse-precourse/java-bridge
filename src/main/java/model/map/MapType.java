@@ -1,4 +1,4 @@
-package model;
+package model.map;
 
 import java.util.Arrays;
 

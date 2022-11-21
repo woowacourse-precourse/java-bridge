@@ -1,12 +1,12 @@
 package controller;
 
-import bridge.BridgeGame;
 import bridge.BridgeRandomNumberGenerator;
-import model.Bridge;
-import model.BridgeMaker;
-import model.BridgeSize;
-import model.GameCommand;
-import model.MoveMark;
+import model.bridge.Bridge;
+import model.bridge.BridgeMaker;
+import model.bridge.BridgeSize;
+import model.bridge.MoveMark;
+import model.command.GameCommand;
+import model.game.BridgeGame;
 import view.InputView;
 import view.OutputView;
 

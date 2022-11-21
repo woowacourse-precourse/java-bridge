@@ -1,6 +1,6 @@
-package model;
+package model.game;
 
-import static model.ResultType.WIN;
+import static model.game.ResultType.WIN;
 
 public class GameResult {
     private ResultType result;

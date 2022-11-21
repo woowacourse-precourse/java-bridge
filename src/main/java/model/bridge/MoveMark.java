@@ -1,11 +1,10 @@
-package model;
+package model.bridge;
 
 import java.util.Objects;
 
 import static constant.Config.ERROR;
-import static model.BridgeType.D;
-import static model.BridgeType.U;
-import static model.BridgeType.valueOf;
+import static model.bridge.BridgeType.D;
+import static model.bridge.BridgeType.U;
 
 public class MoveMark {
     private static final String VALUE_ERROR = ERROR + String.format("이동할 칸은 %s 또는 %s여야 합니다.", U, D);
@@ -15,7 +14,7 @@ public class MoveMark {
         String upperCaseMark = mark.toUpperCase().trim();
 
         validateValue(upperCaseMark);
-        this.mark = valueOf(upperCaseMark);
+        this.mark = BridgeType.valueOf(upperCaseMark);
     }
 
     public BridgeType getMark() {

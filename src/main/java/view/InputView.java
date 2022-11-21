@@ -4,10 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 import static constant.Config.ERROR;
 import static constant.Config.NEW_LINE;
-import static model.BridgeType.D;
-import static model.BridgeType.U;
-import static model.CommandType.Q;
-import static model.CommandType.R;
+import static model.bridge.BridgeType.D;
+import static model.bridge.BridgeType.U;
+import static model.command.CommandType.Q;
+import static model.command.CommandType.R;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

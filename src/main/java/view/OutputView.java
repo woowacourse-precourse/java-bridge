@@ -1,14 +1,14 @@
 package view;
 
-import model.BridgeType;
-import model.ResultType;
+import model.bridge.BridgeType;
+import model.game.ResultType;
 
 import java.util.List;
 import java.util.Map;
 
 import static constant.Config.NEW_LINE;
-import static model.BridgeType.D;
-import static model.BridgeType.U;
+import static model.bridge.BridgeType.D;
+import static model.bridge.BridgeType.U;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

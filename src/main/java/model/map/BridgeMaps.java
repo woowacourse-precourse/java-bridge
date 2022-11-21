@@ -1,11 +1,13 @@
-package model;
+package model.map;
+
+import model.bridge.BridgeType;
 
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static model.BridgeType.U;
+import static model.bridge.BridgeType.U;
 
 public class BridgeMaps {
     private final Map<BridgeType, BridgeMap> maps;
