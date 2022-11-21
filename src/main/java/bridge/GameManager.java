@@ -30,7 +30,7 @@ public class GameManager {
     } while (!checkIsGameFinish());
     printFinalResult(user.getMoveStatus(), bridgeGame.getBridge());
     printGameSuccessOrFailure(bridgeGame.isTrySuccess());
-    // 시도횟수 출력
+    printTotalTryCount(user.getTryCount());
   }
 
   private int getLengthInput(){

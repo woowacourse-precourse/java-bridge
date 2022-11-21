@@ -34,4 +34,8 @@ public class User {
   public List<String> getMoveStatus() {
     return this.moveStatus;
   }
+
+  public int getTryCount(){
+    return this.tryCount;
+  }
 }

@@ -45,6 +45,10 @@ public class OutputView {
     System.out.println(GAME_SUCCESS_OR_FAILURE_MESSAGE.getMessage() + getSuccessOrFailure(isSuccess));
   }
 
+  public static void printTotalTryCount(int count){
+    System.out.println(TOTAL_TRY_COUNT_MESSAGE.getMessage() + count);
+  }
+
   private static String getSuccessOrFailure(boolean isSuccess){
     if(isSuccess) return GAME_SUCCESS_STRING;
     return GAME_FAIL_STRING;
