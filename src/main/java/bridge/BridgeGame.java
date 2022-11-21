@@ -1,17 +1,24 @@
 package bridge;
 
+import bridge.Console.Input;
+import bridge.Console.InputView;
+import bridge.Console.Output;
+import bridge.Console.OutputView;
+import bridge.command.DownCommand;
+import bridge.command.UpCommand;
+
 import java.util.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private InputView inputView;
-    private OutputView outputView;
+    private Input input;
+    private Output output;
     private Integer gameCount;
     public BridgeGame() {
-        inputView = new InputView();
-        outputView = new OutputView();
+        input = new InputView();
+        output = new OutputView();
         gameCount = 0;
     }
     /**
@@ -25,9 +32,8 @@ public class BridgeGame {
         Integer step = 0;
         for (String stair : bridge) {
             move(history, bridge);
-            historyCount++;
-            if(historyCount == bridge.size() && history.get(step).equals(stair)){
-                outputView.printResult(true,++gameCount);
+            if(++historyCount == bridge.size() && history.get(step).equals(stair)){
+                output.printResult(true,++gameCount);
             }
         }
     }
@@ -37,18 +43,21 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(List<String> history, List<String> bridge) {
-        String movement = inputView.readMoving();
+        String movement = input.readMoving();
         history.add(movement);
         if ( bridge.get(history.size()-1).equals(movement) ) {
-            if(history.equals(bridge)){
-                System.out.println("최종 게임 결과");
-            }
-            makeResult(bridge,history);
+            printFinalResult(history, bridge);
         } else {
             makeResult(bridge,history);
-            retry(history,false);
-            return;
+            retry(history);
         }
+    }
+
+    private void printFinalResult(List<String> history, List<String> bridge) {
+        if(history.equals(bridge)){
+            System.out.println("최종 게임 결과");
+        }
+        makeResult(bridge, history);
     }
 
     /**
@@ -56,14 +65,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<String> bridge,boolean isSuccess) {
-        if(inputView.readGameCommand().equals("R")){
+    public void retry(List<String> bridge) {
+        if(input.readGameCommand().equals("R")){
             gameCount++;
             play(bridge);
-            return;
         }
-//        outputView.printResult(isSuccess,gameCount);
-//        return;
     }
     public void makeResult(List<String> answer, List<String> history){
         List<String> ups = makeUpList(answer, history);
@@ -71,41 +77,16 @@ public class BridgeGame {
         Map<String, List<String>> result = new HashMap<>();
         result.put("up",ups);
         result.put("down",downs);
-        outputView.printMap(result);
+        output.printMap(result);
     }
 
     private List<String> makeDownList(List<String> answer, List<String> history) {
-        List<String> downs = new ArrayList<>();
-        for (int i = 0; i < history.size(); i++) {
-            if(answer.get(i).equals("U") && history.get(i).equals("U")){
-                downs.add(" ");
-            }
-            else if(answer.get(i).equals("U") && history.get(i).equals("D")){
-                downs.add("X");
-            }
-            else if(answer.get(i).equals("D") && history.get(i).equals("U")){
-                downs.add(" ");
-            }
-            else if(answer.get(i).equals("D") && history.get(i).equals("D")){
-                downs.add("O");
-            }
-        }
-        return downs;
+        DownCommand downCommand = new DownCommand(answer,history);
+        return downCommand.executeAll(answer, history);
     }
 
     private List<String> makeUpList(List<String> answer, List<String> history){
-        List<String> ups = new ArrayList<>();
-        for (int i = 0; i < history.size(); i++) {
-            if (answer.get(i).equals("U") && history.get(i).equals("U")) {
-                ups.add("O");
-            } else if (answer.get(i).equals("U") && history.get(i).equals("D")) {
-                ups.add(" ");
-            } else if (answer.get(i).equals("D") && history.get(i).equals("U")) {
-                ups.add("X");
-            } else if (answer.get(i).equals("D") && history.get(i).equals("D")) {
-                ups.add(" ");
-            }
-        }
-        return ups;
+        UpCommand upCommand = new UpCommand(answer, history);
+        return upCommand.executeAll(answer,history);
     }
 }
