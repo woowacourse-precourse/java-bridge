@@ -28,9 +28,7 @@ class BridgeMakerTest {
         List<String> result = bridgeMaker.makeBridge(size);
 
         // then
-        System.out.println("result = " + result);
         assertThat(result.size()).isEqualTo(size);
-        assertThat(result).containsOnly(DOWN.getFirstLetter(), UP.getFirstLetter());
         assertThat(result).allMatch(s -> s.equals(DOWN.getFirstLetter()) || s.equals(UP.getFirstLetter()));
     }
 }
