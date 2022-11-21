@@ -12,9 +12,9 @@
     - BridgeMaker - makeBridge() 구현 [X]
 
 
-3. **이동할 칸을 입력받는다** [ ]
-    - InputView - readMoving() 구현 [ ]
-    - U, D외의 문자를 입력받았을 경우 예외 발생 [ ]
+3. **이동할 칸을 입력받는다** [X]
+    - InputView - readMoving() 구현 [X]
+    - U, D외의 문자를 입력받았을 경우 예외 발생 [X]
   
 
 4. **해당 칸으로 플레이어를 이동시킨다** [ ]
