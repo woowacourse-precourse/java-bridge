@@ -44,7 +44,56 @@ public class OutputView {
     }
 
     public void printResult() {
-
     }
 
+
+
+    public void initState() {
+        upState = "[";
+        downState = "[";
+    }
+    // ] 제거 메서드
+    public static void replaceClose() {
+        upState = upState.replace("]", "");
+        downState = downState.replace("]", "");
+    }
+    public static void isWrongFinished(List<String> userState) {
+        if (userState.get(userState.size() - 1).equals("U")) {
+            upState += " X ]";
+            downState += "   ]";
+        }
+        if (userState.get(userState.size() - 1).equals("D")) {
+            upState += "   ]";
+            downState += " X ]";
+        }
+    }
+
+    public static void isU() {
+        upState += " O ";
+        downState += "   ";
+    }
+
+    public static void isWord(String userStateWord) {
+        if (userStateWord == "U") {
+            isU();
+        }
+        if (userStateWord == "D") {
+            isD();
+        }
+    }
+
+    public static void isD() {
+        upState += "   ";
+        downState += " O ";
+    }
+
+    public static void isFinished() {
+        upState += "]";
+        downState += "]";
+    }
+
+    public static void isNotFinished() {
+        upState += "|";
+        downState += "|";
+    }
 }
