@@ -2,7 +2,6 @@ package bridge.application;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeType;
-import bridge.domain.GameResult;
 import bridge.domain.Result;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +45,12 @@ public class BridgeGame {
         validateMoveCommand(command);
 
         if (bridge.get(position).equals(command)) {
-            Result result =  Result.of(bridge.subList(0, position + 1), true, isEnd());
+            Result result = Result.of(bridge.subList(0, position + 1), true, isEnd(), gameCount);
             continueGame();
             return result;
         }
         terminateGame();
-        return Result.of(bridge.subList(0, position + 1), false, false);
+        return Result.of(bridge.subList(0, position + 1), false, false, gameCount);
     }
 
     /**
@@ -65,13 +64,11 @@ public class BridgeGame {
         terminate = false;
     }
 
-    public GameResult exitGame() {
+    public Result exitGame() {
         if (bridge.size() == position) {
-            Result result = Result.of(new ArrayList<>(bridge), true, true);
-            return GameResult.of(result, gameCount);
+            return Result.of(new ArrayList<>(bridge), true, true, gameCount);
         }
-        Result result = Result.of(bridge.subList(0, position + 1), false, false);
-        return GameResult.of(result, gameCount);
+        return Result.of(bridge.subList(0, position + 1), false, false, gameCount);
     }
 
     private void validateGame() {
