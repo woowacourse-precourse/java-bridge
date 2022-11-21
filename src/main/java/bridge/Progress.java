@@ -39,4 +39,5 @@ public class Progress {
         return EMPTY_VALUE;
     }
 
+    public Map<BridgePattern, List<String>> getProgress() { return progress; }
 }
