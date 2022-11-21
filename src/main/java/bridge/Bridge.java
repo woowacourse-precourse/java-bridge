@@ -63,13 +63,6 @@ public class Bridge {
 		}
 		return " ";
 	}
-	public List<String> getSuccessfullyMovedPartialBridge() {
-		List<String> deepCopiedPartialBridge = new ArrayList<>();
-		for (int i = 0; i < nextPosition; i++) {
-			deepCopiedPartialBridge.add(bridge.get(i));
-		}
-		return deepCopiedPartialBridge;
-	}
 
 	public void resetMoveStatus() {
 		this.nextPosition = 0;

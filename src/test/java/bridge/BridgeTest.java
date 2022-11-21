@@ -3,17 +3,10 @@ package bridge;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-import java.util.stream.Stream;
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import bridge.enums.Inputs;
 
@@ -60,24 +53,13 @@ class BridgeTest {
 		assertTrue(alternativeBridge.gameWon());
 	}
 
-	@DisplayName("게임 진행에 따른 진행상황이 반환되어야 한다.")
-	@Test
-	void getSuccessfullyMovedPartialBridgeTest() {
-		alternativeBridge.moveNext(Inputs.MOVE_UP);
-		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U"));
-		alternativeBridge.moveNext(Inputs.MOVE_DOWN);
-		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D"));
-		alternativeBridge.moveNext(Inputs.MOVE_UP);
-		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D", "U"));
-	}
-
 	@DisplayName("진행 상황이 초기화되어야 한다.")
 	@Test
 	void resetMoveStatusTest() {
 		alternativeBridge.moveNext(Inputs.MOVE_UP);
-		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U"));
+		assertThat(alternativeBridge.toString()).isEqualTo("[ O ]\n[   ]");
 		alternativeBridge.resetMoveStatus();
-		assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge().size()).isEqualTo(0);
+		assertThat(alternativeBridge.toString()).isEqualTo("]\n]");
 	}
 
 	@Nested
