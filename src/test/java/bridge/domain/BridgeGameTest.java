@@ -9,13 +9,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
+    private final String UP = Direction.UP.getCommand();
+    private final String DOWN = Direction.DOWN.getCommand();
     @DisplayName("현재까지 건넌 다리를 정확하게 리턴하는지 확인한다.")
     @Test
     void testGetCurrentMap() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.setBridge(List.of("U", "U", "D"));
-        bridgeGame.move("U");
-        bridgeGame.move("D");
+        bridgeGame.setBridge(List.of(UP, UP, DOWN));
+        bridgeGame.move(UP);
+        bridgeGame.move(DOWN);
         String[][] result = {{"O", " "}, {" ", "X"}};
         assertThat(isEqual(result, bridgeGame.getCurrentMap())).isEqualTo(true);
     }
@@ -24,7 +26,7 @@ class BridgeGameTest {
     @Test
     void playGameWithoutBridge() {
          BridgeGame bridgeGame = new BridgeGame();
-         assertThatThrownBy(() -> bridgeGame.move("U"))
+         assertThatThrownBy(() -> bridgeGame.move(UP))
                  .isInstanceOf(IllegalArgumentException.class);
     }
 
