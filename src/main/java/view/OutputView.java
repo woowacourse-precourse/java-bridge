@@ -1,5 +1,6 @@
 package view;
 
+import bridge.BridgeGame;
 import bridge.Map;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
@@ -14,6 +15,14 @@ public class OutputView {
                     System.out.print(String.join(" | ", line));
                     System.out.print(" ]\n");
                 });
+    }
+
+    public void printResult(GameStatus gameResult, BridgeGame bridgeGame) {
+        printGuideMessage(GuideMessage.RESULT_PRINT);
+        printMap(bridgeGame.getMap());
+        printNewline();
+        printResult(gameResult);
+        printGuideMessage(GuideMessage.GAME_TRIAL, bridgeGame.getTrial());
     }
 
     public void printResult(GameStatus gameStatus) {
