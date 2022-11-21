@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CrossingTest {
+public class DirectionTest {
     @ParameterizedTest
     @CsvSource(value = {"0:D", "1:U"}, delimiter = ':')
     @DisplayName("toString 메소드 테스트")
