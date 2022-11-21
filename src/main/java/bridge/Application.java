@@ -42,8 +42,8 @@ public class Application {
     }
 
     public static boolean move(BridgeGame bridgeGame, InputView inputView) {
-        int currentLocation = bridgeGame.move(inputView.readMoving());
-        if (currentLocation == -1) {
+        String moving = inputView.readMoving();
+        if (bridgeGame.move(moving)) {
             if (!bridgeGame.isRetry(inputView.readGameCommand())) {
                 printFailEnd(bridgeGame);
                 return true;

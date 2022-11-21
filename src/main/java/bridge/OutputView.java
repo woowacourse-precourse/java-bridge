@@ -10,7 +10,110 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(BridgeGame bridgeGame, int idx) {
+        printUp(bridgeGame, idx);
+        printDown(bridgeGame, idx);
+    }
+
+    public void printWrongMap(BridgeGame bridgeGame, int idx, String moving) {
+        printWrongUp(bridgeGame, idx, moving);
+        printWrongDown(bridgeGame, idx, moving);
+    }
+
+    public void printWrongUp(BridgeGame bridgeGame, int idx, String moving) {
+        String up = "[";
+        for (int i = 0; i < idx; i++) {
+            up += addUp(bridgeGame.getBridge().get(i));
+            if (i < idx-1) {
+                up += "|";
+            }
+        }
+        printWrongUpResult(up, moving);
+    }
+
+    public void printWrongDown(BridgeGame bridgeGame, int idx, String moving) {
+        String down = "[";
+        for (int i = 0; i < idx; i++) {
+            down += addDown(bridgeGame.getBridge().get(i));
+            if (i < idx-1) {
+                down += "|";
+            }
+        }
+        printWrongDownResult(down, moving);
+    }
+
+    private String addBar(String st) {
+        if (st.length() > 1) {
+            return st + "|";
+        }
+
+        return st;
+    }
+
+    private void printWrongUpResult(String up, String moving) {
+        if (moving.equals("U")) {
+            up = addBar(up);
+            System.out.println(up + " X " + "]");
+            return;
+        }
+        up = addBar(up);
+        System.out.println(up + "   " + "]");
+    }
+
+    private void printWrongDownResult(String down, String moving) {
+        if (moving.equals("D")) {
+            down = addBar(down);
+            System.out.println(down + " X " + "]");
+            return;
+        }
+        down = addBar(down);
+        System.out.println(down + "   " + "]");
+    }
+
+    private void printUp(BridgeGame bridgeGame, int idx) {
+        String up = "[";
+        for (int i = 0; i < idx; i++) {
+            up += addUp(bridgeGame.getBridge().get(i));
+            if (i < idx-1) {
+                up += "|";
+            }
+        }
+        printUpResult(up);
+    }
+
+    private void printUpResult(String up) {
+        System.out.println(up + "]");
+    }
+
+    private void printDown(BridgeGame bridgeGame, int idx) {
+        String down = "[";
+        for (int i = 0; i < idx; i++) {
+            down += addDown(bridgeGame.getBridge().get(i));
+            if (i < idx-1) {
+                down += "|";
+            }
+        }
+        printDownResult(down);
+    }
+
+    private void printDownResult(String down) {
+        System.out.println(down + "]");
+    }
+
+    private String addUp(String curr) {
+        if (curr.equals("U")) {
+            return " O ";
+        }
+
+        return "   ";
+    }
+
+    private String addDown(String curr) {
+        if (curr.equals("D")) {
+            return " O ";
+        }
+
+        return "   ";
     }
 
     /**
