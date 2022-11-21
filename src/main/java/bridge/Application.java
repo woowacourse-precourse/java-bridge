@@ -15,8 +15,11 @@ public class Application {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         inputView = new InputView();
     }
-    public static void doGame() {
-
+    public static boolean returnSuccess(int i, int size) {
+        if(i == size-1) {
+            return  true;
+        }
+        return false;
     }
     public static int wrongMove(int size) {
         String command = inputView.readGameCommand();
@@ -43,15 +46,14 @@ public class Application {
             outputView.printMap(bridgeInfo, i, userMove);
 
             if(bridgeGame.move(bridgeInfo, userMove, i)) {
-                if(i == size-1) {
-                    isSuccess = true;
-                }
+                isSuccess = returnSuccess(i, size);
                 continue;
             }
             if(!bridgeGame.move(bridgeInfo, userMove, i)) {
                 i = wrongMove(size);
             }
         }
+        //isSuccess = doGame();
         outputView.printResult(isSuccess, bridgeInfo, size-1, userMove, bridgeGame);
     }
 
