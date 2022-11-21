@@ -1,12 +1,9 @@
 package bridge.Validator;
 
-import bridge.Validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputValidatorTest {
@@ -23,14 +20,6 @@ public class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"123","2",})
     void inputNotBoundaryNumber(String input){
-        assertThatThrownBy(() -> InputValidator.checkBoundaryNumber(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("입력값이 유효범위 숫자가 아닐 시 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"123","2",""})
-    void inputBoundaryNumber(String input){
         assertThatThrownBy(() -> InputValidator.checkBoundaryNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
