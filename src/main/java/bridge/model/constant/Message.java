@@ -3,6 +3,7 @@ package bridge.model.constant;
 public enum Message {
     UP("U"),
     DOWN("D"),
+    QUIT("Q"),
     SUCCESS("O"),
     FAIL("X"),
     EMPTY(" ");
