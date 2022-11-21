@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private int currentBlock;
+    private List<String> moves;
     private int retries;
     private STATE state;
 
@@ -19,7 +20,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.currentBlock = 0;
+        this.moves = new ArrayList<>();
         this.retries = 0;
         this.state = STATE.MOVING;
     }
@@ -28,12 +29,12 @@ public class BridgeGame {
         return bridge;
     }
 
-    public int getCurrentBlock() {
-        return currentBlock;
-    }
-
     public int getRetries() {
         return retries;
+    }
+
+    public List<String> getMoves() {
+        return moves;
     }
 
     public STATE getState() {
@@ -46,12 +47,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moving) {
-        if (!bridge.get(currentBlock).equals(moving)) {
+        moves.add(moving);
+        if (!bridge.get(moves.size() - 1).equals(moving)) {
             state = STATE.FAILED;
             return;
         }
-        currentBlock++;
-        if (currentBlock == bridge.size()) {
+        if (moves.size() == bridge.size()) {
             state = STATE.SUCCESS;
         }
     }
@@ -65,7 +66,7 @@ public class BridgeGame {
         if (command.equals("Q")) {
             return;
         }
-        currentBlock = 0;
+        moves = new ArrayList<>();
         retries++;
         state = STATE.MOVING;
     }
