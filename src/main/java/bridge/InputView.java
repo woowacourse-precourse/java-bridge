@@ -96,6 +96,17 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        while (true) {
+            this.input = readLine();
+            validateGameCommand();
+            return this.input;
+        }
+    }
+
+    /* 게임 여부 입력값을 검증한다. */
+    private void validateGameCommand() {
+        if (!this.input.equals(FailChoice.RESTART.getKeyword()) && !this.input.equals(FailChoice.QUIT.getKeyword())) {
+            throw new IllegalArgumentException(Exception.HEADER.getExpt() + Exception.RESTART_END_PICK.getExpt());
+        }
     }
 }
