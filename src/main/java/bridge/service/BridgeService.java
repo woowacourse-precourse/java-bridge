@@ -10,20 +10,25 @@ public class BridgeService {
     OutputView outputView = new OutputView();
 
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
     BridgeGame bridgeGame = new BridgeGame();
-    Bridge bridge;
-    User user;
+    BridgePrinter bridgePrinter = new BridgePrinter();
 
 
-    public void startBridgeGame(){
-        // 시작 메세지 출력
+    public void startBridgeGame() {
+        outputView.printStartMessage();
+        outputView.printInputBridgeSizeMessage();
+
         int bridgeSize = inputView.readBridgeSize();
-        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        user = new User();
+        bridgeGame.setBridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
+    public void moveBridge() {
 
+        outputView.printInputMoveBridgeMessage();
+        String userMove = inputView.readMoving();
+        bridgeGame.move(userMove);
+        outputView.printMap(bridgePrinter);
+    }
 
 
 }
