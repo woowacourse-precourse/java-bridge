@@ -1,7 +1,9 @@
 package bridge.view;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import bridge.constant.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -30,7 +32,23 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        validateSingleCharacter(input);
+        validateDirection(input);
+        return input;
+    }
+
+    private void validateSingleCharacter(String input) {
+        if (Pattern.compile("\\w").matcher(input).matches()) {
+            throw new IllegalArgumentException("한 글자가 아닙니다");
+        }
+    }
+
+    private void validateDirection(String input) {
+        Arrays.stream(Direction.values())
+                .filter(direction -> direction.capitalLetter().equals(input))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 방향입니다"));
     }
 
     /**
