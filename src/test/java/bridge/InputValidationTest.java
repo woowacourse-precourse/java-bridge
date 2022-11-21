@@ -9,9 +9,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class InputValidationTest {
 
     @DisplayName("3이상 20이하가 아닌 수일 경우 예외가 발생한다")
-    @ValueSource(ints = {-1, 0, 2, 21})
+    @ValueSource(strings = {"-1", "0", "2", "21"})
     @ParameterizedTest()
-    void 다리_길이_입력_범위_테스트(int size) {
+    void 다리_길이_입력_범위_테스트(String size) {
+        InputValidation inputValidation = new InputValidation();
+        assertThatThrownBy(() -> inputValidation.readBridgeSizeValidation(size))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("수가 아닐 경우 예외가 발생한다")
+    @ValueSource(strings = {"-j", "e5", "$", ""})
+    @ParameterizedTest()
+    void 잘못된_다리_길이_범위_테스트(String size) {
         InputValidation inputValidation = new InputValidation();
         assertThatThrownBy(() -> inputValidation.readBridgeSizeValidation(size))
                 .isInstanceOf(IllegalArgumentException.class);
