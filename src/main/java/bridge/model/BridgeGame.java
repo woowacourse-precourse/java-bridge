@@ -72,4 +72,8 @@ public class BridgeGame {
         int currentRoundNumber = bridge.getCurrentRoundNumber();
         return bridge.isFinalRound(currentRoundNumber);
     }
+
+    public Boolean isGameRestart(String userChoice) {
+        return referee.isGameRestart(userChoice);
+    }
 }
