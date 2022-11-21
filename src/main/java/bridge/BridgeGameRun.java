@@ -3,10 +3,11 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.InputTry.*;
+
 public class BridgeGameRun {
     private static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_FAILURE = "실패";
-    private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
     private static final BridgeGame game = new BridgeGame();
 
@@ -22,7 +23,7 @@ public class BridgeGameRun {
             oneRound();
             judge = game.judgeSuccessFailure(bridge, path);
 
-        } while (judge.equals(GAME_FAILURE) && game.retry(input.readGameCommand()));
+        } while (judge.equals(GAME_FAILURE) && game.retry(readGameCommandTry()));
 
         output.printResult(judge, gameTryCount);
     }
@@ -32,7 +33,7 @@ public class BridgeGameRun {
 
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-        int bridgeSize = input.readBridgeSize();
+        int bridgeSize = readBridgeSizeTry();
         bridge = maker.makeBridge(bridgeSize);
     }
 
@@ -41,7 +42,7 @@ public class BridgeGameRun {
         path.clear();
 
         do {
-            path.add(input.readMoving());
+            path.add(readMovingTry());
             output.printMap(bridge, path);
 
         } while (game.move(bridge, path));
