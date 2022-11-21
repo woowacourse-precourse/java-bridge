@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Result {
 
+    private static final int PREVIOUS = -1;
     private final List<List<DirectionType>> resultsGroup = new ArrayList<>();
     private int distance;
 
@@ -20,7 +21,7 @@ public class Result {
     }
 
     public void rollbackDistance() {
-        distance -= 1;
+        distance += PREVIOUS;
     }
 
     public List<List<DirectionType>> getResultsGroup() {
