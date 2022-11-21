@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.view.enums.MapType;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CompareBridge {
@@ -12,11 +12,23 @@ public class CompareBridge {
         this.bridge = bridge;
     }
 
-    public boolean isSame(Player player, String panel) {
-        return player.informMoving().equals(panel);
+    public boolean isSame(String moving, String panel) {
+        return moving.equals(panel);
     }
 
-    public boolean stepping(Player player, List<String> bridge) {
-        return isSame(player, bridge.get(player.informMovingIndex()));
+    public List<Boolean> stepping(Player player, List<String> bridge) {
+        List<String> movingChoices = player.getMovingInputs();
+        List<Boolean> moveResults = new ArrayList<>();
+        int index = 0;
+        for (String moving : movingChoices) {
+            if (isSame(moving, bridge.get(index))) {
+                moveResults.add(true);
+            }
+            if (!isSame(moving, bridge.get(index))) {
+                moveResults.add(false);
+            }
+            index++;
+        }
+        return moveResults;
     }
 }
