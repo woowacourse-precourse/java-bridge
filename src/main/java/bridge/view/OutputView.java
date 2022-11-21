@@ -50,7 +50,7 @@ public class OutputView {
             }
             downBridge.add(Bridge.EMPTY);
         }
-        return Bridge.OPEN + String.join(Bridge.CLOSE, downBridge) + Bridge.CLOSE;
+        return Bridge.OPEN + String.join(Bridge.SPLIT, downBridge) + Bridge.CLOSE;
     }
 
     /**
