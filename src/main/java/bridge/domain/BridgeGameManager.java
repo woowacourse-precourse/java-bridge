@@ -67,13 +67,22 @@ public class BridgeGameManager {
     }
 
     private boolean isRetry(BridgeGame bridgeGame) {
-        outputView.printInputRetryOrNot();
-        String command = inputView.readGameCommand();
-        if (bridgeGame.retry(command)) {
+        if (bridgeGame.retry(readGameCommand())) {
             initBrigeSize(bridgeGame);
             return true;
         }
         return false;
+    }
+
+    private String readGameCommand() {
+        while (true) {
+            outputView.printInputRetryOrNot();
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void printGameResult(BridgeGame bridgeGame) {

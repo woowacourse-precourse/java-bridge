@@ -53,12 +53,12 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = Console.readLine();
-        validateCommandValueLength(command);
+        validateGameCommnd(command);
         return command;
     }
 
-    private void validateCommandValueLength(String command) {
-        if (command.length() > BRIDGE_GAME_COMMAND_LENGTH) {
+    private void validateGameCommnd(String command) {
+        if (!command.equals(RETRY) && !command.equals(QUIT)) {
             throw new IllegalArgumentException(ERROR_GAME_COMMAND);
         }
     }

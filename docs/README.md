@@ -9,7 +9,7 @@
 - [X] 이동할 칸 입력 (위: U, 아래: D) - InputView#readMoving()
   - [X] 입력 값 예외처리(U 또는 D를 입력 했는지 검증) - InputView#validateBridgeMoving()
 - [X] 게임 재시도 여부 입력 (재시도: R, 종료: Q) - InputView#readGameCommand()
-  - [X] 입력 값 예외처리(길이 1의 문자를 입력했는지 검증) - InputView#validateCommandValueLength()
+  - [X] 입력 값 예외처리(R 또는 Q를 입력 했는지 검증) - InputView#validateGameCommnd()
 ***
 #### 📤 출력
 - [X] 게임 시작 안내 메시지 출력 - OutputView#printGameStartNotification()
@@ -34,11 +34,12 @@
     - [X] 다리 길이 초기화 - BridgeGameManager#initBridgeLength()
     - [X] 다리 길이만큼 아래 작업 반복
       - [X] 다리 건너기 및 현재 다리 출력 - BridgeGameManager#moveProgress()
-        - [ ] 건널 다리 방향 입력 안내 메시지 출력
+        - [X] 건널 다리 방향 입력 안내 메시지 출력
         - [X] 방향 키 입력 처리 - BridgeGameManager#readMoving() 
         - [X] 다리 건너기
         - [X] 현재 다리 상태 출력
-      - [X] 다리를 건널 수 없는 경우이면서 게임 종료를 원하는 경우 게임 종료 처리 - BridgeGameManager#isQuit()
+      - [X] 다리를 건널 수 없는 경우이면서 게임 종료를 원하는 경우 게임 종료 처리 - BridgeGameManager#isRetry()
+        - [X] 게임 재시도 또는 종료 명령어 입력 처리 - BridgeGameManager#readGameCommand()  
         - [X] 다리를 건널 수 없는 경우이면서 게임 재시도를 원하는 경우 재시도 처리
 - [X] 게임 결과 출력 - BridgeGameManager#printGameResult()
     - [X] 최종 게임 결과 출력 (다리 상태)
@@ -57,7 +58,6 @@
   - [X] 다리에 표시할 상태 값 생성 - BridgeGame#makeBridgeStatus()
   - [X] 다리 표시 작업 요청 - BridgeGame#BridgeState#mark()
 - [X] 게임 재시도 - BridgeGame#retry()
-  - [X] 게임 재시도 또는 게임 종료 명령 값 유효성 검증 및 예외처리 - BridgeGame#validateGameCommnd()
   - [X] 게임 라운드 초기화
   - [X] 게임 총 도전 횟수 카운트
   - [X] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()
@@ -77,10 +77,8 @@
 
 ### 📝 Domain Test
 
-- [X] 다리 생성 시, 다리 길이 유효 숫자 범위를 벗어난 경우 예외 발생 - BridgeMakerTest#validateBridgeSize()
 - [X] 다리 길이 유효 숫자 범위 내 길이 지정 시, 해당 길이의 다리 생성 - BridgeMakerTest#makeBridgePerSize()
 ***
-- [X] 다리 방향 입력 값이 U(위 칸) 또는 D(아래 칸) 중 하나가 아닌 경우 예외 발생 - BridgeGameTest#validateBridgeArrow()
 - [X] 첫 라운드 다리 건너고 나서 위 다리 상태 값 확인 - BridgeGameTest#confirmFirstRoundUpBridgeState()
 - [X] 첫 라운드 다리 건너고 나서 아래 다리 상태 값 확인 - BridgeGameTest#confirmFirstRoundDownBridgeState()
 - [X] 두번째 라운드까지 다리 건너고 나서 위 다래 상태 값 확인 - BridgeGameTest#confirmSecondRoundUpBridgeState()
