@@ -47,6 +47,7 @@ public class OutputView {
     public static void printMap(List<String> movingHistory, boolean moveSuccess) {
         printMoving("U", movingHistory, moveSuccess);
         printMoving("D", movingHistory, moveSuccess);
+        printNewLine();
     }
 
     private static void printMoving(String upOrDown, List<String> movingHistory,
@@ -89,14 +90,13 @@ public class OutputView {
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     *
      */
     public static void printResult(List<String> playerMovingHistory, boolean gameSuccess,
             int tryCount) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(playerMovingHistory, gameSuccess);
-        printNewLine();
-        System.out.println(STATISTICS_GAME_SUCCESS_MESSAGE + convertGameSuccessToString(gameSuccess));
+        System.out.println(
+                STATISTICS_GAME_SUCCESS_MESSAGE + convertGameSuccessToString(gameSuccess));
         System.out.println(STATISTICS_GAME_TRY_COUNT_MESSAGE + tryCount);
     }
 

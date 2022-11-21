@@ -7,7 +7,7 @@ public class Bridge {
 
     private final int size;
     private final List<String> bridges;
-    private List<String> playerMovingHistory;
+    private final List<String> playerMovingHistory;
 
     public Bridge(int size, List<String> bridges) {
         this.size = size;
