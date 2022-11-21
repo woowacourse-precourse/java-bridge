@@ -11,21 +11,27 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public void readBridgeSize() {
-
+    public String readBridgeSize() {
+        System.out.println(BridgeMessage.INPUT_BRIDGE_LEN.getMessage());
+        String bridgeSize = Console.readLine();
+        return bridgeSize;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public void readMoving() {
-
+    public String readMoving() {
+        System.out.println(BridgeMessage.INPUT_MOVE_BLOCK.getMessage());
+        String moving = Console.readLine();
+        return moving;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public void readGameCommand() {
-
+    public String readGameCommand() {
+        System.out.println(BridgeMessage.INPUT_RETRY.getMessage());
+        String retry = Console.readLine();
+        return retry;
     }
 }
