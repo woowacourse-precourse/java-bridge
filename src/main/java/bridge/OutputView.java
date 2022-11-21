@@ -42,6 +42,19 @@ public class OutputView {
 		return bridgeStatus.loadStatus(NULL, NULL);
 	}
 
+	public static void printStartGameMessage() {
+		System.out.println(OUTPUT_START_GAME);
+		printNewLine();
+	}
+
+	public static void printFinalGameResultMessage() {
+		System.out.println(OUTPUT_GAME_RESULT);
+	}
+
+	public static void printGameReportMessage() {
+		System.out.println(OUTPUT_GAME_REPORT + printSuccessOrNot());
+	}
+
 	public static String printSuccessOrNot() {
 		if (bridgeStatus.isSuccess()) {
 			return SUCCESS_MESSAGE;
@@ -53,15 +66,11 @@ public class OutputView {
 		return bridgeStatus.getTotalGameCount();
 	}
 
-	public static void printStartGame() {
-		System.out.println(OUTPUT_START_GAME);
-	}
-
-	public static void printFinalGameResult() {
-		System.out.println(OUTPUT_GAME_RESULT);
-	}
-
 	public static void printErrorMessage(String message) {
 		System.out.println(message);
+	}
+
+	public static void printNewLine() {
+		System.out.println();
 	}
 }
