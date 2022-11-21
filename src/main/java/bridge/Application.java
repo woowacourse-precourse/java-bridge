@@ -33,6 +33,18 @@ public class Application {
         return bridgeSize;
     }
 
+    private static boolean proceedGame(int bridgeSize) {
+        int crossedCount = 0;
+        while (crossedCount < bridgeSize) {
+            boolean crossedBridge = moveBridge();
+            if (!crossedBridge) {
+                return restartGame();
+            }
+            crossedCount++;
+        }
+        return false;
+    }
+
     private static boolean moveBridge() {
         String moving = inputView.readMoving();
         boolean crossedBridge = bridgeGame.move(moving);
