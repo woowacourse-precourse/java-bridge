@@ -4,6 +4,8 @@ public class BridgeConstants {
 
     public static final int BRIDGE_SIZE_MIN_INCLUSIVE = 3;
     public static final int BRIDGE_SIZE_MAX_INCLUSIVE = 20;
+    public static final int UP_CROSS_VALUE = 1;
+    public static final int DOWN_CROSS_VALUE = 0;
     public static final String BRIDGE_START_POINT = "[ ";
     public static final String BRIDGE_DIVIDING_POINT = " | ";
     public static final String BRIDGE_END_POINT = " ]";

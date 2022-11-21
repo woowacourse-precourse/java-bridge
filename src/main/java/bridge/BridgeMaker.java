@@ -1,7 +1,9 @@
 package bridge;
 
 import static bridge.utils.constants.BridgeConstants.DOWN_CROSS;
+import static bridge.utils.constants.BridgeConstants.DOWN_CROSS_VALUE;
 import static bridge.utils.constants.BridgeConstants.UP_CROSS;
+import static bridge.utils.constants.BridgeConstants.UP_CROSS_VALUE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,22 +26,26 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+        addCrossValue(size, bridge);
+        return Collections.unmodifiableList(bridge);
+    }
+
+    private void addCrossValue(int size, List<String> bridge) {
         for (int loc = 0; loc < size; loc++) {
             int generate = bridgeNumberGenerator.generate();
             addUpCross(bridge, generate);
             addDownCross(bridge, generate);
         }
-        return Collections.unmodifiableList(bridge);
     }
 
-    private static void addUpCross(List<String> bridge, int generate) {
-        if (generate == 1) {
+    private void addUpCross(List<String> bridge, int generate) {
+        if (generate == UP_CROSS_VALUE) {
             bridge.add(UP_CROSS);
         }
     }
 
-    private static void addDownCross(List<String> bridge, int generate) {
-        if (generate == 0) {
+    private void addDownCross(List<String> bridge, int generate) {
+        if (generate == DOWN_CROSS_VALUE) {
             bridge.add(DOWN_CROSS);
         }
     }
