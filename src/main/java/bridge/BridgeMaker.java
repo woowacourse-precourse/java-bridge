@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.util.Constant;
-import bridge.util.Direction;
+import bridge.model.Direction;
 
 import java.util.ArrayList;
 import java.util.List;

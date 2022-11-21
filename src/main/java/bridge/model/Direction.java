@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge.model;
 
 public enum Direction {
     DOWN(0),
