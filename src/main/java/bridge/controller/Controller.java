@@ -101,18 +101,23 @@ public class Controller {
 
     public boolean retry(BridgeGame bridgeGame) {
         boolean flag = false;
+        String retryOrQuit = getRetryOrQuit();
+        if(bridgeGame.checkRetry(retryOrQuit)) {
+            user.addTryCount();
+            start(bridgeGame);
+        }
+
+        return !flag;
+    }
+
+    private String getRetryOrQuit() {
         try {
             outputView.printSelectRetry();
-            String retryOrQuit = inputView.readGameCommand();
-            if(bridgeGame.checkRetry(retryOrQuit)) {
-                user.addTryCount();
-                start(bridgeGame);
-            }
+            return inputView.readGameCommand();
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            retry(bridgeGame);
+            return getRetryOrQuit();
         }
-        return !flag;
     }
 
     private void gameEnd(Bridge bridge) {
