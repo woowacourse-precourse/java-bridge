@@ -1,6 +1,7 @@
 package bridge.domain;
 
-import static bridge.domain.BridgeInfo.*;
+import static bridge.domain.BridgeInfo.BRIDGE_BOTTOM;
+import static bridge.domain.BridgeInfo.BRIDGE_TOP;
 import static bridge.utils.Constant.WRONG_INSERT_POSITION_MESSAGE;
 
 public class MoveCommand {
@@ -17,5 +18,9 @@ public class MoveCommand {
                 !command.equals(BRIDGE_BOTTOM.getPosition())) {
             throw new IllegalArgumentException(WRONG_INSERT_POSITION_MESSAGE);
         }
+    }
+
+    public String getCommand() {
+        return command;
     }
 }

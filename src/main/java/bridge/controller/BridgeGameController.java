@@ -21,16 +21,23 @@ public class BridgeGameController {
     public void run() {
         startGame();
         insertBridgeSize();
-        insertMoveCommand();
+        operate();
     }
 
-    private void insertMoveCommand() {
+    private void operate() {
+        do {
+            String nextMove = insertMoveCommand();
+            bridgeGame.move(nextMove);
+        } while (true);
+    }
+
+    private String insertMoveCommand() {
         try {
-            String command = inputView.readGameCommand();
-            new MoveCommand(command);
+            String command = inputView.readMoving();
+            return new MoveCommand(command).getCommand();
         } catch (IllegalArgumentException ie) {
             outputView.printErrorMessage(ie.getMessage());
-            insertMoveCommand();
+            return insertMoveCommand();
         }
     }
 
