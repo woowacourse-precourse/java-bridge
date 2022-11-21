@@ -6,11 +6,6 @@ import java.util.stream.Stream;
 
 public class BasicBridgeInputNumericParser {
 
-
-    private BasicBridgeInputNumericParser() {
-
-    }
-
     public static BridgeLength parseBridgeLengthAmount(final String input) {
         return parseNumericCheckingEmpty(input, BridgeLength::from);
     }

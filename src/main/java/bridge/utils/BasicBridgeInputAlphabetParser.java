@@ -4,11 +4,6 @@ import bridge.model.BridgeGame;
 
 public class BasicBridgeInputAlphabetParser {
 
-
-    private BasicBridgeInputAlphabetParser() {
-
-    }
-
     public static BridgeGame parseBridgeGameInput(final String input, int mode) {
         return parseWithCheckingEmpty(input, mode);
     }
