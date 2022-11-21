@@ -19,11 +19,6 @@ public class InputView {
      * 사용자 값 입력을 위해 필요한 메서드 추가 가능
      */
 
-    public void printStart() {
-        System.out.println(InGameMessage.START.getMessage());
-        System.out.println();
-    }
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -51,15 +46,4 @@ public class InputView {
         return inputValidation.validateAndReturnCommand(input);
     }
 
-    public void printResult() {
-        System.out.println(InGameMessage.RESULT.getMessage());
-    }
-
-    public void printSuccessOrFailure(String result) {
-        System.out.print(InGameMessage.SUCCESS_OR_FAILURE + result);
-    }
-
-    public void printTryCount(int count) {
-        System.out.println(InGameMessage.TRY_COUNT + Integer.toString(count));
-    }
 }
