@@ -9,7 +9,7 @@ public class InputView {
         try{
             bridgeSize = Integer.parseInt(bridgeSizeStr);
         }catch(NumberFormatException ex){
-            Application.errorHandling("다리의 길이를 숫자로 입력해주세요.");
+            OutputView.errorHandling("다리의 길이를 숫자로 입력해주세요.");
         }
         return bridgeSize;
     }
@@ -19,7 +19,7 @@ public class InputView {
         String moveChar = Console.readLine();
         if(moveChar.equals("U") || moveChar.equals("D"))
             return moveChar;
-        Application.errorHandling("U와 D 중에서만 입력해주세요.");
+        OutputView.errorHandling("U와 D 중에서만 입력해주세요.");
         return null;
     }
 
@@ -28,7 +28,7 @@ public class InputView {
         String moveChar = Console.readLine();
         if(moveChar.equals("Q") || moveChar.equals("R"))
             return moveChar;
-        Application.errorHandling("Q와 R 중에서만 입력해주세요.");
+        OutputView.errorHandling("Q와 R 중에서만 입력해주세요.");
         return null;
     }
 }

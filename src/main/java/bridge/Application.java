@@ -6,8 +6,5 @@ public class Application {
 
     }
 
-    public static void errorHandling(String errorMessage){
-        System.out.println("[ERROR]" + errorMessage);
-        throw new IllegalArgumentException();
-    }
+
 }
