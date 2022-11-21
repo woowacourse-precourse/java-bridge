@@ -22,17 +22,10 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            bridge.add(convertNumberToDirection(bridgeNumberGenerator.generate()));
+            Direction direction = Direction.values()[bridgeNumberGenerator.generate()];
+            bridge.add(direction.toString());
         }
 
         return bridge;
-    }
-
-    private String convertNumberToDirection(int number) {
-        if (number == 0) {
-            return "D";
-        }
-
-        return "U";
     }
 }
