@@ -66,4 +66,8 @@ public class OutputView {
     public void printTotalGameAttempts(BridgeGame bridgeGame) {
         System.out.printf(TOTAL_GAME_ATTEMPTS, bridgeGame.getTotalGameAttempts());
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
