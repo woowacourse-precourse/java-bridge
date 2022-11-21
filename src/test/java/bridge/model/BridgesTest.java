@@ -19,12 +19,4 @@ public class BridgesTest {
         assertThat(bridges.isCompletedGame(player)).isTrue();
     }
 
-    @DisplayName("특정한 위치의 방향 확인 기능")
-    @Test
-    void is_same_direction() {
-        Bridges bridges = new Bridges(3, new BridgeFakeOneZeroLoopNumberGenerator());
-        assertThat(bridges.isRight(1, "U")).isTrue();
-        assertThat(bridges.isRight(2, "D")).isTrue();
-        assertThat(bridges.isRight(3, "U")).isTrue();
-    }
 }

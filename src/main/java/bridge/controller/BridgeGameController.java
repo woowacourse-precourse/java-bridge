@@ -22,8 +22,12 @@ public class BridgeGameController {
     public void start() {
         outputView.printStart();
         int bridgeSize = inputView.readBridgeSize();
-        this.bridgeGame = new BridgeGame(bridgeSize, new BridgeRandomNumberGenerator());
+        createNewGame(bridgeSize);
         play();
+    }
+
+    private void createNewGame(int bridgeSize) {
+        this.bridgeGame = new BridgeGame(bridgeSize, new BridgeRandomNumberGenerator());
     }
 
     private void play() {
@@ -59,7 +63,7 @@ public class BridgeGameController {
 
     private void retry() {
         String answer = inputView.readGameCommand();
-        if (isRetry(answer)) {
+        if (isInputRetry(answer)) {
             bridgeGame.retry();
             play();
             return;
@@ -67,7 +71,7 @@ public class BridgeGameController {
         printResult(FAILURE_MESSAGE);
     }
 
-    private static boolean isRetry(String answer) {
+    private static boolean isInputRetry(String answer) {
         return answer.equals(RETRY_SIGNAL);
     }
 

@@ -27,13 +27,10 @@ public class BridgeGame {
         return isSuccess();
     }
 
-    public boolean isCompletedGame() {
-        return bridges.isCompletedGame(player);
-    }
-
     public boolean isSuccess(){
         return bridges.isSuccess(player);
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -55,6 +52,10 @@ public class BridgeGame {
 
     boolean isStartStatus() {
         return player.isStartStatus();
+    }
+
+    public boolean isCompletedGame() {
+        return bridges.isCompletedGame(player);
     }
 
 }

@@ -15,13 +15,17 @@ public class FailureResultPrinter extends ResultPrinter {
     @Override
     public String getResult(String direction) {
         String result = super.getResult(direction);
-        if (directions.get(getEndIndex(directions.size())).equals(direction)){
-            return replaceSignToX(result);
+        if (getEndChar().equals(direction)){
+            return replaceSignOToX(result);
         }
         return result;
     }
 
-    private static String replaceSignToX(String result) {
+    private String getEndChar() {
+        return directions.get(getEndIndex(directions.size()));
+    }
+
+    private static String replaceSignOToX(String result) {
         return removeLastChar(result) + WRONG_SIGN;
     }
 

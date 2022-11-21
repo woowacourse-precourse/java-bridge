@@ -3,23 +3,11 @@ package bridge.model;
 import java.util.List;
 
 public class Bridges {
-    public static final int INDEX_SIZE_DIFFERENT = 1;
     private final List<String> bridges;
 
     Bridges(int size, BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridges = new BridgeMaker(bridgeNumberGenerator).makeBridge(size);
-    }
-
-    boolean isRight(int position, String direction) {
-        return getDirection(position).equals(direction);
-    }
-
-    private String getDirection(int position) {
-        return bridges.get(getIndex(position));
-    }
-
-    private static int getIndex(int position) {
-        return position - INDEX_SIZE_DIFFERENT;
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridges = bridgeMaker.makeBridge(size);
     }
 
     boolean isCompletedGame(Player player) {

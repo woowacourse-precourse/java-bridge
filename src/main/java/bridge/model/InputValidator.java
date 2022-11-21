@@ -10,42 +10,41 @@ public class InputValidator {
     public static final String IS_NUMBER = "[0-9]*";
     public static final String RESTART_GAME = "R";
     public static final String QUIT_GAME = "Q";
-    public static final String ERROR_BRIDGE_SIZE = "[ERROR] 3-20사이의 숫자가 아닙니다.";
-    public static final String ERROR_MOVING = "[ERROR] Moving 문자를 잘못 입력하셨습니다.";
-    public static final String ERROR_RETRY = "[ERROR] Retry 문자를 잘못 입력하셨습니다.";
+    public static final String ERROR_INPUT_ABOUT_BRIDGE_SIZE = "[ERROR] 3-20사이의 숫자가 아닙니다.";
+    public static final String ERROR_INPUT_ABOUT_MOVING = "[ERROR] Moving 문자를 잘못 입력하셨습니다.";
+    public static final String ERROR_INPUT_ABOUT_RETRY = "[ERROR] Retry 문자를 잘못 입력하셨습니다.";
 
     private InputValidator() {
     }
 
     public static void isValidSize(String inputSize) {
-        if (isNullOrBlank(inputSize) || !inputSize.matches(IS_NUMBER)) {
-            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
+        isNullOrBlank(inputSize, ERROR_INPUT_ABOUT_BRIDGE_SIZE);
+        if (!inputSize.matches(IS_NUMBER)) {
+            throw new IllegalArgumentException(ERROR_INPUT_ABOUT_BRIDGE_SIZE);
         }
         int size = Integer.parseInt(inputSize);
         if (size > BRIDGE_MAX_SIZE || size < BRIDGE_MIN_SIZE) {
-            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
+            throw new IllegalArgumentException(ERROR_INPUT_ABOUT_BRIDGE_SIZE);
         }
     }
 
     public static void isValidMoving(String moving) {
-        if (isNullOrBlank(moving)) {
-            throw new IllegalArgumentException(ERROR_MOVING);
-        }
+        isNullOrBlank(moving, ERROR_INPUT_ABOUT_MOVING);
         if (!moving.equals(UP_BRIDGE) && !moving.equals(DOWN_BRIDGE)) {
-            throw new IllegalArgumentException(ERROR_MOVING);
+            throw new IllegalArgumentException(ERROR_INPUT_ABOUT_MOVING);
         }
     }
 
     public static void isValidRetry(String restart) {
-        if (isNullOrBlank(restart)) {
-            throw new IllegalArgumentException(ERROR_RETRY);
-        }
+        isNullOrBlank(restart, ERROR_INPUT_ABOUT_RETRY);
         if (!restart.equals(RESTART_GAME) && !restart.equals(QUIT_GAME)) {
-            throw new IllegalArgumentException(ERROR_RETRY);
+            throw new IllegalArgumentException(ERROR_INPUT_ABOUT_RETRY);
         }
     }
 
-    private static boolean isNullOrBlank(String inputSize) {
-        return inputSize == null || inputSize.isBlank();
+    private static void isNullOrBlank(String inputSize,String message) {
+        if ( inputSize == null || inputSize.isBlank()) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }
