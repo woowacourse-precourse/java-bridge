@@ -11,11 +11,13 @@ public class BridgeGame {
     private List<String> bridge;
     private List<String> userPath;
     private GameStatus gameStatus;
+    private int tryCount;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.userPath = new ArrayList<>();
         this.gameStatus = GameStatus.ONGOING;
+        this.tryCount = 1;
     }
 
     public List<String> getUserPath() {
@@ -74,5 +76,6 @@ public class BridgeGame {
      */
     public void retry() {
         userPath.clear();
+        tryCount += 1;
     }
 }
