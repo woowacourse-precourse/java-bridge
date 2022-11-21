@@ -9,6 +9,8 @@ public class BridgeGame {
 
     private GameResult gameResult = new GameResult();
 
+    private int round = 0;
+
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void makeAnswerBridge(int size) {
@@ -45,6 +47,13 @@ public class BridgeGame {
     }
 
     public void retry() {
+        clearGameInfo();
+        setRound(getRound()+1);
+    }
+    public void clearGameInfo(){
+        this.userBridge = new ArrayList<>();
+        this.gameResult = new GameResult();
+        this.gameResult.setGameStatus(GameStatus.PROGRESS);
     }
 
     public int getAnswerBridgeSize() {
@@ -66,6 +75,11 @@ public class BridgeGame {
 
     public GameStatus getGameStatus() {
         return gameResult.getGameStatus();
+    }
+
+    public int getRound(){return round;}
+    public void setRound(int round){
+        this.round = round;
     }
 
     public void setAnswerBridge(List<String> answerBridge) {

@@ -14,6 +14,7 @@ public class BridgeGameService {
 
     public void intialSetting() {
         outputView.printGameStart();
+        bridgeGame.setRound(bridgeGame.getRound()+1);
     }
 
     public void makeBridge() {
@@ -48,4 +49,16 @@ public class BridgeGameService {
         outputView.printMap(bridgeGame.getGameResult());
     }
 
+    public void askReplay() {
+        if(!checkIfQuit(inputView.readGameCommand())){
+            bridgeGame.retry();
+        }
+    }
+    public boolean checkIfQuit(String input){
+        if (input.equals("R")) {
+            return false;
+        }
+        bridgeGame.setGameStatus(GameStatus.LOSE);
+        return true;
+    }
 }

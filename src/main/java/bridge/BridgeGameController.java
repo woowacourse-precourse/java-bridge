@@ -9,6 +9,7 @@ public class BridgeGameController {
         bridgeGameService.makeBridge();
         while (bridgeGameService.getGameStatus() == GameStatus.PROGRESS) {
             if (bridgeGameService.moveBridge() == GameStatus.SUCCESS) break;
+            bridgeGameService.askReplay();
         }
     }
 }
