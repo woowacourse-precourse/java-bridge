@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.controller.ConsoleController;
-import bridge.controller.DataAccessController;
+import bridge.controller.DataTransferController;
 
 
 /**
@@ -13,15 +13,27 @@ import bridge.controller.DataAccessController;
  * 메서드 추가, 변경 가능
  */
 public class BridgeGame {
-    private final static ConsoleController CONSOLE = new ConsoleController();
-    private final static DataAccessController DAO = new DataAccessController();
+    private final ConsoleController consoleController;
+    private final DataTransferController dataTransferController;
     private int round = 0;
     private int tryCount = 1;
 
+    public BridgeGame(
+            final ConsoleController consoleController,
+            final DataTransferController dataTransferController
+    ) {
+        this.consoleController = consoleController;
+        this.dataTransferController = dataTransferController;
+    }
 
-    public void start() {
-        DAO.makeBridge(CONSOLE.bridgeSizeConsole());
+    public void run() {
+        dataTransferController.makeBridge(consoleController.bridgeSizeConsole());
         move();
+        while (round < dataTransferController.getBridgeSize()) {
+            retry();
+            move();
+        }
+        end();
     }
 
     /**
@@ -30,22 +42,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        DAO.updateBridgeStatus(round, CONSOLE.moveConsole());
-        CONSOLE.statusConsole(DAO.getBridgeStatus());
-        check();
-    }
-
-    public void check() {
-        if(DAO.getBridgeStatus().getSuccess()) {
-            round+=1;
-            if(DAO.getBridgeSize() == round) {
-                end();
-                return;
-            }
-            move();
-            return;
-        }
-        retry();
+        dataTransferController.updateBridgeStatus(round, consoleController.moveConsole());
+        consoleController.statusConsole(dataTransferController.getBridgeStatus());
+        round++;
     }
 
     /**
@@ -54,18 +53,20 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        if("Q".equals(CONSOLE.commandConsole())) {
-            end();
+        if(dataTransferController.getBridgeStatus().getSuccess()) {
             return;
         }
-        DAO.previousBridgeStatus();
+        if("Q".equals(consoleController.commandConsole())) {
+            round = 20;
+        }
+        dataTransferController.resetBridgeStatus();
+        round = 0;
         tryCount++;
-        move();
     }
 
     public void end() {
-        CONSOLE.endConsole(
-                DAO.getBridgeStatus(),
+        consoleController.endConsole(
+                dataTransferController.getBridgeStatus(),
                 tryCount
         );
     }

@@ -6,38 +6,42 @@ import bridge.view.OutputView;
 
 
 public class ConsoleController {
-    private final static InputView INPUT_VIEW = new InputView();
-    private final static OutputView OUTPUT_VIEW = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
 
+    public ConsoleController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public int bridgeSizeConsole() {
-        OUTPUT_VIEW.printStart();
-        OUTPUT_VIEW.printLengthInput();
-        return INPUT_VIEW.readBridgeSize();
+        outputView.printStart();
+        outputView.printLengthInput();
+        return inputView.readBridgeSize();
     }
 
     public String moveConsole() {
-        OUTPUT_VIEW.printLine();
-        OUTPUT_VIEW.printMoveInput();
-        return INPUT_VIEW.readMoving();
+        outputView.printLine();
+        outputView.printMoveInput();
+        return inputView.readMoving();
     }
 
     public void statusConsole(BridgeStatus bridgeStatus) {
-        OUTPUT_VIEW.printMap(bridgeStatus);
+        outputView.printMap(bridgeStatus);
     }
 
     public String commandConsole() {
-        OUTPUT_VIEW.printRetry();
-        return INPUT_VIEW.readGameCommand();
+        outputView.printRetry();
+        return inputView.readGameCommand();
     }
 
     public void endConsole(
             final BridgeStatus bridgeStatus,
             final int tryCount
     ) {
-        OUTPUT_VIEW.printResult();
-        OUTPUT_VIEW.printMap(bridgeStatus);
-        OUTPUT_VIEW.printComplete(bridgeStatus.getSuccess());
-        OUTPUT_VIEW.printTryCount(tryCount);
+        outputView.printResult();
+        outputView.printMap(bridgeStatus);
+        outputView.printComplete(bridgeStatus.getSuccess());
+        outputView.printTryCount(tryCount);
     }
 }

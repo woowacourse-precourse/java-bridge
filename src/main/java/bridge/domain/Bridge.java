@@ -3,11 +3,11 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
-    private static List<String> bridge;
+    private List<String> bridge;
     private int bridgeSize;
 
 
-    public Bridge(List<String> lst) {
+    public Bridge(final List<String> lst) {
         bridge = lst;
         bridgeSize = lst.size();
     }
