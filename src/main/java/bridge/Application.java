@@ -8,8 +8,12 @@ import bridge.view.output.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGameLauncher launcher = new BridgeGameLauncher(new InputView(), new OutputView(),
-                new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())));
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker);
+        
+        BridgeGameLauncher launcher = new BridgeGameLauncher(inputView, outputView, bridgeGame);
 
         launcher.init();
         launcher.run();
