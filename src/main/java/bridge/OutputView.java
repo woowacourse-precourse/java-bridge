@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.message.OutputMessage;
+
 import java.util.List;
 
 /**
@@ -57,18 +59,18 @@ public class OutputView {
         System.out.println("[ERROR] " + message);
     }
     public void printStartGameMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(OutputMessage.START_GAME.value);
     }
 
     public void printInputSizeMessage() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(OutputMessage.ASK_BRIDGE_SIZE.value);
     }
 
     public void printMoveMessage() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(OutputMessage.ASK_MOVE.value);
     }
 
     public void printRetryMessage() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(OutputMessage.ASK_RETRY.value);
     }
 }
