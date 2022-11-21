@@ -7,8 +7,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final int UP_WARD = 0;
-    private static final int DOWN_WARD = 1;
+    public static final int UP_WARD = 0;
+    public static final int DOWN_WARD = 1;
     private List<String> bridge;
     private List<List<String>> userInputBridge;
     int index;
@@ -21,6 +21,7 @@ public class BridgeGame {
         index = 0;
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(this.bridge);
     }
 
     /**
