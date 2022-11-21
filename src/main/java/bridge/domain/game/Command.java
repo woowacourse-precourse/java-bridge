@@ -5,6 +5,8 @@ import bridge.exception.BridgeError;
 public class Command {
 
     private static final String REG_XP_RETRY_COMMAND = "[RQ]+";
+    private static final String RETRY = "R";
+    private static final String EXIT = "Q";
     private static final int COMMAND_SIZE = 1;
 
     private final String command;
@@ -32,10 +34,10 @@ public class Command {
     }
 
     public boolean isExitCommand() {
-        return command.equals("Q");
+        return command.equals(EXIT);
     }
 
     public boolean isRetryCommand() {
-        return command.equals("R");
+        return command.equals(RETRY);
     }
 }
