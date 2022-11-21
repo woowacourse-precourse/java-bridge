@@ -9,21 +9,32 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         try{
-            System.out.println("다리의 길이를 입력해주세요.");
-            int bridgeSize = Integer.parseInt(Console.readLine());
-            return bridgeSize;
+            int textCheckedSize = checkBridgeSizeText(Console.readLine());
+            int sizeCheckedSize = checkBridgeSize(textCheckedSize);
+            return sizeCheckedSize;
         }catch(IllegalArgumentException e){
-            System.out.print("[ERROR]");
             return readBridgeSize();
         }
     }
 
-    public int checkBridgeSize(int size){
+    public int checkBridgeSize(int size) throws IllegalArgumentException{
         if(size >= 3 && size <= 20){
             return size;
         }
-        throw new IllegalArgumentException("[ERROR]: 다리의 크기가 유효하지 않습니다.");
+        System.out.println("[ERROR]: 다리의 크기가 유효하지 않습니다.");
+        throw new IllegalArgumentException();
+    }
+
+    public int checkBridgeSizeText(String size) throws IllegalArgumentException{
+        try{
+            int sizeToInt = Integer.parseInt(size);
+            return sizeToInt;
+        }catch (Exception e){
+            System.out.print("[ERROR]: 다리의 크기에 대한 입력 값이 유효하지 않습니다.");
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
