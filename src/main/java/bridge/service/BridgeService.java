@@ -50,6 +50,18 @@ public class BridgeService {
         bridgeGame.initializeBridgeGame(bridge);
     }
 
+    public boolean inputPlayerMoveDirection(){
+        outputView.printRequestMoveDirectionMessage();
+        String moveDirection = inputView.readMoving();
+
+        if(!inputValidation.isValidDirection(moveDirection)) {
+            outputView.printInValidMoveDirectionErrorMessage();
+            return false;
+        }
+        bridgeGame.move(moveDirection,bridgeGame.getBridgeIdx());
+        return true;
+    }
+
     public boolean isFalsePlayerMove(){
         if(!bridgeGame.isMoveSuccess()){
             String gameRetryCommand = inputGameRetryCommand();
