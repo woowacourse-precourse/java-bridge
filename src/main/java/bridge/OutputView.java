@@ -28,6 +28,7 @@ public class OutputView {
         System.out.println(Message.GAME_FINAL_RESULT);
         List<String> answer = getAnswer(Application.bridge, BridgeGame.playerStep);
         printBridge(answer, BridgeGame.playerStep);
+
         System.out.println();
         printGameSuccessOrFail();
         printGameTryCount();
@@ -50,38 +51,19 @@ public class OutputView {
     }
 
 
-    private List<String> getAnswer(List<String> bridge, List<String> playerMove){
+    private List<String> getAnswer(List<String> bridge, List<String> step){
         List<String> answer = new ArrayList<>();
 
-        for(int i = 0; i < playerMove.size(); i++){
-            answer.add(compareStair(bridge.get(i), playerMove.get(i)));
+        for(int i = 0; i < step.size(); i++){
+            answer.add(compareStair(bridge.get(i), step.get(i)));
         }
 
         return answer;
     }
 
-    private List<String> makeStair(List<String> answer, List<String> playerMove, String direction){
-        List<String> stair = new ArrayList<>();
-
-        for(int i = 0 ; i < answer.size(); i++){
-            if(playerMove.get(i).equals(direction)){
-                stair.add(answer.get(i));
-                continue;
-            }
-            stair.add(" ");
-        }
-        return stair;
-    }
-
-    private void printBridge(List<String> answer, List<String> playerMove){
-        List<String> upStair = makeStair(answer, playerMove, "U");
-        List<String> downStair = makeStair(answer, playerMove, "D");
-
-        String upStr = String.join(" | ", upStair);
-        String downStr = String.join(" | ", downStair);
-
-        System.out.println("[ " + upStr + " ]");
-        System.out.println("[ " + downStr + " ]");
+    private void printBridge(List<String> answer, List<String> step){
+        System.out.println(Step.U.toStringStair(answer, step));
+        System.out.println(Step.D.toStringStair(answer, step));
     }
 
     private String compareStair(String bridge, String move){
