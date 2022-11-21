@@ -2,8 +2,6 @@ package view;
 
 import bridge.BridgeGame;
 
-import java.util.List;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -14,12 +12,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> userBridge) {
+    public void printMap(BridgeGame game) {
         StringBuilder topBridge = initTopBridge();
         StringBuilder bottomBridge = initBottomBridge();
 
-        topBridge = printTopBridgeStatus(bridge, userBridge, topBridge);
-        bottomBridge = printBottomBridgeStatus(bridge, userBridge, bottomBridge);
+        topBridge = printTopBridgeStatus(game, topBridge);
+        bottomBridge = printBottomBridgeStatus(game, bottomBridge);
 
         System.out.println(closeTopBridge(topBridge));
         System.out.println(closeBottomBridge(bottomBridge));
@@ -60,10 +58,10 @@ public class OutputView {
         return bottomBridge.toString();
     }
 
-    private StringBuilder printTopBridgeStatus(List<String> answerBridge, List<String> userBridge, StringBuilder topBridge) {
-        for (int i = 0; i < userBridge.size(); i++) {
-            if (userBridge.get(i).equals("U")) {
-                if (answerBridge.get(i).equals("U")) {
+    private StringBuilder printTopBridgeStatus(BridgeGame game, StringBuilder topBridge) {
+        for (int i = 0; i < game.getUserInput().size(); i++) {
+            if (game.getUserInput().get(i).equals("U")) {
+                if (game.getBridge().get(i).equals("U")) {
                     topBridge.append(" O |");
                     continue;
                 }
@@ -75,10 +73,10 @@ public class OutputView {
         return topBridge;
     }
 
-    private StringBuilder printBottomBridgeStatus(List<String> answerBridge, List<String> userBridge, StringBuilder bottomBridge) {
-        for (int i = 0; i < userBridge.size(); i++) {
-            if (userBridge.get(i).equals("D")) {
-                if (answerBridge.get(i).equals("D")) {
+    private StringBuilder printBottomBridgeStatus(BridgeGame game, StringBuilder bottomBridge) {
+        for (int i = 0; i < game.getUserInput().size(); i++) {
+            if (game.getUserInput().get(i).equals("D")) {
+                if (game.getBridge().get(i).equals("D")) {
                     bottomBridge.append(" O |");
                     continue;
                 }
@@ -98,7 +96,7 @@ public class OutputView {
     public void printResult(BridgeGame game, boolean successOrNot) {
         System.out.println("최종 게임 결과");
 
-        printMap(game.getBridge(), game.getUserInput());
+        printMap(game);
 
         if (successOrNot) {
             printSuccessMessage(game.getTrialCount());
