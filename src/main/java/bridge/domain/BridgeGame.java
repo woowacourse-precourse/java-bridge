@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.exception.domain.CanNotMoveException;
 import java.util.Objects;
 
 /**
@@ -23,6 +24,9 @@ public class BridgeGame {
     }
 
     public void move(BridgeShape moveBridgeShape) {
+        if (!bridge.isCanMove(playerMove)) {
+            throw new CanNotMoveException();
+        }
         playerMove.connect(moveBridgeShape);
     }
 

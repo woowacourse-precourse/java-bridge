@@ -43,6 +43,10 @@ public class Bridge {
         }
     }
 
+    public boolean isCanMove(Bridge compareBridge) {
+        return this.bridgeShapes.size() > compareBridge.bridgeShapes.size();
+    }
+
     public boolean sizeEqual(Bridge compareBridge) {
         return this.bridgeShapes.size() == compareBridge.bridgeShapes.size();
     }

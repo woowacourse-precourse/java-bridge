@@ -64,6 +64,17 @@ class BridgeTest {
     @DisplayName("사다리 사이즈 비교 기능 테스트")
     @Nested
     class Size {
+        @DisplayName("이동할 수 있는지 반환한다.")
+        @Test
+        public void isCanMove() {
+            Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
+
+            assertAll(
+                    assertThat(bridge.isCanMove(Bridge.createByBridgeShapeValue(List.of("D", "U"))))::isTrue,
+                    assertThat(bridge.isCanMove(Bridge.createByBridgeShapeValue(List.of("D", "U", "D"))))::isFalse
+            );
+        }
+
         @DisplayName("전달된 사다리와 사이즈가 같은지 반환한다.")
         @Test
         public void sizeEqualBridge() {
