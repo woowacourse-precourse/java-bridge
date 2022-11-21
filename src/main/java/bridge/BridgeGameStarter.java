@@ -16,7 +16,7 @@ public class BridgeGameStarter {
     private List<String> result = new ArrayList<>();
     private int tryCount = 1;
 
-    public BridgeGameStarter( BridgeMaker bridgeMaker, InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+    public BridgeGameStarter(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         this.bridgeMaker = bridgeMaker;
         this.inputView = inputView;
         this.outputView = outputView;
@@ -63,15 +63,19 @@ public class BridgeGameStarter {
         gameStatusFlag.put("retryFlag", false);
     }
 
-    public void work() {
+    public boolean proceed() {
         int index = 1;
         while (bridgeGame.canMove(result)) {
             if (bridgeGame.isGameEnded(bridge, index)) {
                 notifySuccessGame();
-                return;
+                return true;
             }
             index = additionalInput(index);
         }
+        return false;
+    }
+
+    public void askToRetry() {
         outputView.printInputGameCommand();
         if (bridgeGame.retry(inputView.readGameCommand())) {
             notifyFailGameWithRetry();
@@ -87,11 +91,13 @@ public class BridgeGameStarter {
 
     public void run() {
         initialize();
-        work();
+        if (proceed()) return;
+        askToRetry();
         while (gameStatusFlag.get("retryFlag")) {
             tryCount++;
             reInitialize();
-            work();
+            if (proceed()) break;
+            askToRetry();
         }
         closeGame();
     }
