@@ -30,6 +30,7 @@ public class BridgeGame {
      */
     public void retry() {
         retry.add();
+        bridges.delete();
     }
 
     public Bridge setBridge(int size) {

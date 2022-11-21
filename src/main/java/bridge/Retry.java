@@ -10,4 +10,8 @@ public class Retry {
     public void add() {
         count++;
     }
+
+    public int getCount(){
+        return count;
+    }
 }

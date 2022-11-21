@@ -35,4 +35,9 @@ public class Bridges {
         bridges.put("lowerBridge", lowerBridge);
         return bridges;
     }
+
+    public void delete(){
+        upperBridge.deleteBridge();
+        lowerBridge.deleteBridge();
+    }
 }

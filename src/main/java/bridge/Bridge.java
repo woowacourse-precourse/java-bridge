@@ -29,4 +29,8 @@ public class Bridge {
     public int getSize() {
         return this.status.size();
     }
+
+    public void deleteBridge() {
+        this.status.remove(this.status.size() - 1);
+    }
 }
