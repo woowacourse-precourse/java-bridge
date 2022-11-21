@@ -16,6 +16,7 @@ public class BridgeMonitor {
     private static final String CORRECT_MOVING = " O ";
     private static final String WRONG_MOVING = " X ";
     private static final String BETWEEN_LINE = "|";
+    private static final String PICTURE_FRAME = "%s\n%s";
     private static final int ONE_COLUMN_INCLUDING_BETWEEN_LINE = 4;
     private static final int ONE_COLUMN_EXCLUDING_BETWEEN_LINE = 3;
 
@@ -36,7 +37,9 @@ public class BridgeMonitor {
     }
 
     public String getPicture() {
-        String picture = this.upperLine.toString() + "\n" + this.lowerLine.toString();
+        String upperLinePicture = this.upperLine.toString();
+        String lowerLinePicture = this.lowerLine.toString();
+        String picture = String.format(PICTURE_FRAME, upperLinePicture, lowerLinePicture);
         return picture;
     }
 
