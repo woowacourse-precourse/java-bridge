@@ -8,41 +8,46 @@ import bridge.util.BridgeMaker;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeTest {
-    private static final String ERROR_HEAD = "[ERROR]";
-    private BridgeMaker bridgeMaker;
 
-    @BeforeEach
-    void setUp() {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    }
+    @Nested
+    class BridgeGeneration {
+        private static final String ERROR_HEAD = "[ERROR]";
+        private BridgeMaker bridgeMaker;
 
-    @DisplayName("다리 생성 시, 다리 길이가 범위 외의 값이면 예외가 발생한다")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 21, 0})
-    void createBridgeOutOfLength(int size) {
-        List<String> innerBridge = bridgeMaker.makeBridge(size);
+        @BeforeEach
+        void setUp() {
+            bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        }
 
-        assertThatThrownBy(() -> new Bridge(innerBridge))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NOT_IN_RANGE.printMessage())
-                .hasMessageStartingWith(ERROR_HEAD);
-    }
+        @DisplayName("다리 생성 시, 다리 길이가 범위 외의 값이면 예외가 발생한다")
+        @ParameterizedTest
+        @ValueSource(ints = {2, 21, 0})
+        void createBridgeOutOfLength(int size) {
+            List<String> innerBridge = bridgeMaker.makeBridge(size);
 
-    @DisplayName("다리 생성 시, 다리 길이가 범위 내의 값이면 객체가 정상 생성된다")
-    @ParameterizedTest
-    @ValueSource(ints = {3, 20})
-    void createBridgeInLength(int size) {
-        List<String> innerBridge = bridgeMaker.makeBridge(size);
+            assertThatThrownBy(() -> new Bridge(innerBridge))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ErrorMessage.NOT_IN_RANGE.printMessage())
+                    .hasMessageStartingWith(ERROR_HEAD);
+        }
 
-        Bridge bridge = new Bridge(innerBridge);
+        @DisplayName("다리 생성 시, 다리 길이가 범위 내의 값이면 객체가 정상 생성된다")
+        @ParameterizedTest
+        @ValueSource(ints = {3, 20})
+        void createBridgeInLength(int size) {
+            List<String> innerBridge = bridgeMaker.makeBridge(size);
 
-        assertThat(bridge).isInstanceOf(Bridge.class);
+            Bridge bridge = new Bridge(innerBridge);
+
+            assertThat(bridge).isInstanceOf(Bridge.class);
+        }
     }
 
     @DisplayName("이동한 칸의 이동 성공 여부를 계산한다")

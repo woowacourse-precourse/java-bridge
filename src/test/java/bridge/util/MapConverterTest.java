@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class MapConverterTest {
 
-    @DisplayName("누적 이동 결과를 지정된 포맷으로 변경한다")
+    @DisplayName("누적 이동 결과를 지정된 포맷의 map 으로 변경한다")
     @Test
     void convertListToMap() {
         List<String> bridge = List.of(" ", "O", "X");
