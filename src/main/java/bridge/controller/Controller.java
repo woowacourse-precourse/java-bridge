@@ -24,7 +24,8 @@ public class Controller {
 
     public void play() {
         this.game = makeGame();
-        doGame();
+        int trialCount = doGame();
+        outputView.printResult(trialResults, trialCount, game.isFinished());
     }
 
     private BridgeGame makeGame() {
