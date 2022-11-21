@@ -25,11 +25,8 @@ public class OutputView {
     public void printMap(BridgeGame bridgeGame) {
         BridgeMap bridgeMap = bridgeGame.getBridgeMap();
 
-        List<String> upperRow = bridgeMap.getUpperRow();
-        List<String> lowerRow = bridgeMap.getLowerRow();
-
-        printRowWithPrefixAndSuffix(joinByDelimiter(upperRow));
-        printRowWithPrefixAndSuffix(joinByDelimiter(lowerRow));
+        printRowWithPrefixAndSuffix(joinByDelimiter(bridgeMap.getUpperRow()));
+        printRowWithPrefixAndSuffix(joinByDelimiter(bridgeMap.getLowerRow()));
         System.out.println();
     }
 
@@ -49,8 +46,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(GAME_RESULTS);
         printMap(bridgeGame);
-        String result = getResult(bridgeGame);
-        System.out.println(GAME_CLEARED + result);
+        System.out.println(GAME_CLEARED + getResult(bridgeGame));
         System.out.println(TOTAL_ATTEMPT + bridgeGame.getAttempt());
     }
 

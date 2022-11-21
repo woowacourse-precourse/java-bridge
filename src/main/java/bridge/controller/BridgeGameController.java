@@ -23,9 +23,8 @@ public class BridgeGameController {
     public void start() {
         printStartMessage();
 
-        List<String> bridge = makeBridge();
+        BridgeGame bridgeGame = new BridgeGame(makeBridge());
 
-        BridgeGame bridgeGame = new BridgeGame(bridge);
         run(bridgeGame);
 
         outputView.printResult(bridgeGame);
