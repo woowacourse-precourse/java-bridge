@@ -24,11 +24,15 @@ public class BridgeGameMachine {
         int bridgeSize = inputBridgeSize();
         BridgeGame bridgeGame = createNewGame(bridgeSize);
 
+        playBridgeGame(bridgeGame);
+
+        printResult(bridgeGame);
+    }
+
+    private void playBridgeGame(BridgeGame bridgeGame) {
         while (!bridgeGame.isGameEnd()) {
             playOneTurn(bridgeGame);
         }
-
-        printResult(bridgeGame);
     }
 
     private void playOneTurn(BridgeGame bridgeGame) {
