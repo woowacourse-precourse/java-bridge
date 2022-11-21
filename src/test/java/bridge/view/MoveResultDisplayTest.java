@@ -16,7 +16,7 @@ class MoveResultDisplayTest {
     @DisplayName("다리 이동 결과를 출력 로직 관련 enum 데이터로 변환")
     void convertToMoveResult() {
         final Success successState = new Success(BridgeTest.UPPER_BRIDGE, "U");
-        final Fail failState = new Fail(BridgeTest.UPPER_BRIDGE, "U");
+        final Fail failState = new Fail(BridgeTest.UPPER_BRIDGE, "L");
         final MoveResultDisplay success = MoveResultDisplay.SUCCESS;
         final MoveResultDisplay fail = MoveResultDisplay.FAIL;
         
