@@ -8,6 +8,12 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String UP_BRIDGE = "U";
+    private static final String DOWN_BRIDGE = "D";
+    private static final String BRIDGE_PASS = " O ";
+    private static final String BRIDGE_BLOCK = " X ";
+    private static final String BRIDGE_NONE = "   ";
+    private static final String BRIDGE_SEPARATOR = "|";
     private static final String PRINT_RESULT = "최종 게임 결과";
     private static final String PRINT_SUCCESS = "게임 성공 여부: %s\n";
     private static final String PRINT_TRY_COUNT = "총 시도한 횟수: %d\n";
@@ -20,58 +26,79 @@ public class OutputView {
     public void printMap(List<String> answerBridge, List<String> playerBridge) {
         StringBuilder upBridge = new StringBuilder();
         StringBuilder downBridge = new StringBuilder();
-
-        addBridgeStart(upBridge, downBridge);
         for (int i = 0; i < playerBridge.size(); i++) {
-            String playerBridgePart = playerBridge.get(i);
-            if (playerBridgePart.equals(answerBridge.get(i))) {
-                addBridgePartSuccess(playerBridgePart, upBridge, downBridge);
+            addUpBridgePart(playerBridge.get(i),answerBridge.get(i), upBridge);
+            addDownBridgePart(playerBridge.get(i),answerBridge.get(i), downBridge);
+            addSeparator(upBridge, downBridge);
+        }
+        printPartSuccess(upBridge, downBridge);
+    }
+
+    private void addUpBridgePart(String playerBridgePart, String answerBridgePart, StringBuilder upBridge) {
+        addUpBridgePartSuccess(playerBridgePart, answerBridgePart, upBridge);
+        addUpBridgePartFail(playerBridgePart, answerBridgePart, upBridge);
+    }
+
+    private void addDownBridgePart(String playerBridgePart, String answerBridgePart, StringBuilder downBridge) {
+        addDownBridgePartSuccess(playerBridgePart, answerBridgePart, downBridge);
+        addDownBridgePartFail(playerBridgePart, answerBridgePart, downBridge);
+    }
+
+    private void addUpBridgePartSuccess(String playerBridgePart, String answerBridgePart, StringBuilder upBridge) {
+        if (playerBridgePart.equals(answerBridgePart)) {
+            if (playerBridgePart.equals(UP_BRIDGE)){
+                upBridge.append(BRIDGE_PASS);
             }
-            if (!playerBridgePart.equals(answerBridge.get(i))) {
-                addBridgePartFail(playerBridgePart, upBridge, downBridge);
-            }
-            if ( i != playerBridge.size() - 1){
-                upBridge.append("| ");
-                downBridge.append("| ");
+            if (playerBridgePart.equals(DOWN_BRIDGE)){
+                upBridge.append(BRIDGE_NONE);
             }
         }
-
-        addBridgeEnd(upBridge, downBridge);
-
-        System.out.println(upBridge);
-        System.out.println(downBridge);
     }
 
-    private void addBridgeStart(StringBuilder upBridge, StringBuilder downBridge) {
-        upBridge.append("[ ");
-        downBridge.append("[ ");
-    }
-
-    private void addBridgeEnd(StringBuilder upBridge, StringBuilder downBridge) {
-        upBridge.append("]");
-        downBridge.append("]\n");
-    }
-
-    private void addBridgePartSuccess(String playerBridgePart, StringBuilder upBridge, StringBuilder downBridge) {
-        if (playerBridgePart.equals("U")){
-            upBridge.append("O ");
-            downBridge.append("  ");
-        }
-        if (playerBridgePart.equals("D")){
-            upBridge.append("  ");
-            downBridge.append("O ");
+    private void addDownBridgePartSuccess(String playerBridgePart, String answerBridgePart, StringBuilder downBridge) {
+        if (playerBridgePart.equals(answerBridgePart)) {
+            if (playerBridgePart.equals(UP_BRIDGE)){
+                downBridge.append(BRIDGE_NONE);
+            }
+            if (playerBridgePart.equals(DOWN_BRIDGE)){
+                downBridge.append(BRIDGE_PASS);
+            }
         }
     }
 
-    private void addBridgePartFail(String playerBridgePart, StringBuilder upBridge, StringBuilder downBridge) {
-        if (playerBridgePart.equals("U")){
-            upBridge.append("X ");
-            downBridge.append("  ");
+    private void addUpBridgePartFail(String playerBridgePart, String answerBridgePart, StringBuilder upBridge) {
+        if (!playerBridgePart.equals(answerBridgePart)) {
+            if (playerBridgePart.equals(UP_BRIDGE)){
+                upBridge.append(BRIDGE_BLOCK);
+            }
+            if (playerBridgePart.equals(DOWN_BRIDGE)){
+                upBridge.append(BRIDGE_NONE);
+            }
         }
-        if (playerBridgePart.equals("D")){
-            upBridge.append("  ");
-            downBridge.append("X ");
+    }
+
+    private void addDownBridgePartFail(String playerBridgePart, String answerBridgePart, StringBuilder downBridge) {
+        if (!playerBridgePart.equals(answerBridgePart)) {
+            if (playerBridgePart.equals(UP_BRIDGE)){
+                downBridge.append(BRIDGE_NONE);
+            }
+            if (playerBridgePart.equals(DOWN_BRIDGE)){
+                downBridge.append(BRIDGE_BLOCK);
+            }
         }
+    }
+
+    private void addSeparator(StringBuilder upBridge, StringBuilder downBridge) {
+        upBridge.append(BRIDGE_SEPARATOR);
+        downBridge.append(BRIDGE_SEPARATOR);
+    }
+
+    private void printPartSuccess(StringBuilder upBridge, StringBuilder downBridge) {
+        upBridge.setLength(upBridge.length() - 1);
+        downBridge.setLength(downBridge.length() - 1);
+        System.out.printf("[%s]\n", upBridge);
+        System.out.printf("[%s]\n", downBridge);
+        System.out.println();
     }
 
     /**
