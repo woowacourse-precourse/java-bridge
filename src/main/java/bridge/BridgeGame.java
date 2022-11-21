@@ -89,11 +89,18 @@ public class BridgeGame {
         commandValidation(command);
         if (Objects.equals(command, RestartCommand.RESTART.getCommand())) {
             init();
-            count++;
+            countAttempt();
         }
         if (Objects.equals(command, RestartCommand.QUIT.getCommand())) {
             setClear(true);
         }
+    }
+
+    private void countAttempt(){
+        if(Integer.MAX_VALUE <= count){
+            throw new IllegalStateException("지나치게 많은 횟수의 재시작을 하였습니다. 최대 가능한 횟수는 2,147,483,647번 입니다.");
+        }
+        count++;
     }
 
     private void init() {
