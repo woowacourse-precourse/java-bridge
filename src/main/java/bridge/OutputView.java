@@ -11,9 +11,14 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public void printQuestion() {
+    public void printMoveQuestion() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
+
+    public void printRetryQuestion() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

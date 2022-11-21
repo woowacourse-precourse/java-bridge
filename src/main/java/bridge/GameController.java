@@ -6,7 +6,7 @@ public class GameController {
     private final OutputView outputView;
     private final BridgeMap bridgeMap;
     private BridgeGame bridgeGame;
-    private int tryCount;
+    private int tryCount = 1;
 
 
     public GameController() {
@@ -24,21 +24,36 @@ public class GameController {
     }
 
     public void playBridgeGame() {
-        tryCount = 1;
-
-        for (int currentStep = 0;currentStep< bridgeGame.getBridgeSize();currentStep++){
-            playRound(currentStep);
+        for (int currentStep = 0; currentStep < bridgeGame.getBridgeSize(); currentStep++) {
+            playRound();
+            if (bridgeGame.checkLastMove() && manageRetry()) {
+                currentStep = -1;
+                continue;
+            }
+            if (bridgeGame.checkLastMove()) {
+                break;
+            }
         }
     }
 
-    public void playRound(int currentStep) {
-        outputView.printQuestion();
+    public void playRound() {
+        outputView.printMoveQuestion();
         String currentMoving = inputView.readMoving();
         bridgeGame.move(currentMoving);
         String[] map = bridgeMap.makeMap(bridgeGame);
         outputView.printMap(map);
     }
 
+    public boolean manageRetry() {
+        outputView.printRetryQuestion();
+        String retryString = inputView.readGameCommand();
+        if (retryString.equals("R")) {
+            bridgeGame.retry();
+            tryCount++;
+            return true;
+        }
+        return false;
+    }
 
 
 }

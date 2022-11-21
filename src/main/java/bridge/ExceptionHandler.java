@@ -41,4 +41,16 @@ public class ExceptionHandler {
         }
         return true;
     }
+
+    public boolean checkRetry(String retry) {
+        try {
+            if (!retry.equals("R") && !retry.equals("Q")) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 잘못된 재시작 커멘드입니다.");
+            return false;
+        }
+        return true;
+    }
 }
