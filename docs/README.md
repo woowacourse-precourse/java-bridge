@@ -121,4 +121,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 
 1. [ ] 3,20 숫자 범위 정리한 enum
 2. [ ] 각 동작의 중간 제어 역할
-3. [ ] 다리 출력할 값 만들기
+3. [X] 다리 출력할 값 만들기
+4. [X] 다리 출력 값 저장하는 기능
+5. [X] 다리 칸 결과에 따라 저장
+6. [X] 다리 게임 재시작시 이전 다리 칸 결과 값 삭제
