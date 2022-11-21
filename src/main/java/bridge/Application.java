@@ -5,8 +5,9 @@ import bridge.engine.BridgeGame;
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = BridgeGame.init();
+        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGameContext context = new BridgeGameContext(bridgeGame);
 
-        bridgeGame.start();
+        context.run();
     }
 }

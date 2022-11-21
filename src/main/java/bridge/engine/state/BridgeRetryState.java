@@ -1,38 +1,30 @@
 package bridge.engine.state;
 
 import bridge.engine.BridgeGame;
+import bridge.engine.reporter.BridgeResult;
 import bridge.engine.reporter.BridgeReporter;
 import bridge.engine.GameCommand;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 public class BridgeRetryState implements BridgeState {
 
     private BridgeGame bridgeGame;
     private BridgeReporter reporter;
-    private OutputView outputView;
-    private InputView inputView;
 
     public BridgeRetryState(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
         this.reporter = new BridgeReporter();
-        this.outputView = new OutputView();
-        this.inputView = new InputView();
     }
 
     @Override
-    public void start() {
-    }
+    public void start(int size) {}
 
     @Override
-    public boolean move() {
+    public boolean move(String direction) {
         return true;
     }
 
     @Override
-    public boolean retry() {
-        outputView.printRetryMessage();
-        String command = inputView.readGameCommand();
+    public boolean retry(String command) {
         boolean isRetry = GameCommand.valueOf(command).isRetry();
 
         if (isRetry) {
@@ -45,9 +37,9 @@ public class BridgeRetryState implements BridgeState {
     }
 
     @Override
-    public void end() {
-        String bridgeMap = reporter.reportBridge(bridgeGame.getBridge(), bridgeGame.getUserDirection());
+    public BridgeResult end() {
+        String result = reporter.reportBridge(bridgeGame.getBridge(), bridgeGame.getUserDirection());
 
-        outputView.printResult(bridgeMap, "실패", bridgeGame.getTryCount());
+        return new BridgeResult(result, "실패", bridgeGame.getTryCount());
     }
 }

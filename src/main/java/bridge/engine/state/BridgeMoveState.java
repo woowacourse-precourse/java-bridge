@@ -1,9 +1,8 @@
 package bridge.engine.state;
 
 import bridge.engine.BridgeGame;
+import bridge.engine.reporter.BridgeResult;
 import bridge.engine.reporter.BridgeReporter;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -11,33 +10,26 @@ public class BridgeMoveState implements BridgeState {
 
     private BridgeGame bridgeGame;
     private BridgeReporter reporter;
-    private OutputView outputView;
-    private InputView inputView;
 
     public BridgeMoveState(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
         this.reporter = new BridgeReporter();
-        this.outputView = new OutputView();
-        this.inputView = new InputView();
     }
 
     @Override
-    public void start() {
-
+    public void start(int size) {
     }
 
     @Override
-    public boolean move() {
+    public boolean move(String direction) {
         boolean isSuccess = true;
-        outputView.printInputBridge();
-        bridgeGame.getUserDirection().add(inputView.readMoving());
+        bridgeGame.getUserDirection().add(direction);
         bridgeGame.setMoveCount(bridgeGame.getMoveCount() + 1);
 
         if (!isBridgeCorrect(bridgeGame.getBridge(), bridgeGame.getUserDirection())) {
             bridgeGame.setState(bridgeGame.getRetryState());
             isSuccess = false;
         }
-        outputView.printMap(reporter.reportBridge(bridgeGame.getBridge(), bridgeGame.getUserDirection()));
         return isSuccess;
     }
 
@@ -52,14 +44,14 @@ public class BridgeMoveState implements BridgeState {
     }
 
     @Override
-    public boolean retry() {
+    public boolean retry(String command) {
         return false;
     }
 
     @Override
-    public void end() {
-        String bridgeMap = reporter.reportBridge(bridgeGame.getBridge(), bridgeGame.getUserDirection());
+    public BridgeResult end() {
+        String result = reporter.reportBridge(bridgeGame.getBridge(), bridgeGame.getUserDirection());
 
-        outputView.printResult(bridgeMap, "성공", bridgeGame.getTryCount());
+        return new BridgeResult(result, "성공", bridgeGame.getTryCount());
     }
 }
