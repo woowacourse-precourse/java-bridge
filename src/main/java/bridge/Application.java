@@ -11,14 +11,37 @@ public class Application {
     private static boolean allCorrect = false;
     private static boolean gameCommand = true;
 
-    // 다 맞춘경우 while을 끝냄
-    // q를 입력한 경우 while을 끝냄
     public static void main(String[] args) {
-        inputView.readBridgeSize();
+
+        while(true) {
+            try {
+                inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            break;
+        }
+
         while (gameCommand && !allCorrect) {
-            isCorrect = inputView.readMoving();
+            while (true) {
+                try {
+                    isCorrect = inputView.readMoving();
+                } catch (IllegalArgumentException e){
+                    continue;
+                }
+                break;
+            }
+
             outputView.printMap();
-            checkGame();
+            while(true){
+                try {
+                    checkGame();
+                } catch (IllegalArgumentException e){
+                    continue;
+                }
+                break;
+            }
+
         }
         outputView.printResult();
     }

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.controller.BridgeGame;
+import bridge.exception.inputError;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -14,7 +15,7 @@ public class InputView {
     public void readBridgeSize() {
         System.out.println(START_MESSAGE);
         System.out.println(LENGTH_MESSAGE);
-        int size = Integer.parseInt(Console.readLine());
+        int size = verificationSize(Console.readLine());
         System.out.println();
         bridgeGame.startGame(size);
     }
@@ -23,6 +24,7 @@ public class InputView {
     public boolean readMoving() {
         System.out.println(MOVE_MESSAGE);
         String moving = Console.readLine();
+        verificationMove(moving);
         bridgeGame.move(moving);
         bridgeGame.setMatch();
         return bridgeGame.getMatchCorrect();
@@ -32,6 +34,7 @@ public class InputView {
     public boolean readGameCommand() {
         System.out.println(RETRY_MESSAGE);
         String command = Console.readLine();
+        verificationCommand(command);
         if (command.equals("Q")) {
             return false;
         }
@@ -41,5 +44,40 @@ public class InputView {
 
     public boolean checkAllCorrect() {
         return bridgeGame.checkAllCorrect();
+    }
+
+    private void verificationCommand(String command){
+        if (!command.equals("R") && !command.equals("Q")){
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException(inputError.RESTART.getMessage());
+
+        }
+    }
+
+    private void verificationMove(String moving){
+        if (!moving.equals("U") && !moving.equals("D")){
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException(inputError.INPUT_UP_DOWN.getMessage());
+        }
+    }
+    private Integer verificationSize(String size){
+        verificationToNumber(size);
+        int returnSize = Integer.parseInt(size);
+
+        if(returnSize < 3 || 20 < returnSize) {
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException(inputError.NUMBER_RANGE.getMessage());
+        }
+        return returnSize;
+    }
+
+    private void verificationToNumber(String size){
+        try{
+            Integer.parseInt(size);
+        } catch (NumberFormatException numberFormatException){
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException(inputError.IS_NUMBER.getMessage());
+
+        }
     }
 }
