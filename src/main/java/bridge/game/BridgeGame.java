@@ -1,5 +1,6 @@
 package bridge.game;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.convertor.InputConvertor;
 import java.util.List;
