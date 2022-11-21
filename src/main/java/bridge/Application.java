@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -8,20 +10,32 @@ public class Application {
         outputView.printGreeting();
         BridgeGame bridgeGame = initialize(inputView, outputView);
         do {
-            run(inputView, outputView, bridgeGame);
-        } while (retry(inputView, outputView, bridgeGame));
+            moveUntilGameOverCondition(inputView, outputView, bridgeGame);
+        } while (checkRetryCondition(inputView, outputView, bridgeGame));
         outputView.printResult(bridgeGame);
     }
 
-    private static void run(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+    private static void moveUntilGameOverCondition(InputView inputView, OutputView outputView,
+            BridgeGame bridgeGame) {
         while (bridgeGame.getGameStatus().equals(GameStatus.ONGOING)) {
-            move(inputView, outputView, bridgeGame);
+            try {
+                move(inputView, outputView, bridgeGame);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    private static boolean retry(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+    private static void move(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+        outputView.printMoveInputMessage();
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getUserPath(), bridgeGame.getGameStatus());
+    }
+
+    private static boolean checkRetryCondition(InputView inputView, OutputView outputView,
+            BridgeGame bridgeGame) {
         if (bridgeGame.getGameStatus().equals(GameStatus.LOSE)) {
-            if (checkRetry(inputView, outputView)) {
+            if (checkRetryCommand(inputView, outputView)) {
                 bridgeGame.retry();
                 return true;
             }
@@ -29,7 +43,7 @@ public class Application {
         return false;
     }
 
-    private static boolean checkRetry(InputView inputView, OutputView outputView) {
+    private static boolean checkRetryCommand(InputView inputView, OutputView outputView) {
         do {
             try {
                 outputView.printRetryInputMessage();
@@ -40,28 +54,19 @@ public class Application {
         } while (true);
     }
 
-    private static void move(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+    private static BridgeGame initialize(InputView inputView, OutputView outputView) {
         do {
             try {
-                outputView.printMoveInputMessage();
-                bridgeGame.move(inputView.readMoving());
-                outputView.printMap(bridgeGame.getUserPath(), bridgeGame.getGameStatus());
-                return;
+                return new BridgeGame(makeBridge(inputView, outputView));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         } while (true);
     }
 
-    private static BridgeGame initialize(InputView inputView, OutputView outputView) {
+    private static List<String> makeBridge(InputView inputView, OutputView outputView) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        do {
-            outputView.printBridgeSizeInputMessage();
-            try {
-                return new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (true);
+        outputView.printBridgeSizeInputMessage();
+        return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 }
