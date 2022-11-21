@@ -12,6 +12,7 @@ public class BridgeGame {
     private List<List<String>> buffer;
     public BridgeGame() {
         bridge = new ArrayList<>();
+        initializeBuffer();
     }
 
     /**
@@ -40,10 +41,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(int size) {
+        buffer.clear();
+        initializeBuffer();
+        start(size);
     }
-
-
 
 
 
@@ -59,9 +61,22 @@ public class BridgeGame {
         buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.BLANK);
         buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.CONTOUR);
     }
-    public void running(){
+    public List<List<String>> running(){
         buffer.get(0).set(-1,BridgeBuffer.END);
         buffer.get(1).set(-1,BridgeBuffer.END);
+        return buffer;
+    }
+    public List<List<String>> over(){
+        return buffer;
+    }
+    public List<List<String>> fail(int step){
+        buffer.get(0).set(-1,BridgeBuffer.CONTOUR);
+        buffer.get(1).set(-1,BridgeBuffer.CONTOUR);
+        buffer.get(bridge.get(step).getIndex()).add(BridgeBuffer.WRONG);
+        buffer.get(bridge.get(step).getOppositeIndex()).add(BridgeBuffer.BLANK);
+        buffer.get(0).add(-1,BridgeBuffer.CONTOUR);
+        buffer.get(1).add(-1,BridgeBuffer.CONTOUR);
+        return buffer;
     }
 
 
