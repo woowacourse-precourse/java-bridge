@@ -1,6 +1,7 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.Validator;
 import org.junit.jupiter.api.Test;

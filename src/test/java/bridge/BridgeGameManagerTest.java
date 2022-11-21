@@ -1,10 +1,10 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bridge.domain.BridgeGameManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameManagerTest {
     private BridgeGameManager bridgeGameManager;

@@ -1,11 +1,11 @@
 package bridge;
 
-import bridge.domain.util.Rules;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bridge.domain.Direction;
 import bridge.domain.UserBridge;
+import bridge.domain.util.Rules;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserBridgeTest {
     private UserBridge userBridge = new UserBridge();

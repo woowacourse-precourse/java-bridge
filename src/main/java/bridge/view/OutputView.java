@@ -1,6 +1,13 @@
 package bridge.view;
 
-import static bridge.domain.util.Message.*;
+import static bridge.domain.util.Message.BRIDGE_SIZE_MESSAGE;
+import static bridge.domain.util.Message.COUNT_MESSAGE;
+import static bridge.domain.util.Message.FAIL_MESSAGE;
+import static bridge.domain.util.Message.MOVE_MESSAGE;
+import static bridge.domain.util.Message.RESULT_MESSAGE;
+import static bridge.domain.util.Message.RETRY_MESSAGE;
+import static bridge.domain.util.Message.START_MESSAGE;
+import static bridge.domain.util.Message.SUCCESS_MESSAGE;
 
 import bridge.domain.UserBridge;
 import bridge.service.BridgeGameService;

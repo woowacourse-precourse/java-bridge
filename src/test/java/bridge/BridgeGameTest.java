@@ -2,12 +2,12 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.util.Rules;
-import bridge.domain.Direction;
-import bridge.domain.GameCommand;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameManager;
+import bridge.domain.Direction;
+import bridge.domain.GameCommand;
 import bridge.domain.UserBridge;
+import bridge.domain.util.Rules;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,7 +38,7 @@ public class BridgeGameTest {
 
         assertThat(userBridge.getUpBridge().isEmpty()).isTrue();
         assertThat(userBridge.getDownBridge().isEmpty()).isTrue();
-        assertThat(bridgeGameManager.getCount()).isEqualTo(count+1);
+        assertThat(bridgeGameManager.getCount()).isEqualTo(count + 1);
     }
 
     static Stream<Arguments> parameterProvider() {
