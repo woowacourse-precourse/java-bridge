@@ -9,7 +9,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private StringBuilder up;
+    private StringBuilder upSide;
     private StringBuilder down;
 
     public OutputView() {
@@ -21,25 +21,25 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> movingChoices, List<Boolean> moveResults) {
-        up = new StringBuilder(MapType.START.getType());
+        upSide = new StringBuilder(MapType.START.getType());
         down = new StringBuilder(MapType.START.getType());
         for (int index = 0; index < movingChoices.size(); index++) {
             makeUpSide(movingChoices.get(index), moveResults.get(index));
             makeDownSide(movingChoices.get(index), moveResults.get(index));
         }
-        printWithDivision(up, down);
+        printWithDivision(upSide, down);
     }
 
     public void makeUpSide(String moving, boolean moveResult) {
         if (moving.equals(BridgePanel.UP_PANEL.getPosition())) {
             if (moveResult) {
-                up.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
+                upSide.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
                 return;
             }
-            up.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
+            upSide.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
             return;
         }
-        up.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+        upSide.append(MapType.EMPTY.getType()).append(MapType.END.getType());
     }
 
     public void makeDownSide(String moving, boolean moveResult) {
