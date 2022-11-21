@@ -35,6 +35,7 @@ public class BridgeGameController {
 
         }catch (IllegalArgumentException i){
             System.out.println(i.getMessage());
+            makeBridge();
         }
     }
 
