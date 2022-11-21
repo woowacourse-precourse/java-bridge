@@ -13,19 +13,19 @@ public class BridgeResult {
         this.attempt = 1;
     }
 
-    private void addAttempt() {
+    public void addAttempt() {
         attempt += 1;
     }
 
-    private void isAllRoundClear(){
+    public void isAllRoundClear(){
         result = "성공";
     }
 
-    private String getResult(){
+    public String getResult(){
         return result;
     }
 
-    private int getAttempt(){
+    public int getAttempt(){
         return attempt;
     }
 }
