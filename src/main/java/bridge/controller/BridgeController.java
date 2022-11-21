@@ -10,6 +10,7 @@ public class BridgeController {
     OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();
     BridgePainter bridgePainter = new BridgePainter();
+    
     List bridge;
     boolean success;
 
