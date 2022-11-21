@@ -8,6 +8,7 @@ import bridge.constant.Direction;
 import bridge.domain.GameResult;
 import bridge.domain.Map;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class BridgeGame {
     public List<String> setBridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        return bridgeMaker.makeBridge(size);
+        return Collections.unmodifiableList(bridgeMaker.makeBridge(size));
     }
 
     public void setRound() {
@@ -51,7 +52,7 @@ public class BridgeGame {
         } else if (!Direction.checkUp(user)) {
             map.makeDownMap(result);
         }
-        return map.getAllMap();
+        return Collections.unmodifiableList(getMap());
     }
 
     private String compareUserAndAnswer(String user, String answer) {
@@ -72,10 +73,12 @@ public class BridgeGame {
     }
 
     public List<String> getMap() {
-        return map.getAllMap();
+        return Collections.unmodifiableList(map.getAllMap());
     }
 
     public List<String> getResult() {
-        return List.of(result.getSuccess(), result.getAttemptNumber());
+        return Collections.unmodifiableList(
+                List.of(result.getSuccess(), result.getAttemptNumber())
+        );
     }
 }

@@ -1,9 +1,9 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.constant.Direction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,6 +27,6 @@ public class BridgeMaker {
             int number = bridgeNumberGenerator.generate();
             bridge.add(Direction.matchDirection(number));
         }
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 }

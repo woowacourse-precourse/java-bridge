@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.constant.BridgeSymbol;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Map {
@@ -38,6 +39,6 @@ public class Map {
     }
 
     public List<String> getAllMap() {
-        return List.of(getUpMap(), getDownMap());
+        return Collections.unmodifiableList(List.of(getUpMap(), getDownMap()));
     }
 }
