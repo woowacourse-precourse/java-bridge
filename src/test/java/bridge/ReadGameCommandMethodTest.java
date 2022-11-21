@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ReadGameCommandMethodTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private static final InputView inputview = new InputView();
 
     @DisplayName("공통 예외: 공백(white space)으로만 구성된 입력을 받은 경우")
     @ParameterizedTest
@@ -43,7 +42,7 @@ class ReadGameCommandMethodTest extends NsTest {
         });
     }
 
-    @DisplayName("정상 입력 테스트")
+    @DisplayName("게임 재시작/종료 코드 정상 입력 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"R", "Q"})
     void readGameCommandMethodTest(String correctInput) {
