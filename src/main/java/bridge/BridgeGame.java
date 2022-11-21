@@ -6,8 +6,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static StringBuilder sb1 = new StringBuilder();
-    private static StringBuilder sb2 = new StringBuilder();
+    public static StringBuilder sb1 = new StringBuilder();
+    public static StringBuilder sb2 = new StringBuilder();
     Application api = new Application();
 
     public void startGame(){
@@ -44,7 +44,7 @@ public class BridgeGame {
         }
         if(bridge.size() - 1 != size){
             sb1.append("|");
-            sb1.append("|");
+            sb2.append("|");
         }
     }
 
