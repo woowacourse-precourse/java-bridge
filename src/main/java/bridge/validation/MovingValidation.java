@@ -13,14 +13,18 @@ public class MovingValidation {
 
     public boolean isValidate(String moving) {
         try {
-            isNull(moving);
-            isBlank(moving);
-            isUpperCaseUD(moving);
+            totalValidate(moving);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return true;
         }
         return false;
+    }
+
+    public void totalValidate(String moving) {
+        isNull(moving);
+        isBlank(moving);
+        isUpperCaseUD(moving);
     }
 
     public void throwError(String message) {
