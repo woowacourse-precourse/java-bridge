@@ -7,6 +7,8 @@ import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class Controller {
     private BridgeMaker bridgeMaker;
     private InputView inputView;
@@ -23,6 +25,11 @@ public class Controller {
         this.bridgeGame = new BridgeGame();
     }
 
-
+    private void inputBridgeLength(){
+        outputView.printBridgeLengthInputRequest();
+        int bridgeLength = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
+        bridgeGame.setBridge(bridge);
+    }
 
 }

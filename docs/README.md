@@ -85,12 +85,12 @@
 ### Controller Package
 #### Controller
 + [ ] 기능 목록
-  + [ ] 게임 시작
-  + [ ] 다리의 길이 입력
-    + [ ] OutputView) 입력 요청 메시지 출력
-    + [ ] InputView) 입력을 받음
-    + [ ] BridgeMaker) 입력 받은 길이의 다리를 만듦.
-    + [ ] 만들어진 다리를 BridgeGame으로 건넴
+  + [X] 게임 시작
+  + [X] 다리의 길이 입력
+    + [X] OutputView) 입력 요청 메시지 출력
+    + [X] InputView) 입력을 받음
+    + [X] BridgeMaker) 입력 받은 길이의 다리를 만듦.
+    + [X] 만들어진 다리를 BridgeGame으로 건넴
   + [ ] 이동할 칸 선택
     + [ ] OutputView) 입력 요청 메시지 출력
     + [ ] InputView) 입력 받음
