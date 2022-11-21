@@ -15,25 +15,25 @@ public class Application {
         int bridgeSize = 0;
 
         bridgeGame.startGame();
-        OutputView.bridgeLengthMessage();
+        outputView.bridgeLengthMessage();
 
         try {
             bridgeSize = inputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
-            OutputView.bridgeLengthMessage();
+            outputView.bridgeLengthMessage();
             bridgeSize = inputView.readBridgeSize();
         }
 
         List<String> bridge = bridgeGame.makeBridge(bridgeSize);
 
         while (size < bridge.size()) {
-            OutputView.moveStepMessage();
+            outputView.moveStepMessage();
             String search = inputView.readSearch();
-            String makeMap = bridgeGame.move(size, bridge, search);
+            String makeMap = bridgeGame.move(bridge, search, size);
             outputView.printMap(makeMap);
 
             if (makeMap.contains("X")) {
-                OutputView.retryMessage();
+                outputView.retryMessage();
                 String gameCommand = inputView.readGameCommand();
 
 
