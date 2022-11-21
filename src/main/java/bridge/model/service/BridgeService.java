@@ -11,8 +11,17 @@ import java.util.List;
 
 public class BridgeService {
 
+    private static final BridgeService bridgeService = new BridgeService();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
+
+    private BridgeService() {
+
+    }
+
+    public static BridgeService getInstance() {
+        return bridgeService;
+    }
 
     public void createBridge(int bridgeSize) {
         List<String> bridgesSign = bridgeMaker.makeBridge(bridgeSize);

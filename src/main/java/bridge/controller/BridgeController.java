@@ -9,9 +9,17 @@ import bridge.view.OutputView;
 
 public class BridgeController {
 
-    private final BridgeService bridgeService = new BridgeService();
+    private static final BridgeController bridgeController = new BridgeController();
+    private final BridgeService bridgeService = BridgeService.getInstance();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+
+    private BridgeController() {
+    }
+
+    public static BridgeController getInstance() {
+        return bridgeController;
+    }
 
     public void run() {
         createBridge();
@@ -48,5 +56,6 @@ public class BridgeController {
         GameResultDto gameResult = bridgeService.readGameResult();
         outputView.printResult(gameResult.getBridgeMap(), gameResult.getSuccessOrFail(), gameResult.getRetryCount());
     }
+
 
 }
