@@ -71,6 +71,7 @@ public class Game {
             return;
         }
         this.isPlaying = false;
+        this.bridgeGame.clearPlayerCurrentStep();
     }
 
 
