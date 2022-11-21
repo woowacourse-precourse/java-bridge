@@ -53,4 +53,12 @@ public class Controller {
     public void success() {
         game.success();
     }
+    public void printResult(String State, BridgeMapDto mapDto, RetryCountDto retryCountDto) {// TODO: 변경 예정
+        out.printMessage(PRINT_RESULT_MESSAGE);
+        out.printMap(mapDto);
+        out.printSuccessOrNot(State);
+        out.printTryCount(retryCountDto.getRetryCount());
+
+    }
+
 }
