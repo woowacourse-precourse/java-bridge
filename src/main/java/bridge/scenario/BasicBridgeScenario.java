@@ -4,6 +4,7 @@ import static bridge.game.BridgeGameStatus.*;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.exception.Validator;
 import bridge.game.BridgeGame;
 import bridge.game.BridgeGameStatus;
 import bridge.view.input.InputView;
@@ -70,11 +71,10 @@ public class BasicBridgeScenario implements BridgeScenario {
 
     private boolean askEndGame(BridgeGame game) {
         String command = input.readGameCommand();
+        Validator.validateCommandInput(command);
+
         if (command.equals("Q")) {
             return true;
-        }
-        if (!command.equals("R")) {
-            throw new IllegalArgumentException("[ERROR]~~");
         }
         game.retry();
         return false;
