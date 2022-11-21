@@ -2,7 +2,10 @@ package bridge.model.constant;
 
 public enum Message {
     UP("U"),
-    DOWN("D");
+    DOWN("D"),
+    SUCCESS("O"),
+    FAIL("X"),
+    EMPTY(" ");
 
     private final String message;
 

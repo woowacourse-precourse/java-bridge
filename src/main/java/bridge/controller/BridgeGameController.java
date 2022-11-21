@@ -20,6 +20,17 @@ public class BridgeGameController {
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
+    public boolean move() {
+        if (isFinished(bridge)) {
+            return false;
+        }
+        outputView.printInputMove();
+        String move = inputView.readMoving();
+        boolean result = bridge.isMovable(move);
+        outputView.printMap(move, result);
+        return result;
+    }
+
     public boolean isFinished(Bridge bridge) {
         return bridge.getStatus() == Status.GAME_FINISHED;
     }
