@@ -41,15 +41,16 @@ public class BridgeController {
         Result result = null;
         while (true) {
             result = playEachRound(length, passingPositions, result);
-            if (result.isSameDistanceAndLength(length)) {
-                break;
-            }
-            if (isUserWantQuit()) {
+            if (isStopGame(length, result)) {
                 break;
             }
             bridgeGame.retry(passingPositions);
         }
         return result;
+    }
+
+    private boolean isStopGame(Length length, Result result) {
+        return result.isSameDistanceAndLength(length) || isUserWantQuit();
     }
 
     private boolean isUserWantQuit() {
