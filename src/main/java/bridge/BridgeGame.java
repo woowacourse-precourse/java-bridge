@@ -23,7 +23,7 @@ public class BridgeGame {
     public void play() {
         ++gameTryCount;
         while (!this.isCleared()) {
-            boolean isMoveSuccess = move();
+            boolean isMoveSuccess = move(inputView.readMoving());
             outputView.printMap(gameBridges);
             if (!isMoveSuccess) {
                 return;
@@ -36,11 +36,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move() {
+    public boolean move(String moving) {
         if (this.isCleared()) {
             return false;
         }
-        String moving = inputView.readMoving();
         return gameBridges.tryPass(moving);
     }
 
