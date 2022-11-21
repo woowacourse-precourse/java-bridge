@@ -7,9 +7,10 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    int currentIndex = 0;
-    int bridgeSize;
-    List<String> bridge;
+    private int currentIndex = 0;
+    private int bridgeSize;
+    private List<String> bridge;
+    private int tryCount = 1;
 //    InputView inputView = new InputView();
 
     public BridgeGame(int bridgeSize, List<String> bridge) {
@@ -48,6 +49,7 @@ public class BridgeGame {
      */
     public void retry() {
         this.currentIndex = 0;
+        this.tryCount += 1;
     }
 
     public boolean isRetry(String command) {
@@ -57,5 +59,9 @@ public class BridgeGame {
         }
 
         return false;
+    }
+
+    public int getTryCount() {
+        return this.tryCount;
     }
 }
