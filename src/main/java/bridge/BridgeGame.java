@@ -1,6 +1,7 @@
 package bridge;
 
-import java.util.List;
+import bridge.model.Bridge;
+import bridge.model.PlayerStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

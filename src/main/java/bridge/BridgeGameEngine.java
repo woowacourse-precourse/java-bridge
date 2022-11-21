@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.Bridge;
+import bridge.model.PlayerStatus;
 import bridge.view.ConsoleUtil;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.Bridge;
-import bridge.PlayerStatus;
+import bridge.model.Bridge;
+import bridge.model.PlayerStatus;
 
 import java.util.Map;
 
