@@ -7,12 +7,14 @@ import java.util.List;
  * 게임을 컨트롤하는 클래스
  */
 public class Controller {
+    BridgeGame bridgeGame = new BridgeGame();
     InputView inputView = new InputView();
-    Validation validation = new Validation();
+    OutputView outputView = new OutputView();
     SystemMessage systemMessage = new SystemMessage();
     Validation validation = new Validation();
 
     private List<String> bridge = new ArrayList<>();
+    private List<String> movingRoute = new ArrayList<>();
 
     public void start() {
         int bridgeSize = 0;
@@ -48,6 +50,10 @@ public class Controller {
         while (inputCount < bridge.size()) {
             try {
                 movement.add(getMove());
+                createMovingRoute(bridge, movement);
+                if (isContainX(movingRoute)) {
+                    break;
+                }
                 inputCount++;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("이동경로는 U 또는 D여야 합니다.");
@@ -64,5 +70,20 @@ public class Controller {
             throw new IllegalArgumentException();
         }
         return input;
+    }
+
+    private List<String> createMovingRoute(List<String> bridge, List<String> movement) {
+        movingRoute = bridgeGame.move(bridge, movement);
+        outputView.printMap(movingRoute);
+        return movingRoute;
+    }
+
+    private boolean isContainX(List<String> map) {
+        for (String s : map) {
+            if (s.contains("X")) {
+                return true;
+            }
+        }
+        return false;
     }
 }
