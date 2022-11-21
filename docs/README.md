@@ -10,6 +10,8 @@
 
 </div>
 
+<img src = "https://user-images.githubusercontent.com/43123236/202985097-8cc85853-e5f2-4139-a2a0-452e44a66080.png">
+
 ## 기능 목록
 
 - [ ] : 구현 기능
