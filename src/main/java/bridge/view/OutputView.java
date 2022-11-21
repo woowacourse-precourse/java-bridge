@@ -4,8 +4,12 @@ import bridge.service.BridgeGame;
 import java.util.List;
 import java.util.Map;
 
+import static bridge.util.constants.MovableSpace.UPPER_SPACE;
+import static bridge.util.constants.MovableSpace.LOWER_SPACE;
 import static bridge.util.constants.RecordKey.UPPER_RECORD_KEY;
 import static bridge.util.constants.RecordKey.LOWER_RECORD_KEY;
+import static bridge.util.constants.GameCommand.RETRY;
+import static bridge.util.constants.GameCommand.QUIT;
 import static bridge.view.Message.GAME_START_MESSAGE;
 import static bridge.view.Message.BRIDGE_SIZE_INPUT_REQUEST_MESSAGE;
 import static bridge.view.Message.MOVING_SPACE_INPUT_REQUEST_MESSAGE;
@@ -38,7 +42,9 @@ public class OutputView {
     }
 
     public void printMovingSpaceInputRequest() {
-        System.out.println(MOVING_SPACE_INPUT_REQUEST_MESSAGE.getMessage());
+        String message = String.format(MOVING_SPACE_INPUT_REQUEST_MESSAGE.getMessage(),
+                UPPER_SPACE.getValue(), LOWER_SPACE.getValue());
+        System.out.println(message);
     }
 
     /**
@@ -63,7 +69,9 @@ public class OutputView {
     }
 
     public void printGameCommandInputRequest() {
-        System.out.println(GAME_COMMAND_INPUT_REQUEST_MESSAGE.getMessage());
+        String message = String.format(GAME_COMMAND_INPUT_REQUEST_MESSAGE.getMessage(),
+                RETRY.command(), QUIT.command());
+        System.out.println(message);
     }
 
     /**
