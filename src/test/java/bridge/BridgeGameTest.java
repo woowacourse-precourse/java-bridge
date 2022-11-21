@@ -49,4 +49,17 @@ public class BridgeGameTest {
         // then
         assertThat(bridgeGame.clearMap(side)).isEmpty();
     }
+
+    @DisplayName("사용자 입력에 대한 재시작 판단 유무를 검증한다.")
+    @Test
+    void 재시작_판단_유무_검증() {
+        // given
+        String gameCommand = "R";
+
+        // when
+        boolean retry = bridgeGame.retry(gameCommand);
+
+        // then
+        assertThat(retry).isTrue();
+    }
 }
