@@ -40,7 +40,7 @@ public class BridgeGame {
     }
 
     public boolean retry(String gameCommand) {
-        if (gameCommand.equals(AvailableInput.get(AvailableInput.RESTART_GAME))) {
+        if (gameCommand.equals(AvailableInput.get(AvailableInput.RETRY_GAME))) {
             player.initializePosition();
             this.map.initialize();
             addTrial();

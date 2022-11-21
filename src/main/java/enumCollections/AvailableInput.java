@@ -4,7 +4,7 @@ public enum AvailableInput {
     BRIDGE_MINUMUM_LENGTH("3"),
     BRIDGE_MAXIMUM_LENGTH("20"),
     QUIT_GAME("Q"),
-    RESTART_GAME("R");
+    RETRY_GAME("R");
 
     private String userInput;
 
@@ -17,7 +17,7 @@ public enum AvailableInput {
     }
 
     public static boolean isGameCommand(String input) {
-        return input.equals(QUIT_GAME.userInput) || input.equals(RESTART_GAME.userInput);
+        return input.equals(QUIT_GAME.userInput) || input.equals(RETRY_GAME.userInput);
     }
 
     public static int getBridgeLengthRange(AvailableInput range) {

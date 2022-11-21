@@ -20,7 +20,7 @@ public class Bridge {
         return movableSides.size() - 1;
     }
 
-    public boolean isMovable(String selectedSides, int position) {
+    public boolean isMovableSide(String selectedSides, int position) {
         return movableSides.get(position).equals(selectedSides);
     }
 

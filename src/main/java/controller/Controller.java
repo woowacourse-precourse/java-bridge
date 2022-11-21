@@ -54,12 +54,12 @@ public class Controller {
 
     private GameStatus getGameStatus(final BridgeGame bridgeGame, boolean moved) {
         if (!moved) {
-            return askRestartGame(bridgeGame);
+            return askForRetry(bridgeGame);
         }
         return bridgeGame.getGameStatus();
     }
 
-    private GameStatus askRestartGame(final BridgeGame bridgeGame) {
+    private GameStatus askForRetry(final BridgeGame bridgeGame) {
         outputView.printAskGameCommand();
         if (bridgeGame.retry(inputView.readGameCommand())) {
             return GameStatus.CONTINUE;

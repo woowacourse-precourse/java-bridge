@@ -1,14 +1,9 @@
 package bridge;
 
-import enumCollections.Side;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,28 +28,28 @@ public class BridgeTest {
     @Test
     void 윗칸_이동_가능_확인_테스트() {
         bridge = new Bridge(List.of("U"));
-        assertThat(bridge.isMovable("U", 0))
+        assertThat(bridge.isMovableSide("U", 0))
                 .isTrue();
     }
 
     @Test
     void 아래칸_이동_가능_확인_테스트() {
         bridge = new Bridge(List.of("U", "D"));
-        assertThat(bridge.isMovable("D", 1))
+        assertThat(bridge.isMovableSide("D", 1))
                 .isTrue();
     }
 
     @Test
     void 윗칸_이동_불가능_확인_테스트() {
         bridge = new Bridge(List.of("D"));
-        assertThat(bridge.isMovable("U", 0))
+        assertThat(bridge.isMovableSide("U", 0))
                 .isFalse();
     }
 
     @Test
     void 아래칸_이동_불가능_확인_테스트() {
         bridge = new Bridge(List.of("U"));
-        assertThat(bridge.isMovable("D", 0))
+        assertThat(bridge.isMovableSide("D", 0))
                 .isFalse();
     }
 
