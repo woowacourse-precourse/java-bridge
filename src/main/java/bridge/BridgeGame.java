@@ -3,30 +3,15 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Application.makeMap;
+import static bridge.Application.makeMove;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    static int trial = 0;
     static List<String> inputMove = new ArrayList<>();
-    public static void startGame(){
-        OutputView.printStart();
-        List<String> bridge = BridgeMaker.makeBridge(InputView.readBridgeSize());
-        boolean success = move(bridge);
-        while(!success){
-            OutputView.printRetry();
-            String command = InputView.readGameCommand();
-            if(checkCommand(command)) {
-                success = retry(bridge);
-                trial++;
-            }
-        }
-        OutputView.printResult(bridge, inputMove);
-        OutputView.printSuccess(OutputView.ifSuccess(success));
-        OutputView.printRetry(trial+1);
-    }
     public static boolean checkCommand(String command){
         if(command.equals("R")){
             return true;
@@ -42,9 +27,8 @@ public class BridgeGame {
     public static boolean move(List<String> bridge) {
         inputMove = new ArrayList<>();
         for(int i = 0; i< bridge.size();i++){
-            OutputView.printGetMove();
-            inputMove.add(InputView.readMoving());
-            OutputView.printMap(i, bridge, inputMove);
+            makeMove();
+            makeMap(i,bridge,inputMove);
             if(!validMove(bridge.get(i),inputMove.get(i))) return false;
         }
         return true;
