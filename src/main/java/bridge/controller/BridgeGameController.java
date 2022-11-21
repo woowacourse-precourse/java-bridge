@@ -31,6 +31,7 @@ public class BridgeGameController {
             move();
             if (!bridgeGame.isRightResult(moving.getValue())){
                 restartOrQuit();
+                continue;
             }
             if (bridgeGame.isSuccess(moving.getValue())){
                 setQuit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), SUCCESS_RESULT, trial);
