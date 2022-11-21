@@ -25,7 +25,7 @@ public class GameController {
         while (true) {
             move();//끝까지 성공하거나 중간에 실패하기전까지 이동
             if (userWin()) return;//성공이면 결과출력하고 게임 종료
-            if (!doRetry()) return;//Q 입력하면 결과출력하고 게임 종료, R은 재시작
+            if (!userRetry()) return;//Q 입력하면 결과출력하고 게임 종료, R은 재시작
             trials++;
         }
     }
@@ -37,9 +37,11 @@ public class GameController {
         }
         return false;
     }
-
-    private boolean doRetry() {
+    private boolean userRetry(){
         String command = askRestart();
+        return checkRetry(command);
+    }
+    private boolean checkRetry(String command) {
         if (command.equals("R")) {  //R 입력시 재시작
             bridgeGame.retry();
             return true;
@@ -52,14 +54,13 @@ public class GameController {
     private void move() {
         boolean isEnd = false;
         while (!isEnd) {
-            move1Step();
+            String way = askMoving();   //input move 방향
+            move1Step(way);
             isEnd = bridgeGame.isEnd();
         }
     }
 
-    private void move1Step() {
-        //input move 방향
-        String way = askMoving();
+    private void move1Step(String way) {
         //move
         bridgeGame.move(way);
         //printMap
