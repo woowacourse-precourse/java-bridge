@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.enums.BridgeMark;
 import bridge.enums.GameStatus;
+import bridge.model.Bridge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

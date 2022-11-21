@@ -1,11 +1,11 @@
 package bridge.service;
 
-import bridge.Bridge;
+import bridge.model.Bridge;
 import bridge.BridgeMaker;
 import bridge.enums.BridgeMark;
 import bridge.BridgeNumberGenerator;
 import bridge.enums.GameStatus;
-import bridge.Player;
+import bridge.model.Player;
 import bridge.dto.GameResultDto;
 
 import static bridge.dto.GameResultDto.GameRecordDto;
