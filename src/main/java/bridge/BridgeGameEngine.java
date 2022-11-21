@@ -4,27 +4,38 @@ import java.util.List;
 
 public class BridgeGameEngine {
 
-    static InputView inputView;
-    static OutputView outputView;
-
     private final BridgeGame bridgeGame;
+    private final BridgeFactory bridgeFactory;
 
-    public BridgeGameEngine(BridgeGame bridgeGame) {
+    public BridgeGameEngine(BridgeGame bridgeGame, BridgeFactory bridgeFactory) {
         this.bridgeGame = bridgeGame;
+        this.bridgeFactory = bridgeFactory;
     }
 
-    static {
-        inputView = new InputView();
-        outputView = new OutputView();
+    public void playGame(List<String> bridge) {
+        int gameCount = 0;
+
+        while (true) {
+            gameCount++;
+            Bridge userBridge = bridgeFactory.makeUserBridge();
+
+            PlayerStatus playerStatus = playerMoveBridge(bridge, userBridge, gameCount);
+
+            if (isGameFinish(gameCount, userBridge, playerStatus)) {
+                break;
+            }
+        }
     }
 
-    public PlayerStatus playerMoveBridge(List<String> bridge, Bridge userBridge) {
+
+
+    public PlayerStatus playerMoveBridge(List<String> bridge, Bridge userBridge, int gameCount) {
         PlayerStatus playerStatus = null;
 
         for (String currentStep : bridge) {
             playerStatus = isMatchingWithBridge(currentStep);
 
-            playerMove(userBridge, playerStatus, bridgeGame);
+            playerMove(userBridge, playerStatus);
 
             if (!playerStatus.isMatchingFlag()) {
                 break;
@@ -35,7 +46,7 @@ public class BridgeGameEngine {
     }
 
     private PlayerStatus isMatchingWithBridge(String currentStep) {
-        String nextStep = inputView.readMoving();
+        String nextStep = ConsoleUtil.inputPlayerMoving();
 
         if (currentStep.equals(nextStep)) {
             return new PlayerStatus(nextStep, true);
@@ -44,8 +55,36 @@ public class BridgeGameEngine {
         return new PlayerStatus(nextStep, false);
     }
 
-    private void playerMove(Bridge userBridge, PlayerStatus playerStatus, BridgeGame bridgeGame) {
+    private void playerMove(Bridge userBridge, PlayerStatus playerStatus) {
         bridgeGame.move(userBridge, playerStatus);
-        outputView.printMap(userBridge);
+        ConsoleUtil.outputBridge(userBridge);
+    }
+
+    public boolean isGameFinish(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+        if (finishGamePlayerWin(gameCount, userBridge, playerStatus)) {
+            return true;
+        }
+
+        finishGamePlayerLose(gameCount, userBridge, playerStatus);
+
+        return false;
+    }
+
+    private boolean finishGamePlayerWin(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+        if (playerStatus.isMatchingFlag()) {
+            ConsoleUtil.outputGameResult(userBridge, gameCount, playerStatus);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean finishGamePlayerLose(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+        String retryCommand = ConsoleUtil.inputGameCommand();
+
+        if (bridgeGame.retry(retryCommand)) {
+            ConsoleUtil.outputGameResult(userBridge, gameCount, playerStatus);
+            return true;
+        }
+        return false;
     }
 }

@@ -5,57 +5,18 @@ import java.util.List;
 
 public class Application {
 
-    static InputView inputView = new InputView();
-    
-    static BridgeGame bridgeGame = new BridgeGame();
-    static OutputView outputView = new OutputView();
-
     public static void main(String[] args) {
 
+        BridgeGame bridgeGame = new BridgeGame();
         BridgeFactory bridgeFactory = new BridgeFactory();
-        BridgeGameEngine bridgeGameEngine = new BridgeGameEngine(bridgeGame);
+        BridgeGameEngine bridgeGameEngine = new BridgeGameEngine(bridgeGame, bridgeFactory);
 
         System.out.println("다리 건너기 게임을 시작합니다");
 
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = ConsoleUtil.inputBridgeSize();
 
         List<String> bridge = bridgeFactory.makeBridgeByBridgeMaker(bridgeSize);
 
-        int gameCount = 0;
-
-        while (true) {
-            gameCount++;
-            Bridge userBridge = bridgeFactory.makeUserBridge();
-
-            PlayerStatus playerStatus = bridgeGameEngine.playerMoveBridge(bridge, userBridge);
-
-            if (finishGamePlayerWin(gameCount, userBridge, playerStatus)) {
-                break;
-            }
-
-            if (finishGamePlayerLose(gameCount, userBridge, playerStatus)) {
-                break;
-            }
-        }
+        bridgeGameEngine.playGame(bridge);
     }
-
-    private static boolean finishGamePlayerWin(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
-        if (playerStatus.isMatchingFlag()) {
-            outputView.printResult(userBridge, gameCount, playerStatus);
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean finishGamePlayerLose(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
-        String retryCommand = inputView.readGameCommand();
-
-        if (bridgeGame.retry(retryCommand)) {
-            outputView.printResult(userBridge, gameCount, playerStatus);
-            return true;
-        }
-        return false;
-    }
-
-
 }
