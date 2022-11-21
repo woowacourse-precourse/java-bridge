@@ -7,14 +7,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("바닥 테스트")
 class FloorTest {
 
     @Nested
-    @DisplayName("바닥 생성 테스트")
+    @DisplayName("바닥의 상태에 ")
     class floorStatus {
-        @DisplayName("바닥의 상태가 옳다.")
-        @ParameterizedTest(name = "바닥의 상태는 U, D이다.")
+
+        @DisplayName("올바른 값이 입력된다.")
+        @ParameterizedTest(name = "생성값: {0}")
         @CsvSource({"U", "D"})
         void goodStatus(String status) {
             assertDoesNotThrow(() -> {
@@ -23,8 +23,8 @@ class FloorTest {
             });
         }
 
-        @DisplayName("바닥의 상태가 옳지 못하다")
-        @ParameterizedTest(name = "바닥의 상태가 U, D가 아니라면 예외")
+        @DisplayName("올바르지 못한 값이 입력된다.")
+        @ParameterizedTest(name = "생성값: {0}")
         @CsvSource({"A", "B", "1", "hello world"})
         void badStatus(String status) {
             assertThrows(IllegalArgumentException.class, () -> {
@@ -34,27 +34,27 @@ class FloorTest {
     }
 
     @Nested
-    @DisplayName("부숴지는 바닥인지 테스트")
+    @DisplayName("바닥의 값과 검증값이 ")
     class floorBrokenTest {
 
-        @DisplayName("바닥이 부숴진다")
-        @ParameterizedTest(name = "바닥이 {0}이면 {1}일때 부숴진다.")
+        @DisplayName("동일하지 않다.")
+        @ParameterizedTest(name = "바닥: {0}, 검증값: {1}")
         @CsvSource(value = {"U:D", "D:U"}, delimiter = ':')
         void floorBroken(String status, String input) {
             Floor floor = new Floor(status);
             assertFalse(floor.isSafe(input));
         }
 
-        @DisplayName("바닥이 안부숴진다.")
-        @ParameterizedTest(name = "바닥이 {0}이면 {1}일때 안부숴진다.")
+        @DisplayName("동일하다.")
+        @ParameterizedTest(name = "바닥: {0}, 검증값: {1}")
         @CsvSource(value = {"D:D", "U:U"}, delimiter = ':')
         void floorNotBroken(String status, String input) {
             Floor floor = new Floor(status);
             assertTrue(floor.isSafe(input));
         }
 
-        @DisplayName("잘못된 입력")
-        @ParameterizedTest(name = "입력한 상태가 U, D가 아니라면 예외")
+        @DisplayName("동일하지 않으며 검증값이 잘못되었다.")
+        @ParameterizedTest(name = "바닥: {0}, 검증값: {1}")
         @CsvSource(value = {"D:ㅁㅇㄹㅁㄹ", "U:u", "D: 2", "U:Down"}, delimiter = ':')
         void badInput(String status, String input) {
             Floor floor = new Floor(status);
@@ -63,6 +63,4 @@ class FloorTest {
             });
         }
     }
-
-
 }
