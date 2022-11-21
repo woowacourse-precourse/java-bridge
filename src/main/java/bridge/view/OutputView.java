@@ -1,22 +1,36 @@
-package bridge;
+package bridge.view;
+
+import bridge.service.constants.Error;
+
+import static bridge.service.constants.Error.ERROR_MESSAGE;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
+    private final String START_GAME ="다리 건너기 게임을 시작합니다.";
+    private final String REQUEST_SIZE = "다리의 길이를 입력해주세요.";
+    private final String REQUEST_BRIDGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String REQUEST_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private final String RESULT = "최종 게임 결과";
+    private final String SUCESS_WHETHER = "게임 성공 여부: ";
+    private final String TRY_COUNT = "총 시도한 횟수: ";
+    private final String SUCESS = "성공";
+    private final String FAIL = "실패";
+
     public void printStart(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(START_GAME);
         System.out.println("");
     }
 
     public void printRequestBridgeSize(){
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(REQUEST_SIZE);
         System.out.println("");
     }
 
     public void printRequestMove(){
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(REQUEST_BRIDGE);
     }
 
     /**
@@ -31,11 +45,11 @@ public class OutputView {
     }
 
     public void printRequestRetry(){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(REQUEST_RETRY);
     }
 
     public void printFinalGame(){
-        System.out.println("최종 게임 결과");
+        System.out.println(RESULT);
     }
 
     /**
@@ -43,9 +57,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int cnt) {
-        System.out.println("게임 성공 여부: ");
-        System.out.println("총 시도한 횟수: " + cnt);
+    public void printResult(boolean sucess, int cnt) {
+        System.out.println(SUCESS_WHETHER + printSucessWheter(sucess));
+        System.out.println(TRY_COUNT + cnt);
+    }
+
+    private String printSucessWheter(boolean sucessGame){
+        if(sucessGame){
+            return SUCESS;
+        }
+        return FAIL;
+    }
+
+    public void printErrorMessage(String message){
+        System.out.println(ERROR_MESSAGE+ message);
     }
 
 
