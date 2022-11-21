@@ -6,14 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class InputViewTest {
-    InputView inputView = new InputView();
+public class InputViewTest extends InputView {
 
     @DisplayName("입력값이 3 이상 20 이하 입력 시 예외가 발생한다.")
     @Test
     void 다리길이_범위_예외() {
         String input = "21";
-        assertThatThrownBy(() -> inputView.readBridgeSize(input))
+        assertThatThrownBy(() -> checkRange(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
@@ -22,7 +21,7 @@ public class InputViewTest {
     @Test
     void 다리길이_입력값_숫자_예외() {
         String input = "aa";
-        assertThatThrownBy(() -> inputView.readBridgeSize(input))
+        assertThatThrownBy(() -> checkNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 숫자여야 합니다.");
     }
@@ -31,7 +30,7 @@ public class InputViewTest {
     @Test
     void 이동_입력_예외() {
         String input = "A";
-        assertThatThrownBy(() -> inputView.readMoving(input))
+        assertThatThrownBy(() -> checkDirection(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이동 방향 여부는 'U(위)'/'D(아래)' 만 가능합니다.");
     }
@@ -40,7 +39,7 @@ public class InputViewTest {
     @Test
     void 게임_진행_입력값_예외() {
         String input = "C";
-        assertThatThrownBy(() -> inputView.readGameCommand(input))
+        assertThatThrownBy(() -> checkProgress(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 게임 진행 여부는 'R(재시작)'/'Q(종료)' 만 가능합니다.");
     }
