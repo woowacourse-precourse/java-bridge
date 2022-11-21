@@ -6,8 +6,8 @@ import java.util.List;
 public class ChoiceDirections {
     private List<ChoiceDirection> ChoiceDirections;
 
-    public ChoiceDirections() {
-        this.ChoiceDirections = new ArrayList<>();
+    public ChoiceDirections(List<ChoiceDirection> choiceDirections) {
+        this.ChoiceDirections = choiceDirections;
     }
 
     public void add(ChoiceDirection choiceDirection) {

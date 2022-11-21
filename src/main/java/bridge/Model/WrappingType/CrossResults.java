@@ -8,8 +8,8 @@ import java.util.List;
 public class CrossResults {
     private List<CrossResult> crossResults;
 
-    public CrossResults() {
-        this.crossResults = new ArrayList<>();
+    public CrossResults(List<CrossResult> crossResults) {
+        this.crossResults = crossResults;
     }
 
     public int nextPosition() {
