@@ -26,6 +26,21 @@ public class BridgeGameTest {
         BridgeGame.setBridge(bridge);
     }
 
+    @DisplayName("첫번째 줄 다리의 출력 포맷을 리턴한다")
+    @Test
+    void getUpLineFormTest() {
+        bridgeGame.move(Command.UP);
+        bridgeGame.move(Command.UP);
+        assertThat(bridgeGame.getUpLineForm()).isEqualTo("[ O | X ]");
+    }
+
+    @DisplayName("두번째 줄 다리의 출력 포맷을 리턴한다")
+    @Test
+    void getDonwLineFormTest() {
+        bridgeGame.move(Command.DOWN);
+        assertThat(bridgeGame.getDownLineForm()).isEqualTo("[ X ]");
+    }
+
     @DisplayName("성공적으로 움직였으면 true를 실패했으면 false를 리턴한다.")
     @Test
     void moveTest_1() {
