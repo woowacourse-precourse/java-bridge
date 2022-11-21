@@ -6,6 +6,7 @@ import java.util.List;
 
 import static bridge.model.BridgeMaker.makeBridge;
 import static bridge.view.InputView.*;
+import static bridge.view.OutputView.printMap;
 import static bridge.view.OutputView.printResult;
 
 /**
@@ -41,7 +42,6 @@ public class BridgeGame {
     public static ArrayList<String> moveResult(int bridgeLen, int index, String upAndDown, ArrayList<String> bridges, List<String> move, int startCount){
         String first = "";
         String second = "";
-        //ArrayList<String> resultFinal = new ArrayList<>();
         equalsCheck = move(index, upAndDown, bridges);
         if(equalsCheck.get(index).equals("O")){
             successCount++;
@@ -89,10 +89,7 @@ public class BridgeGame {
             }
 
         }
-        System.out.println(first);
-        System.out.println(second);
-        System.out.println("successCount:" + successCount);
-
+        printMap(first, second);
 
         if(index != (bridgeLen-1)){
             resultFinal.clear();
@@ -122,8 +119,6 @@ public class BridgeGame {
             }
 
         }
-
-
         return resultFinal;
     }
 
