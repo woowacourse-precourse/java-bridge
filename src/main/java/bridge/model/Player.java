@@ -19,4 +19,8 @@ public class Player {
     public boolean isCrossed(List<String> bridge) {
         return position == bridge.size() - 1;
     }
+
+    public void backInitialPosition() {
+        position = INITIAL_POSITION;
+    }
 }

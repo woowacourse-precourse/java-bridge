@@ -50,7 +50,8 @@
     - [x] U와 D로 이루어진 다리로 변환한다. - BridgeConverter#convert
   - [ ] 다리를 건넌다.
     - [x] 플레이어가 움직인다. - BridgeGame#move
-    - [ ] 플레이어가 재시도한다.
+    - [x] 플레이어가 재시도한다. - BridgeGame#retry
+    - [ ] 플레이어가 물에 빠져있는지 안다.
   - [ ] 게임 최종 결과를 출력한다.
 ## UI 로직
 ### 입력
