@@ -50,19 +50,19 @@ public class BridgeGame {
 
     public boolean roundClear() {
         int userLastMove = user.getUserMovings().size() - 1;
-        if (!user.getUserMovings().get(userLastMove).equals(bridge.getAnswerBridge().get(userLastMove))) {
+        if (!user.getUserMovings().get(userLastMove).equals(bridge.getAnswerBridge().get(userLastMove)))
             return false;
-        }
+
         return true;
     }
 
     public boolean gameClear() {
-        if (!roundClear()) {
+        if (!roundClear())
             return false;
-        }
-        if (user.getUserMovings().size() != bridge.getAnswerBridge().size()) {
+
+        if (user.getUserMovings().size() != bridge.getAnswerBridge().size())
             return false;
-        }
+
         return true;
     }
 

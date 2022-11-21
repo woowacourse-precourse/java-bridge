@@ -62,14 +62,15 @@ public class BridgeService {
 
     public void printSuccess() {
         String result = Command.SUCCESS;
-        if (!bridgeGame.roundClear() || !bridgeGame.gameClear()) {
+        if (!bridgeGame.roundClear() || !bridgeGame.gameClear())
             result = Command.FAIL;
-        }
+
         System.out.println(outputView.printBridgeGameSuccess() + result);
     }
 
     public void printGameCount() {
         int count = bridgeGame.getUser().getCount();
+
         System.out.println(outputView.printTryBridgeGameCount() + count);
     }
 }
