@@ -9,20 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    static OutputView outputView = new OutputView();
-    static InputView inputView = new InputView();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int attempt = 0;
 
-        outputView.printStart();
+        OutputView.printStart();
 
         int size = 0;
         while (size == 0) {
             try {
-                outputView.printInputBridgeSize();
-                size = inputView.readBridgeSize();
+                OutputView.printInputBridgeSize();
+                size = InputView.readBridgeSize();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
@@ -41,8 +39,8 @@ public class Application {
                 String moving = "";
                 while (moving.equals("")) {
                     try {
-                        outputView.printInputMoving();
-                        moving = inputView.readMoving();
+                        OutputView.printInputMoving();
+                        moving = InputView.readMoving();
                     } catch (IllegalArgumentException exception) {
                         System.out.println(exception.getMessage());
                     }
@@ -51,7 +49,7 @@ public class Application {
                 userMoving.add(moving);
 
                 // 다리 결과 출력
-                outputView.printMap(bridge, userMoving);
+                OutputView.printMap(bridge, userMoving);
 
                 // 다리 상태 변경
                 bridgeGame.changeStatus(bridge, userMoving);
@@ -63,8 +61,8 @@ public class Application {
             if (gameStatus == Status.FAIL) {
                 while (command.equals("")) {
                     try {
-                        outputView.printInputCommand();
-                        command = inputView.readGameCommand();
+                        OutputView.printInputCommand();
+                        command = InputView.readGameCommand();
                     } catch (IllegalArgumentException exception) {
                         System.out.println(exception.getMessage());
                     }
@@ -73,10 +71,10 @@ public class Application {
 
             // 종료를 원하는 경우 최종 결과 출력
             if (!command.equals("R")) {
-                outputView.printFinalGameResult();
-                outputView.printResult(bridge, userMoving);
-                outputView.printGameStatus(gameStatus);
-                outputView.printAllAttempts(attempt);
+                OutputView.printFinalGameResult();
+                OutputView.printResult(bridge, userMoving);
+                OutputView.printGameStatus(gameStatus);
+                OutputView.printAllAttempts(attempt);
                 break;
             }
         }

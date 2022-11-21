@@ -17,19 +17,19 @@ public class OutputView {
     private static final String FINAL_GAME_STATUS = "게임 성공 여부: ";
     private static final String ALL_ATTEMPTS = "총 시도한 횟수: ";
 
-    public void printStart() {
+    public static void printStart() {
         System.out.println(GAME_START);
     }
 
-    public void printInputBridgeSize() {
+    public static void printInputBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
     }
 
-    public void printInputMoving() {
+    public static void printInputMoving() {
         System.out.println(INPUT_MOVING);
     }
 
-    public void printInputCommand() {
+    public static void printInputCommand() {
         System.out.println(INPUT_COMMAND);
     }
 
@@ -37,7 +37,7 @@ public class OutputView {
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * 첫번째 행 문자열과 두번째 행 문자열을 나눠 생성한다.
      */
-    public void printMap(List<String> bridge, List<String> user) {
+    public static void printMap(List<String> bridge, List<String> user) {
         String firstRow = makeFirstRow(bridge, user);
         String secondRow = makeSecondRow(bridge, user);
 
@@ -101,7 +101,7 @@ public class OutputView {
         return String.join(" | ", status);
     }
 
-    public void printFinalGameResult() {
+    public static void printFinalGameResult() {
         System.out.println(FINAL_GAME_RESULT);
     }
 
@@ -110,15 +110,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge, List<String> user) {
+    public static void printResult(List<String> bridge, List<String> user) {
         printMap(bridge, user);
     }
 
-    public void printGameStatus(Status status) {
+    public static void printGameStatus(Status status) {
         System.out.println(FINAL_GAME_STATUS + status.getMessage());
     }
 
-    public void printAllAttempts(int attempt) {
+    public static void printAllAttempts(int attempt) {
         System.out.println(ALL_ATTEMPTS + attempt);
     }
 }
