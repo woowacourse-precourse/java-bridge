@@ -54,11 +54,9 @@ public class BridgeGame {
     private void updateGameStatus() {
         if (bridge.equals(userPath)) {
             gameStatus = GameStatus.WIN;
+            return;
         }
-        if (bridge.size() == userPath.size()) {
-            gameStatus = GameStatus.LOSE;
-        }
-        if (!isLastMoveCorrect()) {
+        if (!isLastMoveCorrect() || bridge.size() == userPath.size()) {
             gameStatus = GameStatus.LOSE;
         }
     }
