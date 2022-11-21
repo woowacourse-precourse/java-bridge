@@ -32,7 +32,15 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public boolean isEnd() {
-        return false;
+    public boolean isSucceed(List<Boolean> movingResults, List<String> bridge) {
+        if (movingResults.size() != bridge.size()) {
+            return false;
+        }
+        for (boolean movingResult : movingResults) {
+            if (!movingResult) {
+                return false;
+            }
+        }
+        return true;
     }
 }

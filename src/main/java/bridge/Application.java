@@ -23,7 +23,7 @@ public class Application {
 //            System.out.print(bridge.get(i) + " ");
 //        }
         try {
-            while(!bridgeGame.isEnd()) {
+            while(!bridgeGame.isSucceed(movingResults, bridge)) {
                 String moving = inputView.readMoving();
                 boolean movingResult = bridgeGame.move(moving, movingResults, bridge);
                 movingResults.add(movingResult);
