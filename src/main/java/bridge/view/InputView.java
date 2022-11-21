@@ -8,6 +8,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final int BRIDGE_SIZE_MIN = 3;
     private static final int BRIDGE_SIZE_MAX = 20;
+    private static final String MOVE_COMMAND_UP = "U";
+    private static final String MOVE_COMMAND_DOWN = "D";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -63,15 +65,26 @@ public class InputView {
         }
     }
 
-    private void isValidMoveCommand(String command) {
+    private boolean isValidMoveCommand(String moveCommand) {
+        try {
+            validateOneWord(moveCommand);
+            validateFormat(moveCommand);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
 
     }
 
-    private void validateOneWord() {
-
+    private void validateOneWord(String moveCommand) {
+        if (moveCommand.length() != 1) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private void validateFormat() {
-
+    private void validateFormat(String moveCommand) {
+        if (!moveCommand.equals(MOVE_COMMAND_UP) && !moveCommand.equals(MOVE_COMMAND_DOWN)) {
+            throw new IllegalArgumentException();
+        }
     }
 }
