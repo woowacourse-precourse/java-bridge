@@ -1,9 +1,8 @@
 package bridge;
 
-import static bridge.Expression.DOWN;
-import static bridge.Expression.UP;
+import static bridge.ui.Expression.DOWN;
+import static bridge.ui.Expression.UP;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,8 +24,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
 
-        List<String> bridge
-                = IntStream.generate(bridgeNumberGenerator::generate)
+        List<String> bridge = IntStream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
                 .mapToObj(this::expressionByNumber)
                 .collect(Collectors.toList());
