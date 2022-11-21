@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import java.util.NoSuchElementException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +20,7 @@ class GameCommandTest {
     @CsvSource(value = {"A", "B", "C"})
     void gameCommandFromFailTest(String inputLetter) throws Exception {
         Assertions.assertThatThrownBy(() -> GameCommand.from(inputLetter))
-                .isInstanceOf(NoSuchElementException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("존재하는 커맨드 테스트")
