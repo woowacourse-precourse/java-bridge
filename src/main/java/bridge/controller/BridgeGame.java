@@ -23,7 +23,7 @@ public class BridgeGame {
 
     public void start() {
         makeBridge();
-        attemptCross();
+        attemptAcross();
         showResult();
     }
 
@@ -37,11 +37,13 @@ public class BridgeGame {
         OutputView.printLine("");
     }
 
-    public void attemptCross() {
+    public void attemptAcross() {
         boolean aRound = true;
         while(aRound) {
             inOrderAcross();
             aRound = retry();
+            if(user.isSuccess()) break;
+            restartAcross();
         }
     }
 
@@ -55,6 +57,7 @@ public class BridgeGame {
         for(int i=0 ; i<bridge.getSize() ; i++) {
             movingResult = move(i);
             if(!movingResult) break;
+            if(movingResult && (i == bridge.getSize()-1)) user.setSuccess(true);
         }
         // 성공로직
     }
@@ -67,9 +70,15 @@ public class BridgeGame {
         // move를 boolean을 return 하도록 해도 될까
         OutputView.printLine(MessageOutput.INQUIRE_MOVE_BLOCK);
         String input = InputView.readMoving();
+        user.addSelect(input);
         boolean isSuccess = BridgeValidater.compareInputAndResult(input, bridge.getIndexResult(index));
         OutputView.printMap(bridge, user);
         return isSuccess;
+    }
+
+    public void restartAcross() {
+        user.resetSelect();
+        user.tryAgain();
     }
 
     /**

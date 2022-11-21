@@ -22,8 +22,8 @@ public class OutputView {
     public static void printMapEachLine(String line, Bridge bridge, User user) {
         print(BridgeOutput.LEFT_BRACKET);
         for(int i=0 ; i< user.getPosition() ; i++) {
-            print(printSuccessOrFail(line, bridge.getIndexResult(i), user.getIndexSelect(i)));
-            if(i == user.getPosition()-2) print(BridgeOutput.SPLIT);
+            print(" " + printSuccessOrFail(line, bridge.getIndexResult(i), user.getIndexSelect(i)) + " ");
+            if(i < user.getPosition()-1) print(BridgeOutput.SPLIT);
         }
         print(BridgeOutput.RIGHT_BRACKET);
     }
@@ -45,6 +45,8 @@ public class OutputView {
         printMapEachLine(GameProgressKeyword.FIRST_LINE, bridge, user);
         printLine("");
         printMapEachLine(GameProgressKeyword.SECOND_LINE, bridge, user);
+        printLine("");
+        printLine("");
     }
 
     /**
