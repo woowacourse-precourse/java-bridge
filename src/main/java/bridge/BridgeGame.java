@@ -43,7 +43,6 @@ public class BridgeGame {
             }
 
             retry(); // 틀리면 -> 틀린 다리 상태 출력 & RETRY() 호출
-
     }
 
     /**
