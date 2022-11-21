@@ -10,6 +10,9 @@ public class BridgeScreenModeSelector {
     private final List<String> answer;
     private final int current;
     private final int printCase;
+    private static final int REACHED_END = 1;
+    private static final int COMPARE_SAME = 2;
+    private static final int COMPARE_DIFFERENT = 3;
 
     BridgeScreenModeSelector(List<String> answer, int current, int printCase) {
         this.answer = answer;
@@ -17,14 +20,32 @@ public class BridgeScreenModeSelector {
         this.printCase = printCase;
     }
 
-    public String generateOutputScreen() {
+    public ScreenGenerator generateOutputScreen() {
+        ScreenGenerator screenGenerator = correctGeneratorCase();
+        if (screenGenerator != null) {
+            return screenGenerator;
+        }
+        ScreenGenerator screenGenerator1 = wrongGeneratorCase();
+        if (screenGenerator1 != null) {
+            return screenGenerator1;
+        }
+        throw new IllegalArgumentException("screen mode is invalid");
+    }
 
-        if (printCase == 2 || printCase == 1) {
-            ScreenGenerator screenGenerator = new CorrectCaseGenerator();
-            return (screenGenerator.generatedTable(answer, current));
-        } else if (printCase == 3) {
+    private ScreenGenerator wrongGeneratorCase() {
+        if (printCase == COMPARE_DIFFERENT) {
             ScreenGenerator screenGenerator = new WrongCaseGenerator();
-            return (screenGenerator.generatedTable(answer, current));
+            screenGenerator.generatedTable(answer, current);
+            return screenGenerator;
+        }
+        return null;
+    }
+
+    private ScreenGenerator correctGeneratorCase() {
+        if (printCase == COMPARE_SAME || printCase == REACHED_END) {
+            ScreenGenerator screenGenerator = new CorrectCaseGenerator();
+            screenGenerator.generatedTable(answer, current);
+            return screenGenerator;
         }
         return null;
     }

@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface ScreenGenerator {
 
-    public String generatedTable(List<String> answer, int current);
+    public void generatedTable(List<String> answer, int current);
+
 }
