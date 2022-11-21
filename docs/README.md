@@ -65,8 +65,8 @@
 - [x] Application 구현
 
 
-- [ ] 다리 지도 클래스 메서드를 이동 경로 클래스로 통합
-- [ ] RouteMap -> PlayerMap 으로 클래스명 변경 (BridgeMap과 혼동 방지)
+- [x] 다리 지도 클래스 메서드를 이동 경로 클래스로 통합
+- [x] RouteMap -> PlayerMap 으로 클래스명 변경 (BridgeMap과 혼동 방지)
 - [ ] 이동 경로 클래스 hashCode 구현
 - [ ] 이동 경로 클래스의 테스트코드 리팩토링
 
