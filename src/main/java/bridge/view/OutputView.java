@@ -18,7 +18,7 @@ public class OutputView {
      }
 
      public void printRetryOrExitGameMessage() {
-
+         System.out.println(GameProcedureStringConstant.GAME_RETRY_OR_EXIT_INPUT_MESSAGE.getMessage());
      }
 
     /**
@@ -35,6 +35,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String result, AfterMovingStatusConstant afterMovingStatusConstant, int gameCount) {
+        System.out.println(GameProcedureStringConstant.GAME_FINISH_MESSAGE.getMessage());
+        System.out.println(result);
+        System.out.println(GameProcedureStringConstant.GAME_SUCCESS_OR_FAIL_MESSAGE.getMessage()
+                + afterMovingStatusConstant.getGameSuccessMessage());
+        System.out.println(GameProcedureStringConstant.GAME_TRY_COUNT_MESSAGE.getMessage() + gameCount);
     }
 }

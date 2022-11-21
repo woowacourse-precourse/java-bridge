@@ -2,6 +2,7 @@ package bridge.validation;
 
 import bridge.constant.ErrorStringConstant;
 import bridge.constant.BridgeLengthConstant;
+import bridge.constant.RetryExitConstant;
 import bridge.constant.UpDownConstant;
 
 public class Validation {
@@ -23,4 +24,6 @@ public class Validation {
             throw new IllegalArgumentException(ErrorStringConstant.UP_OR_DOWN_INPUT_ERROR_MESSAGE.getError());
         }
     }
+
+
 }

@@ -1,11 +1,10 @@
 package bridge.controller;
 
 import bridge.constant.AfterMovingStatusConstant;
-import bridge.domain.Bridge;
+import bridge.constant.RetryExitConstant;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameController {
     private final OutputView outputView = new OutputView();
@@ -15,16 +14,37 @@ public class BridgeGameController {
     public void start() {
         BridgeGame bridgeGame = new BridgeGame(bridgeLengthInputView());
         while (true) {
-            AfterMovingStatusConstant afterMovingStatusConstant = thisTurnGameStart(bridgeGame);
-            if (afterMovingStatusConstant.isGameSuccess()) {
-                return;
+            boolean doRetry = thisTurnBridgeGameStart(bridgeGame);
+            if (!doRetry) {
+                break;
             }
         }
     }
 
+    private boolean thisTurnBridgeGameStart(BridgeGame bridgeGame) {
+        AfterMovingStatusConstant afterMovingStatusConstant = thisTurnGameStart(bridgeGame);
+        if (afterMovingStatusConstant.isGameSuccess()) {
+            thisGameResultView(bridgeGame, afterMovingStatusConstant);
+            return false;
+        }
+        RetryExitConstant retryExitConstant = gameRetryOrExitView();
+        return isFinishThisGame(bridgeGame, retryExitConstant);
+    }
+
+    private static boolean isFinishThisGame(BridgeGame bridgeGame, RetryExitConstant retryExitConstant) {
+        if (retryExitConstant.retry()) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
+    }
+
+    private void thisGameResultView(BridgeGame bridgeGame, AfterMovingStatusConstant afterMovingStatusConstant) {
+        outputView.printResult(bridgeGame.thisTurnBridge(), afterMovingStatusConstant, gameCount);
+    }
+
     private AfterMovingStatusConstant thisTurnGameStart(BridgeGame bridgeGame) {
         gameCount += 1;
-        bridgeGame.createThisTurnBridge();
         while (true) {
             AfterMovingStatusConstant movingStatus = bridgeGame.move(thisTurnMoveBridgeInputView());
             thisTurnMovingResult(bridgeGame.thisTurnBridge());
@@ -47,5 +67,11 @@ public class BridgeGameController {
     private String bridgeLengthInputView() {
         outputView.gameStartMessage();
         return inputView.readBridgeSize();
+    }
+
+    private RetryExitConstant gameRetryOrExitView() {
+        outputView.printRetryOrExitGameMessage();
+        String exitOrRetry = inputView.readGameCommand();
+        return RetryExitConstant.of(exitOrRetry);
     }
 }
