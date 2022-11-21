@@ -10,8 +10,9 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
+    private static BridgeGameController instance;
     private BridgeGame game;
-    private final BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker; // static 클래스로 만들고 싶지만, 건들었다가 무슨 일이 생길지 모르겠음
 
     private BridgeGameController() {
         this.game = new BridgeGame();
@@ -19,7 +20,10 @@ public class BridgeGameController {
     }
 
     public static BridgeGameController init() {
-        return new BridgeGameController();
+        if (instance == null) {
+            instance = new BridgeGameController();
+        }
+        return instance;
     }
 
     public void run() {
@@ -55,7 +59,8 @@ public class BridgeGameController {
         }
     }
 
-    private GameResultCode moveUserUntilEnd() { // 열 한줄인데, 더 이상 못 줄이겠습니다 ㅠㅠ
+    // 열 한줄인데, 더 이상 못 줄이겠습니다 ㅠㅠ
+    private GameResultCode moveUserUntilEnd() {
         try {
             GameResultCode gameResult = moveUser();
             if (gameResult == GameResultCode.MOVE_SUCCESS) {
