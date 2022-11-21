@@ -20,4 +20,9 @@ public enum BridgeBlock {
         }
         return null;
     }
+
+    public static boolean isUpOrDown(String direction) {
+        return direction.equals(UP.initial) || direction.equals(DOWN.initial);
+    }
+
 }

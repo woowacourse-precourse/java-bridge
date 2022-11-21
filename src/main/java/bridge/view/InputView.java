@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.validator.InputValidator;
+import static bridge.validator.InputValidator.*;
 import camp.nextstep.edu.missionutils.Console;
 import static bridge.utils.constant.OutputMessage.*;
 /**
@@ -16,7 +16,7 @@ public class InputView {
             try {
                 System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
                 String input = Console.readLine();
-                InputValidator.validateBridgeSize(input);
+                validateBridgeSize(input);
                 return Integer.parseInt(input);
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -28,8 +28,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(DIRECTION_INPUT_MESSAGE);
-        return Console.readLine();
+        while(true) {
+            try {
+                System.out.println(DIRECTION_INPUT_MESSAGE);
+                String input = Console.readLine();
+                validateDirection(input);
+                return input;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
