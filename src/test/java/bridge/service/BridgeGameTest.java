@@ -1,13 +1,20 @@
 package bridge.service;
 
+import static bridge.domain.enums.BlockStatus.DOWN;
+import static bridge.domain.enums.BlockStatus.UP;
 import static bridge.messages.ErrorMessage.NON_NUMERIC_BRIDGE_SIZE_ERROR;
 import static bridge.messages.ErrorMessage.OUTBOUND_BRIDGE_SIZE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.Bridge;
+import bridge.domain.MovingResult;
+import bridge.domain.enums.CrossStatus;
 import bridge.repository.BridgeGameRepository;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
