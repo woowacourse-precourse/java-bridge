@@ -1,7 +1,9 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameRecord {
     private final List<String> upperCrossedRecord;
@@ -14,13 +16,13 @@ public class GameRecord {
     }
 
     public void recordMove(String spaceToMove, boolean isDead) {
-        String marker = isDead ? "X" : "O";
+        String marker = isDead ? " X " : " O ";
         if (spaceToMove.equals("U")) {
             upperCrossedRecord.add(marker);
-            lowerCrossedRecord.add(" ");
+            lowerCrossedRecord.add("   ");
             return;
         }
-        upperCrossedRecord.add(" ");
+        upperCrossedRecord.add("   ");
         lowerCrossedRecord.add(marker);
     }
 
@@ -36,5 +38,12 @@ public class GameRecord {
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    public Map<String, List<String>> getCrossedRecord() {
+        Map<String, List<String>> crossedRecord = new HashMap<>();
+        crossedRecord.put("upperCrossedRecord", upperCrossedRecord);
+        crossedRecord.put("lowerCrossedRecord", lowerCrossedRecord);
+        return crossedRecord;
     }
 }

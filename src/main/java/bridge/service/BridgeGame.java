@@ -5,6 +5,7 @@ import bridge.domain.GameRecord;
 import bridge.domain.Player;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -75,5 +76,9 @@ public class BridgeGame {
 
     public int getTryCount() {
         return gameRecord.getTryCount();
+    }
+
+    public Map<String, List<String>> getCrossedRecord() {
+        return gameRecord.getCrossedRecord();
     }
 }

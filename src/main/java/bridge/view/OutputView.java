@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.service.BridgeGame;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -32,42 +33,18 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        printUpperPart(bridgeGame);
-        printLowerPart(bridgeGame);
+        Map<String, List<String>> crossedRecord = bridgeGame.getCrossedRecord();
+        printUpperPart(crossedRecord.get("upperCrossedRecord"));
+        printLowerPart(crossedRecord.get("lowerCrossedRecord"));
     }
 
-    private void printUpperPart(BridgeGame bridgeGame) {
-        int playerLocation = bridgeGame.getPlayerLocation();
-        List<String> crossedSpaces = bridgeGame.getMovableSpaces().subList(0, playerLocation);
-
-        String upperPart = String.join("|", crossedSpaces);
-
-        // 만약 실패했고 실패한 지점의 정답이 D였다면 사망표시
-        if (bridgeGame.isFailed() && upperPart.charAt(upperPart.length() - 1) == 'D') {
-            upperPart = upperPart.substring(0, upperPart.length() - 1) + " X ";
-        } else if (bridgeGame.isFailed() && upperPart.charAt(upperPart.length() - 1) == 'U') {
-            upperPart = upperPart.substring(0, upperPart.length() - 1) + "   ";
-        }
-
-        upperPart = upperPart.replace("U", " O ");
-        upperPart = upperPart.replace("D", "   ");
+    private void printUpperPart(List<String> upperCrossedRecord) {
+        String upperPart = String.join("|", upperCrossedRecord);
         System.out.println("[" + upperPart + "]");
     }
 
-    private void printLowerPart(BridgeGame bridgeGame) {
-        int playerLocation = bridgeGame.getPlayerLocation();
-        List<String> crossedSpaces = bridgeGame.getMovableSpaces().subList(0, playerLocation);
-
-        String lowerPart = String.join("|", crossedSpaces);
-        // 만약 실패했고 실패한 지점의 정답이 U였다면 사망표시
-        if (bridgeGame.isFailed() && lowerPart.charAt(lowerPart.length() - 1) == 'U') {
-            lowerPart = lowerPart.substring(0, lowerPart.length() - 1) + " X ";
-        } else if (bridgeGame.isFailed() && lowerPart.charAt(lowerPart.length() - 1) == 'D') {
-            lowerPart = lowerPart.substring(0, lowerPart.length() - 1) + "   ";
-        }
-
-        lowerPart = lowerPart.replace("U", "   ");
-        lowerPart = lowerPart.replace("D", " O ");
+    private void printLowerPart(List<String> lowerCrossedRecord) {
+        String lowerPart = String.join("|", lowerCrossedRecord);
         System.out.println("[" + lowerPart + "]");
     }
 
