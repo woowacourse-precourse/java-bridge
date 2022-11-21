@@ -11,6 +11,9 @@ public class Constant {
     public final static String POOR_CONSTRUCTION = "Broken Bridge";
     public final static String POOR_CONSTRUCTION_MESSAGE = "양쪽다 건널 수 없는 다리입니다.";
     public final static String WRONG_INSERT_POSITION_MESSAGE = "U, D 이외에 값은 이동할 수 없습니다.";
+    public static final String SPACE_MARK = "   |";
+    public static final String CORRECT_MARK = " O |";
+    public static final String WRONG_MARK = " X |";
     public final static int BRIDGE_MIN_SIZE = 3;
     public final static int BRIDGE_MAX_SIZE = 20;
 }

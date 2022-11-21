@@ -28,6 +28,8 @@ public class BridgeGameController {
         do {
             String nextMove = insertMoveCommand();
             bridgeGame.move(nextMove);
+            bridgeGame.drawBridge(nextMove);
+            outputView.printMap(bridgeGame.printBridge());
         } while (true);
     }
 

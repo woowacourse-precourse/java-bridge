@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeSize;
 import bridge.domain.Commands;
+import bridge.domain.DrawBridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -12,9 +13,11 @@ import bridge.domain.Commands;
 public class BridgeGame {
 
     private Bridge bridge;
+    private final DrawBridge drawBridge;
     private final Commands commands;
 
     public BridgeGame() {
+        drawBridge = DrawBridge.getInstance();
         commands = Commands.getInstance();
     }
 
@@ -25,6 +28,14 @@ public class BridgeGame {
      */
     public void move(String nextMove) {
         this.commands.insertCommand(nextMove);
+    }
+
+    public void drawBridge(String nextMove) {
+        this.drawBridge.draw(nextMove, bridge.isCorrectLastPosition(commands.lastIndex(), nextMove));
+    }
+
+    public String printBridge() {
+        return this.drawBridge.printBridge();
     }
 
     /**

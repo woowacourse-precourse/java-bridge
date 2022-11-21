@@ -20,4 +20,8 @@ public class Commands {
     public void insertCommand(String nextMove) {
         visited.add(nextMove);
     }
+
+    public int lastIndex() {
+        return visited.size() - 1;
+    }
 }

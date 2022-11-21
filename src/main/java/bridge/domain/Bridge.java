@@ -25,4 +25,8 @@ public class Bridge {
             throw new IllegalArgumentException(POOR_CONSTRUCTION_MESSAGE);
         }
     }
+
+    public boolean isCorrectLastPosition(int lastIndex, String nextMove) {
+        return bridge.get(lastIndex).equals(nextMove);
+    }
 }
