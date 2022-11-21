@@ -6,13 +6,18 @@ public class BridgeController {
 
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    private BridgeGame bridgeGame = new BridgeGame();
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private List<String> bridge;
     public void run() {
-        List<String> bridge;
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        String direction = inputView.readMoving();
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        for (int i = 0; i < bridgeSize; i++) {
+            String direction = inputView.readMoving();
+            if (!bridgeGame.move(direction)) {
+                break;
+            }
+        }
     }
 }
