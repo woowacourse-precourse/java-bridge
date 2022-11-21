@@ -1,7 +1,5 @@
 package bridge.service;
 
-import bridge.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +9,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final OutputView outputView = new OutputView();
     private List<String> bridgeList;
 
     private final List<String> upBridge;
