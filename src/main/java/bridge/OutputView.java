@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class OutputView {
     private static final String CORRECT = "O";
     private static final String WRONG = "X";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -17,6 +18,7 @@ public class OutputView {
         List<String> answer = getAnswer(Application.bridge, BridgeGame.playerStep);
         printBridge(answer, BridgeGame.playerStep);
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -70,6 +72,7 @@ public class OutputView {
         }
         return stair;
     }
+
     private void printBridge(List<String> answer, List<String> playerMove){
         List<String> upStair = makeStair(answer, playerMove, "U");
         List<String> downStair = makeStair(answer, playerMove, "D");

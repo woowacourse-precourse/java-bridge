@@ -1,11 +1,10 @@
 package bridge;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class Application {
     static List<String> bridge;
-    static InputView inputview;
+    static InputView inputView;
     static OutputView outputView;
     static BridgeMaker bridgeMaker;
     static BridgeGame bridgeGame;
@@ -27,7 +26,7 @@ public class Application {
     private static void initialize() {
         tryCount = 0;
 
-        inputview = new InputView();
+        inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame();
@@ -39,7 +38,7 @@ public class Application {
     }
 
     private static int getBridgeSize() {
-        return inputview.readBridgeSize();
+        return inputView.readBridgeSize();
     }
 
     public static void gameStart(){
@@ -54,13 +53,13 @@ public class Application {
         stepCorrect = true;
 
         while(stepCorrect && BridgeGame.playerStep.size() < bridge.size()){
-            stepCorrect = bridgeGame.move(inputview.readMoving());
+            stepCorrect = bridgeGame.move(inputView.readMoving());
             outputView.printMap();
         }
     }
 
     private static void CheckRetry(){
-        String retry = inputview.readGameCommand();
+        String retry = inputView.readGameCommand();
         if(retry.equals(Retry.R.name()))
             bridgeGame.retry();
 
