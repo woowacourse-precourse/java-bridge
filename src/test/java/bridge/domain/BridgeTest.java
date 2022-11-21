@@ -3,6 +3,8 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,4 +45,24 @@ public class BridgeTest {
         assertThat(result).isEqualTo(false);
     }
 
+
+    @DisplayName("다리의 길이가 20보다 큰 경우")
+    @Test
+    void makeBridgeByMoreThan20() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(21);
+        assertThatThrownBy(
+                () -> new Bridge(bridge)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리의 길이가 3보다 작은 경우")
+    @Test
+    void makeBridgeByLessThan3() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(2);
+        assertThatThrownBy(
+                () -> new Bridge(bridge)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
