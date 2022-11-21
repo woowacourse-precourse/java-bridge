@@ -17,10 +17,6 @@ public class InputValidator {
         }
     }
 
-    public static boolean validateMoveDirection(String moveDirectionInput) {
-        return moveDirectionInput.equals("U") || moveDirectionInput.equals("D");
-    }
-
     static boolean isNumeric(String input) {
         if (input.charAt(0) == '0') {
             return false;
@@ -38,5 +34,15 @@ public class InputValidator {
             return true;
         }
         return false;
+    }
+
+    public static boolean validateMoveDirection(String moveDirectionInput) {
+        return moveDirectionInput.equals("U") || moveDirectionInput.equals("D");
+    }
+
+    public static void validateRetryInput(String retryInput) {
+        if (!(retryInput.equals("R") || retryInput.equals("Q"))) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RETRY_INPUT.getMessage());
+        }
     }
 }

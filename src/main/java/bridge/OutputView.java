@@ -82,4 +82,9 @@ public class OutputView {
         System.out.println();
         System.out.println(InputMessage.MOVE_DIRECTION_INPUT_MESSAGE.getMessage());
     }
+
+    public void printRetryInputMessage() {
+        System.out.println();
+        System.out.println(InputMessage.RETRY_INPUT_MESSAGE.getMessage());
+    }
 }

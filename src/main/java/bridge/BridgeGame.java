@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.messages.InputMessage;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,8 @@ public class BridgeGame {
 
     private InputView inputView;
     private OutputView outputView;
+    private final boolean willRetry = true;
+    private final boolean willNotRetry = false;
 
     public BridgeGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -22,9 +26,9 @@ public class BridgeGame {
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        boolean gameClear = play(bridgeSize, bridge);
-        while (!gameClear) {
-            retry();
+        boolean retry = play(bridgeSize, bridge);
+        while (retry) {
+            retry = willRetry(bridgeSize, bridge);
         }
     }
 
@@ -36,10 +40,10 @@ public class BridgeGame {
             String moveDirection = move();
             outputView.printMap(i, moveDirection, bridge);
             if (!isRightMove(moveDirection, bridge.get(i))) {
-                return false;
+                return willRetry;
             }
         }
-        return true;
+        return willNotRetry;
     }
 
     /**
@@ -61,8 +65,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean willRetry(int bridgeSize, List<String> bridge) {
+        String retryInput = inputView.readGameCommand();
+        if (retryInput.equals("Q")) {
+            return false;
+        }
+        return play(bridgeSize, bridge);
     }
-
-
 }
