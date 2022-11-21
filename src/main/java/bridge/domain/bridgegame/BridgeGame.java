@@ -14,6 +14,10 @@ public class BridgeGame {
         downBridge = new StringBuilder();
     }
 
+    public GameStatus getGameStatus() {
+        return new GameStatus(upBridge, downBridge, gameTrialCount, winOrLose);
+    }
+
     public void reset() {
         winOrLose = true;
         upBridge.setLength(0);
