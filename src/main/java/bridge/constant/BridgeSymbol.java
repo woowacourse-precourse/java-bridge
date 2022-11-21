@@ -22,4 +22,14 @@ public enum BridgeSymbol {
         return state;
     }
 
+    public static boolean isSuccess(String result) {
+        return result.equals(SUCCESS.getState());
+    }
+
+    public static String isCorrect(boolean correct) {
+        if (correct) {
+            return O.getState();
+        }
+        return X.getState();
+    }
 }

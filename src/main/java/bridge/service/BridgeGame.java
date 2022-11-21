@@ -36,8 +36,9 @@ public class BridgeGame {
     }
 
     public boolean isClear() {
-        return result.getSuccess().equals(BridgeSymbol.SUCCESS.getState());
+        return BridgeSymbol.isSuccess(result.getSuccess());
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -54,10 +55,7 @@ public class BridgeGame {
     }
 
     private String compareUserAndAnswer(String user, String answer) {
-        if (user.equals(answer)) {
-            return BridgeSymbol.O.getState();
-        }
-        return BridgeSymbol.X.getState();
+        return BridgeSymbol.isCorrect(user.equals(answer));
     }
 
     /**
