@@ -29,4 +29,14 @@ public class Exception{
             throw new IllegalArgumentException("[ERROR] 재시작 여부는 R 또는 Q로만 동작합니다.");
         }
     }
+
+    /**
+     * 입력되는 다리 길이가 숫자를 제외한 입력인지 확인하는 함수
+     */
+    public void inputStringCheck(String inputCheck){
+        String compareString = "^[0-9]+$";
+        if(!inputCheck.matches(compareString)){
+            throw new IllegalArgumentException("[ERROR] 3 ~ 20사이 숫자만 입력해주세요.");
+        }
+    }
 }
