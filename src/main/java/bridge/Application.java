@@ -5,49 +5,13 @@ import java.util.List;
 public class Application {
 
     private static InputView inputView = new InputView();
-    private static int bridgeSize;
-    private static List<String> bridge;
-    private static String moving;
-    private static BridgeGame bridgeGame;
-    private static Map map = new Map();
     private static OutputView outputView = new OutputView();
-    private static boolean isFail = false;
-    private static String gameCommand;
+    private static Map map = new Map();
+    private static BridgeSize bridgeSize;
+    private static List<String> bridge;
+    private static BridgeGame bridgeGame;
     private static int attempt = 1;
-
-    public static void main(String[] args) {
-        start();
-        enterBridgeSize();
-        makeBridge();
-        bridgeGame = new BridgeGame(bridge);
-        int count = 0;
-        while (count < bridgeSize) {
-            enterMoving();
-            String check = bridgeGame.move(moving, count);
-            if (count == 0) {
-                map.makeMap(moving, check);
-            } else if (count < bridgeSize) {
-                map.addMap(moving, check);
-            }
-            outputView.printMap(map.getUpMap(), map.getDownMap());
-            if (check.equals("X")) {
-                isFail = true;
-                break;
-            }
-            count++;
-        }
-        if (isFail) {
-            enterGameCommand();
-            attempt += bridgeGame.retry(gameCommand);
-        }
-        if (gameCommand.equals("Q")) {
-            outputView.printResult(map.getUpMap(), map.getDownMap());
-
-        }
-        if (count == bridgeSize - 1) {
-            outputView.printResult(map.getUpMap(), map.getDownMap());
-        }
-    }
+    private static String result = "성공";
 
     public static void start() {
         System.out.println(GameMessage.START.getMessage());
@@ -55,11 +19,7 @@ public class Application {
 
     public static void enterBridgeSize() {
         try {
-            String userBridgeSize = inputView.readBridgeSize();
-            Validator.validateNumber(userBridgeSize);
-            int tempBridgeSize = Converter.convertToNumber(userBridgeSize);
-            Validator.validateRange(tempBridgeSize);
-            bridgeSize = tempBridgeSize;
+            bridgeSize = new BridgeSize(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             enterBridgeSize();
@@ -69,31 +29,64 @@ public class Application {
     public static void makeBridge() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
     }
-
 
     public static void enterMoving() {
         try {
-            String userMoving = inputView.readMoving();
-            Validator.validateLength(userMoving);
-            Validator.validateMoving(userMoving);
-            moving = userMoving;
+            Moving.validateInput(inputView.readMoving());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             enterMoving();
         }
     }
 
+    public static void playGame() {
+        for (int count = 0; count < bridgeSize.getBridgeSize(); count++) {
+            enterMoving();
+            String check = bridgeGame.move(Moving.getMoving(), count);
+            map.makeMap(Moving.getMoving(), check);
+            outputView.printMap(map.getUpMap(), map.getDownMap());
+            if (check.equals("X")) {
+                reGame();
+                break;
+            }
+        }
+    }
+
     public static void enterGameCommand() {
         try {
-            String userGameCommand = inputView.readGameCommand();
-            Validator.validateLength(userGameCommand);
-            Validator.validateGameCommand(userGameCommand);
-            gameCommand = userGameCommand;
+            GameCommand.validateInput(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             enterGameCommand();
         }
+    }
+
+    public static void reGame() {
+        enterGameCommand();
+        attempt += bridgeGame.retry(GameCommand.getGameCommand());
+        if (GameCommand.getGameCommand().equals("Q")) {
+            result = "실패";
+        }
+        if (GameCommand.getGameCommand().equals("R")) {
+            map.resetMap();
+            playGame();
+        }
+    }
+
+    public static void showResult() {
+        outputView.printResult(map.getUpMap(), map.getDownMap());
+        outputView.printSuccessOrFail(result);
+        outputView.printAttempt(attempt);
+    }
+
+    public static void main(String[] args) {
+        start();
+        enterBridgeSize();
+        makeBridge();
+        bridgeGame = new BridgeGame(bridge);
+        playGame();
+        showResult();
     }
 }
