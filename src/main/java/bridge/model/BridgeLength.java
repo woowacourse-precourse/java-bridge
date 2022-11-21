@@ -5,10 +5,10 @@ import java.util.regex.Pattern;
 
 public class BridgeLength {
 
-    private static final String LENGTH_FORMAT = "^[1-2]?[1-9]$";
     private static final int MIN_LENGTH=3;
     private static final int MAX_LENGTH=20;
     private final int length;
+    private static final Pattern pattern = Pattern.compile("^[1-2]?[1-9]$");
 
     private BridgeLength(String length) {
         validateLength(length);
@@ -36,8 +36,6 @@ public class BridgeLength {
     }
 
     private static boolean isLengthNumberCorrect(String length) {
-        String regex = LENGTH_FORMAT;
-        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(length);
         return matcher.matches();
     }
