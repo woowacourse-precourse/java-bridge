@@ -10,6 +10,7 @@ import java.util.List;
 
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static final int FIRST_INDEX = NumberConstant.FIRST_INDEX.getConstant();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -22,8 +23,7 @@ public class BridgeMaker {
     }
 
     private void buildBridgePath(int size, List<String> bridge) {
-        int firstIndex = NumberConstant.FIRST_INDEX.getConstant();
-        for (int i = firstIndex; i < size; i++) {
+        for (int index = FIRST_INDEX; index < size; index++) {
             int bridgeNumber = bridgeNumberGenerator();
             buildUpPath(bridge, bridgeNumber);
             buildDownPath(bridge, bridgeNumber);
