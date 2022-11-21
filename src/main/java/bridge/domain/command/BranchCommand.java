@@ -19,7 +19,7 @@ public enum BranchCommand {
 			.findFirst().orElseThrow(() -> new IllegalArgumentException("[ERROR] 안내문을 참고해 올바른 커맨드를 입력해주세요."));
 	}
 
-	public static boolean isContinueGame(BranchCommand branchCommand) {
-		return branchCommand.result;
+	public boolean isResult() {
+		return result;
 	}
 }
