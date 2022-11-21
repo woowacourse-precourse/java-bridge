@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.bridgeGame.BridgeGameResultDto;
 import bridge.bridgeGame.StepStatus;
-import bridge.enums.GameStatus;
+import bridge.constant.Constant;
 import bridge.enums.UpDown;
 
 import java.util.List;
@@ -60,11 +60,12 @@ public class OutputView {
      */
     private String divergeStepStatus(StepStatus stepStatus, UpDown upDown) {
         if (stepStatus.getUpDown().equals(upDown) && stepStatus.isCorrect() == true) {
-            return " O |";
+            return Constant.correctLineOutput;
         }
         if (stepStatus.getUpDown().equals(upDown) && stepStatus.isCorrect() == false) {
-            return " X |";
+            return Constant.incorrectLineOutput;
         }
-        return "   |";
+        return Constant.notChosenLineOutput;
     }
+
 }
