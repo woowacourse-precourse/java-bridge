@@ -6,18 +6,16 @@ import bridge.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(InputView.readBridgeSize()));
 
         while (!bridgeGame.isSuccess()) {
-            bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame);
+            bridgeGame.move(InputView.readMoving());
+            OutputView.printMap(bridgeGame);
             if (bridgeGame.isCorrectChoice()) {
                 continue;
             }
-            String gameCommand = inputView.readGameCommand();
+            String gameCommand = InputView.readGameCommand();
             if (gameCommand.equals("R")) {
                 bridgeGame.retry();
             }
@@ -25,6 +23,6 @@ public class Application {
                 break;
             }
         }
-        outputView.printResult(bridgeGame);
+        OutputView.printResult(bridgeGame);
     }
 }

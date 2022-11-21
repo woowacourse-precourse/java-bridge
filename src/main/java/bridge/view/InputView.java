@@ -11,12 +11,12 @@ public class InputView {
     public static final String MOVING_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String RETRY_GAME_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-    private void printBridgeSizeMessage() {
+    private static void printBridgeSizeMessage() {
         System.out.println(GAME_START_MESSAGE);
         System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
     }
 
-    private int readNumber() throws IllegalArgumentException {
+    private static int readNumber() throws IllegalArgumentException {
         String inputNumber = Console.readLine();
         System.out.println();
         try {
@@ -26,7 +26,7 @@ public class InputView {
         }
     }
 
-    private int readValidRangeNumber() throws IllegalArgumentException {
+    private static int readValidRangeNumber() throws IllegalArgumentException {
         int number = readNumber();
 
         if (number < 3 || number > 20) {
@@ -38,7 +38,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         while (true) {
             try {
                 printBridgeSizeMessage();
@@ -49,7 +49,7 @@ public class InputView {
         }
     }
 
-    private String readMovingCommand() throws IllegalArgumentException {
+    private static String readMovingCommand() throws IllegalArgumentException {
         String inputCommand = Console.readLine();
 
         if (!(inputCommand.equals("U") || inputCommand.equals("D")))
@@ -60,7 +60,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         while (true) {
             try {
                 System.out.println(MOVING_INPUT_MESSAGE);
@@ -71,7 +71,7 @@ public class InputView {
         }
     }
 
-    private String readRetryCommand() throws IllegalArgumentException {
+    private static String readRetryCommand() throws IllegalArgumentException {
         String inputCommand = Console.readLine();
 
         if (!(inputCommand.equals("R") || inputCommand.equals("Q")))
@@ -82,7 +82,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         while (true) {
             try {
                 System.out.println(RETRY_GAME_INPUT_MESSAGE);
