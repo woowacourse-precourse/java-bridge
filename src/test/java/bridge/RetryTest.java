@@ -9,16 +9,16 @@ import static org.assertj.core.api.Assertions.*;
 
 class RetryTest {
 
-    @DisplayName("재시작에 정상적인 데이터를 넣은 경우 true를 반환하는가 체크")
+    @DisplayName("재시작시 정상적인 데이터를 넣은 경우")
     @ParameterizedTest
     @EnumSource(Retry.class)
-    void aaa(Retry retry){
+    void check_Retry_True(Retry retry){
         assertThat(Retry.validRetry(retry.name())).isEqualTo(true);
     }
 
-    @DisplayName("재시작에 비정상적인 데이터를 넣은 경우 false를 반환하는가 체크")
+    @DisplayName("재시작시 비정상적인 데이터를 넣은 경우")
     @Test
-    void aaa3(){
+    void check_Retry_False(){
         assertThat(Retry.validRetry("U")).isEqualTo(false);
     }
 }
