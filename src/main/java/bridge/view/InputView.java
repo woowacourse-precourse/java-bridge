@@ -21,7 +21,7 @@ public class InputView {
             try {
                 System.out.println("다리의 길이를 입력해주세요.");
                 input = Console.readLine();
-                processingBridgeSize(input);
+                validateBridgeSize(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
@@ -36,7 +36,19 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String input;
+
+        while (true) {
+            try {
+                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                input = Console.readLine();
+                validateBlockToMove(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
 
         return Console.readLine();
     }
@@ -50,9 +62,26 @@ public class InputView {
         return Console.readLine();
     }
 
-    private void processingBridgeSize(String input) {
+    private void validateBridgeSize(String input) {
         validateInteger(input);
         validateRange(parseInt(input));
+    }
+
+    private void validateBlockToMove(String input) {
+        validateLength(input);
+        validateCorrectBlock(input);
+    }
+
+    private void validateLength(String input) {
+        if (input.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸의 문자길이가 1을 넘을 수 없습니다.");
+        }
+    }
+
+    private void validateCorrectBlock(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D 중 하나의 문자여야 합니다.");
+        }
     }
 
     private void validateInteger(String size) {
