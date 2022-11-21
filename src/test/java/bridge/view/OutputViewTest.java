@@ -44,13 +44,23 @@ class OutputViewTest {
     @Test
     void printMap() {
         outputView.printMap(List.of(List.of("O", " ", " "), List.of(" ", "O", "X")));
-        assertThat(output()).contains("[ O |   |   ]").contains("[   | O | X ]");
+        assertThat(output()).contains(
+                "[ O |   |   ]",
+                "[   | O | X ]"
+        );
     }
 
-//    @DisplayName("최종 게임 결과를 출력")
-//    @Test
-//    void printResult() {
-//        outputView.printResult(true, 10);
-//        assertThat(output()).contains("게임 성공 여부: 성공").contains("총 시도한 횟수: 10");
-//    }
+    @DisplayName("최종 게임 결과를 출력")
+    @Test
+    void printResult() {
+        List<List<String>> map = List.of(List.of("O", " ", " "), List.of(" ", "O", "O"));
+        outputView.printResult(map, true, 10);
+        assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   |   ]",
+                "[   | O | O ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 10"
+        );
+    }
 }
