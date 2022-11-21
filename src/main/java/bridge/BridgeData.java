@@ -6,7 +6,7 @@ public class BridgeData {
     private final List<String> bridge;
     private int currentPosition;
 
-    public BridgeData(List<String> bridge, int currentPosition){
+    public BridgeData(List<String> bridge, int currentPosition) {
         this.bridge = bridge;
         this.currentPosition = currentPosition;
     }
@@ -19,11 +19,11 @@ public class BridgeData {
         return currentPosition;
     }
 
-    public void updatePosition(){
+    public void updatePosition() {
         currentPosition++;
     }
 
-    public void reducePosition(){
+    public void reducePosition() {
         currentPosition--;
     }
 }

@@ -18,10 +18,9 @@ public class InputView {
      */
     public static int readBridgeSize() {
         System.out.printf(INPUT_BRIDGE_SIZE);
-        try{
+        try {
             return convertToInt_Validate(Console.readLine());
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
@@ -32,10 +31,9 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.printf(READ_MOVE);
-        try{
+        try {
             return checkUserMove(Console.readLine());
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
@@ -46,39 +44,39 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.printf(READ_GAME_COMMAND);
-        try{
+        try {
             return checkUserCommand(Console.readLine());
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
     }
 
-    private static int convertToInt_Validate(String input){
-        if (!input.matches("^[0-9]*$")){
+    private static int convertToInt_Validate(String input) {
+        if (!input.matches("^[0-9]*$")) {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
-        if (Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20){
+        if (Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20) {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
         return Integer.parseInt(input);
     }
-    private static String checkUserMove(String input){
-        if (input.equals("U")){
+
+    private static String checkUserMove(String input) {
+        if (input.equals("U")) {
             return input;
         }
-        if (input.equals("D")){
+        if (input.equals("D")) {
             return input;
         }
         throw new IllegalArgumentException(ERROR_READ_MOVE);
     }
 
-    private static String checkUserCommand(String input){
-        if (input.equals("R")){
+    private static String checkUserCommand(String input) {
+        if (input.equals("R")) {
             return input;
         }
-        if (input.equals("Q")){
+        if (input.equals("Q")) {
             return input;
         }
         throw new IllegalArgumentException(ERROR_READ_COMMAND);

@@ -16,6 +16,7 @@ public class OutputView {
     private static final String FINAL_RESULT = "\n최종 게임 결과";
     private static final String SUCCESS_FAIL = "\n게임 성공 여부: %s\n";
     private static final String TRY = "총 시도한 횟수: %d\n";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -33,7 +34,7 @@ public class OutputView {
      */
     public static void printResult(BridgeData bridgeData, boolean gameStatus, int gameCount) {
         String result = FAIL;
-        if (gameStatus){
+        if (gameStatus) {
             result = SUCCESS;
         }
         System.out.println(FINAL_RESULT);
@@ -42,46 +43,47 @@ public class OutputView {
         System.out.printf(TRY, gameCount);
     }
 
-    private static String topSideMap(BridgeData bridgeData){
+    private static String topSideMap(BridgeData bridgeData) {
         StringBuilder topSideMap = new StringBuilder();
-        for (int i = 0; i < bridgeData.getCurrentPosition()-1; i++){
-            if (bridgeData.getBridge().get(i).equals(TOP)){
-                topSideMap.append(CORRECT+BAR);
+        for (int i = 0; i < bridgeData.getCurrentPosition() - 1; i++) {
+            if (bridgeData.getBridge().get(i).equals(TOP)) {
+                topSideMap.append(CORRECT + BAR);
             }
-            if (bridgeData.getBridge().get(i).equals(BOTTOM)){
-                topSideMap.append(SPACE+BAR);
+            if (bridgeData.getBridge().get(i).equals(BOTTOM)) {
+                topSideMap.append(SPACE + BAR);
             }
         }
         return topSideMap.toString();
     }
-    private static String topSideResult(BridgeData bridgeData, boolean pass){
-        if (pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(TOP)){
+
+    private static String topSideResult(BridgeData bridgeData, boolean pass) {
+        if (pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition() - 1).equals(TOP)) {
             return CORRECT;
         }
-        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(BOTTOM)){
+        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition() - 1).equals(BOTTOM)) {
             return WRONG;
         }
         return SPACE;
     }
 
-    private static String bottomSideMap(BridgeData bridgeData){
+    private static String bottomSideMap(BridgeData bridgeData) {
         StringBuilder topSideMap = new StringBuilder();
-        for (int i = 0; i < bridgeData.getCurrentPosition()-1; i++){
-            if (bridgeData.getBridge().get(i).equals(TOP)){
-                topSideMap.append(SPACE+BAR);
+        for (int i = 0; i < bridgeData.getCurrentPosition() - 1; i++) {
+            if (bridgeData.getBridge().get(i).equals(TOP)) {
+                topSideMap.append(SPACE + BAR);
             }
-            if (bridgeData.getBridge().get(i).equals(BOTTOM)){
-                topSideMap.append(CORRECT+BAR);
+            if (bridgeData.getBridge().get(i).equals(BOTTOM)) {
+                topSideMap.append(CORRECT + BAR);
             }
         }
         return topSideMap.toString();
     }
 
-    private static String bottomSideResult(BridgeData bridgeData, boolean pass){
-        if (pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(BOTTOM)){
+    private static String bottomSideResult(BridgeData bridgeData, boolean pass) {
+        if (pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition() - 1).equals(BOTTOM)) {
             return CORRECT;
         }
-        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition()-1).equals(TOP)){
+        if (!pass && bridgeData.getBridge().get(bridgeData.getCurrentPosition() - 1).equals(TOP)) {
             return WRONG;
         }
         return SPACE;
