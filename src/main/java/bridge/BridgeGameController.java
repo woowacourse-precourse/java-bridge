@@ -29,4 +29,12 @@ public class BridgeGameController {
         }
         return moved;
     }
+
+    public boolean retry() {
+        String command = inputView.readGameCommand();
+        if (command == "R") {
+            return true;
+        }
+        return false;
+    }
 }

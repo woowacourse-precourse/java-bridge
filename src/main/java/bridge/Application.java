@@ -6,6 +6,12 @@ public class Application {
         BridgeGameController bridgeGameController = new BridgeGameController();
 
         int size = bridgeGameController.start();
-        boolean succeed = bridgeGameController.move(size);
+        boolean retry = true;
+        while (retry) {
+            boolean succeed = bridgeGameController.move(size);
+            if (!succeed) {
+                retry = bridgeGameController.retry();
+            }
+        }
     }
 }
