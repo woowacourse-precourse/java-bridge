@@ -28,15 +28,15 @@ class InputViewTest {
         assertThat(result).isEqualTo(Integer.parseInt(input));
     }
 
-    @DisplayName("readBridgeSize 예외 사항 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"a", "5j", " 10", "1", "2", "-1", "21"})
-    void readBridgeSize_exception_test(String input) {
-        byte[] buf = input.getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(() -> INPUT_VIEW.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+//    @DisplayName("readBridgeSize 예외 사항 테스트")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"a", "5j", " 10", "1", "2", "-1", "21"})
+//    void readBridgeSize_exception_test(String input) {
+//        byte[] buf = input.getBytes();
+//        System.setIn(new ByteArrayInputStream(buf));
+//        assertThatThrownBy(() -> INPUT_VIEW.readBridgeSize())
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
 
     @DisplayName("readMoving 테스트")
     @ParameterizedTest
@@ -48,15 +48,15 @@ class InputViewTest {
         assertThat(result).isEqualTo(input);
     }
 
-    @DisplayName("readMoving 예외 사항 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"u", "d", " ", "aa"})
-    void readMoving_exception_test(String input) {
-        byte[] buf = input.getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(() -> INPUT_VIEW.readMoving())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+//    @DisplayName("readMoving 예외 사항 테스트")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"u", "d", " ", "aa"})
+//    void readMoving_exception_test(String input) {
+//        byte[] buf = input.getBytes();
+//        System.setIn(new ByteArrayInputStream(buf));
+//        assertThatThrownBy(() -> INPUT_VIEW.readMoving())
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
 
     @DisplayName("readGameCommand 테스트")
     @ParameterizedTest
@@ -68,15 +68,15 @@ class InputViewTest {
         assertThat(result).isEqualTo(input);
     }
 
-    @DisplayName("readGameCommand 예외 사항 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"r", "q", " ", "bbas"})
-    void readGameCommand_exception_test(String input) {
-        byte[] buf = input.getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(() -> INPUT_VIEW.readGameCommand())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+//    @DisplayName("readGameCommand 예외 사항 테스트")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"r", "q", " ", "bbas"})
+//    void readGameCommand_exception_test(String input) {
+//        byte[] buf = input.getBytes();
+//        System.setIn(new ByteArrayInputStream(buf));
+//        assertThatThrownBy(() -> INPUT_VIEW.readGameCommand())
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
 
     @DisplayName("tryParse 예외 사항 테스트")
     @ParameterizedTest
