@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameRun {
+    private static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.";
+    private static final String GAME_FAILURE = "실패";
     private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
     private static final BridgeGame game = new BridgeGame();
@@ -20,13 +22,13 @@ public class BridgeGameRun {
             oneRound();
             judge = game.judgeSuccessFailure(bridge, path);
 
-        } while (judge.equals("실패") && game.retry(input.readGameCommand()));
+        } while (judge.equals(GAME_FAILURE) && game.retry(input.readGameCommand()));
 
         output.printResult(judge, gameTryCount);
     }
 
     private void beginningPart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(START_BRIDGE_GAME);
 
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
