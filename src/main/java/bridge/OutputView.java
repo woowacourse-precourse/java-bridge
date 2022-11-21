@@ -29,7 +29,6 @@ public class OutputView {
 
     public void printRequestUpDownMessage(){
         System.out.println("이동할 칸을 입력해주세요 (위: U, 아래: D)");
-        System.out.println("");
     }
 
 

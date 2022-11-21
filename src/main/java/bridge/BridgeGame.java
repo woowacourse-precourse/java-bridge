@@ -124,4 +124,8 @@ public class BridgeGame {
             printMapEnd();
         }
     }
+
+    public void nextStep(){
+        this.size = size + 1;
+    }
 }
