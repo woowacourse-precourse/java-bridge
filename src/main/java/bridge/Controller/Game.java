@@ -9,6 +9,7 @@ import bridge.View.OutputView;
 public class Game {
 
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgeGame bridgeGame;
 
     public void run() {
         OutputView.printInit();
@@ -17,6 +18,6 @@ public class Game {
 
     private void makeBridge() {
         BridgeGame.saveBridgeSize(InputView.readBridgeSize());
-        bridgeMaker.makeBridge(BridgeGame.getBridgeSize());
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(BridgeGame.getBridgeSize()));
     }
 }

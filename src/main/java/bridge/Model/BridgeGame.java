@@ -1,8 +1,15 @@
 package bridge.Model;
 
+import java.util.List;
+
 public class BridgeGame {
 
     private static int bridgeSize;
+    private final Bridge rightBridge;
+
+    public BridgeGame(final List<String> bridge) {
+        rightBridge = new Bridge(bridge);
+    }
 
     public void move() {
     }
