@@ -55,8 +55,8 @@ public class InputView {
         }
     }
 
-    private String getAnswer(String inputRestartWhether) {
-        System.out.println(inputRestartWhether);
+    private String getAnswer(String message) {
+        System.out.println(message);
         return Console.readLine();
     }
 }

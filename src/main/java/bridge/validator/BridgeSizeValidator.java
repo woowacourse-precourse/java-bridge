@@ -9,11 +9,11 @@ public class BridgeSizeValidator {
 
     public static void validate(String size) {
         validateDigit(size);
-        validateInput(size);
+        validateBlank(size);
         validateSize(toInt(size));
     }
 
-    private static void validateInput(String size) {
+    private static void validateBlank(String size) {
         if (isBlank(size)) {
             throw new NumberFormatException(BLANK.getMessage());
         }
