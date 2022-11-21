@@ -122,6 +122,37 @@ class BridgeGameTest extends NsTest {
             assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of("O", "X"));
             assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of(" ", " "));
         }
+
+        @Test
+        @DisplayName("isGameEnd 메소드 테스트_1")
+        void isGameEnd1() {
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.move("U");
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            assertThat(bridgeGame.isGameEnd()).isEqualTo(true);
+        }
+
+        @Test
+        @DisplayName("isGameEnd 메소드 테스트_2")
+        void isGameEnd2() {
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.move("D");
+            assertThat(bridgeGame.isGameEnd()).isEqualTo(false);
+        }
+
+        @Test
+        @DisplayName("isGameEnd 메소드 테스트_3")
+        void isGameEnd3() {
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.move("U");
+            bridgeGame.move("U");
+            bridgeGame.move("U");
+            assertThat(bridgeGame.isGameEnd()).isEqualTo(false);
+        }
     }
 
     @Override
