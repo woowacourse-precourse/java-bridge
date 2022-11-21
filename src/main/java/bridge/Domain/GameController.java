@@ -15,7 +15,6 @@ public class GameController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-//    private BridgeGame bridgeGame;
     private int trials = 1;
 
     public void start() {
@@ -41,10 +40,10 @@ public class GameController {
 
     private boolean userRetry(BridgeGame bridgeGame) {
         String command = inputView.askRestart();
-        return checkRetry( bridgeGame,command);
+        return checkRetry(bridgeGame, command);
     }
 
-    public boolean checkRetry(BridgeGame bridgeGame,String command) {
+    public boolean checkRetry(BridgeGame bridgeGame, String command) {
         if (command.equals("R")) {  //R 입력시 재시작
             bridgeGame.retry();
             return true;
@@ -58,12 +57,12 @@ public class GameController {
         boolean isEnd = false;
         while (!isEnd) {
             String way = inputView.askMoving();   //input move 방향 입력
-            move1Step( bridgeGame,way);
+            move1Step(bridgeGame, way);
             isEnd = bridgeGame.isEnd();
         }
     }
 
-    private void move1Step(BridgeGame bridgeGame,String way) {
+    private void move1Step(BridgeGame bridgeGame, String way) {
         bridgeGame.move(way);
         outputView.printMap(bridgeGame);
     }
