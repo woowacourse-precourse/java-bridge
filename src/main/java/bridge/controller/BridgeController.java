@@ -38,14 +38,14 @@ public class BridgeController {
 
     private void startPlay(List<String> bridge) {
         do {
-            bridgeGame.resetRound();
+            bridgeGame.setRound();
             startRound(bridge);
         } while (askRestart(bridgeGame.isClear()));
     }
 
     private void startRound(List<String> bridge) {
         for (String answer : bridge) {
-            String userSpace = inputBridgeSpace().getUserInput();
+            String userSpace = inputDirection().getUserInput();
             List<String> map = bridgeGame.move(userSpace, answer);
             outputView.printMap(map);
             if (!isSameWithAnswer(userSpace, answer)) {
@@ -55,12 +55,12 @@ public class BridgeController {
         }
     }
 
-    private UserBridge inputBridgeSpace() {
+    private UserBridge inputDirection() {
         try {
             return new UserBridge(inputView.readMoving());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return inputBridgeSpace();
+            return inputDirection();
         }
     }
 

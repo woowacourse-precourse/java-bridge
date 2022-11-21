@@ -28,7 +28,7 @@ public class BridgeGame {
         return bridgeMaker.makeBridge(size);
     }
 
-    public void resetRound() {
+    public void setRound() {
         result.changeSuccess();
         result.addAttemptNumber();
         map.resetMap();
