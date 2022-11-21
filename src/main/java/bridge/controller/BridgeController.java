@@ -5,41 +5,40 @@ import bridge.model.Column;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
     private final ValidateInput validate;
-    private int totalCount;
-    BridgeController(){
+
+    public BridgeController(){
         inputView = new InputView();
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
         validate = new ValidateInput();
-        totalCount = 1;
+
     }
     public void startGame(){
+        outputView.printIntro();
         int size = validate.numeric(inputView.readBridgeSize());
         bridgeGame.start(size);
         playing(size);
     }
 
-    private void playing(int size){
+    private int playing(int size){
         for(int step = 0; step < size; step++) {
             if (checkAnswer(step)) {
                 outputView.printMap(bridgeGame.running());
                 continue;
             }
-            judgeGameOver(step, size);
+            judgeGameStatus(step, size);
         }
+        return 0;
     }
 
-
     private boolean checkAnswer(int step){
+        outputView.printMove();
         String letter = inputView.readMoving();
         Column.validateLetter(letter);
         Column answer = bridgeGame.move(step,letter);
@@ -49,9 +48,10 @@ public class BridgeController {
         }
         return false;
     }
-    private int judgeGameOver(int step, int size){
+
+    private int judgeGameStatus(int step, int size){
         if(step == size){
-            outputView.printResult(bridgeGame.over());
+            succeedGame();
             return 0;
         }
         outputView.printMap(bridgeGame.fail(step));
@@ -59,17 +59,22 @@ public class BridgeController {
         return 0;
     }
 
-    private void checkRetry(int size){
-        // 출력
+    private int checkRetry(int size){
+        outputView.printRetry();
         String letter = inputView.readGameCommand();
         validate.endLetter(letter);
         if(letter == GameMessage.RETRY){
-            bridgeGame.retry(size);
-            playing(size);
+            bridgeGame.retry();
+            return playing(size);
         }
+        return failGame();
     }
 
-
-
-
+    private int failGame(){
+        outputView.printResult(bridgeGame.over(), GameMessage.FAILURE, bridgeGame.getTotalCount());
+        return 0;
+    }
+    private void succeedGame(){
+        outputView.printResult(bridgeGame.over(),GameMessage.SUCCESS, bridgeGame.getTotalCount());
+    }
 }
