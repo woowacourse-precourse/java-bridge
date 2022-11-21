@@ -41,4 +41,8 @@ public class Crossing {
     public Stream<PassOrFail> stream() {
         return history.stream();
     }
+
+    public void clear() {
+        history.clear();
+    }
 }
