@@ -43,8 +43,16 @@ public class OutputView {
         printGuideMessage(GuideMessage.FINAL_RESULT_MESSAGE);
         printMap();
         System.out.println();
+        printSuccessOrFailure();
+        printTotalTry();
+    }
+
+    public void printSuccessOrFailure() {
         printGuideMessage(GuideMessage.SUCCESS_OR_FAILURE_MESSAGE);
         System.out.println(crossBridge.getSuccess());
+    }
+
+    public void printTotalTry() {
         printGuideMessage(GuideMessage.TOTAL_TRY_MESSAGE);
         System.out.println(crossBridge.getTotalTry());
     }
