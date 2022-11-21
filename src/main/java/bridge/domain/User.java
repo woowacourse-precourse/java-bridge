@@ -48,10 +48,12 @@ public class User {
         return false;
     }
 
-    public String canMove(List<String> bridge, String userMoving) {
+    public String movePosition(List<String> bridge, String userMoving) {
         if (bridge.get(count).equals(userMoving)) {
+            recordResult("O",userMoving);
             return "O";
         }
+        recordResult("X",userMoving);
         return "X";
     }
 

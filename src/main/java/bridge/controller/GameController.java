@@ -15,6 +15,7 @@ public class GameController {
         String bridgeSize = InputView.readBridgeSize();
 
         List<String> bridge = BridgeService.generateBridge(bridgeSize);
+        System.out.println(bridge);
         User user = UserService.generateUser();
 
         startGame(bridge, user);
@@ -39,7 +40,7 @@ public class GameController {
 
             OutputView.printMap(user);
 
-            if(isPermitted){
+            if(!(isPermitted)){
                 return;
             }
         }
