@@ -35,14 +35,20 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String inputMoving) {
+        if (!inputMoving.equals("U") && !inputMoving.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 (위: U, 아래: D) 둘 중 하나여야 합니다.");
+        }
+        return inputMoving;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String inputGameCommand) {
+        if (!inputGameCommand.equals("R") && !inputGameCommand.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 게임을 다시 시도할지 여부는 (재시도: R, 종료: Q) 둘 중 하나여야 합니다.");
+        }
+        return inputGameCommand;
     }
 }

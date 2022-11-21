@@ -14,10 +14,10 @@
 - [x] 다리 모양을 랜덤으로 생성할 때 필요한 0과 1 중 랜덤으로 선택하는 인터페이스 필요 - BridgeNumberGenerator
   - [ ] 구현체로 BridgeRandomNumberGenerator 선택 - BridgeRandomNumberGenerator
   - [ ] BridgeMaker의 생성자에서 구현체를 넣어줄 수 있다.
-- [ ] 사용자로부터 입력받는 역할을 하는 클래스 필요 - InputView
+- [x] 사용자로부터 입력받는 역할을 하는 클래스 필요 - InputView
   - [x] 다리의 길이를 입력받는다. - InputView#readBridgeSize
-  - [ ] 사용자가 이동할 칸을 입력받는다. - InputView#readMoving
-  - [ ] 게임을 다시 할지 말지 여부를 입력받는다 - InputView#readGameCommand
+  - [x] 사용자가 이동할 칸을 입력받는다. - InputView#readMoving
+  - [x] 게임을 다시 할지 말지 여부를 입력받는다 - InputView#readGameCommand
 - [ ] 사용자에게 게임 진행 상황과 결과를 알려주는 클래스 필요 - OutputView
   - [ ] 다리의 상태를 출력한다. - OutputView#printMap
   - [ ] 게임의 최종 결과를 출력한다. - OutputView#printResult
