@@ -9,9 +9,18 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridge;
 
-    public Bridge(int size) {
-        isCorrectRange(size);
-        bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+    public Bridge(String size) {
+        int parsedSize = parse(size);
+        isCorrectRange(parsedSize);
+        bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(parsedSize);
+    }
+
+    private int parse(String size) {
+        try {
+            return Integer.parseInt(size);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
+        }
     }
 
     private void isCorrectRange(int size) {
