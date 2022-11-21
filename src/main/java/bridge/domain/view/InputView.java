@@ -4,13 +4,11 @@ package bridge.domain.view;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 
+import bridge.exception.InputExceptionHandler;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
- * 패키지 변경 가능
- * 메서드 이름 변경 가능
- * 메서드 인자, 반환 타입 변경 가능
- * 사용자 값 입력을 위해 필요한 메소드 추가 가능
+ * 패키지 변경 가능 메서드 이름 변경 가능 메서드 인자, 반환 타입 변경 가능 사용자 값 입력을 위해 필요한 메소드 추가 가능
  */
 public class InputView {
 
@@ -19,6 +17,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
+        InputExceptionHandler.handleBridgeSizeInputException(bridgeSizeInput);
 
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
 
@@ -30,6 +29,7 @@ public class InputView {
      */
     public String readMoving() {
         String movingInput = Console.readLine();
+        InputExceptionHandler.handleMoveAndRetryException(movingInput);
 
         return movingInput;
     }
@@ -39,6 +39,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String retryInput = Console.readLine();
+        InputExceptionHandler.handleMoveAndRetryException(retryInput);
 
         return retryInput;
     }
