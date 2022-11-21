@@ -11,7 +11,7 @@ public class Player {
 
     public Player() {
         this.moving = new ArrayList<>();
-        this.tryCount = 1;
+        this.tryCount = 0;
     }
 
     public void addMoving(String input) {

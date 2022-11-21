@@ -35,10 +35,10 @@ public class GameController {
         do {
             initializeGame(bridge);
             move(bridge.getBridgeSize());
+            retryGame();
             if (bridgeGame.isMovable) {
                 return;
             }
-            retryGame();
         } while (inputView.readGameCommand().isRetry());
     }
 
