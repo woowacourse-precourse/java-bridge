@@ -39,7 +39,9 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.println(EventMessage.INPUT_GAME_COMMAND);
-        return null;
+        String gameCommand = getInput();
+
+        return gameCommand;
     }
 
     private static String getInput(){
