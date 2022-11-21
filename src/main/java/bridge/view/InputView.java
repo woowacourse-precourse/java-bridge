@@ -17,11 +17,9 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
+        processingBridgeSize(input);
 
-        int bridgeSize = validateInteger(input);
-        validateRange(bridgeSize);
-
-        return bridgeSize;
+        return parseInt(input);
     }
 
     /**
@@ -42,14 +40,23 @@ public class InputView {
         return Console.readLine();
     }
 
-    private int validateInteger(String size) {
+    private void processingBridgeSize(String input) {
+        try {
+            validateInteger(input);
+            validateRange(parseInt(input));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
+    }
+
+    private void validateInteger(String size) {
         String regex = "^[0-9]+$";
 
         if (!size.matches(regex)) {
             throw new IllegalArgumentException(INPUT_NOT_INTEGER_ERROR);
         }
 
-        return parseInt(size);
     }
 
     private void validateRange(int size) {
