@@ -3,21 +3,27 @@ package bridge.domain;
 import java.util.List;
 
 public class User {
-    private final int restartCount;
-    private final List<String> userBridge;
+    private int restartCount;
+    private String mapUpperUserBridge;
+    private String mapLowerUserBridge;
 
-    public User(int restartCount, List<String> userBridge) {
-        this.restartCount = restartCount;
-        this.userBridge = userBridge;
+    public User() {
+        this.restartCount = 0;
+        this.mapUpperUserBridge = "";
+        this.mapLowerUserBridge = "";
     }
 
-    
+
 
     public int getRestartCount() {
         return restartCount;
     }
 
-    public List<String> getUserBridge() {
-        return userBridge;
+    public String getMapUpperUserBridge() {
+        return mapUpperUserBridge;
+    }
+
+    public String getMapLowerUserBridge() {
+        return mapLowerUserBridge;
     }
 }
