@@ -39,8 +39,9 @@ public class BridgeGame {
 
     public boolean isFailed() {
         validateStatus();
-        String direction = movementRecord.get(movementRecord.size() - 1).getCommand();
-        if (!bridge.get(movementRecord.size() - 1).equals(direction)) {
+        int lastIndex = movementRecord.size() - 1;
+        String direction = movementRecord.get(lastIndex).getCommand();
+        if (!bridge.get(lastIndex).equals(direction)) {
             return true;
         }
         return false;
