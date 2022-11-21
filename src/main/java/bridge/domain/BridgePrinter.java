@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.model.PieceMove;
+import bridge.domain.model.PieceMove;
 
 import java.util.Stack;
 

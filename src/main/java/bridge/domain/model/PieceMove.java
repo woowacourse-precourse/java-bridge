@@ -1,6 +1,4 @@
-package bridge.model;
-
-import bridge.config.Direction;
+package bridge.domain.model;
 
 public class PieceMove {
 

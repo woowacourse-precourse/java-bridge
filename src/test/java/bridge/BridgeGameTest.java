@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.config.Direction;
-import bridge.model.GameStatus;
+import bridge.domain.model.Direction;
+import bridge.domain.model.GameStatus;
 import bridge.config.InvalidMoveException;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;

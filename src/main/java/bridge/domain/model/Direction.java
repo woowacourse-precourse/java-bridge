@@ -1,4 +1,6 @@
-package bridge.config;
+package bridge.domain.model;
+
+import bridge.config.ErrorMessageConstant;
 
 import java.util.Collections;
 import java.util.Map;

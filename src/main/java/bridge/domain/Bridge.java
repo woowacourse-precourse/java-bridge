@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.config.Direction;
+import bridge.domain.model.Direction;
 import bridge.config.ErrorMessageConstant;
 
 import java.util.List;

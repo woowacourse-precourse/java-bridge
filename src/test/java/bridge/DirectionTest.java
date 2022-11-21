@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.config.Direction;
+import bridge.domain.model.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

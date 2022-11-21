@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.config.Direction;
+import bridge.domain.model.Direction;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.view.BridgeConsolePrinter;
