@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum BridgeComponent {
     UP(1,"U"),
