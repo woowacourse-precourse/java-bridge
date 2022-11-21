@@ -27,4 +27,15 @@ public class BridgeGameTest {
         List<String> bridgeCurrStatus = bridgeGame.getBridgeCurrStatus();
         assertThat(bridgeCurrStatus).isEqualTo(List.of("O"));
     }
+
+    @DisplayName("이동 불가능한 칸일 경우 이동하지 않는지 테스트")
+    @Test
+    public void addXWhenUnequalTest() {
+        String movingCommand = "U";
+        String currBox = "D";
+        bridgeGame.addXWhenUnequal(movingCommand, currBox);
+
+        List<String> bridgeCurrStatus = bridgeGame.getBridgeCurrStatus();
+        assertThat(bridgeCurrStatus).isEqualTo(List.of("X"));
+    }
 }
