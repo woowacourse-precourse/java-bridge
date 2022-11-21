@@ -41,4 +41,9 @@ public enum BridgeMapGenerator {
         bridgeMap.get(1).add(WRONG_ANSWER_INPUT_DOWN.resultOfDown);
         return bridgeMap;
     }
+
+    private static void generateMap(BridgeMapGenerator bridgeMapGenerator, List<List<String>> bridgeMap) {
+        bridgeMap.get(0).add(bridgeMapGenerator.resultOfUp);
+        bridgeMap.get(1).add(bridgeMapGenerator.resultOfDown);
+    }
 }
