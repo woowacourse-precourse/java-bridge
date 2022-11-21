@@ -2,11 +2,10 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.User;
 import bridge.util.TypeConverter;
 import bridge.validate.ValidateInput;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,15 +13,16 @@ import java.util.Objects;
 public class BridgeGame {
 
     private final User user;
+    private final Bridge bridge;
 
     public BridgeGame() {
         this.user = new User();
+        this.bridge = new Bridge();
         start();
     }
 
     public void start() {
-        OutputView.printStartBridgeGame();
-        int bridgeSize = InputView.readBridgeSize();
+        int bridgeSize = bridge.getBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -35,7 +35,7 @@ public class BridgeGame {
 
     private void processCrossingBridge(List<String> bridge) {
         for (int step = 0; step < bridge.size(); step++) {
-            String movingBlock = OutputView.printSelectMovingBlock();
+            String movingBlock = this.bridge.selectBlock();
             user.currentBlock = TypeConverter.blockToNumber(movingBlock);
             if (isFailed(step, bridge, movingBlock)) {
                 break;
@@ -50,15 +50,15 @@ public class BridgeGame {
     private boolean move(int step, List<String> bridge, String movingBlock) {
         user.addBridgeInfo(step, movingBlock);
         if (Objects.equals(bridge.get(step), movingBlock)) {
-            OutputView.printMap(true, user, step);
+            this.bridge.printingBridge(true, user, step);
             return true;
         }
-        OutputView.printMap(false, user, step);
+        this.bridge.printingBridge(false, user, step);
         return false;
     }
 
     private void retry(List<String> bridge) {
-        String restartGameWhether = InputView.readGameCommand();
+        String restartGameWhether = user.readGameCommand();
         ValidateInput.validateRestartGameWhether(restartGameWhether);
 
         if (user.ifUserInputQStopGameOrElseRestart(restartGameWhether)) {

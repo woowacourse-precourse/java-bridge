@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.HashMap;
@@ -57,5 +58,9 @@ public class User {
 
     public void printResult() {
         OutputView.printResult(isGameClear, retryCount);
+    }
+
+    public String readGameCommand() {
+        return InputView.readGameCommand();
     }
 }
