@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum BridgeStep {
     UP("U"),DOWN("D");

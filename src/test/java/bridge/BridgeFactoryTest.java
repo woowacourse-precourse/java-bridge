@@ -3,6 +3,9 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.domain.BridgeFactory;
+import bridge.domain.BridgeSize;
+import bridge.domain.BridgeStep;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
