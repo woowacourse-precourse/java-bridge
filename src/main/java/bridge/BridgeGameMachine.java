@@ -54,37 +54,15 @@ public class BridgeGameMachine {
         }
     }
 
-    private void printResult(BridgeGame bridgeGame) {
-        MovingMap movingMap = bridgeGame.getMovingMap();
-        boolean isClear = bridgeGame.isGameClear();
-        int tryCount = bridgeGame.getTryCount();
-
-        outputView.printResult(movingMap, isClear, tryCount);
-    }
-
-    private String inputGameCommand() {
-        return inputView.readGameCommand();
-    }
-
-    private void printMovingMap(BridgeGame bridgeGame) {
-        MovingMap movingMap = bridgeGame.getMovingMap();
-        outputView.printMap(movingMap);
+    private void printStartGame() {
+        outputView.printStartGame();
         outputView.println();
-    }
-
-    private String inputMoving() {
-        return inputView.readMoving();
     }
 
     private int inputBridgeSize() {
         int bridgeSize = inputView.readBridgeSize();
         outputView.println();
         return bridgeSize;
-    }
-
-    private void printStartGame() {
-        outputView.printStartGame();
-        outputView.println();
     }
 
     private BridgeGame createNewGame(int bridgeSize) {
@@ -95,5 +73,27 @@ public class BridgeGameMachine {
         Player player = new Player();
 
         return new BridgeGame(bridge, player);
+    }
+
+    private String inputMoving() {
+        return inputView.readMoving();
+    }
+
+    private void printMovingMap(BridgeGame bridgeGame) {
+        MovingMap movingMap = bridgeGame.getMovingMap();
+        outputView.printMap(movingMap);
+        outputView.println();
+    }
+
+    private String inputGameCommand() {
+        return inputView.readGameCommand();
+    }
+
+    private void printResult(BridgeGame bridgeGame) {
+        MovingMap movingMap = bridgeGame.getMovingMap();
+        boolean isClear = bridgeGame.isGameClear();
+        int tryCount = bridgeGame.getTryCount();
+
+        outputView.printResult(movingMap, isClear, tryCount);
     }
 }
