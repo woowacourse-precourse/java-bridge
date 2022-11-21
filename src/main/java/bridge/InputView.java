@@ -13,6 +13,7 @@ public class InputView {
     public int readBridgeSize() {
         String input = Console.readLine();
         Validator.tryCatchIsNumber(input);
+        Validator.tryCatchIsNumberInValidRange(Integer.parseInt(input));
         return Integer.parseInt(input);
     }
 

@@ -24,6 +24,18 @@ public class Validator {
         }
     }
 
+    public static void isNumberInValidRange(int number) {
+        if (number < 3 || number > 20) {
+            throw exit_Program;
+        }
+    }
 
-
+    public static void tryCatchIsNumberInValidRange(int input){
+        try{
+            isNumberInValidRange(input);
+        }catch(IllegalArgumentException e){
+            outputView.printStatements("");
+            throw exit_Program;
+        }
+    }
 }

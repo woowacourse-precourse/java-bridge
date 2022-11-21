@@ -68,7 +68,7 @@ BridgeGameController 클래스에 BridgeMaker, BridgeGame 클래스의 객체들
 
 --- 
 
-## 🏘️ 구현할 기능 목록 (version 1.2.0)
+## 🏘️ 구현할 기능 목록 (version 1.2.1)
 
 ## 0. 게임 진행을 위한 출력문 enum 작성 [V]
 
@@ -78,3 +78,4 @@ BridgeGameController 클래스에 BridgeMaker, BridgeGame 클래스의 객체들
 - [V] 다리 길이의 입력값이 올바른지 검증한다.
 - [V] 다리를 생성해 반환한다.
 - [V] BridgeGameControl 클래스의 setBridgeGame 메서드 -> startGame, setBridgeGame 메서드 2개로 분할
+- [V] 다리 길이의 입력값이 3이상 20 이하의 숫자인지 검증한다.
