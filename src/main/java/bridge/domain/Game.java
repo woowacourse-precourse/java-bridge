@@ -26,17 +26,18 @@ public class Game {
     }
 
     public void Start(){
-        while (true){
+        boolean move = true;
+        while (move){
             String readMove = inputView.readMoving();
-            boolean move = bridgeGame.move(bridge, readMove);
+            move = bridgeGame.move(bridge, readMove);
             List<String> mapStr = bridgeGame.makeMap(readMove, move);
             outputView.printMap(mapStr);
             bridgeGame.index++;
-            if (bridgeGame.index == bridgeSize || !move) {
+            if (bridgeGame.index == bridgeSize) {
                 break ;
             }
         }
-        if (bridgeGame.index == bridgeSize){
+        if (move){
             outputView.printResult(SUCCESS, mapString.makeMapString(MapString.upstairs, MapString.downstairs));
             return ;
         }
