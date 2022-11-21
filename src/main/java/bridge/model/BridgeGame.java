@@ -1,13 +1,18 @@
 package bridge.model;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
+    private final int length;
+    private final List<String> bridge;
     public BridgeGame(int length){
+        this.length = length;
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeMaker.makeBridge(length);
+        this.bridge = bridgeMaker.makeBridge(length);
     }
 
     /**
@@ -24,5 +29,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public int getLength(){
+        return length;
+    }
+
+    public List<String> getBridge(){
+        return bridge;
     }
 }

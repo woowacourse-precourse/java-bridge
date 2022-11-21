@@ -11,6 +11,7 @@ public class BridgeController {
             System.out.println(GAME_START);
             BridgeGame bridgeGame = createBridgeGame();
 
+
         } catch (IllegalArgumentException e){
 
         }
