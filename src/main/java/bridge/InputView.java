@@ -39,7 +39,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            OutputView.printToChoicePlace();
+            String upOrDown = Console.readLine();
+            validateCorrectMoving(upOrDown);
+            return upOrDown;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+    }
+
+    private void validateCorrectMoving(String choice) {
+        if (!(choice.equals("U")) && !(choice.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D 문자만 입력해주세요");
+        }
     }
 
     /**
