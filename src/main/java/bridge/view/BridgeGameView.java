@@ -17,6 +17,8 @@ public class BridgeGameView {
     }
 
     public String requestDirection() {
+        outputView.printInputDirectionPrompt();
+
         return inputView.readMoving();
     }
 }
