@@ -16,6 +16,34 @@ public class RoundTest {
     }
 
     @Test
+    @DisplayName("이동이 가능한 방향에 대하여 이동이 가능하다고 판단한다.")
+    void isReturnTrueWhenMovable() {
+        //given
+        List<Integer> accessibleIndexes = List.of(0);
+        boolean compareResult = true;
+
+        //when
+        boolean result = round.isMovable(accessibleIndexes);
+
+        //then
+        assertThat(result).isEqualTo(compareResult);
+    }
+
+    @Test
+    @DisplayName("이동이 불가능한 방향에 대하여 이동이 불가능하다고 판단한다.")
+    void isReturnFalseWhenImmovale() {
+        //given
+        List<Integer> accessibleIndexes = List.of(1);
+        boolean compareResult = false;
+
+        //when
+        boolean result = round.isMovable(accessibleIndexes);
+
+        //then
+        assertThat(result).isEqualTo(compareResult);
+    }
+
+    @Test
     @DisplayName("다리의 끝에 도달하지 않은 경우 게임 중이라는 상태를 반환한다.")
     void isReturnTrueWhenNotArrived() {
         //given
@@ -36,10 +64,9 @@ public class RoundTest {
         boolean compareResult = false;
         int destinationIndex = 0;
         String direction = "U";
-        List<Integer> accessibleIndex = List.of(0);
 
         //when
-        round.updateStatusAfterMove(direction, accessibleIndex);
+        round.updateStatusWhenMovable(direction);
         boolean result = round.isRoundPlaying(destinationIndex);
 
         //then
