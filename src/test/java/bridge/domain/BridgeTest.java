@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -74,5 +73,18 @@ class BridgeTest {
 
         // then
         assertThat(firstMovingFlag).isEqualTo(false);
+    }
+
+    @DisplayName("사용자의 위치가 다리의 크기보다 큰 경우 예외가 발생한다.")
+    @Test
+    void createMovingWithWrongPosition() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        String moving = "U";
+        int position = 3;
+
+        // when, then
+        assertThatThrownBy(() -> bridge.canMove(position, moving))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
