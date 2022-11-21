@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.data.BridgeGame;
+import bridge.data.UserBridege;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,6 +11,7 @@ public class GameSystem {
     private String state = "C";
     private int count = 0;
     private int attempt = 1;
+    private int saveSize;
 
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
@@ -18,19 +20,14 @@ public class GameSystem {
 
     public void inputBridgeLength() {
         outputView.printWelcome();
-        int saveSize = inputView.readBridgeSize();
+        saveSize = inputView.readBridgeSize();
         game.saveBridge(make.makeBridge(saveSize));
     }
 
-    public void calculate() {
 
-    }
 
     public void result() {
 
     }
 
-    private String updatdState() {
-        return "C";
-    }
 }
