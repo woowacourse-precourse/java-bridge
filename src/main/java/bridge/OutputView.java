@@ -38,16 +38,20 @@ public class OutputView {
             List<String> map,
             int tryCount,
             boolean isCorrectPath) {
-        String gameResult = SUCCESS;
-        if (!isCorrectPath) {
-            gameResult = FAIL;
-        }
+        String gameResult = successOrFail(isCorrectPath);
 
         System.out.println(GAME_RESULT_TITLE);
         printMap(map);
         System.out.println(GAME_RESULT_EVENT_MESSAGE
                 .replace(REPLACE_GAME_RESULT_FROM, gameResult)
                 .replace(REPLACE_TRY_COUNT_FROM, Integer.toString(tryCount)));
+    }
+
+    private String successOrFail(boolean isCorrectPath) {
+        if (isCorrectPath) {
+            return SUCCESS;
+        }
+        return FAIL;
     }
 
     public void printStartEventMessage() {
