@@ -24,10 +24,9 @@ public class Application {
         Controller controller = new Controller(inputView, outputView);
 
         inputFunctions(outputView, controller::start);
-        inputFunctions(outputView, controller::move);
-        inputFunctions(outputView, controller::askRetry);
-
-
-
+        while (true) {
+            inputFunctions(outputView, controller::move);
+            inputFunctions(outputView, controller::askRetry);
+        }
     }
 }

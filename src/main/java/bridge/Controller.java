@@ -43,6 +43,9 @@ public class Controller {
     public boolean askRetry() {
         String command = iView.readGameCommand();
         boolean re = command.equals("R");
+        if (re) {
+            bridgeGame.retry();
+        }
         return re;
     }
 
