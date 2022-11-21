@@ -1,6 +1,8 @@
 package bridge.view;
 
-import bridge.validator.InputValidator;
+import bridge.validator.InputBridgeSizeValidator;
+import bridge.validator.InputMovingValidator;
+import bridge.validator.InputRetryOrExitValidator;
 import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -20,7 +22,7 @@ public class InputView {
         System.out.println(GAME_START_MESSAGE);
 
         int size = convertStringToInt(Console.readLine());
-        InputValidator.validateBridgeSize(size);
+        InputBridgeSizeValidator.validateBridgeSize(size);
         return size;
     }
 
@@ -31,7 +33,7 @@ public class InputView {
         System.out.println(MOVING_INPUT_MESSAGE);
 
         String movingInput = Console.readLine();
-        InputValidator.validateMovingInput(movingInput);
+        InputMovingValidator.validateMovingInput(movingInput);
         return movingInput;
     }
 
@@ -42,7 +44,7 @@ public class InputView {
         System.out.println(COMMAND_INPUT_MESSAGE);
 
         String command = Console.readLine();
-        InputValidator.validateRetryOrExitCommand(command);
+        InputRetryOrExitValidator.validateRetryOrExitCommand(command);
         return command;
     }
 
