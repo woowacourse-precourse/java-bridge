@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import static bridge.BridgeGame.createGame;
+import static bridge.service.BridgeGame.createGame;
 import static bridge.domain.game.GameRunStatus.makeGameRunStatus;
 import static bridge.message.SystemMessage.GAME_RESULT;
 import static bridge.message.SystemMessage.GAME_START;
@@ -13,7 +13,7 @@ import static bridge.view.game.GameResultView.makeGameResultView;
 import static bridge.view.game.GameStatusView.makeGameResultStatusView;
 import static bridge.view.game.GameStatusView.makeGameStatusView;
 
-import bridge.BridgeGame;
+import bridge.service.BridgeGame;
 import bridge.domain.game.GameRunStatus;
 import bridge.value.BridgeCharacter;
 import bridge.value.GameCommand;

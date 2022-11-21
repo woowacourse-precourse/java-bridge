@@ -1,4 +1,4 @@
-package bridge;
+package bridge.service;
 
 import static bridge.configuration.AppConfig.bridgeMaker;
 import static bridge.domain.bridge.Bridge.convert;
