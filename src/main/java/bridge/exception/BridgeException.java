@@ -45,7 +45,11 @@ public class BridgeException {
         }
     }
 
-
+    public void checkBridgeInputAlphabetOnlyEnglish(String input) {
+        if(!input.matches(ENGLISH_REGEX)) {
+            throw new IllegalArgumentException("알파벳으로만 입력해주세요. ");
+        }
+    }
 
 
 
