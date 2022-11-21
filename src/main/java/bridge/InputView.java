@@ -7,7 +7,8 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_BRIDGE_SIZE_MESSAGE = "\n다리의 길이를 입력해주세요.";
+    private static final String INPUT_BRIDGE_LOCATION_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -28,7 +29,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public BridgeLocationStatus readMoving() {
-        return BridgeLocationStatus.getBridgeLocationStatus(Console.readLine());
+        System.out.println(INPUT_BRIDGE_LOCATION_MESSAGE);
+        try {
+            return BridgeLocationStatus.getBridgeLocationStatus(Console.readLine());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return readMoving();
+        }
     }
 
     /**
