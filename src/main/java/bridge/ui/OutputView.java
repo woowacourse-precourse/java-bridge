@@ -1,9 +1,12 @@
-package bridge;
+package bridge.ui;
+
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 
 import java.util.List;
 
-import static bridge.Constant.MOVING_DOWN;
-import static bridge.Constant.MOVING_UP;
+import static bridge.util.Constant.MOVING_DOWN;
+import static bridge.util.Constant.MOVING_UP;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

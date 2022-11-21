@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 /**
  * 상수를 관리하는 클래스

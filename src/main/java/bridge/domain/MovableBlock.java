@@ -1,10 +1,10 @@
-package bridge;
+package bridge.domain;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-import static bridge.Constant.MOVING_DOWN;
-import static bridge.Constant.MOVING_UP;
+import static bridge.util.Constant.MOVING_DOWN;
+import static bridge.util.Constant.MOVING_UP;
 
 public enum MovableBlock {
     UP(1,MOVING_UP),

@@ -1,9 +1,16 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 import java.util.List;
 
-import static bridge.Constant.QUIT_GAME;
-import static bridge.Constant.RETRY_GAME;
+import static bridge.util.Constant.QUIT_GAME;
+import static bridge.util.Constant.RETRY_GAME;
 
 public class BridgeGameController {
 

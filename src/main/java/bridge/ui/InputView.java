@@ -1,8 +1,8 @@
-package bridge;
+package bridge.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.Constant.*;
+import static bridge.util.Constant.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

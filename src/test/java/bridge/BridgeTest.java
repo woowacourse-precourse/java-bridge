@@ -1,15 +1,11 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
 
@@ -19,6 +15,7 @@ class BridgeTest {
     @Test
     void checkingMovableTest() {
         List<String> inputs = List.of("U", "D", "U");
+        bridge = new Bridge(inputs);
         for (int i = 0; i < 3; i++) {
             boolean movableBlock = bridge.isMovableBlock(i, inputs.get(i));
             Assertions.assertThat(movableBlock).isTrue();

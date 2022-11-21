@@ -1,10 +1,10 @@
-package bridge;
+package bridge.domain;
 
 import java.util.Collections;
 import java.util.List;
 
-import static bridge.Constant.MOVING_DOWN;
-import static bridge.Constant.MOVING_UP;
+import static bridge.util.Constant.MOVING_DOWN;
+import static bridge.util.Constant.MOVING_UP;
 
 /**
  * 다리의 정보를 저장하는 클래스

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.MovableBlock;
+
 import java.util.ArrayList;
 import java.util.List;
 
