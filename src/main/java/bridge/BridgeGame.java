@@ -10,14 +10,13 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    BridgeBroker bridgeBroker = new BridgeBroker();
-    Bridge bridge;
-    GameResult gameResult = new GameResult();
+    private final InputView inputView = new InputView();
+    private final BridgeBroker bridgeBroker = new BridgeBroker();
+    private Bridge bridge;
+    private GameResult gameResult = new GameResult();
 
     public BridgeGame() {
-        outputView.printWelcome();
+        OutputView.printWelcome();
     }
 
     public Bridge makeBridge() {
@@ -48,6 +47,10 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public static void printGameResult(GameResult gameResult) {
+        OutputView.printGame(gameResult);
     }
 
     public GameResult getResult() {
