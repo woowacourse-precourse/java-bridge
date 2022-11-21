@@ -1,6 +1,9 @@
 package bridge.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.Objects;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -19,7 +22,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine();
+        String result = Console.readLine();
+        validationMoving(result);
+        return result;
     }
 
     /**
@@ -27,6 +32,20 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return Console.readLine();
+        String result = Console.readLine();
+        validationGamieCommand(result);
+        return result;
+    }
+
+    private void validationMoving(String moving){
+        if(!Objects.equals(moving, "U") && !Objects.equals(moving, "D")){
+            throw new IllegalArgumentException("[ERROR] 입력값이 잘못됐습니다.");
+        }
+    }
+
+    private void validationGamieCommand(String gameCommand){
+        if(!Objects.equals(gameCommand, "R") && !Objects.equals(gameCommand, "Q")){
+            throw new IllegalArgumentException("[ERROR] 입력값이 잘못됐습니다.");
+        }
     }
 }
