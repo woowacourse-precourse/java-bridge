@@ -2,8 +2,6 @@ package bridge.domain;
 
 import static bridge.constant.GameCommand.QUIT;
 import static bridge.constant.GameCommand.RETRY;
-import static bridge.constant.GameStatus.FAIL;
-import static bridge.constant.GameStatus.ON_WAY;
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,22 +30,16 @@ class BridgeGameTest {
         @DisplayName("이동에 1회 성공한 경우")
         @Test
         void should_ReturnBridgePicture_When_SuccessToMove() {
-            // given
             String moving = UPPER_SIDE;
-            // when
             String bridgePicture = bridgeGame.move(moving);
-            // then
             assertThat(bridgePicture).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
         @DisplayName("이동에 1회 실패한 경우")
         @Test
         void should_ReturnBridgePicture_When_FailToMove() {
-            // given
             String moving = LOWER_SIDE;
-            // when
             String bridgePicture = bridgeGame.move(moving);
-            // then
             assertThat(bridgePicture).isEqualTo("[   ]" + "\n" + "[ X ]");
         }
 
@@ -67,22 +59,16 @@ class BridgeGameTest {
         @DisplayName("진행 중인 경우")
         @Test
         void should_ReturnTrue_When_StatusIsOnWay() {
-            // given
             bridgeGame.move(UPPER_SIDE);
-            // when
             boolean isOnWay = bridgeGame.isOnWay();
-            // then
             assertThat(isOnWay).isTrue();
         }
 
         @DisplayName("실패 상태인 경우")
         @Test
         void should_ReturnFalse_When_StatusIsFail() {
-            // given
             bridgeGame.move(LOWER_SIDE);
-            // when
             boolean isOnWay = bridgeGame.isOnWay();
-            // then
             assertThat(isOnWay).isFalse();
         }
     }
@@ -94,22 +80,16 @@ class BridgeGameTest {
         @DisplayName("실패 상태인 경우")
         @Test
         void should_ReturnTrue_When_StatusIsFail() {
-            // given
             bridgeGame.move(LOWER_SIDE);
-            // when
             boolean isOnWay = bridgeGame.isFail();
-            // then
             assertThat(isOnWay).isTrue();
         }
 
         @DisplayName("진행 중인 경우")
         @Test
         void should_ReturnFalse_When_StatusIsOnWay() {
-            // given
             bridgeGame.move(UPPER_SIDE);
-            // when
             boolean isOnWay = bridgeGame.isFail();
-            // then
             assertThat(isOnWay).isFalse();
         }
     }
@@ -121,24 +101,18 @@ class BridgeGameTest {
         @DisplayName("종료 상태인 경우")
         @Test
         void should_ReturnTrue_When_StatusIsEnd() {
-            // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.move(UPPER_SIDE);
-            // when
             boolean isOnWay = bridgeGame.isEnd();
-            // then
             assertThat(isOnWay).isTrue();
         }
 
         @DisplayName("진행 중인 경우")
         @Test
         void should_ReturnFalse_When_StatusIsOnWay() {
-            // given
             bridgeGame.move(UPPER_SIDE);
-            // when
             boolean isOnWay = bridgeGame.isEnd();
-            // then
             assertThat(isOnWay).isFalse();
         }
     }
@@ -150,13 +124,10 @@ class BridgeGameTest {
         @DisplayName("게임을 재시작하는 경우")
         @Test
         void should_BeOnWay_When_Input_Retry() {
-            // given
             bridgeGame.move(LOWER_SIDE);
             boolean gameStatusBefore = bridgeGame.isFail();
-            // when
             bridgeGame.retry(RETRY);
             boolean gameStatusAfter = bridgeGame.isOnWay();
-            // then
             assertThat(gameStatusBefore).isTrue();
             assertThat(gameStatusAfter).isTrue();
         }
@@ -164,13 +135,10 @@ class BridgeGameTest {
         @DisplayName("게임을 종료하는 경우")
         @Test
         void should_BeEnd_When_Input_Quit() {
-            // given
             bridgeGame.move(LOWER_SIDE);
             boolean gameStatusBefore = bridgeGame.isFail();
-            // when
             bridgeGame.retry(QUIT);
             boolean gameStatusAfter = bridgeGame.isEnd();
-            // then
             assertThat(gameStatusBefore).isTrue();
             assertThat(gameStatusAfter).isTrue();
         }
@@ -191,26 +159,20 @@ class BridgeGameTest {
         @DisplayName("성공한 경우")
         @Test
         void should_ReturnTrue_When_SuccessToCrossBridge() {
-            // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.move(UPPER_SIDE);
-            // when
             boolean isSuccess = bridgeGame.isSuccess();
-            // then
             assertThat(isSuccess).isTrue();
         }
 
         @DisplayName("실패한 경우")
         @Test
         void should_ReturnFalse_When_FailToCrossBridge() {
-            // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.retry(QUIT);
-            // when
             boolean isSuccess = bridgeGame.isSuccess();
-            // then
             assertThat(isSuccess).isFalse();
         }
     }
@@ -218,13 +180,10 @@ class BridgeGameTest {
     @DisplayName("이동 현황을 반환한다.")
     @Test
     void should_ReturnBridgePicture_When_RequestToGet() {
-        // given
         bridgeGame.move(UPPER_SIDE);
         bridgeGame.move(LOWER_SIDE);
         bridgeGame.move(UPPER_SIDE);
-        // when
         String bridgePicture = bridgeGame.getPicture();
-        // then
         assertThat(bridgePicture).isEqualTo("[ O |   | O ]" + "\n" + "[   | O |   ]");
     }
 
@@ -235,20 +194,16 @@ class BridgeGameTest {
         @DisplayName("시도 횟수가 1번인 경우")
         @Test
         void should_Be1_When_SuccessToCrossWithNoFail() {
-            // given
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.move(UPPER_SIDE);
-            // when
             int tryCount = bridgeGame.getTryCount();
-            // then
             assertThat(tryCount).isEqualTo(1);
         }
 
         @DisplayName("시도 횟수가 3번인 경우")
         @Test
         void should_Be3_When_SuccessToCrossWith3TimesTry() {
-            // given
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.retry(RETRY);
             bridgeGame.move(LOWER_SIDE);
@@ -256,9 +211,7 @@ class BridgeGameTest {
             bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.move(UPPER_SIDE);
-            // when
             int tryCount = bridgeGame.getTryCount();
-            // then
             assertThat(tryCount).isEqualTo(3);
         }
     }

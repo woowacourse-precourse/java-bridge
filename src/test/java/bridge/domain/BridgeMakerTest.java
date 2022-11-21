@@ -23,21 +23,16 @@ class BridgeMakerTest {
         @DisplayName("다리의 길이가 올바른지 확인")
         @Test
         void should_HaveCorrectLength_When_CreateBridge() {
-            // given
             int inputLength = 7;
-            // when
             List<String> bridge = bridgeMaker.makeBridge(inputLength);
-            // then
             assertThat(bridge).hasSize(inputLength);
         }
 
         @DisplayName("다리가 올바른 요소를 가지고 있는지 확인")
         @Test
         void should_HaveCorrectMoving_When_CreateBridge() {
-            // given
             int inputLength = 15;
             List<String> movingValues = List.of(UPPER_SIDE, LOWER_SIDE);
-            // when
             boolean isMatch = true;
             List<String> bridge = bridgeMaker.makeBridge(inputLength);
             for (String moving: bridge) {
@@ -45,7 +40,6 @@ class BridgeMakerTest {
                     isMatch = false;
                 }
             }
-            // then
             assertThat(isMatch).isTrue();
         }
 

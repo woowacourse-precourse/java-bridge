@@ -28,36 +28,27 @@ class BridgeMonitorTest {
         @DisplayName("위 방향 이동에 성공")
         @Test
         void should_RecordCorrectMoving_When_SuccessToMove() {
-            // given
             String moving = UPPER_SIDE;
             GameStatus gameStatusAfterMoving = ON_WAY;
-            // when
             bridgeMonitor.record(moving, gameStatusAfterMoving);
-            // then
             assertThat(bridgeMonitor.getPicture()).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
         @DisplayName("아래 방향 이동에 실패")
         @Test
         void should_RecordWrongMoving_When_FailToMove() {
-            // given
             String moving = LOWER_SIDE;
             GameStatus gameStatusAfterMoving = FAIL;
-            // when
             bridgeMonitor.record(moving, gameStatusAfterMoving);
-            // then
             assertThat(bridgeMonitor.getPicture()).isEqualTo("[   ]" + "\n" + "[ X ]");
         }
 
         @DisplayName("위, 아래 방향 이동 성공 후, 아래 방향 이동에 실패")
         @Test
         void should_RecordWrongMoving_When_FailToMoveAfterSuccessTwice() {
-            // given
             bridgeMonitor.record(UPPER_SIDE, ON_WAY);
             bridgeMonitor.record(LOWER_SIDE, ON_WAY);
-            // when
             bridgeMonitor.record(LOWER_SIDE, FAIL);
-            // then
             assertThat(bridgeMonitor.getPicture()).isEqualTo(
                     "[ O |   |   ]" + "\n" + "[   | O | X ]"
             );
@@ -66,12 +57,9 @@ class BridgeMonitorTest {
         @DisplayName("위, 아래 방향 이동 성공 후, 아래 방향 이동에 성공하며 다리를 모두 건너기 완료")
         @Test
         void should_RecordCorrectMoving_When_CrossBridgeCompletely() {
-            // given
             bridgeMonitor.record(UPPER_SIDE, ON_WAY);
             bridgeMonitor.record(LOWER_SIDE, ON_WAY);
-            // when
             bridgeMonitor.record(LOWER_SIDE, END);
-            // then
             assertThat(bridgeMonitor.getPicture()).isEqualTo(
                     "[ O |   |   ]" + "\n" + "[   | O | O ]"
             );
@@ -85,14 +73,11 @@ class BridgeMonitorTest {
         @DisplayName("이동 1회 성공 후 이동 실패한 경우")
         @Test
         void should_DeleteRecordOfWrongMoving_When_FailToMoveAfterSuccessOnce() {
-            // given
             bridgeMonitor.record(UPPER_SIDE, ON_WAY);
             bridgeMonitor.record(LOWER_SIDE, FAIL);
             String bridgePictureBefore = bridgeMonitor.getPicture();
-            // when
             bridgeMonitor.turnBackOnce();
             String bridgePictureAfter = bridgeMonitor.getPicture();
-            // then
             assertThat(bridgePictureBefore).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
             assertThat(bridgePictureAfter).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
@@ -100,13 +85,10 @@ class BridgeMonitorTest {
         @DisplayName("시작 후 바로 이동 실패한 경우")
         @Test
         void should_DeleteRecordOfWrongMoving_When_FailToMoveRightAfterStart() {
-            // given
             bridgeMonitor.record(LOWER_SIDE, FAIL);
             String bridgePictureBefore = bridgeMonitor.getPicture();
-            // when
             bridgeMonitor.turnBackOnce();
             String bridgePictureAfter = bridgeMonitor.getPicture();
-            // then
             assertThat(bridgePictureBefore).isEqualTo("[   ]" + "\n" + "[ X ]");
             assertThat(bridgePictureAfter).isEqualTo("[]" + "\n" + "[]");
         }
