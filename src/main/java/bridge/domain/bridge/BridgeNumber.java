@@ -10,4 +10,7 @@ public class BridgeNumber {
     public boolean numberTypeCheck(int index){
         return bridgeNumber.get(index).equals("D");
     }
+    public String getBridgeNumber(int index){
+        return bridgeNumber.get(index);
+    }
 }
