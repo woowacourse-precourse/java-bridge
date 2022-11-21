@@ -8,6 +8,27 @@ public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
+    public void play() {
+        BridgeGame bridgeGame = new BridgeGame(make());
+        String command = "";
+        while (!bridgeGame.isEnd() && !command.equals("Q")) {
+            move(bridgeGame);
+            if (!bridgeGame.isMovableArea()) {
+                command = checkReset(bridgeGame);
+            }
+        }
+        outputView.printResult(bridgeGame);
+    }
+
+    private String checkReset(BridgeGame bridgeGame) {
+        String command;
+
+        command = inputView.readGameCommand();
+        if (command.equals("R")) {
+            bridgeGame.retry();
+        }
+        return command;
+    }
     public List<String> make() {
         while (true) {
             try {
@@ -19,6 +40,7 @@ public class Controller {
             }
         }
     }
+
 
     public void move(BridgeGame bridgeGame) {
         bridgeGame.move(inputView.readMoving());
