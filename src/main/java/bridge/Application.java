@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.model.BridgeMaker;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 public class Application {

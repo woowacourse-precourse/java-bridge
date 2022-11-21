@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import java.util.List;
 
@@ -13,15 +13,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean printMap(List<String> bridge, String moveAnswer, int index) {
+        System.out.print("[ ");
         for (int i = 0; i <= index; i++) {
-            if (moveAnswer.equals("D")) {
-                System.out.println("");
-            }
             if(!isCorrect(bridge, moveAnswer, index)) {
                 return false;
             }
         }
-
+        System.out.println(" ]");
         return true;
     }
 

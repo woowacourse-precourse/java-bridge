@@ -1,4 +1,4 @@
-package bridge;
+package bridge.exception;
 
 public class CheckingException {
     public void isNumber(String number) {
