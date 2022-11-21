@@ -27,60 +27,11 @@ public class OutputView {
 
 	public void printDown(Bridge bridge, int idx, String block, boolean correct){
 		System.out.print("[");
-
 		for (int i=0;i<=idx;i++){
-			if (i==0 && idx==0){
-				if (bridge.getBridge().get(idx).equals("D") && block.equals("D")){
-					System.out.print(" O ");
-				}
-				if (bridge.getBridge().get(idx).equals("D") && block.equals("U")){
-					System.out.print("   ");
-				}
-				if (bridge.getBridge().get(idx).equals("U") && block.equals("U")){
-					System.out.print("   ");
-				}
-				if (bridge.getBridge().get(idx).equals("U") && block.equals("D")){
-					System.out.print(" X ");
-				}
-			}
-			if (i==0 && idx!=0){
-				if (bridge.getBridge().get(0).equals("D")){
-					System.out.print(" O ");
-				}
-				if (bridge.getBridge().get(0).equals("U")){
-					System.out.print("   ");
-				}
-			}
-
-			if (0<i && i < idx) {
-				if (bridge.getBridge().get(i).equals("D")) {
-					System.out.print("| O ");
-				}
-				if (bridge.getBridge().get(i).equals("U")) {
-					System.out.print("|   ");
-				}
-			}
-
-			if (i == idx && idx != 0){
-				if (correct){
-					if (block.equals("D")){
-						System.out.print("| O ");
-					}
-					if (block.equals("U")){
-						System.out.print("|   ");
-					}
-				}
-				if (!correct){
-					if (block.equals("D")){
-						System.out.print("| X ");
-					}
-					if (block.equals("U")){
-						System.out.print("|   ");
-					}
-				}
-			}
+			checkFirstDownBlock(i,idx,bridge.getBridge().get(0),block);
+			checkSecondToBeforeEndDownBlocks(i,idx,bridge.getBridge().get(i));
+			checkEndBlockDownBlock(i,idx,block,correct);
 		}
-		//맞았으면, O가 나와야함
 		System.out.println("]");
 	}
 
@@ -110,9 +61,18 @@ public class OutputView {
 			checkFirstUpBridgeAndBlockDifferentIndexZero(bridgeBlock, block);
 		}
 		if (firstIdx == 0 && idx != 0){
-			checkFirstUpBridgeAndBlockIndexNotZero(bridgeBlock,block);
+			checkFirstUpBridgeAndBlockIndexNotZero(bridgeBlock);
 		}
+	}
 
+	private void checkFirstDownBlock(int firstIdx, int idx, String bridgeBlock, String block){
+		if (firstIdx == 0 && idx == 0){
+			checkFirstDownBridgeAndBlockSameIndexZero(bridgeBlock,block);
+			checkFirstDownBridgeAndBlockDifferentIndexZero(bridgeBlock,block);
+		}
+		if (firstIdx == 0 && idx != 0){
+			checkFirstDownBridgeAndBlockIndexNotZero(bridgeBlock);
+		}
 	}
 
 
@@ -124,6 +84,17 @@ public class OutputView {
 			System.out.print("   ");
 		}
 	}
+
+	private void checkFirstDownBridgeAndBlockSameIndexZero(String bridgeBlock, String block){
+		if (bridgeBlock.equals("D") && block.equals("D")){
+			System.out.print(" O ");
+		}
+		if (bridgeBlock.equals("U") && block.equals("U")){
+			System.out.print("   ");
+		}
+	}
+
+
 	private void checkFirstUpBridgeAndBlockDifferentIndexZero(String bridgeBlock, String block) {
 		if (bridgeBlock.equals("U") && block.equals("D")){
 			System.out.print("   ");
@@ -132,11 +103,31 @@ public class OutputView {
 			System.out.print(" X ");
 		}
 	}
-	private void checkFirstUpBridgeAndBlockIndexNotZero(String bridgeBlock, String block) {
+
+	private void checkFirstDownBridgeAndBlockDifferentIndexZero(String bridgeBlock, String block){
+		if (bridgeBlock.equals("D") && block.equals("U")){
+			System.out.print("   ");
+		}
+
+		if (bridgeBlock.equals("U") && block.equals("D")){
+			System.out.print(" X ");
+		}
+	}
+
+	private void checkFirstUpBridgeAndBlockIndexNotZero(String bridgeBlock) {
 		if (bridgeBlock.equals("U")){
 			System.out.print(" O ");
 		}
 		if (bridgeBlock.equals("D")){
+			System.out.print("   ");
+		}
+	}
+
+	private void checkFirstDownBridgeAndBlockIndexNotZero(String bridgeBlock){
+		if (bridgeBlock.equals("D")){
+			System.out.print(" O ");
+		}
+		if (bridgeBlock.equals("U")){
 			System.out.print("   ");
 		}
 	}
@@ -152,10 +143,28 @@ public class OutputView {
 		}
 	}
 
+	private void checkSecondToBeforeEndDownBlocks(int i , int idx , String block){
+		if (0<i && i<idx) {
+			if (block.equals("D")) {
+				System.out.print("| O ");
+			}
+			if (block.equals("U")) {
+				System.out.print("|   ");
+			}
+		}
+	}
+
 	private void checkEndBlockUpBlock(int i, int idx, String block, boolean correct) {
 		if (i == idx && idx != 0){
 			checkEndBlockUpBlockCorrect(block,correct);
 			checkEndBlockUpBlockNotCorrect(block,correct);
+		}
+	}
+
+	private void checkEndBlockDownBlock(int i, int idx, String block, boolean correct){
+		if (i == idx && idx != 0){
+			checkEndBlockDownBlockCorrect(block,correct);
+			checkEndBlockDownBlockNotCorrect(block,correct);
 		}
 	}
 
@@ -176,6 +185,27 @@ public class OutputView {
 				System.out.print("| X ");
 			}
 			if (block.equals("D")){
+				System.out.print("|   ");
+			}
+		}
+	}
+
+	private void checkEndBlockDownBlockCorrect(String block, boolean correct){
+		if (correct){
+			if (block.equals("D")){
+				System.out.print("| O ");
+			}
+			if (block.equals("U")){
+				System.out.print("|   ");
+			}
+		}
+	}
+	private void checkEndBlockDownBlockNotCorrect(String block, boolean correct){
+		if (!correct){
+			if (block.equals("D")){
+				System.out.print("| X ");
+			}
+			if (block.equals("U")){
 				System.out.print("|   ");
 			}
 		}
