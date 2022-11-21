@@ -6,21 +6,29 @@ import java.util.*;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
+
     private int size;
     private List<String> answers;
 
     public static StringJoiner upperBridge = new StringJoiner("|", "[", "]");
     public static StringJoiner underBridge = new StringJoiner("|", "[", "]");
+
     public static String success;
 
     public static int retryCount = 1;
+
+    public BridgeGame(InputView inputview, OutputView outputView) {
+        this.inputView = inputview;
+        this.outputView = outputView;
+    }
 
     public void gameSet() {
         size = inputView.readBridgeSize();
         answers = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
+
     public void play() {
         for (String answer : answers) {
             String readMoving = inputView.readMoving();
@@ -47,7 +55,7 @@ public class BridgeGame {
     public void moveUpperBridge(String answer, String readMoving) {
         if (answer.equals("D")) {
             upperBridge.add("   ");
-            return ;
+            return;
         }
         if (answer.equals(readMoving)) {
             upperBridge.add(" O ");
@@ -59,7 +67,7 @@ public class BridgeGame {
     public void moveUnderBridge(String answer, String readMoving) {
         if (answer.equals("U")) {
             underBridge.add("   ");
-            return ;
+            return;
         }
         if (answer.equals(readMoving)) {
             underBridge.add(" O ");

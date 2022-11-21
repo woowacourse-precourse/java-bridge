@@ -1,11 +1,9 @@
 package bridge;
 
-import java.util.*;
-
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
 
         bridgeGame.gameSet();
         do {
