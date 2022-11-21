@@ -1,7 +1,5 @@
 package bridge.view;
 
-import java.util.List;
-
 import static bridge.utils.constant.Constant.FAILED;
 import static bridge.utils.constant.Constant.SUCCESS;
 import static bridge.utils.constant.Phrase.*;

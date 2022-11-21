@@ -24,15 +24,31 @@ public class BridgeGame {
      */
     public List<List<String>> move(String direction, String answer) {
         String result = addOorX(direction, answer);
-        List<String> bridgeUp = bridges.get(0);
-        List<String> bridgeDown = bridges.get(1);
         if(direction.equals(UP.getValue())) {
-            bridgeUp.add(result);
-            bridgeDown.add(BLANK.getValue());
+            bridges = bridgeUp(bridges, result);
             return bridges;
         }
+        bridges = bridgeDown(bridges, result);
+        return bridges;
+    }
+
+    public List<List<String>> bridgeUp(List<List<String>> bridges, String result) {
+        List<String> bridgeUp = bridges.get(0);
+        List<String> bridgeDown = bridges.get(1);
+
+        bridgeUp.add(result);
+        bridgeDown.add(BLANK.getValue());
+
+        return bridges;
+    }
+
+    public List<List<String>> bridgeDown(List<List<String>> bridges, String result) {
+        List<String> bridgeUp = bridges.get(0);
+        List<String> bridgeDown = bridges.get(1);
+
         bridgeUp.add(BLANK.getValue());
         bridgeDown.add(result);
+
         return bridges;
     }
 

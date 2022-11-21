@@ -9,9 +9,7 @@ public enum Constant {
     X("X"),
     BLANK(" "),
     SUCCESS("성공"),
-    FAILED("실패"),
-
-    CONTINUE("continue");
+    FAILED("실패");
 
     private final String value;
 

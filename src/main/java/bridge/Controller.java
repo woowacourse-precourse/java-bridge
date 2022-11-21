@@ -72,12 +72,13 @@ public class Controller {
     }
 
     public String endOfTheGame(List<List<String>> bridges) {
-        for (List<String> strings : bridges) {
-            if (strings.contains(X.getValue())) {
-                return FAILED.getValue();
-            }
-        }
-        return SUCCESS.getValue();
+        int last = bridges.get(0).size();
+        List<String> bridgeUp = bridges.get(0);
+        List<String> bridgeDown = bridges.get(1);
+
+        if(bridgeUp.get(last -1).contains(X.getValue()) || bridgeDown.get(last - 1).contains(X.getValue())) {
+            return FAILED.getValue();
+        } return SUCCESS.getValue();
     }
 
     public String askQuit(String failed) {
