@@ -26,7 +26,7 @@ public class BridgeMaker {
 
         for (int bridgeLength = START_MAKE; bridgeLength < size; bridgeLength++) {
             int word = bridgeNumberGenerator.generate();
-            randomBridge.add(func(word));
+            randomBridge.add(findWord(word));
         }
         return randomBridge;
     }
