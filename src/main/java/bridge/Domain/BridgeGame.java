@@ -57,6 +57,7 @@ public class BridgeGame {
     private boolean validateNextStep(String nextStep, int indexOfBridge) {
         if (!Objects.equals(bridgeData.getBridge().get(indexOfBridge), nextStep)) {
             isGameSucceed = FAILED;
+            bridgeData.getBridgeDesignByUser().set(indexOfBridge, " X ");
             return IMPOSSIBLE_ZONE;
         }
         validateGameSuccessfullyFinished();
