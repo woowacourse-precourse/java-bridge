@@ -49,26 +49,26 @@ public class InputView {
         try{
             String moving = checkInputOfMoving(Console.readLine());
             return moving;
-        }catch (IllegalArgumentException e){
+        }catch (IllegalStateException e){
             return readMoving();
         }
     }
 
-    public String checkInputOfMoving(String moving) throws IllegalArgumentException{
+    public String checkInputOfMoving(String moving) throws IllegalStateException{
         try{
-            List<String> commend = new ArrayList<>();
-            commend.add("U");
-            commend.add("D");
-            return checkInputInCommend(moving, commend);
-        }catch (IllegalArgumentException e){
+            List<String> command = new ArrayList<>();
+            command.add("U");
+            command.add("D");
+            return checkInputInCommend(moving, command);
+        }catch (IllegalStateException e){
             System.out.print("[ERROR]: 유효하지 않은 이동입니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalStateException();
         }
     }
 
-    public String checkInputInCommend(String moving, List<String> commend) throws IllegalArgumentException {
-        if(commend.contains(moving)) return moving;
-        throw new IllegalArgumentException();
+    public String checkInputInCommend(String moving, List<String> command) throws IllegalStateException {
+        if(command.contains(moving)) return moving;
+        throw new IllegalStateException();
     }
 
     /**
@@ -76,8 +76,12 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String gameCommand = Console.readLine();
 
-        return gameCommand;
+        try{
+            String gameCommand = checkInputOfGameCommand(Console.readLine());
+            return gameCommand;
+        }catch (IllegalStateException e){
+            return readMoving();
+        }
     }
 }
