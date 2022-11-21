@@ -7,5 +7,9 @@ public class Application {
         int size = InputView.readBridgeSize();
         BridgeGame game = new BridgeGame();
         game.makeBridge(size);
+        while(!game.gameOver) {
+            String moving = InputView.readMoving();
+            game.move(moving);
+        }
     }
 }
