@@ -14,8 +14,13 @@ public class BridgeException {
     }
 
     public void validateMove(String moving){
-        if(!moving.equals("U")||moving.equals("D")){
+        if(!moving.equals("U")&&!moving.equals("D")){
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 대문자 U와 대문자 D만 입력 가능합니다.");
+        }
+    }
+    public void validateRestart(String restart){
+        if(!restart.equals("R") && !restart.equals("Q")){
+            throw new IllegalArgumentException("[ERROR] R(재시작)과 Q(종료) 중 하나의 문자만 입력가능 합니다.");
         }
     }
 }

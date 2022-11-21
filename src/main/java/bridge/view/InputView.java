@@ -43,6 +43,8 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(INPUT_RESTART);
-        return Console.readLine();
+        String restart = Console.readLine();
+        bridgeException.validateRestart(restart);
+        return restart;
     }
 }
