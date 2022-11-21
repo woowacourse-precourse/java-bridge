@@ -88,4 +88,4 @@
 - [ ] InputView 싱글턴 구현
 - [ ] OutputView 싱글턴 구현
 
-- [ ] InputValidatorTest 리팩토링
+- [x] InputValidatorTest 리팩토링
