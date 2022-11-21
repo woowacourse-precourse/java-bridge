@@ -61,4 +61,17 @@ public class BridgeGameTest {
         assertThat(copyList).isNotSameAs(userMap);
         assertThat(copyList).isEqualTo(userMap);
     }
+    @DisplayName("유저가 건너간 다리 결과 리스트 테스트")
+    @Test
+    void exchangeValue() {
+        //given
+        List<List<String>> userMap = new ArrayList<>(2);
+        userMap.add(new ArrayList<>());
+        userMap.add(new ArrayList<>());
+        bridge.BridgeGame bridgeGame = new bridge.BridgeGame(3);
+        //when
+        List<List<String>> lists = bridgeGame.exchangeValue(userMap, "O", "U");
+        //then
+        assertThat(lists.get(0)).isEqualTo(List.of("O"));
+    }
 }
