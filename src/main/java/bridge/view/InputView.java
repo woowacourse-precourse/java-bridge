@@ -15,9 +15,17 @@ public class InputView {
      */
     public int readBridgeSize() throws IllegalArgumentException {
         try {
-            return Integer.parseUnsignedInt(Console.readLine());
-        } catch (NumberFormatException nfe) {
+            int size = Integer.parseUnsignedInt(Console.readLine());
+            validateSize(size);
+            return size;
+        } catch (IllegalArgumentException iae) {
             throw new IllegalArgumentException(InputError.INVALID_SIZE.getMessage());
+        }
+    }
+
+    private void validateSize(int size) {
+        if(size < 3 || size > 20){
+            throw new IllegalArgumentException();
         }
     }
 
