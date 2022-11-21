@@ -69,7 +69,7 @@ public class OutputView {
         System.out.println(Message.GAME_RESULT_MESSAGE);
         printMap(user.getChoices(), compareResults);
 
-        System.out.println(Message.SUCCESS_OR_FAIL + booleanToString(user.getDoesSuccess()));
+        System.out.println(Message.SUCCESS_OR_FAIL + booleanToString(user.getIsSuccess()));
         System.out.println(Message.TOTAL_TRY_COUNT + user.getTotalTryCount());
     }
 

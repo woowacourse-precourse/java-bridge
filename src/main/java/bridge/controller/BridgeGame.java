@@ -19,7 +19,7 @@ public class BridgeGame {
 
     public void run() {
         startGame();
-        while (isRepeat(flag, user)) {
+        while (doesRepeat(flag, user)) {
             move();
             if (!isCorrectChoice()) {
                 flag = retry();
@@ -31,15 +31,15 @@ public class BridgeGame {
 
     private void startGame() {
         OutputView.printStart();
-        makeAnswerBridge();
+        buildAnswerBridge();
     }
 
-    private void makeAnswerBridge() {
+    private void buildAnswerBridge() {
         while (true) {
             try {
                 int bridgeSize = InputView.getInputBridgeSize();
-                List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-                answerBridge = new AnswerBridge(bridge);
+                List<String> madeBridge = bridgeMaker.buildBridge(bridgeSize);
+                answerBridge = new AnswerBridge(madeBridge);
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 OutputView.printError(illegalArgumentException);
@@ -47,8 +47,8 @@ public class BridgeGame {
         }
     }
 
-    private boolean isRepeat(final boolean flag, final User user) {
-        return (flag && !user.getDoesSuccess());
+    private boolean doesRepeat(final boolean flag, final User user) {
+        return (flag && !user.getIsSuccess());
     }
 
     public void move() {
