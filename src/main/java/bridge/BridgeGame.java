@@ -1,6 +1,7 @@
 package bridge;
 
 import domain.Bridge;
+import domain.Result;
 import enums.InputEnum;
 import enums.ResultMessage;
 import view.InputView;
@@ -16,6 +17,8 @@ public class BridgeGame {
     final InputView inputView = new InputView();
     final OutputView outputView = new OutputView();
     final Bridge bridge = new Bridge();
+    final Result result= new Result();
+    int trial = 0;
     BridgeGame(){
         System.out.println(InputEnum.START_BRIDGE_GAME.getValue());
     }
@@ -25,19 +28,21 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(final List<String> bridgeAnswer, int position) {
-        while (true) {
-            final String moving = inputView.readMoving();
-            if( bridgeAnswer.get(position).equals(moving) ){
+    public void move(final List<String> bridgeAnswer, int position) { //이동
+            if(position == bridgeAnswer.size()) {
+                result.setIsSuccess(true);
+                result.setTrial(trial);
+                break; //성공
+            }
+            trial++;
+
+            if( bridgeAnswer.get(position).equals( inputView.readMoving() ) ){
                 outputView.printMap();
                 position++;
                 continue;
             }
 
-            outputView.printMapWhenFail();
-            retry();
-            // 틀리면 -> 틀린 다리 상태 출력 & RETRY() 호출
-        }
+            retry(); // 틀리면 -> 틀린 다리 상태 출력 & RETRY() 호출
 
     }
 
@@ -47,6 +52,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        outputView.printMapWhenFail();
         String retrial = inputView.readGameCommand();
         if(retrial.equals("Q")) {
             System.out.println(ResultMessage.RESULT_INTRO_TEXT.getText());
@@ -59,7 +65,9 @@ public class BridgeGame {
     public void start() {
         final int size = inputView.readBridgeSize();
         final List<String> bridgeAnswer = bridgeMaker.makeBridge(size);
-        move(bridgeAnswer, 1);
+        while(true){
+            move(bridgeAnswer, 1);
+        }
 
     }
 }
