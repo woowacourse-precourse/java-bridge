@@ -56,7 +56,6 @@ class BridgeGameTest {
         game.move("U");
         game.retry("R");
 
-
         assertThat(game.getMoves()).isEqualTo(List.of());
         assertThat(game.getState()).isEqualTo(STATE.MOVING);
         assertThat(game.getRetries()).isEqualTo(2);
