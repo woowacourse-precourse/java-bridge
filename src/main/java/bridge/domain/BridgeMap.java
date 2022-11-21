@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.constant.BridgeMapConstants;
 import bridge.constant.enums.Moving;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BridgeMap {
@@ -16,7 +17,8 @@ public class BridgeMap {
     }
 
     public List<List<String>> getBridgeMap() {
-        return bridgeMap;
+        return List.of(Collections.unmodifiableList(bridgeMap.get(BridgeMapConstants.UP_SIDE_INDEX)),
+                Collections.unmodifiableList(bridgeMap.get(BridgeMapConstants.DOWN_SIDE_INDEX)));
     }
 
     public void update(String direction, boolean gameOver) {
