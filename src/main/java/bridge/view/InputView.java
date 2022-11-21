@@ -18,7 +18,7 @@ public class InputView {
     private static final String BRIDGE_SIZE_ERROR = "정수만 입력 가능합니다.";
     private static final String COMMAND_ERROR = "명령어 형식이 올바르지 않습니다.";
 
-    private static final String EMPTY = "";
+    private static final String EMPTY_STRING = "";
 
     private static final Pattern COMMAND_PATTERN = Pattern.compile("^[a-zA-Z]$");
 
@@ -30,7 +30,7 @@ public class InputView {
 
         String input = Console.readLine();
 
-        System.out.println(EMPTY);
+        System.out.println(EMPTY_STRING);
 
         validateBridgeSize(input);
         return parseInt(input);
