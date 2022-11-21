@@ -9,11 +9,7 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-//        int i = 0;
-//        do {
-//            System.out.println(i++);
-//        }
-//        while (i < 3);
+
         // TODO: 프로그램 구현
         int gameCount = 1;
         OutputView outputView = new OutputView();
@@ -42,14 +38,22 @@ public class Application {
                 outputView.getRestartButton();
                 String command = inputView.readGameCommand();
                 if (bridgeGame.retry(command)) {
-                    GameCount ++;
+                    gameCount ++;
+                    System.out.println(upstairsBridge);
+                    System.out.println(downstairsBridge);
                     bridgeGame.returnToPreviousStatus(upstairsBridge, downstairsBridge);
+                    System.out.println(upstairsBridge);
+                    System.out.println(downstairsBridge);
                 }
-                if (!bridgeGame.retry(command))
+                if (!bridgeGame.retry(command)) {
+                    System.out.println(bridgeGame.retry(command));
+
+                    outputView.printResult(upstairsBridge, downstairsBridge, gameCount);
                     return;
+                }
             }
         }
-        while (!bridgeGame.whetherGameSuccess(upstairsBridge,downstairsBridge) || size > numberOfTriedAnswers);
+        while (!bridgeGame.whetherGameSuccess(upstairsBridge,downstairsBridge) || size > upstairsBridge.size());
 
         outputView.printResult(upstairsBridge, downstairsBridge, gameCount);
     }

@@ -83,12 +83,14 @@ public class BridgeGame {
 
     public static int getAnswerCount(String direction) {
         triedAnswers.add(direction);
+        System.out.println(triedAnswers);
         return triedAnswers.size();
     }
 
     public static void returnToPreviousStatus(List<String> upstairsBridge, List<String> downstairsBridge) {
         upstairsBridge.remove(upstairsBridge.size()-1);
-        downstairsBridge.remove(upstairsBridge.size()-1);
+        downstairsBridge.remove(downstairsBridge.size()-1);
+        triedAnswers.remove(triedAnswers.size()-1);
     }
 
     public static boolean whetherGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge) {
