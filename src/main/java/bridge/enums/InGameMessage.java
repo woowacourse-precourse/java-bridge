@@ -9,18 +9,22 @@ public enum InGameMessage {
   RESULT("최종 게임 결과"),
   SUCCESS_OR_FAILURE("게임 성공 여부: "),
   TRY_COUNT("총 시도한 횟수: "),
-  SUCCESS("성공"),
-  FAILURE("실패");
+  SUCCESS("성공", true),
+  FAILURE("실패", false);
 
 
   private String message;
+  private boolean success;
 
   InGameMessage(String message) {
     this.message = message;
+  }
+  InGameMessage(String message, boolean success) {
+    this.message = message;
+    this.success = success;
   }
 
   public String getMessage() {
     return message;
   }
-
 }
