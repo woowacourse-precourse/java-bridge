@@ -14,4 +14,16 @@ public class validateNumberFormatTest {
         assertThatThrownBy(() -> validateNumberFormat.validate("123a45"))
                 .isInstanceOf(InvalidNumberFormatException.class);
     }
+
+    @DisplayName("숫자가 들어오면 정상적으로 통과한다.")
+    @Test
+    void InputNumberByCorrectFormat() {
+        // given
+        String string = "12345";
+
+        // when
+        validateNumberFormat.validate(string);
+
+        // then
+    }
 }
