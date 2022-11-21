@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.service.validator;
 
 import bridge.exception.BridgeIllegalArgumentException;
 import bridge.service.BridgeNumberGenerator;
