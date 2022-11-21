@@ -5,7 +5,7 @@ public class GameMessage {
     private static final String IS_ERROR = "[ERROR] ";
     public static final String LINE_BREAK = "\n";
 
-    public static String getResultMessage() {
+    public static String getResultTitle() {
         return Result
                 .FINAL_GAME_RESULT
                 .getContents();
@@ -31,7 +31,7 @@ public class GameMessage {
         return message;
     }
 
-    public static String getErrorMessage(String errorContents) {
+    public static String getError(String errorContents) {
         return IS_ERROR + errorContents;
     }
 

@@ -60,7 +60,7 @@ public class InputView {
                     .Exception
                     .IS_NUMBER
                     .getContents();
-            String message = GameMessage.getErrorMessage(contents);
+            String message = GameMessage.getError(contents);
             OutputView.printMessage(message);
             throw new IllegalArgumentException(message);
         }
@@ -74,7 +74,7 @@ public class InputView {
                     .Exception
                     .OUT_OF_RANGE_BRIDGE
                     .getContents();
-            String message = GameMessage.getErrorMessage(contents);
+            String message = GameMessage.getError(contents);
             OutputView.printMessage(message);
             throw new IllegalArgumentException();
         }
@@ -88,7 +88,7 @@ public class InputView {
                     .Exception
                     .DISALLOWED_INPUT_MOVE
                     .getContents();
-            String message = GameMessage.getErrorMessage(contents);
+            String message = GameMessage.getError(contents);
             OutputView.printMessage(message);
             throw new IllegalArgumentException();
         }
@@ -99,7 +99,7 @@ public class InputView {
 
         if (commandError) {
             String contents = GameMessage.Exception.DISALLOWED_INPUT_RE_GAME.getContents();
-            String message = GameMessage.getErrorMessage(contents);
+            String message = GameMessage.getError(contents);
             OutputView.printMessage(message);
             throw new IllegalArgumentException();
         }

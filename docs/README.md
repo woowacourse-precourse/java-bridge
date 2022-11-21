@@ -145,9 +145,17 @@
     - GameMessage (Class)
         모든 메시지 enum 모음 클래스 
 
+* getResultTitle
+  - 함수 10줄 이내의 코드 작성을 위한 get 함수
+* getTotalTry
+  - 시도횟수를 입력받아 문자열 Result 메시지와 format 하여 반환
+* getSuccessOrNot
+  - 성공 or 실패 메시지 반환
+* getError
+  - 예외처리 메시지 반환
 * Guide
-    - 안내 메시지 Enum
+  - 안내 메시지 Enum
 * Exception
-    - 예외 메시지 Enum
+  - 예외 메시지 Enum
 * Result
-    - 결과 메시지 Enum
+  - 결과 메시지 Enum
