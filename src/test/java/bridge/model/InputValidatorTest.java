@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class InputValidatorTest {
 
-
     @DisplayName("다리의 길이 입력 유효성 검사 (3~20)-> False")
     @CsvSource(value = {"2:false", ":false", "21:false", "'':false", "$:false", "3:true", "20:true",
             "a:false"}, delimiter = ':')
