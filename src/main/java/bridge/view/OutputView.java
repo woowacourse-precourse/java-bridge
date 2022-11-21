@@ -1,7 +1,9 @@
 package bridge.view;
 
 import bridge.constant.Directions;
+import bridge.service.constant.ChoiceResult;
 import bridge.view.constant.BridgeStyle;
+import bridge.view.constant.ChoiceResultStyle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,46 +21,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, int order, boolean isUserChoiceWrong) {
-        List<List<String>> bridgeLines = new ArrayList<>();
-        Arrays.stream(Directions.values())
-                .forEach(direction -> bridgeLines.add(collectPanelsOfLine(bridge, order, direction.getSymbol())));
-        if (isUserChoiceWrong) {
-            putFailureElement(bridgeLines, order);
-        }
-        bridgeLines.stream().map(this::styleBridgeLine)
+    public void printMap(List<List<ChoiceResult>> gameLog) {
+        gameLog.stream().map(this::styleChoiceResult)
+                .map(this::styleBridgeLine)
                 .forEach(System.out::println);
     }
 
-    private List<String> collectPanelsOfLine (List<String> bridge, int order, String line) {
-        return bridge.stream().limit(order)
-                .map(panel -> createPanelElement(panel, line))
+    private List<String> styleChoiceResult (List<ChoiceResult> logOfBridgeLine) {
+        return logOfBridgeLine.stream()
+                .map(ChoiceResultStyle::findStyleByChoiceResult)
                 .collect(Collectors.toList());
-    }
-
-    private String createPanelElement (String panel, String line) {
-        if (panel.equals(line)) {
-            return BridgeStyle.CORRECT_PANEL.get();
-        }
-        return BridgeStyle.EMPTY_PANEL.get();
-    }
-
-    private void putFailureElement (List<List<String>> bridgeLines, int order) {
-        for (List<String> line : bridgeLines) {
-            putFailureElementToLine(line, order);
-        }
-    }
-
-    private void putFailureElementToLine (List<String> line, int order) {
-        int lastPanelIndex = --order;
-        String lastPanel = line.get(lastPanelIndex);
-        if (lastPanel.equals(BridgeStyle.EMPTY_PANEL.get())) {
-            line.set(lastPanelIndex, BridgeStyle.WRONG_PANEL.get());
-            return;
-        }
-        if (lastPanel.equals(BridgeStyle.CORRECT_PANEL.get())) {
-            line.set(lastPanelIndex, BridgeStyle.EMPTY_PANEL.get());
-        }
     }
 
     private String styleBridgeLine (List<String> line) {
