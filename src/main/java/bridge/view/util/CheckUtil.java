@@ -7,10 +7,11 @@ public class CheckUtil {
     private static final String DOWN = "D";
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
-    public static void checkInputBridgeSize(int bridgeSize,String message) {
+    public static int checkInputBridgeSize(int bridgeSize,String message) {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(message);
         }
+        return bridgeSize;
     }
 
     public static int checkIsString(String bridgeSize,String message) throws IllegalArgumentException{

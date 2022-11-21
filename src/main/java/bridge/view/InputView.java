@@ -20,8 +20,7 @@ public class InputView {
         System.out.println(INPUT_BRIDGE_SIZE);
         try{
             int input = CheckUtil.checkIsString(Console.readLine(),ERROR_INVALID_NUM);
-            CheckUtil.checkInputBridgeSize(input,ERROR_BRIDGE_SIZE_OVER);
-            return input;
+            return CheckUtil.checkInputBridgeSize(input,ERROR_BRIDGE_SIZE_OVER);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return readBridgeSize();

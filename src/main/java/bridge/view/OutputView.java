@@ -13,7 +13,6 @@ public class OutputView {
     private static final String GAME_SUCCESS_RESULT = "게임 성공 여부";
     private static final String TOTAL_TRY_TIME = "총 시도한 횟수";
     private static final String BRIDGE_START = "[ ";
-    private static final String BRIDGE_NONE = "  ";
     private static final String BRIDGE_MID = " | ";
     private static final String BRIDGE_END = " ]";
     private static final String UP = "U";
@@ -27,34 +26,32 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<List<String>> bridgeCorrects) {
-        brSize1(bridgeCorrects);
-        brSize2Plus(bridgeCorrects);
+        brSizeOne(bridgeCorrects);
+        brSizeTwoPlus(bridgeCorrects);
     }
 
-    private static void brSize1(List<List<String>> bridgeCorrects){
-        int bridgeSize = bridgeCorrects.size();
-        if(bridgeSize==1){
+    private static void brSizeOne(List<List<String>> bridgeCorrects){
+        if(bridgeCorrects.size()==1){
             System.out.print(BRIDGE_START);
             up(bridgeCorrects,0);
             System.out.println(BRIDGE_END);
-
             System.out.print(BRIDGE_START);
             down(bridgeCorrects,0);
             System.out.println(BRIDGE_END);
         }
     }
 
-    private static void brSize2Plus(List<List<String>> bridgeCorrects){
+    private static void brSizeTwoPlus(List<List<String>> bridgeCorrects){
         int bridgeSize = bridgeCorrects.size();
         if(bridgeSize>=2){
             System.out.print(BRIDGE_START);
-            duplicatedWork1(bridgeCorrects,bridgeSize);
-            duplicatedWork2(bridgeCorrects,bridgeSize);
+            upWork(bridgeCorrects,bridgeSize);
+            downWork(bridgeCorrects,bridgeSize);
             System.out.println(BRIDGE_END);
         }
     }
 
-    public static void duplicatedWork1(List<List<String>> bridgeCorrects,int bridgeSize){
+    private static void upWork(List<List<String>> bridgeCorrects,int bridgeSize){
         for(int i=0;i<bridgeSize-1;i++){
             up(bridgeCorrects,i);
             System.out.print(BRIDGE_MID);
@@ -63,7 +60,7 @@ public class OutputView {
         System.out.println(BRIDGE_END);
     }
 
-    public static void duplicatedWork2(List<List<String>> bridgeCorrects,int bridgeSize){
+    private static void downWork(List<List<String>> bridgeCorrects,int bridgeSize){
         System.out.print(BRIDGE_START);
         for(int i=0;i<bridgeSize-1;i++){
             down(bridgeCorrects,i);
@@ -72,15 +69,12 @@ public class OutputView {
         down(bridgeCorrects,bridgeSize-1);
     }
 
-
     private static void up(List<List<String>> bridgeCorrects,int i){
-        String isUp = bridgeCorrects.get(i).get(0);
-        String isCorrect = bridgeCorrects.get(i).get(1);
-        if(isUp.equals(UP) && isCorrect.equals(CORRECT)){
+        if(bridgeCorrects.get(i).get(0).equals(UP) && bridgeCorrects.get(i).get(1).equals(CORRECT)){
             System.out.print(CORRECT);
             return;
         }
-        if(isUp.equals(UP) && isCorrect.equals(IN_CORRECT)){
+        if(bridgeCorrects.get(i).get(0).equals(UP) && bridgeCorrects.get(i).get(1).equals(IN_CORRECT)){
             System.out.print(IN_CORRECT);
             return;
         }
@@ -88,18 +82,17 @@ public class OutputView {
     }
 
     private static void down(List<List<String>> bridgeCorrects,int i){
-        String isDown = bridgeCorrects.get(i).get(0);
-        String isCorrect = bridgeCorrects.get(i).get(1);
-        if(isDown.equals(DOWN) && isCorrect.equals(CORRECT)){
+        if(bridgeCorrects.get(i).get(0).equals(DOWN) && bridgeCorrects.get(i).get(1).equals(CORRECT)){
             System.out.print(CORRECT);
             return;
         }
-        if(isDown.equals(DOWN) && isCorrect.equals(IN_CORRECT)){
+        if(bridgeCorrects.get(i).get(0).equals(DOWN) && bridgeCorrects.get(i).get(1).equals(IN_CORRECT)){
             System.out.print(IN_CORRECT);
             return;
         }
         System.out.print(NONE);
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -116,5 +109,4 @@ public class OutputView {
     public static void printGameStart(){
         System.out.println(GAME_START_MESSAGE);
     }
-
 }
