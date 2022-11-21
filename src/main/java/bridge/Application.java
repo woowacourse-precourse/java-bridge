@@ -72,7 +72,7 @@ public class Application {
     }
 
     /**
-     * 사용자가 게임 지속 여부를 입력하는 메서드
+     * 사용자에게 게임 지속 여부를 물어보는 메서드
      */
     static String inputFinish() {
         OutputView outputView = new OutputView();
@@ -92,8 +92,8 @@ public class Application {
     static Boolean gameEnd(List<List<String>> moveResult) {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
-
-        if (!moveResult.get(0).contains("X") && !moveResult.get(1).contains("X")) { outputView.printResult(moveResult, gameCount); return false; }
+        if (!moveResult.get(0).contains("X") && !moveResult.get(1).contains("X")) {
+            outputView.printResult(moveResult, gameCount); return false; }
 
         String checkCommand = Application.inputFinish();
         if (checkCommand.equals("R")) { gameCount = bridgeGame.retry(gameCount); return true; }

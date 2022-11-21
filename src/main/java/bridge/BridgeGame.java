@@ -46,12 +46,15 @@ public class BridgeGame {
     }
 
     /**
-     * 반복문을 빠져나갈지 판단하는 메서드
+     * 다리를 이동하는 반복문을 빠져나갈지 판단하는 메서드
+     * 다리를 이동하는 반복문을 빠져나갈지 판단하는 메서드
      **/
     public Boolean checkBreak(int bridgeSize) {
-        if (wholeMoveResult.get(0).contains("X") || wholeMoveResult.get(1).contains("X") || wholeMoveResult.get(0).size() == bridgeSize) {
+        if (wholeMoveResult.get(0).contains("X") || wholeMoveResult.get(1).contains("X")
+                || wholeMoveResult.get(0).size() == bridgeSize) {
             return true;
         }
+
         return false;
     }
 
