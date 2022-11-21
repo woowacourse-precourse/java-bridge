@@ -8,6 +8,7 @@ public class BridgeController {
 
     private InputView inputView;
     private OutputView outputView;
+
     public BridgeController() {
         inputView = new InputView();
         outputView = new OutputView();
@@ -15,13 +16,12 @@ public class BridgeController {
 
     public void play() {
         BridgeGame bridgeGame = constructBridge(); // 게임 끝까지 사용
-        do {
-            movePlayer(bridgeGame); // inputview를 입력받아 이동
+        while (!bridgeGame.gameOver()){
+            movePlayer(bridgeGame);
             printResult(bridgeGame);
-             // 입력한 결과를 형식에 맞게 출력
-        }while (!bridgeGame.gameOver());
-        // 재시도 여부 bridgeGame.retry(); inputView.readGameCommand()
-        // 게임 종료 여부를 판단하고 최종 게임결과 출력 outVIew.printResult()
+            isRestart(bridgeGame);
+        }
+        outputView.printResult(bridgeGame);
     }
 
     private BridgeGame constructBridge() {
@@ -36,5 +36,12 @@ public class BridgeController {
 
     private void printResult(BridgeGame bridgeGame){
         outputView.printMap(bridgeGame);
+    }
+
+    private void isRestart(BridgeGame bridgeGame) {
+        if (bridgeGame.gameOver()) {
+            String gameCommand = inputView.readGameCommand();
+            bridgeGame.retry(gameCommand);
+        }
     }
 }
