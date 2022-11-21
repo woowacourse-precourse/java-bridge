@@ -5,28 +5,24 @@ public class Pause {
 	private static int unPauseCount = 0;
 
 	public static void setPause() {
-		if (whenNotPaused()) {
+		if (isNotPaused()) {
 			paused = true;
 		}
 	}
 
 	public static void unsetPause() {
-		if (whenPaused()) {
+		if (isPaused()) {
 			paused = false;
 			unPauseCount++;
 		}
 	}
 
-	private static boolean whenNotPaused() {
-		return !paused;
-	}
-
-	private static boolean whenPaused() {
-		return paused;
-	}
-
 	public static boolean isPaused() {
 		return paused;
+	}
+
+	public static boolean isNotPaused() {
+		return !paused;
 	}
 
 	public static int getAttemptCount() {
