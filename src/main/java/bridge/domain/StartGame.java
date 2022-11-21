@@ -2,8 +2,6 @@ package bridge.domain;
 
 import bridge.Application;
 import bridge.data.constant.OutputConstants;
-import bridge.data.way.DownSide;
-import bridge.data.way.UpSide;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -14,11 +12,11 @@ public class StartGame {
     public static boolean startGame(BridgeGame bridgeGame) {
         requestMove();
         bridgeGame.move();
+        Application.movingTurn++;
         OutputView.printMap(bridgeGame);
         if (isWrongWay()) {
-            return whenWrong(bridgeGame);
+            return chooseWhenWrong(bridgeGame);
         }
-        Application.movingTurn++;
         return true;
     }
 
@@ -27,7 +25,7 @@ public class StartGame {
         movingInput = InputView.readMoving();
     }
 
-    public static boolean whenWrong(BridgeGame bridgeGame) {
+    public static boolean chooseWhenWrong(BridgeGame bridgeGame) {
         if (wantRetry()) {
             bridgeGame.retry();
             return true;

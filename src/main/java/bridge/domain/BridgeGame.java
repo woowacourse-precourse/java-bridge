@@ -20,7 +20,7 @@ public class BridgeGame {
     public void retry() {
         this.upSide = new UpSide();
         this.downSide = new DownSide();
-        Application.movingTurn = 1;
+        Application.movingTurn = 0;
         StartGame.totalTrial++;
     }
 
