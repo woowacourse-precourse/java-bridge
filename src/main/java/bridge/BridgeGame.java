@@ -33,6 +33,14 @@ public class BridgeGame {
         userInputList.clear();
     }
 
+    public void makeUserInputList (String userInput, boolean state) {
+        if (userInput.equals("U")) {
+            inputUP(state);
+        }
+        if (userInput.equals("D")) {
+            inputDown(state);
+        }
+    }
 
     public void inputUP (boolean state) {
         if (state) {
