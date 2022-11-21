@@ -6,26 +6,25 @@ import static bridge.constant.Message.ENTER_RETRY_OR_QUIT;
 
 import bridge.Bridge;
 import bridge.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeController {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public BridgeController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    private BridgeGame bridgeGame;
+
+    public BridgeController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start() {
         outputView.printStart();
-        Bridge bridge = new Bridge(getBridge(getBridgeSize()));
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        setUpBridge();
+        // 주석 지우기
         System.out.println(bridgeGame.getAnswerBridge().getBridge());
         while(true) {
             String direction = getMoveDirection();
@@ -38,21 +37,15 @@ public class BridgeController {
         }
     }
 
-    private int getBridgeSize() {
-        int size = 0;
+    private void setUpBridge() {
         try {
             outputView.printMessage(ENTER_BRIDGE_LENGTH.toString());
-            size = inputView.readBridgeSize();
+            int size = inputView.readBridgeSize();
+            bridgeGame = new BridgeGame(new Bridge(size));
         } catch (IllegalArgumentException ex) {
             outputView.printMessage(ex.getMessage());
-            getBridgeSize();
+            setUpBridge();
         }
-        return size;
-    }
-
-    private List<String> getBridge(int size) {
-        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-        return bridge;
     }
 
     private String getMoveDirection() {
