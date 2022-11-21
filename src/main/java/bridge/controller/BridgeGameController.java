@@ -27,7 +27,8 @@ public class BridgeGameController {
         inputView = new InputView();
     }
 
-    public void run(int size) {
+    public void run() {
+        int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
         while (bridgeGame.getGameFlag() && bridgeGame.isFailure(upSideDownSideMove)) {
             upSideDownSideMove = updateUpSideDownSideMove(bridge);
