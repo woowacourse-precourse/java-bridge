@@ -6,7 +6,7 @@ public class User {
 
     User(){
         this.position = -1;
-        this.attempt = 0;
+        this.attempt = 1;
     }
 
     public int getUserPosition(){
