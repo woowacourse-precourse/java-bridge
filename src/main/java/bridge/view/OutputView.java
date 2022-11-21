@@ -1,10 +1,8 @@
 package bridge.view;
 
 import bridge.domain.BridgeStatus;
-import bridge.domain.GameStatus;
-import bridge.domain.MovingCommand;
-import java.util.ArrayList;
-import java.util.List;
+import bridge.view.draw.BridgeDrawer;
+import bridge.view.draw.BridgeDrawerFactory;
 
 public class OutputView extends View {
 
@@ -14,42 +12,9 @@ public class OutputView extends View {
     private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: %d";
 
     public void printMap(BridgeStatus bridgeStatus) {
-        List<String> userBridge = bridgeStatus.getUserBridge();
-        List<String> first = new ArrayList<>();
-        List<String> second = new ArrayList<>();
-        for (String command : userBridge) {
-            if (command.equals(MovingCommand.UP.toString())) {
-                first.add("O");
-                second.add(" ");
-            }
-            if (command.equals(MovingCommand.DOWN.toString())) {
-                first.add(" ");
-                second.add("O");
-            }
-        }
-        GameStatus gameStatus = bridgeStatus.getGameStatus();
-        if (gameStatus.equals(GameStatus.FAIL)) {
-            int lastIndex = first.size() - 1;
-            first.remove(lastIndex);
-            second.remove(lastIndex);
-            if (userBridge.get(lastIndex).equals(MovingCommand.UP.toString())) {
-                first.add(" ");
-                second.add("X");
-            }
-            if (userBridge.get(lastIndex).equals(MovingCommand.DOWN.toString())) {
-                first.add("X");
-                second.add(" ");
-            }
-        }
-        String firstLine = first.toString()
-                .replaceAll(", ", " | ")
-                .replaceAll("\\[", "[ ")
-                .replaceAll("]", " ]");
-        String secondLine = second.toString()
-                .replaceAll(", ", " | ")
-                .replaceAll("\\[", "[ ")
-                .replaceAll("]", " ]");
-        print(firstLine + "\n" + secondLine);
+        BridgeDrawer drawer = BridgeDrawerFactory.createDrawer(bridgeStatus);
+        String drawResult = drawer.draw();
+        print(drawResult);
     }
 
     public void printResult(BridgeStatus bridgeStatus) {
