@@ -29,6 +29,10 @@ public class BridgeStatus {
         }
     }
 
+    public void clear() {
+        bridgeStatus.clear();
+    }
+
     public int size() {
         return bridgeStatus.get(BridgeBlock.U).size();
     }
