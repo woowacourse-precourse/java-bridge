@@ -25,13 +25,21 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int loc = 0; loc < size; loc++){
             int generate = bridgeNumberGenerator.generate();
-            if (generate == 1){
-                bridge.add(UP_CROSS);
-            }
-            if (generate == 0){
-                bridge.add(DOWN_CROSS);
-            }
+            addUpCross(bridge, generate);
+            addDownCross(bridge, generate);
         }
         return bridge;
+    }
+
+    private static void addUpCross(List<String> bridge, int generate) {
+        if (generate == 1){
+            bridge.add(UP_CROSS);
+        }
+    }
+
+    private static void addDownCross(List<String> bridge, int generate) {
+        if (generate == 0){
+            bridge.add(DOWN_CROSS);
+        }
     }
 }
