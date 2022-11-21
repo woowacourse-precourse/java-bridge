@@ -71,6 +71,14 @@ public class BridgeGame {
             OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]","실패",attempt);
             return true;
         }
+        resetInfo();
+        return false;
+    }
 
+    private static void resetInfo() {
+        attempt ++;
+        resetBridge();
+        resultStatus = "";
+        BridgeGameController.setCount();
     }
 }

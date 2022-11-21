@@ -30,5 +30,8 @@ public class BridgeGameController {
         }
     }
 
+    public static void setCount() {
+        count = 0;
+    }
 
 }
