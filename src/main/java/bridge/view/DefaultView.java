@@ -20,13 +20,7 @@ public class DefaultView implements View {
     public void render() {
         outputWelcome();
         inputBridgeSize();
-
-        boolean isMove;
-        do {
-            isMove = inputMove();
-            outputBridgeMap();
-        } while (isMove);
-        inputGameCommand();
+        playGame();
     }
 
     private void outputWelcome() {
@@ -38,6 +32,15 @@ public class DefaultView implements View {
         outputView.printReadBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
         controller.createBridge(bridgeSize);
+    }
+
+    private void playGame() {
+        boolean isMove;
+        do {
+            isMove = inputMove();
+            outputBridgeMap();
+        } while (isMove);
+        inputGameCommand();
     }
 
     private boolean inputMove() {
@@ -55,6 +58,9 @@ public class DefaultView implements View {
     private void inputGameCommand() {
         outputView.printRetry();
         String input = inputView.readGameCommand();
-        controller.retryGame(input);
+        boolean isRetry = controller.retryGame(input);
+        if (isRetry) {
+            playGame();
+        }
     }
 }
