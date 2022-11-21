@@ -24,6 +24,11 @@ public class BridgeGame {
     public boolean move(List<String> bridge) {
         String step = inputView.readMoving();
         boolean check = checkBridge(step, bridge);
+        if(check){
+            count.increaseSteps();
+            generateMessage.add(true, step);
+        }
+        
         return check;
     }
 
