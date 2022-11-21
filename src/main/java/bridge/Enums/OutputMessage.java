@@ -18,4 +18,13 @@ public enum OutputMessage {
     public void println(){
         System.out.println(this.message);
     }
+
+    public void printSuccessOrNot(String successOrNot){
+        System.out.println(this.message + successOrNot);
+    }
+
+    public void printRetryCount(int retryCount){
+        System.out.println(this.message + retryCount);
+    }
+
 }
