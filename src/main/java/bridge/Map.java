@@ -7,21 +7,29 @@ public class Map {
 
     public void makeMap(String moving, String check) {
         if (moving.equals("U")) {
-            if (upMap.length() > 2) {
-                upMap += " | ";
-                downMap += " | ";
-            }
-            upMap += check;
-            downMap += " ";
+            makeUpMap(check);
         }
         if (moving.equals("D")) {
-            if (downMap.length() > 2) {
-                upMap += " | ";
-                downMap += " | ";
-            }
-            upMap += " ";
-            downMap += check;
+            makeDownMap(check);
         }
+    }
+
+    public void makeUpMap(String check) {
+        if (upMap.length() > 2) {
+            upMap += " | ";
+            downMap += " | ";
+        }
+        upMap += check;
+        downMap += " ";
+    }
+
+    public void makeDownMap(String check) {
+        if (downMap.length() > 2) {
+            upMap += " | ";
+            downMap += " | ";
+        }
+        upMap += " ";
+        downMap += check;
     }
 
     public String getUpMap() {
