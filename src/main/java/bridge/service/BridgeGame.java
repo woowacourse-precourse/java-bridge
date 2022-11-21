@@ -46,9 +46,9 @@ public class BridgeGame {
      */
     public List<String> move(String user, String answer) {
         String result = compareUserAndAnswer(user, answer);
-        if (user.equals(Direction.UP.getDirection())) {
+        if (Direction.checkUp(user)) {
             map.makeUpMap(result);
-        } else if (user.equals(Direction.DOWN.getDirection())) {
+        } else if (!Direction.checkUp(user)) {
             map.makeDownMap(result);
         }
         return map.getAllMap();

@@ -26,4 +26,11 @@ public enum Direction {
         }
         return UP.direction;
     }
+
+    public static boolean checkUp(String user) {
+        if (user.equals(UP.getDirection())) {
+            return true;
+        }
+        return false;
+    }
 }
