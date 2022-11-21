@@ -12,8 +12,10 @@ public class BridgeGame {
     private int challenge;
     private int current;
     private List<String> mark;
+    private final Bridge bridge;
 
-    public BridgeGame() {
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
         mark = new ArrayList<>();
     }
 
@@ -44,11 +46,20 @@ public class BridgeGame {
         challenge++;
     }
 
+    public boolean getGameResult() {
+
+        return bridge.getBridge().equals(mark);
+    }
+
     public int getCurrent() {
         return current;
     }
 
     public List<String> getMark() {
         return mark;
+    }
+
+    public int getChallenge() {
+        return challenge;
     }
 }

@@ -40,4 +40,8 @@ public class Bridge {
     public int getSize() {
         return size;
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
 }
