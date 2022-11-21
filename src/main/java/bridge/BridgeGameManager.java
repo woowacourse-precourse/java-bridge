@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain;
+
+import bridge.InputView;
+import bridge.OutputView;
 
 import java.util.List;
 
