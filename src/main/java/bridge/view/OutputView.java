@@ -2,15 +2,15 @@ package bridge.view;
 
 import bridge.domain.Direction;
 
-import static bridge.domain.GameMessage.*;
-
 import java.util.List;
+
+import static bridge.domain.GameMessage.*;
 
 /** 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다. */
 public class OutputView {
-  public static final String BRIDGE_LEFT_SHAPE = "[";
-  public static final String BRIDGE_CENTER_SHAPE = "|";
-  public static final String BRIDGE_RIGHT_SHAPE = "]";
+  public static final String BRIDGE_LEFT_SHAPE = "[ ";
+  public static final String BRIDGE_CENTER_SHAPE = " | ";
+  public static final String BRIDGE_RIGHT_SHAPE = " ]";
   public static final String BRIDGE_BLACK_SHAPE = " ";
   public static final String MOVE_SUCCESS_SIGN = "O";
   public static final String MOVE_FAIL_SIGN = "X";
@@ -57,44 +57,23 @@ public class OutputView {
     return GAME_FAIL_STRING;
   }
 
-  /**
-   * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-   *
-   * <p>출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-   */
+  /** 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. */
   public static void printMap(List<String> moveStatus, List<String> bridge) {
     String upLine = BRIDGE_LEFT_SHAPE;
     String downLine = BRIDGE_LEFT_SHAPE;
 
     for (int i = 0; i < moveStatus.size(); i++) {
-      upLine += " ";
-      downLine += " ";
       if (i != 0) {
-        upLine += BRIDGE_CENTER_SHAPE + " ";
-        downLine += BRIDGE_CENTER_SHAPE + " ";
+        upLine += BRIDGE_CENTER_SHAPE;
+        downLine += BRIDGE_CENTER_SHAPE;
       }
       String moveDir = moveStatus.get(i);
       String bridgeDir = bridge.get(i);
-      if (moveDir.equals(bridgeDir)) {
-        if (moveDir.equals(Direction.UP.getDirection())) {
-          upLine += MOVE_SUCCESS_SIGN;
-          downLine += BRIDGE_BLACK_SHAPE;
-        } else {
-          upLine += BRIDGE_BLACK_SHAPE;
-          downLine += MOVE_SUCCESS_SIGN;
-        }
-      } else {
-        if (moveDir.equals(Direction.UP.getDirection())) {
-          upLine += MOVE_FAIL_SIGN;
-          downLine += BRIDGE_BLACK_SHAPE;
-        } else {
-          upLine += BRIDGE_BLACK_SHAPE;
-          downLine += MOVE_FAIL_SIGN;
-        }
-      }
+      upLine += getString(moveDir, bridgeDir, true);
+      downLine += getString(moveDir, bridgeDir, false);
     }
-    upLine += " " + BRIDGE_RIGHT_SHAPE;
-    downLine += " " + BRIDGE_RIGHT_SHAPE;
+    upLine += BRIDGE_RIGHT_SHAPE;
+    downLine += BRIDGE_RIGHT_SHAPE;
     System.out.println(upLine + "\n" + downLine);
     printBlankLine();
   }
@@ -103,5 +82,23 @@ public class OutputView {
   public static void printFinalResult(List<String> moveStatus, List<String> bridge) {
     System.out.println(GAME_RESULT_MESSAGE.getMessage());
     printMap(moveStatus, bridge);
+  }
+
+  private static String getSuccessOrFailure(String moveDir, String bridgeDir) {
+    if(moveDir.equals(bridgeDir)) {
+      return MOVE_SUCCESS_SIGN;
+    }
+    return MOVE_FAIL_SIGN;
+  }
+
+  private static String getString(String moveDir, String bridgeDir, boolean isUp){
+    String successOrFail = getSuccessOrFailure(moveDir, bridgeDir);
+    if (moveDir.equals(Direction.UP.getDirection())) {
+      if(isUp) return successOrFail;
+      return BRIDGE_BLACK_SHAPE;
+    } else {
+      if(isUp) return BRIDGE_BLACK_SHAPE;
+      return successOrFail;
+    }
   }
 }
