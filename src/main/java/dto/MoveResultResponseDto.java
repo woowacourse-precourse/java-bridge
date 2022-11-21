@@ -20,4 +20,8 @@ public class MoveResultResponseDto {
 	public int getNumberOfCorrect() {
 		return numberOfCorrect;
 	}
+
+	public boolean isSuccess() {
+		return isSuccess;
+	}
 }
