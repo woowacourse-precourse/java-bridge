@@ -15,15 +15,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = "";
+        System.out.println(readBridgeSizeMessage);
+        String bridgeSize = readLine();
         try{
-            System.out.println(readBridgeSizeMessage);
-            bridgeSize = readLine();
             readBridgeSizeOfNoNumberException(bridgeSize);
             readScopeOfBridgeSizeOfNumberException(bridgeSize);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            readBridgeSize();
+            bridgeSize = String.valueOf(readBridgeSize());
         }
         return Integer.parseInt(bridgeSize);
     }
