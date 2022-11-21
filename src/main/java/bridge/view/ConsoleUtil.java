@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+
+import bridge.Bridge;
+import bridge.PlayerStatus;
 
 public class ConsoleUtil {
 

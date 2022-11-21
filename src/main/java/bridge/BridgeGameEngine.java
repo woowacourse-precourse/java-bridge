@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.view.ConsoleUtil;
+
 import java.util.List;
 
 public class BridgeGameEngine {
