@@ -21,6 +21,7 @@ public class GameLogic {
         outputView = new OutputView(bridgeGame.getBridge().getBridgeList());
         changeLine();
         playOneGame();
+        showResult();
     }
     private void catchSizeException(){
         try{
@@ -54,11 +55,8 @@ public class GameLogic {
         }
         if(!bridgeGame.getUser().getResult()){
             askRetry();
-            return;
         }
-        showResult();
     }
-
     private void askRetry(){
         catchRetryException();
         if(inputRetry.equals(RETRY)){

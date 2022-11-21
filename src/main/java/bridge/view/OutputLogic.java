@@ -24,12 +24,15 @@ public class OutputLogic {
     public void printMapLogic(String side,int userPosition,Boolean userResult){
         this.side = side;
         print(START);
+        printGlasses(userPosition);
+        printLastGlass(userResult);
+        print(END);
+    }
+    private void printGlasses(int userPosition){
         for(int position = 0; position< userPosition;position++){
             printGlass(position);
             print(WALL);
         }
-        printLastGlass(userResult);
-        print(END);
     }
     private void printGlass(int position){
         if(bridgeList.get(position).equals(side)) {
