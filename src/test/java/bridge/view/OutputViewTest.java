@@ -22,7 +22,7 @@ class OutputViewTest {
         bridgeGameResult.addResult("U", "O");
         bridgeGameResult.addResult("D", "O");
         bridgeGameResult.addResult("U", "O");
-        String input = outputView.printMap(bridgeGameResult);
+//        String input = outputView.printMap(bridgeGameResult);
 
 //        assertThat(input).isEqualTo("[ O |   | O ]");
 //        assertThat(input).isEqualTo("[   | O |   ]");
