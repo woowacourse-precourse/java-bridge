@@ -89,7 +89,7 @@ BUILD SUCCESSFUL in 0s
     - [x] public List<String> getBridge()
     - [x] public int getCurrentUserPosition()
     - [x] public boolean getGameWinStatus()
-    - [ ] public int getTotalTryCount()
+    - [x] public int getTotalTryCount()
 - [ ] **CLASS4. InputView**
   - **Class Methods**
     - [ ] public int readBridgeSize()

@@ -54,4 +54,8 @@ public class BridgeGame {
     public boolean getGameWinStatus() {
         return this.gameWinStatus;
     }
+
+    public int getTotalTryCount() {
+        return this.totalTryCount;
+    }
 }
