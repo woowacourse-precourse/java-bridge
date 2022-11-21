@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,12 +32,29 @@ public class InputViewTest {
     @DisplayName("다리길이가 3~20 사이가 아닌 경우")
     @Test
     void wrongRangeBridgeSize() {
-        assertThatThrownBy(() -> inputView.validateSize("1"))
+        assertThatThrownBy(() -> inputView.validateSize("1"));
+        assertThatThrownBy(() -> inputView.validateSize("21"));
+    }
+
+    @DisplayName("이동할 칸의 입력이 정상인 경우 (U,D)")
+    @Test
+    void goodMovingInput() {
+        boolean isGood = inputView.validateMoving("U");
+        assertThat(isGood).isEqualTo(true);
+        isGood = inputView.validateMoving("D");
+        assertThat(isGood).isEqualTo(true);
+    }
+    @DisplayName("이동할 칸의 입력이 잘못된 경우")
+    @Test
+    void wrongMovingInput() {
+        assertThatThrownBy(() -> inputView.validateMoving("1"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> inputView.validateSize("21"))
+        assertThatThrownBy(() -> inputView.validateMoving("ABCD"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 
 
 

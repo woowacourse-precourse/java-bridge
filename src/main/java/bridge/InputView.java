@@ -49,7 +49,24 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        boolean isGood = false;
+        String moving = "";
+        while(!isGood){
+            try{
+                moving = readLine();
+                isGood = validateMoving(moving);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return moving;
+    }
+
+    public boolean validateMoving(String input){
+        if(input.equals("U") || input.equals("D")){
+            return true;
+        }
+        throw new IllegalArgumentException(ERROR_MOVE.getMessage());
     }
 
     /**
