@@ -26,12 +26,7 @@ public class InputView {
         }
     }
 
-    private void checkLenghtRangeValidate(int number) {
-        if (number < 3 || number > 20) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_LENGTH_RANGE);
-        }
-    }
-    private int handleCheckLengthValidate(String input) {
+    public int handleCheckLengthValidate(String input) {
         try {
             return checkLengthValidate(input);
         } catch (IllegalArgumentException e) {
@@ -40,7 +35,13 @@ public class InputView {
         }
     }
 
-    private int handleCheckLengthRangeValidate(int number) {
+    private void checkLenghtRangeValidate(int number) {
+        if (number < 3 || number > 20) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_LENGTH_RANGE);
+        }
+    }
+
+    public int handleCheckLengthRangeValidate(int number) {
         try {
             checkLenghtRangeValidate(number);
             return number;
@@ -58,7 +59,7 @@ public class InputView {
         return handleCheckMoveValidate(input);
     }
 
-    public String checkMoveValidate(String input) {
+    private String checkMoveValidate(String input) {
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException(ERROR_MESSAGE_MOVE_STRING);
         }
@@ -82,7 +83,7 @@ public class InputView {
         return handleCheckGameCommandValidate(input);
     }
 
-    public String checkGameCommandValidate(String input) {
+    private String checkGameCommandValidate(String input) {
         if (!input.equals("R") && !input.equals("Q")) {
             throw new IllegalArgumentException(ERROR_MESSAGE_GAME_COMMAND_STRING);
         }
