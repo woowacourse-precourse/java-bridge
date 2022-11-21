@@ -6,14 +6,15 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private int nowLocation;
-    private Status status;
-    private int challengesCnt;
+    private int nowLocation; //현재까지 이동한 위치
+    private Status status; //게임의 현재 상황
+    private int challengesCnt; //도전 횟수
     private final List<String> bridge;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         challengesCnt = 0;
+        retry();
     }
 
     /**
@@ -25,18 +26,19 @@ public class BridgeGame {
         if (checkingMoving(userWantedDirection)) {
             checkingEnding();
         }
+        nowLocation ++;
     }
 
-    //끝까지 도달해서 게임이 끝나는 경우
+    //방금 이동한 칸이 마지막 칸인경우 게임을 종료한다.
     private void checkingEnding() {
-        if (nowLocation == bridge.size()) {
+        if (nowLocation == bridge.size()-1) {
             status = Status.ENDING;
         }
     }
 
-    //다음으로 갈수 있는 경우 에만 다리 끝에 도달 했는지 확인한다.
+    //다음칸으로 이동이 가능한지 확인한다.(이동이 불가능 하다면 게임상황을
     private boolean checkingMoving(String userWantedDirection) {
-        if (bridge.get(nowLocation++).equals(userWantedDirection)) {
+        if (bridge.get(nowLocation).equals(userWantedDirection)) {
             return true;
         }
         status = Status.FAIL;

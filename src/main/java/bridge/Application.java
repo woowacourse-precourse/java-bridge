@@ -2,8 +2,7 @@ package bridge;
 
 import java.util.List;
 
-import static constants.Constants.GAME_COMMAND_RETRY;
-import static constants.Constants.GAME_START_MESSAGE;
+import static constants.Constants.*;
 
 public class Application {
     private static final InputView inputView = new InputView();
@@ -20,10 +19,13 @@ public class Application {
     }
 
     private static void startGame(BridgeGame bridgeGame) {
-        do {
-            bridgeGame.retry();
+        while(true){
             play(bridgeGame);
-        } while (userWantedReplaying(bridgeGame.getStatus()));
+            if(userWantedQuit(bridgeGame.getStatus())){
+                break;
+            }
+            bridgeGame.retry();
+        }
         outputView.printResult(bridgeGame);
     }
 
@@ -35,14 +37,14 @@ public class Application {
         }
     }
 
-    private static boolean userWantedReplaying(Status status) {
+    private static boolean userWantedQuit(Status status) {
         //다리 끝까지 와서 게임이 끝난경우
         if (status == Status.ENDING) {
-            return false;
+            return true;
         }
 
         String wantedDirection = inputView.readGameCommand();
-        return wantedDirection.equals(GAME_COMMAND_RETRY);
+        return wantedDirection.equals(GAME_COMMAND_QUIT);
     }
 
     private static List<String> makeBridge() {
