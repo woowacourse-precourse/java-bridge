@@ -30,6 +30,7 @@ public class BridgeGameTest {
     @DisplayName("현재의 이동명령이 불가한 경우 False를 반환하는 지 테스트")
     @Test
     @Order(2)
+    @Disabled
     void isNotMovable_test() {
         List<String> bridgeStatus = new ArrayList<>(List.of("U", "D", "D", "U", "U"));
         gameManager.setBridgeStatus(bridgeStatus);
