@@ -68,5 +68,8 @@ public class InputView {
 
     public void readGameCommandCheck(String userAnswer){
         String readGameCommandCheck = "^[Q|q|R|r]$";
+        if(!userAnswer.matches(readGameCommandCheck)){
+
+        }
     }
 }
