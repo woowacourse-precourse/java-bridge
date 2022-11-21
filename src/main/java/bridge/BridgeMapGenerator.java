@@ -1,8 +1,6 @@
 package bridge;
 
-
 import bridge.constant.Constant;
-
 import java.util.List;
 
 public enum BridgeMapGenerator {
