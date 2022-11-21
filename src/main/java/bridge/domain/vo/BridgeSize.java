@@ -7,7 +7,7 @@ public class BridgeSize {
     public static final int MAX_SIZE = 20;
     public static final int MIN_SIZE = 3;
 
-    private int size;
+    private final int size;
 
     public BridgeSize(int size) {
         validate(size);

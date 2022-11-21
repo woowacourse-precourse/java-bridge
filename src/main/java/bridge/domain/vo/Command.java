@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 public abstract class Command {
 
-    private String message;
+    private final String message;
 
     public Command(String message) {
         validate(message, getCorrectValues());

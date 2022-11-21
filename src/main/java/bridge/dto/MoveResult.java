@@ -2,9 +2,9 @@ package bridge.dto;
 
 public class MoveResult {
 
-    private String message;
-    private boolean success;
-    private int round;
+    private final String message;
+    private final boolean success;
+    private final int round;
 
     public String getMessage() {
         return message;

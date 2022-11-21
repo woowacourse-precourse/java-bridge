@@ -2,8 +2,8 @@ package bridge.dto;
 
 public class GameResult {
 
-    private int tryCount;
-    private MoveResult moveResult;
+    private final int tryCount;
+    private final MoveResult moveResult;
 
     public boolean isGameClear() {
         return moveResult.isSuccess();
