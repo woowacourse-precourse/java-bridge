@@ -8,13 +8,13 @@ public class Moving {
 
     private final String value;
 
-    public Moving(String moving){
-        validateMoving(moving);
-        this.value = moving;
+    public Moving(String movingValue){
+        validateMovingValue(movingValue);
+        this.value = movingValue;
     }
 
-    private void validateMoving(String moving){
-        if (!moving.equals(MOVING_UP_CHARACTER) || !moving.equals(MOVING_DOWN_CHARACTER)){
+    private void validateMovingValue(String movingValue){
+        if (!movingValue.equals(MOVING_UP_CHARACTER) || !movingValue.equals(MOVING_DOWN_CHARACTER)){
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_CHARACTER.getMessage());
         }
     }
