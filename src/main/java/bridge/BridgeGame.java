@@ -54,8 +54,9 @@ public class BridgeGame {
         System.out.println(Message.INITIAL_MESSAGE.getMessage());
 
         int bridgeSize = getBridgeSize();
-        Bridge realBridges = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        Result result = playGame(gameStatus, realBridges);
+        gameStatus.setRealBridge(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
+
+        Result result = playGame(gameStatus);
         outputView.printResult(gameStatus, result);
     }
 
@@ -68,17 +69,18 @@ public class BridgeGame {
         }
     }
 
-    private Result playGame(GameStatus gameStatus, Bridge realBridges) {
-        Result result = playOneTry(gameStatus, realBridges);
+    private Result playGame(GameStatus gameStatus) {
+        Result result = playOneTry(gameStatus);
         while (!gameStatus.isEnd() && retry()) {
-            result = playOneTry(gameStatus, realBridges);
+            result = playOneTry(gameStatus);
             gameStatus.addTryCount();
         }
         return result;
     }
 
-    public Result playOneTry(GameStatus gameStatus, Bridge realBridges) {
-        Bridge selectedBridges = new Bridge();
+    public Result playOneTry(GameStatus gameStatus) {
+        Bridge realBridges = gameStatus.getRealBridge();
+        Bridge selectedBridges = gameStatus.getSelectedBridge();
         for (int index = 0; index < realBridges.getSize(); index++) {
             addNewSelectedBridge(selectedBridges);
             Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
