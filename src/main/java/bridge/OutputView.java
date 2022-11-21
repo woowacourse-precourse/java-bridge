@@ -66,7 +66,7 @@ public class OutputView {
         else
             success = "실패";
 
-        System.out.println("게임 성공 여부 " + success);
+        System.out.println("게임 성공 여부: " + success);
         System.out.println("총 시도한 횟수: " + count);
     }
 
