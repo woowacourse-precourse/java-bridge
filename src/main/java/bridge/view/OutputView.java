@@ -45,4 +45,8 @@ public class OutputView {
     public void printGameSuccessOrFailure(String gameResult){
         System.out.println("게임 성공 여부: "+gameResult);
     }
+
+    public void printGameTotalTryCount(int gameTryCount){
+        System.out.println("총 시도한 횟수: "+gameTryCount);
+    }
 }
