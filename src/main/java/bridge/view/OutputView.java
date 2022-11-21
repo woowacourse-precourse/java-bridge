@@ -76,4 +76,8 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + progress.getProgress());
         System.out.println("총 시도한 횟수: " + attempt);
     }
+
+    public void printErrorMessage(String e) {
+        System.out.println("[ERROR]" + e);
+    }
 }
