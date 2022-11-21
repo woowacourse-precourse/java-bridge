@@ -28,6 +28,10 @@ public class Bridge {
         bridge.add(bridgeElement.toString());
     }
 
+    public boolean notContains(String element) {
+        return !bridge.contains(element);
+    }
+
     public void clear() {
         bridge.clear();
     }
