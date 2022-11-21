@@ -1,14 +1,12 @@
 package bridge;
 
-import java.util.List;
+import console.ErrorMessage;
+import console.BridgeGameMessage;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    final static String REDO = "R";
-    final static String QUIT = "Q";
     static boolean isComplete = true;
     static String lastUserInput;
     static int totalCount;
@@ -32,12 +30,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String retryOrQuit) {
-        if (retryOrQuit.equals(REDO)) {
+        if (retryOrQuit.equals(BridgeGameMessage.REDO.getMessage())) {
             totalCount = 0; attempt++;
             return isComplete = true;
         }
-        if (retryOrQuit.equals(QUIT)) isComplete = false;
-        if (!retryOrQuit.equals(QUIT)) throw new IllegalArgumentException(InputView.ERROR_RETRY);
+        if (retryOrQuit.equals(BridgeGameMessage.QUIT.getMessage())) isComplete = false;
+        if (!retryOrQuit.equals(BridgeGameMessage.QUIT.getMessage())) throw new IllegalArgumentException(ErrorMessage.ERROR_RETRY.getMessage());
         return false;
     }
 }

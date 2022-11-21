@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import console.OutputMessage;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -27,7 +28,7 @@ public class BridgeMaker {
     }
 
     public static String convert(int number) {
-        if (number == 0) return OutputView.DOWN;
-        return OutputView.UP;
+        if (number == 0) return OutputMessage.DOWN.getMessage();
+        return OutputMessage.UP.getMessage();
     }
 }
