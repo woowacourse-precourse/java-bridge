@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -26,9 +27,10 @@ public class BridgeGameTest {
     @DisplayName("위쪽 다리 결과를 만든다.")
     @Test
     void makeUpBridgeResult(){
+        List<String> map = new ArrayList<>();
         bridgeGame.move("U");
         bridgeGame.move("U");
         bridgeGame.move("D");
-        assertThat(bridgeGame.makeBridgeCrossingResultEntry("U")).isEqualTo(List.of("O"," ","X"));
+        assertThat(bridgeGame.makeBridgeCrossingResultEntry("U", map)).isEqualTo(List.of("O"," ","X"));
     }
 }
