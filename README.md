@@ -427,6 +427,7 @@ int number=bridgeNumberGenerator.generate();
             * fields
                 * User 객체
                 * BridgeGame 객체
+                * enum GameStatus - gameCommands 값("R", "Q") 저장
             * methods
                 * startBridgeGame - 게임 초기화
                     1. 게임 시작 문구 출력 (OutputView.printGameStartMessage() 호출)
@@ -437,9 +438,11 @@ int number=bridgeNumberGenerator.generate();
                     2. moveUser - 사용자 이동
                     3. printBridge_userPredict - 현재까지 건넌 다리 출력 (OutputView.printMap() 호출)
                     4. isGameSucceed - 게임 성공 여부 확인
-                    4. isGameFailed - 게임 실패 여부 확인
-                    5. askRestartGame - 재시작 여부 확인
-                    6. printGameResult - 게임 종료 문구 출력
+                    5. isGameFailed - 게임 실패 여부 확인
+                    6. isQuitGame - 게임 종료 여부 확인
+                        * askGameCommand - 사용자가 입력한 gameCommand 반환
+                    7. retryGame - 게임 재시작을 위해 상태값 변경
+                    8. printGameResult - 게임 종료 문구 출력
         *
         * class: **BridgeGame** - 다리 건너기 게임을 관리
             * fields
@@ -453,7 +456,7 @@ int number=bridgeNumberGenerator.generate();
                 * move - 사용자의 다리 칸 이동
                 * checkIfGameIsSucceed - 게임 성공 여부 확인
                 * checkIfGameIsFailed - 게임 실패 여부 확인
-                * retry - 게임을 다시 시도
+                * retry - 게임을 다시 시도하기 위해 bridge_userMove 초기화
     *
 
     * package: `user`
@@ -467,6 +470,7 @@ int number=bridgeNumberGenerator.generate();
                 * isPlayingGame - 게임 진행 여부 반환
                 * isGameSucceed - 게임 성공 여부 반환
                 * getNumberOfMoves - 게임 중 이동한 횟수 반환
+                * getNumberOfGameTrials - 게임 총 시도 횟수 반환
                 * setNotPlayingGame - 게임을 진행하지 않는 것으로 상태 변경
                 * setGameSucceed - 게임 성공으로 상태 변경
                 * resetNumberOfMoves - 게임 중 이동한 횟수 초기화
@@ -491,6 +495,7 @@ int number=bridgeNumberGenerator.generate();
                         * footprint_userMovedToAble - 사용자가 이동할 수 있는 칸을 선택한 경우의 발자취 반환
                         * footprint_userMovedToDisable - 사용자가 이동할 수 있는 칸을 선택한 경우의 발자취 반환
                 * printResult - 게임의 최종 결과 출력
+                    * getGameStatusMessage - 게임 성공 여부에 따른 String 반환
 
 ---
 
