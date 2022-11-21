@@ -37,10 +37,10 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.move();
+        bridgeGame.moveForward(MoveResult.CORRECT, "U");
         //when
         Throwable throwable = catchThrowable(() -> {
-            bridgeGame.move();
+            bridgeGame.moveForward(MoveResult.CORRECT, "U");
         });
         //then
         assertThat(throwable)
@@ -52,9 +52,9 @@ public class BridgeGameTest {
         Bridge bridge = Bridge.of(List.of("U","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
-        bridgeGame.move();
+        bridgeGame.moveForward(MoveResult.CORRECT, "U");
         //then
-        assertThat(bridgeGame.getCurrentStep())
+        assertThat(bridgeGame.getBridgeIndex())
                 .isEqualTo(0);
     }
 
@@ -63,7 +63,7 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.move();
+        bridgeGame.moveForward(MoveResult.CORRECT, "U");
         //when
         Throwable throwable = catchThrowable(() -> {
             bridgeGame.retry();
@@ -78,13 +78,13 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.move();
+        bridgeGame.moveForward(MoveResult.WRONG,"D");
         //when
         bridgeGame.retry();
         //then
         assertThat(bridgeGame.getNumberOfTrials())
                 .isEqualTo(2);
-        assertThat(bridgeGame.getCurrentStep())
+        assertThat(bridgeGame.getBridgeIndex())
                 .isEqualTo(-1);
     }
 
@@ -93,7 +93,7 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.move();
+        bridgeGame.moveForward(MoveResult.CORRECT, "U");
         //when
         boolean isSuccess = bridgeGame.isSuccess();
         //then
@@ -120,9 +120,9 @@ public class BridgeGameTest {
         MoveResult moveResult1 = MoveResult.CORRECT;
         MoveResult moveResult2 = MoveResult.WRONG;
         //when
-        bridgeGame.move();
-        bridgeGame.getBridgeToCurrentPosition(moveResult1);
-        char[][] map = bridgeGame.getBridgeToCurrentPosition(moveResult2);
+        bridgeGame.moveForward(moveResult1, "U");
+        bridgeGame.moveForward(moveResult2, "U");
+        char[][] map = bridgeGame.getCurrentBridge(moveResult2);
         //then
         assertThat(map)
                 .contains(new char[] {'O','X','\u0000'}, Index.atIndex(0))
@@ -135,7 +135,8 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveResult moveResult = MoveResult.WRONG;
         //when
-        char[][] map = bridgeGame.getBridgeToCurrentPosition(moveResult);
+        bridgeGame.moveForward(moveResult, "D");
+        char[][] map = bridgeGame.getCurrentBridge(moveResult);
 
         //then
         assertThat(map)

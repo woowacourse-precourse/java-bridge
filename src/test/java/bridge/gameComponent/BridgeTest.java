@@ -9,36 +9,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 public class BridgeTest {
     @Test
-    void U_또는_D_이외의_입력인_경우() {
-        //given
-        Bridge bridge = Bridge.of(List.of("U", "D"));
-        String upDown = "P";
-        int index = 1;
-        //when
-        Throwable throwable = catchThrowable(() -> {
-            bridge.isPossibleMove(index, upDown);
-        });
-        //then
-        assertThat(throwable)
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 비정상_index_입력인_경우() {
-        //given
-        Bridge bridge = Bridge.of(List.of("U", "D"));
-        String upDown = "U";
-        int index = 2;
-        //when
-        Throwable throwable = catchThrowable(() -> {
-            bridge.isPossibleMove(index, upDown);
-        });
-        //then
-        assertThat(throwable)
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     void 정상인경우() {
         //given
         Bridge bridge = Bridge.of(List.of("U", "D"));
@@ -65,6 +35,7 @@ public class BridgeTest {
         assertThat(throwable)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void 길이가_0인_다리_생성_테스트() {
         //given
