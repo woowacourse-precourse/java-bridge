@@ -22,10 +22,20 @@ public class BridgeMaker {
         List<String> bridgeNumber = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            String randomNumber = Integer.toString(bridgeNumberGenerator.generate());
-            bridgeNumber.add(randomNumber);
+            int randomNumber = bridgeNumberGenerator.generate();
+            String randomString = numberToUpDown(randomNumber);
+            bridgeNumber.add(randomString);
         }
 
         return bridgeNumber;
+    }
+
+    public String numberToUpDown (int number) {
+
+        if (number == 1) {
+            return "U";
+        }
+
+        return "D";
     }
 }
