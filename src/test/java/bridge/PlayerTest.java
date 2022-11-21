@@ -145,4 +145,27 @@ class PlayerTest {
         assertThat(player.getUpperFootPrint()).isEqualTo(List.of("O"," "));
         assertThat(player.getLowerFootPrint()).isEqualTo(List.of(" ","X"));
     }
+
+    @Test
+    public void startRound시에_라운드_확인() throws Exception {
+        //given
+        Player player = new Player(new Bridge(List.of("U", "U")));
+        player.startRound();
+        assertThat(player.showTrials()).isEqualTo(1);
+    }
+
+    @Test
+    public void startRound시에_결과_리스트에서_X삭제_확인() throws Exception {
+        //given
+        Player player = new Player(new Bridge(List.of("U", "U")));
+        player.startRound();
+
+        player.move("U");
+        player.move("D");
+
+        player.startRound();
+
+        assertThat(player.getUpperFootPrint()).isEqualTo(List.of("O"));
+        assertThat(player.getLowerFootPrint()).isEqualTo(List.of(" "));
+    }
 }
