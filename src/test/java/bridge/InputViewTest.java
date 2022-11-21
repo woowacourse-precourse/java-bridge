@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +17,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 class InputViewTest {
 
     private static final InputView INPUT_VIEW = new InputView();
+
+    @DisplayName("readBridgeSize 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "5", "10", "14", "17", "20"})
+    void readBridgeSize_test(String input){
+        byte[] buf = input.getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+        int result=INPUT_VIEW.readBridgeSize();
+        assertThat(result).isEqualTo(Integer.parseInt(input));
+    }
 
     @DisplayName("tryParse 예외 사항 테스트")
     @ParameterizedTest
