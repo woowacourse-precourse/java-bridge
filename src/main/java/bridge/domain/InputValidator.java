@@ -22,4 +22,10 @@ public class InputValidator {
             throw new IllegalArgumentException(InputErrorMessage.MOVING.message());
         }
     }
+
+    public void validateGameCommand(String input) {
+        if (!input.equals(Constants.CODE_RETRY) && !input.equals(Constants.CODE_QUIT)) {
+            throw new IllegalArgumentException(InputErrorMessage.GAME_COMMAND.message());
+        }
+    }
 }
