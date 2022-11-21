@@ -20,7 +20,7 @@ public class GameResultTest {
     @DisplayName("함수를 선언하면 초기값을 세팅한다.")
     @Test
     void createSetResult() {
-        int expectedAttempt = 0;
+        String expectedAttempt = "0";
 
         assertThat(gameResult.getSuccess()).isEqualTo(BridgeSymbol.SUCCESS.getState());
         assertThat(gameResult.getAttemptNumber()).isEqualTo(expectedAttempt);
@@ -33,7 +33,7 @@ public class GameResultTest {
         for (int i = 0; i < time; i++) {
             gameResult.addAttemptNumber();
         }
-        assertThat(gameResult.getAttemptNumber()).isEqualTo(time);
+        assertThat(gameResult.getAttemptNumber()).isEqualTo(Integer.toString(time));
     }
 
     @DisplayName("성공 여부를 성공으로 바꾼다.")
