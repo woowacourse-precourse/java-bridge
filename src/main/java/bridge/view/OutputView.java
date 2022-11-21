@@ -1,10 +1,9 @@
 package bridge.view;
 
-import bridge.domain.Direction;
-
-import java.util.List;
-
 import static bridge.domain.GameMessage.*;
+
+import bridge.domain.Direction;
+import java.util.List;
 
 /** 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다. */
 public class OutputView {
@@ -85,19 +84,19 @@ public class OutputView {
   }
 
   private static String getSuccessOrFailure(String moveDir, String bridgeDir) {
-    if(moveDir.equals(bridgeDir)) {
+    if (moveDir.equals(bridgeDir)) {
       return MOVE_SUCCESS_SIGN;
     }
     return MOVE_FAIL_SIGN;
   }
 
-  private static String getString(String moveDir, String bridgeDir, boolean isUp){
+  private static String getString(String moveDir, String bridgeDir, boolean isUp) {
     String successOrFail = getSuccessOrFailure(moveDir, bridgeDir);
     if (moveDir.equals(Direction.UP.getDirection())) {
-      if(isUp) return successOrFail;
+      if (isUp) return successOrFail;
       return BRIDGE_BLACK_SHAPE;
     } else {
-      if(isUp) return BRIDGE_BLACK_SHAPE;
+      if (isUp) return BRIDGE_BLACK_SHAPE;
       return successOrFail;
     }
   }

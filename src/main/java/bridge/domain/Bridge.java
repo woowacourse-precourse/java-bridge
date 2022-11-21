@@ -9,7 +9,7 @@ public class Bridge {
     this.bridgeShapes = bridgeShapes;
   }
 
-  public List<String>getBridgeShapes() {
-      return this.bridgeShapes;
+  public List<String> getBridgeShapes() {
+    return this.bridgeShapes;
   }
 }
