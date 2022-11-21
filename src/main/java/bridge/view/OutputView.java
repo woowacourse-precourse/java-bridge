@@ -27,12 +27,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean success, MyBridge myBridge) {
+    public void printResult(boolean success, MyBridge myBridge, int tryCnt) {
         System.out.println("최종 게임 결과");
         BridgeShape.makeLines(myBridge);
         System.out.println();
         System.out.println(String.format(SUCCESS, successToString(success)));
-        System.out.println(String.format(TRY_CNT, myBridge.getTryCnt()));
+        System.out.println(String.format(TRY_CNT, tryCnt));
     }
 
     private String successToString(boolean success) {
