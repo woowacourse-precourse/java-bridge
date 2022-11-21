@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -11,8 +12,6 @@ public class BridgeMaker {
 
     private static final String UP_COMMAND = "U";
     private static final String DOWN_COMMAND = "D";
-    private static final int RANDOM_LOWER_INCLUSIVE = 0;
-    private static final int RANDOM_UPPER_INCLUSIVE = 1;
     private static final int REPEAT_START = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -27,13 +26,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+        List<String> command = new ArrayList<>(Arrays.asList(DOWN_COMMAND, UP_COMMAND));
 
-        IntStream.range(REPEAT_START, size).forEach(repeat -> {
-            int bridgeNumber = bridgeNumberGenerator.generate();
-
-            if (bridgeNumber == RANDOM_UPPER_INCLUSIVE) bridge.add(UP_COMMAND);
-            if (bridgeNumber == RANDOM_LOWER_INCLUSIVE) bridge.add(DOWN_COMMAND);
-        });
+        IntStream.range(REPEAT_START, size)
+                .forEach(repeat -> bridge.add(command.get(bridgeNumberGenerator.generate())));
 
         return bridge;
     }
