@@ -18,14 +18,13 @@ public class InputView {
      */
     public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
-        int input;
         try {
-            input = Integer.parseInt(getInput());
+            int input = Integer.parseInt(getInput());
+            InputValidator.validateSize(input);
+            return input;
         } catch (NumberFormatException ne) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_INPUT_TYPE_ERROR.getMessage());
         }
-        InputValidator.validateSize(input);
-        return input;
     }
 
     /**
