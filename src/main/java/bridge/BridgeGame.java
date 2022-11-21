@@ -45,22 +45,27 @@ public class BridgeGame {
     public void createUpBridgeResult(int moveCount) {
         downBridge.add(" ");
         if (bridgeList.get(moveCount).equals("U")) {
-            upBridge.add("O");
+            appendCorrectAnswer(upBridge);
         }
         if (bridgeList.get(moveCount).equals("D")) {
-            upBridge.add("X");
-            progressStatus = false;
+            appendWrongAnswer(upBridge);
         }
     }
     public void createDownBridgeResult(int moveCount) {
         upBridge.add(" ");
         if (bridgeList.get(moveCount).equals("D")) {
-            downBridge.add("O");
+            appendCorrectAnswer(downBridge);
         }
         if (bridgeList.get(moveCount).equals("U")) {
-            downBridge.add("X");
-            progressStatus = false;
+            appendWrongAnswer(downBridge);
         }
+    }
+    public void appendCorrectAnswer(List<String> bridgeList){
+        bridgeList.add("O");
+    }
+    public void appendWrongAnswer(List<String> bridgeList){
+        bridgeList.add("X");
+        progressStatus=false;
     }
 
 }
