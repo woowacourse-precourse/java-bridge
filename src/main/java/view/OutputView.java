@@ -36,9 +36,11 @@ public class OutputView {
             addBrinkBridge(firstFloorBridge,secondFloorBridge);
             addFirstFloorBridge(firstFloorBridge,movingFloorDataSet.get(stage), passDataSet.get(stage));
             addSecondFloorBridge(secondFloorBridge,movingFloorDataSet.get(stage), passDataSet.get(stage));
-            addBrinkBridge(firstFloorBridge, secondFloorBridge);
-            addEndBridge(firstFloorBridge,secondFloorBridge);
+            if(stage != dataSetSize - 1) {
+                addSeparatorBridge(firstFloorBridge,secondFloorBridge);
+            }
         }
+        addEndBridge(firstFloorBridge,secondFloorBridge);
         System.out.println("//////");
         System.out.println(firstFloorBridge);
         System.out.println(secondFloorBridge);
@@ -59,6 +61,11 @@ public class OutputView {
         firstFloorBridge.append(" ");
     }
 
+    private static void addSeparatorBridge(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {
+        firstFloorBridge.append(" |");
+        secondFloorBridge.append(" |");
+    }
+
     private static void addSecondFloorBridge(StringBuilder secondFloorBridge, String movingFloorData, String passData) {
         if(movingFloorData.equals(Direction.DOWN.getFloor())) {
             secondFloorBridge.append(passData);
@@ -68,8 +75,8 @@ public class OutputView {
     }
 
     private static void addEndBridge(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {
-        firstFloorBridge.append("]");
-        secondFloorBridge.append("]");
+        firstFloorBridge.append(" ]");
+        secondFloorBridge.append(" ]");
     }
 
     /**
