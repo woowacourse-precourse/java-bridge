@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.model.OutputViewMessage;
+import bridge.constant.OutputViewMessage;
 
 import java.util.List;
 

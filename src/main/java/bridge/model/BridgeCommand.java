@@ -1,5 +1,8 @@
 package bridge.model;
 
+import bridge.constant.Command;
+import bridge.constant.ExceptionMessage;
+
 public class BridgeCommand {
 
     private final String command;

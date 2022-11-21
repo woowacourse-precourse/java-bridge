@@ -1,5 +1,8 @@
 package bridge.model;
 
+import bridge.constant.ExceptionMessage;
+import bridge.constant.Moving;
+
 public class BridgeMoving {
 
     private final String moving;
