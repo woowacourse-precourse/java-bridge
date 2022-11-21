@@ -37,7 +37,7 @@ public class BridgeCommandController {
 		String gameCommand;
 		do {
 			gameCommand = inputGameCommand();
-		} while (isEqualToError(gameCommand));
+		} while (CommandChecker.isEqualToError(gameCommand));
 		return gameCommand;
 	}
 
@@ -58,7 +58,7 @@ public class BridgeCommandController {
 	}
 
 	private void checkResetOutput(String gameCommand) {
-		if (isEqualToRetry(gameCommand)) {
+		if (CommandChecker.isEqualToRetry(gameCommand)) {
 			outputView.resetOutputView();
 		}
 	}
@@ -72,18 +72,6 @@ public class BridgeCommandController {
 	}
 
 	private boolean isQuit(String gameCommand, MoveCommandDto moveCommandDto) {
-		return isEqualToQuit(gameCommand) || moveCommandDto.getGameClear();
-	}
-
-	private boolean isEqualToRetry(String gameCommand) {
-		return gameCommand.equals(CommandSymbols.RETRY);
-	}
-
-	private boolean isEqualToQuit(String gameCommand) {
-		return gameCommand.equals(CommandSymbols.QUIT);
-	}
-
-	private boolean isEqualToError(String gameCommand) {
-		return gameCommand.equals(CommandSymbols.ERROR);
+		return CommandChecker.isEqualToQuit(gameCommand) || moveCommandDto.getGameClear();
 	}
 }

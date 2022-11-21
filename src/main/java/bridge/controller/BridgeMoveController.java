@@ -31,7 +31,7 @@ public class BridgeMoveController {
 	}
 
 	private boolean isCommandRetry(String gameCommand) {
-		return gameCommand.equals("R");
+		return CommandChecker.isEqualToRetry(gameCommand);
 	}
 
 	private MoveCommandDto receiveMoveCommandDto() {
