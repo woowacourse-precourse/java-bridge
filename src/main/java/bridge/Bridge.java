@@ -10,12 +10,14 @@ public class Bridge {
 	private List<String> bridge;
 	private List<Inputs> moveLog;
 	private int nextPosition;
+	private int trials;
 
 	public Bridge(int size, BridgeNumberGenerator bridgeNumberGenerator) {
 		BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 		this.bridge = bridgeMaker.makeBridge(size);
 		this.moveLog = new ArrayList<>();
 		this.nextPosition = 0;
+		this.trials = 1;
 	}
 
 	public boolean moveNext(Inputs move) {
@@ -65,11 +67,12 @@ public class Bridge {
 	}
 
 	public void resetMoveStatus() {
-		this.nextPosition = 0;
-		this.moveLog = new ArrayList<>();
+		nextPosition = 0;
+		moveLog = new ArrayList<>();
+		trials++;
 	}
 
 	public int getTrials() {
-		return this.moveLog.size();
+		return trials;
 	}
 }

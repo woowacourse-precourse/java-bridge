@@ -84,13 +84,11 @@ class BridgeTest {
 		}
 	}
 
-	@DisplayName("실패를 포함한 시도 횟수를 반환해야 한다.")
+	@DisplayName("다리 초기화 시 시도 횟수가 증가해야 한다.")
 	@Test
 	void getTrialsTest() {
-		alternativeBridge.moveNext(Inputs.MOVE_UP);
-		alternativeBridge.moveNext(Inputs.MOVE_UP);
-		assertThat(alternativeBridge.getTrials()).isEqualTo(2);
+		assertThat(alternativeBridge.getTrials()).isEqualTo(1);
 		alternativeBridge.resetMoveStatus();
-		assertThat(alternativeBridge.getTrials()).isEqualTo(0);
+		assertThat(alternativeBridge.getTrials()).isEqualTo(2);
 	}
 }
