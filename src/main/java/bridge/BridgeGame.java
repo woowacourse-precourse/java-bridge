@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.BridgeGameStstus;
 import java.util.List;
 
 /**
@@ -9,11 +10,13 @@ public class BridgeGame {
 
     private List<String> bridge;
     private int step;
+    private BridgeGameStstus status;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.step = 0;
+        this.status = BridgeGameStstus.PROCEEDING;
     }
 
     /**
