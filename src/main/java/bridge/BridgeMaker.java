@@ -30,7 +30,6 @@ public class BridgeMaker {
             bridgeShape.add(numberToString(bridgeValue));
         }
         Bridge bridge=new Bridge(bridgeShape);
-        System.out.println("bridge.number:"+bridge.getBridgeAnswer()+", bridgeandomNumber:"+bridgeShape);
         return bridgeShape;
     }
 

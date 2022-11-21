@@ -26,7 +26,7 @@ public class OutputView {
                 else
                     System.out.print("   ");
                 if(userLocation.size()-1!=i)
-                    System.out.print(" | ");
+                    System.out.print("|");
         }
     }
 
