@@ -6,7 +6,8 @@ package bridge.model;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     public BridgeGame(int length){
-
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeMaker.makeBridge(length);
     }
 
     /**
