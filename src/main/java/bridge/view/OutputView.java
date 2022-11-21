@@ -57,13 +57,16 @@ public class OutputView {
                 BridgeElement.SUFFIX.getElement());
         bridgeInfo[1] = new StringJoiner(BridgeElement.DELIMITER.getElement(), BridgeElement.PREFIX.getElement(),
                 BridgeElement.SUFFIX.getElement());
+        addPreviousStatus(bridgeInfo, movingStatus);
+        addLastStatus(bridgeInfo, movingStatus.get(movingStatus.size() - 1), isSuccess);
+        printJoinerStatus(bridgeInfo);
+    }
+
+    private void addPreviousStatus(StringJoiner[] bridgeInfo, List<String> movingStatus) {
         for (int i = 0; i < movingStatus.size() - 1; i++) {
             bridgeInfo[getIndex(movingStatus.get(i))].add(BridgeElement.MOVE_SUCCESS.getElement());
             bridgeInfo[getReverseNumber(getIndex(movingStatus.get(i)))].add(BridgeElement.NOT_VISITED.getElement());
         }
-        addLastStatus(bridgeInfo, movingStatus.get(movingStatus.size() - 1), isSuccess);
-        System.out.println(bridgeInfo[0].toString());
-        System.out.println(bridgeInfo[1].toString());
     }
 
     private void addLastStatus(StringJoiner[] bridgeInfo, String lastMoving, boolean isSuccess) {
@@ -75,6 +78,11 @@ public class OutputView {
         // 마지막 이동이 실패함
         bridgeInfo[getIndex(lastMoving)].add(BridgeElement.MOVE_FAILED.getElement());
         bridgeInfo[getReverseNumber(getIndex(lastMoving))].add(BridgeElement.NOT_VISITED.getElement());
+    }
+
+    private void printJoinerStatus(StringJoiner[] bridgeInfo) {
+        System.out.println(bridgeInfo[0].toString());
+        System.out.println(bridgeInfo[1].toString());
     }
 
     private int getReverseNumber(int number) {
