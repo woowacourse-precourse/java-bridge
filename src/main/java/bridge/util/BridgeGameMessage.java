@@ -8,7 +8,7 @@ public enum BridgeGameMessage {
     GAME_RESULT("최종 게임 결과"
             + "\n%s"
             + "\n게임 성공 여부: %s"
-            + "총 시도한 횟수: %d");
+            + "\n총 시도한 횟수: %d");
 
     private final String message;
 
