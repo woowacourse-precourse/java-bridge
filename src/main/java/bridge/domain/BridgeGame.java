@@ -45,5 +45,9 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public PlayerData getPlayerData() {
+        return playerData;
+    }
 }
 

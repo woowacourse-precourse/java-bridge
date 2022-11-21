@@ -43,7 +43,7 @@ public class GameController {
         do {
             outputView.printMovingDirectionInputNotice();
             hasMoved = moveByInput();
-            outputView.printMap(mapMaker.makeMap(bridgeGame.getUserBridgeHistroy(), hasMoved));
+            outputView.printMap(mapMaker.makeMap(bridgeGame.getPlayerData().getMovementHistory(), hasMoved));
             if (bridgeGame.checkWin()) {
                 break;
             }
@@ -77,8 +77,8 @@ public class GameController {
     }
 
     public void end() {
-        List<String> map = mapMaker.makeMap(bridgeGame.getUserBridgeHistroy(), hasMoved);
-        outputView.printResult(map, bridgeGame.checkWin(), bridgeGame.getTryCount());
+        List<String> map = mapMaker.makeMap(bridgeGame.getPlayerData().getMovementHistory(), hasMoved);
+        outputView.printResult(map, bridgeGame.checkWin(), bridgeGame.getPlayerData().getCountOfTry());
     }
 
     public void run() {
