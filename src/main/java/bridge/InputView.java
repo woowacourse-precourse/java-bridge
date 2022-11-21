@@ -60,7 +60,7 @@ public class InputView {
 
     public void errorCheckReadMovig(String userInput) {
         try{
-            if(userInput.equals("U")||userInput.equals("D")){
+            if(!userInput.equals("U")||!userInput.equals("D")){
                 throw new IllegalArgumentException("[ERROR]");
             }
         }catch (IllegalArgumentException e){
@@ -73,6 +73,19 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String userInput=readLine();
+        errorCheckReadGameCommand(userInput);
+        return userInput;
+    }
+
+    public void errorCheckReadGameCommand(String userInput) {
+        try{
+            if(!userInput.equals("R")||!userInput.equals("Q")){
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 }

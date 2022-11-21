@@ -17,6 +17,8 @@ public class GameService {
 
         String correctOrFailSign="";
         int indexOfBridge=0;
+
+        int gameTryNumber=1;
         while (gameStartOrNot){
             outputView.printUpOrDownMessage();
             String upOrDown=inputView.readMoving();
@@ -28,9 +30,16 @@ public class GameService {
             }
             outputView.printMap(bridges.get(0), correctOrFailSign);
             if(!stillgameSign){
-                bridgeGame.retry();
+                outputView.printReOrStart();
+                gameStartOrNot=bridgeGame.retry(inputView.readGameCommand());
+                gameTryNumber++;
             }
             indexOfBridge++;
+        }
+        if(correctOrFailSign.contains("X")){
+            outputView.printResult("실패", gameTryNumber-1);
+        }else{
+            outputView.printResult("성공", gameTryNumber);
         }
     }
 }
