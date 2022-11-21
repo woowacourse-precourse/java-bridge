@@ -20,19 +20,19 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        
-        for(int index = 0; index < size; index++) {
+
+        for (int index = 0; index < size; index++) {
             String val = makeOneStep(bridgeNumberGenerator.generate());
             bridge.add(val);
         }
-        
+
         return bridge;
     }
 
     private String makeOneStep(int generate) {
-        if(generate == 1)
+        if (generate == 1)
             return "U";
-        if(generate == 0)
+        if (generate == 0)
             return "D";
         return null;
     }
