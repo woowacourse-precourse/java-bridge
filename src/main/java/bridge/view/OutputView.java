@@ -7,46 +7,40 @@ public class OutputView {
     private static final String UP_LETTER = "U";
     private static final String DOWN_LETTER = "D";
     public String printMap(List<String> movedResult, List<String> bridge) {
-        String result = "";
-        StringBuilder up = UpperString(movedResult, bridge);
-        StringBuilder down = LowerString(movedResult, bridge);
-        result = up.toString() + "]" + System.lineSeparator() + down.toString() + "]";
-        return result;
-    }
-
-    private StringBuilder UpperString (List<String> movedResult, List<String> bridge) {
         StringBuilder up = new StringBuilder("[");
-        for(int idx=0; idx<movedResult.size(); idx++) {
-            if (movedResult.get(idx).equals(UP_LETTER)) {
-                if (movedResult.get(idx).equals(bridge.get(idx))) {
-                    up.append(" O ");
-                } else if (!movedResult.get(idx).equals(bridge.get(idx))) {
-                    up.append(" X ");
-                }
-            } else if (movedResult.get(idx).equals(DOWN_LETTER)) {
-                up.append("   ");
-            }
+        StringBuilder down = new StringBuilder("[");
+        for(int idx=0; idx<movedResult.size(); idx++){
+            up = UpperString(movedResult.get(idx), bridge.get(idx), up);
+            down = LowerString(movedResult.get(idx), bridge.get(idx), down);
             if (!(idx==(movedResult.size())-1)) {
                 up.append("|");
+                down.append("|");
             }
+        }
+        return up.toString() + "]" + System.lineSeparator() + down.toString() + "]";
+    }
+
+    private StringBuilder UpperString (String moving, String bridgeSpace, StringBuilder up) {
+        if (moving.equals(UP_LETTER)) {
+            if (moving.equals(bridgeSpace)) {
+                up.append(" O ");
+            } else if (!moving.equals(bridgeSpace)) {
+                up.append(" X ");
+            }
+        } else if (moving.equals(DOWN_LETTER)) {
+            up.append("   ");
         }
         return up;
     }
 
-    private StringBuilder LowerString (List<String> movedResult, List<String> bridge) {
-        StringBuilder down = new StringBuilder("[");
-        for(int idx=0; idx<movedResult.size(); idx++) {
-            if (movedResult.get(idx).equals(UP_LETTER)) {
-                down.append("   ");
-            } else if (movedResult.get(idx).equals(DOWN_LETTER)) {
-                if (movedResult.get(idx).equals(bridge.get(idx))) {
-                    down.append(" O ");
-                } else if (!movedResult.get(idx).equals(bridge.get(idx))) {
-                    down.append(" X ");
-                }
-            }
-            if (!(idx == (movedResult.size()) - 1)) {
-                down.append("|");
+    private StringBuilder LowerString (String moving, String bridgeSpace, StringBuilder down) {
+        if (moving.equals(UP_LETTER)) {
+            down.append("   ");
+        } else if (moving.equals(DOWN_LETTER)) {
+            if (moving.equals(bridgeSpace)) {
+                down.append(" O ");
+            } else if (!moving.equals(bridgeSpace)) {
+                down.append(" X ");
             }
         }
         return down;
@@ -60,7 +54,4 @@ public class OutputView {
     public void printResult() {
     }
 
-    private void out(String text) {
-        System.out.println(text);
-    }
 }
