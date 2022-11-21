@@ -38,7 +38,13 @@ public class Application {
     }
 
     private static int getBridgeSize() {
-        return inputView.readBridgeSize();
+        try {
+            return inputView.readBridgeSize();
+        }
+        catch (IllegalArgumentException ex){
+            OutputView.printError(ex.getMessage());
+            return getBridgeSize();
+        }
     }
 
     public static void gameStart(){
