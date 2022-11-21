@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Domain;
 
 public class RestartValidator {
     private final String restartWord;

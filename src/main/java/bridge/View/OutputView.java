@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class OutputView {
     private static final String REQUEST_MOVE_AREA_MESSAGE = "이동할 칸을 선택해주세요. (위: %s, 아래: %s)";
     private static final String ASK_RESTART_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)";
     private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
-    private static final String SUCCESS_OR_NOT_MESSAGE = "최종 성공 여부: %s";
+    private static final String SUCCESS_OR_NOT_MESSAGE = "게임 성공 여부: %s";
     private static final String TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수: %d";
     private static final String SUCCESS = "성공";
     private static final String FAILURE = "실패";
@@ -48,52 +48,38 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int index, String currentAnswer, List<String> bridge) {
-        printUpperRoad(index, currentAnswer, bridge);
-        printNewLine();
-        printLowerRoad(index, currentAnswer, bridge);
+    public void printMap(List<String> bridge, List<String> answer) {
+        printRoad(bridge, answer, UPPER_ROAD);
+        printRoad(bridge, answer, LOWER_ROAD);
         printNewLine();
     }
 
-    private void printUpperRoad(int index, String currentAnswer, List<String> bridge) {
+    private void printRoad(List<String> bridge, List<String> answer, String location) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(START_OF_BRIDGE);
-        stringBuilder.append(makePreviousBridge(index, bridge, UPPER_ROAD));
-        stringBuilder.append(checkCurrentRoad(currentAnswer, UPPER_ROAD));
-        stringBuilder.append(END_OF_BRIDGE);
-        printMessage(stringBuilder.toString());
-    }
-
-    private void printLowerRoad(int index, String currentAnswer, List<String> bridge) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(START_OF_BRIDGE);
-        stringBuilder.append(makePreviousBridge(index, bridge, LOWER_ROAD));
-        stringBuilder.append(checkCurrentRoad(currentAnswer, LOWER_ROAD));
-        stringBuilder.append(END_OF_BRIDGE);
-        printMessage(stringBuilder.toString());
-    }
-
-    private String makePreviousBridge(int index, List<String> bridge, String location) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < index - 1; i++) {
-            stringBuilder.append(checkPreviousRoad(bridge.get(i), location));
-            stringBuilder.append(DELIMITER_WORD);
+        for (int i = 0; i < answer.size() - 1; i++) {
+            stringBuilder.append(choosePreviousRoad(bridge.get(i), location));
         }
-        return stringBuilder.toString();
+        stringBuilder.append(chooseLastRoad(bridge.get(answer.size() - 1), answer.get(answer.size() - 1), location));
+        stringBuilder.append(END_OF_BRIDGE);
+        printMessage(stringBuilder.toString());
     }
 
-    private String checkPreviousRoad(String correctBridge, String location) {
-        if (correctBridge.equals(location)) {
-            return CORRECT_WORD;
+    private String choosePreviousRoad(String bridge, String location) {
+        if (bridge.equals(location)) {
+            return CORRECT_WORD + DELIMITER_WORD;
+        }
+        return BLANK_WORD + DELIMITER_WORD;
+    }
+
+    private String chooseLastRoad(String bridge, String answer, String location) {
+        if (bridge.equals(location)) {
+            if (bridge.equals(answer)) {
+                return CORRECT_WORD;
+            }
+            return NOT_CORRECT_WORD;
         }
         return BLANK_WORD;
-    }
-
-    private String checkCurrentRoad(String currentAnswer, String location) {
-        if (currentAnswer.equals(location)) {
-            return CORRECT_WORD;
-        }
-        return NOT_CORRECT_WORD;
     }
 
     /**
@@ -101,19 +87,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String currentAnswer, List<String> bridge, int count) {
+    public void printResult(List<String> bridge, List<String> answer, int count) {
         printMessage(GAME_RESULT_MESSAGE);
-        printMap(bridge.size() - 1, currentAnswer, bridge);
-        printMessage(String.format(SUCCESS_OR_NOT_MESSAGE, checkGameResult(currentAnswer, bridge)));
+        printMap(bridge, answer);
+        printMessage(String.format(SUCCESS_OR_NOT_MESSAGE, checkGameResult(bridge, answer)));
         printMessage(String.format(TOTAL_ATTEMPTS_MESSAGE, count));
     }
 
-    private String checkGameResult(String currentAnswer, List<String> bridge) {
-        if (currentAnswer.equals(bridge.get(bridge.size() - 1))) {
+    private String checkGameResult(List<String> bridge, List<String> answer) {
+        String bridgeAnswer = bridge.get(answer.size() - 1);
+        String userAnswer = answer.get(answer.size() - 1);
+        if (bridgeAnswer.equals(userAnswer)) {
             return SUCCESS;
         }
         return FAILURE;
     }
+
 
     private static void printMessage(String message) {
         System.out.println(message);
