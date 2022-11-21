@@ -11,4 +11,7 @@ public class Utils {
     static final int FAIL = -1;
     static final int CONTINUE = 0;
     static final int SUCCESS = 1;
+    static final String RESTART = "R";
+    static final String EXIT = "Q";
+    public static final int LIMIT = 10;
 }

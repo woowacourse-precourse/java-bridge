@@ -8,6 +8,9 @@ public class Application {
     private static int size;
     private static String moving;
     private static BridgeGame bridgeGame;
+    private static int state;
+    private static int count = 1;
+    private static int limit = 0;
 
     private static void init() {
         userInput = new InputView();
@@ -25,10 +28,15 @@ public class Application {
         }
     }
 
-    private static int initBridgeSize() {
+    private static int initBridgeSize() throws IllegalStateException {
+        limit = 0;
         int size = readValidBridgeSize();
-        while (size == ExceptionHandler.ERROR) {
+        while (size == ExceptionHandler.ERROR && limit <= Utils.LIMIT) {
+            limit++;
             size = readValidBridgeSize();
+        }
+        if (limit > Utils.LIMIT) {
+            throw new IllegalStateException("[ERROR] 잘못된 입력을 너무 많아 비정상 종료되었습니다.");
         }
         return size;
     }
@@ -48,25 +56,53 @@ public class Application {
         }
     }
 
-    private static String setNextMoving() {
+    private static String setNextMoving() throws IllegalStateException {
+        limit = 0;
         String moving = readValidMoving();
-        while (moving == null) {
+        while (moving == null && limit <= Utils.LIMIT) {
+            limit++;
             moving = readValidMoving();
+        }
+        if (limit > Utils.LIMIT) {
+            throw new IllegalStateException("[ERROR] 잘못된 입력을 너무 많아 비정상 종료되었습니다.");
         }
         return moving;
     }
 
     private static int runBridgeGame() {
-        int state;
         do {
             moving = setNextMoving();
             bridgeGame.move(moving);
-        } while((state = bridgeGame.isEnded()) == Utils.CONTINUE);
+            stdout.printMap(bridgeGame.report());
+        } while ((state = bridgeGame.isEnded()) == Utils.CONTINUE);
         return state;
     }
 
-    public static void main(String[] args) {
+    private static boolean startBridgeGame() {
+        if (runBridgeGame() == Utils.FAIL) {
+            return userInput.readGameCommand().equals(Utils.RESTART);
+        }
+        return false;
+    }
+
+    private static void finishBridgeGame() {
+        stdout.printResult(bridgeGame.report(), state, count);
+    }
+
+    private static void run() {
         init();
-        runBridgeGame();
+        while (startBridgeGame()) {
+            bridgeGame.retry();
+            count++;
+        }
+        finishBridgeGame();
+    }
+
+    public static void main(String[] args) {
+        try {
+            run();
+        } catch (Exception e) {
+            ExceptionHandler.printException(e);
+        }
     }
 }

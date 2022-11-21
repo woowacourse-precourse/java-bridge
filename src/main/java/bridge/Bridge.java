@@ -1,5 +1,7 @@
 package bridge;
 
+import jdk.jshell.execution.Util;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class Bridge {
     }
 
     public void writeResult(String moving, String result) {
+        this.lastResult = result;
         writeUpperBridge(moving, result);
         writeLowerBridge(moving, result);
     }
@@ -52,5 +55,26 @@ public class Bridge {
 
     public void movePosition() {
         position++;
+    }
+
+    public boolean isArrived() {
+        return position >= size;
+    }
+
+    public boolean failed() {
+        return lastResult.equals("X");
+    }
+
+    private String makeStateString(List<String> bridge) {
+        StringBuilder str = new StringBuilder("[ ");
+        for (int i = 0; i < bridge.size() - 1; i++) {
+            str.append(bridge.get(i) + " | ");
+        }
+        str.append(bridge.get(bridge.size() - 1) + " ]\n");
+        return str.toString();
+    }
+
+    public String toString() {
+        return makeStateString(upperBridge) + makeStateString(lowerBridge);
     }
 }

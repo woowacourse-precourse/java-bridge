@@ -1,6 +1,7 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import jdk.jshell.execution.Util;
 
 // 예외 체크 코드 ExceptionHandler로 이동할지 생각
 
@@ -52,6 +53,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String command = Console.readLine();
+        if(!isValidCommand(command)) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q가 입력되어야 합니다.");
+        }
+        return command;
+    }
+
+    static boolean isValidCommand(String command) {
+        return command.equals(Utils.EXIT) || command.equals(Utils.RESTART);
     }
 }

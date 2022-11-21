@@ -18,9 +18,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moving) {
-        this.movable = isMovable(moving);
+        this.movable = markMovable(moving);
         bridge.writeResult(moving, movable);
         bridge.movePosition();
+        this.result = findResult();
     }
 
     /**
@@ -29,10 +30,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        this.bridge.initBridge();
     }
 
-    public String isMovable(String moving) {
-        if(bridge.canMove(moving)) {
+    public boolean isMovable(String moving) {
+        return bridge.canMove(moving);
+    }
+
+    public String markMovable(String moving) {
+        if (isMovable(moving)) {
             return "O";
         }
         return "X";
@@ -40,5 +46,19 @@ public class BridgeGame {
 
     public int isEnded() {
         return result;
+    }
+
+    public int findResult() {
+        if (bridge.isArrived() && !bridge.failed()) {
+            return Utils.SUCCESS;
+        }
+        if (bridge.failed()) {
+            return Utils.FAIL;
+        }
+        return Utils.CONTINUE;
+    }
+
+    public String report() {
+        return bridge.toString();
     }
 }
