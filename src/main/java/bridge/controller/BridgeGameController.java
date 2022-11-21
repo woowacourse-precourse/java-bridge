@@ -15,7 +15,6 @@ public class BridgeGameController {
         bridgeGame.bridgeMaking(bridgeSize);
         gameContinue(bridgeSize,bridgeGame);
         OutputView.printResult(bridgeGame.returnResult(),bridgeGame.isSuccess(bridgeSize),bridgeGame.totalTryTime());
-
     }
 
     private void retry(int bridgeSize,BridgeGame bridgeGame) {
