@@ -7,13 +7,17 @@ public class InputValidator {
     private static final String GAME_COMMAND_ERROR = "[ERROR] 게임 재시작/종료 여부는 R 혹은 Q 중 하나여야 합니다.";
 
     public static int validateBridgeSize(String input) {
-        if (!isNumber(input)) {
+        if (isInputEmpty(input) || !isNumber(input)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
         }
         if (!isSizeThreeToTwenty(input)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
         }
         return Integer.parseInt(input);
+    }
+
+    private static boolean isInputEmpty(String input) {
+        return input == null || input.isEmpty();
     }
 
     private static boolean isNumber(String input) {
