@@ -23,6 +23,14 @@ public class UserBridege {
         return downBridge;
     }
 
+    public void makeClearUpBridge() {
+        upBridge.clear();
+    }
+
+    public void makeClearDownBridge() {
+        downBridge.clear();
+    }
+
     private String compareInput(String userInput, String standard, boolean correct) {
         if (standard.equals(userInput) && correct == true) {
             return "O";
