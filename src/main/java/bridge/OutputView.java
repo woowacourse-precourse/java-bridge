@@ -42,9 +42,7 @@ public class OutputView {
 
         System.out.println(GAME_RESULT_TITLE);
         printMap(map);
-        System.out.println(GAME_RESULT_EVENT_MESSAGE
-                .replace(REPLACE_GAME_RESULT_FROM, gameResult)
-                .replace(REPLACE_TRY_COUNT_FROM, Integer.toString(tryCount)));
+        printGameResultEventMessage(gameResult, tryCount);
     }
 
     private String successOrFail(boolean isCorrectPath) {
@@ -52,6 +50,12 @@ public class OutputView {
             return SUCCESS;
         }
         return FAIL;
+    }
+
+    private void printGameResultEventMessage(String gameResult, int tryCount) {
+        System.out.println(GAME_RESULT_EVENT_MESSAGE
+                .replace(REPLACE_GAME_RESULT_FROM, gameResult)
+                .replace(REPLACE_TRY_COUNT_FROM, Integer.toString(tryCount)));
     }
 
     public void printStartEventMessage() {
