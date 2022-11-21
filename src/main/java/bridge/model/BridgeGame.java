@@ -17,11 +17,13 @@ public class BridgeGame {
     private List<String> bridge;
     private List<String> upPresentBridge;
     private List<String> downPresentBridge;
+    private List<String> userMoveList;
 
     public BridgeGame(List<String> bridge) {
         this.bridge=bridge;
         upPresentBridge=new ArrayList<>();
         downPresentBridge=new ArrayList<>();
+        userMoveList=new ArrayList<>();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -30,6 +32,7 @@ public class BridgeGame {
      */
 
     public void move(String userMove) {
+        userMoveList.add(userMove);
         if(userMove=="U"){
             upPresentBridge.add("O");
             downPresentBridge.add("X");
@@ -57,5 +60,9 @@ public class BridgeGame {
 
     public List<String> getBridge() {
         return bridge;
+    }
+
+    public List<String> getUserMoveList() {
+        return userMoveList;
     }
 }
