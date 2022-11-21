@@ -42,7 +42,7 @@ public class GameController {
             try {
                 String choice = inputView.readMoving(inputView.userInput());
                 moveNextStep(choice);
-                retryOrQuit(bridgeGame.lastMoveMatches());
+                updateGameStatus(bridgeGame.isLastMoveSuccess());
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }
@@ -54,7 +54,7 @@ public class GameController {
         outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
     }
 
-    private void retryOrQuit(boolean success) {
+    private void updateGameStatus(boolean success) {
         if (!success) {
             outputView.printGameContinueOpening();
             try {
@@ -62,7 +62,7 @@ public class GameController {
                 bridgeGame.transitionTo(cmd);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
-                retryOrQuit(success);
+                updateGameStatus(success);
             }
         }
     }

@@ -9,10 +9,10 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private GameContext gameContext;
     private final Bridge bridge;
     private PlayersMove playersMove;
     private int moveCount;
-    private GameContext gameContext;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -44,7 +44,7 @@ public class BridgeGame {
         return bridgeMove.equals(playersMove);
     }
 
-    public boolean lastMoveMatches() {
+    public boolean isLastMoveSuccess() {
         int lastMoveIdx = moveCount - 1;
         return isMatch(bridge.getBridgeMove(lastMoveIdx), playersMove.getPlayersMoveAtIdx(lastMoveIdx));
     }
@@ -64,12 +64,12 @@ public class BridgeGame {
      */
     public void retry() {
         refreshGameContext();
-        gameContext.increaseRetry();
     }
 
     private void refreshGameContext() {
         playersMove.initialize();
         moveCount = 0;
+        gameContext.increaseRetry();
     }
 
     public void transitionTo(String cmd){
