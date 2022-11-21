@@ -29,10 +29,28 @@ public class BridgeGameTest {
     }
 
     static Stream<Arguments> generateData(){
+        List<List<ChoiceDirection>> choiceDirections = List.of(
+                ChoiceDirections.of(List.of("U", "U", "D")),
+                ChoiceDirections.of(List.of("U", "D")),
+                ChoiceDirections.of(List.of("D"))
+        );
+
+        List<List<CrossResult>> crossResults = List.of(
+                List.of(CrossResult.SUCCESS, CrossResult.SUCCESS, CrossResult.SUCCESS),
+                List.of(CrossResult.SUCCESS, CrossResult.FAIL),
+                List.of(CrossResult.FAIL)
+        );
+
+        List<GameStatus> gameStatuses = List.of(
+                GameStatus.SUCCESS,
+                GameStatus.FAIL,
+                GameStatus.FAIL
+        );
+
         return Stream.of(
-                Arguments.of(ChoiceDirections.of(List.of("U", "U", "D")), List.of(CrossResult.SUCCESS, CrossResult.SUCCESS, CrossResult.SUCCESS), GameStatus.SUCCESS),
-                Arguments.of(ChoiceDirections.of(List.of("U", "D")), List.of(CrossResult.SUCCESS, CrossResult.FAIL), GameStatus.FAIL),
-                Arguments.of(ChoiceDirections.of(List.of("D")), List.of(CrossResult.FAIL), GameStatus.FAIL)
+                Arguments.of(choiceDirections.get(0), crossResults.get(0), gameStatuses.get(0)),
+                Arguments.of(choiceDirections.get(1), crossResults.get(1), gameStatuses.get(1)),
+                Arguments.of(choiceDirections.get(2), crossResults.get(2), gameStatuses.get(2))
         );
     }
 }
