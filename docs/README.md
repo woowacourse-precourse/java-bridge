@@ -1,4 +1,12 @@
-### < 기능 구현 사항 >
+## < 클래스 관계도 >
+<br/>
+
+![ClassDiagram](https://user-images.githubusercontent.com/96610382/202952542-991e098f-fecc-4414-8a5a-3a9b55bc1d4a.jpg)
+
+<br/>
+<br/>
+
+## < 기능 구현 사항 >
 <br/>
 
 - [x] 다리 생성 기능
