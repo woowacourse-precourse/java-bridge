@@ -25,28 +25,20 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public String readMoving() throws IllegalArgumentException {
         String move;
         systemMessage.getMove();
-        try {
-            move = Console.readLine();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
+        move = Console.readLine();
         return move;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public String readGameCommand() throws IllegalArgumentException {
         String command;
         systemMessage.getCommand();
-        try {
-            command = Console.readLine();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
+        command = Console.readLine();
         return command;
     }
 }
