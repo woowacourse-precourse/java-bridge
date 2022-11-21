@@ -1,5 +1,6 @@
 package bridge.study;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +8,13 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class EnumTest {
+
+    @AfterEach
+    void resetEnumToOriginValue() {
+        testEnum test = testEnum.Test;
+        test.setTestValue("hello");
+    }
+
     @Test
     @DisplayName("Enum의 값이 setter에 의해서 바뀌는지 확인")
     void Enum_값_변경_테스트() {
@@ -30,7 +38,6 @@ public class EnumTest {
         testEnum secondTestEnum = EnumTest.testEnum.Test;
         testEnum thirdTestEnum3 = EnumTest.testEnum.Test;
         testEnum fourthTestEnum4 = EnumTest.testEnum.Test;
-
 
 
         assertAll(() -> {
