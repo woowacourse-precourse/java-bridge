@@ -38,6 +38,15 @@ public class BridgeGame {
     }
 
     public int getBridgeSize() {
-        return -1;
+        int bridgeSize;
+
+        try {
+            bridgeSize = this.bridgeSizeGetter.getBridgeSizeFromConsole();
+        } catch (IllegalArgumentException exception) {
+            this.exceptionHandler.handleIllegalArgumentException(exception);
+            bridgeSize = getBridgeSize();
+        }
+
+        return bridgeSize;
     }
 }
