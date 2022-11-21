@@ -4,20 +4,20 @@ import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
 
 public class Controller {
-    OutputView outputView;
-    InputView  inputView;
+    private final OutputView outputView;
+    private final InputView  inputView;
 
     public Controller(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
     }
 
-    public void startGame(BridgeGame bridgeGame) {
+    public void startGame(final BridgeGame bridgeGame) {
         bridgeGame.generateBridge(getBridgeSize());
         play(bridgeGame, GameStatus.CONTINUE);
     }
 
-    public GameStatus play(BridgeGame bridgeGame, GameStatus gameStatus) {
+    public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
         Map map = new Map();
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
@@ -28,19 +28,19 @@ public class Controller {
         return gameStatus;
     }
 
-    private boolean movePlayer(BridgeGame bridgeGame) {
+    private void movePlayer(final BridgeGame bridgeGame) {
         outputView.printGuideMessage(GuideMessage.GET_MOVING);
         bridgeGame.move(inputView.readMoving());
     }
 
-    private GameStatus getGameStatus(BridgeGame bridgeGame, boolean moved) {
+    private GameStatus getGameStatus(final BridgeGame bridgeGame, boolean moved) {
         if (!moved) {
             return askRestartGame(bridgeGame);
         }
         return bridgeGame.isSuccess();
     }
 
-    private GameStatus askRestartGame(BridgeGame bridgeGame) {
+    private GameStatus askRestartGame(final BridgeGame bridgeGame) {
         outputView.printAskGameCommand();
         return bridgeGame.retry(inputView.readGameCommand());
     }
