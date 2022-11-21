@@ -44,17 +44,35 @@ public class BridgeStatus {
 		return status;
 	}
 
+	private static boolean isUp(String Letter) {
+		return Letter.equals(UP);
+	}
+
+	private static boolean isDown(String Letter) {
+		return Letter.equals(DOWN);
+	}
+
 	private void buildUpperCell(String bridgeLetter) {
 		if (phase == 0) {
 			putFirstUpperCell(bridgeLetter);
 		}
 		if (phase > 0) {
-			putConsecutiveUpperCell(bridgeLetter);
+			putMultipleUpperCell(bridgeLetter);
 		}
 		phase++;
 	}
 
 	private void putFirstUpperCell(String bridgeLetter) {
+		putMarkByLetterInUpperCell(bridgeLetter);
+		endCell();
+	}
+
+	private void endCell() {
+		upperCellBuilder.append(END_BRACKET);
+		lowerCellBuilder.append(END_BRACKET);
+	}
+
+	private void putMarkByLetterInUpperCell(String bridgeLetter) {
 		if (isUp(bridgeLetter)) {
 			upperCellBuilder.append(CORRECT_MARK);
 		}
@@ -62,11 +80,20 @@ public class BridgeStatus {
 			upperCellBuilder.append(WRONG_MARK);
 		}
 		lowerCellBuilder.append(EMPTY);
+	}
+
+	private void putMultipleUpperCell(String bridgeLetter) {
+		deleteEndCell();
+		putMarkByLetterWhenHasMultipleUpperCell(bridgeLetter);
 		endCell();
 	}
 
-	private void putConsecutiveUpperCell(String bridgeLetter) {
-		deleteEndCell();
+	private void deleteEndCell() {
+		upperCellBuilder.deleteCharAt(upperCellBuilder.length() - 1);
+		lowerCellBuilder.deleteCharAt(lowerCellBuilder.length() - 1);
+	}
+
+	private void putMarkByLetterWhenHasMultipleUpperCell(String bridgeLetter) {
 		if (isUp(bridgeLetter)) {
 			upperCellBuilder.append(VERTICAL_BAR).append(CORRECT_MARK);
 		}
@@ -74,7 +101,6 @@ public class BridgeStatus {
 			upperCellBuilder.append(VERTICAL_BAR).append(WRONG_MARK);
 		}
 		lowerCellBuilder.append(VERTICAL_BAR).append(EMPTY);
-		endCell();
 	}
 
 	private void buildLowerCell(String bridgeLetter) {
@@ -82,12 +108,17 @@ public class BridgeStatus {
 			putFirstLowerCell(bridgeLetter);
 		}
 		if (phase > 0) {
-			putConsecutiveLowerCell(bridgeLetter);
+			putMultipleLowerCell(bridgeLetter);
 		}
 		phase++;
 	}
 
 	private void putFirstLowerCell(String bridgeLetter) {
+		putMarkByLetterInLowerCell(bridgeLetter);
+		endCell();
+	}
+
+	private void putMarkByLetterInLowerCell(String bridgeLetter) {
 		if (isDown(bridgeLetter)) {
 			lowerCellBuilder.append(CORRECT_MARK);
 		}
@@ -95,11 +126,15 @@ public class BridgeStatus {
 			lowerCellBuilder.append(WRONG_MARK);
 		}
 		upperCellBuilder.append(EMPTY);
+	}
+
+	private void putMultipleLowerCell(String bridgeLetter) {
+		deleteEndCell();
+		putMarkByLetterWhenHasMultipleLowerCell(bridgeLetter);
 		endCell();
 	}
 
-	private void putConsecutiveLowerCell(String bridgeLetter) {
-		deleteEndCell();
+	private void putMarkByLetterWhenHasMultipleLowerCell(String bridgeLetter) {
 		if (isDown(bridgeLetter)) {
 			lowerCellBuilder.append(VERTICAL_BAR).append(CORRECT_MARK);
 		}
@@ -107,15 +142,6 @@ public class BridgeStatus {
 			lowerCellBuilder.append(VERTICAL_BAR).append(WRONG_MARK);
 		}
 		upperCellBuilder.append(VERTICAL_BAR).append(EMPTY);
-		endCell();
-	}
-
-	private static boolean isUp(String Letter) {
-		return Letter.equals(UP);
-	}
-
-	private static boolean isDown(String Letter) {
-		return Letter.equals(DOWN);
 	}
 
 	private void putStatus() {
@@ -131,20 +157,10 @@ public class BridgeStatus {
 		return lowerCellBuilder.toString();
 	}
 
-	private void endCell() {
-		upperCellBuilder.append(END_BRACKET);
-		lowerCellBuilder.append(END_BRACKET);
-	}
-
-	private void deleteEndCell() {
-		upperCellBuilder.deleteCharAt(upperCellBuilder.length() - 1);
-		lowerCellBuilder.deleteCharAt(lowerCellBuilder.length() - 1);
-	}
-
 	public boolean isSuccess() {
-		boolean isFailUpperCell = getUpperCell().contains(WRONG_MARK);
-		boolean isFailLowerCell = getLowerCell().contains(WRONG_MARK);
-		return !isFailUpperCell && !isFailLowerCell;
+		boolean containFailInUpperCell = getUpperCell().contains(WRONG_MARK);
+		boolean containFailInLowerCell = getLowerCell().contains(WRONG_MARK);
+		return !containFailInUpperCell && !containFailInLowerCell;
 	}
 
 	public void reset() {
