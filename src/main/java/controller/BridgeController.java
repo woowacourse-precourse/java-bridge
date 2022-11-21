@@ -1,31 +1,33 @@
 package controller;
 
 import bridge.*;
+import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
 public class BridgeController {
 
-    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    InputView inputView = new InputView();
-    BridgeGame bridgeGame = new BridgeGame();
-    OutputView outputView = new OutputView();
-    List<String> bridge;
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private final InputView inputView = new InputView();
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final OutputView outputView = new OutputView();
+    private List<String> bridge;
 
     public void startGame(){
         bridgeGame.addGameCount();
 
-        if(!repeatSuccess()) {
+        if(!isTrySuccess()) {
             askRetryGame();
             return;
         }
         outputView.printResult();
     }
 
-    public boolean repeatSuccess() {
+    public boolean isTrySuccess() {
         for (int i = 0; i < bridge.size(); i++) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            outputView.printMovingSelect();
             String move = inputView.readMoving();
 
             moveingControl(i,move);
@@ -49,13 +51,12 @@ public class BridgeController {
     }
 
     public void makeBridge(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println("다리의 길이를 입력해주세요.");
+        outputView.printStartMessage();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
     public void askRetryGame(){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        outputView.printRetryMessage();
         boolean retry = bridgeGame.retry(inputView.readGameCommand());
 
         if(retry){
