@@ -8,7 +8,7 @@ public class StandardTools {
     public static final String BRIDGE_SEPARATOR = "|";
     public static final String BRIDGE_TALE = "]";
 
-    public static final boolean GAME_FAILED = false;
-    public static final boolean GAME_SUCCEED = true;
+    public static final boolean FAILED = false;
+    public static final boolean SUCCEED = true;
 
 }
