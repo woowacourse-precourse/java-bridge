@@ -10,22 +10,7 @@ public class OutputView {
         initStringBuilder();
         int crossBridgeSize = bridge.getUpBridge().size();
 
-        upStringBuilder.append("[");
-        downStringBuilder.append("[");
-
-        for (int i = 0; i < crossBridgeSize; i++) {
-            upStringBuilder.append(bridge.getUpBridge().get(i));
-            downStringBuilder.append(bridge.getDownBridge().get(i));
-            if (i != crossBridgeSize - 1) {
-                upStringBuilder.append('|');
-                downStringBuilder.append('|');
-            }
-        }
-        upStringBuilder.append("]");
-        upStringBuilder.append('\n');
-
-        downStringBuilder.append("]");
-        downStringBuilder.append('\n');
+        finishStringBuilder();
 
         bridge.setLastBridge(upStringBuilder + downStringBuilder.toString());
         System.out.println(upStringBuilder + downStringBuilder.toString());
@@ -37,6 +22,11 @@ public class OutputView {
 
         upStringBuilder.append("[");
         downStringBuilder.append("[");
+    }
+
+    private void finishStringBuilder() {
+        upStringBuilder.append("]\n");
+        downStringBuilder.append("]\n");
     }
 
     public void printResult(String gameResult, int gameTryCount, String lastMapResult) {
