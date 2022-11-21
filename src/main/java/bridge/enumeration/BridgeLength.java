@@ -1,4 +1,4 @@
-package bridge.business.enumeration;
+package bridge.enumeration;
 
 public enum BridgeLength {
     MAX(20), MIN(3);

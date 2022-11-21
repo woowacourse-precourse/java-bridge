@@ -1,6 +1,6 @@
 package bridge.ui;
 
-import bridge.business.enumeration.MovingKey;
+import bridge.enumeration.MovingKey;
 
 import java.util.List;
 

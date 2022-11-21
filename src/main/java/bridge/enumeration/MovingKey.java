@@ -1,4 +1,4 @@
-package bridge.business.enumeration;
+package bridge.enumeration;
 
 public enum MovingKey {
     UP("U"), DOWN("D");

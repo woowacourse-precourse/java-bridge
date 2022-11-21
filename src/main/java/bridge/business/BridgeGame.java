@@ -1,8 +1,8 @@
 package bridge.business;
 
-import bridge.business.enumeration.BridgeLength;
-import bridge.business.enumeration.MovingKey;
-import bridge.business.enumeration.RetryKey;
+import bridge.enumeration.BridgeLength;
+import bridge.enumeration.MovingKey;
+import bridge.enumeration.RetryKey;
 
 import java.util.*;
 
