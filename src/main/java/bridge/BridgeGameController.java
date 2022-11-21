@@ -25,8 +25,8 @@ public class BridgeGameController {
 
     private void startBridgeGame() {
         while(true) {
-            String status = inputView.readMoving();
-
+            String inputStatus = inputView.readMoving();
+            if (BridgeGame.move(inputStatus, bridge, count++)) {break;}
         }
     }
 
