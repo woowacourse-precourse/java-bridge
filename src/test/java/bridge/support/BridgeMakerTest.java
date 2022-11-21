@@ -1,7 +1,5 @@
-package bridge;
+package bridge.support;
 
-import bridge.support.BridgeMaker;
-import bridge.support.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
