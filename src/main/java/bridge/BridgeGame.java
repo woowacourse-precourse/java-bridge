@@ -28,21 +28,23 @@ public class BridgeGame {
     boolean isRight = true;
     String gameResult = "";
     boolean keepGoing = true;
+    private int tryCount = 0;
 
     public void start(){
         outputView.printStartMessage();
         int size = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(size);
-        System.out.println(bridge);
+//        System.out.println(bridge);
         judgeGame();
         while(keepGoing){
             retry();
         }
-        System.out.println(gameResult);
+        outputView.printResult(results,gameResult,tryCount);
 
     }
 
     private void judgeGame() {
+        tryCount++;
         while (isRight && count<bridge.size()){
             String moving = inputView.readMoving();
             move(bridge,moving,count);
@@ -58,9 +60,10 @@ public class BridgeGame {
         isRight = true;
     }
     private void judgeResult(){
-        System.out.println(isRight);
-        if(isRight)
+        if(isRight) {
             gameResult = "성공";
+            keepGoing = false;
+        }
         if(!isRight)
             gameResult = "실패";
     }
@@ -74,10 +77,14 @@ public class BridgeGame {
     public void move(List<String> bridge, String moving, int count) {
         checkUp(bridge,moving,count);
         checkDown(bridge,moving,count);
-        results.add(up);
-        results.add(down);
+        togetherUpDown();
         if(up.contains("X") || down.contains("X"))
             isRight = false;
+    }
+    private void togetherUpDown(){
+        results.clear();
+        results.add(up);
+        results.add(down);
     }
 
     /**
@@ -89,7 +96,6 @@ public class BridgeGame {
         String restart = inputView.readGameCommand();
         if(restart.equals("R")){
             initVariable();
-            System.out.println("게임 재시작");
             judgeGame();
         }
         if(restart.equals("Q"))
