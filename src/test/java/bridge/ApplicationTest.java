@@ -9,6 +9,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.Controller.BridgeSizeValidator;
 import bridge.Controller.MovingCommandValidator;
 import bridge.Controller.Validator;
+import bridge.Model.BridgeGame;
 import bridge.View.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
@@ -26,6 +27,7 @@ class ApplicationTest extends NsTest {
     private static InputStream in;
     private static InputView inputView = new InputView();
     private static Validator validator;
+    private static BridgeGame bridgeGame;
 
     //region 다리길이입력 단위 테스트 케이스
     @Test
@@ -168,6 +170,21 @@ class ApplicationTest extends NsTest {
         System.setIn(in);
         String movingCommand = inputView.readMoving();
         assertThat(movingCommand).isEqualTo("D");
+    }
+    //endregion
+
+    //region 다리이동결과 단위 테스트 케이스
+    @Test
+    void 다리이동결과_기능테스트_성공(){
+        bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        String result = bridgeGame.move(0, "U");
+        assertThat(result).isEqualTo("O");
+    }
+    @Test
+    void 다리이동결과_기능테스트_실패(){
+        bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        String result = bridgeGame.move(0, "D");
+        assertThat(result).isEqualTo("X");
     }
     //endregion
 
