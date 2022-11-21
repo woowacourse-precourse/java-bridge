@@ -9,7 +9,6 @@ public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
 
-    private int size;
     private List<String> answers;
 
     private StringJoiner upperBridge = new StringJoiner("|", "[", "]");
@@ -25,7 +24,7 @@ public class BridgeGame {
     }
 
     public void gameSet() {
-        size = inputView.readBridgeSize();
+        int size = inputView.readBridgeSize();
         answers = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
