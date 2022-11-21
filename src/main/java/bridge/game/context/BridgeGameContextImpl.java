@@ -1,11 +1,12 @@
 package bridge.game.context;
 
 import bridge.domain.bridge.Bridge;
+import bridge.domain.code.BridgePosition;
 import bridge.game.BridgeGame;
 
 public class BridgeGameContextImpl implements BridgeGameContext {
     private BridgeGame bridgeGame;
-    private Integer repeatCount = 0;
+    private Integer repeatCount = 1;
     private String cachedHistory;
 
 
@@ -19,8 +20,7 @@ public class BridgeGameContextImpl implements BridgeGameContext {
         return bridgeGame;
     }
 
-    @Override
-    public void plusRepeatCount() {
+    private void plusRepeatCount() {
         this.repeatCount += 1;
     }
 
@@ -37,5 +37,18 @@ public class BridgeGameContextImpl implements BridgeGameContext {
     @Override
     public Integer getRepeatCount() {
         return this.repeatCount;
+    }
+
+    @Override
+    public void retry() {
+        this.plusRepeatCount();
+        bridgeGame.retry();
+    }
+
+    @Override
+    public void movePlayerUnit(BridgePosition movePosition) {
+        var history = bridgeGame.move(movePosition);
+        var resultHistory = history.resultByPositions();
+        this.writeHistory(resultHistory);
     }
 }
