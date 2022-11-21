@@ -13,6 +13,5 @@ public class UserService {
 
     public static void initUserResult(UserResult userResult) {
         userResult.init();
-        userResult.initCount();
     }
 }

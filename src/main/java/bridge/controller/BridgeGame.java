@@ -1,8 +1,8 @@
 package bridge.controller;
 
 import bridge.domain.UserResult;
-import bridge.service.BridgeGameService;
-import bridge.service.MovingService;
+import bridge.service.BridgeService;
+import bridge.service.GameService;
 import bridge.service.UserService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -20,7 +20,7 @@ public class BridgeGame {
             bridgeSize = InputView.readBridgeSize();
         }while (bridgeSize == "error");
 
-        List<String> bridge = BridgeGameService.initBridge(bridgeSize);
+        List<String> bridge = BridgeService.initBridge(bridgeSize);
         UserResult userResult = UserService.generateUserResult();
 
         startGame(bridge,userResult);
@@ -48,12 +48,12 @@ public class BridgeGame {
 
     public void move(List<String> bridge, UserResult userResult) {
         while (userResult.lessThanBridgeSize(bridge.size())) {
-            if(!(canCross(bridge,userResult))){
-                OutputView.printMap(userResult);
+            boolean crossResult = canCross(bridge,userResult);
+            OutputView.printMap(userResult);
+            if(!crossResult){
                 return;
             }
             userResult.upCount();
-            OutputView.printMap(userResult);
         }
     }
 
@@ -63,7 +63,7 @@ public class BridgeGame {
             userMoving = InputView.readMoving();
         }while (userMoving == "error");
 
-        if(MovingService.judgeMoving(bridge,userResult,userMoving)){
+        if(GameService.judgeMoving(bridge,userResult,userMoving)){
             return true;
         }
         return false;

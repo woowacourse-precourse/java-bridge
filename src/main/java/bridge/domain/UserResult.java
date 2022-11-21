@@ -8,14 +8,6 @@ public class UserResult {
 
     private List<String> upSpace;
 
-    public List<String> getUpSpace() {
-        return upSpace;
-    }
-
-    public List<String> getDownSpace() {
-        return downSpace;
-    }
-
     private List<String> downSpace;
 
     public UserResult(List<String> upSpace, List<String> downSpace) {
@@ -34,10 +26,6 @@ public class UserResult {
         downSpace.add(movingResult);
         upSpace.add(" ");
 
-    }
-
-    public void initCount() {
-        this.count = 0;
     }
 
     public boolean sameBridgeSize(int size) {
@@ -76,5 +64,14 @@ public class UserResult {
     public void init() {
         upSpace.clear();
         downSpace.clear();
+        count = 0;
+    }
+
+    public List<String> getUpSpace() {
+        return upSpace;
+    }
+
+    public List<String> getDownSpace() {
+        return downSpace;
     }
 }

@@ -1,11 +1,12 @@
 package bridge.service;
 
+import bridge.Application;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeMaker;
 
 import java.util.List;
 
-public class BridgeGameService {
+public class BridgeService {
     private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public static List<String> initBridge(String size) {
