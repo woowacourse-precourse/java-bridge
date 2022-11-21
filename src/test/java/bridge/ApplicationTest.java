@@ -8,8 +8,9 @@ import static org.assertj.core.util.Lists.newArrayList;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringBufferInputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -75,7 +76,42 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame game = new BridgeGame();
         assertThat(game.move(0,bridge, "D").retry).isEqualTo(Boolean.FALSE);
+    }
 
+    @Test
+    void input_instruction_테스트() {
+        InputStream input = new StringBufferInputStream("U");
+        System.setIn(input);
+        InputView inputv = new InputView();
+        assertThat(inputv.readMoving()).isEqualTo("U");
+        input = new StringBufferInputStream("sdsd");
+        System.setIn(input);
+        inputv.readMoving();
+        assertThat(output()).contains(ERROR_MESSAGE);
+    }
+
+    @Test
+    void input_restart_테스트() {
+        InputStream input = new StringBufferInputStream("R");
+        System.setIn(input);
+        InputView inputv = new InputView();
+        assertThat(inputv.readGameCommand()).isEqualTo("R");
+        input = new StringBufferInputStream("sdsd");
+        System.setIn(input);
+        inputv.readGameCommand();
+        assertThat(output()).contains(ERROR_MESSAGE);
+    }
+    @Test
+    void printMap_테스트(){
+        List<String> bridge = Arrays.asList("U", "D", "U");
+        int index_num = 1;
+        String instruction = "D";
+        String result1 = "[ O |   ]";
+        String result2 = "[   | O ]";
+        OutputView out = new OutputView();
+        out.printMap(index_num, instruction, bridge);
+        assertThat(output()).contains(result1);
+        assertThat(output()).contains(result2);
     }
 
 

@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -44,7 +43,6 @@ public class OutputView {
         print_string = print_final(print_string, instruction, bridge.get(index_number));
         System.out.println(print_string[0]);
         System.out.println(print_string[1]);
-        System.out.println("\n");
     }
 
     /**
@@ -58,7 +56,7 @@ public class OutputView {
         String you_win = "";
         if (win){you_win = "성공";}
         if (!win){you_win = "실패";}
-        System.out.println(String.format("게임 성공 여부: %s", you_win));
-        System.out.println(String.format("총 시도한 횟수: %d", trial));
+        System.out.printf("게임 성공 여부: %s%n", you_win);
+        System.out.printf("총 시도한 횟수: %d%n", trial);
     }
 }

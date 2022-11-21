@@ -1,10 +1,22 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 public class Application {
+
+    public static class Information {
+        int index;
+        Boolean retry;
+        String instruction;
+        int trial;
+
+        public Information(int index, Boolean retry, String instruction){
+            this.index = index;
+            this.retry = retry;
+            this.instruction = instruction;
+        }
+    }
+
     public static String input_instruction(){
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String instruction = "back";
@@ -31,24 +43,17 @@ public class Application {
             String instruction = input_instruction();
             BridgeGame.Information Game_inf = game.move(index, bridge, instruction);
             info.index = index; info.retry = Game_inf.retry; info.instruction = instruction;
-            index += 1; retry = Game_inf.retry;
             output_printmap(index, bridge, instruction);
+            index += 1; retry = Game_inf.retry;
         }
         return info;
     }
 
-    public static class Information {
-        int index;
-        Boolean retry;
-        String instruction;
-        public Information(int index, Boolean retry, String instruction){
-            this.index = index;
-            this.retry = retry;
-            this.instruction = instruction;
-        }
-    }
+
 
     public static int BridgeSize_initial(int BridgeSize){
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리의 길이를 입력해주세요.");
         InputView input = new InputView();
         while (BridgeSize == 0){
             BridgeSize = input.readBridgeSize();}
@@ -56,37 +61,36 @@ public class Application {
     }
 
     public static List<String> BridgeGame_initial(int Bridgesize){
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        System.out.println("다리의 길이를 입력해주세요.");
         BridgeNumberGenerator rn = new BridgeRandomNumberGenerator();
         BridgeMaker answer_bridge = new BridgeMaker(rn);
         List<String> new_bridge = answer_bridge.makeBridge(Bridgesize);
         return new_bridge;
     }
 
-    public static Information
+    public static Information game_result(BridgeGame game, int BridgeSize, List<String> new_bridge, Information info){
+        while (info.retry) {
+            info = instruction_on_bridge(game, BridgeSize, new_bridge, info);
+            if (info.index == BridgeSize - 1 && info.retry == Boolean.TRUE) {
+                break;}
+            String retry = input_restart();
+            retry = game.retry(retry);
+            if (retry.equals("quit")) {
+                info.retry = Boolean.FALSE;
+                break;}
+            info.retry = Boolean.TRUE; info.trial += 1;}
+        return info;
+    }
 
 
     public static void main(String[] args) {
         int BridgeSize = BridgeSize_initial(0);
         List<String> new_bridge = BridgeGame_initial(BridgeSize);
-
         BridgeGame game = new BridgeGame();
         Information info = new Information(0,Boolean.TRUE,"-");
-        int trial = 1;
-        Boolean win = Boolean.TRUE;
-        while (Boolean.TRUE){
-            info = instruction_on_bridge(game, BridgeSize, new_bridge, info);
-            if (info.index == BridgeSize-1){
-                win = info.retry;
-                break;}
-            String retry = input_restart();
-            retry = game.retry(retry);
-            if (retry.equals("quit")){
-                win = Boolean.FALSE;
-                break;}
-            trial += 1;}
+        info.trial = 1;
+
+        info = game_result(game, BridgeSize, new_bridge, info);
         OutputView output = new OutputView();
-        output.printResult(info.index, info.instruction, new_bridge, win, trial);
+        output.printResult(info.index, info.instruction, new_bridge, info.retry, info.trial);
     }
 }
