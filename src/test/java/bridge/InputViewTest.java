@@ -25,7 +25,8 @@ class InputViewTest {
     void checkBridgeSizeValidationTest(String bridgeSize, String expectedValidationResult) {
 
         if (expectedValidationResult.equals("success")) {
-            assertThatCode(() -> inputView.checkValidationOfBridgeSize(bridgeSize));
+            assertThatCode(() -> inputView.checkValidationOfBridgeSize(bridgeSize))
+                    .doesNotThrowAnyException();
         } else if (expectedValidationResult.equals("fail")){
             assertThatThrownBy(() -> inputView.checkValidationOfBridgeSize(bridgeSize))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -42,12 +43,31 @@ class InputViewTest {
     void checkValidationOfMoveCommandTest(String inputMoveCommand, String expectedValidationResult) {
 
         if (expectedValidationResult.equals("success")) {
-            assertThatCode(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand));
+            assertThatCode(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
+                    .doesNotThrowAnyException();
         } else if (expectedValidationResult.equals("fail")){
             assertThatThrownBy(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
                     .isInstanceOf(IllegalArgumentException.class);
         } else if (expectedValidationResult.equals("null")) {
             assertThatThrownBy(() -> inputView.checkValidationOfMoveCommand(inputMoveCommand))
+                    .isInstanceOf(NullPointerException.class);
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력 받는 게임 진행 명령어 유효성 검사 테스트")
+    @CsvSource(value = {"abc, fail", "u, fail", "d, fail", "Q, success", "R, success", " , null",
+            "12345, fail", "!@#!@#$, fail", " \\t, fail"})
+    void checkValidationOfGameCommandTest(String inputGameCommand, String expectedValidationResult) {
+
+        if (expectedValidationResult.equals("success")) {
+            assertThatCode(() -> inputView.checkValidationOfGameCommand(inputGameCommand))
+                    .doesNotThrowAnyException();
+        } else if (expectedValidationResult.equals("fail")){
+            assertThatThrownBy(() -> inputView.checkValidationOfGameCommand(inputGameCommand))
+                    .isInstanceOf(IllegalArgumentException.class);
+        } else if (expectedValidationResult.equals("null")) {
+            assertThatThrownBy(() -> inputView.checkValidationOfGameCommand(inputGameCommand))
                     .isInstanceOf(NullPointerException.class);
         }
     }
