@@ -43,22 +43,37 @@ class BridgeTest {
     @ParameterizedTest(name = "bridge [U | D | D]  step : {0}, pick : {1}")
     @CsvSource({"D, U", "U, UD", "U, UDD"})
     void canNotGo(String userPick, String step) {
-
         assertFalse(new Bridge(List.of("U", "D", "D")).canGoOrNot(List.of(step.split("")), userPick));
     }
 
     @DisplayName("다리를 건넜다면 true를 반환한다.")
     @ParameterizedTest(name = "bridge : {1}  step : {0}")
-    @CsvSource({"4, UDDD", "10, UDUDUUDDUD", "20, UDUUUUDDDDDDDUUDUUDU"})
+    @MethodSource("isCrossing")
     void isCrossing(int finalStep, String bridge) {
         assertTrue(new Bridge(List.of(bridge.split(""))).isCrossing(finalStep));
     }
 
+    static Stream<Arguments> isCrossing() {
+        return Stream.of(
+                arguments(4, "UDDD"),
+                arguments(10, "UDUDUUDDUD"),
+                arguments(20, "UDUUUUDDDDDDDUUDUUDU")
+        );
+    }
+
     @DisplayName("다리를 건너지 않았다면 false를 반환한다.")
     @ParameterizedTest(name = "bridge : {1}  step : {0}")
-    @CsvSource({"3, UDDD", "5, UDUDUUDDUD", "4, UDUUUUDDDDDDDUUDUUDU"})
+    @MethodSource("isNotCrossing")
     void isNotCrossing(int finalStep, String bridge) {
         assertFalse(new Bridge(List.of(bridge.split(""))).isCrossing(finalStep));
+    }
+
+    static Stream<Arguments> isNotCrossing() {
+        return Stream.of(
+                arguments(3, "UDDD"),
+                arguments(5, "UDUDUUDDUD"),
+                arguments(4, "UDUUUUDDDDDDDUUDUUDU")
+        );
     }
 
     @DisplayName("다리길이보다 더 큰 값이 들어오면 예외를 발생한다.")
