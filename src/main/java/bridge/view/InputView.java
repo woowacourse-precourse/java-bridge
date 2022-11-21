@@ -27,14 +27,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요.");
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return Console.readLine();
     }
 
-    private int convertToInt(String size){
+    private int convertToInt(String size) {
         try {
             return Integer.parseInt(size);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("다리 길이는 숫자를 입력받아야 합니다.");
         }
     }
