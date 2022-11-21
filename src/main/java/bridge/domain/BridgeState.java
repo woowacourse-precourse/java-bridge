@@ -9,25 +9,30 @@ public class BridgeState {
 
     public void mark(BridgeStatus bridgeStatus) {
         if (bridgeStatus.getArrow().equals(UP)) {
-            if (isEmpty()) {
-                upBridge.append(bridgeStatus.getStatus());
-                downBridge.append(SPACE);
-                return;
-            }
-            upBridge.append(DELIMITER).append(bridgeStatus.getStatus());
-            downBridge.append(DELIMITER).append(SPACE);
+            markUpBridge(bridgeStatus);
             return;
         }
+        markDownBridge(bridgeStatus);
+    }
 
-        if (bridgeStatus.getArrow().equals(DOWN)) {
-            if (isEmpty()) {
-                upBridge.append(SPACE);
-                downBridge.append(bridgeStatus.getStatus());
-                return;
-            }
-            upBridge.append(DELIMITER).append(SPACE);
-            downBridge.append(DELIMITER).append(bridgeStatus.getStatus());
+    private void markUpBridge(BridgeStatus bridgeStatus) {
+        if (isEmpty()) {
+            upBridge.append(bridgeStatus.getStatus());
+            downBridge.append(SPACE);
+            return;
         }
+        upBridge.append(DELIMITER).append(bridgeStatus.getStatus());
+        downBridge.append(DELIMITER).append(SPACE);
+    }
+
+    private void markDownBridge(BridgeStatus bridgeStatus) {
+        if (isEmpty()) {
+            upBridge.append(SPACE);
+            downBridge.append(bridgeStatus.getStatus());
+            return;
+        }
+        upBridge.append(DELIMITER).append(SPACE);
+        downBridge.append(DELIMITER).append(bridgeStatus.getStatus());
     }
 
     private boolean isEmpty() {
