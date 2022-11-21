@@ -1,7 +1,6 @@
 package bridge.model;
 
-import bridge.model.constant.Direction;
-import bridge.model.constant.Result;
+import bridge.model.constant.GameCommand;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,14 +54,14 @@ public class BridgeGame {
     }
 
     public List<String> getUpperMap() {
-        return getCurrentMap(bridge, Direction.UP);
+        return getCurrentMap(bridge, GameCommand.UP);
     }
 
     public List<String> getLowerMap() {
-        return getCurrentMap(bridge, Direction.DOWN);
+        return getCurrentMap(bridge, GameCommand.DOWN);
     }
 
-    public List<String> getCurrentMap(List<String> bridge, Direction direction) {
+    public List<String> getCurrentMap(List<String> bridge, GameCommand direction) {
         List<String> currentMap = new ArrayList<>();
         for (int index = 0; index < playerMoves.size(); index++) {
             String playerPosition = playerMoves.get(index);
@@ -72,14 +71,14 @@ public class BridgeGame {
         return currentMap;
     }
 
-    public String comparePosition(String playerPosition, String bridgePosition, Direction direction) {
+    public String comparePosition(String playerPosition, String bridgePosition, GameCommand direction) {
         if (playerPosition.equals(direction.getValue())) {
             if (playerPosition.equals(bridgePosition)) {
-                return Result.CAN_CROSS.getValue();
+                return GameCommand.CAN_CROSS.getValue();
             }
-            return Result.CANNOT_CROSS.getValue();
+            return GameCommand.CANNOT_CROSS.getValue();
         }
-        return Result.UNKNOWN.getValue();
+        return GameCommand.UNKNOWN.getValue();
     }
 
     public boolean canTakeNextMove() {

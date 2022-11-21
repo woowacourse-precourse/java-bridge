@@ -29,6 +29,5 @@
   - 게임 결과는 성공 여부와 총 시도 횟수를 포함한다.
 
 ### TODO
--need better names for constants enum  
--패키지 정리, 상수 정리  
+-패키지 정리
 -예시랑 같게 줄바꿈 수정  
