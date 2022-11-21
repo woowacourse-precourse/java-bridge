@@ -23,13 +23,13 @@ public class Validator {
     }
 
     public static void validateMoving(String moving) {
-        if (moving.charAt(0) != 'U' && moving.charAt(0) != 'D') {
+        if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getMessage());
         }
     }
 
-    public static void validateGameCommand(char gameCommand) {
-        if (gameCommand != 'R' && gameCommand != 'Q') {
+    public static void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
             throw new IllegalArgumentException(ErrorMessage.GAMECOMMAND_ERROR.getMessage());
         }
     }
