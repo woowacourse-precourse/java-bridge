@@ -29,15 +29,15 @@ public class Bridge {
         currentIndex += 1;
     }
 
-    public boolean isUpside(int index) {
-        return bridge.get(index) == UP;
+    public boolean isGivenIndexUpside(int index) {
+        return bridge.get(index).equals(UP);
     }
 
-    public boolean isDownside(int index) {
-        return bridge.get(index) == DOWN;
+    public boolean isGivenIndexDownside(int index) {
+        return bridge.get(index).equals(DOWN);
     }
 
-    public int isMovingNextPossible(String upperOrLower) {
+    public int isNextMovingPossible(String upperOrLower) {
         move();
         if (bridge.get(getCurrentIndex()).equals(upperOrLower)) {
             return POSSIBLE_CROSS_NEXT;
@@ -71,7 +71,7 @@ public class Bridge {
      *  비즈니스 로직과 UI 로직을 분리하기 위해
      */
     public int updateMovingResultAndReturnNextMovingPossible(String inputUpOrDown) {
-        int result = isMovingNextPossible(inputUpOrDown);
+        int result = isNextMovingPossible(inputUpOrDown);
         if (result == POSSIBLE_CROSS_NEXT) {
             if (whetherFollowingEndOrNot()) {
                 return JUST_CROSSED_AND_CROSS_OVER;
@@ -83,7 +83,7 @@ public class Bridge {
 
 
     /**
-     *  @refactor 비즈니스 로직과 UI 로직을 분리하기 위해
+     *  비즈니스 로직과 UI 로직을 분리하기 위해
      */
     public String movingResultToString(String successOrNot) {
         return lineToString(successOrNot, UP) + NEWLINE +
@@ -97,7 +97,7 @@ public class Bridge {
 
     private String createMovingResult(String successOrNot, String inputUpOrDown) {
         String movingResult = "";
-        if (inputUpOrDown == UP) {
+        if (inputUpOrDown.equals(UP)) {
             for (int index = 0; index < getCurrentIndex(); index++) {
                 movingResult += getUpperMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
             }
@@ -113,26 +113,26 @@ public class Bridge {
     }
 
     private String getUpperMovableResult(String successOrNot, int index) {
-        if (successOrNot == SUCCESS) {
-            if (isUpside(index)) {
+        if (successOrNot.equals(SUCCESS)) {
+            if (isGivenIndexUpside(index)) {
                 return CORRECT;
             }
             return EMPTY;
         }
-        if(isUpside(index)) {
+        if(isGivenIndexUpside(index)) {
             return EMPTY;
         }
         return WRONG;
     }
 
     private String getLowerMovableResult(String successOrNot, int index) {
-        if (successOrNot == SUCCESS) {
-            if (isDownside(index)) {
+        if (successOrNot.equals(SUCCESS)) {
+            if (isGivenIndexDownside(index)) {
                 return CORRECT;
             }
             return EMPTY;
         }
-        if(isDownside(index)) {
+        if(isGivenIndexDownside(index)) {
             return EMPTY;
         }
         return WRONG;
