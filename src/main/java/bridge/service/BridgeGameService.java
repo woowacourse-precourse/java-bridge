@@ -49,7 +49,7 @@ public class BridgeGameService {
     public void setEndMessage() {
         String endMessage = "최종 게임 결과\n";
         String endResult = mergeBride;
-        String endCheck = "\n게임 성공 여부 :" + endCheckStatus(gameStatus.getMatchCorrect());
+        String endCheck = "\n게임 성공 여부: " + endCheckStatus(gameStatus.getMatchCorrect());
         String endCount = "총 시도한 횟수: " + gameStatus.getGameCount();
         this.endMessage = endMessage + endResult + endCheck + endCount;
     }
