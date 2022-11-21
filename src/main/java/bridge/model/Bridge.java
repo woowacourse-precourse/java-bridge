@@ -22,7 +22,7 @@ public class Bridge {
     public List<Boolean> compareTo(final List<String> choices) {
         List<Boolean> compareResults = new ArrayList<>();
         for (int index = 0; index < choices.size(); index++) {
-            if (isSameWord(answers.get(index), choices.get(index))) {
+            if (isSame(answers.get(index), choices.get(index))) {
                 compareResults.add(true);
                 continue;
             }
@@ -31,7 +31,7 @@ public class Bridge {
         return compareResults;
     }
 
-    private boolean isSameWord(final String answer, final String choice) {
+    private boolean isSame(final String answer, final String choice) {
         return answer.equals(choice);
     }
 
