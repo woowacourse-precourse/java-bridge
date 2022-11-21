@@ -15,7 +15,7 @@ public class BridgeGame {
         String moveBridgePosition = inputView.readMoving();
         return replacePositonNumber(moveBridgePosition);
     }
-    private int replacePositonNumber(String moveBridgePosition){
+    public int replacePositonNumber(String moveBridgePosition){
         if(moveBridgePosition=="U"){
             return 1;
         }

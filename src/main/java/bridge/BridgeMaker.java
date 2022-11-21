@@ -33,13 +33,15 @@ public class BridgeMaker {
         return "D";
     }
 
-    private List<String> initialBridge() {
+
+
+    public List<String> initialBridge() {
         List<String> initialBridgeState = new ArrayList();
         initialBridgeState.add("[");
         initialBridgeState.add("[");
         return initialBridgeState;
     }
-    private List<String> addBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
+    public List<String> addBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
         if (preBridgeState.get(0)=="["){
             return firstAddBridge(preBridgeState, randomNumber, positionNumber);
         }
