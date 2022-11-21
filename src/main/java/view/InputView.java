@@ -19,8 +19,7 @@ public class InputView {
         String brideLength = Console.readLine();
         try {
             return Integer.parseInt(brideLength);
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("다리의 개수는 숫자만 입력해야 합니다.");
         }
     }

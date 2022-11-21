@@ -12,7 +12,7 @@ import java.util.Objects;
 public class OutputView {
     public static final String FINAL_RESULT = "최종 게임 결과";
     public static final String IS_CLEAR = "게임 성공 여부: ";
-    public static final String TOTAL_NUMBER_ATTEMPTS  = "총 시도한 횟수: ";
+    public static final String TOTAL_NUMBER_ATTEMPTS = "총 시도한 횟수: ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     private static void printTopPositionBridge(List<String> movingPosition, List<String> result) {
-        for(int i = 0; i< result.size(); i++){
+        for (int i = 0; i < result.size(); i++) {
             printFrame(result, i);
             printTopOX(movingPosition, result, i);
             printSeparator(result, i);
@@ -36,16 +36,16 @@ public class OutputView {
     }
 
     private static void printTopOX(List<String> movingPosition, List<String> result, int i) {
-        if(Objects.equals(movingPosition.get(i), MoveCommand.UP.getCommand())){
+        if (Objects.equals(movingPosition.get(i), MoveCommand.UP.getCommand())) {
             System.out.print(" " + result.get(i) + " ");
         }
-        if(!Objects.equals(movingPosition.get(i), MoveCommand.UP.getCommand())){
+        if (!Objects.equals(movingPosition.get(i), MoveCommand.UP.getCommand())) {
             System.out.print(" " + " " + " ");
         }
     }
 
     private static void printLowPositionBridge(List<String> movingPosition, List<String> result) {
-        for(int i = 0; i< result.size(); i++){
+        for (int i = 0; i < result.size(); i++) {
             printFrame(result, i);
             printLowOX(movingPosition, result, i);
             printSeparator(result, i);
@@ -53,25 +53,25 @@ public class OutputView {
     }
 
     private static void printLowOX(List<String> movingPosition, List<String> result, int i) {
-        if(Objects.equals(movingPosition.get(i), MoveCommand.DOWN.getCommand())){
+        if (Objects.equals(movingPosition.get(i), MoveCommand.DOWN.getCommand())) {
             System.out.print(" " + result.get(i) + " ");
         }
-        if(!Objects.equals(movingPosition.get(i), MoveCommand.DOWN.getCommand())){
+        if (!Objects.equals(movingPosition.get(i), MoveCommand.DOWN.getCommand())) {
             System.out.print(" " + " " + " ");
         }
     }
 
     private static void printSeparator(List<String> result, int i) {
-        if(i != result.size()-1){
+        if (i != result.size() - 1) {
             System.out.print("|");
         }
     }
 
     private static void printFrame(List<String> result, int i) {
-        if(i == 0){
+        if (i == 0) {
             System.out.print("[");
         }
-        if(i == result.size()-1){
+        if (i == result.size() - 1) {
             System.out.println("]");
         }
     }
@@ -94,10 +94,10 @@ public class OutputView {
 
     private static void printSuccessStatus(BridgeGame bridgeGame) {
         System.out.print(IS_CLEAR);
-        if(bridgeGame.isFailure()){
+        if (bridgeGame.isFailure()) {
             System.out.println("실패");
         }
-        if(!bridgeGame.isFailure()){
+        if (!bridgeGame.isFailure()) {
             System.out.println("성공");
         }
     }
