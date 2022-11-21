@@ -11,28 +11,53 @@ public class OutputView {
     private static final String CLOSE = "]";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
+    private static final String SUCCESS_UI = "O";
+    private static final String FAIL_UI = "X";
 
     public void printMap(Result result) {
         StringBuilder first = new StringBuilder();
         StringBuilder second = new StringBuilder();
+        StringBuilder union = unionMap(result, first, second);
+        System.out.println(union);
+        newLine();
+    }
+
+    private StringBuilder unionMap(Result result, StringBuilder first, StringBuilder second) {
         openParenthesis(first, second);
         printMiddleMap(result, first, second);
         closeParenthesis(first, second);
-        System.out.println(first.append("\n").append(second));
-        newLine();
+        return new StringBuilder(first.append("\n").append(second));
     }
 
     private void printMiddleMap(Result result, StringBuilder first, StringBuilder second) {
         for (int i = 0; i < result.stateSize(); i++) {
             makeSeparator(first, second, i);
             if (checkUpDown(result.getInput(i))) {
-                first.append(BLANK).append(result.getState(i)).append(BLANK);
-                second.append(BLANK).append(BLANK).append(BLANK);
+                crossUpBridge(first, second, result.getState(i + 1));
                 continue;
             }
-            first.append(BLANK).append(BLANK).append(BLANK);
-            second.append(BLANK).append(result.getState(i)).append(BLANK);
+            crossDownBridge(first, second, result.getState(i + 1));
         }
+    }
+
+    private void crossDownBridge(StringBuilder first, StringBuilder second, boolean state) {
+        if (state) {
+            first.append(BLANK).append(BLANK).append(BLANK);
+            second.append(BLANK).append(SUCCESS_UI).append(BLANK);
+            return;
+        }
+        first.append(BLANK).append(BLANK).append(BLANK);
+        second.append(BLANK).append(FAIL_UI).append(BLANK);
+    }
+
+    private void crossUpBridge(StringBuilder first, StringBuilder second, boolean state) {
+        if (state) {
+            first.append(BLANK).append(SUCCESS_UI).append(BLANK);
+            second.append(BLANK).append(BLANK).append(BLANK);
+            return;
+        }
+        first.append(BLANK).append(FAIL_UI).append(BLANK);
+        second.append(BLANK).append(BLANK).append(BLANK);
     }
 
     private static void makeSeparator(StringBuilder first, StringBuilder second, int index) {

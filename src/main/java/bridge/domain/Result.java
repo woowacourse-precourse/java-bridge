@@ -4,40 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
-    private static final String FAIL = "X";
-    private static final String SUCCESS = "O";
-    private final List<String> state = new ArrayList<>();
     private final List<String> input = new ArrayList<>();
-    private boolean movable;
+    private final List<Boolean> movable = new ArrayList<>();
 
     public Result() {
-        this.movable = true;
+        this.movable.add(true);
     }
 
     public boolean movable() {
-        return movable;
+        return movable.get(movable.size() - 1);
     }
 
     public void updateState(String inputMove, boolean movable) {
-        addMove(movable);
         input.add(inputMove);
-        this.movable = movable;
+        this.movable.add(movable);
     }
 
     public int stateSize() {
-        return state.size();
+        return input.size();
     }
 
-    private void addMove(boolean movable) {
-        if (movable) {
-            this.state.add(SUCCESS);
-            return;
-        }
-        this.state.add(FAIL);
-    }
-
-    public String getState(int index) {
-        return this.state.get(index);
+    public boolean getState(int index) {
+        return movable.get(index);
     }
 
     public String getInput(int index) {
