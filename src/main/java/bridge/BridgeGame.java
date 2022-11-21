@@ -12,6 +12,7 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     List<String> visited = new ArrayList<>();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    Validate validate = new Validate();
     Bridge bridge;
     private int tryNum = 1;
     public void init() {
