@@ -59,7 +59,7 @@ public class BridgeGame {
 		return true;
 	}
 
-	public void clearBridgeGame() {
+	private void clearBridgeGame() {
 		userBridgeRepository.clear();
 	}
 }
