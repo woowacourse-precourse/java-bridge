@@ -69,13 +69,13 @@ public class InputView {
     }
 
     private void showGameResult() {
-        gameStatistics.setGameResult("성공");
+        gameStatistics.setGameResult(MessageView.RETURN_SUCCESS.getMessage());
         System.out.println();
         outputView.printResult();
     }
 
     private boolean checkRetryCommand(String retryGame) {
-        if (retryGame.equals("Q")) {
+        if (retryGame.equals(MessageView.RETURN_QUIT.getMessage())) {
             return true;
         }
         bridgeGame.retry();
@@ -88,8 +88,8 @@ public class InputView {
     public String readGameCommand() {
         String retryGame;
         retryGame = enterGameCommand();
-        if (retryGame.equals("Q")) {
-            gameStatistics.setGameResult("실패");
+        if (retryGame.equals(MessageView.RETURN_QUIT.getMessage())) {
+            gameStatistics.setGameResult(MessageView.RETURN_FAIL.getMessage());
             outputView.printResult();
         } return retryGame;
     }
