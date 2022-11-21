@@ -6,6 +6,7 @@ import java.util.List;
 
 public class BridgeGame {
 
+    private boolean wrongAnswer = false;
     private List<List<String>> bridgeMap = new ArrayList<>();
 
     public void initMap() {
@@ -20,9 +21,14 @@ public class BridgeGame {
         if (answer.equals(moving)) {
             return BridgeMapGenerator.generateRightAnswerMap(moving, bridgeMap);
         }
+        wrongAnswer = true;
         return BridgeMapGenerator.generateWrongAnswerMap(moving, bridgeMap);
     }
 
     public void retry() {
+    }
+
+    public boolean isWrongAnswer() {
+        return wrongAnswer;
     }
 }
