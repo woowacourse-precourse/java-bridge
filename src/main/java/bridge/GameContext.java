@@ -1,7 +1,6 @@
 package bridge;
 
 public class GameContext {
-    // to refactor...
     private static final int QUIT = 1;
     private static final int PLAYING = 2;
 

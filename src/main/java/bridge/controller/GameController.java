@@ -14,12 +14,10 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
-    // private final GameContext context;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
-        // context = GameContext.getInstance();
     }
 
     public void executeGame() {

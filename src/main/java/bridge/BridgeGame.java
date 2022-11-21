@@ -12,8 +12,6 @@ public class BridgeGame {
     private final Bridge bridge;
     private PlayersMove playersMove;
     private int moveCount;
-
-    // 여기다가 GameContext 집어넣겠음..
     private GameContext gameContext;
 
     public BridgeGame(Bridge bridge) {
