@@ -2,7 +2,7 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import bridge.domain.BridgeSpace;
+import bridge.domain.Moving;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -22,8 +22,8 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(
-                "이동할 칸을 선택해주세요. (" + BridgeSpace.UP.getType() + ": " + BridgeSpace.UP.getTitle()
-                        + ", " + BridgeSpace.DOWN.getType() + ": " + BridgeSpace.DOWN.getTitle()
+                "이동할 칸을 선택해주세요. (" + Moving.UP.getExpression() + ": " + Moving.UP.getDescription()
+                        + ", " + Moving.DOWN.getExpression() + ": " + Moving.DOWN.getDescription()
                         + ")");
         return readLine();
     }

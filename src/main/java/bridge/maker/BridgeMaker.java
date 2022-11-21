@@ -1,7 +1,7 @@
 package bridge.maker;
 
 import bridge.BridgeNumberGenerator;
-import bridge.domain.BridgeSpace;
+import bridge.domain.Moving;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +31,6 @@ public class BridgeMaker {
     }
 
     public String setCrossingSpace(int randomNumber) {
-        return BridgeSpace.findByValue(randomNumber).name();
+        return Moving.findByNumber(randomNumber).name();
     }
 }

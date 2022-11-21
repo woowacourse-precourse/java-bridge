@@ -1,7 +1,7 @@
 package bridge.exception;
 
 import bridge.domain.BrideLength;
-import bridge.domain.BridgeSpace;
+import bridge.domain.Moving;
 
 public class Validator {
 
@@ -11,10 +11,10 @@ public class Validator {
         }
     }
 
-    public static BridgeSpace validBridgeSpaceType(String type) {
-        if (BridgeSpace.findByType(type).isPresent()) {
-            return BridgeSpace.findByType(type).get();
+    public static Moving validMoving(String movingExpression) {
+        if (Moving.findByExpression(movingExpression).isPresent()) {
+            return Moving.findByExpression(movingExpression).get();
         }
-        throw new IllegalArgumentException(Error.WRONG_BRIDGE_SPACE_TYPE.getMessage());
+        throw new IllegalArgumentException(Error.WRONG_MOVING.getMessage());
     }
 }
