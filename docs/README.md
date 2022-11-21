@@ -70,6 +70,38 @@
 
 ### < 폴더 구조 >
 
+```
+├─main
+│  └─java
+│      └─bridge
+│          │  Application.java
+│          │  BridgeGame.java
+│          │  BridgeMaker.java
+│          │  BridgeNumberGenerator.java
+│          │  BridgeRandomNumberGenerator.java
+│          │
+│          ├─controller
+│          │      BridgeGameController.java
+│          │
+│          ├─validator
+│          │      BlockValidator.java
+│          │      NumberValidator.java
+│          │
+│          └─view
+│                  InputView.java
+│                  OutputView.java
+│
+└─test
+    └─java
+        └─bridge
+            │  ApplicationTest.java
+            │  BridgeGameTest.java
+            │  BridgeMakerTest.java
+            │
+            └─view
+                    InputViewTest.java
+```
+
 <br> 
 
 > 지금부터는 프로그램을 구현하면서 고민하고 도전한 것들에 대해 소개해드리겠습니다.
