@@ -1,16 +1,23 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.ErrorCheck.isRestart;
 import static bridge.ErrorCheck.isUpDown;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public static final int ZERO = 0;
-    public static final int ONE = 1;
-    public static final int TWO = 2;
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+
+    private static final String IS_ERROR = "e";
+    public static List<String> bridgeDraw = new ArrayList<>();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -20,12 +27,11 @@ public class BridgeGame {
     public String move() {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
-
         outputView.printInputMovement();
         String inputMove = inputView.readMoving();
-        System.out.println(inputMove);
+        //System.out.println(inputMove);
         isUpDown(inputMove);
-        System.out.println("입력완료");
+        //System.out.println("입력완료");
         return inputMove;
     }
 
@@ -38,10 +44,14 @@ public class BridgeGame {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         outputView.printRetry();
-        if (inputView.readGameCommand().equals("R"))
-            if(run() == 1)
-                return 1;
-        return 0;
+        String inputRetry = inputView.readGameCommand();
+        isRestart(inputRetry);
+        if (inputRetry.equals(RETRY))
+            if (run() == ONE)
+                return ONE;
+        if (inputRetry.equals(QUIT))
+            return TWO;
+        return ZERO;
     }
 
     public int run() {
@@ -51,26 +61,18 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         outputView.printStart();
         outputView.printInputBridgeLength();
+        bridgeDraw.clear();
         int bridgeSize = inputView.readBridgeSize();
-        List<String> bridgeDraw = bridgeMaker.makeBridge(bridgeSize);
-        printFinalBridge(bridgeDraw);
-        if(bridgeDraw.contains("e")) {
+        bridgeDraw.addAll(bridgeMaker.makeBridge(bridgeSize));
+        if (bridgeDraw.contains(IS_ERROR)) {
             return ONE;
         }
         return ZERO;
     }
-    public void printFinalBridge(List<String> finalBridge) {
+
+    public void callFinalPrint(){
+        bridgeDraw.remove(IS_ERROR);
         OutputView outputView = new OutputView();
-        outputView.printFinalResult();
-        outputView.printIconOpen();
-        for(int i=0; i<finalBridge.size()/TWO-ONE; i++)
-            System.out.print(finalBridge.get(i));
-        outputView.printIconClose();
-        System.out.println();
-        outputView.printIconOpen();
-        for(int i=finalBridge.size()/TWO; i<finalBridge.size()-ONE; i++)
-            System.out.print(finalBridge.get(i));
-        outputView.printIconClose();
-        System.out.println();
+        outputView.printMap(bridgeDraw);
     }
 }

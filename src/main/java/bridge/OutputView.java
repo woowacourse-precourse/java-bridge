@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -20,13 +22,26 @@ public class OutputView {
     public static final String GAME_ICON_X = "X";
     public static final String GAME_ICON_SPACE = " ";
     public static final int ONE = 1;
+    public static final int TWO = 2;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> finalBridge) {
+        OutputView outputView = new OutputView();
+        outputView.printFinalResult();
+        outputView.printIconOpen();
+        for(int i=0; i<finalBridge.size()/TWO-ONE; i++)
+            System.out.print(finalBridge.get(i));
+        outputView.printIconClose();
+        System.out.println();
+        outputView.printIconOpen();
+        for(int i=finalBridge.size()/TWO; i<finalBridge.size()-ONE; i++)
+            System.out.print(finalBridge.get(i));
+        outputView.printIconClose();
+        System.out.println();
     }
 
     /**
@@ -45,6 +60,10 @@ public class OutputView {
 
     public void printWin() {
         System.out.println(GAME_RESULT_MESSAGE + GAME_WIN_MESSAGE);
+    }
+
+    public void printLose() {
+        System.out.println(GAME_RESULT_MESSAGE + GAME_LOOSE_MESSAGE);
     }
 
     public void printStart() {

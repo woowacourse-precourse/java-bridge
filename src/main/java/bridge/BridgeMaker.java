@@ -1,5 +1,6 @@
 package bridge;
 
+import java.awt.font.OpenType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +16,10 @@ public class BridgeMaker {
     private static final String ICON_FALSE = "x";
     private static final String ICON_UP = "U";
     private static final String ICON_DOWN = "D";
-    public static final int ZERO = 0;
-    public static final int ONE = 1;
-    public static final int TWO = 2;
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final String IS_ERROR = "e";
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -34,10 +36,10 @@ public class BridgeMaker {
         List<String> bridgeD = new ArrayList<>();
         List<String> joined = new ArrayList<>();
         List<String> randomCollect = makeRandomUpDown(size);
-        errorBridge.add("e");
+        errorBridge.add(IS_ERROR);
         int countCycle = ONE;
         for (int i = ZERO; i < size; i++)
-            System.out.println(randomCollect.get(i));
+            System.out.println(randomCollect.get(i));//
 
         String moveUpOrDown;
         for (int i = ZERO; i < size; i++) {
@@ -60,13 +62,12 @@ public class BridgeMaker {
             }
             printBridge(bridgeU, bridgeD, countCycle);
 
-            if (bridgeU.contains(ICON_FALSE)) {
+            if (bridgeU.contains(ICON_FALSE) || bridgeD.contains(ICON_FALSE)) {
                 System.out.println();
-                return errorBridge;
-            }
-            if (bridgeD.contains(ICON_FALSE)) {
-                System.out.println();
-                return errorBridge;
+                joined.addAll(bridgeU);
+                joined.addAll(bridgeD);
+                joined.add(IS_ERROR);
+                return joined;
             }
             countCycle += TWO;
             System.out.println();
@@ -80,7 +81,6 @@ public class BridgeMaker {
         List<String> inputUpDown = new ArrayList<>();
         for (int i = ZERO; i < size; i++) {
             int generateRandom = bridgeNumberGenerator.generate();
-            System.out.print(generateRandom);
             if (generateRandom == 1)
                 inputUpDown.add(ICON_UP);
             if (generateRandom == 0)
@@ -90,15 +90,17 @@ public class BridgeMaker {
     }
 
     public static void printBridge(List<String> bridgeUp, List<String> bridgeDown, int countCycle) {
-        System.out.print("[ ");
+        OutputView outputView = new OutputView();
+        outputView.printIconOpen();
         for (int j = ZERO; j < countCycle; j++)
             System.out.print(bridgeUp.get(j));
-        System.out.print(" ]");
+        outputView.printIconClose();
         System.out.println();
-        System.out.print("[ ");
+        outputView.printIconOpen();
         for (int j = ZERO; j < countCycle; j++)
             System.out.print(bridgeDown.get(j));
-        System.out.println(" ]");
+        outputView.printIconClose();
+        System.out.println();
     }
 
     private static List<String> isEqual(String randomCollect, List<String> bridge, String moveUpOrDown) {
