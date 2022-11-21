@@ -10,12 +10,12 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
     private BridgeGame bridgeGame;
-    private boolean isContinue;
     private Count countOfAttempt;
+    private boolean isContinue;
 
     public BridgeGameController() {
-        isContinue = true;
         countOfAttempt = new Count();
+        isContinue = true;
     }
 
     public void run() {
