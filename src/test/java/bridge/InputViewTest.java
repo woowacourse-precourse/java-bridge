@@ -34,8 +34,14 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void readMoving() {
+    @DisplayName("U, D외의 문자, 숫자를 입력할 경우 [ERROR] 발생")
+    @ValueSource(strings = {"A", "1"})
+    @ParameterizedTest
+    void readMoving(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(() -> new InputView().readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
