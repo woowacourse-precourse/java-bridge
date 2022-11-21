@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.Bridge.IMPOSSIBLE_CROSS_NEXT;
+import static bridge.Bridge.CANNOT_CROSS_NEXT;
 import static bridge.Bridge.JUST_CROSSED;
 import static bridge.Bridge.JUST_CROSSED_AND_CROSS_OVER;
 import static constant.Message.*;
@@ -53,7 +53,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(int result) {
-        if (result == IMPOSSIBLE_CROSS_NEXT) {
+        if (result == CANNOT_CROSS_NEXT) {
             outputView.printMap(bridge.movingResultToString(FAILURE));
             if (inputView.readGameCommand().equals(REGAME)) {
                 resetAndRegame();

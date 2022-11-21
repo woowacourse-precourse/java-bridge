@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Bridge {
     public static final int JUST_CROSSED = 1;
-    public static final int POSSIBLE_CROSS_NEXT = 2;
-    public static final int IMPOSSIBLE_CROSS_NEXT = 3;
+    public static final int CAN_CROSS_NEXT = 2;
+    public static final int CANNOT_CROSS_NEXT = 3;
     public static final int JUST_CROSSED_AND_CROSS_OVER = 4;
 
     private final List<String> bridge;
@@ -40,9 +40,9 @@ public class Bridge {
     public int isNextMovingPossible(String upperOrLower) {
         move();
         if (bridge.get(getCurrentIndex()).equals(upperOrLower)) {
-            return POSSIBLE_CROSS_NEXT;
+            return CAN_CROSS_NEXT;
         }
-        return IMPOSSIBLE_CROSS_NEXT;
+        return CANNOT_CROSS_NEXT;
     }
 
     public boolean whetherFollowingEndOrNot() {
@@ -72,7 +72,7 @@ public class Bridge {
      */
     public int updateMovingResultAndReturnNextMovingPossible(String inputUpOrDown) {
         int result = isNextMovingPossible(inputUpOrDown);
-        if (result == POSSIBLE_CROSS_NEXT) {
+        if (result == CAN_CROSS_NEXT) {
             if (whetherFollowingEndOrNot()) {
                 return JUST_CROSSED_AND_CROSS_OVER;
             }
