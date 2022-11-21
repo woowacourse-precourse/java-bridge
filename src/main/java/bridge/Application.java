@@ -38,9 +38,6 @@ public class Application {
             if (!isCorrectChoice) {
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String s = InputView.readGameCommand();
-                if (s.equals("-1")) {
-                    return;
-                }
                 retry = BridgeGame.retry(s);
                 i = 0;
                 cnt = BridgeGame.countGameNum(s, cnt);
