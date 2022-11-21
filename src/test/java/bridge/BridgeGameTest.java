@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.dto.BridgeStatusDto;
+import bridge.dto.SuccessOrFailureDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -82,14 +83,14 @@ class BridgeGameTest {
     @Test
     void 성공시의_DTO() {
         BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("D")));
-        BridgeStatusDto bridgeStatusDto = new BridgeStatusDto("[   ]\n[ O ]\n","성공",1);
+        BridgeStatusDto bridgeStatusDto = new BridgeStatusDto(new SuccessOrFailureDto("[   ]\n[ O ]\n","성공"),1);
         assertThat(bridgeGame.makeSuccessBridgeStatusDto()).isEqualTo(bridgeStatusDto);
     }
 
     @Test
     void 실패시의_DTO() {
         BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("U")));
-        BridgeStatusDto bridgeStatusDto = new BridgeStatusDto("[ X ]\n[   ]\n","실패",1);
+        BridgeStatusDto bridgeStatusDto = new BridgeStatusDto(new SuccessOrFailureDto("[ X ]\n[   ]\n","실패"),1);
         assertThat(bridgeGame.makeFailBridgeStatusDto()).isEqualTo(bridgeStatusDto);
     }
 
