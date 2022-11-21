@@ -33,15 +33,17 @@ public class OutputView {
     }
 
     private static BridgeMap printUpSideBridgeMap(final List<String> movingStatus) {
-        BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
-        return bridgeMapMaker
-                .makeBridgeMap(movingStatus, MovingStatus.UP.getMovingKey());
+        String upSide = MovingStatus.UP.getMovingKey();
+        BridgeMapMaker bridgeMapMaker
+                = new BridgeMapMaker(movingStatus, upSide);
+        return bridgeMapMaker.makeBridgeMap();
     }
 
     private static BridgeMap printDownSideBridgeMap(final List<String> movingStatus) {
-        BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
-        return bridgeMapMaker
-                .makeBridgeMap(movingStatus, MovingStatus.DOWN.getMovingKey());
+        String downSide = MovingStatus.DOWN.getMovingKey();
+        BridgeMapMaker bridgeMapMaker
+                = new BridgeMapMaker(movingStatus, downSide);
+        return bridgeMapMaker.makeBridgeMap();
     }
 
     /**

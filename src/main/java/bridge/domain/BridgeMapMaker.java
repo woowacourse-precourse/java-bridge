@@ -3,27 +3,34 @@ package bridge.domain;
 import bridge.domain.constant.BridgeComponent;
 
 import java.util.List;
-
 public class BridgeMapMaker {
-    public BridgeMap makeBridgeMap(final List<String> movingStatus, final String side) {
+    private final List<String> movingStatus;
+    private final String side;
+
+    public BridgeMapMaker(List<String> movingStatus, String side){
+        this.movingStatus = movingStatus;
+        this.side = side;
+    }
+
+    public BridgeMap makeBridgeMap() {
         BridgeMap bridgeMap = new BridgeMap(new StringBuilder());
         bridgeMap.concatComponent(BridgeComponent.BRIDGE_BEGINNING);
-        bridgeMap.concatComponent(bridgeContent(movingStatus, side));
+        bridgeMap.concatComponent(bridgeContent());
         bridgeMap.deleteLastComponent(BridgeComponent.BRIDGE_SEPARATOR);
         bridgeMap.concatComponent(BridgeComponent.BRIDGE_END);
         return bridgeMap;
     }
 
-    private String bridgeContent(final List<String> movingStatus, final String side) {
+    private String bridgeContent() {
         BridgeMap bridgeMap = new BridgeMap(new StringBuilder());
         for (String moving : movingStatus) {
-            bridgeMap.concatComponent(crossOrNot(moving, side));
+            bridgeMap.concatComponent(crossOrNot(moving));
             bridgeMap.concatComponent(BridgeComponent.BRIDGE_SEPARATOR);
         }
         return bridgeMap.toString();
     }
 
-    private String crossOrNot(final String moving, final String side) {
+    private String crossOrNot(final String moving) {
         String failSide = MovingStatus.FAIL.getMovingKey() + side;
         if (moving.equals(side)) {
             return BridgeComponent.CAN_CROSS;
