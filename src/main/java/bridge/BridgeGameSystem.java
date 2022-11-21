@@ -41,4 +41,14 @@ public class BridgeGameSystem {
         return FAILURE_LOWER;
     }
 
+    public static boolean isExit(boolean gameCommand){
+        if(gameCommand){
+            index = 0;
+            tryCount++;
+            return true;
+        }
+        return false;
+    }
+
+
 }
