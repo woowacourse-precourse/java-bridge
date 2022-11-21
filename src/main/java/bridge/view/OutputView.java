@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.domain.Player;
 import bridge.domain.enums.BridgePanel;
 import bridge.view.enums.GuideMessage;
 import bridge.view.enums.MapType;
@@ -21,19 +20,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Player player, boolean moveResult) {
+    public void printMap(List<String> movingChoices, List<Boolean> moveResults) {
         up = new StringBuilder(MapType.START.getType());
         down = new StringBuilder(MapType.START.getType());
-        for (int index = 0; index <= player.informMovingIndex(); index++) {
-            makeUpSide(player, moveResult);
-            makeDownSide(player, moveResult);
+        for (int index = 0; index < movingChoices.size(); index++) {
+            makeUpSide(movingChoices.get(index), moveResults.get(index));
+            makeDownSide(movingChoices.get(index), moveResults.get(index));
         }
         printWithDivision(up, down);
     }
 
-    public void makeUpSide(Player player, boolean moveResult) {
-        List<String> movingChoices = player.getMovingInputs();
-        if (movingChoices.get(player.informMovingIndex()).equals(BridgePanel.UP_PANEL.getPosition())) {
+    public void makeUpSide(String moving, boolean moveResult) {
+        if (moving.equals(BridgePanel.UP_PANEL.getPosition())) {
             if (moveResult) {
                 up.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
                 return;
@@ -44,9 +42,8 @@ public class OutputView {
         up.append(MapType.EMPTY.getType()).append(MapType.END.getType());
     }
 
-    public void makeDownSide(Player player, boolean moveResult) {
-        List<String> movingChoices = player.getMovingInputs();
-        if (movingChoices.get(player.informMovingIndex()).equals(BridgePanel.DOWN_PANEL.getPosition())) {
+    public void makeDownSide(String moving, boolean moveResult) {
+        if (moving.equals(BridgePanel.DOWN_PANEL.getPosition())) {
             if (moveResult) {
                 down.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
                 return;
