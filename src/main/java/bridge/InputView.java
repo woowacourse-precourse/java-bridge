@@ -12,20 +12,26 @@ public class InputView {
      */
     public static int readBridgeSize() {
         BoilerPlates.readBridgeSize();
-        return Integer.parseInt(Console.readLine());
+        String bridgeSize = Console.readLine();
+        Validator.validateBridgeSize(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
         BoilerPlates.readMoving();
-        return Console.readLine();
+        String moving = Console.readLine();
+        Validator.validateMoving(moving);
+        return moving;
     }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
         BoilerPlates.readGameCommand();
-        return Console.readLine();
+        String isRestart = Console.readLine();
+        Validator.validateIsRestart(isRestart);
+        return isRestart;
     }
 }
