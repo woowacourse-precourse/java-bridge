@@ -8,7 +8,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final int UPPER_SIDE = 1;
+    private final int upperSide = 1;
+    private final String up = "U";
+    private final String down = "D";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -29,9 +31,9 @@ public class BridgeMaker {
     }
 
     private String chooseUpOrDownByNumber(int number) {
-        if (number == UPPER_SIDE) {
-            return "U";
+        if (number == upperSide) {
+            return up;
         }
-        return "D";
+        return down;
     }
 }

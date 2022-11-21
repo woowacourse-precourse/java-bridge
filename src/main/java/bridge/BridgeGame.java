@@ -13,7 +13,8 @@ public class BridgeGame {
     private InputView inputView;
     private OutputView outputView;
     private int tryCount = 0;
-    private final String termination = "Q";
+    private final int counting = 1;
+    private final String quit = "Q";
     private final boolean willRetry = true;
     private final boolean willNotRetry = false;
 
@@ -41,7 +42,7 @@ public class BridgeGame {
      * 실제 게임이 진행되는 메서드
      */
     private boolean play(int bridgeSize, List<String> bridge, List<String> moves) {
-        tryCount = tryCount + 1;
+        tryCount = tryCount + counting;
         moves.clear();
         for (int i = 0; i < bridgeSize; ++i) {
             move(moves);
@@ -74,7 +75,7 @@ public class BridgeGame {
      */
     public boolean retry(int bridgeSize, List<String> bridge, List<String> moves) {
         String retryInput = inputView.readGameCommand();
-        if (retryInput.equals(termination)) {
+        if (retryInput.equals(quit)) {
             return false;
         }
         return play(bridgeSize, bridge, moves);

@@ -12,6 +12,14 @@ public class OutputView {
 
     private final String upperSideCharacter = "U";
     private final String lowerSideCharacter = "D";
+    private final String mapPrefix = "[";
+    private final String mapPostfix = "]";
+    private final String oneSpace = " ";
+    private final String mapDelimiter = "|";
+    private final String correctMark = "O";
+    private final String wrongMark = "X";
+    private final boolean succeed = true;
+    private final boolean notSucceed = false;
 
     public void printStartMessage() {
         System.out.println(InputMessage.START_MESSAGE.getMessage());
@@ -48,29 +56,29 @@ public class OutputView {
 
     private void printOneSideMap(String side, List<String> moves, List<String> bridge) {
         int lastMovePosition = moves.size() - 1;
-        System.out.print("[");
+        System.out.print(mapPrefix);
         for (int i = 0; i < lastMovePosition; ++i) {
-            System.out.print(" " + getOneBlockFormat(side, bridge.get(i)) + " |");
+            System.out.print(oneSpace + getOneBlockFormat(side, bridge.get(i)) + oneSpace + mapDelimiter);
         }
         System.out.print(getLastBlockFormat(side, moves.get(lastMovePosition), bridge.get(lastMovePosition)));
-        System.out.println("]");
+        System.out.println(mapPostfix);
     }
 
     private String getOneBlockFormat(String side, String direction) {
         if (side.equals(direction)) {
-            return "O";
+            return correctMark;
         }
-        return " ";
+        return oneSpace;
     }
 
     private String getLastBlockFormat(String side, String movedDirection, String answerDirection) {
         if (!side.equals(movedDirection)) {
-            return "   ";
+            return oneSpace + oneSpace + oneSpace;
         }
         if (movedDirection.equals(answerDirection)) {
-            return " O ";
+            return oneSpace + correctMark + oneSpace;
         }
-        return " X ";
+        return oneSpace + wrongMark + oneSpace;
     }
 
     /**
@@ -88,14 +96,14 @@ public class OutputView {
 
     private boolean isSucceeded(List<String> moves, List<String> bridge) {
         if (moves.size() != bridge.size()) {
-            return false;
+            return notSucceed;
         }
         for (int i = 0; i < moves.size(); ++i) {
             if (!moves.get(i).equals(bridge.get(i))) {
-                return false;
+                return notSucceed;
             }
         }
-        return true;
+        return succeed;
     }
 
     private String getSuccessOrFailMessage(boolean succeeded) {

@@ -6,6 +6,10 @@ public class InputValidator {
 
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     public static void validateBridgeSize(String bridgeSizeInput) {
         if (!isNumeric(bridgeSizeInput)) {
@@ -37,11 +41,11 @@ public class InputValidator {
     }
 
     public static boolean validateMoveDirection(String moveDirectionInput) {
-        return moveDirectionInput.equals("U") || moveDirectionInput.equals("D");
+        return moveDirectionInput.equals(UP) || moveDirectionInput.equals(DOWN);
     }
 
     public static void validateRetryInput(String retryInput) {
-        if (!(retryInput.equals("R") || retryInput.equals("Q"))) {
+        if (!(retryInput.equals(RETRY) || retryInput.equals(QUIT))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RETRY_INPUT.getMessage());
         }
     }
