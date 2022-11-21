@@ -20,6 +20,8 @@ public enum ExceptionMessageUtils {
             BridgeConst.UP_TILE_VALUE,
             BridgeConst.DOWN_TILE_VALUE),
 
+    NOT_FOUND_VIEW("지정한 타입에 맞는 View를 찾을 수 없습니다"),
+
     WRONG_CONFIGURATION("잘못된 애플리케이션 구성으로 인한 문제가 발생했습니다.");
 
     private final String message;

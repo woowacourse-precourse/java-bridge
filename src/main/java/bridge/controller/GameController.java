@@ -11,22 +11,23 @@ import bridge.dto.input.ReadMovingDto;
 import bridge.dto.output.PrintExceptionDto;
 import bridge.dto.output.PrintResultDto;
 import bridge.exception.domain.WrongGeneratorException;
+import bridge.exception.view.NotFoundViewException;
 import bridge.utils.game.GameStatus;
 import bridge.utils.message.ExceptionMessageUtils;
 import bridge.view.GuideView;
-import bridge.view.IOViewManager;
+import bridge.view.IOViewResolver;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class GameController {
 
-    private final IOViewManager ioViewManager;
+    private final IOViewResolver ioViewResolver;
     private final Map<GameStatus, Supplier<GameStatus>> gameStatusMappings;
     private BridgeGame bridgeGame;
 
-    public GameController(IOViewManager ioViewManager) {
-        this.ioViewManager = ioViewManager;
+    public GameController(IOViewResolver ioViewResolver) {
+        this.ioViewResolver = ioViewResolver;
         gameStatusMappings = new EnumMap<>(GameStatus.class);
 
         initGameStatusMappings();
@@ -45,7 +46,7 @@ public class GameController {
             return gameStatusMappings.get(gameStatus).get();
         } catch (IllegalArgumentException e) {
             return processException(e.getMessage(), gameStatus);
-        } catch (WrongGeneratorException e) {
+        } catch (WrongGeneratorException | NotFoundViewException e) {
             return processException(e.getMessage(), GameStatus.APPLICATION_EXIT);
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return processException(ExceptionMessageUtils.WRONG_CONFIGURATION.getMessage(),
@@ -54,7 +55,7 @@ public class GameController {
     }
 
     private GameStatus processException(String message, final GameStatus gameStatus) {
-        ioViewManager.printException(new PrintExceptionDto(message));
+        ioViewResolver.outputViewResolve(new PrintExceptionDto(message));
         return gameStatus;
     }
 
@@ -64,24 +65,24 @@ public class GameController {
     }
 
     private GameStatus makeBridge() {
-        ReadBridgeSizeDto readBridgeSizeDto = ioViewManager.readBridgeSize();
+        ReadBridgeSizeDto inputDto = ioViewResolver.inputViewResolve(ReadBridgeSizeDto.class);
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
-        bridgeGame = new BridgeGame(readBridgeSizeDto.getSize(), generator);
+        bridgeGame = new BridgeGame(inputDto.getSize(), generator);
 
         return GameStatus.GAME_PLAY;
     }
 
     private GameStatus gamePlay() {
-        ReadMovingDto readMovingDto = ioViewManager.readMoving();
-        MoveDto moveDto = bridgeGame.move(readMovingDto);
+        ReadMovingDto dto = ioViewResolver.inputViewResolve(ReadMovingDto.class);
+        MoveDto moveDto = bridgeGame.move(dto);
 
-        ioViewManager.printMap(moveDto.getPrintMapDto());
+        ioViewResolver.outputViewResolve(moveDto.getPrintMapDto());
         return moveDto.getNextGameStatus();
     }
 
     private GameStatus gameOver() {
-        ReadGameCommandDto readGameCommandDto = ioViewManager.readGameCommand();
-        RetryDto retryDto = bridgeGame.retry(readGameCommandDto);
+        ReadGameCommandDto inputDto = ioViewResolver.inputViewResolve(ReadGameCommandDto.class);
+        RetryDto retryDto = bridgeGame.retry(inputDto);
 
         return retryDto.getNextGameStatus();
     }
@@ -90,7 +91,7 @@ public class GameController {
         ExitDto exitDto = bridgeGame.exit();
 
         GuideView.printGameResult();
-        ioViewManager.printResult(new PrintResultDto(exitDto));
+        ioViewResolver.outputViewResolve(new PrintResultDto(exitDto));
         return GameStatus.APPLICATION_EXIT;
     }
 }
