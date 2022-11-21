@@ -37,6 +37,7 @@ public class BridgeGame {
         while (bridge.isProceeding(user)) {
             printMoveOptionInput();
             user.add(readMoving());
+            printMap(bridge, user);
             if (bridge.compare(user).equals(Result.FAIL)) {
                 return Result.FAIL;
             }

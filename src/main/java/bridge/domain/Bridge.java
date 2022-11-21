@@ -30,6 +30,18 @@ public class Bridge {
         return Result.SUCCESS;
     }
 
+    public String getMap(List<String> user) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < user.size(); i++) {
+            if (!bridge.get(i).equals(user.get(i))) {
+                stringBuilder.append("X");
+                continue;
+            }
+            stringBuilder.append("O");
+        }
+        return stringBuilder.toString();
+    }
+
     @Override
     public String toString() {
         return "Bridge{" +
