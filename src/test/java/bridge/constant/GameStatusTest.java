@@ -20,4 +20,11 @@ class GameStatusTest {
         GameStatus fail = GameStatus.FAIL;
         assertThat(fail.isFail()).isTrue();
     }
+
+    @DisplayName("GameStatus isSuccess 메소드 검증")
+    @Test
+    void isSuccess() {
+        GameStatus success = GameStatus.SUCCESS;
+        assertThat(success.isSuccess()).isTrue();
+    }
 }
