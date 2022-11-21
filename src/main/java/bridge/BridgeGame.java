@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeGame {
     public static final int UPWARD = 0;
     public static final int DOWNWARD = 1;
-    private List<String> bridge;
+    private final List<String> bridge;
     private List<List<String>> userInputBridge;
     private int tryCount = 0;
     int index;
@@ -78,5 +78,9 @@ public class BridgeGame {
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    public List<List<String>> getUserInputBridge() {
+        return userInputBridge;
     }
 }

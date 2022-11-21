@@ -14,6 +14,7 @@ public class Application {
             bridgeSize = inputView.readBridgeSize();
             BridgeGame bridgeGame = new BridgeGame(bridgeSize);
             start(bridgeGame);
+            outputView.printResult(bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -32,24 +33,32 @@ public class Application {
         String moving = inputView.readMoving();
         List<List<String>> userBridge = bridgeGame.move(moving);
         outputView.printMap(userBridge);
-        if (!checkUserBridge(userBridge)) {
-            if (inputView.readGameCommand().equals("R")) {
-                bridgeGame.retry();
-            }
+        if (isWrongUserBridge(userBridge)) {
+            return checkRetry(bridgeGame);
+        }
+        return checkGameEnd(bridgeGame);
+    }
+
+    private static int checkGameEnd(BridgeGame bridgeGame) {
+        if (bridgeGame.getUserInputBridge().get(0).size() != bridgeSize) {
             return -1;
         }
         return 0;
     }
 
-    private static boolean checkUserBridge(List<List<String>> userBridge) {
-        int size = userBridge.get(0).size();
-        if (userBridge.get(BridgeGame.UPWARD).get(size - 1).equals("X") ||
-                userBridge.get(BridgeGame.DOWNWARD).get(size - 1).equals("X")) {
-            return false;
+    private static int checkRetry(BridgeGame bridgeGame) {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
+            return -1;
         }
-        if (size != bridgeSize) {
-            return false;
+        return 0;
+    }
+
+    private static boolean isWrongUserBridge(List<List<String>> userBridge) {
+        if (userBridge.get(BridgeGame.UPWARD).contains("X") || userBridge.get(BridgeGame.DOWNWARD).contains("X")) {
+            return true;
         }
-        return true;
+        return false;
     }
 }
