@@ -74,8 +74,7 @@ class ApplicationTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame game = new BridgeGame();
-        System.setIn(new StringBufferInputStream("D"));
-        assertThat(game.move(0,bridge).retry).isEqualTo(Boolean.FALSE);
+        assertThat(game.move(0,bridge, "D").retry).isEqualTo(Boolean.FALSE);
 
     }
 
