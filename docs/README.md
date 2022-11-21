@@ -22,14 +22,14 @@
 - [x] BridgeMaker : 다리 정보를 만드는 클래스
     - [x] 다리 생성 후 반환
 
-- [ ] InputView : 사용자로부터 입력을 받는 클래스
+- [x] InputView : 사용자로부터 입력을 받는 클래스
     - [x] 생성자 추가
       - InputValidator 설정
     - [x] 다리 길이 입력, 검증
       - 검증 실패 시 IllegalArgumentException
     - [x] 이동할 칸 입력, 검증
       - 검증 실패 시 IllegalArgumentException
-    - [ ] 게임 재시도 여부 입력, 검증
+    - [x] 게임 재시도 여부 입력, 검증
       - 검증 실패 시 IllegalArgumentException
 
 - [x] InputValidator : 사용자 입력을 검증하는 클래스
