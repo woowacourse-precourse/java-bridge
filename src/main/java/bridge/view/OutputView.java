@@ -18,7 +18,7 @@ public class OutputView {
     private static final String GAME_SUCCESS_OR_FAIL = "게임 성공 여부: ";
     private static final String TOTAL_TRY_NUMBER = "총 시도한 횟수: ";
 
-    public void printStart() {
+    public void printStartGame() {
         System.out.println(PRINT_START_GAME);
         System.out.println();
     }

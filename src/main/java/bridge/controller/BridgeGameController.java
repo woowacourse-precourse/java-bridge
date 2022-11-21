@@ -21,9 +21,9 @@ public class BridgeGameController {
     }
 
     public void start() {
-        outputView.printStart();
+        outputView.printStartGame();
         createBridge();
-        play();
+        playGame();
         gameResult();
     }
 
@@ -32,7 +32,7 @@ public class BridgeGameController {
         bridgeGame.create(requestDto);
     }
 
-    private void play() {
+    private void playGame() {
         bridgeGame.tryGame();
         while (bridgeGame.playing()) {
             SelectBlockRequestDto requestDto = inputView.readMoving();
@@ -47,7 +47,7 @@ public class BridgeGameController {
         if (bridgeGame.isFail()) {
             GameRetryRequestDto requestDto = inputView.readGameCommand();
             if (bridgeGame.retry(requestDto)) {
-                play();
+                playGame();
             }
         }
     }

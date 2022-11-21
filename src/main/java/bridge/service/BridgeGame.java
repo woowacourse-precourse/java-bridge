@@ -40,17 +40,17 @@ public class BridgeGame {
     public BridgeResponseDto move(SelectBlockRequestDto dto) {
         int nowPosition = player.nowPosition();
         String mark = getMarkByMove(nowPosition, dto.getBlock());
-        return response(mark, dto.getBlock());
+        return new BridgeResponseDto(markMovedBlock(mark, dto.getBlock()));
     }
 
-    private BridgeResponseDto response(String mark, String block) {
+    private BridgeStatus markMovedBlock(String mark, String block) {
         if(block.equals(GameConstance.UP_BLOCK_EXPRESSION)) {
             bridgeStatus.addStatus(mark, GameConstance.EMPTY_BLOCK);
-            return new BridgeResponseDto(bridgeStatus);
+            return bridgeStatus;
         }
 
         bridgeStatus.addStatus(GameConstance.EMPTY_BLOCK, mark);
-        return new BridgeResponseDto(bridgeStatus);
+        return bridgeStatus;
     }
 
     private String getMarkByMove(int currentPosition, String block) {
