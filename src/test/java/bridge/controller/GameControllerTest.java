@@ -10,11 +10,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class GameControllerTest extends NsTest {
-
     @Nested
     @DisplayName("GameController 테스트")
     class GameController {
-
         @Test
         void 하한_경계값_테스트() {
             assertRandomNumberInRangeTest(() -> {

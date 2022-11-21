@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.stream.Stream;
 
 class GameControlTest {
-
     @Nested
     @DisplayName("isQuit 메소드 테스트")
     class IsQuit {

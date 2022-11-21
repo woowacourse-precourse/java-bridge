@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 class BridgeTest {
-
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("도메인 로직 예외처리 테스트")
@@ -60,7 +59,6 @@ class BridgeTest {
             assertThat(source.isPartOfBridgeInOrder(target)).isTrue();
         }
 
-
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
                     Arguments.of(new Bridge(List.of()), new Bridge(List.of())),
@@ -78,10 +76,9 @@ class BridgeTest {
     class ContainsAllInOrder {
         @ParameterizedTest
         @MethodSource("parameterProvider")
-        void 한_브리지가_다른_리스트의_값을_포함하는지_체크하는_기능을_테스트(Bridge source, List<String> target) {
+        void 한_브리지가_순서대로_다른_리스트의_값을_포함하는지_체크하는_기능을_테스트(Bridge source, List<String> target) {
             assertThat(source.containsAllInOrder(target)).isTrue();
         }
-
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
@@ -100,10 +97,9 @@ class BridgeTest {
     class ToString {
         @ParameterizedTest
         @MethodSource("parameterProvider")
-        void 브리지_정보가_스트링으로_변환되는_기능을_테스트(Bridge source, String target) {
+        void 브리지_정보가_문자열로_변환되는_기능을_테스트(Bridge source, String target) {
             assertThat(source.toString()).isEqualTo(target);
         }
-
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(

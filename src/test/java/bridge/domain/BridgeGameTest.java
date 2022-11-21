@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 class BridgeGameTest {
-
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("getMovingResult 메소드 테스트")

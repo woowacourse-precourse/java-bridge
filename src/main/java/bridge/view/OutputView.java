@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 public class OutputView {
     private final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private final String WHETHER_GAME_SUCCESS_MESSAGE = "게임 성공 여부: ";
@@ -66,7 +65,7 @@ public class OutputView {
     private List<String> makeUpperLine(String gameHistory) {
         List<String> upperLine = new ArrayList<>();
         for (int i = 0; i < gameHistory.length(); i++) {
-            upperLine.add(getSymbolIfMovingIsUp(gameHistory.substring(i, i+1)));
+            upperLine.add(getSymbolIfMovingIsUp(gameHistory.substring(i, i + 1)));
         }
         return upperLine;
     }
@@ -74,7 +73,7 @@ public class OutputView {
     private List<String> makeLowerLine(String gameHistory) {
         List<String> lowerLine = new ArrayList<>();
         for (int i = 0; i < gameHistory.length(); i++) {
-            lowerLine.add(getSymbolIfMovingIsDown(gameHistory.substring(i, i+1)));
+            lowerLine.add(getSymbolIfMovingIsDown(gameHistory.substring(i, i + 1)));
         }
         return lowerLine;
     }

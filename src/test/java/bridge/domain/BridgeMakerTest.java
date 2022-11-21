@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 class BridgeMakerTest {
-
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("makeBridge 메소드 테스트")
@@ -42,7 +41,6 @@ class BridgeMakerTest {
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
-
         private final List<Integer> numbers;
 
         TestNumberGenerator(List<Integer> numbers) {

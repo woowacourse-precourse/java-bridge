@@ -2,8 +2,6 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.GameStatus;
-import bridge.domain.GameUser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.TestInstance;
@@ -16,7 +14,6 @@ import java.util.stream.Stream;
 
 
 class GameStatusTest {
-
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("getGameHistory 메소드 테스트")

@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class GameMovingTest {
-
     @Nested
     @DisplayName("getMovingFromNumber 메소드 테스트")
     class GetMovingFromNumber {
@@ -35,7 +34,6 @@ class GameMovingTest {
             assertThat(GameMoving.isDown(target)).isFalse();
         }
     }
-
 
     @Nested
     @DisplayName("isUp 메소드 테스트")

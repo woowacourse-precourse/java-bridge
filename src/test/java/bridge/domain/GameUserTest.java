@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-
 class GameUserTest {
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
@@ -51,7 +50,6 @@ class GameUserTest {
             for (String moving : userBridge) {
                 gameUser.move(moving);
             }
-
             assertThat(gameUser.isGetOutFrom(targetBridge)).isTrue();
         }
 
@@ -76,7 +74,6 @@ class GameUserTest {
             for (String moving : userBridge) {
                 gameUser.move(moving);
             }
-
             assertThat(gameUser.isOnTheFinalBlockOf(targetBridge)).isTrue();
         }
 
