@@ -24,14 +24,6 @@ class BridgeMakerTest {
         assertThat(bridge.size()).isEqualTo(anyValue);
     }
 
-    @DisplayName(MOVE_TO_UPPER_BLOCK + ", " + MOVE_TO_LOWER_BLOCK + " 2개의 값만 생성된다")
-    @ValueSource(ints = 10)
-    @ParameterizedTest
-    void When_MakeBridge_Expect_ResultContainOnlySpecificValue(int anyValue) {
-        List<String> bridge = bridgeMaker.makeBridge(anyValue);
-        assertThat(bridge.stream()
-                .allMatch(value -> value.equals(MOVE_TO_UPPER_BLOCK) || value.equals(MOVE_TO_LOWER_BLOCK))).isTrue();
-    }
 
     @DisplayName("numberGenerator를 통해 들어온 값이")
     @Nested
