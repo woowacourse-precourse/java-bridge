@@ -34,7 +34,9 @@ public class UserConsole {
         }
     }
     public void endGame(){
-        outputView.printResult(totalNumber);
+        outputView.printResultTotalMap(bridgeGame.getUserList(),bridgeGame.getBridgeSize());
+        outputView.printResultSuccess(round,bridgeGame.getBridgeSize());
+        outputView.printResultTotalNumber(totalNumber);
     }
     public void retry(String userInput){
         if(bridgeGame.retry(userInput)){
