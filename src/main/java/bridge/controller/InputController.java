@@ -1,14 +1,10 @@
 package bridge.controller;
 
-import bridge.model.Direction;
-import bridge.model.RetryCommand;
-import bridge.util.ExceptionMessage;
+import bridge.view.InputValidation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class InputController {
-    private static final int MIN_SIZE = 3;
-    private static final int MAX_SIZE = 20;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -28,25 +24,9 @@ public class InputController {
         }
     }
 
-    private int convertToNumber(String sizeInput) throws IllegalArgumentException {
-        try {
-            return Integer.parseInt(sizeInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
-                    + ExceptionMessage.CANNOT_CONVERT_TO_NUMBER);
-        }
-    }
-
-    private void isValidBridgeSize(int size) throws IllegalArgumentException {
-        if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
-                    + ExceptionMessage.BRIDGE_SIZE_OUT_OF_RANGE);
-        }
-    }
-
     private int checkBridgeSize(String sizeInput) throws IllegalArgumentException {
-        int size = convertToNumber(sizeInput);
-        isValidBridgeSize(size);
+        int size = InputValidation.convertToNumber(sizeInput);
+        InputValidation.isValidBridgeSize(size);
         return size;
     }
 
@@ -62,16 +42,8 @@ public class InputController {
     }
 
     private String checkDirection(String directionInput) throws IllegalArgumentException {
-        isValidDirection(directionInput);
+        InputValidation.isValidDirection(directionInput);
         return directionInput;
-    }
-
-    private void isValidDirection(String directionInput) throws IllegalArgumentException {
-        if (!Direction.equals(directionInput, Direction.UP)
-                && !Direction.equals(directionInput, Direction.DOWN)) {
-            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
-                    + ExceptionMessage.INVALID_DIRECTION);
-        }
     }
 
     public String getGameCommand() {
@@ -86,15 +58,7 @@ public class InputController {
     }
 
     private String checkGameCommand(String commandInput) throws IllegalArgumentException {
-        isValidGameCommand(commandInput);
+        InputValidation.isValidGameCommand(commandInput);
         return commandInput;
-    }
-
-    private void isValidGameCommand(String commandInput) throws IllegalArgumentException {
-        if (!RetryCommand.equals(commandInput, RetryCommand.RETRY)
-                && !RetryCommand.equals(commandInput, RetryCommand.QUIT)) {
-            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
-                    + ExceptionMessage.INVALID_GAME_COMMAND);
-        }
     }
 }
