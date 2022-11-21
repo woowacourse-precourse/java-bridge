@@ -29,7 +29,7 @@ public class BridgeMaker {
     }
 
     private void validate(int size) {
-        if (MINIMUM_VALUE_OF_SIZE >= size || size >= MAXIMUM_VALUE_OF_SIZE) {
+        if (MINIMUM_VALUE_OF_SIZE > size || size > MAXIMUM_VALUE_OF_SIZE) {
             ExceptionMessage.INPUT_WRONG_BRIDGE_LENGTH_MESSAGE.throwException();
         }
     }
