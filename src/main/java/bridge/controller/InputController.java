@@ -5,14 +5,14 @@ import bridge.domain.command.MoveCommand;
 import bridge.view.InputView;
 
 public class InputController {
-
 	private static final int MIN_SIZE = 3;
 	private static final int MAX_SIZE = 20;
 	private static final String BRIDGE_SIZE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3이상, 20이하 입니다.";
+	private final InputView inputView = new InputView();
 
 	public int receiveBridgeSize() {
 		try {
-			int size = InputView.readBridgeSize();
+			int size = inputView.readBridgeSize();
 			return validBridgeSize(size);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -29,7 +29,7 @@ public class InputController {
 
 	public String receiveMoveCommand() {
 		try {
-			String moving = InputView.readMoving();
+			String moving = inputView.readMoving();
 			return validMoveCommand(moving);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -39,7 +39,7 @@ public class InputController {
 
 	public boolean askRetry() {
 		try {
-			String retryInput = InputView.readGameCommand();
+			String retryInput = inputView.readGameCommand();
 			return validBranchCommand(retryInput);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

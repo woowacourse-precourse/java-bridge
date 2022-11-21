@@ -7,14 +7,13 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.ProgressMap;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 	private final InputController inputController = new InputController();
+	private final OutputView outputView = new OutputView();
 
 	public void start() {
-		InputView.printIntroMessage();
 		BridgeGame bridgeGame = settingBridgeGame();
 		startBridgeGame(bridgeGame);
 	}
@@ -38,12 +37,12 @@ public class BridgeGameController {
 				progressMap = bridgeGame.retry(inputController.askRetry(), progressMap);
 			}
 		}
-		OutputView.printResult(progressMap, bridgeGame);
+		outputView.printResult(progressMap, bridgeGame);
 	}
 
 	private void moveBridgeOneTime(BridgeGame bridgeGame, ProgressMap progressMap) {
 		String moving = inputController.receiveMoveCommand();
 		bridgeGame.move(moving, progressMap);
-		OutputView.printMap(progressMap);
+		outputView.printMap(progressMap);
 	}
 }
