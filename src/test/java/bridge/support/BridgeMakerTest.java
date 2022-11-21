@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@DisplayName("BridgeMaker 객체 테스트")
+@DisplayName("BridgeMaker 객체를 테스트한다.")
 class BridgeMakerTest {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
