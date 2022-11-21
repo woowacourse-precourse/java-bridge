@@ -21,22 +21,28 @@ public class BridgeGameController {
 
     public void run() {
         try{
-            List<String[]> map;
-            bridgeGame.makeBridge(iv.readBridgeSize());
-            do {
-                bridgeGame.move(iv.readMoving());
-                map = ov.printMap(bridgeGame.getBridge(), bridgeGame.getMarks());
-                if(bridgeGame.isDiscord()) {
-                    if(bridgeGame.retry(iv.readGameCommand())) {
-                        bridgeGame.backToFirstSection();
-                        continue;
-                    }
-                    break;
-                }
-            } while(bridgeGame.isEndOfBridge());
-            ov.printResult(map, bridgeGame.getResultOfGame(), bridgeGame.getGameCount());
+            makeBride();
+            gamePlay();
+            printResult();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
+    }
+
+    private void makeBride() {
+        bridgeGame.makeBridge(iv.readBridgeSize());
+    }
+    private void gamePlay() {
+        do {
+            bridgeGame.move(iv.readMoving());
+            bridgeGame.setMap(ov.printMap(bridgeGame.getBridge(), bridgeGame.getMarks()));
+            if(bridgeGame.isDiscord()) {
+                if(!bridgeGame.retry(iv.readGameCommand())) break;
+                bridgeGame.backToFirstSection();
+            }
+        } while(bridgeGame.isEndOfBridge());
+    }
+    private void printResult() {
+        ov.printResult(bridgeGame.getMap(), bridgeGame.getResultOfGame(), bridgeGame.getGameCount());
     }
 }
