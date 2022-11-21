@@ -26,11 +26,11 @@ public class BridgeGame {
         return "";
     }
 
-    private static boolean isPossible(String moving) {
+    private boolean isPossible(String moving) {
         return moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index));
     }
 
-    private static void checkMovingImpossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
+    private void checkMovingImpossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
         if (moving.equals("U")){
            changeUpBridge("X", up_bridge, down_bridge);
         }
@@ -39,7 +39,7 @@ public class BridgeGame {
         }
     }
 
-    private static void checkMovingPossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
+    private void checkMovingPossibleCase(String moving, List<String> up_bridge, List<String> down_bridge) {
         if (moving.equals("U")){
             changeUpBridge("O", up_bridge, down_bridge);
         }
@@ -48,13 +48,13 @@ public class BridgeGame {
         }
     }
 
-    private static void changeDownBridge(String possible, List<String> up_bridge, List<String> down_bridge) {
+    private void changeDownBridge(String possible, List<String> up_bridge, List<String> down_bridge) {
         up_bridge.add(" ");
         down_bridge.add(possible);
         BridgeMaker.bridge_index++;
     }
 
-    private static void changeUpBridge(String possible, List<String> up_bridge, List<String> down_bridge) {
+    private void changeUpBridge(String possible, List<String> up_bridge, List<String> down_bridge) {
         up_bridge.add(possible);
         down_bridge.add(" ");
         BridgeMaker.bridge_index++;
