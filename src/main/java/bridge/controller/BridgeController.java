@@ -4,7 +4,6 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeMap;
 import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeServices;
 import bridge.view.OutputView;
 
 public class BridgeController {

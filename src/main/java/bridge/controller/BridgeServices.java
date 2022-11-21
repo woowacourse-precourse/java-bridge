@@ -1,5 +1,6 @@
-package bridge.domain;
+package bridge.controller;
 
+import bridge.domain.BridgeChecker;
 import bridge.view.InputView;
 import bridge.constant.Bridge.GameConstants;
 
@@ -31,7 +32,7 @@ public class BridgeServices {
         }
     }
 
-    public int takeSize() { //
+    public int takeSize() {
         try {
             String bridgeSize = InputView.readBridgeSize();
             bridgeChecker.validateBridgeSize(bridgeSize);
