@@ -23,7 +23,7 @@ import static bridge.constant.Constants.BridgeSign.*;
  */
 public class BridgeGame {
     GameBoard topGameBoard, bottomGameBoard;
-    MovingResult movingResult = MovingResult.PASS;
+    MovingResult movingResult;
     int tryCount = 1;
 
 
@@ -40,22 +40,19 @@ public class BridgeGame {
 
     private void compare(String correctDirection, String movingDirection) {
         MovingResult result = compareDirection(correctDirection, movingDirection);
+        movingResult = result;
 
-        checkDirection(movingDirection, result);
-        if (result.getIsGameLose()) {
-            movingResult = MovingResult.FAIL;
-        }
+        updateGameBoard(movingDirection, result);
     }
 
-
-    private MovingResult compareDirection(String bridgeCheckPoint, String movingDirection) {
-        if (movingDirection.equals(bridgeCheckPoint)) {
+    private MovingResult compareDirection(String correctDirection, String movingDirection) {
+        if (movingDirection.equals(correctDirection)) {
             return MovingResult.PASS;
         }
         return MovingResult.FAIL;
     }
 
-    private void checkDirection(String movingDirection, MovingResult movingResult) {
+    private void updateGameBoard(String movingDirection, MovingResult movingResult) {
         if (movingDirection.equals(UP)) {
             topGameBoard.addMovingResult(movingResult.getResult());
             bottomGameBoard.addMovingResult(EMPTY);
