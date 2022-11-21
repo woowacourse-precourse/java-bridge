@@ -1,11 +1,12 @@
 package bridge.validation;
 
 import bridge.resource.ErrorMessage;
+import bridge.resource.GameConstant;
 import bridge.view.InputView;
 import java.util.List;
 
 public class RetryValidator {
-    private static final List<String> tryPossibilityValue = List.of("Q", "R");
+    private static final List<String> tryPossibilityValue = List.of(GameConstant.EXIT, GameConstant.RE);
     private static final InputView INPUT_VIEW = new InputView();
 
     public String retryValidator() {

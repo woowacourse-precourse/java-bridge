@@ -1,11 +1,12 @@
 package bridge.validation;
 
 import bridge.resource.ErrorMessage;
+import bridge.resource.GameConstant;
 import bridge.view.InputView;
 import java.util.List;
 
 public class BridgeMoveValidator {
-    private static final List<String> movePossibilityValue = List.of("U", "D");
+    private static final List<String> movePossibilityValue = List.of(GameConstant.TOP, GameConstant.BOTTOM);
     private static final InputView INPUT_VIEW = new InputView();
 
     public String moveValidator() {
