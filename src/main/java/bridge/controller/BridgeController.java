@@ -13,10 +13,9 @@ import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeController {
-    private static final String PASS = "O";
-    private static final String FAIL = "X";
+import static bridge.model.Case.*;
 
+public class BridgeController {
     private final OutputView outputView;
     private final InputView inputView;
     private final Validator validator;
@@ -82,7 +81,7 @@ public class BridgeController {
         String pass = getPass(bridge, round, moving);
         bridgeGame.move(pathDTO, moving, pass);
         outputView.printMap(new MapDTO(pathDTO));
-        return pass.equals(PASS);
+        return pass.equals(SUCCESS.getPictogram());
     }
 
     private boolean isSuccess(int size, int round) {
@@ -91,9 +90,9 @@ public class BridgeController {
 
     private String getPass(Bridge bridge, int round, String moving) {
         if (bridge.isPassable(round, moving)){
-            return PASS;
+            return SUCCESS.getPictogram();
         }
-        return FAIL;
+        return FAIL.getPictogram();
     }
 
     private String inputMoving() {

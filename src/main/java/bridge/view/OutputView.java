@@ -5,6 +5,7 @@ import bridge.dto.PathDTO;
 import bridge.dto.ResultDTO;
 import java.util.List;
 
+import static bridge.model.Case.*;
 import static bridge.model.Direction.*;
 import static bridge.message.NoticeMessage.*;
 
@@ -17,8 +18,6 @@ public class OutputView {
     private static final String MID_BOUNDARY_MAP = "|";
     private static final String SPACE = " ";
     private static final int SPACE_COUNT = 3;
-    private static final String SUCCESS = "성공";
-    private static final String FAIL = "실패";
 
     public void printStartNotice() {
         System.out.println(START);
@@ -97,8 +96,8 @@ public class OutputView {
 
     private String getSuccess(ResultDTO resultDTO) {
         if (resultDTO.isSuccess()) {
-            return SUCCESS;
+            return SUCCESS.getName();
         }
-        return FAIL;
+        return FAIL.getName();
     }
 }
