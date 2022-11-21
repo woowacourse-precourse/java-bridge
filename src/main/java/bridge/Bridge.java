@@ -3,7 +3,6 @@ package bridge;
 import type.MovingType;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Bridge {
     private List<String> status;
