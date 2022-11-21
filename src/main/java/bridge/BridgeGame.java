@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -14,9 +15,22 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        String move = readLine();
+    public static void move(List<String> bridge) {
+        List<String> inputMove = new ArrayList<>();
+        for(int i = 0; i< bridge.size();i++){
+            OutputView.printGetMove();
+            String move = readLine();
+            inputMove.add(move);
+            OutputView.printMap(i, bridge, inputMove);
+        }
     }
+    /*
+        (U,D,D,U)
+     */
+    public static boolean validMove(String bridge, String move){
+        return (bridge.equals(move));
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
