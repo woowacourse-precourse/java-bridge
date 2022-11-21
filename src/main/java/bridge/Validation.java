@@ -28,8 +28,4 @@ public class Validation {
 			throw new IllegalArgumentException("[ERROR] 실패한 경우, 재시도(R) 또는 종료(Q)만 입력해주세요.");
 		}
 	}
-
-	public static void exitGame() {
-		throw new IllegalArgumentException();
-	}
 }
