@@ -25,10 +25,10 @@ public class BridgeMaker {
         for(int s = 0; s < size; s++) {
             generate = bridgeNumberGenerator.generate();
             if (generate == 0) {
-                result.add("U");
+                result.add("D");
             }
             if (generate == 1) {
-                result.add("D");
+                result.add("U");
             }
         }
 
