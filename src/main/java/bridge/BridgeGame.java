@@ -2,9 +2,6 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.Bridge.*;
-import static bridge.Bridge.FAILURE_LOWER;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
