@@ -1,6 +1,7 @@
 package bridge.model;
 
 public enum Stage {
+    EMPTY(" "),
     UP("U"),
     DOWN("D");
 
@@ -8,5 +9,9 @@ public enum Stage {
 
     Stage(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }

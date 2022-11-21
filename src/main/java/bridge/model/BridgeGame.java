@@ -40,37 +40,37 @@ public class BridgeGame {
         this.status = GameStatus.SUCCESS;
     }
 
-    public List<List<String>> getGameMap() {
-        List<String> upMap = new ArrayList<>();
-        List<String> downMap = new ArrayList<>();
-        
-        for (int index = 0; index < playerMove.size(); index++) {
-            if (playerMove.get(index).equals("U")) {
-                downMap.add(" ");
-                if (answerMove.get(index).equals(playerMove.get(index))) {
-                    upMap.add("O");
-                } else {
-                    upMap.add("X");
-                    this.status = GameStatus.FAIL;
-                }
-            } else {
-                upMap.add(" ");
-                if (answerMove.get(index).equals(playerMove.get(index))) {
-                    downMap.add("O");
-                } else {
-                    downMap.add("X");
-                    this.status = GameStatus.FAIL;
-                }
-            }
-        }
-        return new ArrayList<>(Arrays.asList(upMap, downMap));
-    }
-
     public GameStatus getStatus() {
         return this.status;
     }
 
     public boolean isEnd() {
         return answerMove.equals(playerMove);
+    }
+
+    public List<List<String>> getGameMap() {
+        List<String> upMap = makeEachBridge("U", playerMove, answerMove);
+        List<String> downMap = makeEachBridge("D", playerMove, answerMove);
+
+        return new ArrayList<>(Arrays.asList(upMap, downMap));
+    }
+
+    private List<String> makeEachBridge(String way, List<String> playerMove, List<String> answerMove) {
+        List<String> result = new ArrayList<>();
+        for (int index = 0; index < playerMove.size(); index++) {
+            result.add(checkEachStep(way, playerMove.get(index), answerMove.get(index)));
+        }
+        return result;
+    }
+
+    private String checkEachStep(String way, String playerStep, String answerStage) {
+        if (!way.equals(playerStep)) {
+            return " ";
+        }
+        if (!answerStage.equals(playerStep)) {
+            this.status = GameStatus.FAIL;
+            return "X";
+        }
+        return "O";
     }
 }
