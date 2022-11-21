@@ -30,9 +30,9 @@ public class BridgeGame {
     public void retry(String playerChoice) {
         if (playerChoice.equals(YES)) {
             this.player = new Player();
+            this.trialCount++;
+            this.stage = 0;
         }
-        this.trialCount++;
-        this.stage = 0;
     }
 
     public boolean isGameEnd() {

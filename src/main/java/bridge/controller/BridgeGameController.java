@@ -16,15 +16,9 @@ public class BridgeGameController {
     }
 
     private static BridgeGame init() {
-        try {
-            int size = InputView.readBridgeSize();
-            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            return new BridgeGame(size, bridgeNumberGenerator);
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-            return init();
-        }
-
+        int size = InputView.readBridgeSize();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        return new BridgeGame(size, bridgeNumberGenerator);
     }
 
     private void play(BridgeGame bridgeGame) {
