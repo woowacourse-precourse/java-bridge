@@ -6,6 +6,9 @@ import bridge.config.NumberGeneratorDependencyContainer;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.view.validation.BridgeLengthValidator;
+import bridge.view.validation.InputMoveValidator;
+import bridge.view.validation.InputRestartValidator;
 import bridge.vo.GameProgressMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -28,9 +31,9 @@ public class BridgeGameController {
     public void setUpGame() {
         outputView.printGameProgressMessage(GameProgressMessage.GAME_START_INPUT_LENGTH_MESSAGE);
 
-        int length = inputView.readBridgeSize();
-
-        List<String> createdBridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(length);
+        String inputLength = inputView.readBridgeSize();
+        BridgeLengthValidator.validate(inputLength);
+        List<String> createdBridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(Integer.parseInt(inputLength));
 
         bridgeGame = new BridgeGame(createdBridge);
     }
@@ -39,8 +42,9 @@ public class BridgeGameController {
         while (!bridgeGame.isUserDead() && !bridgeGame.checkPlayerCrossedAllBridge()) {
             outputView.printGameProgressMessage(GameProgressMessage.MOVE_MESSAGE);
 
-            String direction = inputView.readMoving();
-            currentBridgeStatus = bridgeGame.move(direction);
+            String stepInput = inputView.readMoving();
+            InputMoveValidator.validate(stepInput);
+            currentBridgeStatus = bridgeGame.move(stepInput);
             outputView.printMap(currentBridgeStatus);
         }
     }
@@ -66,9 +70,10 @@ public class BridgeGameController {
     public boolean GameKeepGoingOrNot() {
         if (!bridgeGame.checkPlayerCrossedAllBridge()) {
             System.out.println(GameProgressMessage.GAME_RETRY_MESSAGE);
-            String input = inputView.readGameCommand();
+            String retryInput = inputView.readGameCommand();
+            InputRestartValidator.validate(retryInput);
 
-            return bridgeGame.retry(input);
+            return bridgeGame.retry(retryInput);
         }
         return false;
     }
