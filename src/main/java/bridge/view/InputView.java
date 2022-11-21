@@ -27,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String userMove;
 
         OutputView.printUserMove();
@@ -60,7 +60,7 @@ public class InputView {
         }
     }
 
-    public void checkText(String userMove){
+    public static void checkText(String userMove){
         if(!(userMove.equals("U") || userMove.equals("D"))){
             throw new IllegalArgumentException("[ERROR] 입력 값은 U와 D여야 합니다.");
         }

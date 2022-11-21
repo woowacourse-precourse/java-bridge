@@ -21,8 +21,11 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<Integer> bridgeNumber = new ArrayList<>(size);
-        List<String> bridgeText = putValue(bridgeNumber);
+        List<Integer> bridgeNumber = new ArrayList<>();
+        List<String> bridgeText;
+
+        bridgeNumber = putNumber(bridgeNumber,size);
+        bridgeText = putText(bridgeNumber);
 
         checkText(bridgeText);
 
@@ -35,23 +38,34 @@ public class BridgeMaker {
         return bridge.get(bridgeOrder);
     }
 
-    public List<String> putValue(List<Integer> bridgeNumber){
-        List<String> bridgeText = new ArrayList<>();
+    public List<Integer> putNumber(List<Integer> bridgeNumber, int size){
+        int index = 0;
 
-        for(int index = 0; index < bridgeNumber.size(); index++){
+        while(index < size){
             bridgeNumber.add(bridgeNumberGenerator.generate());
-            bridgeText.add(putText(bridgeNumber.get(index)));
+            index++;
         }
         checkNumber(bridgeNumber);
+
+        return bridgeNumber;
+    }
+
+    public static List<String> putText(List<Integer> bridgeNumber){
+        List<String> bridgeText = new ArrayList<>();
+
+        for(int RandomNumber : bridgeNumber){
+            bridgeText.add(compareNumber(RandomNumber));
+        }
+
         return bridgeText;
     }
 
-    public static String putText(int bridgeNumber){
+    public static String compareNumber(int RandomNumber){
         String bridgeText;
 
-        if(bridgeNumber == 0) return bridgeText = "U";
+        if(RandomNumber == 0) return bridgeText = "D";
 
-        return bridgeText = "D";
+        return bridgeText = "U";
     }
 
     private void checkNumber(List<Integer> bridgeNumber){
