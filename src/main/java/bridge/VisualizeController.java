@@ -12,7 +12,7 @@ public class VisualizeController {
         bridgeGame.lowerResult = lowerSubstring.toString();
     }
 
-    private static void drawGraph(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+    private void drawGraph(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
         if (bridgeGame.idx > 0) {
             drawGraphAfterFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
             return;
@@ -20,7 +20,7 @@ public class VisualizeController {
         drawGraphOfFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
     }
 
-    private static void drawGraphOfFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+    private void drawGraphOfFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
         if (bridgeGame.user.get(bridgeGame.idx).equals(bridgeGame.bridge.get(bridgeGame.idx))) {
             addCorrectToGraphFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
             return;
@@ -28,7 +28,7 @@ public class VisualizeController {
         addIncorrectToGraphFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
     }
 
-    private static void addIncorrectToGraphFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+    private void addIncorrectToGraphFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
         if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
             upperSubstring.append(UiMessage.FIRST_X.getValue());
             lowerSubstring.append(UiMessage.FIRST_BLANK.getValue());
@@ -38,7 +38,7 @@ public class VisualizeController {
         lowerSubstring.append(UiMessage.FIRST_X.getValue());
     }
 
-    private static void addCorrectToGraphFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+    private void addCorrectToGraphFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
         if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
             upperSubstring.append(UiMessage.FIRST_O.getValue());
             lowerSubstring.append(UiMessage.FIRST_BLANK.getValue());
@@ -48,7 +48,7 @@ public class VisualizeController {
         lowerSubstring.append(UiMessage.FIRST_O.getValue());
     }
 
-    private static void drawGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+    private void drawGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
         if (bridgeGame.user.get(bridgeGame.idx).equals(bridgeGame.bridge.get(bridgeGame.idx))) {
             addCorrectToGraphAfterFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
             return;
@@ -56,7 +56,7 @@ public class VisualizeController {
         addIncorrectToGraphAfterFirstProgress(bridgeGame, upperSubstring, lowerSubstring);
     }
 
-    private static void addIncorrectToGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+    private void addIncorrectToGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
         if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
             upperSubstring.append(UiMessage.X_AFTER_FIRST.getValue());
             lowerSubstring.append(UiMessage.BLACK_AFTER_FIRST.getValue());
@@ -66,7 +66,7 @@ public class VisualizeController {
         lowerSubstring.append(UiMessage.X_AFTER_FIRST.getValue());
     }
 
-    private static void addCorrectToGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
+    private void addCorrectToGraphAfterFirstProgress(BridgeGame bridgeGame, StringBuilder upperSubstring, StringBuilder lowerSubstring) {
         if (bridgeGame.user.get(bridgeGame.idx).equals("U")) {
             upperSubstring.append(UiMessage.O_AFTER_FIRST.getValue());
             lowerSubstring.append(UiMessage.BLACK_AFTER_FIRST.getValue());
