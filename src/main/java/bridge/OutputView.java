@@ -112,9 +112,9 @@ public class OutputView {
      */
     private String judgeSign(String str1, String str2) {
         if (str1.equals(str2)) {
-            return "O";
+            return Sign.RIGHT.toString();
         }
-        return "X";
+        return Sign.WRONG.toString();
     }
 
     /**
