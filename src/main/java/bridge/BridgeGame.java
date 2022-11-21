@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class BridgeGame {
 
     private List<Direction> bridge;
-    private final List<Direction> history = new ArrayList<>();
+    private final List<Round> history = new ArrayList<>();
     private int trial = 1;
     private boolean giveUp = false;
 
@@ -50,18 +50,13 @@ public class BridgeGame {
     }
 
     public boolean isSuccess() {
-        return history.size() == bridge.size();
+        return history.size() == bridge.size() && !isFail();
     }
 
-
-
-    public void getCurrentState(){
-
-    }
 
     public boolean isFail() {
-        int currentIdx = history.size()-1;
-        return !history.get(currentIdx).equals(bridge.get(currentIdx));
+        boolean hasFail = history.stream().anyMatch(round -> !round.isPass());
+        return hasFail;
     }
 
     public boolean isEnd() {
@@ -70,5 +65,21 @@ public class BridgeGame {
 
     public void setGiveUp(boolean b) {
         this.giveUp = b;
+    }
+
+    public List<Direction> getBridge() {
+        return bridge;
+    }
+
+    public List<Round> getHistory() {
+        return history;
+    }
+
+    public int getTrial() {
+        return trial;
+    }
+
+    public boolean isGiveUp() {
+        return giveUp;
     }
 }

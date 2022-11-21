@@ -54,9 +54,10 @@ public class BridgeController {
         outputView.askDirection();
         Direction direction = inputView.readMoving();
         bridgeGame.move(direction);
+        outputView.printHistory(bridgeGame.getHistory());
     }
 
     private void end() {
-        outputView.printResult();
+        outputView.printResult(bridgeGame);
     }
 }
