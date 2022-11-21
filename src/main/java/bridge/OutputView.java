@@ -10,26 +10,29 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int [] upCase, int [] downCase, int count){
+
+    public void printMap(BridgeDTO bridgeDTO){
         System.out.printf("%s","[ ");
-        printBridge(upCase, count);
+        printBridge(bridgeDTO.getUpCase(), bridgeDTO.getLength());
         System.out.printf("%s", "]\n");
         System.out.printf("%s", "[ ");
-        printBridge(downCase, count);
+        printBridge(bridgeDTO.getDownCase(), bridgeDTO.getLength());
         System.out.printf("%s", "]\n\n");
     }
-    public void printBridge(int [] bridgeCase, int count){
-        for(int i = 0; i < count; i++){
-            if(bridgeCase[i] == 0){
-                System.out.printf("%s", "  ");
-            }
-            if(bridgeCase[i] == 1){
-                System.out.printf("%s", "O ");
-            }
-            if(bridgeCase[i] == 2){
-                System.out.printf("%s", "X ");
-            }
-            if(i < count - 1) {
+
+    public void printBridge(BridgeCase [] bridgeCase, int length){
+        for(int i = 0; i < length; i++){
+//            if(bridgeCase[i] == 0){
+//                System.out.printf("%s", "  ");
+//            }
+//            if(bridgeCase[i] == 1){
+//                System.out.printf("%s", "O ");
+//            }
+//            if(bridgeCase[i] == 2){
+//                System.out.printf("%s", "X ");
+//            }
+            System.out.printf("%s", bridgeCase[i] + " ");
+            if(i < length - 1) {
                 System.out.printf("%s", "| ");
             }
         }
@@ -46,14 +49,14 @@ public class OutputView {
     public void printAskGameRestart(){
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
-    public void printSuccessedResult(int [] upCase, int [] downCase){
+    public void printSuccessedResult(BridgeDTO bridgeDTO ){
         System.out.println("최종 게임 결과");
-        printMap(upCase, downCase, upCase.length);
+        printMap(bridgeDTO);
         System.out.println("게임 성공 여부: 성공");
     }
-    public void printFailedResult(int [] upCase, int [] downCase, int bridgeLength){
+    public void printFailedResult(BridgeDTO bridgeDTO){
         System.out.println("최종 게임 결과");
-        printMap(upCase, downCase, bridgeLength);
+        printMap(bridgeDTO);
         System.out.println("게임 성공 여부: 실패");
     }
     public void printGameCount(int gameCount){

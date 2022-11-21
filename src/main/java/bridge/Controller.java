@@ -29,15 +29,15 @@ public class Controller {
     public void gameRetriedMessage(){
         outputView.printAskGameRestart();
     }
-    public void mapMessage(int [] upCase, int [] downCase, int bridgeLength){
-        outputView.printMap(upCase, downCase, bridgeLength);
+    public void mapMessage(BridgeDTO bridgeDTO){
+        outputView.printMap(bridgeDTO);
     }
-    public void gameSuccessMessage(int [] upCase, int [] downCase, int gameCount){
-        outputView.printSuccessedResult(upCase, downCase);
-        gameTriedMessage(gameCount);
+    public void gameSuccessMessage(BridgeDTO bridgeDTO){
+        outputView.printSuccessedResult(bridgeDTO);
+        gameTriedMessage(bridgeDTO.getCount());
     }
-    public void gameFailedMessage(int [] upCase, int [] downCase, int bridgeLength){
-        outputView.printFailedResult(upCase, downCase, bridgeLength);
+    public void gameFailedMessage(BridgeDTO bridgeDTO){
+        outputView.printFailedResult(bridgeDTO);
     }
     public void gameTriedMessage(int gameCount){
         outputView.printGameCount(gameCount);
