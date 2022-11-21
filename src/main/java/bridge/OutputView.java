@@ -5,12 +5,18 @@ package bridge;
  */
 public class OutputView {
 
+    private String upSideIndex="";
+    private String downSideIndex="";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
+
+        System.out.printf("[%s ]\n", upSideIndex);
+        System.out.printf("[%s ]\n", downSideIndex);
     }
 
     /**
@@ -18,6 +24,52 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean success, int attempt) {
+        System.out.println("\n최종 게임 결과");
+        printMap();
+        System.out.println("\n게임 성공 여부: "+ succesString(success));
+        System.out.println("총 시도한 횟수: "+attempt);
     }
+
+    public void buildIndex(String move, String result, int position) {
+        String tempstr = separator(position);
+        if (move.equals("U")) {
+            this.upSideIndex += tempstr;
+            this.upSideIndex += result;
+            this.downSideIndex += tempstr + " ";
+            return;
+        }
+        this.downSideIndex += tempstr;
+        this.downSideIndex += result;
+        this.upSideIndex +=  tempstr + " ";
+    }
+
+    public String separator(int position)
+    {
+        if (position > 0) {
+            return  " | ";
+        }
+        return " ";
+    }
+
+    public void resetIndex() {
+        this.upSideIndex = "";
+        this.downSideIndex = "";
+    }
+
+    private String succesString(boolean success)
+    {
+        if(success == true)
+        {
+            return "성공";
+        }
+        return "실패";
+    }
+    
+    public static void gameStart()
+    {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
+
+
 }
