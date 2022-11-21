@@ -27,42 +27,52 @@ public class BridgeMap {
     }
 
     private String drawMapOf(BridgeType bridgeType) {
-        StringBuilder mapBuilder = new StringBuilder();
         String type = bridgeType.name();
 
-        drawMapWithoutTail(mapBuilder, type);
         if (survive) {
-            return withSurviveTail(mapBuilder, type);
+            return drawSurviveBridgeMap(type);
         }
-        return withDeadTail(mapBuilder, type);
+        return drawDeadBridgeMap(type);
     }
 
-    private void drawMapWithoutTail(StringBuilder mapBuilder, String type) {
+    private String drawSurviveBridgeMap(String type) {
+        return drawMapWithoutTail(type) + withSurviveTail(type);
+    }
+
+    private String drawDeadBridgeMap(String type) {
+        return drawMapWithoutTail(type) + withDeadTail(type);
+    }
+
+    private String drawMapWithoutTail(String type) {
+        StringBuilder mapBuilder = new StringBuilder();
         for (int i = 0; i < bridge.size() - 1; i++) {
             if (bridge.get(i).equals(type)) {
-                mapBuilder.append(" O ").append("|");
+                mapBuilder.append(BridgeConstant.RIGHT_WAY).append(BridgeConstant.BRIDGE_CHAIN);
             }
             if (!bridge.get(i).equals(type)) {
-                mapBuilder.append("   ").append("|");
+                mapBuilder.append(BridgeConstant.AVOID_WAY).append(BridgeConstant.BRIDGE_CHAIN);
             }
         }
+        return mapBuilder.toString();
     }
 
-    private String withSurviveTail(StringBuilder mapBuilder, String type) {
+    private String withSurviveTail(String type) {
+        StringBuilder mapBuilder = new StringBuilder();
         if (bridge.get(bridge.size() - 1).equals(type)) {
-            return mapBuilder.append(" O ").toString();
+            return mapBuilder.append(BridgeConstant.RIGHT_WAY).toString();
         }
-        return mapBuilder.append("   ").toString();
+        return mapBuilder.append(BridgeConstant.AVOID_WAY).toString();
     }
 
-    private String withDeadTail(StringBuilder mapBuilder, String type) {
+    private String withDeadTail(String type) {
+        StringBuilder mapBuilder = new StringBuilder();
         if (bridge.get(bridge.size() - 1).equals(type)) {
-            return mapBuilder.append("   ").toString();
+            return mapBuilder.append(BridgeConstant.AVOID_WAY).toString();
         }
-        return mapBuilder.append(" X ").toString();
+        return mapBuilder.append(BridgeConstant.WRONG_WAY).toString();
     }
 
     private String boxing(String str) {
-        return "[" + str + "]";
+        return BridgeConstant.LEFT_BOX + str + BridgeConstant.RIGHT_BOX;
     }
 }
