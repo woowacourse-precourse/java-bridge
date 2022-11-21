@@ -1,5 +1,7 @@
-package bridge;
+package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,17 +20,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class BridgeMakerTest {
-    @DisplayName("다리 길이 입력값이 3~20 범위를 벗어나면 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {0, -1, 21, 2})
-    void makeBridgeByOutOfRange(int bridgeSize) {
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(testNumberGenerator);
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(bridgeSize))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_OUT_OF_RANGE);
-    }
-
     @DisplayName("다리 생성 랜덤값이 1 또는 0이 아닌 경우 예외가 발생한다.")
     @Test
     void makeBridgeByInValidRandomNumbers() {
@@ -47,7 +38,8 @@ class BridgeMakerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(testNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         assertThat(bridge)
-            .containsExactly(toString(expectedBridge));
+            .usingRecursiveComparison()
+            .isEqualTo(expectedBridge);
     }
 
     static Stream<Arguments> generateMakeBridgeTestData() {
@@ -57,17 +49,6 @@ class BridgeMakerTest {
                 arguments(newArrayList(1, 1, 0, 0, 1, 1, 0, 0, 0, 0), "10",
                         List.of("U", "U", "D", "D", "U", "U", "D", "D", "D", "D"))
         );
-    }
-
-    static String toString(List<String> bridge) {
-
-        String string = bridge.toString()
-                .replace("[", "\"")
-                .replace("]", "\"");
-        String result = String.join("\", \"", string);
-        System.out.println("string = " + string);
-        System.out.println("result = " + result);
-        return result;
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
