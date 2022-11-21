@@ -18,7 +18,7 @@ public class BridgeSize {
     private void validBridgeSize(String bridgeSize) {
         validIsEmpty(bridgeSize);
         validIsDigit(bridgeSize);
-        validBridgeSizeRange(Long.parseLong(bridgeSize));
+        validBridgeSizeRange(bridgeSize);
     }
 
     private void validIsEmpty(String bridgeSize) {
@@ -33,8 +33,17 @@ public class BridgeSize {
         }
     }
 
-    private void validBridgeSizeRange(long bridgeSize) {
-        if (bridgeSize < Constant.BRIDGE_SIZE_MIN || bridgeSize > Constant.BRIDGE_SIZE_MAX) {
+    private void validBridgeSizeRange(String bridgeSize) {
+        long size = convertToNumber(bridgeSize);
+        if (size < Constant.BRIDGE_SIZE_MIN || size > Constant.BRIDGE_SIZE_MAX) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_BRIDGE_SIZE_RANGE.getMessage());
+        }
+    }
+
+    private long convertToNumber(String bridgeSize) {
+        try {
+            return Long.parseLong(bridgeSize);
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.NOT_BRIDGE_SIZE_RANGE.getMessage());
         }
     }
