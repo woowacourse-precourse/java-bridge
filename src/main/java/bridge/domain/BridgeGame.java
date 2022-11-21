@@ -56,8 +56,4 @@ public class BridgeGame {
     public int getTotalAttempts() {
         return totalAttempts;
     }
-
-    public boolean isFail() {
-        return movingResults.contains(Boolean.FALSE);
-    }
 }

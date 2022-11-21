@@ -56,6 +56,6 @@ public class BridgeController {
     }
 
     public void quitGame() {
-        outputView.printResult(bridgeGame);
+        outputView.printResult(bridgeGame, isMovingSuccess);
     }
 }
