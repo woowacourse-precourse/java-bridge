@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.constant.Constant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -39,6 +40,7 @@ public class BridgeGame {
         List<String> playerMoving = player.getPlayerMoving();
         if (!bridge.isMove(playerMoving, playerMoving.size() - 1)) {
             bridgeStatus.add(Constant.IMPOSSIBLE.getConstant());
+            gameStatus = true;
             return;
         }
         bridgeStatus.add(Constant.POSSIBLE.getConstant());
@@ -61,6 +63,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String gameCommand) {
+        if(gameCommand.equals(Constant.RESTART.getConstant())){
+            player.clearMoving();
+            bridgeStatus.clear();
+            gameStatus = false;
+            attempt++;
+        }
     }
 }
+
