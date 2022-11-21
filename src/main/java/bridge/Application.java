@@ -3,15 +3,11 @@ package bridge;
 import bridge.Controller.GameController;
 import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
-import bridge.View.InputView;
-import bridge.View.OutputView;
 
 public class Application {
-    static InputView inputView = new InputView();
     static BridgeGame bridgeGame = new BridgeGame();
     static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    static OutputView outputView = new OutputView();
-    static GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker,outputView);
+    static GameController gameController = new GameController(bridgeGame,bridgeMaker);
 
     public static void main(String[] args) {
         try {

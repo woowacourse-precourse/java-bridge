@@ -6,16 +6,14 @@ import bridge.View.InputView;
 import bridge.View.OutputView;
 
 public class GameController {
-    InputView inputView;
-    OutputView outputView;
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     BridgeGame bridgeGame;
     BridgeMaker bridgeMaker;
 
-    public GameController(InputView inputView, BridgeGame bridgeGame, BridgeMaker bridgeMaker, OutputView outputView) {
-        this.inputView = inputView;
+    public GameController(BridgeGame bridgeGame, BridgeMaker bridgeMaker) {
         this.bridgeGame = bridgeGame;
         this.bridgeMaker = bridgeMaker;
-        this.outputView = outputView;
     }
 
     public void GAMESTART() {
