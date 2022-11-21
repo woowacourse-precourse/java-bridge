@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.io;
 
 /*
 * OutputView 패키지는 변경할 수 있다.
@@ -6,20 +6,13 @@ package bridge.view;
 * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
 *  */
 
-import bridge.BridgeGame;
+import bridge.game.BridgeGame;
 import bridge.model.Model;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
-    static List<String> upperBridge;
-    static List<String> lowerBridge;
-
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -37,11 +30,9 @@ public class OutputView {
 
         System.out.println();
     }
-
     private static String replaceCommaToBar(String string) {
         return string.replace(",", " |");
     }
-
     private static String extractInBracket(String string) {
         return string.substring(1,string.length()-1);
     }

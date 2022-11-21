@@ -1,9 +1,6 @@
-package bridge.view;
+package bridge.io;
 
-import bridge.model.Model;
 import camp.nextstep.edu.missionutils.*;
-
-import java.util.List;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -20,11 +17,11 @@ public class InputView {
             validateBridgeSize(bridgeSizeCommand);
             return Integer.parseInt(bridgeSizeCommand);
         }catch (IllegalArgumentException e) {
-            //에러메시지 출력부
+            System.out.println(MSG.ERR_001.message);
             return readBridgeSize();
         }
     }
-    private static void validateBridgeSize(String bridgeSizeCommand) {
+    public static void validateBridgeSize(String bridgeSizeCommand) {
         String regex = "^[3-9]$|^[1][0-9]$|^20$";
         if (!bridgeSizeCommand.matches(regex)) {
             throw new IllegalArgumentException();
@@ -41,11 +38,11 @@ public class InputView {
             validateMoving(movingCommand);
             return movingCommand;
         }catch (IllegalArgumentException e) {
-            //에러메시지 출력부
+            System.out.println(MSG.ERR_002.message);
             return readMoving();
         }
     }
-    private static void validateMoving(String movingCommand) {
+    public static void validateMoving(String movingCommand) {
         String regex = "[UD]";
         if (!movingCommand.matches(regex)) {
             throw new IllegalArgumentException();
@@ -62,11 +59,11 @@ public class InputView {
             validateGame(gameCommand);
             return gameCommand;
         }catch (IllegalArgumentException e) {
-            //에러메시지 출력부
+            System.out.println(MSG.ERR_003.message);
             return readGameCommand();
         }
     }
-    private static void validateGame(String gameCommand) {
+    public static void validateGame(String gameCommand) {
         String regex = "[RQ]";
         if (!gameCommand.matches(regex)) {
             throw new IllegalArgumentException();
