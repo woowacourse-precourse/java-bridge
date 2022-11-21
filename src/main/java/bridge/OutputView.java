@@ -15,7 +15,7 @@ public class OutputView {
     public static void printMap(List<String> printBridge, int n, int i) {
 
         for (int j = 0; j < printBridge.size(); j++) {
-            if (j==0) {
+            if (j == 0) {
                 System.out.print("[ " + printBridge.get(j) + " ");
             }
             if (j > 0) {

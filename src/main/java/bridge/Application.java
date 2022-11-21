@@ -66,7 +66,7 @@ public class Application {
                 lowerBridge.clear();
             }
 
-        } while(retry);
+        } while (retry);
 
 
         System.out.println("게임 성공 여부: " + OutputView.isGameSuccess(success));
