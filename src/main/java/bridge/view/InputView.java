@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.game.BridgeGame;
+import bridge.game.GameManager;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Matcher;
@@ -19,9 +20,12 @@ public class InputView {
     // D 또는 U
     private static final String USER_MOVE_DIRECTION_REGEX = "^[" + BridgeGame.BridgeShape.DOWN.getStringValue() + "|" + BridgeGame.BridgeShape.UP.getStringValue() + "]$";
 
+    // R 또는 Q
+    private static final String USER_GAME_COMMAND_REGEX = "^[" + GameManager.GameStatus.RETRY.getStatus() + "|" + GameManager.GameStatus.QUIT.getStatus() + "]$";
+
 
     /**
-     * 다리의 길이를 입력받는다.
+     * TODO: 다리의 길이를 입력받는다.
      *
      * @return 사용자가 입력한 다리의 길이
      */
@@ -52,7 +56,7 @@ public class InputView {
     }
 
     /**
-     * 사용자가 이동할 칸을 입력받는다.
+     * TODO: 사용자가 이동할 칸을 입력받는다.
      *
      * @return 사용자가 입력한 이동할 칸
      */
@@ -75,10 +79,26 @@ public class InputView {
     }
 
     /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     * TODO: 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     *
+     * @return 사용자가 입력한 재시작 또는 종료 여부
      */
     public static String readGameCommand() {
-        return null;
+        String userGameCommand = Console.readLine();
+        if (!checkUserGameCommand_regex(userGameCommand)) {
+            throw new IllegalStateException();
+        }
+        return userGameCommand;
+    }
+
+    /**
+     * @param userGameCommand 사용자가 입력한 재시작 또는 종료 여부
+     * @return 입력이 "R" 또는 "Q"라면 true / 그 이외의 값이라면 false
+     */
+    private static boolean checkUserGameCommand_regex(String userGameCommand) {
+        Pattern pattern = Pattern.compile(USER_GAME_COMMAND_REGEX);
+        Matcher matcher = pattern.matcher(userGameCommand);
+        return matcher.matches();
     }
 
 }
