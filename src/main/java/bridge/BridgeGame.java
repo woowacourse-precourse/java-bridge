@@ -27,7 +27,7 @@ public class BridgeGame {
         if (bridge.get(crossedBridge.size()-1).equals(direction)) {
             return true;
         }
-        tries += 1;
+        tries = tries + 1;
         return false;
     }
 
