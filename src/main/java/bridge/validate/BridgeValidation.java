@@ -20,6 +20,15 @@ public class BridgeValidation {
         }
     }
 
+    public static void validateBridgeSizeInput(String inputValue) {
+        try {
+            Integer.parseInt(inputValue);
+
+        } catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException("다리의 길이 형식인 정수 형식이 아닙니다.");
+        }
+    }
+
     public static void validateBridgeMovable(boolean isRange) {
         if (!isRange) {
             throw new IllegalStateException("더이상 이동할 수 없습니다.");

@@ -13,7 +13,7 @@ public class InputView {
 
 
     public BridgeSize readBridgeSize() {
-        return makeBridgeSize(readInt());
+        return makeBridgeSize(readLine());
     }
 
     public BridgeCharacter readMoving() {
@@ -23,14 +23,4 @@ public class InputView {
     public GameCommand readGameCommand() {
         return makeGameCommand(readLine());
     }
-
-    private int readInt() {
-        try {
-            return Integer.parseInt(readLine());
-
-        } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("다리의 길이 형식인 정수 형식이 아닙니다.");
-        }
-    }
-
 }
