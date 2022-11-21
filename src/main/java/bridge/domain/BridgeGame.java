@@ -1,13 +1,12 @@
 package bridge.domain;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
-    Bridge bridge;
+    public Bridge bridge;
+    public gameStatus currentStatus;
 
     public void move(String direction) {
-        bridge.updateUserRoute(direction);
+        gameStatus moveResult = bridge.updateUserRoute(direction);
+        this.currentStatus = moveResult;
     }
 
     /**

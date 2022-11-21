@@ -20,7 +20,19 @@ public class Bridge {
         this.userRoute = new ArrayList<>();
     }
 
-    public void updateUserRoute(String direction) {
+    public gameStatus updateUserRoute(String direction) {
         userRoute.add(direction);
+        int currentRound = userRoute.size() - 1;
+
+        if (userRoute.get(currentRound) != bridge.get(currentRound)) { // 갈 수 없는 칸으로 이동한 경우
+            return gameStatus.FAIL;
+
+        } if (userRoute.size() == bridge.size()) { // 도착한 경우
+            return gameStatus.SUCCESS;
+
+        } if (userRoute.size() < bridge.size()) { // 게임을 계속 진행하는 경우
+            return gameStatus.CONTINUE;
+        }
+        return null;
     }
 }
