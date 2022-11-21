@@ -85,6 +85,9 @@
 
 ### (enum) ErrorMessage : 에러 메시지 상수 집합
 - [x] 구현하기
+
+### BridgeRule : 다리 게임 규칙 관련 상수
+- [x] 구현하기
 ---
 
 ## Test

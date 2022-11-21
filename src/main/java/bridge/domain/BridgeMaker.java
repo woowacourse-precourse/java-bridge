@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.constant.BridgeRule.MAXIMUM_SIZE;
+import static bridge.constant.BridgeRule.MINIMUM_SIZE;
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 
@@ -10,9 +12,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class BridgeMaker {
-    private static final int MINIMUM_SIZE = 3;
-    private static final int MAXIMUM_SIZE = 20;
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {

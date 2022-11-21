@@ -1,5 +1,8 @@
 package bridge.ui;
 
+import static bridge.constant.BridgeRule.MAXIMUM_SIZE;
+import static bridge.constant.BridgeRule.MINIMUM_SIZE;
+
 import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -15,7 +18,9 @@ public class InputView {
             System.out.println();
             return bridgeSize;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_NUMBER.getValue());
+            throw new IllegalArgumentException(String.format(
+                    ErrorMessage.INPUT_ONLY_NUMBER_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE
+            ));
         }
     }
 
