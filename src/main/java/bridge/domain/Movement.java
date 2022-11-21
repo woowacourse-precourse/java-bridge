@@ -4,8 +4,8 @@ public enum Movement {
     UP("U", 1),
     DOWN("D", 0);
 
-    String direction;
-    int randomDigit;
+    private String direction;
+    private int randomDigit;
 
     Movement(String direction, int randomDigit) {
         this.direction = direction;

@@ -7,10 +7,10 @@ import bridge.domain.Player;
 import bridge.domain.Result;
 import bridge.view.OutputView;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
+
+    private static final Boolean CORRECT_ANSWER = Boolean.TRUE;
+    private static final Boolean WRONG_ANSWER = Boolean.FALSE;
 
     private final Bridge bridge;
     private final Result result;
@@ -40,7 +40,6 @@ public class BridgeGame {
     }
 
     private boolean checkAnswer() {
-        // 브릿지로 옮길까?
         if (!player.matchPlayerAndBridge(bridge)) {
             return false;
         }
@@ -48,23 +47,16 @@ public class BridgeGame {
     }
 
     private void judgeTrue() {
-
-        result.setGameResult(Boolean.TRUE);
+        result.setGameResult(CORRECT_ANSWER);
         OutputView.printMap(result, player);
     }
 
     private void judgeFalse() {
-        result.setGameResult(Boolean.FALSE);
+        result.setGameResult(WRONG_ANSWER);
         OutputView.printMap(result, player);
     }
 
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    private void retry() {
         judgeFalse();
         if (inputController.retryCommandInput()) {
             result.updateNumberOfTrials();

@@ -1,26 +1,27 @@
 package bridge.view;
 
 import java.util.List;
-import java.util.Collections;
 
 import bridge.domain.Movement;
 import bridge.domain.Player;
 import bridge.domain.Result;
 import bridge.util.MessageUtil;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    private static final Boolean CORRECT_ANSWER_IDENTIFIER = Boolean.TRUE;
+    private static final String UPPER_DIRECTION_IDENTIFIER = "U";
+    private static final String LOWER_DIRECTION_IDENTIFIER = "D";
+    private static final String OPENING_BRACKET = "[";
+    private static final String CLOSING_BRACKET = "]\n";
+    private static final String DIVIDER = "|";
+    private static final String SUCCESS_INDICATOR = " O ";
+    private static final String FAILURE_INDICATOR = " X ";
+    private static final String BLANK_INDICATOR = "   ";
+
     public static void printMap(Result result, Player player) {
-        String upperMap = "[";
-        String lowerMap = "[";
+        String upperMap = OPENING_BRACKET;
+        String lowerMap = OPENING_BRACKET;
         for (int distance = 0; distance < player.getDistance(); distance++) {
             upperMap += isUpperMap(distance, player, result);
             lowerMap += isLowerMap(distance, player, result);
@@ -31,43 +32,38 @@ public class OutputView {
 
     private static String isUpperMap(int index, Player player, Result result) {
         List<Movement> route = player.getRoute();
-        if (route.get(index).getDirection().equals("U")) {
+        if (route.get(index).getDirection().equals(UPPER_DIRECTION_IDENTIFIER)) {
             return isTrueOrFalse(index, result);
         }
-        return "   |";
+        return BLANK_INDICATOR+DIVIDER;
     }
 
     private static String isLowerMap(int index, Player player, Result result) {
         List<Movement> route = player.getRoute();
-        if (route.get(index).getDirection().equals("D")) {
+        if (route.get(index).getDirection().equals(LOWER_DIRECTION_IDENTIFIER)) {
             return isTrueOrFalse(index, result);
         }
-        return "   |";
+        return BLANK_INDICATOR+DIVIDER;
     }
 
     private static String isTrueOrFalse(int index, Result result) {
         List<Boolean> gameResult = result.getGameResult();
-        if (gameResult.get(index).equals(Boolean.TRUE)) {
-            return " O |";
+        if (gameResult.get(index).equals(CORRECT_ANSWER_IDENTIFIER)) {
+            return SUCCESS_INDICATOR+DIVIDER;
         }
-        return " X |";
+        return FAILURE_INDICATOR+DIVIDER;
     }
 
     private static String setAndSaveMapForPrint(Result result, String upperMap, String lowerMap) {
         upperMap = upperMap.substring(0, upperMap.length() - 1);
-        upperMap += "]\n";
+        upperMap += CLOSING_BRACKET;
         lowerMap = lowerMap.substring(0, lowerMap.length() - 1);
-        lowerMap += "]\n";
+        lowerMap += CLOSING_BRACKET;
         String map = upperMap + lowerMap;
         result.setResultMap(map);
         return map;
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public static void printResult(Result result) {
         String resultMap = result.getResultMap();
         String successOrFailure = result.getSuccessOrFailure();

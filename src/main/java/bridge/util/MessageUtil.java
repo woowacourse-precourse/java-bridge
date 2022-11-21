@@ -3,7 +3,7 @@ package bridge.util;
 public class MessageUtil {
 
     public static void gameStartMsg() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
 
     public static void bridgeSizeInputMsg() {

@@ -8,6 +8,7 @@ import bridge.view.InputView;
 public class InputController {
 
     public int getBridgeSizeInput() {
+        MessageUtil.gameStartMsg();
         while (true) {
             try {
                 return readAndParseBridgeSizeInput();
@@ -62,5 +63,4 @@ public class InputController {
         }
         return false;
     }
-
 }

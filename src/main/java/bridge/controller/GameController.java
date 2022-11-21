@@ -6,13 +6,12 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.Player;
 import bridge.domain.Result;
 import bridge.view.OutputView;
 
 public class GameController {
 
-    InputController inputController;
+    private final InputController inputController;
 
     public GameController(InputController inputController) {
         this.inputController = inputController;
@@ -20,10 +19,8 @@ public class GameController {
 
     public void run() {
         Bridge bridge = createBridge();
-        System.out.println(bridge.getBridge());
         Result result = crossABridge(bridge);
         OutputView.printResult(result);
-
     }
 
     private Bridge createBridge() {

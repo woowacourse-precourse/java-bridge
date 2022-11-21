@@ -2,8 +2,10 @@ package bridge.util;
 
 public class ParserUtil {
 
-    static final int BRIDGE_SIZE_MIN_NUM = 3;
-    static final int BRIDGE_SIZE_MAX_NUM = 20;
+    private static final int BRIDGE_SIZE_MIN_NUM = 3;
+    private static final int BRIDGE_SIZE_MAX_NUM = 20;
+    private static final String GAME_RETRY_COMMEND = "R";
+    private static final String GAME_QUIT_COMMEND = "Q";
 
     public static void parseBridgeSize(String input) {
         if (input.isBlank() || !ValidationUtil.isDigit(input)) {
@@ -29,7 +31,7 @@ public class ParserUtil {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 존재하지 않습니다.");
         }
-        if (!input.equals("R") && !input.equals("Q")) {
+        if (!input.equals(GAME_RETRY_COMMEND) && !input.equals(GAME_QUIT_COMMEND)) {
             throw new IllegalArgumentException("[ERROR] R 또는 Q가 아닙니다.");
         }
     }

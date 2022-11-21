@@ -5,9 +5,15 @@ import java.util.List;
 
 public class Result {
 
+    private static final int DEFAULT_TRIAL_NUMBER = 1;
+    private static final String SUCCESS_COMMENT = "성공";
+    private static final String FAILURE_COMMENT = "실패";
+
+    private int numberOfTrials = DEFAULT_TRIAL_NUMBER;
     private List<Boolean> gameResult = new ArrayList<>();
     private String resultMap;
-    private int numberOfTrials = 1;
+
+
 
     public void setGameResult(Boolean result) {
         gameResult.add(result);
@@ -34,9 +40,9 @@ public class Result {
 
     public String getSuccessOrFailure() {
         if (gameResult.contains(Boolean.FALSE)) {
-            return "실패";
+            return FAILURE_COMMENT;
         }
-        return "성공";
+        return SUCCESS_COMMENT;
     }
 
     public void resetGameResult() {

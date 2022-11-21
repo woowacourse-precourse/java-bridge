@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Player {
 
-    private int distance = 0;
+    private static final int DISTANCE_DEFAULT_VALUE = 0;
+    private int distance = DISTANCE_DEFAULT_VALUE;
     private List<Movement> route = new ArrayList<>();
-    private List<Boolean> answer = new ArrayList<>();
 
     public boolean matchPlayerAndBridge(Bridge bridge) {
         List<String> bridgeValues = bridge.getBridge();
@@ -19,18 +19,13 @@ public class Player {
         return true;
     }
     public void updateMovement(Movement movement) {
-        distance += 1;
+        distance++;
         route.add(movement);
     }
 
-    public void updateAnswer(Boolean Answer) {
-        answer.add(Answer);
-    }
-
     public void resetPlayer() {
-        distance = 0;
+        distance = DISTANCE_DEFAULT_VALUE;
         route = new ArrayList<>();
-        answer = new ArrayList<>();
     }
 
     public int getDistance() {
@@ -40,9 +35,4 @@ public class Player {
     public List<Movement> getRoute() {
         return List.copyOf(route);
     }
-
-    public List<Boolean> getAnswer() {
-        return List.copyOf(answer);
-    }
-
 }
