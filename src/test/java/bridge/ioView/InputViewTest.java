@@ -27,6 +27,14 @@ class InputViewTest extends NsTest {
         });
     }
 
+    @Test
+    void 움직임입력_U나_D아님() {
+        assertSimpleTest(() -> {
+            runException("20","U","D","u");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
