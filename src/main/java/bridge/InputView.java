@@ -13,8 +13,8 @@ public class InputView {
     public int readBridgeSize() {
         try {
             int result = Integer.parseInt(Console.readLine());
-            if (result < 1) {
-                throw new IllegalArgumentException("[ERROR] 입력된 값이 1보다 작습니다.");
+            if (result < 3 || result > 20) {
+                throw new IllegalArgumentException("[ERROR] 입력된 값이 3보다 작거나 20보다 큽니다.");
             }
             return result;
         } catch (NumberFormatException e) {
