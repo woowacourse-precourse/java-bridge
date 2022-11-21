@@ -39,4 +39,8 @@ public class MovingResult {
         }
         return MessageGenerator.NO_SELECT;
     }
+
+    public boolean isFinish() {
+        return blocks.size() == currentMovedIndex + 1;
+    }
 }

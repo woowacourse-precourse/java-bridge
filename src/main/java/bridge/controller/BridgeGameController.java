@@ -46,6 +46,14 @@ public class BridgeGameController {
             requestPlayingAgain();
             return;
         }
+        determineFinishGame(movingResult);
+    }
+
+    private void determineFinishGame(final MovingResult movingResult) {
+        if (movingResult.isFinish()) {
+            outputView.printResult(MessageGenerator.createMovedMessage(movingResult), bridgeGameService.getGameCount());
+            return;
+        }
         requestBlock();
     }
 
