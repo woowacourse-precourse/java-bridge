@@ -14,8 +14,6 @@ import java.util.Objects;
 import static bridge.Constants.StandardTools.FAILED;
 import static bridge.Constants.StandardTools.retry;
 import static bridge.Constants.StandardTools.SUCCEED;
-import static bridge.Constants.StandardTools.POSSIBLE_ZONE;
-import static bridge.Constants.StandardTools.IMPOSSIBLE_ZONE;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -48,34 +46,40 @@ public class BridgeGame {
      */
     public void move() {
         List<String> bridgeDesignByUser = new ArrayList<>();
-        for (int bridgeRange = 0; bridgeRange < bridgeData.getBridge().size(); bridgeRange++) {
+        while (!isGameFinished) {
             String nextStep = inputView.readMoving();
             bridgeDesignByUser.add(nextStep);
             bridgeData.updateBridgeDesignByUser(bridgeDesignByUser);
-            if (validateNextStep(nextStep, bridgeRange) == IMPOSSIBLE_ZONE) {
-                break;
-            }
-            outputView.printMap(bridgeData);
+            validateNextStep(nextStep, bridgeDesignByUser.size()-1);
+            validateGameSuccessfullyFinished();
+            orderOutputToPrint();
         }
     }
 
-    private boolean validateNextStep(String nextStep, int indexOfBridge) {
-        if (!Objects.equals(bridgeData.getBridge().get(indexOfBridge), nextStep)) {
+    private void orderOutputToPrint() {
+        if (!isGameSucceed && isGameFinished) { // 실패
+            outputView.printMap(bridgeData);
+        }
+        if (!isGameSucceed && !isGameFinished) { // 진행중
+            outputView.printMap(bridgeData);
+        }
+        if (isGameSucceed && isGameFinished) { // 성공
+            outputView.printResult(bridgeData, SUCCEED);
+        }
+    }
+
+    private void validateNextStep(String nextStep, int indexOfBridgeEnd) {
+        if (!Objects.equals(bridgeData.getBridge().get(indexOfBridgeEnd), nextStep)) {
             isGameSucceed = FAILED;
             isGameFinished = true;
-            bridgeData.getBridgeDesignByUser().set(indexOfBridge, "X");
-            outputView.printMap(bridgeData);
-            return IMPOSSIBLE_ZONE;
+            bridgeData.getBridgeDesignByUser().set(indexOfBridgeEnd, "X");
         }
-        validateGameSuccessfullyFinished();
-        return POSSIBLE_ZONE;
     }
 
     public void validateGameSuccessfullyFinished() {
         if (Objects.equals(bridgeData.getBridge(), bridgeData.getBridgeDesignByUser())) {
             isGameSucceed = SUCCEED;
             isGameFinished = true;
-            outputView.printResult(bridgeData, SUCCEED);
         }
     }
 
@@ -89,6 +93,7 @@ public class BridgeGame {
         if (Objects.equals(gameCommand, "R")) {
             initializeBridgeDesignByUser();
             bridgeData.increaseAttempts();
+            isGameFinished = false;
             return retry.RETRY;
         }
         outputView.printResult(bridgeData, FAILED);
