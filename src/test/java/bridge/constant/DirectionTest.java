@@ -27,4 +27,11 @@ public class DirectionTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> Direction.from(anomalyDirection));
     }
+
+    @Test
+    void 잘못된_숫자는_예외를_던진다() {
+        int anomalyDirection = 2;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> Direction.from(anomalyDirection));
+    }
 }
