@@ -23,3 +23,11 @@
 ### BridgeGame
 1. 사용자가 입력한 이동명령에 따라 boolean 반환
 2. 사용자가 입력한 게임시작종료에 따라 boolean 반환
+
+### Controller
+1. 게임 운영을 담당
+2. InputView, OutputView, BridgeMaker, BridgeGame 등</br>
+   여러 클래스를 모두 알고 있고 적절한 때에 호출한다.
+
+### AppConfig
+1. 생성자 객체 주입을 담당
