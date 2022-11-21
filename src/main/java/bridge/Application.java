@@ -82,4 +82,15 @@ public class Application {
         return false;
     }
 
+    // Termination condition: 성공
+    private static boolean checkSucceed(List<List<String>> result, OutputView outputView, int size, int trial) {
+        if (result.size() == size) {
+            if (result.get(size - 1).get(0).equals("O")) {
+                trial++;
+                outputView.printResult(result, "성공", trial);
+                return true;
+            }
+        }
+        return false;
+    }
 }
