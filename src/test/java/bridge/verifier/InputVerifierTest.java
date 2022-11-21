@@ -39,8 +39,19 @@ class InputVerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void moving() {
+    @DisplayName("이동할 칸이 정상적으로 검증되는지 확인")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void moving_올바른_값(String input) {
+        InputVerifier.moving(input);
+    }
+
+    @DisplayName("이동할 칸에 잘못된 값이 입력되면 예외 처리")
+    @ValueSource(strings = {"UU", "d", "R", "123", "43C", "CV", "", " "})
+    @ParameterizedTest
+    void moving_잘못된_값(String input) {
+        assertThatThrownBy(() -> InputVerifier.moving(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
