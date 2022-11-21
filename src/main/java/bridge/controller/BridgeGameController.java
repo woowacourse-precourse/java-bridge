@@ -39,7 +39,7 @@ public class BridgeGameController {
 
     private void validateSuccess(){
         if (bridgeGame.isSuccess(moving.getValue())){
-            setQuit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), SUCCESS_RESULT, trial);
+            quit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), SUCCESS_RESULT, trial);
         }
     }
 
@@ -93,10 +93,10 @@ public class BridgeGameController {
     private void restartOrQuit(){
         readGameCommand();
         if (isRestartResult()){
-            setRestart();
+            restart();
         }
         if (isQuitResult()){
-            setQuit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), FAIL_RESULT, trial);
+            quit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), FAIL_RESULT, trial);
         }
     }
 
@@ -120,12 +120,12 @@ public class BridgeGameController {
         return gameCommandValue.equals(GameCommand.getQuitCharacter());
     }
 
-    private void setRestart(){
+    private void restart(){
         bridgeGame.retry();
         countTrial();
     }
 
-    private void setQuit(List<String> bridgeUpResults, List<String> bridgeDownResults, String gameResult, int trial){
+    private void quit(List<String> bridgeUpResults, List<String> bridgeDownResults, String gameResult, int trial){
         stop();
         OutputView.printResult(bridgeUpResults, bridgeDownResults, gameResult, trial);
     }
