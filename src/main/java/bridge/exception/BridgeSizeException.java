@@ -7,6 +7,7 @@ public class BridgeSizeException extends UserException {
         isBlank(userInput);
         hasBlank(userInput);
         int bridgeSize = isNotInt(userInput);
+        isOutOfRange(bridgeSize);
     }
 
     private int isNotInt(String bridgeSize) {
@@ -14,6 +15,12 @@ public class BridgeSizeException extends UserException {
             return Integer.parseInt(bridgeSize);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ExceptionCode.IS_NOT_INT.getMessage());
+        }
+    }
+
+    private void isOutOfRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException(ExceptionCode.OUT_OF_RANGE.getMessage());
         }
     }
 }
