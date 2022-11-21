@@ -37,3 +37,13 @@ input regex를 모은 enum
 # BrdigeGameInfo
 
 게임의 현재 정보를 저장하는 class
+
+# BridgeGame
+
+### move
+
+    player 를 한칸 앞으로 이동시의 시킴
+
+### retry
+
+    player 의 위치를 초기화 시키고 총시도 횟수를 1회 증가 시킴

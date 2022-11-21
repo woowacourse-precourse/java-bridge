@@ -24,6 +24,10 @@ public class BridgeGameInfo {
         this.position = position;
     }
 
+    public void setPositionNext(){
+        this.position ++;
+    }
+
     public String getPlayer() {
         return player;
     }
@@ -36,7 +40,7 @@ public class BridgeGameInfo {
         return trial;
     }
 
-    public void setTrial(int trial) {
-        this.trial = trial;
+    public void addTrial(){
+        this.trial++;
     }
 }
