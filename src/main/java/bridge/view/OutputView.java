@@ -22,7 +22,6 @@ public class OutputView {
     private static final OutputView outputView = new OutputView();
 
     private OutputView() {
-
     }
 
     public static OutputView getOutputView() {
@@ -36,12 +35,12 @@ public class OutputView {
      */
     public void printMap() {
         BridgeMap bridgeMap = BridgeMap.getBridgeMap();
-        System.out.println(getJoinElements(bridgeMap.getUpperBridgeMap()));
-        System.out.println(getJoinElements(bridgeMap.getLowerBridgeMap()));
+        System.out.println(getCurrentBridgeMapStatus(bridgeMap.getUpperBridgeMap()));
+        System.out.println(getCurrentBridgeMapStatus(bridgeMap.getLowerBridgeMap()));
         System.out.println();
     }
 
-    private String getJoinElements(List<String> bridgeMap) {
+    private String getCurrentBridgeMapStatus(List<String> bridgeMap) {
         return BRIDGE_START_BRACKET + String.join(BRIDGE_CONTOUR, bridgeMap) + BRIDGE_END_BRACKET;
     }
 
