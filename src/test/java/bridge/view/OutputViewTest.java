@@ -16,6 +16,16 @@ public class OutputViewTest {
         outputView.initializeMap();
     }
 
+    @DisplayName("다리의 상태에 따라 맵이 잘 만들어지는지 테스트")
+    @Test
+    public void makeMapTest() {
+        List<String> bridge = List.of("U", "D", "U");
+        List<String> bridgeStatus = List.of("O", "O", "O");
+        outputView.makeMap(bridge, bridgeStatus);
+
+        Assertions.assertThat(outputView.getUpperMap()).isEqualTo("[ O |   | O ]");
+    }
+
     @DisplayName("다리의 상태에 따라 맵에 O가 잘 표시되는지 테스트")
     @Test
     public void addOToMapTest() {
