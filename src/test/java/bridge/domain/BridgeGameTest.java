@@ -28,7 +28,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = BridgeGame.from(new BridgeMap(List.of("U", "U", "U")));
         bridgeGame.move(Moving.from("U"));
         bridgeGame.move(Moving.from("D"));
-        bridgeGame.retry(new GameCommand("R"));
+        bridgeGame.retry(GameCommand.from("R"));
         assertThat(bridgeGame.getCount()).isEqualTo(2);
     }
 
@@ -37,7 +37,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = BridgeGame.from(new BridgeMap(List.of("U", "U", "U")));
         bridgeGame.move(Moving.from("U"));
         bridgeGame.move(Moving.from("D"));
-        bridgeGame.retry(new GameCommand("Q"));
+        bridgeGame.retry(GameCommand.from("Q"));
         List<List> estimatedResult = List.of(List.of("O", " "), List.of(" ", "X"));
         assertThat(bridgeGame.getPlayerMap()).isEqualTo(estimatedResult);
     }

@@ -7,9 +7,13 @@ public class GameCommand {
 
     private final String input;
 
-    public GameCommand(String input) {
+    private GameCommand(String input) {
         validateInput(input);
         this.input = input;
+    }
+
+    public static GameCommand from(String input) {
+        return new GameCommand(input);
     }
 
     private void validateInput(String input) {

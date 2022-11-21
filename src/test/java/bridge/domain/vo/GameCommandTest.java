@@ -14,7 +14,7 @@ class GameCommandTest {
     @ParameterizedTest(name = "[{index}] input {0} ")
     @ValueSource(strings = {"R", "Q"})
     void Normal_Test(String input) {
-        Assertions.assertThat(new GameCommand(input).toString()).isEqualTo(input);
+        Assertions.assertThat(GameCommand.from(input).toString()).isEqualTo(input);
     }
 
     @DisplayName("Unvalidated GameCommand")
@@ -22,7 +22,7 @@ class GameCommandTest {
     @ValueSource(strings = {"a", "1", "r", "q", "d", "u"})
     void Unvalidated_GameCommand_exception(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-            new GameCommand(input);
+            GameCommand.from(input);
         });
         assertEquals(ErrorCode.GAME_COMMAND_NOT_R_Q.getException().getMessage(),
                 exception.getMessage());

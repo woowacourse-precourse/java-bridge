@@ -76,7 +76,7 @@ public class BridgeGameController {
 
     private GameCommand inputGameCommand() {
         try {
-            return new GameCommand(inputView.readGameCommand());
+            return GameCommand.from(inputView.readGameCommand());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }
