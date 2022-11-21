@@ -6,17 +6,17 @@ public enum Direction {
     UP(1, "U"),
     DOWN(0, "D");
 
-    private final int number;
+    private final int bridgeNumber;
     private final String initial;
 
-    Direction(int number, String initial) {
-        this.number = number;
+    Direction(int bridgeNumber, String initial) {
+        this.bridgeNumber = bridgeNumber;
         this.initial = initial;
     }
 
-    public static String getInitialByDirectionNumber(int directionNumber) {
+    public static String getInitialByBridgeNumber(int bridgeNumber) {
         return Arrays.stream(values())
-                .filter(direction -> direction.number == directionNumber)
+                .filter(direction -> direction.bridgeNumber == bridgeNumber)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new)
                 .initial;
