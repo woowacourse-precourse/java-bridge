@@ -12,6 +12,8 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.simulate(bridge);
     }
 
 }
