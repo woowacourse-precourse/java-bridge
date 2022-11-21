@@ -1,6 +1,7 @@
 package bridge.constant;
 
 import bridge.domain.Bridge;
+import bridge.domain.Moving;
 
 public enum ErrorMessage {
     INPUT_IS_EMPTY_ERROR("빈 값이 입력되었습니다."),
@@ -10,6 +11,12 @@ public enum ErrorMessage {
             String.format("다리의 길이가 %d이상 %d이하 숫자여야 합니다.",
                     Bridge.getBridgeMinSize(),
                     Bridge.getBridgeMaxSize()
+                    )
+    ),
+    NOT_VALID_MOVING_CHARACTER(
+            String.format("이동 칸은 %s 또는 %s 문자여야 합니다.",
+                    Moving.getMovingUpCharacter(),
+                    Moving.getMovingDownCharacter()
                     )
     );
 
