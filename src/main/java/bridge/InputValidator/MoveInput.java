@@ -1,4 +1,4 @@
-package bridge;
+package bridge.InputValidator;
 
 import java.util.Objects;
 

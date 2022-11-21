@@ -1,4 +1,4 @@
-package bridge;
+package bridge.InputValidator;
 
 public class BridgeSize {
     private int bridgeSize;
