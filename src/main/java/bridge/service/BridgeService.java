@@ -13,7 +13,7 @@ public class BridgeService {
     static final InputValidation inputValidation = new InputValidation();
     static final InputView inputView = new InputView();
     static final OutputView outputView = new OutputView();
-
+    
     public void bridgeGameStart(){
         outputView.printGameStartMessage();
         inputBridgeLength();
@@ -48,6 +48,19 @@ public class BridgeService {
     public void makeBridge(){
         List<String> bridge = bridgeMaker.makeBridge(bridgeGame.getBridgeLength());
         bridgeGame.initializeBridgeGame(bridge);
+    }
+
+    public void TryPlayerMove(){
+        while(bridgeGame.getBridgeIdx() < bridgeGame.getBridgeSize()){
+            if(!inputPlayerMoveDirection())
+                continue;
+
+            outputView.printMap(bridgeGame);
+            if(isFalsePlayerMove())
+                continue;
+        }
+        bridgeGame.gameSuccess();
+        outputView.printResult(bridgeGame);
     }
 
     public boolean inputPlayerMoveDirection(){
