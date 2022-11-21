@@ -7,7 +7,7 @@ import bridge.view.OutputView;
  */
 public class BridgeGame {
     public void start() {
-        OutputView.printStartMessage();
+        OutputView.messageGameStart();
         OutputView.messageLengthInput();
     }
 
