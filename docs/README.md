@@ -3,7 +3,7 @@
 ## 기능 목록
 - [ ] 게임을 재시작 하거나 종료할 수 있다. - BridgeGame.retry()
   - [ ] 게임 재시작 종료를 입력 받는다. - InputView.readGameCommand()
-    - [ ] 올바른 값인지 검사한다. - CustomException.checkGameCommand()
+    - [x] 올바른 값인지 검사한다. - CustomException.checkGameCommand()
       - [x] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
   - [ ] 다리 건너기 게임을 시작한다. - BridgeGame.start()
     - [ ] 기존 다리가 있는지 검사한다. - BridgeMaker.hasBridge()
