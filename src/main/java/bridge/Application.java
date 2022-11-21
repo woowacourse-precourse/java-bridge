@@ -1,11 +1,12 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.model.TotalResult;
+import bridge.controller.BridgeGameInitializer;
+import bridge.model.BridgeGame;
 
 public class Application {
     public static void main(String[] args) {
-        TotalResult result = BridgeGameController.start();
-        BridgeGameController.printResult(result);
+        BridgeGame bridgeGame = BridgeGameInitializer.initializeBridgeGame();
+        BridgeGameController.start(bridgeGame);
     }
 }
