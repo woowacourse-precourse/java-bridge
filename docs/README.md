@@ -10,13 +10,13 @@ Problem3. 플레이어가 이동할 칸 입력 받기
 
 Problem4. 플레이어가 입력한 칸 이동할 수 있는지 확인
 
-Problem5. 다리 시작과 끝 출력
+Problem5. 이동을 시도한 결과 출력
 
-Problem6. 이동을 시도한 결과 출력
+Problem6. 실패 시 재시도 여부 입력
 
-Problem7. 실패 시 재시도 여부 입력
+Problem7. 결과 출력
 
-Problem8. 시도한 횟수 출력
+Problem8. 최종 구현
 
 Exception1. Problem1에서 입력 받은 다리 길이가 format에 맞지 않는 경우
 
