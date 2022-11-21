@@ -1,7 +1,9 @@
 package bridge;
 
+import bridge.domain.game.Retry;
 import bridge.provider.BridgeSizeProvider;
 import bridge.common.SystemSet;
+import bridge.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -58,7 +60,7 @@ class InputViewTest {
         public void 예외_입력_테스트(String input) {
             SystemSet.input(input);
 
-            assertThatThrownBy(() -> inputView.readBridgeSize())
+            assertThatThrownBy(() -> inputView.readMoving())
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -69,6 +71,29 @@ class InputViewTest {
             SystemSet.input(input);
 
             Assertions.assertThat(inputView.readMoving()).isEqualTo(input);
+        }
+    }
+
+    @Nested
+    @DisplayName("재시도 입력 테스트")
+    class readGameCommandTest {
+        @ParameterizedTest
+        @DisplayName("R, Q")
+        @ValueSource(strings = {"큐", "r", "q", "@", "!!", "2"})
+        public void 예외_입력_테스트(String input) {
+            SystemSet.input(input);
+
+            assertThatThrownBy(() -> inputView.readGameCommand())
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @ParameterizedTest
+        @DisplayName("올바른 형식을 입력받는다.")
+        @ValueSource(strings = {"R", "Q"})
+        public void 올바른_입력_테스트(String input) {
+            SystemSet.input(input);
+
+            Assertions.assertThat(inputView.readGameCommand()).isEqualTo(Retry.of(input));
         }
     }
 }
