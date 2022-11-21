@@ -118,7 +118,7 @@ BUILD SUCCESSFUL in 0s
         - [x] private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
         - [x] private String compareBridgeBlock(String bridgeBlock, String comparetorBridgeBlock)
         - [x] private String compareFailBridgeBlock(String bridgeBlock, String comparetorBridgeBlock, boolean isFail)
-        - [ ] private String getGameWinStatusMessage(boolean gameWinStatus)
+        - [x] private String getGameWinStatusMessage(boolean gameWinStatus)
 
 ### 입출력 요구 사항
 

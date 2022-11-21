@@ -65,4 +65,11 @@ public class OutputView {
         }
         return "   ";
     }
+
+    private String getGameWinStatusMessage(boolean gameWinStatus) {
+        if (gameWinStatus) {
+            return "성공";
+        }
+        return "실패";
+    }
 }
