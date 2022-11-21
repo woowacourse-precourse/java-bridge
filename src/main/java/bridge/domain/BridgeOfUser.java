@@ -1,12 +1,13 @@
 package bridge.domain;
 
+import bridge.utils.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeOfUser {
 
-    private List<String> upSide;
-    private List<String> downSide;
+    private final List<String> upSide;
+    private final List<String> downSide;
 
     public BridgeOfUser() {
         upSide = new ArrayList<>();
@@ -14,25 +15,33 @@ public class BridgeOfUser {
     }
 
     public void restoreByRigth(String moveSide) {
+        Validator.checkIsSide(moveSide);
         if (moveSide.equals(Side.UP.ofString())) {
-            upSide.add(" O ");
-            downSide.add("   ");
+            addToUpSide("O");
         }
         if (moveSide.equals(Side.DOWN.ofString())) {
-            upSide.add("   ");
-            downSide.add(" O ");
+            addToDownSide("O");
         }
     }
 
     public void restoreByWrong(String moveSide) {
+        Validator.checkIsSide(moveSide);
         if (moveSide.equals(Side.UP.ofString())) {
-            upSide.add(" X ");
-            downSide.add("   ");
+           addToUpSide("X");
         }
         if (moveSide.equals(Side.DOWN.ofString())) {
-            upSide.add("   ");
-            downSide.add(" X ");
+            addToDownSide("X");
         }
+    }
+
+    private void addToDownSide(String result) {
+        upSide.add("   ");
+        downSide.add(" " + result + " ");
+    }
+
+    private void addToUpSide(String result) {
+        upSide.add(" " + result + " ");
+        downSide.add("   ");
     }
 
     @Override
