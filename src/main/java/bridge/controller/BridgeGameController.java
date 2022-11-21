@@ -37,22 +37,8 @@ public class BridgeGameController {
         outputView.printStart();
         while (true) {
             boolean check = crossTheBridge();
-
-            String retry = "R";
             outputView.printMap(gameStatus);
-
-            if (!check) {
-                retry = getWhetherToRetry();
-
-                if (retry.equals("R")) {
-                    bridgeGame.retry(gameStatus);
-                    copyBridge = new Bridge(bridge.copyBridge()); // Call by value, Call by reference
-                }
-            }
-
-            if (retry.equals("Q")) {
-                isFinish = true;
-            }
+            askWhetherRetry(check);
 
             if (copyBridge.getBridge().size() == 0) {
                 gameStatus.gameResult = "성공";
@@ -64,6 +50,22 @@ public class BridgeGameController {
             }
         }
         outputView.printResult(gameStatus);
+    }
+
+    private void askWhetherRetry(boolean check) {
+        String retry = "R";
+        if (!check) {
+            retry = getWhetherToRetry();
+
+            if (retry.equals("R")) {
+                bridgeGame.retry(gameStatus);
+                copyBridge = new Bridge(bridge.copyBridge()); // Call by value, Call by reference
+            }
+        }
+
+        if (retry.equals("Q")) {
+            isFinish = true;
+        }
     }
 
     private boolean crossTheBridge() {
