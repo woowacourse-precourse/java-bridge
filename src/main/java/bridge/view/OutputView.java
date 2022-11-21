@@ -18,6 +18,7 @@ public class OutputView {
     private static final String NONE = " ";
     private static final String CORRECT = "O";
     private static final String IN_CORRECT = "X";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -28,63 +29,63 @@ public class OutputView {
         brSizeTwoPlus(bridgeCorrects);
     }
 
-    private static void brSizeOne(List<List<String>> bridgeCorrects){
-        if(bridgeCorrects.size()==1){
+    private static void brSizeOne(List<List<String>> bridgeCorrects) {
+        if (bridgeCorrects.size() == 1) {
             System.out.print(BRIDGE_START);
-            up(bridgeCorrects,0);
+            up(bridgeCorrects, 0);
             System.out.println(BRIDGE_END);
             System.out.print(BRIDGE_START);
-            down(bridgeCorrects,0);
+            down(bridgeCorrects, 0);
             System.out.println(BRIDGE_END);
         }
     }
 
-    private static void brSizeTwoPlus(List<List<String>> bridgeCorrects){
+    private static void brSizeTwoPlus(List<List<String>> bridgeCorrects) {
         int bridgeSize = bridgeCorrects.size();
-        if(bridgeSize>=2){
+        if (bridgeSize >= 2) {
             System.out.print(BRIDGE_START);
-            upWork(bridgeCorrects,bridgeSize);
-            downWork(bridgeCorrects,bridgeSize);
+            upWork(bridgeCorrects, bridgeSize);
+            downWork(bridgeCorrects, bridgeSize);
             System.out.println(BRIDGE_END);
         }
     }
 
-    private static void upWork(List<List<String>> bridgeCorrects,int bridgeSize){
-        for(int i=0;i<bridgeSize-1;i++){
-            up(bridgeCorrects,i);
+    private static void upWork(List<List<String>> bridgeCorrects, int bridgeSize) {
+        for (int i = 0; i < bridgeSize - 1; i++) {
+            up(bridgeCorrects, i);
             System.out.print(BRIDGE_MID);
         }
-        up(bridgeCorrects,bridgeSize-1);
+        up(bridgeCorrects, bridgeSize - 1);
         System.out.println(BRIDGE_END);
     }
 
-    private static void downWork(List<List<String>> bridgeCorrects,int bridgeSize){
+    private static void downWork(List<List<String>> bridgeCorrects, int bridgeSize) {
         System.out.print(BRIDGE_START);
-        for(int i=0;i<bridgeSize-1;i++){
-            down(bridgeCorrects,i);
+        for (int i = 0; i < bridgeSize - 1; i++) {
+            down(bridgeCorrects, i);
             System.out.print(BRIDGE_MID);
         }
-        down(bridgeCorrects,bridgeSize-1);
+        down(bridgeCorrects, bridgeSize - 1);
     }
 
-    private static void up(List<List<String>> bridgeCorrects,int i){
-        if(bridgeCorrects.get(i).get(0).equals(UP) && bridgeCorrects.get(i).get(1).equals(CORRECT)){
+    private static void up(List<List<String>> bridgeCorrects, int i) {
+        if (bridgeCorrects.get(i).get(0).equals(UP) && bridgeCorrects.get(i).get(1).equals(CORRECT)) {
             System.out.print(CORRECT);
             return;
         }
-        if(bridgeCorrects.get(i).get(0).equals(UP) && bridgeCorrects.get(i).get(1).equals(IN_CORRECT)){
+        if (bridgeCorrects.get(i).get(0).equals(UP) && bridgeCorrects.get(i).get(1).equals(IN_CORRECT)) {
             System.out.print(IN_CORRECT);
             return;
         }
         System.out.print(NONE);
     }
 
-    private static void down(List<List<String>> bridgeCorrects,int i){
-        if(bridgeCorrects.get(i).get(0).equals(DOWN) && bridgeCorrects.get(i).get(1).equals(CORRECT)){
+    private static void down(List<List<String>> bridgeCorrects, int i) {
+        if (bridgeCorrects.get(i).get(0).equals(DOWN) && bridgeCorrects.get(i).get(1).equals(CORRECT)) {
             System.out.print(CORRECT);
             return;
         }
-        if(bridgeCorrects.get(i).get(0).equals(DOWN) && bridgeCorrects.get(i).get(1).equals(IN_CORRECT)){
+        if (bridgeCorrects.get(i).get(0).equals(DOWN) && bridgeCorrects.get(i).get(1).equals(IN_CORRECT)) {
             System.out.print(IN_CORRECT);
             return;
         }
@@ -96,15 +97,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<List<String>> bridgeCorrects,String isSuccess,int cnt) {
+    public static void printResult(List<List<String>> bridgeCorrects, String isSuccess, int cnt) {
         System.out.println(FINAL_GAME_RESULT);
         printMap(bridgeCorrects);
         System.out.println();
-        System.out.println(GAME_SUCCESS_RESULT+": "+isSuccess);
-        System.out.println(TOTAL_TRY_TIME+": "+cnt);
+        System.out.println(GAME_SUCCESS_RESULT + ": " + isSuccess);
+        System.out.println(TOTAL_TRY_TIME + ": " + cnt);
     }
 
-    public static void printGameStart(){
+    public static void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
     }
 }
