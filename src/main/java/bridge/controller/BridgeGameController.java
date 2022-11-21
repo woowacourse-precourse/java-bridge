@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeLength;
 import bridge.model.BridgeMoving;
-import bridge.model.BridgeRetry;
+import bridge.model.BridgeCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -42,23 +42,23 @@ public class BridgeGameController {
 
     private void play() {
         String moving = inputView.readMoving();
-        BridgeMoving bridgeMoving = BridgeMoving.createBridgeMoving(moving);
+        BridgeMoving.createBridgeMoving(moving);
         bridgeGame.move(moving);
     }
 
     private boolean retryGame(int size) {
         boolean retry=true;
-        if(bridgeGame.isClosed()) {
+        if(bridgeGame.isFail()) {
             String retryOrClose = inputView.readGameCommand();
-            BridgeRetry bridgeRetry = BridgeRetry.createBridgeRetry(retryOrClose);
+            BridgeCommand bridgeCommand = BridgeCommand.createBridgeCommand(retryOrClose);
             retry = isRetryOrClose(size, retryOrClose);
         }
         return retry;
     }
 
     private boolean isRetryOrClose(int size, String retryOrClose) {
-        BridgeRetry bridgeRetry =  BridgeRetry.createBridgeRetry(retryOrClose);
-        if (bridgeRetry.isRetry()) {
+        BridgeCommand bridgeCommand =  BridgeCommand.createBridgeCommand(retryOrClose);
+        if (bridgeCommand.getCommand()) {
             bridgeGame.retry(size);
             return true;
         }
@@ -67,6 +67,6 @@ public class BridgeGameController {
 
     private void end() {
         outputView.printFinalMap(bridgeGame.getUpBridge(),bridgeGame.getDownBridge(), bridgeGame.getLocation());
-        outputView.printResult(bridgeGame.getRetryCount(), !bridgeGame.isClosed());
+        outputView.printResult(bridgeGame.getRetryCount(), !bridgeGame.isFail());
     }
 }

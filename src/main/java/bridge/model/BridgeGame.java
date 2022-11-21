@@ -16,7 +16,7 @@ public class BridgeGame {
     private static final int INDEX_PLUS=1;
     private final List<String> bridge;
     private final BridgeComparator bridgeComparator;
-    private BridgeMap bridgeMap;
+    private static BridgeMap bridgeMap;
     private int location;
     private int retryCount;
 
@@ -41,18 +41,13 @@ public class BridgeGame {
         return location;
     }
 
-    public List<String> getUpBridge() {
+    public static List<String> getUpBridge() {
         return Collections.unmodifiableList(bridgeMap.getBridgeUpMap());
     }
 
-    public List<String> getDownBridge() {
+    public static List<String> getDownBridge() {
         return Collections.unmodifiableList(bridgeMap.getBridgeDownMap());
     }
-
-    public List<String> getBridge() {
-        return Collections.unmodifiableList(bridge);
-    }
-
 
 
     /**
@@ -93,7 +88,7 @@ public class BridgeGame {
         location = INIT_LOCATION;
     }
 
-    public boolean isClosed() {
+    public boolean isFail() {
         return bridgeComparator.isExpressionX(location, bridgeMap.getBridgeUpMap(), bridgeMap.getBridgeDownMap());
     }
 

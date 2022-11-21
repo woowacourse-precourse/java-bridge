@@ -1,12 +1,12 @@
 package bridge.model;
 
-public enum Retry {
+public enum Command {
     RETRY("R"),
     QUIT("Q");
 
     private String description;
 
-    Retry(String description){
+    Command(String description){
         this.description = description;
     }
 
