@@ -32,5 +32,15 @@ public class Validator {
 
     }
 
+    public static void checkMoveInput(String input) {
+        try {
+            if(!input.equals("U") || !input.equals("Q")){
+                throw new IllegalArgumentException(ERROR);
+            }
+        }catch (IllegalArgumentException illegalArgumentException){
+            System.out.println(ERROR + " " + "U 와 D 만 입력 가능합니다.");
+        }
+    }
+
 
 }
