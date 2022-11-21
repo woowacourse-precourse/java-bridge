@@ -41,13 +41,17 @@ public class Controller {
             outputView.printMap(moveResult.getGradingBoard());
 
             if (moveResult.getGameStatus().equals(GameStatus.SUCCESS)) {
-                outputView.printResult(moveResult);
-                isGaming = false;
+                isGaming = gameSuccess(moveResult);
             }
             if (moveResult.getGameStatus().equals(GameStatus.FAIL)) {
-                isGaming = chooseAfterFail(bridgeGame,moveResult);
+                isGaming = gameFail(bridgeGame,moveResult);
             }
         }
+    }
+
+    private boolean gameSuccess(BridgeGameResultDto moveResult) {
+        outputView.printResult(moveResult);
+        return false;
     }
 
     /**
@@ -56,7 +60,7 @@ public class Controller {
      * @params moveResult 한 칸 선택하고 받은 점수판
      * @return 게임 진행 여부. 게임을 끝낸다면 false, 게임을 이어서 한다면 true
      * */
-    private boolean chooseAfterFail(BridgeGame bridgeGame, BridgeGameResultDto moveResult) {
+    private boolean gameFail(BridgeGame bridgeGame, BridgeGameResultDto moveResult) {
         String gameCommand = inputView.readGameCommand();
         if (gameCommand.equals("Q")) {
             outputView.printResult(moveResult);
