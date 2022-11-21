@@ -54,6 +54,7 @@
   - 클래스 필드 접근자 확인
   - 메소드 인덴트 확인
   - 메소드 라인 확인
+- BridgeGame이 controller의 역할 수행
 
 ## 필요한 클래스
 - **`util/Validator`**
@@ -69,18 +70,11 @@
     - 역할 : 게임의 상태 관리
     - `PROCEEDING` `SUCCESS` `FAIL`
         - 게임 진행 중, 다리 건너기 완료, 건너기 실패
-- **`domain/Bridge`**
-    - 역할 : 다리 관리
-    - `List<String> originalBridge`, `List<String> copyBridge`
-        - 초기 다리 상태는 저장해둬야 함.
-    - `getBridge()`
-        - OutputView에 사용할 다리 출력 시 사용
-    - `changeBridge(String input)`
-        - 사용자 입력에 따라 다리 상태 변경
 - **`domain/BridgeMaker`**
     - 역할 : 다리 생성
 - **`domain/BridgeGame`**
-    - 역할 : 다리 건너기 게임 관리, 상태 저장
+    - 역할 : 생성된 다리 관리, 서비스 로직 호출
+    - `start()`, `move()`, `retry()`
     - `changeStatus()`
       - 다리 상태 변경
     - `isProceeding()`
