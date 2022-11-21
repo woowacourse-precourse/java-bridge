@@ -10,12 +10,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws NumberFormatException{
+    public int readBridgeSize() throws NumberFormatException {
         System.out.println("\n다리의 길이를 입력해주세요.");
         int size;
-        try{
+        try {
             size = Integer.parseInt(readLine().trim());
-        } catch(NumberFormatException error) {
+        } catch (NumberFormatException error) {
             System.out.println("[ERROR] 올바른 형식의 입력값이 아닙니다. 다시 입력해 주십시오.");
             return readBridgeSize();
         }
@@ -27,8 +27,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String nextMove = readLine().trim();
-        return nextMove;
+        return readLine().trim();
     }
 
     /**
@@ -36,7 +35,6 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String command = readLine().trim();
-        return command;
+        return readLine().trim();
     }
 }

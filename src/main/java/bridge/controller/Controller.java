@@ -14,69 +14,69 @@ public class Controller {
 
     private BridgeGame bridgeGame;
 
-    public void run(){
+    public void run() {
         startGame();
         playGame();
         showGameResult();
     }
 
-    public void startGame(){
+    public void startGame() {
         outputView.printStartGame();
-        BridgeNumberGenerator bridgeNumberGenerator= new BridgeRandomNumberGenerator();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         initBridgeGame(bridgeNumberGenerator);
     }
 
-    private void initBridgeGame(BridgeNumberGenerator generator){
-        try{
+    private void initBridgeGame(BridgeNumberGenerator generator) {
+        try {
             bridgeGame = new BridgeGame(generator, inputView.readBridgeSize());
-        } catch (IllegalArgumentException error){
+        } catch (IllegalArgumentException error) {
             outputView.printBridgeSizeInputError();
             initBridgeGame(generator);
         }
     }
 
-    public void playGame(){
+    public void playGame() {
         movePlayer();
         showRoundResult();
         continueOrFinishGame();
     }
 
-    private void movePlayer(){
-        try{
+    private void movePlayer() {
+        try {
             bridgeGame.move(inputView.readMoving());
-        } catch (IllegalArgumentException error){
+        } catch (IllegalArgumentException error) {
             outputView.printPlayerMoveInputError();
             movePlayer();
         }
     }
 
-    private void showRoundResult(){
+    private void showRoundResult() {
         outputView.printMap(bridgeGame.getRoundMaps(), Command.MOVE_UP);
         outputView.printMap(bridgeGame.getRoundMaps(), Command.MOVE_DOWN);
     }
 
-    private void continueOrFinishGame(){
-        if(bridgeGame.isGameCompleted()) {
+    private void continueOrFinishGame() {
+        if (bridgeGame.isGameCompleted()) {
             return;
         }
-        if(bridgeGame.isGameOver()){
+        if (bridgeGame.isGameOver()) {
             replayOrExit();
             return;
         }
         playGame();
     }
 
-    private void replayOrExit(){
+    private void replayOrExit() {
         String command = getRetryOrQuitCommand();
-        if(command.equals(Command.RETRY_GAME.getValue())){
+        if (command.equals(Command.RETRY_GAME.getValue())) {
             bridgeGame.retry();
             playGame();
         }
     }
 
-    private String getRetryOrQuitCommand(){
+    private String getRetryOrQuitCommand() {
         String command;
-        try{
+        try {
             command = inputView.readGameCommand();
             Validator.validateIsStringCommand(command, Command.RETRY_GAME, Command.QUIT_GAME);
         } catch (IllegalArgumentException error) {
@@ -86,7 +86,7 @@ public class Controller {
         return command;
     }
 
-    public void showGameResult(){
+    public void showGameResult() {
         outputView.printResultHeader();
         showRoundResult();
         outputView.printResult(bridgeGame);

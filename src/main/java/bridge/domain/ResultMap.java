@@ -7,11 +7,11 @@ public enum ResultMap {
 
     final private int index;
 
-    ResultMap(int index){
+    ResultMap(int index) {
         this.index = index;
     }
 
-    public int index(){
+    public int index() {
         return this.index;
     }
 }

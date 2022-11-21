@@ -5,7 +5,6 @@ import bridge.BridgeNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.Command;
 import bridge.validator.Validator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +21,12 @@ public class BridgeGame {
     private List<String> userBridge = new ArrayList<>();
     private int totalAttempt = INITIAL_ATTEMPT;
 
-    public BridgeGame(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException{
+    public BridgeGame(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException {
         this.systemBridge = makeBridge(generator, bridgeSize);
         totalAttempt++;
     }
 
-    private List<String> makeBridge(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException{
+    private List<String> makeBridge(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException {
         final BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         Validator.validateListLengthInRange(bridge, Bridge.MIN_LENGTH.getValue(), Bridge.MAX_LENGTH.getValue());
@@ -39,7 +38,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String nextMove) throws IllegalArgumentException{
+    public void move(String nextMove) throws IllegalArgumentException {
         Validator.validateIsStringCommand(nextMove, Command.MOVE_UP, Command.MOVE_DOWN);
         userBridge.add(nextMove);
     }
@@ -54,37 +53,37 @@ public class BridgeGame {
         totalAttempt++;
     }
 
-    public List<List<String>> getRoundMaps(){
+    public List<List<String>> getRoundMaps() {
         List<List<String>> maps = new ArrayList<>();
         maps.add(Collections.unmodifiableList(userBridge));
         maps.add(getBridgeLog());
         return maps;
     }
 
-    private List<String> getBridgeLog(){
+    private List<String> getBridgeLog() {
         List<String> bridgeLog = new ArrayList<>();
-        for(int index=Bridge.START_INDEX.getValue(); index<userBridge.size(); index++){
+        for (int index = Bridge.START_INDEX.getValue(); index < userBridge.size(); index++) {
             bridgeLog.add(getOXByUserMove(index));
         }
         return bridgeLog;
     }
 
-    private String getOXByUserMove(int index){
-        if(systemBridge.get(index).equals(userBridge.get(index))){
+    private String getOXByUserMove(int index) {
+        if (systemBridge.get(index).equals(userBridge.get(index))) {
             return O_SIGN;
         }
         return X_SIGN;
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver() {
         return !systemBridge.subList(Bridge.START_INDEX.getValue(), userBridge.size()).equals(userBridge);
     }
 
-    public boolean isGameCompleted(){
+    public boolean isGameCompleted() {
         return systemBridge.equals(userBridge);
     }
 
-    public int getTotalAttempt(){
+    public int getTotalAttempt() {
         return totalAttempt;
     }
 }

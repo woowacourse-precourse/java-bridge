@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.Arrays;
-
 public enum Command {
 
     MOVE_UP("U"),

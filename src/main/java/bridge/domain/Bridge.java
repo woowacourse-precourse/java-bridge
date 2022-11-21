@@ -8,11 +8,11 @@ public enum Bridge {
 
     final private int value;
 
-    Bridge(int value){
+    Bridge(int value) {
         this.value = value;
     }
 
-    public int getValue(){
+    public int getValue() {
         return this.value;
     }
 }
