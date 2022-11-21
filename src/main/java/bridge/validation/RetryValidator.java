@@ -9,14 +9,9 @@ import java.util.List;
 public class RetryValidator {
     private static final List<String> tryPossibilityValue = List.of(GameConstant.EXIT, GameConstant.RE);
 
-    public String retryValidator(String input) {
-        try {
-            retryValidation(input);
-            return input;
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return Player.requestInputRetryToValidation();
-        }
+    public String retryValidator(String input) throws IllegalArgumentException {
+        retryValidation(input);
+        return input;
     }
 
     private void retryValidation(String data) {

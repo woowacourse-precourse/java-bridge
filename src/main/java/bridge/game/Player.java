@@ -4,6 +4,7 @@ import bridge.validation.BridgeMoveValidator;
 import bridge.validation.BridgeSizeValidator;
 import bridge.validation.RetryValidator;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Player {
     private static final InputView INPUT_VIEW = new InputView();
@@ -12,14 +13,29 @@ public class Player {
     private static final BridgeMoveValidator MOVE_VALIDATOR = new BridgeMoveValidator();
 
     public static String requestInputSizeToValidation() {
-        return SIZE_VALIDATOR.sizeValidator(INPUT_VIEW.readBridgeSize());
+        try {
+            return SIZE_VALIDATOR.sizeValidator(INPUT_VIEW.readBridgeSize());
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return requestInputSizeToValidation();
+        }
     }
 
     public static String requestInputRetryToValidation() {
-        return RETRY_VALIDATOR.retryValidator(INPUT_VIEW.readBridgeSize());
+        try {
+            return RETRY_VALIDATOR.retryValidator(INPUT_VIEW.readBridgeSize());
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return requestInputRetryToValidation();
+        }
     }
 
-    public static String requestInputMoveToValition() {
-        return MOVE_VALIDATOR.moveValidator(INPUT_VIEW.readBridgeSize());
+    public static String requestInputMoveToValidation() {
+        try {
+            return MOVE_VALIDATOR.moveValidator(INPUT_VIEW.readBridgeSize());
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return requestInputMoveToValidation();
+        }
     }
 }

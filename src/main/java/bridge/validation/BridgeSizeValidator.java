@@ -1,21 +1,14 @@
 package bridge.validation;
 
 import bridge.convertor.InputConvertor;
-import bridge.game.Player;
 import bridge.resource.ErrorMessage;
 import bridge.resource.GameConstant;
-import bridge.view.OutputView;
 
 public class BridgeSizeValidator {
 
-    public String sizeValidator(String input) {
-        try {
-            bridgeSizeValidation(input);
-            return input;
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return Player.requestInputSizeToValidation();
-        }
+    public String sizeValidator(String input) throws IllegalArgumentException {
+        bridgeSizeValidation(input);
+        return input;
     }
 
     private void bridgeSizeValidation(String value) {

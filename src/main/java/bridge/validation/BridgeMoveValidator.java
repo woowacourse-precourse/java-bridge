@@ -9,14 +9,9 @@ import java.util.List;
 public class BridgeMoveValidator {
     private static final List<String> movePossibilityValue = List.of(GameConstant.TOP, GameConstant.BOTTOM);
 
-    public String moveValidator(String input) {
-        try {
-            bridgeMoveValidation(input);
-            return input;
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return Player.requestInputMoveToValition();
-        }
+    public String moveValidator(String input) throws IllegalArgumentException {
+        bridgeMoveValidation(input);
+        return input;
     }
 
     private void bridgeMoveValidation(String data) {
