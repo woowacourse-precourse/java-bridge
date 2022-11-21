@@ -20,4 +20,9 @@ public class Result {
     public void setTrial(int trial) {
         this.trial = trial;
     }
+
+    public void setResult(boolean isSuccess, int trial){
+        this.isSuccess = isSuccess;
+        this.trial = trial;
+    }
 }

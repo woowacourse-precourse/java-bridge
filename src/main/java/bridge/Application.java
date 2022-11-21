@@ -1,15 +1,12 @@
 package bridge;
 
-import view.InputView;
-import view.OutputView;
-
-import java.util.List;
-
 public class Application {
     public static void main(String[] args) {
-        final BridgeGame game = new BridgeGame();
         // TODO: 프로그램 구현
+        final BridgeGame game = new BridgeGame();
+
         try{
+            game.setUp();
             game.start();
 
         } catch (IllegalArgumentException e){
