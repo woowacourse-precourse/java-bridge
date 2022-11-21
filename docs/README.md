@@ -56,6 +56,10 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
             - [X] 게임 진행을 하며 실행 가능할때까지 진행하고 이동한 경로를 출력합니다.
             - [X] 클리어 한경우 결과 상태가 됩니다.
             - [X] 클리어 실패 상태의 경우 재시작 여부를 묻는 상태가 됩니다.
+        - RestartGameStatus
+            - 게임 재시작 상태
+            - [X] 게임 재시작 명령어가 입력되면 장기말 이동 상태가 됩니다.
+            - [X] 게임 종료 상태면 게임 결과 상태가 됩니다.
 
 ## 도메인 요구사항
 
