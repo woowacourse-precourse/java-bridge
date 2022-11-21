@@ -46,8 +46,9 @@
     - "R"(재시작) 과 "Q"(종료) 중 하나의 문자
 
 
->위 조건에 부합하지 않은 입력값이 들어오면 IllegalArgumentException 발생
+> 위 조건에 부합하지 않은 입력값이 들어오면 IllegalArgumentException 발생
 
+> 입력받을 값이 없다면 IllegalStateException 발생 
 <br></br>
 
 ### 2.3 다리 생성
