@@ -9,12 +9,10 @@ public class PlayerUnitMoveStatus implements BridgeGameStatus {
 
     @Override
     public BridgeGameStatus next(BridgeGameContext context, InputView inputView, OutputView outputView) {
-
         while (context.gameStatus().isRunning()) {
             context.movePlayerUnit(inputView.readMoving());
             outputView.printMap(context.getCachedHistory());
         }
-
         return verifyClearGame(context.gameStatus());
     }
 

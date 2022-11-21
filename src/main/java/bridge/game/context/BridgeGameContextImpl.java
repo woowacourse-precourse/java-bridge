@@ -41,7 +41,7 @@ public class BridgeGameContextImpl implements BridgeGameContext {
     @Override
     public void retry() {
         this.plusRepeatCount();
-        bridgeGame.retry();
+        this.bridgeGame.retry();
     }
 
     @Override
