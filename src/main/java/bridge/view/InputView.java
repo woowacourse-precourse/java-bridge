@@ -2,6 +2,8 @@ package bridge.view;
 
 import static java.lang.Integer.parseInt;
 
+import bridge.domain.Bridge;
+//import bridge.domain.SubBridge;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -15,75 +17,48 @@ public class InputView {
     private static final String INPUT_GAME_COMMAND_ERROR = "[ERROR] 게임 재시작/종료 값은 R 또는 Q 중 하나의 문자여야 합니다.";
     private static final String INPUT_VALUE_LENGTH_ERROR = "[ERROR] 입력 값의 길이는 1이어야 합니다.";
     private static final String INPUT_BLOCK_TO_MOVE_ERROR = "[ERROR] 이동할 칸은 U 또는 D 중 하나의 문자여야 합니다.";
-    private static final String INPUT_NOT_INTEGER_ERROR = "[ERROR] 생성할 다리의 길이는 정수만 입력이 가능합니다.";
-    private static final String INPUT_VALID_RANGE_OF_NUMBER_ERROR = "[ERROR] 3~20사이의 숫자만 입력이 가능합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        String input;
-
-        while (true) {
-            try {
-                System.out.println(INPUT_BRIDGE_SIZE);
-                input = Console.readLine();
-                validateBridgeSize(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
+    public Bridge readBridgeSize() {
+        try {
+            System.out.println(INPUT_BRIDGE_SIZE);
+            return new Bridge(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
         }
-
-        return parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input;
-
-        while (true) {
-            try {
-                System.out.println(INPUT_BLOCK_TO_MOVE);
-                input = Console.readLine();
-                validateBlockToMove(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
+        try {
+            System.out.println(INPUT_BLOCK_TO_MOVE);
+            String input = Console.readLine();
+            validateBlockToMove(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
         }
-
-        return input;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String input;
-
-        while (true) {
-            try {
-                System.out.println(INPUT_GAME_COMMAND);
-                input = Console.readLine();
-                validateGameCommand(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
+        try {
+            System.out.println(INPUT_GAME_COMMAND);
+            String input = Console.readLine();
+            validateGameCommand(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
         }
-
-        return input;
-    }
-
-    private void validateBridgeSize(String input) {
-        validateInteger(input);
-        validateRange(parseInt(input));
     }
 
     private void validateBlockToMove(String input) {
@@ -111,21 +86,6 @@ public class InputView {
     private void validateCorrectBlock(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException(INPUT_BLOCK_TO_MOVE_ERROR);
-        }
-    }
-
-    private void validateInteger(String size) {
-        String regex = "^[0-9]+$";
-
-        if (!size.matches(regex)) {
-            throw new IllegalArgumentException(INPUT_NOT_INTEGER_ERROR);
-        }
-
-    }
-
-    private void validateRange(int size) {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException(INPUT_VALID_RANGE_OF_NUMBER_ERROR);
         }
     }
 }
