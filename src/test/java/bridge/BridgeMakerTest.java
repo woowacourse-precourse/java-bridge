@@ -34,4 +34,15 @@ class BridgeMakerTest {
 
         assertThat(resultList).isEqualTo(expectedList);
     }
+
+    @Test
+    @DisplayName("다리의 길이에 맞게 Bridge가 생성되는지 확인하는 테스트")
+    void makeBridgeTest() {
+
+        int bridgeSize = 15;
+
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
+        assertThat(bridge.size()).isEqualTo(bridgeSize);
+    }
 }
