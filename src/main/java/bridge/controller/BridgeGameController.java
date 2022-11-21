@@ -33,7 +33,7 @@ public class BridgeGameController implements GameController {
     private void play() {
         while (game.checkCross() && game.movable()) {
             output.printMove();
-            ExceptionTemplate template = () -> game.move(input.readMoving(), game.recentResult().stateSize());
+            ExceptionTemplate template = () -> game.move(input.readCommand(), game.recentResult().stateSize());
             Result recentResult = (Result) template.check();
             output.printMap(recentResult);
         }
@@ -50,7 +50,7 @@ public class BridgeGameController implements GameController {
     private boolean checkRestart() {
         if (!game.recentResult().movable()) {
             output.printRestart();
-            ExceptionTemplate template = () -> game.retry(input.readGameCommand());
+            ExceptionTemplate template = () -> game.retry(input.readCommand());
             return (boolean) template.check();
         }
         return false;

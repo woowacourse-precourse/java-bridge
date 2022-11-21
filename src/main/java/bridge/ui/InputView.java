@@ -14,11 +14,7 @@ public class InputView {
         }
     }
 
-    public String readMoving() {
-        return input();
-    }
-
-    public String readGameCommand() {
+    public String readCommand() {
         return input();
     }
 
