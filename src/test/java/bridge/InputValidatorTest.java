@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,8 +15,8 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @DisplayName("다리 길이 입력값이 3~20 을 벗어나는 경우 오류")
-    @ValueSource(ints = {2, 21, -3})
-    void validateBridgeLengthTest(Integer input) {
+    @ValueSource(strings = {"2", "21", "-3", "a", "bb"})
+    void validateBridgeLengthTest(String input) {
         assertThatThrownBy(()->inputValidator.validateBridgeLength(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -35,4 +36,6 @@ class InputValidatorTest {
         assertThatThrownBy(()->inputValidator.validateGameCommand(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    
+
 }
