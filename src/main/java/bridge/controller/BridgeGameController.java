@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.utils.constants.GameConstants;
 import bridge.utils.constants.Result;
 import bridge.utils.output.BridgeStatus;
 import bridge.view.InputView;
@@ -17,7 +18,7 @@ public class BridgeGameController {
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
     private final BridgeStatus bridgeStatus;
-    private boolean gameResult;
+    private String gameResult;
 
     public BridgeGameController() {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -32,11 +33,11 @@ public class BridgeGameController {
 
     public void run(){
         if (isPassBridge()) {
-            gameResult = true;
+            gameResult = GameConstants.SUCCESS;
             end();
             return;
         }
-        gameResult = false;
+        gameResult = GameConstants.FAIL;
         retry();
     }
 
