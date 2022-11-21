@@ -1,9 +1,9 @@
 package bridge.mock;
 
+import bridge.BridgeMaker;
 import bridge.controller.BridgeController;
 import bridge.controller.GameController;
 import bridge.service.BridgeGame;
-import bridge.BridgeMaker;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.view.inputview.InputViewExceptionHandlingProxy;
 import bridge.view.inputview.InputViewInterface;
