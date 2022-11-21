@@ -12,6 +12,7 @@ public class BridgeGame {
     final private BridgeMaker bridgeMaker;
 
     private List<String> bridge;
+    private List<String> playerBridge;
 
     /**
      * BridgeGame 필드 초기화 생성자
@@ -21,6 +22,7 @@ public class BridgeGame {
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = new ArrayList<>();
+        playerBridge = new ArrayList<>();
     }
 
     /**
@@ -29,7 +31,20 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        outputView.printInputMove();
+        playerBridge.add(inputView.readMoving());
+        outputView.printMap(playerBridge, bridge);
+    }
 
+    /**
+     * 다리 건너기 게임이 끝나는지 체크하는 메서드
+     *
+     * @return true - 실패
+     * <p>false - 성공</p>
+     */
+    public boolean checkGameOver() {
+        if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(playerBridge.size() - 1))) return false;
+        return true;
     }
 
     /**
@@ -37,7 +52,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        outputView.printInputRetry();
+        inputView.readGameCommand();
+        return true;
     }
 
     /**
@@ -50,12 +68,24 @@ public class BridgeGame {
     }
 
     /**
+     * 게임오버 처리 메서드
+     */
+    public void gameOver() {
+
+    }
+
+    /**
      * 전체 게임 동작 관리를 위해 사용하는 메서드
      */
     public void start() {
-        int tryCount = 0;
         outputView.printStartGame();
         buildBridge();
-        move();
+        while (true) {
+            move();
+            if (checkGameOver()) {
+                if (!retry()) break;
+            }
+        }
+        gameOver();
     }
 }
