@@ -84,7 +84,7 @@
 - [x] 재시작/종료 문자(R/Q)를 관리하는 유틸리티 클래스 추가
 
 
-- [ ] InputView 싱글턴 구현
+- [x] InputView 싱글턴 구현
 - [ ] OutputView 싱글턴 구현
 
 - [x] InputValidatorTest 리팩토링
