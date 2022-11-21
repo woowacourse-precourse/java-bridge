@@ -19,18 +19,17 @@ public class Round {
         map = new ArrayList<>();
     }
 
-    private boolean isMovable(List<Integer> accessibleIndexes) {
+    public boolean isMovable(List<Integer> accessibleIndexes) {
         return accessibleIndexes.contains(currentIndex);
     }
 
-    public void updateStatusAfterMove(String direction, List<Integer> accessibleIndexes) {
+    public void updateStatusWhenMovable(String direction) {
         map.add(direction);
+        currentIndex++;
+    }
 
-        if (isMovable(accessibleIndexes)) {
-            currentIndex++;
-            return;
-        }
-
+    public void updateStatusWhenImmovable(String direction) {
+        map.add(direction);
         roundStatus = FAIL;
     }
 
