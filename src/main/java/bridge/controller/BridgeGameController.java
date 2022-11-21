@@ -16,9 +16,9 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    BridgeGame bridgeGame;
-    GameChecker gameChecker;
-    Deque<MovementStatusForm> movementStatus;
+    private final GameChecker gameChecker;
+    private Deque<MovementStatusForm> movementStatus;
+    private BridgeGame bridgeGame;
 
     public BridgeGameController(BridgeGame bridgeGame, GameChecker gameChecker) {
         this.bridgeGame = bridgeGame;
