@@ -25,22 +25,29 @@ public class BridgeGame {
      *
      * @return
      */
-    public int move(String userInput, List<String> bridge, int cnt) {
-        if(userInput.equals("U")) {
-            if(moveUp(bridge, cnt)) {
-                cnt++;
+    public boolean move(String userInput, List<String> bridge, int cnt) {
+        if (userInput.equals("U")) {
+            if (moveUp(bridge, cnt)) {
+                return true;
             }
         }
 
-        if(userInput.equals("D")) {
-
+        if (userInput.equals("D")) {
+            if (moveDown(bridge, cnt)) {
+                return true;
+            }
         }
-        return cnt;
+        return false;
     }
 
     private boolean moveUp(List<String> bridge, int cnt) {
         String upOrDown = bridge.get(cnt);
         return upOrDown.equals("U");
+    }
+
+    private boolean moveDown(List<String> bridge, int cnt) {
+        String upOrDown = bridge.get(cnt);
+        return upOrDown.equals("D");
     }
 
     /**
