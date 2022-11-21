@@ -12,7 +12,7 @@ public enum Stairs {
         this.abbreviation = abbreviation;
     }
 
-    public String convertIntToStr(int randomValue) {
+    public static String convertIntToStr(int randomValue) {
         if(randomValue == Stairs.UP_STAIRS.randomValue){
             return UP_STAIRS.abbreviation;
         }
