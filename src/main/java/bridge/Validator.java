@@ -1,5 +1,7 @@
 package bridge;
 
+import Statements.ErrorStatements;
+
 public class Validator {
 
     private static IllegalArgumentException exit_Program = new IllegalArgumentException();
@@ -19,6 +21,7 @@ public class Validator {
         try{
          isNumber(input);
         }catch(IllegalArgumentException e){
+            outputView.printStatements(ErrorStatements.NOT_NUMBER_ERROR.warned());
             outputView.printStatements("");
             throw exit_Program;
         }
@@ -34,6 +37,7 @@ public class Validator {
         try{
             isNumberInValidRange(input);
         }catch(IllegalArgumentException e){
+            outputView.printStatements(ErrorStatements.NUMBER_RANGE_ERROR.warned());
             outputView.printStatements("");
             throw exit_Program;
         }

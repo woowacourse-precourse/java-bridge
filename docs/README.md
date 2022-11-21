@@ -79,3 +79,4 @@ BridgeGameController 클래스에 BridgeMaker, BridgeGame 클래스의 객체들
 - [V] 다리를 생성해 반환한다.
 - [V] BridgeGameControl 클래스의 setBridgeGame 메서드 -> startGame, setBridgeGame 메서드 2개로 분할
 - [V] 다리 길이의 입력값이 3이상 20 이하의 숫자인지 검증한다.
+- [V] 다리 길이의 입력값이 정해진 형식이 아닐 경우 [ERROR]로 시작하는 메시지를 출력한다.
