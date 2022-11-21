@@ -3,13 +3,23 @@ package bridge.validation;
 import static bridge.exception.ErrorEnum.INVALID_BRIDGE_GAME_MOVE_STATUS;
 import static bridge.exception.ErrorEnum.INVALID_BRIDGE_INDEX;
 import static bridge.exception.ErrorEnum.INVALID_BRIDGE_SIZE_STATE;
+import static bridge.exception.ErrorEnum.INVALID_COMMAND_INPUT;
 import static bridge.exception.ErrorEnum.INVALID_DIRECTION_INPUT;
 import static bridge.game.BridgeGameStatus.RUNNING;
 
+import bridge.exception.ErrorEnum;
 import bridge.game.BridgeGameStatus;
 import java.util.List;
 
 public class Validator {
+
+    public static void validateConvertableToInt(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorEnum.INVALID_INTEGER_INPUT.messageWithCause(input), e);
+        }
+    }
 
     public static void validateListSizeEquals(int sizeA, int sizeB) {
         if (sizeA != sizeB) {
@@ -40,6 +50,13 @@ public class Validator {
     public static void validateDirectionInput(String input) {
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException(INVALID_DIRECTION_INPUT
+                    .messageWithCause(input));
+        }
+    }
+
+    public static void validateCommandInput(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException(INVALID_COMMAND_INPUT
                     .messageWithCause(input));
         }
     }
