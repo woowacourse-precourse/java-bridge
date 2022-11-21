@@ -9,7 +9,9 @@ public class OutputView {
     private static final String INPUT_MOVE_COMMAND = "이동할 칸을 선택해주세요. (";
     private static final String INPUT_REPLAY_GAME = "게임을 다시 시도할지 여부를 입력해주세요. (";
     private static final String INPUT_END = ")";
-    private static final String LAST_RESULT ="최종 게임 결과";
+    private static final String LAST_BRIDGE_RESULT ="최종 게임 결과";
+    private static final String IS_GAME_PASS= "게임 성공 여부";
+    private static final String TOTAL_TRY ="총 시도한 횟수";
     private static final String SUCCESS = "성공";
     private static final String FAIL ="실패";
     private static final String BRIDGE_LEFT = "[ ";
@@ -49,7 +51,10 @@ public class OutputView {
         System.out.println(INPUT_REPLAY_GAME+UserCommand.REPLAY.getPosition()+IS+UserCommand.REPLAY.getMoveCommand()+
                 AND+ UserCommand.END.getPosition()+IS+UserCommand.END.getMoveCommand()+INPUT_END);
     }
+    public void showLastBridgeResult(){
+        System.out.println(LAST_BRIDGE_RESULT);
+    }
     public void showResult(){
-        System.out.println(LAST_RESULT);
+        System.out.println(IS_GAME_PASS);
     }
 }
