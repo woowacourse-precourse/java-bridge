@@ -1,31 +1,31 @@
 package bridge.user;
 
 import bridge.config.NumberGeneratorDependencyContainer;
-import bridge.controller.BridgeGameManager;
+import bridge.controller.BridgeGameController;
 
 public class GamePlayer {
 
-    private BridgeGameManager bridgeGameManager;
+    private BridgeGameController bridgeGameController;
 
     public GamePlayer(NumberGeneratorDependencyContainer numberGeneratorDependencyContainer) {
-        bridgeGameManager = new BridgeGameManager(numberGeneratorDependencyContainer);
+        bridgeGameController = new BridgeGameController(numberGeneratorDependencyContainer);
     }
 
     public void playGame() {
         try {
-            bridgeGameManager.setUpGame();
+            bridgeGameController.setUpGame();
             move();
         } catch (IllegalArgumentException illegalArgumentException) {
-            bridgeGameManager.exceptionalGameEnd(illegalArgumentException.getMessage());
+            bridgeGameController.exceptionalGameEnd(illegalArgumentException.getMessage());
             return;
         }
-        bridgeGameManager.printResult();
+        bridgeGameController.printResult();
     }
 
     public void move() {
         do {
-            bridgeGameManager.move();
-        } while (bridgeGameManager.GameKeepGoingOrNot());
+            bridgeGameController.move();
+        } while (bridgeGameController.GameKeepGoingOrNot());
     }
 
 }

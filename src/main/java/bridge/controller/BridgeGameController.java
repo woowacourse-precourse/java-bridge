@@ -11,7 +11,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
-public class BridgeGameManager {
+public class BridgeGameController {
 
     private InputView inputView;
     private OutputView outputView;
@@ -19,7 +19,7 @@ public class BridgeGameManager {
     private BridgeGame bridgeGame;
     private BridgeNumberGenerator bridgeNumberGenerator;
 
-    public BridgeGameManager(NumberGeneratorDependencyContainer numberGeneratorDependencyContainer) {
+    public BridgeGameController(NumberGeneratorDependencyContainer numberGeneratorDependencyContainer) {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeNumberGenerator = numberGeneratorDependencyContainer.bridgeNumberGenerator();
@@ -66,7 +66,7 @@ public class BridgeGameManager {
     public boolean GameKeepGoingOrNot() {
         if (!bridgeGame.checkPlayerCrossedAllBridge()) {
             System.out.println(GameProgressMessage.GAME_RETRY_MESSAGE);
-            String input = Console.readLine();
+            String input = inputView.readGameCommand();
 
             return bridgeGame.retry(input);
         }
