@@ -25,10 +25,14 @@ public class BridgeMaker {
 
         while (bridgeTileDirectionSigns.size() < size) {
             int bridgeTileCode = bridgeNumberGenerator.generate();
-            Tile tile = Tile.findByCode(bridgeTileCode);
-            bridgeTileDirectionSigns.add(tile.getDirectionSign());
+            bridgeTileDirectionSigns.add(convertTileCodeToDirectionSign(bridgeTileCode));
         }
 
         return bridgeTileDirectionSigns;
+    }
+
+    private String convertTileCodeToDirectionSign(int code) {
+        Tile tile = Tile.findByCode(code);
+        return tile.getDirectionSign();
     }
 }
