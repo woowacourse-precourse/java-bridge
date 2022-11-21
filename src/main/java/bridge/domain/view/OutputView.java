@@ -23,15 +23,15 @@ public class OutputView {
 
     // line: 1==up / 0==down
     public String printMapByLine(int line) {
-        String result = "[ ";
-        for (int index = 0; index < crossBridge.getCrossBridgeSize(); index++) {
-            result += crossBridge.getCrossBridgeIndex(index).getWay(line);
-            if (index != crossBridge.getCrossBridgeSize() - 1) {
-                result += " | ";
-            }
+        StringBuilder result = new StringBuilder("[ ");
+        int index = 0;
+        for (; index < crossBridge.getCrossBridgeSize() - 1; index++) {
+            result.append(crossBridge.getCrossBridgeIndex(index).getWay(line));
+            result.append(" | ");
         }
-        result += " ]";
-        return result;
+        result.append(crossBridge.getCrossBridgeIndex(index).getWay(line));
+        result.append(" ]");
+        return result.toString();
     }
 
     /**
