@@ -1,4 +1,4 @@
-package bridge.domain.make_bridge;
+package bridge.domain.bridge_maker;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

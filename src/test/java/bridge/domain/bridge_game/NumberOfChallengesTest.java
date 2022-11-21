@@ -1,8 +1,8 @@
-package bridge.domain;
+package bridge.domain.bridge_game;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import bridge.domain.bridge_game.NumberOfChallenges;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

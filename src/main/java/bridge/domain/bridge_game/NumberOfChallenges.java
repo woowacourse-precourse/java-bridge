@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge_game;
 
 public class NumberOfChallenges {
 

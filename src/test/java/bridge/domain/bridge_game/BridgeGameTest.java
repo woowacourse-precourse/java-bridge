@@ -1,10 +1,16 @@
-package bridge.domain;
+package bridge.domain.bridge_game;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
 import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.bridge_game.Bridge;
+import bridge.domain.bridge_game.BridgeGame;
+import bridge.domain.bridge_game.MoveResults;
+import bridge.domain.bridge_game.NumberOfChallenges;
+import bridge.domain.bridge_game.Player;
+import bridge.domain.bridge_game.Position;
 import bridge.domain.constants.GameCommands;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;

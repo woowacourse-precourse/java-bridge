@@ -1,8 +1,8 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.domain.make_bridge.BridgeMaker;
-import bridge.domain.make_bridge.BridgeRandomNumberGenerator;
+import bridge.domain.bridge_maker.BridgeMaker;
+import bridge.domain.bridge_maker.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.OutputViewFormatter;

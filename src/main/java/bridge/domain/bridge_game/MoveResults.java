@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge_game;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;

@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge_game;
 
 import bridge.domain.constants.MoveCommands;
 import java.util.List;

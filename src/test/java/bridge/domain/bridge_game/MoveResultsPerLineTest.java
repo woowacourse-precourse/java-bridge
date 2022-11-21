@@ -1,10 +1,10 @@
-package bridge.domain;
+package bridge.domain.bridge_game;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.MoveResultsPerLine;
+import bridge.domain.bridge_game.MoveResultsPerLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
