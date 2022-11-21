@@ -8,7 +8,6 @@ import bridge.data.MovingData;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
     private static final String RIGHT_RESULT = "O";
     private static final String WRONG_RESULT = "X";
     private static final String NOTHING_RESULT = " ";
