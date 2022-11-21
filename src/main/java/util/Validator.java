@@ -7,6 +7,7 @@ import bridgeConstant.ErrorLog;
 
 public class Validator {
 	private static final String NUMBER_REGEX = "\\d+";
+	private static final String CAPITAL_LETTER_REGEX = "[A-Z]";
 
 	private static final int SIZE_LOWER_INCLUSIVE = 3;
 	private static final int SIZE_UPPER_INCLUSIVE = 20;
@@ -45,6 +46,12 @@ public class Validator {
 		if (bridge.stream()
 			.anyMatch(cell -> !cell.equals(Constant.UPPER_POSITION) && !cell.equals(Constant.LOWER_POSITION))) {
 			throw new IllegalArgumentException(ErrorLog.INVALID_BRIDGE_COMPONENT_EXCEPTION.log());
+		}
+	}
+
+	public static void validateCapitalLetter(String letter) {
+		if (!letter.matches(CAPITAL_LETTER_REGEX)) {
+			throw new IllegalArgumentException(ErrorLog.NOT_CAPITAL_LETTER_EXCEPTION.log());
 		}
 	}
 }
