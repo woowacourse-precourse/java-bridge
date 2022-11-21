@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Collections;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeMapTest {
@@ -22,7 +23,7 @@ class BridgeMapTest {
         List<String> topExpected = List.of(top);
         List<String> bottomExpected = List.of(" ");
 
-        Assertions.assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
+        assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
     }
 
     @DisplayName("아래 다리를 선택했을 때, 이동할 수 있으면 O, 없으면 X가 출력된다.")
@@ -34,6 +35,6 @@ class BridgeMapTest {
         List<String> topExpected = List.of(" ");
         List<String> bottomExpected = List.of(bottom);
 
-        Assertions.assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
+        assertThat(bridgeMap.getMap()).isEqualTo(List.of(topExpected, bottomExpected));
     }
 }

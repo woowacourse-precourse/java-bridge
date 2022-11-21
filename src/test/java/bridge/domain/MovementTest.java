@@ -1,8 +1,9 @@
 package bridge.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class MovementTest {
 
@@ -12,7 +13,7 @@ class MovementTest {
         Movement movement = new Movement();
         String input = "U";
         movement.saveMoving(new Moving(input));
-        Assertions.assertThat(movement.getMoveCount()).isEqualTo(1);
-        Assertions.assertThat(movement.getMoving()).isEqualTo(input);
+        assertThat(movement.getMoveCount()).isEqualTo(1);
+        assertThat(movement.getMoving()).isEqualTo(input);
     }
 }

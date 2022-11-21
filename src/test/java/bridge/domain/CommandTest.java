@@ -1,10 +1,11 @@
 package bridge.domain;
 
 import bridge.constant.ErrorMessage;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CommandTest {
 
@@ -19,7 +20,7 @@ class CommandTest {
     @ParameterizedTest
     @ValueSource(strings = {"U", "D", "A", "", "*", " ", "/"})
     void validMovingTestError(String input) {
-        Assertions.assertThatThrownBy(() -> new Command(input))
+        assertThatThrownBy(() -> new Command(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_COMMAND_VALUE.getMessage());
     }
