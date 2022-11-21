@@ -18,5 +18,9 @@ public class InputException {
             throw new IllegalArgumentException("not proper letter");
         }
     }
-    
-}
+    private static boolean isProperNumbers(String userInput){
+        int bridgeLength = Integer.parseInt(userInput);
+        return (bridgeLength<UNDER_RANGE || bridgeLength>OVER_RANGE);
+    }
+
+   }
