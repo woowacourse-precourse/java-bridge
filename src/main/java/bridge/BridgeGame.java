@@ -51,7 +51,7 @@ public class BridgeGame {
         }
     }
 
-    public static String getGameCommand(){
+    public static boolean getGameCommand(){
         try{
             return inputView.readGameCommand();
         }catch(IllegalArgumentException e){
