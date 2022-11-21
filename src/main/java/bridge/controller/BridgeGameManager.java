@@ -45,7 +45,7 @@ public class BridgeGameManager {
     }
 
     private boolean isFault(Bridge targetBridge, int tries, String upDownInput) {
-        return !targetBridge.getBridgeShape().get(tries).equals(upDownInput);
+        return !targetBridge.bridgeSameIndex(tries, upDownInput);
     }
 
     private void printStatus(BridgeGame bridgeGame, Bridge targetBridge) {

@@ -20,6 +20,10 @@ public class Bridge {
         return bridgeShape;
     }
 
+    public boolean bridgeSameIndex(int index, String upDown) {
+        return bridgeShape.get(index).equals(upDown);
+    }
+
     public void add(int number) {
         sizeUp();
         if (number == 1) {

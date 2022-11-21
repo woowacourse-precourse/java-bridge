@@ -24,7 +24,7 @@ public class OutputView {
     private static boolean isSame(Bridge target, List<String> pre) {
         int size = pre.size();
         for (int i = 0; i < size; i++) {
-            if (!target.getBridgeShape().get(i).equals(pre.get(i))) {
+            if (!target.bridgeSameIndex(i, pre.get(i))) {
                 return false;
             }
         }
@@ -93,7 +93,6 @@ public class OutputView {
         }
         System.out.println("]");
     }
-
 
     public static void printMap(Bridge targetBridge, List<String> preStatus) {
         printTop(targetBridge,  preStatus);
