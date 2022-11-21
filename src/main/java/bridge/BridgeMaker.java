@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.SafeSpot;
+import bridge.util.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+        Validator.validateBridgeSize(size);
         for (int i = 0; i < size; i++) {
             int locationNum = bridgeNumberGenerator.generate();
             bridge.add(SafeSpot.locationOf(locationNum));
