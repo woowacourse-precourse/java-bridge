@@ -16,36 +16,6 @@ public class OutputView {
         StringBuilder topBridge = initTopBridge();
         StringBuilder bottomBridge = initBottomBridge();
 
-        for (int i = 0; i < userBridge.size(); i++) {
-            if (userBridge.get(i).equals("U")) {
-                if (bridge.get(i).equals("U")) {
-                    topBridge.append(" O ");
-                    bottomBridge.append("   ");
-                    topBridge.append("|");
-                    bottomBridge.append("|");
-                    continue;
-                }
-                topBridge.append(" X ");
-                bottomBridge.append("   ");
-                topBridge.append("|");
-                bottomBridge.append("|");
-                continue;
-            }else{
-                if (bridge.get(i).equals("U")) {
-                    topBridge.append(" X ");
-                    bottomBridge.append("   ");
-                    topBridge.append("|");
-                    bottomBridge.append("|");
-                    continue;
-                }
-                topBridge.append(" O ");
-                bottomBridge.append("   ");
-                topBridge.append("|");
-                bottomBridge.append("|");
-            }
-
-        }
-
         topBridge = printTopBridgeStatus(bridge, userBridge, topBridge);
         bottomBridge = printBottomBridgeStatus(bridge, userBridge, bottomBridge);
 
@@ -87,41 +57,32 @@ public class OutputView {
 
     private StringBuilder printTopBridgeStatus(List<String> answerBridge, List<String> userBridge, StringBuilder topBridge) {
         for (int i = 0; i < userBridge.size(); i++) {
-            if (checkIfUserInputIsCorrect(answerBridge.get(i), userBridge.get(i))) {
-                topBridge.append(" O ");
+            if (userBridge.get(i).equals("U")) {
+                if (answerBridge.get(i).equals("U")) {
+                    topBridge.append(" O |");
+                    continue;
+                }
+                topBridge.append(" X |");
                 continue;
             }
-            topBridge.append("   ");
-
-            if (i == userBridge.size() - 1) {
-                break;
-            }
-            topBridge.append("|");
+            topBridge.append("   |");
         }
         return topBridge;
     }
 
     private StringBuilder printBottomBridgeStatus(List<String> answerBridge, List<String> userBridge, StringBuilder bottomBridge) {
         for (int i = 0; i < userBridge.size(); i++) {
-            if (checkIfUserInputIsCorrect(answerBridge.get(i), userBridge.get(i))) {
-                bottomBridge.append(" O ");
+            if (userBridge.get(i).equals("D")) {
+                if (answerBridge.get(i).equals("D")) {
+                    bottomBridge.append(" O |");
+                    continue;
+                }
+                bottomBridge.append(" X |");
                 continue;
             }
-            bottomBridge.append("   ");
-
-            if (i == userBridge.size() - 1) {
-                break;
-            }
-            bottomBridge.append("|");
+            bottomBridge.append("   |");
         }
         return bottomBridge;
-    }
-
-    private boolean checkIfUserInputIsCorrect(String answerBridge, String userBridge) {
-        if (answerBridge.equals(userBridge)) {
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -129,10 +90,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge, boolean successOrNot, int trialCount) {
+    public void printResult(List<String> bridge, List<String> userBridge, boolean successOrNot, int trialCount) {
         System.out.println("최종 게임 결과");
 
-//        printMap(bridge,0);
+        printMap(bridge, userBridge);
 
         if (successOrNot) {
             printSuccessMessage(trialCount);
