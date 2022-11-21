@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static bridge.MoveType.X;
 
@@ -53,7 +54,7 @@ public class BridgeGame {
     public void move(String direction) {
         String validBridge = bridge.get(index);
         DirectionType directionType = DirectionType.valueOfString(direction);
-        MoveType[] moveResult = initializeMovingResult(validBridge, directionType);
+        MoveType[] moveResult = initializeMovingResult(validBridge, direction, directionType.getNumber());
         String downMove = moveResult[0].getValue();
         String upMove = moveResult[1].getValue();
         addBridge(downMove, upMove, index);
@@ -72,13 +73,11 @@ public class BridgeGame {
         upBridge.add("]");
     }
 
-    private MoveType[] initializeMovingResult(String validBridge, DirectionType directionType) {
-        int validNumber = Integer.parseInt(validBridge);
-
+    private MoveType[] initializeMovingResult(String validBridge, String direction, int number) {
         MoveType[] moveResult = {MoveType.SPACE, MoveType.SPACE};
-        moveResult[directionType.getNumber()] = MoveType.X;
-        if (directionType.getNumber() == validNumber) {
-            moveResult[directionType.getNumber()] = MoveType.O;
+        moveResult[number] = MoveType.X;
+        if (Objects.equals(validBridge, direction)) {
+            moveResult[number] = MoveType.O;
         }
         return moveResult;
     }
