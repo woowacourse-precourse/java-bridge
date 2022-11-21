@@ -1,8 +1,10 @@
 package bridge.view;
 
+import static bridge.constants.ErrorConstant.RETRY_ERROR;
 import static bridge.constants.ErrorConstant.SIZE_EXCEPTION;
-import static bridge.validator.Validate.vaildateBridgeSize;
+import static bridge.validator.Validate.*;
 
+import bridge.constants.ErrorConstant;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -16,13 +18,11 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-
-        String bridgeSizeInput;
-        bridgeSizeInput = Console.readLine();
+        String bridgeSizeInput = Console.readLine();
         try {
             vaildateBridgeSize(bridgeSizeInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(SIZE_EXCEPTION.getException());
+            SIZE_EXCEPTION.printException();
             return readBridgeSize();
         }
         return Integer.parseInt(bridgeSizeInput);
@@ -41,8 +41,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String command;
-        command = Console.readLine().toUpperCase();
+        String command = Console.readLine().toUpperCase();
+        try{
+            vaildateCheckRetry(command);
+        }catch (IllegalArgumentException e){
+            RETRY_ERROR.printException();
+            return readGameCommand();
+        }
         return command;
     }
 
