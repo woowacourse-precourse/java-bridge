@@ -23,10 +23,8 @@ public class BridgeMaker {
 
         for (int count = 0; count < size; count++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-
-            Arrays.stream(BridgeDirection.values())
-                    .filter(bridgeDirection -> bridgeNumber  == bridgeDirection.getRandomNumber())
-                    .forEach(bridgeDirection -> bridge.add(bridgeDirection.getMark()));
+            bridge.add(Arrays.stream(BridgeDirection.values())
+                    .filter(bridgeDirection -> bridgeNumber == bridgeDirection.getRandomNumber()).findFirst().orElse(BridgeDirection.NOTING).getMark());
         }
         return bridge;
     }

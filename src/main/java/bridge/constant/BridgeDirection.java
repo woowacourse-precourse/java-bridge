@@ -2,7 +2,8 @@ package bridge.constant;
 
 public enum BridgeDirection {
     UP(1, "U"),
-    DOWN(0, "D");
+    DOWN(0, "D"),
+    NOTING(-1,"N");
 
     private final int randomNumber;
     private final String mark;
