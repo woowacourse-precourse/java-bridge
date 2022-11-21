@@ -1,4 +1,8 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
     InputView inputView;
@@ -8,7 +12,7 @@ public class BridgeGameController {
 
     int size;
 
-    BridgeGameController(){
+    public BridgeGameController(){
         inputView = new InputView();
         outputView = new OutputView();
     }

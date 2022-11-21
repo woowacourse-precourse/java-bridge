@@ -1,4 +1,4 @@
-package bridge;
+package bridge.utils;
 
 public class Validator {
     public static void isNumber(String number){

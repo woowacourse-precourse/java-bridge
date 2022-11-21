@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public class Choice {
     private String input;

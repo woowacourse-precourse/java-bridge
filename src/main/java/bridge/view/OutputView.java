@@ -1,6 +1,7 @@
-package bridge;
+package bridge.view;
 
-import java.util.ArrayList;
+import bridge.domain.Choice;
+
 import java.util.List;
 
 /**
