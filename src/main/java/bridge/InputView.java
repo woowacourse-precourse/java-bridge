@@ -11,6 +11,8 @@ public class InputView {
     public static int readBridgeSize() {
         String input = Console.readLine();
         int size = Integer.parseInt(input);
+        if(size<3||size>20)
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_ERROR.getErrormessage());
         return size;
     }
 
