@@ -1,19 +1,13 @@
 package bridge;
 
-import bridge.console.OutputView;
-
 public class BridgeGameStarter {
-    private final OutputView outputView;
-
-    public BridgeGameStarter() {
-        this.outputView = new OutputView();
-    }
+    private static final String TEXT_GAME_START = "다리 건너기 게임을 시작합니다.";
 
     public void atGameStart() {
-        notifyGameStart();
+        printGameStart();
     }
 
-    private void notifyGameStart() {
-        this.outputView.printGameStart();
+    private void printGameStart() {
+        System.out.println(TEXT_GAME_START);
     }
 }
