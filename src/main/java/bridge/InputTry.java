@@ -27,4 +27,16 @@ public class InputTry {
         }
         return moving;
     }
+    public static String readGameCommandTry(){
+        String command = null;
+        while ( command == null ) {
+            try {
+                command = input.readGameCommand();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                command = null;
+            }
+        }
+        return command;
+    }
 }
