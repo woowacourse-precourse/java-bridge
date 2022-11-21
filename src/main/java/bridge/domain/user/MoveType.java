@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.user;
 
 public enum MoveType {
     UP_TYPE("U", 1),
