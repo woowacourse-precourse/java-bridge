@@ -1,4 +1,4 @@
-package bridge;
+package bridge.game;
 
 import static bridge.domain.BridgeConstants.QUIT;
 import static bridge.domain.BridgeConstants.RETRY;

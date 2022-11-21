@@ -8,7 +8,7 @@ import static bridge.ui.MessageUtil.FINAL_RESULT_INTRO;
 import static bridge.ui.MessageUtil.POSITION_CHOICE_INPUT;
 import static bridge.ui.MessageUtil.START_GAME_INTRO;
 
-import bridge.GameContext;
+import bridge.game.GameContext;
 import java.util.List;
 import java.util.Map;
 

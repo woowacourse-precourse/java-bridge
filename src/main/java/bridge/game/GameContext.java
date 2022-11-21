@@ -1,6 +1,6 @@
-package bridge;
+package bridge.game;
 
-import static bridge.State.PLAYING;
+import static bridge.game.State.PLAYING;
 
 public class GameContext {
     private int retryCnt;

@@ -1,10 +1,7 @@
 package bridge.controller;
 
-import static bridge.domain.BridgeConstants.QUIT;
-import static bridge.domain.BridgeConstants.RETRY;
-
 import bridge.domain.Bridge;
-import bridge.BridgeGame;
+import bridge.game.BridgeGame;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 
