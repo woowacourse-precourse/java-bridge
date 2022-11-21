@@ -1,5 +1,6 @@
 package bridge.domain.bridge;
 
+import static bridge.validate.BridgeValidation.validatePasserLocation;
 import static bridge.value.LocationValue.LOCATION_INCREMENT;
 import static bridge.value.LocationValue.LOCATION_INIT;
 
@@ -10,14 +11,9 @@ public class BridgeLocation {
     private final int location;
 
     public BridgeLocation(int location) {
-        validate(location);
-        this.location = location;
-    }
+        validatePasserLocation(location);
 
-    private void validate(int location) {
-        if(location < LOCATION_INIT.getValue()) {
-            throw new IllegalArgumentException("다리에서의 위치가 양수가 아닙니다.");
-        }
+        this.location = location;
     }
 
     public static BridgeLocation initBridgeLocation() {
