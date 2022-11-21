@@ -60,9 +60,6 @@ util
 - ConverterUtil
   : 값을 대문자나 정수, 문자열로 변환하는 기능
 
-- CountUtil
-  : 개수를 세는 기능
-
   validator
 
 - BridgeGameValidator
@@ -87,4 +84,4 @@ view
 
 - View
   : 출력과 관련된 상수를 enum타입으로 저장
-
+  
