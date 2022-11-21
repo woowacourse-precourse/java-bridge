@@ -6,12 +6,14 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    static final String START_GAME = "다리 건너기 게임을 시작합니다. \n";
     static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
+        System.out.println(START_GAME);
         System.out.println(ENTER_BRIDGE_SIZE);
         int bridgeSize = Integer.parseInt(Console.readLine());
         return bridgeSize;
