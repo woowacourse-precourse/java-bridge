@@ -42,11 +42,23 @@ public class BridgeMapTest {
         setAnswer(  "[   | X |   | O | X | O |   ]\n",
                     "[ O |   | X |   |   |   | X ]\n");
         List<Boolean> moveResult = List.of(true,false,false,true,false,true,false);
-
         for (int position = 0; position < moveResult.size(); position++)
             bridgeMap.extendMap(moves.get(position),moveResult.get(position));
 
         Assertions.assertEquals(bridgeMap.toString(),answer);
+    }
+
+    @Test
+    void nothingDisplayTest()
+    {
+        setData(List.of("D"));
+        Assertions.assertEquals(bridgeMap.toString(),"[  ]\n[  ]\n");
+        setAnswer(  "[ X ]\n",
+                    "[   ]\n");
+        bridgeMap.extendMap("U",false);
+        Assertions.assertEquals(bridgeMap.toString(),answer);
+        bridgeMap.restart();
+        Assertions.assertEquals(bridgeMap.toString(),"[  ]\n[  ]\n");
     }
 
     void setData(List<String> moves)
