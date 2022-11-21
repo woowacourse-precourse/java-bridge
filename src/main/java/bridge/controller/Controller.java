@@ -34,6 +34,13 @@ public class Controller {
 
             if (!trialResult.wasSuccessful()) {
                 String command = inputView.readGameCommand();
+                if (command.equals("R")) {
+                    bridgeGame.retry();
+                    trialResults.clear();
+                }
+                if (command.equals("Q")) {
+                    break;
+                }
             }
         }
     }
