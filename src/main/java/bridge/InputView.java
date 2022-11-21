@@ -55,6 +55,22 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        GAME_COMMAND = Console.readLine();
+        if(!(MOVING.equals("R") || MOVING.equals("Q"))) {
+            throw new IllegalArgumentException(ERROR_RESTART);
+        }
+
+        return GAME_COMMAND;
     }
+
+    public int bridgeSize() {
+        return BRIDGE_SIZE;
+    }
+
+    public String moveUser() {
+        return MOVING;
+    }
+
 }
