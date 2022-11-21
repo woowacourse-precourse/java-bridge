@@ -8,15 +8,15 @@ import java.util.Map;
 
 public class Progress {
 
-    private final Map<BridgePattern, List<String>> record;
+    private final Map<BridgePattern, List<String>> progress;
 
     private final String EMPTY_VALUE = " ";
 
     public Progress(int length) {
-        this.record = initRecord(length);
+        this.progress = initProgress(length);
     }
 
-    private Map<BridgePattern, List<String>> initRecord(int length) {
+    private Map<BridgePattern, List<String>> initProgress(int length) {
         return new EnumMap<>(BridgePattern.class) {{
             for (BridgePattern bridgePattern : BridgePattern.values()) {
                 put(bridgePattern, new ArrayList<>(length));
@@ -25,7 +25,7 @@ public class Progress {
     }
 
     public void updateProgress(BridgePattern inputPattern, String symbol) {
-        record.forEach((bridgePattern, progress) -> {
+        progress.forEach((bridgePattern, progress) -> {
             String state = inspectSymbol(inputPattern, bridgePattern, symbol);
             progress.add(state);
         });
@@ -38,4 +38,5 @@ public class Progress {
 
         return EMPTY_VALUE;
     }
+
 }
