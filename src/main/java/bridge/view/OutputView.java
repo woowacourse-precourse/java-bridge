@@ -73,12 +73,12 @@ public class OutputView {
             RESULT_MESSAGE.printMessage();
             System.out.println(upSb + "\n" + downSb + "\n");
             System.out.println(SUCCEES.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
+        }
 
-            if (moveCheck == false) {
-                RESULT_MESSAGE.printMessage();
-                System.out.println(upSb + "\n" + downSb + "\n");
-                System.out.println(Fail.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
-            }
+        if (moveCheck == false) {
+            RESULT_MESSAGE.printMessage();
+            System.out.println(upSb + "\n" + downSb + "\n");
+            System.out.println(Fail.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
         }
     }
 
