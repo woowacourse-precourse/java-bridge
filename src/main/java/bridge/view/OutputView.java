@@ -35,7 +35,7 @@ public class OutputView {
     private String getLineOfMap(List<String> bridge, Command command, int indexOfBridge) {
         StringBuilder squaresOfLine = new StringBuilder();
         for (int i = 0; i < indexOfBridge - 1; i++) {
-            squaresOfLine.append(getResultOfPath(bridge.get(i), command.getValue()));
+            squaresOfLine.append(getResultOfPath(bridge.get(i), command.getString()));
             squaresOfLine.append(MIDDLE_BRIDGE);
         }
         return START_BRIDGE + squaresOfLine;
@@ -66,7 +66,7 @@ public class OutputView {
         System.out.println(FINAL_GAME_MSG);
         printMap(bridge, bridge.size(), result);
 
-        System.out.println("\n" + IS_GAME_SUCCEED + result.getValue());
+        System.out.println("\n" + IS_GAME_SUCCEED + result.getString());
         System.out.println(TOTAL_ATTEMPTS + attempts);
     }
 

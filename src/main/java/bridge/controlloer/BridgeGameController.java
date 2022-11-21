@@ -69,7 +69,7 @@ public class BridgeGameController {
     }
 
     private Result chooseRetryOrEnd() {
-        final Command command = Command.valueOf(readGameCommand());
+        final Command command = Command.getCommand(readGameCommand());
         if (command.equals(Command.RETRY)) {
             return Result.SUCCESS;
         }

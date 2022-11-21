@@ -1,15 +1,24 @@
 package bridge.domain;
 
+import java.util.Arrays;
+
 public enum Result {
     FAIL("실패"), SUCCESS("성공"), ARRIVED("성공");
 
-    final private String value;
+    final private String string;
 
-    Result(String value) {
-        this.value = value;
+    Result(String string) {
+        this.string = string;
     }
 
-    public String getValue() {
-        return value;
+    public String getString() {
+        return string;
+    }
+
+    public static Result getCommand(final String string) {
+        return Arrays.stream(values())
+                .filter(value -> value.string.equals(string))
+                .findAny()
+                .orElse(null);
     }
 }
