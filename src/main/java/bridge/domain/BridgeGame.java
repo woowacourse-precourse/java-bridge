@@ -9,6 +9,8 @@ public class BridgeGame {
     public static final String CROSSABLE = "O";
     public static final String UNCROSSABLE = "X";
     public static final String NONE = " ";
+    public static final String RETRY = "R";
+    public static final String END = "Q";
 
     private final Bridge bridge;
     private List<String> top;
@@ -22,19 +24,21 @@ public class BridgeGame {
         this.playCount = 0;
     }
 
-    public boolean move(int idx, String input) {
+    public void move(int idx, String input) {
         if (bridge.isMatch(idx, input)) {
             pass(input);
-            return true;
         }
         fail(input);
-        return false;
     }
 
-    public void retry() {
-        top.clear();
-        bottom.clear();
+    public boolean retry(String input) {
+        if (input.equals(RETRY)) {
+            top.clear();
+            bottom.clear();
+            return true;
+        }
         playCount += 1;
+        return false;
     }
 
     public void pass(String input) {
@@ -61,6 +65,10 @@ public class BridgeGame {
 
     public boolean isClear() {
         return top.size() == bridge.size();
+    }
+
+    public int getBridgeSize() {
+        return bridge.size();
     }
 
     public int getPlayCount() {
