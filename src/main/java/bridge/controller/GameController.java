@@ -11,10 +11,8 @@ import java.util.List;
 
 public class GameController {
     public void run() {
-        String bridgeSize;
-        do {
-            bridgeSize = InputView.readBridgeSize();
-        } while (bridgeSize == "error");
+        OutputView.printRunGame();
+        String bridgeSize = InputView.readBridgeSize();
 
         List<String> bridge = BridgeService.initBridge(bridgeSize);
         User user = UserService.generateUser();
@@ -35,25 +33,21 @@ public class GameController {
 
     private void move(List<String> bridge, User user) {
         while (user.lessThanBridgeSize(bridge.size())) {
-            String position;
-            do {
-                position = InputView.readMoving();
-            } while (position.equals("error"));
+            String position = InputView.readMoving();
+            boolean result = BridgeGame.move(position, bridge, user);
 
-            if(BridgeGame.move(position, bridge, user)){
-                OutputView.printMap(user);
+            OutputView.printMap(user);
+
+            if(result){
                 return;
             }
-            OutputView.printMap(user);
         }
     }
 
     private void retry(List<String> bridge, User user) {
         OutputView.printRetry();
-        String retryInput;
-        do {
-            retryInput = InputView.readGameCommand();
-        } while (retryInput == "error");
+        String retryInput = InputView.readGameCommand();
+
         if (BridgeGame.retry(retryInput, user)) {
             startGame(bridge, user);
         }

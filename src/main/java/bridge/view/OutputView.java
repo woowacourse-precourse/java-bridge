@@ -41,4 +41,8 @@ public class OutputView {
 
     public static void printFail() {
     }
+
+    public static void printRunGame() {
+        System.out.println("다리 길이를 입력해 주세요.");
+    }
 }
