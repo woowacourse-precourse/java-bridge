@@ -9,7 +9,7 @@ public class BridgeGameEngine {
     private final BridgeGame bridgeGame;
     private final BridgeFactory bridgeFactory;
 
-    public BridgeGameEngine(BridgeGame bridgeGame, BridgeFactory bridgeFactory) {
+    public BridgeGameEngine(final BridgeGame bridgeGame, final BridgeFactory bridgeFactory) {
         this.bridgeGame = bridgeGame;
         this.bridgeFactory = bridgeFactory;
     }
@@ -33,7 +33,7 @@ public class BridgeGameEngine {
         }
     }
 
-    public PlayerStatus playerMoveBridge(List<String> bridge, Bridge userBridge) {
+    public PlayerStatus playerMoveBridge(final List<String> bridge, final Bridge userBridge) {
         PlayerStatus playerStatus = null;
 
         for (String currentStep : bridge) {
@@ -46,7 +46,7 @@ public class BridgeGameEngine {
         return playerStatus;
     }
 
-    private PlayerStatus isMatchingWithBridge(String currentStep) {
+    private PlayerStatus isMatchingWithBridge(final String currentStep) {
         String nextStep = ConsoleUtil.inputPlayerMoving();
 
         if (currentStep.equals(nextStep)) {
@@ -56,12 +56,14 @@ public class BridgeGameEngine {
         return new PlayerStatus(nextStep, false);
     }
 
-    private void playerMove(Bridge userBridge, PlayerStatus playerStatus) {
+    private void playerMove(final Bridge userBridge, final PlayerStatus playerStatus) {
         bridgeGame.move(userBridge, playerStatus);
         ConsoleUtil.outputBridge(userBridge);
     }
 
-    public boolean isGameFinish(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+    public boolean isGameFinish(final int gameCount,
+                                final Bridge userBridge,
+                                final PlayerStatus playerStatus) {
         if (finishGamePlayerWin(gameCount, userBridge, playerStatus)) {
             return true;
         }
@@ -71,7 +73,9 @@ public class BridgeGameEngine {
         return false;
     }
 
-    private boolean finishGamePlayerWin(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+    private boolean finishGamePlayerWin(final int gameCount,
+                                        final Bridge userBridge,
+                                        final PlayerStatus playerStatus) {
         if (playerStatus.isMatchingFlag()) {
             ConsoleUtil.outputGameResult(userBridge, gameCount, playerStatus);
             return true;
@@ -79,7 +83,9 @@ public class BridgeGameEngine {
         return false;
     }
 
-    private void finishGamePlayerLose(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+    private void finishGamePlayerLose(final int gameCount,
+                                      final Bridge userBridge,
+                                      final PlayerStatus playerStatus) {
         String retryCommand = ConsoleUtil.inputGameCommand();
 
         if (bridgeGame.retry(retryCommand)) {

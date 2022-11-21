@@ -26,11 +26,13 @@ public class ConsoleUtil {
     }
 
 
-    public static void outputBridge(Bridge bridge) {
+    public static void outputBridge(final Bridge bridge) {
         outputView.printMap(bridge);
     }
 
-    public static void outputGameResult(Bridge bridge, int gameCount, PlayerStatus playerStatus) {
+    public static void outputGameResult(final Bridge bridge,
+                                        final int gameCount,
+                                        final PlayerStatus playerStatus) {
         outputView.printResult(bridge, gameCount, playerStatus);
     }
 }

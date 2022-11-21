@@ -11,7 +11,7 @@ public class BridgeFactory {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public List<String> makeBridgeByBridgeMaker(int bridgeSize) {
+    public List<String> makeBridgeByBridgeMaker(final int bridgeSize) {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 

@@ -5,7 +5,7 @@ public class PlayerStatus {
     private String step;
     private boolean matchingFlag;
 
-    public PlayerStatus(String step, boolean matchingFlag) {
+    public PlayerStatus(final String step, final boolean matchingFlag) {
         this.step = step;
         this.matchingFlag = matchingFlag;
     }
@@ -18,7 +18,7 @@ public class PlayerStatus {
         return matchingFlag;
     }
 
-    public void updateStatus(String step, boolean matchingFlag) {
+    public void updateStatus(final String step, final boolean matchingFlag) {
         this.step = step;
         this.matchingFlag = matchingFlag;
     }

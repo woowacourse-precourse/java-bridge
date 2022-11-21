@@ -7,7 +7,7 @@ public class Bridge {
     private final List<String> upBridge;
     private final List<String> downBridge;
 
-    public Bridge(List<String> upBridge, List<String> downBridge) {
+    public Bridge(final List<String> upBridge, final List<String> downBridge) {
         this.upBridge = upBridge;
         this.downBridge = downBridge;
     }
@@ -32,11 +32,11 @@ public class Bridge {
         downBridge.add("X");
     }
 
-    private void moveNothing(List<String> bridge) {
+    private void moveNothing(final List<String> bridge) {
         bridge.add(" ");
     }
 
-    private StringBuilder prettyPrint(List<String> bridge) {
+    private StringBuilder prettyPrint(final List<String> bridge) {
         StringBuilder stringBuilder = new StringBuilder("[ ");
 
         stringBuilder.append(String.join(" | ", bridge));

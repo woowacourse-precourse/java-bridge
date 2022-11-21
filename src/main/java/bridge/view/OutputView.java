@@ -15,7 +15,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge) {
+    public void printMap(final Bridge bridge) {
         System.out.println(bridge);
     }
 
@@ -24,7 +24,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Bridge bridge, int gameCount, PlayerStatus playerStatus) {
+    public void printResult(final Bridge bridge,
+                            final int gameCount,
+                            final PlayerStatus playerStatus) {
         Map<Boolean, String> statusMap = Map.of(true, "성공", false, "실패");
         System.out.println("최종 게임 결과");
         printMap(bridge);

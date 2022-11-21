@@ -24,7 +24,7 @@ public class InputView {
         return Integer.parseInt(size);
     }
 
-    private boolean handlingBridgeSizeException(String size) {
+    private boolean handlingBridgeSizeException(final String size) {
         try {
             InputValidator.isDigit(size);
             InputValidator.isInBoundary(size);
@@ -52,7 +52,7 @@ public class InputView {
         return nextStep;
     }
 
-    private boolean handlingPlayerMovingException(String nextStep) {
+    private boolean handlingPlayerMovingException(final String nextStep) {
         try {
             PlayerInputValidator.canMove(nextStep);
             return false;
@@ -79,7 +79,7 @@ public class InputView {
         return finish;
     }
 
-    private boolean handlingRestartCommandException(String finish) {
+    private boolean handlingRestartCommandException(final String finish) {
         try {
             PlayerInputValidator.canFinish(finish);
             return false;
