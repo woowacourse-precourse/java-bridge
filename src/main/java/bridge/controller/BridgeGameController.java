@@ -6,6 +6,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
+    private static final String RETRY = "R";
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
@@ -30,5 +31,10 @@ public class BridgeGameController {
     }
 
     private void handleFailedMove() {
+        if (inputView.readGameCommand().equals(RETRY)) {
+            bridgeGame.retry();
+            return;
+        }
+        bridgeGame.finish();
     }
 }
