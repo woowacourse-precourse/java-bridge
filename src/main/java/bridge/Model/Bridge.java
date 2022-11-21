@@ -14,4 +14,12 @@ public class Bridge {
     public Bridge() {
         this(new ArrayList<>());
     }
+
+    public void saveCrossedBridge(final String crossed) {
+        bridge.add(crossed);
+    }
+
+    public String getLocationValue(final int index) {
+        return bridge.get(index);
+    }
 }
