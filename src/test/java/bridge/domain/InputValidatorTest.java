@@ -9,12 +9,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputValidatorTest {
-    InputValidator inputValidator = new InputValidator();
+    private final InputValidator testInputValidator = new InputValidator();
 
     @DisplayName("입력값이 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void inputBridgeSizeNotNumber() {
-        assertThatThrownBy(() -> inputValidator.validateBridgeSize("a"))
+        assertThatThrownBy(() -> testInputValidator.validateBridgeSize("a"))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 숫자만 입력해야 합니다.");
     }
 
@@ -22,20 +22,20 @@ public class InputValidatorTest {
     @ValueSource(strings = {"-10", "2", "21", "100"})
     @ParameterizedTest
     void inputBridgeSizeNotInRange(String input) {
-        assertThatThrownBy(() -> inputValidator.validateBridgeSize(input))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 다리 길이는 3 에서 20 사이의 숫자여야 합니다.");
+        assertThatThrownBy(() -> testInputValidator.validateBridgeSize(input))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
     @DisplayName("입력값이 3-20 사이의 숫자인 경우 예외가 발생하지 않는다")
     @Test
     void inputBridgeSizeAppropriate() {
-        assertThatNoException().isThrownBy(() -> inputValidator.validateBridgeSize("10"));
+        assertThatNoException().isThrownBy(() -> testInputValidator.validateBridgeSize("10"));
     }
 
     @DisplayName("입력값이 U, D 중 하나가 아닌 경우 예외가 발생한다")
     @Test
     void inputMovingNotMove() {
-        assertThatThrownBy(() -> inputValidator.validateMoving("a"))
+        assertThatThrownBy(() -> testInputValidator.validateMoving("a"))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] U, D 중 하나를 입력해야 합니다.");
     }
 
@@ -43,13 +43,13 @@ public class InputValidatorTest {
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
     void inputMovingAppropriate(String input) {
-        assertThatNoException().isThrownBy(() -> inputValidator.validateMoving(input));
+        assertThatNoException().isThrownBy(() -> testInputValidator.validateMoving(input));
     }
 
     @DisplayName("입력값이 R, Q 중 하나가 아닌 경우 예외가 발생한다")
     @Test
     void inputGameCommandNotRQ() {
-        assertThatThrownBy(() -> inputValidator.validateGameCommand("a"))
+        assertThatThrownBy(() -> testInputValidator.validateGameCommand("a"))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] R, Q 중 하나를 입력해야 합니다.");
     }
 
@@ -57,6 +57,6 @@ public class InputValidatorTest {
     @ValueSource(strings = {"R", "Q"})
     @ParameterizedTest
     void inputGameCommandAppropriate(String input) {
-        assertThatNoException().isThrownBy(() -> inputValidator.validateGameCommand(input));
+        assertThatNoException().isThrownBy(() -> testInputValidator.validateGameCommand(input));
     }
 }
