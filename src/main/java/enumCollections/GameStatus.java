@@ -1,25 +1,17 @@
 package enumCollections;
 
 public enum GameStatus {
-    CONTINUE("", "O"),
-    SUCCESS("성공", "O"),
-    FAILURE("실패", "X"),
-    QUIT("Q", ""),
-    RESTART("R", "");
+    CONTINUE(""),
+    SUCCESS("성공"),
+    FAILURE("실패");
 
     private String message;
-    private String isSucceed;
 
-    GameStatus(String inputMessage, String isSucceed) {
+    GameStatus(String inputMessage) {
         this.message = inputMessage;
-        this.isSucceed = isSucceed;
     }
 
     public static String getMessage(GameStatus gameStatus) {
         return gameStatus.message;
-    }
-
-    public static String isSucceed(GameStatus gameStatus) {
-        return gameStatus.isSucceed;
     }
 }
