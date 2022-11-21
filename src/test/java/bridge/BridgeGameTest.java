@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
+import bridge.Constants.Command;
 import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -13,10 +14,11 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeGameTest {
 
-    BridgeGame bridgeGame = new BridgeGame();
+    BridgeGame bridgeGame;
 
     @BeforeEach
     void setupBridgeGame() {
+        bridgeGame = new BridgeGame();
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         // bridge => "UDD"
@@ -24,10 +26,24 @@ public class BridgeGameTest {
         BridgeGame.setBridge(bridge);
     }
 
+    @DisplayName("성공적으로 움직였으면 true를 실패했으면 false를 리턴한다.")
+    @Test
+    void moveTest_1() {
+        assertThat(bridgeGame.move(Command.DOWN)).isEqualTo(false);
+    }
+
+    @DisplayName("성공적으로 움직였으면 true를 실패했으면 false를 리턴한다.")
+    @Test
+    void moveTest_2() {
+        assertThat(bridgeGame.move(Command.UP)).isEqualTo(true);
+    }
+
+
+    //FIXME
     @DisplayName("게임 시도 횟수를 리턴해준다")
     @Test
     void getAttemptCountTest() {
-        assertThat(BridgeGame.getAttemptCount()).isEqualTo(0);
+        assertThat(BridgeGame.getAttemptCount()).isEqualTo(1);
     }
 
     @DisplayName("게임 시도 횟수를 증가시킨다")
