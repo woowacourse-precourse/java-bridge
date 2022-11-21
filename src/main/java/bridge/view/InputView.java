@@ -2,7 +2,7 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import bridge.domain.BridgeSize;
+import bridge.domain.validation.BridgeSize;
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
 import java.util.function.Supplier;

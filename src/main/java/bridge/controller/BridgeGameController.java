@@ -5,7 +5,7 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeSize;
+import bridge.domain.validation.BridgeSize;
 import bridge.domain.NumberOfChallenges;
 import bridge.domain.Player;
 import bridge.domain.Position;

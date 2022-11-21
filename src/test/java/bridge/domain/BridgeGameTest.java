@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
+import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.constants.GameCommands;
@@ -28,7 +29,7 @@ class BridgeGameTest {
         player = new Player(
                 Position.of(INIT_VALUE_OF_POSITION),
                 new NumberOfChallenges(INIT_VALUE_OF_CHALLENGES));
-        moveResults.addResults(MOVE_UP_COMMAND, "O");
+        moveResults.addResults(MOVE_UP_COMMAND, MOVE_SUCCESS);
         bridgeGame = new BridgeGame(bridge, player, moveResults);
     }
 
