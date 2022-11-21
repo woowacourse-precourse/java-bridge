@@ -1,11 +1,11 @@
 package bridge.exception;
 
+import bridge.helper.TestData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -29,16 +29,7 @@ public class MovingExceptionTest {
         assertDoesNotThrow(() -> movingException.checkException(moving));
     }
 
-
     static List<String> generateData() {
-        List<String> data = new ArrayList<>();
-        for (int i = 33; i < 127; i++) {
-            if (i == 68 || i == 85) {
-                continue;
-            }
-            char letter = (char) i;
-            data.add(String.valueOf(letter));
-        }
-        return data;
+        return TestData.generateExceptionData(68, 85);
     }
 }
