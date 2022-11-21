@@ -1,6 +1,9 @@
 package bridge.domain;
 
 import java.util.List;
+import java.util.Objects;
+
+import bridge.domain.BridgeShape;
 
 public class Bridge {
 
@@ -9,14 +12,14 @@ public class Bridge {
     private static final int UP_NUMBER = 1;
     private static final int DOWN_NUMBER = 0;
 
-    private final List<Integer> bridgeSpace;
+    private final List<String> bridgeSpace;
 
-    public Bridge(List<Integer> bridgeSpace){
+    public Bridge(List<String> bridgeSpace){
         validate(bridgeSpace);
         this.bridgeSpace = bridgeSpace;
     }
 
-    private void validate(List<Integer> bridgeSpace){
+    private void validate(List<String> bridgeSpace){
         validateSize(bridgeSpace.size());
         validateNumber(bridgeSpace);
     }
@@ -27,9 +30,9 @@ public class Bridge {
         }
     }
 
-    private void validateNumber(List<Integer> bridgeSpace){
-        if(!bridgeSpace.stream().allMatch(a->a==UP_NUMBER||a==DOWN_NUMBER)){
-            throw new IllegalArgumentException("[ERROR] 리스트가 0혹은 1로 이루어져 있지 않습니다.");
+    private void validateNumber(List<String> bridgeSpace){
+        if(!bridgeSpace.stream().allMatch(a-> Objects.equals(a, BridgeShape.UP.getKeyword()) || Objects.equals(a, BridgeShape.DOWN.getKeyword()))){
+            throw new IllegalArgumentException("[ERROR] 다리 리스트에 적절하지 않은 문자가 있습니다.");
         }
     }
 

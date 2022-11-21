@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public enum BridgeShape {
     UP(1,"U"),
-    DOWN(0,"D");
+    DOWN(0,"D"),
+    NONE(-1,"NONE");
 
     private final int shapeNumber;
     private final String shapeKeyword;
@@ -18,7 +19,10 @@ public enum BridgeShape {
         return Arrays.stream(BridgeShape.values())
                 .filter(bridgeShape -> bridgeShape.shapeNumber == shapeNumber)
                 .findAny()
-                .orElseThrow(()-> new IllegalArgumentException("[ERROR] 잘못된 번호를 입력했습니다."));
+                .orElse(NONE);
     }
 
+    public String getKeyword(){
+        return this.shapeKeyword;
+    }
 }
