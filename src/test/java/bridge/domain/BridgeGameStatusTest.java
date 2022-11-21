@@ -41,4 +41,20 @@ public class BridgeGameStatusTest {
         // then
         assertFalse(isSuccessfulEnd);
     }
+
+    @DisplayName("입력은 완료되었지만 입력이 틀린 경우")
+    @Test
+    void isNotGameEndTest2() {
+        // given
+        List<String> playerMove = List.of("U", "U", "D", "D");
+        List<String> gameBridge = List.of("U", "U", "D", "U");
+        int runCount = 1;
+
+        // when
+        BridgeGameStatus bridgeGameStatus = new BridgeGameStatus(playerMove, gameBridge, runCount);
+        boolean isSuccessfulEnd = bridgeGameStatus.isGameSuccessfulEnd();
+
+        // then
+        assertFalse(isSuccessfulEnd);
+    }
 }
