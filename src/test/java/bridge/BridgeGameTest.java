@@ -65,6 +65,18 @@ class BridgeGameTest {
         });
     }
 
+    @Test
+    @DisplayName(value = "정상적인 retry()")
+    void retryTest1() {
+        assertSimpleTest(() -> {
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.retry();
+
+            assertThat(bridgeGame.getBridgeCorrect()).containsExactly(true);
+        });
+    }
+
     private List<Boolean> makeBridgeCorrectTest(boolean correct, int size) {
         List<Boolean> bridgeCorrectTest = new ArrayList<>();
         for (int index = 0; index < size; index++) {
