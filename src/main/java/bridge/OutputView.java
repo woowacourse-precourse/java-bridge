@@ -27,8 +27,8 @@ public class OutputView {
         for (int resultIndex = 0; resultIndex < result.size(); resultIndex++) {
             upBridge += Compute.computeUpBridge(result.get(resultIndex), bridge.get(resultIndex));
             downBridge += Compute.computeDownBridge(result.get(resultIndex), bridge.get(resultIndex));
-            addBridge(resultIndex, result.size(), upBridge);
-            addBridge(resultIndex, result.size(), downBridge);
+            upBridge = addBridge(resultIndex, result.size(), upBridge);
+            downBridge = addBridge(resultIndex, result.size(), downBridge);
         }
         System.out.println(upBridge);
         System.out.println(downBridge);
