@@ -8,11 +8,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import bridge.constant.GameStatus;
 import bridge.constant.MoveResult;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeGameTest {
+
+    private BridgeGame bridgeGame;
+
+    @BeforeEach
+    void init() {
+        bridgeGame = new BridgeGame();
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {0})
@@ -20,7 +28,6 @@ class BridgeGameTest {
         // given
         List<String> bridge = List.of("U", "D", "D");
         String player = "U";
-        BridgeGame bridgeGame = new BridgeGame();
 
         // when
         MoveResult result = bridgeGame.move(bridge, player, count);
@@ -35,7 +42,6 @@ class BridgeGameTest {
         // given
         List<String> bridge = List.of("U", "D", "D");
         String player = "D";
-        BridgeGame bridgeGame = new BridgeGame();
 
         // when
         MoveResult result = bridgeGame.move(bridge, player, count);
@@ -50,7 +56,6 @@ class BridgeGameTest {
         // given
         List<String> bridge = List.of("U", "D", "D");
         String player = "D";
-        BridgeGame bridgeGame = new BridgeGame();
 
         // when
         MoveResult result = bridgeGame.move(bridge, player, count);
@@ -63,7 +68,6 @@ class BridgeGameTest {
     @ValueSource(ints = {0})
     void retry(int round) {
         // given
-        BridgeGame bridgeGame = new BridgeGame();
         int countOfGame = bridgeGame.getBridgeGameStat().getCountOfGame();
 
         // when
@@ -79,9 +83,6 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(ints = {Integer.MAX_VALUE})
     void quit(int round) {
-        // given
-        BridgeGame bridgeGame = new BridgeGame();
-
         // when
         bridgeGame.quit();
 
@@ -92,9 +93,6 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5})
     void isCountOfRoundLessThan(int bridgeSize) {
-        // given
-        BridgeGame bridgeGame = new BridgeGame();
-
         // when
         boolean result = bridgeGame.isCountOfRoundLessThan(bridgeSize);
 
@@ -105,7 +103,6 @@ class BridgeGameTest {
     @Test
     void nextRound() {
         // given
-        BridgeGame bridgeGame = new BridgeGame();
         int countOfRound = bridgeGame.getCountOfRound();
 
         // when
@@ -118,9 +115,6 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5})
     void checkGameWinByNotWIng(int bridgeSize) {
-        // given
-        BridgeGame bridgeGame = new BridgeGame();
-
         // when
         bridgeGame.checkGameWin(bridgeSize);
 
@@ -131,9 +125,6 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(ints = {3})
     void checkGameWin(int bridgeSize) {
-        // given
-        BridgeGame bridgeGame = new BridgeGame();
-
         // when
         bridgeGame.nextRound();
         bridgeGame.nextRound();
