@@ -1,20 +1,15 @@
 package bridge.controller;
 
-import bridge.domain.BridgeMaker;
+import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.RealTimeBridge;
 import bridge.domain.Result;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.utils.InputHandler;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class GameController {
 
     private final InputHandler inputHandler = new InputHandler();
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private final RealTimeBridge realTimeBridge = new RealTimeBridge();
     private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame = new BridgeGame();
@@ -27,7 +22,7 @@ public class GameController {
     public void runGame() {
         outputView.printStartMessage();
         int size = inputHandler.getBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(size);
+        Bridge bridge = new Bridge(size);
         while (isAnswer && index < size) {
             play(bridge);
         }
@@ -35,7 +30,7 @@ public class GameController {
         outputView.printResult(gameResult, count, realTimeMap);
     }
 
-    private void play(List<String> bridge) {
+    private void play(Bridge bridge) {
         String userMove = inputHandler.getMoving();
         if (isCorrect(bridge, userMove)) {
             return;
@@ -51,7 +46,7 @@ public class GameController {
         }
     }
 
-    private boolean isCorrect(List<String> bridge, String userMove) {
+    private boolean isCorrect(Bridge bridge, String userMove) {
         if (bridgeGame.move(userMove, bridge.get(index))) {
             keepPlaying(userMove);
             return true;
