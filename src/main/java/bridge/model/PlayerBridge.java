@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.enums.BridgeShape;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerBridge {
@@ -39,10 +40,10 @@ public class PlayerBridge {
     }
 
     public List<String> getUpShape() {
-        return upShape;
+        return Collections.unmodifiableList(upShape);
     }
 
     public List<String> getDownShape() {
-        return downShape;
+        return Collections.unmodifiableList(downShape);
     }
 }
