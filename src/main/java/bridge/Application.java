@@ -10,7 +10,6 @@ public class Application {
     private static InputView inputView = new InputView();
     private static User user = new User();
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         outputView.startGame();
         int size = checkUserInputToQuitGame(inputView.readBridgeSize());
         List<String> bridge = bridgeMaker.makeBridge(size);
@@ -19,14 +18,19 @@ public class Application {
             String direction = inputView.readMoving();
             boolean checkDirection = progressGame(direction, bridge);
             if(checkDirectionToQuitGameByWinning(checkDirection, user, direction, size, bridge) == true) break;
-            }else{
-                if(RetryOrQuitGame(user, direction, bridge) == false) break;
-            }
+            if(checkDirectionToQuitOrRetryGameByLosing(checkDirection,user,direction, bridge) == true) break;
         }
     }
 
     public static boolean checkDirectionToQuitGameByWinning(boolean checkDirection, User user, String direction, int size, List<String> bridge ){
         if(checkDirection == true && gameIsOverByWinning(user, direction, size, bridge) == true){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkDirectionToQuitOrRetryGameByLosing(boolean checkDirection, User user, String direction, List<String> bridge){
+        if(checkDirection == false && RetryOrQuitGame(user,direction, bridge) == false){
             return true;
         }
         return false;
