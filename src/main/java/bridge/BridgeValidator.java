@@ -10,5 +10,8 @@ public class BridgeValidator {
     }
 
     public void validateMovingDirection(String direction) {
+        if (!direction.equals("U") && !direction.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U혹은 D만 입력 가능합니다.");
+        }
     }
 }
