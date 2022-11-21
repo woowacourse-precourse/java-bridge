@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
-    @DisplayName("다리_생성_테스트")
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
@@ -21,7 +20,6 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
-    @DisplayName("기능_테스트")
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
@@ -39,7 +37,6 @@ class ApplicationTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
-    @DisplayName("예외_테스트")
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {

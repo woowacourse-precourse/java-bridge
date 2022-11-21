@@ -45,8 +45,10 @@ public class BridgeGame {
     public void retry() {
         if(bridge_construction_time == 3){
             go_stop = false;
+            new OutputView().printResult(current, game_time, game_status);
         }
-        if(current.get(-1) == "X"){
+        int last_index = current.size() - 1;
+        if(current.get(last_index).equals("U_X") || current.get(last_index).equals("D_X")){
             new InputView().readGameCommand();
             if(InputView.input_GameCommand == "R"){
                 bridge_construction_time = 0;

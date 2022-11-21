@@ -1,12 +1,18 @@
 package bridge.control;
 
+import bridge.Application;
+
 public class inputCheck {
   private int change;
-  public void bridge_size_check(String input_size){
+
+  public boolean bridge_word_check(String input_size){
     if(!input_size.chars().allMatch(Character::isDigit)){
       System.out.println("[ERROR] 숫자를 입력해주세요.");
-      //throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+      return false;
     }
+    return true;
+  }
+  public void bridge_size_check(String input_size){
     change = Integer.parseInt(input_size);
     if(change < 3 || change > 20){
       throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해주세요.");

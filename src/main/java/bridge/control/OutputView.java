@@ -16,15 +16,14 @@ public class OutputView {
      */
     public void printMap(List<String> bridge) {
         for(String signal : bridge){
-            if(signal.equals("U")) new_build_up.append("O | ");
-            if(signal.equals("D")) new_build_down.append("O | ");
-            if(signal.equals("U_X")) new_build_up.append("X | ");
-            if(signal.equals("D_X")) new_build_down.append("X | ");
+            if(signal.equals("U")) {new_build_up.append("O | "); new_build_down.append("  | ");}
+            if(signal.equals("D")) {new_build_down.append("O | "); new_build_up.append("  | ");}
+            if(signal.equals("U_X")) {new_build_up.append("X | "); new_build_down.append("  | ");}
+            if(signal.equals("D_X")) {new_build_down.append("X | "); new_build_up.append("  | ");}
         }
         int temper = new_build_up.length()-1;
-        System.out.println();
-        new_build_up.deleteCharAt(temper).deleteCharAt(temper-1);
-        new_build_down.deleteCharAt(temper).deleteCharAt(temper-1);
+        new_build_up.delete(temper -2, temper);
+        new_build_down.delete(temper -2, temper);
         new_build_up.append("]");
         new_build_down.append("]");
         System.out.println(new_build_up + "\n" + new_build_down + "\n");
