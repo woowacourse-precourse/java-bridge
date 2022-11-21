@@ -7,21 +7,34 @@ import java.util.List;
  */
 public class BridgeGame {
     private InputView inputView = new InputView();
+    private  OutputView outputView = new OutputView();
     private List<String> bridge;
-    private int position;
-    private int tryCount;
+    private int position = 0;
+    private int tryCount = 1;
+    private boolean quit = false;
+
+    public BridgeGame() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        System.out.println(bridge);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private String move(String input) {
-        if (!input.equals(inputView.readMoving())) {
-            return inputView.readGameCommand();
+    private void move(String answer, String input) {
+        outputView.printMap();
+        if (!answer.equals(input)) {
+            if (inputView.readGameCommand().equals("R")) {
+                retry();
+            } else {
+                quit = true;
+            }
+        } else {
+            position++;
         }
-        position++;
-        return "move";
     }
 
     /**
@@ -29,8 +42,16 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    private void retry() {
         position = 0;
-        tryCount += 1;
+        tryCount++;
+    }
+
+    public void run() {
+        while (position <= bridge.size()-1 && quit == false) {
+            System.out.println(position);
+            move(bridge.get(position), inputView.readMoving());
+        }
+        outputView.printResult();
     }
 }
