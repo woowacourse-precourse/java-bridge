@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.constant.BridgeConstant;
+import bridge.constant.BridgeSize;
 import bridge.constant.ErrorMessage;
 
 public class Validation {
@@ -39,7 +40,8 @@ public class Validation {
         return Integer.parseInt(input);
     }
     private static void valueInRange(int input) throws IllegalArgumentException{
-        if(input<3 || input>20){
+        if(input< BridgeSize.BRIDGE_SIZE.getMinimumSize() ||
+                input>BridgeSize.BRIDGE_SIZE.getMaximumSize()){
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_IS_WRONG.getErrorMessage());
         }
     }
