@@ -27,6 +27,10 @@ public class BridgeGame {
         return count;
     }
 
+    public List<String> getPlayerBridge() {
+        return playerBridge;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -46,6 +50,13 @@ public class BridgeGame {
         if (input.equals("R")) {
             count++;
             playerBridge.clear();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isSuccess() {
+        if (playerBridge.size() == answerBridge.size() && !bridgeResult.matchBridge(playerBridge).contains("X")) {
             return true;
         }
         return false;
