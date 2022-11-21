@@ -22,12 +22,7 @@ public class BridgeGame {
         if (userInput.equals(NumberToShape.UP.getShape())) {
             return getMoveUPStatus(position, userInput);
         }
-
-        if (userInput.equals(NumberToShape.DOWN.getShape())) {
-            return getMoveDownStatus(position, userInput);
-        }
-
-        return StateMessage.ERROR.get();
+        return getMoveDownStatus(position, userInput);
     }
 
     public String getMoveUPStatus(int position, String userInput) {
