@@ -21,6 +21,7 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
+    @DisplayName("다리 생성 확인")
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
@@ -29,6 +30,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("게임 성공 확인")
     void 기능_테스트_성공() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
@@ -47,7 +49,8 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트_실패() {
+    @DisplayName("종료 명령어 정상 작동 확인")
+    void 기능_테스트_종료() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "Q");
             assertThat(output()).contains(
@@ -65,6 +68,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("재시작 명령어 정상 작동 확인")
     void 기능_테스트_재시작() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "R", "U", "D", "U");
@@ -83,13 +87,35 @@ class ApplicationTest extends NsTest {
     }
 
     @DisplayName("다리 길이 입력에 대한 예외 처리")
-    @ValueSource(strings = {"a", " ",  "2", "21", "-100"})
+    @ValueSource(strings = {"a", " ", "2", "21", "-100", "3.3", "0", "100000000000"})
     @ParameterizedTest
     void 예외_테스트_길이_입력(String input) {
         assertSimpleTest(() -> {
             runException(input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("다리 이동 입력에 대한 예외 처리")
+    @ValueSource(strings = {"u", "d", " ", "UU", "DD", "3", "위"})
+    @ParameterizedTest
+    void 예외_테스트_이동_입력(String input) {
+        assertSimpleTest(() -> {
+            runException("3", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("명령어 입력에 대한 예외 처리")
+    @ValueSource(strings = {"q", "r", " ", "QQ", "RR", "3", "종료"})
+    @ParameterizedTest
+    void 예외_테스트_명령어_입력(String input) {
+        assertRandomNumberInRangeTest(() -> {
+            assertSimpleTest(() -> {
+                runException("3", "U", "D", "D", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }, 1, 0, 1);
     }
 
     @Override
