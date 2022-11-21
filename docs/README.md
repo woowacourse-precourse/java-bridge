@@ -144,6 +144,22 @@
   - 검증 내용: R 또는 Q만을 입력했는지 여부
 
 ### OutputView
+- 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력 : `printMap()`
+  - 결과 출력은 topBridge와 bottomBridge 두 개의 StringBuilder로 구분하여 출력
+- `printMap()`의 하위 메소드
+  - `initTopBridge` : '[' 추가 메소드
+  - `initBottomBridge` : '[' 추가 메소드
+  - `closeTopBridge` : ']' 추가 메소드
+  - `closeBottomBridge` : ']' 추가 메소드
+  - `printTopBridgeStatus` : 사용자 입력에 맞게 그 결과 StringBuilder에 append
+  - `printBottomBridgeStatus` : 사용자 입력에 맞게 그 결과 StringBuilder에 append
+  - `getTopStringByStatus` : 사용자 입력과 실제 다리 비교해서 그 결과 String 반환
+  - `getBottomStringByStatus` : 사용자 입력과 실제 다리 비교해서 그 결과 String 반환
+- 게임의 최종 결과를 정해진 형식에 맞춰 출력 : `printResult`
+  - 결과 출력은 printMap 사용 및 경우에 따른 printMessage
+  - `printSuccessMessage` : 성공했을 때의 결과 및 도전 횟수 출력
+  - `printFailureMessage` : 실패했을 때의 결과 및 도전 횟수 출력
+- `printGameStartMessage` : 다리 건너기 게임을 시작합니다 문구 출력
 
 ### UserInputException
 - `IllegalArgumentException` 상속받는 Exception
