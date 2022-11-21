@@ -21,4 +21,8 @@ public class GameRequest {
     private boolean isValid(String request) {
         return request.equals(RETRY) || request.equals(QUIT);
     }
+
+    public String getGameRequest() {
+        return gameRequest;
+    }
 }
