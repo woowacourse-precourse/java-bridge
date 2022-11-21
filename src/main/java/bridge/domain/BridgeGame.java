@@ -27,46 +27,46 @@ public class BridgeGame {
 
     public String move(String moving) {
         validateMoving(moving);
-        GameStatus gameStatusAfterMoving = this.bridgeMover.go(moving);
-        this.gameStatus = gameStatusAfterMoving;
-        this.bridgeDrawer.record(moving, gameStatusAfterMoving);
-        return this.bridgeDrawer.getSketch();
+        GameStatus gameStatusAfterMoving = bridgeMover.go(moving);
+        gameStatus = gameStatusAfterMoving;
+        bridgeDrawer.record(moving, gameStatusAfterMoving);
+        return bridgeDrawer.getSketch();
     }
 
     public void retry(String gameCommand) {
         validateGameCommand(gameCommand);
         if (gameCommand.equals(RETRY)) {
-            this.gameStatus = ON_WAY;
-            this.tryCount += 1;
-            this.bridgeDrawer.turnBackOnce();
+            gameStatus = ON_WAY;
+            tryCount += 1;
+            bridgeDrawer.turnBackOnce();
         }
         if (gameCommand.equals(QUIT)) {
-            this.gameStatus = END;
+            gameStatus = END;
         }
     }
 
     public boolean isOnWay() {
-        return this.gameStatus.equals(ON_WAY);
+        return gameStatus.equals(ON_WAY);
     }
 
     public boolean isFail() {
-        return this.gameStatus.equals(FAIL);
+        return gameStatus.equals(FAIL);
     }
 
     public boolean isEnd() {
-        return this.gameStatus.equals(END);
+        return gameStatus.equals(END);
     }
 
     public boolean isSuccess() {
-        return this.bridgeMover.isCrossCompletely();
+        return bridgeMover.isCrossCompletely();
     }
 
     public String getSketch() {
-        return this.bridgeDrawer.getSketch();
+        return bridgeDrawer.getSketch();
     }
 
     public int getTryCount() {
-        return this.tryCount;
+        return tryCount;
     }
 
     private void validateMoving(String moving) {

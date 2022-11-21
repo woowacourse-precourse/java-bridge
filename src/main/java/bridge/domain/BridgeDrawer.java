@@ -37,8 +37,8 @@ public class BridgeDrawer {
     }
 
     public String getSketch() {
-        String upperLineSketch = this.upperLine.toString();
-        String lowerLineSketch = this.lowerLine.toString();
+        String upperLineSketch = upperLine.toString();
+        String lowerLineSketch = lowerLine.toString();
         String sketch = String.format(SKETCH_FRAME, upperLineSketch, lowerLineSketch);
         return sketch;
     }
@@ -53,68 +53,68 @@ public class BridgeDrawer {
 
     private void openBracket() {
         int lastIndexOfLine = getLastIndexOfLine();
-        this.upperLine.deleteCharAt(lastIndexOfLine);
-        this.lowerLine.deleteCharAt(lastIndexOfLine);
+        upperLine.deleteCharAt(lastIndexOfLine);
+        lowerLine.deleteCharAt(lastIndexOfLine);
         if (isEndWithSpace()) {
             addLine();
         }
     }
 
     private boolean isEndWithSpace() {
-        String upperLineSketch = this.upperLine.toString();
+        String upperLineSketch = upperLine.toString();
         return upperLineSketch.endsWith(SPACE);
     }
 
     private int getLastIndexOfLine() {
-        return this.upperLine.length() - 1;
+        return upperLine.length() - 1;
     }
 
     private void addLine() {
-        this.upperLine.append(BETWEEN_LINE);
-        this.lowerLine.append(BETWEEN_LINE);
+        upperLine.append(BETWEEN_LINE);
+        lowerLine.append(BETWEEN_LINE);
     }
 
     private void closeBracket() {
-        this.upperLine.append(END_BRACKET);
-        this.lowerLine.append(END_BRACKET);
+        upperLine.append(END_BRACKET);
+        lowerLine.append(END_BRACKET);
     }
 
     private void recordFailOf(String moving) {
         if (moving.equals(UPPER_SIDE)) {
-            this.upperLine.append(WRONG_MOVING);
-            this.lowerLine.append(EMPTY);
+            upperLine.append(WRONG_MOVING);
+            lowerLine.append(EMPTY);
         }
         if (moving.equals(LOWER_SIDE)) {
-            this.upperLine.append(EMPTY);
-            this.lowerLine.append(WRONG_MOVING);
+            upperLine.append(EMPTY);
+            lowerLine.append(WRONG_MOVING);
         }
     }
 
     private void recordSuccessOf(String moving) {
         if (moving.equals(UPPER_SIDE)) {
-            this.upperLine.append(CORRECT_MOVING);
-            this.lowerLine.append(EMPTY);
+            upperLine.append(CORRECT_MOVING);
+            lowerLine.append(EMPTY);
         }
         if (moving.equals(LOWER_SIDE)) {
-            this.upperLine.append(EMPTY);
-            this.lowerLine.append(CORRECT_MOVING);
+            upperLine.append(EMPTY);
+            lowerLine.append(CORRECT_MOVING);
         }
     }
 
     private boolean haveAlready2Moving() {
-        String upperLineSketch = this.upperLine.toString();
+        String upperLineSketch = upperLine.toString();
         return upperLineSketch.contains(BETWEEN_LINE);
     }
 
     private void deleteLastMovingIncludingBetweenLine() {
         int lastIndexOfLine = getLastIndexOfLine();
-        this.upperLine.delete(lastIndexOfLine - COLUMN_SIZE_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
-        this.lowerLine.delete(lastIndexOfLine - COLUMN_SIZE_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
+        upperLine.delete(lastIndexOfLine - COLUMN_SIZE_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
+        lowerLine.delete(lastIndexOfLine - COLUMN_SIZE_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
     }
 
     private void deleteLastMovingExcludingBetweenLine() {
         int lastIndexOfLine = getLastIndexOfLine();
-        this.upperLine.delete(lastIndexOfLine - COLUMN_SIZE_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
-        this.lowerLine.delete(lastIndexOfLine - COLUMN_SIZE_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
+        upperLine.delete(lastIndexOfLine - COLUMN_SIZE_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
+        lowerLine.delete(lastIndexOfLine - COLUMN_SIZE_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
     }
 }

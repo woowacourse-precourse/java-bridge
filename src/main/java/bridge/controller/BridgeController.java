@@ -18,37 +18,37 @@ public class BridgeController {
     }
 
     public void start() {
-        this.outputView.announceStartGame();
+        outputView.announceStartGame();
         createBridgeGame();
         do {
             playTurn();
-        } while (!this.bridgeGame.isEnd());
+        } while (!bridgeGame.isEnd());
         announceFinalResult();
     }
 
     private void createBridgeGame() {
-        int inputSize = this.inputView.readBridgeSize();
+        int inputSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(inputSize);
         this.bridgeGame = new BridgeGame(bridge);
     }
 
     private void playTurn() {
-        String moving = this.inputView.readMoving();
-        String bridgeSketch = this.bridgeGame.move(moving);
-        this.outputView.printMap(bridgeSketch);
-        if (this.bridgeGame.isFail()) {
-            String gameCommand = this.inputView.readGameCommand();
-            this.bridgeGame.retry(gameCommand);
+        String moving = inputView.readMoving();
+        String bridgeSketch = bridgeGame.move(moving);
+        outputView.printMap(bridgeSketch);
+        if (bridgeGame.isFail()) {
+            String gameCommand = inputView.readGameCommand();
+            bridgeGame.retry(gameCommand);
         }
     }
 
     private void announceFinalResult() {
-        boolean isSuccess = this.bridgeGame.isSuccess();
-        this.outputView.announceEndGame();
-        String bridgeSketch = this.bridgeGame.getSketch();
-        this.outputView.printMap(bridgeSketch);
-        int tryCount = this.bridgeGame.getTryCount();
-        this.outputView.printResult(isSuccess, tryCount);
+        boolean isSuccess = bridgeGame.isSuccess();
+        outputView.announceEndGame();
+        String bridgeSketch = bridgeGame.getSketch();
+        outputView.printMap(bridgeSketch);
+        int tryCount = bridgeGame.getTryCount();
+        outputView.printResult(isSuccess, tryCount);
     }
 }

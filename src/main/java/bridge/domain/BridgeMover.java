@@ -28,12 +28,12 @@ public class BridgeMover {
     }
 
     public boolean isCrossCompletely() {
-        int bridgeSize = this.bridge.size();
+        int bridgeSize = bridge.size();
         return bridgeSize == location;
     }
 
     private boolean isCorrect(String moving) {
-        String correctMoving = this.bridge.get(this.location);
+        String correctMoving = bridge.get(location);
         return correctMoving.equals(moving);
     }
 }
