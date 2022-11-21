@@ -9,11 +9,11 @@ import static org.assertj.core.util.Lists.newArrayList;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> brige;
+    private static List<String> brige;
+    private static int position = 0;
     public BridgeGame(int readBridgeSize) {
         try {
             brige = new_BridgeMaker(readBridgeSize);
-            System.out.println(brige);
         }
         catch (Exception e){
             throw new IllegalArgumentException(e);
@@ -28,7 +28,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public String move(String moving) {
+        if (brige.get(position).matches(moving)){
+            position++;
+            return "O";
+        }
+        return "X";
     }
 
     /**
@@ -37,5 +42,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        position = 0;
+    }
+
+    public int check_over(){
+        if (position == brige.size())
+            return 1;
+        return 2;
     }
 }
