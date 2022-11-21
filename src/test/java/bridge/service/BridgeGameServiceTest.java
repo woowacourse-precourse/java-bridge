@@ -98,7 +98,7 @@ class BridgeGameServiceTest {
 
         assertThat(gameResultDto.getCount()).isEqualTo(1);
         assertThat(gameResultDto.getVictory()).isEqualTo(Victory.VICTORY);
-        assertThat(gameResultDto.getResult()).isInstanceOf(GameMoveDto.class);
+        assertThat(gameResultDto.getGameMoveDto()).isInstanceOf(GameMoveDto.class);
     }
 
     static class TestBridgeNumberGenerator implements BridgeNumberGenerator {

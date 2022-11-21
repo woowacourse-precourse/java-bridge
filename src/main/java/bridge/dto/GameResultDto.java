@@ -5,12 +5,12 @@ import bridge.domain.Victory;
 public class GameResultDto {
 
     private final Victory victory;
-    private final GameMoveDto result;
+    private final GameMoveDto gameMoveDto;
     private final int count;
 
-    public GameResultDto(Victory victory, GameMoveDto result, int count) {
+    public GameResultDto(Victory victory, GameMoveDto gameMoveDto, int count) {
         this.victory = victory;
-        this.result = result;
+        this.gameMoveDto = gameMoveDto;
         this.count = count;
     }
 
@@ -18,8 +18,8 @@ public class GameResultDto {
         return victory;
     }
 
-    public GameMoveDto getResult() {
-        return result;
+    public GameMoveDto getGameMoveDto() {
+        return gameMoveDto;
     }
 
     public int getCount() {

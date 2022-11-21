@@ -50,7 +50,7 @@ public class OutputView {
      */
     public void printResult(GameResultDto gameResultDto) {
         System.out.println(RESULT_MESSAGE);
-        printMap(gameResultDto.getResult());
+        printMap(gameResultDto.getGameMoveDto());
         System.out.println(format(VICTORY_MESSAGE_FORMAT, gameResultDto.getVictory().getMessage()));
         System.out.println(format(COUNT_MESSAGE_FORMAT, gameResultDto.getCount()));
     }
