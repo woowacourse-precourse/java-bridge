@@ -13,4 +13,11 @@ class GameStatusTest {
         GameStatus aContinue = GameStatus.CONTINUE;
         assertThat(aContinue.isContinue()).isTrue();
     }
+
+    @DisplayName("GameStatus isFail 메소드 검증")
+    @Test
+    void isFail() {
+        GameStatus fail = GameStatus.FAIL;
+        assertThat(fail.isFail()).isTrue();
+    }
 }
