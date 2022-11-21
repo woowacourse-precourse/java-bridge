@@ -40,7 +40,7 @@ public class InputView {
 	}
 
 	static private void checkWayInput(String input) {
-		if (!input.equals("U") && !input.equals("D")){
+		if (!input.equals(UP) && !input.equals(DOWN)){
 			throw new IllegalArgumentException();
 		}
 	}
@@ -60,7 +60,7 @@ public class InputView {
 	}
 
 	static private void checkRetryInput(String input) {
-		if (!input.equals("R") && !input.equals("Q")){
+		if (!input.equals(RETRY) && !input.equals(QUIT)){
 			throw new IllegalArgumentException();
 		}
 	}

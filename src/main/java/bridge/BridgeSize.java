@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.Constants.SIZE_MAX;
+import static bridge.Constants.SIZE_MIN;
+
 public class BridgeSize {
 	private final int bridgeSize;
 
@@ -21,7 +24,7 @@ public class BridgeSize {
 	}
 
 	private void validateRange() {
-		if (bridgeSize < 3 || 20 < bridgeSize) {
+		if (bridgeSize < SIZE_MIN || SIZE_MAX < bridgeSize) {
 			throw new IllegalArgumentException();
 		}
 	}
