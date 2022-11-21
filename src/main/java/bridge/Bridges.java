@@ -41,7 +41,7 @@ public class Bridges {
         this.playerMoves.clear();
         sb.setLength(0);
     }
-
+    
     @Override
     public String toString() {
         sb.setLength(0);
@@ -64,7 +64,7 @@ public class Bridges {
     private void appendRightMove(String move, int index) {
         if (playerMoves.get(index) == bridges.get(index)) {
             if (playerMoves.get(index) == BridgeMove.getEnum(move)) {
-                sb.append(" o |");
+                sb.append(" O |");
             }
             if (!(playerMoves.get(index) == BridgeMove.getEnum(move))) {
                 sb.append("   |");
@@ -76,7 +76,7 @@ public class Bridges {
         int index = playerMoves.size() - 1;
         if (!(playerMoves.get(index) == bridges.get(index))) {
             if (playerMoves.get(index) == BridgeMove.getEnum(move)) {
-                sb.append(" x |");
+                sb.append(" X |");
             }
             if (!(playerMoves.get(index) == BridgeMove.getEnum(move))) {
                 sb.append("   |");
