@@ -10,7 +10,7 @@ public class BridgeValue {
         tryCounts++;
     }
 
-    public int getTryCounts() {
+    public static int getTryCounts() {
         return tryCounts;
     }
 

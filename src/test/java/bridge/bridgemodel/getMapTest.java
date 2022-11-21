@@ -18,8 +18,7 @@ public class getMapTest {
         String map = rightBridge.getMapToString(userBridge);
         String answer = "[ O |   | O ]"
                 + GameMessage.LINE_BREAK
-                + "[   | O |   ]"
-                + GameMessage.LINE_BREAK;
+                + "[   | O |   ]";
 
         System.out.println(map);
         assertThat(map).contains(answer);
@@ -33,8 +32,7 @@ public class getMapTest {
         String map = rightBridge.getMapToString(userBridge);
         String answer = "[ O | X | O ]"
                 + GameMessage.LINE_BREAK
-                + "[   |   |   ]"
-                + GameMessage.LINE_BREAK;
+                + "[   |   |   ]";
 
         System.out.println(map);
         assertThat(map).contains(answer);
@@ -48,8 +46,7 @@ public class getMapTest {
         String map = rightBridge.getMapToString(userBridge);
         String answer = "[ O | X ]"
                 + GameMessage.LINE_BREAK
-                + "[   |   ]"
-                + GameMessage.LINE_BREAK;
+                + "[   |   ]";
 
         System.out.println(map);
         assertThat(map).contains(answer);

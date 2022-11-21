@@ -14,7 +14,7 @@ public class BridgeGame {
     }
 
     public void playStart() {
-        int tryCounts = new BridgeValue().getTryCounts();
+        int tryCounts = BridgeValue.getTryCounts();
         Bridge nextBridge = move(new Bridge(new ArrayList<>()));
 
         if (!checkMoveAble(nextBridge)) {
@@ -44,7 +44,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private Bridge move(Bridge userBridge) {
-        return computerBridge.bridgeMove(userBridge);
+        return computerBridge.move(userBridge);
     }
 
     /**
@@ -57,7 +57,7 @@ public class BridgeGame {
         boolean isRetry = checkRetry(userBridge);
 
         if (isRetry) {
-            userBridge.removeState();
+            userBridge.removeLastState();
             play(userBridge, tryCounts+1);
             return;
         }
@@ -65,12 +65,12 @@ public class BridgeGame {
     }
 
     private void draw(Bridge userBridge, int tryCounts) {
-        computerBridge.bridgeDrawResult(userBridge, tryCounts);
+        computerBridge.drawResult(userBridge, tryCounts);
     }
 
     private boolean checkMoveAble(Bridge userBridge) {
         int lastIndex = userBridge.getLastIndex();
-        boolean checkMoveAble = computerBridge.compareState(lastIndex, userBridge);
+        boolean checkMoveAble = computerBridge.compareStates(lastIndex, userBridge);
         return checkMoveAble;
     }
 

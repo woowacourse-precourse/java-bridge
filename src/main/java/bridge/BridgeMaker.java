@@ -23,8 +23,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
-            BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-            int state = bridgeRandomNumberGenerator.generate();
+            int state = bridgeNumberGenerator.generate();
             bridge.add(makeState(state));
         }
 

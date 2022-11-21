@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String message = GameMessage
                 .Guide
                 .ENTER_LENGTH
@@ -27,14 +27,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String message = GameMessage
                 .Guide
                 .CHOOSE_MOVE
                 .getContents();
         String move = Console.readLine();
         OutputView.printEnterMessage(message, move);
-
         checkMoving(move);
         return move;
     }
@@ -42,14 +41,13 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         String message = GameMessage
                 .Guide
                 .ASK_RE_GAME
                 .getContents();
         String command = Console.readLine();
         OutputView.printEnterMessage(message, command);
-
         checkCommand(command);
         return command;
     }
@@ -64,7 +62,7 @@ public class InputView {
                     .getContents();
             String message = GameMessage.getErrorMessage(contents);
             OutputView.printMessage(message);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(message);
         }
     }
 
