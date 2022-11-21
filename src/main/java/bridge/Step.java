@@ -31,12 +31,16 @@ public enum Step {
     private List<String> makeStair(List<String> answer, List<String> step){
         List<String> stair = new ArrayList<>();
         for(int i = 0 ; i < answer.size(); i++){
-            if(step.get(i).equals(this.name())){
-                stair.add(answer.get(i));
-                continue;
-            }
-            stair.add(" ");
+            stair.add(checkAnswer(answer.get(i),step.get(i)));
         }
         return stair;
+    }
+
+    private String checkAnswer(String answer, String step){
+        String str = " ";
+        if(step.equals(this.name())){
+            str = answer;
+        }
+        return str;
     }
 }
