@@ -31,4 +31,26 @@ public class Bridge {
     public void decreasePos() {
         this.pos--;
     }
+    public String inputMoving() {
+        while(true){
+            try{
+                return InputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    public String inputGameCommand() {
+        while(true){
+            try{
+                return InputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public String getBridgeValue(int idx) {
+        return bridge.get(idx);
+    }
 }
