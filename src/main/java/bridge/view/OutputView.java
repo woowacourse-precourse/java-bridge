@@ -18,8 +18,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(User user) {
-        System.out.println("[ "+String.join(" | ", user.getUpSpace())+" ]");
-        System.out.println("[ "+String.join(" | ", user.getDownSpace())+" ]");
+        System.out.println("[ " + String.join(" | ", user.getUpSpace()) + " ]");
+        System.out.println("[ " + String.join(" | ", user.getDownSpace()) + " ]");
     }
 
 
@@ -39,7 +39,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printRetry(){
+    public static void printRetry() {
         System.out.println(CommentStatus.REPLAY_COMMENT.getText());
     }
 

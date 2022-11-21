@@ -18,7 +18,7 @@ public class InputView {
         do {
             size = Console.readLine();
             validSize = InputValidator.checkBridgeSize(size);
-        }while(validSize.equals(CommentStatus.ERROR.getText()));
+        } while (validSize.equals(CommentStatus.ERROR.getText()));
 
         return validSize;
     }
@@ -32,7 +32,7 @@ public class InputView {
         do {
             moving = Console.readLine();
             validMoving = InputValidator.controlMovingInput(moving);
-        }while(validMoving.equals(CommentStatus.ERROR.getText()));
+        } while (validMoving.equals(CommentStatus.ERROR.getText()));
 
         return validMoving;
     }
@@ -47,7 +47,7 @@ public class InputView {
         do {
             retryInput = Console.readLine();
             validRetryInput = InputValidator.controlRetryInput(retryInput);
-        }while(validRetryInput.equals(CommentStatus.ERROR.getText()));
+        } while (validRetryInput.equals(CommentStatus.ERROR.getText()));
 
         return validRetryInput;
     }

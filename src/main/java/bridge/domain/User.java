@@ -54,10 +54,10 @@ public class User {
 
     public String movePosition(List<String> bridge, String userMoving) {
         if (bridge.get(count).equals(userMoving)) {
-            recordResult(MoveResultStatus.CORRECT.getText(),userMoving);
+            recordResult(MoveResultStatus.CORRECT.getText(), userMoving);
             return MoveResultStatus.CORRECT.getText();
         }
-        recordResult(MoveResultStatus.FAIL.getText(),userMoving);
+        recordResult(MoveResultStatus.FAIL.getText(), userMoving);
         return MoveResultStatus.FAIL.getText();
     }
 

@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.status.BoundaryStatus;
+import bridge.status.NumberStatus;
+import bridge.status.PositionStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,18 +23,18 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridgeStatus = new ArrayList<>();
-        for (int i = 0 ; i < size ; i ++){
+        List<String> bridge = new ArrayList<>();
+        for (int i = NumberStatus.ZERO.getNumber() ; i < size ; i ++){
             Integer randomValue = bridgeNumberGenerator.generate();
-            bridgeStatus.add(judgeUpOrDown(randomValue));
+            bridge.add(judgeUpOrDown(randomValue));
         }
-        return bridgeStatus;
+        return bridge;
     }
 
     private String judgeUpOrDown(Integer randomValue) {
-        if(randomValue == 0){
-            return "D";
+        if(randomValue == NumberStatus.ZERO.getNumber()){
+            return PositionStatus.DOWN.getText();
         }
-        return "U";
+        return PositionStatus.UP.getText();
     }
 }

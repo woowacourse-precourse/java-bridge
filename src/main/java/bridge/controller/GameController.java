@@ -41,7 +41,7 @@ public class GameController {
 
             OutputView.printMap(user);
 
-            if(!(isPermitted)){
+            if (!(isPermitted)) {
                 return;
             }
         }

@@ -13,6 +13,6 @@ public enum ExceptionStatus {
     }
 
     public String getException() {
-        return  exception ;
+        return exception;
     }
 }

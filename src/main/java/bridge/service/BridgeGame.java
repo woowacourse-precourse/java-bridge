@@ -12,12 +12,12 @@ import java.util.List;
 public class BridgeGame {
 
     public static boolean move(String position, List<String> bridge, User user) {
-            String moveResult = user.movePosition(bridge, position);
-            if (moveResult.equals(MoveResultStatus.CORRECT.getText())) {
-                user.increaseCount();
-                return true;
-            }
-            return false;
+        String moveResult = user.movePosition(bridge, position);
+        if (moveResult.equals(MoveResultStatus.CORRECT.getText())) {
+            user.increaseCount();
+            return true;
+        }
+        return false;
     }
 
     public static boolean retry(String retryInput, User user) {
