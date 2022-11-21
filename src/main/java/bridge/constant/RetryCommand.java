@@ -12,7 +12,7 @@ public enum RetryCommand {
         return RETRY.shortcut.equals(userInput);
     }
 
-    private String shortcut;
+    private final String shortcut;
 
     RetryCommand(String shortcut) {
         this.shortcut = shortcut;
