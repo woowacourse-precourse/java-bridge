@@ -45,6 +45,7 @@ public class BridgeGame {
             return;
         }
         initializationUserMoves();
+        plusCnt();
     }
 
     private void initializationUserMoves() {
