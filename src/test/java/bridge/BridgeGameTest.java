@@ -22,7 +22,7 @@ public class BridgeGameTest {
         player = new Player();
     }
 
-    @DisplayName("유저가 현재 선택한 결과를 반환하는 함수 테스트")
+    @DisplayName("플레이어가 선택한 결과에 대한 정답을 알려주는 함수 테스트")
     @Test
     void isCorrect() {
         player.addChoice("U");
