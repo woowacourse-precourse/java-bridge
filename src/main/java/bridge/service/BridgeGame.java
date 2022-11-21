@@ -8,7 +8,7 @@ import bridge.domain.Result;
 public class BridgeGame {
     private static final String RESTART_QUIT_ERROR = "[ERROR] Q 또는 R을 입력해주세요";
     private static final String NO_BRIDGE_ERROR = "[ERROR] 다리가 생성되지 않아 게임이 만들어 지지 않아요";
-    private static final String NO_START_GAME_ERROR = "[ERROR] 게임이 시작되지 않았습니다";
+    private static final String NO_START_GAME_ERROR = "[ERROR] 비정상적인 접근이에요";
     private static final String RESTART_COMMAND = "R";
     public static final String QUIT_COMMAND = "Q";
     private static final String UP_COMMAND = "U";
