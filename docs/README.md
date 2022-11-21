@@ -101,6 +101,7 @@ Q
   - [X] 다리의 길이가 숫자가 아니면 예외를 발생한다. - InputView#isDigit
   - [X] 입력받은 길이가 3부터 20사이의 숫자인지 확인하고 아니면 예외를 발생한다. - InputView#validateBridgeSize
 - [X] 입력받은 길이만큼 다리를 생성한다. - BridgeMaker#makeBridge
+  - [X] 입력받은 길이만큼 0과 1 중 무작위 값을 생성한다. - BridgeRandomNumberGenerator#generate
 - [X] 플레이어로부터 이동할 칸을 입력받는다. - InputView#readMoving
   - [X] U, D 이외의 값은 예외를 발생한다. - InputView#validateMoveCommand 
 - [X] 다리의 초기 상태를 저장한다. - BridgeGame#BridgeGame
