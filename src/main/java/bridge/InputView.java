@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String BAGIC_ERROR_MESSAGE = "[ERROR]";
 
     public InputView() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -14,10 +15,24 @@ public class InputView {
     }
 
     public int readBridgeSize() {
+        String Bridge_length = " ";
         System.out.println("다리의 길이를 입력해주세요.");
-        String Bridge_length = Console.readLine();
+        Bridge_length = Console.readLine();
+        while (readBridgeSize_ERROR(Bridge_length))
+            Bridge_length = Console.readLine();
         int size = Integer.parseInt(Bridge_length);
         return size;
+    }
+
+    private boolean readBridgeSize_ERROR(String Bridge_length) {
+        try {
+            if (!(Bridge_length != null && Bridge_length.matches("^[0-9]*$")))
+                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return true;
+        }
+        return false;
     }
 
     /**
