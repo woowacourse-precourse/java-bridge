@@ -40,9 +40,6 @@ public class InputView {
         return inputNumber >= 3 && 20 >= inputNumber;
     }
 
-
-
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -60,7 +57,15 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String input) {
+        if (!validateGameCommand(input)) {
+            throw new IllegalArgumentException(ExceptionHandler.GAME_COMMAND_EXCEPTION);
+        }
+        return input;
     }
+
+    public boolean validateGameCommand(String input) {
+        return input.equals("R") || input.equals("Q");
+    }
+
 }
