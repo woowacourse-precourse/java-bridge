@@ -41,4 +41,8 @@ public class OutputView {
     public void printGameFinalBridgeResult() {
         System.out.println("최종 게임 결과");
     }
+
+    public void printGameSuccessOrFailure(String gameResult){
+        System.out.println("게임 성공 여부: "+gameResult);
+    }
 }
