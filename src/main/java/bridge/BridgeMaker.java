@@ -24,14 +24,16 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
             int randomNumber = bridgeNumberGenerator.generate();
-            if(randomNumber == 0){
-                bridge.add("D");
-            }
-            if(randomNumber == 1){
-                bridge.add("U");
-            }
+            bridge.add(getDirect(randomNumber));
         }
         return Collections.unmodifiableList(bridge);
+    }
+
+    public String getDirect(int randomNumber){
+        if(randomNumber == 0){
+            return "D";
+        }
+        return "U";
     }
 
 }
