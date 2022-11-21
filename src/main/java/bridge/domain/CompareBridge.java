@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.Messages.*;
+import static bridge.util.Messages.*;
 
 public class CompareBridge {
 
