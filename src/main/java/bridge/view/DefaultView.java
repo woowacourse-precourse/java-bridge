@@ -30,8 +30,13 @@ public class DefaultView implements View {
 
     private void inputBridgeSize() {
         outputView.printReadBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
-        controller.createBridge(bridgeSize);
+        try {
+            int bridgeSize = inputView.readBridgeSize();
+            controller.createBridge(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBridgeSize();
+        }
     }
 
     private void playGame() {
@@ -50,7 +55,13 @@ public class DefaultView implements View {
 
     private boolean inputMove() {
         outputView.printReadMove();
-        String move = inputView.readMove();
+        String move;
+        try {
+             move = inputView.readMove();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputMove();
+        }
         return controller.moveBridge(move);
     }
 
@@ -62,13 +73,19 @@ public class DefaultView implements View {
 
     private void inputGameCommand() {
         outputView.printRetry();
-        String input = inputView.readGameCommand();
-        boolean isRetry = controller.runCommand(input);
-        if (isRetry) {
-            playGame();
-            return;
+        String input;
+        try {
+            input = inputView.readGameCommand();
+            boolean isRetry = controller.runCommand(input);
+            if (isRetry) {
+                playGame();
+                return;
+            }
+            outputResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputGameCommand();
         }
-        outputResult();
     }
 
     private void outputResult() {
