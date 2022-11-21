@@ -5,14 +5,16 @@ import java.util.List;
 public class BridgeGame {
     private static BridgeGame bridgeGame;
 
-    private final InputView inputView;
-    private final BridgeSizeValidator bridgeSizeValidator;
+    private final BridgeGameStarter bridgeGameStarter;
+    private final BridgeSizeGetter bridgeSizeGetter;
     private final BridgeMaker bridgeMaker;
+    private final GameExceptionHandler exceptionHandler;
 
     private BridgeGame() {
-        this.inputView = new InputView();
-        this.bridgeSizeValidator = new BridgeSizeValidator();
+        this.bridgeGameStarter = new BridgeGameStarter();
+        this.bridgeSizeGetter = new BridgeSizeGetter();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.exceptionHandler = new GameExceptionHandler();
     }
 
     public static BridgeGame getBridgeGame() {
@@ -23,7 +25,7 @@ public class BridgeGame {
     }
 
     public void runGame() {
-        notifyGameStart();
+        this.bridgeGameStarter.atGameStart();
         System.out.println();
         List<String> bridge = this.bridgeMaker.makeBridge(getBridgeSize());
         System.out.println();
@@ -35,20 +37,7 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void notifyGameStart() {
-        this.inputView.printGameStart();
-    }
-
-    public int getBridgeSize() throws IllegalArgumentException {
-        this.inputView.printPromptForBridgeSize();
-        String input = inputView.readBridgeSize();
-
-        BridgeSizeValidationCode validationResult = this.bridgeSizeValidator.validateBridgeSize(input);
-
-        if (validationResult != BridgeSizeValidationCode.VALID) {
-            throw new IllegalArgumentException(validationResult.getErrorMessage());
-        }
-
-        return Integer.parseInt(input);
+    public int getBridgeSize() {
+        return -1;
     }
 }
