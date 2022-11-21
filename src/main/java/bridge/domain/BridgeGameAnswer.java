@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BridgeGameAnswer {
 
+    private static final String UP = "U";
     private final List<String> bridgeAnswer;
 
     public BridgeGameAnswer(List<String> bridgeAnswer) {
@@ -32,14 +33,14 @@ public class BridgeGameAnswer {
     }
 
     private List<String> getCollectMessage(String answer, boolean isLast) {
-        if (answer.equals("U")) {
+        if (answer.equals(UP)) {
             return BridgeShape.COLLECT_UP.getShapeMessages(isLast);
         }
         return BridgeShape.COLLECT_DOWN.getShapeMessages(isLast);
     }
 
     private List<String> getWrongMessage(String answer, boolean isLast) {
-        if (answer.equals("U")) {
+        if (answer.equals(UP)) {
             return BridgeShape.WRONG_UP.getShapeMessages(isLast);
         }
         return BridgeShape.WRONG_DOWN.getShapeMessages(isLast);
