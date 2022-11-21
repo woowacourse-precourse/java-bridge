@@ -31,7 +31,7 @@ public class BridgeController {
     private void playing(int size){
         for(int step = 0; step < size; step++) {
             if (checkAnswer(step)) {
-                bridgeGame.running();
+                outputView.printMap(bridgeGame.running());
                 continue;
             }
             judgeGameOver(step, size);
@@ -49,14 +49,16 @@ public class BridgeController {
         }
         return false;
     }
-    private void judgeGameOver(int step, int size){
-        if(step == size-1){
-            //게임 끝
+    private int judgeGameOver(int step, int size){
+        if(step == size){
+            outputView.printResult(bridgeGame.over());
+            return 0;
         }
-        // 게임 다시 시도
-        // 출력
-       // return moveGame(size);
+        outputView.printMap(bridgeGame.fail(step));
+        checkRetry(size);
+        return 0;
     }
+
 
 
 
