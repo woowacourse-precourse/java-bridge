@@ -19,7 +19,7 @@ public class BridgeController {
 
 	private List<String> bridge_list;
 	private final int TRY_COUNT=1;
-	private String RESULT_CONDITION;
+	private String RESULT_CONDITION=GameEnd.SUCCESS.toString();
 
 	public void BridgeGameStart(){
 		outputView.printStartGame();
@@ -39,21 +39,32 @@ public class BridgeController {
 	private void crossingTheBridge(){
 		for (int index=0;index<bridge_list.size();index++){
 			String bridge_move_result = compareMove.compareInputAndIndex(bridgeMoveOutputAndInput(),
-																bridge_list.get(index));
+																	bridge_list.get(index));
 			printMapByStringBuilder(bridge_move_result,index);
-			if (bridge_move_result.contains("X")){
+			if(RESULT_CONDITION.equals("FAIL")){
 				break;
 			}
 		}
+		retry(resultController.resultControllerByResultCondition(RESULT_CONDITION,
+																inputView, outputView));
 	}
+	private void retry(String user_input_condition){
+		if (user_input_condition.equals("SUCCESS")){
+			outputView.printResult();
+		}
+	}
+
+
 
 	private String bridgeMoveOutputAndInput(){
 		outputView.printMove();
 		return inputView.readMoving();
 	}
 
-	private void printMapByStringBuilder(String bridge_move_result,int index){
-		StringBuilder stringBuilder = outputView.printMap(bridge_move_result, index);
-		System.out.println(stringBuilder);
+	private void printMapByStringBuilder(String bridge_move_result, int index) {
+		outputView.printMap(bridge_move_result, index, bridge_list.size());
+		if (bridge_move_result.contains("X")) {
+			RESULT_CONDITION = GameEnd.FAIL.toString();
+		}
 	}
 }

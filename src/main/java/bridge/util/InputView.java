@@ -1,6 +1,7 @@
 package bridge.util;
 
 import validation.InputValidation;
+import validation.RetryValidation;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -9,11 +10,15 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
     private static final InputValidation inputValidation=new InputValidation();
+    private static final RetryValidation retryValidation=new RetryValidation();
+
     private final String ERROR_MESSAGE="[ERROR]";
 
     String user_input_bridge_size;
 
     String user_input_bridge_move;
+
+    String user_input_retry_condition;
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -50,6 +55,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        user_input_retry_condition = readLine();
+        return retryConditionValidation();
+    }
+
+    private String retryConditionValidation(){
+        if(retryValidation.userInputRetryConditionValidation(user_input_retry_condition).equals(ERROR_MESSAGE)){
+            readGameCommand();
+        }
+
+        return user_input_retry_condition;
     }
 }
