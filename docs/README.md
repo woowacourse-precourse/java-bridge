@@ -49,23 +49,17 @@
         - [x] 이동할 칸을 입력 받고 이동에 성공했는지 검사 - InputView#isBridgeMove
           - [x] 사용자가 이동할 칸을 입력받음 - InputView#readMoving
             - [x] U 또는 D인지 검사 - InputView#isReadMoving
-        
-        
-- [x] 다리의 길이를 입력 - InputView#readBridgeSize
-  - [x] 입력한 다리의 길이가 조건에 맞는지 검사(예외 사항 참고) - InputView#isBridgeSizeNumber
-  - [x] String to int - InputView#toInts
-- [x] 이동할 칸을 입력받기 - InputView#readMoving
-  - [x] 입력한 값이 U 또는 D 인지 검사 - InputView#isReadMoving
 
-- [x] "다리 건너기 게임을 시작합니다."를 출력
-- [x] "다리의 길이를 입력해 주세요."를 출력
-- [x] "이동할 칸을 선택해주세요. (위: U, 아레: D)"를 출력
-- [x] 1 또는 0을 랜덤으로 생성 - bridgeRandomNumber(클래스 변경)
-- [x] 시도한 횟수를 반환 - getTryCount
-- [x] BridgeRandomNumberGenerator 클래스를 이용하여 랜덤 값 추출(입력 받을 때마다 랜덤 값 생성)
-- [x] 이동한 칸에 따라 결과를 반영하여 결과를 출력
-- [x] "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"를 출력
-- [x] 게임 재시도 여부를 입력(예외 사항 참고)
+- [x] "다리 건너기 게임을 시작합니다."를 출력 - Message#startGameMessage
+- [x] "다리의 길이를 입력해 주세요."를 출력 - Message#inputBridgeSizeMessage
+- [x] "이동할 칸을 선택해주세요. (위: U, 아레: D)"를 출력 - Message#inputMoveBridgeMessage
+- [x] "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"를 출력 - Message#inputSelectGameRetry
+- [x] "최종 게임 결과"를 출력 - Message#printResult
+- [x] "게임 성공 여부"를 출력 - Message#printGame
+- [x] "성공"을 출력 - Message#gameSuccess
+- [x] "실패"를 출력 - Message#gameFail
+- [x] "총 시도한 횟수: "를 출력 - Message#tryCount
+
 - [x] 최종 게임 결과를 출력(게임 결과, 게임 성공 여부, 총 시도한 횟수) - OutputView#printResult
   - [x] 최종 게임 결과에 따라 성공 또는 실패로 출력 - OutputView#printIsGameSuccess
   - [x] 총 시도한 횟수를 출력 - OutputView#printTryCount
