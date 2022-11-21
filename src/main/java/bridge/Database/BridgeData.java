@@ -32,7 +32,8 @@ public class BridgeData {
         this.totalAttempt = 0;
     }
 
-    public void updateBridgeDesignByUser(String bridgeDesignByUser) {
-        this.bridgeDesignByUser.add(bridgeDesignByUser);
+    public void updateBridgeDesignByUser(List<String> bridgeDesignByUser) {
+        this.bridgeDesignByUser = bridgeDesignByUser;
+
     }
 }
