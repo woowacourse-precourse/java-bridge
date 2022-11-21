@@ -5,24 +5,67 @@ import java.util.List;
 
 public class Bridge {
 
-    private final List<String> states;
+    private final List<String> moveStates;
 
-    public Bridge(List<String> states) {
-        this.states = states;
+    public Bridge(List<String> moveStates) {
+        this.moveStates = moveStates;
     }
 
-    public void bridgeDrawResult(Bridge userBridge, int tryCounts) {
-        OutputView outputView = new OutputView();
-        outputView.printResult(new Bridge(states), userBridge, tryCounts);
+    public void drawResult(Bridge userBridge, int tryCounts) {
+        OutputView.printResult(new Bridge(moveStates), userBridge, tryCounts);
     }
 
-    public Bridge bridgeMove(Bridge userBridge) {
-        String nextMove = new InputView().readMoving();
-        userBridge.addState(nextMove);
-        OutputView outputView = new OutputView();
-        outputView.printMap(new Bridge(states), userBridge);
+    public Bridge move(Bridge userBridge) {
+        String nextMove = InputView.readMoving();
+        userBridge.addMoveState(nextMove);
+        OutputView.printMap(new Bridge(moveStates), userBridge);
 
         return userBridge;
+    }
+
+    public boolean compareStates(int index, Bridge bridge) {
+        String userState = bridge.getMoveState(index);
+        String computerState = getMoveState(index);
+        if (computerState.equals(userState)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkSuccess(Bridge bridge) {
+        int size = getSize();
+        if (size != bridge.getSize()) {
+            return false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (!compareStates(i, bridge)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkRetry() {
+        String command = InputView.readGameCommand();
+        String retry = BridgeValue.Information
+                .RE_TRY
+                .getValue();
+
+        if (retry.equals(command)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void addMoveState(String state) {
+        moveStates.add(state);
+    }
+
+    public void removeLastState() {
+        int lastIndex = getLastIndex();
+        moveStates.remove(lastIndex);
     }
 
     public String getMapToString(Bridge bridge) {
@@ -33,31 +76,8 @@ public class Bridge {
         return map;
     }
 
-    public boolean checkSuccess(Bridge bridge) {
-        int size = getSize();
-        if (size != bridge.getSize()) {
-            return false;
-        }
-
-        for (int i = 0; i < size; i++) {
-            if (!compareState(i, bridge)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public int getSize() {
-        return states.size();
-    }
-
-    public void addState(String state) {
-        states.add(state);
-    }
-
-    public void removeState() {
-        int lastIndex = getSize() - 1;
-        states.remove(lastIndex);
+        return moveStates.size();
     }
 
     public int getLastIndex() {
@@ -65,26 +85,12 @@ public class Bridge {
         return lastIndex;
     }
 
-    public boolean compareState(int index, Bridge bridge) {
-        String userState = bridge.getState(index);
-        String computerState = getState(index);
-        if (computerState.equals(userState)) {
-            return true;
-        }
-        return false;
+    private List<String> getMoveStates() {
+        return moveStates;
     }
 
-    public boolean checkRetry() {
-        String command = new InputView().readGameCommand();
-        String retry = BridgeValue.Information
-                .RE_TRY
-                .getValue();
-
-        if (retry.equals(command)) {
-            return true;
-        }
-
-        return false;
+    private String getMoveState(int index) {
+        return moveStates.get(index);
     }
 
     private String getUpMap(Bridge bridge) {
@@ -126,8 +132,8 @@ public class Bridge {
     }
 
     private List<String> getUpMove(Bridge bridge, List<String> upBridge, int bridgeIndex) {
-        String computerState = getState(bridgeIndex);
-        String userState = bridge.getState(bridgeIndex);
+        String computerState = getMoveState(bridgeIndex);
+        String userState = bridge.getMoveState(bridgeIndex);
         String move = BridgeValue.getMoveState(computerState, userState);
         String divisionOrNot = BridgeValue.getDivisionOrBracket(bridge.getSize() - 1, bridgeIndex);
 
@@ -140,8 +146,8 @@ public class Bridge {
     }
 
     private List<String> getDownMove(Bridge bridge, List<String> downBridge, int bridgeIndex) {
-        String computerState = getState(bridgeIndex);
-        String userState = bridge.getState(bridgeIndex);
+        String computerState = getMoveState(bridgeIndex);
+        String userState = bridge.getMoveState(bridgeIndex);
         String move = BridgeValue.getMoveState(computerState, userState);
         String divisionOrNot = BridgeValue.getDivisionOrBracket(bridge.getSize() - 1, bridgeIndex);
 
@@ -157,14 +163,6 @@ public class Bridge {
         moves.add(move);
         moves.add(divisionOrNot);
         return moves;
-    }
-
-    private List<String> getStates() {
-        return states;
-    }
-
-    private String getState(int index) {
-        return states.get(index);
     }
 
 

@@ -62,12 +62,30 @@
     - Bridge (Class)
         BridgeGame 등에 사용할 모델 클래스 
 
-* checkSuccess
-  - 올바른 다리 상태와 비교 후 성공 여부 반환 
-* compareState
+* drawResult
+  - 최종 게임 결과 OutputView.printResult 하기
+* move
+  - 이동 입력 후 moveStates 에 추가 후 그리기 
+* compareStates
   - 해당 길이의 다리 상태 비교
+* checkSuccess
+  - 올바른 다리 상태와 비교 후 성공 여부 반환
+* checkRetru
+  - 재시도할지 종료할지 선택 후 재시도 여부 반환
+* addMoveState
+  - List<String> moveStates 에 값 추가
+* removeLastState
+  - List<String> moveStates 에 값 제거
 * getMapToString
   - 다리 윗부분과 아랫부분의 map 합쳐서 String 값으로 반환
+* getSize
+  - List<String> moveStates 의 크기 반환
+* getLastIndex
+  - List<String> moveStates 의 마지막 index 반환
+* getMoveStates
+  - List<String> moveStates 반환
+* getMoveState
+  - 해당 index 값 state 반환
 * getUpMap
   - 다리 윗부분 Bridge map 형식으로 String 값 반환
 * getDownMap
@@ -82,14 +100,6 @@
   - 다리 아랫부분, 정답인 다리와 해당 index 의 state 비교 후 List<String> 값 갱신 후 반환
 * updateMove
   - move 와 divisionOrNot 추가 후 List<String> 값 갱신 후 반환
-* getState
-  - 해당 index 값 state 반환
-* getSize
-  - List<String> states 의 크기 반환
-* add
-  - List<String> states 에 값 추가
-* remove
-  - List<String> states 에 값 제거
 
 
 <br/>
