@@ -64,13 +64,20 @@ public class BridgeGame {
     private void addBridge(String downMove, String upMove, int index) {
         downBridge.add(downMove);
         upBridge.add(upMove);
-        if (index < bridge.size() - 1) {
-            downBridge.add("|");
-            upBridge.add("|");
+        if (!checkIsEnded()) {
             return;
         }
         downBridge.add("]");
         upBridge.add("]");
+    }
+
+    private boolean checkIsEnded() {
+        if (index < bridge.size() - 1) {
+            downBridge.add("|");
+            upBridge.add("|");
+            return false;
+        }
+        return true;
     }
 
     private MoveType[] initializeMovingResult(String validBridge, String direction, int number) {
