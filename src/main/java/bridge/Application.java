@@ -12,13 +12,13 @@ public class Application {
 
     public static void main(String[] args) {
         try {
+            outputView.printGameStart();
             init();
             gameStart();
             printGameResult();
         }catch (IllegalArgumentException illegalArgumentException){
             System.out.println(illegalArgumentException.getMessage());
         }
-
     }
 
     private static void init() {
