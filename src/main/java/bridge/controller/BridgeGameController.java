@@ -65,10 +65,10 @@ public class BridgeGameController {
             outputView.printMap(bridgeGame.getBridgeGameResult());
             moveCount++;
         }
-        finish(canMove);
+        judge(canMove);
     }
 
-    private void finish(boolean canMove) {
+    private void judge(boolean canMove) {
         if (canMove) {
             succeed();
             return;
