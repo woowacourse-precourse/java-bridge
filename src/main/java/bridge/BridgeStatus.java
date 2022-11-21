@@ -154,4 +154,11 @@ public class BridgeStatus {
 		}
 		return totalGameCount;
 	}
+
+	public void reset() {
+		phase = 0;
+		upperCellBuilder.setLength(0);
+		lowerCellBuilder.setLength(0);
+		startCell();
+	}
 }

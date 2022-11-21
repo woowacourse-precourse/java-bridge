@@ -62,6 +62,10 @@ public class OutputView {
 		return FAIL_MESSAGE;
 	}
 
+	public static void printTotalTryCountMessage() {
+		System.out.println(OUTPUT_TOTAL_TRY_COUNT + printTotalGameCount());
+	}
+
 	public static int printTotalGameCount() {
 		return bridgeStatus.getTotalGameCount();
 	}
@@ -79,5 +83,9 @@ public class OutputView {
 			System.out.print(status.get(key));
 			printNewLine();
 		}
+	}
+
+	public static void resetStatus() {
+		bridgeStatus.reset();
 	}
 }
