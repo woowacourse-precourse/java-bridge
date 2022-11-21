@@ -7,7 +7,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -48,21 +47,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @Test
-    void 범위_외_입력_예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("21");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 공백_입력_예외_테스트() {
-        assertSimpleTest(() -> {
-            runException(" ");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
 
     @Override
     protected void runMain() {
