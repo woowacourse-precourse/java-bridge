@@ -6,16 +6,15 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridgeWin;
     private final List<String> bridgeNow;
-    private int countTotal = 0;
+    private int countTotal = 1;
 
     public Bridge(List<String> bridge) {
         this.bridgeWin = bridge;
         this.bridgeNow = new ArrayList<>();
-        System.out.println(bridgeWin);
+//        System.out.println(bridgeWin);
     }
 
     public boolean applyMove(String moveTo) {
-        increaseCount();
         if (moveTo.equals("U")) {
 //            bridgeNow.add("1");
             bridgeNow.add("U");
@@ -48,6 +47,7 @@ public class Bridge {
 
     public void clearBridgeNow() {
         bridgeNow.clear();
+        increaseCount();
     }
 
     public boolean checkFinish() {
