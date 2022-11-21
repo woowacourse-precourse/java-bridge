@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Enums;
 
 public enum IntegerValue {
 
