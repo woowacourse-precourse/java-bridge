@@ -2,13 +2,33 @@ package bridge.view;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.utils.ErrorMessage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
+
+    private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private static final InputView inputView = new InputView();
+
+
+    @BeforeEach
+    void setUpOutputStream() {
+        System.setOut(new PrintStream(output));
+    }
+
+    @AfterEach
+    void resetOutputStream() {
+        System.setOut(System.out);
+        output.reset();
+    }
 
     @Nested
     @DisplayName("다리 길이 입력 시")
@@ -18,28 +38,30 @@ class InputViewTest {
         @DisplayName("숫자외의 다른 것을 입력하면 에러가 발생한다.")
         void case1() {
             //given
-            String bridgeSizeInput = "3a";
+            String bridgeSizeInput = "3a\n3";
             InputStream in = new ByteArrayInputStream(bridgeSizeInput.getBytes());
             System.setIn(in);
 
-            InputView inputView = new InputView();
+            //when
+            inputView.readBridgeSize();
 
-            //when //then
-            assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
+            //then
+            assertThat(output.toString().trim()).isEqualTo(ErrorMessage.BRIDGE_SIZE);
         }
 
         @Test
         @DisplayName("3~20을 벗어난 숫자를 입력하면 에러가 발생한다.")
         void case2() {
             //given
-            String bridgeSizeInput = "23";
+            String bridgeSizeInput = "23\n19";
             InputStream in = new ByteArrayInputStream(bridgeSizeInput.getBytes());
             System.setIn(in);
 
-            InputView inputView = new InputView();
+            //when
+            inputView.readBridgeSize();
 
-            //when //then
-            assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
+            //then
+            assertThat(output.toString().trim()).isEqualTo(ErrorMessage.BRIDGE_SIZE);
         }
 
         @Test
@@ -50,12 +72,10 @@ class InputViewTest {
             InputStream in = new ByteArrayInputStream(bridgeSizeInput.getBytes());
             System.setIn(in);
 
-            InputView inputView = new InputView();
-
             //when
             int bridgeSize = inputView.readBridgeSize();
 
-            // then
+            //then
             assertThat(bridgeSize).isEqualTo(Integer.parseInt(bridgeSizeInput));
         }
     }
@@ -68,30 +88,30 @@ class InputViewTest {
         @DisplayName("'D', 'U' 외의 문자가 있으면 에러가 발생한다.")
         void case1() {
             //given
-            String movingInput = "D1";
+            String movingInput = "D1\nD";
             InputStream in = new ByteArrayInputStream(movingInput.getBytes());
             System.setIn(in);
 
-            InputView inputView = new InputView();
+            //when
+            inputView.readMoving();
 
-            //when //then
-            assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
-
+            //then
+            assertThat(output.toString().trim()).isEqualTo(ErrorMessage.MOVING);
         }
 
         @Test
         @DisplayName("문자의 길이가 2자 이상이면 에러가 발생한다.")
         void case2() {
             //given
-            String movingInput = "UU";
+            String movingInput = "UU\nU";
             InputStream in = new ByteArrayInputStream(movingInput.getBytes());
             System.setIn(in);
 
-            InputView inputView = new InputView();
+            //when
+            inputView.readMoving();
 
-            //when //then
-            assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
-
+            //then
+            assertThat(output.toString().trim()).isEqualTo(ErrorMessage.MOVING);
         }
 
         @Test
@@ -109,7 +129,6 @@ class InputViewTest {
 
             //then
             assertThat(moving).isEqualTo(movingInput);
-
         }
     }
 
@@ -121,30 +140,30 @@ class InputViewTest {
         @DisplayName("'R', 'Q' 외의 문자가 있으면 에러가 발생한다.")
         void case1() {
             //given
-            String gameCommandInput = "R1";
+            String gameCommandInput = "R1\nQ";
             InputStream in = new ByteArrayInputStream(gameCommandInput.getBytes());
             System.setIn(in);
 
-            InputView inputView = new InputView();
+            //when
+            inputView.readGameCommand();
 
-            //when //then
-            assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
-
+            //then
+            assertThat(output.toString().trim()).isEqualTo(ErrorMessage.GAME_COMMAND);
         }
 
         @Test
         @DisplayName("문자의 길이가 2자 이상이면 에러가 발생한다.")
         void case2() {
             //given
-            String gameCommandInput = "QQ";
+            String gameCommandInput = "QQ\nQ";
             InputStream in = new ByteArrayInputStream(gameCommandInput.getBytes());
             System.setIn(in);
 
-            InputView inputView = new InputView();
+            //when
+            inputView.readGameCommand();
 
-            //when //then
-            assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
-
+            //then
+            assertThat(output.toString().trim()).isEqualTo(ErrorMessage.GAME_COMMAND);
         }
 
         @Test
@@ -162,7 +181,6 @@ class InputViewTest {
 
             //then
             assertThat(gameCommand).isEqualTo(gameCommandInput);
-
         }
     }
 }
