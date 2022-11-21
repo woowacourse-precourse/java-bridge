@@ -1,8 +1,10 @@
 package bridge.validator;
 
 public class ValidateBridgeSize implements Validator {
-    public final int MINIMUM_BRIDGE_SIZE = 3;
-    public final int MAXIMUM_BRIDGE_SIZE = 20;
+    private final String INPUT_BRIDGE_SIZE_INTEGER_ERROR_MESSAGE = "정수가 아닌 값이 입력되었습니다.";
+    private final String INPUT_BRIDGE_SIZE_RANGE_ERROR_MESSAGE = "3 이상 20 이하의 정수를 입력해야 합니다.";
+    private final int MINIMUM_BRIDGE_SIZE = 3;
+    private final int MAXIMUM_BRIDGE_SIZE = 20;
 
     @Override
     public void validate(String readInput) {
@@ -14,13 +16,13 @@ public class ValidateBridgeSize implements Validator {
         try {
             Integer.parseInt(readBridgeSize);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수가 아닌 값이 입력되었습니다.");
+            throw new IllegalArgumentException(INPUT_BRIDGE_SIZE_INTEGER_ERROR_MESSAGE);
         }
     }
 
     private void validateBridgeSizeRange(String readBridgeSize) {
         if (!validBridgeSize(Integer.parseInt(readBridgeSize))) {
-            throw new IllegalArgumentException("3 이상 20 이하의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(INPUT_BRIDGE_SIZE_RANGE_ERROR_MESSAGE);
         }
     }
 

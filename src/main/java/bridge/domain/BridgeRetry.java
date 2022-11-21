@@ -6,10 +6,9 @@ import bridge.view.InputView;
 
 import static bridge.util.BridgeConstant.CONTINUE_GAME;
 import static bridge.util.BridgeConstant.QUIT_GAME;
+import static bridge.util.BridgeConstant.GAME_RETRY_KEY;
 
 public class BridgeRetry {
-    private static final String GAME_RETRY_KEY = "R";
-
     public boolean getContinueCode(Player player) {
         String continueCode = InputView.getInputView().readGameCommand();
         if (continueCode.equals(GAME_RETRY_KEY)) {

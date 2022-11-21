@@ -1,13 +1,15 @@
 package bridge.validator;
 
+import static bridge.util.BridgeConstant.GAME_QUIT_KEY;
+import static bridge.util.BridgeConstant.GAME_RETRY_KEY;
+
 public class ValidateCommand implements Validator {
-    public final String GAME_RETRY_KEY = "R";
-    public final String GAME_QUIT_KEY = "Q";
+    private final String INPUT_COMMAND_ERROR_MESSAGE = "R, Q 외의 값을 입력했습니다.";
 
     @Override
     public void validate(String readGameCommand) {
         if (!validateCommandRange(readGameCommand)) {
-            throw new IllegalArgumentException("R, Q 외의 값을 입력했습니다.");
+            throw new IllegalArgumentException(INPUT_COMMAND_ERROR_MESSAGE);
         }
     }
 
