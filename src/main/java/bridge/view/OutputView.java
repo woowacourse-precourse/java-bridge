@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.domain.Bridge;
 
 public class OutputView {
+    private static final int LAST_CHARACTER = 1;
     static StringBuilder upStringBuilder;
     static StringBuilder downStringBuilder;
 
@@ -10,10 +11,20 @@ public class OutputView {
         initStringBuilder();
         int crossBridgeSize = bridge.getUpBridge().size();
 
+        setPrintMap(crossBridgeSize, bridge);
         finishStringBuilder();
 
         bridge.setLastBridge(upStringBuilder + downStringBuilder.toString());
         System.out.println(upStringBuilder + downStringBuilder.toString());
+    }
+
+    private void setPrintMap(int crossBridgeSize, Bridge bridge) {
+        for (int crossPoint = 0; crossPoint < crossBridgeSize; crossPoint++) {
+            upStringBuilder.append(bridge.getUpBridge().get(crossPoint));
+            downStringBuilder.append(bridge.getDownBridge().get(crossPoint));
+            upStringBuilder.append('|');
+            downStringBuilder.append('|');
+        }
     }
 
     private void initStringBuilder() {
@@ -25,7 +36,10 @@ public class OutputView {
     }
 
     private void finishStringBuilder() {
+        upStringBuilder.setLength(upStringBuilder.length() - LAST_CHARACTER);
         upStringBuilder.append("]\n");
+
+        downStringBuilder.setLength(downStringBuilder.length() - LAST_CHARACTER);
         downStringBuilder.append("]\n");
     }
 
