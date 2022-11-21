@@ -15,6 +15,7 @@ public class BridgeController {
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static final int BRIDGE_SIZE_END_INCLUSIVE = BridgeConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant();
 
     public static void run() {
         List<List<String>> bothSide = init();
@@ -27,8 +28,8 @@ public class BridgeController {
 
     private static List<List<String>> init() {
         List<List<String>> bothSide = new ArrayList<>();
-        List<String> downSide = new ArrayList<>(BridgeConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
-        List<String> upSide = new ArrayList<>(BridgeConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
+        List<String> downSide = new ArrayList<>(BRIDGE_SIZE_END_INCLUSIVE);
+        List<String> upSide = new ArrayList<>(BRIDGE_SIZE_END_INCLUSIVE);
 
         bothSide.add(downSide);
         bothSide.add(upSide);
