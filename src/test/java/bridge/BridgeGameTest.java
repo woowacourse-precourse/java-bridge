@@ -25,4 +25,16 @@ class BridgeGameTest {
         Assertions.assertThat(route).isEqualTo(List.of("U", "D", "U", "U"));
     }
 
+    @Test
+    void 재시작시_참_반환() {
+        //given
+        String gameCommand = "R";
+
+        //when
+        boolean restart = bridgeGame.retry(gameCommand);
+
+        //then
+        Assertions.assertThat(restart).isTrue();
+    }
+
 }
