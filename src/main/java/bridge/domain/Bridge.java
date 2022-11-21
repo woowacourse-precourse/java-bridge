@@ -34,8 +34,10 @@ public class Bridge {
 
     public List<String> matchAnswer(Bridge user, int stage) {
         List<String> answer = new ArrayList<>();
+        for (int i = 0; i < stage; i++)
+            answer.add(" ");
 
-        while(stage-->=0){
+        while(stage-->0){
             String result = isCorrect(this.bridge.get(stage), user.bridge.get(stage));
             answer.set(stage, result);
         }
