@@ -38,25 +38,5 @@ public class BridgeTest {
         return bridge.compareTo(player.getChoices());
     }
 
-    @DisplayName("유저가 끝까지 도달했을 경우 테스트")
-    @Test
-    void isApproachEndTest() {
-        player.addChoice("U");
-        player.addChoice("D");
-        player.addChoice("U");
-        boolean result = bridge.isApproachEndPoint(player.getChoices());
-        assertThat(result).isTrue();
-    }
 
-    @DisplayName("유저가 현재 선택한 결과를 반환하는 함수 테스트")
-    @Test
-    void isCorrect() {
-        player.addChoice("U");
-        boolean result = bridge.isCorrectChoice(player.getStep(), player.getLastChoice());
-        assertThat(result).isTrue();
-
-        player.addChoice("U");
-        result = bridge.isCorrectChoice(player.getStep(), player.getLastChoice());
-        assertThat(result).isFalse();
-    }
 }
