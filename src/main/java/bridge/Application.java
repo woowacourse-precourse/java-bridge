@@ -41,6 +41,5 @@ public class Application {
         System.out.println("\n최종 게임 결과");
         outputView.printMap(bridge, resultRound, resultMovable);
         outputView.printResult(ongoing, count);
-
     }
 }
