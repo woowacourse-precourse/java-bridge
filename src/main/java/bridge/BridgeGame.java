@@ -49,6 +49,13 @@ public class BridgeGame {
         }
         return result;
     }
+    public boolean isSuccess(){
+        boolean result = false;
+        if (moveCount==bridge.size()-1 && !isFail()){
+            result = true;
+        }
+        return result;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
