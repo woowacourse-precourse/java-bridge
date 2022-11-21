@@ -61,5 +61,8 @@ public class InputView {
 
     public void readMovingCommandCheck(String userCommand){
         String moveCommandRegularExpression = "^[U|u|D|d]{1}$";
+        if(userCommand.matches(moveCommandRegularExpression)){
+
+        }
     }
 }
