@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.domain.BridgeGame;
+import bridge.domain.constants.Command;
 import bridge.domain.constants.GameState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -52,10 +53,10 @@ public class Controller {
 
     private void move(){
         try {
-            outputView.printMoveInputRequest();
+            outputView.printMoveInputRequest(Command.MOVE_UP.getCommand(), Command.MOVE_DOWN.getCommand());
             String moveCommand = inputView.readMoving();
             bridgeGame.move(moveCommand);
-
+            outputView.printMap(bridgeGame.getUpperBlock(), bridgeGame.getUpperBlock());
         }
         catch (IllegalArgumentException exception){
             outputView.printErrorMessage(exception.getMessage());
@@ -65,7 +66,7 @@ public class Controller {
 
     private void retry(){
         try {
-            outputView.printRetryInputRequest();
+            outputView.printRetryInputRequest(Command.RETRY.getCommand(), Command.QUIT.getCommand());
             String retrialInput = inputView.readGameCommand();
             bridgeGame.retry(retrialInput);
         }

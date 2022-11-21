@@ -103,4 +103,11 @@ public class BridgeGame {
         return bridge;
     }
 
+    public List<String> getUpperBlock() {
+        return upperBlock;
+    }
+
+    public List<String> getLowerBlock() {
+        return lowerBlock;
+    }
 }

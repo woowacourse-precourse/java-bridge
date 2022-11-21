@@ -10,7 +10,10 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printMap(List<List<String>> map) {
+    public void printMap(List<String> upperBlock, List<String> lowerBlock) {
+        System.out.println(upperBlock);
+        System.out.println(lowerBlock);
+
     }
 
     public void printResult(String gameClear, int trialCount) {
@@ -27,12 +30,12 @@ public class OutputView {
         System.out.println(OutputText.BRIDGE_LENGTH_INPUT_REQUEST.getMessage());
     }
 
-    public void printMoveInputRequest(){
-        System.out.println(OutputText.MOVE_INPUT_REQUEST.getMessage());
+    public void printMoveInputRequest(String upCommand, String downCommand){
+        System.out.printf(OutputText.MOVE_INPUT_REQUEST.getMessage(), upCommand, downCommand);
     }
 
-    public void printRetryInputRequest(){
-        System.out.println(OutputText.RETRY_INPUT_REQUEST.getMessage());
+    public void printRetryInputRequest(String retrialCommand, String quitCommand){
+        System.out.printf(OutputText.RETRY_INPUT_REQUEST.getMessage(), retrialCommand, quitCommand);
     }
 
     public void printErrorMessage(String errorMessage){
