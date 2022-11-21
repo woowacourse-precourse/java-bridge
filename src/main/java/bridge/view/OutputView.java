@@ -10,13 +10,19 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private static final String ASK_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.\n";
-    private static final String ASK_USER_MOVE_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
-    private static final String ASK_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+
+    private static final String ASK_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String ASK_USER_MOVE_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String ASK_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
+    private static final String ERROR_TITLE_MESSAGE = "[ERROR] ";
+    private static final String ERROR_BRIDGE_SIZE_MESSAGE = "다리 길이는 3부터 20 사이의 숫자여야 합니다.\n";
+    private static final String ERROR_USER_MOVE_DIRECTION_MESSAGE = "이동할 칸은 D(아래 칸) 또는 U(위 칸)여야 합니다.\n";
+    private static final String ERROR_GAME_COMMAND_MESSAGE = "입력은 R(재시도) 또는 Q(종료)여야 합니다.\n";
 
     private static final String GAME_RESULT_TITLE_MESSAGE = "최종 게임 결과";
-    private static final String GAME_RESULT_IS_GAME_SUCCEED_MESSAGE = "\n게임 성공 여부: ";
+    private static final String GAME_RESULT_IS_GAME_SUCCEED_MESSAGE = "게임 성공 여부: ";
     private static final String GAME_RESULT_STATUS_SUCCEED_MESSAGE = "성공\n";
     private static final String GAME_RESULT_STATUS_FAILED_MESSAGE = "실패\n";
     private static final String GAME_RESULT_NUMBER_OF_GAME_TRIALS_MESSAGE = "총 시도한 횟수: ";
@@ -43,9 +49,24 @@ public class OutputView {
         System.out.println(ASK_USER_MOVE_DIRECTION_MESSAGE);
     }
 
-    // 재시작 여부 입력 문구 출력
+    // 재시작 / 종료 여부 입력 문구 출력
     public static void askGameCommand() {
         System.out.println(ASK_GAME_COMMAND_MESSAGE);
+    }
+
+    // 다리 길이 에러 문구 출력
+    public static void printErrorMessage_bridgeSize() {
+        System.out.println(ERROR_TITLE_MESSAGE + ERROR_BRIDGE_SIZE_MESSAGE);
+    }
+
+    // 이동할 칸 에러 문구 출력
+    public static void printErrorMessage_userMoveDirection() {
+        System.out.println(ERROR_TITLE_MESSAGE + ERROR_USER_MOVE_DIRECTION_MESSAGE);
+    }
+
+    // 재시작 / 종료 여부 에러 문구 출력
+    public static void printErrorMessage_gameCommand() {
+        System.out.println(ERROR_TITLE_MESSAGE + ERROR_GAME_COMMAND_MESSAGE);
     }
 
     /**
