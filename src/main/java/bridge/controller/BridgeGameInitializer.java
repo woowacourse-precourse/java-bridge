@@ -21,4 +21,9 @@ public class BridgeGameInitializer {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         return new BridgeGame(bridge, DEFAULT_TRY_COUNT);
     }
+
+    @Override
+    public String toString() {
+        return "< BridgeGameInitializer with BridgeRandomNumberGenerator >";
+    }
 }

@@ -59,4 +59,9 @@ public class BridgeGameController {
         BridgeGameController nextBridgeGameController = new BridgeGameController(nextBridgeGame);
         return nextBridgeGameController.progressByDistance(DEFAULT_DISTANCE);
     }
+
+    @Override
+    public String toString() {
+        return String.format("< BridgeGameController of %s >", bridgeGame.toString());
+    }
 }
