@@ -5,6 +5,7 @@ import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameService {
@@ -32,6 +33,15 @@ public class BridgeGameService {
         bridge = new Bridge();
         bridgeGame = new BridgeGame(bridge);
         output.printEnterBridgeLength(); // 다리의 길이를 입력해주세요.
+    }
+
+    public void playBridgeGame() {
+        bridgeGame = new BridgeGame(new ArrayList<>(), bridgeGame.getTotalGame(), bridge); // 게임 시작
+        moveCrossBridge();
+        if (checkRestartCondition(bridgeGame.getMovingCount())) { // 게임 재시작
+            return;
+        }
+        output.printResult(GAME_SUCCESS, bridgeGame.getTotalGame(), bridge.getLastBridge()); // 최종 결과 입력(게임 성공, 게임횟수)
     }
 
     private void moveCrossBridge() {
