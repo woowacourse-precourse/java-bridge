@@ -95,7 +95,7 @@ public class InputView {
     }
 
     private static void checkCommand(String command) {
-        boolean commandError = !(checkMatchRestart(command) || checkMatchQuit(command));
+        boolean commandError = !(checkMatchRetry(command) || checkMatchQuit(command));
 
         if (commandError) {
             String contents = GameMessage.Exception.DISALLOWED_INPUT_RE_GAME.getContents();
@@ -103,30 +103,6 @@ public class InputView {
             OutputView.printMessage(message);
             throw new IllegalArgumentException();
         }
-    }
-
-    private static boolean checkMatchQuit(String command) {
-        String quit = BridgeValue
-                .Information
-                .QUIT
-                .getValue();
-
-        if (quit.equals(command)) {
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean checkMatchRestart(String command) {
-        String restart = BridgeValue
-                .Information
-                .RE_TRY
-                .getValue();
-
-        if (restart.equals(command)) {
-            return true;
-        }
-        return false;
     }
 
     private static boolean checkStartRange(int length) {
@@ -150,6 +126,30 @@ public class InputView {
 
         int end = BridgeValue.stringToInt(endValue);
         if (length <= end) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean checkMatchQuit(String command) {
+        String quit = BridgeValue
+                .Information
+                .QUIT
+                .getValue();
+
+        if (quit.equals(command)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean checkMatchRetry(String command) {
+        String restart = BridgeValue
+                .Information
+                .RE_TRY
+                .getValue();
+
+        if (restart.equals(command)) {
             return true;
         }
         return false;

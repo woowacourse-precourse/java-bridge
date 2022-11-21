@@ -20,14 +20,32 @@
         값 입력을 위해 필요한 메서드를 가진 클래스
 
 * readBridgeSize()
-    - 다리의 길이를 입력
+  - 다리의 길이를 입력
 * readMoving()
-    - 사용자가 이동할 칸을 입력
+  - 사용자가 이동할 칸을 입력
 * readGameCommand()
-    - 사용자가 게임을 다시 시도할지 종료할지 여부를 입력
-* checkInputError()
-    - 사용자의 입력값이 예외처리 하는지 확인
-
+  - 사용자가 게임을 다시 시도할지 종료할지 여부를 입력
+* checkIsNumber()
+  - 입력값이 숫자인지 확인, 아니면 예외처리
+* checkRange()
+  - 범위 내의 숫자인지 확인, 아니면 예외처리
+* checkMoving()
+  - Move 형식에 맞는지 확인, 아니면 예외처리
+* checkCommand()
+  - Command 형식에 맞는지 확인, 아니면 예외처리
+* checkStartRange()
+  - 최솟값보다 큰 숫자인지 확인
+* checkEndRange()
+  - 최댓값보다 큰 숫자인지 확인
+* checkMatchQuit()
+  - "Q" 인지 확인
+* checkMatchRetry()
+  - "R" 인지 확인
+* checkMatchDown()
+  - "D" 인지 확인
+* checkMatchUp()
+  - "U" 인지 확인
+  
 <br/>
 
     - OutputView (Class)
