@@ -17,6 +17,7 @@ public class BridgeMakerTest extends NsTest {
                 BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
                 bridgeMaker.makeBridge(-5);
             }).isInstanceOf(IllegalArgumentException.class);
+            output().contains(ERROR_MESSAGE);
         });
     }
 
@@ -27,6 +28,7 @@ public class BridgeMakerTest extends NsTest {
                 BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
                 bridgeMaker.makeBridge(1);
             }).isInstanceOf(IllegalArgumentException.class);
+            output().contains(ERROR_MESSAGE);
         });
     }
 
