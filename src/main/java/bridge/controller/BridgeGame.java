@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeResult;
+import bridge.domain.UserResult;
 import bridge.service.BridgeGameService;
 import bridge.service.GameResultService;
 import bridge.view.InputView;
@@ -37,9 +37,9 @@ public class BridgeGame {
     }
 
     private void startGame(Bridge bridge) {
-        BridgeResult bridgeResult = GameResultService.initGameResult();
+        UserResult userResult = GameResultService.initGameResult();
         count = BridgeGameService.initCount();
-        move(bridge, bridgeResult);
+        move(bridge, userResult);
 
         if(count==bridge.getBridgeLength()){
             return;
@@ -47,24 +47,24 @@ public class BridgeGame {
         retry(bridge);
     }
 
-    public void move(Bridge bridge, BridgeResult bridgeResult) {
+    public void move(Bridge bridge, UserResult userResult) {
         while (count < bridge.getBridgeLength()) {
-            if(!(canCross(bridge,count, bridgeResult))){
-                OutputView.printMap(bridgeResult);
+            if(!(canCross(bridge,count, userResult))){
+                OutputView.printMap(userResult);
                 return;
             }
             count ++ ;
-            OutputView.printMap(bridgeResult);
+            OutputView.printMap(userResult);
         }
     }
 
-    private boolean canCross(Bridge bridge, int count, BridgeResult bridgeResult) {
+    private boolean canCross(Bridge bridge, int count, UserResult userResult) {
         String userMoving;
         do {
             userMoving = InputView.readMoving();
         }while (userMoving == "error");
         String movingResult = bridge.judgeMoving(userMoving,count);
-        bridgeResult.recordResult(movingResult,userMoving);
+        userResult.recordResult(movingResult,userMoving);
         if(movingResult.equals("O")){
             return true;
         }
