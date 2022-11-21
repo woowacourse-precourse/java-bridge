@@ -1,8 +1,14 @@
-package bridge;
+package bridge.Enums;
 
 public enum StringValue {
 
-    QUIT("Q");
+    QUIT("Q"),
+    O("O"),
+    X("X"),
+    UP("U"),
+    DOWN("D"),
+    SUCCESS("성공"),
+    FAIL("실패");
 
     private final String stringValue;
     StringValue(String stringValue) {
