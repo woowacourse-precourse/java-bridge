@@ -28,3 +28,5 @@
 - 게임의 사용자 입력을 처리한다.
 ### OutputView
 - 게임의 콘솔 출력을 처리한다.
+### message/ErrorMessage & message/OutputMessage
+- 에러 메세지 & 출력 메세지를 관리하는 enum 클래스
