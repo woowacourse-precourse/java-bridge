@@ -25,11 +25,11 @@ public class InputView {
 
     public void validateSize(String size) {
         if (!Pattern.matches("^[0-9]*$", size)) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_BRIDGE_SIZE.get());
+            throw new IllegalArgumentException(OutputMessage.ERROR.get() + OutputMessage.ERROR_BRIDGE_SIZE.get());
         }
 
         if ((Integer.parseInt(size) < 3) || (Integer.parseInt(size) > 20)) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_BRIDGE_SIZE.get());
+            throw new IllegalArgumentException(OutputMessage.ERROR.get() + OutputMessage.ERROR_BRIDGE_SIZE.get());
         }
     }
 
@@ -59,11 +59,11 @@ public class InputView {
 
     public String validateMoving(String moving) {
         if (moving.equals(Command.UP.get().toLowerCase()) || moving.equals(Command.DOWN.get().toLowerCase())) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_LOWER_MOVING_COMMAND.get());
+            throw new IllegalArgumentException(OutputMessage.ERROR.get() + OutputMessage.ERROR_LOWER_MOVING_COMMAND.get());
         }
 
         if (!(moving.equals(Command.UP.get()) || moving.equals(Command.DOWN.get()))) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_NOT_MOVING_COMMAND.get());
+            throw new IllegalArgumentException(OutputMessage.ERROR.get() + OutputMessage.ERROR_NOT_MOVING_COMMAND.get());
         }
 
         return moving;
@@ -95,11 +95,11 @@ public class InputView {
 
     public String validateRetry(String retry) {
         if (retry.equals(Command.RETRY.get().toLowerCase()) || retry.equals(Command.QUIT.get().toLowerCase())) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_LOWER_RETRY_COMMAND.get());
+            throw new IllegalArgumentException(OutputMessage.ERROR.get() + OutputMessage.ERROR_LOWER_RETRY_COMMAND.get());
         }
 
         if (!(retry.equals(Command.RETRY.get()) || retry.equals(Command.QUIT.get()))) {
-            throw new IllegalArgumentException(StateMessage.ERROR.get() + StateMessage.ERROR_NOT_RETRY_COMMAND.get());
+            throw new IllegalArgumentException(OutputMessage.ERROR.get() + OutputMessage.ERROR_NOT_RETRY_COMMAND.get());
         }
 
         return retry;
