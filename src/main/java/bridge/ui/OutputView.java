@@ -38,8 +38,8 @@ public class OutputView {
     private void printMapIfIsSuccess(List<String> route, List<StringBuilder> maps) {
         makeUpString(route, maps.get(0), route.size());
         makeDownString(route, maps.get(1), route.size());
-        maps.get(0).delete(maps.get(0).length()-3,maps.get(0).length()).append(endMap);
-        maps.get(1).delete(maps.get(1).length()-3,maps.get(1).length()).append(endMap);
+        maps.get(0).delete(maps.get(0).length() - 3, maps.get(0).length()).append(endMap);
+        maps.get(1).delete(maps.get(1).length() - 3, maps.get(1).length()).append(endMap);
         System.out.println(maps.get(0).toString());
         System.out.println(maps.get(1).toString());
     }

@@ -23,13 +23,13 @@ public class InputViewValidation {
         }
     }
 
-    public static void validateIsUorD(String input){
+    public static void validateIsUorD(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException(ERROR_NOT_U_OR_D);
         }
     }
 
-    public static void validateIsRorQ(String input){
+    public static void validateIsRorQ(String input) {
         if (!(input.equals("R") || input.equals("Q"))) {
             throw new IllegalArgumentException(ERROR_NOT_R_OR_Q);
         }
