@@ -12,10 +12,12 @@ public class BridgeGame {
     private final List<String> bridge;
 
     private List<Cell> bridgeStatus;
+    private int attemptCount;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.bridgeStatus = new ArrayList<>();
+        this.attemptCount = 1;
     }
 
     /**
@@ -43,6 +45,7 @@ public class BridgeGame {
      */
     public void retry() {
         bridgeStatus = new ArrayList<>();
+        attemptCount++;
     }
 
     public List<String> getBridge() {
@@ -51,5 +54,9 @@ public class BridgeGame {
 
     public List<Cell> getBridgeStatus() {
         return bridgeStatus;
+    }
+
+    public int getAttemptCount() {
+        return attemptCount;
     }
 }

@@ -18,7 +18,8 @@ public class Application {
     private static void startGame(BridgeGame bridgeGame) {
         try {
             crossBridge(bridgeGame);
-            endGame(new GameResult(bridgeGame.getBridgeStatus(), GameStatus.SUCCESS, 0));
+            endGame(new GameResult(bridgeGame.getBridgeStatus(), GameStatus.SUCCESS,
+                bridgeGame.getAttemptCount()));
         } catch (CannotCrossBridgeException exception) {
             outputView.printMap(bridgeGame.getBridgeStatus());
             outputView.printGuideForGameCommand();
@@ -34,7 +35,8 @@ public class Application {
         }
 
         if (gameCommand.equals("Q")) {
-            endGame(new GameResult(bridgeGame.getBridgeStatus(), GameStatus.FAIL, 0));
+            endGame(new GameResult(bridgeGame.getBridgeStatus(), GameStatus.FAIL,
+                bridgeGame.getAttemptCount()));
         }
     }
 
