@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.model.GameStatus;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
@@ -31,11 +32,11 @@ public class BridgeGameController {
             bridgeGame.move();
             play = !bridgeGame.isEnd();
             showBridge(bridgeGame.getGameMap());
-            if (!bridgeGame.isLife()) {
+            if (!bridgeGame.getStatus().isLife()) {
                 askRetry();
             }
         }
-        showResult(bridgeGame.getGameMap(), bridgeGame.isLife(), this.gameCount);
+        showResult(bridgeGame.getGameMap(), bridgeGame.getStatus(), this.gameCount);
     }
 
     private Bridge makeGameBridge() {
@@ -60,7 +61,7 @@ public class BridgeGameController {
         this.play = false;
     }
 
-    private void showResult(List<List<String>> gameMap, boolean life, int gameCount) {
-        outputView.printResult(gameMap, life, gameCount);
+    private void showResult(List<List<String>> gameMap, GameStatus status, int gameCount) {
+        outputView.printResult(gameMap, status, gameCount);
     }
 }

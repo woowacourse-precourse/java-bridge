@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.GameStatus;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -41,20 +42,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> gameMap, boolean life, int gameCount) {
+    public void printResult(List<List<String>> gameMap, GameStatus status, int gameCount) {
         System.out.println(MESSAGE_RESULT);
         for (List<String> gameBridge : gameMap) {
             System.out.println(toBridgeFormat(gameBridge));
         }
-        System.out.printf(MESSAGE_SUCCESS, resultLife(life));
+        System.out.printf(MESSAGE_SUCCESS, status.getDetail());
         System.out.printf(MESSAGE_COUNT, gameCount);
-    }
-
-    private String resultLife(boolean life) {
-        if (life) {
-            return "성공";
-        }
-        return "실패";
     }
 
     public void printNowBridge(List<List<String>> gameMap) {

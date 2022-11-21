@@ -1,23 +1,29 @@
 package bridge.model;
 
 public enum GameStatus {
-    PLAYING("진행", true),
-    SUCCESS("성공", false),
+    SUCCESS("성공", true),
     FAIL("실패", false);
 
     private final String detail;
-    private final boolean playing;
+    private final boolean life;
 
     GameStatus(String key, boolean value) {
         this.detail = key;
-        this.playing = value;
+        this.life = value;
+    }
+
+    public static GameStatus resultPlaying(boolean life) {
+        if (life) {
+            return SUCCESS;
+        }
+        return FAIL;
     }
 
     public String getDetail() {
-        return detail;
+        return this.detail;
     }
 
-    public boolean isPlaying() {
-        return playing;
+    public boolean isLife() {
+        return this.life;
     }
 }

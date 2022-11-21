@@ -11,12 +11,12 @@ import java.util.List;
 public class BridgeGame {
     List<String> answerMove;
     List<String> playerMove;
-    boolean life;
+    GameStatus status;
 
     public BridgeGame(Bridge gameBridge) {
         this.answerMove = gameBridge.getBridge();
         this.playerMove = new ArrayList<>();
-        this.life = true;
+        this.status = GameStatus.SUCCESS;
     }
 
     /**
@@ -37,7 +37,7 @@ public class BridgeGame {
      */
     public void retry() {
         this.playerMove = new ArrayList<>();
-        this.life = true;
+        this.status = GameStatus.SUCCESS;
     }
 
     public List<List<String>> getGameMap() {
@@ -50,7 +50,7 @@ public class BridgeGame {
                     upMap.add("O");
                 } else {
                     upMap.add("X");
-                    this.life = false;
+                    this.status = GameStatus.FAIL;
                 }
             } else {
                 upMap.add(" ");
@@ -58,15 +58,15 @@ public class BridgeGame {
                     downMap.add("O");
                 } else {
                     downMap.add("X");
-                    this.life = false;
+                    this.status = GameStatus.FAIL;
                 }
             }
         }
         return new ArrayList<>(Arrays.asList(upMap, downMap));
     }
 
-    public boolean isLife() {
-        return this.life;
+    public GameStatus getStatus() {
+        return this.status;
     }
 
     public boolean isEnd() {
