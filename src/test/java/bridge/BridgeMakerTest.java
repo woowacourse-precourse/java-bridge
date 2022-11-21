@@ -30,7 +30,7 @@ public class BridgeMakerTest {
     void testBridgeRange(int size) {
         // given
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(generator);;
+        BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
         // when
         assertThatExceptionOfType(IllegalArgumentException.class)

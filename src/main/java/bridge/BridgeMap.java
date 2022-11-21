@@ -19,7 +19,6 @@ public class BridgeMap {
         this.downs = new ArrayList<>();
     }
 
-
     public void moveCorrectBridge(Move move) {
         if (move == Move.UP) {
             ups.add(O);
@@ -34,7 +33,7 @@ public class BridgeMap {
         if (move == Move.UP) {
             ups.add(X);
             downs.add(BLANK);
-        } else if (move == Move.DOWN){
+        } else if (move == Move.DOWN) {
             ups.add(BLANK);
             downs.add(X);
         }
