@@ -29,7 +29,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(EventMessage.INPUT_MOVING_SIZE);
-        return null;
+        String moving = getInput();
+
+        return moving;
     }
 
     /**
@@ -37,6 +39,16 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String getInput(){
+        String input = Console.readLine().trim();
+        validateInput(input);
+        return input;
+    }
+
+    private void validateInput(String input){
+        validateEmptyInput(input);
     }
 
     private String getNumberInput(){
