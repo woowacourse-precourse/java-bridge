@@ -24,4 +24,12 @@ class GameCommandTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 게임 재시작/종료 여부 입력의 경우 R과 Q 뿐이어야 합니다.");
     }
+
+    @DisplayName("GameCommand R, Q 이외의 입력 값 검증 시 예외 발생")
+    @Test
+    void validateInput() {
+        assertThatThrownBy(() -> GameCommand.validateInput("d"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 게임 재시작/종료 여부 입력의 경우 R과 Q 뿐이어야 합니다.");
+    }
 }
