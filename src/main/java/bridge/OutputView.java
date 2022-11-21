@@ -49,7 +49,7 @@ public class OutputView {
         }
     }
 
-    public void printOorBlankOnUpperMap(String moving) {
+    public void printOorBlankOnUpperMap(final String moving) {
         if (moving.equals("U")) {
             System.out.print("O");
         }
@@ -58,7 +58,7 @@ public class OutputView {
         }
     }
 
-    public void printOorBlankOnLowerMap(String moving) {
+    public void printOorBlankOnLowerMap(final String moving) {
         if (moving.equals("D")) {
             System.out.print("O");
         }
@@ -67,7 +67,7 @@ public class OutputView {
         }
     }
 
-    public void printPartition(int size, int index) {
+    public void printPartition(final int size, final int index) {
         if (index < size - 1) {
             System.out.print(PARTITION);
         }
@@ -78,7 +78,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Bridge bridge, List<String> movings, String win) {
+    public void printResult(final Bridge bridge, final List<String> movings, final String win) {
         System.out.println("최종 게임 결과");
         printMap(bridge, movings);
         System.out.println("\n게임 성공 여부: " + win);
