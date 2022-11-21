@@ -53,7 +53,7 @@ public class InputView {
         return inputBasicLine();
     }
 
-    public String inputBasicLine() {
+    private String inputBasicLine() {
         return readLine();
     }
 }

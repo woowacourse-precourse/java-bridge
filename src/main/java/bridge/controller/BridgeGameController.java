@@ -76,7 +76,7 @@ public class BridgeGameController {
         return !untilTheEnd(bridgeGame, bridgeSize);
     }
 
-    public boolean untilTheEnd(final BridgeGame bridgeGame, final BridgeSize bridgeSize) {
+    private boolean untilTheEnd(final BridgeGame bridgeGame, final BridgeSize bridgeSize) {
         return bridgeGame.getStepDistance() != bridgeSize.getSize();
     }
 
