@@ -43,5 +43,11 @@ public class BridgeGame {
 
         gameAgent.initialize(bridgeMade);
     }
+    public void move(String playerWantedToGo) {
+        gameState &= gameAgent.checkPossibleToCross(playerWantedToGo, currentBridgeLocation);
+        List<String> currentCrossedResult = gameRecordGenerator.generate(gameState, gameAgent.getCurrentDirection(currentBridgeLocation));
+        gameRecordMaker.updateCurrentRecord(currentCrossedResult);
+        ++currentBridgeLocation;
+    }
 
 }
