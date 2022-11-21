@@ -1,8 +1,13 @@
 package bridge;
 
+import bridge.controller.GameSystem;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        GameSystem system = new GameSystem();
+        system.inputBridgeLength();
+        system.calculate();
+        system.result();
     }
 }
