@@ -1,7 +1,9 @@
 package bridge.service;
 
+import bridge.domain.ErrorMessageConstant;
 import bridge.util.BridgeNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,22 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int randomNumber = bridgeNumberGenerator.generate();
+            String path = designatePath(randomNumber);
+            bridge.add(path);
+        }
+        return bridge;
+    }
+
+    private String designatePath(int randomNumber) {
+        if (randomNumber == 0) {
+            return "D";
+        }
+        if(randomNumber == 1) {
+            return "U";
+        }
+        throw new IllegalArgumentException(ErrorMessageConstant.RANDOM_NUMBER_GENERATOR_OPERATION_FAILED);
     }
 }
