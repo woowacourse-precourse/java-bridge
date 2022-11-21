@@ -35,6 +35,11 @@ public class BridgeGameRun {
         } while (!isGameEnd());
     }
 
+    private void gameRun(String direct) {
+        result = bridgeGame.move(direct);
+        bridgeGame.bridgeMark(direct, result);
+    }
+
     private boolean isGameEnd() {
         if (!result && !isRetry()) {
             return true;
