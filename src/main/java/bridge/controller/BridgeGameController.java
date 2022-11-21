@@ -25,18 +25,18 @@ public class BridgeGameController {
     }
 
     public void run() {
-        init();
-        while (gameService.inProgress()) {
-            SquareResult squareResult = getUpToNowMoveResult();
-            outputView.printMap(gameService.getFormattedEachMoveResult(squareResult));
-            gameService.isSuccessMoveBridge(squareResult);
-            gameService.isEndOfBridgeExit();
-            isFailRestartOrExit(squareResult);
+        try {
+            init();
+            while (gameService.inProgress()) {
+                playGame();
+            }
+            printFinalResult();
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
         }
-        printFinalResult();
     }
 
-    private void init() {
+    protected void init() {
         outputView.printInit();
 
         int size = inputView.readBridgeSize();
@@ -44,6 +44,16 @@ public class BridgeGameController {
         bridgeService.createBridge(bridgeSize.get());
 
         gameService.initGame(new BridgeGame(), bridgeSize.get());
+    }
+
+    protected void playGame() {
+        SquareResult squareResult = getUpToNowMoveResult();
+        outputView.printMap(gameService.getFormattedEachMoveResult(squareResult));
+
+        gameService.isSuccessMoveBridge(squareResult);
+        gameService.isEndOfBridgeExit();
+
+        isFailRestartOrExit(squareResult);
     }
 
     private SquareResult getUpToNowMoveResult() {
@@ -59,7 +69,7 @@ public class BridgeGameController {
         }
     }
 
-    private void printFinalResult() {
+    protected void printFinalResult() {
         GameResultDto gameResultDto = gameService.getFinalGameResult();
         outputView.printResult(gameResultDto);
     }
