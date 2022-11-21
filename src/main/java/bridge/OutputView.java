@@ -37,4 +37,8 @@ public class OutputView {
     public void inputBridgeSize(){
         System.out.println(INPUT_BRIDGE_SIZE);
     }
+    public void inputUserMoveCommand(){
+        System.out.println(INPUT_MOVE_COMMAND+UserCommand.MOVE_UP.getMoveCommand()+IS+UserCommand.MOVE_UP.getPosition()+
+                AND+ UserCommand.MOVE_DOWN.getMoveCommand()+IS+UserCommand.MOVE_DOWN.getPosition()+INPUT_END);
+    }
 }
