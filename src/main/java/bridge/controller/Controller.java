@@ -39,4 +39,10 @@ public class Controller {
         List<String> map = bridgeGame.getBridgeProgress();
         outputView.printMap(map);
     }
+
+    private void retry(){
+        outputView.printRetryInputRequest();
+        String retrialInput = inputView.readGameCommand();
+        bridgeGame.retry(retrialInput);
+    }
 }

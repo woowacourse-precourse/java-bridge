@@ -91,7 +91,7 @@
     + [X] InputView) 입력을 받음
     + [X] BridgeMaker) 입력 받은 길이의 다리를 만듦.
     + [X] 만들어진 다리를 BridgeGame으로 건넴
-  + [ ] 이동할 칸 선택
+  + [X] 이동할 칸 선택
     + [X] OutputView) 입력 요청 메시지 출력
     + [X] InputView) 입력 받음
     + [X] 입력을 BridgeGame으로 건넴
