@@ -23,23 +23,25 @@
 ### 1. 칸을 움직인 결과 배열을 저장할 instance variable(bridgeState) 추가
 ### 2. 칸 이동 (move)
 - input = U or D
-- 이동할 칸이 올바른 bridge 칸이면 1 반환 & bridgeState 갱신
-- 이동할 칸이 올바르지 않은 bridge 칸이면 -1 반환 & bridgeState 갱신
-- 이동할 칸이 올바르고, bridge 배열의 끝이면 0 반환 & bridgeState 갱신
-  - enum 이용
+- 이동할 칸이 올바른 bridge 칸이면 1 & 갱신된 nowBridge 반환
+- 이동할 칸이 올바르지 않은 bridge 칸이면 0 & 갱신된 nowBridge 반환
+
 ### 3. 게임 재시작 (retry)
 - input = R or Q
 - R이면 1 반환
-- Q이면 -1 반환
+- Q이면 0 반환
 - - - 
 
 ## 게임 컨트롤 (Application)
 ### 1. 게임 입,출력 함수 호출 및 BridgeGame의 move, retry 호출
-### 2. move의 결과에 따라 retry 실행
-- move 결과가 -1이면 retry 호출
+### 2. move의 결과에 따라 retry 실행 & BridgeGame 실행 횟수 count
+- move의 결과가 1이면 계속 move 호출
+  - move의 결과가 1이고 현재 다리길이 = 다리길이이면 게임 종료
+- move 결과가 0이면 현재 다리상태 출력 후, retry 호출
+
 ### 3. retry의 결과에 따라 게임 종료
 - retry 결과가 1이면 게임 재시작
-- retry 결과가 -1이면 게임 종료 & 게임 결과 출력(printResult)
+- retry 결과가 0이면 게임 종료 & 게임 결과 출력(printResult)
 - - - 
 
 ## 출력 (OutputView)
@@ -55,7 +57,8 @@
 <br/>
 
 # 요구 사항
-### IllegalArgumentException 발생 및 [ERROR] message 출력.
+### IllegalArgumentException 발생 및 "[ERROR]" message 출력.
+- [x] 다리 길이 입력이 숫자가 아닌 문자인 경우
 - [x] 다리 길이 입력이 3 ~ 20 사이의 숫자가 아닌 경우
 - [x] 이동할 칸 입력이 U 또는 D가 아닌 경우
 - [x] 재시작/종료 입력이 R 또는 Q가 아닌 경우

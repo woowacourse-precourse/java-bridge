@@ -10,8 +10,8 @@ public class Constant {
     static final String MOVE_DOWN = "D";
     static final String RESTART_YES = "R";
     static final String RESTART_NO = "Q";
-    static final String PRINT_BLOCK_VALID = "O";
-    static final String PRINT_BLOCK_INVALID = "X";
+    static final String PRINT_BLOCK_VALID = " O ";
+    static final String PRINT_BLOCK_INVALID = " X ";
 
     static final int MOVERESULT_FLAG_VALID = 1;
     static final int MOVERESULT_FLAG_INVALID = 0;
