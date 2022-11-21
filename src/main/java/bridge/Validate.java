@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class Validate {
     private final static String NUMERIC_PATTERN = "^[0-9]*$";
     private final static String UP_OR_DOWN_PATTERN = "^[UD]*$";
+    private final static String RESTART_OR_QUIT_PATTERN = "^[RQ]*$";
     private final static int MAX_BRIDGE_SIZE = 20;
     private final static int MIN_BRIDGE_SIZE = 3;
 
@@ -32,6 +33,16 @@ public class Validate {
 
     public void isMoving(String input) {
         if (!isUpOrDown(input)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isRestartOrQuit(String input) {
+        return Pattern.matches(RESTART_OR_QUIT_PATTERN, input);
+    }
+
+    public void isGameCommand(String input) {
+        if (!isRestartOrQuit(input)){
             throw new IllegalArgumentException();
         }
     }

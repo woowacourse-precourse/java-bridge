@@ -20,6 +20,8 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        return null;
+        String input = Console.readLine();
+        validate.isGameCommand(input);
+        return input;
     }
 }
