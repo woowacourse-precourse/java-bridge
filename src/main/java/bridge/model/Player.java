@@ -6,6 +6,7 @@ public class Player {
 
     public static final int INITIAL_POSITION = -1;
     private int position = INITIAL_POSITION;
+    private boolean inWater = false;
 
     public boolean canMove(List<String> bridge, Direction direction) {
         String nextPosition = bridge.get(position + 1);
@@ -22,5 +23,14 @@ public class Player {
 
     public void backInitialPosition() {
         position = INITIAL_POSITION;
+        inWater = false;
+    }
+
+    public void fallIntoWater() {
+        inWater = true;
+    }
+
+    public boolean isInWater() {
+        return inWater;
     }
 }

@@ -23,7 +23,9 @@ public class BridgeGame {
     public void move(Direction direction) {
         if (player.canMove(bridge, direction)) {
             player.move();
+            return;
         }
+        player.fallIntoWater();
     }
 
     /**
@@ -40,6 +42,6 @@ public class BridgeGame {
     }
 
     public boolean isFailed() {
-        return true;
+        return player.isInWater();
     }
 }
