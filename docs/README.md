@@ -82,9 +82,9 @@ R
 - [X] 이동 완료 여부 확인
 - [X] 초기 상태 확인
 - SuccessResultPrinter
-- [X] 성공결과 생성
+- [X] 성공 결과 생성
 - FailureResultPrinter
-- [X] 실패결과 생성
+- [X] 실패 결과 생성
 - OutputView
 - [X] 이동 한 칸을 출력
 - [X] 게임 성공 여부 출력
@@ -94,6 +94,6 @@ R
 - [X] 다리의 길이만큼 다리 생성
 - [X] 특정한 위치의 방향 확인 기능
 - BridgeFakeOneZeroLoopNumberGenerator
-- [X] 테스트용 다리리스트 생성자
+- [X] 테스트용 bridge 생성자
 - Position
 - [X] 이동위치를 담는다.
