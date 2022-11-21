@@ -9,10 +9,12 @@ import java.util.List;
 public class BridgeGame {
     final List<String> bridge;
     final List<String> movement;
+    int tried;
 
     BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.movement = new ArrayList<>();
+        this.tried = 0;
     }
 
     /**
