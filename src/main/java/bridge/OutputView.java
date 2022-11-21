@@ -7,6 +7,11 @@ import java.util.List;
  */
 public class OutputView {
     private static final int MAX_HEIGHT = 2;
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
+    private static final String START_ROW = "[";
+    private static final String SPLIT_UNIT = "|";
+    private static final String END_ROW = "]";
     private static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.";
     private static final String END_BRIDGE_GAME = "최종 게임 결과";
     private static final String GAME_SUCCESS_FLAG_MESSAGE = "게임 성공 여부: ";
@@ -24,9 +29,9 @@ public class OutputView {
      */
     public static void printMap(int currentPosition, List<List<String>> bridgeMap) {
         for(int height=0; height<MAX_HEIGHT; height++){
-            System.out.print("[");
-            System.out.print(String.join("|", bridgeMap.get(height).subList(0, currentPosition)));
-            System.out.println("]");
+            System.out.print(START_ROW);
+            System.out.print(String.join(SPLIT_UNIT, bridgeMap.get(height).subList(0, currentPosition)));
+            System.out.println(END_ROW);
         }
         System.out.println();
     }
@@ -48,8 +53,8 @@ public class OutputView {
 
     private static String getResult(boolean isSuccess) {
         if (isSuccess) {
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 }
