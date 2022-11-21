@@ -59,6 +59,10 @@ public class BridgeGame {
     }
 
     public boolean isGameFailed() {
+        if (player.getPosition() < 0) {
+            return false;
+        }
+
         return !isLatestMovingSuccess();
     }
 
