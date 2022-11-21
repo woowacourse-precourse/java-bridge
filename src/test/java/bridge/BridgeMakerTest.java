@@ -29,11 +29,16 @@ class BridgeMakerTest {
     }
 
     @Test
-    void transferNumberToAlphabet() {
-
+    void 숫자_알파벳으로_변환_테스트() {
+        List<Integer> numberBridge = bridgeMaker.makeNumberBridge(size);
+        List<String> alphabetBridge = bridgeMaker.transferNumberToAlphabet(numberBridge);
+        assertThat(alphabetBridge).contains("U", "D");
     }
 
     @Test
-    void makeBridge() {
+    void 다리_길이_테스트() {
+        List<Integer> numberBridge = bridgeMaker.makeNumberBridge(size);
+        List<String> alphabetBridge = bridgeMaker.transferNumberToAlphabet(numberBridge);
+        assertThat(alphabetBridge.size()).isEqualTo(10);
     }
 }
