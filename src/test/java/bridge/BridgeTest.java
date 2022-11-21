@@ -21,10 +21,9 @@ public class BridgeTest extends NsTest {
 	private static final String ERROR_MESSAGE = "[ERROR]";
 
 	@Test
-	@DisplayName("다리 생성 예외 테스트 3~20인지 확인")
+	@DisplayName("다리 생성 예외 테스트 3~20인지 확인 (2)")
 	void 다리_생성예외_테스트() {
-		BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
-		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
 		try {
 			Bridge bridge = new Bridge(bridgeMaker.makeBridge(2));
@@ -36,7 +35,7 @@ public class BridgeTest extends NsTest {
 	}
 
 	@Test
-	@DisplayName("다리 생성 예외 테스트 3~20인지 확인")
+	@DisplayName("다리 생성 예외 테스트 3~20인지 확인 (21)")
 	void 다리_생성예외_테스트2() {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 

@@ -6,6 +6,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -19,9 +20,8 @@ public class BridgeGame {
 	private String gameResult;
 	private BridgeResult bridgeResult;
 
-	public BridgeGame(int size) {
-		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		this.bridge = new Bridge(bridgeMaker.makeBridge(size));
+	public BridgeGame(List<String> bridge) {
+		this.bridge = new Bridge(bridge);
 		this.tryCount++;
 	}
 

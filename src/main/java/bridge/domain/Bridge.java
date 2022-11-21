@@ -16,12 +16,11 @@ public class Bridge {
 	}
 
 	public BridgeStatus isBridgeStatus(String input, int bridgeNumber) {
-		boolean test = checkBridge(bridge.get(bridgeNumber), input);
-		return BridgeStatus.findByBridgeStatus(test);
+		return BridgeStatus.findByBridgeStatus(checkBridge(bridge.get(bridgeNumber), input));
 	}
 
 	private boolean checkBridge(String currentBridge, String input) {
-		return currentBridge.chars().allMatch(bridge -> bridge == input.charAt(0));
+		return currentBridge.equals(input);
 	}
 
 	public boolean isEnd(int bridgeNumber) {

@@ -4,6 +4,8 @@ import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
 import bridge.service.BridgeGame;
+import bridge.service.BridgeMaker;
+import bridge.service.BridgeRandomNumberGenerator;
 import bridge.util.Logger;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -27,7 +29,8 @@ public class GameController {
 	private void gameStart() {
 		outputView.printStart();
 		outputView.printRequestBridgeSize();
-		bridgeGame = new BridgeGame(inputView.readBridgeSize());
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
 	}
 
 	private void crossingBridge() {
