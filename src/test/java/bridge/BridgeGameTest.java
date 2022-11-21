@@ -6,82 +6,77 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.repository.BridgeResultData;
 import bridge.repository.MovingData;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
 
-    @Test
-    @DisplayName("[메서드 테스트] upBridge에 O 값 반환 / downBridge에 공백 반환")
-    void test1() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeGame bridgeGame = new BridgeGame(3, numberGenerator);
+    BridgeGame bridgeGame = new BridgeGame(3, new BridgeRandomNumberGenerator());
 
-        String moving = "U";
-        String upBridgeResult = bridgeGame.getBridgeResult(moving, "U");
-        String downBridgeResult = bridgeGame.getBridgeResult(moving, "D");
-        assertThat(upBridgeResult).isEqualTo("O");
-        assertThat(downBridgeResult).isEqualTo(" ");
+    @AfterEach
+    void clearData() {
+        bridgeGame.quit();
     }
 
     @Test
-    @DisplayName("[메서드 테스트] upBridge에 공백 반환 / downBridge에 O 값 반환")
-    void test2() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 0, 0));
+    @DisplayName("upBridge 를 제대로 건넜을 때 각각 O와 공백을 반환한다.")
+    void winUpBridgeTest() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 1));
         BridgeGame bridgeGame = new BridgeGame(3, numberGenerator);
+        bridgeGame.move("U");
 
-        String moving = "D";
-        String upBridgeResult = bridgeGame.getBridgeResult(moving, "U");
-        String downBridgeResult = bridgeGame.getBridgeResult(moving, "D");
-        assertThat(upBridgeResult).isEqualTo(" ");
-        assertThat(downBridgeResult).isEqualTo("O");
+        assertThat(BridgeResultData.getUpBridgeResults().get(0)).isEqualTo("O");
+        assertThat(BridgeResultData.getDownBridgeResults().get(0)).isEqualTo(" ");
     }
 
     @Test
-    @DisplayName("[메서드 테스트] upBridge에 X 값 반환 / downBridge에 O 값 반환")
-    void test3() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 0, 0));
+    @DisplayName("upBridge 를 잘못 건넜을 때 각각 X와 공백을 반환한다.")
+    void loseUpBridgeTest() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 1, 1));
         BridgeGame bridgeGame = new BridgeGame(3, numberGenerator);
+        bridgeGame.move("U");
 
-        String moving = "U";
-        String upBridgeResult = bridgeGame.getBridgeResult(moving, "U");
-        String downBridgeResult = bridgeGame.getBridgeResult(moving, "D");
-        assertThat(upBridgeResult).isEqualTo("X");
-        assertThat(downBridgeResult).isEqualTo(" ");
+        assertThat(BridgeResultData.getUpBridgeResults().get(0)).isEqualTo("X");
+        assertThat(BridgeResultData.getDownBridgeResults().get(0)).isEqualTo(" ");
     }
 
     @Test
-    @DisplayName("[메서드 테스트] upBridge에 공백 반환 / downBridge에 X 값 반환")
-    void test4() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+    @DisplayName("downBridge 를 제대로 건넜을 때 각각 공백과 O을 반환한다.")
+    void winDownBridgeTest() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 1, 1));
         BridgeGame bridgeGame = new BridgeGame(3, numberGenerator);
+        bridgeGame.move("D");
 
-        String moving = "D";
-        String upBridgeResult = bridgeGame.getBridgeResult(moving, "U");
-        String downBridgeResult = bridgeGame.getBridgeResult(moving, "D");
-        assertThat(upBridgeResult).isEqualTo(" ");
-        assertThat(downBridgeResult).isEqualTo("X");
+        assertThat(BridgeResultData.getUpBridgeResults().get(0)).isEqualTo(" ");
+        assertThat(BridgeResultData.getDownBridgeResults().get(0)).isEqualTo("O");
     }
 
     @Test
-    @DisplayName("[메서드 테스트] move 하면 데이터 저장소에 데이터가 들어간다.")
-    void test5() {
-        BridgeGame bridgeGame = new BridgeGame(3, new BridgeRandomNumberGenerator());
+    @DisplayName("downBridge 를 잘못 건넜을 때 각각 공백과 X를 반환한다.")
+    void loseDownBridgeTest() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 1));
+        BridgeGame bridgeGame = new BridgeGame(3, numberGenerator);
+        bridgeGame.move("D");
+
+        assertThat(BridgeResultData.getUpBridgeResults().get(0)).isEqualTo(" ");
+        assertThat(BridgeResultData.getDownBridgeResults().get(0)).isEqualTo("X");
+    }
+
+    @Test
+    @DisplayName("move 하면 데이터 저장소에 데이터가 들어간다.")
+    void moveTest() {
         String moving = "D";
         bridgeGame.move(moving);
 
         assertThat(MovingData.getSize()).isEqualTo(1);
         assertThat(BridgeResultData.getUpBridgeResults().size()).isEqualTo(1);
         assertThat(BridgeResultData.getDownBridgeResults().size()).isEqualTo(1);
-
-        bridgeGame.quit();
     }
 
     @Test
-    @DisplayName("[메서드 테스트] retry 하면 마지막 데이터가 삭제된다.")
-    void test6() {
-        BridgeGame bridgeGame = new BridgeGame(3, new BridgeRandomNumberGenerator());
-
+    @DisplayName("retry 하면 마지막 데이터가 삭제된다.")
+    void retryTest() {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.retry();
@@ -89,15 +84,11 @@ class BridgeGameTest {
         assertThat(MovingData.getSize()).isEqualTo(1);
         assertThat(BridgeResultData.getUpBridgeResults().size()).isEqualTo(1);
         assertThat(BridgeResultData.getDownBridgeResults().size()).isEqualTo(1);
-
-        bridgeGame.quit();
     }
 
     @Test
-    @DisplayName("[메서드 테스트] quit 하면 모든 데이터가 삭제된다.")
-    void test7() {
-        BridgeGame bridgeGame = new BridgeGame(3, new BridgeRandomNumberGenerator());
-
+    @DisplayName("quit 하면 모든 데이터가 삭제된다.")
+    void quitTest() {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.quit();
@@ -108,19 +99,17 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("[메서드 테스트] 승리하면 참을 반환한다.")
-    void test8() {
+    @DisplayName("승리하면 참을 반환한다.")
+    void winTest() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 1));
         BridgeGame bridgeGame = new BridgeGame(3, numberGenerator);
 
         bridgeGame.move("U");
         bridgeGame.move("U");
         bridgeGame.move("U");
-        boolean winBridgeGame = bridgeGame.winBridgeGame("U");
+        boolean winBridgeGame = bridgeGame.win("U");
 
         assertThat(winBridgeGame).isEqualTo(true);
-
-        bridgeGame.quit();
     }
 
 
