@@ -24,15 +24,19 @@ public class Bridge {
         userRoute.add(direction);
         int currentRound = userRoute.size() - 1;
 
-        if (userRoute.get(currentRound) != bridge.get(currentRound)) { // 갈 수 없는 칸으로 이동한 경우
+        // TODO: 테스트용 출력문 제거
+        System.out.println("bridge in this round : "+bridge.get(currentRound));
+        System.out.println("userRoute in this round : "+userRoute.get(currentRound));
+
+        if (userRoute.get(currentRound).equals(bridge.get(currentRound)) == false) {
             return gameStatus.FAIL;
 
-        } if (userRoute.size() == bridge.size()) { // 도착한 경우
-            return gameStatus.SUCCESS;
-
-        } if (userRoute.size() < bridge.size()) { // 게임을 계속 진행하는 경우
+        } if (userRoute.get(currentRound).equals(bridge.get(currentRound)) == true) {
+            if ((userRoute.size() == bridge.size())) {
+                return gameStatus.SUCCESS;
+            }
             return gameStatus.CONTINUE;
         }
-        return null;
+        return gameStatus.CONTINUE;
     }
 }
