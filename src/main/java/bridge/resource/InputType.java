@@ -32,7 +32,7 @@ public enum InputType {
 
     public static void validateContinuousCommand(String input) {
         if (!input.equals(RESTART_COMMAND.command)
-                && input.equals(QUIT_COMMAND.command))
+                && !input.equals(QUIT_COMMAND.command))
             Error.printException(ErrorType.CONTINUING);
     }
 }
