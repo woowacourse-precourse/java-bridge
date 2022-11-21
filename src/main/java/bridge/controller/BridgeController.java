@@ -19,6 +19,8 @@ public class BridgeController {
     private static Boolean trueOrFalse = true;
     private static int triedNumber = 0;
     private static String successOrFail = "";
+    private static List<String> upFloor = new ArrayList<>();
+    private static List<String> downFloor = new ArrayList<>();
 
     public void init() {
 
@@ -26,10 +28,9 @@ public class BridgeController {
         bridges = makeRandomBridges(inputSize);
 
         while (trueOrFalse) {
-            String inputMoving = inputView.readMoving();
-            triedNumber = getTriedNumber(inputSize, inputMoving);
+            triedNumber = getTriedNumber(inputSize);
         }
-//        printResult();
+        printResult();
     }
 
     private int getBridgeSize() {
@@ -41,11 +42,10 @@ public class BridgeController {
         return bridgeMaker.makeBridge(inputSize);
     }
 
-    private int getTriedNumber(int inputSize, String inputMoving) {
+    private int getTriedNumber(int inputSize) {;
         cleanAndAdd();
-
         int lengthOfBridge = 0;
-        lengthOfBridge = startGame(inputSize, lengthOfBridge, inputMoving);
+        lengthOfBridge = startGame(inputSize, lengthOfBridge);
         successOrFail = getSuccess(inputSize, lengthOfBridge);
         trueOrFalse = getFalse();
 
@@ -55,14 +55,15 @@ public class BridgeController {
     }
 
     private void cleanAndAdd() {
-        List<String> upFloor = new ArrayList<>();
-        List<String> downFloor = new ArrayList<>();
+        upFloor.clear();
+        downFloor.clear();
         upAndDown.add(upFloor);
         upAndDown.add(downFloor);
     }
 
-    private static int startGame(int inputSize, int lengthOfBridge, String inputMoving) {
+    private int startGame(int inputSize, int lengthOfBridge) {
         while (lengthOfBridge < inputSize) {
+            String inputMoving = inputView.readMoving();
             lengthOfBridge = bridgeGame.move(bridges, lengthOfBridge, inputMoving);
 
             List<String> toStringBridges = new ArrayList<>();
@@ -98,6 +99,14 @@ public class BridgeController {
             return false;
         }
         return true;
+    }
+
+    private static void printResult() {
+
+        List<String> finalMap = new ArrayList<>();
+        toAddforBridges(finalMap);
+
+        outputView.printResult(finalMap, successOrFail, triedNumber);
     }
 
 
