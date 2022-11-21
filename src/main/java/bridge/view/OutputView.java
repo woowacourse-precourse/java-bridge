@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class OutputView {
     private StringBuilder upSide;
-    private StringBuilder down;
+    private StringBuilder downSide;
 
     public OutputView() {
     }
@@ -22,12 +22,12 @@ public class OutputView {
      */
     public void printMap(List<String> movingChoices, List<Boolean> moveResults) {
         upSide = new StringBuilder(MapType.START.getType());
-        down = new StringBuilder(MapType.START.getType());
+        downSide = new StringBuilder(MapType.START.getType());
         for (int index = 0; index < movingChoices.size(); index++) {
             makeUpSide(movingChoices.get(index), moveResults.get(index));
             makeDownSide(movingChoices.get(index), moveResults.get(index));
         }
-        printWithDivision(upSide, down);
+        printWithDivision(upSide, downSide);
     }
 
     public void makeUpSide(String moving, boolean moveResult) {
@@ -45,13 +45,13 @@ public class OutputView {
     public void makeDownSide(String moving, boolean moveResult) {
         if (moving.equals(BridgePanel.DOWN_PANEL.getPosition())) {
             if (moveResult) {
-                down.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
+                downSide.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
                 return;
             }
-            down.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
+            downSide.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
             return;
         }
-        down.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+        downSide.append(MapType.EMPTY.getType()).append(MapType.END.getType());
     }
 
     public void insertDivision(StringBuilder builder) {
