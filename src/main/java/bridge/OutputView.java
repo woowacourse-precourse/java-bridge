@@ -21,6 +21,40 @@ public class OutputView {
         return output;
     }
 
+    public void SplitBridgeToUpBridge(List<String> upBridgeMap, List<String> downBridgeMap, String playerStep) {
+        if (playerStep.charAt(playerStep.length() - 1) == 'U') {
+            upBridgeMap.add(changeFailToX(playerStep));
+            downBridgeMap.add(" ");
+        }
+    }
+
+    public void SplitBridgeToDownBridge(List<String> upBridgeMap, List<String> downBridgeMap, String playerStep) {
+        if (playerStep.charAt(playerStep.length() - 1) == 'D') {
+            upBridgeMap.add(" ");
+            downBridgeMap.add(changeFailToX(playerStep));
+        }
+    }
+
+
+    public void splitMap(List<String> upBridgeMap, List<String> downBridgeMap, String playerStep) {
+        SplitBridgeToUpBridge(upBridgeMap, downBridgeMap, playerStep);
+        SplitBridgeToDownBridge(upBridgeMap, downBridgeMap, playerStep);
+    }
+
+    private void printMap(List<String> upBridgeMap, List<String> downBridgeMap) {
+        System.out.println("[ " + String.join(" | ", upBridgeMap) + " ]");
+        System.out.println("[ " + String.join(" | ", downBridgeMap) + " ]");
+    }
+
+    public void constructMap(List<String> playerMap) {
+        List<String> upBridgeMap = new ArrayList<>();
+        List<String> downBridgeMap = new ArrayList<>();
+        for (String playerStep : playerMap) {
+            splitMap(upBridgeMap, downBridgeMap, playerStep);
+        }
+        printMap(upBridgeMap, downBridgeMap);
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
