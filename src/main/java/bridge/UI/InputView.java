@@ -49,7 +49,8 @@ public class InputView {
 
     public void validateGameCommand(String userInput) {
         if (!Objects.equals(userInput, "R") && !Objects.equals(userInput, "Q")) {
-            throw new IllegalArgumentException(ErrorMessages.SHOULD_CHOOSE_ONLY_BETWEEN_RETRY_AND_QUIT);
+            throw new IllegalArgumentException(
+                    ErrorMessages.SHOULD_CHOOSE_ONLY_BETWEEN_RETRY_AND_QUIT);
         }
     }
 }

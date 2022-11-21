@@ -34,6 +34,5 @@ public class BridgeData {
 
     public void updateBridgeDesignByUser(List<String> bridgeDesignByUser) {
         this.bridgeDesignByUser = bridgeDesignByUser;
-
     }
 }

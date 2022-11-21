@@ -90,7 +90,8 @@ public class BridgeGameTest {
 
             assertThat(bridgeGame.retry()).isTrue();
             assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(1);
-            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(Collections.emptyList());
+            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(
+                    Collections.emptyList());
         }
 
         @DisplayName("Q를 받을 경우, QUIT을 선언한다.")
