@@ -39,7 +39,7 @@ public class BridgeTest {
         List<Integer> positions = List.of(-1,20,-5,13,10000,-12412);
 
         for (int position : positions) {
-            Assertions.assertThrows(IndexOutOfBoundsException.class,
+            Assertions.assertThrows(IllegalStateException.class,
                     () -> bridge.isMovable(position,"D")
             );
         }
