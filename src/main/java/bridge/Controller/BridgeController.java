@@ -13,7 +13,6 @@ public class BridgeController {
 
     public void playBridgeGame() {
 
-        // 게임 시작 문구 출력
         OutputView.printGameStart();
 
         Bridge bridge = makeBridge();
@@ -23,7 +22,7 @@ public class BridgeController {
         Status status = Status.PLAYING;
         int tries = 0;
         boolean success = false;
-        while (status == Status.PLAYING) {      // 사용자가 Q를 입력하기 전까지 게임이 계속된다
+        while (status == Status.PLAYING) {
 
             tries += 1;
             Status now = run(bridge, userBridges);
@@ -33,8 +32,10 @@ public class BridgeController {
                 break;
             }
 
-            if (now == Status.WRONG_CHOICE)
-                status = BridgeGame.retry(userBridges);
+            if (now == Status.WRONG_CHOICE) {
+                String retry = InputView.readGameCommand();
+                status = BridgeGame.retry(retry, userBridges);
+            }
         }
 
         // 최종 결과를 출력한다
