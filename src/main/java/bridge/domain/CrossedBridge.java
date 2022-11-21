@@ -17,7 +17,7 @@ public class CrossedBridge {
     }
 
     public List<String> getCrossedBridge() {
-        return Collections.unmodifiableList(crossedBridge); //이거 의미있는건지 확인
+        return Collections.unmodifiableList(crossedBridge);
     }
 
     public void initialize() {
