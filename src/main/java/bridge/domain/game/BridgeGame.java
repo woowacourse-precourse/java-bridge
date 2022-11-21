@@ -1,9 +1,10 @@
 package bridge.domain.game;
 
 import bridge.domain.bridge.BridgeMove;
-import bridge.domain.history.BridgeMoveHistory;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.history.BridgeGameHistory;
+import bridge.domain.history.BridgeMoveResult;
+import bridge.domain.history.BridgeMoveResultStatus;
 
 public class BridgeGame {
     
@@ -52,12 +53,12 @@ public class BridgeGame {
     
     public void move(BridgeMove move) {
         if (isReachedLastPosition()) return;
-        getHistory().addMoveHistory(getTryCount(), new BridgeMoveHistory(move, true));
+        getHistory().addMoveResult(getTryCount(), new BridgeMoveResult(move, BridgeMoveResultStatus.SUCCESS));
         setCurrentPosition(getCurrentPosition() + 1);
     }
     
     public void fail(BridgeMove move) {
-        getHistory().addMoveHistory(getTryCount(), new BridgeMoveHistory(move, false));
+        getHistory().addMoveResult(getTryCount(), new BridgeMoveResult(move, BridgeMoveResultStatus.FAILURE));
     }
     
     public void retry() {

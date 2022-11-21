@@ -1,29 +1,30 @@
 package bridge.domain.history;
 
-import bridge.domain.bridge.BridgeMove;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeMoveHistory {
-    private final BridgeMove bridgeMove;
-    private final boolean isSuccess;
     
+    private final List<BridgeMoveResult> results = new ArrayList<>();
     
-    public BridgeMoveHistory(BridgeMove bridgeMove, boolean isSuccess) {
-        this.bridgeMove = bridgeMove;
-        this.isSuccess = isSuccess;
+    public BridgeMoveHistory() {
     }
     
-    public BridgeMove getBridgeMove() {
-        return bridgeMove;
+    public List<BridgeMoveResult> getResults() {
+        return results;
     }
     
-    public boolean isSuccess() {
-        return isSuccess;
+    public int size() {
+        return results.size();
     }
     
-    public String getMoveResult() {
-        if (isSuccess) {
-            return " O ";
-        }
-        return " X ";
+    public void add(BridgeMoveResult result) {
+        results.add(result);
+    }
+    
+    public int countResultsBySuccess() {
+        return (int) results.stream()
+                .filter((bridgeMoveResult -> bridgeMoveResult.getStatus().equals(BridgeMoveResultStatus.SUCCESS)))
+                .count();
     }
 }
