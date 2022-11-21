@@ -73,15 +73,6 @@ public class Bridge {
                 .messageWithCause(bridgeUpper + " " + bridgeLower));
     }
 
-    /**
-     * update 대신 updateUpperCorrect, updateUpperWrong,<br/> updateLowerCorrect, updateLowerWrong을 사용하자
-     */
-    @Deprecated
-    public void update(BridgeMoveResult upperResult, BridgeMoveResult lowerResult) {
-        bridgeUpper.add(upperResult);
-        bridgeLower.add(lowerResult);
-    }
-
     public void updateUpperCorrect() {
         bridgeUpper.add(CORRECT);
         bridgeLower.add(NONE);
@@ -120,4 +111,12 @@ public class Bridge {
         bridgeLower.clear();
     }
 
+    /**
+     * update 대신 updateUpperCorrect, updateUpperWrong,<br/> updateLowerCorrect, updateLowerWrong을 사용하자
+     */
+    @Deprecated
+    public void update(BridgeMoveResult upperResult, BridgeMoveResult lowerResult) {
+        bridgeUpper.add(upperResult);
+        bridgeLower.add(lowerResult);
+    }
 }
