@@ -32,8 +32,15 @@ public class InputViewTest extends NsTest {
         });
     }
 
-
-
+    @DisplayName("잘못된 재시도 입력 테스트")
+    @ValueSource(strings = {"-1", "r", "3", "q"})
+    @ParameterizedTest
+    void 재시도_입력_테스트(String str) {
+        assertSimpleTest(() -> {
+            InputView.gameCommandErrorHandling(str);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     protected void runMain() {
