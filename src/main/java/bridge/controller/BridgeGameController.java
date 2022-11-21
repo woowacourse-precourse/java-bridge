@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 
 public class BridgeGameController {
@@ -26,6 +28,8 @@ public class BridgeGameController {
                 if (!isValidateBridgeSize(bridgeSize)) {
                     throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
                 }
+                BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+                System.out.println("bridge: " + bridgeMaker.makeBridge(bridgeSize));
                 return;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
