@@ -13,9 +13,19 @@ import java.util.List;
 
 public class GameController {
 
+    private final String ERROR = "[ERROR] ";
+
     private BridgeGame bridgeGame = new BridgeGame();
 
     public void init() {
+        try {
+            runGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println( ERROR + e.getMessage());
+        }
+    }
+
+    private void runGame() {
         OutputView.printStart();
         int bridgeSize = InputView.readBridgeSize();
         createBridge(bridgeSize);
