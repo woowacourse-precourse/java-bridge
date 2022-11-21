@@ -53,6 +53,9 @@ public class BridgeGame {
         gameRecordMaker.updateResult();
         return gameRecordMaker.getRecord();
     }
+    public String getFinalResult(){
+        return gameRecordMaker.getRecord();
+    }
 
 
 }
