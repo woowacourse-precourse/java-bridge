@@ -47,7 +47,7 @@ public class Player {
         return isSuccess;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(final boolean success) {
         isSuccess = success;
     }
 

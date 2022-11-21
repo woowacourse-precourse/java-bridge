@@ -13,13 +13,13 @@ public class BridgeGame {
         player.addTryCount();
     }
 
-    public boolean isCorrectChoice(List<String> bridge, List<String> choices, int index) {
+    public boolean isCorrectChoice(final List<String> bridge, final List<String> choices, final int index) {
         String answer = bridge.get(index);
         String choice = choices.get(index);
         return answer.equals(choice);
     }
 
-    public boolean isApproachLast(int bridgeSize, int choicesSize) {
+    public boolean isApproachLast(final int bridgeSize, final int choicesSize) {
         return bridgeSize == choicesSize;
     }
 
