@@ -1,4 +1,5 @@
-### - 메세지 다이어그램 고안 
+###  메세지 다이어그램 고안 
+<br>
 <p style="text-align: center">
     <img src="image/bridge_message_3.png" style="width: 60%; height: 60%">
 </p>
@@ -64,3 +65,7 @@
 - <strong> 게임 제어 관련 </strong>
 > [예외] 순수 알파벳으로 이루어졌는지 체크하는 기능 <br>
 > [예외] 게임 재시작/종료 여부가 R 혹은 Q인지 체크하는 기능 <br>
+
+- <strong> 시스템 내부 관련 </strong>
+> [예외] 다리가 올바르게 구성되어 있는지 상태를 지속적으로 모니터링하는 기능 <br>
+
