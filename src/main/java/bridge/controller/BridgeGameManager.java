@@ -58,42 +58,33 @@ public class BridgeGameManager {
     }
 
     private int inputBridgeSizeRepeat() {
-        int bridgeSize;
-        while (true) {
+가        while (true) {
             try {
-                bridgeSize = InputView.readBridgeSize();
-                break;
+                return InputView.readBridgeSize();
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
         }
-        return bridgeSize;
     }
 
     private String inputUpDownRepeat() {
-        String upDownInput;
         while (true) {
             try {
-                upDownInput = InputView.readMoving();
-                break;
+                return InputView.readMoving();
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
             }
         }
-        return upDownInput;
     }
 
     private String inputRetryRepeat() {
-        String retryAnswer;
         while (true) {
             try {
-                retryAnswer = InputView.readGameCommand();
-                break;
+                return InputView.readGameCommand();
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 재시작/종료는 Q 또는 R이어야 합니다.");
             }
         }
-        return retryAnswer;
     }
 
     private void printResult(Bridge targetBridge, BridgeGame bridgeGame) {
