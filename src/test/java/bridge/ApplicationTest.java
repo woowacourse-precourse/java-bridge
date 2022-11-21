@@ -3,6 +3,7 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 
 class ApplicationTest extends NsTest {
 
@@ -33,6 +35,13 @@ class ApplicationTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings={"u","d","3","A"})
+    void 이동할_칸_예외_테스트(String input){
+        assertThatThrownBy(() -> ValidateInput.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
