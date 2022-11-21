@@ -54,17 +54,21 @@ public class BridgeGame {
      */
     public boolean move(List<String> bridge) {
         boolean correct = true;
+        saveBridgeState(bridge);
         for(int pos = 0; pos < size && correct; pos++) {
             outputView.printAskMoveMessage();
             correct = inputView.readMoving().equals(bridge.get(pos));
             outputView.printMap(bridge, pos, correct);
-            saveState(bridge, pos, correct);
+            saveState(pos, correct);
         }
         return correct;
     }
 
-    private void saveState(List<String> bridge, int pos, boolean correct) {
+    private void saveBridgeState(List<String> bridge) {
         this.savedBridge = bridge;
+    }
+
+    private void saveState(int pos, boolean correct) {
         this.savedPos = pos;
         this.savedCorrect = correct;
     }
