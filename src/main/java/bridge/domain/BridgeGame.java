@@ -9,21 +9,21 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> bridge;
-    private List<String> userBridgeHistroy = new ArrayList<>();
-    private int movingCount;
-    private int tryCount;
+    private final Bridge bridge;
+    private PlayerData playerData = new PlayerData();
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        tryCount++;
     }
 
-    public boolean move(String moving) {
-        Validator.validateMoving(moving);
-        userBridgeHistroy.add(moving);
-        if (bridge.get(movingCount).equals(moving)) {
-            movingCount++;
+    public BridgeGame(List<String> bridge) {
+        this.bridge = new Bridge(bridge);
+    }
+
+    public boolean move(String movement) {
+        Validator.validateMoving(movement);
+        playerData.recordMovement(movement);
+        if (bridge.contain(playerData.getIndexOfMovement(), movement)) {
             return true;
         }
         return false;
@@ -32,28 +32,18 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         Validator.validateGameCommand(gameCommand);
         if (gameCommand.equals("R")) {
-            movingCount = 0;
-            userBridgeHistroy.clear();
-            tryCount++;
+            playerData.resetMovementHistroy();
+            playerData.increaseCountOfTry();
             return true;
         }
         return false;
     }
 
     public boolean checkWin() {
-        if (bridge.equals(userBridgeHistroy)) {
+        if (bridge.isSame(playerData.getMovementHistory())) {
             return true;
         }
         return false;
     }
-
-    public List<String> getUserBridgeHistroy() {
-        return userBridgeHistroy;
-    }
-
-    public int getTryCount() {
-        return tryCount;
-    }
-
 }
 
