@@ -6,6 +6,7 @@
 
 package bridge;
 
+import bridge.exception.InvalidUserInputException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -17,7 +18,29 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String bridgeSize = Console.readLine();
+
+        if(isBridgeInputNotDigit(bridgeSize)) {
+            throw new InvalidUserInputException("[ERROR] 숫자로 입력해 주세요.");
+        } else if(Integer.parseInt(bridgeSize) < 3 || 20 < Integer.parseInt(bridgeSize)) {
+            throw new InvalidUserInputException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+
+        return Integer.parseInt(bridgeSize);
+    }
+
+    /**
+     * 다리의 길이가 숫자인지 검증한다.
+     */
+    public boolean isBridgeInputNotDigit(String size) {
+
+        if(size.length() == size.chars().mapToObj(c -> (char)c)
+                .filter(Character :: isDigit)
+                .count()) {
+
+            return false;
+        }
+        return true;
     }
 
     /**
