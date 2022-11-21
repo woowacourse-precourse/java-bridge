@@ -16,7 +16,7 @@ public class Application {
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private Player player = new Player();
     private Bridge bridge;
-    boolean playing = true;
+    private boolean playing = true;
 
     public void run() {
         startGame();
