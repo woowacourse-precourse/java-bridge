@@ -17,7 +17,7 @@ public class InputView {
         while (true) {
             System.out.println("다리의 길이를 입력해주세요.");
             try {
-                size = bridgeNumberAsk(Console.readLine());
+                size = bridgeNumberAsk();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
@@ -27,7 +27,8 @@ public class InputView {
         return size;
     }
 
-    private int bridgeNumberAsk(String input) {
+    private int bridgeNumberAsk() {
+        String input = Console.readLine();
         // 예외처리
         checkNumber(input);
         checkRange(input);
@@ -89,7 +90,7 @@ public class InputView {
     /**
      * 입력받은 숫자가 범위(3 ~ 20)를 벗어날 경우 IllegalArgumentException 을 발생시킨다.
      */
-    private void checkRange(String input) {
+    protected void checkRange(String input) {
         int number = changeInt(input);
         if(number < 3 || number > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
@@ -98,7 +99,7 @@ public class InputView {
     /**
      * 입력받은 값이 숫자가 아닐 경우 IllegalArgumentException 을 발생시킨다.
      */
-    private void checkNumber(String input) {
+    protected void checkNumber(String input) {
         if(!input.matches(INT_REGEX)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
         }
@@ -106,7 +107,7 @@ public class InputView {
     /**
      * 사용자 이동 방향 입력값이 U/D 가 아닐 경우 IllegalArgumentException 가 발생한다.
      */
-    private void checkDirection(String input) {
+    protected void checkDirection(String input) {
         if(!(input.equals("D") || input.equals("U"))) {
             throw new IllegalArgumentException("[ERROR] 이동 방향 여부는 'U(위)'/'D(아래)' 만 가능합니다.");
         }
@@ -114,7 +115,7 @@ public class InputView {
     /**
      * 게임 재시작/종료 입력값이 R/Q 가 아닐 경우 IllegalArgumentException 가 발생한다.
      */
-    private void checkProgress(String input) {
+    protected void checkProgress(String input) {
         if(!(input.equals("R") || input.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] 게임 진행 여부는 'R(재시작)'/'Q(종료)' 만 가능합니다.");
         }
