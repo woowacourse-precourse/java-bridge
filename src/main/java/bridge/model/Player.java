@@ -26,6 +26,10 @@ public class Player {
         return playerStatus == PlayerStatus.CROSSED;
     }
 
+    public boolean isMoving() {
+        return playerStatus == PlayerStatus.MOVING;
+    }
+
     public boolean isDead() {
         return playerStatus == PlayerStatus.DEAD;
     }

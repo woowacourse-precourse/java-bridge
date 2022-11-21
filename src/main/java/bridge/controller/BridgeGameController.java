@@ -28,7 +28,7 @@ public class BridgeGameController {
         while (bridgeGame.isContinuing()) {
             player = new Player();
             play(player, bridgeGame);
-            if (bridgeGame.isPending()) {
+            if (bridgeGame.isPlayerDead()) {
                 String gameCommand = inputView.readGameCommand();
                 bridgeGame.retry(GameCommand.toGameCommand(gameCommand));
             }

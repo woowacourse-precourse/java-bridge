@@ -4,8 +4,8 @@ package bridge.model;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private Player player;
     private final Bridge bridge;
-    private GameStatus gameStatus;
     private TrialCount trialCount;
 
     public BridgeGame(Bridge bridge) {
@@ -13,7 +13,7 @@ public class BridgeGame {
     }
 
     public void initialize() {
-        changeGameStatus(GameStatus.PLAY);
+        player = new Player();
         trialCount = TrialCount.initialCount();
     }
 
@@ -22,18 +22,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(Player player, String moving) {
-        player.move(Moving.toMoving(moving), bridge);
-        if (player.isCrossedBridge()) {
-            changeGameStatus(GameStatus.END);
-        }
-        if (player.isDead()) {
-            changeGameStatus(GameStatus.PENDING);
-        }
-    }
-
-    private void changeGameStatus(GameStatus newStatus) {
-        gameStatus = newStatus;
+    public void move(Moving moving) {
+        player.move(moving, bridge);
     }
 
     /**
@@ -41,20 +31,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(GameCommand command) {
-        GameStatus newStatus = GameStatus.getGameStatusOf(command);
-        changeGameStatus(newStatus);
-        if (gameStatus.isPlay()) {
-            trialCount = trialCount.increase();
-        }
+    public void retry() {
+        trialCount = trialCount.increase();
+        player = new Player();
     }
 
     public boolean isContinuing() {
-        return gameStatus.isPlay();
+        return player.isMoving();
     }
 
-    public boolean isPending() {
-        return gameStatus.isPending();
+    public boolean isPlayerDead() {
+        return player.isDead();
     }
 
     public TrialCount getTrialCount() {
