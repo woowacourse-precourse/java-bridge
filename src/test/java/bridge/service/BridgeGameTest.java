@@ -68,7 +68,7 @@ class BridgeGameTest {
                 .containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
 
-    @DisplayName("게임 시도 횟수 반환")
+    @DisplayName("게임 재시작 후 시도 횟수 반환")
     @Test
     void getGameAttempt() {
         bridgeGame.retry();
