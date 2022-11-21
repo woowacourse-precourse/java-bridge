@@ -49,12 +49,5 @@ public class BridgeMap {
     public boolean getFlag() {
         return flag;
     }
-//
-//    @Override
-//    public String toString(){
-//
-//        //답을담아
-//        return ;
-//
-//    }
+
 }
