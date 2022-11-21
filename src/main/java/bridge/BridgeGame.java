@@ -10,6 +10,7 @@ public class BridgeGame {
     private final List<String> bridge;
     private int tryCount;
     private int curLevel;
+    private boolean succeeded = false;
 
     public BridgeGame(int tryCount, int curLevel, List<String> bridge) {
         this.tryCount = tryCount;
@@ -26,7 +27,6 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         curLevel += 1;
-        System.out.println("curLevel = " + curLevel);
         return bridge.get(curLevel).equals(direction);
     }
 
@@ -45,7 +45,11 @@ public class BridgeGame {
     }
 
     public boolean gameSucceeded() {
-        return curLevel == bridge.size()-1;
+        if (curLevel == bridge.size() - 1) {
+            succeeded = true;
+            return true;
+        }
+        return false;
     }
 
     public int getTryCount() {
@@ -58,5 +62,9 @@ public class BridgeGame {
 
     public List<String> getBridge() {
         return bridge;
+    }
+
+    public boolean getSucceeded() {
+        return succeeded;
     }
 }

@@ -16,7 +16,7 @@ public class Application {
         initiateBridgeGame(bridgeSize);
 
         bridgeGamePlay();
-        outputView.printResult(bridgeGame.getBridge(), true, bridgeGame.getBridge().size(), bridgeGame.getTryCount());
+        outputView.printResult(bridgeGame.getBridge(), bridgeGame.gameSucceeded(), bridgeGame.getCurLevel(), bridgeGame.getTryCount());
     }
 
     public static void initiateView() {
@@ -31,8 +31,7 @@ public class Application {
 
     public static void bridgeGamePlay() {
         while (true) {
-            String movement = inputView.readMoving();
-            boolean move = bridgeGame.move(movement);
+            boolean move = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getBridge(), bridgeGame.getCurLevel(), move);
             if (bridgeGame.checkGameEnded(move)) {
                 if (bridgeGame.gameSucceeded()) break;
@@ -42,6 +41,5 @@ public class Application {
             }
         }
     }
-
 
 }

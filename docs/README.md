@@ -15,5 +15,6 @@
        - U 또는 D인지
      - 재시도 여부
        - R 또는 Q인지
-6. 구조 변경 및 Refactoring
+6. 단위 테스트 작성
+7. 구조 변경 및 Refactoring
    

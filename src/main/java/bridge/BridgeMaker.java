@@ -22,8 +22,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int direction = bridgeNumberGenerator.generate();
-            if (direction == 0) bridge.add("U");
-            if (direction == 1) bridge.add("D");
+            if (direction == 0) bridge.add("D");
+            if (direction == 1) bridge.add("U");
         }
         return bridge;
     }
