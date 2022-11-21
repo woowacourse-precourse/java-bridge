@@ -24,6 +24,7 @@ public class Controller {
         tryGame(bridgeSize, bridgeGame);
         tryCount += 1;
         checkIsSuccess(bridgeGame.getIndex(), bridgeSize);
+        outputView.printResult(bridgeGame, success, tryCount);
     }
 
     private void checkIsSuccess(int index, int bridgeSize) {
