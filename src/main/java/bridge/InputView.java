@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.utils.ValidateUtils;
+import bridge.utils.constants.BridgeMove;
 import bridge.utils.constants.BridgeSize;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -12,12 +13,11 @@ public class InputView {
 
     public int readBridgeSize() {
         try{
-            System.out.println(BridgeSize.READ_BRIDGE_SIZE_MESSAGE);
-            String input = Console.readLine();
+            String input = getInput(BridgeSize.READ_BRIDGE_SIZE_MESSAGE);
             ValidateUtils.isCorrectRangeNumbers(input);
             return Integer.parseInt(input);
         }catch (IllegalArgumentException e){
-            System.out.println(BridgeSize.ERROR_BRIDGE_SIZE_MESSAGE);
+            System.out.println(e.getMessage());
             return readBridgeSize();
         }
     }
@@ -26,7 +26,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try{
+            String input = getInput(BridgeMove.READ_BRIDGE_MOVE_MESSAGE);
+            ValidateUtils.isCorrectMoveValue(input);
+            return input;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
@@ -34,6 +41,11 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String getInput(String msg){
+        System.out.println(msg);
+        return Console.readLine();
     }
 
 
