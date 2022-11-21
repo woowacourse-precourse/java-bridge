@@ -50,7 +50,7 @@ public class BridgeGameController {
                 Position.of(INIT_VALUE_OF_POSITION),
                 new NumberOfChallenges(INIT_VALUE_OF_CHALLENGES));
 
-        return new BridgeGame(bridge, player, new MoveResults());
+        return new BridgeGame(bridge, player);
     }
 
     private void playBridgeGame(final BridgeGame bridgeGame) {

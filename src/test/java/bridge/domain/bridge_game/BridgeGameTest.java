@@ -2,15 +2,10 @@ package bridge.domain.bridge_game;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
+import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.bridge_game.Bridge;
-import bridge.domain.bridge_game.BridgeGame;
-import bridge.domain.bridge_game.MoveResults;
-import bridge.domain.bridge_game.NumberOfChallenges;
-import bridge.domain.bridge_game.Player;
-import bridge.domain.bridge_game.Position;
 import bridge.domain.constants.GameCommands;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,37 +20,39 @@ class BridgeGameTest {
     private static final int INIT_VALUE_OF_CHALLENGES = 1;
 
     private Player player;
-    private final Bridge bridge = new Bridge(List.of("U", "D", "U"));
-    private final MoveResults moveResults = new MoveResults();
     private BridgeGame bridgeGame;
+    private MoveResults moveResults;
 
     @BeforeEach
     void init() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+
         player = new Player(
                 Position.of(INIT_VALUE_OF_POSITION),
                 new NumberOfChallenges(INIT_VALUE_OF_CHALLENGES));
-        moveResults.addResults(MOVE_UP_COMMAND, MOVE_SUCCESS);
-        bridgeGame = new BridgeGame(bridge, player, moveResults);
+
+        bridgeGame = new BridgeGame(bridge, player);
+        moveResults = bridgeGame.moveResults(MOVE_UP_COMMAND, MOVE_SUCCESS);
     }
 
     @DisplayName("Bridge와 같은 값을 입력 받으면 O를 반환한다. (Bridge의 값: U)")
     @Test
     void moveTestTrue() {
         String moveResult = bridgeGame.moveResult(MOVE_UP_COMMAND);
-        assertThat(moveResult).isEqualTo("O");
+        assertThat(moveResult).isEqualTo(MOVE_SUCCESS);
     }
 
     @DisplayName("Bridge와 다른 값을 입력 받으면 X를 반환한다. (Bridge의 값: U)")
     @Test
     void moveTestFalse() {
         String moveResult = bridgeGame.moveResult(MOVE_DOWN_COMMAND);
-        assertThat(moveResult).isEqualTo("X");
+        assertThat(moveResult).isEqualTo(MOVE_FAIL);
     }
 
     @DisplayName("Bridge와 같은 값을 입력받으면 Player의 position이 1 증가한다. (Bridge의 값: U)")
     @Test
     void increasePosition() {
-        bridgeGame.move("O");
+        bridgeGame.move(MOVE_SUCCESS);
         int position = player.position();
 
         assertThat(position).isEqualTo(1);
@@ -64,7 +61,7 @@ class BridgeGameTest {
     @DisplayName("Bridge와 다른 값을 입력받으면 Player의 position에 변화가 없다. (Bridge의 값: U)")
     @Test
     void nothingHappenedInPosition() {
-        bridgeGame.move("X");
+        bridgeGame.move(MOVE_FAIL);
         int position = player.position();
 
         assertThat(position).isEqualTo(0);

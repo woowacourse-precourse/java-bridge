@@ -15,13 +15,13 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final Player player;
-    private final MoveResults moveResults;
+    private final MoveResults moveResults = new MoveResults();
+
     private String gameResult = GAME_SUCCESS;
 
-    public BridgeGame(final Bridge bridge, final Player player, final MoveResults moveResults) {
+    public BridgeGame(final Bridge bridge, final Player player) {
         this.bridge = bridge;
         this.player = player;
-        this.moveResults = moveResults;
     }
 
     public boolean isNotOver(final GameCommands gameCommand) {
