@@ -56,7 +56,7 @@ public class Validation {
         if(input.equals(BridgeConstant.CAN_GO_UP.getString())){
             return;
         }
-        if(input.equals(BridgeConstant.CANT_GO_UP.getString())){
+        if(input.equals(BridgeConstant.CAN_GO_DOWN.getString())){
             return;
         }
         throw new IllegalArgumentException(ERROR + ErrorMessage.WRONG_FORMAT.getErrorMessage());

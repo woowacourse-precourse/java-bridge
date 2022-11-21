@@ -21,8 +21,8 @@ public class BridgeMaker {
             if(number == BridgeConstant.CAN_GO_UP.getInt()){
                 bridgeInformation.add(BridgeConstant.CAN_GO_UP.getString());
             }
-            if(number == BridgeConstant.CANT_GO_UP.getInt()){
-                bridgeInformation.add(BridgeConstant.CANT_GO_UP.getString());
+            if(number == BridgeConstant.CAN_GO_DOWN.getInt()){
+                bridgeInformation.add(BridgeConstant.CAN_GO_DOWN.getString());
             }
         }
         return bridgeInformation;

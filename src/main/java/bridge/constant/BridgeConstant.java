@@ -1,7 +1,7 @@
 package bridge.constant;
 
 public enum BridgeConstant {
-    CAN_GO_UP(1,"U"), CANT_GO_UP(0,"D"),
+    CAN_GO_UP(1,"U"), CAN_GO_DOWN(0,"D"),
     RETRY("R"), END("Q");
     int intValue;
     String stringValue;
