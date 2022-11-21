@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.enums;
 
 public enum BridgeType {
     UPPER("U", 1), LOWER("D", 0);

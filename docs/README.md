@@ -1,4 +1,5 @@
 # 기능 목록
+
 ## Domain
 ### Bridge
 1. 생성자 : Bridgemaker.makeBridge를 입력해 생성한다.
@@ -19,6 +20,10 @@ getValue 를 통해 1, 0을 반환한다.
 
 ### GameCommand
 START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반환한다. 
+
+### BridgeViewComponent
+RIGHT_BRIDGE(" O"), BLANK_BRIDGE("  "), WRONG_BRIDGE(" X"), BRIDGE_CONNECTOR(" |"), BRACKET_STARTED("["), BRACKET_FINISHER(" ]"), LINE_DIVIDER("\n")를 가진다.
+getSymbol을 통해 문자열을 출력받아 BridgeViewConstructor에서 출력문을 생성할 때 사용한다. 
 
 ## util
 ### BridgeMaker

@@ -1,12 +1,10 @@
 package bridge.util;
 
-import bridge.model.BridgeType;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.model.BridgeType.LOWER;
-import static bridge.model.BridgeType.UPPER;
+import static bridge.enums.BridgeType.LOWER;
+import static bridge.enums.BridgeType.UPPER;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

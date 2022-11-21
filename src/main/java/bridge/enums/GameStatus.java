@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.enums;
 
 public enum GameStatus {
     START("R"),

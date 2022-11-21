@@ -2,16 +2,10 @@ package bridge.util;
 
 import java.util.List;
 
-import static bridge.model.BridgeType.UPPER;
+import static bridge.enums.BridgeType.UPPER;
+import static bridge.enums.BridgeViewComponent.*;
 
 public class BridgeViewConstructor {
-
-    private static final String RIGHT_BRIDGE = " O";
-    private static final String BLANK_BRIDGE = "  ";
-    private static final String WRONG_BRIDGE = " X";
-    private static final String BRIDGE_CONNECTOR = " |";
-    private static final String BRACKET_STARTED = "[";
-    private static final String BRACKET_FINISHER = " ]";
 
     private StringBuilder upperBridge = new StringBuilder();
     private StringBuilder lowerBridge = new StringBuilder();
@@ -69,22 +63,25 @@ public class BridgeViewConstructor {
     }
 
     private void appendWithO(StringBuilder bridge){
-        bridge.append(RIGHT_BRIDGE).append(BRIDGE_CONNECTOR);
+        bridge.append(RIGHT_BRIDGE.getSymbol())
+                .append(BRIDGE_CONNECTOR.getSymbol());
     }
 
     private void appendWithBlank(StringBuilder bridge){
-        bridge.append(BLANK_BRIDGE).append(BRIDGE_CONNECTOR);
+        bridge.append(BLANK_BRIDGE.getSymbol())
+                .append(BRIDGE_CONNECTOR.getSymbol());
 
     }
 
     private void appendWithX(StringBuilder bridge){
-        bridge.append(WRONG_BRIDGE).append(BRIDGE_CONNECTOR);
+        bridge.append(WRONG_BRIDGE.getSymbol())
+                .append(BRIDGE_CONNECTOR.getSymbol());
     }
 
     private String makeBracket(){
-        String upper = BRACKET_STARTED + deleteLastDivider(upperBridge) + BRACKET_FINISHER;
-        String lower = BRACKET_STARTED + deleteLastDivider(lowerBridge) + BRACKET_FINISHER;
-        return upper + "\n" + lower;
+        String upper = BRACKET_STARTED.getSymbol() + deleteLastDivider(upperBridge) + BRACKET_FINISHER.getSymbol();
+        String lower = BRACKET_STARTED.getSymbol() + deleteLastDivider(lowerBridge) + BRACKET_FINISHER.getSymbol();
+        return upper + LINE_DIVIDER.getSymbol() + lower;
     }
 
     private String deleteLastDivider(StringBuilder stringBuilder){

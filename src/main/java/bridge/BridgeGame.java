@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 
-import static bridge.model.GameStatus.QUIT;
+import static bridge.enums.GameStatus.QUIT;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
