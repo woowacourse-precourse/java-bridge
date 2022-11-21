@@ -28,7 +28,7 @@ public class Application {
 
         try {
             BridgeGame game = gameProcess(bridgeMaker, inputView, outputView);
-            outputView.printResult(game, game.getRetries());
+            outputView.printResult(game);
         } catch (IllegalArgumentException exception) {
             System.out.printf("[ERROR] %s", exception.getMessage());
         }
