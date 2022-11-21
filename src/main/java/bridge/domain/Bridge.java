@@ -17,7 +17,7 @@ public class Bridge {
         return shape.subList(0, currentSection);
     }
 
-    public int getBridgeLength() {
-        return shape.size();
+    public boolean isLastBridgeSection(int currentSection) {
+        return shape.size() == currentSection;
     }
 }

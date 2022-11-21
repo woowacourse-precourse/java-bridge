@@ -62,8 +62,4 @@ public class CurrentBridge {
     public List<String> getLowerSection() {
         return lowerSection;
     }
-
-    public int getCurrentBridgeLength() {
-        return currentShape.size();
-    }
 }

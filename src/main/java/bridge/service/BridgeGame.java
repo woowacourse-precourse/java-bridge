@@ -21,8 +21,8 @@ public class BridgeGame {
 
     public CurrentBridge move(String readMoving) {
         currentBridge.setSection(bridge.askCurrentShape(currentSection), readMoving);
-        currentSection++;
         setGameManager();
+        currentSection++;
         return currentBridge;
     }
 
@@ -34,7 +34,7 @@ public class BridgeGame {
 
     private void setGameManager() {
         boolean isSuccessGame = currentBridge.isSuccessLastSection();
-        boolean isLastSection = bridge.getBridgeLength() == currentBridge.getCurrentBridgeLength();
+        boolean isLastSection = bridge.isLastBridgeSection(currentSection);
         if (!isSuccessGame || isLastSection) {
             trialCount++;
             gameManager.putAll(Map.of("isOneGameEnd", true, "isSuccessGame", isSuccessGame));
