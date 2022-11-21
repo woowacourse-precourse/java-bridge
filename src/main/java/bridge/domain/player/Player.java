@@ -1,14 +1,18 @@
 package bridge.domain.player;
 
-import bridge.view.InputView;
-
 public class Player {
+    private MoveCommand moveCommand;
     private PlayerCommand playerCommand;
-    private final InputView inputView = new InputView();;
-    public void getInputMoving(String command){
+    public void setInputMoving(String command){
+        moveCommand = new MoveCommand(command);
+    }
+    public void setPlayerCommand(String command){
         playerCommand = new PlayerCommand(command);
     }
-    public boolean playerCommandTypeCheck(){
-        return playerCommand.getCommand().equals("D");
+    public MoveCommand getMoveCommand(){
+        return moveCommand;
+    }
+    public PlayerCommand getPlayerCommand(){
+        return playerCommand;
     }
 }

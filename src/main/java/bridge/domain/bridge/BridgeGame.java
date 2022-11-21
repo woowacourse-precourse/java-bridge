@@ -1,6 +1,5 @@
 package bridge.domain.bridge;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.GameResultType;
 import bridge.domain.player.Player;
 import bridge.domain.Result;
@@ -24,7 +23,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(int index) {
-        result = new Result(bridge.getBridgeNumber(index).numberTypeCheck(index),player.playerCommandTypeCheck());
+        result = new Result(bridge.getBridgeNumber(index).numberTypeCheck(index),player.getMoveCommand().getMoveCommandType());
         outputView.plusResult(result.getResultType(),index);
         outputView.printMap();
         return result.getResultType().getWinLose();
@@ -37,7 +36,8 @@ public class BridgeGame {
     public boolean retry() {
         if (result.getResultType()== GameResultType.LOSE_DOWN || result.getResultType()== GameResultType.LOSE_UP){
             outputView.printRetry();
-            if (Objects.equals(inputView.readGameCommand(), "R")) {
+            player.setPlayerCommand(inputView.readGameCommand());
+            if(player.getPlayerCommand().getPlayerCommandType()){
                 outputView = new OutputView();
                 return true;
             }
@@ -51,7 +51,7 @@ public class BridgeGame {
         return bridge.getBridgeSize().getSize();
     }
     public void setPlayer(String command){
-        player.getInputMoving(command);
+        player.setInputMoving(command);
     }
     public void endGame(){
         outputView.printResult(result.getResultType());
