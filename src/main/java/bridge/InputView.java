@@ -47,6 +47,17 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        new OutputView().printRegameMessage();
+        String command = Console.readLine();
+        try {
+            if (!command.equals("R") & !command.equals("Q")) {
+                new OutputView().printError("[ERROR] 재시작 명령어는 R 또는 Q 여야만 합니다.");
+                throw new IllegalArgumentException("[ERROR] 재시작 명령어는 R 또는 Q 여야만 합니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            return readGameCommand();
+        }
+        return command;
     }
+}
 }
