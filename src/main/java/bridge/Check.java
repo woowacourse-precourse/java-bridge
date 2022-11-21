@@ -3,6 +3,7 @@ package bridge;
 import bridge.exception.BridgeLengthOutOfRange;
 import bridge.exception.MoveValid;
 import bridge.exception.NotNumeric;
+import bridge.exception.ReGameOrNotValid;
 
 import static bridge.Utility.*;
 
@@ -39,7 +40,7 @@ public class Check {
 
     public static boolean checkReGameOrNotValid(String input){
         if(!(input.equals(REGAME) || input.equals(QUIT))){
-            IllegalArgumentException exception = new MoveValid(ERROR_MESSAGE+REGAME_OR_NOT_VALID_ERROR_MESSAGE);
+            IllegalArgumentException exception = new ReGameOrNotValid(ERROR_MESSAGE+REGAME_OR_NOT_VALID_ERROR_MESSAGE);
             System.out.println(exception);
             return false;
         }
