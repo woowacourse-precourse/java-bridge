@@ -28,7 +28,7 @@ public class InputView implements bridge.extensible.InputView {
         String inputBridgeSize = Console.readLine();
         int bridgeSize = isNumber(inputBridgeSize);
         boolean isValid = validateBridgeSize(bridgeSize);
-        if (bridgeSize != -1 || !isValid) {
+        if (bridgeSize == -1 || !isValid) {
             return -1;
         }
         return bridgeSize;
@@ -64,15 +64,45 @@ public class InputView implements bridge.extensible.InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-
-        return null;
+        StringBuilder moveDir = new StringBuilder();
+        while (true) {
+            if (inputMove(moveDir)) {
+                break;
+            }
+        }
+        return moveDir.toString();
     }
 
+    private boolean inputMove(StringBuilder moveDir) {
+        try {
+            moveDir.append(inputMove());
+            return true;
+        } catch (IllegalArgumentException IA) {
+            System.out.println(IA.getMessage());
+            return false;
+        }
+    }
+
+    private String inputMove() throws IllegalArgumentException {
+        String inputMove = Console.readLine();
+        throwIfFailToValidateMove(inputMove);
+        return inputMove;
+    }
+
+    private void throwIfFailToValidateMove(String input) {
+        if (!validateMoving(input)) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D 를 입력해주세요.");
+        }
+    }
+
+    private boolean validateMoving(String input) {
+        return Objects.equals(input, "U") || Objects.equals(input, "D");
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
     }
+
 }
