@@ -20,11 +20,11 @@ public class IllegalInputChecker {
         return moveInput;
     }
 
-    public static GameOptionType checkRestartOrQuit(String option) {
+    public static String checkRestartOrQuit(String option) {
         if (!option.matches(GAME_OPTION)) {
             throw new IllegalArgumentException(ExceptionMessage.GAME_OPTION_INVALID);
         }
-        return GameOptionType.valueOf(option);
+        return option;
     }
 
     public static void isBridgeSizeNumeric (String bridgeSize) {
