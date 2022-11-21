@@ -9,6 +9,6 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
 
-        bridgeGame.startGame();
+        bridgeGame.startGameCatchingException();
     }
 }
