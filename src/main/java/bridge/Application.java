@@ -15,7 +15,7 @@ public class Application {
 //        }
 //        while (i < 3);
         // TODO: 프로그램 구현
-        int GameCount = 1;
+        int gameCount = 1;
         OutputView outputView = new OutputView();
         outputView.gameStart();
 
@@ -51,7 +51,6 @@ public class Application {
         }
         while (!bridgeGame.whetherGameSuccess(upstairsBridge,downstairsBridge) || size > numberOfTriedAnswers);
 
-        outputView.printResult(upstairsBridge, downstairsBridge);
-
+        outputView.printResult(upstairsBridge, downstairsBridge, gameCount);
     }
 }
