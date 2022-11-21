@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -41,18 +43,21 @@ class BridgeGameTest {
         System.setIn(in);
 
         bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
-        return bridgeGame.move(index, moveDir);
+        String result = bridgeGame.move(index, moveDir);
+        bridgeGame.retry();
+        return result;
     }
 
 
     //이동 입력값에 따라 적적한 결과가 반환되는지 테스트
     @DisplayName("사용자 이동 입력 결과에 따른 반환값 테스트")
-    @Test
-    void checkMoveReturnValue() {
+    @ParameterizedTest
+    @CsvSource({"R,U,0,C","R,D,0,R","Q,U,1,Q"})
+    void checkMoveReturnValue(String input, String moveDir, int index, String expected) {
 
-        String result = useMove("R","U",0);
+        String result = useMove(input,moveDir,index);
 
-        assertThat(result).isEqualTo("C");
+        assertThat(result).isEqualTo(expected);
     }
 
     //이동 입력값에 따라 적절한 결과가 출력되는지 테스트
@@ -70,6 +75,7 @@ class BridgeGameTest {
     }
 
     //게임을 재시작 할 때, outputView 필드를 제대로 초기화 하는지 테스트
+
 
     //게임을 끝낼때 성공, 실패 여부에 따른 결과를 잘 출력하는지 테스트
 
