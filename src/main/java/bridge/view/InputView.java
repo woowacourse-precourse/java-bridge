@@ -9,8 +9,16 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public String readValue() {
-        return Console.readLine();
+    /**
+     * 다리의 길이를 입력받는다.
+     */
+    public int readBridgeSize() {
+        String bridgeSize = Console.readLine();
+        /*if (bridgeSize < BridgeLengthRule.MIN_LENGTH.getValue() || bridgeSize > BridgeLengthRule.MAX_LENGTH.getValue()) {
+            throw new IllegalArgumentException("다리 길이는 3 이상 20 이하여야 합니다!");
+        }*/
+
+        return convertToInteger(bridgeSize);
     }
 
     private int convertToInteger(String value) {
@@ -22,21 +30,10 @@ public class InputView {
     }
 
     /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        int bridgeSize = convertToInteger(readValue());
-        if (bridgeSize < BridgeLengthRule.MIN_LENGTH.getValue() || bridgeSize > BridgeLengthRule.MAX_LENGTH.getValue()) {
-            throw new IllegalArgumentException("다리 길이는 3 이상 20 이하여야 합니다!");
-        }
-        return bridgeSize;
-    }
-
-    /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public BridgePattern readMoving() {
-        String move = readValue();
+        String move = Console.readLine();
 
         return BridgePattern.searchBridgeType(move);
     }
