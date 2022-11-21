@@ -21,11 +21,11 @@ public class OutputViewFormatter {
         return "[ " + String.join(" | ", results) + " ]";
     }
 
-    String resultFormat(final BridgeGame bridgeGame, final String gameResult) {
+    String resultFormat(final BridgeGame bridgeGame) {
         return new StringJoiner("\n")
                 .add("최종 게임 결과")
                 .add(bridgeFormat(bridgeGame.moveResults()))
-                .add("게임 성공 여부: " + gameResult)
+                .add("게임 성공 여부: " + bridgeGame.gameResult())
                 .add("총 시도한 횟수: " + bridgeGame.totalNumberOfChallenges())
                 .toString();
     }

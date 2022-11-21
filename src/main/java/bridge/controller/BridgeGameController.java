@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import static bridge.domain.constants.GameCommands.NOTHING;
-import static bridge.domain.constants.GameCommands.QUIT;
 import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
 import bridge.domain.Bridge;
@@ -34,18 +33,20 @@ public class BridgeGameController {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void gameStart() {
+    public void run() {
         outputView.printStartMessage();
 
         BridgeSize bridgeSize = inputView.bridgeSize();
         BridgeGame bridgeGame = bridgeGame(bridgeSize);
 
-        String gameResult = gameResult(bridgeGame);
-        outputView.printResult(bridgeGame, gameResult);
+        startBridgeGame(bridgeGame);
+        outputView.printResult(bridgeGame);
     }
 
     private BridgeGame bridgeGame(final BridgeSize bridgeSize) {
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.bridgeSize()));
+        Bridge bridge = new Bridge(
+                bridgeMaker.makeBridge(bridgeSize.bridgeSize()));
+
         Player player = new Player(
                 Position.of(INIT_VALUE_OF_POSITION),
                 new NumberOfChallenges(INIT_VALUE_OF_CHALLENGES));
@@ -53,20 +54,17 @@ public class BridgeGameController {
         return new BridgeGame(bridge, player, new MoveResults());
     }
 
-    private String gameResult(final BridgeGame bridgeGame) {
+    private void startBridgeGame(final BridgeGame bridgeGame) {
         GameCommands gameCommand = NOTHING;
-        String gameResult = GAME_SUCCESS;
 
         while (!gameCommand.is(QUIT) && bridgeGame.playerIsOnTheBridge()) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {
                 gameCommand = inputView.gameCommand();
-                gameResult = bridgeGame.retryOrQuit(gameCommand, gameResult);
+                bridgeGame.retryOrQuit(gameCommand);
             }
         }
-
-        return gameResult;
     }
 
     private String moveResult(final BridgeGame bridgeGame) {

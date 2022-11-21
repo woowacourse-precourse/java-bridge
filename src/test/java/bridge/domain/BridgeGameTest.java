@@ -68,7 +68,7 @@ class BridgeGameTest {
     @CsvSource({"1,2", "5,6", "10,11"})
     void increaseNumberOfChallenges(int tryNum, int result) {
         for (int i = 0; i < tryNum; i++) {
-            bridgeGame.retryOrQuit(GameCommands.RETRY, "");
+            bridgeGame.retryOrQuit(GameCommands.RETRY);
         }
         assertThat(bridgeGame.totalNumberOfChallenges()).isEqualTo(result);
     }
@@ -77,39 +77,21 @@ class BridgeGameTest {
     @Test
     void retryGameInit() {
         player.move();
-        bridgeGame.retryOrQuit(GameCommands.RETRY, "성공");
+        bridgeGame.retryOrQuit(GameCommands.RETRY);
 
         assertThat(player.position()).isEqualTo(INIT_VALUE_OF_POSITION);
         assertThat(moveResults.upLineResults()).hasSize(0);
         assertThat(moveResults.downLineResults()).hasSize(0);
     }
 
-    @DisplayName("GameCommands.RETRY가 입력되면 입력된 gameResult를 그대로 반환한다.")
-    @Test
-    void retryGameReturnSameValue() {
-        String actual = bridgeGame.retryOrQuit(GameCommands.RETRY, "성공");
-        String expect = "성공";
-
-        assertThat(actual).isEqualTo(expect);
-    }
-
     @DisplayName("GameCommands.QUIT이 입력되면 초기화가 되지 않는다.")
     @Test
     void doNotInit() {
         player.move();
-        bridgeGame.retryOrQuit(GameCommands.QUIT, "성공");
+        bridgeGame.retryOrQuit(GameCommands.QUIT);
 
         assertThat(player.position()).isEqualTo(1);
         assertThat(moveResults.upLineResults()).hasSize(1);
         assertThat(moveResults.downLineResults()).hasSize(1);
-    }
-
-    @DisplayName("GameCommands.QUIT이 입력되면 '실패'를 반환한다.")
-    @Test
-    void initPosition() {
-        String actual = bridgeGame.retryOrQuit(GameCommands.QUIT, "성공");
-        String expect = "실패";
-
-        assertThat(actual).isEqualTo(expect);
     }
 }

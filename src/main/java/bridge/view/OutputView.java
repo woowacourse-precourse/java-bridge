@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(outputViewFormatter.bridgeFormat(moveResults));
     }
 
-    public void printResult(final BridgeGame bridgeGame, final String gameResult) {
-        System.out.println(outputViewFormatter.resultFormat(bridgeGame, gameResult));
+    public void printResult(final BridgeGame bridgeGame) {
+        System.out.println(outputViewFormatter.resultFormat(bridgeGame));
     }
 }
