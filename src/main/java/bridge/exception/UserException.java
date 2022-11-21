@@ -15,4 +15,10 @@ public abstract class UserException {
             throw new IllegalArgumentException(ExceptionCode.IS_BLANK.getMessage());
         }
     }
+
+    void hasBlank(String input) {
+        if (input.length() != input.trim().length()) {
+            throw new IllegalArgumentException(ExceptionCode.HAS_BLANK.getMessage());
+        }
+    }
 }
