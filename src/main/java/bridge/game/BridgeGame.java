@@ -49,7 +49,7 @@ public class BridgeGame {
             currentBridge.updateUpperCorrect();
         }
         if (answer.equals("U") && !answer.equals(direction)) {
-            currentBridge.updateUpperWrong();
+            currentBridge.updateLowerWrong();
         }
     }
 
@@ -58,7 +58,7 @@ public class BridgeGame {
             currentBridge.updateLowerCorrect();
         }
         if (answer.equals("D") && !answer.equals(direction)) {
-            currentBridge.updateLowerWrong();
+            currentBridge.updateUpperWrong();
         }
     }
 
