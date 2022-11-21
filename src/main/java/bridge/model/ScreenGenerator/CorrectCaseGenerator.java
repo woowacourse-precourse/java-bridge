@@ -2,28 +2,24 @@ package bridge.model.ScreenGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CorrectCaseGenerator implements ScreenGenerator {
 
+    private static final int SELECT_FIRST = 1;
+    private static final int SELECT_SECOND = 0;
 
-    List<String> firstRowAnswer;
-    List<String> secondRowAnswer;
+    private List<String> secondRowAnswer;
+    private List<String> firstRowAnswer;
 
     @Override
     public void generatedTable(List<String> answer, int current) {
         BridgeEachRowGenerator bridgeEachRowGenerator = new BridgeEachRowGenerator(answer, current);
-        firstRowAppender(bridgeEachRowGenerator);
-        secondRowAppender(bridgeEachRowGenerator);
+        rowAppender(bridgeEachRowGenerator);
     }
 
-
-    public void firstRowAppender(BridgeEachRowGenerator bridgeEachRowGenerator) {
-        firstRowAnswer = bridgeEachRowGenerator.generateRowInList(1);
-    }
-
-    public void secondRowAppender(BridgeEachRowGenerator bridgeEachRowGenerator) {
-        secondRowAnswer = bridgeEachRowGenerator.generateRowInList(0);
+    private void rowAppender(BridgeEachRowGenerator bridgeEachRowGenerator) {
+        firstRowAnswer = bridgeEachRowGenerator.generateRowInList(SELECT_FIRST);
+        secondRowAnswer = bridgeEachRowGenerator.generateRowInList(SELECT_SECOND);
     }
 
     @Override
