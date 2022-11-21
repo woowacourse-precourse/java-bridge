@@ -26,18 +26,6 @@ class ApplicationTest extends NsTest {
         assertThat(bridge).containsExactly("U", "D", "D");
     }
 
-    @DisplayName("다리 크기가 조건에 맞지 않으면 예외가 발생한다.")
-    @ValueSource(ints = {1, 21, -5})
-    @ParameterizedTest
-    void makeBridgeWithWrongInputSize(int size) {
-        // given
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-        // when, then
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("입력된 크기의 길이를 가진 다리를 생성한다")
     @ValueSource(ints = {3, 5, 7})
     @ParameterizedTest
