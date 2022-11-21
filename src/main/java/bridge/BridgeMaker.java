@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.view.InputView.Command;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,11 +24,10 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridgeStatus = new ArrayList<>(size);
         Map<Integer, String> statusMapper = new HashMap<>();
-        statusMapper.put(0, "D");
-        statusMapper.put(1, "U");
+        statusMapper.put(0, Command.MOVE_DOWM.getCommand());
+        statusMapper.put(1, Command.MOVE_UP.getCommand());
         for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeNumberGenerator.generate();
-            bridgeStatus.add(statusMapper.get(randomNumber));
+            bridgeStatus.add(statusMapper.get(bridgeNumberGenerator.generate()));
         }
         return bridgeStatus;
     }
