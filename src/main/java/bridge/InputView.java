@@ -20,12 +20,10 @@ public class InputView {
 
     }
 
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        String gameCommand = camp.nextstep.edu.missionutils.Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     private void validateBridgeSize(String bridgeSize) throws IllegalArgumentException {
@@ -42,4 +40,11 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateGameCommand(String gameCommand) throws IllegalArgumentException{
+        if (!gameCommand.equals('R') ^ !gameCommand.equals('Q')) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
