@@ -9,6 +9,7 @@ public class Application {
 
             InputView inputView = new InputView();
             inputView.readBridgeSize();
+            inputView.readMoving();
         }catch(IllegalArgumentException illegalArgumentException){
             System.out.println(ERROR_MESSAGE + illegalArgumentException.getMessage());
         }
