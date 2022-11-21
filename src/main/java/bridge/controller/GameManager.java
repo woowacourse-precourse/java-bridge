@@ -26,46 +26,39 @@ public class GameManager {
   }
 
   private void gameStart() {
-    int length = getLengthInput();
+    int length = readBridgeSize();
     printBlankLine();
     do {
       bridgeGame.gameInit(length);
       tryMove(); // 시도가 끝날 때 까지 이동
     } while (!checkIsGameFinish());
-    printFinalResult(user.getMoveStatus(), bridgeGame.getBridgeShapes());
-    printGameSuccessOrFailure(bridgeGame.isTrySuccess());
-    printTotalTryCount(user.getTryCount());
-  }
-
-  private int getLengthInput() {
-    printLengthInputMessage();
-    return readBridgeSize();
+    printResult();
   }
 
   private void tryMove() {
     while (!bridgeGame.isTryFinish()) {
-      moveByDirectionInput();
+      bridgeGame.move(readMoving());
       bridgeGame.showResult();
     }
   }
 
-  private void moveByDirectionInput() {
-    printMoveDirInputMessage();
-    bridgeGame.move(readMoving());
-  }
-
   private boolean checkIsGameFinish() {
     if (!bridgeGame.isTrySuccess()) { // 시도 실패
-      return !checkRetryByInput(); // 재시도 여부 질문
+      return !checkRetryByInput(readGameCommand()); // 재시도 여부 질문
     }
     return true;
   }
 
-  private boolean checkRetryByInput() {
-    printCheckRetryInputMessage();
-    if (readGameCommand().equals(GameCommand.RETRY.getCommand())) {
+  private boolean checkRetryByInput(String input) {
+    if (input.equals(GameCommand.RETRY.getCommand())) {
       return true;
     }
     return false;
+  }
+
+  private void printResult() {
+    printFinalResult(user.getMoveStatus(), bridgeGame.getBridgeShapes());
+    printGameSuccessOrFailure(bridgeGame.isTrySuccess());
+    printTotalTryCount(user.getTryCount());
   }
 }
