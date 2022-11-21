@@ -5,6 +5,7 @@ import static bridge.model.Status.die;
 import static bridge.model.Status.findStatus;
 
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -16,6 +17,7 @@ public class BridgeGame {
     private boolean success = false;
     private GameCommand command = GameCommand.RETRY;
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public BridgeGame(Bridge bridge, Diagram diagram) {
         this.bridge = bridge;
@@ -31,6 +33,7 @@ public class BridgeGame {
         Position position = inputView.readMoving();
         Status status = findStatus(bridge.isSamePosition(index, position));
         diagram.updateDiagrams(position, status);
+        outputView.printMap(diagram);
         return status;
     }
 
