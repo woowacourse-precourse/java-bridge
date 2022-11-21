@@ -22,10 +22,6 @@ public class BridgeGame {
         }
     }
 
-    public boolean isGameSuccess(int bridgeSize) {
-        return position == bridgeSize;
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -34,6 +30,10 @@ public class BridgeGame {
     public void retry() {
         position = 0;
         retryCount++;
+    }
+
+    public boolean isGameSuccess(int bridgeSize) {
+        return position == bridgeSize;
     }
 
     public boolean isGameInProgress() {
