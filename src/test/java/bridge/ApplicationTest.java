@@ -155,6 +155,34 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @Test
+    void 두번_재시도_후_성공_케이스() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "R", "U", "U", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "다리의 길이를 입력해주세요.",
+                    "[   ]",
+                    "[ X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[ O ]",
+                    "[   ]",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "[ O |   ]",
+                    "[   | O ]",
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
