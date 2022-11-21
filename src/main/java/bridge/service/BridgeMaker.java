@@ -17,7 +17,7 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = Constant.INITIAL_NUMBER; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             bridge.add(Direction.findByCode(bridgeNumberGenerator.generate()));
         }
         return Collections.unmodifiableList(bridge);
