@@ -26,6 +26,15 @@ public class BridgeGame {
         return fillBridge(count,bridge,upOrDown + bridge.get(count));
     }
 
+    private static boolean fillFirstBridge(String checkFalse) { //여기서 다리를 완성하고 출력은 OutputView에서 해주고 싶은데
+        fillOneBlcok(String.valueOf(resultStatus.charAt(0)),String.valueOf(resultStatus.charAt(1)));
+
+    }
+
+    private static void fillOneBlcok(String up, String down) {
+        upBridge += up;
+        downBridge += down;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
