@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Judge {
 
-    List<String> bridge;
-    List<String> userBridge;
+    private final List<String> bridge;
+    private List<String> userBridge;
 
 
     public Judge(List<String> bridge) {

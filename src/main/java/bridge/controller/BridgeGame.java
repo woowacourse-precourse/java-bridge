@@ -11,11 +11,10 @@ import bridge.view.Output;
  */
 public class BridgeGame {
 
-    Input input;
-    Output output;
-    Judge judge;
-
-    int gameCount;
+    private final Input input;
+    private final Output output;
+    private Judge judge;
+    private int gameCount;
 
     public BridgeGame(Input input, Output output) {
         this.input = input;
@@ -42,7 +41,6 @@ public class BridgeGame {
         return gameResult;
     }
 
-
     private GameResult moveAndPrintResult() {
         MoveResult moveResult;
         do {
@@ -52,7 +50,6 @@ public class BridgeGame {
         if (moveResult == MoveResult.CORRECT) return GameResult.WIN;
         return GameResult.LOSE;
     }
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -64,7 +61,6 @@ public class BridgeGame {
         judge.addUserBridge(moving);
         return judge.checkIsCorrectMoving(moving);
     }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
