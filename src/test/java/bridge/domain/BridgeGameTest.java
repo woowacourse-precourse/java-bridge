@@ -5,8 +5,11 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameTest {
 
@@ -67,6 +70,23 @@ public class BridgeGameTest {
 
         게임_상태_확인_기능들_테스트(inProgressExcepted, overExcepted,
                 successExcepted);
+    }
+
+    @DisplayName("게임 종료 시 성공 여부 반환 기능 테스트")
+    @ParameterizedTest
+    @CsvSource({"U,U,성공", "U,D,실패"})
+    public void 게임_성공_여부_반환_테스트(String direction1, String direction2,
+            String excepted) {
+        bridgeGame.move(direction1);
+        bridgeGame.move(direction2);
+        assertThat(bridgeGame.successOrNot()).isEqualTo(excepted);
+    }
+
+    @DisplayName("게임 진행 중 성공 여부 반환 기능 호출 시 예외발생 테스트")
+    public void 게임_성공_여부_반환_예외_테스트() {
+        assertThatThrownBy(() -> bridgeGame.successOrNot())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage();
     }
 
     private void 게임_상태_확인_기능들_테스트(boolean inProgressExcepted,

@@ -15,6 +15,11 @@ public final class Message {
         private InputExceptionMessage() {}
     }
 
+    public static final class LogicExceptionMessage {
+
+        public static final String WRONG_USE_SUCCESS_OR_NOT = "[ERROR] 게임이 아직 진행 중입니다.";
+    }
+
     public static final class InputViewMessage {
 
         public static final String BRIDGE_LENGTH_REQUEST = "다리의 길이를 입력해주세요.";
