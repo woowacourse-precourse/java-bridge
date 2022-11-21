@@ -21,7 +21,7 @@ public class BridgeGame {
     }
 
     public boolean isUserPassedAllTurn(Bridge bridge) {
-        if (bridge.getNowIndex() == bridge.getBridgeSize() - 1) {
+        if (bridge.isEndOfIndex()) {
             return true;
         }
         return false;
