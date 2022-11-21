@@ -25,14 +25,14 @@ public class Bridge {
     }
 
     public boolean isMovable(Position position, Direction direction) {
-        if (isArrived(position)) {
+        if (isOver(position)) {
             return false;
         }
         Direction directionOfPosition = directions.get(position.getPosition());
         return Objects.equals(direction, directionOfPosition);
     }
 
-    public boolean isArrived(Position position) {
+    public boolean isOver(Position position) {
         return position.isGreaterOrEqualThan(directions.size());
     }
 }

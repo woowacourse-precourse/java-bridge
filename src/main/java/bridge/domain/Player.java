@@ -25,6 +25,6 @@ public class Player {
     }
 
     public boolean isArrived() {
-        return bridge.isArrived(position);
+        return bridge.isOver(position);
     }
 }
