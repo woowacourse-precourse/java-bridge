@@ -21,11 +21,20 @@ public class Controller {
 
     public void initGame() {
         outputView.printStartGame();
-        outputView.printInputBridgeLength();
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridgeList);
-        start(bridgeGame);
+        makeBridgeGame();
+    }
+
+    private void makeBridgeGame() {
+        try{
+            outputView.printInputBridgeLength();
+            int bridgeSize = inputView.readBridgeSize();
+            List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
+            BridgeGame bridgeGame = new BridgeGame(bridgeList);
+            start(bridgeGame);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            makeBridgeGame();
+        }
     }
 
     public void start(BridgeGame bridgeGame) {
