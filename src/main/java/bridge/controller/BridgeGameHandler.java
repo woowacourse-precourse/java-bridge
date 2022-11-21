@@ -5,6 +5,7 @@ import bridge.type.FinishCondition;
 import bridge.type.GameStatus;
 import bridge.type.PassCondition;
 import bridge.type.ProcessCondition;
+import bridge.view.OutputView;
 
 import static bridge.view.InputView.readGameCommand;
 import static bridge.view.InputView.readSelectedBridgeBlock;
@@ -23,13 +24,10 @@ public class BridgeGameHandler {
 
     public static ProcessCondition executePassCondition(BridgeGame bridgeGame) {
         ProcessCondition passCondition = bridgeGame.move(readSelectedBridgeBlock());
-        FinishCondition finishCondition = bridgeGame.checkWhetherFinished();
-        if (finishCondition.equals(FinishCondition.FINISHED)) {
-            return bridgeGame.quit(FinishCondition.FINISHED);
-        }
-        if (finishCondition.equals(FinishCondition.NOT_FINISHED)) {
-            return executeGame(passCondition, bridgeGame);
-        }
+        OutputView.printMap(passCondition, bridgeGame);
+        FinishCondition finishCondition = bridgeGame.checkWhetherFinished(passCondition);
+        if (finishCondition.equals(FinishCondition.FINISHED)) return bridgeGame.quit(FinishCondition.FINISHED);
+        if (finishCondition.equals(FinishCondition.NOT_FINISHED)) return executeGame(passCondition, bridgeGame);
         return null;
     }
 
