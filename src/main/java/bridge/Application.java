@@ -17,23 +17,44 @@ public class Application {
             outputView.printMap(bridgeGame, correct);
             if (!gameContinueCheck(correct)) break;
         }
-        outputView.printResult(bridgeGame, correct);
+        outputView.printResult(bridgeGame, Boolean.TRUE.equals(correct));
     }
 
     private static List<String> GameSetter() {
         outputView.startGame();
-        int size = inputView.readBridgeSize();
+        Integer size = null;
+        while (size == null) {
+            try {
+                size = inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return bridgeMaker.makeBridge(size);
     }
 
     private static Boolean move() {
-        String direction = inputView.readMoving();
+        String direction = null;
+        while (direction == null){
+            try {
+                direction = inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return bridgeGame.move(direction);
     }
 
     private static boolean gameContinueCheck(boolean correct) { // 틀렸을 경우 게임 재시작 여부 확인
         if (correct) return true;
-        String retry = inputView.readGameCommand();
+        String retry = null;
+        while (retry == null) {
+            try {
+                retry = inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         if (retry.equals(InputView.RETRY)) {
             bridgeGame.retry();
             return true;

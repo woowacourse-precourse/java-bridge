@@ -11,8 +11,8 @@
     - [x] 재시작 하는 메소드 작성
     - [x] 재시작해도 처음에 만든 다리로 재사용
 - [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
-- [ ] 잘못된 값이 입력되면 IllegalArgumentException을 발생시키고 "[ERROR]" 로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-  - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [x] 잘못된 값이 입력되면 IllegalArgumentException을 발생시키고 "[ERROR]" 로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+  - [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 # 입력 요구사항
 - [x] 자동으로 생성할 다리 길이를 입력받는다. 3 이상 20 이하의 숫자를 입력할 수 있으며, 값이 다르다면 예외처리
