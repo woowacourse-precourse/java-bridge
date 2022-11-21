@@ -1,7 +1,8 @@
 package bridge.model;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -12,6 +13,7 @@ public class BridgeMaker {
     public static final String UP_BRIDGE = "U";
     public static final String DOWN_BRIDGE = "D";
     public static final int DOWN_DEFAULT_VALUE = 0;
+    public static final int START_INCLUSIVE = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -23,13 +25,13 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return IntStream.range(0, size)
+        return IntStream.range(START_INCLUSIVE, size)
                 .mapToObj(index -> bridgeNumberGenerator.generate())
-                .map(this::changeToDirection)
-                .collect(Collectors.toList());
+                .map(this::changeToPosition)
+                .collect(toList());
     }
 
-    private String changeToDirection(Integer value) {
+    private String changeToPosition(Integer value) {
         if (value == DOWN_DEFAULT_VALUE) {
             return DOWN_BRIDGE;
         }
