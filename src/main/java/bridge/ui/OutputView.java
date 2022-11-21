@@ -13,29 +13,35 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, List<String> userInput) {
-        int size = userInput.size();
         String upResult = "[ ";
         String downResult = "[ ";
-
-        for (int i = 0; i < size; i++) {
-            String x = isSame(bridge.get(i), userInput.get(i));
-            if (userInput.get(i).equals("U")) {
-                upResult += x;
-                downResult += " ";
-            }
-            if (userInput.get(i).equals("D")) {
-                upResult += " ";
-                downResult += x;
-            }
-            if (i != size - 1) {
-                upResult += " | ";
-                downResult += " | ";
-            }
+        for (int i = 0; i < userInput.size(); i++) {
+            upResult += setUpResult(bridge.get(i), userInput.get(i));
+            downResult += setDownResult(bridge.get(i), userInput.get(i));
+            upResult += setPartition(i, userInput.size());
+            downResult += setPartition(i, userInput.size());
         }
-        upResult += " ]";
-        downResult += " ]";
-        System.out.println(upResult);
-        System.out.println(downResult);
+        System.out.println(upResult + " ]\n" + downResult + " ]\n");
+    }
+
+    private String setUpResult(String bridge, String userInput) {
+        String x = isSame(bridge, userInput);
+        if (userInput.equals("U"))
+            return x;
+        return " ";
+    }
+
+    private String setDownResult(String bridge, String userInput) {
+        String x = isSame(bridge, userInput);
+        if (userInput.equals("D"))
+            return x;
+        return " ";
+    }
+
+    private String setPartition(int i, int size) {
+        if (i != size - 1)
+            return " | ";
+        return "";
     }
 
     private String isSame(String bridge, String userInput) {
@@ -55,7 +61,7 @@ public class OutputView {
         printMap(bridge, userInput);
 
         String gameResult = "실패";
-        if(userInput.equals(bridge))
+        if (userInput.equals(bridge))
             gameResult = "성공";
 
         System.out.println("게임 성공 여부: " + gameResult);
