@@ -1,14 +1,17 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class Result {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
-    private final BridgeMap bridgeMap;
+
+    private final String bridgeMap;
     private final int gameCount;
     private String winning;
 
-    public Result(BridgeMap bridgeMap, boolean status, int gameCount) {
-        this.bridgeMap = bridgeMap;
+    public Result(String bridgeMap, boolean status, int gameCount) {
+        this.bridgeMap =bridgeMap;
         this.gameCount = gameCount;
         currentGameStatus(status);
     }
@@ -22,7 +25,7 @@ public class Result {
         }
     }
 
-    public BridgeMap getBridgeMap() {
+    public String getBridgeMap() {
         return bridgeMap;
     }
 
@@ -34,7 +37,7 @@ public class Result {
         return gameCount;
     }
 
-    public static boolean checkWinning(int mapCoordinate, Bridge bridge) {
-        return bridge.getBridge().size() == mapCoordinate;
+    public static boolean checkWinning(int mapCoordinate, List<String> bridge) {
+        return bridge.size() == mapCoordinate;
     }
 }
