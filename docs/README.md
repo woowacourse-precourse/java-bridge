@@ -17,10 +17,10 @@
     - U, D외의 문자를 입력받았을 경우 예외 발생 [X]
   
 
-4. **해당 칸으로 플레이어를 이동시킨다** [ ]
-    - BridgeGame - move() 구현 [ ]
-    - BridgeGame - getResult() 구현(이동한 칸이 건널 수 있는 칸인지) [ ]
-    - BridgeGame - selectUpperBridge(), selectLowerBridge() 구현(어떤 다리를 건너려 했는지) [ ]
+4. **해당 칸으로 플레이어를 이동시킨다** [X]
+    - BridgeGame - move() 구현 [X]
+    - BridgeGame - getResult() 구현(이동한 칸이 건널 수 있는 칸인지) [X]
+    - BridgeGame - selectUpperBridge(), selectLowerBridge() 구현(어떤 다리를 건너려 했는지) [X]
   
 
 5. **현재까지 이동한 다리의 상태를 출력한다** [ ]
