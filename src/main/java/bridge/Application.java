@@ -3,20 +3,54 @@ package bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 public class Application {
 
     private long gameCount = 1;
     private static final InputView INPUT_VIEW = new InputView();
+    private static final OutputView OUTPUT_VIEW = new OutputView();
     private static BridgeGame bridgeGame;
+    private static final String RETRY = "R";
 
     public static void main(String[] args) {
         Player player = new Player();
         initializeGame();
+        play(player);
     }
 
     private static void initializeGame() {
         int bridgeLength = INPUT_VIEW.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeLength);
+    }
+
+    private static void play(Player player) {
+        boolean keepingMoving = true;
+        while (keepingMoving) {
+            String step = INPUT_VIEW.readMoving();
+            boolean stepResult = bridgeGame.move(step, player);
+            boolean gameCompletion = bridgeGame.checkGameCompletion(player);
+            OUTPUT_VIEW.printMap(player);
+            keepingMoving = decideLoop(stepResult, gameCompletion, player);
+        }
+    }
+
+    private static boolean decideLoop(boolean stepResult, boolean gameCompletion, Player player) {
+        if (stepResult) {
+            return !gameCompletion;
+        }
+
+        return askRetry(player);
+    }
+
+    private static boolean askRetry(Player player) {
+        boolean answerRetry = INPUT_VIEW.readGameCommand().equals(RETRY);
+
+        if (answerRetry) {
+            bridgeGame.retry(player);
+            return true;
+        }
+
+        return false;
     }
 }
