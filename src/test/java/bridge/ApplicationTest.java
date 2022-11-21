@@ -5,16 +5,29 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.controller.GameController;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeNumberGenerator;
+import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
 
     @Test
     void 다리_생성_테스트() {
@@ -29,6 +42,22 @@ class ApplicationTest extends NsTest {
         BridgeGame bridgeGame = new BridgeGame();
         String move = bridgeGame.move(List.of("U"), "U", 1);
         assertThat(move).isEqualTo("O");
+    }
+
+    @Test
+    void 재시작_테스트(){
+        BridgeGame bridgeGame = new BridgeGame();
+        assertThat(bridgeGame.retry("R")).isTrue();
+    }
+
+    @Test
+    void 맵_출력_테스트(){
+        OutputView outputView = new OutputView();
+        outputView.printMap(List.of(" O ", "   "), List.of("   ", " X "));
+        assertThat(outputStreamCaptor.toString()).contains(
+                "[ O |   ]",
+                "[   | X ]"
+        );
     }
 
     @Test
