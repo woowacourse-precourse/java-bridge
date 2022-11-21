@@ -46,12 +46,14 @@ public class OutputView {
     }
 
     private String closeTopBridge(StringBuilder topBridge) {
+        topBridge.deleteCharAt(topBridge.length() - 1);
         topBridge.append("]");
 
         return topBridge.toString();
     }
 
     private String closeBottomBridge(StringBuilder bottomBridge) {
+        bottomBridge.deleteCharAt(bottomBridge.length() - 1);
         bottomBridge.append("]");
 
         return bottomBridge.toString();
