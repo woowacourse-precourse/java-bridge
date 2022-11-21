@@ -6,38 +6,35 @@ import java.util.List;
  * 게임의 진행을 관리하는 역할을 한다.
  */
 public class GameController {
-    private OutputView outputView =new OutputView();
+    private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private static int trials=1;
-    public void begin(){
-//        int trials = 1;
+    private static int trials = 1;
+
+    public void start() {
         outputView.gameStartMessage();
-
-        outputView.bridgeSizeMessage();
-        int size = readBridgeSizeStep();//inputView.readBridgeSize();
-
+        int size = askBridgeSize();
         List<String> answer_bridge = bridgeMaker.makeBridge(size);
         System.out.println(answer_bridge);
-
         BridgeGame bridgeGame = new BridgeGame(answer_bridge);
         boolean keepgo = true;
-        while(keepgo) {
-            move( bridgeGame);//끝까지 성공하거나 중간에 실패하기전까지 이동
+        while (keepgo) {
+            move(bridgeGame);//끝까지 성공하거나 중간에 실패하기전까지 이동
 
             //성공하거나 Q를 입력받으면 false return
-            keepgo = successOrRetry( bridgeGame);
+            keepgo = successOrRetry(bridgeGame);
             trials++;
         }
     }
-    private boolean successOrRetry(BridgeGame bridgeGame){
+
+    private boolean successOrRetry(BridgeGame bridgeGame) {
         if (bridgeGame.isSuccess()) {
             outputView.printResult("성공", bridgeGame, trials);
             return false;
         }
 
-        outputView.restartMessage();
-        String command = readRestartStep();
+
+        String command = askRestart();
         if (command.equals("R")) {
             bridgeGame.retry();
         }
@@ -48,6 +45,7 @@ public class GameController {
         }
         return true;
     }
+
     private void move(BridgeGame bridgeGame) {
         boolean isEnd = false;
         while (!isEnd) {
@@ -55,48 +53,54 @@ public class GameController {
             isEnd = bridgeGame.isEnd();
         }
     }
-    private void move1Step(BridgeGame bridgeGame){
-        //move message 출력
-        outputView.moveMessage();
+
+    private void move1Step(BridgeGame bridgeGame) {
+
         //input move
-        String way = readMovingStep();
+        String way = askMoving();
         //move
         bridgeGame.move(way);
         //printMap
         outputView.printMap(bridgeGame);
 
     }
-    private int readBridgeSizeStep(){
-        try{
+
+    private int askBridgeSize() {
+        try {
+            outputView.bridgeSizeMessage();
             return inputView.readBridgeSize();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readBridgeSizeStep();
-        }catch (IllegalStateException e){
+            return askBridgeSize();
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
-            return readBridgeSizeStep();
+            return askBridgeSize();
         }
     }
-    private String readMovingStep(){
-        try{
+
+    private String askMoving() {
+        try {
+            outputView.moveMessage();//move message 출력
             return inputView.readMoving();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readMovingStep();
-        }catch (IllegalStateException e){
+            return askMoving();
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
-            return readMovingStep();
+            return askMoving();
         }
     }
-    private String readRestartStep(){
-        try{
+
+    private String askRestart() {
+        try {
+            outputView.restartMessage();
             return inputView.readGameCommand();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readRestartStep();
-        }catch (IllegalStateException e){
+            return askRestart();
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
-            return readRestartStep();
+            return askRestart();
         }
     }
 }
