@@ -10,12 +10,11 @@ public class BridgeStateService {
 
     public void compare(Move move, Bridge bridge, BridgeMap bridgeMap) {
         String upOrDown = move.getMove();
-        if (bridge.isStepOk(upOrDown, bridgeMap.getInputCount().get() - 1)) {
-            bridgeMap.add(upOrDown);
+        bridgeMap.add(upOrDown);
+        if (bridge.isStepOk(upOrDown, bridgeMap.getInputCount() - 1)) {
             bridgeMap.flagUp();
         }
-        else{
-            bridgeMap.add(upOrDown);
+        if (!bridge.isStepOk(upOrDown, bridgeMap.getInputCount() - 1)){
             bridgeMap.flagDown();
         }
     }

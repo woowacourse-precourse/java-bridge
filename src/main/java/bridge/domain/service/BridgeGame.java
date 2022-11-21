@@ -43,7 +43,7 @@ public class BridgeGame {
     }
 
     public int getStepDistance(){
-        return bridgeMap.getInputCount().get();
+        return bridgeMap.getInputCount();
     }
 
     public boolean checkFlag() {

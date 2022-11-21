@@ -20,7 +20,7 @@ public class ConvertBridgeMap {
     public ConvertBridgeMap(BridgeMap bridgeMap) {
         this.printedUp = new ArrayList<>();
         this.printedDown = new ArrayList<>();
-        this.counter = bridgeMap.getInputCount().get();
+        this.counter = bridgeMap.getInputCount();
     }
 
     public String makePrinted(BridgeMap bridgeMap) {

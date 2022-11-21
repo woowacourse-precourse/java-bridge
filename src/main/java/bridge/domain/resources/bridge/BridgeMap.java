@@ -2,23 +2,22 @@ package bridge.domain.resources.bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class BridgeMap {
 
     private final List<String> bridgeMap;
-    private final AtomicInteger inputCount;
+    private int inputCount;
     private boolean flag;
 
     public BridgeMap() {
         this.bridgeMap = new ArrayList<>();
-        this.inputCount = new AtomicInteger(0);
+        this.inputCount = 0;
         flag = true;
     }
 
     public void clearBridgeMap() {
         bridgeMap.clear();
-        inputCount.set(0);
+        inputCount = 0;
         flagUp();
     }
 
@@ -27,7 +26,7 @@ public class BridgeMap {
     }
 
     public void countUp() {
-        inputCount.getAndIncrement();
+        inputCount++;
     }
 
     public void flagUp() {
@@ -42,7 +41,7 @@ public class BridgeMap {
         return bridgeMap;
     }
 
-    public AtomicInteger getInputCount() {
+    public int getInputCount() {
         return inputCount;
     }
 
