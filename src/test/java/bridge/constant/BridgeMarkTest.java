@@ -34,7 +34,7 @@ class BridgeMarkTest {
         assertThat(bridges).containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
 
-    @DisplayName("BridgeMark U, D 이외의 입력 값 검증 시 예외 발생")
+    @DisplayName("U, D 이외의 입력 값 검증 시 예외 발생")
     @Test
     void validateInput() {
         assertThatThrownBy(() -> BridgeMark.validateInput("s"))
@@ -42,7 +42,7 @@ class BridgeMarkTest {
                 .hasMessage("[ERROR] 이동할 칸의 입력의 경우 U와 D 뿐이어야 합니다.");
     }
 
-    @DisplayName("BridgeMark 1, 0이 주어지면 U, D를 반환")
+    @DisplayName("1, 0이 주어지면 U, D를 반환")
     @Test
     void mapToString() {
         String upMark = BridgeMark.mapToString(1);
@@ -51,7 +51,15 @@ class BridgeMarkTest {
         assertThat(downMark).isEqualTo("D");
     }
 
-    @DisplayName("BridgeMark가 업인지 다운인지 묻는 메소드 검증")
+    @DisplayName("다리의 숫자 값이 1 or 0 이외의 숫자일 경우 예외 발생")
+    @Test
+    void mapToStringInvalidInput() {
+        assertThatThrownBy(() -> BridgeMark.mapToString(3))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리의 숫자 값은 1 or 0만 가능합니다.");
+    }
+
+    @DisplayName("업인지 다운인지 묻는 메소드 검증")
     @Test
     void isUpAndIsDown() {
         BridgeMark upMark = BridgeMark.UP;
@@ -60,7 +68,7 @@ class BridgeMarkTest {
         assertThat(downMark.isDown()).isTrue();
     }
 
-    @DisplayName("BridgeMark가 가지고 있는 필드 값 검증")
+    @DisplayName("가지고 있는 필드 값 검증")
     @Test
     void getMark() {
         BridgeMark upMark = BridgeMark.UP;
