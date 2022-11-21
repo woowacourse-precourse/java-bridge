@@ -9,6 +9,7 @@ public class Bridge {
 
     private final List<String> bridge;
     private static int stepCount = 0;
+    boolean currentResult = false;
     public Bridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -18,15 +19,19 @@ public class Bridge {
 
     public MoveResult createMoveResult(MoveSpace moveSpace){
         String nowStep = this.bridge.get(this.stepCount);
-        boolean nowResult = false;
+        this.currentResult = false;
         if(moveSpace.isItMovable(nowStep)){
             nextStep();
-            nowResult = true;
+            this.currentResult = true;
         }
-        return new MoveResult(nowResult, nowStep);
+        return new MoveResult(currentResult, nowStep);
     }
 
     public void nextStep(){
         this.stepCount +=1;
+    }
+
+    public boolean getCurrentResult(){
+        return this.currentResult;
     }
 }
