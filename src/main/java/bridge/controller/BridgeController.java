@@ -16,9 +16,9 @@ public class BridgeController {
     private BridgeHistory bridgeHistory;
     private BridgeManager bridgeManager;
 
-    public BridgeController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void playGreeting() {

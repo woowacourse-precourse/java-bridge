@@ -2,8 +2,6 @@ package bridge;
 
 import bridge.app.BridgeGame;
 import bridge.controller.BridgeController;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 public class Application {
 
@@ -13,10 +11,7 @@ public class Application {
     }
 
     private static BridgeGame getInitializedGame() {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        BridgeController bridgeController = new BridgeController(inputView, outputView);
-
+        BridgeController bridgeController = new BridgeController();
         return new BridgeGame(bridgeController, new BridgeRandomNumberGenerator());
     }
 }

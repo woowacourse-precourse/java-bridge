@@ -1,6 +1,5 @@
 package bridge.commom.constant;
 
-import bridge.commom.validation.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
