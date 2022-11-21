@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.BridgeFactory;
 import bridge.domain.BridgeSize;
-import bridge.domain.BridgeStep;
+import bridge.domain.BridgeMove;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,10 +16,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class BridgeFactoryTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name ="다리 생성시 잘못된 값이 입력되면 오류가 발생한다")
     @MethodSource
-    void fromThrowsError(BridgeSize size, List<BridgeStep> steps, Exception e) {
-        assertThatThrownBy(() -> BridgeFactory.from(size, steps))
+    void fromThrowsError(BridgeSize size, List<BridgeMove> moves, Exception e) {
+        assertThatThrownBy(() -> BridgeFactory.from(size, moves))
                 .isInstanceOf(e.getClass())
                 .hasMessageContaining(e.getMessage());
     }
@@ -29,33 +29,33 @@ class BridgeFactoryTest {
         NullPointerException containsNullException = new NullPointerException("다리의 각 칸은 U,D 중 하나의 값을 가져야 합니다");
         IllegalArgumentException illegalArgumentException = new IllegalArgumentException("다리의 길이와 칸의 개수는 같아야 합니다.");
 
-        List<BridgeStep> stepsSizeOutOfRange = new ArrayList<>();
+        List<BridgeMove> movesSizeOutOfRange = new ArrayList<>();
         for (int count = 1; count <= 21; count++) {
-            stepsSizeOutOfRange.add(BridgeStep.UP);
+            movesSizeOutOfRange.add(BridgeMove.UP);
         }
 
-        List<BridgeStep> stepsContainingNull = new ArrayList<>();
-        stepsContainingNull.add(BridgeStep.UP);
-        stepsContainingNull.add(BridgeStep.UP);
+        List<BridgeMove> stepsContainingNull = new ArrayList<>();
+        stepsContainingNull.add(BridgeMove.UP);
+        stepsContainingNull.add(BridgeMove.UP);
         stepsContainingNull.add(null);
 
         return Stream.of(
-                Arguments.of(new BridgeSize(20), stepsSizeOutOfRange, illegalArgumentException),
-                Arguments.of(null, List.of(BridgeStep.UP, BridgeStep.DOWN), nullPointerException),
+                Arguments.of(new BridgeSize(20), movesSizeOutOfRange, illegalArgumentException),
+                Arguments.of(null, List.of(BridgeMove.UP, BridgeMove.DOWN), nullPointerException),
                 Arguments.of(new BridgeSize(stepsContainingNull.size()), stepsContainingNull, containsNullException),
                 Arguments.of(new BridgeSize(3), List.of(), illegalArgumentException));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "주어진 리스트를 활용해 다리를 생성한다")
     @MethodSource
-    void fromReturnBridge(List<BridgeStep> steps, int expectedSize) {
+    void fromReturnBridge(List<BridgeMove> steps, int expectedSize) {
         int actualSize = BridgeFactory.from(new BridgeSize(steps.size()), steps).size();
         assertThat(actualSize).isEqualTo(expectedSize);
     }
 
     private static Stream<Arguments> fromReturnBridge() {
         return Stream.of(
-                Arguments.of(Arrays.asList(BridgeStep.UP, BridgeStep.DOWN, BridgeStep.DOWN), 3),
-                Arguments.of(Arrays.asList(BridgeStep.UP, BridgeStep.DOWN, BridgeStep.DOWN, BridgeStep.DOWN), 4));
+                Arguments.of(Arrays.asList(BridgeMove.UP, BridgeMove.DOWN, BridgeMove.DOWN), 3),
+                Arguments.of(Arrays.asList(BridgeMove.UP, BridgeMove.DOWN, BridgeMove.DOWN, BridgeMove.DOWN), 4));
     }
 }

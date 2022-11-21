@@ -11,14 +11,17 @@ public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
+        if (bridgeNumberGenerator == null) {
+            throw new NullPointerException("BridgeNumberGenerator는 Null이 될 수 없습니다.t ");
+        }
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
     public Bridge makeBridge(BridgeSize size) {
-        List<BridgeStep> steps = new ArrayList<>();
+        List<BridgeMove> moves = new ArrayList<>();
         for (int count = 1; count <= size.getSize(); count++) {
-            steps.add(BridgeStep.valueOf(String.valueOf(bridgeNumberGenerator.generate())));
+            moves.add(BridgeMove.getBridgeMoveByMoveCode(bridgeNumberGenerator.generate()));
         }
-        return BridgeFactory.from(size, steps);
+        return BridgeFactory.from(size, moves);
     }
 }
