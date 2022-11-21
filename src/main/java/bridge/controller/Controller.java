@@ -28,12 +28,10 @@ public class Controller {
         String finalResult = SUCCESS;
         int index = 0;
 
-        OneSideResults upsideResults = null;
-        OneSideResults downsideResults = null;
-        while (index < bridgeSize) {
-            upsideResults = new UpsideResults();
-            downsideResults = new DownsideResults();
+        final OneSideResults upsideResults = new UpsideResults();
+        final OneSideResults downsideResults = new DownsideResults();
 
+        while (index < bridgeSize) {
             final String playerMove = InputView.readMoving();
             final String matchResult = bridgeGame.move(playerMove, index);
 
