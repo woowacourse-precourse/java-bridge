@@ -3,6 +3,8 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -43,5 +45,23 @@ public class BridgeGame {
             System.out.println(e.getMessage());
             return retry();
         }
+    }
+
+    public void run() {
+        GameStatus gameStatus = GameStatus.startNewGame();
+        System.out.println("다리 건너기 게임을 시작합니다.");
+
+        int bridgeSize = getBridgeSize();
+        List<String> realBridges = bridgeMaker.makeBridge(bridgeSize);
+        List<String> selectBridges = playGame(gameStatus, realBridges);
+        outputView.printResult(gameStatus, realBridges, selectBridges);
+    }
+
+    private int getBridgeSize() {
+        return 0;
+    }
+
+    private List<String> playGame(GameStatus gameStatus, List<String> realBridges) {
+        return null;
     }
 }
