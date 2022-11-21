@@ -1,8 +1,12 @@
 package bridge.domain;
 
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+
 import bridge.common.ErrorMessage;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 
 public class BridgeGameAnswer {
@@ -11,9 +15,9 @@ public class BridgeGameAnswer {
 
     private final Map<Round, Direction> answer;
 
-    private BridgeGameAnswer(List<String> bridge) {
+    public BridgeGameAnswer(List<String> bridge) {
         validate(bridge);
-        this.answer = null;
+        this.answer = convertAnswer(bridge);
     }
 
     private void validate(List<String> bridge) {
@@ -21,5 +25,21 @@ public class BridgeGameAnswer {
         if (size < BRIDGE_LOWER_BOUND || size > BRIDGE_UPPER_BOUND) {
             throw new IllegalArgumentException(ErrorMessage.isInvalidBridgeSize());
         }
+    }
+
+    private Map<Round, Direction> convertAnswer(List<String> bridge) {
+        return convertMap(Round.getRoundsOrderByOrderAsc(), convertDirections(bridge));
+    }
+
+    private Map<Round, Direction> convertMap(List<Round> rounds, List<Direction> directions) {
+        return IntStream.range(0, directions.size())
+                .boxed()
+                .collect(toMap(rounds::get, directions::get));
+    }
+
+    private List<Direction> convertDirections(List<String> bridge) {
+        return bridge.stream()
+                .map(Direction::of)
+                .collect(toList());
     }
 }
