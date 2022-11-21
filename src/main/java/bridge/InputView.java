@@ -2,6 +2,7 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.ErrorMessage.IS_NOT_NUMBER;
 import static bridge.ErrorMessage.OUT_OF_RANGE;
 
 /**
@@ -16,11 +17,14 @@ public class InputView {
         try {
             int i = Integer.parseInt(Console.readLine());
             if(i < 3 || i > 20){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(OUT_OF_RANGE.returnMessage());
             }
             return i;
-        }catch (Exception e){
-            throw new IllegalArgumentException(OUT_OF_RANGE.returnMessage());
+        } catch (IllegalArgumentException e){
+            if(e.getMessage().contains("[ERROR]")){
+                throw e;
+            }
+            throw new IllegalArgumentException(IS_NOT_NUMBER.returnMessage());
         }
     }
 
