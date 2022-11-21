@@ -10,7 +10,6 @@ public interface BridgeGameService {
     boolean moveBridge(BridgeCell cell);
     String createMap();
     boolean retryGame();
-    boolean endGame();
     boolean checkGameProgress();
     String createResult();
 }

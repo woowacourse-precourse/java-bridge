@@ -33,7 +33,6 @@ public class BridgeGameController {
         if (command == Command.RETRY) {
             return service.retryGame();
         }
-        service.endGame();
         return false;
     }
 

@@ -41,11 +41,6 @@ public class DefaultBridgeGameService implements BridgeGameService {
     }
 
     @Override
-    public boolean endGame() {
-        return game.end();
-    }
-
-    @Override
     public boolean checkGameProgress() {
         return game.isEnd();
     }
