@@ -10,7 +10,8 @@ import bridge.service.Valification;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
+import static bridge.service.TypeChange.ChangeStringToInteger;
+
 
 public class Game {
 
@@ -41,7 +42,8 @@ public class Game {
 
     private void viewBridgeSize() {
         outputView.printRequestBridgeSize();
-        size = inputView.readBridgeSize();
+        String inputSize = inputView.readBridgeSize();
+        size = ChangeStringToInteger(inputSize);
         valification.verifyBridgeSize(size);
         makeBridge();
     }
