@@ -47,4 +47,19 @@ class PlayerTest {
         }
         assertThat(result).contains(false);
     }
+
+    @DisplayName("플레이어가 재시도한다.")
+    @ValueSource(strings = {"D", "UU", "UDU"})
+    @ParameterizedTest
+    void userRetry(String command) {
+        Player player = new Player();
+        for (int i = 0; i < command.length(); i++) {
+            player.move(bridge, String.valueOf(command.charAt(i)));
+        }
+
+        player.retry();
+
+        Assertions.assertEquals(0, player.getPosition());
+        Assertions.assertEquals(2, player.getTryCount());
+    }
 }
