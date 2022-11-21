@@ -19,10 +19,7 @@ public class BridgeGame {
         if (direction.equals(answer)) {
             return (printMove(result, true));
         }
-        if (!direction.equals(answer)) {
-            return (printMove(result,false));
-        }
-        return null;
+        return (printMove(result,false));
     }
     private static StringBuilder printMove(List<String> result, boolean thisturn) {
         upResult = new StringBuilder("[");
