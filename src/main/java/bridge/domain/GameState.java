@@ -36,4 +36,12 @@ public class GameState {
     public boolean isCrossing() {
         return bridgeState.equals(BridgeState.CROSSING);
     }
+
+    public List<String> getMoves() {
+        return moves;
+    }
+
+    public int getAttempt() {
+        return attempt;
+    }
 }
