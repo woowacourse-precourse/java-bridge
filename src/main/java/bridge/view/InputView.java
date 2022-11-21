@@ -6,16 +6,10 @@ import java.util.regex.Pattern;
 import bridge.constant.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
@@ -29,9 +23,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
@@ -53,9 +44,6 @@ public class InputView {
                 .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 방향입니다"));
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
