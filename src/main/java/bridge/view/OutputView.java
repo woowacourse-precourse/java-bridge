@@ -38,7 +38,7 @@ public class OutputView {
                 makeUpDirection(bridge.get(i), resultMapInfo);
                 continue;
             }
-            makeBottomDirection(bridge.get(i), resultMapInfo);
+            makeDownDirection(bridge.get(i), resultMapInfo);
         }
         return resultMapInfo;
     }
@@ -51,7 +51,7 @@ public class OutputView {
         resultMapInfo.add(MapType.UP_WRONG.getSign());
     }
 
-    private void makeBottomDirection(String answer, List<String> resultMapInfo) {
+    private void makeDownDirection(String answer, List<String> resultMapInfo) {
         if (answer.equals(Direction.DOWN.getLetter())) {
             resultMapInfo.add(MapType.DOWN_CORRECT.getSign());
             return;
