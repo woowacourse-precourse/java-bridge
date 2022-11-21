@@ -26,10 +26,6 @@ public class Player {
         return map.getCurrentMap();
     }
 
-    public int getPathSize() {
-        return path.size();
-    }
-
     public boolean hasSucceeded(List<String> bridge) {
         return path.equals(bridge);
     }
