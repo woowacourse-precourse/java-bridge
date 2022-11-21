@@ -1,13 +1,13 @@
 package bridge;
 
 import bridge.constant.Message;
-import bridge.controller.BridgeGame;
+import bridge.controller.BridgeController;
+import bridge.domain.BridgeGame;
 
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println(Message.GAME_START.getMessage());
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.play();
+        BridgeController game = new BridgeController();
+        game.play();
     }
 }
