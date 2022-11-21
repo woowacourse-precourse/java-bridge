@@ -13,6 +13,7 @@ public class InputView {
         System.out.println(INPUT_BRIDGE_LENGTH);
         return Console.readLine();
     }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */

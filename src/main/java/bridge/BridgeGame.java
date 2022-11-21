@@ -16,40 +16,39 @@ public class BridgeGame {
 
     public void gameStart() {
         System.out.println(START_BRIDGE_GAME);
-        //User user = new User();
-        int bridgeLength = User.BridgeSize();
 
-        while(end){
-            gamePlay(bridgeLength);
+        int bridgeLength = User.BridgeSize();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
+
+        while (end) {
+            gamePlay(bridge);
         }
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void gamePlay(int bridgeLength){
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
-
+    public static void gamePlay(List<String> bridge) {
         OutputView outputView = new OutputView();
         outputView.printAnswer(bridge);
 
         boolean success = move(bridge);
         count++;
-        if (success){
+        if (success) {
             OutputView.printResult(Result, true);
             end = false;
-        }
-        else{
+        } else {
             retry();
         }
     }
 
     public static boolean move(List<String> bridge) {
         List<String> userBridge = new ArrayList<>();
-        for(int i=0;i<bridge.size();i++){
+        for (int i = 0; i < bridge.size(); i++) {
             InputView inputView = new InputView();
             String MovingSquare = inputView.readMoving();
             userBridge.add(MovingSquare);
@@ -64,8 +63,8 @@ public class BridgeGame {
         return true;
     }
 
-    public static boolean userSuccess(String userBridgeWord,String bridgeWord){
-        if (!Objects.equals(userBridgeWord, bridgeWord)){
+    public static boolean userSuccess(String userBridgeWord, String bridgeWord) {
+        if (!Objects.equals(userBridgeWord, bridgeWord)) {
             return false;
         }
         return true;
@@ -79,7 +78,7 @@ public class BridgeGame {
     public static void retry() {
         InputView inputView = new InputView();
         String retryCommand = inputView.readGameCommand();
-        if (Objects.equals(retryCommand, "Q")){
+        if (Objects.equals(retryCommand, "Q")) {
             OutputView.printResult(Result, false);
             end = false;
         }

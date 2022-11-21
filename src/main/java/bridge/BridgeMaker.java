@@ -24,12 +24,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        for(int i=0;i<size;i++){
+        for (int i = 0; i < size; i++) {
             int number = bridgeRandomNumberGenerator.generate();
-            if (number==Up.getValue()){  //0을 위칸으로
+            if (number == Up.getValue()) { //1이 위칸
                 bridge.add(Up.getWord());
-            }
-            else if(number== Down.getValue()){
+            } else if (number == Down.getValue()) {
                 bridge.add(Down.getWord());
             }
         }

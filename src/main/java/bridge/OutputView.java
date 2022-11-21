@@ -22,12 +22,11 @@ public class OutputView {
     public void printAnswer(List<String> map) {
         StringBuilder AnswerUp = new StringBuilder();
         StringBuilder AnswerDown = new StringBuilder();
-        for(String bridge : map){
-            if (bridge == "U"){
+        for (String bridge : map) {
+            if (bridge == "U") {
                 AnswerUp.append("[ O ]");
                 AnswerDown.append("[   ]");
-            }
-            else if (bridge == "D"){
+            } else if (bridge == "D") {
                 AnswerUp.append("[   ]");
                 AnswerDown.append("[ O ]");
             }
@@ -36,20 +35,18 @@ public class OutputView {
         System.out.println(AnswerDown);
     }
 
-    public static List<String> initialPrint(String init){
+    public static List<String> initialPrint(String init) {
         List<String> inits = new ArrayList<>();
         String printUp = "";
         String printDown = "";
-        if (Objects.equals(init, "U")){
+        if (Objects.equals(init, "U")) {
             printDown += "[   ]";
-            if(Objects.equals(bridgeMain.get(0),init)){
+            if (Objects.equals(bridgeMain.get(0), init)) {
                 printUp += "[ O ]";
-            }
-            else{
+            } else {
                 printUp += "[ X ]";
             }
-        }
-        else if (Objects.equals(init, "D")) {
+        } else if (Objects.equals(init, "D")) {
             printUp += "[   ]";
             if (Objects.equals(bridgeMain.get(0), init)) {
                 printDown += "[ O ]";
@@ -61,28 +58,26 @@ public class OutputView {
         inits.add(printDown);
         return inits;
     }
+
     public static List<String> print(List<String> bridge, List<String> map) {
         bridgeMain = bridge;
         String printUp = initialPrint(map.get(0)).get(0);
         String printDown = initialPrint(map.get(0)).get(1);
 
-        for(int i=1; i<map.size();i++){
-            if (Objects.equals(map.get(i), "U")){
-                printDown = printDown.replace("]","|   ]");
-                if(Objects.equals(bridge.get(i),map.get(i))){
-                    printUp=printUp.replace("]","| O ]");
+        for (int i = 1; i < map.size(); i++) {
+            if (Objects.equals(map.get(i), "U")) {
+                printDown = printDown.replace("]", "|   ]");
+                if (Objects.equals(bridge.get(i), map.get(i))) {
+                    printUp = printUp.replace("]", "| O ]");
+                } else {
+                    printUp = printUp.replace("]", "| X ]");
                 }
-                else{
-                    printUp=printUp.replace("]","| X ]");
-                }
-            }
-            else if (Objects.equals(map.get(i), "D")){
-                printUp = printUp.replace("]","|   ]");
-                if(Objects.equals(bridge.get(i),map.get(i))){
-                    printDown=printDown.replace("]","| O ]");
-                }
-                else{
-                    printDown=printDown.replace("]","| X ]");
+            } else if (Objects.equals(map.get(i), "D")) {
+                printUp = printUp.replace("]", "|   ]");
+                if (Objects.equals(bridge.get(i), map.get(i))) {
+                    printDown = printDown.replace("]", "| O ]");
+                } else {
+                    printDown = printDown.replace("]", "| X ]");
                 }
             }
         }
@@ -109,8 +104,9 @@ public class OutputView {
         System.out.println(SUCCESS_FAIL + SuccessFail(success));
         System.out.println(TOTAL_COUNT + count);
     }
-    public static String SuccessFail(boolean success){
-        if (success){
+
+    public static String SuccessFail(boolean success) {
+        if (success) {
             return SUCCESS;
         }
         return FAIL;

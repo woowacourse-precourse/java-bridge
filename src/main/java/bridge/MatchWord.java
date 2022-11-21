@@ -1,8 +1,8 @@
 package bridge;
 
 public enum MatchWord {
-    Up(0,"U"),
-    Down(1,"D");
+    Up(1, "U"),
+    Down(0, "D");
 
     private final int value;
     private final String word;

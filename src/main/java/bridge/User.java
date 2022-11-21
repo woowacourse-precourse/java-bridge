@@ -6,17 +6,18 @@ import java.util.Objects;
 
 public class User {
     public static boolean success;
-    public static int BridgeSize(){
+
+    public static int BridgeSize() {
         InputView inputView = new InputView();
         String BridgeSize = inputView.readBridgeSize();
         return Integer.parseInt(BridgeSize);
     }
 
-    public static List<String> userBridge(List<String> bridge){
+    public static List<String> userBridge(List<String> bridge) {
         InputView inputView = new InputView();
         List<String> userBridge = new ArrayList<>();
         List<String> Result = new ArrayList<>();
-        for(int i=0;i<bridge.size();i++){
+        for (int i = 0; i < bridge.size(); i++) {
             String MovingSquare = inputView.readMoving();
             userBridge.add(MovingSquare);
             success = userSuccess(userBridge.get(i), bridge.get(i));
@@ -25,8 +26,9 @@ public class User {
         }
         return userBridge;
     }
-    public static boolean userSuccess(String userBridgeWord,String bridgeWord){
-        if (!Objects.equals(userBridgeWord, bridgeWord)){
+
+    public static boolean userSuccess(String userBridgeWord, String bridgeWord) {
+        if (!Objects.equals(userBridgeWord, bridgeWord)) {
             return false;
         }
         return true;
