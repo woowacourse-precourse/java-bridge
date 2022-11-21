@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.model.BridgeStatus;
+import bridge.constant.Game;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +11,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
+    private BridgeStatus bridgeStatus = new BridgeStatus();
     public void setBridge (List<String> bridge) {
         this.bridge = bridge;
     }
@@ -17,11 +21,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String movement, String space) {
+    public boolean move(String movement, String space) {
         if(movement.equals(space)) {
-            // 앞으로 갈 수 있음
+            bridgeStatus.addStatus(Game.CROSS_SUCCESS);
+            return true;
         }
-        // 앞으로 가지 못함
+        bridgeStatus.addStatus(Game.CROSS_FAIL);
+        return false;
     }
 
     /**

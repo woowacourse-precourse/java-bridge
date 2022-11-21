@@ -8,4 +8,6 @@ public class Game {
     public static final String BRIDGE_START = "[ ";
     public static final String BRIDGE_END = " ]";
     public static final String BRIDGE_BETWEEN = " | ";
+    public static final String CROSS_SUCCESS = "O";
+    public static final String CROSS_FAIL = "X";
 }
