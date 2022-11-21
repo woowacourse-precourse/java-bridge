@@ -1,6 +1,7 @@
 package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import bridge.exception.BridgeException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -14,14 +15,17 @@ public class InputView {
     public static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     public static final String INPUT_MOVE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String INPUT_RESTART = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private BridgeException bridgeException = new BridgeException();
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
-        int bridgeLength = Integer.parseInt(Console.readLine());
-        return bridgeLength;
+        String bridgeSize = Console.readLine();
+        bridgeException.validateBridgeSizeFormat(bridgeSize);
+        bridgeException.validateBridgeSizeLange(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
