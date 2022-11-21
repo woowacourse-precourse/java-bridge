@@ -77,7 +77,8 @@ public class BridgeGameTest {
             InputStream in = new ByteArrayInputStream(retryInput.getBytes());
             System.setIn(in);
 
-            assertThat(bridgeGame.retry()).isEqualTo(retry);
+            bridgeGame.retry();
+            assertThat(bridgeGame.getRetryOrQuit()).isEqualTo(retry);
             assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(1);
             assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(
                     Collections.emptyList());
@@ -91,7 +92,8 @@ public class BridgeGameTest {
             InputStream in = new ByteArrayInputStream(quitInput.getBytes());
             System.setIn(in);
 
-            assertThat(bridgeGame.retry()).isEqualTo(quit);
+            bridgeGame.retry();
+            assertThat(bridgeGame.getRetryOrQuit()).isEqualTo(quit);
         }
     }
 }
