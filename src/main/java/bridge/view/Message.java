@@ -25,4 +25,11 @@ public enum Message {
     public String getMessage() {
         return message;
     }
+
+    public static String getResultMessage(boolean isFailed) {
+        if (isFailed) {
+            return FAIL.getMessage();
+        }
+        return SUCCESS.getMessage();
+    }
 }

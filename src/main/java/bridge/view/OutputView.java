@@ -86,13 +86,8 @@ public class OutputView {
         printTryCount(bridgeGame);
     }
 
-    private void printSuccessOrFail(boolean fail) {
-        String result;
-        if (fail) {
-            result = FAIL.getMessage();
-        } else {
-            result = SUCCESS.getMessage();
-        }
+    private void printSuccessOrFail(boolean isFailed) {
+        String result = Message.getResultMessage(isFailed);
         System.out.println(GAME_SUCCESS_OR_NOT_MESSAGE.getMessage() + result);
     }
 
