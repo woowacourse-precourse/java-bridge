@@ -13,7 +13,7 @@ public class InputView {
 
     /**
      * 다리의 길이를 입력받는다.
-     */ //이후 유효성 검사 컨트롤러로 옮겨야함
+     */
     public static int readBridgeSize() {
         System.out.println(GET_BRIDE_LENGTH);
         String brideLength = Console.readLine();
