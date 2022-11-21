@@ -14,8 +14,12 @@ public class Position {
         position.put(distance, answer);
     }
 
-    public Direction getDirection() { // TODO: getter 사용 자제... 메시지를 보내기
-        return position.get(distance);
+    public boolean isDirectionUp() {
+        return position.get(distance).isSameUp();
+    }
+
+    public boolean isDirectionDown() {
+        return position.get(distance).isSameDown();
     }
 
     public boolean compareDirection(List<Direction> directions) {

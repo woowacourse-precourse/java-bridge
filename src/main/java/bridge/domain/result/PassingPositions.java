@@ -32,10 +32,10 @@ public class PassingPositions {
     private void moveLoop(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections) {
         passingPositions
                 .forEach(position -> {
-                    if (position.getDirection().isSameUp()) {
+                    if (position.isDirectionUp()) {
                         moveToUp(upDirections, downDirections, position);
                     }
-                    if (position.getDirection().isSameDown()) {
+                    if (position.isDirectionDown()) {
                         moveToDown(upDirections, downDirections, position);
                     }
                 });

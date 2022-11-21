@@ -46,7 +46,7 @@ public enum PassingDirectionType {
     }
 
     private static boolean findSelectedDirection(PassingDirectionType type, Position position, Bridge bridge) {
-        if (position.getDirection().isSameUp()) {
+        if (position.isDirectionUp()) {
             return moveToUp(type, position, bridge);
         }
         return moveToDown(type, position, bridge);
@@ -67,7 +67,7 @@ public enum PassingDirectionType {
     }
 
     private static boolean findNotSelectedDirection(PassingDirectionType type, Position position) {
-        if (position.getDirection().isSameUp()) {
+        if (position.isDirectionUp()) {
             return type.direction.equals(UP);
         }
         return type.direction.equals(DOWN);
