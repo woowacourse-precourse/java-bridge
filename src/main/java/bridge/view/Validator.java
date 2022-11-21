@@ -4,6 +4,8 @@ import bridge.messages.ErrorMessage;
 import bridge.messages.Message;
 
 public class Validator {
+    private static final int MIN_NUM = 3;
+    private static final int MAX_NUM = 20;
 
     /**
      * private의 입력 값 별 유효성 검사 메서드들을 예외 발생 순서대로 한번에 실행시키는 메서드.
@@ -33,7 +35,7 @@ public class Validator {
      */
     private static void validateInputSize(int bridgeSize) {
         try {
-            if (bridgeSize < 3 || bridgeSize > 20) {
+            if (bridgeSize < MIN_NUM || bridgeSize > MAX_NUM) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
