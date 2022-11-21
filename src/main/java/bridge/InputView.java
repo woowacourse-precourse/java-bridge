@@ -16,7 +16,7 @@ public class InputView {
         System.out.println();
         try{
             return Integer.parseInt(input);
-        }catch (Exception e){
+        }catch (IllegalArgumentException e){
             throw new IllegalArgumentException("[ERROR] 정수를 입력해야 합니다.");
         }
     }
@@ -27,7 +27,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
-        if(input.length()>1 || input.length()<1){
+        if(!checkLength(input.length())){
             throw new IllegalArgumentException("[ERROR] 한자리 문자을 입력하세요.");
         }
         if(!input.equals("U")&&!input.equals("D"))
@@ -43,7 +43,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
-        if(input.length()>1 || input.length()<1){
+        if(!checkLength(input.length())){
             throw new IllegalArgumentException("[ERROR] 한자리 문자을 입력하세요.");
         }
         if(!input.equals("R")&&!input.equals("Q"))
@@ -51,5 +51,11 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력하세요");
         }
         return input;
+    }
+    public boolean checkLength(int length){
+        if(length > 1 || length < 1){
+            return false;
+        }
+        return true;
     }
 }
