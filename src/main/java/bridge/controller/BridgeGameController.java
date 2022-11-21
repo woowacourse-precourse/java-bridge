@@ -3,15 +3,15 @@ package bridge.controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.BridgeMaker;
+import bridge.domain.GameBoard;
 import bridge.domain.GameResult;
 import bridge.service.BridgeGame;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static bridge.view.InputView.readBridgeSize;
-import static bridge.view.InputView.readGameCommand;
-import static bridge.view.OutputView.printErrorMessage;
-import static bridge.view.OutputView.printInputBridgeSizeMessage;
+import static bridge.view.InputView.*;
+import static bridge.view.OutputView.*;
 
 public class BridgeGameController {
     BridgeGame bridgeGame = new BridgeGame();
@@ -21,11 +21,27 @@ public class BridgeGameController {
 
     public void start() {
         bridgeExistCheck();
-        bridgeGame.retry();
-        bridgeGame.move(bridge);
+        bridgeGame.resetGameValue();
+        moveOnBridge();
+        retryCheckWhenGameLose();
+    }
 
+    private void moveOnBridge() {
+        for (String correctDirection : bridge.getBridge()) {
+            boolean isGameLose = bridgeGame.move(correctDirection, inputMovingDirection());
+            List<GameBoard> gameBoards = bridgeGame.getGameBoards();
+            printMap(gameBoards.get(0), gameBoards.get(1));
+
+            if (isGameLose) {
+                break;
+            }
+        }
+    }
+
+    private void retryCheckWhenGameLose() {
         if (bridgeGame.checkIsGameLose()) {
             if (checkRetry()) {
+                bridgeGame.retry();
                 start();
             }
         }
@@ -44,6 +60,7 @@ public class BridgeGameController {
     }
 
 
+
     private Bridge generateBridge(BridgeMaker bridgeMaker) {
         printInputBridgeSizeMessage();
         Bridge bridge;
@@ -57,6 +74,18 @@ public class BridgeGameController {
         return bridge;
     }
 
+    private String inputMovingDirection() {
+        printInputMovingDirectionMessage();
+        String movingDirection;
+
+        try {
+            movingDirection = readMoving();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            movingDirection = inputMovingDirection();
+        }
+        return movingDirection;
+    }
 
     private boolean checkRetry() {
         boolean isRetry;

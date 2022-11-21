@@ -1,6 +1,5 @@
 package bridge.service;
 
-import bridge.domain.Bridge;
 import bridge.domain.GameBoard;
 import bridge.domain.GameResult;
 
@@ -8,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.*;
-import static bridge.view.InputView.readMoving;
-import static bridge.view.OutputView.*;
 
 
 /**
@@ -26,7 +23,7 @@ import static bridge.view.OutputView.*;
 public class BridgeGame {
     GameBoard topGameBoard, bottomGameBoard;
     boolean isGameLose = false;
-    int tryCount = 0;
+    int tryCount = 1;
 
 
     /**
@@ -35,40 +32,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(Bridge bridge) {
-        for (String correctDirection : bridge.getBridge()) {
-            compare(correctDirection);
-            printMap(topGameBoard, bottomGameBoard);
-
-            if (isGameLose) {
-                break;
-            }
-        }
+    public boolean move(String correctDirection, String movingDirection) {
+        compare(correctDirection, movingDirection);
+        return isGameLose;
     }
 
-    private void compare(String correctDirection) {
-        String movingDirection = inputMovingDirection();
+    private void compare(String correctDirection, String movingDirection) {
         String movingResult = compareDirection(correctDirection, movingDirection);
 
         checkDirection(movingDirection, movingResult);
-
         if (movingResult.equals(FAIL)) {
             isGameLose = true;
         }
-    }
-
-
-    private String inputMovingDirection() {
-        printInputMovingDirectionMessage();
-        String movingDirection;
-
-        try {
-            movingDirection = readMoving();
-        } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
-            movingDirection = inputMovingDirection();
-        }
-        return movingDirection;
     }
 
 
@@ -97,11 +72,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        resetGameValue();
         tryCount++;
     }
 
-    private void resetGameValue() {
+    public void resetGameValue() {
         isGameLose = false;
         topGameBoard = new GameBoard(new ArrayList<>());
         bottomGameBoard = new GameBoard(new ArrayList<>());
@@ -114,5 +88,10 @@ public class BridgeGame {
     public GameResult getFinalGameResult() {
         List<GameBoard> gameBoards = List.of(topGameBoard, bottomGameBoard);
         return new GameResult(gameBoards, isGameLose, tryCount);
+    }
+
+    public List<GameBoard> getGameBoards(){
+        List<GameBoard> gameBoards = List.of(topGameBoard, bottomGameBoard);
+        return gameBoards;
     }
 }
