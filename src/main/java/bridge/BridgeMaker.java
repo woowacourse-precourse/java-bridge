@@ -7,6 +7,8 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    private final int MINIMUM_VALUE_OF_SIZE = 3;
+    private final int MAXIMUM_VALUE_OF_SIZE = 20;
     private final int ANSWER_UP_BRIDGE_INT = 1;
     private final String ANSWER_UP_BRIDGE_STRING = "U";
     private final String ANSWER_DOWN_BRIDGE_STRING = "D";
@@ -22,6 +24,17 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        validate(size);
+        return makeBridgeAnswers(size);
+    }
+
+    private void validate(int size) {
+        if (MINIMUM_VALUE_OF_SIZE >= size || size >= MAXIMUM_VALUE_OF_SIZE) {
+            ExceptionMessage.INPUT_WRONG_BRIDGE_LENGTH_MESSAGE.throwException();
+        }
+    }
+
+    private List<String> makeBridgeAnswers(int size) {
         List<String> bridgeAnswers = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
