@@ -12,7 +12,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> printBridge) {
+    public void printMap(List<String> printBridge) {
         for (int j = 0; j < printBridge.size(); j++) {
             if (j == 0) {
                 System.out.print("[ " + printBridge.get(j) + " ");
@@ -29,11 +29,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> Bridge) {
+    public void printResult(List<String> Bridge) {
         printMap(Bridge);
     }
 
-    public static String isGameSuccess(boolean checkSuccess) {
+    public String isGameSuccess(boolean checkSuccess) {
         if (checkSuccess) {
             return "성공";
         }

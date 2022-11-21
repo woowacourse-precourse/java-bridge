@@ -12,7 +12,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static List<String> move(List<String> bridge, boolean isUpper, String input) {
+    public List<String> move(List<String> bridge, boolean isUpper, String input) {
         bridge.add(isBlank(isUpper, input));
         return bridge;
     }
@@ -22,29 +22,29 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static boolean retry(String command) {
+    public boolean retry(String command) {
         return command.equals("R");
     }
 
-    public static int countGameNum(String command, int cnt) {
+    public int countGameNum(String command, int cnt) {
         if (command.equals("R")) {
             return cnt + 1;
         }
         return cnt;
     }
 
-    public static String canGo(boolean equals) {
+    public String canGo(boolean equals) {
         if (equals) {
             return "O";
         }
         return "X";
     }
 
-    public static boolean upperOrLower(String userChoice) {
+    public boolean upperOrLower(String userChoice) {
         return userChoice.equals("U");
     }
 
-    public static String isBlank(boolean isUpper, String s) {
+    public String isBlank(boolean isUpper, String s) {
         if (isUpper) {
             return s;
         }
