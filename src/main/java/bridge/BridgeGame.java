@@ -19,7 +19,7 @@ public class BridgeGame {
             myBridge.inputAlphabet();
             BridgeShape.makeLines(myBridge);
         }
-        checkClear(myBridge);
+        exit(myBridge);
     }
 
     /**
@@ -28,17 +28,30 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(MyBridge myBridge) {
-        myBridge.initializeInputList();
-        move(myBridge);
-    }
-
-    private void checkClear(MyBridge myBridge) {
-        if (myBridge.matchLength()){
-            exit(myBridge);
+        boolean check = myBridge.regame();
+        if (check) {
+            myBridge.initializeInputList();
+            move(myBridge);
+        }
+        if (!check) {
+            myBridge.exitGame(false);
         }
     }
 
-    public void exit(MyBridge myBridge) {
-
+    private boolean checkClear(MyBridge myBridge) {
+        if (myBridge.matchLength()){
+            return true;
+        }
+        return false;
     }
+
+    public void exit(MyBridge myBridge) {
+        if (checkClear(myBridge)) {
+            myBridge.exitGame(true);
+        }
+        if (!checkClear(myBridge)) {
+            retry(myBridge);
+        }
+    }
+
 }

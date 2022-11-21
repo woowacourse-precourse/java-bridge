@@ -65,6 +65,21 @@ public class MyBridge {
     }
 
     public void exitGame(boolean success) {
-        outputView.printResult(success, tryCnt);
+        outputView.printResult(success, this);
+
+    }
+    public boolean regame() {
+        String input = inputView.readGameCommand();
+        if(input.equals("Q") ) {
+            return false;
+        }
+        if(input.equals("R")) {
+            return true;
+        }
+        throw new RuntimeException();
+    }
+
+    public int getTryCnt() {
+        return tryCnt;
     }
 }
