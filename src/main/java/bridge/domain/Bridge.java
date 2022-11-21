@@ -4,6 +4,7 @@ import bridge.domain.model.Direction;
 import bridge.config.ErrorMessageConstant;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 /**
@@ -20,9 +21,13 @@ public class Bridge {
      */
     public Bridge(List<String> dirs) throws IllegalArgumentException {
         bridgeSizeValidation(dirs.size());
-        allowMove = dirs.stream()
-                .map(Direction::of)
-                .collect(Collectors.toUnmodifiableList());
+        try {
+            allowMove = dirs.stream()
+                    .map(Direction::of)
+                    .collect(Collectors.toUnmodifiableList());
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     /**
