@@ -39,6 +39,12 @@ public class BridgeException {
         }
     }
 
+    public void checkBridgeGameOptionInputAlphabet(String gameOption) {
+        if(!gameOption.equals("R") && !gameOption.equals("Q")) {
+            throw new IllegalArgumentException("R, Q 중에 하나를 입력해주세요. ");
+        }
+    }
+
 
 
 
