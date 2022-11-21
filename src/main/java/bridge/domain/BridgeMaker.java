@@ -17,10 +17,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i=0;i<size;i++){
             int generateNum = bridgeNumberGenerator.generate();
-            if(generateNum==0)
-                bridge.add("D");
-            if(generateNum==1)
-                bridge.add("U");
+            if(generateNum==0) bridge.add("D");
+            if(generateNum==1) bridge.add("U");
         }
         return bridge;
     }
