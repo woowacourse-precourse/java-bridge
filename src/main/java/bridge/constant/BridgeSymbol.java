@@ -32,4 +32,8 @@ public enum BridgeSymbol {
         }
         return X.getState();
     }
+
+    public static boolean isRetry(String command) {
+        return command.equals(RETRY.getState());
+    }
 }
