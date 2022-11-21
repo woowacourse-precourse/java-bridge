@@ -54,7 +54,7 @@ public class InputView {
             System.out.println(e.getMessage());
             userCommand = readGameCommand();
         }
-        return userCommand;
+        return userCommand.toUpperCase();
     }
 
     public void readBridgeSizeOfNoNumberException(String bridgeSize){
