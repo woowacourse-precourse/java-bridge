@@ -59,7 +59,7 @@ public class BridgeGameController {
     private GameStatus goForward() {
         while (true) {
             try {
-                Direction direction = Direction.of(inputView.readMoving());
+                final Direction direction = Direction.of(inputView.readMoving());
                 return bridgeGame.move(direction);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
@@ -70,7 +70,7 @@ public class BridgeGameController {
     private GameStatus retry() {
         while (true) {
             try {
-                GameCommand gameCommand = GameCommand.of(inputView.readGameCommand());
+                final GameCommand gameCommand = GameCommand.of(inputView.readGameCommand());
                 return bridgeGame.retry(gameCommand);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
