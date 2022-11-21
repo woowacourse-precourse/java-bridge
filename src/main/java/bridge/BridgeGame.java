@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final static List<String> POSSIBLE_DIRECTION = List.of("U", "D");
+    private final static List<String> POSSIBLE_COMMAND = List.of("R", "Q");
     private List<String> bridge;
     private List<String> userPath;
     private GameStatus gameStatus;
@@ -73,5 +74,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String command) {
+        validateRetry(command);
+    }
+
+    private void validateRetry(String command) {
+        if (!POSSIBLE_COMMAND.contains(command)) {
+            throw new IllegalArgumentException("[ERROR] 재시도 'R' 혹은 종료 'Q' 만 입력할 수 있습니다.");
+        }
     }
 }
