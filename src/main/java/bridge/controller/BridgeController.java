@@ -15,7 +15,7 @@ public class BridgeController {
     }
 
     public void play() {
-        BridgeGame bridgeGame = constructBridge(); // 게임 끝까지 사용
+        BridgeGame bridgeGame = constructBridge();
         while (!bridgeGame.gameOver()) {
             movePlayer(bridgeGame);
             printResult(bridgeGame);
