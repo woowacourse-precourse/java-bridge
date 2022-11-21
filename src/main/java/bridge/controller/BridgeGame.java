@@ -3,8 +3,8 @@ package bridge.controller;
 import bridge.domain.BridgeGameStatus;
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
-import bridge.service.BridgeMaker;
-import bridge.util.BridgeNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

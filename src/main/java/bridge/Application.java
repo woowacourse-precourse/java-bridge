@@ -4,8 +4,6 @@ import bridge.controller.BridgeGame;
 import bridge.domain.BridgeGameStatus;
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
-import bridge.util.BridgeNumberGenerator;
-import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
