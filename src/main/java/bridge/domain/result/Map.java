@@ -9,7 +9,7 @@ public class Map {
 
     protected void addUpBlock(ResultType resultType) {
         upBlocks.add(resultType);
-        addDownBlock(ResultType.BLANK);
+        downBlocks.add(ResultType.BLANK);
     }
 
     protected void addDownBlock(ResultType resultType) {
@@ -31,10 +31,10 @@ public class Map {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[ ");
         for (int i = 0; i < blocks.size(); i++) {
-            stringBuilder.append(blocks.get(i));
             if (i > 0) {
                 stringBuilder.append(" | ");
             }
+            stringBuilder.append(blocks.get(i));
         }
         stringBuilder.append(" ]\n");
         return stringBuilder.toString();
