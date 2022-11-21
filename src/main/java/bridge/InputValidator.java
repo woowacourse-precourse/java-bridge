@@ -27,13 +27,13 @@ public class InputValidator {
 
     public void validateMove(String dir) throws IllegalArgumentException {
         if(!COMMAND_MOVE_LIST.contains(dir)){
-            throw InputValidationError.ERROR_MOVE.exception;
+            throw InputValidationError.ERROR_COMMAND_MOVE.exception;
         }
     }
 
     public void validateGameCommand(String cmd) throws IllegalArgumentException {
         if(!COMMAND_MOVE_LIST.contains(cmd)){
-            throw InputValidationError.ERROR_GAME_COMMAND.exception;
+            throw InputValidationError.ERROR_COMMAND_RETRY.exception;
         }
     }
 }
