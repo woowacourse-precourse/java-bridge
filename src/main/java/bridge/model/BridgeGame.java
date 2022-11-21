@@ -50,13 +50,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving) {
+    public void move(String moving) {
+        updateRecords(moving, true);
+    }
+
+    public boolean moveSucceed(String moving) {
         if (bridge.get(nowIndex).equals(moving)) {
             nowIndex++;
             return true;
         }
-        return false;
-    }
+        return false;    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -106,10 +109,6 @@ public class BridgeGame {
             return MOVE_SUCCESS_RECORD;
         }
         return MOVE_FAILURE_RECORD;
-    }
-
-    public int getTrials() {
-        return trials;
     }
 
     public boolean isArrived() {
