@@ -11,7 +11,7 @@ public enum MSG {
     OUTPUT_PASS_FAIL("게임 성공 여부: "),
     OUTPUT_TOTAL_TRY_COUNT("총 시도한 횟수: ");
 
-    final String message;
+    public final String message;
 
     MSG(String msg) {
         this.message = msg;
