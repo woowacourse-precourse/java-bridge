@@ -14,7 +14,6 @@ public class BridgeMap {
         mapInit();
         deleteFinishBracket();
         addDividingLine();
-        System.out.println(mapType.name());
         pushValue(mapType);
         addFinishBracket();
     }
@@ -61,5 +60,10 @@ public class BridgeMap {
             upStairs.push("[");
             downStairs.push("[");
         }
+    }
+
+    public void init() {
+        upStairs.clear();
+        downStairs.clear();
     }
 }
