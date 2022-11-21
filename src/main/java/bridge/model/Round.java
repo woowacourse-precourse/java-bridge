@@ -33,18 +33,18 @@ public class Round {
         roundStatus = FAIL;
     }
 
-    public List<String> getMap() {
-        return MapAdapter.changeMap(map, roundStatus);
+    public String getMapToString() {
+        return MapAdapter.changeMapToString(map, roundStatus);
     }
 
-    private void checkRoundStatus(int destinationIndex) {
+    private void updateRoundStatus(int destinationIndex) {
         if (!roundStatus.equals(FAIL) && currentIndex > destinationIndex) {
             roundStatus = CLEAR;
         }
     }
 
     public boolean isRoundPlaying(int destinationIndex) {
-        checkRoundStatus(destinationIndex);
+        updateRoundStatus(destinationIndex);
         return roundStatus == PLAYING;
     }
 

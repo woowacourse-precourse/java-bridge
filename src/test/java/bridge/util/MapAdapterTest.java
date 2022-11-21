@@ -15,7 +15,7 @@ public class MapAdapterTest {
         String compareResult = "[[ O |   ], [   | X ]]";
 
         //when
-        String result = MapAdapter.changeMap(course, roundStatus).toString();
+        String result = MapAdapter.changeMapToString(course, roundStatus).toString();
 
         //then
         assertThat(result).isEqualTo(compareResult);

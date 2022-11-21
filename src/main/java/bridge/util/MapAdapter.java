@@ -8,7 +8,6 @@ import static bridge.util.BridgeGameConstant.START_INDEX;
 import static bridge.util.BridgeGameConstant.UP_SIGN;
 
 import bridge.model.RoundStatus;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,9 +19,8 @@ public class MapAdapter {
     private static final String CLOSE_BRACKET = " ]";
     private static final String BLANK = " ";
 
-    public static List<String> changeMap(List<String> course, RoundStatus roundStatus) {
-        return new ArrayList<>(List.of(fitToFormat(getUpWardMap(course, roundStatus)),
-                fitToFormat(getDownWardMap(course, roundStatus))));
+    public static String changeMapToString(List<String> course, RoundStatus roundStatus) {
+        return fitToFormat(getUpWardMap(course, roundStatus) + "\n" + fitToFormat(getDownWardMap(course, roundStatus)));
     }
 
     private static String fitToFormat(String map) {

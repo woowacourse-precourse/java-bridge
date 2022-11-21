@@ -43,9 +43,8 @@ public class BridgeGame {
         round.updateStatusWhenImmovable(direction);
     }
 
-    public String getMapToString() {
-        List<String> map = round.getMap();
-        return map.get(0) + "\n" + map.get(1);
+    public String getRoundMapToString() {
+        return round.getMapToString();
     }
 
     public boolean isPlaying() {
