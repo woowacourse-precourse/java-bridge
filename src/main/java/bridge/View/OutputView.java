@@ -25,9 +25,10 @@ public class OutputView {
     private static void printStatistics(BridgeGame bridgeGame, boolean successFlag) {
         if (successFlag) {
             System.out.println(UiMessage.GAME_SUCCESS.getValue());
-        } else {
-            System.out.println(UiMessage.GAME_FAIL.getValue());
+            System.out.println(UiMessage.TOTAL_TRY.getValue() + bridgeGame.runCount);
+            return;
         }
+        System.out.println(UiMessage.GAME_FAIL.getValue());
         System.out.println(UiMessage.TOTAL_TRY.getValue() + bridgeGame.runCount);
     }
 
