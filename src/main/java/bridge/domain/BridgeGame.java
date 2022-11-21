@@ -7,6 +7,10 @@ import bridge.domain.enums.GameCommand;
  */
 public class BridgeGame {
 
+    public boolean keepPlayingIndex = true;
+    public int count = 1;
+    public int bridgeIndex = 0;
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -14,8 +18,10 @@ public class BridgeGame {
      */
     public boolean move(String userMove, String answer) {
         if (!answer.equals(userMove)) {
+            keepPlayingIndex = false;
             return false;
         }
+        bridgeIndex++;
         return true;
     }
 
@@ -26,6 +32,12 @@ public class BridgeGame {
      */
 
     public boolean retry(String command) {
-        return command.equals(GameCommand.RETRY.getValue());
+        if (command.equals(GameCommand.RETRY.getValue())) {
+            keepPlayingIndex = true;
+            count++;
+            bridgeIndex = 0;
+            return true;
+        }
+        return false;
     }
 }

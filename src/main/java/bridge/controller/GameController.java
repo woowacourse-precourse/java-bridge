@@ -15,19 +15,15 @@ public class GameController {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final String[][] realTimeMap = realTimeBridge.getMap();
 
-    private boolean isAnswer = true;
-    private int count = 1;
-    private int index = 0;
-
     public void runGame() {
         outputView.printStartMessage();
         int size = inputHandler.getBridgeSize();
         Bridge bridge = new Bridge(size);
-        while (isAnswer && index < size) {
+        while (bridgeGame.keepPlayingIndex && bridgeGame.bridgeIndex < size) {
             play(bridge);
         }
-        String gameResult = new Result().returnResult(isAnswer);
-        outputView.printResult(gameResult, count, realTimeMap);
+        String gameResult = new Result().returnResult(bridgeGame.keepPlayingIndex);
+        outputView.printResult(gameResult, bridgeGame.count, realTimeMap);
     }
 
     private void play(Bridge bridge) {
@@ -47,7 +43,7 @@ public class GameController {
     }
 
     private boolean isCorrect(Bridge bridge, String userMove) {
-        if (bridgeGame.move(userMove, bridge.get(index))) {
+        if (bridgeGame.move(userMove, bridge.get(bridgeGame.bridgeIndex))) {
             keepPlaying(userMove);
             return true;
         }
@@ -55,21 +51,16 @@ public class GameController {
     }
 
     private void initialize() {
-        count++;
         realTimeBridge.initialize();
-        index = 0;
-        isAnswer = true;
     }
 
     private void stopPlaying(String userMove) {
         realTimeBridge.makeWrongMap(userMove);
         outputView.printMap(realTimeMap);
-        isAnswer = false;
     }
 
     private void keepPlaying(String userMove) {
         realTimeBridge.makeCorrectMap(userMove);
         outputView.printMap(realTimeMap);
-        index++;
     }
 }
