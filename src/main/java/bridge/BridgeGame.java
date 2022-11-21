@@ -16,6 +16,10 @@ public class BridgeGame {
     Bridge bridge;
     GameResult gameResult = new GameResult();
 
+    public BridgeGame() {
+        outputView.printWelcome();
+    }
+
     public Bridge makeBridge() {
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeBroker.makeBridge(bridgeSize);

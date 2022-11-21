@@ -38,6 +38,7 @@
 - [x] 게임의 결과를 반환한다. - getResult
 - [x] 게임 결과를 갱신한다. - updateResult
 - 다리를 끝까지 건너면 게임이 종료된다.
+- [x] 최초 생성시 환영메세지를 출력한다. - BridgeGame
 
 ### BridgeBroker
 
