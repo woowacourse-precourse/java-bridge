@@ -6,6 +6,8 @@ import bridge.View.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Enum.Result.*;
+
 public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -51,7 +53,7 @@ public class BridgeGameController {
     }
 
     private boolean checkGameEnd(String gameResult) {
-        if ("O".equals(gameResult)) {
+        if (gameResult.equals(SURVIVE.getSign())) {
             return true;
         }
         return isCommandQuit();
@@ -63,7 +65,7 @@ public class BridgeGameController {
         for (int i = 0; i < bridgeSize; i++) {
             stepResult = moveOneStep(bridgeGame);
 
-            if ("X".equals(stepResult.get(0))) {
+            if ((FAIL.getSign()).equals(stepResult.get(0))) {
                 return stepResult;
             }
         }
@@ -72,7 +74,6 @@ public class BridgeGameController {
 
     private List<String> moveOneStep(BridgeGame bridgeGame) {
         outputView.printDirectionInput();
-
         String direction = inputView.readMoving();
         List<String> stepResult = bridgeGame.move(direction);
 

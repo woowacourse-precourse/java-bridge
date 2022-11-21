@@ -13,7 +13,6 @@ public class Application {
             OutputView outputView = new OutputView();
             BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
             BridgeGameController bridgeGameController = new BridgeGameController(inputView, outputView, bridgeMaker);
             bridgeGameController.run();
         } catch (IllegalArgumentException e) {

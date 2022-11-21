@@ -3,6 +3,7 @@ package bridge;
 import java.util.*;
 
 import static bridge.Enum.Direction.*;
+import static bridge.Enum.Result.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -41,16 +42,16 @@ public class BridgeGame {
         int currentStep = stepProgress.get(direction).size();
 
         if(direction.equals(this.scaffold.get(currentStep))){
-            return "O";
+            return SURVIVE.getSign();
         }
-        return "X";
+        return FAIL.getSign();
     }
 
     private void updateStepProgress(String stepResult, String direction) {
         String oppositeDirection = getOppositeDirection(direction);
 
         this.stepProgress.get(direction).add(stepResult);
-        this.stepProgress.get(oppositeDirection).add(" ");
+        this.stepProgress.get(oppositeDirection).add(SPACE.getSign());
     }
 
     private String getOppositeDirection(String direction) {
