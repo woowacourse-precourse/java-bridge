@@ -10,15 +10,14 @@ public class BridgeGame {
     private Player player;
     private BridgeMap bridgeMap;
 
-    public BridgeGame(List<String> bridge)
-    {
+    public BridgeGame(List<String> bridge) {
         player = new Player(bridge);
         bridgeMap = new BridgeMap();
     }
 
     public boolean move(String nextMove) {
         boolean moveFlag = player.move(nextMove);
-        bridgeMap.extendMap(nextMove,moveFlag);
+        bridgeMap.extendMap(nextMove, moveFlag);
         return moveFlag;
     }
 
@@ -27,22 +26,16 @@ public class BridgeGame {
         player.restart();
     }
 
-    public boolean isFinish()
-    {
-        return player.isFinish();
-    }
     public boolean isNotFinish() {
         return !player.isFinish();
     }
 
-    public String getBridgeMap()
-    {
+    public String getBridgeMap() {
         return bridgeMap.toString();
     }
 
     @Override
-    public String toString()
-    {
-        return String.join("\n",bridgeMap.toString(),player.toString());
+    public String toString() {
+        return String.join("\n", bridgeMap.toString(), player.toString());
     }
 }
