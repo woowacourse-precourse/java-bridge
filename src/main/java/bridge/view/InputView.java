@@ -48,6 +48,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String line = Console.readLine();
+        if (!validateGameCommand(line)) {
+            throw new IllegalArgumentException("게임 재시작/종료 여부는 R(재시작) 혹은 Q(종료) 중 하나의 문자 입니다.");
+        }
+        return line;
+    }
+
+    public boolean validateGameCommand(String line) {
+        return Pattern.matches("^[R,Q]$", line);
     }
 }
