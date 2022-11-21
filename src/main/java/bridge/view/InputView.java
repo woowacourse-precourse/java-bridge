@@ -9,6 +9,7 @@ import static bridge.utils.message.FixedMessage.INPUT_GAME_COMMAND;
 import static bridge.utils.message.FixedMessage.INPUT_MOVING;
 
 import bridge.validator.BridgeSizeValidator;
+import bridge.validator.GameCommandValidator;
 import bridge.validator.MovingValidator;
 import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
@@ -52,9 +53,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(
-                "\n" + String.format(INPUT_GAME_COMMAND.getMessage(), RETRY.getCommand(), QUIT.getCommand()));
-        String gameCommand = Console.readLine();
-        return gameCommand;
+        try {
+            Validator gameCommandValidator = new GameCommandValidator();
+            System.out.println(
+                    "\n" + String.format(INPUT_GAME_COMMAND.getMessage(), RETRY.getCommand(), QUIT.getCommand()));
+            String gameCommand = Console.readLine();
+            gameCommandValidator.validate(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException exception) {
+            return readGameCommand();
+        }
     }
 }

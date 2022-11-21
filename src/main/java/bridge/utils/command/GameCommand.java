@@ -1,5 +1,7 @@
 package bridge.utils.command;
 
+import java.util.Objects;
+
 public enum GameCommand {
     RETRY("R"),
     QUIT("Q");
@@ -12,5 +14,13 @@ public enum GameCommand {
 
     public String getCommand() {
         return command;
+    }
+
+    public boolean isLowerCaseCommand(String inputValue) {
+        return Objects.equals(command.toLowerCase(), inputValue);
+    }
+
+    public boolean isValidCommand(String inputValue) {
+        return Objects.equals(command, inputValue);
     }
 }
