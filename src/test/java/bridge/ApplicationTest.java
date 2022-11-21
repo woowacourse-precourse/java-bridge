@@ -16,9 +16,9 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 다리_생성_테스트() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
+        final BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        final BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        final List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
 
@@ -34,8 +34,8 @@ class ApplicationTest extends NsTest {
                     "총 시도한 횟수: 1"
             );
 
-            int upSideIndex = output().indexOf("[ O |   | O ]");
-            int downSideIndex = output().indexOf("[   | O |   ]");
+            final int upSideIndex = output().indexOf("[ O |   | O ]");
+            final int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
@@ -52,8 +52,8 @@ class ApplicationTest extends NsTest {
                     "총 시도한 횟수: 1"
             );
 
-            int upSideIndex = output().indexOf("[ O |   |   ]");
-            int downSideIndex = output().indexOf("[   | O | O ]");
+            final int upSideIndex = output().indexOf("[ O |   |   ]");
+            final int downSideIndex = output().indexOf("[   | O | O ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 0);
     }
@@ -70,8 +70,8 @@ class ApplicationTest extends NsTest {
                     "총 시도한 횟수: 1"
             );
 
-            int upSideIndex = output().indexOf("[ O |   |   ]");
-            int downSideIndex = output().indexOf("[   | O | X ]");
+            final int upSideIndex = output().indexOf("[ O |   |   ]");
+            final int downSideIndex = output().indexOf("[   | O | X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
@@ -79,7 +79,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 기능_테스트3() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D", "R", "U", "D", "U");
+            run("3", "U", "D", "D", "K", "R", "U", "D", "U");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   | O ]",
@@ -88,11 +88,11 @@ class ApplicationTest extends NsTest {
                     "총 시도한 횟수: 2"
             );
 
-            int upSideIndex = output().indexOf("[ O |   |   ]");
-            int downSideIndex = output().indexOf("[   | O | X ]");
+            final int upSideIndex = output().indexOf("[ O |   |   ]");
+            final int downSideIndex = output().indexOf("[   | O | X ]");
 
-            int upSideIndex1 = output().indexOf("[ O |   | O ]");
-            int downSideIndex1 = output().indexOf("[   | O |   ]");
+            final int upSideIndex1 = output().indexOf("[ O |   | O ]");
+            final int downSideIndex1 = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
             assertThat(upSideIndex1).isLessThan(downSideIndex1);
         }, 1, 0, 1);
@@ -115,7 +115,7 @@ class ApplicationTest extends NsTest {
 
         private final List<Integer> numbers;
 
-        TestNumberGenerator(List<Integer> numbers) {
+        TestNumberGenerator(final List<Integer> numbers) {
             this.numbers = numbers;
         }
 

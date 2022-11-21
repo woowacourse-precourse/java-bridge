@@ -23,7 +23,7 @@ class GameResultTest {
 
     @ParameterizedTest
     @MethodSource("generateResult")
-    void from_메서드는_주어진_값에_따라_결과에_해당하는_enum_을_반환합니다(boolean input, GameResult expected) {
+    void from_메서드는_주어진_값에_따라_결과에_해당하는_enum_을_반환합니다(final boolean input, final GameResult expected) {
         assertThat(GameResult.from(input)).isEqualTo(expected);
     }
 }

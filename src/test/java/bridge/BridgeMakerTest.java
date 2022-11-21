@@ -30,7 +30,7 @@ class BridgeMakerTest {
 
     @Test
     void makeBridge_메서드는_주어진_숫자에_따라_다리를_만들어낸다() {
-        List<String> result = new BridgeMaker(generator).makeBridge(10);
+        final List<String> result = new BridgeMaker(generator).makeBridge(10);
         assertThat(result).isEqualTo(List.of("U", "D", "U", "D", "D", "U", "U", "D", "D", "U"))
                 .hasSize(10);
     }

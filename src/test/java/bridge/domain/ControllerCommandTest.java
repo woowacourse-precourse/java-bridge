@@ -27,19 +27,19 @@ class ControllerCommandTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"A", " U", "D ", "한글"})
-    void from_메서드는_R_Q_가_아니라면_예외를_발생시킨다(String input) {
+    void from_메서드는_R_Q_가_아니라면_예외를_발생시킨다(final String input) {
         try {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> ControllerCommand.from(input));
             ControllerCommand.from(input);
-        } catch (IllegalArgumentException expected) {
+        } catch (final IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("R,Q 만 입력 가능합니다");
         }
     }
 
     @ParameterizedTest
     @MethodSource("generateSource")
-    void from_메서드는_R_Q_에_따라서_각각의_enum_을_반환합니다(String input, ControllerCommand expected) {
+    void from_메서드는_R_Q_에_따라서_각각의_enum_을_반환합니다(final String input, final ControllerCommand expected) {
         assertThat(ControllerCommand.from(input)).isEqualTo(expected);
     }
 }

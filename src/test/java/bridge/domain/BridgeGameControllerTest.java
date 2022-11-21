@@ -40,7 +40,7 @@ class BridgeGameControllerTest {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new BridgeGameController(null, outputView, bridgeMaker));
             new BridgeGameController(null, outputView, bridgeMaker);
-        } catch (IllegalArgumentException expected) {
+        } catch (final IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("inputView 에는 null 이 올 수 없습니다");
         }
     }
@@ -51,7 +51,7 @@ class BridgeGameControllerTest {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new BridgeGameController(inputView, null, bridgeMaker));
             new BridgeGameController(inputView, null, bridgeMaker);
-        } catch (IllegalArgumentException expected) {
+        } catch (final IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("outputView 에는 null 이 올 수 없습니다");
         }
     }
@@ -62,7 +62,7 @@ class BridgeGameControllerTest {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new BridgeGameController(inputView, outputView, null));
             new BridgeGameController(inputView, outputView, null);
-        } catch (IllegalArgumentException expected) {
+        } catch (final IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("bridgeMaker 에는 null 이 올 수 없습니다");
         }
     }

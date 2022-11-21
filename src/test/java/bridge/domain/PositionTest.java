@@ -23,12 +23,12 @@ class PositionTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"A", " U", "D ", "한글"})
-    void from_메서드는_U_D_를_제외한_입력을_받으면_IEA_예외가_발생한다(String input) {
+    void from_메서드는_U_D_를_제외한_입력을_받으면_IEA_예외가_발생한다(final String input) {
         try {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> Position.from(input));
             Position.from(input);
-        } catch (IllegalArgumentException expected) {
+        } catch (final IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("U,D 만 입력 가능합니다");
         }
     }

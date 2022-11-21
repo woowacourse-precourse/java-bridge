@@ -23,7 +23,7 @@ class PlayLogDtoTest {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new PlayLogDto(null));
             new PlayLogDto(null);
-        } catch (IllegalArgumentException expected) {
+        } catch (final IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("로그에는 null 이 들어오면 안됩니다");
         }
     }

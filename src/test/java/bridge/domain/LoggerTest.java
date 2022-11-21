@@ -13,19 +13,19 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 class LoggerTest {
     @Test
     void put_메서드에_null_이_들어오면_예외가_발생한다() {
-        Logger logger = new Logger();
+        final Logger logger = new Logger();
         try {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> logger.put(null, true));
             logger.put(null, true);
-        } catch (IllegalArgumentException expected) {
+        } catch (final IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("다음 위치에 null 이 들어올 수 없습니다");
         }
     }
 
     @Test
     void calculateLog_메서드는_주어진_결과에_따라_출력할_수_있는_결과물을_만들어낸다() {
-        Logger logger = new Logger();
+        final Logger logger = new Logger();
         logger.put(Position.UP, true);
         assertThat(logger.calculateLog()).isEqualTo("[ O ]\n[   ]");
         logger.put(Position.UP, true);
