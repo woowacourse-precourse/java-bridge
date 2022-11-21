@@ -33,13 +33,13 @@ class CompareBridgeTest {
         String panel = bridge.get(0);
 
         // when, then
-        assertThat(compareBridge.isSame(player, panel)).isTrue();
+        assertThat(compareBridge.isSame(player.getMovingInputs().get(0), panel)).isTrue();
     }
 
     @DisplayName("한 칸 이동하는 기능 테스트")
     @ParameterizedTest
     @MethodSource("steppingTestData")
-    void steppingTest(List<String> movingInputs, List<String> bridge, boolean expected) {
+    void steppingTest(List<String> movingInputs, List<String> bridge, List<Boolean> expected) {
         // given
         player = new Player(movingInputs);
         compareBridge = new CompareBridge(player, bridge);
@@ -58,8 +58,8 @@ class CompareBridgeTest {
 
     static Stream<Arguments> steppingTestData() {
         return Stream.of(
-                Arguments.of(List.of("D"), List.of("D", "U", "U"), true),
-                Arguments.of(List.of("U"), List.of("D", "U", "U"), false)
+                Arguments.of(List.of("D"), List.of("D", "U", "U"), List.of(true)),
+                Arguments.of(List.of("U"), List.of("D", "U", "U"), List.of(false))
         );
     }
 }
