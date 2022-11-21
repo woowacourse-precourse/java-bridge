@@ -39,3 +39,7 @@
     - 게임 성공, 실패 여부
 
 - [X] 다리 게임을 실행한다.
+
+# 테스트 결과
+
+<img width="481" alt="image" src="https://user-images.githubusercontent.com/81221429/203159339-210135a0-6810-43bb-aaa9-8c46b2c873d3.png">
