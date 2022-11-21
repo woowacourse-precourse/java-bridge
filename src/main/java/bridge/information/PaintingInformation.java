@@ -1,4 +1,4 @@
-package bridge;
+package bridge.information;
 
 public final class PaintingInformation {
     public static final String OPEN_BRACKET = "[";
