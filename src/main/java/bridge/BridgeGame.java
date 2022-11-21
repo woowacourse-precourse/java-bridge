@@ -38,7 +38,7 @@ public class BridgeGame {
     }
 
     private boolean isEqualBridgeByIndex(String inputValue) {
-        return inputValue.equals(bridge.getBridgeByIndex(playerMovement.getMovementCount() - 1));
+        return bridge.isEqualByIndex(inputValue, playerMovement.getMovementCount() - 1);
     }
 
     public boolean isFinish() {
