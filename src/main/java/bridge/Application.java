@@ -9,5 +9,6 @@ public class Application {
         BridgeController.initBridgeSize();
         BridgeController.makeBridge();
         BridgeController.initMoveRow();
+        BridgeController.compareMove();
     }
 }

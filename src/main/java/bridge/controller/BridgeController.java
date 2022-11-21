@@ -12,7 +12,19 @@ public class BridgeController {
         BridgeService.makeBridge();
     }
 
-    public static void initMoveRow(){
+    public static void initMoveRow() {
         BridgeService.getInitMoveRow();
+    }
+
+    public static void moveBridge() {
+        BridgeService.moveBridge();
+    }
+
+    public static void compareMove() {
+        BridgeService.compareMoveBridge();
+    }
+
+    public static void viewBridge() {
+        BridgeService.viewBridge();
     }
 }
