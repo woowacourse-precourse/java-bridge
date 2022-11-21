@@ -5,10 +5,14 @@ import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Instances.Setting.*;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    static final int NUMBER_DOWN = 0;
+    static final int NUMBER_UP = 1;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -24,10 +28,10 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int random = bridgeNumberGenerator.generate();
-            if (random == 1) {
-                bridge.add("U");
-            } else if (random == 0) {
-                bridge.add("D");
+            if (random == NUMBER_UP) {
+                bridge.add(MOVING_UP);
+            } else if (random == NUMBER_DOWN) {
+                bridge.add(MOVING_DOWN);
             }
         }
         return bridge;
