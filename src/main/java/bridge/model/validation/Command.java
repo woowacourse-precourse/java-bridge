@@ -14,6 +14,14 @@ public enum Command {
         this.isRetry = isRetry;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public boolean isRetry() {
+        return isRetry;
+    }
+
     public static Command of(String input) {
         validate(input);
 
