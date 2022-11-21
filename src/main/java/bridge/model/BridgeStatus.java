@@ -29,7 +29,9 @@ public class BridgeStatus {
     }
 
     public void clear() {
-        bridgeStatus.clear();
+        for (BridgeBlock bridgeBlock : BridgeBlock.values()) {
+            bridgeStatus.get(bridgeBlock).clear();
+        }
     }
 
     @Override

@@ -44,10 +44,9 @@ public class GameController {
 
     public boolean restart() {
         boolean restart = inputView.readGameCommand();
-        if (!restart) {
-            finish(false);
+        if (restart) {
+            bridgeGame.retry();
         }
-        bridgeGame.retry();
         return restart;
     }
 
