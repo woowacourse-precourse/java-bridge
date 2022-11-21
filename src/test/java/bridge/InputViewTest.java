@@ -106,4 +106,18 @@ public class InputViewTest {
             assertThat(e.getMessage()).isEqualTo("[ERROR]: 범위 초과 3~20사이로 재입력");
         }
     }
+    @DisplayName("값이 U,D가 아닐 경우 테스트")
+    @Test
+    void isValidateUD() {
+        //given
+        InputView inputView = new InputView();
+        String size = "R";
+        //when
+        try {
+            inputView.isValidateUD(size);
+        } catch (IllegalArgumentException e) {
+            //then
+            assertThat(e.getMessage()).isEqualTo("[ERROR]: U과 D만 입력");
+        }
+    }
 }
