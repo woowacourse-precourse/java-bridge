@@ -10,6 +10,15 @@ import java.util.List;
 public class OutputView {
 
     private static List<Integer> result = new ArrayList<>();
+
+    private static final String error = "[ERROR]";
+    private static final String LenError = "다리 길이는 3부터 20사이의 숫자여야 합니다.";
+
+    private static final String MovingCheck = "UD";
+    private static final String MovingError = "U 또는 D로만 다리를 건널 수 있습니다.";
+
+    private static final String ReQuCheck = "RQ";
+    private static final String RetryQuitError = "R 또는 Q로만 게임을 제어할 수 있습니다.";
     private static final String start = "다리 건너기 게임을 시작합니다.";
     private static final String end = "게임 성공 여부: ";
     private static final String count = "총 시도한 횟수: ";
@@ -18,8 +27,35 @@ public class OutputView {
 
     private static final String last = "최종 게임 결과";
 
-    public static void printStart(){
-        System.out.println(start);
+    public static void printStart() { System.out.println(start); }
+
+    public static int BridgeLengthCheck(String val) {
+        int len = toInt(val);
+        if (len < 3 || len > 20)
+            System.out.println(error + LenError);
+        return len;
+    }
+
+    private static int toInt(String val) {
+        try {
+            return Integer.parseInt(val);
+        }
+        catch (NumberFormatException e) {
+            System.out.println(error + e);
+            return 0;
+        }
+    }
+
+    public static String MovingCheck(String moving){
+        if (!MovingCheck.contains(moving))
+            System.out.println(error + MovingError);
+        return moving;
+    }
+
+    public static String RetryCheck (String retry) {
+        if (!ReQuCheck.contains(retry))
+            throw new IllegalArgumentException(error + RetryQuitError);
+        return retry;
     }
 
     public static void printCount(int result, int count_try) {

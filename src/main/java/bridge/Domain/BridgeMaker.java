@@ -25,7 +25,7 @@ public class BridgeMaker {
         try {
             List<String> b = new ArrayList<String>(size);
             for (int i = 0; i < size; i++){
-                if(Randoms.pickNumberInRange(0, 1) == 1) {
+                if(bridgeNumberGenerator.generate() == 1) {
                     b.add("U");
                 }
                 else

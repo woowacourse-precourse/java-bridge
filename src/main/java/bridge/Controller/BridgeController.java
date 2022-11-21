@@ -19,10 +19,10 @@ public class BridgeController {
         BridgeGame game = new_BridgeGame();
 
         while (continue_game != 1 && continue_game != 4){
-            String moving = InputView.readMoving();
+            String moving = MovingCheck(InputView.readMoving());
             continue_game = OutputView.printMap(game.move(moving), moving);
             if (continue_game == 3) {
-                continue_game = game.retry(InputView.readGameCommand());
+                continue_game = game.retry(OutputView.RetryCheck(InputView.readGameCommand()));
             }
             if (continue_game == 3) {
                 count_try++;
@@ -35,6 +35,10 @@ public class BridgeController {
     }
 
     private BridgeGame new_BridgeGame(){
-        return new BridgeGame(InputView.readBridgeSize());
+        return new BridgeGame(OutputView.BridgeLengthCheck(InputView.readBridgeSize()));
+    }
+
+    private String MovingCheck(String moving){
+        return OutputView.MovingCheck(moving);
     }
 }
