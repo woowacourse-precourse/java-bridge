@@ -46,7 +46,7 @@ public class BridgeMaker {
      */
     private void sizeValidation(int size) {
         if (size < 3 || 20 < size) {
-            throw new IllegalArgumentException("다리의 크기는 3이상, 20 이하의 숫자를 입력할 수 있습니다.");
+            throw new IllegalArgumentException("다리의 크기는 3이상, 20 이하의 숫자만를 입력할 수 있습니다.");
         }
     }
 }
