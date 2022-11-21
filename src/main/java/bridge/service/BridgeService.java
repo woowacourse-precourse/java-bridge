@@ -9,19 +9,21 @@ import bridge.dto.GameResult;
 
 public class BridgeService {
 
-    private Bridge bridge;
     private BridgeGame bridgeGame;
 
     public ViewStatus makeBridge(Integer size) {
         BridgeMaker bridgeMaker =
                 new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = Bridge.from(bridgeMaker.makeBridge(size));
+        Bridge bridge = Bridge.from(bridgeMaker.makeBridge(size));
         bridgeGame = BridgeGame.from(bridge);
 
         return ViewStatus.DETERMINE_MOVE;
     }
 
     public GameResult move(String moveCommand) {
-        return bridgeGame.move(moveCommand);
+        //move
+        boolean isMatch = bridgeGame.move(moveCommand);
+        //result
+        return bridgeGame.resultOfMove(isMatch);
     }
 }

@@ -23,13 +23,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameResult move(String command) {
+    public Boolean move(String command) {
         validateMove(command);
         columnPosition++;
-        if (bridge.compare(command, columnPosition - 1)) {
-            return bridge.getMatchedPathResult(columnPosition);
-        }
-        return bridge.getUnMatchedPathResult(columnPosition);
+        return bridge.compare(command, columnPosition - 1);
     }
 
     /**
@@ -47,6 +44,13 @@ public class BridgeGame {
         }
 
         throw new IllegalMoveCommandException();
+    }
+
+    public GameResult resultOfMove(boolean isMatch) {
+        if (isMatch) {
+            return bridge.getMatchedPathResult(columnPosition);
+        }
+        return bridge.getUnMatchedPathResult(columnPosition);
     }
 
     public static BridgeGame from(Bridge bridge) {
