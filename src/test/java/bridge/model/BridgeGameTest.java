@@ -48,4 +48,15 @@ public class BridgeGameTest {
         bridgeGame.retry();
         assertThat(bridgeGame.getRetryCount()).isEqualTo(2);
     }
+
+    @DisplayName("결과 출력")
+    @Test
+    void print_result() {
+        BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeOneZeroLoopNumberGenerator());
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.printResult()).isEqualTo("[ O |   ]\n[   | O ]\n");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.printResult()).isEqualTo("[ O |   |   ]\n[   | O | X ]\n");
+    }
 }

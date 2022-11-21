@@ -30,6 +30,10 @@ public class BridgeGame {
         return bridges.isCompletedGame(player);
     }
 
+    public boolean isSuccess(){
+        return bridges.isSuccess(player);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -44,8 +48,8 @@ public class BridgeGame {
         return retryCount;
     }
 
-    public String printResult(Boolean success) {
-        return player.printResult(success);
+    public String printResult() {
+        return player.printResult(isSuccess());
     }
 
     boolean isStartStatus() {
