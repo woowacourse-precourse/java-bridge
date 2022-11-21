@@ -13,8 +13,11 @@ public class BridgeGameController {
 
     private BridgeGame bridgeGame;
 
-    public void startBridgeGame() {
+    public BridgeGameController() {
         init();
+    }
+
+    public void startBridgeGame() {
         progress();
         outputView.printResult(bridgeGame);
     }
