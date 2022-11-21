@@ -22,11 +22,10 @@ public class Application {
         return false;
     }
     public static int wrongMove(int size) {
-        String command = inputView.readGameCommand();
-        if(command.equals("R")) {
+        if(bridgeGame.retry(inputView.readGameCommand())) {
             return -1;
         }
-        return size + 1;
+        return size +1;
     }
     public static void main(String[] args) {
         // TODO: 프로그램 구현
