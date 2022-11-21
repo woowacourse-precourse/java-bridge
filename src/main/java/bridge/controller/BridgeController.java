@@ -10,9 +10,9 @@ import bridge.view.OutputView;
 public class BridgeController {
 
     private static final BridgeController bridgeController = new BridgeController();
-    private final BridgeService bridgeService = BridgeService.getInstance();
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private static final BridgeService bridgeService = BridgeService.getInstance();
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
 
     private BridgeController() {
     }

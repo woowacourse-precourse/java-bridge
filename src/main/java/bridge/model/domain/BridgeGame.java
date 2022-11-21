@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final Bridges bridges;
-    private int position = Constant.BRIDGE_INITIAL_POSITION;
-    private int retryCount = Constant.INITIAL_RETRY_COUNT;
-    private SuccessOrFail successOrFail = SuccessOrFail.SUCCESS;
+    private static Bridges bridges;
+    private static SuccessOrFail successOrFail = SuccessOrFail.SUCCESS;
+    private static int position = Constant.BRIDGE_INITIAL_POSITION;
+    private static int retryCount = Constant.INITIAL_RETRY_COUNT;
 
     public BridgeGame(List<String> bridgesSign) {
         this.bridges = new Bridges(bridgesSign);

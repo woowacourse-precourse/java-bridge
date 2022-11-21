@@ -12,8 +12,8 @@ import java.util.List;
 public class BridgeService {
 
     private static final BridgeService bridgeService = new BridgeService();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private BridgeGame bridgeGame;
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static BridgeGame bridgeGame;
 
     private BridgeService() {
 

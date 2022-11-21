@@ -46,14 +46,13 @@
 │   └── Message                  // 일반메시지에 사용되는 상수
 ├── controller                   
 │   └── BridgeController         // 뷰와 모델 사이를 이어주는 인터페이스
-├── enums
-│   ├── Bridge                   // 다리의 상태("U", "D")를 나타내는 enum
-│   ├── BridgeSign               // 다리의 출력에 대한 표식("O", "X", " ")을 나타내는 enum
-│   └── SuccessOrFail            // 게임의 성공 또는 실패를 나타내는 enum
 ├── model                        
 │   ├── domain                   
+│   │   ├── Bridge               // 다리의 상태("U", "D")를 나타내는 enum
 │   │   ├── BridgeGame           // 다리 이동, 게임 다시 시작, 게임 결과 반환
-│   │   └── Bridges              // 건너갈 다리 모음
+│   │   ├── Bridges              // 건너갈 다리 모음
+│   │   ├── BridgeSign           // 다리의 출력에 대한 표식("O", "X", " ")을 나타내는 enum
+│   │   └── SuccessOrFail        // 게임의 성공 또는 실패를 나타내는 enum
 │   ├── dto                      
 │   │   ├── GameResultDto        // 다리를 나타내는 지도, 게임 성공여부, 재시작 횟수 정보를 가진 dto 
 │   │   └── MoveResultDto        // 다리를 나타내는 지도, 다리선택의 정답여부, 다리 마지막에 도달했는지 정보를 가진 dto 
