@@ -15,6 +15,10 @@ public class Bridge {
         this.status = Status.GAME_PROCESSING;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public boolean isMovable(String move) {
         user.addMove(move);
         if (!bridge.get(user.getMoveCount() - 1).equals(move)) {

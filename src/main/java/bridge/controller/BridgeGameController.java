@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeMaker;
+import bridge.model.constant.Status;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,5 +18,9 @@ public class BridgeGameController {
         outputView.printInputBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    public boolean isFinished(Bridge bridge) {
+        return bridge.getStatus() == Status.GAME_FINISHED;
     }
 }
