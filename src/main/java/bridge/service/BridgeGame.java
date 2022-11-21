@@ -1,4 +1,4 @@
-package bridge;
+package bridge.service;
 
 import bridge.domain.Bridge;
 
