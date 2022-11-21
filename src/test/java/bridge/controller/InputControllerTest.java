@@ -2,29 +2,29 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.model.BridgeGame;
+import bridge.model.Record;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputControllerTest {
-    private InputView inputView;
-    private OutputView outputView;
     private BridgeMaker bridgeMaker;
+    private Record record;
 
     @BeforeEach
     void initialize() {
-        inputView = new InputView();
-        outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        record = new Record(new ArrayList<>(), new HashMap<>());
     }
 
     @Nested
@@ -33,8 +33,7 @@ public class InputControllerTest {
         @ValueSource(ints = {3, 10, 20})
         @ParameterizedTest
         void successGetBridge(int bridgeSize) {
-            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
-            assertThat(inputController.getBridge(bridgeSize))
+            assertThat(bridgeMaker.makeBridge(bridgeSize))
                     .isInstanceOf(List.class);
         }
 
@@ -42,8 +41,8 @@ public class InputControllerTest {
         @ValueSource(strings = {"-1", "100", "1000000000000000"})
         @ParameterizedTest
         void failGetBridge(String input) {
-            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
-            assertThatThrownBy(() -> inputController.getBridgeSize(input))
+            BridgeGameController bridgeGameController = new BridgeGameController();
+            assertThatThrownBy(() -> bridgeGameController.start(input, record))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -54,17 +53,19 @@ public class InputControllerTest {
         @ValueSource(strings = {"U", "D"})
         @ParameterizedTest
         void successGetMovingDirection(String moving) {
-            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
-            assertThat(inputController.getMovingDirection(moving))
-                    .isInstanceOf(String.class);
+            BridgeGame bridgeGame = new BridgeGame();
+            assertThatThrownBy(() ->
+                    assertThatThrownBy(() -> bridgeGame.move(record, moving))
+                    .isInstanceOf(IllegalArgumentException.class))
+                    .isInstanceOf(AssertionError.class);  // 예외가 발생하지 않으므로 AssertionError 발생
         }
 
         @DisplayName("유효하지 않은 방향을 입력하면 오류가 발생한다.")
         @ValueSource(strings = {"u", "d", "KKK", "%%"})
         @ParameterizedTest
         void failGetMovingDirection(String moving) {
-            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
-            assertThatThrownBy(() -> inputController.getMovingDirection(moving))
+            BridgeGame bridgeGame = new BridgeGame();
+            assertThatThrownBy(() -> bridgeGame.move(record, moving))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -75,17 +76,19 @@ public class InputControllerTest {
         @ValueSource(strings = {"R", "Q"})
         @ParameterizedTest
         void successGetMovingDirection(String command) {
-            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
-            assertThat(inputController.getGameCommand(command))
-                    .isInstanceOf(String.class);
+            BridgeGame bridgeGame = new BridgeGame();
+            assertThatThrownBy(() -> assertThatThrownBy(
+                    () -> bridgeGame.retry(record, command))
+                    .isInstanceOf(IllegalArgumentException.class))
+                    .isInstanceOf(AssertionError.class);  // 예외가 발생하지 않으므로 AssertionError 발생
         }
 
         @DisplayName("유효하지 않은 명령어를 입력하면 오류가 발생한다.")
         @ValueSource(strings = {"r", "q", "KKK", "%%"})
         @ParameterizedTest
         void failGetMovingDirection(String command) {
-            InputController inputController = new InputController(inputView, outputView, bridgeMaker);
-            assertThatThrownBy(() -> inputController.getGameCommand(command))
+            BridgeGame bridgeGame = new BridgeGame();
+            assertThatThrownBy(() -> bridgeGame.retry(record, command))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
