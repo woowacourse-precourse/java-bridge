@@ -13,11 +13,15 @@ public class BridgeRepository {
         return bridgeRepository;
     }
 
-    public void update(Bridge bridge) {
+    public void save(Bridge bridge) {
         this.bridge = bridge;
     }
 
-    public Bridge get() {
-        return bridge;
+    public int getBridgeSize() {
+        return bridge.size();
+    }
+
+    public String getPassableDirectionAt(int distance) {
+        return bridge.passableDirectionAt(distance);
     }
 }
