@@ -14,13 +14,18 @@ import java.util.stream.IntStream;
 
 public class MapAdapter {
 
+    private static final String SPLITTER = " | ";
+    private static final String OPEN_BRACKET = "[ ";
+    private static final String CLOSE_BRACKET = " ]";
+    private static final String BLANK = " ";
+
     public static List<String> changeMap(List<String> course, RoundStatus roundStatus) {
         return new ArrayList<>(List.of(fitToFormat(getUpWardMap(course, roundStatus)),
                 fitToFormat(getDownWardMap(course, roundStatus))));
     }
 
     private static String fitToFormat(String map) {
-        return "[ " + map + " ]";
+        return OPEN_BRACKET + map + CLOSE_BRACKET;
     }
 
     private static String getUpWardMap(List<String> course, RoundStatus roundStatus) {
@@ -40,11 +45,11 @@ public class MapAdapter {
 
     private static String getMapsWhenFail(String selected, List<String> course, RoundStatus roundStatus) {
         String result = IntStream.range(0, course.size() - 1).mapToObj(i -> getMap(course.get(i), selected))
-                .collect(Collectors.joining(" | "));
+                .collect(Collectors.joining(SPLITTER));
         if (result.length() == 0) {
             return getMapWhenFail(course.get(course.size() - 1), selected);
         }
-        result += (" | " + getMapWhenFail(course.get(course.size() - 1), selected));
+        result += (SPLITTER + getMapWhenFail(course.get(course.size() - 1), selected));
         return result;
     }
 
@@ -52,13 +57,13 @@ public class MapAdapter {
         if (courseDirection.equals(selectedDirection)) {
             return INACCESSIBLE_SIGN;
         }
-        return " ";
+        return BLANK;
     }
 
     private static String getMap(String courseDirection, String selectedDirection) {
         if (courseDirection.equals(selectedDirection)) {
             return ACCESSIBLE_SIGN;
         }
-        return " ";
+        return BLANK;
     }
 }
