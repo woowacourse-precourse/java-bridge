@@ -5,38 +5,57 @@ import bridge.type.PositionType;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SlabsTest {
+
     @Test
     void 인스턴스_로드() {
-        assertThat(Slabs.getInstance()).isInstanceOf(Slabs.class);
+        Slabs getInstance = Slabs.getInstance();
+        assertThat(getInstance).isInstanceOf(Slabs.class);
+
+        Slabs newInstance = Slabs.newInstance();
+        assertThat(newInstance).isInstanceOf(Slabs.class);
     }
+
 
     @Test
     void 단일_삽입() {
-        Slabs slabs = Slabs.getInstance();
+        Slabs database = Slabs.newInstance();
         SlabDTO dto = new SlabDTO(0, PositionType.DOWN, GlassType.TEMPERED);
 
-        assertThat(slabs.insert(dto)).isTrue();
+        assertThat(database.insert(dto)).isTrue();
     }
 
     @Test
     void 모두_삽입() {
-        Slabs slabs = Slabs.getInstance();
-        List<SlabDTO> dto = this.slabs();
+        Slabs database = Slabs.newInstance();
+        List<SlabDTO> slabs = this.slabs();
 
-        assertThat(slabs.insertAll(dto)).isTrue();
+        assertThat(database.insertAll(slabs)).isTrue();
     }
 
     @Test
     void 모두_로드() {
-        Slabs slabs = Slabs.getInstance();
-        List<SlabDTO> dto = this.slabs();
-        slabs.insertAll(dto);
+        Slabs database = Slabs.newInstance();
+        List<SlabDTO> slabs = this.slabs();
+        database.insertAll(slabs);
 
-        assertThat(slabs.getAll()).isEqualTo(dto);
+        assertThat(database.getAll()).isEqualTo(slabs);
+    }
+
+    @Test
+    void 업데이트() {
+        Slabs database = Slabs.newInstance();
+        database.insert(new SlabDTO(0, PositionType.DOWN, GlassType.NORMAL));
+
+        SlabDTO dto = database.get(0);
+        dto.setTread(true);
+        database.update(dto);
+
+        assertThat(database.get(0).isTread()).isTrue();
     }
 
     List<SlabDTO> slabs() {
