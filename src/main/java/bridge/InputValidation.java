@@ -1,10 +1,12 @@
 package bridge;
 
+import static bridge.ErrorMessage.INVALID_BRIDGE_SIZE_ERROR;
+
 public class InputValidation {
 
     public static void validateReadBridgeSize(String size) {
         if (!isNumeric(size) || !isCorrectRange(size)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE_ERROR.getMessage());
         }
     }
 
