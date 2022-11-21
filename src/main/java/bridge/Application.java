@@ -19,6 +19,7 @@ public class Application {
         try {
             crossBridge(bridgeGame);
         } catch (CannotCrossBridgeException exception) {
+            outputView.printMap(bridgeGame.getBridgeStatus());
             outputView.printGuideForGameCommand();
             String gameCommand = inputView.readGameCommand();
             retry(bridgeGame, gameCommand);
@@ -41,6 +42,7 @@ public class Application {
         for (int bridgeIndex = 0; bridgeIndex < bridge.size(); bridgeIndex++) {
             String direction = inputMoveDirection();
             bridgeGame.move(direction, bridgeIndex);
+            outputView.printMap(bridgeGame.getBridgeStatus());
         }
     }
 

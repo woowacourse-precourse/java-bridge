@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -26,7 +28,37 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<Cell> bridgeStatus) {
+        StringBuilder upStringBuilder = createUpStringBuilder(bridgeStatus);
+        StringBuilder downStringBuilder = createDownStringBuilder(bridgeStatus);
+        System.out.println(upStringBuilder);
+        System.out.println(downStringBuilder);
+    }
+
+    private StringBuilder createUpStringBuilder(List<Cell> bridgeStatus) {
+        StringBuilder up = new StringBuilder("[");
+        for (Cell cell : bridgeStatus) {
+            if (cell.getDirection().equals("U")) {
+                up.append(" ").append(cell.getStatus()).append(" |");
+                continue;
+            }
+            up.append("   |");
+        }
+        up.delete(up.length() - 1, up.length());
+        return up.append("]");
+    }
+
+    private StringBuilder createDownStringBuilder(List<Cell> bridgeStatus) {
+        StringBuilder down = new StringBuilder("[");
+        for (Cell cell : bridgeStatus) {
+            if (cell.getDirection().equals("D")) {
+                down.append(" ").append(cell.getStatus()).append(" |");
+                continue;
+            }
+            down.append("   |");
+        }
+        down.delete(down.length() - 1, down.length());
+        return down.append("]");
     }
 
     /**
