@@ -1,16 +1,12 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.DownsideResults;
 import bridge.OneSideResults;
 import bridge.UpsideResults;
 import bridge.util.CommandKeys;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Controller {
     private static final int INITIAL_COUNT = 1;
@@ -28,13 +24,15 @@ public class Controller {
     }
 
     public void play() {
-        int trialCount = INITIAL_COUNT;
-        String gameResult = SUCCESS;
+        int totalTrialCount = INITIAL_COUNT;
+        String finalResult = SUCCESS;
         int index = 0;
 
+        OneSideResults upsideResults = null;
+        OneSideResults downsideResults = null;
         while (index < bridgeSize) {
-            final OneSideResults upsideResults = new UpsideResults();
-            final OneSideResults downsideResults = new DownsideResults();
+            upsideResults = new UpsideResults();
+            downsideResults = new DownsideResults();
 
             final String playerMove = InputView.readMoving();
             final String matchResult = bridgeGame.move(playerMove, index);
@@ -51,21 +49,15 @@ public class Controller {
                     index = 0;
                     upsideResults.reset(playerCommand);
                     downsideResults.reset(playerCommand);
-                    trialCount = bridgeGame.retry(trialCount);
+                    totalTrialCount = bridgeGame.retry(totalTrialCount);
                 }
                 if (CommandKeys.isQuit(playerCommand)) {
-                    gameResult = FAILURE;
+                    finalResult = FAILURE;
                     break;
                 }
             }
         }
-        if (gameResult.equals(SUCCESS)) {
-            OutputView.printResult(upsideResults, downsideResults, gameResult);
-            OutputView.printTotalTrialCount(trialCount);
-        }
-        if (gameResult.equals(FAILURE)) {
-            OutputView.printResult(upsideResults, downsideResults, gameResult);
-            OutputView.printTotalTrialCount(trialCount);
-        }
+        OutputView.printResult(upsideResults, downsideResults, finalResult);
+        OutputView.printTotalTrialCount(totalTrialCount);
     }
 }

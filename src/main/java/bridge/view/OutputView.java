@@ -1,6 +1,8 @@
 package bridge.view;
 
+import bridge.DownsideResults;
 import bridge.OneSideResults;
+import bridge.UpsideResults;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -17,13 +19,13 @@ public class OutputView {
     private final static String BRIDGE_TAIL = "]";
     private final static String BLANK_SPACE = " ";
     private final static String BRIDGE_PARTITION = "|";
-    private final static String GAME_RESULT = "최종 게임 결과";
-    private final static String MISSION_COMPLETE_OR_NOT = "게임 성공 여부: %s";
-    private final static String TOTAL_TRIAL_COUNT = "총 시도한 횟수: ";
-    private final static String GAME_START = "다리 건너기 게임을 시작합니다.";
+    private final static String FINAL_RESULT_TITLE = "최종 게임 결과";
+    private final static String SUCCESS_OR_FAILURE_TITLE = "게임 성공 여부: %s";
+    private final static String TOTAL_TRIAL_COUNT_TITLE = "총 시도한 횟수: ";
+    private final static String GAME_START_TITLE = "다리 건너기 게임을 시작합니다.";
 
     public static void printGameStart() {
-        System.out.println(GAME_START);
+        System.out.println(GAME_START_TITLE);
         System.out.println();
     }
 
@@ -33,8 +35,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(OneSideResults upsideResults, OneSideResults downsideResults) {
-        StringJoiner upsideMap = new StringJoiner(BLANK_SPACE);
-        StringJoiner downsideMap = new StringJoiner(BLANK_SPACE);
+        final StringJoiner upsideMap = new StringJoiner(BLANK_SPACE);
+        final StringJoiner downsideMap = new StringJoiner(BLANK_SPACE);
 
         updateMap(upsideMap, upsideResults);
         updateMap(downsideMap, downsideResults);
@@ -72,14 +74,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(int stepCount, List<String> upSideResult, List<String> downSideResult, String gameResult) {
-        System.out.println(GAME_RESULT);
-        printMap(stepCount, upSideResult, downSideResult);
+    public static void printResult(
+            OneSideResults upsideResults,
+            OneSideResults downsideResults,
+            String gameResult
+    ) {
+        System.out.println(FINAL_RESULT_TITLE);
+        printMap(upsideResults, downsideResults);
         System.out.println();
-        System.out.println(String.format(MISSION_COMPLETE_OR_NOT, gameResult));
+        printSuccessOrFailure(gameResult);
     }
 
-    public static void printTotalTrialCount(int trialCount) {
-        System.out.println(TOTAL_TRIAL_COUNT + trialCount);
+    private static void printSuccessOrFailure(String gameResult) {
+        System.out.println(String.format(SUCCESS_OR_FAILURE_TITLE, gameResult));
+    }
+
+    public static void printTotalTrialCount(int totalTrialCount) {
+        System.out.println(TOTAL_TRIAL_COUNT_TITLE + totalTrialCount);
     }
 }
