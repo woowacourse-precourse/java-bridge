@@ -7,7 +7,16 @@ import static bridge.Constants.MIN_BRIDGE_SIZE;
 import java.util.Objects;
 
 public class ErrorControl {
-    public static boolean validateNumberOrNot(String input) {
+
+    public static boolean validateNumber(String input) {
+        boolean result = false;
+        if (validateNumberOrNot(input)) {
+            result = validateBridgeSize(input);
+        }
+        return result;
+    }
+
+    private static boolean validateNumberOrNot(String input) {
         try {
             Integer.parseInt(input);
             return true;
@@ -17,15 +26,13 @@ public class ErrorControl {
         return false;
     }
 
-    public static boolean validateBridgeSize(boolean pass, String input) {
-        if (pass) {
-            int bridgeSize = Integer.parseInt(input);
-            if (bridgeSize < MIN_BRIDGE_SIZE | bridgeSize > MAX_BRIDGE_SIZE) {
-                System.out.println("[ERROR] "+ MIN_BRIDGE_SIZE +"이상 "+MAX_BRIDGE_SIZE+"이하의 숫자를 입력해 주세요.");
-                return false;
-            }
+    private static boolean validateBridgeSize(String input) {
+        int bridgeSize = Integer.parseInt(input);
+        if (bridgeSize < MIN_BRIDGE_SIZE | bridgeSize > MAX_BRIDGE_SIZE) {
+            System.out.println("[ERROR] " + MIN_BRIDGE_SIZE + "이상 " + MAX_BRIDGE_SIZE + "이하의 숫자를 입력해 주세요.");
+            return false;
         }
-        return pass;
+        return true;
     }
 
     public static boolean validateLetter(String input, String verifier1, String verifier2) {

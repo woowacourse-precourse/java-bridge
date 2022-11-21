@@ -8,9 +8,8 @@ import static bridge.Constants.QUIT_GAME;
 import static bridge.Constants.START_MESSAGE;
 import static bridge.Constants.UP_BRIDGE;
 import static bridge.Constants.DOWN_BRIDGE;
-import static bridge.ErrorControl.validateBridgeSize;
 import static bridge.ErrorControl.validateLetter;
-import static bridge.ErrorControl.validateNumberOrNot;
+import static bridge.ErrorControl.validateNumber;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -29,7 +28,7 @@ public class InputView {
         do {
             System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
             input = Console.readLine();
-            validated = validateBridgeSize(validateNumberOrNot(input), input);
+            validated = validateNumber(input);
         } while (!validated);
         return Integer.parseInt(input);
     }
