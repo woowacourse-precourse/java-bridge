@@ -21,7 +21,18 @@ public enum MovingResult {
                 .get();
     }
 
+    public static MovingResult fromSign(String sign) {
+        return Arrays.stream(MovingResult.values())
+                .filter(movingResult -> movingResult.sign == sign)
+                .findAny()
+                .get();
+    }
+
     public String getSign() {
         return sign;
+    }
+
+    public boolean getComparison() {
+        return comparison;
     }
 }

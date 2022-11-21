@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.XMLFormatter;
 
 public class BridgeGameResult {
     private Map<String, List<String>> resultMap;
     private List<String> upBridge;
     private List<String> downBridge;
+    private boolean Success;
 
     public BridgeGameResult() {
         resultMap = new HashMap<>();
@@ -16,6 +18,7 @@ public class BridgeGameResult {
         downBridge = new ArrayList<>();
         resultMap.put("U", upBridge);
         resultMap.put("D", downBridge);
+        Success = true;
     }
 
     public List<String> getUpBridge() {
@@ -26,6 +29,10 @@ public class BridgeGameResult {
         return downBridge;
     }
 
+    public boolean getSuccess() {
+        return Success;
+    }
+
     public void addResult(String movingCommand, String sign) {
         resultMap.get(movingCommand).add(sign);
         for (String key : resultMap.keySet()) {
@@ -33,10 +40,11 @@ public class BridgeGameResult {
                 resultMap.get(key).add(" ");
             }
         }
+        Success = getComparison(sign);
     }
 
-//    public int getNumber(String direction) {
-//        return BridgeChoice.fromSign(direction)
-//                .getNumber();
-//    }
+    public boolean getComparison(String sign) {
+        return MovingResult.fromSign(sign)
+                .getComparison();
+    }
 }

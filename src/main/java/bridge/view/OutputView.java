@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.Bridge;
+import bridge.BridgeGame;
 import bridge.BridgeGameResult;
 
 /**
@@ -7,11 +9,6 @@ import bridge.BridgeGameResult;
  */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printMap(BridgeGameResult bridgeGameResult) {
         String upSideIndex = "[ " +String.join(" | ", bridgeGameResult.getUpBridge()) + " ]";
         String downSideIndex = "[ " +String.join(" | ", bridgeGameResult.getDownBridge()) + " ]";
@@ -24,6 +21,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGameResult bridgeGameResult, BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGameResult);
+        System.out.printf("게임 성공 여부: %b", bridgeGameResult.getSuccess());
+        System.out.printf("총 시도한 횟수: %d", bridgeGame.getTryCount());
     }
 }

@@ -17,6 +17,10 @@ public class BridgeGame {
         bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
+
     public String move(String movingCommand) {
         user.add(movingCommand);
         return bridge.compare(user);
