@@ -72,6 +72,13 @@ class OutputViewTest {
                     + "[   |   | X ]\n"
                     + "\n"
                     + "게임 성공 여부: 실패\n"
+                    + "총 시도한 횟수: 1\n"),
+            Arguments.of("1번에 실패", Arrays.asList("D"), Arrays.asList("U", "U", "U"),
+                State.Loss, 1, "최종 게임 결과\n"
+                    + "[   ]\n"
+                    + "[ X ]\n"
+                    + "\n"
+                    + "게임 성공 여부: 실패\n"
                     + "총 시도한 횟수: 1\n")
         );
     }
