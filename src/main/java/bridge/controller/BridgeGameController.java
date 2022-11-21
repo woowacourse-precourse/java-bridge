@@ -20,12 +20,11 @@ public class BridgeGameController {
     public void startGame() {
         outputView.printMessage(Message.START);
         int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridge, new MoveLog(bridgeSize));
-        play(bridgeGame, bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize), new MoveLog(bridgeSize));
+        play(bridgeGame);
     }
 
-    public void play(BridgeGame bridgeGame, int bridgeSize) {
+    public void play(BridgeGame bridgeGame) {
         while (true) {
             String userMove = inputView.readMoving();
             ResultType resultType = bridgeGame.move(userMove);
@@ -36,9 +35,9 @@ public class BridgeGameController {
                     break;
                 }
                 bridgeGame.retry();
-                play(bridgeGame, bridgeSize);
+                play(bridgeGame);
             }
-            if (bridgeGame.getIndex() == bridgeSize) {
+            if (bridgeGame.getIndex() == bridgeGame.getBridgeSize()) {
                 outputView.printResult(bridgeGame, resultType);
                 break;
             }
