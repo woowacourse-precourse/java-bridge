@@ -13,19 +13,20 @@ public class MoveResult {
 	private static final String SPACE = "   ";
 	private static final String LINE_BREAK_CHARACTER = "\n";
 	private static final int FIRST_INDEX = 0;
+	private static final int ONE = 1;
 	private final List<String> bridge;
 	private final List<String> movingStack;
 	private final int lastIndex;
+	private final boolean isSuccess;
 	private StringBuilder upperRow;
 	private StringBuilder lowerRow;
 	private String map;
 	private int numberOfCorrect;
-	private boolean isSuccess;
 
 	public MoveResult(List<String> bridge, List<String> movingStack) {
 		this.bridge = bridge;
 		this.movingStack = movingStack;
-		this.lastIndex = movingStack.size() - 1;
+		this.lastIndex = movingStack.size() - ONE;
 		this.isSuccess = bridge.equals(movingStack);
 
 		init();
@@ -34,20 +35,20 @@ public class MoveResult {
 	}
 
 	private void calculateNumberOfCorrect() {
-		numberOfCorrect = (int)map.chars().filter(cell -> cell == 'O').count();
+		numberOfCorrect = (int)map.chars().filter(cell -> cell == CIRCLE.trim().charAt(FIRST_INDEX)).count();
 	}
 
 	private void render() {
-		if (movingStack.size() == 1) {
+		if (movingStack.size() == ONE) {
 			map = renderWhenSizeIsOne();
 		}
-		if (movingStack.size() != 1) {
+		if (movingStack.size() != ONE) {
 			map = renderWhenSizeBiggerThanOne();
 		}
 	}
 
 	private boolean isCorrectMoving() {
-		return bridge.subList(0, movingStack.size()).equals(movingStack);
+		return bridge.subList(FIRST_INDEX, movingStack.size()).equals(movingStack);
 	}
 
 	private String renderWhenSizeIsOne() {
