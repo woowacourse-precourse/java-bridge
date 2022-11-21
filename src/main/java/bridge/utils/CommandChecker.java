@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.utils;
 
 public class CommandChecker {
 	public static boolean isEqualToRetry(String gameCommand) {

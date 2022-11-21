@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.utils;
 
 public class CommandSymbols {
 	public static final String QUIT = "Q";
