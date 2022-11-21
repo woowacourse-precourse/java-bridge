@@ -76,4 +76,12 @@ public class BridgeGame {
     public Boolean isGameRestart(String userChoice) {
         return referee.isGameRestart(userChoice);
     }
+
+    public Record getRecord() {
+        return record;
+    }
+
+    public Result getResult() {
+        return result;
+    }
 }
