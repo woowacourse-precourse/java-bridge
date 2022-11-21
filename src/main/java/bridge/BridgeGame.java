@@ -8,9 +8,9 @@ import static bridge.Enums.StringValue.*;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    private final List<String> bridgeState = new ArrayList<>();
-    private Bridge bridge;
+    private final BridgeOutput bridgeOutput = new BridgeOutput();
+    private String res = SUCCESS.getValue();
+    private Bridge arrangedBridge;
     private int tryCount = 1;
     private final String SUCCESS = "성공";
     private final String FAIL = "실패";
@@ -41,22 +41,16 @@ public class BridgeGame {
         this.tryCount++;
     }
 
-    private void removeBridgeState() {
-        if(!bridgeState.isEmpty()) {
-            bridgeState.remove(bridgeState.size()-1);
-        }
-    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(final String uOrD) {
-        if(!bridge.matchBridge(uOrD)) {
-            bridgeState.add(uOrD + X);
+    private boolean move(final String uOrD) {
+        if(!arrangedBridge.matchBridge(uOrD)) {
             return false;
         }
-        bridgeState.add(uOrD + O);
+        arrangedBridge.increasePos();
         return true;
     }
 
