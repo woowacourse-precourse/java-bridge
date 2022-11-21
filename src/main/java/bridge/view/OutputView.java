@@ -10,9 +10,9 @@ import java.util.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private Map<Unit, Deque<String>> userInputMap = Map.of(
-            Unit.UP, new LinkedList<>(),
-            Unit.DOWN, new LinkedList<>());
+    private Map<Unit, Stack<String>> userInputMap = Map.of(
+            Unit.UP, new Stack<>(),
+            Unit.DOWN, new Stack<>());
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -21,9 +21,8 @@ public class OutputView {
      */
     public void printMap(String userInput, StageResult stageResult) {
         makeMap(userInput, stageResult);
-        String result = convertMapToString();
 
-        System.out.println(result);
+        String result = convertMapToString();
     }
 
     public void makeMap(String userInput, StageResult stageResult) {
@@ -61,9 +60,8 @@ public class OutputView {
 
     public void save(Unit key, String result) {
         checkBrackets(key);
-        userInputMap.get(key).addLast(result);
+        userInputMap.get(key).add(result)
         addCloseBrackets(key);
-
     }
 
     public Unit findOppositeKey(Unit key) {
@@ -77,40 +75,42 @@ public class OutputView {
     public void checkBrackets(Unit key) {
         checkStackIsEmpty(key);
 
-        Deque<String> inputRecord = userInputMap.get(key);
-        if(inputRecord.peekLast().equals("]")) {
-            inputRecord.pollLast();
-            inputRecord.addLast("|");
+        Stack<String> inputRecord = userInputMap.get(key);
+        if(inputRecord.peek().equals("]")) {
+            inputRecord.pop();
+            inputRecord.add("|");
         }
     }
 
     public void addCloseBrackets(Unit key) {
-        userInputMap.get(key).addLast("]");
+        userInputMap.get(key).add("]");
     }
 
     public void checkStackIsEmpty(Unit key) {
-        Deque<String> inputRecord = userInputMap.get(key);
+        Stack<String> inputRecord = userInputMap.get(key);
 
         if(inputRecord.isEmpty()) {
-            inputRecord.addLast("[");
+            inputRecord.add("[");
         }
     }
 
-    public String dequeToString(Deque<String> deque) {
-        String result = "";
+    public String stackToString(Stack<String> stack) {
+        StringBuilder sb = new StringBuilder();
 
-        for (int place = 0; place < deque.size(); place++) {
-            result += deque.pollFirst();
+        List<String> userInput =  new ArrayList<>(stack);
+
+        for(String input : userInput) {
+            sb.append(input);
         }
 
-        return result;
+        return sb.toString();
     }
 
     public String convertMapToString() {
         StringBuilder sb = new StringBuilder();
 
-        String upSide = dequeToString(userInputMap.get(Unit.UP));
-        String downSide = dequeToString(userInputMap.get(Unit.DOWN));
+        String upSide = stackToString(userInputMap.get(Unit.UP));
+        String downSide = stackToString(userInputMap.get(Unit.DOWN));
 
         sb.append(upSide).append("\n").append(downSide);
 
@@ -123,6 +123,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+
     }
 
     public void printMessage(Messages message) {
