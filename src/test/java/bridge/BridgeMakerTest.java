@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class BridgeMakerTest {
 
     @ParameterizedTest
-    @CsvSource({"0, 1, 10, 30"})
+    @CsvSource({"0","1"," 10","30"})
     void 다리_길이_테스트(int size) {
         BridgeMaker bridgeMaker = bridgeMaker();
         List<String> bridge = bridgeMaker.makeBridge(size);
