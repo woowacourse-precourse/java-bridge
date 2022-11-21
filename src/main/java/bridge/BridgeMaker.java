@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +25,9 @@ public class BridgeMaker {
         for(int i=0; i<size; i++){
             int index = bridgeNumberGenerator.generate();
             if(index == 1){
-                map.add("U");
+                map.add(Constant.UP);
             }else if(index == 0) {
-                map.add("D");
+                map.add(Constant.DOWN);
             }
         }
         return map;

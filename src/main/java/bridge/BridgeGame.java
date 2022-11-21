@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +39,13 @@ public class BridgeGame {
     public void progress(){
         boolean retry = true;
         int i=0;
-        result = "성공";
+        result = Constant.SUCCESS;
         while(retry && i<size){
             if(!play(i)) { //실패시 재시작 이면 초기화, 종료면 while 탈출
                 retry = retry();
                 i=-1;
             }
-            i++;
-        }
+            i++; }
         outputView.printResult(tryCnt, result, userMap);
     }
     public boolean play(int idx){
@@ -60,9 +61,9 @@ public class BridgeGame {
     }
 
     private Move moveConstructor(String readMoving) {
-        if(readMoving.equals("U")){
+        if(readMoving.equals(Constant.UP)){
             return new Move(readMoving, 0,1);
-        }else if(readMoving.equals("D")){
+        }else if(readMoving.equals(Constant.DOWN)){
             return new Move(readMoving, 1, 0);
         }
         throw new IllegalArgumentException("[ERROR] 정상적인 입력이 아닙니다.");
@@ -94,17 +95,17 @@ public class BridgeGame {
      */
     public boolean retry() {
         String command = inputView.readGameCommand();
-        if(command.equals("R")){
+        if(command.equals(Constant.RESTART)){
             tryCnt+=1;
             userMap = new ArrayList<>();
             userMap.add(new ArrayList<>());
             userMap.add(new ArrayList<>());
             return true;
+        }else if(command.equals(Constant.QUIT)) {
+            result = Constant.FAIL;
+            return false;
         }
-        result = "실패";
-        return false;
-
-
+        throw new IllegalArgumentException("[ERROR] R또는 Q를 입력해주십시오.");
     }
 
 }
