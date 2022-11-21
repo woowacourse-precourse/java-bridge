@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputView {
+    private static final OutputView instance = new OutputView();
+
+    private OutputView(){}
     public void printGameStart(){
         System.out.println(OutputMessage.GAME_START.message());
     }
@@ -44,5 +47,9 @@ public class OutputView {
             result = OutputMessage.FAIL.message();
         }
         System.out.printf(OutputMessage.SUCCESS_OR_FAIL.message(), result);
+    }
+
+    public static OutputView getInstance(){
+        return instance;
     }
 }
