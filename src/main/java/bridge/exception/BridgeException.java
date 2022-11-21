@@ -6,6 +6,11 @@ public class BridgeException {
 
     private static final String ENGLISH_REGEX = "/^[A-Z]*$/";
 
+    public void checkBridgeLengthExceptions(int number) {
+        checkBridgeLength(number);
+        checkBridgeLengthAboutOnlyNumber(Integer.toString(number));
+    }
+
 
 
 
