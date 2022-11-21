@@ -9,10 +9,14 @@ public class Application {
     private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
-        outputView.printGameStart();
-        BridgeGame bridgeGame = initBridgeGame();
+        try {
+            outputView.printGameStart();
+            BridgeGame bridgeGame = initBridgeGame();
 
-        startGame(bridgeGame);
+            startGame(bridgeGame);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     private static void startGame(BridgeGame bridgeGame) {
