@@ -34,25 +34,22 @@ public class OutputView {
         System.out.println(GET_USER_RETRY_CHOICE.getMessage());
     }
 
-    public void printMap(List<String> bridge, String direction, boolean isPassed) {
-        String upper = stringify.getPathToString(bridge, UPPER_POSITION.toString());
-        String lower = stringify.getPathToString(bridge, LOWER_POSITION.toString());
-        if (!isPassed) {
-            upper = stringify.changeToFail(upper, UPPER_POSITION.toString(), direction);
-            lower = stringify.changeToFail(lower, LOWER_POSITION.toString(), direction);
+    public void printMap(List<String> bridge, String direction, boolean passResult) {
+        upperPath = stringify.getPathToString(bridge, UPPER_POSITION.toString());
+        lowerPath = stringify.getPathToString(bridge, LOWER_POSITION.toString());
+
+        if (!passResult) {
+            upperPath = stringify.changeToFail(upperPath, UPPER_POSITION.toString(), direction);
+            lowerPath = stringify.changeToFail(lowerPath, LOWER_POSITION.toString(), direction);
         }
 
-        upperPath = "[" + upper.substring(1) + "]";
-        lowerPath = "[" + lower.substring(1) + "]\n";
-        System.out.println(upperPath);
-        System.out.println(lowerPath);
+        System.out.println(stringify.getPathStringForUser(upperPath, lowerPath));
     }
     public void printResult(boolean isNotArrived, int tryCount) {
         String result = getResultToString(isNotArrived);
 
         System.out.println(GAME_END.getMessage());
-        System.out.println(upperPath);
-        System.out.println(lowerPath);
+        System.out.println(stringify.getPathStringForUser(upperPath, lowerPath));
         System.out.println(GAME_RESULT.getMessage() + result);
         System.out.println(COUNT_OF_RETRY.getMessage() + tryCount);
     }
