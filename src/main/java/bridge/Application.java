@@ -14,16 +14,28 @@ public class Application {
     private static boolean retry = true, correct = true;
 
     public static void main(String[] args) {
-        output.printStart();
-        List<String> bridge = bm.makeBridge(input.readBridgeSize());
         List<String> moves = new ArrayList<>();
-        System.out.println(bridge);
-        while (retry && progress < bridge.size()) {
-            moves = runTrial(bridge, moves);
-            numTrial++;
-            retry = runRetry(correct);
+        output.printStart();
+        try {
+            List<String> bridge = bm.makeBridge(input.readBridgeSize());
+            moves = runGame(bridge, moves);
+            output.printResult(correct, numTrial, output.makeMap(bridge, moves));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
         }
-        output.printResult(correct, numTrial, output.makeMap(bridge, moves));
+    }
+    public static List<String> runGame(List<String> bridge, List<String> moves) {
+        try {
+            while (retry && progress < bridge.size()) {
+                moves = runTrial(bridge, moves);
+                numTrial++;
+                retry = runRetry(correct);
+            }
+            return moves;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+        return moves;
     }
     public static boolean runRetry(boolean correct) {
         if (!correct) {
