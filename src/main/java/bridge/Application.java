@@ -6,13 +6,12 @@ import java.util.ArrayList;
 public class Application {
     static int bridgeSize;
     static List<String> bridge;
-    static List<String> playerMove;
     static InputView inputview;
     static OutputView outputView;
     static BridgeMaker bridgeMaker;
     static BridgeGame bridgeGame;
-    static boolean stepSuccess;
     static int tryCount;
+    static boolean stepCorrect;
 
     public static void main(String[] args) {
         System.out.println(Message.GAME_START_COMMENT);
@@ -27,8 +26,6 @@ public class Application {
     }
 
     private static void initialize() {
-        playerMove = new ArrayList<>();
-        stepSuccess = true;
         tryCount = 0;
 
         inputview = new InputView();
@@ -46,32 +43,21 @@ public class Application {
         bridgeSize = inputview.readBridgeSize();
     }
 
-    public static void gameStart() {
+    public static void gameStart(){
         tryCount++;
-        
-        while(stepSuccess){
-            if(checkSuccess())
-                return;
-            bridgeGame.move();
-            stepSuccess = CheckStep();
+        moveBridge();
+
+        if(BridgeGame.playerStep.size() < bridge.size())
+            CheckRetry();
+    }
+
+    private static void moveBridge(){
+        stepCorrect = true;
+
+        while(stepCorrect && BridgeGame.playerStep.size() < bridge.size()){
+            stepCorrect = bridgeGame.move(inputview.readMoving());
+            outputView.printMap();
         }
-
-        CheckRetry();
-    }
-
-    private static boolean checkSuccess() {
-        if(bridgeSize == playerMove.size() && stepSuccess)
-            return true;
-
-        return false;
-    }
-
-    private static boolean CheckStep() {
-        int index = playerMove.size() - 1;
-        String lastMove = playerMove.get(index);
-        if(bridge.get(index).equals(lastMove))
-            return true;
-        return false;
     }
 
     private static void CheckRetry(){

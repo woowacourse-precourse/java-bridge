@@ -14,8 +14,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
-        List<String> answer = getAnswer(Application.bridge, Application.playerMove);
-        printBridge(answer, Application.playerMove);
+        List<String> answer = getAnswer(Application.bridge, BridgeGame.playerStep);
+        printBridge(answer, BridgeGame.playerStep);
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -24,8 +24,8 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(Message.GAME_FINAL_RESULT);
-        List<String> answer = getAnswer(Application.bridge, Application.playerMove);
-        printBridge(answer, Application.playerMove);
+        List<String> answer = getAnswer(Application.bridge, BridgeGame.playerStep);
+        printBridge(answer, BridgeGame.playerStep);
         System.out.println();
         printGameSuccessOrFail();
         printGameTryCount();
@@ -37,11 +37,11 @@ public class OutputView {
     }
 
     private void printGameSuccessOrFail() {
-        System.out.println(GameResult(Application.stepSuccess));
+        System.out.println(GameResult());
     }
 
-    private String GameResult(boolean success) {
-        if(success)
+    private String GameResult() {
+        if(Application.stepCorrect)
             return Message.GAME_SUCCESS;
 
         return Message.GAME_FAIL;
