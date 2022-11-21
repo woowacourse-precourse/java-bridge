@@ -1,18 +1,12 @@
 package bridge.utils.game;
 
 public enum GameStatus {
-    APPLICATION_START(true),
-    MAKE_BRIDGE(true),
-    GAME_PLAY(true),
-    GAME_OVER(true),
-    GAME_EXIT(true),
-    APPLICATION_EXIT(false);
-
-    private final boolean playable;
-
-    GameStatus(boolean playable) {
-        this.playable = playable;
-    }
+    APPLICATION_START,
+    MAKE_BRIDGE,
+    GAME_PLAY,
+    GAME_OVER,
+    GAME_EXIT,
+    APPLICATION_EXIT;
 
     public static GameStatus findNextGamePlay(boolean success, boolean movable) {
         if (success) {
@@ -24,7 +18,10 @@ public enum GameStatus {
         return GameStatus.GAME_OVER;
     }
 
-    public boolean isPlayable() {
-        return playable;
+    public boolean playable() {
+        if (this != GameStatus.APPLICATION_EXIT) {
+            return true;
+        }
+        return false;
     }
 }

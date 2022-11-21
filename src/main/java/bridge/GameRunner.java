@@ -16,7 +16,7 @@ public final class GameRunner {
         IOViewResolver ioViewResolver = createIOViewManager(System.out::println);
         GameController controller = new GameController(ioViewResolver);
 
-        while (gameStatus.isPlayable()) {
+        while (gameStatus.playable()) {
             gameStatus = controller.process(gameStatus);
         }
     }
