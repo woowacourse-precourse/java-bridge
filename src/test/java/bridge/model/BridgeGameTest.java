@@ -31,7 +31,7 @@ class BridgeGameTest {
         bridgeGame.move(Moving.D);
         //플래이어 초기화 후 MOVING 상태로 변경
         bridgeGame.retry();
-        assertThat(bridgeGame.isContinuing()).isTrue();
+        assertThat(bridgeGame.isPlayable()).isTrue();
     }
 
     @DisplayName("retry를 두 번 하면 Trial 횟수는 3회")

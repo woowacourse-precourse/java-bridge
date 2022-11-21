@@ -38,7 +38,7 @@ public class BridgeGameController {
 
     private void play(BridgeGame bridgeGame) {
         bridgeGame.startGame();
-        while (bridgeGame.isContinuing()) {
+        while (bridgeGame.isPlayable()) {
             move(bridgeGame);
             checkRetry(bridgeGame);
         }
@@ -46,7 +46,7 @@ public class BridgeGameController {
     }
 
     private void move(BridgeGame bridgeGame) {
-        while (bridgeGame.isContinuing()) {
+        while (bridgeGame.isPlayable()) {
             moveOneStep(bridgeGame);
             outputView.printMap(bridgeGame.getPlayer());
         }
@@ -64,17 +64,17 @@ public class BridgeGameController {
 
     private void checkRetry(BridgeGame bridgeGame) {
         if (bridgeGame.isPlayerDead()) {
-            readRetryCommand(bridgeGame);
+            readGameCommand(bridgeGame);
         }
     }
 
-    private void readRetryCommand(BridgeGame bridgeGame) {
+    private void readGameCommand(BridgeGame bridgeGame) {
         try {
             GameCommand gameCommand = GameCommand.toGameCommand(inputView.readGameCommand());
             checkRetryCommand(gameCommand, bridgeGame);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            readRetryCommand(bridgeGame);
+            readGameCommand(bridgeGame);
         }
     }
 

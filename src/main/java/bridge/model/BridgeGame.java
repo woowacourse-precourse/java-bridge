@@ -36,7 +36,7 @@ public class BridgeGame {
         player = new Player();
     }
 
-    public boolean isContinuing() {
+    public boolean isPlayable() {
         return player.isMoving();
     }
 
