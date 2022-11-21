@@ -25,8 +25,6 @@ public class MoveController {
 
     public MoveController() {
         this.database = Slabs.getInstance();
-        this.database.getAll()
-                .forEach(dto -> dto.setTread(false));
     }
 
     public MoveController(Slabs database) {
@@ -35,6 +33,11 @@ public class MoveController {
 
     public PositionType askDestination() {
         return this.inputView.readMoving();
+    }
+
+    public void initializeTread() {
+        this.database.getAll()
+                .forEach(dto -> dto.setTread(false));
     }
 
     public boolean moveToDestination(PositionType destinationPosition) {

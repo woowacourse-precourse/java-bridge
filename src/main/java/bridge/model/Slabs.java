@@ -54,14 +54,9 @@ public class Slabs {
     public SlabDTO findByDTO(SlabDTO data) {
         return this.database
                 .stream()
-                .filter(dto -> this.compare(dto, data))
+                .filter(dto -> dto.equals(data))
                 .findFirst()
                 .orElse(null);
-    }
-
-    private boolean compare(SlabDTO previous, SlabDTO current) {
-        return previous.getStep() == current.getStep() &&
-                previous.getPosition().equals(current.getPosition());
     }
 
     public List<SlabDTO> findByStep(int step) {
