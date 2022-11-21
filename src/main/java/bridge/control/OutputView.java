@@ -6,8 +6,8 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private StringBuilder new_build_up = new StringBuilder("[ ");
-    private StringBuilder new_build_down = new StringBuilder("[ ");
+    private final StringBuilder new_build_up = new StringBuilder("[ ");
+    private final StringBuilder new_build_down = new StringBuilder("[ ");
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -16,11 +16,17 @@ public class OutputView {
      */
     public void printMap(List<String> bridge) {
         for(String signal : bridge){
-            if(signal.equals("U")) {new_build_up.append("O | "); new_build_down.append("  | ");}
-            if(signal.equals("D")) {new_build_down.append("O | "); new_build_up.append("  | ");}
-            if(signal.equals("U_X")) {new_build_up.append("X | "); new_build_down.append("  | ");}
-            if(signal.equals("D_X")) {new_build_down.append("X | "); new_build_up.append("  | ");}
+            map_construction(signal);
         }
+        map_cutting();
+    }
+    private void map_construction(String bricks){
+        if(bricks.equals("U")) {new_build_up.append("O | "); new_build_down.append("  | ");}
+        if(bricks.equals("D")) {new_build_down.append("O | "); new_build_up.append("  | ");}
+        if(bricks.equals("U_X")) {new_build_up.append("X | "); new_build_down.append("  | ");}
+        if(bricks.equals("D_X")) {new_build_down.append("X | "); new_build_up.append("  | ");}
+    }
+    private void map_cutting(){
         int temper = new_build_up.length()-1;
         new_build_up.delete(temper -2, temper);
         new_build_down.delete(temper -2, temper);
@@ -28,7 +34,6 @@ public class OutputView {
         new_build_down.append("]");
         System.out.println(new_build_up + "\n" + new_build_down + "\n");
     }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>

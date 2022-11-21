@@ -16,7 +16,8 @@ public class Application {
             BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
             BridgeMaker bridgemaker = new BridgeMaker(bridgeRandomNumberGenerator);
             bridge = bridgemaker.makeBridge(new_input_view.input_bridge_length);
-            BridgeGame new_bridge_game = new bridge.game.BridgeGame();
+            BridgeGame new_bridge_game = new bridge.game.BridgeGame(new_input_view.input_bridge_length);
+            System.out.println(go_stop);
             while (go_stop) {
                 input_move = new_input_view.readMoving();
                 go_stop = new_bridge_game.move(input_move);

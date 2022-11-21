@@ -2,7 +2,6 @@ package bridge.control;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-
 public class InputView { //사용자로부터 입력을 받는 역할을 한다.
     public static String input_GameCommand;
     public int input_bridge_length;

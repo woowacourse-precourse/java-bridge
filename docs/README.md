@@ -62,49 +62,57 @@
     - InputView.readBridgeSize() println "다리의 길이를 입력해주세요."
     - InputView.readBridgeSize() readLine() "3"
     - InputView.readBridgeSize() println "3\n"
-    - BridgeMaker.BridgeMaker().makeBridge
+    - inputCheck.bridge_word_check()
+    - inputCheck.bridge_size_check()
+    - BridgeRandomNumberGenerator()
+    - BridgeMaker()
+    - BridgeMaker.makeBridge
+    - BridgeGame()
     -
     - InputView.readMoving() println "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     - InputView.readMoving() readLine() "U"
     - InputView.readMoving() println "U"
+    - inputCheck.moving_check()
     - BridgeGame.move()
-    - BridgeRandomNumberGenerator.generate()
     - OutputView.printMap() println "[ O ]\n[   ]\n" // 현재 다리 상태 출력
-    - BridgeGame.check()
+    - BridgeGame.move_check()
+    - BridgeGame.more_stop()
     - 
     - InputView.readMoving() println "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     - InputView.readMoving() readLine() "U"
     - InputView.readMoving() println "U"
+    - inputCheck.moving_check()
     - BridgeGame.move()
-    - BridgeRandomNumberGenerator.generate()
     - OutputView.printMap() println "[ O | X ]\n[   |   ]\n" // 현재 다리 상태 출력
-    - BridgeGame.check()
+    - BridgeGame.move_check()
+    - BridgeGame.more_stop()
     - 
     - InputView.readGameCommand() println "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
     - InputView.readGameCommand() readLine() "R"
     - InputView.readGameCommand() println "R"
-    - BridgeGame.retry()
     - InputView.readMoving() println "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     - InputView.readMoving() readLine() "U"
     - InputView.readMoving() println "U"
+    - inputCheck.moving_check()
     - BridgeGame.move()
-    - BridgeRandomNumberGenerator.generate()
     - OutputView.printMap() println "[ O ]\n[   ]\n" // 현재 다리 상태 출력
-    - BridgeGame.check()
+    - BridgeGame.move_check()
+    - BridgeGame.more_stop()
     -
     - InputView.readGameCommand() println "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     - InputView.readGameCommand() readLine() "D"
     - InputView.readGameCommand() println "D"
+    - inputCheck.moving_check()
     - BridgeGame.move()
-    - BridgeRandomNumberGenerator.generate()
     - OutputView.printMap() println "[ O |   ]\n[   | O ]\n" // 현재 다리 상태 출력
     - BridgeGame.check()
+    - BridgeGame.more_stop()
     -
     - InputView.readGameCommand() println "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     - InputView.readGameCommand() readLine() "D"
     - InputView.readGameCommand() println "D"
+    - inputCheck.moving_check()
     - BridgeGame.move()
-    - BridgeRandomNumberGenerator.generate()
     - OutputView.printMap() "[ O |   |   ]\n[   | O | O ]\n" // 현재 다리 상태 출력
     - BridgeGame.check()
     -
@@ -113,26 +121,31 @@
 
 7. 상세
     1) 기능 목록
-        a) Application.java
+        z) Application.java
             - 
-        b) InputView.java
-            - readBridgeSize() : 다리 길이 입력 / 3 ~ 20 / int
-            - readMoving() : U D / string
-            - readGameCommand() : R Q / string
+        a) InputView.java
+            - readBridgeSize : 다리 길이 입력 받기
+            - readMoving : 움직임 받기
+            - readGameCommand : 재시도 여부 받기
+        b) InputCheck.java
+            - bridge_word_check : 다리길이가 숫자인지 확인   
+            - bridge_size_check : 다리길이가 3이상 20이하 인지 확인
+            - moving_check : 움직임 선택이 U, D 인지 확인
+            - command_check : 재시도 여부 R, Q 인지 확인
         c) OutputView.java
             - printMap() : 다리 현 상황 출력
+            - map_construction : 다리 각 부분 stringbuilder로 결합
+            - map_cutting() : stringbuilder 마지막 부분 처리
             - printResult() : 게임 결과 출력
         d) BridgeGame.java
             - move() : 움직임 반영
-            - retry() : 재시작 여부 확인
-            - check() : 도착했는지 확인
+            - move_check() : 성공 실패 확인
+            - more_stop() : 재시도할지 종료할지 확인
         e) BridgeMaker.java
-            - BridgeMaker
+            - BridgeMaker : 초기
             - makeBridge : 다리 제작 / List<String> 
         f) BridgeRandomNumberGenerator // 변경 불가
             - generate() : 0 혹은 1의 램덤수 발생
                 + int number = bridgeNumberGenerator.generate();
         g) BridgeNumberGenerator // 변경 불가
             + interface
-    2)구현 불필요
-        - 
