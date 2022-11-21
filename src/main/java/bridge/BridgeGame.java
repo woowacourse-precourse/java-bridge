@@ -68,6 +68,7 @@ public class BridgeGame {
         if (bridge.size() == result.getResultSize()) {
             return true;
         }
+        outputView.printMap(result.getResult());
         return !correct;
     }
 
@@ -98,7 +99,6 @@ public class BridgeGame {
     }
 
     public boolean endCycle(BridgeResult result) {
-        outputView.printMap(result.getResult());
         if (isDone(result)) {
             return false;
         }
