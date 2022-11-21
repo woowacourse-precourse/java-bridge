@@ -10,7 +10,6 @@ public class InputView {
     private final int minLength = 3;
     private final int maxLength = 20;
 
-
     //region 다리길이
     /**
      * 다리의 길이를 입력받는다.

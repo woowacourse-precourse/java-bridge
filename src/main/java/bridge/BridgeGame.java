@@ -38,7 +38,6 @@ public class BridgeGame {
         if(Retry.checkRetry(retry)) {
             playerStep = new ArrayList<>();
             return true;
-
         }
 
         return false;
