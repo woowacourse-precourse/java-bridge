@@ -12,7 +12,7 @@ public class BridgeGame {
     private final List<String> bridgeLineOne = new ArrayList<>();
     private final List<String> bridgeLineTwo = new ArrayList<>();
     private static boolean nowState;
-    private static int count = 0;
+    private static int count = 1;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -36,7 +36,7 @@ public class BridgeGame {
         userInputList.clear();
         bridgeLineOne.clear();
         bridgeLineTwo.clear();
-        count = 0;
+        count++;
     }
 
     public void makeUserInputList (String userInput, boolean state) {
@@ -80,9 +80,6 @@ public class BridgeGame {
         return nowState;
     }
 
-    public void addCount() {
-        count++;
-    }
 
     public int getCount() {
         return count;
