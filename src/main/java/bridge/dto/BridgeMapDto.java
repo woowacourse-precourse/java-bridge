@@ -2,11 +2,12 @@ package bridge.dto;
 
 import bridge.model.entity.BridgeMap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMapDto {
-    private List<String> upMap;
-    private List<String> downMap;
+    private List<String> upMap = new ArrayList<>();
+    private List<String> downMap = new ArrayList<>();
 
     public List<String> getUpMap() {
         return upMap;
