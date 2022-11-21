@@ -20,11 +20,12 @@
 4. **해당 칸으로 플레이어를 이동시킨다** [X]
     - BridgeGame - move() 구현 [X]
     - BridgeGame - getResult() 구현(이동한 칸이 건널 수 있는 칸인지) [X]
-    - BridgeGame - selectUpperBridge(), selectLowerBridge() 구현(어떤 다리를 건너려 했는지) [X]
+    - BridgeResult - selectUpperBridge(), selectLowerBridge() 구현(어떤 다리를 건너려 했는지) [X]
   
 
-5. **현재까지 이동한 다리의 상태를 출력한다** [ ]
-    - OutputView - printMap() 구현 [ ]
+5. **현재까지 이동한 다리의 상태를 출력한다** [X]
+    - OutputView - printMap() 구현 [X]
+    - BridgeResult - toString() 구현(다리 출력 형식에 맞게 출력) [X]
   
 
 6. **건널 수 없는 칸을 건너려했을 때, 재시작 혹은 종료할 지 입력받는다** [ ]
