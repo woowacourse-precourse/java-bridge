@@ -21,6 +21,16 @@ public class BridgeGameController {
             outputView.printErrorMessage(exception.getMessage());
             requestGenerateBridge();
         }
+        requestBlock();
+    }
+
+    private void requestBlock() {
+        try {
+            bridgeGameService.move(inputView.readBlock());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            requestBlock();
+        }
     }
 
     private String requestBridgeSize() {

@@ -1,5 +1,6 @@
 package bridge.views;
 
+import static bridge.messages.InputMessage.INPUT_BRIDGE_BLOCK;
 import static bridge.messages.InputMessage.INPUT_BRIDGE_LENGTH;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -15,6 +16,11 @@ public class InputView {
      */
     public String readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
+        return readLine();
+    }
+
+    public String readBlock() {
+        System.out.println(INPUT_BRIDGE_BLOCK);
         return readLine();
     }
 
