@@ -2,21 +2,22 @@ package domain;
 
 public class Result {
     private boolean isSuccess;
+
     private int trial;
 
-    public boolean getIsSuccess(){
+    public boolean getIsSuccess() {
         return isSuccess;
     }
 
-    public int getTrial(){
+    public int getTrial() {
         return trial;
     }
 
-    public void setIsSuccess(boolean isSuccess){
+    public void setIsSuccess(boolean isSuccess) {
         this.isSuccess = isSuccess;
     }
 
-    public void setTrial(int trial){
+    public void setTrial(int trial) {
         this.trial = trial;
     }
 }
