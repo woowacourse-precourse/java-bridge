@@ -1,15 +1,29 @@
 package bridge.view;
 
+import java.util.regex.Pattern;
+
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String input = Console.readLine();
+        validateNumeric(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validateNumeric(String input) {
+        if (!NUMERIC_PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException("숫자가 아닙니다");
+        }
     }
 
     /**
