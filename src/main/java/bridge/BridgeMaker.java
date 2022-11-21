@@ -27,7 +27,7 @@ public class BridgeMaker {
         List<String> alphabetBridge = new ArrayList<>();
         for (int i = 0; i < numberBridge.size(); i++) {
             if (numberBridge.get(i) == 0) {alphabetBridge.add("D");}
-            if (numberBridge.get(i) == 1) {alphabetBridge.add("1");}
+            if (numberBridge.get(i) == 1) {alphabetBridge.add("U");}
         }
         return alphabetBridge;
     }
