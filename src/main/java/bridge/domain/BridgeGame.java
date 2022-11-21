@@ -39,7 +39,7 @@ public class BridgeGame {
      */
     public void move() {
         Move move = InputController.inputMoving();
-        this.bridgeResults.add(this.bridge.isGoodMove(move));
+        this.bridgeResults.add(this.bridge.makeBridgeResult(move));
     }
 
     /**

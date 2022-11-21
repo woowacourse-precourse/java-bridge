@@ -30,7 +30,7 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
-    public BridgeResult isGoodMove(Move move) {
+    public BridgeResult makeBridgeResult(Move move) {
         String nowStep = this.bridge.get(this.step);
         String nowMove = move.getMove();
         boolean nowResult = false;
