@@ -55,14 +55,15 @@ class BridgeTest {
         Assertions.assertThat(movable.isMovable()).isFalse();
     }
 
-    @DisplayName("다리는 올바른 길이를 반환한다.")
-    @Test
-    void size() {
+    @DisplayName("다리의 끝을 알린다..")
+    @ParameterizedTest
+    @CsvSource({"4, true", "3, false"})
+    void isEndOfBridge(int position, boolean result) {
         List<String> bridgePrototype = List.of("U", "D", "U", "D");
         Bridge bridge = new Bridge(bridgePrototype);
 
-        int size = bridge.size();
+        boolean isEndOfBridge = bridge.isEndOfBridge(position);
 
-        Assertions.assertThat(size).isEqualTo(4);
+        Assertions.assertThat(isEndOfBridge).isEqualTo(result);
     }
 }
