@@ -10,9 +10,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public static String readBridgeSize() {
         String inputSize = Console.readLine();
-        return Integer.parseInt(inputSize);
+        return inputSize;
     }
 
     /**

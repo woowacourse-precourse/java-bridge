@@ -13,4 +13,8 @@ public class Validation {
         if(userMove>=bridgeSize)
             throw new IllegalArgumentException(Constant.ERROR+Constant.ERROR_MESSAGE_LENGTH);
     }
+    public static void isLengthNumber(String s){
+        if(!s.matches("[1-9][1-9][1-9]"))
+            throw new IllegalArgumentException(Constant.ERROR+Constant.ERROR_IS_NOT_NUMBER);
+    }
 }

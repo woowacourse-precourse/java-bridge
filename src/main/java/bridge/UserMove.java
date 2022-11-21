@@ -28,6 +28,7 @@ public class UserMove {
     }
 
     public void increaseMoveCount() {
+        Validation.isBiggerMove(moveCount, userBridgeSize);
         moveCount++;
     }
 

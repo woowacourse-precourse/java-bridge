@@ -24,7 +24,9 @@ public class BridgeGame {
     public void prepare() {
         OutputView.printStartGame();
         OutputView.printRequireSize();
-        user.setUserBridgeSize(InputView.readBridgeSize());
+        String tmpBridgeSize=InputView.readBridgeSize();
+        Validation.isLengthNumber(tmpBridgeSize);
+        user.setUserBridgeSize(Integer.parseInt(tmpBridgeSize));
         bridgeMaker.startMakeBridge(user.getUserBridgeSize());
     }
 
@@ -32,6 +34,7 @@ public class BridgeGame {
         user.initMove();
         while (user.getMoveCount() < user.getUserBridgeSize()) {
             String userMove = InputView.readMoving();
+            Validation.isNotUpOrDown(userMove);
             user.moveUser(userMove);
             OutputView.printMap(user.getUserLocation(), bridgeMaker.getBridge().getBridgeAnswer());
             if (!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount()))) {
@@ -66,6 +69,7 @@ public class BridgeGame {
 
     public void askRetry() {
         String userRetry = InputView.readGameCommand();
+        Validation.isNotRetryOrQuit(userRetry);
         if (userRetry.equals(Constant.RETRY)) {
             retry();
             return;
