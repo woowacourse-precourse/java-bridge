@@ -21,6 +21,7 @@ public class OutputView {
      */
     public void printMap(String userInput, StageResult stageResult) {
         String result = decideOX(stageResult);
+        Unit key = decideUpDown(userInput);
     }
 
     public String decideOX(StageResult stageResult) {
@@ -29,6 +30,14 @@ public class OutputView {
         }
         return "X";
     }
+
+    public Unit decideUpDown(String userInput) {
+        if(userInput.equals(Unit.UP.getCommand())) {
+            return Unit.UP;
+        }
+        return Unit.DOWN;
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
