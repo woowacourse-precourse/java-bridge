@@ -12,6 +12,13 @@ public class BridgeGame {
     private List<String> user;
     private int bridgeLength;
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+
+    public BridgeGame(int bridgeLength) {
+        this.bridgeLength = bridgeLength;
+        this.answer = new BridgeMaker(bridgeNumberGenerator).makeBridge(bridgeLength);
+        this.user = new ArrayList<>(bridgeLength);
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -35,12 +42,6 @@ public class BridgeGame {
             return true;
         }
         return false;
-    }
-
-    public void play() {
-        this.bridgeLength = new InputView().readBridgeSize();
-        this.answer = new BridgeMaker(bridgeNumberGenerator).makeBridge(bridgeLength);
-        this.user = new ArrayList<>(bridgeLength);
     }
 
     public boolean isExit() {
