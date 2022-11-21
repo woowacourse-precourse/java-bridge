@@ -7,6 +7,9 @@ public class Application {
         InputView inputView = new InputView();
         outputView.printGreeting();
         BridgeGame bridgeGame = initialize(inputView, outputView);
+    }
+
+    private static void run(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         while (bridgeGame.getGameStatus().equals(GameStatus.ONGOING)) {
             move(inputView, outputView, bridgeGame);
         }
