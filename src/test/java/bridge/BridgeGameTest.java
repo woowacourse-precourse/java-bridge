@@ -42,6 +42,16 @@ public class BridgeGameTest {
         assertThat(bridgeGame.getGameResult().getUpBridge()).isEqualTo(List.of("O","X"));
         assertThat(bridgeGame.getGameResult().getDownBridge()).isEqualTo(List.of(" "," "));
     }
+    @DisplayName("게임 재시작 테스트")
+    @Test
+    public void replayTest(){
+        final BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.setAnswerBridge(List.of("U","D","D"));
+        bridgeGame.retry();
+        assertThat(bridgeGame.getRound()).isEqualTo(1);
+        assertThat(bridgeGame.getAnswerBridge()).isEqualTo(List.of("U","D","D"));
+
+    }
 
 
 }
