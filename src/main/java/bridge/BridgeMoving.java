@@ -2,13 +2,13 @@ package bridge;
 
 import java.util.Arrays;
 
-public enum BridgeCell {
+public enum BridgeMoving {
     D(0),
     U(1);
 
     private final int numberNotation;
 
-    BridgeCell(int numberNotation) {
+    BridgeMoving(int numberNotation) {
         this.numberNotation = numberNotation;
     }
 
@@ -17,9 +17,9 @@ public enum BridgeCell {
     }
 
     public static String toString(int number) {
-        return Arrays.stream(BridgeCell.values())
+        return Arrays.stream(BridgeMoving.values())
                 .filter(cell -> cell.getNumberNotation() == number)
                 .findAny()
-                .toString();
+                .get().name();
     }
 }
