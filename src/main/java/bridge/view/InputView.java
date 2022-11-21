@@ -2,9 +2,8 @@ package bridge.view;
 
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
-import bridge.util.validator.BridgeSizeValidator;
-import bridge.util.validator.GameCommandValidator;
-import bridge.util.validator.MoveDirectionValidator;
+import bridge.util.GameCommandValidator;
+import bridge.util.MoveDirectionValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.exception.ExceptionType.NOT_NUMBER;
@@ -13,8 +12,6 @@ import static bridge.exception.ExceptionType.NOT_NUMBER;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public final static int LOWER_BRIDGE_LENGTH = 3;
-    public final static int UPPER_BRIDGE_LENGTH = 20;
     private final static String INPUT_BRIDGE_LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
     private final static String MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final static String RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
@@ -28,8 +25,6 @@ public class InputView {
                 return inputBridgeSize();
             } catch (NumberFormatException e) {
                 System.out.println(NOT_NUMBER.getMessage());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
         }
     }
@@ -37,9 +32,7 @@ public class InputView {
     private int inputBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
         final String input = Console.readLine();
-        final Integer bridgeSize = Integer.valueOf(input);
-        BridgeSizeValidator.validate(bridgeSize);
-        return bridgeSize;
+        return Integer.parseInt(input);
     }
 
     /**
