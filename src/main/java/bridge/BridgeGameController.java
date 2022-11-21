@@ -9,7 +9,7 @@ public class BridgeGameController {
 
     public void gameStart() {
         outputView.printStartMessage();
-        System.out.println(makeBridge());
+        Bridge bridge = new Bridge(makeBridge());
     }
 
     private List<String> makeBridge() {
