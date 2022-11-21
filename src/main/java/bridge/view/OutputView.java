@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.constant.Constant;
+import bridge.constant.Message;
 import bridge.constant.Sign;
 import bridge.domain.BridgeGame;
 
@@ -32,7 +33,7 @@ public class OutputView {
     private void printDownBridgestate(List<String> playerMoving, List<String> bridgeStatus) {
         System.out.print(Sign.LEFT_PARENTHESIS.getSign());
         for (int i = 0; i < playerMoving.size() - 1; i++) {
-            printMiddleline(playerMoving.get(i), bridgeStatus.get(i), Constant.UP.getConstant());
+            printMiddleline(playerMoving.get(i), bridgeStatus.get(i), Constant.DOWN.getConstant());
         }
         printRightparenthesis(playerMoving.get(playerMoving.size() - 1), bridgeStatus.get(playerMoving.size() - 1), Constant.DOWN.getConstant());
     }
@@ -47,7 +48,7 @@ public class OutputView {
 
     private void printRightparenthesis(String moving, String matching, String updown) {
         if (moving.equals(updown)) {
-            System.out.printf(Sign.RIGHT__PARENTHESIS_STRING.getSign(), matching);
+            System.out.printf(Sign.RIGHT_PARENTHESIS_STRING.getSign(), matching);
             return;
         }
         System.out.println(Sign.RIGHT_PARENTHESIS.getSign());

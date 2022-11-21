@@ -3,7 +3,7 @@ package bridge.constant;
 public enum Sign {
     LEFT_PARENTHESIS("[ "),
     RIGHT_PARENTHESIS("  ]"),
-    RIGHT__PARENTHESIS_STRING("%s ]\n"),
+    RIGHT_PARENTHESIS_STRING("%s ]\n"),
     MIDDLE_LINE("  | "),
     MIDDLE_LINE_STRING("%s | ");
 
