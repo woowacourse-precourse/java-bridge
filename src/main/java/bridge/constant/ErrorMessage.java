@@ -1,6 +1,7 @@
 package bridge.constant;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameCommand;
 import bridge.domain.Moving;
 
 public enum ErrorMessage {
@@ -18,6 +19,11 @@ public enum ErrorMessage {
                     Moving.getMovingUpCharacter(),
                     Moving.getMovingDownCharacter()
                     )
+    ),
+    NOT_VALID_GAME_COMMAND_CHARACTER(
+            String.format("재시작 여부는 %s 또는 %s 문자여야 합니다.",
+                    GameCommand.getRestartCharacter(),
+                    GameCommand.getQuitCharacter())
     );
 
     private static final String ERROR = "[ERROR] ";
