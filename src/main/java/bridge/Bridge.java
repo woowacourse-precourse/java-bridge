@@ -12,10 +12,6 @@ public class Bridge {
         this.bridgeShape = bridgeShape;
     }
 
-    void setBridgeShape(List<String> bridgeShape){
-        this.bridgeShape = bridgeShape;
-    }
-
     public Integer getAttemptNumber() {
         return attemptNumber;
     }
