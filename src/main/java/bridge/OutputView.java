@@ -72,4 +72,8 @@ public class OutputView {
     public void printStartGame() {
         System.out.println(START_GAME.getMessage());
     }
+
+    public void inputBridgeSize() {
+        System.out.println(NEW_LINE.getMessage() + INPUT_BRIDGE_SIZE.getMessage());
+    }
 }
