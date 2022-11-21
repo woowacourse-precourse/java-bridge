@@ -20,11 +20,10 @@ public class GameResult {
         if (direction.equals(UPPER)) {
             addToLowerBridge(EMPTY_ELEMENT);
             addToUpperBridge(getElement(moveState));
+            return;
         }
-        if (direction.equals(LOWER)) {
-            addToUpperBridge(EMPTY_ELEMENT);
-            addToLowerBridge(getElement(moveState));
-        }
+        addToUpperBridge(EMPTY_ELEMENT);
+        addToLowerBridge(getElement(moveState));
     }
 
     private String getElement(boolean moveStatus) {
@@ -46,16 +45,16 @@ public class GameResult {
         return upperBridge.getSize();
     }
 
+    public void reset() {
+        upperBridge.clear();
+        lowerBridge.clear();
+    }
+
     public List<String> getUpperBridge() {
         return upperBridge.getBridge();
     }
 
     public List<String> getLowerBridge() {
         return lowerBridge.getBridge();
-    }
-
-    public void reset() {
-        upperBridge.clear();
-        lowerBridge.clear();
     }
 }
