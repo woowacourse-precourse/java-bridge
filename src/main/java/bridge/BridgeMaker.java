@@ -37,11 +37,11 @@ public class BridgeMaker {
     }
 
     private String hardBridgePosition(int bridgeNumber) {
-        if (bridgeNumber == BRIDGE_TOP.getBridgeNumber()) {
-            return BRIDGE_TOP.getHardBridgePosition();
+        if (bridgeNumber == BRIDGE_TOP.getPositionNumber()) {
+            return BRIDGE_TOP.getPosition();
         }
-        if (bridgeNumber == BRIDGE_BOTTOM.getBridgeNumber()) {
-            return BRIDGE_BOTTOM.getHardBridgePosition();
+        if (bridgeNumber == BRIDGE_BOTTOM.getPositionNumber()) {
+            return BRIDGE_BOTTOM.getPosition();
         }
         return POOR_CONSTRUCTION;
     }

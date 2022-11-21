@@ -1,8 +1,8 @@
 package bridge.domain;
 
-import static bridge.utils.Constant.*;
+import static bridge.utils.Constant.POOR_CONSTRUCTION;
+import static bridge.utils.Constant.POOR_CONSTRUCTION_MESSAGE;
 
-import bridge.utils.Constant;
 import java.util.List;
 
 public class Bridge {
@@ -21,7 +21,7 @@ public class Bridge {
     }
 
     private void validPosition(String position) {
-        if (position.equals(POOR_CONSTRUCTION)){
+        if (position.equals(POOR_CONSTRUCTION)) {
             throw new IllegalArgumentException(POOR_CONSTRUCTION_MESSAGE);
         }
     }

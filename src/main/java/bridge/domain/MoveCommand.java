@@ -13,8 +13,8 @@ public class MoveCommand {
     }
 
     private void validCommand(String command) {
-        if (!command.equals(BRIDGE_TOP.getHardBridgePosition()) &&
-                !command.equals(BRIDGE_BOTTOM.getHardBridgePosition())) {
+        if (!command.equals(BRIDGE_TOP.getPosition()) &&
+                !command.equals(BRIDGE_BOTTOM.getPosition())) {
             throw new IllegalArgumentException(WRONG_INSERT_POSITION_MESSAGE);
         }
     }

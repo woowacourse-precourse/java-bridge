@@ -4,7 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeSize;
-import bridge.domain.MoveCommand;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

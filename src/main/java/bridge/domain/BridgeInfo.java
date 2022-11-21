@@ -4,18 +4,18 @@ public enum BridgeInfo {
     BRIDGE_BOTTOM (0, "D"),
     BRIDGE_TOP (1, "U");
 
-    private final int bridgeNumber;
-    private final String hardBridgePosition;
-    BridgeInfo(int bridgeNumber, String hardBridgePosition) {
-        this.bridgeNumber = bridgeNumber;
-        this.hardBridgePosition = hardBridgePosition;
+    private final int positionNumber;
+    private final String position;
+    BridgeInfo(int positionNumber, String position) {
+        this.positionNumber = positionNumber;
+        this.position = position;
     }
 
-    public int getBridgeNumber() {
-        return bridgeNumber;
+    public int getPositionNumber() {
+        return positionNumber;
     }
 
-    public String getHardBridgePosition() {
-        return hardBridgePosition;
+    public String getPosition() {
+        return position;
     }
 }
