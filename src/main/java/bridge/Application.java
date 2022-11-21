@@ -11,7 +11,7 @@ public class Application {
         System.out.printf(Constants.Messages.START.getMessage());
         BridgeGame bridgeGame = createBridge();
         OutputView printer = bridgeGameUI(bridgeGame);
-
+        printer = retryProcess(printer, bridgeGame);
     }
 
     // 다리를 생성
@@ -68,5 +68,25 @@ public class Application {
     private static void printGoodMove(List<String> bridge, int index, OutputView printer) {
         printer.mapBuilder(true, index, bridge);
         printer.printMap();
+    }
+
+    private static OutputView retryProcess(OutputView printer, BridgeGame bridgeGame) {
+        if (printer.getResult().contains(BROKEN)) {
+            printer = repeatUntilQuit(printer, bridgeGame);
+        }
+
+        return printer;
+    }
+
+    private static OutputView repeatUntilQuit(OutputView printer, BridgeGame bridgeGame) {
+        while (true) {
+            if (!printer.getResult().contains(BROKEN)
+                    || retryChoiceUI().equals(InputView.FailChoice.QUIT.getKeyword())) {
+                break;
+            }
+            bridgeGame.retry();
+            printer = bridgeGameUI(bridgeGame);
+        }
+        return printer;
     }
 }

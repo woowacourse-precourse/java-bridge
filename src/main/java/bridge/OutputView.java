@@ -57,6 +57,10 @@ public class OutputView {
         System.out.printf(this.result);
     }
 
+    public String getResult() {
+        return this.result;
+    }
+
     public void mapBuilder(boolean move, int index, List<String> bridge) {
         firstCorrect(move, index, bridge);
         firstWrong(move, index, bridge);
