@@ -16,7 +16,20 @@ public class OutputView {
      */
     public void printMap(List<String> bridge, List<String> bridgeStatus) {
         initializeMap();
-        int size = bridgeStatus.size();
+        makeMap(bridge, bridgeStatus);
+
+        System.out.println(upperMap);
+        System.out.println(lowerMap);
+        System.out.println();
+    }
+
+    private void initializeMap() {
+        upperMap = "[";
+        lowerMap = "[";
+    }
+
+    public void makeMap(List<String> bridge, List<String> bridgeStatus) {
+        int size = bridge.size();
 
         for (int idx = 0; idx < size; idx++) {
             if (bridgeStatus.get(idx) == "O") {
@@ -53,15 +66,6 @@ public class OutputView {
                 }
             }
         }
-
-        System.out.println(upperMap);
-        System.out.println(lowerMap);
-        System.out.println();
-    }
-
-    private void initializeMap() {
-        upperMap = "[";
-        lowerMap = "[";
     }
 
     /**
