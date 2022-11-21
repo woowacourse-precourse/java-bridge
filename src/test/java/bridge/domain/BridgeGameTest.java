@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
-
     private BridgeGame bridgeGame;
     private List<String> arr = new ArrayList<>(List.of("U", "D", "U"));
 
@@ -33,45 +33,26 @@ class BridgeGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("올바른 move 명령어를 1번 입력하여 결과를 얻는다.")
-    @ValueSource(strings = {"U"})
+    @DisplayName("올바른 move 명령어를 입력한다.")
+    @CsvSource(value = {"U,true","D,false"})
     @ParameterizedTest
-    void returnResultWhenInputValidMoveCommand(String command) {
-        GameResult gameResult = bridgeGame.move(command);
-        List<String> result = gameResult.getResult();
-        Assertions.assertThat(result.get(0)).isEqualTo(command);
-    }
-
-    @DisplayName("올바른 move 명령어를 2번 입력하여 결과를 얻는다.")
-    @Test
-    void returnResultWhenInputTwoValidMoveCommand() {
-        String command = "U";
-        bridgeGame.move(command);
-        GameResult gameResult = bridgeGame.move("U");
-
-        Assertions.assertThat(gameResult.getResult().size()).isEqualTo(2);
+    void returnResultWhenInputValidMoveCommand(String command, boolean result) {
+        Assertions.assertThat(bridgeGame.move(command)).isEqualTo(result);
     }
 
     @DisplayName("정답을 맞춘 경우 그에 맞는 결과를 반환한다.")
     @Test
     void returnGameResultWhenGiveCorrectMoveCommand() {
-        String command = "U";
-        GameResult result = bridgeGame.move(command);
-        List<String> partialBridge = result.getResult();
-
+        GameResult result = bridgeGame.resultOfMove(true);
         assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_MOVE);
-        assertThat(partialBridge.size()).isEqualTo(1);
     }
 
     @DisplayName("정답을 맞추지 못한 경우 그에 맞는 결과를 반환한다.")
     @Test
     void returnGameResultWhenGiveWrongMoveCommand() {
-        String command = "D";
-        GameResult result = bridgeGame.move(command);
-        List<String> partialBridge = result.getResult();
+        GameResult result = bridgeGame.resultOfMove(false);
 
         assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_CONTINUE);
-        assertThat(partialBridge.size()).isEqualTo(1);
     }
 
     @DisplayName("모든 정답을 맞춘 경우 그에 맞는 결과를 반환한다.")
@@ -86,10 +67,10 @@ class BridgeGameTest {
     }
 
     private GameResult moveUntilWin(BridgeGame bridgeGame) {
-        GameResult gameResult = null;
+        boolean isMatch = true;
         for (String position : arr) {
-            gameResult = bridgeGame.move(position);
+            isMatch = bridgeGame.move(position);
         }
-        return gameResult;
+        return bridgeGame.resultOfMove(isMatch);
     }
 }
