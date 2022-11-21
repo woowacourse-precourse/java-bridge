@@ -21,7 +21,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            bridge.add(makeCapitalLetter(bridgeNumber));
+            bridge.add(getCapitalLetterFor(bridgeNumber));
         }
         return bridge;
     }
@@ -35,7 +35,7 @@ public class BridgeMaker {
         }
     }
 
-    private String makeCapitalLetter(int bridgeNumber) {
+    private String getCapitalLetterFor(int bridgeNumber) {
         return Direction.from(bridgeNumber)
                 .capitalLetter();
     }
