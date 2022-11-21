@@ -1,9 +1,9 @@
 package bridge.domain;
 
 public class BridgeResult {
-	private String result;
-	private int count;
-	private boolean isClear;
+	private final String result;
+	private final int count;
+	private final boolean isClear;
 
 
 	public BridgeResult(String result, int count, boolean isClear) {
