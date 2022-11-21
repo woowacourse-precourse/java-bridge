@@ -8,6 +8,7 @@ public class Bridge {
     private List<String> bridge;
     private List<List<String>> outputBridge = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
     private static int tryCount = 1;
+    private static boolean isGame = false;
 
     public List<String> getBridge() {
         return bridge;
@@ -33,6 +34,12 @@ public class Bridge {
         this.tryCount = tryCount;
     }
 
+    public static boolean isGame() {
+        return isGame;
+    }
 
+    public void setGame(boolean game) {
+        isGame = game;
+    }
 
 }
