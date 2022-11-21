@@ -21,7 +21,7 @@ public class Game {
             if(outputView.checkSuccess(userBridge,answerBridge)){
                 break;
             }
-            int nowIndex=userBridge.size();
+            int nowIndex=userBridge.size()-1;
             if(!outputView.checkSameMove(userBridge,answerBridge,nowIndex)){
                 String gameCommand=inputView.readGameCommand();
                 if(gameCommand=="Q"){
