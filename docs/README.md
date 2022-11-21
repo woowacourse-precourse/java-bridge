@@ -27,7 +27,7 @@
       - InputValidator 설정
     - [x] 다리 길이 입력, 검증
       - 검증 실패 시 IllegalArgumentException
-    - [ ] 이동할 칸 입력, 검증
+    - [x] 이동할 칸 입력, 검증
       - 검증 실패 시 IllegalArgumentException
     - [ ] 게임 재시도 여부 입력, 검증
       - 검증 실패 시 IllegalArgumentException
