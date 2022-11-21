@@ -97,6 +97,7 @@ BUILD SUCCESSFUL in 0s
     - [ ] private final String MOVING_INPUT_NOT_VALID
     - [ ] private final String GAME_COMMAND_NOT_VALID
   - **Class Methods**
+    - [ ] public InputView() 
     - [ ] public int readBridgeSize()
     - [ ] public String readMoving()
     - [ ] public String readGameCommand()
