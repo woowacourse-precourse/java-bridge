@@ -73,4 +73,10 @@ public class OutputView {
     public void choiceUpDown() {
         CHOICE_UP_DOWN_MESSAGE.printMessage();
     }
+    public String changeOX(boolean moveCheck) {
+        if (moveCheck == true) {
+            return "O";
+        }
+        return "X";
+    }
 }
