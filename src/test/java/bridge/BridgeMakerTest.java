@@ -29,4 +29,11 @@ class BridgeMakerTest {
         assertThatThrownBy(() -> bridgeMaker.parseUpOrDownByNumber(2)).isInstanceOf(
             IllegalArgumentException.class);
     }
+
+    @DisplayName("[성공] 입력 받은 길이만큼 다리 생성")
+    @Test
+    void makeBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        assertThat(bridgeMaker.makeBridge(4).size()).isEqualTo(4);
+    }
 }
