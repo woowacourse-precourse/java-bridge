@@ -90,8 +90,8 @@ public class BridgeGame {
     public boolean isSuccess(){
         return progressStatus && moveCount == bridgeList.size();
     }
-    public Integer gameCount(){
-        return gameAttemptCount;
+    public String gameCount(){
+        return "총 시도한 횟수: " + gameAttemptCount;
     }
     public String gameSuccess(){
         if(progressStatus) {

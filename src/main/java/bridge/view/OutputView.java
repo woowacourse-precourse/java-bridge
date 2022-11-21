@@ -59,7 +59,7 @@ public class OutputView {
     public void printGameSuccessOrNot(String gameResult){
         System.out.println("\n게임 성공 여부: " + gameResult);
     }
-    public void printNumberOfAttempts(int attempt){
-        System.out.println("총 시도한 횟수: " + attempt);
+    public void printNumberOfAttempts(String gameCountMessage){
+        System.out.println(gameCountMessage);
     }
 }
