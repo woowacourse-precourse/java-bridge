@@ -7,10 +7,16 @@ public class Player {
 
     private List<String> choices;
     private int totalTryCount;
+    private boolean isSuccess;
 
     public Player() {
         this.choices = new ArrayList<>();
         totalTryCount = 1;
+        isSuccess = false;
+    }
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
     }
 
     public void addChoice(final String choice) {
@@ -37,7 +43,11 @@ public class Player {
         return totalTryCount;
     }
 
-    public String getLastChoice() {
-        return choices.get(choices.size() - 1);
+    public int getChoicesSize() {
+        return choices.size();
+    }
+
+    public boolean getIsSuccess() {
+        return isSuccess;
     }
 }

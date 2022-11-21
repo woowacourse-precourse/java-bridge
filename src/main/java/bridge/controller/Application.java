@@ -50,7 +50,7 @@ public class Application {
     private void checkCorrectChoice() {
         if (!isCorrectChoice()) {
             String retryCommand = InputView.readRetryCommand();
-            if (retryCommand.equals(Message.RE_START)) {
+            if (isRestart(retryCommand)) {
                 bridgeGame.retry(player);
                 return;
             }
@@ -59,15 +59,27 @@ public class Application {
         }
     }
 
-    private void checkApproachEndPoint() {
-        boolean isApproachEndPoint = bridge.isApproachEndPoint(player.getChoices());
-        if (playing && isApproachEndPoint) {
-            playing = false;
-        }
+    private boolean isCorrectChoice() {
+        List<String> answers = bridge.getAnswers();
+        List<String> choices = player.getChoices();
+        int lastStep = player.getStep();
+
+        return bridgeGame.isCorrect(answers, choices, lastStep);
     }
 
-    private boolean isCorrectChoice() {
-        return bridge.isCorrectChoice(player.getStep(), player.getLastChoice());
+    private boolean isRestart(String retryCommand) {
+        if (retryCommand.equals(Message.RE_START)) {
+            return true;
+        }
+        return false;
+    }
+
+    private void checkApproachEndPoint() {
+        boolean isApproachLast = bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
+        if (playing && isApproachLast) {
+            player.setSuccess(true);
+            playing = false;
+        }
     }
 
     private void finishGame() {
