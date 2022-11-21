@@ -23,31 +23,32 @@ public class Player {
         this.choices.add(choice);
     }
 
-    public void setSuccess(boolean success) {
-        isSuccess = success;
-    }
-
     public void resetChoices() {
         choices.clear();
-    }
-
-    public void addTryCount() {
-        tryCount++;
     }
 
     public int getStep() {
         return choices.size() - 1;
     }
 
+    public int getChoicesSize() {
+        return choices.size();
+    }
+
     public int getTryCount() {
         return tryCount;
     }
 
-    public int getChoicesSize() {
-        return choices.size();
+    public void addTryCount() {
+        tryCount++;
     }
 
     public boolean getIsSuccess() {
         return isSuccess;
     }
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+
 }
