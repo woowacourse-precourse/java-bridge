@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.constants;
 
 import java.util.Map;
 

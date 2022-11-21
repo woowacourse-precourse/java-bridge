@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.constants;
 
 public enum Constant {
     MINIMUM_LENGTH_INCLUSIVE(3),

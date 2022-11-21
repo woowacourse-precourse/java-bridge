@@ -1,10 +1,10 @@
 package bridge.domain;
 
-import bridge.BridgeMaker;
+import bridge.domain.constants.Command;
+import bridge.domain.constants.GameState;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

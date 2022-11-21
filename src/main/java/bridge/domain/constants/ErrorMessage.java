@@ -1,4 +1,4 @@
-package bridge.view.text;
+package bridge.domain.constants;
 
 public enum ErrorMessage {
     ERROR_HEAD("[ERROR]");

@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.view.text.ErrorMessage;
+import bridge.domain.constants.ErrorMessage;
 import bridge.view.text.OutputText;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Constant;
+import bridge.domain.constants.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
