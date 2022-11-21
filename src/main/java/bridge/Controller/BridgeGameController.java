@@ -1,5 +1,6 @@
 package bridge.Controller;
 
+import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
 import bridge.Domain.BridgeNumberGenerator;
 import bridge.Domain.BridgeRandomNumberGenerator;
@@ -12,9 +13,11 @@ import java.util.List;
 public class BridgeGameController {
 
     OutputView outputView = new OutputView();
+    BridgeGame bridgeGame = new BridgeGame();
     List<String> bridge = new ArrayList<>();
     public void start() {
         int lengthOfBridge = gameStart();
+        selectMoving(lengthOfBridge);
     }
 
     public int gameStart() {
@@ -26,5 +29,16 @@ public class BridgeGameController {
         bridge = bridgeMaker.makeBridge(lengthOfBridge);
         outputView.printEmptyLine();
         return lengthOfBridge;
+    }
+
+    public void selectMoving(int lengthOfBridge) {
+        for (int i = 0; i < lengthOfBridge; i++) {
+            String userMove = InputView.readMoving();
+            outputView.setUpAndDownSide(userMove, bridge.get(i));
+            boolean isCorrect = bridgeGame.move(bridge, userMove);
+            outputView.printMap();
+            outputView.printEmptyLine();
+            if (!isCorrect) break;
+        }
     }
 }
