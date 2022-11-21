@@ -70,8 +70,8 @@ public class BridgeGame implements GameService {
     }
 
     public boolean move(int count, String inputMove, List<String> bridge) {
+        outputView.printMap(count, inputMove, bridge);
         if(bridge.get(count).equals(inputMove)){
-            outputView.printMap(count, inputMove, bridge);
             return true;
         }
         return false;
