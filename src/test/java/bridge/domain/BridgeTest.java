@@ -34,7 +34,7 @@ public class BridgeTest {
 
 	@DisplayName("위치 당 위, 아래 중 하나만 건널 수 있다. 샘플 : 'UDU'")
 	@ParameterizedTest(name = "위치 : {0} , 예상 : {1}")
-	@CsvSource({"1, true", "2, false", "3, true"})
+	@CsvSource({"0, true", "1, false", "2, true"})
 	void bridge_plate_test(int position, boolean expected) {
 		//given
 		Bridge bridge = new Bridge(List.of("U", "D", "U"));
@@ -56,7 +56,7 @@ public class BridgeTest {
 
 			@DisplayName("해당 위치의 다리가 U라면 true 반환")
 			@ParameterizedTest(name = "위치 : {0} , 예상 반환 : {1}")
-			@CsvSource({"1, true", "2, false", "3, true"})
+			@CsvSource({"0, true", "1, false", "2, true"})
 			void it_returns_boolean(int position, boolean expected) {
 				//when
 				boolean actual = bridge.canWalk(position, Constants.UP);
@@ -71,7 +71,7 @@ public class BridgeTest {
 
 			@DisplayName("IllegalArgumentException 반환")
 			@ParameterizedTest(name = "위치 : {0}")
-			@CsvSource({"0", "4"})
+			@CsvSource({"-1", "4"})
 			void it_throws_IllegalArgumentException(int position) {
 				assertThatThrownBy(() -> bridge.canWalk(position, Constants.UP))
 					.isInstanceOf(IllegalArgumentException.class);

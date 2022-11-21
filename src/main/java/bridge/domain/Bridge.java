@@ -21,12 +21,11 @@ public class Bridge {
 
 	boolean canWalk(int position, String direction) {
 		validatePosition(position);
-		int index = position - 1;
-		return value.get(index).equals(direction);
+		return value.get(position).equals(direction);
 	}
 
 	private void validatePosition(int position) {
-		if (position < 1 || position > value.size()) {
+		if (position < 0 || position >= value.size()) {
 			throw new IllegalArgumentException();
 		}
 	}
