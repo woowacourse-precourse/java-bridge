@@ -2,7 +2,8 @@ package bridge.domain.history;
 
 public enum BridgeMoveResultStatus {
     SUCCESS(true, " O "),
-    FAILURE(false, " X ");
+    FAILURE(false, " X "),
+    NOT_SELECTED(false, "   ");
     
     private final boolean isMoved;
     private final String output;
