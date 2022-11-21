@@ -18,16 +18,4 @@ public class BridgeMakerTest {
             assertThat(str == "U" || str == "D").isTrue();
         }
     }
-
-    @Test
-    @DisplayName("다리가 BridgeRandomNumberGenerator를 사용하여 생성되지 않았다면 예외가 발생한다")
-    void bridgeExceptionTest() {
-        BridgeNumberGenerator temp = () -> -1;
-        BridgeMaker bridgeMaker = new BridgeMaker(temp);
-        assertThrows(IllegalStateException.class, () -> {
-            List<String> bridge = bridgeMaker.makeBridge(3);
-        });
-    }
-
-
 }
