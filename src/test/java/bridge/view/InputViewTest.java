@@ -4,7 +4,6 @@ package bridge.view;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.view.InputView;
 import camp.nextstep.edu.missionutils.test.Assertions;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +34,7 @@ class InputViewTest {
         @Test
         void nonNumeric1() {
             assertThatThrownBy(() -> run(" "))
-                .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("영어 입력")

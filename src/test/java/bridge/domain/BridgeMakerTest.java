@@ -4,9 +4,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
-import bridge.domain.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -15,10 +12,7 @@ class BridgeMakerTest extends NsTest {
     @Test
     void makeTest() {
         assertRandomNumberInRangeTest(() -> run(),
-                1, 0, 1,0);
-//        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-//        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-//        List<String> bridge =bridgeMaker.makeBridge(5);
+                1, 0, 1, 0);
         assertThat(output()).isEqualTo("[U, D, U, D]");
     }
 
@@ -43,7 +37,7 @@ class BridgeMakerTest extends NsTest {
     protected void runMain() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> bridge =bridgeMaker.makeBridge(4);
+        List<String> bridge = bridgeMaker.makeBridge(4);
         System.out.print(bridge);
     }
 }

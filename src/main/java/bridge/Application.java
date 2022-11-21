@@ -35,7 +35,6 @@ public class Application {
         int totalRounds = bridgeGame.getTotalRounds();
         for (int round = 0; round < totalRounds; round++) {
             boolean isAnswer = bridgeGame.move(InputView.readMoving(), round);
-            // moving 결과 출력
             OutputView.printMap(bridgeGame.getMap());
             if (!isAnswer) {
                 return;
