@@ -1,13 +1,12 @@
 package bridge.domain;
 
+import bridge.util.constants.Marker;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static bridge.util.constants.MovableSpace.UPPER_SPACE;
-import static bridge.util.constants.Marker.CROSS_SUCCESS;
-import static bridge.util.constants.Marker.CROSS_FAIL;
 import static bridge.util.constants.Marker.NOT_CROSS;
 
 public class GameRecord {
@@ -21,7 +20,7 @@ public class GameRecord {
     }
 
     public void recordMove(String spaceToMove, boolean isDead) {
-        String marker = isDead ? CROSS_FAIL.getValue() : CROSS_SUCCESS.getValue();
+        String marker = Marker.getMarker(isDead);
         if (spaceToMove.equals(UPPER_SPACE.getValue())) {
             upperCrossedRecord.add(marker);
             lowerCrossedRecord.add(NOT_CROSS.getValue());

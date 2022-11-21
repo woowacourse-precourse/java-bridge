@@ -13,4 +13,11 @@ public enum Marker {
     public String getValue() {
         return value;
     }
+
+    public static String getMarker(boolean isDead) {
+        if (isDead) {
+            return CROSS_FAIL.getValue();
+        }
+        return CROSS_SUCCESS.getValue();
+    }
 }
