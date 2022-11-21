@@ -43,5 +43,6 @@ public class InputView {
 
 	public void checkReadGameCommandException(String usertryOrEnd) {
 		exception.checkMissMatch(usertryOrEnd);
+		exception.checkUsertryOrEnd(usertryOrEnd);
 	}
 }
