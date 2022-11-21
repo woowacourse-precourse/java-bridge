@@ -1,7 +1,10 @@
 package bridge.utils;
 
 public enum Notice {
-	ERROR("[ERROR] 다시 입력해주세요."),
+	ERROR("[ERROR]"),
+	EXCEPTION_SIZE("다리 길이는 3부터 20 사이의 숫자여야 합니다."),
+	EXCEPTION_MOVE("(위 : U, 아래 : D) 둘 중 하나만 입력해주세요."),
+	EXCEPTION_GAMECOMMAND("(재시도: R, 종료: Q) 둘 중 하나만 입력해주세요."),
 	START("다리 건너기 게임을 시작합니다."),
 	RETRY("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
 	FINAL_RESULT("최종 게임 결과\n"),
