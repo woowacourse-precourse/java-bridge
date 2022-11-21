@@ -1,11 +1,11 @@
 package bridge.constant;
 
 public enum BridgeSymbol {
-    O(" O "),
-    X(" X "),
-    BLANK("   "),
+    O("O"),
+    X("X"),
+    BLANK(" "),
     OPEN("["),
-    MIDDLE("|"),
+    MIDDLE(" | "),
     CLOSE("]"),
     SUCCESS("성공"),
     FAIL("실패"),
