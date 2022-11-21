@@ -10,10 +10,22 @@ public class MoveCommandValidator implements CommandValidator {
         return commands.contains(target);
     }
 
+    @Override
     public String getValidCommand(String target) {
         if (!isCorrectCommand(target)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U또는 D만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 이동할 칸은 %s만 입력할 수 있습니다.", getCommandsDescription())
+            );
         }
         return target;
+    }
+
+    @Override
+    public String getCommandsDescription() {
+        StringBuilder commandsDescription = new StringBuilder();
+        commands.forEach(command -> {
+            commandsDescription.append(command);
+        });
+        return String.join(COMMAND_SEPARATOR, commandsDescription.toString());
     }
 }
