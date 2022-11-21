@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.Direction;
+import bridge.domain.GameCommand;
 import bridge.exception.NotIntegerException;
 import camp.nextstep.edu.missionutils.Console;
 

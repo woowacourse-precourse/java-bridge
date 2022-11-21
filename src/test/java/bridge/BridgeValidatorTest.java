@@ -2,10 +2,13 @@ package bridge;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import bridge.domain.BridgeMaker;
 import bridge.exception.InvalidDirectionException;
 import bridge.exception.LengthOutOfRangeException;
 import java.util.List;
 import java.util.stream.Stream;
+
+import bridge.validator.domain.BridgeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;

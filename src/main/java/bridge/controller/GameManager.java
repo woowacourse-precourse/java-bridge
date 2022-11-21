@@ -1,7 +1,11 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.InputView.*;
-import static bridge.OutputView.*;
+import bridge.domain.BridgeGame;
+import bridge.domain.GameCommand;
+import bridge.domain.User;
+
+import static bridge.view.InputView.*;
+import static bridge.view.OutputView.*;
 
 public class GameManager {
   private User user;

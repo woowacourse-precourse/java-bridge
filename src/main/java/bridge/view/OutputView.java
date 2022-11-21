@@ -1,6 +1,8 @@
-package bridge;
+package bridge.view;
 
-import static bridge.GameMessage.*;
+import bridge.domain.Direction;
+
+import static bridge.domain.GameMessage.*;
 
 import java.util.List;
 

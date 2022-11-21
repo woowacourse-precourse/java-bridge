@@ -1,5 +1,6 @@
-package bridge;
+package bridge.validator.domain;
 
+import bridge.domain.Direction;
 import bridge.exception.LengthOutOfRangeException;
 import java.util.List;
 
