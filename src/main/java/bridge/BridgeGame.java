@@ -40,4 +40,12 @@ public class BridgeGame {
     private boolean isEqualBridgeByIndex(String inputValue) {
         return inputValue.equals(bridge.getBridgeByIndex(playerMovement.getMovementCount() - 1));
     }
+
+    public boolean isFinish() {
+        return bridge.getBridgeSize() == playerMovement.getMovementCount();
+    }
+
+    public boolean isSuccess() {
+        return bridge.isEqual(playerMovement.getMovement());
+    }
 }
