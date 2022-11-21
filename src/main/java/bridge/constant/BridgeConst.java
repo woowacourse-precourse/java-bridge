@@ -4,12 +4,12 @@ public enum BridgeConst {
 
     SUCCESS("성공")
     , FAILURE("실패")
-    , POSSIBLE("O")
-    , IMPOSSIBLE("X")
+    , POSSIBLE(" O ")
+    , IMPOSSIBLE(" X ")
     , MAP_START("[")
     , MAP_END("]")
     , MAP_SEPARATOR("|")
-    , MAP_BLANK(" ")
+    , MAP_BLANK("   ")
     ;
 
     private final String identifier;
