@@ -36,6 +36,7 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println(RESTART_MESSAGE);
         String retryCommand = Console.readLine();
+        Exception.retryException(retryCommand);
 
         return retryCommand;
     }
