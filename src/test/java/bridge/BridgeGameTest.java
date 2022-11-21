@@ -26,6 +26,14 @@ class BridgeGameTest extends NsTest{
         BridgeGame game = new BridgeGame(List.of("U","D","U"));
         assertThat(false).isEqualTo(game.move("D"));
     }
+    @DisplayName("다리 생성 테스트")
+    @Test
+    void 다리_생성(){
+        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(newArrayList(1,1,1,0));
+        BridgeMaker bridgeMaker = new BridgeMaker(testNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(4);
+        assertThat(bridge).containsExactly("U","U","U","D");
+    }
     @DisplayName("다리 건너기를 성공했다면, 시도 횟수와 true를 리턴")
     @Test
     void 다리건너기_성공(){
