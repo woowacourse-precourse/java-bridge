@@ -2,6 +2,7 @@ package bridge.domain.vo;
 
 import bridge.domain.constants.BridgeConstants;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerMap {
@@ -15,7 +16,7 @@ public class PlayerMap {
     }
 
     public List<List> getDetail() {
-        return (List.of(firstLine, secondLine));
+        return Collections.unmodifiableList(List.of(firstLine, secondLine));
     }
 
     public int getSize() {

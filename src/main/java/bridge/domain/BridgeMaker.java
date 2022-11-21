@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.domain.vo.BridgeStatus;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,6 +25,6 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             bridgeMap.add(BridgeStatus.makerValueToMovingValue(bridgeNumberGenerator.generate()));
         }
-        return bridgeMap;
+        return Collections.unmodifiableList(bridgeMap);
     }
 }
