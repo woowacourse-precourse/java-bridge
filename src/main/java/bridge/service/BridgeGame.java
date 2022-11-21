@@ -17,13 +17,18 @@ public class BridgeGame {
     private UserStatus userStatus;
     private Bridge bridge;
     private int gameTryCount;
-    private CurrentBridgeStatusMaker currentBridgeStatusMaker = new CurrentBridgeStatusMaker();
+    private CurrentBridgeStatusMaker currentBridgeStatusMaker;
 
     public BridgeGame(List<String> createdBridge) {
-        gameTryCount = 1;
+        final int INITIAL_TRY_COUNT = 1;
+
+        gameTryCount = INITIAL_TRY_COUNT;
+
+        currentBridgeStatusMaker = new CurrentBridgeStatusMaker();
         userStatus = new UserStatus();
         bridge = new Bridge(createdBridge);
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -42,7 +47,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String input) {
-        if(input.equals(RetryCommand.R.toString())) {
+        if (input.equals(RetryCommand.R.toString())) {
             checkGameTryCountOverIntegerMaxValue();
             gameTryCount++;
             userStatus.clear();
@@ -52,7 +57,7 @@ public class BridgeGame {
     }
 
     public void checkGameTryCountOverIntegerMaxValue() {
-        if(gameTryCount == Integer.MAX_VALUE) {
+        if (gameTryCount == Integer.MAX_VALUE) {
             throw new IllegalArgumentException(ErrorMessage.GAME_TRY_COUNT_OVER_MESSAGE.toString());
         }
     }
@@ -68,7 +73,7 @@ public class BridgeGame {
     public boolean isUserDead() {
         int currentStandingIndex = userStatus.getCurrentIndex();
 
-        if(checkBeforePlayerCrossBridge(currentStandingIndex)) {
+        if (checkBeforePlayerCrossBridge(currentStandingIndex)) {
             return false;
         }
 
