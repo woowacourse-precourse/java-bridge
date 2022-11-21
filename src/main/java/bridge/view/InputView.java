@@ -41,7 +41,7 @@ public class InputView {
      */
     public String readGameCommand() {
         outputView.printMessage(Message.REGAME);
-        return null;
+        return Console.readLine();
     }
 
 }
