@@ -47,7 +47,7 @@ JDK 11
   - [x] 게임 재시작 여부 입력 시 R나 Q가 아닐 경우
 
 ## 고려사항
-- [] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현
+- [x] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현
 - [x] 메서드의 파라미터 개수는 최대 3개까지만 허용
 - [x] InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있음
 - [x] BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않음

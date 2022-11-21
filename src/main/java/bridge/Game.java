@@ -35,28 +35,37 @@ public class Game {
     public static void playGame() {
         int index = 0;
         String nowResult = "";
-        int matchNum = 1;
-        while (index != size) {
-            String userDirection = checkUserDirection();
-            nowResult = String.valueOf(bridgeGame.move(userDirection,index));
-            OutputView.printMap(nowResult);
+        while ((index != size) && (index != -1)) {
+            nowResult = printNowResult(index);
             index += 1;
             if (nowResult.contains("X")) {
-                index = 0;
-                String userRetry = checkUserRetry();
-                if (userRetry.equals("Q")) {
-                    break;
-                }
-                matchNum += 1;
-                bridgeGame.retry();
+                index = retryGame();
             }
         }
+        resultGame(index, nowResult, bridgeGame.printMatchNum());
+    }
+
+    private static int retryGame() {
+        if (checkUserRetry().equals("R")) {
+            bridgeGame.retry();
+            return 0;
+        }
+        return -1;
+    }
+
+    private static void resultGame(int index, String nowResult, int matchNum) {
         if (index == size) {
             endGame(nowResult,true,matchNum);
         }
         if (index != size) {
             endGame(nowResult,false,matchNum);
         }
+    }
+
+    private static String printNowResult(int index) {
+        String nowResult = String.valueOf(bridgeGame.move(checkUserDirection(),index));
+        OutputView.printMap(nowResult);
+        return nowResult;
     }
 
     private static String checkUserDirection() {
@@ -77,6 +86,5 @@ public class Game {
 
     public static void endGame(String finalResult, boolean matchResult, int matchNum) {
         OutputView.printResult(finalResult, matchResult,matchNum);
-
     }
 }
