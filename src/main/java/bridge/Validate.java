@@ -15,9 +15,9 @@ public class Validate {
         }
     }
 
-    public void validateIsUpOrDown(String input) {
-        if (!input.equals(UP) && !input.equals(DOWN)) {
-            throw new IllegalArgumentException(ERROR + UP + " 또는 " + DOWN + "만 입력 가능합니다.");
+    public void validateContainWord(String input, String word1, String word2) {
+        if (!input.equals(word1) && !input.equals(word2)) {
+            throw new IllegalArgumentException(ERROR + word1 + " 또는 " + word2 + "만 입력 가능합니다.");
         }
     }
 }
