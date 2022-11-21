@@ -3,10 +3,12 @@ package bridge;
 import static bridge.constant.MoveResult.CAN_MOVE;
 import static bridge.constant.MoveResult.CAN_NOT_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 import bridge.constant.GameStatus;
 import bridge.constant.MoveResult;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -72,5 +74,18 @@ class BridgeGameTest {
         assertThat(bridgeGame.getBridgeGameStat().getBridgeMaps()).isEmpty();
         assertThat(bridgeGame.getBridgeGameStat().getGameStatus()).isEqualTo(GameStatus.FAIL);
         assertThat(bridgeGame.getBridgeGameStat().getCountOfGame()).isEqualTo(countOfGame + 1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {Integer.MAX_VALUE})
+    void quit(int round) {
+        // given
+        BridgeGame bridgeGame = new BridgeGame();
+
+        // when
+        bridgeGame.quit();
+
+        // then
+        assertThat(bridgeGame.getCountOfRound()).isEqualTo(round);
     }
 }
