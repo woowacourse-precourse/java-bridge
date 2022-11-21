@@ -38,13 +38,10 @@ public class BridgeController {
     }
 
     private GameStatus playBridgeGame() {
-        GameStatus status = FAILED;
-        while (service.isPlaying()) {
+        GameStatus status;
+        do {
             status = crossBridge();
-            if (FAILED.equals(status)) {
-                executeGameCommand();
-            }
-        }
+        } while (isPlaying(status));
         return status;
     }
 
@@ -62,8 +59,18 @@ public class BridgeController {
         return service.crossBridgeUnit(moving);
     }
 
-    private void executeGameCommand() {
+    private boolean isPlaying(GameStatus status) {
+        if (service.isPlaying()) {
+            return true;
+        }
+        return isRetryIfFailed(status);
+    }
+
+    private boolean isRetryIfFailed(GameStatus status) {
+        if (!FAILED.equals(status)) {
+            return false;
+        }
         String command = readController.readGameCommand();
-        service.executeGameCommand(command);
+        return service.executeGameCommand(command);
     }
 }

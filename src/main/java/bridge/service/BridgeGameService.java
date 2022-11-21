@@ -36,15 +36,17 @@ public class BridgeGameService {
         return bridgeGame.isPlaying();
     }
 
-    public void executeGameCommand(String code) {
+    public boolean executeGameCommand(String code) {
         Command command = Command.from(code);
-        executeIfRetry(command);
+        return executeIfRetry(command);
     }
 
-    private void executeIfRetry(Command command) {
+    private boolean executeIfRetry(Command command) {
         if (RETRY.equals(command)) {
             bridgeGame.retry();
+            return true;
         }
+        return false;
     }
 
     public ResultDto getResultDto(GameStatus status) {
