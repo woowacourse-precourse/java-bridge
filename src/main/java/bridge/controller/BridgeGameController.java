@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.BridgeSize;
 import bridge.domain.MoveCommand;
+import bridge.domain.ReGameCommand;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -26,11 +27,27 @@ public class BridgeGameController {
 
     private void operate() {
         do {
-            String nextMove = insertMoveCommand();
-            bridgeGame.move(nextMove);
-            bridgeGame.drawBridge(nextMove);
-            outputView.printMap(bridgeGame.printBridge());
+            boolean correct = playGame();
+            insertReGameCommand();
         } while (true);
+    }
+
+    private String insertReGameCommand() {
+        try {
+            String command = inputView.readGameCommand();
+            return new ReGameCommand(command).getCommand();
+        } catch (IllegalArgumentException ie) {
+            outputView.printErrorMessage(ie.getMessage());
+            return insertReGameCommand();
+        }
+    }
+
+    private boolean playGame() {
+        String nextMove = insertMoveCommand();
+        bridgeGame.move(nextMove);
+        bridgeGame.drawBridge(nextMove);
+        outputView.printMap(bridgeGame.printBridge());
+        return bridgeGame.isCorrect(nextMove);
     }
 
     private String insertMoveCommand() {
