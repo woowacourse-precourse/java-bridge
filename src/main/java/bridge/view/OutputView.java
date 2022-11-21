@@ -134,9 +134,20 @@ public class OutputView {
         printMessage(Messages.VIEW_END);
         print(convertMapToString());
 
-        printMessageWithValue(Messages.VIEW_END_WIN_OR_LOSE, stageResult.toString());
-        printMessageWithValue(Messages.VIEW_END_TRY_COUNT, String.valueOf(BridgeStage.currentStage()));
+        printSuccessOrFail(stageResult);
+        printMessageWithValue(Messages.VIEW_END_TRY_COUNT, String.valueOf(BridgeStage.getRetry()));
     }
+
+    public void printSuccessOrFail(StageResult result) {
+        if(result == StageResult.FAIL) {
+            printMessageWithValue(Messages.VIEW_END_WIN_OR_LOSE, Unit.FAIL.getCommand());
+        }
+
+        if(result == StageResult.SUCCESS) {
+            printMessageWithValue(Messages.VIEW_END_WIN_OR_LOSE, Unit.SUCCESS.getCommand());
+        }
+    }
+
 
     public void printMessage(Messages message) {
         System.out.println(message.getMessage());

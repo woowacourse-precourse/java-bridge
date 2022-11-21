@@ -12,6 +12,10 @@ public class BridgeStage {
         retry++;
     }
 
+    public static int getRetry() {
+        return retry;
+    }
+
     public static int currentStage() {
         return stage;
     }
