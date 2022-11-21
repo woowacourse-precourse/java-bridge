@@ -1,6 +1,7 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.regex.Pattern;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -14,6 +15,14 @@ public class InputView {
     }
 
     private void validBridgeSize(String inputBridgeSize) {
+        if (!Pattern.matches("^[0-9]*$", inputBridgeSize)) {
+            throw new IllegalArgumentException();
+        }
+
+        int bridgeSize = Integer.parseInt(inputBridgeSize);
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
