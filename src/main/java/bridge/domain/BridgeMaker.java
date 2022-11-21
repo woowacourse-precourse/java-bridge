@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BridgeMaker {
@@ -26,12 +27,9 @@ public class BridgeMaker {
     }
 
     public String convertNumberToDirection(int generatedNum) {
-        if (generatedNum == DOWN_NUMBER) {
-            return DOWN;
-        }
-        if (generatedNum == UP_NUMBER) {
-            return UP;
-        }
-        throw new IllegalArgumentException("[ERROR] 랜덤으로 생성된 숫자에 오류가 있습니다.");
+        return Arrays.stream(Direction.values())
+                .filter(d -> d.getNum() == generatedNum)
+                .findFirst().get()
+                .getValue();
     }
 }
