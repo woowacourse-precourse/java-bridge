@@ -15,11 +15,10 @@ public class GamePlayer {
         try {
             bridgeGameController.setUpGame();
             move();
+            bridgeGameController.printResult();
         } catch (IllegalArgumentException illegalArgumentException) {
             bridgeGameController.exceptionalGameEnd(illegalArgumentException.getMessage());
-            return;
         }
-        bridgeGameController.printResult();
     }
 
     public void move() {

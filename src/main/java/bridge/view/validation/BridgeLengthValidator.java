@@ -23,12 +23,16 @@ public class BridgeLengthValidator {
     private static void checkNumberRange(String input) {
         try {
             int length = Integer.parseInt(input);
-            if(length < MIN_BRIDGE_LENGTH || length > MAX_BRIDGE_LENGTH) {
-                throw new IllegalArgumentException(
-                        String.format(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString(),
-                        MIN_BRIDGE_LENGTH, MAX_BRIDGE_LENGTH));
-            }
+            isInputMinBetweenMax(length);
         } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString(),
+                            MIN_BRIDGE_LENGTH, MAX_BRIDGE_LENGTH));
+        }
+    }
+
+    private static void isInputMinBetweenMax(int length) {
+        if(length < MIN_BRIDGE_LENGTH || length > MAX_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString(),
                             MIN_BRIDGE_LENGTH, MAX_BRIDGE_LENGTH));
