@@ -1,6 +1,6 @@
 package bridge.enums;
 
-public enum GameResult {
+public enum RoundResult {
     SUCCESS,
     FAIL
 }
