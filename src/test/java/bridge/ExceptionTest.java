@@ -37,4 +37,19 @@ public class ExceptionTest {
         assertThatCode(() -> Exception.validateMoving("U"))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("R, Q 이외의 알파벳 입력 시 예외 발생")
+    @Test
+    void occurException() {
+        assertThatThrownBy(() -> Exception.validateGameCommand("U"))
+                .hasMessageContaining("[ERROR] 잘못된 입력입니다. R과 Q중 하나를 입력해주세요.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("R 혹은 Q가 입력된다면 예외가 발생하지 않음")
+    @Test
+    void notoccurException() {
+        assertThatCode(() -> Exception.validateGameCommand("R"))
+                .doesNotThrowAnyException();
+    }
 }
