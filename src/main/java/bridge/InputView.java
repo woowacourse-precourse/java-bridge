@@ -13,10 +13,15 @@ public class InputView {
     public int readBridgeSize() {
         try {
             String string = Console.readLine();
-            return Integer.parseInt(string);
+            int result = Integer.parseInt(string);
+            if (result < 1) {
+                OutputView.String("[ERROR] 입력된 값이 1보다 작습니다.");
+                throw new IllegalArgumentException("[ERROR] 입력된 값이 1보다 작습니다.");
+            }
+            return result;
         } catch (NumberFormatException e) {
-            OutputView.String("[ERROR] 입력된 값이 숫자가 아닙니다.");
-            throw new IllegalArgumentException("[ERROR] 입력된 값이 숫자가 아닙니다.");
+            OutputView.String("[ERROR] 입력된 값이 정수가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 정수가 아닙니다.");
         }
     }
 
