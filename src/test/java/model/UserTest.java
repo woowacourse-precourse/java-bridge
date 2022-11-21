@@ -1,11 +1,10 @@
 package model;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import bridge.BridgeMaker;
+import bridge.BridgeDirect;
+import bridge.BridgeStatus;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,25 +39,29 @@ class UserTest {
     void updateUsersInput(){
         //given
         User user = new User();
-        String userInput = BridgeMaker.UP_STAIRS;
         //when
-        user.updateUsersInputs(userInput);
+        user.updateUsersProgress(BridgeDirect.UP, BridgeStatus.CROSS_STATUS);
         //the
-        List<String> userInputs = user.getUserInputs();
-        assertThat(userInputs.size()).isEqualTo(1);
-        assertThat(userInputs.get(userInputs.size() - 1)).isEqualTo(BridgeMaker.UP_STAIRS);
+        List<UserProgress> userProgress = user.getUserProgress();
+        assertThat(userProgress.size()).isEqualTo(1);
+        assertThat(userProgress.get(0).getDirect()).isEqualTo(BridgeDirect.UP);
+        assertThat(userProgress.get(0).getStatus()).isEqualTo(BridgeStatus.CROSS_STATUS);
     }
 
     @Test
-    @DisplayName("[updateUsersStatus] 유저의 status(다리 건너기 성공여부 List) 업데이트 테스트")
-    void updateUsersStatus(){
+    @DisplayName("[setRetry] 재시작을 위한 유저상태 초기화 및 재시도 횟수 증가")
+    void setRetry() {
         //given
         User user = new User();
+        user.updateUsersProgress(BridgeDirect.UP, BridgeStatus.CROSS_STATUS);
+        user.updateStatus(UserStatus.END_STATUS);
         //when
-        user.updateUsersStatus(User.NOT_CROSS_STATUS);
-        //the
-        List<String> useStatus = user.getUsersStatus();
-        assertThat(useStatus.size()).isEqualTo(1);
-        assertThat(useStatus.get(useStatus.size() - 1)).isEqualTo(User.NOT_CROSS_STATUS);
+        user.setRetry();
+        //then
+        assertThat(user.getRetryCount()).isEqualTo(2);
+        assertThat(user.getUserProgress().size()).isEqualTo(0);
+        assertThat(user.getStatus()).isEqualTo(UserStatus.PLAYING_STATUS);
+        assertThat(user.getCommand()).isEqualTo(null);
     }
+
 }
