@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -10,10 +11,12 @@ public class BridgeGame {
     private final int bridgeSize;
     private final MoveResultJudgement moveResultJudgement;
     private int currentDistance = 0;
+    private BridgeMap bridgeMap = new BridgeMap();
+
     public BridgeGame(int readBridgeSize) {
         try {
             ValidationUtil.bridgeSizeValidation(readBridgeSize);
-        }catch (IllegalArgumentException err){
+        } catch (IllegalArgumentException err) {
             System.out.println(err);
         }
         this.bridgeSize = readBridgeSize;
@@ -29,7 +32,11 @@ public class BridgeGame {
      * @return
      */
     public boolean move(String moving) {
-        return moveResultJudgement.movedResult(moving,currentDistance);
+        if (moveResultJudgement.movedResult(moving, currentDistance)) {
+            currentDistance++;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -42,6 +49,14 @@ public class BridgeGame {
     }
 
     public boolean isGameComplete(String moving) {
-        return moveResultJudgement.isGameComplete(moving,currentDistance);
+        return moveResultJudgement.isGameComplete(moving, currentDistance);
+    }
+
+    public void createMap(String moving) {
+        bridgeMap.createMap(moveResultJudgement.movedResult(moving, currentDistance), moving);
+    }
+
+    public LinkedHashMap<String, List<String>> getBridgeMap() {
+        return bridgeMap.getMap();
     }
 }

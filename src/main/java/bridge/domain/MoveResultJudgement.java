@@ -11,10 +11,7 @@ public class MoveResultJudgement {
     }
 
     public boolean movedResult(String moving, int currentDistance) {
-        if (Objects.equals(moving, bridge.get(currentDistance))) {
-            return true;
-        }
-        return false;
+        return Objects.equals(moving, bridge.get(currentDistance));
     }
 
     public boolean isGameComplete(String moving, int currentDistance) {

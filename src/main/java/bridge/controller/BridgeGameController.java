@@ -16,12 +16,13 @@ public class BridgeGameController {
 
     public void gameStart() {
         while (shouldIMove(bridgeGame)) {
-            
+
         }
     }
 
     public boolean shouldIMove(BridgeGame bridgeGame) {
         String moving = inputView.readMoving();
+        bridgeGame.createMap(moving);
         if (bridgeGame.isGameComplete(moving)) {
             return false;
         }
