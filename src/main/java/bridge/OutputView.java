@@ -13,6 +13,31 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, int pos, boolean correct) {
+        printMapLine(bridge.subList(0, pos+1), "U", correct);
+        printMapLine(bridge.subList(0, pos+1), "D", correct);
+    }
+
+    private void printMapLine(List<String> bridge, String line, boolean correct) {
+        int lastIdx = bridge.size() - 1;
+
+        System.out.print("[ ");
+        for(int idx = 0; idx < lastIdx; idx++) {
+            System.out.printf("%s | ", onPath(line, bridge.get(idx), true));
+        }
+
+        System.out.printf("%s ]\n", onPath(line, bridge.get(lastIdx), correct));
+    }
+
+    private String onPath(String line, String cell, boolean correct) {
+        String ret = "O";
+        if(!correct) {
+            ret = "X";
+        }
+
+        if(line.equals(cell)) {
+            return ret;
+        }
+        return " ";
     }
 
     /**
