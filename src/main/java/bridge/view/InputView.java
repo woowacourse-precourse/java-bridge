@@ -1,6 +1,7 @@
 package bridge.view;
 
 
+import bridge.message.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -67,24 +68,24 @@ public class InputView {
     private static void validateInputNumber(String input){
         for (int i = 0; i < input.length(); i++) {
             if(!Character.isDigit(input.charAt(i))){
-                throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR.getMessage());
             }
         }
         int len = Integer.parseInt(input);
         if(len < 3 || len > 20){
-            throw new IllegalArgumentException("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_RETRY_INPUT_ERROR.getMessage());
         }
     }
 
     private static void validateMoveInput(String input){
         if(!(input.equals("U") || input.equals("D"))){
-            throw new IllegalArgumentException("[ERROR] U 또는 D만 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_MOVE_INPUT_ERROR.getMessage());
         }
     }
 
     private static void validateReStartInput(String input){
         if(!(input.equals("R") || input.equals("Q"))){
-            throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_RETRY_INPUT_ERROR.getMessage());
         }
     }
 
