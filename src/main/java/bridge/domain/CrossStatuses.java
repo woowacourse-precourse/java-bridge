@@ -14,8 +14,8 @@ public class CrossStatuses {
         return crossStatuses.indexOf(CrossStatus.YET);
     }
 
-    public void updateStatus(final CrossStatus crossedStatus, final int uncrossedIndex) {
+    public CrossStatus updateStatus(final CrossStatus crossedStatus, final int uncrossedIndex) {
         crossStatuses.set(uncrossedIndex, crossedStatus);
-        System.out.println(crossStatuses);
+        return crossedStatus;
     }
 }

@@ -11,12 +11,12 @@ public class Blocks {
         this.blocks = blocks;
     }
 
-    public void moveNextBlock(final String inputBlock, final CrossStatuses crossStatuses) {
+    public CrossStatus moveNextBlock(final String inputBlock, final CrossStatuses crossStatuses) {
         int uncrossedIndex = crossStatuses.findUncrossedIndex();
-        crossStatuses.updateStatus(updateBlocks(uncrossedIndex, inputBlock), uncrossedIndex);
+        return crossStatuses.updateStatus(selectBlock(uncrossedIndex, inputBlock), uncrossedIndex);
     }
 
-    private CrossStatus updateBlocks(final int uncrossedIndex, final String inputBlock) {
+    private CrossStatus selectBlock(final int uncrossedIndex, final String inputBlock) {
         BlockStatus blockStatus = blocks.get(uncrossedIndex);
         if (blockStatus.contains(inputBlock)) {
             return CrossStatus.SUCCESS;

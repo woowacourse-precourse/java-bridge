@@ -25,7 +25,6 @@ public class BridgeGameController {
     }
 
     private void requestBlock() {
-        checkFinishGame();
         try {
             bridgeGameService.move(inputView.readMoving());
             responseMovingResult();
@@ -37,9 +36,6 @@ public class BridgeGameController {
 
     private void responseMovingResult() {
 
-    }
-
-    private void checkFinishGame() {
     }
 
     private String requestBridgeSize() {
