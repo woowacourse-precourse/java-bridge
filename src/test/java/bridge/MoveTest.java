@@ -1,2 +1,4 @@
-package bridge;public class MoveTest {
+package bridge;
+
+public class MoveTest {
 }
