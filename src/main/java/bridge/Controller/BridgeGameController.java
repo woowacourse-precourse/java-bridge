@@ -39,7 +39,6 @@ public class BridgeGameController {
             outputView.setUpAndDownSide(userMove, bridge.get(i));
             boolean isCorrect = bridgeGame.move(bridge, userMove);
             outputView.printMap();
-            outputView.printEmptyLine();
             if (!isCorrect) {
                 if (!selectQuitOrRestart(lengthOfBridge)) break;
             }

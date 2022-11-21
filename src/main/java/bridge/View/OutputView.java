@@ -32,6 +32,7 @@ public class OutputView {
     public void printMap() {
         printUpSideMap();
         printDownSideMap();
+        printEmptyLine();
     }
 
     public void printUpSideMap() {
