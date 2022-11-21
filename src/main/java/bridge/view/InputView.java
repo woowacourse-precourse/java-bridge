@@ -50,7 +50,10 @@ public class InputView {
         String retryCheck = Console.readLine();
         validateRetryCheckValue(retryCheck);
 
-        return retryCheck.equals(QUIT);
+        if (retryCheck.equals(QUIT)) {
+            return false;
+        }
+        return true;
     }
 
     private static void validateBridgeSize(String size) {
