@@ -93,4 +93,23 @@ public class BridgeGameTest {
         //then
         assertThat(lists.get(0)).isEqualTo(List.of("O"));
     }
+    @DisplayName("재시도 R일 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"R"})
+    void retryR(String input) {
+        //given
+        List<List<String>> tempMap = new ArrayList<>(2);
+        tempMap.add(new ArrayList<>());
+        tempMap.add(new ArrayList<>());
+        List<List<String>> userMap = new ArrayList<>(2);
+        userMap.add(List.of("O"));
+        userMap.add(List.of(" "));
+        bridge.BridgeGame bridgeGame = new bridge.BridgeGame(3);
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        //when
+        System.setIn(in);
+        List<List<String>> lists = bridgeGame.retry(tempMap,userMap);
+        //then
+        assertThat(lists).isEqualTo(tempMap);
+    }
 }
