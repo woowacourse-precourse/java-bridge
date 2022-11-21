@@ -77,4 +77,8 @@ public class BridgeGame {
     public String getLastMoving() {
         return lastMoving;
     }
+
+    private void setLastMoving(String movingResult) {
+        lastMoving = movingResult;
+    }
 }
