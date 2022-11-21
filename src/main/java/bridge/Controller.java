@@ -95,6 +95,9 @@ public class Controller {
             if (bridgeGame.retry(command)) {
                 run();
             }
+            if (!bridgeGame.retry(command)) {
+                outputView.printResult(movingRoute, "실패", gameCount);
+            }
         }
     }
 
