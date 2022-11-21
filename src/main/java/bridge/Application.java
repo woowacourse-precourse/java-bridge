@@ -11,12 +11,11 @@ public class Application {
         int totalAttempt = 1;
 
         bridgeGame.startGame(); // 시작 문구
-        int bridgeSize = 0;
+        int bridgeSize;
         while(true){
-            System.out.println("다리의 길이를 입력해주세요.");
-            bridgeSize = new InputView().readBridgeSize();
+            bridgeSize = new OutputView().inputStringCheckMessage();
             System.out.println();
-            if(!new OutputView().lenCheckMessage(bridgeSize)){
+            if (!new OutputView().lenCheckMessage(bridgeSize)) {
                 break;
             }
         }
@@ -25,7 +24,6 @@ public class Application {
         boolean retryCheck;
         while(true) {
             retryCheck = bridgeGame.cycleBridge(answerBridge, totalAttempt, " \n ");
-
             if(retryCheck){
                 totalAttempt++;
             }
@@ -33,5 +31,6 @@ public class Application {
                 break;
             }
         }
+
     }
 }
