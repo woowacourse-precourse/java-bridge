@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.view.InputView;
+
 import static bridge.view.OutputView.*;
 
 /**
@@ -7,11 +9,17 @@ import static bridge.view.OutputView.*;
  */
 public class BridgeGame {
 
+    private BridgeMaker bridgeMaker;
+    private Bridge bridge;
+
     /**
      * 게임을 시작할 때 및 전체적인 게임을 진행하는 메서드
      */
     public void start() {
         printStart();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = Bridge.of(bridgeMaker.makeBridge(InputView.readBridgeSize()));
+
     }
 
     /**
