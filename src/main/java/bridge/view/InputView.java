@@ -48,14 +48,28 @@ public class InputView {
 
     private void validateBridgeSize(String inputBridgeSize) {
         try {
+            validateBridgeSizeType(inputBridgeSize);
             int size = Integer.parseInt(inputBridgeSize);
-            if (size < Constant.BRIDGE_MIN_SIZE.getValue() || size > Constant.BRIDGE_MAX_SIZE.getValue()) {
-                throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE_RANGE.getString());
-            }
+            validateBridgeSizeRange(size);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE_TYPE.getString());
         }
     }
+
+    private void validateBridgeSizeType(String inputBridgeSize) {
+        try {
+            Integer.parseInt(inputBridgeSize);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE_TYPE.getString());
+        }
+    }
+
+    private void validateBridgeSizeRange(int size) {
+        if (size < Constant.BRIDGE_MIN_SIZE.getValue() || size > Constant.BRIDGE_MAX_SIZE.getValue()) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE_RANGE.getString());
+        }
+    }
+
 
     private void validateMoving(String moving) {
         try {
