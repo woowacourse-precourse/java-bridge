@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum Direction {
     U("U", 1),

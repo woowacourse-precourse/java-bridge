@@ -1,7 +1,8 @@
-package bridge;
+package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.Map;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

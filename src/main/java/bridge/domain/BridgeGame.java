@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.List;
 
@@ -11,7 +11,6 @@ public class BridgeGame {
     private int trial;
 
     public BridgeGame(List<String> bridge) {
-        System.out.println(bridge);
         this.bridge = bridge;
         this.succeeds = false;
         this.trial = 1;
