@@ -33,9 +33,6 @@ public class InputView {
         return moveStep;
     }
     public String readGameCommand() {
-        OrderView orderView = new OrderView();
-
-        System.out.println(orderView.EXIT_OR_CONTINUE);
         String pickRestart = Console.readLine();
         return pickRestart;
     }

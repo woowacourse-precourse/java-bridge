@@ -18,11 +18,19 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridgeData) {
-        while(true){
+        while(orderView.checkRestart){
             orderView.retryCount++;
             stepBridge(bridgeData);
-            if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) break;
+            if(exitLoop().equals("Q")) {break;}
         }
+    }
+
+    private String exitLoop() {
+        String exitOrContinue = "";
+        if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) {
+            exitOrContinue = orderView.continueOrExit();
+        }
+        return exitOrContinue;
     }
 
     private void stepBridge(List<String> bridgeData) {
