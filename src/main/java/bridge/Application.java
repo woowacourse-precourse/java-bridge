@@ -21,6 +21,8 @@ public class Application {
             move = InputView.readMoving();
             success = BridgeGame.move(bridge, move, i);
             OutputView.printMap(BridgeGame.getUp_bridge(), BridgeGame.getDown_bridge());
+            if(success == false)
+                break;
         }
         // TODO: 프로그램 구현
     }
