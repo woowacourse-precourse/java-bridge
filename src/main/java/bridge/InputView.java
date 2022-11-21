@@ -5,6 +5,12 @@ package bridge;
  */
 public class InputView {
 
+    private InputValidator validator;
+
+    public InputView() {
+        this.validator = new InputValidator();
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
