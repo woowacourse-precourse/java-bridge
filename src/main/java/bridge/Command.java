@@ -34,4 +34,7 @@ public enum Command {
         this.expression.apply(bridgeGame);
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
 }

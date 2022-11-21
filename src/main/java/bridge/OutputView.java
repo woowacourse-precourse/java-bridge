@@ -54,10 +54,11 @@ public class OutputView {
 
     public void printBegin() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        newLine();
     }
 
     public void askDirection() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(String.format("이동할 칸을 선택해주세요. (위: U, 아래: D)", Direction.UP.getSymbol(), Direction.DOWN.getSymbol()));
     }
 
     public void printHistory(List<Round> history) {
