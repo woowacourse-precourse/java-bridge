@@ -2,6 +2,8 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.model.Command;
+import bridge.model.Move;
 import bridge.util.InputCommandValidator;
 import bridge.util.InputMovingValidator;
 import bridge.util.InputSizeValidator;
@@ -11,8 +13,10 @@ import bridge.util.InputSizeValidator;
  */
 public class InputView {
     private static final String MESSAGE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String MESSAGE_INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String MESSAGE_INPUT_RESTART = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String MESSAGE_INPUT_MOVING = String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)",
+            Move.UP.getCommand(), Move.DOWN.getCommand());
+    private static final String MESSAGE_INPUT_RESTART = String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)",
+            Command.RETRY.getCommand(), Command.QUIT.getCommand());
 
     /**
      * 다리의 길이를 입력받는다.

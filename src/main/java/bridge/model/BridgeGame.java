@@ -9,6 +9,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final static String STEP_EMPTY = " ";
+    private final static String STEP_CORRECT = "O";
+    private final static String STEP_WRONG = "X";
     List<String> answerMove;
     List<String> playerMove;
     GameStatus status;
@@ -65,12 +68,12 @@ public class BridgeGame {
 
     private String checkEachStep(String way, String playerStep, String answerStep) {
         if (!way.equals(playerStep)) {
-            return " ";
+            return STEP_EMPTY;
         }
         if (!answerStep.equals(playerStep)) {
             this.status = GameStatus.FAIL;
-            return "X";
+            return STEP_WRONG;
         }
-        return "O";
+        return STEP_CORRECT;
     }
 }
