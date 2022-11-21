@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,22 +23,18 @@ public class BridgeMaker {
 
     /**
      * [제공된 메서드]
+     *
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return generateBridgeList(size);
-    }
-
-    private List<String> generateBridgeList(int size) {
         List<String> bridge = new ArrayList<>();
         for (var i = 0; i < size; i++) {
-            int direction = bridgeNumberGenerator.generate();
-            if (direction == 1) {
+            if (bridgeNumberGenerator.generate() == 1) {
                 bridge.add(UP);
-            } else if (direction == 0) {
-                bridge.add(DOWN);
+                continue;
             }
+            bridge.add(DOWN);
         }
         return bridge;
     }
