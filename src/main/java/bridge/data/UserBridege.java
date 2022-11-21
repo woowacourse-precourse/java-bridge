@@ -8,14 +8,16 @@ public class UserBridege {
     private List<String> downBridge = new ArrayList<>();
 
     public void makeUpBridge(String userInput, boolean correct) {
-       
+       upBridge.add(compareInput(userInput, "U", correct));
     }
 
-    private String compareInput(String upserInput, String standard, boolean correct) {
-        if (standard.equals(upserInput) && correct == true) {
+    
+
+    private String compareInput(String userInput, String standard, boolean correct) {
+        if (standard.equals(userInput) && correct == true) {
             return "O";
         }
-        if (standard.equals(upserInput) && correct == false) {
+        if (standard.equals(userInput) && correct == false) {
             return "X";
         }
         return " ";
