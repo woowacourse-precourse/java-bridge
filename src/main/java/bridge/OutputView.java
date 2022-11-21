@@ -14,23 +14,31 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, int cnt, boolean correct) {
+        showUp(bridge, cnt, correct);
+        showDown(bridge, cnt, correct);
+        System.out.println();
+    }
+
+    private static void showUp(List<String> bridge, int cnt, boolean correct) {
         System.out.print("[");
-        for(int i = 0 ; i < cnt ; i++) {
+        for(int i = 0; i < cnt; i++) {
             if(i != cnt - 1 && bridge.get(i).equals("U")) System.out.print(" O |");
             if(i != cnt - 1 && bridge.get(i).equals("D")) System.out.print("   |");
             if(i == cnt - 1 && bridge.get(i).equals("U") && correct) System.out.println(" O ]");
             if(i == cnt - 1 && bridge.get(i).equals("U") && !correct) System.out.println(" X ]");
             if(i == cnt - 1 && bridge.get(i).equals("D")) System.out.println("   ]");
         }
+    }
+
+    private static void showDown(List<String> bridge, int cnt, boolean correct) {
         System.out.print("[");
-        for(int i = 0 ; i < cnt ; i++) {
+        for(int i = 0; i < cnt; i++) {
             if(i != cnt - 1 && bridge.get(i).equals("D")) System.out.print(" O |");
             if(i != cnt - 1 && bridge.get(i).equals("U")) System.out.print("   |");
             if(i == cnt - 1 && bridge.get(i).equals("D") && correct) System.out.println(" O ]");
             if(i == cnt - 1 && bridge.get(i).equals("D") && !correct) System.out.println(" X ]");
             if(i == cnt - 1 && bridge.get(i).equals("U")) System.out.println("   ]");
         }
-        System.out.println();
     }
 
     /**
