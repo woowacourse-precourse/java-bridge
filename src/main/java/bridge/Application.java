@@ -8,7 +8,7 @@ public class Application {
 
     public static void main(String[] args) {
         GameController gameController =
-                new GameController(new InputView(), new OutputView(), new BridgeGame());
+                new GameController(new InputView(), new OutputView());
         try {
             gameController.start();
         } catch (RuntimeException exception) {

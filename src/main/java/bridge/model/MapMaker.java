@@ -3,7 +3,7 @@ package bridge.model;
 import java.util.Stack;
 
 public class MapMaker {
-    MapElement mapElement;
+    private MapElement mapElement;
     private int index;
 
 

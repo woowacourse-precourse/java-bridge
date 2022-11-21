@@ -7,21 +7,20 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
-    TryCount tryCount;
-    InputView inputView;
-    OutputView outputView;
-    BridgeGame bridgeGame;
+    private final TryCount tryCount;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private BridgeGame bridgeGame;
 
-    public GameController(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
-        this.tryCount = new TryCount();
+    public GameController(InputView inputView, OutputView outputView) {
+        tryCount = new TryCount();
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridgeGame = bridgeGame;
     }
 
     public void start() {
         outputView.printStart();
-        makeBridge();
+        initBridgeGame();
         while (!bridgeGame.isEndOfBridge()) {
             outputView.printMap(crossBridge());
             if (failToMove()) {
@@ -31,10 +30,10 @@ public class GameController {
         outputView.printResult(bridgeGame.isEndOfBridge(), tryCount.toString());
     }
 
-    private void makeBridge() {
+    private void initBridgeGame() {
         outputView.AskBridgeLength();
         int bridgeSize = inputView.readBridgeSize();
-        bridgeGame.makeBridge(bridgeSize, new BridgeRandomNumberGenerator());
+        bridgeGame = new BridgeGame(bridgeSize, new BridgeRandomNumberGenerator());
     }
 
     private String crossBridge() {
@@ -60,7 +59,7 @@ public class GameController {
         return gameCommand.equals("Q");
     }
 
-    public void doRetry() {
+    private void doRetry() {
         try {
             bridgeGame.retry();
         } catch (IllegalStateException exception) {
