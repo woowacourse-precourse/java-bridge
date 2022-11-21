@@ -59,7 +59,8 @@ public class BridgeMoveProcess {
         return GameState.DOWN_STATEMENT;
     }
 
-    public static List<String> getMoving() {
-        return moving;
+    public static String findByIndex(int index) {
+        return moving.get(index);
     }
+
 }

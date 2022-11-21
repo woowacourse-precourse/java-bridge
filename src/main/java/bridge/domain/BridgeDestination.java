@@ -29,7 +29,7 @@ public class BridgeDestination {
 
     public void setQuit(int bridgeSize, int idx, int gameCount) {
         final int final_idx=idx-1;
-        int nowIndex = convertNowIndex(bridgeMoveProcess.getMoving().get(final_idx));
+        int nowIndex = convertNowIndex(bridgeMoveProcess.findByIndex(final_idx));
         BridgePrinting resultBridgePrinting = new BridgePrinting(upState, downState, nowIndex);
         if (bridgeSize == idx && !BridgePrinting.isMoveStop()) {
             outputView.printResult(gameCount, resultBridgePrinting, true);
