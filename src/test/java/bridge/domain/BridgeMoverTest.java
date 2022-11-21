@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class BridgeMoverTest {
-    BridgeMover bridgeMover = new BridgeMover(List.of(UPPER_SIDE, LOWER_SIDE, UPPER_SIDE, LOWER_SIDE, UPPER_SIDE));
+    BridgeMover bridgeMover = new BridgeMover(List.of(UPPER_SIDE, LOWER_SIDE, UPPER_SIDE));
 
     @DisplayName("이동 방향이 맞으면 이동하고 아니면 멈춘 후, 현재 게임 상태를 반환한다.")
     @Nested
@@ -23,7 +23,6 @@ class BridgeMoverTest {
         @DisplayName("방향이 맞고, 아직 갈 길이 남은 경우 - ON_WAY 반환")
         @Test
         void should_ReturnOnWay_When_InputCorrectMoving() {
-            BridgeMover bridgeMover = new BridgeMover(List.of(UPPER_SIDE, LOWER_SIDE, UPPER_SIDE, LOWER_SIDE, UPPER_SIDE));
             String moving = UPPER_SIDE;
             GameStatus gameStatusAfterMoving = bridgeMover.go(moving);
             assertThat(gameStatusAfterMoving).isEqualTo(ON_WAY);
@@ -32,7 +31,6 @@ class BridgeMoverTest {
         @DisplayName("방향이 틀린 경우 - FAIL 반환")
         @Test
         void should_ReturnFail_When_InputIncorrectMoving() {
-            BridgeMover bridgeMover = new BridgeMover(List.of(UPPER_SIDE, LOWER_SIDE, UPPER_SIDE, LOWER_SIDE, UPPER_SIDE));
             String moving = LOWER_SIDE;
             GameStatus gameStatusAfterMoving = bridgeMover.go(moving);
             assertThat(gameStatusAfterMoving).isEqualTo(FAIL);
@@ -41,7 +39,6 @@ class BridgeMoverTest {
         @DisplayName("방향이 맞고, 다리를 끝까지 건넌 경우 - END 반환")
         @Test
         void should_ReturnEnd_When_InputCorrectMovingAndCrossBridgeCompletely() {
-            BridgeMover bridgeMover = new BridgeMover(List.of(UPPER_SIDE, LOWER_SIDE, UPPER_SIDE));
             bridgeMover.go(UPPER_SIDE);
             bridgeMover.go(LOWER_SIDE);
             String moving = UPPER_SIDE;
@@ -60,8 +57,6 @@ class BridgeMoverTest {
             bridgeMover.go(UPPER_SIDE);
             bridgeMover.go(LOWER_SIDE);
             bridgeMover.go(UPPER_SIDE);
-            bridgeMover.go(LOWER_SIDE);
-            bridgeMover.go(UPPER_SIDE);
             boolean isCrossCompletely = bridgeMover.isCrossCompletely();
             assertThat(isCrossCompletely).isTrue();
         }
@@ -69,8 +64,6 @@ class BridgeMoverTest {
         @DisplayName("현재 위치가 다리의 길이보다 작을 때")
         @Test
         void should_ReturnFalse_When_IsCrossingYet() {
-            bridgeMover.go(UPPER_SIDE);
-            bridgeMover.go(LOWER_SIDE);
             bridgeMover.go(UPPER_SIDE);
             bridgeMover.go(LOWER_SIDE);
             bridgeMover.go(LOWER_SIDE);
