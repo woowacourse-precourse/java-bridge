@@ -87,7 +87,7 @@ public class InputView {
     }
 
     private boolean validateGameCommand(String inputCommand) {
-        if (inputCommand.equals(COMMAND_GAME_RETRY) || inputCommand.equals(COMMAND_GAME_EXIT)) {
+        if (inputCommand.equals(COMMAND_GAME_RETRY) || inputCommand.equals(COMMAND_GAME_QUIT)) {
             return true;
         }
         throw new IllegalArgumentException();

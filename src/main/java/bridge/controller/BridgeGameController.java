@@ -10,7 +10,7 @@ import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.config.BridgeGameCommand.COMMAND_GAME_EXIT;
+import static bridge.config.BridgeGameCommand.COMMAND_GAME_QUIT;
 import static bridge.config.BridgeGameCommand.COMMAND_GAME_RETRY;
 
 public class BridgeGameController {
@@ -66,16 +66,11 @@ public class BridgeGameController {
             bridgeGame.retry();
             return;
         }
-        if (command.equals(COMMAND_GAME_EXIT)) {
+        if (command.equals(COMMAND_GAME_QUIT)) {
             isPlaying = false;
         }
     }
 
-    /**
-     * 현재까지 이동해온 다리가 정답의 일부분인지 확인한다.
-     *
-     * @return 정답의 일부분이라면 true
-     */
     private boolean checkCurrentState() {
         return bridgeGame.checkCurrentState();
     }
