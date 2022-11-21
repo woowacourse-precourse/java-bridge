@@ -27,6 +27,12 @@ public class BridgeException {
         }
     }
 
+    public void checkBridgeLengthAboutOnlyNumber(String number) {
+        if(!number.matches(NUMBER_REGEX)) {
+            throw new IllegalArgumentException("다리 길이는 숫자로만 입력해주세요. ");
+        }
+    }
+
 
 
 
