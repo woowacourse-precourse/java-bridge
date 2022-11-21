@@ -14,6 +14,10 @@ import bridge.service.GameChecker;
 
 public class AppCofig {
 
+    public static BridgeGameController createBridgeGameController() {
+        return new BridgeGameController(createBridgeGame(), createGameChecker());
+    }
+
     public static GameChecker createGameChecker() {
         return new GameChecker(createGameOverChecker(), createGameWinChecker());
     }
