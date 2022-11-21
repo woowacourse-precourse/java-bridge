@@ -27,8 +27,8 @@ public class InputView {
     }
 
     private void validateBridgeSizeType(String input) {
-        if (input.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException("[ERROR]");
+        if (!input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }
 
