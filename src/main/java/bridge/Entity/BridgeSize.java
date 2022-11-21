@@ -8,9 +8,6 @@ public class BridgeSize {
 
     private final String size;
 
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
-
     public BridgeSize(String size) {
         this.size = size;
     }

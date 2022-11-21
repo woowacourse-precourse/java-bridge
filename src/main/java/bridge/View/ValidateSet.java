@@ -1,0 +1,10 @@
+package bridge.View;
+
+public class ValidateSet extends InputValidate {
+
+    public void Bridge(String size) {
+        IsCorrectFormatBridgeSize(size);
+        IsOverRangeBridgeSize(size);
+        IsNoneInputBridgeSize(size);
+    }
+}

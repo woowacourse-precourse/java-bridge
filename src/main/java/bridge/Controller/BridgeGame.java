@@ -1,10 +1,7 @@
 package bridge.Controller;
 
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Entity.BridgeMaker;
-import bridge.Entity.BridgeSize;
-import bridge.Entity.RandomBridge;
 import bridge.Service.GenerateBridgeSize;
 import bridge.View.InputView;
 
@@ -17,7 +14,6 @@ public class BridgeGame {
     public void start() {
         GenerateBridgeSize generateBridgeSize = new GenerateBridgeSize();
         int size = generateBridgeSize.getBridgeSize();
-
 
     }
 
