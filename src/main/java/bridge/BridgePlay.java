@@ -8,7 +8,7 @@ public class BridgePlay {
             isValidMove(moveCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            moveCommand = inputView.readMoving();
+            moveCommand = requestReadMoving();
         }
         return moveCommand;
     }
