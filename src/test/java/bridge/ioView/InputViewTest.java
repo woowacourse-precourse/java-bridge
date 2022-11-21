@@ -34,10 +34,10 @@ class InputViewTest extends NsTest {
     @DisplayName("움직임입력_U나_D아님")
     @Test
     void 움직임입력_U나_D아님() {
-        assertSimpleTest(() -> {
-            runException("20","U","D","u");
+        assertRandomNumberInRangeTest(() -> {
+            run("4", "U", "D", "U", "d");
             assertThat(output()).contains(ERROR_MESSAGE);
-        });
+        }, 1, 0, 1, 0);
     }
 
     @DisplayName("게임명령어입력_R이나_Q아님")
