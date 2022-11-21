@@ -41,15 +41,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String s = Console.readLine();
+        try {
+            String s = Console.readLine();
+            return validateMove(s);
+        } catch (IllegalArgumentException e) {
+            return readMoving();
+        }
+    }
+
+    public String validateMove(String s) {
         if (!(s.equals("U") || s.equals("D"))) {
             System.out.println(INVALID_MOVE.returnMessage());
             throw new IllegalArgumentException();
         }
         return s;
     }
-
-
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
