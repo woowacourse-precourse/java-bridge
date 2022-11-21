@@ -54,7 +54,7 @@ public class BoilerPlates {
 		System.out.println("게임 성공 여부: 성공");
 		System.out.println("총 시도한 횟수: "+gameCount);
 	}
-	public static void printFailedUp (String mapU,String mapD,int gameCount){
+	public static void printFailedUp (String mapU,String mapD){
 
 		if(mapU.length() >3){
 			System.out.println(mapU + "| X ]");
@@ -65,7 +65,7 @@ public class BoilerPlates {
 			System.out.println(mapD + "   ]");
 		}
 	}
-	public static void printFailedDown (String mapU,String mapD,int gameCount){
+	public static void printFailedDown (String mapU,String mapD){
 		if(mapU.length() >3){
 			System.out.println(mapU + "|   ]");
 			System.out.println(mapD + "| X ]");
@@ -75,7 +75,7 @@ public class BoilerPlates {
 			System.out.println(mapD + " X ]");
 		}
 	}
-	public static void printResultUp (String mapU,String mapD,int gameCount){
+	public static void printResultUp (String mapU,String mapD){
 
 		if(mapU.length() >3){
 			System.out.println(mapU + "| O ]");
@@ -86,7 +86,7 @@ public class BoilerPlates {
 			System.out.println(mapD + "   ]");
 		}
 	}
-	public static void printResultDown (String mapU,String mapD,int gameCount){
+	public static void printResultDown (String mapU,String mapD){
 		if(mapU.length() >3){
 			System.out.println(mapU + "|   ]");
 			System.out.println(mapD + "| O ]");

@@ -27,27 +27,49 @@ public class BridgeGame {
     }
 
     public void bridgeCheck() {
-        if (Objects.equals(this.bridge,this.currentCoordinate)){
-           bridgeShape.printResultMap(currentCoordinate,gameCount);
-           bridgeShape.printFinalResult(currentCoordinate,gameCount);
-           this.completeBridge = true;
-           return;
-        }
-       if (!Objects.equals(this.bridge.get(bridgeCount), this.currentCoordinate.get(bridgeCount))) {
-           bridgeShape.printFailedMap(currentCoordinate,bridgeCount);
-           this.gameOver = true;
-           return;
-       }
+        if (isCompleteBridge())
+            return;
+        if (isGameOver())
+            return;
         bridgeShape.printMap(bridgeCount, currentCoordinate);
         bridgeCount += 1;
     }
 
+    private boolean isGameOver() {
+        if (!Objects.equals(this.bridge.get(bridgeCount), this.currentCoordinate.get(bridgeCount))) {
+           bridgeShape.printFailedMap(currentCoordinate,bridgeCount);
+           this.gameOver = true;
+            return true;
+       }
+        return false;
+    }
+
+    private boolean isCompleteBridge() {
+        if (Objects.equals(this.bridge,this.currentCoordinate)){
+           bridgeShape.printResultMap(currentCoordinate,gameCount);
+           bridgeShape.printFinalResult(currentCoordinate,gameCount);
+           this.completeBridge = true;
+            return true;
+        }
+        return false;
+    }
+
     public void retry(String restart) {
-        if (Objects.equals(restart, "Q")){
+        String quitGame = "Q";
+        String retryGame = "R";
+        isQuitGame(restart, quitGame);
+        isRetryGame(restart, retryGame);
+    }
+
+    private void isQuitGame(String restart, String quitGame) {
+        if (Objects.equals(restart, quitGame)){
             this.retry = false;
             bridgeShape.printFinalFailed(currentCoordinate,gameCount);
         }
-        if (Objects.equals(restart, "R")){
+    }
+
+    private void isRetryGame(String restart, String retryGame) {
+        if (Objects.equals(restart, retryGame)){
             this.gameCount += 1;
             int lastChar = currentCoordinate.size()-1;
             this.currentCoordinate.remove(lastChar);

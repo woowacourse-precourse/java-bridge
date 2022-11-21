@@ -30,7 +30,6 @@ public class Application {
         if (game.retry) {
             game.gameOver = false;
         }
-        if (!game.retry) {return true;}
-        return false;
+        return !game.retry;
     }
 }

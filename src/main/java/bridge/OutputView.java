@@ -48,19 +48,19 @@ public class OutputView {
     public void printFailedMap(ArrayList<String> currentCoordinate, int gameCount) {
         int lastChar = currentCoordinate.size()-1;
         if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
-            BoilerPlates.printFailedUp(mapU,mapD,gameCount);
+            BoilerPlates.printFailedUp(mapU,mapD);
         }
         if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
-            BoilerPlates.printFailedDown(mapU,mapD,gameCount);
+            BoilerPlates.printFailedDown(mapU,mapD);
         }
     }
     public void printResultMap(ArrayList<String> currentCoordinate, int gameCount) {
         int lastChar = currentCoordinate.size()-1;
         if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
-            BoilerPlates.printResultUp(mapU,mapD,gameCount);
+            BoilerPlates.printResultUp(mapU,mapD);
         }
         if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
-            BoilerPlates.printResultDown(mapU,mapD,gameCount);
+            BoilerPlates.printResultDown(mapU,mapD);
         }
     }
 

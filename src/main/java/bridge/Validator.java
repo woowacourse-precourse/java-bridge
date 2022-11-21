@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class Validator {
@@ -12,7 +11,6 @@ public class Validator {
 				throw new IllegalArgumentException(ErrorMessage.errorMessage.ONLY_INPUT_BETWEEN_3_20.getValue());
 			}
 		}catch (NumberFormatException e){
-			System.out.println("들어옴");
 			throw new IllegalArgumentException(ErrorMessage.errorMessage.ONLY_INPUT_INTEGER.getValue());
 		};
 
