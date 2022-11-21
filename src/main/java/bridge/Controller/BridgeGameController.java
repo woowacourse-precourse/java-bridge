@@ -19,6 +19,7 @@ public class BridgeGameController {
     public void start() {
         int lengthOfBridge = gameStart();
         boolean isCorrect = selectMoving(lengthOfBridge);
+        printResultOfGame(isCorrect);
     }
 
     public int gameStart() {
@@ -67,5 +68,10 @@ public class BridgeGameController {
             return true;
         }
         return false;
+    }
+
+    public void printResultOfGame(boolean isCorrect) {
+        int tryAmount = bridgeGame.getAttemp();
+        outputView.printResult(tryAmount, isCorrect);
     }
 }
