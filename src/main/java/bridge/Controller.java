@@ -15,6 +15,7 @@ public class Controller {
 
     private List<String> bridge = new ArrayList<>();
     private List<String> movingRoute = new ArrayList<>();
+    private int gameCount = 0;
 
     public void start() {
         int bridgeSize = 0;
@@ -45,7 +46,7 @@ public class Controller {
 
     private void run() {
         List<String> movement = new ArrayList<>();
-        int gameCount = 0, inputCount = 0;
+        int inputCount = 0;
         gameCount++;
         while (inputCount < bridge.size()) {
             try {
