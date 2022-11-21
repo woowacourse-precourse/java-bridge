@@ -35,4 +35,12 @@ public class Direction {
     public int hashCode() {
         return Objects.hash(direction);
     }
+
+    @Override
+    public String
+    toString() {
+        return "Direction{" +
+                "direction=\"" + direction + '\"' +
+                '}';
+    }
 }
