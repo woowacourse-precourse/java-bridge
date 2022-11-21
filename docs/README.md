@@ -101,7 +101,7 @@
     + [X] OutputView) 입력 요청 메시지 출력
     + [X] InputView) 입력 받음
     + [X] 입력을 BridgeGame으로 건넴
-  + [ ] (게임 종료 시) 최종 결과 확인
-    + [ ] BridgeGame) 게임 성공 여부와 총 시도 횟수 받음
-    + [ ] OutputView) 최종 결과 출력
+  + [X] (게임 종료 시) 최종 결과 확인
+    + [X] BridgeGame) 게임 성공 여부와 총 시도 횟수 받음
+    + [X] OutputView) 최종 결과 출력
   + [ ] 잘못된 입력을 받았을 경우 해당 자리에서 재입력 받을 것

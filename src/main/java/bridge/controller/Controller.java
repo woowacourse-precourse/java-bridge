@@ -22,6 +22,16 @@ public class Controller {
         this.outputView = outputView;
     }
 
+    public void run(){
+        startGame();
+        inputBridgeLength();
+        while (bridgeGame.getGameState() == GameState.RUNNING){
+            move();
+            retry();
+        }
+        showResult();
+    }
+
     private void startGame(){
         outputView.printGameStart();
         this.bridgeGame = new BridgeGame();
