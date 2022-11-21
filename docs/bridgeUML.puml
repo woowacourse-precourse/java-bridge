@@ -1,0 +1,118 @@
+@startuml
+
+class ExceptionHandler
+class BridgeGame
+class BridgeController
+class BridgeMaker
+class BridgeNumberGenerator
+class BridgeRandomNumberGenerator
+class InputView
+class OutputView
+class Application
+
+BridgeController -up-> BridgeGame
+
+BridgeController -up-> BridgeView
+BridgeController -right-|> BridgeMaker
+
+
+BridgeView -up-> OutputView
+BridgeView -up-> InputView
+
+BridgeRandomNumberGenerator .up.|> BridgeNumberGenerator
+BridgeMaker -up-> BridgeRandomNumberGenerator
+
+Application -right-> BridgeController
+ExceptionHandler .right.> BridgeView
+BridgeController .up.> ExceptionHandler
+BridgeView .right.> BridgeGame
+
+
+class Application{
+    - ExceptionHandler
+    - bridgeController
+    + play()
+    + main()
+}
+
+class BridgeGame{
+    - bridge
+    - step
+    - play
+    + move()
+    + retry()
+    + quit()
+    + BridgeGame()
+}
+
+class BridgeController{
+    - bridgeGame
+    - bridgeView
+
+    + initGame()
+    + makeBridge()
+    + moveTo()
+    + judge()
+    + quitGame()
+    + retryGame()
+    + dead()
+    + clear()
+    + BridgeController()
+}
+
+class BridgeMaker{
+    - bridgeNumberGenerator
+    + makeBridge()
+    + BridgeMaker()
+}
+
+interface BridgeNumberGenerator <<interface>>{
+    + generate()
+}
+
+class BridgeRandomNumberGenerator{
+    - RANDOM_LOWER_INCLUSIVE
+    - RANDOM_UPPER_INCLUSIVE
+    + generate()
+}
+
+class BridgeView{
+    - inputView
+    - outputView
+    + readBridgeSize()
+    + readMoving()
+    + readGameCommand()
+    + printMap()
+    + printResult()
+}
+
+class InputView{
+    - {static} START_MESSAGE
+    - {static} MOVE_MESSAGE
+    - {static} COMMAND_MESSAGE
+
+    + readBridgeSize()
+    + readMoving()
+    + readGameCommand()
+}
+
+class OutputView{
+    - {static} RESULT_MESSAGE
+    + printMap()
+    + printResult()
+}
+
+class ExceptionHandler{
+    - {static} ERROR_HEAD
+    - {static} ERROR_SIZE
+    - {static} ERROR_MOVE
+    - {static} ERROR_COMMAND
+    + validBridgeSize()
+    + validMoving()
+    + validGameCommand()
+
+}
+
+
+
+@enduml
