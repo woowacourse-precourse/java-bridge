@@ -1,6 +1,7 @@
 package bridge.common;
 
 public enum Error {
+
     NOT_NUMBER("[ERROR] 숫자를 입력해주세요."),
     NOT_IN_RANGE("[ERROR] 3 이상 20 이하의 숫자를 입력해주세요."),
     NOT_BRIDGE_COMMAND("[ERROR] U(위) 또는 D(아래) 를 입력해주세요."),

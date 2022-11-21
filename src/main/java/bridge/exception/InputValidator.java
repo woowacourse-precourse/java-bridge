@@ -3,6 +3,7 @@ package bridge.exception;
 import bridge.common.Error;
 
 public class InputValidator {
+
     private static String UP_BRIDGE = "U";
     private static String DOWN_BRIDGE = "D";
     private static String RETRY_GAME = "R";
@@ -24,13 +25,13 @@ public class InputValidator {
     }
 
     private static void checkCorrectCommand(String command) {
-        if(!(RETRY_GAME.equals(command) || END_GAME.equals(command))) {
+        if (!(RETRY_GAME.equals(command) || END_GAME.equals(command))) {
             throw new IllegalArgumentException(Error.NOT_RETRY_COMMAND.getMessage());
         }
     }
 
     private static void checkCorrectMoving(String moving) {
-        if(!(UP_BRIDGE.equals(moving) || DOWN_BRIDGE.equals(moving))) {
+        if (!(UP_BRIDGE.equals(moving) || DOWN_BRIDGE.equals(moving))) {
             throw new IllegalArgumentException(Error.NOT_BRIDGE_COMMAND.getMessage());
         }
     }

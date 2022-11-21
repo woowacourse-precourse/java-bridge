@@ -7,6 +7,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
     private static final boolean CORRECT_BRIDGE = true;
     private static final boolean WRONG_BRIDGE = false;
     private static final boolean GAME_END = true;
@@ -42,7 +43,7 @@ public class BridgeGame {
     }
 
     public void end() {
-        gameStatus = true;
+        gameStatus = GAME_END;
     }
 
     public boolean isEnd(List<String> bridge) {

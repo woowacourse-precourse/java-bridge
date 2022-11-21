@@ -9,6 +9,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeController {
+
     private static String RETRY_GAME = "R";
     private static String END_GAME = "Q";
 

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
     private static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
     private static final String GAME_RESULT = "최종 게임 결과";
     private static final String SUCCESS_OR_FAIL = "게임 성공 여부: ";
@@ -46,7 +47,7 @@ public class OutputView {
 
     private static List<String> getLowerBridge(List<String> bridge, List<Boolean> movingResult) {
         List<String> lowerBridgeResult = new LinkedList<>();
-        for(int i=0;i< movingResult.size();i++){
+        for (int i = 0; i < movingResult.size(); i++) {
             lowerBridgeResult.add(calculateLowerBridge(bridge.get(i), movingResult.get(i)));
         }
         return lowerBridgeResult;
@@ -54,27 +55,27 @@ public class OutputView {
 
     private static List<String> getUpperBridge(List<String> bridge, List<Boolean> movingResult) {
         List<String> upperBridgeResult = new LinkedList<>();
-        for(int i=0;i< movingResult.size();i++){
+        for (int i = 0; i < movingResult.size(); i++) {
             upperBridgeResult.add(calculateUpperBridge(bridge.get(i), movingResult.get(i)));
         }
         return upperBridgeResult;
     }
 
     private static String calculateLowerBridge(String bridge, boolean move) {
-        if(move==CORRECT_BRIDGE && bridge.equals(DOWN_BRIDGE)) {
+        if (move == CORRECT_BRIDGE && bridge.equals(DOWN_BRIDGE)) {
             return CORRECT_BRIDGE_RESULT;
         }
-        if(move==WRONG_BRIDGE && bridge.equals(UP_BRIDGE)) {
+        if (move == WRONG_BRIDGE && bridge.equals(UP_BRIDGE)) {
             return WRONG_BRIDGE_RESULT;
         }
         return EMPTY_BRIDGE;
     }
 
     private static String calculateUpperBridge(String bridge, boolean move) {
-        if(move==CORRECT_BRIDGE && bridge.equals(UP_BRIDGE)){
+        if (move == CORRECT_BRIDGE && bridge.equals(UP_BRIDGE)) {
             return CORRECT_BRIDGE_RESULT;
         }
-        if(move==WRONG_BRIDGE && bridge.equals(DOWN_BRIDGE)) {
+        if (move == WRONG_BRIDGE && bridge.equals(DOWN_BRIDGE)) {
             return WRONG_BRIDGE_RESULT;
         }
         return EMPTY_BRIDGE;
@@ -88,10 +89,10 @@ public class OutputView {
     }
 
     private static String getGameResult(List<String> bridge, List<Boolean> getMovingResult) {
-        if(bridge.size() != getMovingResult.size()) {
+        if (bridge.size() != getMovingResult.size()) {
             return FAIL_GAME_RESULT;
         }
-        if(getMovingResult.get(getMovingResult.size()-1).equals(WRONG_BRIDGE)){
+        if (getMovingResult.get(getMovingResult.size() - 1).equals(WRONG_BRIDGE)) {
             return FAIL_GAME_RESULT;
         }
         return SUCCESS_GAME_RESULT;

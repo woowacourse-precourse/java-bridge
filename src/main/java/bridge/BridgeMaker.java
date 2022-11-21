@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BridgeMaker {
+
     private static int UP_BRIDGE_NUMBER = 1;
     private static String UP_BRIDGE = "U";
     private static String DOWN_BRIDGE = "D";
