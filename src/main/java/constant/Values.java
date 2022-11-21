@@ -46,7 +46,7 @@ public class Values {
         UP_UP("U", "U", "O", " ", true),
         UP_DOWN("U", "D", " ", "X", false),
         DOWN_DOWN("D", "D", " ", "O", true),
-        DOWN_UP("D", "U", " ", "X", false),
+        DOWN_UP("D", "U", "X", " ", false),
         EMPTY(" ", " ", " ", " ", false);
         private String value;
         private String move;
