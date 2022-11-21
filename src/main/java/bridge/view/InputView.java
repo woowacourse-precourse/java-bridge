@@ -16,8 +16,12 @@ public class InputView {
         System.out.println(Message.INPUT_LENGTH.getMessage());
         String input = Console.readLine();
         int convertInput = Integer.parseInt(input);
-        Exception.lengthrangeException(convertInput);
-        return convertInput;
+        try {
+            return Exception.lengthrangeException(convertInput);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -25,8 +29,13 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(Message.CHOOSE_STEP.getMessage());
-        String step = Console.readLine();
-        return Exception.validateMoving(step);
+        String Moving = Console.readLine();
+        try {
+            return Exception.validateMoving(Moving);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readMoving();
+        }
     }
 
     /**
