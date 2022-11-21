@@ -24,6 +24,7 @@ class BridgeGameTest {
         standardOut = System.out;
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
+
     }
 
 
@@ -33,19 +34,23 @@ class BridgeGameTest {
         System.out.println(out.toString().trim());
     }
 
+    String useMove(String input,String moveDir,int index){
+
+        final BridgeGame bridgeGame = new BridgeGame();
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
+        return bridgeGame.move(index, moveDir);
+    }
+
 
     //이동 입력값에 따라 적적한 결과가 반환되는지 테스트
     @DisplayName("사용자 이동 입력 결과에 따른 반환값 테스트")
     @Test
     void checkMoveReturnValue() {
 
-        final BridgeGame bridgeGame = new BridgeGame();
-
-        in = new ByteArrayInputStream("R".getBytes());
-        System.setIn(in);
-
-        bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
-        String result = bridgeGame.move(0, "U");
+        String result = useMove("R","U",0);
 
         assertThat(result).isEqualTo("C");
     }
@@ -55,17 +60,11 @@ class BridgeGameTest {
     @Test
     void checkMovePrintValue() {
 
-        final BridgeGame bridgeGame = new BridgeGame();
-
-        in = new ByteArrayInputStream("R".getBytes());
-        System.setIn(in);
-
-        bridgeGame.bridge = new ArrayList<>(List.of("U", "D", "U"));
-        bridgeGame.move(0, "U");
+        useMove("R","D",0);
 
         assertThat(out.toString()).contains(
             "다리의 길이를 입력해주세요.",
-            "[ O ]",
+            "[ X ]",
             "[   ]"
         );
     }
