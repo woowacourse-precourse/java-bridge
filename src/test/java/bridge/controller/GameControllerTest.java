@@ -1,16 +1,25 @@
 package bridge.controller;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import camp.nextstep.edu.missionutils.test.NsTest;
 
 class GameControllerTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @Test
+    void gameStart() {
+    }
+
+    @Test
+    void gameProgress() {
+    }
+
+    @Test
+    void gameRetry() {
+    }
 
     @Test
     void isValidBridgeNumber() {
@@ -26,4 +35,17 @@ class GameControllerTest {
         assertTrue(instance);
     }
 
+    @Test
+    void isValidBridgeAction() {
+        final String input = "U";
+        final boolean instance = GameController.isValidBridgeAction(input);
+        assertFalse(instance);
+    }
+
+    @Test
+    void isValidBridgeRestart() {
+        final String input = "Q";
+        final boolean instance = GameController.isValidBridgeRestart(input);
+        assertFalse(instance);
+    }
 }
