@@ -10,6 +10,8 @@ public class InputView {
     private static final int BRIDGE_UPPER_BOUND = 20;
     private static final String MOVE_UP = "U";
     private static final String MOVE_DOWN = "D";
+    private static final String REGAME_YES = "R";
+    private static final String REGAME_NO = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -42,6 +44,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = Console.readLine();
+        if (input != null && (input.equals(REGAME_YES) || input.equals(REGAME_NO))) {
+            return input;
+        }
+        throw new IllegalArgumentException("게임을 재시도하려면 " + REGAME_YES + ",종료하려면 " +
+                REGAME_NO + " 를 입력해야합니다.");
     }
 }
