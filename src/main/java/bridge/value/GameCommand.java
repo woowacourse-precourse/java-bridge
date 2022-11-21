@@ -1,5 +1,7 @@
 package bridge.value;
 
+import static bridge.validate.GameValidation.validateGameCommand;
+
 import java.util.Arrays;
 
 public enum GameCommand {
@@ -8,10 +10,11 @@ public enum GameCommand {
 
     private final String character;
 
-    public static GameCommand makeGameCommand(String character) {
+    public static GameCommand makeGameCommand(String command) {
+        validateGameCommand(command);
         return Arrays.stream(GameCommand.values())
-                .filter(gameCommand -> gameCommand.character.equals(character))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("입력한 게임 제어 문자가 존재하지 않습니다."));
+                .filter(gameCommand -> gameCommand.character.equals(command))
+                .findAny().get();
     }
 
     GameCommand(String character) {
