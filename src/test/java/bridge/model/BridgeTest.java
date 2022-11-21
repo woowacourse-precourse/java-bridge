@@ -35,7 +35,7 @@ class BridgeTest {
             Bridge bridge = new Bridge(List.of(new UpOrDown("U")));
 
             //then
-            Assertions.assertThatThrownBy(() -> bridge.isCross(index, upOrDown))
+            Assertions.assertThatThrownBy(() -> bridge.isToCrossed(index, upOrDown))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -48,7 +48,7 @@ class BridgeTest {
             Bridge bridge = new Bridge(List.of(new UpOrDown("U")));
 
             //when
-            boolean actual = bridge.isCross(index, upOrDown);
+            boolean actual = bridge.isToCrossed(index, upOrDown);
 
             //then
             Assertions.assertThat(actual).isFalse();
@@ -63,7 +63,7 @@ class BridgeTest {
             Bridge bridge = new Bridge(List.of(new UpOrDown("U")));
 
             //when
-            boolean actual = bridge.isCross(index, upOrDown);
+            boolean actual = bridge.isToCrossed(index, upOrDown);
 
             //then
             Assertions.assertThat(actual).isTrue();
