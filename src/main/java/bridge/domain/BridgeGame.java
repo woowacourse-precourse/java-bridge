@@ -15,14 +15,7 @@ public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
     private List<String> bridgeProgress = new ArrayList<>();
     private Integer trialCount = 1;
-    private GameState gameState;
-    public BridgeGame(List<String> bridge){
-        currentBlockIndex = -1;
-        this.bridge = bridge;
-        this.bridgeProgress = new ArrayList<>();
-        trialCount = 1;
-        gameState = GameState.RUNNING;
-    }
+    private GameState gameState = GameState.RUNNING;
 
     public void move(String moveCommand) {
         validateMoveCommand(moveCommand);
@@ -73,6 +66,10 @@ public class BridgeGame {
 
     public Integer getTrialCount() {
         return trialCount;
+    }
+
+    public void setBridge(List<String> bridge){
+        this.bridge = bridge;
     }
 
 }
