@@ -57,11 +57,11 @@ public class InputView {
         while (true) {
             try {
                 String command = inputGameCommand();
-                if (command.equals("U") || command.equals("D")) {
+                if (command.equals("R") || command.equals("Q")) {
                     return command;
                 } throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 이동할 칸은 U(위 칸) 또는 D(아래 칸)여야 합니다.");
+                System.out.println("[ERROR] R(재시도) 또는 Q(종료)를 입력해 주세요.");
             }
         }
     }
