@@ -11,6 +11,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+
+
 class BridgeTest {
     @DisplayName("다리 길이는 입력이 3이상 20이하의 수가 아니면 에러가 발생한다.")
     @Test
