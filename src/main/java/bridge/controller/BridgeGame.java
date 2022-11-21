@@ -1,12 +1,18 @@
 package bridge.controller;
 
+import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.User;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final User user = new User();
+    private final User user;
+
+    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
+        user = new User(new BridgeRandomNumberGenerator());
+    }
 
     public void playGame() {
         do {

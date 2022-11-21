@@ -16,8 +16,8 @@ public class User {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
-    public User() {
-        this.bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
+    public User(BridgeNumberGenerator bridgeNumberGenerator) {
+        this.bridge = new Bridge(inputView.readBridgeSize(), bridgeNumberGenerator);
     }
 
     public boolean move() {
