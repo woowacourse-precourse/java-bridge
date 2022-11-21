@@ -30,7 +30,8 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = receiveInput();
-        return null;
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     private String receiveInput() {
