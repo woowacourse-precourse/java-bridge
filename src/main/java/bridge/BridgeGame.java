@@ -105,7 +105,7 @@ public class BridgeGame {
     }
 
     public void startGame(){
-        ResultMessage();
+        OutputView.bridgeGameStart();
         System.out.println();
     }
     public List<String> makeBridge(int size) {
