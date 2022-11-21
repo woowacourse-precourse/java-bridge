@@ -45,8 +45,9 @@ public class InputView {
     private void validateNumber(String inputValue) {
         for (int i = 0; i < inputValue.length(); ++i) {
             if (Character.isDigit(inputValue.charAt(i))) {
-                throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
+                continue;
             }
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
         }
     }
 
