@@ -58,8 +58,8 @@ public class OutputView {
         System.out.println(downside);
     }
 
-    private static String newGuessToString(boolean isSuccess,String position, String newPosition) {
-        if (!position.equals(newPosition)){
+    private static String newGuessToString(boolean isSuccess, String position, String newPosition) {
+        if (!position.equals(newPosition)) {
             return BRIDGE_SEP + EMPTY;
         }
         if (isSuccess) {
@@ -70,9 +70,9 @@ public class OutputView {
 
     public static void printMapWithNew(List<String> crossedBridge, boolean isSuccess, String newPosition) {
         String upside = BRIDGE_START + arrToString(getMiddle(crossedBridge, UP))
-                                + newGuessToString(isSuccess, UP, newPosition) + BRIDGE_END;
+                + newGuessToString(isSuccess, UP, newPosition) + BRIDGE_END;
         String downside = BRIDGE_START + arrToString(getMiddle(crossedBridge, DOWN))
-                                + newGuessToString(isSuccess, DOWN, newPosition) + BRIDGE_END;
+                + newGuessToString(isSuccess, DOWN, newPosition) + BRIDGE_END;
         System.out.println(upside);
         System.out.println(downside);
     }
