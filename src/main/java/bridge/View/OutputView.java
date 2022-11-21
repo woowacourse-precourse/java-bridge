@@ -3,6 +3,7 @@ package bridge.View;
 import bridge.Enum.CrossResult;
 import bridge.Enum.Direction;
 import bridge.Enum.GameStatus;
+import bridge.Model.BridgeGame;
 import bridge.Model.WrappingType.CrossResults;
 import bridge.Model.WrappingType.ChoiceDirection;
 import bridge.Model.WrappingType.ChoiceDirections;
@@ -15,7 +16,10 @@ public class OutputView {
     private static final int UP_LINE = 0;
     private static final int DOWN_LINE = 1;
 
-    public void printMap(ChoiceDirections choiceDirections, CrossResults crossResults) {
+    public void printMap(BridgeGame bridgeGame) {
+        ChoiceDirections choiceDirections = bridgeGame.getChoiceDirections();
+        CrossResults crossResults = bridgeGame.getCrossResults();
+
         List<String> line = createLineString(choiceDirections, crossResults);
         String upLine = line.get(UP_LINE);
         String downLine = line.get(DOWN_LINE);
@@ -63,11 +67,11 @@ public class OutputView {
     }
 
 
-    public void printResult(ChoiceDirections choiceDirections, CrossResults crossResults, GameStatus gameStatus, int tryCount) {
+    public void printResult(BridgeGame bridgeGame, GameStatus gameStatus) {
         System.out.println("최종 게임 결과\n");
-        printMap(choiceDirections, crossResults);
+        printMap(bridgeGame);
         System.out.println("게임 성공 여부: " + gameStatus.getStatus());
-        System.out.println("총 시도한 횟수: " + tryCount);
+        System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
     }
 
 

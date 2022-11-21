@@ -25,10 +25,10 @@ public class MainController {
             ChoiceDirection choice = inputView.readMoving();
             bridgeGame.move(choice);
             gameStatus = bridgeGame.checkGameStatus();
-            outputView.printMap(bridgeGame.getChoiceDirections(), bridgeGame.getCrossResults());
+            outputView.printMap(bridgeGame);
             gameStatus = checkKeepRunning(gameStatus);
         }
-        outputView.printResult(bridgeGame.getChoiceDirections(), bridgeGame.getCrossResults(), gameStatus, bridgeGame.getTryCount());
+        outputView.printResult(bridgeGame, gameStatus);
     }
 
     private GameStatus checkKeepRunning(GameStatus gameStatus) {
