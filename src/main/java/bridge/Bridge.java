@@ -96,19 +96,29 @@ public class Bridge {
     }
 
     private String createMovingResult(String successOrNot, String inputUpOrDown) {
-        String movingResult = "";
         if (inputUpOrDown.equals(UP)) {
-            for (int index = 0; index < getCurrentIndex(); index++) {
-                movingResult += getUpperMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
-            }
-            movingResult += getUpperMovableResult(successOrNot, getCurrentIndex());
-            return movingResult;
+            return getUpperMovableResultBeforeCurrent(getCurrentIndex()) +
+                    getUpperMovableResult(successOrNot, getCurrentIndex());
         }
 
-        for (int index = 0; index < getCurrentIndex(); index++) {
+        return getLowerMovableResultBeforeCurrent(getCurrentIndex()) +
+                getLowerMovableResult(successOrNot, getCurrentIndex());
+    }
+
+    // success 라는 가정하에 range만 인자로 전달
+    private String getUpperMovableResultBeforeCurrent(int current) {
+        String movingResult = "";
+        for (int index = 0; index < current; index++) {
+            movingResult += getUpperMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
+        }
+        return movingResult;
+    }
+
+    private String getLowerMovableResultBeforeCurrent(int current) {
+        String movingResult = "";
+        for (int index = 0; index < current; index++) {
             movingResult += getLowerMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
         }
-        movingResult += getLowerMovableResult(successOrNot, getCurrentIndex());
         return movingResult;
     }
 
