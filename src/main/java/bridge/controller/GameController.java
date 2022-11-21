@@ -64,8 +64,7 @@ public class GameController {
 
     private void playOneTurn(Player player) {
         Tile movingTargetTile = RepeatValidator.readUntilValidate(() ->
-                Tile.findByDirectionSign(inputView.readMoving())
-        );
+                Tile.findByDirectionSign(inputView.readMoving()));
 
         bridgeGame.move(player, movingTargetTile);
     }
@@ -79,8 +78,7 @@ public class GameController {
 
     private boolean askForTryAgain(Player player) {
         String input = RepeatValidator.readUntilValidate(() ->
-                inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT)
-        );
+                inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT));
 
         if (input.equals(GAME_RETRY_INPUT)) {
             bridgeGame.retry(player);
