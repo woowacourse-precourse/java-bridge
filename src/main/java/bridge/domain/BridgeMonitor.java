@@ -11,7 +11,8 @@ public class BridgeMonitor {
     private StringBuilder lowerLine;
     private static final String END_BRACKET = "]";
     private static final String BRACKETS = "[]";
-    private static final String SPACE = "   ";
+    private static final String EMPTY = "   ";
+    private static final String SPACE = " ";
     private static final String CORRECT_MOVING = " O ";
     private static final String WRONG_MOVING = " X ";
     private static final String BETWEEN_LINE = "|";
@@ -52,13 +53,14 @@ public class BridgeMonitor {
         int lastIndexOfLine = getLastIndexOfLine();
         this.upperLine.deleteCharAt(lastIndexOfLine);
         this.lowerLine.deleteCharAt(lastIndexOfLine);
-        if (isNotFirstColumn()) {
+        if (isEndWithSpace()) {
             addLine();
         }
     }
 
-    private boolean isNotFirstColumn() {
-        return getLastIndexOfLine() > 1;
+    private boolean isEndWithSpace() {
+        String upperLinePicture = this.upperLine.toString();
+        return upperLinePicture.endsWith(SPACE);
     }
 
     private int getLastIndexOfLine() {
@@ -78,10 +80,10 @@ public class BridgeMonitor {
     private void recordFailOf(String moving) {
         if (moving.equals(UPPER_SIDE)) {
             this.upperLine.append(WRONG_MOVING);
-            this.lowerLine.append(SPACE);
+            this.lowerLine.append(EMPTY);
         }
         if (moving.equals(LOWER_SIDE)) {
-            this.upperLine.append(SPACE);
+            this.upperLine.append(EMPTY);
             this.lowerLine.append(WRONG_MOVING);
         }
     }
@@ -89,10 +91,10 @@ public class BridgeMonitor {
     private void recordSuccessOf(String moving) {
         if (moving.equals(UPPER_SIDE)) {
             this.upperLine.append(CORRECT_MOVING);
-            this.lowerLine.append(SPACE);
+            this.lowerLine.append(EMPTY);
         }
         if (moving.equals(LOWER_SIDE)) {
-            this.upperLine.append(SPACE);
+            this.upperLine.append(EMPTY);
             this.lowerLine.append(CORRECT_MOVING);
         }
     }
