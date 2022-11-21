@@ -17,8 +17,11 @@ public class InputView {
 
         OutputView.printEnterBridgeSize();
 
-        String bridgeSize = Console.readLine();
-        return VerificationUtil.verifyBridgeSize(bridgeSize);
+        String size = Console.readLine();
+        int bridgeSize = VerificationUtil.verifyNumeric(size);
+        VerificationUtil.verifyBridgeSize(bridgeSize);
+
+        return bridgeSize;
     }
 
     /**

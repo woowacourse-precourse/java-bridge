@@ -20,9 +20,12 @@ public class VerificationUtil {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(SIZE_NOT_NUMERIC);
         }
-        if (numericSize < MIN_BRIDGE_SIZE || numericSize > MAX_BRIDGE_SIZE)
-            throw new IllegalArgumentException(SIZE_NOT_IN_RANGE);
         return numericSize;
+    }
+
+    public static void verifyBridgeSize(int bridgeSize) {
+        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE)
+            throw new IllegalArgumentException(SIZE_NOT_IN_RANGE);
     }
 
     public static void verifyMoving(String moving) {
