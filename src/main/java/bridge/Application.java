@@ -49,18 +49,28 @@ public class Application {
 
     public static void gameStart(){
         tryCount++;
-        moveBridge();
+        tryGame();
 
         if(BridgeGame.playerStep.size() < bridge.size())
             CheckRetry();
     }
 
-    private static void moveBridge(){
+    private static void tryGame(){
         stepCorrect = true;
 
         while(stepCorrect && BridgeGame.playerStep.size() < bridge.size()){
+            moveBridge();
+        }
+    }
+
+    private static void moveBridge(){
+        try {
             stepCorrect = bridgeGame.move(inputView.readMoving());
             outputView.printMap();
+        }
+        catch (IllegalArgumentException ex){
+            OutputView.printError(ex.getMessage());
+            moveBridge();
         }
     }
 
