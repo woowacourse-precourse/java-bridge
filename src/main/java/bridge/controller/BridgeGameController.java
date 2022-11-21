@@ -5,6 +5,7 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
 import bridge.domain.bridge_game.Bridge;
 import bridge.domain.bridge_game.BridgeGame;
+import bridge.domain.bridge_maker.BridgeRandomNumberGenerator;
 import bridge.domain.validation.BridgeSize;
 import bridge.domain.bridge_game.NumberOfChallenges;
 import bridge.domain.bridge_game.Player;
@@ -23,13 +24,10 @@ public class BridgeGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeMaker bridgeMaker;
 
-    public BridgeGameController(final InputView inputView, final OutputView outputView,
-            final BridgeMaker bridgeMaker) {
+    public BridgeGameController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridgeMaker = bridgeMaker;
     }
 
     public void startBridgeGame() {
@@ -43,6 +41,8 @@ public class BridgeGameController {
     }
 
     private BridgeGame bridgeGame(final BridgeSize bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
         Bridge bridge = new Bridge(
                 bridgeMaker.makeBridge(bridgeSize.bridgeSize()));
 

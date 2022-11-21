@@ -60,7 +60,7 @@ public class BridgeGame {
         this.gameResult = GAME_FAIL;
     }
 
-    private void retry() {  // TODO 혹시 제출 테스트 케이스 실패하면 여기의 private를 의심하렴..
+    private void retry() {
         moveResults.reset();
         player.resetPosition();
         player.increaseChallenges();
