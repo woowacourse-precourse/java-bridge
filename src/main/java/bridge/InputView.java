@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.BridgeGame;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.Error.*;

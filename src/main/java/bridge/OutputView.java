@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.BridgeGame;
+
 import java.util.List;
 
 /**

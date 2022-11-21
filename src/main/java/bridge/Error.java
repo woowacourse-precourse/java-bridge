@@ -1,7 +1,5 @@
 package bridge;
 
-import net.bytebuddy.pool.TypePool;
-
 public class Error {
     static final int minBridgeLength = 3;
     static final int maxBridgeLength = 20;
