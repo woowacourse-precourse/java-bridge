@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.util.Message;
+
 import java.util.List;
 
 public class Player {
@@ -8,43 +10,36 @@ public class Player {
     private int tryCount;
     private Bridge bridge;
 
-    public Player(Bridge bridge)
-    {
+    public Player(Bridge bridge) {
         this.bridge = bridge;
         this.position = 0;
         this.tryCount = 1;
     }
 
-    public Player(List<String> bridge)
-    {
+    public Player(List<String> bridge) {
         this.bridge = new Bridge(bridge);
         this.position = 0;
         this.tryCount = 1;
     }
 
-    public boolean move(String nextMove)
-    {
-         boolean flag = bridge.isMovable(position,nextMove);
-         if(flag) position += 1;
-         return flag;
+    public boolean move(String nextMove) {
+        boolean flag = bridge.isMovable(position, nextMove);
+        if (flag) position += 1;
+        return flag;
     }
 
-    public void restart()
-    {
+    public void restart() {
         tryCount++;
     }
 
-    public boolean isFinish()
-    {
+    public boolean isFinish() {
         return bridge.isFinish(position);
     }
 
     @Override
-    public String toString()
-    {
-        String gameFinish = isFinish() ? "성공" : "실패";
-        String gameFinishMessage = String.format("게임 성공 여부: %s",gameFinish);
-        String tryCountMessage = String.format("총 시도한 횟수: %d\n",tryCount);
-        return String.join("\n",gameFinishMessage,tryCountMessage);
+    public String toString() {
+        String gameFinishMessage = Message.getGameFinishMessage(isFinish());
+        String tryCountMessage = Message.getTryCountMessage(tryCount);
+        return String.join("\n", gameFinishMessage, tryCountMessage);
     }
 }

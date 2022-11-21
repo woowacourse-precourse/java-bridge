@@ -14,4 +14,16 @@ public class Message {
 
     public static final String GAME_RESULT_MESSAGE = "\n최종 게임 결과\n";
     public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n\n";
+
+    public static String getGameFinishMessage(boolean isFinish) {
+        String messageFormat = "게임 성공 여부: %s";
+        if (isFinish) return String.format(messageFormat, "성공");
+
+        return String.format(messageFormat, "실패");
+    }
+
+    public static String getTryCountMessage(int count) {
+        return String.format("총 시도한 횟수: %d\n", count);
+    }
+
 }
