@@ -44,8 +44,9 @@ public class BridgeGame {
             System.out.println();
         }
         // maybe can do overriding instead
-        if (newGame.equals(BridgeMaker.bridgeStructure)) {
-            finish(newGame, true);
+
+        if (newGame.bridge.equals(BridgeMaker.bridgeStructure)) {
+            finish( "성공",upperBridge,lowerBridge);
         }
 
     }
@@ -56,16 +57,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void retry(BridgeGame newGame) {
+    public static void retry(BridgeGame newGame, UpperBridge upperBridge, LowerBridge lowerBridge) {
         String retryOrNot = InputView.readGameCommand();
-        InputRetryOrNot.getRetryOrNot(retryOrNot, newGame);
-        // check using inputRetryOrnot
-
-//        if(InputView.readGameCommand().equals()){
-//        }
+        InputRetryOrNot.getRetryOrNot(retryOrNot, newGame, upperBridge, lowerBridge);
     }
 
-    public void finish(BridgeGame newGame, Boolean successOrFail) {
-        OutputView.printResult(newGame, successOrFail);
+    public void finish(String successOrFail,UpperBridge upperBridge, LowerBridge lowerBridge) {
+        OutputView.printResult(successOrFail, upperBridge, lowerBridge);
     }
 }

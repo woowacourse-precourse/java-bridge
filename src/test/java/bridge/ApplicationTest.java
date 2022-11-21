@@ -35,6 +35,7 @@ class ApplicationTest extends NsTest {
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
+
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }

@@ -7,7 +7,7 @@ public enum InputRetryOrNot {
     Q;
 
 
-    public static void getRetryOrNot(String retryOrNot, BridgeGame newGame){
+    public static void getRetryOrNot(String retryOrNot, BridgeGame newGame, UpperBridge upperBridge, LowerBridge lowerBridge){
 
         if (retryOrNot.equals(String.valueOf(InputRetryOrNot.R))){
             BridgeGame retryGame = new BridgeGame();
@@ -15,7 +15,7 @@ public enum InputRetryOrNot {
             retryGame.move(Application.bridgeLength, retryGame);
             return;
         }
-        newGame.finish(newGame,false);
+        newGame.finish("실패",upperBridge,lowerBridge);
         return;
     }
 }

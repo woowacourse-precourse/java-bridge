@@ -11,14 +11,16 @@ public class UpperBridge extends GeneralBridge{
         upperStatus = new ArrayList<>(bridgeLength);
     }
     void manageInput(String userUpDown, String checkedStatus){
-        System.out.println("this is user updown"+userUpDown);
-        System.out.println("this is checker"+checker);
 
         if(this.checker.equals(userUpDown)){
             upperStatus.add(checkedStatus);
             return;
         };
-        upperStatus.add("");
+        upperStatus.add(" ");
         return;
+    }
+    void printBridge(){
+        final String joinUpperBridge = String.join(" | ",upperStatus);
+        System.out.printf("[ %s ]\n",joinUpperBridge);
     }
 }
