@@ -197,15 +197,6 @@ Q / D를 입력 받아 알맞은 `RetryIntention`반환하는 기능
 
 </aside>
 
-## 🎮Bridge
-
-다리 상태를 담고 있는 역할
-
-<aside>
-❗ 입력 위치로의 이동 가능 여부를 판단하는 기능
-
-</aside>
-
 ## 🎮GameResult
 
 현재까지 게임 정보를 담고 있는 객체

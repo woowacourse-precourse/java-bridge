@@ -30,7 +30,7 @@ public class BridgeGameTest extends NsTest {
     private void initialize() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(SIZE)));
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(SIZE));
     }
 
 

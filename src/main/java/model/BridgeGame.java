@@ -15,10 +15,10 @@ import model.enums.MoveResult;
 public class BridgeGame {
 
     private List<MoveInformation> bridgeMoveInformation;
-    private Bridge bridge;
+    private List<String> bridge;
     private int tryCount;
 
-    public BridgeGame(Bridge bridge) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.tryCount = 1;
         this.bridgeMoveInformation = new ArrayList<>();
@@ -31,7 +31,7 @@ public class BridgeGame {
      */
     public void move(String moveChoice) {
         int targetColumn = bridgeMoveInformation.size();
-        updateMoveResults(MoveChoice.getMatchChoice(moveChoice), bridge.movable(targetColumn, moveChoice));
+        updateMoveResults(MoveChoice.getMatchChoice(moveChoice), movable(targetColumn, moveChoice));
     }
 
     /**
@@ -68,7 +68,6 @@ public class BridgeGame {
         if (lastIndex < 0) {
             return false;
         }
-
         return bridgeMoveInformation.get(lastIndex).moveSucceed() != true;
     }
 
@@ -78,5 +77,9 @@ public class BridgeGame {
 
     private List<MoveInformation> getBridgeMoveResults() {
         return Collections.unmodifiableList(bridgeMoveInformation);
+    }
+
+    private boolean movable(int position, String moveChoice){
+        return bridge.get(position).equals(moveChoice);
     }
 }

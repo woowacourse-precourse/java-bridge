@@ -26,7 +26,7 @@ public class BridgeGameController {
         outputView.printInitComment();
 
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(getBridgeSize())));
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()));
     }
 
     public void process() {
