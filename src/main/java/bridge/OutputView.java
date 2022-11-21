@@ -83,9 +83,10 @@ public class OutputView {
 			System.out.print(status.get(key));
 			printNewLine();
 		}
+		printNewLine();
 	}
 
-	public static void resetStatus() {
+	public static void resetPrintStatus() {
 		bridgeStatus.reset();
 	}
 }
