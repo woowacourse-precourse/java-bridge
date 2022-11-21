@@ -1,4 +1,4 @@
-package bridge.Enums;
+package bridge.enums;
 
 public enum ReverseCommands {
     REVERSE_UP("U", "D"),

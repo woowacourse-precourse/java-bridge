@@ -1,4 +1,4 @@
-package bridge.Enums;
+package bridge.enums;
 
 public enum Commands {
     UP("U"),

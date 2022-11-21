@@ -1,4 +1,4 @@
-package bridge.Enums;
+package bridge.enums;
 
 public enum MoveResults {
     SUCCESS(true, "O"),
