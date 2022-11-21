@@ -67,7 +67,7 @@ public class OutputView {
      * @param bridge
      * @param userRoute
      */
-    public void printResult(int trial, List<String> bridge, List<String> userRoute) {
+    public void printResult(int trial, List<String> userRoute, List<String> bridge) {
         System.out.println("최종 게임 결과");
         printMap(userRoute, bridge);
         System.out.println("게임 성공 여부: " +

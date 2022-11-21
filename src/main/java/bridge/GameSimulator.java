@@ -22,7 +22,7 @@ public class GameSimulator {
             trial++;
             startGameRound(userRoute, bridge);
         } while (gameover(userRoute, bridge));
-        quitGame(trial, bridge, userRoute);
+        quitGame(trial, userRoute, bridge);
     }
 
     /**
@@ -68,7 +68,7 @@ public class GameSimulator {
         return false;
     }
 
-    private void quitGame(int trial, List<String> bridge, List<String> userRoute) {
+    private void quitGame(int trial, List<String> userRoute, List<String> bridge) {
         outputView.printResult(trial, bridge, userRoute);
     }
 }
