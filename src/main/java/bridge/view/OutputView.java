@@ -1,20 +1,15 @@
 package bridge.view;
 
 
+import static bridge.enums.BridgeType.*;
+import static bridge.enums.GameMapStatus.*;
+
 import bridge.domain.User;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String START_FORM = "[ ";
-    private static final String END_FORM = " ]";
-    private static final String BOUNDARY_LINE = " | ";
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-    private static final String PASS = "O";
-    private static final String FAIL = "X";
-    private static final String SPACE = " ";
     private StringBuilder upState = new StringBuilder();
     private StringBuilder downState = new StringBuilder();
 
@@ -35,8 +30,8 @@ public class OutputView {
     }
 
     public void printProgressMap() {
-        System.out.println(START_FORM + upState + END_FORM);
-        System.out.println(START_FORM + downState + END_FORM);
+        System.out.println(START_MAP.getSymbol() + upState + END_MAP.getSymbol());
+        System.out.println(START_MAP.getSymbol() + downState + END_MAP.getSymbol());
     }
 
     /**
@@ -52,38 +47,38 @@ public class OutputView {
 
     private void setBoundaryLine(int location) {
         if (location >= 1) {
-            upState.append(BOUNDARY_LINE);
-            downState.append(BOUNDARY_LINE);
+            upState.append(BOUNDARY_LINE.getSymbol());
+            downState.append(BOUNDARY_LINE.getSymbol());
         }
     }
 
     private void checkUpOrDown(String UpAndDown, boolean pass) {
-        if (UpAndDown.equals(UP)) {
+        if (UpAndDown.equals(UP.getCommand())) {
             setUpState(pass);
         }
-        if (UpAndDown.equals(DOWN)) {
+        if (UpAndDown.equals(DOWN.getCommand())) {
             setDownState(pass);
         }
     }
 
     private void setUpState(boolean pass) {
         if (pass) {
-            upState.append(PASS);
+            upState.append(PASS.getSymbol());
         }
         if (!pass) {
-            upState.append(FAIL);
+            upState.append(FAIL.getSymbol());
         }
-        downState.append(SPACE);
+        downState.append(SPACE.getSymbol());
     }
 
     private void setDownState(boolean pass) {
         if (pass) {
-            downState.append(PASS);
+            downState.append(PASS.getSymbol());
         }
         if (!pass) {
-            downState.append(FAIL);
+            downState.append(FAIL.getSymbol());
         }
-        upState.append(SPACE);
+        upState.append(SPACE.getSymbol());
     }
 
     public void clearMap() {
