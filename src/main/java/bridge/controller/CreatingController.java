@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.PassingSpace;
+import bridge.model.Round;
 import bridge.view.OutputView;
 
 import java.util.List;
@@ -12,6 +13,11 @@ import java.util.List;
 public class CreatingController {
     private final InputController inputController = new InputController();
     private final OutputView outputView = new OutputView();
+
+    public void start() {
+        outputView.printStartGame();
+        outputView.printNewLine();
+    }
 
     public Bridge createBridge() {
         try {
@@ -27,12 +33,16 @@ public class CreatingController {
     private Bridge makeBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridgeProtoType = bridgeMaker.makeBridge(bridgeSize);
+
         Bridge bridge = new Bridge(bridgeProtoType);
+
+        outputView.printNewLine();
         return bridge;
     }
 
     public BridgeGame createBridgeGame(Bridge bridge) {
         PassingSpace passingSpace = new PassingSpace();
-        return new BridgeGame(bridge, passingSpace);
+        Round round = new Round(bridge);
+        return new BridgeGame(round, passingSpace);
     }
 }

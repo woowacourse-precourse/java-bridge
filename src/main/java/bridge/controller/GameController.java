@@ -16,7 +16,8 @@ public class GameController {
     public void run() {
         do {
             runRound();
-        } while (continueGame());
+        } while (canContinueGame());
+
         printResult();
     }
 
@@ -26,17 +27,18 @@ public class GameController {
             moving = inputController.selectMoving();
             bridgeGame.move(moving);
             outputView.printMap(bridgeGame.drawPassingSpace());
-        } while (continueRound(moving));
+        } while (canContinueRound());
     }
 
-    private boolean continueRound(String moving) {
-        return bridgeGame.isRightSpace() && !bridgeGame.isSuccessCrossingBridge();
+    private boolean canContinueRound() {
+        return bridgeGame.selectRightSpace() && !bridgeGame.isSuccessCrossingBridge();
     }
 
-    private boolean continueGame() {
+    private boolean canContinueGame() {
         if (bridgeGame.isSuccessCrossingBridge()) {
             return false;
         }
+
         String selectRetrying = inputController.selectRetryGame();
         return bridgeGame.retry(selectRetrying);
     }
