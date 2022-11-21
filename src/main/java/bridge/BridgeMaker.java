@@ -29,6 +29,7 @@ public class BridgeMaker {
     private String addBridge(){
         int random = bridgeNumberGenerator.generate();
         Step step = Step.getStep(random);
+
         return step.name();
     }
 }

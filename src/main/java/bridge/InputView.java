@@ -18,6 +18,7 @@ public class InputView {
         System.out.println(Message.BRIDGE_SIZE);
         String input = Console.readLine();
         validateSize(input);
+
         return Integer.valueOf(input);
     }
 
@@ -49,6 +50,7 @@ public class InputView {
         System.out.println(Message.MOVING);
         String input = Console.readLine();
         validateMove(input);
+
         return input;
     }
 
@@ -70,6 +72,7 @@ public class InputView {
         System.out.println(Message.GAME_COMMAND);
         String input = Console.readLine();
         validateGameCommand(input);
+
         return input;
     }
 

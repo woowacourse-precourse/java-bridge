@@ -15,16 +15,24 @@ public enum Step {
     }
 
     public static Step getStep(int value){
-        return Arrays.stream(Step.values()).filter(c -> c.value == value).findFirst().get();
+        return Arrays.stream(Step.values())
+                .filter(c -> c.value == value)
+                .findFirst()
+                .get();
     }
 
     public static boolean validStep(String str){
-        return Arrays.stream(Step.values()).filter(c -> c.name().equals(str)).findAny().orElse(null) != null ? true : false;
+        return Arrays.stream(Step.values())
+                .filter(c -> c.name().equals(str))
+                .findAny()
+                .orElse(null) != null ?
+                true : false;
     }
 
     public String toStringStair(List<String> answer, List<String> step){
         List<String> stair = makeStair(answer, step);
         String str = String.join(" | ", stair);
+
         return "[ " + str + " ]";
     }
 
@@ -33,6 +41,7 @@ public enum Step {
         for(int i = 0 ; i < answer.size(); i++){
             stair.add(checkAnswer(answer.get(i),step.get(i)));
         }
+
         return stair;
     }
 
@@ -41,6 +50,7 @@ public enum Step {
         if(step.equals(this.name())){
             str = answer;
         }
+
         return str;
     }
 }

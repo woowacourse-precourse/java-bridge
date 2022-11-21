@@ -56,7 +56,6 @@ public class OutputView {
 
     private List<String> getAnswer(List<String> bridge, List<String> step){
         List<String> answer = new ArrayList<>();
-
         for(int i = 0; i < step.size(); i++){
             answer.add(compareStair(bridge.get(i), step.get(i)));
         }

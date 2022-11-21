@@ -22,7 +22,6 @@ public class BridgeGame {
     private static boolean CheckStep() {
         int index = playerStep.size() - 1;
         String lastMove = playerStep.get(index);
-
         if(Application.bridge.get(index).equals(lastMove))
             return true;
 
