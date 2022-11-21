@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CurrentBridgeTest {
 
+    CurrentBridge currentBridge;
+
+    @BeforeEach
+    void clear() {
+        this.currentBridge = new CurrentBridge();
+    }
+
     @Test
     @DisplayName("CurrentBridge는 현재 구역을 까지의 위구역과 아래구역을 가지고 있어야 한다.")
     void currentBridgeHaveCurrentShape() {
@@ -16,7 +24,6 @@ class CurrentBridgeTest {
         List<String> currentShape = List.of("U", "D", "U");
 
         // when
-        CurrentBridge currentBridge = new CurrentBridge();
         currentBridge.setSection(List.of("U"), "U");
         currentBridge.setSection(List.of("U", "D"), "D");
 
@@ -34,7 +41,6 @@ class CurrentBridgeTest {
         List<String> currentShape = List.of("U", "D", "U");
 
         // when
-        CurrentBridge currentBridge = new CurrentBridge();
         currentBridge.setSection(List.of("U"), "U");
         currentBridge.setSection(List.of("U", "D"), "D");
 
@@ -52,7 +58,6 @@ class CurrentBridgeTest {
         List<String> currentShape = List.of("U", "D", "U");
 
         // when
-        CurrentBridge currentBridge = new CurrentBridge();
         currentBridge.setSection(currentShape, "U");
         boolean successLastSection = currentBridge.isSuccessLastSection();
 
@@ -67,7 +72,6 @@ class CurrentBridgeTest {
         List<String> currentShape = List.of("U", "D", "U");
 
         // when
-        CurrentBridge currentBridge = new CurrentBridge();
         currentBridge.setSection(currentShape, "D");
         boolean successLastSection = currentBridge.isSuccessLastSection();
 

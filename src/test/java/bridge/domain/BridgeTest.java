@@ -18,9 +18,9 @@ class BridgeTest {
 
         // when
         Bridge bridge = new Bridge(size);
-        boolean lastBridgeSection = bridge.isLastBridgeSection(5);
 
         // then
+        boolean lastBridgeSection = bridge.isLastBridgeSection(5);
         assertTrue(lastBridgeSection);
     }
 
