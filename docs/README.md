@@ -77,3 +77,4 @@ BridgeGameController 클래스에 BridgeMaker, BridgeGame 클래스의 객체들
 - [V] 다리의 길이를 입력받는다.
 - [V] 다리 길이의 입력값이 올바른지 검증한다.
 - [V] 다리를 생성해 반환한다.
+- [V] BridgeGameControl 클래스의 setBridgeGame 메서드 -> startGame, setBridgeGame 메서드 2개로 분할

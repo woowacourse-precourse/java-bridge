@@ -3,6 +3,8 @@ package bridge;
 public class Validator {
 
     private static IllegalArgumentException exit_Program = new IllegalArgumentException();
+    static InputView inputView = new InputView();
+    static OutputView outputView = new OutputView();
 
     public static void isNumber(String input) {
         char[] inputCharacters = input.toCharArray();
@@ -17,6 +19,7 @@ public class Validator {
         try{
          isNumber(input);
         }catch(IllegalArgumentException e){
+            outputView.printStatements("");
             throw exit_Program;
         }
     }

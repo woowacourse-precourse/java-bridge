@@ -13,14 +13,21 @@ public class BridgeGameController {
         this.crossableBridge = crossableBridge;
     }
 
-    public static List<String> setBridgeGame() {
+    public static BridgeMaker startGame() {
         BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();;
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         outputView.printStatements(NormalStatements.GAME_START.getNormalStatement());
-        int bridgeLength = new InputView().readBridgeSize(); //Validator 객체를 사용해 유효성 검증 후 반환하게 한다.
-        return crossableBridge = bridgeMaker.makeBridge(bridgeLength);
+        outputView.printStatements("");
+        return bridgeMaker;
     }
-
-
+    public static List<String> setBridgeGame(BridgeMaker bridgeMaker) {
+        try {
+            outputView.printStatements(NormalStatements.ASK_BRIDGE_LENGTH.getNormalStatement());
+            int bridgeLength = new InputView().readBridgeSize();
+            return crossableBridge = bridgeMaker.makeBridge(bridgeLength);
+        }catch(IllegalArgumentException e){
+            return setBridgeGame(bridgeMaker);
+        }
+    }
 
 }
