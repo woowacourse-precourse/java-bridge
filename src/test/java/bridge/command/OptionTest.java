@@ -1,11 +1,8 @@
-package bridge;
+package bridge.command;
 
 import static bridge.config.ExceptionMessage.ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.command.Command;
-import bridge.command.Move;
-import bridge.command.Option;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

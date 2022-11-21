@@ -13,10 +13,6 @@ public enum GameCommand {
         this.keyValue = keyValue;
     }
 
-    public String getKeyValue() {
-        return keyValue;
-    }
-
     public static boolean isInGameCommand(String input) {
         return Arrays.stream(values())
             .anyMatch(gameCommand -> gameCommand.keyValue.equals(input));
