@@ -15,12 +15,15 @@ public class Controller {
     public BridgeMaker bridgeMaker;
     public OutputView outputView;
     public BridgeGame bridgeGame;
-    public void run(){
+
+    public Controller(){
         inputView = new InputView();
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView = new OutputView();
-
+    }
+    
+    public void run(){
         inputView.printGameStartMessage();
 
         //다리 길이 입력 받기
