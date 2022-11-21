@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 /**
  * 사용자로부터 입력 받은 값을 검증하는 역할을 한다.

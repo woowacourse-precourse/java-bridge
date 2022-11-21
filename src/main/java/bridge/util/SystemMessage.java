@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 /**
  * 시스템 메시지를 출력하는 역할을 한다.

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.util.Validation;
+
 import java.util.ArrayList;
 import java.util.List;
 
