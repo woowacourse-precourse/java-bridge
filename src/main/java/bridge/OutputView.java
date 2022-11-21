@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -8,6 +9,9 @@ import java.util.List;
  */
 public class OutputView {
 
+    String correct = "[ O ]";
+    String notSelected = "[   ]";
+    String wrong = "[ X ]";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -23,59 +27,37 @@ public class OutputView {
         return currentResult;
     }
 
+    public List<String> printMapNextRow(List<String> currentResult) {
+        for (int index = 0; index < currentResult.size(); index++) {
+            if (currentResult.get(index).equals(correct)) {
+                currentResult.set(index, notSelected);
+                index++;
+            }
+            if (currentResult.get(index).equals(correct)) {
+                currentResult.set(index, notSelected);
+            }
+        }
+        return currentResult;
+    }
+
     public List<String> printMapCorrect(List<String> bridgeAnswer, List<String> currentResult, int stage) {
         if (bridgeAnswer.get(stage).equals("U")) {
-            currentResult = printMapUpsideCorrect(currentResult, stage);
+            currentResult.add(correct);
         }
         if (bridgeAnswer.get(stage).equals("D")) {
-            currentResult = printMapDownsideCorrect(currentResult, stage);
+            currentResult.add(notSelected);
         }
         return currentResult;
     }
 
     public List<String> printMapWrong(List<String> bridgeAnswer, List<String> currentResult, int stage) {
         if (bridgeAnswer.get(stage).equals("U")) {
-            currentResult = printMapUpsideWrong(currentResult, stage);
+            currentResult.add(wrong);
         }
         if (bridgeAnswer.get(stage).equals("D")) {
-            currentResult = printMapDownsideWrong(currentResult, stage);
+            currentResult.add(notSelected);
         }
-        return currentResult;
-    }
 
-    public List<String> printMapUpsideCorrect(List<String> currentResult, int stage) {
-        String correct = "[ O ]";
-        String notSelected = "[   ]";
-        currentResult.add(stage, notSelected);
-        currentResult.add(0, correct);
-
-        return currentResult;
-    }
-
-    public List<String> printMapDownsideCorrect(List<String> currentResult, int stage) {
-        String correct = "[ O ]";
-        String notSelected = "[   ]";
-
-        currentResult.add(currentResult.size() - stage, notSelected);
-        currentResult.add(correct);
-        return currentResult;
-    }
-
-    public List<String> printMapUpsideWrong(List<String> currentResult, int stage) {
-        String wrong = "[ X ]";
-        String notSelected = "[   ]";
-        currentResult.add(stage, notSelected);
-        currentResult.add(0, wrong);
-
-        return currentResult;
-    }
-
-    public List<String> printMapDownsideWrong(List<String> currentResult, int stage) {
-        String wrong = "[ X ]";
-        String notSelected = "[   ]";
-
-        currentResult.add(currentResult.size() - stage, notSelected);
-        currentResult.add(wrong);
         return currentResult;
     }
 
