@@ -16,7 +16,7 @@ class OXBridgeTest {
 
     @BeforeEach
     void setOXBridge() {
-        oxBridge = OXBridge.from(new ArrayList<>(), new ArrayList<>());
+        oxBridge = OXBridge.from();
     }
 
     @DisplayName("input에 대한 OX가 OXBridge에 잘 담기는지 확인하는 테스트")

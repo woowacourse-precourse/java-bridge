@@ -1,6 +1,5 @@
 package bridge.domain.oxbridgebuilder;
 
-import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,25 +20,6 @@ class OXBridgeUtilsTest {
         return Stream.of(
             Arguments.of(true, "O"),
             Arguments.of(false, "X")
-        );
-    }
-
-    @DisplayName("OXBridge 결과 도안 출력하기")
-    @MethodSource("makeResultTestArgumentProvider")
-    @ParameterizedTest
-    void makeResultTest(List<String> upBridge, List<String> downBridge, String resultDesign) {
-        Assertions.assertThat(OXBridgeUtils.makingResult(upBridge, downBridge))
-                .isEqualTo(resultDesign);
-    }
-
-    private static Stream<Arguments> makeResultTestArgumentProvider() {
-        return Stream.of(
-            Arguments.of(
-                List.of("O", "O", " "), List.of(" ", " ", "O"), "[ O | O |   ]\n[   |   | O ]\n"
-            ),
-            Arguments.of(
-                List.of("O", "X"), List.of(" ", " "), "[ O | X ]\n[   |   ]\n"
-            )
         );
     }
 }
