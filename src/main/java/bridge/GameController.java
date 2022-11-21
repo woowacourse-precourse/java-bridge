@@ -9,60 +9,55 @@ public class GameController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgeGame bridgeGame;
     private static int trials = 1;
 
     public void start() {
-        outputView.gameStartMessage();
-        int size = askBridgeSize();
-        List<String> answer_bridge = bridgeMaker.makeBridge(size);
-        System.out.println(answer_bridge);
-        BridgeGame bridgeGame = new BridgeGame(answer_bridge);
-        boolean keepgo = true;
-        while (keepgo) {
-            move(bridgeGame);//끝까지 성공하거나 중간에 실패하기전까지 이동
-
-            //성공하거나 Q를 입력받으면 false return
-            keepgo = successOrRetry(bridgeGame);
+        outputView.gameStartMessage(); //게임시작 메시지
+        int size = askBridgeSize(); //다리 사이즈 입력
+        List<String> answer_bridge = bridgeMaker.makeBridge(size);//다리 생성
+        //System.out.println(answer_bridge);
+        bridgeGame = new BridgeGame(answer_bridge); //게임 관리 클래스 생성
+        while (true) {
+            move();//끝까지 성공하거나 중간에 실패하기전까지 이동
+            if(userWin()) return;//성공이면 결과출력하고 게임 종료
+            if(!doRetry()) return;//Q 입력하면 결과출력하고 게임 종료, R은 재시작
             trials++;
         }
     }
-
-    private boolean successOrRetry(BridgeGame bridgeGame) {
+    private boolean userWin(){
         if (bridgeGame.isSuccess()) {
             outputView.printResult("성공", bridgeGame, trials);
-            return false;
+            return true;
         }
-
-
+        return false;
+    }
+    private boolean doRetry(){
         String command = askRestart();
-        if (command.equals("R")) {
+        if (command.equals("R")) {  //R입력시 재시작
             bridgeGame.retry();
+            return true;
         }
-
-        if (command.equals("Q")) {
+        if (command.equals("Q"))    //Q 입력시 결과 출력 후 종료
             outputView.printResult("실패", bridgeGame, trials);
-            return false;
-        }
-        return true;
+        return false;
     }
 
-    private void move(BridgeGame bridgeGame) {
+    private void move() {
         boolean isEnd = false;
         while (!isEnd) {
-            move1Step(bridgeGame);
+            move1Step();
             isEnd = bridgeGame.isEnd();
         }
     }
 
-    private void move1Step(BridgeGame bridgeGame) {
-
-        //input move
+    private void move1Step() {
+        //input move 방향
         String way = askMoving();
         //move
         bridgeGame.move(way);
         //printMap
         outputView.printMap(bridgeGame);
-
     }
 
     private int askBridgeSize() {
