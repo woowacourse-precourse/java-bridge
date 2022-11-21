@@ -24,7 +24,7 @@ public class SecondBridgeSignStrategy implements SignStrategy {
 
     @Override
     public void appendSignIsDownSignWrongAnswer(boolean isAnswer, MoveDirection direction) {
-        if (result.isUpSignWrongAnswer(isAnswer, direction)) {
+        if (result.isDownSignWrongAnswer(isAnswer, direction)) {
             sb.append(WRONG_ANSWER.getSign());
         }
     }
@@ -39,7 +39,7 @@ public class SecondBridgeSignStrategy implements SignStrategy {
     @Override
     public void appendSignIsUpSignWrongAnswer(boolean isAnswer, MoveDirection direction) {
         if (result.isUpSignWrongAnswer(isAnswer, direction)) {
-            sb.append(EMPTY_SPACE);
+            sb.append(EMPTY_SPACE.getSign());
         }
     }
 
