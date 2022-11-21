@@ -15,7 +15,7 @@ public class BridgeGame {
     public BridgeGame(List<String> answerBridge) {
         this.answerBridge = answerBridge;
         this.playerCommands = new ArrayList<>();
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     public int getTryCount() {
@@ -27,7 +27,6 @@ public class BridgeGame {
      */
     public void move(String movingCommand) {
         playerCommands.add(movingCommand);
-        tryCount++;
     }
 
     /**
@@ -35,6 +34,7 @@ public class BridgeGame {
      */
     public void retry() {
         playerCommands.clear();
+        tryCount++;
     }
 
     /**
