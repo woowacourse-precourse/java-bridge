@@ -14,6 +14,18 @@ public class BridgeService {
     static final InputView inputView = new InputView();
     static final OutputView outputView = new OutputView();
     
+    public void inputBridgeLength(){
+        while(true){
+            outputView.printRequestBridgeLengthMessage();
+            String bridgeLength = inputView.readBridgeSize();
+            if(!isValidBridgeLengthInput(bridgeLength))
+                continue;
+
+            bridgeGame.setBridgeLength(Integer.parseInt(bridgeLength));
+            return;
+        }
+    }
+
     public boolean isValidBridgeLengthInput(String bridgeLength){
         if(!inputValidation.isNumber(bridgeLength)){
             outputView.printNotNumberBridgeLengthInputErrorMessage();
