@@ -34,4 +34,9 @@ public class InputException {
         validateProperNumbersRange(userInput);
     }
 
+    public static void validateMovingInput(String moving){
+        if(isNotProperInput(moving, MOVING_INPUT_PATTERN)){
+            throw new IllegalArgumentException("not proper moving input");
+        }
+    }
 }
