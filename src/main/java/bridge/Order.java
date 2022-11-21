@@ -32,4 +32,15 @@ public enum Order {
 		}
 		return false;
 	}
+
+	public static String getBridgeBlock(int id) {
+		String block = "D";
+		for (Control control : MOVING.orders) {
+			if (control.getControlId() == id) {
+				block = control.getControlOrder();
+				break;
+			}
+		}
+		return block;
+	}
 }

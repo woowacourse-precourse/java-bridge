@@ -17,4 +17,8 @@ public enum Control {
 	public String getControlOrder() {
 		return controlOrder;
 	}
+
+	public int getControlId() {
+		return controlId;
+	}
 }
