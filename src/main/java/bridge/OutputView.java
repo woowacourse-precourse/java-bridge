@@ -15,11 +15,11 @@ public class OutputView {
         StringBuilder UpStep = new StringBuilder("[ ");
         StringBuilder DownStep = new StringBuilder("[ ");
         for (String s : bridgeNow) {
-            if (s.equals("1")) {
+            if (s.equals("U")) {
                 UpStep.append("O | ");
                 DownStep.append("  | ");
             }
-            if (s.equals("0")) {
+            if (s.equals("D")) {
                 UpStep.append("  | ");
                 DownStep.append("O | ");
             }
