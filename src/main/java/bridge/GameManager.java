@@ -26,7 +26,7 @@ public class GameManager {
         int bridgeSize = InputView.getBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         tryGame(bridgeGame, bridgeSize);
-        OutputView.printResult(Arrays.asList(result.get(0), result.get(1)), isSuccess(result.get(0), result.get(1)), tryCount);
+        OutputView.printResult(result, isSuccess(result.get(0), result.get(1)), tryCount);
     }
 
     public void tryGame(BridgeGame bridgeGame, int bridgeSize) {
@@ -73,11 +73,9 @@ public class GameManager {
 
     public String isSuccess(List<String> upResult, List<String> downResult) {
         String success = "실패";
-
         if (!upResult.contains(" X ") && !downResult.contains(" X ")) {
             success = "성공";
         }
-
         return success;
     }
 }
