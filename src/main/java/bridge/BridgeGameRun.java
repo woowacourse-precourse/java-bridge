@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.WordType.*;
+
 public class BridgeGameRun {
 
     private final InputView inputView;
@@ -84,7 +86,7 @@ public class BridgeGameRun {
     private boolean isRetry() {
         String command = getGameCommandByValidation();
 
-        if (command.equals("R")) {
+        if (command.equals(RESTART.getWord())) {
             bridgeGame.retry();
             return true;
         }
@@ -115,8 +117,8 @@ public class BridgeGameRun {
 
     private String getResultMessage() {
         if (result) {
-            return "성공";
+            return SUCCESS.getWord();
         }
-        return "실패";
+        return FAIL.getWord();
     }
 }
