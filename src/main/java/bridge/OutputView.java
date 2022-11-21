@@ -48,8 +48,8 @@ public class OutputView {
         for(String str : move){
             upperMove.add(UToO(str));
         }
-        if(!success){
-            upperMove.set(move.size()-1, "X");
+        if(!success && upperMove.get(upperMove.size() - 1) == "O"){
+            upperMove.set(upperMove.size()-1, "X");
         }
         return upperMove;
     }
@@ -59,8 +59,8 @@ public class OutputView {
         for(String str : move){
             underMove.add(DToO(str));
         }
-        if(!success){
-            underMove.set(move.size()-1, "X");
+        if(!success && underMove.get(underMove.size() - 1) == "O"){
+            underMove.set(underMove.size()-1, "X");
         }
         return underMove;
     }
