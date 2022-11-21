@@ -24,17 +24,18 @@ public class Play {
         bridgeGame.move(moving);
         map.drawMap(bridgeGame.getUserPath(), bridgeGame.isCorrectPath());
         view.mapView(map.getMap());
-        checkRetry();
-        nextRound();
+        if (checkRetry()) {
+            bridgeGame.retry(map);
+            nextRound();
+        }
     }
 
-    private void checkRetry() {
+    private boolean checkRetry() {
         if (!bridgeGame.isCorrectPath()) {
             String retryCommand = view.retryView();
-            if (retryCommand.equals(RETRY_COMMAND)) {
-                bridgeGame.retry(map);
-            }
+            return retryCommand.equals(RETRY_COMMAND);
         }
+        return true;
     }
 
     private void nextRound() {
