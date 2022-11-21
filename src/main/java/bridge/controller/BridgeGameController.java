@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import static bridge.view.InputView.readBridgeSize;
 import static bridge.view.InputView.readGameCommand;
+import static bridge.view.OutputView.printErrorMessage;
 import static bridge.view.OutputView.printInputBridgeSizeMessage;
 
 public class BridgeGameController {
@@ -50,7 +51,7 @@ public class BridgeGameController {
         try {
             bridge = new Bridge(bridgeMaker.makeBridge(readBridgeSize()));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printErrorMessage(e.getMessage());
             bridge = generateBridge(bridgeMaker);
         }
         return bridge;
@@ -63,7 +64,7 @@ public class BridgeGameController {
         try {
             isRetry = readGameCommand();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printErrorMessage(e.getMessage());
             isRetry = checkRetry();
         }
         return isRetry;

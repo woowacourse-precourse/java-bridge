@@ -9,8 +9,7 @@ import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.*;
 import static bridge.view.InputView.readMoving;
-import static bridge.view.OutputView.printInputMovingDirectionMessage;
-import static bridge.view.OutputView.printMap;
+import static bridge.view.OutputView.*;
 
 
 /**
@@ -66,7 +65,7 @@ public class BridgeGame {
         try {
             movingDirection = readMoving();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printErrorMessage(e.getMessage());
             movingDirection = inputMovingDirection();
         }
         return movingDirection;

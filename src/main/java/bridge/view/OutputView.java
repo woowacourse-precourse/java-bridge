@@ -53,6 +53,11 @@ public class OutputView {
         printEnter();
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+
+    }
+
     public static void printEnter() {
         System.out.println();
     }
