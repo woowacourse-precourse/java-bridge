@@ -15,7 +15,7 @@ public class BridgeGameController {
     private final BridgeMaker bridgeMaker;
 
     private BridgeGame bridgeGame;
-    private boolean play;
+    private boolean isPlaying;
 
     public BridgeGameController(BridgeNumberGenerator generator) {
         bridgeMaker = new BridgeMaker(generator);
@@ -23,7 +23,7 @@ public class BridgeGameController {
 
     public void play() {
         start();
-        while (play) {
+        while (isPlaying) {
             moveBridge();
         }
         end();
@@ -33,7 +33,7 @@ public class BridgeGameController {
         outputView.printGameStartMsg();
         bridgeGame = new BridgeGame(makeBridge());
         bridgeGame.start();
-        play = true;
+        isPlaying = true;
     }
 
     private void end() {
@@ -78,7 +78,7 @@ public class BridgeGameController {
 
     private void succeed() {
         bridgeGame.succeed();
-        play = false;
+        isPlaying = false;
     }
 
     private void fail() {
@@ -87,6 +87,6 @@ public class BridgeGameController {
             bridgeGame.retry();
             return;
         }
-        play = false;
+        isPlaying = false;
     }
 }
