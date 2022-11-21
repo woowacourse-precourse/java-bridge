@@ -10,8 +10,11 @@ public class BridgeView {
         this.outputView = outputView;
     }
 
-    public int gameStartMessage() {
+    public void gameStartMessage() {
         outputView.gameStartMessage();
+    }
+
+    public int inputBridgeSizeMessage() {
         outputView.inputBridgeSizeMessage();
         return inputView.readBridgeSize();
     }
