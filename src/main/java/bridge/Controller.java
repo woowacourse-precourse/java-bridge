@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.Objects;
 
 public class Controller {
     private final InputView inputView;
@@ -13,6 +14,7 @@ public class Controller {
         this.outputView = output;
         this.bridgeMaker = new BridgeMaker(generator);
         this.tryCount = 0;
+        this.success = "실패";
     }
 
     public void startGame() {
@@ -33,6 +35,16 @@ public class Controller {
             if (!isRetry(bridgeGame, command)) break;
             bridgeGame.retry();
         }
+    }
+
+    private boolean isRetry(BridgeGame bridgeGame, String command) {
+        if (Objects.equals(command, "R")) {
+            bridgeGame.retry();
+            tryCount += 1;
+            return true;
+        }
+
+        return false;
     }
 
 }
