@@ -32,4 +32,15 @@ public class BridgeTest {
 
         assertThat(moveResult).isEqualTo(List.of());
     }
+
+    @Test
+    @DisplayName("게임 건널 때마다 성공 여부 확인")
+    void 다리_게임_움직일때마다_성공_여부_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move(List.of("U", "D", "D"), "U");
+        bridgeGame.move(List.of("U", "D", "D"), "U");
+        boolean failGame = bridgeGame.isFailGame();
+
+        assertThat(failGame).isTrue();
+    }
 }
