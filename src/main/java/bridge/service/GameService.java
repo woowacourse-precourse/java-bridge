@@ -27,9 +27,11 @@ public class GameService {
     private void checkResult() {
         if(bridgeGame.gameOver())
             return;
-        if(bridgeGame.isNotEnd())
+        if(bridgeGame.roundClear()) {
             runGame();
-        if(!bridgeGame.isNotEnd())
+            return;
+        }
+        if(!bridgeGame.roundClear())
             chooseRetry();
     }
 

@@ -9,16 +9,14 @@ public class OutputView {
 
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String MAKE_BRIDGE_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String MOVE_CHOOSE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String MOVE_CHOOSE_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String CHOOSE_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
-    private static final String CLEAR_CONFIRM = "게임 성공 여부: %s\n";
-    private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: %d";
+    private static final String FINAL_RESULT_MESSAGE = "\n최종 게임 결과";
+    private static final String CLEAR_CONFIRM = "\n게임 성공 여부: %s\n";
+    private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: %d\n";
 
-    /*게임 성공 여부: 성공
-총 시도한 횟수: 2*/
-    private String bridgeUp;
-    private String bridgeDown;
+
+    private BridgePrinter bridgePrinter = new BridgePrinter();
 
     public void printStartMessage(){
         System.out.println(START_MESSAGE);
@@ -35,8 +33,7 @@ public class OutputView {
      * @param bridgeGame
      */
     public void printMap(BridgeGame bridgeGame) {
-        System.out.println(bridgeUp);
-        System.out.println(bridgeDown);
+        bridgePrinter.print(bridgeGame);
     }
 
     public void printChooseRetry() {
@@ -52,7 +49,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMap(bridgeGame);
-        System.out.printf(CLEAR_CONFIRM,"성공");
-        System.out.printf(TOTAL_TRY_COUNT,1);
+        System.out.printf(CLEAR_CONFIRM, bridgeGame.getClearConfirm());
+        System.out.printf(TOTAL_TRY_COUNT,bridgeGame.getTryCount());
     }
 }

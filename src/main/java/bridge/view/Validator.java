@@ -6,26 +6,30 @@ public class Validator {
 
     public void inputSizeValidator(String size) {
         if(!size.matches("[0-9]+")){
-            throw new IllegalArgumentException("Error");
+            throwError(ErrorMessage.NOT_INTEGER_ERROR.getErrorMessage());
         }
     }
 
     public void validatorBridgeSizeRange(String size) {
         int len = Integer.parseInt(size);
         if(len < 1 || len > 20){
-            throw new IllegalArgumentException("Error range");
+            throwError(ErrorMessage.BRIDGE_RANGE_ERROR.getErrorMessage());
         }
     }
 
     public void validateMoving(String moving) {
         if(!(moving.equals(Commend.UP) || moving.equals(Commend.DOWN))){
-            throw new IllegalArgumentException("위 아래 다시 입력");
+            throwError(ErrorMessage.DIRECTION_COMMEND_ERROR.getErrorMessage());
         }
     }
 
     public void validateRetryCommand(String command) {
         if(!(command.equals(Commend.RETRY) || command.equals(Commend.QUIT))){
-            throw new IllegalArgumentException("종료 다시 입력");
+            throwError(ErrorMessage.RETRY_COMMEND_ERROR.getErrorMessage());
         }
+    }
+
+    private void throwError(String errorMessage) {
+        throw new IllegalArgumentException(errorMessage);
     }
 }

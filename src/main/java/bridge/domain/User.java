@@ -7,8 +7,10 @@ public class User {
 
     private final List<String> movings = new ArrayList<>();
     private int count;
+    private ClearConfirm clearConfirm;
 
     public User(){
+        this.clearConfirm = ClearConfirm.실패;
         this.count = 1;
     }
 
@@ -31,5 +33,13 @@ public class User {
 
     public int getCount() {
         return count;
+    }
+
+    public void setClearConfime(ClearConfirm clearConfirm) {
+        this.clearConfirm = clearConfirm;
+    }
+
+    public ClearConfirm getClearConfirm() {
+        return clearConfirm;
     }
 }
