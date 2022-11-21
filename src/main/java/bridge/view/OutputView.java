@@ -21,12 +21,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> result) {
+    public void printMap(List<String> result, String lineBreak) {
         System.out.print("[ ");
         for (int r = 0; r < result.size() - 1; r++) {
             System.out.print(result.get(r) + " | ");
         }
-        System.out.println(result.get(result.size() - 1) + " ]");
+        System.out.println(result.get(result.size() - 1) + " ]" + lineBreak);
     }
 
     public void printContinue() {
