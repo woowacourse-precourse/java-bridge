@@ -24,4 +24,9 @@ public class Util {
             throw new IllegalArgumentException(ErrorMessage.SIZE_ERROR.getErrorMessage());
     }
 
+    public static void validateMoving(String moving){
+        if(!moving.equals("U") || !moving.equals("D"))
+            throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getErrorMessage());
+    }
+
 }
