@@ -16,7 +16,6 @@ public class InputView {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-        Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
         int bridgeSize = readBridgeSize(); // 다리 길이 입력
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize); // 다리 생성
         startGame(bridge); // 게임 시작
@@ -26,6 +25,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
         while (true) {
             try {
                 String value = validBridgeSize();
@@ -50,7 +50,6 @@ public class InputView {
         if (Pattern.matches(REGEX, value)) {
             return true;
         }
-//        ErrorMessage.inputBridgeNumber();
         return false;
     }
 
@@ -128,11 +127,21 @@ public class InputView {
     public String readMoving() {
         Message.inputMoveBridgeMessage();
         while (true) {
-            String moving = Console.readLine();
-            if (isReadMoving(moving)) {
-                return moving;
-            } // end if
+            try {
+                String value = validReadMoving();
+                return value;
+            }catch (IllegalArgumentException e){
+                ErrorMessage.inputMoveBridgeError();
+            }
         } // end while
+    }
+
+    public String validReadMoving(){
+        String moving = Console.readLine();
+        if (!isReadMoving(moving)) { // U 또는 D가 아니라면
+            throw new IllegalArgumentException();
+        } // end if
+        return moving;
     }
 
     // 입력 값이 U 또는 D 인지 검사
@@ -140,7 +149,6 @@ public class InputView {
         if (moving.equals("U") || moving.equals("D")) {
             return true;
         }
-        ErrorMessage.inputMoveBridgeError();
         return false;
     }
 
