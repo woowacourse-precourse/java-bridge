@@ -33,8 +33,7 @@ public class Application {
             return moves;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
-        }
-        return moves;
+        } return moves;
     }
     public static boolean runRetry(boolean correct) {
         if (!correct) {

@@ -31,7 +31,7 @@ public class InputView {
         output.printGetMove();
         String move = Console.readLine();
         validator.isValidMove(move);
-        return move;
+        return move.toUpperCase();
     }
 
     /**
@@ -41,6 +41,6 @@ public class InputView {
         output.printGetCommand();
         String command = Console.readLine();
         validator.isValidCommand(command);
-        return command;
+        return command.toUpperCase();
     }
 }
