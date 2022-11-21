@@ -14,7 +14,7 @@ import java.lang.reflect.Proxy;
 import java.util.List;
 
 public class MockObjectMaker {
-    public static GameController makeMockGameController(List<Integer> answers, String... mockInputs) {
+    public static GameController makeMockGameController(List<Integer> answers, List<String> mockInputs) {
         OutputView outputView = new OutputView(new BridgeMessageMaker());
         InputViewInterface inputView = makeMockProxyInputView(mockInputs);
 
@@ -26,7 +26,7 @@ public class MockObjectMaker {
         );
     }
 
-    public static InputViewInterface makeMockProxyInputView(String... mockInputs) {
+    public static InputViewInterface makeMockProxyInputView(List<String> mockInputs) {
         InputViewInterface target = new MockInputView(mockInputs);
         InvocationHandler invocationHandler
                 = new InputViewExceptionHandlingProxy(target, new OutputView(new BridgeMessageMaker()));

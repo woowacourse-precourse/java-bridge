@@ -34,7 +34,7 @@ class GameControllerTest {
         void givenInputs_whenDoingGame_thenPrintsMessage() {
             //given
             GameController gameController
-                    = MockObjectMaker.makeMockGameController(List.of(0, 1, 0, 1), "4", "D", "U", "D", "U");
+                    = MockObjectMaker.makeMockGameController(List.of(0, 1, 0, 1), List.of("4", "D", "U", "D", "U"));
 
             //when
             gameController.doGame();
@@ -48,7 +48,7 @@ class GameControllerTest {
         void givenInvalidInputs_whenDoingGame_thenPrintsMessageAndInputAgain() {
             //given
             GameController gameController
-                    = MockObjectMaker.makeMockGameController(List.of(0, 1, 0), "3", "D", "O", "U", "D");
+                    = MockObjectMaker.makeMockGameController(List.of(0, 1, 0), List.of("3", "D", "O", "U", "D"));
 
             //when
             gameController.doGame();
@@ -62,7 +62,7 @@ class GameControllerTest {
         void givenQuitingInputs_whenDoingGame_thenPrintsMessage() {
             //given
             GameController gameController
-                    = MockObjectMaker.makeMockGameController(List.of(1, 1, 0), "3", "D", "R", "D", "Q");
+                    = MockObjectMaker.makeMockGameController(List.of(1, 1, 0), List.of("3", "D", "R", "D", "Q"));
 
             //when
             gameController.doGame();

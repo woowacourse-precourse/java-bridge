@@ -19,11 +19,11 @@ class BridgeMessageMakerTest {
         @DisplayName("주어진 이동 결과를 바탕으로 실행 결과 메시지를 출력할 수 있다.")
         void givenStepResults_whenMakingBridgeMessage_thenReturnsMessage() {
             //given && when
-            String resultMessage = makeBridgeMessage(
+            String resultMessage = makeBridgeMessage(List.of(
                     new StepResult(Step.D, true),
                     new StepResult(Step.U, true),
                     new StepResult(Step.U, false)
-            );
+            ));
 
             //then
             Assertions.assertThat(resultMessage)
@@ -34,11 +34,11 @@ class BridgeMessageMakerTest {
         @DisplayName("한 쪽에만 치우친 이동 결과가 나올 수 있다,")
         void givenStepResultsOnlyU_whenMakingBridgeMessage_thenReturnsMessage() {
             //given && when
-            String resultMessage = makeBridgeMessage(
+            String resultMessage = makeBridgeMessage(List.of(
                     new StepResult(Step.U, true),
                     new StepResult(Step.U, true),
                     new StepResult(Step.U, false)
-            );
+            ));
 
             //then
             Assertions.assertThat(resultMessage)
@@ -49,11 +49,11 @@ class BridgeMessageMakerTest {
         @DisplayName("중간에 X가 나올 수 있다. 해당 클래스에서는 이동 실패한 결과가 있어도 중간에 중단하지 않는다.")
         void givenStepResultsFailingInMiddle_whenMakingBridgeMessage_thenReturnsMessage() {
             //given && when
-            String resultMessage = makeBridgeMessage(
+            String resultMessage = makeBridgeMessage(List.of(
                     new StepResult(Step.U, true),
                     new StepResult(Step.D, false),
                     new StepResult(Step.D, true)
-            );
+            ));
 
             //then
             Assertions.assertThat(resultMessage)
@@ -61,7 +61,7 @@ class BridgeMessageMakerTest {
         }
     }
 
-    private String makeBridgeMessage(StepResult... stepResults) {
-        return bridgeMessageMaker.makeBridgeMessage(List.of(stepResults));
+    private String makeBridgeMessage(List<StepResult> stepResults) {
+        return bridgeMessageMaker.makeBridgeMessage(stepResults);
     }
 }

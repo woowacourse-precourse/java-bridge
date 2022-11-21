@@ -6,9 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -51,7 +49,7 @@ class BridgeMakerTest {
         @DisplayName("BridgeGenerator 에서 만든 숫자에 해당하는 U 또는 D의 대문자로 적절히 바꾸어 다리를 만든다.")
         void givenBridgeNumbers_whenMakingBridge_thenMakesBridgeHavingMatchingUpperCase() {
             //given
-            BridgeMaker bridgeMaker = getMockBridgeMaker(0, 1, 0, 0, 1, 1, 1, 0);
+            BridgeMaker bridgeMaker = getMockBridgeMaker(List.of(0, 1, 0, 0, 1, 1, 1, 0));
 
             //when
             List<String> target = bridgeMaker.makeBridge(8);
@@ -61,16 +59,13 @@ class BridgeMakerTest {
         }
     }
 
-    private static BridgeMaker getMockBridgeMaker(int... mockValue) {
+    private static BridgeMaker getMockBridgeMaker(List<Integer> mockValue) {
         return new BridgeMaker(
                 getMockNumberGenerator(mockValue)
         );
     }
 
-    private static MockNumberGenerator getMockNumberGenerator(int[] mockValue) {
-        return new MockNumberGenerator(
-                Arrays.stream(mockValue)
-                        .boxed().collect(Collectors.toList())
-        );
+    private static MockNumberGenerator getMockNumberGenerator(List<Integer> mockValues) {
+        return new MockNumberGenerator(mockValues);
     }
 }

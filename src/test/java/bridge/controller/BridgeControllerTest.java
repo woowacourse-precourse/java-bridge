@@ -22,7 +22,7 @@ class BridgeControllerTest {
 
     private final BridgeController bridgeController = new BridgeController(
             new OutputView(new BridgeMessageMaker()),
-            new MockInputView(UP, DOWN, UP, UP),
+            new MockInputView(List.of(UP, DOWN, UP, UP)),
             new BridgeGame()
     );
 

@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -30,7 +32,7 @@ class InputViewTest {
         @DisplayName("사용자로부터 다리의 길이를 입력받을 수 있다.")
         void whenReadingBridgeSize_thenReturnsBridgeSizeInput(String input) {
             //given
-            InputView inputView = new MockInputView(input);
+            InputView inputView = new MockInputView(List.of(input));
 
             //when && then
             assertThat(inputView.readBridgeSize())
@@ -42,7 +44,7 @@ class InputViewTest {
         @DisplayName("사용자가 자연수가 아닌 값을 입력하면 예외가 발생한다.")
         void givenInputNotNumber_whenReadingBridgeSize_thenThrowsException(String input) {
             //given
-            InputView inputView = new MockInputView(input);
+            InputView inputView = new MockInputView(List.of(input));
 
             //when && then
             assertThatThrownBy(inputView::readBridgeSize)
@@ -55,7 +57,7 @@ class InputViewTest {
         @DisplayName("사용자가 유효한 다리 길이의 범위가 아닌 값을 입력하면 예외가 발생한다.")
         void givenInputInvalidRange_whenReadingBridgeSize_thenThrowsException(String input) {
             //given
-            InputView inputView = new MockInputView(input);
+            InputView inputView = new MockInputView(List.of(input));
 
             //when && then
             assertThatThrownBy(inputView::readBridgeSize)
@@ -71,7 +73,7 @@ class InputViewTest {
         @DisplayName("사용자가 이동할 칸을 선택하기 위해 U 또는 D를 입력할 수 있다.")
         void whenReadingMoving_thenReturnsMovingPoint() {
             //given
-            InputView inputView = new MockInputView(UP);
+            InputView inputView = new MockInputView(List.of(UP));
 
             //when
             String target = inputView.readMoving();
@@ -85,7 +87,7 @@ class InputViewTest {
         @DisplayName("사용자가 U 또는 D 이외의 값을 입력하면 예외가 발생한다. UU나 UD같은 것도 허용하지 않는다.")
         void givenNotUNorD_whenReadingMoving_thenReturnsMovingPoint(String input) {
             //given
-            InputView inputView = new MockInputView(input);
+            InputView inputView = new MockInputView(List.of(input));
 
             //when && then
             assertThatThrownBy(inputView::readMoving)
@@ -101,7 +103,7 @@ class InputViewTest {
         @DisplayName("게임 재시작/종료 여부를 결정하기 위해 R 또는 Q 를 입력할 수 있다.")
         void givenROrQ_whenReadingGameCommand_thenReturnsCommand() {
             //given
-            InputView inputView = new MockInputView(RETRY, QUIT);
+            InputView inputView = new MockInputView(List.of(RETRY, QUIT));
 
             //when
             assertThat(inputView.readGameCommand()).isEqualTo(RETRY);
@@ -113,7 +115,7 @@ class InputViewTest {
         @DisplayName("R 이나 Q 가 아닌 값을 입력하면 예외가 발생한다.")
         void givenNotRNorQ_whenReadingGameCommand_thenThrowsException(String input) {
             //given
-            InputView inputView = new MockInputView(input);
+            InputView inputView = new MockInputView(List.of(input));
 
             //when
             assertThatThrownBy(inputView::readGameCommand)
