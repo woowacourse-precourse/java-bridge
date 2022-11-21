@@ -47,4 +47,18 @@ public class BridgeGameTest {
         //then
         assertThat(out.toString().contains("[ O ]") || out.toString().contains("[ X ]")).isTrue();
     }
+    @DisplayName("copy리스트 메소드 테스트")
+    @Test
+    void copyList() {
+        //given
+        List<List<String>> userMap = new ArrayList<>(2);
+        userMap.add(List.of(" "));
+        userMap.add(List.of("O"));
+        bridge.BridgeGame bridgeGame = new bridge.BridgeGame(3);
+        //when
+        List<List<String>> copyList = bridgeGame.getCopyList(userMap);
+        //then
+        assertThat(copyList).isNotSameAs(userMap);
+        assertThat(copyList).isEqualTo(userMap);
+    }
 }
