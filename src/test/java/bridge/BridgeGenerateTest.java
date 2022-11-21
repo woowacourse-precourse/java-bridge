@@ -18,9 +18,8 @@ class BridgeGenerateTest extends NsTest {
                 Arguments.of(newArrayList(0, 0, 0, 0, 0, 0, 0), 7, List.of("D", "D", "D", "D", "D", "D", "D")),
                 Arguments.of(newArrayList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1), 10,
                         List.of("U", "U", "U", "U", "U", "U", "U", "U", "U", "U")),
-                Arguments.of(newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0), 20,
-                        List.of("U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U",
-                                "D", "U", "D"))
+                Arguments.of(newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 19, List.of
+                        ("U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U", "D", "U"))
         );
     }
 
