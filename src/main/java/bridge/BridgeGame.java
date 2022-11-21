@@ -34,17 +34,20 @@ public class BridgeGame {
 			String movement = checkMovable(round, userInput);
 			status = checkX(movement);
 			output.printMap(round, bridge, userInput);
-			round += checkO(movement);
+			round = checkO(round, movement, status);
 			status = retry(status);
 		}
 		return status;
 	}
 
-	public int checkO(String movement) {
-		if (movement.equals(Map.SAFE.getValue())) {
-			return Numeric.COUNT.getValue();
+	public int checkO(int round, String movement, boolean status) {
+		if (!status) {
+			return Numeric.INITIALIZE.getValue();
 		}
-		return Numeric.NON_COUNT.getValue();
+		if (movement.equals(Map.SAFE.getValue())) {
+			return round + Numeric.COUNT.getValue();
+		}
+		return round + Numeric.NON_COUNT.getValue();
 	}
 
 	public boolean checkX(String movement) {

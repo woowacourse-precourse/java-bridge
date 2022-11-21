@@ -40,8 +40,8 @@ public class OutputView {
 
 	public void ifBlocked(int round) {
 		if (upperMap.get(round).equals(Map.DIE.getValue()) || lowerMap.get(round).equals(Map.DIE.getValue())) {
-			upperMap.remove(round);
-			lowerMap.remove(round);
+			upperMap.clear();
+			lowerMap.clear();
 		}
 	}
 
