@@ -1,9 +1,21 @@
 package bridge;
 
+import bridge.paths.Bridge;
+import bridge.paths.PlayerPath;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    Bridge bridge;
+    PlayerPath playerPath;
+
+    public BridgeGame(int bridgeLength) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength), bridgeLength);
+        playerPath = new PlayerPath();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
