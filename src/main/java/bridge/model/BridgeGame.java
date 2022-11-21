@@ -85,7 +85,7 @@ public class BridgeGame {
      * @return
      */
     public boolean isEndOfBridge() {
-        return bridge.size() == marks.size();
+        return bridge.size() != marks.size();
     }
 
     public void makeBridge(int size) {
