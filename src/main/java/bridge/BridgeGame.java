@@ -19,6 +19,12 @@ public class BridgeGame {
         this.size = size;
         this.randomList = bridgeMaker.makeBridge(size);
     }
+    public void playGame(List<List<String>> userMap) {
+        while (userMap.get(0).size() != size && !exitCode) {
+            userMap = move(userMap, readPrintDto.inputMove());
+        }
+        readPrintDto.exitPrint(userMap, exitCode, cnt);
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
