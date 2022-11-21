@@ -15,13 +15,22 @@ public class Bridge {
         bridge.add(input);
     }
 
-    public boolean matchAll(Bridge anotherBridge){
-        return bridge.equals(anotherBridge.bridge);
+    /**
+     * answerBridge와 일치하는지 비교한다.
+     * @param answerBridge: 무조건 정답 Bridge가 입력돼야 한다.
+     * @return 현재 길이까지 같으면 true
+     */
+    public boolean matchAll(Bridge answerBridge){
+        return bridge.equals(answerBridge.bridge);
     }
 
-    // anotherBridge의 크기는 항상 현재 bridge보다 같거나 큼
-    public boolean matchCurrentSize(Bridge anotherBridge){
-        List<String> anotherSubBridge = anotherBridge.bridge.subList(0, bridge.size());
+    /**
+     * 현재 Bridge와 정답 Bridge의 일부분과 비교한다.
+     * @param answerBridge: 무조건 정답 Bridge가 입력돼야 한다.
+     * @return 현재 길이까지 같으면 true
+     */
+    public boolean matchCurrentState(Bridge answerBridge){
+        List<String> anotherSubBridge = answerBridge.bridge.subList(0, bridge.size());
         return bridge.equals(anotherSubBridge);
     }
 }

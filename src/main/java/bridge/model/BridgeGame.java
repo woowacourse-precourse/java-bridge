@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.model.Bridge;
-
 import java.util.ArrayList;
 
 /**
@@ -12,13 +10,19 @@ public class BridgeGame {
     private Bridge answerBridge;
     private Bridge currentBridge;
 
+    public void setUp(Bridge answerBridge, Bridge currentBridge){
+        this.answerBridge = answerBridge;
+        this.currentBridge = currentBridge;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input) {
+    public boolean move(String input) {
         currentBridge.forward(input);
+        return false;
     }
 
     /**
@@ -28,14 +32,13 @@ public class BridgeGame {
      */
     public void retry() {
         currentBridge = new Bridge(new ArrayList<>());
-        answerBridge = null;
     }
 
-    public boolean correctAnswer(){
+    public boolean checkCurrentState(){
+        return currentBridge.matchCurrentState(answerBridge);
+    }
+
+    public boolean checkAnswer(){
         return currentBridge.matchAll(answerBridge);
-    }
-
-    public void setAnswerBridge(Bridge answerBridge){
-        this.answerBridge = answerBridge;
     }
 }
