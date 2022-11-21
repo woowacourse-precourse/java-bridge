@@ -64,18 +64,15 @@ public class BridgeGame {
         if (path.isEmpty()) {
             return true;
         }
-        int pathLastIndex = path.size() - 1;
-        return path.size() != bridge.size() && equalsAt(pathLastIndex);
+        return path.size() != bridge.size() && equalsAt(path.size() - 1);
     }
 
     public boolean isWin() {
-        int pathLastIndex = path.size() - 1;
-        return path.size() == bridge.size() && equalsAt(pathLastIndex);
+        return path.size() == bridge.size() && equalsAt(path.size() - 1);
     }
 
     public String calculateResult() {
-        int pathLastIndex = path.size() - 1;
-        if (equalsAt(pathLastIndex)) {
+        if (equalsAt(path.size() - 1)) {
             return BridgeConstants.WIN;
         }
         return BridgeConstants.LOSE;
