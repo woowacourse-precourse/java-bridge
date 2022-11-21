@@ -8,7 +8,7 @@ public class Record {
     private int retryCount ;
     Record() {
         this.movingRecord = new ArrayList<>();
-        retryCount = 0;
+        retryCount = 1;
     }
     Record(List<String> record) {
         this.movingRecord = new ArrayList<>(record);
