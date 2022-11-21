@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.BridgeLengthRule;
 import bridge.constant.BridgePattern;
+import bridge.constant.Command;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -31,18 +32,14 @@ public class InputView {
      */
     public BridgePattern readMoving() {
         String move = Console.readLine();
-
         return BridgePattern.searchBridgeType(move);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    /*public String readGameCommand() {
-        String command = readValue();
-        if (command.equals(Command.DO_QUIT.getCommand()) || command.equals(Command.DO_RETRY.getCommand())) {
-            return command;
-        }
-        throw new IllegalArgumentException("허용되지 않는 값! R(재시작) Q(종료) 중 하나를 입력하셔야 합니다!");
-    }*/
+    public Command readGameCommand() {
+        String command = Console.readLine();
+        return Command.searchCommand(command);
+    }
 }
