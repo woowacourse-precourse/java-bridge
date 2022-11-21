@@ -35,7 +35,7 @@ public class BridgeGame {
      */
     public MoveResult move(String userInput) {
         nowBridge.add(userInput);
-        if (userInput.equals(bridge.get(nowBridge.size()))) {
+        if (userInput.equals(bridge.get(nowBridge.size() - 1))) {
             MoveResult moveResult = new MoveResult(MOVERESULT_FLAG_VALID, nowBridge);
             return moveResult;
         }

@@ -4,14 +4,27 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.BridgeGame.MoveResult;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LogicUnitTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @Test
+    void 기능_BridgeGame_move() {
+        List<String> bridge = newArrayList("U", "D", "U");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        MoveResult moveResult = bridgeGame.move("U");
+        moveResult = bridgeGame.move("D");
+        moveResult = bridgeGame.move("D");
+        assertThat(moveResult.nowBridge.toString()).isEqualTo("[U, D, D]");
+        assertThat(moveResult.flag).isEqualTo(0);
+    }
 
     @Test
     void 예외_다리길이_숫자아닌경우() {
