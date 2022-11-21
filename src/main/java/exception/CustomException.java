@@ -12,4 +12,9 @@ public class CustomException {
         if (input.equals("U") || input.equals("D")) return true;
         return false;
     }
+
+    public boolean checkGameCommand(String input) {
+        if (input.equals("R") || input.equals("Q")) return true;
+        return false;
+    }
 }
