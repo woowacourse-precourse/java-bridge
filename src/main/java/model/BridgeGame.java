@@ -4,35 +4,50 @@ import constant.NumberConstant;
 import controller.BridgeController;
 import java.util.ArrayList;
 import java.util.List;
-import util.BridgeGameValidator;
+import util.validator.BridgeGameValidator;
 import util.CleanerUtil;
-import util.CountUtil;
 
 public class BridgeGame {
-    public static int tryNumber = NumberConstant.FIRST_TRY.getConstant();
+    private static final int firstIndex = NumberConstant.FIRST_INDEX.getConstant();
+    private static int tryNumber = NumberConstant.FIRST_TRY.getConstant();
     private static List<String> userBridge;
 
+    public BridgeGame(int tryNumber) {
+        this.tryNumber = tryNumber;
+    }
+
+    public static int getTryNumber() {
+        return tryNumber;
+    }
+
     public static void move(List<String> bridge, List<List<String>> bothSide) {
-        int firstIndex = NumberConstant.FIRST_INDEX.getConstant();
-        userBridge = new ArrayList<>();
-        addMoveInUserBridge();
-        for (int index = firstIndex; index < userBridge.size(); index++) {
+        initUserBridge();
+        for (int index = firstIndex; index < bridge.size(); index++) {
+            addMoveInUserBridge();
             isUserPathEqualsPath(bothSide, bridge, index);
             if (BridgeGameValidator.isMoveDone(bridge, bothSide)) {
                 break;
             }
-            addMoveInUserBridge();
         }
+        checkRetry(bridge, bothSide);
     }
 
-    private static void retry(List<String> bridge, List<List<String>> bothSide) {
+    public static void retry(List<String> bridge, List<List<String>> bothSide) {
         String retryOrQuit = BridgeController.getGameCommand();
         BridgeController.printRetryOrQuit(retryOrQuit);
         if (BridgeGameValidator.isUserInputRetry(retryOrQuit)) {
-            CountUtil.countTryNumber();
+            tryNumber++;
             CleanerUtil.clearBothSide(bothSide);
             move(bridge, bothSide);
         }
+    }
+
+    public static void cleanTryNumber() {
+        tryNumber = NumberConstant.FIRST_TRY.getConstant();
+    }
+
+    public static void initUserBridge() {
+        userBridge = new ArrayList<>();
     }
 
     private static void addMoveInUserBridge() {
@@ -67,7 +82,6 @@ public class BridgeGame {
             BothSide.addWrongPathUpSide(bothSide);
         }
         printMoving(bothSide, userBridge.get(index));
-        checkRetry(bridge, bothSide);
     }
 
     private static void checkRetry(List<String> bridge, List<List<String>> bothSide) {
