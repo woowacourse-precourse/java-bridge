@@ -31,7 +31,6 @@ public class BridgeGame {
     private void gameLoop(List<String> answerBridge, int bridgeSize) {
         while (currentPosition < bridgeSize) {
             boolean isGameOverResult = move(answerBridge);
-            outputController.printMap(movedBridge);
             if (isGameOverResult) {
                 break;
             }
@@ -52,6 +51,7 @@ public class BridgeGame {
         String moving = inputController.inputMoving();
         Bridge moveResult = Calculator.moveCalculate(answerBridge.get(currentPosition), moving);
         movedBridge.add(moveResult);
+        outputController.printMap(movedBridge);
         currentPosition++;
         return isGameOver(moveResult);
     }
