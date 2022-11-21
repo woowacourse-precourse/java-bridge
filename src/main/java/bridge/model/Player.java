@@ -3,13 +3,13 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class Player {
 
     private List<String> choices;
     private int totalTryCount;
     private boolean isSuccess;
 
-    public User() {
+    public Player() {
         this.choices = new ArrayList<>();
         totalTryCount = 1;
         isSuccess = false;

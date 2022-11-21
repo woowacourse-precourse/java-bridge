@@ -3,11 +3,11 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnswerBridge {
+public class Bridge {
 
     final List<String> answerBridge;
 
-    public AnswerBridge(final List<String> bridge) {
+    public Bridge(final List<String> bridge) {
         this.answerBridge = bridge;
     }
 

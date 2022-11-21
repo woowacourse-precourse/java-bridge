@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.model.User;
+import bridge.model.Player;
 import bridge.model.constant.Message;
 import java.util.List;
 
@@ -64,12 +64,12 @@ public class OutputView {
         System.out.println(Message.INPUT_RETRY_COMMAND);
     }
 
-    public static void printResult(User user, List<Boolean> compareResults) {
+    public static void printResult(Player player, List<Boolean> compareResults) {
         System.out.println(Message.GAME_RESULT_MESSAGE);
-        printMap(user.getChoices(), compareResults);
+        printMap(player.getChoices(), compareResults);
 
-        System.out.println(Message.SUCCESS_OR_FAIL + booleanToString(user.getIsSuccess()));
-        System.out.println(Message.TOTAL_TRY_COUNT + user.getTotalTryCount());
+        System.out.println(Message.SUCCESS_OR_FAIL + booleanToString(player.getIsSuccess()));
+        System.out.println(Message.TOTAL_TRY_COUNT + player.getTotalTryCount());
     }
 
     private static String booleanToString(boolean isSuccess) {
