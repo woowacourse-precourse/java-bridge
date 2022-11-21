@@ -9,13 +9,12 @@ import java.util.List;
 public class Application {
     private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
-    private static final BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static final BridgeMaker maker = new BridgeMaker();
     private static final BridgeGame game = new BridgeGame();
-    
-    private static List<String> bridge = new ArrayList<>();
+
     private static GameState state = GameState.START;
-    private static int spaceNum;
-    private static int bridgeSize;
+    private static List<String> bridge;
+
 
     public static void main(String[] args) {
         try {
@@ -23,6 +22,15 @@ public class Application {
             output.printStartMessage();
             createBridge();
 
+            Route route = new Route();
+            while (state != GameState.QUIT) {
+                goToNextSpace(route);
+                state = GameState.QUIT;
+            }
+
+
+            // 게임
+            /*
             int tryCount = 1;
             String result = "실패";
             // 게임
@@ -54,25 +62,21 @@ public class Application {
         // TODO: 프로그램 구현
     }
 
-    private static void goToNextSpace() {
+    private static void goToNextSpace(Route route) {
         output.printMoveSpaceInputRequestMessage();
-        String moveSpace = input.readMoving();
-        boolean correct = game.move(moveSpace, spaceNum, bridge);
-        spaceNum++;
-        if(correct) {
-            state = GameState.CORRECT;
-            return;
-        }
-        state = GameState.INCORRECT;
+        String moveNext = input.readMoving();
+
+        game.move(route, moveNext, bridge);
+        output.printMap(route);
     }
 
     private static void createBridge() {
         output.printBridgeLengthInputRequestMessage();
 
-        bridgeSize = input.readBridgeSize();
+        int bridgeSize = input.readBridgeSize();
         bridge = maker.makeBridge(bridgeSize);
 
-        System.out.println(bridge.toString());
+        System.out.println(bridge.toString()); // 삭제해야 함
     }
 
     private static void chooseGameContinue() {
