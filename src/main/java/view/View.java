@@ -20,4 +20,3 @@ public enum View {
         return message;
     }
 }
-
