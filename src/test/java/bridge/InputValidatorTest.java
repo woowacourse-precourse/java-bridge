@@ -39,6 +39,23 @@ public class InputValidatorTest {
                 isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("이동칸 입력 예외 경우 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={"aaa","1000"," "})
+    public void bridgeMoveInputExceptionTest(String input){
+        setInput(input);
+        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.MOVE)).
+                isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이동칸 입력 정상 경우 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={"U","D"})
+    public void bridgeMoveInputTest(String input){
+        setInput(input);
+        assertEquals(InputValidator.getValidateInput(InputType.MOVE), input);
+    }
+
     public void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
