@@ -10,6 +10,7 @@ public class Application {
             gameController.play();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
+            System.out.println("--프로그램 종료--");
         }
     }
 }
