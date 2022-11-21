@@ -1,19 +1,16 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    final Bridge bridge;
-    int position;
+    static final int INIT_GAME_TRY_COUNT = 1;
+    int gameTryCount;
+    BridgeWalker bridgeWalker;
 
-    public BridgeGame(Bridge bridge) {
-        this.bridge = bridge;
+    public BridgeGame(BridgeWalker bridgeWalker) {
+        this.bridgeWalker = bridgeWalker;
+        this.gameTryCount = INIT_GAME_TRY_COUNT;
     }
 
     /**
@@ -21,8 +18,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MoveResult move(String moveCommand) {// U : direction
-        return bridge.move(moveCommand);
+    public RoundResult move(String moveCommand) {// U : direction
+        MoveResult moveResult = bridgeWalker.move(moveCommand);
+        boolean isClear = bridgeWalker.isCrossAllStep();
+        return RoundResult.of(moveResult, isClear);
     }
 
     /**
@@ -31,12 +30,5 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-    }
-
-    public boolean isClear(MoveResult moveResult){
-        if(bridge.isEndOfBridge() && moveResult.equals(MoveResult.SUCCESS)){
-            return true;
-        }
-        return false;
     }
 }
