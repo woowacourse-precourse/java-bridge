@@ -32,7 +32,7 @@ public class OutputView {
         StringBuilder higherBridge = new StringBuilder();
         StringBuilder lowerBridge = new StringBuilder();
         getPrintedBridge(userState, higherBridge, lowerBridge);
-        System.out.println(String.format(BRIDGE_FRAME, higherBridge.toString(), lowerBridge.toString()));
+        System.out.println(String.format(BRIDGE_FRAME, higherBridge, lowerBridge));
     }
 
     private void getPrintedBridge(UserState userState, StringBuilder higherBridge, StringBuilder lowerBridge) {
