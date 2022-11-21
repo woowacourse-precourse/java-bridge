@@ -15,7 +15,9 @@ public class InputView {
     public int readBridgeSize() {
         System.out.print("다리 건너기 게임을 시작합니다.\n\n");
         System.out.println("다리 길이를 입력해주세요.");
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        validationBridgeSize(input);
+        return Integer.parseInt(input);
     }
 
     /**
@@ -36,6 +38,12 @@ public class InputView {
         String result = Console.readLine();
         validationGamieCommand(result);
         return result;
+    }
+
+    private void validationBridgeSize(String size){
+        if(!size.matches("\\d+")){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
     }
 
     private void validationMoving(String moving){
