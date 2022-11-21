@@ -7,96 +7,83 @@ import java.util.List;
  */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    private String printMapBeforePosition(List<String> bridge, int position, String upDown) {
-        StringBuilder output = new StringBuilder();
-        output.append("[");
+    private String OorNothing(boolean print) {
+        if (print) {
+            return " O ";
+        }
+        return "   ";
+    }
+
+    private String OorX(boolean print) {
+        if (print) {
+            return " O ";
+        }
+        return " X ";
+    }
+
+    private String buildMapBeforePosition(List<String> bridge, int position, String printingLine) {
+        StringBuilder output = new StringBuilder("[");
         for (int i = 0; i < position - 1; i++) {
-            String answer = bridge.get(i);
-            if (answer.equals(upDown)) {
-                output.append(" O ");
-            } else {
-                output.append("   ");
-            }
+            boolean print = bridge.get(i).equals(printingLine);
+            output.append(OorNothing(print));
             output.append("|");
         }
         return output.toString();
     }
 
-    private String printMapNowPosition(boolean printingLine, boolean correct) {
+    private String buildMapLastPart(boolean printingTurn, boolean correct) {
         StringBuilder output = new StringBuilder();
-        if (printingLine) {
-            if (correct) {
-                output.append(" O ");
-            } else {
-                output.append(" X ");
-            }
-        } else {
-            output.append("   ");
+        if (printingTurn) {
+            output.append(OorX(correct));
+            output.append("]\n");
+            return output.toString();
         }
-        output.append("]\n");
+        output.append("   ]\n");
         return output.toString();
     }
 
-    private String printResultLast(boolean printLine, boolean success) {
-        StringBuilder output = new StringBuilder();
-        if (printLine) {
-            if (success) {
-                output.append(" O ");
-            } else {
-                output.append(" X ");
-            }
-        } else {
-            output.append("   ");
+    private boolean changeTurnIfWrong(boolean correct, boolean turn) {
+        if (!correct) {
+            turn = !turn;
         }
-        output.append("]\n");
-        return output.toString();
+        return turn;
     }
 
-    public String printMapBuild(List<String> bridge, int position, boolean correct, String inputMoving) {
+    public String buildMap(List<String> bridge, int position, boolean correct) {
         StringBuilder output = new StringBuilder();
-        for (String upDown : new String[]{"U", "D"}) {
-            output.append(printMapBeforePosition(bridge, position, upDown));
-            boolean printingLine = inputMoving.equals(upDown);
-            output.append(printMapNowPosition(printingLine, correct));
+        for (String printingLine : new String[]{"U", "D"}) {
+            output.append(buildMapBeforePosition(bridge, position, printingLine));
+            boolean printingTurn = bridge.get(position - 1).equals(printingLine);
+            printingTurn = changeTurnIfWrong(correct, printingTurn);
+            output.append(buildMapLastPart(printingTurn, correct));
         }
         return output.toString();
     }
 
-    public String printResultBuild(List<String> bridge, int position, boolean success) {
+    public void printMap(List<String> bridge, int position, boolean correct) {
+        System.out.println(buildMap(bridge, position, correct));
+    }
+
+    private String buildResult(List<String> bridge, int position, boolean success) {
+        return "최종 게임 결과\n" +
+                buildMap(bridge, position, success);
+    }
+
+    public void printResult(List<String> bridge, int position, boolean success) {
+        System.out.println(buildResult(bridge, position, success));
+    }
+
+    private String buildSuccessOrFail(boolean success, int trial) {
         StringBuilder output = new StringBuilder();
-        for (String upDown : new String[]{"U", "D"}) {
-            output.append(printMapBeforePosition(bridge, position, upDown));
-            boolean printingLine = bridge.get(position - 1).equals(upDown);
-            if (!success) {
-                printingLine = !printingLine;
-            }
-            output.append(printResultLast(printingLine, success));
-        }
-        return output.toString();
-    }
-
-    public void printMap(List<String> bridge, int position, boolean correct, String inputMoving) {
-        System.out.println(printMapBuild(bridge, position, correct, inputMoving));
-    }
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult(List<String> bridge, int position, boolean success, int trial) {
-        System.out.println("최종 게임 결과");
-        System.out.println(printResultBuild(bridge, position, success));
         if (!success) {
-            System.out.println("게임 성공 여부: 실패");
-        } else {
-            System.out.println("게임 성공 여부: 성공");
-            System.out.printf("총 시도한 횟수: %d", trial);
+            output.append("게임 성공 여부: 성공\n");
+            output.append("총 시도한 횟수: ").append(trial);
         }
+        output.append("게임 성공 여부: 실패\n");
+        return output.toString();
+    }
+
+    public void printSuccessOrFail(boolean success, int trial) {
+        System.out.println(buildSuccessOrFail(success, trial));
     }
 }

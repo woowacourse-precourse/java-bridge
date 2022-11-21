@@ -17,7 +17,7 @@ public class OutputViewTest {
         int position = 3;
         boolean correct = false;
         OutputView outputView = new OutputView();
-        String output = outputView.printMapBuild(bridge, position, correct, "U");
+        String output = outputView.buildMap(bridge, position, correct);
         String answer = "[ O | O | X ]\n" + "[   |   |   ]\n";
         assertThat(output).isEqualTo(answer);
     }

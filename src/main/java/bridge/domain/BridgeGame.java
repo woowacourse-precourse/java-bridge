@@ -13,10 +13,17 @@ import java.util.List;
 public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    List<String> bridge = new ArrayList<>();
-    int trial = 1;
-    int position = 0;
+    List<String> bridge;
+    int trial;
+    int position;
     String lastMoving;
+
+    public BridgeGame() {
+        this.trial = 1;
+        this.position = 0;
+        this.bridge = new ArrayList<>();
+        this.lastMoving = null;
+    }
 
     public void start() {
         int size = inputView.readBridgeSize();
@@ -31,7 +38,7 @@ public class BridgeGame {
         lastMoving = inputView.readMoving();
     }
 
-    private boolean checkMoving(String moving) {
+    private boolean isCorrectMoving(String moving) {
         return bridge.get(position - 1).equals(moving);
     }
 
@@ -43,8 +50,8 @@ public class BridgeGame {
     public boolean move() {
         getMoving();
         position++;
-        boolean correct = checkMoving(lastMoving);
-        outputView.printMap(bridge, position, correct, lastMoving);
+        boolean correct = isCorrectMoving(lastMoving);
+        outputView.printMap(bridge, position, correct);
         return correct;
     }
 
@@ -55,23 +62,22 @@ public class BridgeGame {
      */
     public boolean retry() {
         String input = inputView.readGameCommand();
-        boolean restart = false;
         if (input.equals("R")) {
             trial++;
             position = 0;
-            restart = true;
+            return true;
         } else if (input.equals("Q")) {
             endGame(false);
-            restart = false;
         }
-        return restart;
+        return false;
     }
 
     public boolean gameSuccess() {
-        return ((position == bridge.size()) && checkMoving(lastMoving));
+        return ((position == bridge.size()) && isCorrectMoving(lastMoving));
     }
 
     public void endGame(boolean success) {
-        outputView.printResult(bridge, position, success, trial);
+        outputView.printResult(bridge, position, success);
+        outputView.printSuccessOrFail(success, trial);
     }
 }
