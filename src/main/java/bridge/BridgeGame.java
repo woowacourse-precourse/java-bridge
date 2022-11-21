@@ -10,6 +10,23 @@ public class BridgeGame {
     private static StringBuilder sb2 = new StringBuilder();
     Application api = new Application();
 
+    public void startGame(){
+        OutputView.bridgeGameStart();
+        System.out.println();
+    }
+
+    public List<String> makeBridge(int size) {
+        BridgeMaker brm = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return brm.makeBridge(size);
+
+    }
+
+    public static void printResult(){
+        System.out.println();
+        System.out.println("최종 게임 결과");
+    }
+
+
     public static StringBuilder getSb1(){return sb1;}
     public static StringBuilder getSb2(){return sb2;}
 
@@ -20,18 +37,18 @@ public class BridgeGame {
         }
     }
 
-    public static void spliceMoverEnd(int size, List<String> bridge){
+    public static void spliceMoverEnd(List<String> bridge, int size ){
         if(bridge.size() - 1 == size){
             sb1.append("]");
             sb2.append("]");
         }
+        if(bridge.size() - 1 != size){
+            sb1.append("|");
+            sb1.append("|");
+        }
     }
 
-    public static void spliceMiddle(int size, List<String> bridge){
-        if(bridge.size() - 1 != size)
-            sb1.append("|");
-            sb2.append("|");
-    }
+
 
     public static void directionUp(List<String> bridge, String search, int size){
         String Oxjudge = OXjudge(bridge, search, size);
@@ -71,10 +88,9 @@ public class BridgeGame {
     public static String move(List<String> bridge, String search, int size) {
 
         spliceMoveStart(size);
-        spliceMoverEnd(size, bridge);
-        spliceMiddle(size, bridge);
         directionUp(bridge, search, size);
         directionDown(bridge, search, size);
+        spliceMoverEnd(bridge, size);
 
         String result1 = sb1.substring(0,sb1.length()-1) + "]";
         String result2 = sb2.substring(0, sb2.length()-1) + "]";
@@ -112,20 +128,6 @@ public class BridgeGame {
 
     }
 
-    public void startGame(){
-        OutputView.bridgeGameStart();
-        System.out.println();
-    }
-    public List<String> makeBridge(int size) {
-        BridgeMaker brm = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return brm.makeBridge(size);
-
-    }
-
-    public static void printResult(){
-        System.out.println();
-        System.out.println("최종 게임 결과");
-    }
 
 }
 
