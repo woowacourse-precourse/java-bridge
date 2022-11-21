@@ -20,6 +20,13 @@ public class InputView {
         return Move.valueOf(move);
     }
 
+    private void validForMove(String move) {
+        if (!Pattern.matches(Regex.MOVE.getPattern(), move)) {
+            System.err.println("[ERROR] 이동 명령은 U 혹은 D를 입력해야만 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
