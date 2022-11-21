@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) throws IllegalArgumentException {
         validateSize(size);
-        List<String> bridge = List.of();
+        List<String> bridge = new ArrayList<>();
         for (int i=0; i<size; i++) {
             bridge.add(mapToString(bridgeNumberGenerator.generate()));
         }

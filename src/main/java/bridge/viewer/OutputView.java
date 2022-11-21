@@ -24,12 +24,12 @@ public class OutputView {
     public static final String CLOSE = "]";
     public static final String SEPARATOR = "|";
 
-    public void printMap(PositionTable userTable) {
+    public static void printMap(PositionTable userTable) {
         showMap(userTable, Position::isUp);
         showMap(userTable, Position::isDown);
     }
 
-    public void printResult(PositionTable userTable, Result result) {
+    public static void printResult(PositionTable userTable, Result result) {
         if (result.isLose()) {
             showReviseMap(userTable, Position::isUp);
             showReviseMap(userTable, Position::isDown);

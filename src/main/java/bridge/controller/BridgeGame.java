@@ -6,7 +6,8 @@ import bridge.domain.Result;
 
 public class BridgeGame {
 
-    public void move() {
+    public void move(String command) {
+
     }
 
     public void retry() {

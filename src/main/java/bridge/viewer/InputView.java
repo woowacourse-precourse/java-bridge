@@ -11,17 +11,17 @@ public class InputView {
     public static final String GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q";
 
 
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(BRIDGE_SIZE_MESSAGE);
         return Integer.parseInt(Console.readLine());
     }
 
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(MOVING_MESSAGE);
         return Console.readLine();
     }
 
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.println(GAME_COMMAND_MESSAGE);
         return Console.readLine();
     }

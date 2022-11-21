@@ -9,4 +9,8 @@ public enum Result {
     public boolean isWin() {
         return this.equals(WIN);
     }
+
+    public boolean isEnd() {
+        return isLose()||isWin();
+    }
 }
