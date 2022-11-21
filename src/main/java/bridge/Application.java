@@ -5,12 +5,12 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
+        OutputView.printStart();
         startGame();
     }
 
     private static void startGame() {
         BridgeGame bridgeGame = new BridgeGame();
-
         makeBridge(bridgeGame);
 
         while (inGame(bridgeGame)) {
@@ -25,11 +25,12 @@ public class Application {
         String gameCommand = "";
         if (!move(bridgeGame)) {
             printMap(bridgeGame);
-            gameCommand = gameEnd();
+            gameCommand = getGameEndInput();
+            return checkContinueGame(gameCommand, bridgeGame);
         }
+        
         printMap(bridgeGame);
-
-        return checkContinueGame(gameCommand, bridgeGame);
+        return true;
     }
 
     private static boolean checkContinueGame(String gameCommand, BridgeGame bridgeGame) {
@@ -40,9 +41,16 @@ public class Application {
         return true;
     }
 
-    private static String gameEnd() {
+    private static String getGameEndInput() throws IllegalArgumentException {
         OutputView.printGameOver();
-        return InputView.readGameCommand();
+        String gameEndInput = "";
+        try {
+            gameEndInput = InputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getGameEndInput();
+        }
+        return gameEndInput;
     }
 
     private static void printMap(BridgeGame bridgeGame) {
@@ -51,20 +59,42 @@ public class Application {
     }
 
     private static boolean move(BridgeGame bridgeGame) {
-        OutputView.printSelectMove();
-        String playerMove = InputView.readMoving();
+        String playerMove = getPlayerMove();
 
         return bridgeGame.move(playerMove);
     }
 
+    private static String getPlayerMove() throws IllegalArgumentException {
+        OutputView.printSelectMove();
+        String playerMove = "";
+        try {
+            playerMove = InputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getPlayerMove();
+        }
+        return playerMove;
+    }
+
     private static void makeBridge(BridgeGame bridgeGame) {
+        int bridgeSize = getBridgeSize();
+        
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
-        OutputView.printStart();
-        int bridgeSize = InputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.setBridge(bridge);
+    }
+
+    private static int getBridgeSize() throws IllegalArgumentException {
+        OutputView.printAskBridgeSize();
+        int bridgeSize = 0;
+        try {
+            bridgeSize = InputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBridgeSize();
+        }
+        return bridgeSize;
     }
     
 }

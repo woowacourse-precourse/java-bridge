@@ -13,12 +13,7 @@ public class InputView {
     public static int readBridgeSize() {
         String bridgeSizeString = Console.readLine();
         int bridgeSize = 0;
-        try {
-            bridgeSize = checkBridgeSizeString(bridgeSizeString);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return 0;
-        }
+        bridgeSize = checkBridgeSizeString(bridgeSizeString);
         return bridgeSize;
     }
 
@@ -33,7 +28,7 @@ public class InputView {
         try {
             int result = Integer.parseInt(bridgeSizeString);
             return result;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
@@ -42,14 +37,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        String moveInput = Console.readLine();
-        try {
-            checkMoveInput(moveInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return "";
-        }
-
+        String moveInput = "";
+        moveInput = Console.readLine();
+        checkMoveInput(moveInput);
         return moveInput;
     }
 
@@ -62,13 +52,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        String gameInput = Console.readLine();
-        try {
-            checkGameInput(gameInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return "";
-        }
+        String gameInput = "";
+        gameInput = Console.readLine();
+        checkGameInput(gameInput);
         return gameInput;
     }
 
