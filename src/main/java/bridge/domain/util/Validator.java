@@ -1,7 +1,7 @@
-package bridge;
+package bridge.domain.util;
 
-import bridge.constant.Direction;
-import bridge.constant.GameCommand;
+import bridge.domain.Direction;
+import bridge.domain.GameCommand;
 import java.util.regex.Pattern;
 
 public class Validator {

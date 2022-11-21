@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.BridgeGameManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

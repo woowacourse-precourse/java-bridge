@@ -2,7 +2,7 @@ package bridge.view;
 
 import static bridge.view.Message.*;
 
-import bridge.UserBridge;
+import bridge.domain.UserBridge;
 import bridge.service.BridgeGameService;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printBridge(List<String> bridge) {
+    private void printBridge(List<String> bridge) {
         System.out.println(START + String.join(DELIMITER, bridge) + END);
     }
 

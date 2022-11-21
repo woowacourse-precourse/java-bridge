@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.domain.constant;
 
 public class Constant {
     public static final String CROSS = "O";

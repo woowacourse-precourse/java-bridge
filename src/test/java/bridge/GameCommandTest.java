@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.constant.GameCommand;
+import bridge.domain.GameCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

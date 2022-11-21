@@ -1,7 +1,8 @@
 package bridge;
 
-import bridge.constant.Constant;
-import bridge.constant.Direction;
+import bridge.domain.constant.Constant;
+import bridge.domain.Direction;
+import bridge.domain.UserBridge;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.BridgeMaker;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import org.junit.jupiter.api.Test;

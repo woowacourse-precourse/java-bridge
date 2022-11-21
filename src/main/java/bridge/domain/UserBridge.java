@@ -1,10 +1,8 @@
-package bridge;
+package bridge.domain;
 
-import bridge.constant.Constant;
-import bridge.constant.Direction;
+import bridge.domain.constant.Constant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class UserBridge {
     private List<String> upBridge;

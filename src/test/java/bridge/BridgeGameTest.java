@@ -2,9 +2,12 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.constant.Constant;
-import bridge.constant.Direction;
-import bridge.constant.GameCommand;
+import bridge.domain.constant.Constant;
+import bridge.domain.Direction;
+import bridge.domain.GameCommand;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameManager;
+import bridge.domain.UserBridge;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

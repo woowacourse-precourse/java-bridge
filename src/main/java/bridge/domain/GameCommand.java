@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.domain;
 
 public enum GameCommand {
     R("R"), Q("Q");
