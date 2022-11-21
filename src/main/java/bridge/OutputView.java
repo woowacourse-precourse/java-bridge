@@ -30,6 +30,23 @@ public class OutputView {
     public void printMap() {
     }
 
+    private List<List<String>> getParsedResult(List<Guess> guesses) {
+        List<List<String>> layers = init();
+
+        for (Guess guess : guesses) {
+            Integer code = Direction.getCodeByAbbr(guess.getGuess());
+            for (int i = 0; i < Direction.values().length; i++) {
+                if (i == code) {
+                    layers.get(i).add(" " + guess.getResult() + " ");
+                } else {
+                    layers.get(i).add("   ");
+                }
+            }
+        }
+
+        return layers;
+    }
+
     private List<List<String>> init() {
         List<List<String>> layers = new ArrayList<>();
 
