@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
-    private final String MARK_NOT_PATH = " ";
     List<String> upperPath;
     List<String> lowerPath;
 
@@ -16,17 +15,17 @@ public class Map {
     public void update(String direction, String answer) {
         String mark;
         if (direction.equals(answer)) {
-            mark = "O";
+            mark = Mark.PATH.getMark();
         } else {
-            mark = "X";
+            mark = Mark.BLOCK.getMark();
         }
 
         if (direction.equals("U")) {
             upperPath.add(mark);
-            lowerPath.add(MARK_NOT_PATH);
+            lowerPath.add(Mark.UNKNOWN.getMark());
         }
         if (direction.equals("D")) {
-            upperPath.add(MARK_NOT_PATH);
+            upperPath.add(Mark.UNKNOWN.getMark());
             lowerPath.add(mark);
         }
     }
