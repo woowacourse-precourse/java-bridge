@@ -36,6 +36,7 @@ public class BridgeGameController {
         List<String> createdBridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(Integer.parseInt(inputLength));
 
         bridgeGame = new BridgeGame(createdBridge);
+        outputView.printSpace();
     }
 
     public void move() {

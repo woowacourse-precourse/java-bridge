@@ -20,6 +20,7 @@ public class OutputView {
 
         System.out.println(currentBridge.get(UP_INDEX));
         System.out.println(currentBridge.get(DOWN_INDEX));
+        System.out.println();
     }
 
     /**
@@ -31,7 +32,7 @@ public class OutputView {
         System.out.println(GameProgressMessage.FINAL_RESULT_MESSAGE);
         printMap(currentBridge);
         System.out.println(GameProgressMessage.SUCCESS_OR_NOT_MESSAGE + endResult);
-        System.out.println(GameProgressMessage.TOTAL_TRY_COUNT_MESSAGE + String.valueOf(count));
+        System.out.print(GameProgressMessage.TOTAL_TRY_COUNT_MESSAGE + String.valueOf(count));
     }
 
     public void printGameProgressMessage(GameProgressMessage gameProgressMessage) {
@@ -40,5 +41,9 @@ public class OutputView {
 
     public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public void printSpace() {
+        System.out.println();
     }
 }
