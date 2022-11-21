@@ -10,6 +10,8 @@ public class InputView {
     private static final String readMovingMsg = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String readGameCommandMsg = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
+    private static final int BRIDGE_SIZE_MIN = 3;
+    private static final int BRIDGE_SIZE_MAX = 20;
     private static final String up = "U";
     private static final String down = "D";
     private static final String restart = "R";
@@ -21,11 +23,18 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(readBridgeSizeMsg);
         try {
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
+            int bridgeSize = Integer.parseInt(Console.readLine());
+            validateBridgeSize(bridgeSize);
+            return bridgeSize;
+        } catch (IllegalArgumentException e) {
             System.out.println(ERROR.BRIDGE_SIZE);
             return readBridgeSize();
         }
+    }
+
+    public void validateBridgeSize(int bridgeSize){
+        if (bridgeSize < BRIDGE_SIZE_MIN || bridgeSize > BRIDGE_SIZE_MAX)
+            throw new IllegalArgumentException();
     }
 
     /**
