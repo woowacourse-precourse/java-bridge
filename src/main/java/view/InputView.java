@@ -2,6 +2,7 @@ package view;
 
 import model.Exception;
 import camp.nextstep.edu.missionutils.Console;
+import org.mockito.internal.matchers.Null;
 
 import java.util.NoSuchElementException;
 
@@ -83,5 +84,28 @@ public class InputView {
      */
     public String readGameCommand() {
         return Console.readLine();
+    }
+
+    public String setGameCommand() {
+        String gameCommand = readGameCommand();
+        try {
+            gameCommand = checkGameCommand(gameCommand);
+            return gameCommand;
+        } catch (NullPointerException NPE){
+            System.out.println("[ERROR] 값을 입력해주세요");
+        } catch (IllegalArgumentException IAE) {
+            System.out.println("[ERROR] R(재시작) 또는 Q(종료)를 입력해주세요");
+        }
+        return null;
+    }
+
+    public String checkGameCommand(String gameCommand) {
+        if(exception.isEmpty(gameCommand)){
+            throw new NullPointerException("NPE");
+        }
+        if(!exception.isRorQ(gameCommand)) {
+            throw new IllegalArgumentException("IAE");
+        }
+        return gameCommand;
     }
 }
