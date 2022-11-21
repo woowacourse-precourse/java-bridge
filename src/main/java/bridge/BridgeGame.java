@@ -12,6 +12,7 @@ public class BridgeGame {
     public int bridgeCount = 0;
     public int gameCount = 0;
     public boolean gameOver = false;
+    public boolean completeBridge = false;
     public boolean retry = true;
     OutputView bridgeShape = new OutputView();
     public void makeBridge(int size) {
@@ -33,9 +34,10 @@ public class BridgeGame {
     public void bridgeCheck() {
         System.out.println(this.bridge);
         System.out.println(this.currentCoordinate);
-        if (this.bridge == this.currentCoordinate){
+        if (Objects.equals(this.bridge,this.currentCoordinate)){
            bridgeShape.printResult(bridgeCount,currentCoordinate);
-           this.gameOver = true;
+            System.out.println("일치");
+           this.completeBridge = true;
            return;
         }
        if (!Objects.equals(this.bridge.get(bridgeCount), this.currentCoordinate.get(bridgeCount))) {
@@ -57,7 +59,8 @@ public class BridgeGame {
         }
         if (Objects.equals(restart, "R")){
             this.gameCount += 1;
-            this.currentCoordinate.remove(currentCoordinate.size()-1);
+            int lastChar = currentCoordinate.size()-1;
+            this.currentCoordinate.remove(lastChar);
         }
     }
 }

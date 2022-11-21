@@ -37,11 +37,25 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(int gameCount, ArrayList<String> currentCoordinate) {
-        System.out.println(mapU + "]");
-        System.out.println(mapD + "]");
+        int lastChar = currentCoordinate.size()-1;
+        if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
+            System.out.println(mapU + "| O ]");
+            System.out.println(mapD + "|   ]");
+        }
+        if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
+            System.out.println(mapU + "|   ]");
+            System.out.println(mapD + "| O ]");
+        }
     }
     public void printFailed(int gameCount, ArrayList<String> currentCoordinate) {
-        System.out.println(mapU + "]");
-        System.out.println(mapD + "]");
+        int lastChar = currentCoordinate.size()-1;
+        if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
+            System.out.println(mapU + "| X ]");
+            System.out.println(mapD + "|   ]");
+        }
+        if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
+            System.out.println(mapU + "|   ]");
+            System.out.println(mapD + "| X ]");
+        }
     }
 }
