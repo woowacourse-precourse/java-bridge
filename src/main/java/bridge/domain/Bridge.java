@@ -29,4 +29,8 @@ public class Bridge {
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
     }
+
+    public void setLastBridge(String lastBridge) {
+        this.lastBridge = lastBridge;
+    }
 }
