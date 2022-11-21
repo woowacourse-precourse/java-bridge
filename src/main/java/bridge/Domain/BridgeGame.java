@@ -7,9 +7,12 @@ import bridge.Database.BridgeData;
 import bridge.UI.InputView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import static bridge.Constants.StandardTools.SUCCEED;
 import static bridge.Constants.StandardTools.FAILED;
+import static bridge.Constants.StandardTools.SUCCEED;
+import static bridge.Constants.StandardTools.POSSIBLE_ZONE;
+import static bridge.Constants.StandardTools.IMPOSSIBLE_ZONE;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -20,7 +23,7 @@ public class BridgeGame {
     public final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     public final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     public final InputView inputView = new InputView();
-    private boolean isGameSucceed = SUCCEED;
+    private boolean isGameSucceed;
 
     public BridgeGame() {
         System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
@@ -28,6 +31,7 @@ public class BridgeGame {
 
     public void gameStart() {
         bridgeData.setBridge(bridgeMaker.makeBridge(inputView.readBridgeLength()));
+        System.out.println(bridgeData.getBridge());
         bridgeData.initializeTotalAttempt();
     }
 
@@ -38,16 +42,29 @@ public class BridgeGame {
      */
     public void move() {
         List<String> bridgeDesignByUser = new ArrayList<>();
-        for(int bridgeRange = 0; bridgeRange < bridgeData.getBridge().size(); bridgeRange++) {
+        for (int bridgeRange = 0; bridgeRange < bridgeData.getBridge().size(); bridgeRange++) {
             String nextStep = inputView.readMoving();
             bridgeDesignByUser.add(nextStep);
             bridgeData.updateBridgeDesignByUser(bridgeDesignByUser);
-            validateNextStep(nextStep);
+            if (validateNextStep(nextStep, bridgeRange) == IMPOSSIBLE_ZONE) {
+                break;
+            }
         }
     }
 
-    private void validateNextStep(String nextStep) {
+    private boolean validateNextStep(String nextStep, int indexOfBridge) {
+        if (!Objects.equals(bridgeData.getBridge().get(indexOfBridge), nextStep)) {
+            isGameSucceed = FAILED;
+            return IMPOSSIBLE_ZONE;
+        }
+        validateGameSuccessfullyFinished();
+        return POSSIBLE_ZONE;
+    }
 
+    public void validateGameSuccessfullyFinished() {
+        if (Objects.equals(bridgeData.getBridge(), bridgeData.getBridgeDesignByUser())) {
+            isGameSucceed = SUCCEED;
+        }
     }
 
     /**
