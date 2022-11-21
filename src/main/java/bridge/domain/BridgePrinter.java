@@ -37,20 +37,20 @@ public class BridgePrinter {
     public List<String> makeBridgeLine(String direction) {
         List<String> bridgeLine = new ArrayList<>();
         for (int i = 0; i < user.getUserMovings().size(); i++) {
-            makeBridgeLine(bridgeLine, direction, i);
+            compareBridgeLine(bridgeLine, direction, i);
         }
         return bridgeLine;
     }
 
-    private void makeBridgeLine(List<String> upBridge, String direct, int i) {
+    private void compareBridgeLine(List<String> bridgeLine, String direct, int i) {
         if (!user.getUserMovings().get(i).equals(direct)) {
-            upBridge.add(BLANK);
+            bridgeLine.add(BLANK);
             return;
         }
         if (user.getUserMovings().get(i).equals(bridge.getAnswerBridge().get(i)))
-            upBridge.add(CORRECT);
+            bridgeLine.add(CORRECT);
         if (!user.getUserMovings().get(i).equals(bridge.getAnswerBridge().get(i)))
-            upBridge.add(WRONG);
+            bridgeLine.add(WRONG);
     }
 
 }
