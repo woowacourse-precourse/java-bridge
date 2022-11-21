@@ -42,6 +42,8 @@
 - [ ] 유저 이동 정상 입력 테스트
 - [ ] 게임 진행 상황 테스트
   - [ ]
-- [ ] Moving enum 반환 테스트
-- [ ] GameCommand enum 반환 테스트
-- [ ] BridgeGameStatus enum 반환 테스트
+- [x] Moving enum 반환 테스트
+- [x] GameCommand enum 반환 테스트
+- [x] BridgeGameStatus 테스트
+  - [x] 상태를 보고 게임의 성공, 실패 여부 확인 테스트
+  - [ ] 게임의 상태를 올바르게 출력하는지 여부 테스트
