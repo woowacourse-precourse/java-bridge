@@ -72,4 +72,25 @@ class BridgeGameTest {
         //then
         assertThat(game.checkGameState()).isEqualTo(CLEAR);
     }
+
+    @DisplayName("retry: 게임 상태 RUN, 플레이어의 입력값 초기화, 시도횟수가 1 증가한다.")
+    @Test
+    void retry() {
+        //given
+        Player player = new Player();
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame game = new BridgeGame(player, bridge);
+
+        game.move("U");
+        game.move("D");
+        game.move("U");
+
+        //when
+        game.retry();
+
+        //then
+        assertThat(game.checkGameState()).isEqualTo(RUN);
+        assertThat(game.getTryCount()).isEqualTo(2);
+        assertThat(game.getPlayer().getMoves().size()).isEqualTo(0);
+    }
 }

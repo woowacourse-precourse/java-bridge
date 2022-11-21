@@ -50,4 +50,22 @@ class BridgeControllerTest {
 
         assertThatCode(bridgeController::play).doesNotThrowAnyException();
     }
+
+    @DisplayName("choiceRestartOrQuit: 게임 실패시 R을 입력할 경우 재시작한다.")
+    @Test
+    void retry() {
+        //given
+        BridgeController bridgeController = new BridgeController();
+        Player player = new Player();
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame game = new BridgeGame(player, bridge);
+        bridgeController.setGame(game);
+
+        //when
+        String input = "U\nD\nD\nR\nU\nD\nU";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThatCode(bridgeController::play).doesNotThrowAnyException();
+    }
 }
