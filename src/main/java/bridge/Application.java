@@ -18,7 +18,9 @@ public class Application {
 
         outputView.printInit();
         int bridgeSize = inputView.readBridgeSize();
-        
+
+        // TODO: 사이즈만큼 다리 생성
+        List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
     }
 
 
