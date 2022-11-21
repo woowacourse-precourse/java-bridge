@@ -10,7 +10,11 @@ public class OutputView {
     Bridge bridge = new Bridge();
     BridgeGame bridgeGame = new BridgeGame();
 
-
+    public Bridge initOutputBridge(String bridgeMove, boolean isMove) {
+        bridge = bridgeGame.moveBridge(bridgeMove, isMove); // 출력할 다리 초기화
+        printMap(); // 출력
+        return bridge;
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
