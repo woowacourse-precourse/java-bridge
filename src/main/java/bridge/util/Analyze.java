@@ -13,7 +13,7 @@ import static bridge.constant.NumberConstant.SECOND_ROW;
 import bridge.domain.CompareResult;
 import java.util.List;
 
-public class Analyze {
+public final class Analyze {
 
     private Analyze() {
     }

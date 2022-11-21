@@ -3,7 +3,7 @@ package bridge.util;
 import bridge.domain.User;
 import bridge.view.ViewMaker;
 
-public class Client {
+public final class Client {
 
     private Client(){
     }

@@ -6,7 +6,7 @@ import bridge.domain.CompareResult;
 import bridge.domain.User;
 import bridge.view.ViewMaker;
 
-public class BridgeGame {
+public final class BridgeGame {
 
     private static int attemptNumber = 1;
     private static int bridgeLocation = 0;

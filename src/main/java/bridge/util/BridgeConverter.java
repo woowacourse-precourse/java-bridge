@@ -5,7 +5,7 @@ import static bridge.exception.ExceptionHandler.NO_SUCH_ELEMENT;
 import bridge.constant.InputKeyConstant;
 import java.util.Arrays;
 
-public class BridgeConverter {
+public final class BridgeConverter {
 
     private BridgeConverter() {
     }
