@@ -7,10 +7,6 @@ import bridge.view.InputView;
 
 public class EndRule {
 
-    public static boolean isQuit(String command){
-        return command.equals("Q");
-    }
-
     public static String isComplete(Bridge bridge) {
         if (bridge.isLastStep()) {
             return Constant.COMPLETE;
