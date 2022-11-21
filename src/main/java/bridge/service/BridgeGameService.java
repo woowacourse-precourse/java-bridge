@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.command.GameCommand;
+import bridge.domain.command.BranchCommand;
 import bridge.domain.ProgressMap;
 import bridge.domain.command.MoveCommand;
 
@@ -42,6 +42,7 @@ public class BridgeGameService {
 	}
 
 	public boolean retryOrEnd(String inputCommand) {
-		return GameCommand.isContinueGame(inputCommand);
+		BranchCommand branchCommand = BranchCommand.findCommand(inputCommand);
+		return BranchCommand.isContinueGame(branchCommand);
 	}
 }
