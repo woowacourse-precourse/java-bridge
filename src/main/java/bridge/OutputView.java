@@ -15,7 +15,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String map) {
+        System.out.println(map);
     }
 
     /**
@@ -39,6 +40,11 @@ public class OutputView {
     public void printMapBetween(){
         sbUp.append("|");
         sbDo.append("|");
+    }
+
+    public void printRequestUpDownMessage(){
+        System.out.println("이동할 칸을 입력해주세요 (위: U, 아래: D)");
+        System.out.println("");
     }
 
     public String printMoveUpDown(List<String> bridge, String input, int step){
@@ -68,13 +74,22 @@ public class OutputView {
 
         if(bridge.get(step).equals("D")) {
             if (result.equals(" O ")) {
-                sbUp.append(result);
-                sbDo.append("   ");
-            }
-            if (result.equals(" X ")) {
                 sbUp.append("   ");
                 sbDo.append(result);
             }
+            if (result.equals(" X ")) {
+                sbUp.append(result);
+                sbDo.append("   ");
+            }
+        }
+    }
+
+    public void printEnd(List<String> bridge, int step){
+        if(bridge.size() - 1  != step){
+            printMapBetween();
+        }
+        if(bridge.size() - 1 == step){
+            printMapEnd();
         }
     }
 
