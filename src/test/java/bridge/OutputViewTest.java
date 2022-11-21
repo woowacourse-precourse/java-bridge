@@ -43,7 +43,7 @@ class OutputViewTest extends NsTest {
     @Override
     protected void runMain() {
         OutputView outputView = new OutputView();
-        outputView.printMap(this.ox, this.order, this.upDown);
+        outputView.printMap(this.ox);
 
 
     }
