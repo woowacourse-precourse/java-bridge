@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BridgeMoveProcess {
 
-    private static List<String> moving = new ArrayList<>();
+    private List<String> moving = new ArrayList<>();
     private List<Boolean> upState = new ArrayList<>();
     private List<Boolean> downState = new ArrayList<>();
     private InputView inputView = new InputView();
@@ -30,6 +30,7 @@ public class BridgeMoveProcess {
         upState.clear();
         downState.clear();
         idx = 0;
+        BridgePrinting.resetAfterOneGame();
         BridgePrinting.clearUpDownLocation();
     }
 

@@ -50,7 +50,6 @@ public class BridgeGame {
     public void retry(int bridgeSize,
         List<String> bridgeState) {
         gameCount++;
-        BridgePrinting.initRestart();
         start(bridgeState, bridgeSize);
         return;
     }

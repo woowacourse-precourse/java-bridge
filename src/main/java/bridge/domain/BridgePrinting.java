@@ -27,7 +27,7 @@ public class BridgePrinting {
         traceLocation.clear();
     }
 
-    public static void initRestart() {
+    public static void resetAfterOneGame() {
         stop = false;
     }
 
