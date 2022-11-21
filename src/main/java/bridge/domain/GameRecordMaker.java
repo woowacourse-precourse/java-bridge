@@ -11,6 +11,7 @@ public class GameRecordMaker {
     private final List<List<String>> TOTAL_RESULT;
     private final int ZERO=0;
     private final int RESULT_SIZE=2;
+
     private List<String> currentGameRecord;
     private int recordLength;
 
@@ -40,6 +41,13 @@ public class GameRecordMaker {
         boolean isFirst = isRecordLengthOverOne();
         currentGameRecord=transformCurrentRecord(isFirst, gameRecord);
         ++recordLength;
+    }
+
+    public void updateResult(){
+        for(int i=ZERO; i<RESULT_SIZE;i++){
+            List<String> result= TOTAL_RESULT.get(i);
+            result.add(currentGameRecord.get(i));
+        }
     }
 
 }
