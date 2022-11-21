@@ -1,4 +1,4 @@
-package bridge;
+package bridge.exception;
 
 public class GameExceptionHandler {
     private static final String ERROR_PREFIX = "[ERROR] ";

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.console.OutputView;
+
 public class BridgeGameStarter {
     private final OutputView outputView;
 

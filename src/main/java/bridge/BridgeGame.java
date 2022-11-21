@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.exception.GameExceptionHandler;
+
 import java.util.List;
 
 public class BridgeGame {

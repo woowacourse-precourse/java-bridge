@@ -1,4 +1,4 @@
-package bridge;
+package bridge.console;
 
 public class OutputView {
     private static final String TEXT_GAME_START = "다리 건너기 게임을 시작합니다.";
@@ -16,10 +16,5 @@ public class OutputView {
     public void printPromptForMove() {
         System.out.println(PROMPT_FOR_MOVE);
     }
-
-    public void printMap() {
-    }
-
-    public void printResult() {
-    }
 }
+

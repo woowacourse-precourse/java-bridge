@@ -1,4 +1,4 @@
-package bridge;
+package bridge.console;
 
 import java.util.NoSuchElementException;
 
@@ -32,6 +32,14 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        return null;
+        String resumeOrQuit;
+
+        try {
+            resumeOrQuit = readLine();
+        } catch (NoSuchElementException exception) {
+            resumeOrQuit = EMPTY_STRING;
+        }
+
+        return resumeOrQuit;
     }
 }

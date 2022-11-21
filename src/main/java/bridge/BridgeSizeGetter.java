@@ -1,5 +1,10 @@
 package bridge;
 
+import bridge.console.InputView;
+import bridge.console.OutputView;
+import bridge.validator.code.BridgeSizeValidationCode;
+import bridge.validator.BridgeSizeValidator;
+
 public class BridgeSizeGetter {
     private final InputView inputView;
     private final OutputView outputView;

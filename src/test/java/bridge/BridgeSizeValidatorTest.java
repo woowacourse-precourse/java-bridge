@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.validator.code.BridgeSizeValidationCode;
+import bridge.validator.BridgeSizeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
