@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.BridgeSymbol;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,9 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameResultTest {
-
-    private static final String SUCCESS_MESSAGE = "성공";
-    private static final String FAIL_MESSAGE = "실패";
     private GameResult gameResult;
 
     @BeforeEach
@@ -24,7 +22,7 @@ public class GameResultTest {
     void createSetResult() {
         int expectedAttempt = 0;
 
-        assertThat(gameResult.getSuccess()).isEqualTo(SUCCESS_MESSAGE);
+        assertThat(gameResult.getSuccess()).isEqualTo(BridgeSymbol.SUCCESS.getState());
         assertThat(gameResult.getAttemptNumber()).isEqualTo(expectedAttempt);
     }
 
@@ -42,13 +40,13 @@ public class GameResultTest {
     @Test
     void createChangeSuccess() {
         gameResult.changeSuccess();
-        assertThat(gameResult.getSuccess()).isEqualTo(SUCCESS_MESSAGE);
+        assertThat(gameResult.getSuccess()).isEqualTo(BridgeSymbol.SUCCESS.getState());
     }
 
     @DisplayName("성공 여부를 실패로 바꾼다.")
     @Test
     void createChangeFail() {
         gameResult.changeFail();
-        assertThat(gameResult.getSuccess()).isEqualTo(FAIL_MESSAGE);
+        assertThat(gameResult.getSuccess()).isEqualTo(BridgeSymbol.FAIL.getState());
     }
 }
