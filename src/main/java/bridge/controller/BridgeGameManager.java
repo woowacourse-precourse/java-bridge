@@ -1,14 +1,10 @@
 package bridge.controller;
 
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
-import bridge.model.BridgeMaker;
+import bridge.model.Status;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import java.util.List;
 
 public class BridgeGameManager {
     public void run() {
@@ -49,7 +45,7 @@ public class BridgeGameManager {
     }
 
     private void printStatus(BridgeGame bridgeGame, Bridge targetBridge) {
-        List<String> preStatus = bridgeGame.getPreStatus();
+        Status preStatus = bridgeGame.getPreStatus();
         OutputView.printMap(targetBridge, preStatus);
     }
 

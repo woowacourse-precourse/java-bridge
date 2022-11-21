@@ -8,7 +8,11 @@ import java.util.List;
 
 public class BridgeGame {
     private int tryNumber;
-    private List<String> preStatus = new ArrayList<>();
+    private Status preStatus;
+
+    public BridgeGame() {
+        preStatus = new Status();
+    }
 
     public Bridge makeTargetBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -16,11 +20,11 @@ public class BridgeGame {
     }
 
     public void move(String whereMoving) {
-        this.preStatus.add(whereMoving);
+        preStatus.add(whereMoving);
     }
 
     public void back(int step) {
-        this.preStatus.remove(step);
+        preStatus.remove(step);
     }
 
     public void retry() {
@@ -39,7 +43,7 @@ public class BridgeGame {
         return this.tryNumber;
     }
 
-    public List<String> getPreStatus() {
-        return this.preStatus;
+    public Status getPreStatus() {
+        return preStatus;
     }
 }

@@ -18,21 +18,22 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame();
     }
 
-    @DisplayName("현재 상태가 잘 추가 되었나 확인")
+    @DisplayName("현재 상태가 잘 추가 되었나 확인1")
     @Test
     void 현재_건넌_상태_추가1() {
-        List<String> preStatus = new ArrayList<>();
         bridgeGame.move("U");
-        assertThat(bridgeGame.getPreStatus()).isEqualTo(Arrays.asList("U"));
+        Status status = bridgeGame.getPreStatus();
+        String result = status.pop();
+        assertThat(result).isEqualTo("U");
     }
 
-    @DisplayName("현재 상태가 잘 추가 되었나 확인")
+    @DisplayName("현재 상태가 잘 추가 되었나 확인2")
     @Test
     void 현재_건넌_상태_추가2() {
-        List<String> preStatus = new ArrayList<>();
-        bridgeGame.move("U");
         bridgeGame.move("D");
-        assertThat(bridgeGame.getPreStatus()).isEqualTo(Arrays.asList("U", "D"));
+        Status status = bridgeGame.getPreStatus();
+        String result = status.pop();
+        assertThat(result).isEqualTo("D");
     }
 
 }
