@@ -1,6 +1,5 @@
-package bridge;
+package bridge.data.way;
 
-import bridge.data.way.UpSide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
