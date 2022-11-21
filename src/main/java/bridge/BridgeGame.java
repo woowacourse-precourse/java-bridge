@@ -12,16 +12,13 @@ import java.util.List;
  * 5. BridgeGame 클래스에서 InputView, OutputView 클래스를 사용하지 않는다.
  */
 public class BridgeGame {
-    private static final int INITIAL_COUNT = 1;
     private static final String CORRECT_MOVING = "O";
     private static final String WRONG_MOVING = "X";
 
-    int trialCount;
     private final List<String> answerBridge;
 
     public BridgeGame(List<String> answerBridge) {
         this.answerBridge = answerBridge;
-        this.trialCount = INITIAL_COUNT;
     }
 
     /**
@@ -42,8 +39,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        trialCount++;
+    public int retry(int trialCount) {
+        return trialCount + 1;
     }
 
     public boolean isMovingUp(String currentMoving) {

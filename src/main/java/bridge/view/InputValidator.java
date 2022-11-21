@@ -71,18 +71,18 @@ public class InputValidator {
     }
 
     private static boolean isUp(String input) {
-        return CommandKeys.isSame(CommandKeys.UP, input);
+        return CommandKeys.isSame(CommandKeys.UP, input.toUpperCase());
     }
 
     private static boolean isDown(String input) {
-        return CommandKeys.isSame(CommandKeys.DOWN, input);
+        return CommandKeys.isSame(CommandKeys.DOWN, input.toUpperCase());
     }
 
     private static boolean isRetry(String input) {
-        return CommandKeys.isSame(CommandKeys.RETRY, input);
+        return CommandKeys.isSame(CommandKeys.RETRY, input.toUpperCase());
     }
 
     private static boolean isQuit(String input) {
-        return CommandKeys.isSame(CommandKeys.QUIT, input);
+        return CommandKeys.isSame(CommandKeys.QUIT, input.toUpperCase());
     }
 }

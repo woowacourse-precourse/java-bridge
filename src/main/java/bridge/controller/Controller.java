@@ -15,41 +15,41 @@ public class Controller {
     private final static String SUCCESS = "성공";
     private final static String FAILURE = "실패";
 
-    private final List<String> upSideResults;
-    private final List<String> downSideResults;
+    private final int bridgeSize;
     private final BridgeGame bridgeGame;
 
-    public Controller(BridgeGame bridgeGame) {
-        this.upSideResults = new ArrayList<>();
-        this.downSideResults = new ArrayList<>();
-        this.bridgeGame = bridgeGame;
+    public Controller() {
+        OutputView.printGameStart();
+        bridgeSize = InputView.readBridgeSize();
+        final List<String> answerBridge = createAnswerBridge(bridgeSize);
+        System.out.println(answerBridge); // 추후 삭제
+        this.bridgeGame = new BridgeGame(answerBridge);
+    }
+
+    public List<String> createAnswerBridge(int bridgeSize) {
+        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     public void play() {
-        OutputView.printGameStart();
         int trialCount = INITIAL_COUNT;
         String gameResult = SUCCESS;
-
-        final int bridgeSize =  InputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(answerBridge);
-
-        final BridgeGame bridgeGame = new BridgeGame(answerBridge);
-
+        List<String> upSideResults = new ArrayList<>();
+        List<String> downSideResults = new ArrayList<>();
         int index = 0;
-        while (index < answerBridge.size()) {
+
+        while (index < bridgeSize) {
             final String currentMoving = InputView.readMoving();
             final String moveResult = bridgeGame.move(currentMoving, index);
 
-            if (isMovingUp(currentMoving)) {
-                updateOneSideResults(upSideResults, moveResult);
-                updateOneSideResults(downSideResults, BLANK_SPACE);
+            if (bridgeGame.isMovingUp(currentMoving)) {
+                bridgeGame.updateOneSideResults(upSideResults, moveResult);
+                bridgeGame.updateOneSideResults(downSideResults, BLANK_SPACE);
             }
 
-            if (isMovingDown(currentMoving)) {
-                updateOneSideResults(upSideResults, BLANK_SPACE);
-                updateOneSideResults(downSideResults, moveResult);
+            if (bridgeGame.isMovingDown(currentMoving)) {
+                bridgeGame.updateOneSideResults(upSideResults, BLANK_SPACE);
+                bridgeGame.updateOneSideResults(downSideResults, moveResult);
             }
 
             OutputView.printMap(index, upSideResults, downSideResults);
@@ -61,7 +61,7 @@ public class Controller {
                     index = 0;
                     upSideResults = new ArrayList<>();
                     downSideResults = new ArrayList<>();
-                    bridgeGame.retry();
+                    trialCount = bridgeGame.retry(trialCount);
                 }
                 if (playerCommand.equals("Q")) {
                     gameResult = FAILURE;
@@ -71,23 +71,11 @@ public class Controller {
         }
         if (gameResult.equals(SUCCESS)) {
             OutputView.printResult(index - 1, upSideResults, downSideResults, gameResult);
-            OutputView.printTotalTrialCount(bridgeGame.trialCount);
+            OutputView.printTotalTrialCount(trialCount);
         }
         if (gameResult.equals(FAILURE)) {
             OutputView.printResult(index - 1, upSideResults, downSideResults, gameResult);
-            OutputView.printTotalTrialCount(bridgeGame.trialCount);
+            OutputView.printTotalTrialCount(trialCount);
         }
-    }
-
-    private static void updateOneSideResults(List<String> oneSideResults, String moveResult) {
-        oneSideResults.add(moveResult);
-    }
-
-    private static boolean isMovingUp(String currentMoving) {
-        return CommandKeys.isSame(CommandKeys.UP, currentMoving);
-    }
-
-    private static boolean isMovingDown(String currentMoving) {
-        return CommandKeys.isSame(CommandKeys.DOWN, currentMoving);
     }
 }
