@@ -27,3 +27,9 @@ input regex를 모은 enum
 ### validateGameCommand
 
     입력한 게임 진행 여부가 R,Q 인지 검증
+
+# BridgeMaker
+
+### makeBridge
+
+    U,D로 구성된 bridge(ArrayList) 생성
