@@ -39,7 +39,7 @@ class CompareBridgeTest {
     @DisplayName("한 칸 이동하는 기능 테스트")
     @ParameterizedTest
     @MethodSource("steppingTestData")
-    void steppingTest(List<String> movingInputs, List<String> bridge, String expected) {
+    void steppingTest(List<String> movingInputs, List<String> bridge, boolean expected) {
         // given
         player = new Player(movingInputs);
         compareBridge = new CompareBridge(player, bridge);
@@ -58,8 +58,8 @@ class CompareBridgeTest {
 
     static Stream<Arguments> steppingTestData() {
         return Stream.of(
-                Arguments.of(List.of("D"), List.of("D", "U", "U"), " O "),
-                Arguments.of(List.of("U"), List.of("D", "U", "U"), " X ")
+                Arguments.of(List.of("D"), List.of("D", "U", "U"), true),
+                Arguments.of(List.of("U"), List.of("D", "U", "U"), false)
         );
     }
 }

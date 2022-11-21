@@ -10,7 +10,7 @@ public class CompareBridgeRepository extends CompareBridge {
     }
 
     @Override
-    public String stepping(Player player, List<String> bridge) {
+    public boolean stepping(Player player, List<String> bridge) {
         return super.stepping(player, bridge);
     }
 }

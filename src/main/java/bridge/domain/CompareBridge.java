@@ -16,10 +16,7 @@ public class CompareBridge {
         return player.informMoving().equals(panel);
     }
 
-    public String stepping(Player player, List<String> bridge) {
-        if (isSame(player, bridge.get(player.informMovingIndex()))) {
-            return MapType.CAN_STEP.getType();
-        }
-        return MapType.CAN_NOT_STEP.getType();
+    public boolean stepping(Player player, List<String> bridge) {
+        return isSame(player, bridge.get(player.informMovingIndex()));
     }
 }
