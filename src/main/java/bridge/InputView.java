@@ -32,6 +32,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String order = readLine();
+        InputVerify.verifyOrderControl(order);
         return order;
     }
 }

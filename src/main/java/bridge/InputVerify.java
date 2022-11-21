@@ -40,4 +40,7 @@ public class InputVerify {
 			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_NOT_ORDER);
 		}
 	}
+
+	public static void verifyOrderControl(String order) {
+	}
 }
