@@ -29,9 +29,10 @@ public class OutputView {
 
     private static void printTopPositionBridge(List<String> movingPosition, List<String> result) {
         for (int i = 0; i < result.size(); i++) {
-            printFrame(result, i);
+            printLeftFrame(result, i);
             printTopOX(movingPosition, result, i);
             printSeparator(result, i);
+            printRightFrame(result, i);
         }
     }
 
@@ -46,9 +47,10 @@ public class OutputView {
 
     private static void printLowPositionBridge(List<String> movingPosition, List<String> result) {
         for (int i = 0; i < result.size(); i++) {
-            printFrame(result, i);
+            printLeftFrame(result, i);
             printLowOX(movingPosition, result, i);
             printSeparator(result, i);
+            printRightFrame(result, i);
         }
     }
 
@@ -67,10 +69,12 @@ public class OutputView {
         }
     }
 
-    private static void printFrame(List<String> result, int i) {
+    private static void printLeftFrame(List<String> result, int i) {
         if (i == 0) {
             System.out.print("[");
         }
+    }
+    private static void printRightFrame(List<String> result, int i) {
         if (i == result.size() - 1) {
             System.out.println("]");
         }
