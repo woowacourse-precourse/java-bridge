@@ -4,7 +4,7 @@ package bridge.domain;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    static final int INIT_GAME_TRY_COUNT = 1;
+    static final int INIT_GAME_TRY_COUNT = 0;
     int gameTryCount;
     BridgeWalker bridgeWalker;
 
@@ -20,8 +20,7 @@ public class BridgeGame {
      */
     public RoundResult move(String moveCommand) {// U : direction
         MoveResult moveResult = bridgeWalker.move(moveCommand);
-        boolean isClear = bridgeWalker.isCrossAllStep();
-        return RoundResult.of(moveResult, isClear);
+        return RoundResult.of(moveResult, isClear());
     }
 
     /**
@@ -30,5 +29,27 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        gameTryCount++;
+        bridgeWalker.reset();
+    }
+
+    public String getMoveRecord() {
+        return bridgeWalker.getMoveRecord();
+    }
+
+    public boolean isClear() {
+        return bridgeWalker.isCrossAllStep();
+    }
+
+    public String getClearDescription() {
+        String clearStatus = RoundResult.FAIL.getDescription();
+        if (isClear()) {
+            clearStatus = RoundResult.CLEAR.getDescription();
+        }
+        return String.format("게임 성공 여부: %s", clearStatus);
+    }
+
+    public String getGameTryCountDescription() {
+        return String.format("총 시도한 횟수: %d", gameTryCount);
     }
 }
