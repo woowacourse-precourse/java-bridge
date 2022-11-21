@@ -33,4 +33,15 @@ public class PlayerTest {
         player.move("U");
         assertThat(player.isStartStatus()).isFalse();
     }
+
+    @DisplayName("결과출력")
+    @Test
+    void print_result() {
+        Player player = new Player();
+        player.move("U");
+        player.move("D");
+
+        assertThat(player.printResult(true)).isEqualTo("[ O |   ]\n[   | O ]\n");
+        assertThat(player.printResult(false)).isEqualTo("[ O |   ]\n[   | X ]\n");
+    }
 }
