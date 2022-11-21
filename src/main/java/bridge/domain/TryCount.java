@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class TryCount {
     private static final int TRY_COUNT_START = 1;
+    private static final int TRY_COUNT_MAX = 2_000_000_000;
 
     private final int count;
 
@@ -18,8 +19,8 @@ public class TryCount {
     }
 
     private void validateMin(int count) {
-        if (count < TRY_COUNT_START) {
-            throw new TryCountRangeException(TRY_COUNT_START);
+        if (count < TRY_COUNT_START || count > TRY_COUNT_MAX) {
+            throw new TryCountRangeException(TRY_COUNT_START, TRY_COUNT_MAX);
         }
     }
 

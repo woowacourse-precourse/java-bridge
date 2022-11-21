@@ -15,12 +15,14 @@ public class TryCountTest {
         assertThat(tryCount).isEqualTo(new TryCount(1));
     }
 
-    @DisplayName("시도 횟수 최솟값 검증")
+    @DisplayName("시도 횟수 범위 검증")
     @Test
-    void validateTryCountStart() {
+    void validateTryCountRange() {
         Assertions.assertAll(
                 () -> assertThatThrownBy(() -> new TryCount(0)).isInstanceOf(IllegalArgumentException.class),
-                () -> assertThat(new TryCount(1)).isEqualTo(new TryCount(1))
+                () -> assertThat(new TryCount()).isEqualTo(new TryCount(1)),
+                () -> assertThat(new TryCount(2_000_000_000)).isEqualTo(new TryCount(2_000_000_000)),
+                () -> assertThatThrownBy(() -> new TryCount(2_000_000_001)).isInstanceOf(IllegalArgumentException.class)
         );
     }
 
