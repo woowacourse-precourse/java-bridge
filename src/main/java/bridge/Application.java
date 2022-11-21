@@ -23,6 +23,7 @@ public class Application {
     }
 
     public static void moveUser(List<String> bridge) {
+        int count = 1;
         List<String> result = new ArrayList<>();
         for (int i = 0; i < bridge.size(); i++) {
             outputView.printMovingBlockInputPhrase();
@@ -33,10 +34,21 @@ public class Application {
             }
             if (!moveResult) {
                 outputView.printMap(addFalseResult(i, moving, result));
+                outputView.printRestartMessage();
+                if (inputView.readGameCommand().equals("Q")) {
+                    endGame(result);
+                    break;
+                }
                 result = new ArrayList<>();
+                count++;
                 i = -1;
             }
         }
+        System.out.println("총 시도한 횟수: " + count);
+    }
+
+    public static void endGame(List<String> result) {
+        outputView.printResult(result);
     }
 
     public static void mR(boolean rst) {
