@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.service.BridgeGame;
 import bridge.service.GameServiceImpl;
 import bridge.service.impl.GameService;
 import bridge.type.ResultType;
@@ -11,7 +12,6 @@ public class GameController extends AbstractGameController{
 
     public GameController() {
         bridgeInfo = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        tryCnt = 1;
     }
 
 
@@ -19,21 +19,14 @@ public class GameController extends AbstractGameController{
         if (gameService.passThisRound(bridgeInfo)) {
             return true;
         }
-        if (gameService.getEndType() != ResultType.SUCCESS) {
-            tryCnt++;
-            retryGame();
-        }
-        return endGame(gameService.getEndType());
-    }
-
-    public boolean retryGame() {
-        return gameService.askOption();
+        endGame(gameService.getEndType());
+        return false;
     }
 
 
     public boolean endGame(ResultType resultType) {
         OutputView.printGameEndMsg();
-        bridgeGame.drawFinalResult(resultType, tryCnt);
+        bridgeGame.drawFinalResult(resultType, BridgeGame.getTryCnt());
         return false;
     }
 
