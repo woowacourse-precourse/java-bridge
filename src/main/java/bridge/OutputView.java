@@ -1,6 +1,6 @@
 package bridge;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,9 +20,11 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
     }
+
     public void printMap(List<List<String>> userBridge) {
-        for (List<String> list : userBridge) {
-            printWard(list.iterator());
+        List<Integer> limit = Arrays.asList(BridgeGame.UPWARD, BridgeGame.DOWNWARD);
+        for (Integer direction : limit) {
+            printWard(userBridge.get(direction).iterator());
         }
         System.out.println();
     }
@@ -47,7 +49,6 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getUserInputBridge());
-        System.out.println();
         System.out.println("게임 성공 여부: " + getResult(bridgeGame));
         System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
     }
