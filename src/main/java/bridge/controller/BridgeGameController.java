@@ -4,7 +4,7 @@ import bridge.BridgeMaker;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.GameCommand;
-import bridge.model.Player;
+import bridge.model.Moving;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -23,17 +23,7 @@ public class BridgeGameController {
         outputView.printInit();
         Bridge bridge = makeBridge();
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.initialize();
-        Player player = new Player();
-        while (bridgeGame.isContinuing()) {
-            player = new Player();
-            play(player, bridgeGame);
-            if (bridgeGame.isPlayerDead()) {
-                String gameCommand = inputView.readGameCommand();
-                bridgeGame.retry(GameCommand.toGameCommand(gameCommand));
-            }
-        }
-        outputView.printResult(player, bridgeGame);
+        play(bridgeGame);
     }
 
     private Bridge makeBridge() {
@@ -46,20 +36,51 @@ public class BridgeGameController {
         }
     }
 
-    private void play(Player player, BridgeGame bridgeGame) {
+    private void play(BridgeGame bridgeGame) {
+        bridgeGame.startGame();
         while (bridgeGame.isContinuing()) {
-            movePlayer(player, bridgeGame);
-            outputView.printMap(player);
+            move(bridgeGame);
+            checkRetry(bridgeGame);
+        }
+        outputView.printResult(bridgeGame.getPlayer(), bridgeGame);
+    }
+
+    private void move(BridgeGame bridgeGame) {
+        while (bridgeGame.isContinuing()) {
+            moveOneStep(bridgeGame);
+            outputView.printMap(bridgeGame.getPlayer());
         }
     }
 
-    private void movePlayer(Player player, BridgeGame bridgeGame) {
+    private void moveOneStep(BridgeGame bridgeGame) {
         try {
             String moving = inputView.readMoving();
-            bridgeGame.move(player, moving);
+            bridgeGame.move(Moving.toMoving(moving));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            movePlayer(player, bridgeGame);
+            moveOneStep(bridgeGame);
+        }
+    }
+
+    private void checkRetry(BridgeGame bridgeGame) {
+        if (bridgeGame.isPlayerDead()) {
+            readRetryCommand(bridgeGame);
+        }
+    }
+
+    private void readRetryCommand(BridgeGame bridgeGame) {
+        try {
+            GameCommand gameCommand = GameCommand.toGameCommand(inputView.readGameCommand());
+            checkRetryCommand(gameCommand, bridgeGame);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            readRetryCommand(bridgeGame);
+        }
+    }
+
+    private void checkRetryCommand(GameCommand gameCommand, BridgeGame bridgeGame) {
+        if (gameCommand.equals(GameCommand.R)) {
+            bridgeGame.retry();
         }
     }
 }
