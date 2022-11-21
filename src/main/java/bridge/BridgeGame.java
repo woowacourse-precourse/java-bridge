@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private final String UP_BRIDGN_SIGN = "U";
+    private final String EMPTY_SIGN = " ";
     public List<String> upBridge;
     public List<String> downBridge;
     private int moveCount;
@@ -56,12 +58,12 @@ public class BridgeGame {
 
     public void checkUserCommand(boolean isChecked,String userCommand){
         String input = InputBridgeElement.inputLetterChecked(isChecked);
-        if (userCommand.equals("U")){
+        if (userCommand.equals(UP_BRIDGN_SIGN)){
             upBridge.add(input);
-            downBridge.add(" ");
+            downBridge.add(EMPTY_SIGN);
             return;
         }
-        upBridge.add(" ");
+        upBridge.add(EMPTY_SIGN);
         downBridge.add(input);
     }
 }
