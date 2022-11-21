@@ -16,9 +16,8 @@ public class BridgeGame {
 
     public void gameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
-
-        InputView inputView = new InputView();
-        int bridgeLength = inputView.readBridgeSize();
+        //User user = new User();
+        int bridgeLength = User.BridgeSize();
 
         while(end){
             gamePlay(bridgeLength);
@@ -54,10 +53,11 @@ public class BridgeGame {
             InputView inputView = new InputView();
             String MovingSquare = inputView.readMoving();
             userBridge.add(MovingSquare);
+            //userBridge = User.userBridge();
 
             Result = OutputView.print(bridge, userBridge);
             OutputView.printGame(Result);
-            if (!Objects.equals(MovingSquare, bridge.get(i))) {
+            if (!Objects.equals(userBridge.get(i), bridge.get(i))) {
                 return false;
             }
         }
