@@ -16,10 +16,10 @@ public class User {
     moveStatus.add(direction);
   }
 
-  public boolean isCorrectlyMove(List<String> bridge) {
+  public boolean isCorrectlyMove(List<String> bridgeShapes) {
     final int index = moveStatus.size() - 1;
     if (index < 0) return true;
-    return bridge.get(index).equals(moveStatus.get(index));
+    return bridgeShapes.get(index).equals(moveStatus.get(index));
   }
 
   public void startNewGame() {

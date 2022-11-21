@@ -6,7 +6,7 @@ import java.util.List;
 public class BridgeGame {
   private final User user;
   private final BridgeMaker bridgeMaker;
-  private List<String> bridge;
+  private Bridge bridge;
 
   public BridgeGame(final User user) {
     this.user = user;
@@ -15,7 +15,7 @@ public class BridgeGame {
 
   public void gameInit(int length) {
     user.startNewGame();
-    bridge = bridgeMaker.makeBridge(length);
+    bridge = new Bridge(bridgeMaker.makeBridge(length));
   }
 
   /** 사용자가 칸을 이동할 때 사용하는 메서드 */
@@ -31,22 +31,22 @@ public class BridgeGame {
   public void retry() {}
 
   public boolean isTryFinish() {
-    return !user.isCorrectlyMove(bridge) || isTrySuccess();
+    return !user.isCorrectlyMove(bridge.getBridgeShapes()) || isTrySuccess();
   }
 
   public boolean isTrySuccess() {
-    return user.isCorrectlyMove(bridge) && isArriveFinishLine();
+    return user.isCorrectlyMove(bridge.getBridgeShapes()) && isArriveFinishLine();
   }
 
   private boolean isArriveFinishLine() {
-    return user.isArriveFinishLine(bridge.size());
+    return user.isArriveFinishLine(bridge.getBridgeShapes().size());
   }
 
   public void showResult() {
-    OutputView.printMap(user.getMoveStatus(), bridge);
+    OutputView.printMap(user.getMoveStatus(), bridge.getBridgeShapes());
   }
 
-  public List<String> getBridge() {
-    return this.bridge;
+  public List<String> getBridgeShapes() {
+    return this.bridge.getBridgeShapes();
   }
 }

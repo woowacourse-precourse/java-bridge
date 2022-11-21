@@ -28,7 +28,7 @@ public class GameManager {
       bridgeGame.gameInit(length);
       tryMove(); // 시도가 끝날 때 까지 이동
     } while (!checkIsGameFinish());
-    printFinalResult(user.getMoveStatus(), bridgeGame.getBridge());
+    printFinalResult(user.getMoveStatus(), bridgeGame.getBridgeShapes());
     printGameSuccessOrFailure(bridgeGame.isTrySuccess());
     printTotalTryCount(user.getTryCount());
   }
