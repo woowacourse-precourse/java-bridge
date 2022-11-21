@@ -47,7 +47,7 @@ public class BridgeGame {
         return false;
     }
 
-    public GameResult closeGame(MoveResult moveResult) {
-        return new GameResult(bridgeGameRepository.findTryCount(), moveResult);
+    public GameResult closeGame() {
+        return new GameResult(bridgeGameRepository.findTryCount(), bridgeGameRepository.isFinalRound());
     }
 }

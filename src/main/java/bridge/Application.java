@@ -29,13 +29,13 @@ public class Application {
     private static GameResult playBridgeGame(Bridge bridge) {
         MoveResult moveResult = moveToSelectedBlock(bridge);
         if (!moveResult.isSuccess()) {
-            return selectWhetherToRetry(bridge, moveResult);
+            return selectWhetherToRetry(bridge);
         }
 
         if (!bridgeGame.isGameClear()) {
             return playBridgeGame(bridge);
         }
-        return bridgeGame.closeGame(moveResult);
+        return bridgeGame.closeGame();
     }
 
     private static MoveResult moveToSelectedBlock(Bridge bridge) {
@@ -44,11 +44,11 @@ public class Application {
         return moveResult;
     }
 
-    private static GameResult selectWhetherToRetry(Bridge bridge, MoveResult moveResult) {
+    private static GameResult selectWhetherToRetry(Bridge bridge) {
         if (bridgeGame.retry(inputView.readGameCommand())) {
             outputView.clearMap();
             return playBridgeGame(bridge);
         }
-        return bridgeGame.closeGame(moveResult);
+        return bridgeGame.closeGame();
     }
 }
