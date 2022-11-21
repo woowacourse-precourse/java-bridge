@@ -11,6 +11,7 @@ import java.util.Map;
 public class BridgeGame {
 
     private final List<String> bridge;
+    private String gameResult;
     private Map<String, List<String>> progress = new HashMap<>();
     private int tryAttempt;
 
@@ -84,5 +85,9 @@ public class BridgeGame {
 
     public Map<String, List<String>> getProgress() {
         return this.progress;
+    }
+
+    public int getTryAttempt() {
+        return this.tryAttempt;
     }
 }

@@ -28,4 +28,9 @@ public class OutputView {
         printMap(upSideProgress);
         printMap(downSideProgress);
     }
+
+    public void printStatus(String gameStatus, int tryAttempt) {
+        System.out.println(LINE_BREAK.get() + MSG_OUTPUT_GAME_RESULT.get() + gameStatus);
+        System.out.println(MSG_OUTPUT_TRY_ATTEMPT.get() + tryAttempt);
+    }
 }

@@ -40,6 +40,7 @@
     - [x] 게임 시작 출력 기능 → printStart
     - [x] 게임 중 현재까지 이동한 다리 출력 기능 → printMap
     - [x] 게임 종료 후 최종 결과 출력 기능 → printResult
+    - [x] 게임 종료 후 성공 여부, 시도 횟수 등 게임 정보 출력 기능 → printStatus
 
 ### controller
 
