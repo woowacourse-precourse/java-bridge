@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MapTest {
@@ -24,8 +26,9 @@ public class MapTest {
         String upExpected = "[ O ]";
         String downExpected = "[   ]";
 
-        assertThat(map.getUpMap()).isEqualTo(upExpected);
-        assertThat(map.getDownMap()).isEqualTo(downExpected);
+        List<String> allMap = map.getAllMap();
+        assertThat(allMap.get(0)).isEqualTo(upExpected);
+        assertThat(allMap.get(1)).isEqualTo(downExpected);
     }
 
     @DisplayName("X 결과를 위쪽 다리에 추가한다.")
@@ -37,8 +40,9 @@ public class MapTest {
         String upExpected = "[ X ]";
         String downExpected = "[   ]";
 
-        assertThat(map.getUpMap()).isEqualTo(upExpected);
-        assertThat(map.getDownMap()).isEqualTo(downExpected);
+        List<String> allMap = map.getAllMap();
+        assertThat(allMap.get(0)).isEqualTo(upExpected);
+        assertThat(allMap.get(1)).isEqualTo(downExpected);
     }
 
     @DisplayName("O 결과를 아래쪽 다리에 추가한다.")
@@ -50,8 +54,9 @@ public class MapTest {
         String upExpected = "[   ]";
         String downExpected = "[ O ]";
 
-        assertThat(map.getUpMap()).isEqualTo(upExpected);
-        assertThat(map.getDownMap()).isEqualTo(downExpected);
+        List<String> allMap = map.getAllMap();
+        assertThat(allMap.get(0)).isEqualTo(upExpected);
+        assertThat(allMap.get(1)).isEqualTo(downExpected);
     }
 
     @DisplayName("X 결과를 아래쪽 다리에 추가한다.")
@@ -63,7 +68,8 @@ public class MapTest {
         String upExpected = "[   ]";
         String downExpected = "[ X ]";
 
-        assertThat(map.getUpMap()).isEqualTo(upExpected);
-        assertThat(map.getDownMap()).isEqualTo(downExpected);
+        List<String> allMap = map.getAllMap();
+        assertThat(allMap.get(0)).isEqualTo(upExpected);
+        assertThat(allMap.get(1)).isEqualTo(downExpected);
     }
 }
