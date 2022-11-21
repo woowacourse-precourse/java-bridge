@@ -59,6 +59,17 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("재시작 시 시도 횟수 증가")
+    void testTryCountAtRetry() {
+        BridgeGame game = new BridgeGame(List.of("U", "D", "D"));
+
+        assertThat(game.tryTimes()).isEqualTo(1);
+        game.retry();
+
+        assertThat(game.tryTimes()).isEqualTo(2);
+    }
+
+    @Test
     @DisplayName("오답에서 재시작 상태")
     void testStatusAtWrongToRetry() {
         BridgeGame game = new BridgeGame(List.of("U", "D", "D"));
