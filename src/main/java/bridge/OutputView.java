@@ -26,11 +26,11 @@ public class OutputView {
     }
 
     public void printStart() {
-        System.out.println(START_MESSAGE.toString());
+        System.out.println(START_MESSAGE);
     }
 
     public void printBridgeLengthRequest() {
-        System.out.println(BRIDGE_LENGTH_MESSAGE.toString());
+        System.out.println(BRIDGE_LENGTH_MESSAGE);
     }
 
     public void printChoiceRequest() {
