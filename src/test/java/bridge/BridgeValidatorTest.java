@@ -33,4 +33,13 @@ class BridgeValidatorTest {
         assertThatThrownBy(() -> validator.validateMovingDirection(direction)).isInstanceOf(
             IllegalArgumentException.class);
     }
+
+    @DisplayName("[예외 발생] 게임 재시작 여부를 물어보는 입력값이 Q나 R이 아니라면 IllegalArgumentException 발생")
+    @Test
+    void validateGameCommand() {
+        String gameCommand = "A";
+        BridgeValidator validator = new BridgeValidator();
+        assertThatThrownBy(() -> validator.validateGameCommand(gameCommand)).isInstanceOf(
+            IllegalArgumentException.class);
+    }
 }
