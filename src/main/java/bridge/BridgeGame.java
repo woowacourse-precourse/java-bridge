@@ -24,11 +24,12 @@ public class BridgeGame {
 
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private BridgeMaker bridgeMaker;
-    private List<String> bridge = new ArrayList<>();
+    private List<String> bridge;
 
     public void setUp() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        OutputView.reset();
     }
 
     public void start() {
