@@ -32,7 +32,7 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("1보다 작은 숫자를 입력한 경우 예외가 발생한다.")
+    @DisplayName("3보다 작은 숫자를 입력한 경우 예외가 발생한다.")
     @Test
     void readBridgeSizeTest3() {
         InputView inputView = new InputView();
@@ -44,7 +44,17 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("20보다 큰 숫자를 입력한 경우 예외가 발생한다.")
+    @Test
+    void readBridgeSizeTest4() {
+        InputView inputView = new InputView();
 
+        String input = "23";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("입력한 데이터가 U나 D가 아닌 경우 예외가 발생한다.")
     @Test
