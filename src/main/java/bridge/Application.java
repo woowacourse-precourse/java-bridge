@@ -52,9 +52,9 @@ public class Application {
             }
 
             System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-            String retry = inputView.readGameCommand();
+            String retryCommand = inputView.readGameCommand();
 
-            if (retry.equals("Q")) {
+            if (bridgeGame.retry(retryCommand)) {
                 outputView.printResult(userBridge, gameCount, matchingFlag);
                 break;
             }
