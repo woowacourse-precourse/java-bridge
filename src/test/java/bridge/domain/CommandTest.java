@@ -2,6 +2,8 @@ package bridge.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -14,4 +16,14 @@ public class CommandTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다시 입력해주세요.");
     }
+
+    @DisplayName("R이나 Q가 아닌 문자를 입력할 경우")
+    @ValueSource(strings = {"D", "0", "5", "-2", "-U", "RR", " Q"})
+    @ParameterizedTest
+    void validateUpOrDown(String command) {
+        assertThatThrownBy(() -> Command.createCommand(command))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] R(재시도), 혹은 Q(종료)를 입력해주세요.");
+    }
+
 }
