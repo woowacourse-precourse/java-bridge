@@ -29,4 +29,12 @@ public class Bridge {
     public BridgeSize getBridgeSize() {
         return new BridgeSize(bridge.size());
     }
+
+    public boolean isCross(int index, UpOrDown upOrDown) {
+        if (Objects.isNull(upOrDown)) {
+            throw new IllegalArgumentException(Error.SYSTEM_ERROR.getMessage());
+        }
+
+        return bridge.get(index).equals(upOrDown.getValue());
+    }
 }
