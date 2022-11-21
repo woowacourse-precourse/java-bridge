@@ -55,12 +55,16 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
     }
 
     private void moveBridge() {
-        String moving = inputView.readMoving();
-        bridge.move(moving);
+        String direction;
+
+        direction = inputView.readMoving();
+        bridge.move(direction);
     }
 
     private void showMap() {
-        List<List<String>> map = bridge.makeMap();
+        List<List<String>> map;
+
+        map = bridge.makeMap();
         outputView.printMap(map);
     }
 
@@ -69,8 +73,9 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
      */
     @Override
     public void retry() {
-        String command = inputView.readGameCommand();
+        String command;
 
+        command = inputView.readGameCommand();
         if (isRetry(command)) {
             refresh();
             play();
