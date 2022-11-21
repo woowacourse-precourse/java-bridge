@@ -94,6 +94,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
 
         printMap(bridge, userBridge);
+        System.out.println();
 
         if (successOrNot) {
             printSuccessMessage(trialCount);

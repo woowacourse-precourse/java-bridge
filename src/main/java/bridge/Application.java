@@ -1,5 +1,6 @@
 package bridge;
 
+import response.GameException;
 import response.UserInputException;
 import view.InputView;
 import view.OutputView;
@@ -21,18 +22,14 @@ public class Application {
 
         } catch (UserInputException inputException) {
             System.out.println(inputException.getMessage());
-        } catch (IllegalStateException e) {
-
+        } catch (GameException gameException) {
         }
     }
 
     private static void start() {
         game.trialCount++;
-
         gameInitProcess();
-
         gameProcess();
-
     }
 
     private static void gameInitProcess() {
@@ -45,18 +42,27 @@ public class Application {
         outputView.printMovementRequestMessage();
         String movement = inputView.readMoving();
 
+        checkGameStatus(movement);
+
+        outputView.printMap(game.bridge, game.userInput);
+        System.out.println();
+        gameProcess();
+    }
+
+    private static void checkGameStatus(String movement) {
         if (!game.move(movement)) {
             outputView.printMap(game.bridge, game.userInput);
+            System.out.println();
             gameCommandProcess();
         }
 
         if (game.userInput.size() == game.bridge.size()) {
+            outputView.printMap(game.bridge, game.userInput);
+            System.out.println();
             outputView.printResult(game.bridge, game.userInput, true, game.trialCount);
-            throw new IllegalStateException();
+            System.out.println();
+            throw new GameException();
         }
-
-        outputView.printMap(game.bridge, game.userInput);
-        gameProcess();
     }
 
     private static void gameCommandProcess() {
@@ -77,7 +83,7 @@ public class Application {
 
     private static void quitProcess() {
         outputView.printResult(game.bridge, game.userInput, false, game.trialCount);
-        throw new IllegalStateException();
+        throw new GameException();
     }
 
 
