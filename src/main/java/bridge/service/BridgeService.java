@@ -50,6 +50,20 @@ public class BridgeService {
         bridgeGame.initializeBridgeGame(bridge);
     }
 
+    public boolean isFalsePlayerMove(){
+        if(!bridgeGame.isMoveSuccess()){
+            String gameRetryCommand = inputGameRetryCommand();
+            if(gameRetryCommand.equals(GameRetry.R.command)){
+                bridgeGame.initializePlayerMoveRecord();
+            }
+            if(gameRetryCommand.equals(GameRetry.Q.command)){
+                outputView.printResult(bridgeGame);
+            }
+            return true;
+        }
+        return false;
+    }
+
     public String inputGameRetryCommand(){
         while(true){
             outputView.printRetryGameMessage();
