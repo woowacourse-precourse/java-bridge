@@ -38,7 +38,7 @@ public class BridgeView {
         }
     }
 
-    public String inputRetryCommandMessage() {
+    public GameSymbol inputRetryCommandMessage() {
         while (true) {
             try {
                 outputView.inputRetryCommandMessage();

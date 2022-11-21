@@ -24,21 +24,26 @@ public class BridgeController {
 
     private void loop() {
         while (true) {
-            bridgeGame.move(bridgeView.inputMoveCommandMessage());
-            bridgeView.printMoveResult(bridgeGame.printLines());
-            if (bridgeGame.getResultSymbol() == ResultSymbol.FAIL) {
-                String retryCommand = bridgeView.inputRetryCommandMessage();
-                if (retryCommand.equals("R")) {
-                    bridgeGame.retry();
-                }
-                if (retryCommand.equals("Q")) {
-                    break;
-                }
+            GameSymbol gameSymbol = moveBridge();
+            if (gameSymbol == GameSymbol.QUIT) {
+                break;
+            }
+            if (gameSymbol == GameSymbol.RETRY) {
+                bridgeGame.retry();
             }
             if (bridgeGame.allTry()) {
                 break;
             }
         }
+    }
+
+    private GameSymbol moveBridge() {
+        bridgeGame.move(bridgeView.inputMoveCommandMessage());
+        bridgeView.printMoveResult(bridgeGame.printLines());
+        if (bridgeGame.getResultSymbol() == ResultSymbol.FAIL) {
+            return bridgeView.inputRetryCommandMessage();
+        }
+        return GameSymbol.NOTHING;
     }
 
     private void printResult() {
