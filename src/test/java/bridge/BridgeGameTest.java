@@ -29,7 +29,6 @@ class BridgeGameTest {
                 bridgeGame.init(input));
     }
 
-
     @DisplayName("입력 받은 이동 방향이 \"U\" 와 \"D\" 둘 중 하나가 아니면 오류 ")
     @ParameterizedTest
     @ValueSource(strings = {"A", "UU", " ", "UD", "1D"})
@@ -37,6 +36,14 @@ class BridgeGameTest {
         Assertions.assertThatThrownBy(()->
                 bridgeGame.move(direction))
                         .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 이동 방향이 \"U\" 와 \"D\" 둘 중 하나 ")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void moveDirectionOK(String direction) {
+        assertDoesNotThrow(()->
+                bridgeGame.move(direction));
     }
 
     @ParameterizedTest
