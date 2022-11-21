@@ -32,13 +32,4 @@ public class BridgeGameTest {
     void 다리_이동_비정상테스트(String input, int num) {
         assertThat(bridgeGame.move(input, bridgeMap, num)).isFalse();
     }
-
-    @Test
-    void static변수_테스트() {
-        BridgeGame.saveBridgeSize(5);
-        BridgeGame.plusPlayCount();
-        BridgeGame.plusPlayCount();
-        assertThat(BridgeGame.getBridgeSize()).isEqualTo(5);
-        assertThat(BridgeGame.getPlayCount()).isEqualTo(2);
-    }
 }
