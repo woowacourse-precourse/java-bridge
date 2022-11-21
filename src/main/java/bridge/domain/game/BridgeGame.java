@@ -14,6 +14,7 @@ public class BridgeGame {
     
     private final Bridge bridge;
     private final List<BridgeGameHistory> histories;
+    private BridgeGameStatus status;
     private Integer currentPosition = -1;
     private Integer tryCount = 1;
     
@@ -59,6 +60,14 @@ public class BridgeGame {
         histories.add(new BridgeGameHistory(getTryCount()));
     }
     
+    public BridgeGameStatus getStatus() {
+        return status;
+    }
+    
+    public void setStatus(BridgeGameStatus status) {
+        this.status = status;
+    }
+    
     public BridgeGameHistory getCurrentHistory() {
         return histories.get(getHistoryIndex(getTryCount()));
     }
@@ -88,11 +97,6 @@ public class BridgeGame {
     public Optional<BridgeGameHistory> getHistoryOfBestRecord() {
         List<BridgeGameHistory> cloneHistories = new ArrayList<>(List.copyOf(histories));
         Collections.sort(cloneHistories);
-        
-        System.out.println();
-        cloneHistories.forEach(history -> {
-            System.out.println(history.getTryCount());
-        });
         
         if (cloneHistories.size() != 0) {
             return Optional.of(cloneHistories.get(0));

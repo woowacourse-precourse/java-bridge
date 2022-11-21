@@ -8,6 +8,7 @@ public class BridgeGameService {
     
     public BridgeGameService(BridgeGame game) {
         this.game = game;
+        this.game.setStatus(BridgeGameStatus.TRYING);
     }
     
     public BridgeGame getGame() {
@@ -19,16 +20,26 @@ public class BridgeGameService {
             game.move(selectMove);
             return true;
         }
-        game.fail(selectMove);
+        fail(selectMove);
         return false;
+    }
+    
+    private void fail(BridgeMove selectMove) {
+        game.fail(selectMove);
+        game.setStatus(BridgeGameStatus.FAILURE);
     }
     
     public void retry() {
         game.retry();
+        game.setStatus(BridgeGameStatus.TRYING);
     }
     
     public boolean isFinish() {
-        return game.isReachedLastPosition();
+        if (game.isReachedLastPosition()) {
+            game.setStatus(BridgeGameStatus.SUCCESS);
+            return true;
+        }
+        return false;
     }
     
 }

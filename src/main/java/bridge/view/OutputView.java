@@ -54,11 +54,7 @@ public class OutputView {
     
     private void printSuccessOrFailure(BridgeGame bridgeGame) {
         System.out.print("게임 성공 여부: ");
-        if (bridgeGame.isReachedLastPosition()) {
-            System.out.println("성공");
-            return;
-        }
-        System.out.println("실패");
+        System.out.println(bridgeGame.getStatus().getOutputText());
     }
     
     private void printTryCount(BridgeGame bridgeGame) {
