@@ -21,15 +21,15 @@ public class OutputView {
     }
 
     private void print(List<String> input, List<String> answer, String correct, String wrong) {
-        System.out.print("[");
-        printContent(input, answer, correct, wrong);
-        System.out.print("]\n");
-    }
-
-    private void printContent(List<String> input, List<String> answer, String correct, String wrong) {
         Map<String, String > map = new HashMap<>();
         map.put(correct, " O ");
         map.put(wrong, " X ");
+        System.out.print("[");
+        printContent(input, answer, map, correct);
+        System.out.print("]\n");
+    }
+
+    private void printContent(List<String> input, List<String> answer, Map<String, String> map, String correct) {
         int size = input.size();
         for (int i = 0; i < size; i++) {
             if (notCorrectPosition(input, correct, i)) {
