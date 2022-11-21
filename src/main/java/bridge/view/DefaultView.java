@@ -20,8 +20,12 @@ public class DefaultView implements View {
     public void render() {
         outputWelcome();
         inputBridgeSize();
-        inputMove();
-        outputBridgeMap();
+
+        boolean isMove;
+        do {
+            isMove = inputMove();
+            outputBridgeMap();
+        } while (isMove);
     }
 
     private void outputWelcome() {
@@ -35,10 +39,10 @@ public class DefaultView implements View {
         controller.createBridge(bridgeSize);
     }
 
-    private void inputMove() {
+    private boolean inputMove() {
         outputView.printReadMove();
         String move = inputView.readMove();
-        controller.moveBridge(move);
+        return controller.moveBridge(move);
     }
 
     private void outputBridgeMap() {
