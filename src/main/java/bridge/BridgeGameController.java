@@ -41,6 +41,9 @@ public class BridgeGameController {
                 if(bridgeGame.checkWinOrFail(crossableBridges.get(i), inputView.readMoving())=="fail"){
                 outputView.printFailedMap(i, crossableBridges.size(), crossableBridges.get(i));
                 outputView.printStatements(NormalStatements.ASK_RETRY.getNormalStatement());
+                if(inputView.readGameCommand()=="R"){
+                    i=1;
+                }
 
                 }
                 outputView.printMap(i, crossableBridges.size(), crossableBridges.get(i));
