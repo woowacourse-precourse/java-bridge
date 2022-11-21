@@ -14,6 +14,8 @@ public class OutputView {
     public static final String GAME_RESULTS = "최종 게임 결과";
     public static final String GAME_CLEARED = "게임 성공 여부: ";
     public static final String TOTAL_ATTEMPT = "총 시도한 횟수: ";
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -54,8 +56,8 @@ public class OutputView {
 
     private String getResult(BridgeGame bridgeGame) {
         if (bridgeGame.isGameClear()) {
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 }
