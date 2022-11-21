@@ -52,7 +52,7 @@ class BridgeGameTest extends NsTest {
     @Override
     protected void runMain() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move(List.of(new String[]{"D", "U", "U"}));
+        bridgeGame.move("D",1);
 
     }
 

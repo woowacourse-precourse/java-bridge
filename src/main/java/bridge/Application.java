@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -9,6 +10,7 @@ public class Application {
     static OutputView outputView = new OutputView();
     private static int tryNumber = 0;
     private static boolean retryJudge;
+    private static boolean successFail;
 
     private static List<String> mapAndOX;
 
@@ -17,38 +19,37 @@ public class Application {
         int inputNumber = inputView.readBridgeSize();
         List<String> bridgeList = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(inputNumber);
         do{
-            retryJudge = keepGoingJudge(bridgeList);
+            bridgeGame.resetMap();
+            successFail = successFailMethod(bridgeList);
+            retryJudge = retryJudgeMethod(successFail);
             tryNumber++;
-        }while(retryJudge)
-
-
-        outputView.printResult(tryNumber, mapAndJudge.get(1));
+        }while(retryJudge);
+        outputView.printResult(tryNumber, successFail);
     }
 
-    private static boolean keepGoingJudge(List<String> bridgeList){
+    private static boolean retryJudgeMethod(boolean successFail) {
+        if (successFail == true){
+            return false;
+        }
+        String retryOrNotInput = inputView.readGameCommand();
+        if (retryOrNotInput == "Q"){
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean successFailMethod(List<String> bridgeList){
         for (int order = 0; order < bridgeList.size(); order++){
-            mainGame(bridgeList.get(order), order);
-
+            mapAndOX = bridgeGame.move(bridgeList.get(order), order);
+            String map = mapAndOX.get(0);
+            outputView.printMap(map);
             if (mapAndOX.get(1) == "X"){
-                inputView.readGameCommand();
-
+                return false;
             }
         }
+        return true;
     }
-private static void retryOrNotInput(String gameCommand){
 
-        if(gameCommand == "R"){
-            return
-        }
-}
-
-    private static void mainGame(String bridgeAnswer, int order){
-        String upDownUserInput = inputView.readMoving();
-        mapAndOX = bridgeGame.move(bridgeAnswer, upDownUserInput, order);
-        String map = mapAndOX.get(0);
-        outputView.printMap(map);
-        mapAndOX.get(1);
-    }
 }
 
 
