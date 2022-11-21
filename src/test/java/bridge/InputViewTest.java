@@ -67,7 +67,7 @@ class InputViewTest {
     void 이동할_칸을_정상적으로_입력받는_경우(String input){
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThat(inputView.readMoving()).isNotIn(Step.values());
+        assertThat(inputView.readMoving()).isNotIn((Object)Step.values());
         System.setIn(sysInBackup);
     }
 
@@ -89,7 +89,7 @@ class InputViewTest {
     void 게임_재시작_여부를_정상적으로_입력받는_경우(String input){
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThat(inputView.readGameCommand()).isNotIn(Retry.values());
+        assertThat(inputView.readGameCommand()).isNotIn((Object)Retry.values());
         System.setIn(sysInBackup);
     }
 
