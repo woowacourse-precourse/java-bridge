@@ -1,15 +1,31 @@
 package bridge.presentation;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private static final String NUMBER_REGEX = "^[0-9]*$";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(Message.INTRO);
+        System.out.println(Message.INPUT_SIZE);
+
+        String line = Console.readLine();
+        validateBridgeSize(line);
+        
+        return Integer.parseInt(line);
+    }
+
+    private void validateBridgeSize(String line) {
+        if (!line.matches(NUMBER_REGEX)) {
+            throw new IllegalArgumentException("BridgeSize 값은 숫자만 입력될 수 있습니다.");
+        }
     }
 
     /**
