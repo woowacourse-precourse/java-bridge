@@ -3,7 +3,6 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
