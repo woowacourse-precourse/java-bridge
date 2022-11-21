@@ -15,24 +15,31 @@ public class BridgeGame {
      */
     public void move(final Bridge bridge, final PlayerStatus playerStatus) {
         String direction = playerStatus.getStep();
-        boolean flag = playerStatus.isMatchingFlag();
+        boolean matchingFlag = playerStatus.isMatchingFlag();
 
         if (direction.equals("U")) {
-            if (flag) {
-                bridge.moveUpBridgeCorrect();
-                return;
-            }
-            bridge.moveUpBridgeInCorrect();
+            moveUpBridge(bridge, matchingFlag);
             return;
         }
-
         if (direction.equals("D")) {
-            if (flag) {
-                bridge.moveDownBridgeCorrect();
-                return;
-            }
-            bridge.moveDownBridgeInCorrect();
+            moveDownBridge(bridge, matchingFlag);
         }
+    }
+
+    private void moveUpBridge(final Bridge bridge, final boolean matchingFlag) {
+        if (matchingFlag) {
+            bridge.moveUpBridgeCorrect();
+            return;
+        }
+        bridge.moveUpBridgeInCorrect();
+    }
+
+    private void moveDownBridge(final Bridge bridge, final boolean matchingFlag) {
+        if (matchingFlag) {
+            bridge.moveDownBridgeCorrect();
+            return;
+        }
+        bridge.moveDownBridgeInCorrect();
     }
 
     /**
