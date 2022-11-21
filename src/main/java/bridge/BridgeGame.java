@@ -28,22 +28,13 @@ public class BridgeGame {
 			String block = inputView.readMoving();
 			if (block.equals(generateBridge.getBridge().get(i))){
 				//성공한 다리 출력 로직
+				outputView.printMap(generateBridge,i,block);
 				continue;
 			}
-			//실패한 다리 출력 로직.
-			outputView.printMap();
+			//실패한 다리여도, 일단 출력.
+			outputView.printMap(generateBridge,i,block);
 			//게임을 다시 시도할지 여부를 입력해주세요
-			Print.restartOrQuit();
-			String restartOrQuit = "";
-			//Q나 R이 아닌경우에 대한 예외처리
-			while (!restartOrQuit.equals("R") && !restartOrQuit.equals("Q")) {
-				try {
-					restartOrQuit = Console.readLine();
-					Validation.validationRestartOrQuit(restartOrQuit);
-				} catch (IllegalArgumentException e) {
-					System.out.println(e.getMessage());
-				}
-			}
+			String restartOrQuit = inputView.readGameCommand();
 			//Q면, outputView.printResult()하고 끝낸다.
 			if (restartOrQuit.equals("Q")){
 				outputView.printResult();
@@ -61,5 +52,6 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public void retry() {
+		move();
 	}
 }
