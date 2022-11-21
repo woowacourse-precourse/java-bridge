@@ -15,7 +15,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         return bridgeSizeException(Console.readLine());
     }
@@ -23,7 +23,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
+    public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         return movingException(Console.readLine());
     }

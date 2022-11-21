@@ -17,7 +17,7 @@ public class BridgeController {
         int size;
         while (true) {
             try {
-                size = InputView.readBridgeSize();
+                size = inputView.readBridgeSize();
                 return size;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
@@ -29,7 +29,7 @@ public class BridgeController {
         String pick;
         while (true) {
             try {
-                pick = InputView.readMoving();
+                pick = inputView.readMoving();
                 return pick;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
