@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("BridgeGame 객체를 테스트한다.")
 class BridgeGameTest {
     List<String> bridge = List.of("U", "U", "U", "U", "U", "U", "U");
     List<String> invalidBridge = List.of("U", "D", "a", "kk", "U", "U", "U");
@@ -28,17 +29,25 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("게임의 초기값은 status: PLAYING, 시도횟수: 1이다.")
+    @DisplayName("BridgeGame 객체의 초기값은 status = PLAYING, tryCount =  1이다.")
     void initTest() {
         assertEquals(bridgeGame.getStatus(), PLAYING);
         assertEquals(bridgeGame.getTryCount(), 1);
     }
 
+    @DisplayName("BridgeGame의 생성자에 잘못된 값이 포함되어있으면 예외")
+    @Test
+    void createWithWrongBridge() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BridgeGame game = new BridgeGame(invalidBridge);
+        });
+    }
+
     @Nested
-    @DisplayName("게임 진행 상태는 ")
+    @DisplayName("게임 상태 테스트")
     class gameStatusTest {
         @Test
-        @DisplayName("떨어졌을 때 LOSE")
+        @DisplayName("주어진 bridge와 동일하지 않은 방향으로 이동 시 LOSE")
         void loseTest() {
             bridgeGame.move("D");
             assertEquals(bridgeGame.getStatus(), LOSE);
@@ -54,7 +63,7 @@ class BridgeGameTest {
         }
 
         @Test
-        @DisplayName("끝까지 도달했을 때 WIN")
+        @DisplayName("주어진 bridge와 동일한 방향으로 이동 시 LOSE")
         void winTest() {
             for (int i = 0; i < bridge.size(); i++) {
                 bridgeGame.move("U");
@@ -63,8 +72,17 @@ class BridgeGameTest {
         }
     }
 
-    @DisplayName("재시작횟수에 따른 시도횟수")
-    @ParameterizedTest(name = "재시작: {0}번, 시도횟수: {1}번")
+    @DisplayName("move 함수에 U, D 이외의 값이 입력되면 예외")
+    @ParameterizedTest(name = "입력값: {0}")
+    @CsvSource({"1", "2", "u", "d", "hello world"})
+    void moveTest(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            bridgeGame.move(input);
+        });
+    }
+
+    @DisplayName("retry 함수를 호출하면 tryCount가 1 증가한다.")
+    @ParameterizedTest(name = "{0}회 호출")
     @CsvSource(value = {"1:2", "3:4", "6:7"}, delimiter = ':')
     void tryCountTest(int count, int result) {
         for (int i = 0; i < count; i++) {
@@ -74,14 +92,14 @@ class BridgeGameTest {
     }
 
     @Nested
-    @DisplayName("UDU Bridge에서 ")
+    @DisplayName("getResultMap 함수 테스트")
     class resultMapTest {
         BridgeGame game = new BridgeGame(
                 List.of("U", "D", "U")
         );
 
         @Test
-        @DisplayName("이동 방향이 U D U 일때 출력형태")
+        @DisplayName("주어진 bridge를 모두 통과할 때의 결과 반환")
         void testOnUDU() {
 
             game.move("U");
@@ -95,7 +113,7 @@ class BridgeGameTest {
         }
 
         @Test
-        @DisplayName("U U 일때 출력형태")
+        @DisplayName("주어진 bridge를 통과하지 못할 때의 결과 반환")
         void testUU() {
             BridgeGame game = new BridgeGame(
                     List.of("U", "D", "U")
@@ -108,28 +126,6 @@ class BridgeGameTest {
             System.out.println(resultMap);
             assertThat(resultMap).contains("[ O | X ]");
             assertThat(resultMap).contains("[   |   ]");
-        }
-    }
-
-
-    @Nested
-    @DisplayName("예외상황으로는 ")
-    class exceptionTest {
-        @DisplayName("생성 시 잘못된 다리 형식이 들어오는 경우가 있다.")
-        @Test
-        void createWithWrongBridge() {
-            assertThrows(IllegalArgumentException.class, () -> {
-                BridgeGame game = new BridgeGame(invalidBridge);
-            });
-        }
-
-        @DisplayName("move 수행간 U, D가 아닌 다른값이 들어오는 경우가 있다.")
-        @ParameterizedTest(name = "입력값: {0}")
-        @CsvSource({"1", "2", "u", "d", "hello world"})
-        void moveTest(String input) {
-            assertThrows(IllegalArgumentException.class, () -> {
-                bridgeGame.move(input);
-            });
         }
     }
 }

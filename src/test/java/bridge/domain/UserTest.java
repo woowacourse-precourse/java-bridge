@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("User 객체를 테스트한다.")
 class UserTest {
 
     Bridge bridge = new Bridge(
@@ -18,7 +19,7 @@ class UserTest {
     );
 
     @Test
-    @DisplayName("사용자의 초기값은 step = 0, live = true 이다")
+    @DisplayName("User 객체의 초기값은 step = 0, live = true 이다")
     void initValue() {
         User user = new User();
         Assertions.assertThat(user.getStep()).isEqualTo(0);
@@ -30,9 +31,9 @@ class UserTest {
         Assertions.assertThat(user.isLive()).isTrue();
     }
 
-    @DisplayName("사용자의 걸음수가 ")
-    @ParameterizedTest(name = "{0}번 움직이면 step은 {0}")
-    @CsvSource({"1", "3", "5"})
+    @DisplayName("move 함수가 호출될때마다 User의 step이 1씩 증가한다.")
+    @ParameterizedTest(name = "{0}번 호출")
+    @CsvSource({"1", "3", "5", "10000000"})
     void moveAndCheckStep(int step) {
         User user = new User();
         for (int i = 0; i < step; i++) {
@@ -42,33 +43,33 @@ class UserTest {
     }
 
     @Nested
-    @DisplayName("사용자가 다리에서 ")
+    @DisplayName("move 함수는 bridge와 이동방향(U/D)을 입력받아 사용자의 상태를 갱신한다.")
     class checkInBridge {
         User user = new User();
 
         @Test
-        @DisplayName("떨어지지 않았다.")
+        @DisplayName("옳은 방향으로 이동한다.")
         void moveAndCheckLive() {
             user.move(bridge, "U");
             Assertions.assertThat(user.isLive()).isTrue();
         }
 
         @Test
-        @DisplayName("떨어졌다.")
-        void moveAndCheckDead() {
+        @DisplayName("잘못된 방향으로 이동한다.")
+        void moveAndCheckNotLive() {
             user.move(bridge, "D");
             Assertions.assertThat(user.isLive()).isFalse();
         }
-    }
 
-    @DisplayName("사용자의 move에 잘못된값 입력시 예외")
-    @ParameterizedTest(name = "입력값: {0}")
-    @CsvSource({"a", "2", "hello world"})
-    void moveWithWrongInput(String input) {
-        User user = new User();
+        @DisplayName("move에 잘못된 이동방향 입력시 예외")
+        @ParameterizedTest(name = "입력값: {0}")
+        @CsvSource({"a", "2", "hello world"})
+        void moveWrongMovementInput(String input) {
+            User user = new User();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            user.move(bridge, input);
-        });
+            assertThrows(IllegalArgumentException.class, () -> {
+                user.move(bridge, input);
+            });
+        }
     }
 }

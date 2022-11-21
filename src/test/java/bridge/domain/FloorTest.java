@@ -7,23 +7,23 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Floor 객체를 테스트한다.")
 class FloorTest {
 
     @Nested
-    @DisplayName("바닥의 상태에 ")
-    class floorStatus {
+    @DisplayName("Floor의 생성자에는 U 혹은 D가 들어온다.")
+    class createFloor {
 
-        @DisplayName("올바른 값이 입력된다.")
+        @DisplayName("U 혹은 D가 들어온다.")
         @ParameterizedTest(name = "생성값: {0}")
         @CsvSource({"U", "D"})
         void goodStatus(String status) {
             assertDoesNotThrow(() -> {
-                new Floor("U");
-                new Floor("D");
+                new Floor(status);
             });
         }
 
-        @DisplayName("올바르지 못한 값이 입력된다.")
+        @DisplayName("U, D가 아닌 잘못된 입력값의 경우 예외")
         @ParameterizedTest(name = "생성값: {0}")
         @CsvSource({"A", "B", "1", "hello world"})
         void badStatus(String status) {
@@ -34,18 +34,10 @@ class FloorTest {
     }
 
     @Nested
-    @DisplayName("바닥의 값과 검증값이 ")
-    class floorBrokenTest {
+    @DisplayName("isSafe 함수는 문자열을 입력하면 바닥의 상태(U/D)와 동일여부를 반환한다.")
+    class isSafeTest {
 
-        @DisplayName("동일하지 않다.")
-        @ParameterizedTest(name = "바닥: {0}, 검증값: {1}")
-        @CsvSource(value = {"U:D", "D:U"}, delimiter = ':')
-        void floorBroken(String status, String input) {
-            Floor floor = new Floor(status);
-            assertFalse(floor.isSafe(input));
-        }
-
-        @DisplayName("동일하다.")
+        @DisplayName("입력값과 상태가 동일하다.")
         @ParameterizedTest(name = "바닥: {0}, 검증값: {1}")
         @CsvSource(value = {"D:D", "U:U"}, delimiter = ':')
         void floorNotBroken(String status, String input) {
@@ -53,7 +45,15 @@ class FloorTest {
             assertTrue(floor.isSafe(input));
         }
 
-        @DisplayName("동일하지 않으며 검증값이 잘못되었다.")
+        @DisplayName("입력값과 상태가 동일하지않다.")
+        @ParameterizedTest(name = "바닥: {0}, 검증값: {1}")
+        @CsvSource(value = {"U:D", "D:U"}, delimiter = ':')
+        void floorBroken(String status, String input) {
+            Floor floor = new Floor(status);
+            assertFalse(floor.isSafe(input));
+        }
+
+        @DisplayName("U, D가 아닌 잘못된 입력값의 경우 예외")
         @ParameterizedTest(name = "바닥: {0}, 검증값: {1}")
         @CsvSource(value = {"D:ㅁㅇㄹㅁㄹ", "U:u", "D: 2", "U:Down"}, delimiter = ':')
         void badInput(String status, String input) {
