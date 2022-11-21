@@ -27,12 +27,12 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int number = bridgeNumber();
-            bridge.add(convertPossibleLocation(number));
+            bridge.add(convertToBridgeStatus(number));
         }
         return bridge;
     }
 
-    private String convertPossibleLocation(int number) {
+    private String convertToBridgeStatus(int number) {
         if (number == UPPER_NUMBER) {
             return CAN_MOVE_UP;
         }
