@@ -10,6 +10,8 @@
 - [ ] InputView(삽입 관리)
 
 - [ ] OutputView(출력 관리)
+    - 결과 출력
+    - 
 
 
  
