@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.domain.Bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -28,5 +30,15 @@ public class BridgeGame {
      */
     public void retry() {
 
+    }
+
+    public void makeBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = getBridgeMaker();
+        bridge.init(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    public BridgeMaker getBridgeMaker() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        return new BridgeMaker(bridgeRandomNumberGenerator);
     }
 }
