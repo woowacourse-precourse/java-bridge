@@ -10,11 +10,13 @@ public class BridgeGame {
     private final Bridge bridge;
     private final User user;
     private final Result result;
+    private boolean isRunning;
 
     public BridgeGame(Bridge bridge, User user, Result result) {
         this.bridge = bridge;
         this.user = user;
         this.result = result;
+        isRunning = true;
     }
 
     /**
@@ -54,7 +56,15 @@ public class BridgeGame {
         return false;
     }
 
+    public void isOver() {
+        isRunning = false;
+    }
+
     public Result getResult() {
         return result;
+    }
+
+    public boolean getIsRunning() {
+        return this.isRunning;
     }
 }
