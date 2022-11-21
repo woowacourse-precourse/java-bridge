@@ -3,6 +3,9 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.DownsideResults;
+import bridge.OneSideResults;
+import bridge.UpsideResults;
 import bridge.util.CommandKeys;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -27,47 +30,41 @@ public class Controller {
     public void play() {
         int trialCount = INITIAL_COUNT;
         String gameResult = SUCCESS;
-        List<String> upSideResults = new ArrayList<>();
-        List<String> downSideResults = new ArrayList<>();
         int index = 0;
 
         while (index < bridgeSize) {
-            final String currentMoving = InputView.readMoving();
-            final String moveResult = bridgeGame.move(currentMoving, index);
+            final OneSideResults upsideResults = new UpsideResults();
+            final OneSideResults downsideResults = new DownsideResults();
 
-            if (bridgeGame.isMovingUp(currentMoving)) {
-                bridgeGame.updateOneSideResults(upSideResults, moveResult);
-                bridgeGame.updateOneSideResults(downSideResults, BLANK_SPACE);
-            }
+            final String playerMove = InputView.readMoving();
+            final String matchResult = bridgeGame.move(playerMove, index);
 
-            if (bridgeGame.isMovingDown(currentMoving)) {
-                bridgeGame.updateOneSideResults(upSideResults, BLANK_SPACE);
-                bridgeGame.updateOneSideResults(downSideResults, moveResult);
-            }
+            upsideResults.update(playerMove, matchResult, BLANK_SPACE);
+            downsideResults.update(playerMove, matchResult, BLANK_SPACE);
 
-            OutputView.printMap(index, upSideResults, downSideResults);
+            OutputView.printMap(upsideResults, downsideResults);
             index++;
 
-            if (moveResult.equals("X")) {
+            if (matchResult.equals("X")) {
                 final String playerCommand = InputView.readGameCommand();
-                if (playerCommand.equals("R")) {
+                if (CommandKeys.isRetry(playerCommand)) {
                     index = 0;
-                    upSideResults = new ArrayList<>();
-                    downSideResults = new ArrayList<>();
+                    upsideResults.reset(playerCommand);
+                    downsideResults.reset(playerCommand);
                     trialCount = bridgeGame.retry(trialCount);
                 }
-                if (playerCommand.equals("Q")) {
+                if (CommandKeys.isQuit(playerCommand)) {
                     gameResult = FAILURE;
                     break;
                 }
             }
         }
         if (gameResult.equals(SUCCESS)) {
-            OutputView.printResult(index - 1, upSideResults, downSideResults, gameResult);
+            OutputView.printResult(upsideResults, downsideResults, gameResult);
             OutputView.printTotalTrialCount(trialCount);
         }
         if (gameResult.equals(FAILURE)) {
-            OutputView.printResult(index - 1, upSideResults, downSideResults, gameResult);
+            OutputView.printResult(upsideResults, downsideResults, gameResult);
             OutputView.printTotalTrialCount(trialCount);
         }
     }

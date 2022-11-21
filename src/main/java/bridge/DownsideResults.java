@@ -8,7 +8,7 @@ public class DownsideResults extends OneSideResults{
     }
 
     @Override
-    public void updateResults(String currentMove, String moveResult, String blankSpace) {
+    public void update(String currentMove, String moveResult, String blankSpace) {
         if (CommandKeys.isDown(currentMove)) {
             results.add(moveResult);
         }

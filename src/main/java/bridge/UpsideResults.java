@@ -9,7 +9,7 @@ public class UpsideResults extends OneSideResults{
     }
 
     @Override
-    public void updateResults(String currentMove, String moveResult, String blankSpace) {
+    public void update(String currentMove, String moveResult, String blankSpace) {
         if (CommandKeys.isUp(currentMove)) {
             results.add(moveResult);
         }
