@@ -1,5 +1,9 @@
 package bridge;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -24,35 +28,49 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(List<String> bridgeMap,int index){
+        for(int position=bridgeMap.size()-1;position>=0;position--){
+            String bridgePosition = bridgeMap.get(position);
+            System.out.print(BRIDGE_LEFT);
+            printInsideMap(index, bridgePosition);
+            System.out.println(BRIDGE_RIGHT);
+        }
     }
+    private static void printInsideMap(int index, String bridgePosition) {
+        for(int i = 0; i< index +1; i++){
+            System.out.print(bridgePosition.charAt(i));
+            if(i!= index){
+                System.out.println(BRIDGE_MIDDLE);
+            }
+        }
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameResult gameResult) {
+    public static void printResult(GameResult gameResult) {
         System.out.println(IS_GAME_PASS+IS+gameResult.getIsPass());
     }
-    public void gameStart(){
+    public static void gameStart(){
         System.out.println(GAME_START);
     }
-    public void inputBridgeSize(){
+    public static void inputBridgeSize(){
         System.out.println(INPUT_BRIDGE_SIZE);
     }
-    public void inputUserMoveCommand(){
-        System.out.println(INPUT_MOVE_COMMAND+UserCommand.MOVE_UP.getPosition()+IS+UserCommand.MOVE_UP.getMoveCommand()+
+    public static void inputUserMoveCommand(){
+        System.out.println(INPUT_MOVE_COMMAND+UserCommand.MOVE_UP.getPosition()+IS+UserCommand.MOVE_UP.getCommand()+
                 AND+ UserCommand.MOVE_DOWN.getPosition()+IS+UserCommand.MOVE_DOWN.getPosition()+INPUT_END);
     }
-    public void inputUserReplayCommand(){
-        System.out.println(INPUT_REPLAY_GAME+UserCommand.REPLAY.getPosition()+IS+UserCommand.REPLAY.getMoveCommand()+
-                AND+ UserCommand.END.getPosition()+IS+UserCommand.END.getMoveCommand()+INPUT_END);
+    public static void inputUserReplayCommand(){
+        System.out.println(INPUT_REPLAY_GAME+UserCommand.REPLAY.getPosition()+IS+UserCommand.REPLAY.getCommand()+
+                AND+ UserCommand.END.getPosition()+IS+UserCommand.END.getCommand()+INPUT_END);
     }
-    public void printLastBridgeResult(){
+    public static void printLastBridgeResult(){
         System.out.println(LAST_BRIDGE_RESULT);
-        printMap();
     }
-    public void printTotalTry(int totalTry){
+    public static void printTotalTry(int totalTry){
         System.out.println(TOTAL_TRY+IS+totalTry);
     }
 }
