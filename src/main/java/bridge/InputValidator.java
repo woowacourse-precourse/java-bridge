@@ -9,7 +9,7 @@ public class InputValidator {
 
     public static String getValidateInput(InputType inputType) {
         if (inputType == InputType.BRIDGE) return checkValidateBridge(getLine());
-        if (inputType == InputType.MOVE) return "";
+        if (inputType == InputType.MOVE) return checkValidateMove(getLine());
         if (inputType == InputType.REPLAY) return "";
         return null;
     }
@@ -40,5 +40,10 @@ public class InputValidator {
         }
     }
 
-
+    public static String checkValidateMove(String input){
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException(Message.BRIDGE_MOVE_INPUT_ERROR);
+        }
+        return input;
+    }
 }
