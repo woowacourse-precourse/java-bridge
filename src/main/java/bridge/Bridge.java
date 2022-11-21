@@ -24,8 +24,8 @@ public class Bridge {
         return getCorrectPosition(bridgePosition).equals(userPosition);
     }
 
-    public boolean checkClear(boolean canMove, int bridgePosition) {
-        return canMove && (this.bridge.size() - 1 == bridgePosition);
+    public String getLastBridge() {
+        return this.bridge.get(this.bridge.size() - 1);
     }
 }
 

@@ -78,10 +78,10 @@ public class OutputView {
     }
 
     public void printGameResult(boolean result) {
-        System.out.println("\n게임 성공 여부: " + getGemaResult(result));
+        System.out.println("\n게임 성공 여부: " + getGameResult(result));
     }
 
-    public String getGemaResult(boolean result) {
+    public String getGameResult(boolean result) {
         if (result) {
             return "성공";
         }
