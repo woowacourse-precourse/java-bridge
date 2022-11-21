@@ -17,9 +17,6 @@ public enum BridgeShape {
         this.type = type;
     }
 
-
-
-
     public static void makeLines(MyBridge myBridge) {
         HashMap<String, String> bridgeMap = new HashMap<String, String>();
         bridgeMap.put("U", makeLine(myBridge,"U"));

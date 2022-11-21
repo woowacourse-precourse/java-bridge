@@ -13,8 +13,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         outputView.printInputSize();
-        int input = Integer.parseInt(Console.readLine());
-        return input;
+        String input = Console.readLine();
+        checkDigit(input);
+        return Integer.parseInt(input);
+    }
+
+    private void checkDigit(String input) {
+        if (!input.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
     }
 
     /**
@@ -23,7 +30,7 @@ public class InputView {
     public String readMoving() {
         outputView.printMove();
         String input = Console.readLine();
-        return input;
+        return input.toUpperCase();
     }
 
     /**
@@ -32,6 +39,6 @@ public class InputView {
     public String readGameCommand() {
         outputView.printRetry();
         String input = Console.readLine();
-        return input;
+        return input.toUpperCase();
     }
 }

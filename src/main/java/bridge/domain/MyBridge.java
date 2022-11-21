@@ -10,15 +10,13 @@ public class MyBridge {
 
     private List<String> inputList;
     private List<String> answerBridge;
-    private int size;
 
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private static InputView inputView = new InputView();
+    private static OutputView outputView = new OutputView();
 
-    public MyBridge(List<String> answerBridge, int size) {
+    public MyBridge(List<String> answerBridge) {
         this.inputList = new ArrayList<>();
         this.answerBridge = answerBridge;
-        this.size = size;
     }
 
 
@@ -34,14 +32,19 @@ public class MyBridge {
     }
 
     public boolean matchLength() {
-        return inputList.size() == size;
+        return inputList.size() == answerBridge.size();
     }
 
     public void inputAlphabet() {
         String input = inputView.readMoving();
+        validateMove(input);
         addInputList(input);
     }
-
+    private void validateMove(String input) {
+        if (!input.equals("D") && !input.equals("U")) {
+            throw new IllegalArgumentException("[ERROR] D와 U만 입력 가능합니다.");
+        }
+    }
     private void addInputList(String alphabet) {
         inputList.add(alphabet);
     }
@@ -70,7 +73,7 @@ public class MyBridge {
         if(input.equals("R")) {
             return true;
         }
-        throw new RuntimeException();
+        throw new IllegalArgumentException("[ERROR] Q와 R만 입력하실 수 있습니다.");
     }
 
 }

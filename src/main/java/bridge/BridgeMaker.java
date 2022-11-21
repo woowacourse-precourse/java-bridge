@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +13,8 @@ import java.util.stream.Collectors;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static InputView inputView = new InputView();
+    private static OutputView outputView = new OutputView();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -25,6 +30,15 @@ public class BridgeMaker {
             bridgeNumberList.add(bridgeNumberGenerator.generate());
         }
         return changeToStringBridge(bridgeNumberList);
+    }
+
+    public List<String> inputBridgeSize() {
+        outputView.printStart();
+        int size = inputView.readBridgeSize();
+        if (size <3 || size>20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+        return makeBridge(size);
     }
 
     private List<String> changeToStringBridge(List<Integer> bridgeNumberList) {
