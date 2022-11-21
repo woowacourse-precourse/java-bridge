@@ -19,5 +19,4 @@ public class BridgeMoveTest {
         assertThatThrownBy(() -> new BridgeMove("12"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
