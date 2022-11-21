@@ -43,18 +43,6 @@ public class BridgeGame {
         }
     }
 
-    private static void countTryNumber() {
-        tryNumber++;
-    }
-
-    public static void cleanTryNumber() {
-        tryNumber = NumberConstant.FIRST_TRY.getConstant();
-    }
-
-    private static void initUserBridge() {
-        userBridge = new ArrayList<>();
-    }
-
     private static void addMoveInUserBridge() {
         userBridge.add(BridgeController.getMoving());
     }
@@ -87,6 +75,18 @@ public class BridgeGame {
             BothSide.addWrongPathUpSide(bothSide);
         }
         printMoving(bothSide, userBridge.get(index));
+    }
+
+    private static void countTryNumber() {
+        tryNumber++;
+    }
+
+    public static void cleanTryNumber() {
+        tryNumber = NumberConstant.FIRST_TRY.getConstant();
+    }
+
+    private static void initUserBridge() {
+        userBridge = new ArrayList<>();
     }
 
     private static void checkRetry(List<String> bridge, List<List<String>> bothSide) {
