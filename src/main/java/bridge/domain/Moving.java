@@ -1,10 +1,10 @@
 package bridge.domain;
 
+import bridge.domain.constant.ExceptionMessage;
+
 import java.util.Objects;
 
 public class Moving {
-    private static final int END_LENGTH_RANGE = 20;
-
     private final String moving;
 
     private Moving(String moving) {
@@ -12,6 +12,7 @@ public class Moving {
     }
 
     public static Moving createMoving(String inputMoving) {
+        validateNullInput(inputMoving);
         validateMoving(inputMoving);
         return new Moving(inputMoving);
     }
@@ -25,6 +26,12 @@ public class Moving {
     private static boolean isUpOrDown(String moving) {
         return moving.equals(MovingStatus.UP.getMovingKey())
                 || moving.equals(MovingStatus.DOWN.getMovingKey());
+    }
+
+    private static void validateNullInput(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ExceptionMessage.NULL_INPUT);
+        }
     }
 
     @Override
