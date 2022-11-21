@@ -15,7 +15,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException numberFormatException) {
+            ExceptionMessage.INPUT_WRONG_BRIDGE_LENGTH_MESSAGE.throwException();
+        }
+
+        return 0;
     }
 
     /**
