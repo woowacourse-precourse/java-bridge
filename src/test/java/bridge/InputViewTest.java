@@ -114,6 +114,44 @@ class InputViewTest extends NsTest {
         assertThat(output().trim()).contains(ErrorPhrases.NOT_MOVING_STRING.toString());
     }
 
+    @DisplayName("게임 커맨드를 입력 받는다.")
+    @ValueSource(strings = {"Q", "R"})
+    @ParameterizedTest
+    void readGameCommand(String string) {
+        InputView inputView = new InputView();
+        command("Q", "R");
+
+        String command = inputView.readGameCommand();
+
+        assertThat(command).isEqualTo(string);
+    }
+
+    @DisplayName("정의되지 않은 명령이 입력될 경우 예외를 발생한다.")
+    @ValueSource(strings = {"A", "123", "haha", "DD"})
+    @ParameterizedTest
+    void readGameCommandInvalid(String str) {
+        InputView inputView = new InputView();
+        command("A", "123", "haha", "DD");
+
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("정의되지 않은 명령이 입력될 경우 예외를 발생한다. - 메시지 점검")
+    @ValueSource(strings = {"A", "123", "haha", "DD"})
+    @ParameterizedTest
+    void readGameCommandInvalidMessage(String str) {
+        InputView inputView = new InputView();
+        command("A", "123", "haha", "DD");
+
+        try {
+            inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        assertThat(output().trim()).contains(ErrorPhrases.NOT_COMMAND_STRING.toString());
+    }
+
     @Override
     protected void runMain() {
     }

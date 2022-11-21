@@ -36,4 +36,19 @@ public class BridgeExceptionChecker {
         }
         return false;
     }
+
+    static void raiseExceptionIfIsNotCommand(String str) {
+        if (!isCommand(str)) {
+            throw  new IllegalArgumentException(ErrorPhrases.NOT_COMMAND_STRING.toString());
+        }
+    }
+
+    private static boolean isCommand(String str) {
+        for (GameCommand command : GameCommand.values()) {
+            if (command.toString().equals(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

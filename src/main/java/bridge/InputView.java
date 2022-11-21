@@ -31,6 +31,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String line = Console.readLine();
+        BridgeExceptionChecker.raiseExceptionIfIsNotCommand(line);
         return line;
     }
 }
