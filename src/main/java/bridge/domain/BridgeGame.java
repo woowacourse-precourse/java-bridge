@@ -23,6 +23,7 @@ public class BridgeGame {
         this.isMoveSuccess = true;
         this.count = 1;
     }
+
     public static BridgeGame from(BridgeMap bridgeMap) {
         return new BridgeGame(bridgeMap);
     }
