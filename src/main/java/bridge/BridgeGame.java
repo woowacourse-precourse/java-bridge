@@ -39,29 +39,31 @@ public class BridgeGame {
      */
     public void move(String direction, int index) {
         String validBridge = bridge.get(index);
-        DirectionType directionType = DirectionType.valueOf(direction);
-        String[] moveResult = initializeMovingResult(direction, validBridge, directionType);
+        DirectionType directionType = DirectionType.valueOfString(direction);
+        String[] moveResult = initializeMovingResult(validBridge, directionType);
         addBridge(moveResult, index);
     }
 
     private void addBridge(String[] moveResult, int index) {
         downBridge.add(moveResult[0]);
         upBridge.add(moveResult[1]);
-        downBridge.add("|");
-        upBridge.add("|");
-        if (index == bridge.size()) {
-            downBridge.add("]");
-            upBridge.add("]");
+        if (index < bridge.size()-1) {
+            downBridge.add("|");
+            upBridge.add("|");
+            return;
         }
+        downBridge.add("]");
+        upBridge.add("]");
     }
 
-    private String[] initializeMovingResult(String direction, String validBridge, DirectionType directionType) {
+    private String[] initializeMovingResult(String validBridge, DirectionType directionType) {
         final String X = " X ";
         final String O = " O ";
         final String SPACE = "   ";
+        int validNumber = Integer.parseInt(validBridge);
         String[] moveResult = {SPACE, SPACE};
         moveResult[directionType.getNumber()] = X;
-        if (Objects.equals(direction, validBridge)) {
+        if (directionType.getNumber() == validNumber) {
             moveResult[directionType.getNumber()] = O;
         }
         return moveResult;
