@@ -28,4 +28,12 @@ public class Crossing {
     public int getNextStep() {
         return history.size();
     }
+
+    public boolean isFinish(BridgeSize bridgeSize) {
+        if (Objects.isNull(bridgeSize)) {
+            throw new IllegalArgumentException(Error.SYSTEM_ERROR.getMessage());
+        }
+
+        return history.size() == bridgeSize.getValue();
+    }
 }
