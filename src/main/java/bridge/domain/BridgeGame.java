@@ -48,6 +48,10 @@ public class BridgeGame {
         return crossDirection.equals(movingInput);
     }
 
+    private void addMovingCount() {
+        this.movingCount++;
+    }
+
     public void retry() {
     }
 }
