@@ -1,6 +1,11 @@
 package bridge;
 
 public class ErrorCheck {
+    public static boolean isValidRetryOrQuit(String retry) {
+        if(retry.equals("Q") || retry.equals("R")) return true;
+        System.out.println("[ERROR] Q 또는 R로 입력해주세요.");
+        throw new IllegalArgumentException();
+    }
     public static boolean isValidInteger(String bridgeLength) {
         try{
             Integer.parseInt(bridgeLength);

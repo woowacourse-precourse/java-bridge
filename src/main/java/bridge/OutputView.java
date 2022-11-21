@@ -12,17 +12,20 @@ public class OutputView {
     private static final String END_POINT = " ]";
     private static final List<String> upBridge = new ArrayList<>();
     private static final List<String> downBridge = new ArrayList<>();
+    private static boolean SUCCESS_OR_FAIL = true;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(int idx, List<String> bridge, String nextMove) {
+    public static boolean printMap(int idx, List<String> bridge, String nextMove) {
         boolean canNextMove = CheckNextMove(idx, bridge, nextMove);
         nextMoving(nextMove, canNextMove);
         printUpBridge();
         printDownBridge();
+
+        return SUCCESS_OR_FAIL;
     }
 
     /**
@@ -31,6 +34,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public static void getSuccessOrFail() {
+        SUCCESS_OR_FAIL = true;
+    }
+
+    public static void bridgeInitialize() {
+        upBridge.clear();;
+        downBridge.clear();
     }
 
     public static void printUpBridge() {
@@ -70,12 +82,18 @@ public class OutputView {
 
     public static void MoveDownBridge(boolean canNextMove) {
         if(canNextMove) downBridge.add("O");
-        if(!canNextMove) downBridge.add("X");
+        if(!canNextMove) {
+            downBridge.add("X");
+            SUCCESS_OR_FAIL = false;
+        }
     }
 
     public static void MoveUpBridge(boolean canNextMove) {
         if(canNextMove) upBridge.add("O");
-        if(!canNextMove)  upBridge.add("X");
+        if(!canNextMove)  {
+            upBridge.add("X");
+            SUCCESS_OR_FAIL = false;
+        }
     }
 
     public static boolean CheckNextMove(int idx, List<String> bridge, String nextMove) {
