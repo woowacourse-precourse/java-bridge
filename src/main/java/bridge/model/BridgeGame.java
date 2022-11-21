@@ -9,15 +9,19 @@ import java.util.List;
 public class BridgeGame {
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
     private List<String> marks; // "O",
     private int gameCount;
     List<String> bridge;
     BridgeMaker bridgeMaker;
     private int position;
+    private String resultOfGame;
 
     public BridgeGame() {
         this.marks = new ArrayList<>();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        resultOfGame = SUCCESS;
         gameCount = 1;
         position = 0;
     }
@@ -36,16 +40,21 @@ public class BridgeGame {
         position++;
     }
 
-    public boolean isAbleToCross(String course) {
+    private boolean isAbleToCross(String course) {
         return bridge.get(position).equals(course);
     }
 
     /**
      * 사용자의 입력과 현재까지 건너온 길의 마지막이 불일치하는지 검증하는 메소드
+     *
      * @return
      */
     public boolean isDiscord() {
-        return marks.get(marks.size() - 1).equals("X");
+        if(marks.get(marks.size() - 1).equals("X")) {
+            resultOfGame = FAIL;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -54,7 +63,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String cmd) {
-        if(cmd.equals(RETRY)) {
+        if (cmd.equals(RETRY)) {
+            resultOfGame = SUCCESS;
             gameCount++;
             return true;
         }
@@ -71,6 +81,7 @@ public class BridgeGame {
 
     /**
      * 다리를 무사히 건너갔는지 확인하는 메소드
+     *
      * @return
      */
     public boolean isEndOfBridge() {
@@ -79,5 +90,17 @@ public class BridgeGame {
 
     public void makeBridge(int size) {
         bridge = bridgeMaker.makeBridge(size);
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public List<String> getMarks() {
+        return marks;
+    }
+
+    public int getGameCount() {
+        return gameCount;
     }
 }
