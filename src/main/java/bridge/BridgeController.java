@@ -23,14 +23,12 @@ public class BridgeController {
             String move = inputView.readMoving();
             String oneBridge = bridgeGame.move(bridge, move, bridgeGame.getSize());
             outputView.printMap(oneBridge);
-            System.out.println("");
             bridgeGame.nextStep();
 
             if(isWrong(oneBridge)){
                 bridgeGame.retry();
             }
         }
-
         outputView.printResult(bridge, bridgeGame);
     }
 
