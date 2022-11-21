@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import static bridge.model.BridgeGame.*;
+
+import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.CompareBridge;
@@ -35,6 +38,7 @@ public class BridgeController {
     public static void compareBridge() {
         for (compareBridgeNum = 0; compareBridgeNum < CompareBridge.ranBridge.size(); ) {
             String compare = InputView.readMoving();
+            move(compare);
             CompareBridge.udCount++;
             CompareBridge.compareUp(compareBridgeNum, compare);
             CompareBridge.compareDown(compareBridgeNum, compare);
@@ -47,6 +51,7 @@ public class BridgeController {
     public static void retryGame() {
         OutputView.printGameRestart();
         String retry = Console.readLine();
+        BridgeGame.retry(retry);
         restartMap(retry);
         finishMap(retry);
 
