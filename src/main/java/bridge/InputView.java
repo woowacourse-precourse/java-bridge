@@ -36,7 +36,7 @@ public class InputView {
 
         while (true) {
             movingCommand = Console.readLine();
-            if (!checkCommand(movingCommand)){
+            if (checkCommand(movingCommand)){
                 break;
             }
         }
@@ -66,7 +66,7 @@ public class InputView {
 
     public boolean checkCommand(String command){
         try{
-            if (command.equals("U") || command.equals("D")){
+            if (!(command.equals("U") || command.equals("D"))){
                 throw new IllegalArgumentException();
             }
         }catch(IllegalArgumentException e){
