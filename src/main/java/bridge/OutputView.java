@@ -34,7 +34,23 @@ public class OutputView {
     public void printMap() {
     }
 
+    public List<String> makemap(String position, List<String> userMove, List<String> bridge){
+        List<String> myMap = new ArrayList<>();
+        for(int i = 0; i<userMove.size(); i++){
+            myMap.add(walk(position, userMove.get(i), bridge.get(i)));
+        }
+        return myMap;
+    }
 
+    public String walk(String position, String move, String oneBridge){
+        if(!position.equals(move)){
+            return "   ";
+        }
+        if(move.equals(oneBridge)){
+            return " O ";
+        }
+        return " X ";
+    }
 
 
     /**
