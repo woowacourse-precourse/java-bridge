@@ -32,6 +32,7 @@ public class BridgeGame {
     public int getBridgeSize() {
         return bridge.size();
     }
+
     public List<String> getBridge() { return bridge; }
     public void setBridge(List<String> bridge) {
         this.bridge = bridge;
