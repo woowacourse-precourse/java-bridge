@@ -14,4 +14,16 @@ public class Utils {
     static final String RESTART = "R";
     static final String EXIT = "Q";
     public static final int LIMIT = 10;
+
+    static boolean isValidSize(int size) {
+        return size >= MIN_SIZE && size <= MAX_SIZE;
+    }
+
+    static boolean isValidDirection(String dir) {
+        return dir.equals(UP_STRING) || dir.equals(DOWN_STRING);
+    }
+
+    static boolean isValidCommand(String command) {
+        return command.equals(EXIT) || command.equals(RESTART);
+    }
 }

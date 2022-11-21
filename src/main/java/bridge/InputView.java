@@ -15,9 +15,7 @@ public class InputView {
     public int readBridgeSize() throws IllegalArgumentException {
         System.out.println("다리의 길이를 입력해주세요.");
         int size = readNum();
-        if(!isValidSize(size)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
+        ExceptionHandler.handleSizeException(size);
         return size;
     }
 
@@ -29,39 +27,23 @@ public class InputView {
         }
     }
 
-    static boolean isValidSize(int size) {
-        return size >= Utils.MIN_SIZE && size <= Utils.MAX_SIZE;
-    }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() throws IllegalArgumentException {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String dir = Console.readLine();
-        if(!isValidDirection(dir)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
-        }
+        ExceptionHandler.handleMovingException(dir);
         return dir;
-    }
-
-    static boolean isValidDirection(String dir) {
-        return dir.equals(Utils.UP_STRING) || dir.equals(Utils.DOWN_STRING);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public String readGameCommand() throws IllegalArgumentException {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String command = Console.readLine();
-        if(!isValidCommand(command)) {
-            throw new IllegalArgumentException("[ERROR] R 또는 Q가 입력되어야 합니다.");
-        }
+        ExceptionHandler.handleCommandException(command);
         return command;
-    }
-
-    static boolean isValidCommand(String command) {
-        return command.equals(Utils.EXIT) || command.equals(Utils.RESTART);
     }
 }
