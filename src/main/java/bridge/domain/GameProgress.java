@@ -21,13 +21,13 @@ public class GameProgress {
 
     private static StringBuilder upOrDownStepStateInBridge(String position) {
         StringBuilder printOfMap = new StringBuilder();
-        passedStep(printOfMap, position);
-        nowStep(printOfMap, position);
-        translateLastLetter(printOfMap);
+        passedStepState(printOfMap, position);
+        nowStepState(printOfMap, position);
+        convertLastLetter(printOfMap);
         return printOfMap;
     }
 
-    private static void passedStep(StringBuilder printOfMap, String position) {
+    private static void passedStepState(StringBuilder printOfMap, String position) {
         for (int index = 0; index < Player.getIndex(); index++) {
             if (Player.playerCanGo(index, position)) {
                 printOfMap.append(VERTICAL_BAR).append(O);
@@ -39,7 +39,7 @@ public class GameProgress {
         }
     }
 
-    private static void nowStep(StringBuilder printOfMap, String position) {
+    private static void nowStepState(StringBuilder printOfMap, String position) {
         if (Player.getAlive()) { // 플레이어가 살아있을 떄
             stepStateWhenPlayerIsAlive(printOfMap, position);
         }
@@ -69,7 +69,7 @@ public class GameProgress {
         }
     }
 
-    private static void translateLastLetter(StringBuilder printOfMap) {
+    private static void convertLastLetter(StringBuilder printOfMap) {
         printOfMap.setCharAt(0, LEFT_SQUARE_BRACKET);
         printOfMap.append(RIGHT_SQUARE_BRACKET);
     }
