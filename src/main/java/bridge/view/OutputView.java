@@ -10,13 +10,15 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public void printMap(String bridge) {
-        System.out.print("[");
-        System.out.print(bridge);
-        System.out.println("]");
+    public void printMap(List<String> bridge) {
+        for (String bridgeRow : bridge) {
+            System.out.print("[ ");
+            System.out.print(bridgeRow);
+            System.out.println(" ]");
+        }
     }
 
-    public void printResult(String bridge, String resultMessage, int tryCount) {
+    public void printResult(List<String> bridge, String resultMessage, int tryCount) {
         System.out.println();
         System.out.println("최종 게임 결과");
         printMap(bridge);
