@@ -11,7 +11,7 @@ public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
+        this.bridgeNumberGenerator = bridgeNumberGenerator; //TODO 이 부분 다시 공부하기
     }
 
     /**
@@ -24,6 +24,7 @@ public class BridgeMaker {
             int randomNumber = bridgeNumberGenerator.generate();
             newBridge.add(bridgeIndex,convertNumbersToDorU(randomNumber, bridgeIndex));
         }
+        System.out.println(newBridge);
         return newBridge;
     }
 
@@ -37,4 +38,7 @@ public class BridgeMaker {
         }
         return null; //TODO 예외처리
     }
+
+
+
 }

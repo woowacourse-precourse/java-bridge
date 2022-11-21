@@ -51,10 +51,10 @@ public class InputView {
      */
     public String readGameCommand() {
 
-        String retryOrQuit;
-        retryOrQuit = Console.readLine();
+        String askRetry;
+        askRetry = Console.readLine();
 
-        return retryOrQuit;
+        return askRetry;
     }
 
 
