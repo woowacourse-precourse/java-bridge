@@ -54,4 +54,19 @@ class BridgeMakerTest {
         //then
         assertThat(bridge).allMatch(i -> i.equals("U"));
     }
+
+    @DisplayName("생성된 bridge가 랜덤값이 0이면 D로 변환되는지 테스트")
+    @Test
+    public void convertDownTest() {
+        //given
+        int size = 3;
+        BridgeNumberGenerator zeroNumberGenerator = new BridgeZeroNumberGenerator();
+        BridgeMaker bridgeMakerDown = new BridgeMaker(zeroNumberGenerator);
+
+        //when
+        List<String> bridge = bridgeMakerDown.makeBridge(size);
+
+        //then
+        assertThat(bridge).allMatch(i -> i.equals("D"));
+    }
 }
