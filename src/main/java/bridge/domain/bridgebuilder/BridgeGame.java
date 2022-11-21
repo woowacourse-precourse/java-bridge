@@ -16,7 +16,7 @@ public class BridgeGame {
 
     public static boolean move(Bridge answerBridge, OXBridge oxBridge, UpOrDown upOrDown) {
         boolean isInputCorrect = BridgeGameUtils.isEquals(
-            upOrDown.getInputUD(), answerBridge.getBridge(), oxBridge.sizeOfOXBridge());
+                upOrDown.getInputUD(), answerBridge.getBridge(), oxBridge.sizeOfOXBridge());
         BridgeGameUtils.addUDToUserBridge(oxBridge, upOrDown, isInputCorrect);
         return isInputCorrect;
     }

@@ -34,9 +34,9 @@ public class UDRQInstanceBuilder {
 
     private static <T> T parse(String inputUDRQ, Function<String, T> constructors) {
         return Stream.of(inputUDRQ)
-            .map(String::trim)
-            .map(constructors)
-            .findFirst()
-            .orElseThrow(IllegalArgumentException::new);
+                .map(String::trim)
+                .map(constructors)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
