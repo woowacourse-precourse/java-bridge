@@ -24,7 +24,6 @@ public class Application {
     private static void start() {
         bridgeGame.plusTryCount();
         bridgeGame.resetGameData();
-        System.out.println(playerSetting.getPlayerBridge());
         while (isCorrectMove()) {
             if (isSuccessful()) {
                 return;
