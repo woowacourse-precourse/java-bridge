@@ -3,7 +3,7 @@ package bridge.domain.util;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
-    
+
 class ValidationUtilTest {
     private final String SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private final String MOVE_ERROR = "[ERROR] U 또는 D로 입력해야 합니다.";
