@@ -59,6 +59,11 @@ class BridgeGameTest {
     @DisplayName("재시작 명령이 입력되면 게임을 재시작 한다.")
     @Test
     void retry() {
+        // given
+        game.move(BridgeCell.UP);
+        game.move(BridgeCell.DOWN);
+
+        // when, then
         assertThat(game.retry(Command.RETRY)).isTrue();
         assertThat(game.retry(Command.QUIT)).isFalse();
     }
