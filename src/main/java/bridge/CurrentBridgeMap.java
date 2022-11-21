@@ -7,6 +7,8 @@ public class CurrentBridgeMap {
     private static final String BLANK_BRIDGE = "   ";
     private static final String ANSWER_BRIDGE = " O ";
     private static final String WRONG_BRIDGE = " X ";
+    private static final String BRIDGE_STRUCTURE = "[%s]\n[%s]";
+    private static final String SEPARATE_BRIDGE = "|";
     private static final String UPPER_CHECK = "U";
     private static final String LOWER_CHECK = "D";
 
@@ -18,9 +20,10 @@ public class CurrentBridgeMap {
         lowerBridgeMap = new ArrayList<>();
     }
 
-    public void getBridgePlot(String playerChoice, Boolean equalAnswer) {
+    public String getBridgeMap(String playerChoice, Boolean equalAnswer) {
         updateUpperBridgeMap(playerChoice, equalAnswer);
         updateLowerBridgeMap(playerChoice, equalAnswer);
+        return getBridgeMap();
     }
 
     private void updateUpperBridgeMap(String playerChoice, Boolean equalAnswer) {
@@ -47,5 +50,9 @@ public class CurrentBridgeMap {
         }
 
         lowerBridgeMap.add(BLANK_BRIDGE);
+    }
+
+    private String getBridgeMap() {
+        return String.format(BRIDGE_STRUCTURE, String.join(SEPARATE_BRIDGE, upperBridgeMap), String.join(SEPARATE_BRIDGE, lowerBridgeMap));
     }
 }
