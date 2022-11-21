@@ -37,11 +37,15 @@ public class OutputView {
             if(checkSameLocation(userBridge,index, location)){
                 oneLine+=getOX(userBridge,answerBridge,index);
             }
-            if(index< userBridge.size()-1) {
-                oneLine += "| ";
-            }
+            oneLine+=getPartition(index,userBridge);
+        }return oneLine;
+    }
+
+    public String getPartition(int index, List<String> userBridge){
+        if(index< userBridge.size()-1) {
+            return  "| ";
         }
-        return oneLine;
+        return "";
     }
 
     public String getOX(List<String> userBridge, List<String> answerBridge, int index){
