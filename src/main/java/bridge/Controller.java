@@ -51,6 +51,7 @@ public class Controller {
                     }
                     count = 0;
                     challengeCount++;
+                    CurrentLocationInformation.init();
                 }
 
                 if (game == false && count == bridgeSize) {
@@ -60,6 +61,7 @@ public class Controller {
                     }
                     count = 0;
                     challengeCount++;
+                    CurrentLocationInformation.init();
                 }
 
 

@@ -5,14 +5,21 @@ import java.util.List;
 
 public class CurrentLocationInformation {
     private final OutputView outputView = new OutputView();
-    public static List<String> str = new ArrayList<>();
-    public static List<String> upStr = new ArrayList<>();
+    private static List<String> str = new ArrayList<>();
+    private static List<String> upStr = new ArrayList<>();
+    private static int check = 0;
+
+    public static void init() {
+        str.clear();
+        upStr.clear();
+    }
 
 
     public void showMyLocation(List<String> bridge, String moving, int count) {
         String gameState = "";
-        makeUpLocation(bridge, count, moving);
-        makeDownLocation(bridge, count, moving);
+        check = count;
+        makeUpLocation(bridge, moving);
+        makeDownLocation(bridge, moving);
         outputView.printMap(gameState);
     }
 
@@ -26,19 +33,16 @@ public class CurrentLocationInformation {
         return resultLocation;
     }
 
-    private void makeUpLocation(List<String> bridge, int count, String moving) {
+    private void makeUpLocation(List<String> bridge, String moving) {
         List<Boolean> bridgeExist = makeUpLocationExist(bridge);
 
         String state = "[ ";
-        if (count == 0) {
-            state += gameIng(bridgeExist, bridge, count, moving);
-            upStr.add(state);
-        } else {
+        state += gameIng(bridgeExist, bridge, moving);
+        if (check > 0) {
             state = "";
-            state += upStr.get(count - 1);
-            state += gameIng(bridgeExist, bridge, count, moving);
-            upStr.add(state);
+            state += upStr.get(check - 1) + gameIng(bridgeExist, bridge, moving);
         }
+        upStr.add(state);
         state += " ]";
         outputView.printMap(state);
     }
@@ -56,19 +60,16 @@ public class CurrentLocationInformation {
         return bridgeTrueAndFalse;
     }
 
-    private void makeDownLocation(List<String> bridge, int count, String moving) {
+    private void makeDownLocation(List<String> bridge, String moving) {
         List<Boolean> bridgeTrueAndFalse = makeDownLocationExist(bridge);
 
         String state = "[ ";
-        if (count == 0) {
-            state += gameIng(bridgeTrueAndFalse, bridge, count, moving);
-            str.add(state);
-        } else if (count != 0) {
+        state += gameIng(bridgeTrueAndFalse, bridge, moving);
+        if (check > 0) {
             state = "";
-            state += str.get(count - 1);
-            state += gameIng(bridgeTrueAndFalse, bridge, count, moving);
-            str.add(state);
+            state += str.get(check - 1) + gameIng(bridgeTrueAndFalse, bridge, moving);
         }
+        str.add(state);
         state += " ]";
         outputView.printMap(state);
     }
@@ -86,23 +87,23 @@ public class CurrentLocationInformation {
         return bridgeTrueAndFalse;
     }
 
-    private String gameIng(List<Boolean> test, List<String> bridge, int count, String moving) { // count는 라운드
+    private String gameIng(List<Boolean> test, List<String> bridge, String moving) {
         String ing = "";
-        if (count == 0) {
-            ing += showUpAndDownResult(test, bridge, count, moving);
+        if (check == 0) {
+            ing += showUpAndDownResult(test, bridge, moving);
         }
-        if (count > 0) {
+        if (check > 0) {
             ing += " | ";
-            ing += showUpAndDownResult(test, bridge, count, moving);
+            ing += showUpAndDownResult(test, bridge, moving);
         }
         return ing;
     }
 
-    private String showUpAndDownResult(List<Boolean> test, List<String> bridge, int count, String moving) {
-        if (test.get(count) && bridge.get(count).equals(moving)) {
+    private String showUpAndDownResult(List<Boolean> test, List<String> bridge, String moving) {
+        if (test.get(check) && bridge.get(check).equals(moving)) {
             return "O";
         }
-        if (!test.get(count) && !bridge.get(count).equals(moving)) {
+        if (!test.get(check) && !bridge.get(check).equals(moving)) {
             return "X";
         }
         return " ";

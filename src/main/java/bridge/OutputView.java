@@ -33,4 +33,9 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + gameResult);
         System.out.println("총 시도한 횟수: " + resultCount);
     }
+
+    public void printStartMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
+    }
 }
