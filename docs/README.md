@@ -69,3 +69,29 @@
 8. 게임 종료시 성공 여부 출력 시작
 9. 게임 종료시 총 시도 횟수 출력 시작
 
+
+
+## 추가요구사항 정리
+
+1. 함수의 길이가 10라인 이하, 한가지 기능만 구현
+2. 파라미터는 최대 3개
+3. InputView 클래스
+   - 이 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드사용가능
+   - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있음
+   - 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있음
+4. OutputView 클래스
+   - 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있음
+   - 값 출력을 위해 필요한 메서드를 추가할 수 있음
+5. BridgeGame 클래스
+   - 이 클래스에서 `InputView`, `OutputView` 를 사용하지 않음
+   - 필드(인스턴스 변수)를 추가할 수 있음
+   - 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있음
+   - 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있음
+6. BridgeMaker 클래스
+   - 필드(인스턴스 변수)를 변경할 수 없음
+   - 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없음
+7. BridgeRandomNumberGenerator 클래스
+   - `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용하여 random값 추출
+   - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없음
+   - int number = bridgeNumberGenerator.generate(); 으로 랜덤한 다리칸을 생성
+
