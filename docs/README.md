@@ -67,6 +67,9 @@
 ### 이동 결과 
 - [ ] 현재 이동 칸과 현재 결과를 저장한다.
 
+### MoveSpace
+- [x] 이동 가능 여부 체크 후 이동한다.
+
 ## Controller
 ### BridgeGameController
 - [ ] Game Start
