@@ -5,6 +5,8 @@ import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class Application {
     private static BridgeMaker bridgeMaker;
     private static InputView inputView;
@@ -21,5 +23,13 @@ public class Application {
         inputView = new InputView();
         outputView = new OutputView();
         result = new Result();
+    }
+
+    private static int makeBridgeWithUserInput() {
+        int bridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame = new BridgeGame(bridge);
+
+        return bridgeSize;
     }
 }
