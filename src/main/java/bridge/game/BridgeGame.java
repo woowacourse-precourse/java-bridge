@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class BridgeGame implements BridgeContainer, ViewContainer, Game {
 
-    private static final String RESTART_COMMAND = "R";
+    private static final String RETRY_COMMAND = "R";
 
     private final Bridge bridge;
     private int trial;
@@ -86,7 +86,7 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
     }
 
     private boolean isRetry(String command) {
-        return command.equals(RESTART_COMMAND);
+        return command.equals(RETRY_COMMAND);
     }
 
     private void refresh() {
