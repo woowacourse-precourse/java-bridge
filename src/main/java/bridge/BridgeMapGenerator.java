@@ -35,7 +35,7 @@ public class BridgeMapGenerator {
         }
     }
 
-    public List<List<String>> getBridgeMap(){
+    public List<List<String>> getBridgeMap() {
         List<List<String>> BridgeMap = new ArrayList<>();
         BridgeMap.add(upBridgeMap);
         BridgeMap.add(downBridgeMap);
