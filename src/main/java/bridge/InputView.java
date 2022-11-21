@@ -1,5 +1,7 @@
 package bridge;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -41,6 +43,13 @@ public class InputView {
                 ,startInclusiveNumber, endInclusiveNumber);
         if (input<startInclusiveNumber || input>endInclusiveNumber){
             IllegalArgumentException e = new IllegalArgumentException(message);
+            throw e;
+        }
+    }
+    public void isPermittedCommand(String input, List<String> permittedCommand){
+        if (!(permittedCommand.contains(input))){
+            IllegalArgumentException e =
+                    new IllegalArgumentException("[ERROR] 허가되지 않은 입력입니다.");
             throw e;
         }
     }
