@@ -43,4 +43,14 @@ public class BridgeGame {
         }
         bridgeLineTwo.add(" ");
     }
+
+    public void inputDown (boolean state) {
+        if (state) {
+            bridgeLineTwo.add("O");
+        }
+        if (!state) {
+            bridgeLineTwo.add("X");
+        }
+        bridgeLineOne.add(" ");
+    }
 }
