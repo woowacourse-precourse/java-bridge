@@ -1,6 +1,7 @@
 package bridge.view;
 
 
+import bridge.domain.BridgeStage;
 import bridge.domain.StageResult;
 import bridge.validator.Unit;
 
@@ -129,11 +130,23 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(StageResult stageResult) {
+        printMessage(Messages.VIEW_END);
+        print(convertMapToString());
 
+        printMessageWithValue(Messages.VIEW_END_WIN_OR_LOSE, stageResult.toString());
+        printMessageWithValue(Messages.VIEW_END_TRY_COUNT, String.valueOf(BridgeStage.currentStage()));
     }
 
     public void printMessage(Messages message) {
         System.out.println(message.getMessage());
+    }
+
+    public void printMessageWithValue(Messages messages, String value) {
+        System.out.println(messages.getMessage() + value);
+    }
+
+    public void print(String input) {
+        System.out.println(input);
     }
 }

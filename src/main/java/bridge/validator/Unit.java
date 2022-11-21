@@ -6,7 +6,9 @@ public enum Unit {
     UP ("U"),
     DOWN ("D"),
     RETRY ("R"),
-    QUITE ("Q");
+    QUITE ("Q"),
+    END_SUCCESS("성공"),
+    END_FAIL("실패");
 
     private int size;
     private String command;
