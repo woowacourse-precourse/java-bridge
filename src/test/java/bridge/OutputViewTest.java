@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.State;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
@@ -53,6 +54,34 @@ class OutputViewTest {
     void test1(String description, List<String> input, List<String> answer, String expect) {
         OutputView view = new OutputView();
         view.printMap(input, answer);
+        Assertions.assertEquals(expect, stream.toString());
+    }
+
+    private static Collection<Arguments> param2() {
+        return Arrays.asList(
+            Arguments.of("1번에 성공", Arrays.asList("U", "U", "U"), Arrays.asList("U", "U", "U"),
+                State.Win, 1, "최종 게임 결과\n"
+                    + "[ O | O | O ]\n"
+                    + "[   |   |   ]\n"
+                    + "\n"
+                    + "게임 성공 여부: 성공\n"
+                    + "총 시도한 횟수: 1\n"),
+            Arguments.of("1번에 실패", Arrays.asList("U", "U", "D"), Arrays.asList("U", "U", "U"),
+                State.Loss, 1, "최종 게임 결과\n"
+                    + "[ O | O |   ]\n"
+                    + "[   |   | X ]\n"
+                    + "\n"
+                    + "게임 성공 여부: 실패\n"
+                    + "총 시도한 횟수: 1\n")
+        );
+    }
+
+    @ParameterizedTest(name = "{index}: {0}")
+    @MethodSource("param2")
+    @DisplayName("최종 결과 출력 테스트")
+    void test2(String description, List<String> input, List<String> answer, State state, int time, String expect) {
+        OutputView view = new OutputView();
+        view.printResult(input, answer, state, time);
         Assertions.assertEquals(expect, stream.toString());
     }
 }
