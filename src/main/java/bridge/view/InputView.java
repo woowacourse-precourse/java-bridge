@@ -1,6 +1,7 @@
 package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import bridge.Exception;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -23,7 +24,10 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println(CHOOSE_MOVING_BRIDGE_MESSAGE);
-        return Console.readLine();
+        String moveCommand = Console.readLine();
+        Exception.moveBridgeException(moveCommand);
+
+        return moveCommand;
     }
 
     /**
@@ -31,6 +35,8 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.println(RESTART_MESSAGE);
-        return Console.readLine();
+        String retryCommand = Console.readLine();
+
+        return retryCommand;
     }
 }
