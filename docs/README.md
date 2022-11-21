@@ -45,7 +45,7 @@
 - [ ]  사용자가 실행하는 전체 게임 메서드 구현 - `BridgeGame#game()`
 - [x]  사용자가 게임을 시작할 때 사용하는 메서드 구현 - `BridgeGame#start()`
 - [x]  사용자가 칸을 이동할 때 사용하는 메서드 구현 - `BridgeGame#move()`
-- [ ]  사용자가 게임을 다시 시도할 때 사용하는 메서드 구현 - `BridgeGame#retry()`
+- [x]  사용자가 게임을 다시 시도할 때 사용하는 메서드 구현 - `BridgeGame#retry()`
 - [ ]  사용자가 게임을 종요할 때 사용하는 메서드 구현 - `BridgeGame#quit()`
 
 ## ****BridgeMaker 클래스****
