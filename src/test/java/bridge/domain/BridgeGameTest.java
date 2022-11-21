@@ -12,7 +12,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 class BridgeGameTest {
 
     private Round round = new Round();
-    private BridgeGame bridgeGame = new BridgeGame();
+    private GameAttempt gameAttempt = new GameAttempt();
+    private BridgeState bridgeState = new BridgeState(round);
+    private BridgeGame bridgeGame = new BridgeGame(round, gameAttempt, bridgeState);
 
     @DisplayName("마지막 라운드에 맞은 경우 성공을 그 전에 혹은 마지막에 틀린 경우에는 실패를 반환한다.")
     @ParameterizedTest
@@ -24,7 +26,7 @@ class BridgeGameTest {
             round.plusRound();
         }
         // when
-        String result = bridgeGame.checkGameSuccess(round, userInput, bridge);
+        String result = bridgeGame.checkGameSuccess(userInput, bridge);
 
         // then
         assertThat(result).isEqualTo(output);

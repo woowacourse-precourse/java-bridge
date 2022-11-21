@@ -9,6 +9,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private Round round;
+    private GameAttempt gameAttempt;
+    private BridgeState bridgeState;
+
+    public BridgeGame(Round round, GameAttempt gameAttempt, BridgeState bridgeState){
+        this.round = round;
+        this.gameAttempt = gameAttempt;
+        this.bridgeState = bridgeState;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -26,10 +36,19 @@ public class BridgeGame {
     }
 
     // 게임 성공여부 나타내는 기능
-    public String checkGameSuccess(Round round, String userInput, List<String> bridge) {
+    public String checkGameSuccess(String userInput, List<String> bridge) {
         if(round.getRound() == bridge.size() && userInput.equals(bridge.get(round.getRound()-1))) {
             return SUCCESS;
         }
         return FAIL;
     }
+
+    public GameAttempt getGameAttempt() {
+        return gameAttempt;
+    }
+
+    public BridgeState getBridgeState() {
+        return bridgeState;
+    }
+
 }
