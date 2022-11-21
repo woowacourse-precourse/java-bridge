@@ -24,18 +24,18 @@ public class Controller {
     private int gameCount = 0;
 
     public void start() {
-        int bridgeSize = 0;
         systemMessage.start();
-        bridgeSize = getBridgeSize(bridgeSize);
+        int bridgeSize = getBridgeSize();
         createBridge(bridgeSize);
         run();
     }
 
-    private int getBridgeSize(int bridgeSize) {
+    private int getBridgeSize() {
+        int inputBridgeSize;
         while (true) {
             try {
-                bridgeSize = inputView.readBridgeSize();
-                validation.validateBridgeSize(bridgeSize);
+                inputBridgeSize = inputView.readBridgeSize();
+                validation.validateBridgeSize(inputBridgeSize);
                 break;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
