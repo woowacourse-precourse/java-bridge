@@ -1,11 +1,11 @@
-package bridge;
+package bridge.service;
 
-import static bridge.GameRetry.Q;
-import static bridge.GameRetry.R;
-import static bridge.MoveDirection.D;
-import static bridge.MoveDirection.U;
-import static bridge.BridgeLength.MAX;
-import static bridge.BridgeLength.MIN;
+import static bridge.domain.GameRetry.Q;
+import static bridge.domain.GameRetry.R;
+import static bridge.domain.MoveDirection.D;
+import static bridge.domain.MoveDirection.U;
+import static bridge.domain.BridgeLength.MAX;
+import static bridge.domain.BridgeLength.MIN;
 
 public class InputValidation {
 

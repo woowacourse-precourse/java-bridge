@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum GameRetry {
     R("R") , Q("Q");

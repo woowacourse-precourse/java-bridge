@@ -1,7 +1,9 @@
-package bridge;
+package bridge.domain;
+
+import bridge.service.BridgeNumberGenerator;
 
 import java.util.*;
-import static bridge.MoveDirection.*;
+import static bridge.domain.MoveDirection.*;
 
 
 /**

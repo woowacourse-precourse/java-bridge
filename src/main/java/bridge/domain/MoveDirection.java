@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum MoveDirection {
     U(1 ,"U") , D(0,"D");
