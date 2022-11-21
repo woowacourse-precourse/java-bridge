@@ -33,4 +33,18 @@ public class GameView {
             outputView.printMap(gameResult);
         }
     }
+
+    public void retry() {
+        while (status==ViewStatus.DETERMINE_CONTINUE) {
+            status = inputView.readGameCommand();
+        }
+    }
+
+    public void doGame() {
+        while(status!=ViewStatus.WIN && status != ViewStatus.LOSE) {
+            makeBridge();
+            move();
+            retry();
+        }
+    }
 }

@@ -33,4 +33,13 @@ public class BridgeGameController {
             return GameResult.of(List.of(), ViewStatus.INVALID_MOVE_INPUT);
         }
     }
+
+    public ViewStatus retry(String command) {
+        try {
+            return bridgeService.retry(command.toUpperCase());
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return ViewStatus.DETERMINE_CONTINUE;
+        }
+    }
 }

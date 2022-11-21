@@ -9,7 +9,7 @@ public class Application {
         OutputView outputView = new OutputView();
         GameView gameView = new GameView(outputView);
 
-        gameView.makeBridge();
-        gameView.move();
+        gameView.doGame();
+
     }
 }

@@ -20,6 +20,10 @@ public enum ErrorMessage {
     MOVE_COMMAND(
             NOTICE.message +
                     "U(위 칸), D(아래 칸) 중 하나만 입력하셔야 합니다."
+    ),
+    RETRY_COMMAND(
+            NOTICE.message +
+                    "R(재시도), Q(종료) 중 하나만 입력하셔야 합니다."
     );
 
     private final String message;

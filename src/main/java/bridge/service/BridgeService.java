@@ -26,4 +26,8 @@ public class BridgeService {
         //result
         return bridgeGame.resultOfMove(isMatch);
     }
+
+    public ViewStatus retry(String retryCommand) {
+        return bridgeGame.retry(retryCommand);
+    }
 }
