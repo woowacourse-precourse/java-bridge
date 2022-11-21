@@ -11,6 +11,11 @@ public class OutputView {
     private static final String WRONG = " X ";
     private static final String SPACE = "   ";
     private static final String BAR = "|";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
+    private static final String FINAL_RESULT = "\n최종 게임 결과";
+    private static final String SUCCESS_FAIL = "\n게임 성공 여부: %s\n";
+    private static final String TRY = "총 시도한 횟수: %d\n";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -27,14 +32,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(BridgeData bridgeData, boolean gameStatus, int gameCount) {
-        String result = "실패";
+        String result = FAIL;
         if (gameStatus){
-            result = "성공";
+            result = SUCCESS;
         }
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_RESULT);
         printMap(bridgeData, gameStatus);
-        System.out.printf("\n게임 성공 여부: %s\n", result);
-        System.out.printf("총 시도한 횟수: %d\n", gameCount);
+        System.out.printf(SUCCESS_FAIL, result);
+        System.out.printf(TRY, gameCount);
     }
 
     private static String topSideMap(BridgeData bridgeData){
