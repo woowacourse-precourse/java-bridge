@@ -74,8 +74,8 @@
 ### BridgeGameController
 - [ ] Game Start
 - [ ] Game Run
-  - [ ] Bridge size 입력
-  - [ ] 이동할 칸 입력
+  - [x] Bridge size 입력
+  - [x] 이동할 칸 입력
   - [ ] 재시도 여부 입력
 - [ ] Game Over
   - 최종 게임 결과 출력
