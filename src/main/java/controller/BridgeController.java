@@ -1,12 +1,13 @@
 package controller;
 
+import static model.BridgeGame.getTryNumber;
+
 import constant.BridgeConstant;
 import generator.BridgeRandomNumberGenerator;
 import java.util.ArrayList;
 import model.BridgeGame;
 import java.util.List;
 import service.BridgeMaker;
-import util.CleanerUtil;
 import view.InputView;
 import view.OutputView;
 
@@ -19,8 +20,9 @@ public class BridgeController {
         List<List<String>> bothSide = init();
         List<String> bridge = makeBridge();
         BridgeGame.move(bridge, bothSide);
-        printResult(bothSide, BridgeGame.tryNumber);
-        CleanerUtil.clearTryNumber();
+        printResult(bothSide);
+        printTryNumber(getTryNumber());
+        BridgeGame.cleanTryNumber();
     }
 
     private static List<List<String>> init() {
@@ -72,7 +74,11 @@ public class BridgeController {
         outputView.printUserRetryOrQuit(retryOrQuit);
     }
 
-    private static void printResult(List<List<String>> bothSide, int tryNumber) {
-        outputView.printResult(bothSide, tryNumber);
+    private static void printResult(List<List<String>> bothSide) {
+        outputView.printResult(bothSide);
+    }
+
+    private static void printTryNumber(int tryNumber) {
+        outputView.printTryNumber(tryNumber);
     }
 }
