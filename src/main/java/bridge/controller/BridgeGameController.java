@@ -45,7 +45,11 @@ public class BridgeGameController {
         outputView.clearMap();
         return true;
     }
-    
+
+    public void end() {
+        outputView.printResult(bridge.getStatus().getMessage(), tryCount);
+    }
+
     public boolean isFinished(Bridge bridge) {
         return bridge.getStatus() == Status.GAME_FINISHED;
     }
