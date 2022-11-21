@@ -18,10 +18,8 @@ public class BridgeGame {
     final InputView inputView = new InputView();
     final OutputView outputView = new OutputView();
     static final Result result = new Result();
-    final Bridge bridge = new Bridge();
     static int trial = 1;
     int position = 0;
-    static boolean flag = true;
     static List<String> bridgeAnswer;
     public BridgeGame(){
         System.out.println(InputEnum.START_BRIDGE_GAME.getValue() );
