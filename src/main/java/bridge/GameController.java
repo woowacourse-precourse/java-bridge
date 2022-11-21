@@ -13,9 +13,10 @@ public class GameController {
         this.inputView = inputView;
         this.bridgeMaker = bridgeMaker;
     }
+
     public void manageGame(BridgeGame bridgeGame, Bridge bridge) {
         int tryCount = 1;
-        while(true) {
+        while (true) {
             if (!restartGame(startGame(bridgeGame, bridge), bridgeGame)) {
                 endGame(bridgeGame, bridge, tryCount);
                 break;
@@ -27,7 +28,7 @@ public class GameController {
     public int createBridgeSize() {
         try {
             return getBridgeSize();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createBridgeSize();
         }
@@ -38,6 +39,7 @@ public class GameController {
         isInRange(bridgeSize);
         return bridgeSize;
     }
+
     public void readyForGame() {
         outputView.printStartGame();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(createBridgeSize()));
@@ -66,7 +68,7 @@ public class GameController {
         try {
             activateUserTurn(bridgeGame, bridge);
             return bridgeGame.checkGameClear(bridge);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return startGame(bridgeGame, bridge);
         }
@@ -81,7 +83,7 @@ public class GameController {
     public boolean checkRestart(BridgeGame bridgeGame) {
         try {
             return getRestartCommand(bridgeGame);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return checkRestart(bridgeGame);
         }
