@@ -14,17 +14,27 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> curMap, List<String> answerMap) {
-        StringBuilder upperMap = new StringBuilder("[ ");
-        StringBuilder lowerMap = new StringBuilder("[ ");
+        StringBuilder upperMap = new StringBuilder("[");
+        StringBuilder lowerMap = new StringBuilder("[");
 
         for (int i = 0; i < curMap.size(); i++) {
+
+            if(i > 0){
+                upperMap.append(" |");
+                lowerMap.append(" |");
+            }
+
             if (matchInputAndAnswer(curMap.get(i), answerMap.get(i)) == 0) {
                 upperMap.append(" O");
+                lowerMap.append("  ");
             } else if (matchInputAndAnswer(curMap.get(i), answerMap.get(i)) == 1) {
                 upperMap.append(" X");
+                lowerMap.append("  ");
             } else if (matchInputAndAnswer(curMap.get(i), answerMap.get(i)) == 2) {
+                upperMap.append("  ");
                 lowerMap.append(" O");
             } else if (matchInputAndAnswer(curMap.get(i), answerMap.get(i)) == 3) {
+                upperMap.append("  ");
                 lowerMap.append(" X");
             }
         }
