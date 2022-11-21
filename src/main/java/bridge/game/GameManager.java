@@ -48,13 +48,20 @@ public class GameManager {
      */
     public void startBridgeGame() {
         OutputView.printGameStartMessage();
-        int bridgeSize = askBridgeSize();
+        int bridgeSize = -1;
+        while (bridgeSize == -1) bridgeSize = askBridgeSize();
         generateBridge(bridgeSize);
     }
 
     private int askBridgeSize() {
         OutputView.askBridgeSize();
-        return InputView.readBridgeSize();
+        int bridgeSize = -1;
+        try {
+            bridgeSize = InputView.readBridgeSize();
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage_bridgeSize();
+        }
+        return bridgeSize;
     }
 
     private void generateBridge(int bridgeSize) {
@@ -72,21 +79,28 @@ public class GameManager {
             printBridge_userPredict();
             if (isGameSucceed()) break;
             if (isGameFailed() && isQuitGame()) break;
-            if (player.isPlayingGame()) retryGame();
+            if (!player.isGameSucceed() && player.isPlayingGame()) retryGame();
         }
         printGameResult();
     }
 
     // 칸 이동
     private void moveUser() {
-        String userMoveDirection = askUserMoveDirection();
+        String userMoveDirection = "";
+        while (userMoveDirection.compareTo("") == 0) userMoveDirection = askUserMoveDirection();
         bridgeGame.move(userMoveDirection);
         player.increaseNumberOfMoves();
     }
 
     private String askUserMoveDirection() {
         OutputView.askUserMoveDirection();
-        return InputView.readMoving();
+        String userMoveDirection = "";
+        try {
+            userMoveDirection = InputView.readMoving();
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage_userMoveDirection();
+        }
+        return userMoveDirection;
     }
 
     // 현재까지 건넌 다리 출력
@@ -113,7 +127,8 @@ public class GameManager {
 
     // 게임 종료 여부 확인
     private boolean isQuitGame() {
-        String userGameCommand = askGameCommand();
+        String userGameCommand = "";
+        while (userGameCommand.compareTo("") == 0) userGameCommand = askGameCommand();
         if (userGameCommand.compareTo(GameStatus.QUIT.getStatus()) == 0) {
             player.setNotPlayingGame();
             return true;
@@ -123,7 +138,13 @@ public class GameManager {
 
     private String askGameCommand() {
         OutputView.askGameCommand();
-        return InputView.readGameCommand();
+        String gameCommand = "";
+        try {
+            gameCommand = InputView.readGameCommand();
+        } catch (IllegalStateException exception) {
+            OutputView.printErrorMessage_gameCommand();
+        }
+        return gameCommand;
     }
 
     private void printGameResult() {
