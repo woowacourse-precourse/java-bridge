@@ -120,4 +120,28 @@ class GameCommandTest {
         // then
         assertFalse(result);
     }
+
+    @Test
+    void isQuit() {
+        // given
+        GameCommand gameCommand = GameCommand.QUIT;
+
+        // when
+        boolean result = gameCommand.isQuit();
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    void isQuitByNotQuit() {
+        // given
+        GameCommand gameCommand = GameCommand.MISS;
+
+        // when
+        boolean result = gameCommand.isQuit();
+
+        // then
+        assertFalse(result);
+    }
 }
