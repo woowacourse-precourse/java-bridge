@@ -3,22 +3,22 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
-    private final List<String> availableSquares;
+    private final List<String> movableSides;
 
-    public Bridge(List<String> availableSquares) {
-        this.availableSquares = availableSquares;
+    public Bridge(List<String> movableSides) {
+        this.movableSides = movableSides;
     }
 
-    public boolean isNextAvailable(String selectedSquare, int nextPosition) {
-        return availableSquares.get(nextPosition).equals(selectedSquare);
+    public boolean isAvailableToMove(String selectedSides, int nextPosition) {
+        return movableSides.get(nextPosition).equals(selectedSides);
     }
 
     public int getLastIndex() {
-        return availableSquares.size() - 1;
+        return movableSides.size() - 1;
     }
 
-    public String getAvailableSquare(int bridgeIndex) {
-        return availableSquares.get(bridgeIndex);
+    public String getMovableSide(int bridgeIndex) {
+        return movableSides.get(bridgeIndex);
     }
 
 }
