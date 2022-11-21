@@ -44,8 +44,18 @@ public class BridgeGameController {
     }
 
     List<List<String>> processFailed(BridgeGame bridgeGame) {
-        outputView.printReadGameCommand();
-        String gameCommand = inputView.readGameCommand();
+        while(true) {
+            outputView.printReadGameCommand();
+            try {
+                String gameCommand = inputView.readGameCommand();
+                return processRetryOrQuit(bridgeGame,gameCommand);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    List<List<String>> processRetryOrQuit(BridgeGame bridgeGame, String gameCommand){
         if (bridgeGame.retry(gameCommand)) {
             return start();
         }
