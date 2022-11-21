@@ -9,6 +9,8 @@ import static bridge.util.constants.BridgeConstant.MIN_BRIDGE_SIZE;
 import static bridge.util.constants.BridgeConstant.MAX_BRIDGE_SIZE;
 import static bridge.util.constants.BridgeConstant.UPPER_BRIDGE_NUMBER;
 import static bridge.util.constants.BridgeConstant.LOWER_BRIDGE_NUMBER;
+import static bridge.util.constants.ErrorMessage.BRIDGE_LENGTH_ERROR;
+import static bridge.util.constants.ErrorMessage.BRIDGE_NUMBER_ERROR;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -38,7 +40,9 @@ public class BridgeMaker {
 
     public void validateSize(int size) {
         if (size < MIN_BRIDGE_SIZE.getValue() || MAX_BRIDGE_SIZE.getValue() < size) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3 ~ 20사이여야 합니다");
+            String errorMessage = String.format(BRIDGE_LENGTH_ERROR.getMessage(),
+                    MIN_BRIDGE_SIZE.getValue(), MAX_BRIDGE_SIZE.getValue());
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
@@ -53,7 +57,7 @@ public class BridgeMaker {
 
     public void validateBridgeNumber(int bridgeNumber) {
         if (bridgeNumber < LOWER_BRIDGE_NUMBER.getValue() || UPPER_BRIDGE_NUMBER.getValue() < bridgeNumber) {
-            throw new IllegalStateException("[ERROR] 생성된 다리번호가 유효하지 않습니다");
+            throw new IllegalStateException(BRIDGE_NUMBER_ERROR.getMessage());
         }
     }
 }

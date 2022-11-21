@@ -2,11 +2,14 @@ package bridge.util.validator;
 
 import static bridge.util.constants.GameCommand.RETRY;
 import static bridge.util.constants.GameCommand.QUIT;
+import static bridge.util.constants.ErrorMessage.GAME_COMMAND_INPUT_ERROR;
 
 public class GameCommandValidator {
     public static void validate(String input) {
         if (!input.equals(RETRY.command()) && !input.equals(QUIT.command())) {
-            throw new IllegalArgumentException("[ERROR] R이나 Q만 입력해야 합니다");
+            String errorMessage = String.format(GAME_COMMAND_INPUT_ERROR.getMessage(),
+                    RETRY.command(), QUIT.command());
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 }

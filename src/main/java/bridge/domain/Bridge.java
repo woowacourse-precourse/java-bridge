@@ -4,6 +4,8 @@ import java.util.List;
 
 import static bridge.util.constants.MovableSpace.UPPER_SPACE;
 import static bridge.util.constants.MovableSpace.LOWER_SPACE;
+import static bridge.util.constants.ErrorMessage.BRIDGE_INVALID_ERROR;
+import static bridge.util.constants.ErrorMessage.BRIDGE_INDEX_ERROR;
 
 public class Bridge {
     private final List<String> movableSpaces;
@@ -15,7 +17,7 @@ public class Bridge {
     private void validate(List<String> movableSpaces) {
         for (String space : movableSpaces) {
             if (!space.equals(UPPER_SPACE.getValue()) && !space.equals(LOWER_SPACE.getValue())) {
-                throw new IllegalStateException("[ERROR] 생성된 다리가 유효하지 않습니다");
+                throw new IllegalStateException(BRIDGE_INVALID_ERROR.getMessage());
             }
         }
     }
@@ -26,7 +28,8 @@ public class Bridge {
 
     private String get(int index) {
         if (index < 1 || size() < index) {
-            throw new IllegalStateException("[ERROR] 음..");
+            String errorMessage = String.format(BRIDGE_INDEX_ERROR.getMessage(), index);
+            throw new IllegalStateException(errorMessage);
         }
         return movableSpaces.get(index - 1);
     }
