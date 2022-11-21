@@ -7,8 +7,8 @@ import bridge.MovementStatusForm;
 import java.util.Deque;
 
 public class GameChecker {
-    private GameOverChecker gameOverChecker;
-    private GameWinChecker gameWinChecker;
+    private final GameOverChecker gameOverChecker;
+    private final GameWinChecker gameWinChecker;
 
     public GameChecker(GameOverChecker gameOverChecker, GameWinChecker gameWinChecker) {
         this.gameOverChecker = gameOverChecker;
