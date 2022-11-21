@@ -13,6 +13,10 @@ public class InputView {
     public int readBridgeSize() {
         int size = Integer.parseInt(Console.readLine());
 
+        if(!(3 <= size && size <= 20)) {
+            throw new IllegalArgumentException("[Error] 3 부터 20 사이의 수를 입력하세요");
+        }
+
         return size;
     }
 
@@ -22,6 +26,10 @@ public class InputView {
     public String readMoving() {
         String moveData = Console.readLine();
 
+        if(!moveData.equals("U") && !moveData.equals("D")) {
+            throw new IllegalArgumentException("[Error] D 또는 R을 눌러주세요");
+        }
+
         return moveData;
     }
 
@@ -30,6 +38,10 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine();
+
+        if(!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            throw new IllegalArgumentException("[Error] R 또는 Q를 눌러주세요");
+        }
 
         return gameCommand;
     }
