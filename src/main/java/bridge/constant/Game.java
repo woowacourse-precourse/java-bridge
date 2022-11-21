@@ -10,4 +10,5 @@ public class Game {
     public static final String BRIDGE_BETWEEN = " | ";
     public static final String CROSS_SUCCESS = "O";
     public static final String CROSS_FAIL = "X";
+    public static final String CROSS_NOT = " ";
 }

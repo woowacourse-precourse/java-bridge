@@ -27,8 +27,10 @@ public class GamePlayer {
         for(String space: this.bridge) {
             failFlag = this.bridgeGame.move(inputView.readMoving(), space);
             outputView.printMap(bridgeStatus.getStatus());
-
-            //실패
+            if(!failFlag) {
+                inputView.readGameCommand();
+                break;
+            }
         }
     }
 }

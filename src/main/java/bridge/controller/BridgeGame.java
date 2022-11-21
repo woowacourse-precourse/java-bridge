@@ -21,10 +21,10 @@ public class BridgeGame {
     public boolean move(String movement, String space) {
         inputValidator.isMovementValid(movement);
         if(movement.equals(space)) {
-            bridgeStatus.addStatus(Game.CROSS_SUCCESS);
+            bridgeStatus.addStatus(movement, Game.CROSS_SUCCESS);
             return true;
         }
-        bridgeStatus.addStatus(Game.CROSS_FAIL);
+        bridgeStatus.addStatus(movement, Game.CROSS_FAIL);
         return false;
     }
     /**
