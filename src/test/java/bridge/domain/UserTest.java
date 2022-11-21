@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class UserTest {
     @Test
-    @DisplayName("생성자, getter 테스트")
+    @DisplayName("생성자 테스트")
     public void userConstructorAndGetterTest() {
         // given
 
@@ -20,30 +20,13 @@ public class UserTest {
     }
 
     @Test
-    @DisplayName("user setter 테스트")
-    public void userSetterTest() {
-        // given
-        User user = new User();
-        int gameTryCount = 10;
-        boolean gameDoneSuccess = true;
-
-        // when
-        user.setGameTryCount(gameTryCount);
-        user.setGameDoneStatus(gameDoneSuccess);
-
-        // then
-        assertThat(user.getGameTryCount()).isEqualTo(gameTryCount);
-        assertThat(user.isGameDoneStatus()).isEqualTo(gameDoneSuccess);
-    }
-
-    @Test
     @DisplayName("게임 종료 메서드 테스트")
     public void gameDoneSuccessTest() {
         // given
         User user = new User();
 
         // when
-        user.gameDoneSuccess();
+        user.gameDoneWithWin();
 
         // then
         assertThat(user.isGameDoneStatus()).isEqualTo(true);
@@ -69,10 +52,10 @@ public class UserTest {
         User user = new User();
 
         // when
-        user.gameWin();
+        user.gameDoneWithWin();
 
         // then
-        assertThat(user.isGameWin()).isEqualTo(true);
+        assertThat(user.isGameDoneStatus()).isEqualTo(true);
     }
 
     @Test
@@ -82,9 +65,10 @@ public class UserTest {
         User user = new User();
 
         // when
-        user.gameFail();
+        user.gameDoneWithLose();
 
         // then
         assertThat(user.isGameWin()).isEqualTo(false);
+        assertThat(user.isGameDoneStatus()).isEqualTo(true);
     }
 }
