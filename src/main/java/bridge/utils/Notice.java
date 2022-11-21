@@ -11,7 +11,7 @@ public enum Notice {
 	COUNT("총 시도한 횟수: "),
 	CHOICE_SIZE("다리의 길이를 입력해주세요."),
 	CHOICE_MOVE("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-	private String message;
+	private final String message;
 
 	Notice(String message) {
 		this.message = message;
