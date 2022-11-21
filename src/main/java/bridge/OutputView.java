@@ -21,20 +21,20 @@ public class OutputView {
 
     private List<String> formatMap(List<String> userPath, GameStatus gameStatus) {
         String matches = parseMatches(userPath, gameStatus);
-        return formatUpDown(userPath, matches);
+        return List.of(
+                formatLine(userPath, matches, "D"),
+                formatLine(userPath, matches, "U")
+        );
     }
 
-    private List<String> formatUpDown(List<String> userPath, String matches) {
-        StringBuilder upSide = new StringBuilder(matches);
-        StringBuilder downSide = new StringBuilder(matches);
+    private String formatLine(List<String> userPath, String matches, String option) {
+        StringBuilder line = new StringBuilder(matches);
         for (int i = 0; i < userPath.size(); i++) {
-            if (userPath.get(i).equals("U")) {
-                downSide.setCharAt(i, ' ');
-                continue;
+            if (userPath.get(i).equals(option)) {
+                line.setCharAt(i, ' ');
             }
-            upSide.setCharAt(i, ' ');
         }
-        return List.of(upSide.toString(), downSide.toString());
+        return line.toString();
     }
 
     private String parseMatches(List<String> userPath, GameStatus gameStatus) {
