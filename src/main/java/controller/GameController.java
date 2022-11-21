@@ -68,7 +68,7 @@ public class GameController {
 
 	private MapDto play(BridgeDto bridgeDto) {
 		MapDto mapDto = null;
-		for (int index = 0; index < bridgeDto.getBridgeSize(); index++) {
+		for (int index = 0; index < bridgeDto.getBridge().size(); index++) {
 			mapDto = move(bridgeDto, index);
 			if (isSuccess(bridgeDto, mapDto) || mapDto.getNumberOfCorrect() == index) {
 				break;
@@ -101,6 +101,6 @@ public class GameController {
 	}
 
 	private boolean isSuccess(BridgeDto bridgeDto, MapDto mapDto) {
-		return bridgeDto.getBridgeSize() == mapDto.getNumberOfCorrect();
+		return bridgeDto.getBridge().size() == mapDto.getNumberOfCorrect();
 	}
 }

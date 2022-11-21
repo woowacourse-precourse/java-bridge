@@ -1,17 +1,17 @@
 package service;
 
+import bridge.Bridge;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeSize;
+import bridge.GameCommand;
 import bridge.MapRenderer;
-import bridgeConstant.Constant;
 import dto.BridgeDto;
 import dto.BridgeSizeDto;
 import dto.GameCommandDto;
 import dto.IndexDto;
 import dto.MapDto;
 import dto.MovingDto;
-import repository.Bridge;
 import repository.PlayCount;
 
 /**
@@ -32,15 +32,15 @@ public class BridgeGame {
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
 	 */
 	public MapDto move(BridgeDto bridgeDto, IndexDto indexDto, MovingDto movingDto) {
-		boolean isCorrect = bridgeDto.getCellOfIndex(indexDto.getIndex()).equals(movingDto.getMoving());
-		return new MapRenderer(bridgeDto.getPartOfBridge(indexDto.getIndex()), isCorrect).toMapDto();
+		return new MapRenderer(bridgeDto, indexDto, movingDto).toMapDto();
 	}
 
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
 	 */
 	public boolean retry(GameCommandDto gameCommandDto) {
-		if (gameCommandDto.getGameCommand().equals(Constant.RESTART)) {
+		GameCommand gameCommand = new GameCommand(gameCommandDto.getGameCommand());
+		if (gameCommand.isRetry()) {
 			PlayCount.getInstance().addCount();
 			return true;
 		}
