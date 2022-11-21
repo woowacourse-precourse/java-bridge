@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeException;
-import bridge.domain.GameKeySet;
+import bridge.GameKeySet;
 
 public class InputException {
     void raiseBridgeSizeValidityException() throws IllegalArgumentException {

@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.GameKeySet;
+import bridge.GameKeySet;
 import bridge.controller.Input;
 
 /**

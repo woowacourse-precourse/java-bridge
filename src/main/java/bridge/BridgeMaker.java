@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.domain.GameKeySet;
-
 import java.util.ArrayList;
 import java.util.List;
 

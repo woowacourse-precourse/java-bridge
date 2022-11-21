@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 public enum GameKeySet {
     UP("U"), DOWN("D"), RESTART("R"), QUIT("Q");
