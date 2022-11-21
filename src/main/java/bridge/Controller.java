@@ -3,7 +3,6 @@ package bridge;
 import java.util.List;
 
 public class Controller {
-    private final static String ERROR_MESSAGE = "[ERROR]";
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -13,24 +12,31 @@ public class Controller {
 
     public void run() {
         outputView.printGameStart();
-        bridgeSize = inputView.readBridgeSize();
-        validate(bridgeSize);
+
+        do {
+            bridgeSize = inputView.readBridgeSize();
+        } while (validate(bridgeSize));
+
         List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
         System.out.println(bridge);
     }
 
-    private void validate(String bridgeSize) {
-        validateNumber(bridgeSize);
-        validateRange(bridgeSize);
+    private boolean validate(String bridgeSize) {
+        try {
+            validateNumber(bridgeSize);
+            validateRange(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return true;
+        }
+        return false;
     }
 
     private void validateNumber(String bridgeSize) {
-        int number;
-
         try {
             Integer.parseInt(bridgeSize);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(outputView.printNotNumberException());
+            throw Exceptions.NOT_NUMBER_EXCEPTION.getException();
         }
     }
 
@@ -38,7 +44,7 @@ public class Controller {
         int number = Integer.parseInt(bridgeSize);
 
         if (number < 3 || number > 20) {
-            throw new IllegalArgumentException(outputView.printOutOfRangeException());
+            throw Exceptions.OUT_OF_RANGE_EXCEPTION.getException();
         }
     }
 }

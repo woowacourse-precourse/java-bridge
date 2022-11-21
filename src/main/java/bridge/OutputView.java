@@ -37,11 +37,7 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작 합니다.\n");
     }
 
-    public String printNotNumberException() {
-        return ERROR_MESSAGE + " 숫자가 아닙니다.";
-    }
-
-    public String printOutOfRangeException() {
-        return ERROR_MESSAGE + " 다리의 길이는 3 ~ 20 사이의 수 여야 합니다.";
+    public void printExceptionMessage(IllegalArgumentException exception) {
+        System.out.println(exception.getMessage());
     }
 }
