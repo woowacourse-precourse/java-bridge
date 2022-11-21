@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Command;
 import bridge.domain.Status;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -69,5 +70,25 @@ public class BridgeGameService {
             }
         }
         return true;
+    }
+
+    public Command restartGame() {
+        if (getCommand().equals("R")) {
+            return Command.RESTART;
+        }
+        return Command.QUIT;
+    }
+
+    private String getCommand() {
+        String command = "";
+        while (command.equals("")) {
+            try {
+                OutputView.printInputCommand();
+                command = InputView.readGameCommand();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        return command;
     }
 }
