@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import static bridge.util.Messages.*;
 

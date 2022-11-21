@@ -4,6 +4,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.CompareBridge;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;

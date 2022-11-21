@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.Messages.*;
+import static bridge.util.Messages.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
