@@ -4,9 +4,6 @@ import bridge.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BridgeGameController {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -21,12 +18,16 @@ public class BridgeGameController {
             String movePosition = InputView.readMoving();
             bridgeGame.move(movePosition);
             OutputView.printMap(bridgeGame);
-            if(bridgeGame.isFailure()){
-                String restartCommand = InputView.readGameCommand();
-                bridgeGame.retry(restartCommand);
-            }
+            restartCaseFailure(bridgeGame);
         }
         OutputView.printResult(bridgeGame);
+    }
+
+    private void restartCaseFailure(BridgeGame bridgeGame) {
+        if(bridgeGame.isFailure()){
+            String restartCommand = InputView.readGameCommand();
+            bridgeGame.retry(restartCommand);
+        }
     }
 
     private Bridge getBridge() {
