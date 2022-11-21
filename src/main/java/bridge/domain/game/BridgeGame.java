@@ -33,4 +33,8 @@ public class BridgeGame {
     public int countRound() {
         return this.attempt += 1;
     }
+
+    public boolean isSuccess(Pedestrian pedestrian) {
+        return bridge.isEnd(pedestrian.findLocation());
+    }
 }
