@@ -54,6 +54,6 @@ public class BridgeGameContextImpl implements BridgeGameContext {
 
     @Override
     public GameStatus gameStatus() {
-        return this.gameStatus();
+        return bridgeGame.getGameStatus();
     }
 }
