@@ -7,7 +7,6 @@ public class OutputView {
     private static final int CORRECT = 1;
     private static final int RESULT_CORRECT = 2;
 
-
     public void printMap(BridgeGame game, int isCollect) {
         if (isCollect == CORRECT) {
             correctPrintMap(game);
@@ -24,6 +23,12 @@ public class OutputView {
     private void correctPrintMap(BridgeGame game) {
         System.out.println(makeLine(game, "UP"));
         System.out.println(makeLine(game, "DOWN"));
+        System.out.println();
+    }
+
+    private void incorrectPrintMap(BridgeGame game) {
+        System.out.println(makeLineIncorrect(game, "UP"));
+        System.out.println(makeLineIncorrect(game, "DOWN"));
         System.out.println();
     }
 
@@ -54,11 +59,7 @@ public class OutputView {
         return "";
     }
 
-    private void incorrectPrintMap(BridgeGame game) {
-        System.out.println(makeLineIncorrect(game, "UP"));
-        System.out.println(makeLineIncorrect(game, "DOWN"));
-        System.out.println();
-    }
+
 
     private String makeLineIncorrect(BridgeGame game, String type) {
         String line = PrintSentence.LEFT_WALL.getSentence();
@@ -87,11 +88,11 @@ public class OutputView {
 
     private void distinguishWinType(BridgeGame game, int winType) {
         if (winType == 1) {
-            printMap(game,RESULT_CORRECT);
+            printMap(game, RESULT_CORRECT);
             System.out.println(PrintSentence.WIN.getSentence());
         }
         if (winType == 0) {
-            printMap(game,INCORRECT);
+            printMap(game, INCORRECT);
             System.out.println(PrintSentence.LOSE.getSentence());
         }
     }
