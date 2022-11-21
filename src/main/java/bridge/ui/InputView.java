@@ -13,16 +13,25 @@ public class InputView {
     private static final String NO_LETTER = "";
 
     public int readBridgeSize() {
+        try {
+            int bridgeSize = getBridgeSizeAfterAnnounce();
+            return bridgeSize;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+    }
+
+    private int getBridgeSizeAfterAnnounce() {
         System.out.println(INPUT_BRIDGE_SIZE);
-        int bridgeSize = getBridgeSizeInputAfterParse();
+        int bridgeSize = readBridgeSizeInputAfterParse();
         System.out.println(NO_LETTER);
         return bridgeSize;
     }
 
-    private int getBridgeSizeInputAfterParse() {
+    private int readBridgeSizeInputAfterParse() {
         try {
-            int bridgeSize = Integer.parseInt(Console.readLine());
-            return bridgeSize;
+            return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.INPUT_ONLY_NUMBER_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE));
