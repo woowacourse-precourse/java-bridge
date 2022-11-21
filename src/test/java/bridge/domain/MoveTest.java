@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static bridge.domain.Move.DOWN;
@@ -8,6 +10,7 @@ import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class MoveTest {
 
     @Test
