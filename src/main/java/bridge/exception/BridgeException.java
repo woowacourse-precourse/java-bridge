@@ -11,6 +11,11 @@ public class BridgeException {
         checkBridgeLengthAboutOnlyNumber(Integer.toString(number));
     }
 
+    public void checkBridgeMoveInputAlphabetExceptions(String movement) {
+        checkBridgeMoveInputAlphabet(movement);
+        checkBridgeInputAlphabetOnlyEnglish(movement);
+    }
+
 
 
 
