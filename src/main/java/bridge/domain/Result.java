@@ -6,13 +6,11 @@ import java.util.List;
 
 public class Result {
 
-    private final List<List<String>> resultsGroup = new ArrayList<>();
+    private final List<List<Dir>> resultsGroup = new ArrayList<>();
     private int distance;
 
-    public Result(List<String> upDirections, List<String> downDirections, int distance) {
+    public Result(List<Dir> upDirections, List<Dir> downDirections, int distance) {
         this.distance = distance + 1;
-        upDirections.remove(0);
-        downDirections.remove(0);
         resultsGroup.add(upDirections);
         resultsGroup.add(downDirections);
     }
@@ -25,14 +23,14 @@ public class Result {
         distance -= 1;
     }
 
-    public List<List<String>> getResultsGroup() {
+    public List<List<Dir>> getResultsGroup() {
         return Collections.unmodifiableList(resultsGroup);
     }
 
     // X 가 포함되어 있는지
     public boolean isContainWrongAnswer() {
-        for (List<String> results : resultsGroup) {
-            if (results.contains("X")) {
+        for (List<Dir> results : resultsGroup) {
+            if (Dir.isContainX(results)) {
                 return true;
             }
         }

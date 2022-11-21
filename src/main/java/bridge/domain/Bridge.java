@@ -26,11 +26,11 @@ public class Bridge {
     }
 
     // Bridge (정답) 과 input 을 비교해 O 또는 X 를 반환
-    public String compare(Position position) {
+    public boolean compare(Position position) {
         if (position.canMove(directions)) {
-            return "O";
+            return true;
         }
-        return "X";
+        return false;
     }
 
     private void checkComponent(List<String> directions) {

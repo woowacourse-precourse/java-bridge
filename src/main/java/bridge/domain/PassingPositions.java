@@ -5,8 +5,6 @@ import java.util.List;
 
 public class PassingPositions {
 
-    private static final String SEPARATOR = " | ";
-    private static final String SPACE = " ";
     private final List<Position> passingPositions = new ArrayList<>();
     private final Bridge bridge;
 
@@ -23,41 +21,31 @@ public class PassingPositions {
     }
 
     public Result makeResult(int distance) {
-        List<String> upDirections = new ArrayList<>();
-        List<String> downDirections = new ArrayList<>();
+        List<Dir> upDirections = new ArrayList<>();
+        List<Dir> downDirections = new ArrayList<>();
         moveLoop(upDirections, downDirections);
         return new Result(upDirections, downDirections, distance);
     }
 
-    private void moveLoop(List<String> upDirections, List<String> downDirections) {
+    private void moveLoop(List<Dir> upDirections, List<Dir> downDirections) {
         passingPositions
                 .forEach(position -> {
                     if (position.getDirection().isSameUp()) {
-                        moveToUp(bridge.compare(position), upDirections, downDirections);
+                        moveToUp(upDirections, downDirections, position);
                     }
                     if (position.getDirection().isSameDown()) {
-                        moveToDown(bridge.compare(position), upDirections, downDirections);
+                        moveToDown(upDirections, downDirections, position);
                     }
                 });
     }
 
-    private void moveToUp(String compare, List<String> upDirections, List<String> downDirections) {
-        moveToSelected(upDirections, compare);
-        doNotMove(downDirections);
+    private void moveToUp(List<Dir> upDirections, List<Dir> downDirections, Position position) {
+        upDirections.add(Dir.getSelectedDir(position, bridge));
+        downDirections.add(Dir.getNotSelectedDir(position));
     }
 
-    private void moveToDown(String compare, List<String> upDirections, List<String> downDirections) {
-        moveToSelected(downDirections, compare);
-        doNotMove(upDirections);
-    }
-
-    private void moveToSelected(List<String> selectedDirections, String compare) {
-        selectedDirections.add(SEPARATOR);
-        selectedDirections.add(compare);
-    }
-
-    private void doNotMove(List<String> notSelectedDirections) {
-        notSelectedDirections.add(SEPARATOR);
-        notSelectedDirections.add(SPACE);
+    private void moveToDown(List<Dir> upDirections, List<Dir> downDirections, Position position) {
+        upDirections.add(Dir.getNotSelectedDir(position));
+        downDirections.add(Dir.getSelectedDir(position, bridge));
     }
 }
