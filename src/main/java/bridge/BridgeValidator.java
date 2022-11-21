@@ -14,4 +14,10 @@ public class BridgeValidator {
             throw new IllegalArgumentException("[ERROR] U혹은 D만 입력 가능합니다.");
         }
     }
+
+    public void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] R 혹은 Q만 입력 가능합니다.");
+        }
+    }
 }
