@@ -37,7 +37,7 @@ public class BridgeGameController {
             playerStep = inputView.readMoving();
             bridgeGame.move(playerBridgeMap, RandomBridgeMap, _idx, playerStep);
             outputView.constructMap(playerBridgeMap);
-            if (bridgeGame.check_same(RandomBridgeMap, _idx, playerStep)) {
+            if (bridgeGame.checkSame(RandomBridgeMap, _idx, playerStep)) {
                 break;
             }
         }

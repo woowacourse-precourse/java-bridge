@@ -7,21 +7,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public boolean check_same(List<String> RandomBridgeMap, int idx, String playrerStep) {
+    public boolean checkSame(List<String> RandomBridgeMap, int idx, String playrerStep) {
         if (!RandomBridgeMap.get(idx).equals(playrerStep)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-
-    public boolean checkMove(String OpenWay, String nextStep) {
-        if (OpenWay.equals(nextStep)) {
             return true;
         }
         return false;
@@ -37,19 +24,13 @@ public class BridgeGame {
     }
 
     public void move(List<String> playerBridgeMap, List<String> RandomBridgeMap, int idx, String playerStep) {
-        String OpenWay = RandomBridgeMap.get(idx);
-        if (checkMove(OpenWay, playerStep)) {
-            playerBridgeMap.add(OpenWay);
+        if (checkSame(RandomBridgeMap,idx, playerStep)) {
+            playerBridgeMap.add(RandomBridgeMap.get(idx));
             return;
         }
-        moveWrongWay(playerBridgeMap, OpenWay);
+        moveWrongWay(playerBridgeMap, RandomBridgeMap.get(idx));
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public boolean retry(String _input) {
         if (_input.equals("R")) {
             return true;
