@@ -16,7 +16,7 @@ public class GameCount {
         this.gameCount++;
     }
 
-    public int getGameCount() {
+    public int count() {
         return gameCount;
     }
 }
