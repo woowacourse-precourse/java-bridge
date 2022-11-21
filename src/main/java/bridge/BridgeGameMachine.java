@@ -2,26 +2,27 @@ package bridge;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.MovingMap;
-import bridge.domain.Player;
+import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameMachine {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeGameService bridgeGameService;
 
-    public BridgeGameMachine(InputView inputView, OutputView outputView) {
+    public BridgeGameMachine(InputView inputView, OutputView outputView, BridgeGameService bridgeGameService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.bridgeGameService = bridgeGameService;
     }
 
     public void play() {
         printStartGame();
 
         int bridgeSize = inputBridgeSize();
-        BridgeGame bridgeGame = createNewGame(bridgeSize);
+        BridgeGame bridgeGame = bridgeGameService.bridgeGame(bridgeSize);
 
         playBridgeGame(bridgeGame);
 
@@ -63,16 +64,6 @@ public class BridgeGameMachine {
         int bridgeSize = inputView.readBridgeSize();
         outputView.println();
         return bridgeSize;
-    }
-
-    private BridgeGame createNewGame(int bridgeSize) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        Player player = new Player();
-
-        return new BridgeGame(bridge, player);
     }
 
     private String inputMoving() {
