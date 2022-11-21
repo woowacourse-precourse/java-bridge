@@ -21,7 +21,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void setInstances() {
-        oxBridge = OXBridge.from(new ArrayList<>(), new ArrayList<>());
+        oxBridge = OXBridge.from();
     }
 
     @DisplayName("Bridge가 잘 만들어지는지 size로 확인하는 테스트")
