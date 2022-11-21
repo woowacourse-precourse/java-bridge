@@ -12,20 +12,37 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        List<List<String>> currentBridge = new ArrayList<>();
-        List<String> upBridgeResult = new ArrayList<>();
-        List<String> downBridgeResult = new ArrayList<>();
-        currentBridge.add(upBridgeResult);
-        currentBridge.add(downBridgeResult);
 
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
-        for (int turn = 0; turn < bridgeSize; turn++) {
-            String moveCommand = inputView.readMoving();
-            boolean isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
-            bridgeGame.move(currentBridge, moveCommand, isPossibleMove);
-            outputView.printMap(currentBridge);
+        int tryNumber = 1;
+        while (true) {
+            List<List<String>> currentBridge = new ArrayList<>();
+            List<String> upBridgeResult = new ArrayList<>();
+            List<String> downBridgeResult = new ArrayList<>();
+            currentBridge.add(upBridgeResult);
+            currentBridge.add(downBridgeResult);
+            boolean isPossibleMove = true;
+            for (int turn = 0; turn < bridgeSize; turn++) {
+                String moveCommand = inputView.readMoving();
+                isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
+                bridgeGame.move(currentBridge, moveCommand, isPossibleMove);
+                outputView.printMap(currentBridge);
+                if (isPossibleMove == false) {
+                    String gameCommand = inputView.readGameCommand();
+                    if (gameCommand.equals("Q")) {
+                        outputView.printResult(currentBridge, isPossibleMove, tryNumber);
+                        return ;
+                    } else if (gameCommand.equals("R")) {
+                        break;
+                    }
+                }
+            }
+            if (isPossibleMove == true) {
+                outputView.printResult(currentBridge, isPossibleMove, tryNumber);
+                return ;
+            }
+            tryNumber++;
         }
 
     }
