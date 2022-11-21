@@ -16,7 +16,6 @@ public class GameRunner {
 
     private int numberOfTry;
 
-
     public GameRunner(List<String> bridge) {
         bridgeGame = new BridgeGame(bridge);
         this.numberOfTry = 1;
