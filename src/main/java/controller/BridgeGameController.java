@@ -1,9 +1,17 @@
-package bridge;
+package controller;
+
+import model.BridgeGame;
+import model.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import util.Constants;
+import view.InputView;
+import view.OutputView;
+import util.Constants.*;
 
 import java.util.List;
 
 public class BridgeGameController {
-    private static int count = 0;
+    private static int count = Constants.ZERO;
     private final InputView inputView;
     private List<String> bridge;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -31,7 +39,7 @@ public class BridgeGameController {
     }
 
     public static void setCount() {
-        count = 0;
+        count = Constants.ZERO;
     }
 
 }

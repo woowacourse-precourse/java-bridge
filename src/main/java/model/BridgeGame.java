@@ -1,27 +1,25 @@
-package bridge;
+package model;
 
+
+import controller.BridgeGameController;
 import controller.OutputController;
+import model.BridgeStatus;
+import util.Constants;
+import view.InputView;
 
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+
 public class BridgeGame {
-    private static int attempt = 1;
+    private static int attempt = Constants.ONE;
     private static String resultStatus = "";
     private static String upBridge = "[ ";
     private static String downBridge = "[ ";
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public static boolean move(String upOrDown, List<String> bridge, int count) {
         String status = BridgeStatus.getStatus(upOrDown + bridge.get(count));
         resultStatus += status;
-        if (count == 0) {
+        if (count == Constants.ZERO) {
             fillFirstBridge(upOrDown + bridge.get(count));
             return false;
         }
@@ -32,15 +30,15 @@ public class BridgeGame {
         upBridge += " | " + resultStatus.charAt(count*2);
         downBridge += " | " + resultStatus.charAt(count*2+1) ;
         OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
-        if (count == bridge.size() - 1 && checkFalse.charAt(0) == checkFalse.charAt(1)) {
-            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]","성공",attempt);
+        if (count == bridge.size() - Constants.ONE && checkFalse.charAt(Constants.ZERO) == checkFalse.charAt(Constants.ONE)) {
+            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]",Constants.SUCCESS,attempt);
             return true;
         }
         return checkInputAndBridge(checkFalse);
     }
 
     private static boolean fillFirstBridge(String checkFalse) { //여기서 다리를 완성하고 출력은 OutputView에서 해주고 싶은데
-        fillOneBlcok(String.valueOf(resultStatus.charAt(0)),String.valueOf(resultStatus.charAt(1)));
+        fillOneBlcok(String.valueOf(resultStatus.charAt(Constants.ZERO)),String.valueOf(resultStatus.charAt(Constants.ONE)));
         OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
         resetBridge();
         resetStatus();
@@ -48,7 +46,7 @@ public class BridgeGame {
     }
 
     private static boolean checkInputAndBridge(String checkFalse) {
-        if (checkFalse.charAt(0) != checkFalse.charAt(1)) {
+        if (checkFalse.charAt(Constants.ZERO) != checkFalse.charAt(Constants.ONE)) {
             return retry();
         }
         return false;
@@ -72,14 +70,10 @@ public class BridgeGame {
         upBridge = "[ ";
         downBridge = "[ ";
     }
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public static boolean retry() {
         if (InputView.readGameCommand().equals("Q")) {
-            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]","실패",attempt);
+            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]",Constants.FAIL,attempt);
             return true;
         }
         resetInfo();

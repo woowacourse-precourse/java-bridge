@@ -1,6 +1,6 @@
 package controller;
 
-import bridge.OutputView;
+import view.OutputView;
 
 public class OutputController {
     public static void deliverStatus(String up, String down) {
