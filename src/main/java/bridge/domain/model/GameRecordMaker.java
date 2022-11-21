@@ -1,7 +1,7 @@
-package bridge.domain;
+package bridge.domain.model;
 
-import bridge.constant.GameRecordFormat;
-import bridge.constant.GameRecordSymbol;
+import bridge.domain.constant.GameRecordFormat;
+import bridge.domain.constant.GameRecordSymbol;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,6 @@ import java.util.ListIterator;
 public class GameRecordMaker {
     private final List<List<String>> TOTAL_RESULT;
     private final int ZERO=0;
-    private final int RESULT_SIZE=2;
 
     private List<String> currentGameRecord;
     private int recordLength;
@@ -40,16 +39,16 @@ public class GameRecordMaker {
     public void updateCurrentRecord(List<String> gameRecord){
         boolean isFirst = isRecordLengthOverOne();
         currentGameRecord=transformCurrentRecord(isFirst, gameRecord);
-        System.out.println(recordLength);
-
     }
 
     public void updateResult(){
-        for(int i=ZERO; i<RESULT_SIZE;i++){
-            List<String> result= TOTAL_RESULT.get(i);
-            result.add(currentGameRecord.get(i));
+        ListIterator<List<String>> totalResult =TOTAL_RESULT.listIterator();
+        while(totalResult.hasNext()){
+            int currentIndex = totalResult.nextIndex();
+            List<String> result = totalResult.next();
+            result.add(currentGameRecord.get(currentIndex));
         }
-        recordLength+=1;
+        ++recordLength;
     }
 
     public String makeMapFormat(List<String> result){

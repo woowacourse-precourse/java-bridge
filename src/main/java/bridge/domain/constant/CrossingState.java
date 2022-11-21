@@ -24,6 +24,14 @@ public enum CrossingState {
                 .findAny().orElseThrow(NoSuchElementException::new);
     }
 
+    public static String getSuccessOrNot(boolean crossingResult){
+        CrossingState crossingState = findByCrossingResult(crossingResult);
+        if(crossingState ==null){
+            throw new NullPointerException();
+        }
+        return crossingState.successStateWord;
+    }
+
     public static String transform(boolean crossingResult){
         CrossingState crossingState = findByCrossingResult(crossingResult);
         if(crossingState ==null){
