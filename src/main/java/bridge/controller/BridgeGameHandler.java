@@ -1,16 +1,18 @@
 package bridge.controller;
 
 import bridge.core.BridgeGame;
-import bridge.type.FinishCondition;
-import bridge.type.GameStatus;
-import bridge.type.PassCondition;
-import bridge.type.ProcessCondition;
+import bridge.type.*;
+import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import static bridge.view.InputView.readGameCommand;
 import static bridge.view.InputView.readSelectedBridgeBlock;
 
 public class BridgeGameHandler {
+
+    public static BridgeGame initGame() {
+        return BridgeGame.initBridgeGame(InputView.readBridgeLength());
+    }
 
     public static ProcessCondition executeGame(ProcessCondition processCondition, BridgeGame bridgeGame) {
         if (processCondition.equals(GameStatus.START) || processCondition.equals(PassCondition.PASS)) {

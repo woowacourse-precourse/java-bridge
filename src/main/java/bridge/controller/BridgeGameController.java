@@ -5,12 +5,10 @@ import bridge.type.FinishCondition;
 import bridge.type.ProcessCondition;
 import bridge.view.OutputView;
 
-import static bridge.view.InputView.*;
-
 public class BridgeGameController {
 
     public void playBridgeGame() {
-        BridgeGame bridgeGame = BridgeGame.initBridgeGame(readBridgeLength());
+        BridgeGame bridgeGame = BridgeGameHandler.initGame();
         ProcessCondition startCondition = bridgeGame.start();
         ProcessCondition endCondition = BridgeGameHandler.executeGame(startCondition, bridgeGame);
         if (endCondition == FinishCondition.FINISHED) OutputView.printResult(FinishCondition.FINISHED, bridgeGame);

@@ -16,10 +16,9 @@ public class BridgeGame {
         this.gameStatusOperator = gameStatusOperator;
     }
 
-    public static BridgeGame initBridgeGame(Integer bridgeLength) {
-        Bridge bridge = new Bridge(BridgeMaker.getBridgeMaker().makeBridge(bridgeLength));
-        GameStatusOperator gameStatusOperator = GameStatusOperator.initGameStatusOperator();
-        return new BridgeGame(bridge, gameStatusOperator);
+    public static BridgeGame initBridgeGame(String bridgeLength) {
+        GameInitializer gameInitializer = new GameInitializer();
+        return gameInitializer.init(bridgeLength);
     }
 
     public ProcessCondition start() {
