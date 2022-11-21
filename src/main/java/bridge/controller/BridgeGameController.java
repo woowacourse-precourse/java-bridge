@@ -87,7 +87,7 @@ public class BridgeGameController {
     }
 
     /**
-     * 재시작 여부
+     * 재시작 여부 입력
      * 재시작 명령어가 R일 경우, 재시작 명령어가 Q일 경우 흐름 분기
      */
     private void restartOrQuit(){
@@ -130,6 +130,9 @@ public class BridgeGameController {
         OutputView.printResult(bridgeUpResults, bridgeDownResults, gameResult, trial);
     }
 
+    /**
+     * 게임 시도 횟수 계산, 게임 종료
+     */
     private void countTrial(){
         trial++;
     }

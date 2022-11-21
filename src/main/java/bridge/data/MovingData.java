@@ -5,6 +5,9 @@ import bridge.domain.Moving;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 다리 건너기 게임 입력한 값 저장 위한 데이터
+ */
 public class MovingData {
     private static final List<Moving> movings = new ArrayList<>();
 

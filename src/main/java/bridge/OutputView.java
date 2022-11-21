@@ -13,6 +13,9 @@ public class OutputView {
     private static final String BRIDGE_END_DELIMITER = " ]";
     private static final String MOVING_DELIMITER = " | ";
 
+    /**
+     * 다리 건너기 게임 시작 문구를 출력한다.
+     */
     public static void printStart(){
         System.out.println(EventMessage.START_GAME.getMessage());
         System.out.println();
