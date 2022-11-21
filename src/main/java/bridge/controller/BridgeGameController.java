@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.domain.Bridge;
 import bridge.domain.BridgeSize;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
@@ -20,31 +19,17 @@ public class BridgeGameController {
 
     public void run() {
         startGame();
-        BridgeSize bridgeSize = insertBridgeSize();
-        Bridge bridge = createBridge(bridgeSize);
+        insertBridgeSize();
     }
 
-    private Bridge createBridge(BridgeSize bridgeSize) {
-        Bridge bridge = null;
-        try {
-            bridge = bridgeGame.createBridge(bridgeSize);
-        } catch (IllegalArgumentException ie) {
-            OutputView.printErrorMessage(ie.getMessage());
-            createBridge(bridgeSize);
-        }
-        return bridge;
-    }
-
-    private BridgeSize insertBridgeSize() {
-        BridgeSize bridgeSize = null;
+    private void insertBridgeSize() {
         try {
             String size = inputView.readBridgeSize();
-            bridgeSize = new BridgeSize(size);
+            bridgeGame.createBridge(new BridgeSize(size));
         } catch (IllegalArgumentException ie) {
             OutputView.printErrorMessage(ie.getMessage());
             insertBridgeSize();
         }
-        return bridgeSize;
     }
 
     private void startGame() {

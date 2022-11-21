@@ -4,11 +4,14 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeSize;
+import bridge.domain.MoveCommand;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private Bridge bridge;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -26,8 +29,8 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public Bridge createBridge(BridgeSize bridgeSize) {
+    public void createBridge(BridgeSize bridgeSize) {
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return new Bridge(maker.makeBridge(bridgeSize.getLength()));
+        this.bridge = new Bridge(maker.makeBridge(bridgeSize.getLength()));
     }
 }
