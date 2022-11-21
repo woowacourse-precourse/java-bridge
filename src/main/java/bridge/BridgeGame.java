@@ -1,5 +1,7 @@
 package bridge;
 
+import Utils.Common;
+
 import java.util.*;
 
 /**
@@ -46,7 +48,7 @@ public class BridgeGame {
     public void move(String answer, String readMoving) {
         moveUpperBridge(answer, readMoving);
         moveUnderBridge(answer, readMoving);
-        outputView.printMap(upperBridge.toString() + "\n" + underBridge.toString());
+        outputView.printMap(Common.formatToPrintMap(upperBridge, underBridge));
     }
 
     public void moveUpperBridge(String answer, String readMoving) {
@@ -92,7 +94,7 @@ public class BridgeGame {
         if (success.equals("실패")) {
             input = inputView.readGameCommand();
         }
-        outputView.printResult(upperBridge.toString() + "\n" + underBridge.toString(), success, retryCount);
+        outputView.printResult(Common.formatToPrintMap(upperBridge, underBridge), success, retryCount);
         return input;
     }
 
