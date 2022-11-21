@@ -9,63 +9,73 @@ import static constants.Constants.*;
  */
 public class OutputView {
 
+    public static final String PRINT_CELL_START = "[ ";
+    public static final String PRINT_CELL_FINISH = " ]";
+    public static final String PRINT_CELL_DIVIDER = " | ";
+    public static final String ACCESS_CELL = "O";
+    public static final String BLANK_CELL = " ";
+    public static final String FAIL_CELL = "X";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        StringBuilder upLine = drawMap(bridgeGame, GAME_COMMAND_UP);
-        StringBuilder downLine = drawMap(bridgeGame, GAME_COMMAND_DOWN);
-
-        upLine.append(drawMapFinal(bridgeGame, GAME_COMMAND_UP));
-        downLine.append(drawMapFinal(bridgeGame, GAME_COMMAND_DOWN));
+        StringBuilder upLine = settingPrintLine(bridgeGame, GAME_COMMAND_UP);
+        StringBuilder downLine = settingPrintLine(bridgeGame, GAME_COMMAND_DOWN);
 
         System.out.println(upLine);
         System.out.println(downLine);
     }
 
-    private String drawMapFinal(BridgeGame bridgeGame, String draw) {
-        Status status = bridgeGame.getStatus();
-        List<String> bridge = bridgeGame.getBridge();
-        int nowLocation = bridgeGame.getNowLocation() - 1;
-        if (status == Status.FAIL) {
-            return printFailMap(bridge.get(nowLocation), draw);
-        }
-        return printPlayingMap(bridge.get(nowLocation), draw);
+    public StringBuilder settingPrintLine(BridgeGame bridgeGame, String gameCommand) {
+        StringBuilder printLine = drawMapBeforeLast(bridgeGame, gameCommand); // 시작 부분
+        printLine.append(drawMapLast(bridgeGame, gameCommand)); //마지막 부분
+        return printLine;
     }
 
-    private StringBuilder drawMap(BridgeGame bridgeGame, String draw) {
+    private StringBuilder drawMapBeforeLast(BridgeGame bridgeGame, String draw) {
         //마지막 이전까지를 그린다.
-        StringBuilder drawnLine = new StringBuilder("[ ");
+        StringBuilder drawnLine = new StringBuilder(PRINT_CELL_START);
         List<String> bridge = bridgeGame.getBridge();
         int nowLocation = bridgeGame.getNowLocation();
-        for (int i = 0; i < nowLocation - 1; i++) {
-            drawnLine.append(drawLine(bridge.get(i), draw));
+        for (int cell = 0; cell < nowLocation - 1; cell++) {
+            drawnLine.append(drawEachCell(bridge.get(cell), draw)).append(PRINT_CELL_DIVIDER);
         }
         return drawnLine;
     }
 
-    private String drawLine(String answer, String draw) {
-        if (answer.equals(draw)) {
-            return "O | ";
+    private String drawMapLast(BridgeGame bridgeGame, String draw) {
+        Status status = bridgeGame.getStatus();
+        List<String> bridge = bridgeGame.getBridge();
+        int nowLocation = bridgeGame.getNowLocation() - 1;
+
+        if (status == Status.FAIL) { //실패한 경우는 마지막이 X로 출력된다.
+            return printFailMap(bridge.get(nowLocation), draw) + PRINT_CELL_FINISH;
         }
-        return "  | ";
+        return printPlayingMap(bridge.get(nowLocation), draw) + PRINT_CELL_FINISH;
     }
 
+    private String drawEachCell(String answer, String draw) {
+        if (answer.equals(draw)) {
+            return ACCESS_CELL;
+        }
+        return BLANK_CELL;
+    }
 
     private String printPlayingMap(String last, String draw) {
         if (last.equals(draw)) {
-            return "O ]";
+            return ACCESS_CELL;
         }
-        return "  ]";
+        return BLANK_CELL;
     }
 
     private String printFailMap(String last, String draw) {
         if (last.equals(draw)) {
-            return "  ]";
+            return BLANK_CELL;
         }
-        return "X ]";
+        return FAIL_CELL;
     }
 
     /**
@@ -80,7 +90,7 @@ public class OutputView {
         System.out.println(TOTAL_CHALLENGES_COUNT + bridgeGame.getChallengesCnt());
     }
 
-    private String checkStatus(Status status) {
+    public String checkStatus(Status status) {
         if (status == Status.ENDING) {
             return GAME_SUCCESS_MESSAGE;
         }
