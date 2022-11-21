@@ -10,6 +10,7 @@ public class UpsideResults extends OneSideResults {
         super();
     }
 
+    @Override
     public void update(String playerMove, String matchResult) {
         if (CommandKeys.isUp(playerMove)) {
             super.getResults().add(matchResult);
@@ -19,13 +20,8 @@ public class UpsideResults extends OneSideResults {
         }
     }
 
-    public void reset(String input) {
-        if (CommandKeys.isRetry(input)) {
-            initialize();
-        }
-    }
-
-    private void initialize() {
+    @Override
+    public void reset() {
         super.getResults().clear();
     }
 }

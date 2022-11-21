@@ -12,7 +12,7 @@ public abstract class OneSideResults {
 
     public abstract void update(String playerMove, String matchResult);
 
-    public abstract void reset(String input);
+    public abstract void reset();
 
     public List<String> getResults() {
         return results;

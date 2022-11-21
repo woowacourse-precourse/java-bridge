@@ -2,7 +2,6 @@ package bridge.util;
 
 import static bridge.util.Constants.*;
 
-import bridge.util.CommandKeys;
 import java.util.Arrays;
 
 public class InputValidator {
@@ -16,6 +15,24 @@ public class InputValidator {
         validateRange(Integer.parseInt(input));
     }
 
+    public static void moving(String input) {
+        validateBlank(input);
+        validateAlphabeticType(input);
+
+        if (isNotKeyForUp(input) && isNotKeyForDown(input)) {
+            throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
+        }
+    }
+
+    public static void gameCommand(String input) {
+        validateBlank(input);
+        validateAlphabeticType(input);
+
+        if (isNotKeyForRetry(input) && isNotKeyForQuit(input)) {
+            throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
+        }
+    }
+
     private static void validateBlank(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(ERROR_TITLE + EMPTY_INPUT);
@@ -23,18 +40,9 @@ public class InputValidator {
     }
 
     private static void validateNumericType(String input) {
-        if (isNotNumeric(input)) {
+        if (hasInvalidCharacter(input, NON_DIGIT_CHARACTER)) {
             throw new IllegalArgumentException(ERROR_TITLE + NON_DIGIT_CHARACTER_FOUND);
         }
-    }
-
-    private static boolean isNotNumeric(String input) {
-        final String[] splitted = input.split(NO_SPACE);
-
-        return Arrays.stream(splitted)
-                .anyMatch(element ->
-                        element.matches(NON_DIGIT_CHARACTER)
-                );
     }
 
     private static void validateRange(int size) {
@@ -43,34 +51,34 @@ public class InputValidator {
         }
     }
 
-    public static void moving(String input) {
-        validateBlank(input);
-        validateAlphabeticType(input);
-        if (!CommandKeys.isUp(input.toUpperCase()) && !CommandKeys.isDown(input.toUpperCase())) {
-            throw new IllegalArgumentException(ERROR_TITLE + MOVING_FORMAT);
-        }
-    }
-
-    public static void gameCommand(String input) {
-        validateBlank(input);
-        validateAlphabeticType(input);
-        if (!CommandKeys.isRetry(input.toUpperCase()) && !CommandKeys.isQuit(input.toUpperCase())) {
-            throw new IllegalArgumentException(ERROR_TITLE + COMMAND_FORMAT);
-        }
-    }
-
     private static void validateAlphabeticType(String input) {
-        if (isNotAlphabetic(input)) {
+        if (hasInvalidCharacter(input, NON_ALPHABETIC_CHARACTER)) {
             throw new IllegalArgumentException(ERROR_TITLE + NON_ALPHABETIC_CHARACTER_FOUND);
         }
     }
 
-    private static boolean isNotAlphabetic(String input) {
+    private static boolean hasInvalidCharacter(String input, String regex) {
         final String[] splitted = input.split(NO_SPACE);
 
         return Arrays.stream(splitted)
                 .anyMatch(element ->
-                        element.matches(NON_ALPHABETIC_CHARACTER)
+                        element.matches(regex)
                 );
+    }
+
+    private static boolean isNotKeyForUp(String input) {
+        return (!CommandKeys.isUp(input.toUpperCase()));
+    }
+
+    private static boolean isNotKeyForDown(String input) {
+        return (!CommandKeys.isDown(input.toUpperCase()));
+    }
+
+    private static boolean isNotKeyForRetry(String input) {
+        return (!CommandKeys.isRetry(input.toUpperCase()));
+    }
+
+    private static boolean isNotKeyForQuit(String input) {
+        return (!CommandKeys.isQuit(input.toUpperCase()));
     }
 }

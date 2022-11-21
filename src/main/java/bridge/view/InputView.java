@@ -23,9 +23,7 @@ public class InputView {
             CommandKeys.RETRY.getLetter(),
             CommandKeys.QUIT.getLetter()
     );
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+
     public static int readBridgeSize() {
         final String input = submitBoxWithLineFeed(ENTER_BRIDGE_SIZE);
         try {

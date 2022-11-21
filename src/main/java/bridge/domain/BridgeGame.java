@@ -14,13 +14,68 @@ public class BridgeGame {
     private static final int INITIAL_COUNT = 1;
     private static final String SUCCESS = "성공";
     private static final String FAILURE = "실패";
+    private static final String CORRECT_MOVE = "O";
+    private static final String WRONG_MOVE = "X";
 
-    private String finalResult;
+    private final OneSideResults upsideResults;
+    private final OneSideResults downsideResults;
+    
     private int totalTrialCount;
+    private String finalResult;
 
     public BridgeGame() {
-        finalResult = SUCCESS;
+        upsideResults = new UpsideResults();
+        downsideResults = new DownsideResults();
+        
         totalTrialCount = INITIAL_COUNT;
+        finalResult = SUCCESS;
+    }
+
+    public String move(String playerMove, String answerMove) {
+        if (playerMove.equals(answerMove)) {
+            return CORRECT_MOVE;
+        }
+        return WRONG_MOVE;
+    }
+
+    public void retry() {
+        resetBothSidesResults();
+        totalTrialCount++;
+    }
+
+    public void quit() {
+        finalResult = FAILURE;
+    }
+
+    public void updateBothSidesResults(String playerMove, String matchResult) {
+        upsideResults.update(playerMove, matchResult);
+        downsideResults.update(playerMove, matchResult);
+    }
+
+    public void resetBothSidesResults() {
+        upsideResults.reset();
+        downsideResults.reset();
+    }
+    
+    public boolean hasWrongMove() {
+        return checkIfUpsideResultsContainsWrongMove() ||
+                checkIfDownsideResultsContainsWrongMove();
+    }
+    
+    public boolean checkIfUpsideResultsContainsWrongMove() {
+        return upsideResults.getResults().contains(WRONG_MOVE);
+    }
+
+    public boolean checkIfDownsideResultsContainsWrongMove() {
+        return downsideResults.getResults().contains(WRONG_MOVE);
+    }
+
+    public OneSideResults getUpsideResults() {
+        return upsideResults;
+    }
+
+    public OneSideResults getDownsideResults() {
+        return downsideResults;
     }
 
     public String getFinalResult() {
@@ -29,30 +84,5 @@ public class BridgeGame {
 
     public int getTotalTrialCount() {
         return totalTrialCount;
-    }
-
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public String move(String playerMove, String answerMove) {
-        if (playerMove.equals(answerMove)) {
-            return CORRECT_MOVE;
-        }
-        return WRONG_MOVE;
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-        totalTrialCount++;
-    }
-
-    public void quit() {
-        finalResult = FAILURE;
     }
 }

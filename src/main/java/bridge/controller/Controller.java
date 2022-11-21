@@ -1,36 +1,29 @@
 package bridge.controller;
 
-import static bridge.util.Constants.*;
-
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.DownsideResults;
-import bridge.domain.OneSideResults;
-import bridge.domain.UpsideResults;
 import bridge.util.CommandKeys;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
 
 public class Controller {
+    private static final int INITIAL_INDEX = -1;
+
     private final List<String> answerBridge;
     private final BridgeGame bridgeGame;
-    private final OneSideResults upsideResults;
-    private final OneSideResults downsideResults;
 
     public Controller() {
         OutputView.printGameStart();
         answerBridge = createAnswerBridge(InputView.readBridgeSize());
         bridgeGame = new BridgeGame();
-        upsideResults = new UpsideResults();
-        downsideResults = new DownsideResults();
     }
 
     private List<String> createAnswerBridge(int bridgeSize) {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(answerBridge); // 추후 삭제
+        System.out.println(answerBridge); // 추후 삭제🚨
         return answerBridge;
     }
 
@@ -38,34 +31,24 @@ public class Controller {
         for (int index = 0; index < answerBridge.size(); index++) {
             final String playerMove = InputView.readMoving();
             final String matchResult = bridgeGame.move(playerMove, answerBridge.get(index));
-            updateResults(playerMove, matchResult);
-            OutputView.printMap(upsideResults, downsideResults);
-            index = setIndexByMatchResult(index, matchResult);
+            bridgeGame.updateBothSidesResults(playerMove, matchResult);
+            OutputView.printMap(bridgeGame);
+            index = changeIndexIfResultsHaveWrongMove(index);
         }
-        OutputView.printResult(upsideResults, downsideResults, bridgeGame);
+        OutputView.printResult(bridgeGame);
     }
 
-    private void updateResults(String playerMove, String matchResult) {
-        upsideResults.update(playerMove, matchResult);
-        downsideResults.update(playerMove, matchResult);
-    }
-
-    private int setIndexByMatchResult(int index, String matchResult) {
-        if (wasWrongMove(matchResult)) {
+    private int changeIndexIfResultsHaveWrongMove(int index) {
+        if (bridgeGame.hasWrongMove()) {
             final String playerCommand = InputView.readGameCommand();
             checkIfContinueOrNot(playerCommand);
-            index = setIndex(index, playerCommand);
+            index = firstOrLastIndex(index, playerCommand);
         }
         return index;
     }
 
-    private boolean wasWrongMove(String matchResult) {
-        return matchResult.equals(WRONG_MOVE);
-    }
-
     private void checkIfContinueOrNot(String playerCommand) {
         if (CommandKeys.isRetry(playerCommand)) {
-            resetResults(playerCommand);
             bridgeGame.retry();
         }
         if (CommandKeys.isQuit(playerCommand)) {
@@ -73,12 +56,7 @@ public class Controller {
         }
     }
 
-    private void resetResults(String playerCommand) {
-        upsideResults.reset(playerCommand);
-        downsideResults.reset(playerCommand);
-    }
-
-    private int setIndex(int index, String playerCommand) {
+    private int firstOrLastIndex(int index, String playerCommand) {
         if (CommandKeys.isRetry(playerCommand)) {
             index = toFirstIndex();
         }
@@ -89,7 +67,7 @@ public class Controller {
     }
 
     private int toFirstIndex() {
-        return -1;
+        return INITIAL_INDEX; // For statement will increase this index to 0.
     }
 
     private int toLastIndex() {
