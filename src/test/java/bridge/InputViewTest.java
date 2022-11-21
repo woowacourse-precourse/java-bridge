@@ -72,4 +72,35 @@ class InputViewTest {
         inputStream("Up");
         assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 게임_재시작_종료_여부_입력(){
+        String answer = "R";
+        inputStream("R");
+        assertThat(inputView.readGameCommand()).isEqualTo(answer);
+    }
+
+    @Test
+    void 게임_재시작_종료_여부_입력력_예외처리1(){
+        inputStream("q");
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 게임_재시작_종료_여부_입력력_예외처리2(){
+        inputStream("Restart");
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 게임_재시작_종료_여부_입력력_예외처리3(){
+        inputStream("1");
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 게임_재시작_종료_여부_입력력_예외처리4(){
+        inputStream("quit");
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+    }
 }
