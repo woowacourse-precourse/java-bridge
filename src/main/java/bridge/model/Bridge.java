@@ -13,4 +13,8 @@ public class Bridge {
     public List<String> getBridge() {
         return bridge;
     }
+
+    public int getBrideSize() {
+        return bridge.size();
+    }
 }
