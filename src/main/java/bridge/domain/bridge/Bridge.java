@@ -22,4 +22,8 @@ public class Bridge {
             throw new IndexOutOfBoundsException("[ERROR] 다리의 길이를 벗어난 위치 값이 입력되었습니다.");
         }
     }
+
+    public boolean isEnd(int location) {
+        return bridge.size() == location;
+    }
 }
