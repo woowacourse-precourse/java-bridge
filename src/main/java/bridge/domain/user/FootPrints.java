@@ -12,7 +12,7 @@ public class FootPrints {
         down = new FootPrint();
     }
 
-    public void add(int status, Direction direction) {
+    public void addStep(int status, Direction direction) {
         if (direction == Direction.UP) {
             up.addStep(status);
             down.addBlank();

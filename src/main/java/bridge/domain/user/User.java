@@ -20,15 +20,11 @@ public class User {
         int currentPosition = userData.getPosition();
         if (bridge.canCross(currentPosition, direction)) {
             userData.increasePosition();
-            recordStep(LIVE, direction);
+            footPrints.addStep(User.LIVE, direction);
             return LIVE;
         }
-        recordStep(DEAD, direction);
+        footPrints.addStep(User.DEAD, direction);
         return DEAD;
-    }
-
-    public void recordStep(int status, Direction direction) {
-        footPrints.add(status, direction);
     }
 
     public boolean isLocateAt(int position) {
