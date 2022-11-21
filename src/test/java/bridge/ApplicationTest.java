@@ -22,6 +22,22 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 다리_생성_테스트2() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 1));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).containsExactly("U", "U", "U");
+    }
+
+    @Test
+    void 다리_생성_테스트3() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).containsExactly("D", "D", "D");
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
