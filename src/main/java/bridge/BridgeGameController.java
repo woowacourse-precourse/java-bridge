@@ -19,4 +19,12 @@ public class BridgeGameController {
         RandomBridgeMap = new ArrayList<>();
         outputView = new OutputView();
     }
+
+    public void start() {
+        attepmtCnt = 0;
+        bridgeSize = inputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        RandomBridgeMap = bridgeMaker.makeBridge(bridgeSize);
+//        BridgeAlgorithm();
+    }
 }
