@@ -106,4 +106,33 @@ public class BridgeGameTest {
         bridgeGame.move("D");
         assertThat(bridgeGame.getGameStatus()).isEqualTo(GameStatus.ONGOING);
     }
+
+    @DisplayName("게임 재시도 시 이동 진행 상태가 초기화되어야 한다.")
+    @Test
+    void clearUserPathWhenRetry() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("D");
+        bridgeGame.retry();
+        assertThat(bridgeGame.getUserPath().isEmpty()).isEqualTo(true);
+    }
+
+    @DisplayName("게임 재시도 시 게임 진행 상태가 초기화되어야 한다.")
+    @Test
+    void resetGameStatusToOngoingWhenRetry() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getGameStatus()).isEqualTo(GameStatus.LOSE);
+        bridgeGame.retry();
+        assertThat(bridgeGame.getGameStatus()).isEqualTo(GameStatus.ONGOING);
+    }
+
+    @DisplayName("게임 재시도 시 시도 횟수가 증가되어야 한다.")
+    @Test
+    void incrementTryCountWhenRetry() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getTryCount()).isEqualTo(1);
+        bridgeGame.retry();
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
+    }
 }
