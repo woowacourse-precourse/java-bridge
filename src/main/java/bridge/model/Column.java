@@ -37,6 +37,12 @@ public enum Column {
             return true;
         return false;
     }
+    public int getOppositeIndex(){
+        if(index == 1){
+            return 0;
+        }
+        return 1;
+    }
     public static Column valueOfCapitalLetter(String capitalLetter) {
         return Arrays.stream(values())
                 .filter(row -> row.capitalLetter.equals(capitalLetter))

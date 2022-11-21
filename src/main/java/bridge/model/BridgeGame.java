@@ -1,5 +1,6 @@
 package bridge.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<Column> bridge;
-
+    private List<List<String>> buffer;
     public BridgeGame() {
         bridge = new ArrayList<>();
     }
@@ -41,4 +42,28 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+
+
+
+
+    private void initializeBuffer(){
+        buffer = new ArrayList<>();
+        buffer.get(0).add(BridgeBuffer.START);
+        buffer.get(1).add(BridgeBuffer.START);
+    }
+
+    public void addColumn(Column answer){
+        buffer.get(answer.getIndex()).add(BridgeBuffer.RIGHT);
+        buffer.get(answer.getIndex()).add(BridgeBuffer.CONTOUR);
+        buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.BLANK);
+        buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.CONTOUR);
+    }
+    public void running(){
+        buffer.get(0).set(-1,BridgeBuffer.END);
+        buffer.get(1).set(-1,BridgeBuffer.END);
+    }
+
+
+
 }
