@@ -1,4 +1,6 @@
-package bridge;
+package bridge.Service.Game;
+
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

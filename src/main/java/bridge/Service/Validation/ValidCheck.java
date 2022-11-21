@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Service.Validation;
 
 public class ValidCheck {
     public static boolean isString_in_1to9(String str) {

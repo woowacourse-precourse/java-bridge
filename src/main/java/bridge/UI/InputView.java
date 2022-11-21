@@ -1,4 +1,7 @@
-package bridge;
+package bridge.UI;
+
+import bridge.Exception.Exceptions;
+import bridge.Service.Validation.ValidCheck;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -13,10 +16,10 @@ public class InputView {
     public int readBridgeSize() {
         String size_str = readLine();
         if (!ValidCheck.isString_in_1to9(size_str))
-            throw new IllegalArgumentException(Exception.NotInteger.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotInteger.getMessage());
         int size = Integer.parseInt(size_str);
         if (!ValidCheck.isRange_3to20(size))
-            throw new IllegalStateException(Exception.NotInRange.getMessage());
+            throw new IllegalStateException(Exceptions.NotInRange.getMessage());
         return size;
     }
 
@@ -26,9 +29,9 @@ public class InputView {
     public String readMoving() {
         String command = readLine();
         if (!ValidCheck.isUorD(command))
-            throw new IllegalArgumentException(Exception.NotUorD.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotUorD.getMessage());
         if (!ValidCheck.isLength1(command))
-            throw new IllegalStateException(Exception.NotCorrectSize.getMessage());
+            throw new IllegalStateException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
 
@@ -38,9 +41,9 @@ public class InputView {
     public String readGameCommand() {
         String command = readLine();
         if (!ValidCheck.isRorQ(command))
-            throw new IllegalArgumentException(Exception.NotRorQ.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotRorQ.getMessage());
         if (!ValidCheck.isLength1(command))
-            throw new IllegalArgumentException(Exception.NotCorrectSize.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
 }

@@ -1,4 +1,9 @@
-package bridge;
+package bridge.Service.Game;
+
+import bridge.BridgeRandomNumberGenerator;
+import bridge.Domain.BridgeGame;
+import bridge.UI.InputView;
+import bridge.UI.OutputView;
 
 import java.util.List;
 
