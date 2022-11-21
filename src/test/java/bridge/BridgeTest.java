@@ -26,6 +26,15 @@ public class BridgeTest extends NsTest {
 		}, 1, 0, 1);
 	}
 
+	@Test
+	void move_기능테스트() {
+		assertRandomNumberInRangeTest(() -> {
+			BridgeGame bridgeGame = new BridgeGame();
+			bridgeGame.setBridge(3);
+			assertThat(true).isEqualTo(bridgeGame.move("U", 0));
+		}, 1, 0, 1);
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
