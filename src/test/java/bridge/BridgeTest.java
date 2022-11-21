@@ -83,4 +83,14 @@ class BridgeTest {
 			assertThat(alternativeBridge.toString()).isEqualTo(result);
 		}
 	}
+
+	@DisplayName("실패를 포함한 시도 횟수를 반환해야 한다.")
+	@Test
+	void getTrialsTest() {
+		alternativeBridge.moveNext(Inputs.MOVE_UP);
+		alternativeBridge.moveNext(Inputs.MOVE_UP);
+		assertThat(alternativeBridge.getTrials()).isEqualTo(2);
+		alternativeBridge.resetMoveStatus();
+		assertThat(alternativeBridge.getTrials()).isEqualTo(0);
+	}
 }

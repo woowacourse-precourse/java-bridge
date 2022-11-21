@@ -68,4 +68,8 @@ public class Bridge {
 		this.nextPosition = 0;
 		this.moveLog = new ArrayList<>();
 	}
+
+	public int getTrials() {
+		return this.moveLog.size();
+	}
 }
