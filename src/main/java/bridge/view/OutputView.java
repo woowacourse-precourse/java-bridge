@@ -22,7 +22,7 @@ public class OutputView {
     private static final String GAME_WIN_LOSE_CASE_MSG = "게임 성공 여부: %s";
     private static final String GAME_TRY_COUNT_MSG = "총 시도한 횟수: %d";
     private static final String ERROR_MSG = "[ERROR] %s";
-    
+    private static final String INTRO_MSG = "다리 건너기 게임을 시작합니다.\n";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -85,4 +85,8 @@ public class OutputView {
         System.out.println(String.format(ERROR_MSG, error_msg));
     }
 
+    public static void printIntro() {
+        System.out.println(INTRO_MSG);
+    }
+    
 }
