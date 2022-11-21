@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -9,8 +8,9 @@ import java.util.Map;
 public class BridgeGame {
 
     private final List<String> bridge;
-    private Map<String, String> gameResult;
     private int pointer = 0;
+    private String upResult = "";
+    private String downResult = "";
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -21,7 +21,7 @@ public class BridgeGame {
         String playerInput = input.readMoving();
         String userMove = move(playerInput);
         OutputView printer = new OutputView();
-        printer.printMap(upResultToString(playerInput,userMove),downResultToString(playerInput,userMove));
+        printer.printMap(upResultToString(playerInput, userMove), downResultToString(playerInput, userMove));
     }
 
     /**
@@ -39,25 +39,21 @@ public class BridgeGame {
 
     public String upResultToString(String playerInput, String move) {
         if (playerInput.equals("U")) {
-            gameResult.put(playerInput, gameResult.get(playerInput) + move);
-            return gameResult.get(playerInput);
+            upResult += move;
+            return upResult;
         }
-        gameResult.put(playerInput, gameResult.get(playerInput) + " ");
-        return gameResult.get(playerInput);
+        upResult += " ";
+        return upResult;
     }
 
     public String downResultToString(String playerInput, String move) {
         if (playerInput.equals("D")) {
-            gameResult.put(playerInput, gameResult.get(playerInput) + move);
-            return gameResult.get(playerInput);
+            downResult += move;
+            return downResult;
         }
-        gameResult.put(playerInput, gameResult.get(playerInput) + " ");
-        return gameResult.get(playerInput);
+        downResult += " ";
+        return downResult;
     }
-
-
-
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

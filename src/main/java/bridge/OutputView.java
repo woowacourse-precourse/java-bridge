@@ -19,12 +19,12 @@ public class OutputView {
         for(int index = 1; index<up.length(); index++){
             System.out.printf(" | %c", up.charAt(index));
         }
-        System.out.println("]");
+        System.out.println(" ]");
         System.out.printf("[ %c", down.charAt(0));
         for(int index = 1; index<down.length(); index++){
             System.out.printf(" | %c", down.charAt(index));
         }
-        System.out.println("]");
+        System.out.println(" ]");
     }
 
     /**
