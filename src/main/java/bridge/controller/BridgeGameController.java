@@ -46,14 +46,17 @@ public class BridgeGameController {
 
     private Bridge makeGameBridge() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
+
         int bridgeSize = inputView.readBridgeSize();
+
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void askRetry() {
         String status = inputView.readGameCommand();
-        if (Command.RETRY.getCommand().equals(status)) {
+        
+        if (status.equals(Command.RETRY.getCommand())) {
             bridgeGame.retry();
             gameCount++;
             return;

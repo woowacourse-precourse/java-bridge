@@ -60,6 +60,7 @@ public class BridgeGame {
 
     private List<String> makeEachBridge(String way, List<String> playerMove, List<String> answerMove) {
         List<String> result = new ArrayList<>();
+        
         for (int index = 0; index < playerMove.size(); index++) {
             result.add(checkStep(way, playerMove.get(index), answerMove.get(index)));
         }
