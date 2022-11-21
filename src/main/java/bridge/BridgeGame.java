@@ -34,7 +34,7 @@ public class BridgeGame {
         }
     }
 
-    //다음으로 갈수 있는 경우 true, 없는경우 상태를 바꾸고 false
+    //다음으로 갈수 있는 경우 에만 다리 끝에 도달 했는지 확인한다.
     private boolean checkingMoving(String userWantedDirection) {
         if (bridge.get(nowLocation++).equals(userWantedDirection)) {
             return true;
