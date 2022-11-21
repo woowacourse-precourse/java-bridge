@@ -1,6 +1,7 @@
 package bridge.constant;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public enum GameOption {
     RESTART("R"),
@@ -22,5 +23,10 @@ public enum GameOption {
     private static Boolean isGameOptionEqual(String message, GameOption gameOption) {
         String gameOptionMessage = gameOption.message;
         return message.equals(gameOptionMessage);
+    }
+
+    public static Boolean isGameOption(String gameOption) {
+        return Stream.of(values())
+                .anyMatch(value -> gameOption.equals(value.message));
     }
 }
