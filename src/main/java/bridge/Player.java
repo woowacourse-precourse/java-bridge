@@ -19,4 +19,8 @@ public class Player {
     public int getCurrentPosition() {
         return this.currentPosition;
     }
+
+    public void initializePosition() {
+        currentPosition = START_POSITION;
+    }
 }

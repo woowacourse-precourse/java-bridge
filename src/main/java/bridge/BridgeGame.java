@@ -1,5 +1,6 @@
 package bridge;
 
+import enumCollections.AvailableInput;
 import enumCollections.GameStatus;
 import enumCollections.Side;
 
@@ -30,14 +31,6 @@ public class BridgeGame {
         return movable;
     }
 
-    public GameStatus tryMoveTo(String squareToMove) {
-        addTrial();
-        if (canMoveTo(squareToMove)) {
-            return move();
-        }
-        return GameStatus.FAILURE;
-    }
-
     private void addTrial() {
         this.trial++;
     }
@@ -46,19 +39,27 @@ public class BridgeGame {
         return bridge.isAvailableToMove(squareToMove, player.getNextPosition());
     }
 
-    public void retry() {
-        player = new Player();
+    public GameStatus retry(String gameCommand) {
+        if (gameCommand.equals(AvailableInput.RESTART_GAME)) {
+            player.initializePosition();
+            return GameStatus.CONTINUE;
+        }
+        return GameStatus.FAILURE;
     }
 
-    public int getCurrentPosition() {
-        return player.getCurrentPosition();
-    }
-
-    public Side getAvailableSquare(int bridgeIndex) {
-        return Side.getPosition(bridge.getMovableSide(bridgeIndex));
+    public GameStatus getGameStatus() {
+        if (bridge.isLastPosition(player.getCurrentPosition())) {
+            return GameStatus.SUCCESS;
+        }
+        return GameStatus.CONTINUE;
     }
 
     public String getTrial() {
         return Integer.toString(this.trial);
+    }
+
+    public Side getCurrentAvailableSide() {
+        String sideSymbol = bridge.getMovableSide(player.getCurrentPosition());
+        return Side.getPosition(sideSymbol);
     }
 }

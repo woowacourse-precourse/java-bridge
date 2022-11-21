@@ -26,10 +26,10 @@ public class Map {
         return bridgeUserInterface;
     }
 
-    public void add(Side side, GameStatus gameStatus) {
-        String isSucceed = "O";
-        if (gameStatus == GameStatus.FAILURE) {
-            isSucceed = "X";
+    public void add(Side side, boolean moved) {
+        String isSucceed = UserInterfaceSymbol.get(UserInterfaceSymbol.AVAILABLE_TO_MOVE);
+        if (!moved) {
+            isSucceed = UserInterfaceSymbol.get(UserInterfaceSymbol.UNAVAILABLE_TO_MOVE);
             side = Side.getOppositePosition(side);
         }
         add(side, isSucceed);
