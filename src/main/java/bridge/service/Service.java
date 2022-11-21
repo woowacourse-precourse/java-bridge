@@ -28,12 +28,8 @@ public class Service {
         return record.getResult();
     }
 
-    public boolean checkMoveSuccess() {
-        return game.checkMoveSuccess();
-    }
-
-    public boolean isFinishedGame() {
-        return game.checkFinish();
+    public String getPlayResult() {
+        return game.getPlayResult();
     }
 
     public List<String> getFinalResult() {

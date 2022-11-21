@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.service.Service;
+import bridge.utils.GameState;
 import bridge.utils.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -34,19 +35,17 @@ public class Controller {
 
     private void playGame() {
         move();
-        boolean moveSuccess = checkMoveSuccess();
-        boolean gameEnd = checkGameEnd();
-
-        if (moveSuccess && gameEnd) {
+        String playResult = service.getPlayResult();
+        if (playResult.equals(GameState.WIN.name())) {
             printFinalResult();
         }
 
-        if (moveSuccess && !gameEnd) {
-            playGame();
+        if (playResult.equals(GameState.LOOSE.name())) {
+            decideRetry();
         }
 
-        if (!moveSuccess) {
-            decideRetry();
+        if (playResult.equals(GameState.PLAYING.name())) {
+            playGame();
         }
     }
 
@@ -64,14 +63,6 @@ public class Controller {
     private void printMoveResult() {
         List<String> currentResult = service.getCurrentResult();
         outputView.printMap(currentResult);
-    }
-
-    private boolean checkMoveSuccess() {
-        return service.checkMoveSuccess();
-    }
-
-    private boolean checkGameEnd() {
-        return service.isFinishedGame();
     }
 
     private void printFinalResult() {
