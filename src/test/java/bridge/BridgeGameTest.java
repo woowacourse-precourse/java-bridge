@@ -37,5 +37,30 @@ class BridgeGameTest {
         assertThat(isMove).isFalse();
     }
 
+    @Test
+    void 한칸_움직임_성공시_출력을_위한_2줄_리스트_만들기() {
+        boolean isMove = true;
+        List<List<String>> expextMap = new ArrayList<>(
+                List.of(
+                        List.of("O"),
+                        List.of(" ")
+                )
+        );
+        bridgeGame.move("U");
+        assertThat(bridgeGame.getMap()).isEqualTo(expextMap);
+    }
+    @Test
+    void 한칸_움직임_실패시_출력을_위한_2줄_리스트_만들기() {
+        boolean isMove = true;
+        List<List<String>> expextMap = new ArrayList<>(
+                List.of(
+                        List.of(" "),
+                        List.of("X")
+                )
+        );
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getMap()).isEqualTo(expextMap);
+    }
+
 
 }
