@@ -24,6 +24,8 @@ public class Application {
             }
 
         }
+
+        bridgeGame.getResult();
        // bridgeGame.challengeCount();
     }
 }

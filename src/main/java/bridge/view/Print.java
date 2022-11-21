@@ -23,11 +23,10 @@ public class Print {
     public static void failResult(int challenge){
         System.out.println(FAILURE_RESULT_MESSAGE);
         System.out.println(CHALLENGE_COUNT+challenge);
+    }public static void successResult(int challenge){
+        System.out.println(SUCCESS_RESULT_MESSAGE);
+        System.out.println(CHALLENGE_COUNT+challenge);
     }
-   /* public static void resultMesssage(){
-        System.out.println(RESULT_MESSAGE);
-    }*/
-
 
     public static void exceptionMessage(Exception e) {
         System.out.println(e.getMessage());

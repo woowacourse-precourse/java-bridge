@@ -119,17 +119,17 @@ public class BridgeGame {
         }
         if(userInput.equals("Q")){
             round = bridgeSize;
-            outputView.printResult();
-            Print.failResult(challenge);
         }
     }
 
-    public void challengeCount(){
-        Print.showChallengeCount(challenge);
-    }
 
-    public void successResult(){
-
+    public void getResult(){
+        outputView.printResult();
+        if(mark.size()==bridge.size() && mark.get(bridge.size()-1).equals("O")){
+            Print.successResult(challenge);
+            return;
+        }
+        Print.failResult(challenge);
     }
 
 
