@@ -26,4 +26,14 @@ public class BridgeMaker {
         }
         return bridge;
     }
+
+    public List<Integer> BridgeUsableList(int size) {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        List<Integer> bridgeUsable = new ArrayList<>();
+        for (int i=0; i<size; i++) {
+            bridgeUsable.add(bridgeRandomNumberGenerator.generate());
+        }
+        return bridgeUsable;
+    }
+
 }
