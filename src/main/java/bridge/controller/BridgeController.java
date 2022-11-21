@@ -6,6 +6,7 @@ import bridge.model.dto.MoveResultDto;
 import bridge.model.service.BridgeService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeController {
 
@@ -48,13 +49,15 @@ public class BridgeController {
     private MoveResultDto moveOneBridge() {
         String bridgeType = inputView.readMoving();
         MoveResultDto moveResultDto = bridgeService.move(bridgeType);
-        outputView.printMap(moveResultDto.getBridgeMap(), moveResultDto.isRightLastBridgePick());
+        List<Integer> bridgeMap = bridgeService.readBridgeMap();
+        outputView.printMap(bridgeMap, moveResultDto.isRightLastBridgePick());
         return moveResultDto;
     }
 
     private void printResult() {
         GameResultDto gameResult = bridgeService.readGameResult();
-        outputView.printResult(gameResult.getBridgeMap(), gameResult.getSuccessOrFail(), gameResult.getRetryCount());
+        List<Integer> bridgeMap = bridgeService.readBridgeMap();
+        outputView.printResult(bridgeMap, gameResult.getSuccessOrFail(), gameResult.getRetryCount());
     }
 
 

@@ -26,10 +26,9 @@ public class BridgeGame {
      */
     public MoveResultDto move(Bridge bridgeToMove) {
         Bridge actualBridge = bridges.findBridgeByPosition(++position);
-        List<Integer> bridgeMap = bridges.readBridgeMap(position);
         boolean isRightLastBridgePick = actualBridge == bridgeToMove;
         boolean isMovableStatus = position != bridges.size() - Constant.INDEX_ZEROING_NUMBER;
-        return new MoveResultDto(bridgeMap, isRightLastBridgePick, isMovableStatus);
+        return new MoveResultDto(isRightLastBridgePick, isMovableStatus);
     }
 
     /**
@@ -47,6 +46,10 @@ public class BridgeGame {
     }
 
     public GameResultDto readGameResult() {
-        return new GameResultDto(bridges.readBridgeMap(position), successOrFail, retryCount);
+        return new GameResultDto(successOrFail, retryCount);
+    }
+
+    public List<Integer> readBridgeMap() {
+        return bridges.readBridgeMap(position);
     }
 }

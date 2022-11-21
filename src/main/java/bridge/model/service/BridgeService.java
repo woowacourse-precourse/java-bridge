@@ -43,4 +43,8 @@ public class BridgeService {
         return bridgeGame.readGameResult();
     }
 
+    public List<Integer> readBridgeMap() {
+        return bridgeGame.readBridgeMap();
+    }
+
 }
