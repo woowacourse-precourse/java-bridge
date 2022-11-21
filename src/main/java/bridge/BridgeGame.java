@@ -63,9 +63,9 @@ public class BridgeGame {
     public void appendCorrectAnswer(List<String> bridgeList){
         bridgeList.add("O");
     }
-    public void appendWrongAnswer(List<String> bridgeList){
+    public void appendWrongAnswer(List<String> bridgeList) {
         bridgeList.add("X");
-        progressStatus=false;
+        progressStatus = false;
     }
 
     public boolean isOver() {
@@ -73,5 +73,23 @@ public class BridgeGame {
             return false;
         }
         return true;
+    }
+
+    public boolean isRetry(String gameCommand) {
+        if (gameCommand.equals("R")) {
+            initBeforeRestart();
+        }
+        return progressStatus;
+    }
+    public void initBeforeRestart(){
+        progressStatus = true;
+        moveCount = 0;
+        gameAttemptCount++;
+        upBridge.clear();
+        downBridge.clear();
+    }
+
+    public boolean isSuccess(){
+        return progressStatus && moveCount == bridgeList.size();
     }
 }

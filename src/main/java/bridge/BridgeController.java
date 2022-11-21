@@ -25,7 +25,10 @@ public class BridgeController {
     }
     public void run(){
         init();
-        game();
+        do{
+            game();
+        }
+        while(gameOver());
 
     }
     public void game() {
@@ -33,5 +36,16 @@ public class BridgeController {
             outputView.printMovingInputMessage();
             bridgeGame.gameInProgress(inputView.readMoving());
         }
+    }
+    public boolean gameOver() {
+        if(!(bridgeGame.isSuccess())) {
+            return retry();
+        }
+        return false;
+    }
+    public boolean retry() {
+        outputView.printRetryMessage();
+        String gameCommand = inputView.readGameCommand();
+        return bridgeGame.isRetry(gameCommand);
     }
 }
