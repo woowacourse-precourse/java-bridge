@@ -31,7 +31,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public String printMap(List<String> userMove, List<String> bridge) {
+        List<String> upside = makemap("U",userMove,bridge);
+        List<String> downside = makemap("D",userMove,bridge)  ;
+
+        System.out.println("["+String.join("|",upside)+"]");
+        System.out.println("["+String.join("|",downside)+"]\n");
+
+        return upside.toString() + downside.toString();
     }
 
     public List<String> makemap(String position, List<String> userMove, List<String> bridge){
