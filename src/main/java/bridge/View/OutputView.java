@@ -45,7 +45,7 @@ public class OutputView {
                 System.out.print(DIVISION);
             }
         }
-        System.out.println(CLOSEMAP);
+        System.out.println(CLOSEMAP + "\n");
     }
 
     public void printResult() {
