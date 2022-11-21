@@ -128,4 +128,8 @@ public class OutputView {
     public void printFailure() {
         System.out.println("게임 성공 여부: 실패");
     }
+
+    public void printTrialCnt(int trialCnt) {
+        System.out.println("총 시도한 횟수: " + trialCnt);
+    }
 }
