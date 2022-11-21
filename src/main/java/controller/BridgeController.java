@@ -20,7 +20,7 @@ public class BridgeController {
 	private final ViewClear viewClear=new ViewClear();
 
 	private List<String> bridge_list;
-	private final int TRY_COUNT=1;
+	private int TRY_COUNT=1;
 	private String RESULT_CONDITION=GameEnd.SUCCESS.toString();
 
 	public void BridgeGameStart(){
@@ -54,14 +54,22 @@ public class BridgeController {
 		if (user_input_condition.equals("SUCCESS")){
 			outputView.printResult();
 		}
-		String retry = resultController.retryOrGiveUP(user_input_condition, outputView);
-		if (retry.equals("R")){
+		retryOrGiveUp(user_input_condition);
+	}
+
+	private void retryOrGiveUp(String user_input_condition){
+		if (user_input_condition.equals("Q")){
+			outputView.printResult();
+		}
+
+		if (user_input_condition.equals("R")){
 			retry();
 		}
 	}
 
 	private void retry(){
 		viewClear.viewClear(outputView);
+		TRY_COUNT++;
 		RESULT_CONDITION=GameEnd.SUCCESS.toString();
 		crossingTheBridge();
 	}
