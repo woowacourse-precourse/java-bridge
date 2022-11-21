@@ -15,6 +15,7 @@ public class InputView {
 
         System.out.println(PrintSentence.LENGHT_REQUEST.getSentence());
         inputData = Console.readLine();
+        System.out.println();
         check.checklenght(inputData);
         bridgeSize = Integer.parseInt(inputData);
         return bridgeSize;
