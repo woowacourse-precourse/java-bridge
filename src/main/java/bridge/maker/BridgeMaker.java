@@ -31,6 +31,6 @@ public class BridgeMaker {
     }
 
     public String setCrossingSpace(int randomNumber) {
-        return Moving.findByNumber(randomNumber).name();
+        return Moving.findByNumber(randomNumber).getExpression();
     }
 }
