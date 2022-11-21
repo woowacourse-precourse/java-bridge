@@ -11,8 +11,15 @@ public class GamePlayer {
     private static final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private List<String> bridge = new ArrayList<>();
+    private final BridgeGame bridgeGame = new BridgeGame();
     public void play() {
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        BridgeGame bridgeGame = new BridgeGame();
+        this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        this.bridgeGame.setBridge(bridge);
+        crossingBridge();
+    }
+    private void crossingBridge() {
+        for(int i = 0; i < this.bridge.size(); i++) {
+            this.bridgeGame.move(inputView.readMoving());
+        }
     }
 }
