@@ -8,6 +8,11 @@ public class OutputView {
     private static final String FINAL_GAME_MESSAGE = "최종 게임 결과";
     private static final String GAME_RESULT_MESSAGE = "게임 성공 여부: ";
     private static final String GAME_REPEAT_MESSAGE = "총 시도한 횟수: ";
+    private static final String GAME_CHOOSE_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GAME_INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
+    private static final String GAME_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String GAME_WIN_MESSAGE = "성공";
+    private static final String GAME_LOOSE_MESSAGE = "실패";
     public static final String GAME_ICON_OPEN = "[ ";
     public static final String GAME_ICON_CLOSE = " ]";
     public static final String GAME_ICON_BAR = " | ";
@@ -58,5 +63,13 @@ public class OutputView {
 
     public void printIconSpace() {
         System.out.println(GAME_ICON_SPACE);
+    }
+
+    public void printInputBridgeLength() {
+        System.out.println(GAME_INPUT_BRIDGE_LENGTH);
+    }
+
+    public void printInputMovement() {
+        System.out.println(GAME_CHOOSE_MOVE_MESSAGE);
     }
 }
