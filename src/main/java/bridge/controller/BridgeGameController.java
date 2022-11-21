@@ -44,6 +44,8 @@ public class BridgeGameController {
                     outputView.printResult(movingType, bridgeGame.getTrial());
                     break;
                 }
+                bridgeGame.retry();
+                play(bridgeGame, bridgeSize);
             }
         }
     }

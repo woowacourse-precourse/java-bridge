@@ -57,6 +57,7 @@ public class BridgeGame {
      */
     public void retry() {
         trial += 1;
+        index = 0;
         moveLog.clearMoveLog();
     }
 
