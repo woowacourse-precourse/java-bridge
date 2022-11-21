@@ -19,6 +19,11 @@
   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 기능 목록
+- [x] bridge getter&setter - Bridge
+- [x] outputBridge getter&setter - Bridge
+- [x] tryCount getter&setter - Bridge
+- [x] isGame getter&setter - Bridge
+
 - [x] "다리 건너기 게임을 시작합니다."를 출력
 - [x] "다리의 길이를 입력해 주세요."를 출력
 - [x] 다리의 길이를 입력 - InputView#readBridgeSize
@@ -30,7 +35,6 @@
 - [x] 이동할 칸을 입력받기 - InputView#readMoving
   - [x] 입력한 값이 U 또는 D 인지 검사 - InputView#isReadMoving
 - [x] 1 또는 0을 랜덤으로 생성 - bridgeRandomNumber(클래스 변경)
-- [x] 다리 이동에 성공했는지 검사 - BridgeGame#move
 - [x] 시도한 횟수를 반환 - getTryCount
 - [x] BridgeRandomNumberGenerator 클래스를 이용하여 랜덤 값 추출(입력 받을 때마다 랜덤 값 생성)
 - [x] 이동한 칸에 따라 결과를 반영하여 결과를 출력
@@ -47,4 +51,4 @@
 - [x] 다리의 길이 입력이 숫자가 아닌 경우
 - [x] 다리의 길이 입력이 3이상 20이하가 아닌 경우
 - [x] 플레이어가 이동할 칸의 입력이 U 또는 D가 아닌 경우
-- [ ] 게임 재시작 여부 입력이 R 또는 Q가 아닌 경우
+- [x] 게임 재시작 여부 입력이 R 또는 Q가 아닌 경우
