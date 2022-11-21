@@ -12,17 +12,15 @@ import java.util.List;
 public class BridgeGame {
     private final InputView inputView = new InputView();
     private final BridgeBroker bridgeBroker = new BridgeBroker();
-    private Bridge bridge;
+    private final Bridge bridge;
     private GameResult gameResult = new GameResult();
 
     public BridgeGame() {
         OutputView.printWelcome();
-    }
 
-    public Bridge makeBridge() {
+        // 다리를 생성한다.
         int bridgeSize = inputView.readBridgeSize();
-        bridge = bridgeBroker.makeBridge(bridgeSize);
-        return bridge;
+        bridge = bridgeBroker.makeBridge(bridgeSize);;
     }
 
     /**
