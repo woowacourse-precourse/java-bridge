@@ -39,5 +39,11 @@ public class BridgeGame {
         this.trial++;
     }
 
+    public int getTrial() {
+        return this.trial;
+    }
 
+    public List<String> getBridge() {
+        return this.bridge;
+    }
 }
