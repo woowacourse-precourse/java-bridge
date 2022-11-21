@@ -30,7 +30,7 @@ public class BridgeGameEngine {
             Bridge userBridge = bridgeFactory.makeUserBridge();
             PlayerStatus playerStatus = playerMoveBridge(bridge, userBridge);
             if (isGameFinish(gameCount, userBridge, playerStatus)) {
-                break;
+                return;
             }
         }
     }
@@ -58,8 +58,8 @@ public class BridgeGameEngine {
     }
 
     private PlayerStatus playerMove(final Bridge userBridge,
-                            PlayerStatus playerStatus,
-                            final String currentStep) {
+                                    PlayerStatus playerStatus,
+                                    final String currentStep) {
         playerStatus = isMatchingWithBridge(currentStep);
         bridgeGame.move(userBridge, playerStatus);
         ConsoleUtil.outputBridge(userBridge);
@@ -70,11 +70,10 @@ public class BridgeGameEngine {
     public boolean isGameFinish(final int gameCount,
                                 final Bridge userBridge,
                                 final PlayerStatus playerStatus) {
-        if (finishGamePlayerWin(gameCount, userBridge, playerStatus)) {
+        if (finishGamePlayerWin(gameCount, userBridge, playerStatus) ||
+                finishGamePlayerLose(gameCount, userBridge, playerStatus)) {
             return true;
         }
-
-        finishGamePlayerLose(gameCount, userBridge, playerStatus);
 
         return false;
     }
@@ -89,13 +88,15 @@ public class BridgeGameEngine {
         return false;
     }
 
-    private void finishGamePlayerLose(final int gameCount,
-                                      final Bridge userBridge,
-                                      final PlayerStatus playerStatus) {
+    private boolean finishGamePlayerLose(final int gameCount,
+                                         final Bridge userBridge,
+                                         final PlayerStatus playerStatus) {
         String retryCommand = ConsoleUtil.inputGameCommand();
 
         if (bridgeGame.retry(retryCommand)) {
             ConsoleUtil.outputGameResult(userBridge, gameCount, playerStatus);
+            return true;
         }
+        return false;
     }
 }
