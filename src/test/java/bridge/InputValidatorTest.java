@@ -53,6 +53,17 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("이동 명령 입력시 요청 문자와 다를 때 예외처리")
+    void inputMoveCommandNotSupport() throws Exception {
+        //given
+        String input = "Q";
+        //when
+        //then
+        assertThatThrownBy(() -> inputValidator.validateInputMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 }
