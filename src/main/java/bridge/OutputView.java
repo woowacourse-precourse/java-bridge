@@ -18,33 +18,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Boolean> movingResults, List<String> bridge) {
-        List<String> upMap = new ArrayList<>();
-        List<String> downMap = new ArrayList<>();
+    public void printMap(BridgeGame bridgeGame) {
+        List<String> upMap = bridgeGame.getMap().get("upMap");
+        List<String> downMap = bridgeGame.getMap().get("downMap");
 
-        for (int i = 0; i < movingResults.size(); i++) {
-            boolean movingResult = movingResults.get(i);
-            String curBridge = bridge.get(i);
-            if (movingResult) {
-                if (curBridge.equals(BridgeEnum.U.name())) {
-                    upMap.add("O");
-                    downMap.add(" ");
-                }
-                if (curBridge.equals(BridgeEnum.D.name())) {
-                    downMap.add("O");
-                    upMap.add(" ");
-                }
-                continue;
-            }
-            if (curBridge.equals(BridgeEnum.U.name())) {
-                upMap.add("X");
-                downMap.add(" ");
-            }
-            if (curBridge.equals(BridgeEnum.D.name())) {
-                downMap.add("X");
-                upMap.add(" ");
-            }
-        }
         String upMapResult = "[ " + String.join(" | ", upMap) + " ]";
         String downMapResult = "[ " + String.join(" | ", downMap) + " ]";
         System.out.println(upMapResult);
@@ -56,11 +33,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<Boolean> movingResult, List<String> bridge, int tryCount) {
+    public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
-        printMap(movingResult, bridge);
+        printMap(bridgeGame);
         System.out.println();
-        System.out.println("게임 성공 여부: ");
-        System.out.println("총 시도한 횟수: " + tryCount);
+        System.out.println("게임 성공 여부: " + bridgeGame.getGameResult());
+        System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
     }
 }
