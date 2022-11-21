@@ -85,6 +85,12 @@ public class BridgeGame {
         printPlayerMoveDown.append("|   ");
     }
 
+    public void playerMoveWhetherAnswer(){
+        for (int bridgeIdx =0 ; bridgeIdx < playerMoveRecord.size() ; bridgeIdx++) {
+            MoveAnswer moveAnswer = comparePlayerMoveAndBridge(bridgeIdx);
+            playerMoveWhetherAnswer.add(moveAnswer);
+        }
+    }
 
     public MoveAnswer comparePlayerMoveAndBridge(int bridgeIdx){
         if(bridge.get(bridgeIdx).equals(playerMoveRecord.get(bridgeIdx)) && playerMoveRecord.get(bridgeIdx).equals(MoveDirection.U.strMoveDirection))
