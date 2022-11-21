@@ -11,13 +11,15 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final String MOVING_SUCCESS = "O";
+    private static final String RETRY = "R";
+
     private final BridgeMoving bridgeMoving;
-    private final BridgeGameRetry bridgeGameRetry;
+    private final BridgeGameCount bridgeGameCount;
     private final BridgeGameResult bridgeGameResult;
 
     public BridgeGame(int size) {
         this.bridgeMoving = new BridgeMoving(makeBridge(size));
-        this.bridgeGameRetry = new BridgeGameRetry();
+        this.bridgeGameCount = new BridgeGameCount();
         this.bridgeGameResult = new BridgeGameResult();
     }
 
@@ -25,7 +27,6 @@ public class BridgeGame {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(size);
-        System.out.println("bridge = " + bridge);
         return new Bridge(bridge);
     }
 
@@ -34,13 +35,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String moving, int movingIndex) {
+    public boolean move(String moving, int movingIndex) {
         String movingResult = bridgeMoving.move(moving, movingIndex);
         bridgeGameResult.putMovingResult(moving, movingResult);
-        return movingResult;
+        return isMove(movingResult);
     }
 
-    public boolean isMove(String movingResult) {
+    private boolean isMove(String movingResult) {
         return movingResult.equals(MOVING_SUCCESS);
     }
 
@@ -49,20 +50,28 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-         bridgeGameResult.clearResult();
-         bridgeGameResult.increaseCount();
+    public boolean retry(String gameCommand) {
+        if (isRetry(gameCommand)) {
+            bridgeGameResult.clearResult();
+            increaseGameCount();
+            return true;
+        }
+        return false;
     }
 
-    public boolean isRetry(String gameCommand) {
-        return bridgeGameRetry.retry(gameCommand);
+    private boolean isRetry(String gameCommand) {
+        return gameCommand.equals(RETRY);
     }
 
     public void increaseGameCount() {
-        bridgeGameResult.increaseCount();
+        bridgeGameCount.increaseCount();
     }
 
     public BridgeGameResult getBridgeGameResult() {
         return bridgeGameResult;
+    }
+
+    public BridgeGameCount getBridgeGameCount() {
+        return bridgeGameCount;
     }
 }
