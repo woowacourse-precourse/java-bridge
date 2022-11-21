@@ -84,6 +84,6 @@ public class OutputView {
     }
 
     public void printTotalTry(int tryCount) {
-        System.out.println(String.format("총 시도한 횟수 : %d", tryCount));
+        System.out.println(String.format("총 시도한 횟수: %d", tryCount));
     }
 }

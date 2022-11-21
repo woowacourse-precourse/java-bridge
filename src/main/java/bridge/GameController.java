@@ -26,13 +26,17 @@ public class GameController {
 
     public int createBridgeSize() {
         try {
-            int bridgeSize = isPositiveInteger(inputView.readBridgeSize());
-            isInRange(bridgeSize);
-            return bridgeSize;
+            return getBridgeSize();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return createBridgeSize();
         }
+    }
+
+    public int getBridgeSize() {
+        int bridgeSize = isPositiveInteger(inputView.readBridgeSize());
+        isInRange(bridgeSize);
+        return bridgeSize;
     }
     public void readyForGame() {
         outputView.printStartGame();
