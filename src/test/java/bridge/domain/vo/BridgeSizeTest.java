@@ -15,7 +15,7 @@ class BridgeSizeTest {
     @ParameterizedTest(name = "[{index}] input {0} ")
     @ValueSource(ints = {3, 5, 10, 15, 20})
     void Validate_BridgeSize_exception(int input) {
-        assertThat(new BridgeSize(input).getValue()).isEqualTo(input);
+        assertThat(BridgeSize.from(input).getValue()).isEqualTo(input);
     }
 
     @DisplayName("Unvalidated BridgeSize Range")
@@ -23,7 +23,7 @@ class BridgeSizeTest {
     @ValueSource(ints = {-1, 0, 2, 21, 30})
     void Unvalidated_BridgeSize_exception(int input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-            new BridgeSize(input);
+            BridgeSize.from(input);
         });
         assertEquals(ErrorCode.SIZE_NOT_IN_RANGE.getException().getMessage(),
                 exception.getMessage());

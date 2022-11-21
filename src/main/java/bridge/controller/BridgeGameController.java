@@ -49,7 +49,7 @@ public class BridgeGameController {
 
     private BridgeSize inputBridgeSize() {
         try {
-            return new BridgeSize(inputView.readBridgeSize());
+            return BridgeSize.from(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

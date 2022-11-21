@@ -7,9 +7,13 @@ public class BridgeSize {
 
     private final int size;
 
-    public BridgeSize(int size) {
+    private BridgeSize(int size) {
         validSize(size);
         this.size = size;
+    }
+
+    public static BridgeSize from(int size) {
+        return new BridgeSize(size);
     }
 
     public int getValue() {
